@@ -1,0 +1,111 @@
+CBSA Code,CBSA Title,county5,County/County Equivalent,State Name,Central/Outlying County
+11460,"Ann Arbor, MI",26161,Washtenaw County,Michigan,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13013,Barrow County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13035,Butts County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13045,Carroll County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13063,Clayton County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13077,Coweta County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13085,Dawson County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13089,DeKalb County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13097,Douglas County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13113,Fayette County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13117,Forsyth County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13121,Fulton County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13135,Gwinnett County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13149,Heard County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13151,Henry County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13159,Jasper County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13187,Lumpkin County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13199,Meriwether County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13211,Morgan County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13217,Newton County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13227,Pickens County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13231,Pike County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13247,Rockdale County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13255,Spalding County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13297,Walton County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13015,Bartow County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13057,Cherokee County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13067,Cobb County,Georgia,Central
+12060,"Atlanta-Sandy Springs-Roswell, GA",13143,Haralson County,Georgia,Outlying
+12060,"Atlanta-Sandy Springs-Roswell, GA",13223,Paulding County,Georgia,Central
+12420,"Austin-Round Rock-San Marcos, TX",48021,Bastrop County,Texas,Outlying
+12420,"Austin-Round Rock-San Marcos, TX",48055,Caldwell County,Texas,Outlying
+12420,"Austin-Round Rock-San Marcos, TX",48209,Hays County,Texas,Central
+12420,"Austin-Round Rock-San Marcos, TX",48453,Travis County,Texas,Central
+12420,"Austin-Round Rock-San Marcos, TX",48491,Williamson County,Texas,Central
+28660,"Killeen-Temple, TX",48027,Bell County,Texas,Central
+28660,"Killeen-Temple, TX",48099,Coryell County,Texas,Central
+28660,"Killeen-Temple, TX",48281,Lampasas County,Texas,Outlying
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27003,Anoka County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27019,Carver County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27025,Chisago County,Minnesota,Outlying
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27037,Dakota County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27053,Hennepin County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27059,Isanti County,Minnesota,Outlying
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27079,Le Sueur County,Minnesota,Outlying
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27095,Mille Lacs County,Minnesota,Outlying
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27123,Ramsey County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27139,Scott County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27141,Sherburne County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27163,Washington County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",27171,Wright County,Minnesota,Central
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",55093,Pierce County,Wisconsin,Outlying
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",55109,St. Croix County,Wisconsin,Outlying
+35620,"New York-Newark-Jersey City, NY-NJ",34023,Middlesex County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34025,Monmouth County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34029,Ocean County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34035,Somerset County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36059,Nassau County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36103,Suffolk County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34013,Essex County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34019,Hunterdon County,New Jersey,Outlying
+35620,"New York-Newark-Jersey City, NY-NJ",34027,Morris County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34037,Sussex County,New Jersey,Outlying
+35620,"New York-Newark-Jersey City, NY-NJ",34039,Union County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34003,Bergen County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34017,Hudson County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",34031,Passaic County,New Jersey,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36005,Bronx County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36047,Kings County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36061,New York County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36079,Putnam County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36081,Queens County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36085,Richmond County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36087,Rockland County,New York,Central
+35620,"New York-Newark-Jersey City, NY-NJ",36119,Westchester County,New York,Central
+38300,"Pittsburgh, PA",42003,Allegheny County,Pennsylvania,Central
+38300,"Pittsburgh, PA",42005,Armstrong County,Pennsylvania,Outlying
+38300,"Pittsburgh, PA",42007,Beaver County,Pennsylvania,Central
+38300,"Pittsburgh, PA",42019,Butler County,Pennsylvania,Central
+38300,"Pittsburgh, PA",42051,Fayette County,Pennsylvania,Outlying
+38300,"Pittsburgh, PA",42073,Lawrence County,Pennsylvania,Outlying
+38300,"Pittsburgh, PA",42125,Washington County,Pennsylvania,Central
+38300,"Pittsburgh, PA",42129,Westmoreland County,Pennsylvania,Central
+39340,"Provo-Orem-Lehi, UT",49023,Juab County,Utah,Outlying
+39340,"Provo-Orem-Lehi, UT",49049,Utah County,Utah,Central
+41940,"San Jose-Sunnyvale-Santa Clara, CA",06069,San Benito County,California,Outlying
+41940,"San Jose-Sunnyvale-Santa Clara, CA",06085,Santa Clara County,California,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51013,Arlington County,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51043,Clarke County,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51047,Culpeper County,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51059,Fairfax County,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51061,Fauquier County,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51107,Loudoun County,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51153,Prince William County,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51157,Rappahannock County,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51177,Spotsylvania County,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51179,Stafford County,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51187,Warren County,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51510,Alexandria city,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51600,Fairfax city,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51610,Falls Church city,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51630,Fredericksburg city,Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51683,Manassas city,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",51685,Manassas Park city,Virginia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",54037,Jefferson County,West Virginia,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",24021,Frederick County,Maryland,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",24031,Montgomery County,Maryland,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",11001,District of Columbia,District of Columbia,Central
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",24017,Charles County,Maryland,Outlying
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",24033,Prince George's County,Maryland,Central

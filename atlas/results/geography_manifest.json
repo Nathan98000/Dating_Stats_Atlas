@@ -1,0 +1,38 @@
+{
+  "delineation_vintage": "OMB Bulletin No. 23-01 (July 21, 2023), list1_2023.xlsx",
+  "acs_dataset": "2024/acs/acs5 (ACS 2020-2024 5-year)",
+  "tract_puma_relationship": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/2020_Census_Tract_to_2020_PUMA.txt",
+  "puma_vintage": "2020 Census PUMAs (single PUMA column in 2020-2024 5-year PUMS)",
+  "involved_state_fips": [
+    "06",
+    "11",
+    "13",
+    "24",
+    "26",
+    "27",
+    "34",
+    "36",
+    "42",
+    "48",
+    "49",
+    "51",
+    "54",
+    "55"
+  ],
+  "pums_states_postal": [
+    "ca",
+    "dc",
+    "ga",
+    "md",
+    "mi",
+    "mn",
+    "nj",
+    "ny",
+    "pa",
+    "tx",
+    "ut",
+    "va",
+    "wi",
+    "wv"
+  ]
+}
