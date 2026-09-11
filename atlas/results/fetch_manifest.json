@@ -1,0 +1,35 @@
+{
+  "api_datasets": {
+    "2024/acs/acs5": "2026-09-11T13:38:50-0400"
+  },
+  "files": {
+    "https://www2.census.gov/geo/docs/maps-data/data/rel/2010_Census_Tract_to_2010_PUMA.txt": {
+      "bytes": 1481853,
+      "evicted": false,
+      "fetched_at": "2026-09-11T13:38:49-0400",
+      "path": "data/raw/8080f2bab15a53e5/2010_Census_Tract_to_2010_PUMA.txt",
+      "sha256": "3874b04b00b38d4b31d41de6fa799a9587778e9ade1a6ab10b02bb03a7f5a5ec"
+    },
+    "https://www2.census.gov/geo/docs/maps-data/data/rel2020/2020_Census_Tract_to_2020_PUMA.txt": {
+      "bytes": 1709076,
+      "evicted": false,
+      "fetched_at": "2026-09-11T13:38:49-0400",
+      "path": "data/raw/3379e3381d965de1/2020_Census_Tract_to_2020_PUMA.txt",
+      "sha256": "5262f460b2c8dbe86b00549e916317b1791fdc595c9af72ab18f6f6a67040531"
+    },
+    "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2020-2024.csv": {
+      "bytes": 330431,
+      "evicted": false,
+      "fetched_at": "2026-09-11T13:38:50-0400",
+      "path": "data/raw/46d81b0c9567ca68/PUMS_Data_Dictionary_2020-2024.csv",
+      "sha256": "8816ab616c9025bf6a217588d18c402ebb84ddf889d5d1bd7161a9f0c2e099ae"
+    },
+    "https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx": {
+      "bytes": 143798,
+      "evicted": false,
+      "fetched_at": "2026-09-11T13:38:48-0400",
+      "path": "data/raw/b2291e17aab05222/list1_2023.xlsx",
+      "sha256": "952c4b1e78acbb54e6ec9412434b7602fedacbf021736351a63c181bdb753629"
+    }
+  }
+}

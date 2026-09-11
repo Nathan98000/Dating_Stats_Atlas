@@ -1,0 +1,17 @@
+# Data is never committed — code and results only
+atlas/data/
+
+# Secrets
+CENSUS_API_KEY.txt
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# User's saved reference page (not part of the pipeline)
+Dating Stats Atlas.html
+Dating Stats Atlas_files/
