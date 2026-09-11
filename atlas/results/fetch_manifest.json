@@ -1,7 +1,7 @@
 {
   "api_datasets": {
     "2020/dec/dhc": "2026-09-11T15:17:03-0400",
-    "2024/acs/acs5": "2026-09-11T15:17:03-0400"
+    "2024/acs/acs5": "2026-09-11T15:57:24-0400"
   },
   "files": {
     "https://www2.census.gov/geo/docs/maps-data/data/rel/2010_Census_Tract_to_2010_PUMA.txt": {
@@ -18,103 +18,642 @@
       "path": "data/raw/3379e3381d965de1/2020_Census_Tract_to_2020_PUMA.txt",
       "sha256": "5262f460b2c8dbe86b00549e916317b1791fdc595c9af72ab18f6f6a67040531"
     },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hak.zip": {
+      "bytes": 2199127,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:48:54-0400",
+      "path": "data/raw/7794bfe1e32708be/csv_hak.zip",
+      "sha256": "6918d307f7c0ebcf5ce07372b313d20c6f88d2da29fde20f9dad245521fffc62"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hal.zip": {
+      "bytes": 15576572,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:49:07-0400",
+      "path": "data/raw/c9f9e4fdba275ce1/csv_hal.zip",
+      "sha256": "db245f42d9f87e5a3ace9ed296eb66d9d1dd8d9dfb2ada4636d29e00159adad4"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_har.zip": {
+      "bytes": 9390059,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:49:16-0400",
+      "path": "data/raw/595607838ff2fd09/csv_har.zip",
+      "sha256": "82de4a8554d465a9af0f63d2b538ccac18f4fb0da621c3f2fcfe8948fb83958b"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_haz.zip": {
+      "bytes": 20981351,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:49:33-0400",
+      "path": "data/raw/45230850c322dc15/csv_haz.zip",
+      "sha256": "152af6e204a1bfa3091ddbece13d6fd0450d680aa459d38b908b0f3ce5d0430b"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hca.zip": {
+      "bytes": 99081700,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:50:50-0400",
+      "path": "data/raw/d131a19ca5d01ee5/csv_hca.zip",
+      "sha256": "884978346af25a55e659fd7318c9676c7e05a2875c9ef565f24162c4103df63e"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hco.zip": {
+      "bytes": 17463107,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:51:04-0400",
+      "path": "data/raw/c6da085aa02bcd55/csv_hco.zip",
+      "sha256": "e9b229c5b25ea55dd93d4a9b70c83b493b9abc8adb25662acc726b6670319123"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hct.zip": {
+      "bytes": 10474591,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:51:14-0400",
+      "path": "data/raw/228d545cb9d3f71b/csv_hct.zip",
+      "sha256": "2d90bf713dd813941740d9e124cb0a320cf2436899840cce6eb1e9e316feddc0"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hdc.zip": {
+      "bytes": 2310090,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:51:16-0400",
+      "path": "data/raw/f4a120c85d4dc82a/csv_hdc.zip",
+      "sha256": "b7027875827a63f102db865da8f6a20d901d46d4d6fc1376780b5f3bd9857e78"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hde.zip": {
+      "bytes": 3111275,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:51:20-0400",
+      "path": "data/raw/ce40a54b6808883b/csv_hde.zip",
+      "sha256": "b2e1b184dc7b6f864679c766ad8f1613a8cbe7067a888e120bb5efe03a21ceb9"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hfl.zip": {
+      "bytes": 62465815,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:52:04-0400",
+      "path": "data/raw/abfe47403ed14029/csv_hfl.zip",
+      "sha256": "dadf69309b76a3eef31006ab6beb44fda26fa0b14f4c0984d50e09226bff87ac"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hga.zip": {
+      "bytes": 29213319,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:52:26-0400",
+      "path": "data/raw/76925f2104c6947f/csv_hga.zip",
+      "sha256": "957592bc121d72a2158b0ee586bee28027ba57c3de1df91c296a339db62a71e2"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hhi.zip": {
+      "bytes": 3968369,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:52:30-0400",
+      "path": "data/raw/54d1bcce46f4ab60/csv_hhi.zip",
+      "sha256": "86f14f546b783426ebe15d22ec2cebb730e76d62834c6eac31bffbea6d6e0710"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hia.zip": {
+      "bytes": 9996453,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:52:38-0400",
+      "path": "data/raw/f04f60a33fd53d0d/csv_hia.zip",
+      "sha256": "498cbb239fb676a80c30226090f4c9117068e846884c664b90b2a0eee5c25d30"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hid.zip": {
+      "bytes": 5443412,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:52:43-0400",
+      "path": "data/raw/08443fcc4ec61c99/csv_hid.zip",
+      "sha256": "6ed47e4a63feedaf316b6393df86641bee7361d48a63815bed0b1632d591bfea"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hil.zip": {
+      "bytes": 37291649,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:53:10-0400",
+      "path": "data/raw/b1cb533b1fa330bc/csv_hil.zip",
+      "sha256": "fb68878d25f04ae5cf3d27b15a6f4732f17bb95247c160f0eb01c0ab7cb48b42"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hin.zip": {
+      "bytes": 20173266,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:53:26-0400",
+      "path": "data/raw/53ecabd383ab61fd/csv_hin.zip",
+      "sha256": "d94c7b0900e1b63e45a825f7c979363ed6868d096b4616463ffd885dc4387308"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hks.zip": {
+      "bytes": 8966725,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:53:34-0400",
+      "path": "data/raw/9c5f0aeed74fd745/csv_hks.zip",
+      "sha256": "043bce53e9f5d19f76b018912f5e9abeef83f0294ef12178cff766c7e4ad5d38"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hky.zip": {
+      "bytes": 13758434,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:53:45-0400",
+      "path": "data/raw/24c56d3562b213b4/csv_hky.zip",
+      "sha256": "6fa924e27d53b9764b0d9bce7cfb6876d08c7db208066e89940b82034b9c8a4b"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hla.zip": {
+      "bytes": 13765541,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:53:56-0400",
+      "path": "data/raw/b6642c335e15d9ae/csv_hla.zip",
+      "sha256": "7ce79c5fee4e3281c34a5d89b839c803c4ee7e6f082ee5636634363527757be9"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hma.zip": {
+      "bytes": 20372107,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:54:10-0400",
+      "path": "data/raw/b49e3007cd4d1967/csv_hma.zip",
+      "sha256": "a2940ec8cd41d3e4f8becf06ecea545e91edd2e7759fa092e61bd2780c45a519"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hmd.zip": {
+      "bytes": 17339720,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:54:22-0400",
+      "path": "data/raw/b655b1ef5cdb87e6/csv_hmd.zip",
+      "sha256": "602ee6b08b91c3c53033c4ee8989b8b2acd9ebe8421db473050eb2c1aecd635e"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hme.zip": {
+      "bytes": 5084839,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:54:28-0400",
+      "path": "data/raw/9de82b06b6f2dd48/csv_hme.zip",
+      "sha256": "bb89bd6c752f100aea9359ca6bdb51a9720dffc40209f5e456395a87d8a6064e"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hmi.zip": {
+      "bytes": 31619921,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:54:50-0400",
+      "path": "data/raw/6723abbf82caeb58/csv_hmi.zip",
+      "sha256": "243807dac35eaf1a1c625077a130513ee0926b3b15b8533d2fd482a932c28a9b"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hmn.zip": {
+      "bytes": 17307942,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:03-0400",
+      "path": "data/raw/283ab50f160e30f7/csv_hmn.zip",
+      "sha256": "23fe674afa6b880f9bee21c9bfce6afec1760cba758a19dce640771aecb519ea"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hmo.zip": {
+      "bytes": 19257010,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:16-0400",
+      "path": "data/raw/e21ee584c01d71c9/csv_hmo.zip",
+      "sha256": "e518bab9a87913fd7e12e8b1f393c4d1a87aceaf65970e84419a7ea02bb57f34"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hms.zip": {
+      "bytes": 8862121,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:24-0400",
+      "path": "data/raw/5af1a9b70ae0a350/csv_hms.zip",
+      "sha256": "59901fe4b4319f994d2e33b66830526eb191ca350e4d25744c334aa3d39aa997"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hmt.zip": {
+      "bytes": 3668220,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:28-0400",
+      "path": "data/raw/693cb3ca4f5ec143/csv_hmt.zip",
+      "sha256": "35c52b4257d372f20708c3a117b5d8002912a947f3445f0047a1db6bac065914"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hnc.zip": {
+      "bytes": 32321443,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:48-0400",
+      "path": "data/raw/01928e56dea011f3/csv_hnc.zip",
+      "sha256": "a2c613e758a93c37f04d76d7cfe7fb0f74f9e4b904fca3c3e4c7030e2b2e6809"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hnd.zip": {
+      "bytes": 2632630,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:52-0400",
+      "path": "data/raw/a6fab7f8752df4be/csv_hnd.zip",
+      "sha256": "dae1c228e6730b0676fab7efce9249e4e438c697d472b59f353c2832f19a3940"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hne.zip": {
+      "bytes": 6019363,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:55:57-0400",
+      "path": "data/raw/956bad56a8d89998/csv_hne.zip",
+      "sha256": "221f731012979df01d82b21be7cf9a999e3f2f752aa1c6b52cb664dc502b1366"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hnh.zip": {
+      "bytes": 4438617,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:56:01-0400",
+      "path": "data/raw/f2e0fdea8d1d8696/csv_hnh.zip",
+      "sha256": "00d446e52c3d38b754f6fbc1bf29fc97adbc88698424a74e9d7323e101dda040"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hnj.zip": {
+      "bytes": 25414160,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:56:20-0400",
+      "path": "data/raw/49f5bdb204e708d2/csv_hnj.zip",
+      "sha256": "e91c105bd414e7412d3e5ebd6250ad25a583dc38937029ece9c8e5165d714ba5"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hnm.zip": {
+      "bytes": 6437951,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:56:26-0400",
+      "path": "data/raw/6faeb66d5710b207/csv_hnm.zip",
+      "sha256": "32c25568718cebe55842572c332238e53d2bab3006a677d851e736f545a9d70d"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hnv.zip": {
+      "bytes": 8839969,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:56:34-0400",
+      "path": "data/raw/19fe7040428e53a6/csv_hnv.zip",
+      "sha256": "9401f28aa17e442a0bfb054e2de8773a54e42281eec61a8da646d4bc36f4c9e6"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hny.zip": {
+      "bytes": 57808411,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:57:13-0400",
+      "path": "data/raw/79b1766510d6feb8/csv_hny.zip",
+      "sha256": "393444456bfaf6bf935920852861979253b0a7a79c9eeb8ec0e2a7053c6d478d"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hoh.zip": {
+      "bytes": 35785882,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:57:39-0400",
+      "path": "data/raw/e33fd99e96a154d6/csv_hoh.zip",
+      "sha256": "6e2db8c6343c2e5facffceda3a17a04b3e40d0cb87776bc17acdeaae17172706"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hok.zip": {
+      "bytes": 12044819,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:57:49-0400",
+      "path": "data/raw/8a5a8e77016270b5/csv_hok.zip",
+      "sha256": "630600b3feec4965eb4e5b906fefe36d616c4a95c2c90002769719f665b3c363"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hor.zip": {
+      "bytes": 12500208,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:57:59-0400",
+      "path": "data/raw/945e6bc871b34603/csv_hor.zip",
+      "sha256": "b610bcff1d1015f62acd4d1b3f6ecf9f2a7042604baa050d5862ac6a22bd9c3b"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hpa.zip": {
+      "bytes": 39920083,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:58:26-0400",
+      "path": "data/raw/9b90fb4285f4437c/csv_hpa.zip",
+      "sha256": "a3d8fb52dc42e58f9766bba2991969855feb18534ff45ce8d9732a7a12f50ab3"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hri.zip": {
+      "bytes": 3166574,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:58:31-0400",
+      "path": "data/raw/49c0cf8833a2db8e/csv_hri.zip",
+      "sha256": "90fd8f5d577260ebbafbcf8231506a4aa644d3902d2303d4d109db8153a48238"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pak.zip": {
+      "bytes": 4770408,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:19:29-0400",
+      "path": "data/raw/f7eecb62c5f5e26c/csv_pak.zip",
+      "sha256": "c08208110d686c859075ea37f29c6ada90c6aa604219249b4c06a91e15757dd7"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pal.zip": {
+      "bytes": 34404076,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:19:54-0400",
+      "path": "data/raw/4db558a05bd50a60/csv_pal.zip",
+      "sha256": "3f992848280da50573378195ae194bccf10a730aa2611c62ae817fc3e4a2aae8"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_par.zip": {
+      "bytes": 20922776,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:20:10-0400",
+      "path": "data/raw/3c351ce0732745d5/csv_par.zip",
+      "sha256": "8c4e16581af0f1797199a720f91d87a466fe6b393fa62a82b66d3e6f0bb0efd8"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_paz.zip": {
+      "bytes": 49891543,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:20:47-0400",
+      "path": "data/raw/10c5986911985d9e/csv_paz.zip",
+      "sha256": "31e2416840a7843a7a8272742f112a47c40c76b6cf968640eeedf1468d26e942"
+    },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pca.zip": {
       "bytes": 268363882,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:50:17-0400",
+      "fetched_at": "2026-09-11T15:23:52-0400",
       "path": "data/raw/f865187719d985d7/csv_pca.zip",
       "sha256": "4bfcabfdac8ba51becd0c9f2b285c0830d34d3c28a6094779b11e6da0a0a13bd"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pco.zip": {
+      "bytes": 41117960,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:24:34-0400",
+      "path": "data/raw/4c5240490ab33a65/csv_pco.zip",
+      "sha256": "95876cd09e8de896bb8a4122d4c80f185b47588492ffc277107ebf237fa2f937"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pct.zip": {
+      "bytes": 25406568,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:24:57-0400",
+      "path": "data/raw/25f26aec4de69bcd/csv_pct.zip",
+      "sha256": "33e0ede6b8f0a18dde7e4d229efdabeb866f377bbf46e0a6b14a5b76d2eac9e6"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pdc.zip": {
       "bytes": 4739881,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:46:25-0400",
+      "fetched_at": "2026-09-11T15:25:03-0400",
       "path": "data/raw/04cb0c206606b6a4/csv_pdc.zip",
       "sha256": "bc9ea5024f1fe1755274171bd3374488f63ef454baf1e46c2c77a74b67e79ee9"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pde.zip": {
+      "bytes": 6713347,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:25:11-0400",
+      "path": "data/raw/c5653677e6ee0368/csv_pde.zip",
+      "sha256": "863e5291608cea6436e1e70e6e0e8f408466bf99dea9a125f46cb510d268ba4c"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pfl.zip": {
+      "bytes": 143820354,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:26:52-0400",
+      "path": "data/raw/b706e1f265aea2dc/csv_pfl.zip",
+      "sha256": "8a75d873fe6eeba8b78de91307d2712488e283e8acb97da87f350d39b0d92f36"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pga.zip": {
       "bytes": 70715298,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:56:16-0400",
+      "fetched_at": "2026-09-11T15:27:48-0400",
       "path": "data/raw/2b422b826a483722/csv_pga.zip",
       "sha256": "28e492b2fd01a093f7262ca78b22308480c9c1ea10e05ef55cba69a90cf9b295"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_phi.zip": {
+      "bytes": 10727808,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:28:01-0400",
+      "path": "data/raw/3c56d5c04fa466a8/csv_phi.zip",
+      "sha256": "e0ec37d4bfa6c8acfb0260c82def5b7e20e81fc8f107c22d3f6f157be9bebc94"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pia.zip": {
+      "bytes": 22789161,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:28:20-0400",
+      "path": "data/raw/ec001e2f5b15a862/csv_pia.zip",
+      "sha256": "70ff63b06b6a218e19e2bd7eed687b111de4c1bd8cab42feaff4cc5ed8b67357"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pid.zip": {
+      "bytes": 13192220,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:28:32-0400",
+      "path": "data/raw/6ce37d420aedf7dc/csv_pid.zip",
+      "sha256": "3dcdf07173ed58e0ff097f39093067ce28c515102f31d91d01b38ad44262eb92"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pil.zip": {
+      "bytes": 88133486,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:29:35-0400",
+      "path": "data/raw/47d562fe23dc9f25/csv_pil.zip",
+      "sha256": "15c06afac59334fabe33abd4c05cf57d88348395a7ee2fa50585ff5e4f72ff2d"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pin.zip": {
+      "bytes": 46971376,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:30:14-0400",
+      "path": "data/raw/ba0ec90a34f9c703/csv_pin.zip",
+      "sha256": "e218fc49d90ccb96de4f676297f53ceae368194ca93359dede20da56d5d319ae"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pks.zip": {
+      "bytes": 20699681,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:30:34-0400",
+      "path": "data/raw/8d209c26da99ef0a/csv_pks.zip",
+      "sha256": "7a12892dee09b189019eb9c750c0197629532c750d1640446046ace757c180f8"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pky.zip": {
+      "bytes": 31466212,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:31:00-0400",
+      "path": "data/raw/b9baa8140adb6aee/csv_pky.zip",
+      "sha256": "e1786270c2d906871d88df20b7dcd71ce3be34277689f4873b57d4aa56b93522"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pla.zip": {
+      "bytes": 29789250,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:31:26-0400",
+      "path": "data/raw/110a248da6053b2a/csv_pla.zip",
+      "sha256": "135dcd459e33f8467221ae2fb30e1d353126ab93e0e74dc08e57b71ca59a0fd9"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pma.zip": {
+      "bytes": 49845368,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:32:04-0400",
+      "path": "data/raw/1937be3c5eed97b2/csv_pma.zip",
+      "sha256": "3a40bd5a68fa364fad15f946853556016aa27a80441e4e0e49310922fca2af35"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pmd.zip": {
       "bytes": 42845296,
       "evicted": true,
-      "fetched_at": "2026-09-11T14:00:12-0400",
+      "fetched_at": "2026-09-11T15:32:38-0400",
       "path": "data/raw/66d6670ef0b74518/csv_pmd.zip",
       "sha256": "478c5d3b633b1e31794a49db7a269de216a92b6246d4e172623d6e2e53339bce"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pme.zip": {
+      "bytes": 9925175,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:32:49-0400",
+      "path": "data/raw/a19e07a134480e37/csv_pme.zip",
+      "sha256": "b3c01c74a02b85121f959ddcb94dadf4310aa275fa52c3705f5141bf99c9178e"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pmi.zip": {
       "bytes": 69858875,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:57:09-0400",
+      "fetched_at": "2026-09-11T15:33:35-0400",
       "path": "data/raw/84c3f9468422f985/csv_pmi.zip",
       "sha256": "e8de456cc5b2a5b45843227c228275fc3d85446128d6f7bae089f81965151907"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pmn.zip": {
       "bytes": 39522190,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:59:40-0400",
+      "fetched_at": "2026-09-11T15:34:07-0400",
       "path": "data/raw/7d9bb9aa3c81537b/csv_pmn.zip",
       "sha256": "4722313956b1a6ad1c45f790d3c6703b9cdddf93267d81b733f283bc245df16e"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pmo.zip": {
+      "bytes": 43349366,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:34:39-0400",
+      "path": "data/raw/a5114eeb19b392b0/csv_pmo.zip",
+      "sha256": "ed77df226dfe261d3431e4fafdb06537d3c48fba532f0b51a7e2e9c4b612a24d"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pms.zip": {
+      "bytes": 19432583,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:34:57-0400",
+      "path": "data/raw/cdc392b5723a6312/csv_pms.zip",
+      "sha256": "1a87704fa5578a79690dede421042f762fe2813af2c2691ffcd82fa31b643cfc"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pmt.zip": {
+      "bytes": 7779773,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:35:06-0400",
+      "path": "data/raw/a4933dfa233c2e8d/csv_pmt.zip",
+      "sha256": "16dc7f5167866a10eb2fd2f2d903147fee0343cf6f8d45ca1d56513f2e8fdf6f"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pnc.zip": {
+      "bytes": 73036021,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:35:59-0400",
+      "path": "data/raw/76f55e3776e1b359/csv_pnc.zip",
+      "sha256": "2e6a41e0eb00dadc047b452c2737c6846ad5ecc6013618967c27579ec06adfb6"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pnd.zip": {
+      "bytes": 5560706,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:36:08-0400",
+      "path": "data/raw/679f75bf20a26d61/csv_pnd.zip",
+      "sha256": "5396593e8598dc8773421a6aaff2e071d2372f0f04c371e076184b1ac5017ab8"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pne.zip": {
+      "bytes": 13844144,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:36:20-0400",
+      "path": "data/raw/170971f068681f87/csv_pne.zip",
+      "sha256": "ec0c90d74011b8f7303f7c4e135320900a6beb2a0e7ff0a374ddb208ce33f9ea"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pnh.zip": {
+      "bytes": 9746364,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:36:30-0400",
+      "path": "data/raw/5cf94a09abf85e50/csv_pnh.zip",
+      "sha256": "480e9c2692e3a97b88ea83503e2711b873a51f49410e5e5ac6bb875661204b41"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pnj.zip": {
       "bytes": 64157781,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:57:56-0400",
+      "fetched_at": "2026-09-11T15:37:18-0400",
       "path": "data/raw/2b0aa47cee7b1cdf/csv_pnj.zip",
       "sha256": "42a717626e260e1c537d6ab3d177594edc952926f1b68480a717e67fa88df680"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pnm.zip": {
+      "bytes": 13923664,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:37:33-0400",
+      "path": "data/raw/20d962ed6e8ae402/csv_pnm.zip",
+      "sha256": "92a34f8c31b8edf6da8863ca73259700c34352b3e0a420c0036c672482bb70a7"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pnv.zip": {
+      "bytes": 21230014,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:37:51-0400",
+      "path": "data/raw/d5998d27a2586fe1/csv_pnv.zip",
+      "sha256": "fc85e8c0271adfc2cf6a5ff0632fe01ec747c689c031800251fa5be63f0d1295"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pny.zip": {
       "bytes": 140098497,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:54:13-0400",
+      "fetched_at": "2026-09-11T15:39:24-0400",
       "path": "data/raw/762b5457e25e39a4/csv_pny.zip",
       "sha256": "2d2c3fe8326856906320fa4e4a0adea563a354a4de71b777ebd81d96b3717e46"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_poh.zip": {
+      "bytes": 81512065,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:40:29-0400",
+      "path": "data/raw/76eda1cdcb962cd3/csv_poh.zip",
+      "sha256": "4ba59d6549520d7fe771eb169df4b1c89caa1d76783ee813397e0f9f38beb531"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pok.zip": {
+      "bytes": 26990882,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:40:53-0400",
+      "path": "data/raw/5157b13d9563d50b/csv_pok.zip",
+      "sha256": "bd831a61ae5119e144e600d9c477fcd29a0d08eb986b9bc36116ca96037cfb13"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_por.zip": {
+      "bytes": 29739175,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:41:17-0400",
+      "path": "data/raw/d2de6782f47ad786/csv_por.zip",
+      "sha256": "25d82d970546771ca413e343d0f7bec4bce713e10b632bd8b287ffdf40adc890"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_ppa.zip": {
       "bytes": 90983708,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:55:21-0400",
+      "fetched_at": "2026-09-11T15:42:19-0400",
       "path": "data/raw/b46734bad615b199/csv_ppa.zip",
       "sha256": "886aa6c359e496f13c123a749eedbb80aec990d9ce013d4ff6e8a303a8a5f92a"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pri.zip": {
+      "bytes": 7321611,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:42:31-0400",
+      "path": "data/raw/3df29f74b97e95f5/csv_pri.zip",
+      "sha256": "ab856a1c287f9930d0886a8b2e733313b08d7a6f07114e4e3bbf711337d7fa24"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_psc.zip": {
+      "bytes": 36158257,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:42:59-0400",
+      "path": "data/raw/2ec965c62c6861aa/csv_psc.zip",
+      "sha256": "995f6c7a3a90854924618bfda143d0ab5e0fa2f84d82c16127073a8b7ba487a1"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_psd.zip": {
+      "bytes": 6382078,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:43:07-0400",
+      "path": "data/raw/fc8daedd717d3be5/csv_psd.zip",
+      "sha256": "60012d13934b5d1cd2a6e6029b6f63b53c47cbb16ea5cb77f567897217a441fe"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_ptn.zip": {
+      "bytes": 48125614,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:43:44-0400",
+      "path": "data/raw/6a7b8aecd1a1a326/csv_ptn.zip",
+      "sha256": "171eb1c50ba525835a8f4e12255b8c35f087d99724ff226f6628b167cc2eaca9"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_ptx.zip": {
       "bytes": 190707046,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:52:28-0400",
+      "fetched_at": "2026-09-11T15:45:58-0400",
       "path": "data/raw/520faaeee5280b7d/csv_ptx.zip",
       "sha256": "4ea2f374dd8870daccba5d1080627ea5c84fd64e3a07633a3b9e75f27593590c"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_put.zip": {
       "bytes": 23346628,
       "evicted": true,
-      "fetched_at": "2026-09-11T14:00:30-0400",
+      "fetched_at": "2026-09-11T15:46:23-0400",
       "path": "data/raw/ac73d5e038a764e2/csv_put.zip",
       "sha256": "3d5b4808535747554ee8a70119a456d3aafa6800ca850f6c4bfd47a92397109e"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pva.zip": {
       "bytes": 60763797,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:58:41-0400",
+      "fetched_at": "2026-09-11T15:47:09-0400",
       "path": "data/raw/5f4fe99d813a5e49/csv_pva.zip",
       "sha256": "c7c854f1cd5c91b31e5b733cfe719212c9ff7b55a611acc5e96ec1a547dc1d10"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pvt.zip": {
+      "bytes": 4808006,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:47:17-0400",
+      "path": "data/raw/6d6aa5b1f0cf535d/csv_pvt.zip",
+      "sha256": "e9cf24615a4f21bf253bf1de1996819e895c5ed54a5f871b0e58134c7cc2dda0"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pwa.zip": {
+      "bytes": 55213564,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:47:58-0400",
+      "path": "data/raw/77b0816b3d71d041/csv_pwa.zip",
+      "sha256": "7d6dd18095872ce2636ed5e65b96c7d24724f2801ea3028012d694493b3708d6"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pwi.zip": {
       "bytes": 41438332,
       "evicted": true,
-      "fetched_at": "2026-09-11T13:59:12-0400",
+      "fetched_at": "2026-09-11T15:48:31-0400",
       "path": "data/raw/54e3b1149929d29e/csv_pwi.zip",
       "sha256": "570b9b56cb685a2313a31ac6916c0ec825460801559445262097fa1e36571c6a"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pwv.zip": {
       "bytes": 12100732,
       "evicted": true,
-      "fetched_at": "2026-09-11T14:00:42-0400",
+      "fetched_at": "2026-09-11T15:48:42-0400",
       "path": "data/raw/fdb65f1c9401e751/csv_pwv.zip",
       "sha256": "ea06c6531ae54e869b35a3931126bc6510d39098fe211c42794903b121711b9e"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pwy.zip": {
+      "bytes": 4202266,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:48:49-0400",
+      "path": "data/raw/ce739c6bdaf928ea/csv_pwy.zip",
+      "sha256": "e80900d6826c8fef4c6f7230f3c967457aa86f06e750f050d8cf406888d19b73"
     },
     "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2020-2024.csv": {
       "bytes": 330431,

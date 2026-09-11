@@ -1,0 +1,51 @@
+cbsa,metro_name,persona,pool,pool_moe,cv,n_raw,n_alloc,n_kish,n_gate,rivals_sym,ratio_sym,rivals_crude,ratio_crude,tier_gate,tier_raw_n,allocation_purity,gq_share
+11460,"Ann Arbor, MI",A,2896,477,10.0,142,142.0,89.4,89.4,8343,0.347,17867,0.162,suppressed,ranked,1.0,0.0527
+12060,"Atlanta-Sandy Springs-Roswell, GA",A,35206,1932,3.3,1409,1383.0,654.4,654.4,115425,0.305,250046,0.141,ranked,ranked,0.941,0.01
+12420,"Austin-Round Rock-San Marcos, TX",A,30394,2265,4.5,1068,1065.0,499.2,499.2,64043,0.475,137991,0.22,ranked,ranked,0.9358,0.0167
+28660,"Killeen-Temple, TX",A,675,231,20.8,32,26.9,16.1,16.1,3841,0.176,11583,0.058,suppressed,suppressed,0.7864,0.0434
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",A,24385,2051,5.1,689,659.7,354.5,354.5,64653,0.377,160263,0.152,ranked,ranked,0.9524,0.0147
+35620,"New York-Newark-Jersey City, NY-NJ",A,190165,3922,1.3,7520,7512.2,3904.4,3904.4,491228,0.387,923596,0.206,ranked,ranked,0.9951,0.0189
+38300,"Pittsburgh, PA",A,15075,1354,5.5,632,621.0,320.1,320.1,37762,0.399,92461,0.163,ranked,ranked,0.9449,0.024
+39340,"Provo-Orem-Lehi, UT",A,1721,420,14.8,85,81.3,45.2,45.2,5433,0.317,25289,0.068,suppressed,suppressed,0.9829,0.0291
+41940,"San Jose-Sunnyvale-Santa Clara, CA",A,30569,1475,2.9,1375,1365.0,785.5,785.5,41648,0.734,108361,0.282,ranked,ranked,0.9672,0.0219
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",A,73322,2817,2.3,3313,3263.1,1757.4,1757.4,162440,0.451,321203,0.228,ranked,ranked,0.9368,0.0154
+11460,"Ann Arbor, MI",B,13430,776,3.5,583,583.0,369.6,369.6,25251,0.532,33029,0.407,ranked,ranked,1.0,0.0527
+12060,"Atlanta-Sandy Springs-Roswell, GA",B,231181,3837,1.0,7833,7331.1,3521.1,3521.1,320339,0.722,461868,0.501,ranked,ranked,0.941,0.01
+12420,"Austin-Round Rock-San Marcos, TX",B,98393,2607,1.6,3312,3276.3,1554.1,1554.1,153864,0.639,223442,0.44,ranked,ranked,0.9358,0.0167
+28660,"Killeen-Temple, TX",B,12242,909,4.5,503,426.5,203.9,203.9,21047,0.582,43056,0.284,ranked,ranked,0.7864,0.0434
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",B,125032,3381,1.6,3813,3457.9,1833.7,1833.7,193737,0.645,278012,0.45,ranked,ranked,0.9524,0.0147
+35620,"New York-Newark-Jersey City, NY-NJ",B,841132,6693,0.5,32858,32822.0,16873.2,16873.2,1146541,0.734,1509640,0.557,ranked,ranked,0.9951,0.0189
+38300,"Pittsburgh, PA",B,76211,2018,1.6,3425,3269.8,1633.2,1633.2,120565,0.632,170623,0.447,ranked,ranked,0.9449,0.024
+39340,"Provo-Orem-Lehi, UT",B,12621,1008,4.9,763,647.5,369.8,369.8,29177,0.433,71367,0.177,ranked,ranked,0.9829,0.0291
+41940,"San Jose-Sunnyvale-Santa Clara, CA",B,72086,1854,1.6,3327,3224.5,1889.4,1889.4,131308,0.549,180090,0.4,ranked,ranked,0.9672,0.0219
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",B,246269,3418,0.8,10688,10280.3,5379.8,5379.8,347317,0.709,476586,0.517,ranked,ranked,0.9368,0.0154
+11460,"Ann Arbor, MI",C,1579,366,14.1,79,79.0,44.8,44.8,4228,0.373,16362,0.097,suppressed,suppressed,1.0,0.0527
+12060,"Atlanta-Sandy Springs-Roswell, GA",C,24091,1829,4.6,969,953.2,396.9,396.9,84614,0.285,250800,0.096,ranked,ranked,0.941,0.01
+12420,"Austin-Round Rock-San Marcos, TX",C,19403,2059,6.5,679,676.6,294.4,294.4,39569,0.49,128661,0.151,ranked,ranked,0.9358,0.0167
+28660,"Killeen-Temple, TX",C,609,227,22.6,33,27.4,19.0,19.0,3415,0.178,11634,0.052,suppressed,suppressed,0.7864,0.0434
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",C,14658,1448,6.0,439,423.1,241.7,241.7,41351,0.354,160117,0.092,ranked,ranked,0.9524,0.0147
+35620,"New York-Newark-Jersey City, NY-NJ",C,106615,3220,1.8,4239,4234.8,2178.0,2178.0,293683,0.363,828398,0.129,ranked,ranked,0.9951,0.0189
+38300,"Pittsburgh, PA",C,8130,1138,8.5,338,330.1,159.8,159.8,25023,0.325,89369,0.091,ranked,ranked,0.9449,0.024
+39340,"Provo-Orem-Lehi, UT",C,1292,388,18.3,68,62.5,33.1,33.1,3369,0.384,21445,0.06,suppressed,suppressed,0.9829,0.0291
+41940,"San Jose-Sunnyvale-Santa Clara, CA",C,17018,1316,4.7,825,817.3,510.8,510.8,21915,0.777,97324,0.175,ranked,ranked,0.9672,0.0219
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",C,52109,2325,2.7,2392,2348.2,1298.8,1298.8,110999,0.469,330575,0.158,ranked,ranked,0.9368,0.0154
+11460,"Ann Arbor, MI",D,4957,669,8.2,210,210.0,114.1,114.1,7325,0.677,23125,0.214,ranked,ranked,1.0,0.0527
+12060,"Atlanta-Sandy Springs-Roswell, GA",D,115301,3749,2.0,4140,3943.8,1987.4,1987.4,160853,0.717,445718,0.259,ranked,ranked,0.941,0.01
+12420,"Austin-Round Rock-San Marcos, TX",D,49642,2316,2.8,1764,1750.3,805.2,805.2,77010,0.645,219167,0.227,ranked,ranked,0.9358,0.0167
+28660,"Killeen-Temple, TX",D,5732,826,8.8,229,199.2,96.1,96.1,11973,0.479,33758,0.17,suppressed,ranked,0.7864,0.0434
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",D,63293,3141,3.0,1900,1725.7,895.9,895.9,99232,0.638,285638,0.222,ranked,ranked,0.9524,0.0147
+35620,"New York-Newark-Jersey City, NY-NJ",D,376941,6634,1.1,15015,14992.2,8090.1,8090.1,547643,0.688,1412055,0.267,ranked,ranked,0.9951,0.0189
+38300,"Pittsburgh, PA",D,31889,1644,3.1,1429,1369.1,695.7,695.7,62124,0.513,164540,0.194,ranked,ranked,0.9449,0.024
+39340,"Provo-Orem-Lehi, UT",D,4389,595,8.2,272,223.0,125.5,125.5,9837,0.446,49457,0.089,ranked,ranked,0.9829,0.0291
+41940,"San Jose-Sunnyvale-Santa Clara, CA",D,33047,1607,3.0,1596,1556.3,932.1,932.1,49708,0.665,156715,0.211,ranked,ranked,0.9672,0.0219
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",D,150451,3079,1.2,6628,6427.6,3403.7,3403.7,171450,0.878,495824,0.303,ranked,ranked,0.9368,0.0154
+11460,"Ann Arbor, MI",E,179,157,53.4,5,5.0,3.2,3.2,12389,0.014,19608,0.009,suppressed,suppressed,1.0,0.0527
+12060,"Atlanta-Sandy Springs-Roswell, GA",E,8696,1387,9.7,213,210.8,116.0,116.0,141333,0.062,240075,0.036,ranked,ranked,0.941,0.01
+12420,"Austin-Round Rock-San Marcos, TX",E,2201,730,20.2,43,42.8,20.3,20.3,75528,0.029,130091,0.017,suppressed,suppressed,0.9358,0.0167
+28660,"Killeen-Temple, TX",E,78,83,64.1,3,2.5,2.7,2.5,4946,0.016,11445,0.007,suppressed,suppressed,0.7864,0.0434
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",E,1340,598,27.1,16,16.0,11.2,11.2,85577,0.016,155274,0.009,suppressed,suppressed,0.9524,0.0147
+35620,"New York-Newark-Jersey City, NY-NJ",E,17763,1484,5.1,517,517.0,308.2,308.2,620643,0.029,919850,0.019,ranked,ranked,0.9951,0.0189
+38300,"Pittsburgh, PA",E,295,210,43.4,11,10.7,5.3,5.3,48712,0.006,88147,0.003,suppressed,suppressed,0.9449,0.024
+39340,"Provo-Orem-Lehi, UT",E,22,43,118.0,1,1.0,1.0,1.0,7506,0.003,27197,0.001,suppressed,suppressed,0.9829,0.0291
+41940,"San Jose-Sunnyvale-Santa Clara, CA",E,498,219,26.8,19,19.0,15.2,15.2,56096,0.009,104948,0.005,suppressed,suppressed,0.9672,0.0219
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",E,15012,1576,6.4,421,417.8,240.5,240.5,198438,0.076,308887,0.049,ranked,ranked,0.9368,0.0154

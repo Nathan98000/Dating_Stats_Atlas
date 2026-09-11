@@ -47,6 +47,7 @@ def open_pool(rebuild: bool = False) -> duckdb.DuckDBPyConnection:
     """
     con = duckdb.connect(str(POOL_DB))
     con.execute("SET preserve_insertion_order=false")
+    con.execute("SET enable_progress_bar=false")
     have = {r[0] for r in con.execute("SHOW TABLES").fetchall()}
     if rebuild or "contrib" not in have:
         n_files = len(list((DATA / "pums").glob("*.parquet")))
@@ -74,9 +75,10 @@ def open_pool(rebuild: bool = False) -> duckdb.DuckDBPyConnection:
                 EXCEPT SELECT DISTINCT st, puma FROM '{DATA / "bridge.parquet"}'
             )""").fetchone()[0]
         assert orphans == 0, f"{orphans} extracted PUMAs missing from bridge"
-    if (rebuild or "hcontrib" not in have) and (DATA / "pums_h").exists():
-        n_h = len(list((DATA / "pums_h").glob("*.parquet")))
-        assert n_h == 51, f"housing extract incomplete: {n_h}/51 states"
+    n_h = len(list((DATA / "pums_h").glob("*.parquet"))) if (DATA / "pums_h").exists() else 0
+    if (rebuild or "hcontrib" not in have) and n_h < 51:
+        print(f"hcontrib deferred: housing extract at {n_h}/51 states")
+    elif rebuild or "hcontrib" not in have:
         con.execute(f"""
             CREATE OR REPLACE TABLE hcontrib AS
             SELECT h.*, b.cbsa, b.a_hh
@@ -138,14 +140,14 @@ def pool_all_metros(con, where: str = "TRUE", include_inst: bool = False) -> pd.
     return df.set_index("cbsa")
 
 
-def pool_grouped(con, dims: str, where: str = "TRUE",
+def pool_grouped(con, dims: list[str], where: str = "TRUE",
                  include_inst: bool = False) -> pd.DataFrame:
-    """Grouped pool estimates in one scan; `dims` is a comma-separated list of
-    SQL expressions (e.g. "cbsa, sex"). Returns one row per group."""
+    """Grouped pool estimates in one scan; `dims` is a list of SQL
+    expressions (e.g. ["cbsa", "sex"]). Returns one row per group."""
     gq = "" if include_inst else " AND gq <> 2"
-    ndims = len([d for d in dims.split(",") if d.strip()])
+    ndims = len(dims)
     rows = con.execute(
-        f"SELECT {dims}, {_CORE}, {REP_SUMS} FROM contrib "
+        f"SELECT {', '.join(dims)}, {_CORE}, {REP_SUMS} FROM contrib "
         f"WHERE ({where}){gq} GROUP BY {', '.join(str(i + 1) for i in range(ndims))}"
     ).fetchall()
     dim_names = [f"d{i}" for i in range(ndims)]
@@ -153,12 +155,12 @@ def pool_grouped(con, dims: str, where: str = "TRUE",
                          for r in rows])
 
 
-def ratio_grouped(con, dims: str, num_expr: str, den_expr: str,
+def ratio_grouped(con, dims: list[str], num_expr: str, den_expr: str,
                   where: str = "TRUE", include_inst: bool = True) -> pd.DataFrame:
     """Replicate-consistent ratio of two weighted value sums per group —
     covers shares (0/1 numerators) and means (value numerators)."""
     gq = "" if include_inst else " AND gq <> 2"
-    ndims = len([d for d in dims.split(",") if d.strip()])
+    ndims = len(dims)
     parts = [f"sum(pwgtp * a_eff * ({num_expr}))",
              f"sum(pwgtp * a_eff * ({den_expr}))",
              f"sum(a_eff * (CASE WHEN ({num_expr}) <> 0 THEN 1 ELSE 0 END))"]
@@ -166,7 +168,7 @@ def ratio_grouped(con, dims: str, num_expr: str, den_expr: str,
         parts.append(f"sum(pwgtp{i} * a_eff * ({num_expr}))")
         parts.append(f"sum(pwgtp{i} * a_eff * ({den_expr}))")
     rows = con.execute(
-        f"SELECT {dims}, {', '.join(parts)} FROM contrib "
+        f"SELECT {', '.join(dims)}, {', '.join(parts)} FROM contrib "
         f"WHERE ({where}){gq} GROUP BY {', '.join(str(i + 1) for i in range(ndims))}"
     ).fetchall()
     out = []
@@ -191,15 +193,14 @@ def ratio_grouped(con, dims: str, num_expr: str, den_expr: str,
     return pd.DataFrame(out)
 
 
-def weighted_median_by(con, dims: str, value: str, where: str = "TRUE",
+def weighted_median_by(con, dims: list[str], value: str, where: str = "TRUE",
                        include_inst: bool = True) -> pd.DataFrame:
     """Point-estimate weighted median of `value` per group (no replicate MOE —
     used for the B20002 sanity read where the published MOE is the envelope)."""
     gq = "" if include_inst else " AND gq <> 2"
-    ndims = len([d for d in dims.split(",") if d.strip()])
+    ndims = len(dims)
     dim_cols = ", ".join(f"g{i}" for i in range(ndims))
-    dim_sel = ", ".join(f"{d.strip()} AS g{i}"
-                        for i, d in enumerate(dims.split(",")))
+    dim_sel = ", ".join(f"{d.strip()} AS g{i}" for i, d in enumerate(dims))
     rows = con.execute(f"""
         WITH base AS (
             SELECT {dim_sel}, {value} AS v, pwgtp * a_eff AS w

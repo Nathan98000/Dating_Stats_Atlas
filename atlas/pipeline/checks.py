@@ -165,7 +165,7 @@ def summarize(name: str, df: pd.DataFrame, tolerance_col: str = "pass_combined_m
 
 def check_total_pop(con, metros) -> pd.DataFrame:
     pub = published("B01003", set(metros["cbsa"]))
-    ours = pool_grouped(con, "cbsa", include_inst=True).rename(columns={"d0": "cbsa"})
+    ours = pool_grouped(con, ["cbsa"], include_inst=True).rename(columns={"d0": "cbsa"})
     ours = ours.merge(metros[["cbsa", "cbsa_title"]], on="cbsa")
     ours["published"] = ours["cbsa"].map(lambda c: _num(pub.loc[c, "B01003_001E"]))
     ours["gap_pct"] = (ours["est"] - ours["published"]) / ours["published"] * 100
@@ -186,7 +186,7 @@ def check_sex_age(con, metros) -> pd.DataFrame:
     band_case = ("CASE " + " ".join(
         f"WHEN agep BETWEEN {lo} AND {hi} THEN '{lo}-{hi}'" for lo, hi in AGE_BANDS)
         + " END")
-    ours = pool_grouped(con, f"cbsa, sex, {band_case}",
+    ours = pool_grouped(con, ["cbsa", "sex", band_case],
                         "agep BETWEEN 18 AND 69", include_inst=True)
     ours.columns = ["cbsa", "sex", "band"] + list(ours.columns[3:])
     ours["sex"] = ours["sex"].map({1: "Male", 2: "Female"})
@@ -226,7 +226,7 @@ def check_never_married(con, metros) -> pd.DataFrame:
     pub12 = published("B12002", set(metros["cbsa"]))
     pub01 = published("B01001", set(metros["cbsa"]))
 
-    ours = ratio_grouped(con, "cbsa, sex", "CASE WHEN msp = 6 THEN 1.0 ELSE 0.0 END",
+    ours = ratio_grouped(con, ["cbsa", "sex"], "CASE WHEN msp = 6 THEN 1.0 ELSE 0.0 END",
                          "1.0", "agep BETWEEN 30 AND 34", include_inst=True)
     ours.columns = ["cbsa", "sex"] + list(ours.columns[2:])
     ours["sex"] = ours["sex"].map({1: "Male", 2: "Female"})
@@ -264,7 +264,7 @@ def check_race(con, metros) -> pd.DataFrame:
 
     cat_case = ("CASE " + " ".join(
         f"WHEN {cond} THEN '{cat}'" for cat, cond in RACE_MAP.items()) + " END")
-    ours = pool_grouped(con, f"cbsa, {cat_case}", include_inst=True)
+    ours = pool_grouped(con, ["cbsa", cat_case], include_inst=True)
     ours.columns = ["cbsa", "category"] + list(ours.columns[2:])
     ours["published"] = [
         _num(pub_race.loc[r["cbsa"], var_for[r["category"]]]) for _, r in ours.iterrows()]
@@ -272,7 +272,7 @@ def check_race(con, metros) -> pd.DataFrame:
         _moe(pub_race.loc[r["cbsa"], var_for[r["category"]].replace("E", "M")])
         for _, r in ours.iterrows()]
 
-    hisp = pool_grouped(con, "cbsa", "hisp >= 2", include_inst=True).rename(
+    hisp = pool_grouped(con, ["cbsa"], "hisp >= 2", include_inst=True).rename(
         columns={"d0": "cbsa"})
     hisp["category"] = "hispanic (any race)"
     hisp["published"] = hisp["cbsa"].map(lambda c: _num(pub_hisp.loc[c, "B03003_003E"]))
@@ -288,13 +288,13 @@ def check_education_25(con, metros) -> pd.DataFrame:
     groups: dict[tuple, list] = {}
     for var, lab in labels.items():
         parts = [p.rstrip(":") for p in lab.split("!!")]
-        if len(parts) == 5 and parts[3] in ("Male", "Female"):
-            tail = parts[4].lower()
+        if len(parts) == 4 and parts[2] in ("Male", "Female"):
+            tail = parts[3].lower()
             assert tail in EDU_MAP_B15002, f"unmapped B15002 level: {tail!r}"
-            groups.setdefault((parts[3], EDU_MAP_B15002[tail]), []).append(var)
+            groups.setdefault((parts[2], EDU_MAP_B15002[tail]), []).append(var)
     assert len(groups) == 8 and sum(len(v) for v in groups.values()) == 32
 
-    ours = pool_grouped(con, "cbsa, sex, edu4", "agep >= 25", include_inst=True)
+    ours = pool_grouped(con, ["cbsa", "sex", "edu4"], "agep >= 25", include_inst=True)
     ours.columns = ["cbsa", "sex", "edu4"] + list(ours.columns[3:])
     ours["sex"] = ours["sex"].map({1: "Male", 2: "Female"})
     rows = []
@@ -304,7 +304,8 @@ def check_education_25(con, metros) -> pd.DataFrame:
               .apply(pd.to_numeric).clip(lower=0) ** 2).sum(axis=1) ** 0.5
         rows.append(pd.DataFrame({"cbsa": pe.index, "sex": sex, "edu4": edu,
                                   "published": pe.values, "pub_moe": pm.values}))
-    df = ours.merge(pd.concat(rows), on=["cbsa", "sex", "edu4"], how="inner")
+    df = ours.merge(pd.concat(rows), on=["cbsa", "sex", "edu4"], how="right")
+    df[["est", "moe", "n_alloc"]] = df[["est", "moe", "n_alloc"]].fillna(0.0)
     assert len(df) == len(metros) * 8, len(df)
     return _cmp(df, ["cbsa", "sex", "edu4"])
 
@@ -316,17 +317,17 @@ def check_education_age(con, metros) -> pd.DataFrame:
     groups: dict[tuple, list] = {}
     for var, lab in labels.items():
         parts = [p.rstrip(":") for p in lab.split("!!")]
-        if len(parts) == 6 and parts[3] in ("Male", "Female"):
-            band = B15001_AGE.get(parts[4])
-            tail = parts[5].lower()
+        if len(parts) == 5 and parts[2] in ("Male", "Female"):
+            band = B15001_AGE.get(parts[3])
+            tail = parts[4].lower()
             assert band and tail in EDU_MAP_B15001, f"unmapped B15001: {lab!r}"
-            groups.setdefault((parts[3], band, EDU_MAP_B15001[tail]), []).append(var)
+            groups.setdefault((parts[2], band, EDU_MAP_B15001[tail]), []).append(var)
     assert len(groups) == 40, len(groups)
 
     band_case = ("CASE " + " ".join(
         f"WHEN agep BETWEEN {lo} AND {min(hi, 500)} THEN '{lo}-{hi}'"
         for lo, hi in B15001_AGE.values()) + " END")
-    ours = pool_grouped(con, f"cbsa, sex, {band_case}, edu4",
+    ours = pool_grouped(con, ["cbsa", "sex", band_case, "edu4"],
                         "agep >= 18", include_inst=True)
     ours.columns = ["cbsa", "sex", "band", "edu4"] + list(ours.columns[4:])
     ours["sex"] = ours["sex"].map({1: "Male", 2: "Female"})
@@ -338,7 +339,8 @@ def check_education_age(con, metros) -> pd.DataFrame:
         rows.append(pd.DataFrame({"cbsa": pe.index, "sex": sex,
                                   "band": f"{band[0]}-{band[1]}", "edu4": edu,
                                   "published": pe.values, "pub_moe": pm.values}))
-    df = ours.merge(pd.concat(rows), on=["cbsa", "sex", "band", "edu4"], how="inner")
+    df = ours.merge(pd.concat(rows), on=["cbsa", "sex", "band", "edu4"], how="right")
+    df[["est", "moe", "n_alloc"]] = df[["est", "moe", "n_alloc"]].fillna(0.0)
     assert len(df) == len(metros) * 40, len(df)
     return _cmp(df, ["cbsa", "sex", "band", "edu4"])
 
@@ -350,15 +352,15 @@ def check_earnings_bands(con, metros) -> pd.DataFrame:
     groups: dict[tuple, list] = {}
     for var, lab in labels.items():
         parts = [p.rstrip(":") for p in lab.split("!!")]
-        if len(parts) == 5 and parts[3] in ("Male", "Female") and "$" in parts[4]:
-            b = _bucket_of(_money_bounds(parts[4]), EARN_BUCKETS)
-            groups.setdefault((parts[3], b), []).append(var)
+        if len(parts) == 4 and parts[2] in ("Male", "Female") and "$" in parts[3]:
+            b = _bucket_of(_money_bounds(parts[3]), EARN_BUCKETS)
+            groups.setdefault((parts[2], b), []).append(var)
     assert len(groups) == 10, sorted(groups)
 
     bucket_case = ("CASE " + " ".join(
         f"WHEN pernp_adj >= {lo} AND pernp_adj < {hi} THEN {i}"
         for i, (lo, hi) in enumerate(EARN_BUCKETS)) + " END")
-    ours = pool_grouped(con, f"cbsa, sex, {bucket_case}",
+    ours = pool_grouped(con, ["cbsa", "sex", bucket_case],
                         "agep >= 16 AND pernp IS NOT NULL AND pernp <> 0",
                         include_inst=True)
     ours.columns = ["cbsa", "sex", "bucket"] + list(ours.columns[3:])
@@ -370,7 +372,8 @@ def check_earnings_bands(con, metros) -> pd.DataFrame:
               .apply(pd.to_numeric).clip(lower=0) ** 2).sum(axis=1) ** 0.5
         rows.append(pd.DataFrame({"cbsa": pe.index, "sex": sex, "bucket": b,
                                   "published": pe.values, "pub_moe": pm.values}))
-    df = ours.merge(pd.concat(rows), on=["cbsa", "sex", "bucket"], how="inner")
+    df = ours.merge(pd.concat(rows), on=["cbsa", "sex", "bucket"], how="right")
+    df[["est", "moe", "n_alloc"]] = df[["est", "moe", "n_alloc"]].fillna(0.0)
     assert len(df) == len(metros) * 10, len(df)
     return _cmp(df, ["cbsa", "sex", "bucket"])
 
@@ -385,7 +388,7 @@ def check_median_earnings(con, metros) -> pd.DataFrame:
         if tail in ("male", "female"):
             var_for[tail.capitalize()] = var
     pub = published("B20002", set(metros["cbsa"]))
-    ours = weighted_median_by(con, "cbsa, sex", "pernp_adj",
+    ours = weighted_median_by(con, ["cbsa", "sex"], "pernp_adj",
                               "agep >= 16 AND pernp IS NOT NULL AND pernp <> 0",
                               include_inst=True)
     ours.columns = ["cbsa", "sex", "median"]
@@ -406,7 +409,7 @@ def check_percap_income(con, metros) -> pd.DataFrame:
     """Per-capita income (PINCP*ADJINC over total population) vs B19301 —
     the one published table that reads the cube's exact income variable."""
     pub = published("B19301", set(metros["cbsa"]))
-    ours = ratio_grouped(con, "cbsa", "coalesce(inc_adj, 0)", "1.0",
+    ours = ratio_grouped(con, ["cbsa"], "coalesce(inc_adj, 0)", "1.0",
                          include_inst=True)
     ours.columns = ["cbsa"] + list(ours.columns[1:])
     ours["est"] = ours["ratio"]
@@ -442,7 +445,8 @@ def check_hh_income(con, metros) -> pd.DataFrame:
               .apply(pd.to_numeric).clip(lower=0) ** 2).sum(axis=1) ** 0.5
         rows.append(pd.DataFrame({"cbsa": pe.index, "bucket": b,
                                   "published": pe.values, "pub_moe": pm.values}))
-    df = ours.merge(pd.concat(rows), on=["cbsa", "bucket"], how="inner")
+    df = ours.merge(pd.concat(rows), on=["cbsa", "bucket"], how="right")
+    df[["est", "moe", "n_alloc"]] = df[["est", "moe", "n_alloc"]].fillna(0.0)
     assert len(df) == len(metros) * 7, len(df)
     return _cmp(df, ["cbsa", "bucket"])
 
@@ -450,7 +454,7 @@ def check_hh_income(con, metros) -> pd.DataFrame:
 def check_gq_total(con, metros) -> pd.DataFrame:
     """Total GQ vs B26001 after GQ-aware allocation; target |gap| <= 4%."""
     pub = published("B26001", set(metros["cbsa"]))
-    ours = pool_grouped(con, "cbsa", "gq IN (1,2)", include_inst=True).rename(
+    ours = pool_grouped(con, ["cbsa"], "gq IN (1,2)", include_inst=True).rename(
         columns={"d0": "cbsa"})
     ours["published"] = ours["cbsa"].map(lambda c: _num(pub.loc[c, "B26001_001E"]))
     ours["pub_moe"] = ours["cbsa"].map(lambda c: _moe(pub.loc[c, "B26001_001M"]))
@@ -581,14 +585,20 @@ def main() -> None:
          .head(10).set_index("cbsa")["gap_pct"].round(2).to_dict()}
     summaries.append(s); print(s["check"], s["pass"])
 
-    for name, fn in [("sex_age_B01001", check_sex_age),
+    have_h = "hcontrib" in {r[0] for r in con.execute("SHOW TABLES").fetchall()}
+    checks_to_run = [("sex_age_B01001", check_sex_age),
                      ("never_married_B12002", check_never_married),
                      ("race_B02001_B03003", check_race),
                      ("education_25_B15002", check_education_25),
                      ("education_age_B15001", check_education_age),
                      ("earnings_B20001", check_earnings_bands),
-                     ("percap_income_B19301", check_percap_income),
-                     ("hh_income_B19001", check_hh_income)]:
+                     ("percap_income_B19301", check_percap_income)]
+    if have_h:
+        checks_to_run.append(("hh_income_B19001", check_hh_income))
+    else:
+        print("hh_income_B19001 deferred (housing extract incomplete); "
+              "run `checks.py hh` after it finishes")
+    for name, fn in checks_to_run:
         df = fn(con, metros)
         df.to_csv(P1 / f"calibration_{name}.csv", index=False)
         s = summarize(name, df)
@@ -626,5 +636,25 @@ def main() -> None:
         json.dumps({"summaries": summaries}, indent=2, default=str) + "\n")
 
 
+def hh_only() -> None:
+    """Run just the deferred B19001 household-income check and append its
+    summary to calibration_summary.json."""
+    con = open_pool()
+    metros = pd.read_csv(RESULTS / "metros.csv", dtype={"cbsa": str})
+    df = check_hh_income(con, metros)
+    df.to_csv(P1 / "calibration_hh_income_B19001.csv", index=False)
+    s = summarize("hh_income_B19001", df)
+    blob = json.loads((P1 / "calibration_summary.json").read_text())
+    blob["summaries"] = [x for x in blob["summaries"]
+                         if x.get("check") != "hh_income_B19001"] + [s]
+    (P1 / "calibration_summary.json").write_text(
+        json.dumps(blob, indent=2, default=str) + "\n")
+    print(s["check"], "pub:", s["pass_pub_moe"], "combined:", s["pass_combined_moe"])
+
+
 if __name__ == "__main__":
-    main()
+    import sys as _sys
+    if _sys.argv[1:] == ["hh"]:
+        hh_only()
+    else:
+        main()
