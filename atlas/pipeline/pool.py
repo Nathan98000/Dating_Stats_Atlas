@@ -49,6 +49,8 @@ def open_pool(rebuild: bool = False) -> duckdb.DuckDBPyConnection:
     con.execute("SET preserve_insertion_order=false")
     have = {r[0] for r in con.execute("SHOW TABLES").fetchall()}
     if rebuild or "contrib" not in have:
+        n_files = len(list((DATA / "pums").glob("*.parquet")))
+        assert n_files == 51, f"person extract incomplete: {n_files}/51 states"
         con.execute(f"""
             CREATE OR REPLACE TABLE contrib AS
             SELECT p.*, b.cbsa,
@@ -73,6 +75,8 @@ def open_pool(rebuild: bool = False) -> duckdb.DuckDBPyConnection:
             )""").fetchone()[0]
         assert orphans == 0, f"{orphans} extracted PUMAs missing from bridge"
     if (rebuild or "hcontrib" not in have) and (DATA / "pums_h").exists():
+        n_h = len(list((DATA / "pums_h").glob("*.parquet")))
+        assert n_h == 51, f"housing extract incomplete: {n_h}/51 states"
         con.execute(f"""
             CREATE OR REPLACE TABLE hcontrib AS
             SELECT h.*, b.cbsa, b.a_hh
