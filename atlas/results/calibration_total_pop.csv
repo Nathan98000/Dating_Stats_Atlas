@@ -1,0 +1,11 @@
+cbsa,metro,pums_est,published,gap_pct,tolerance_pct,pass
+35620,"New York-Newark-Jersey City, NY-NJ",19795499,19798537.0,-0.015,2.0,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",6318383,6318377.0,0.0,2.0,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",6255889,6256377.0,-0.008,2.0,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",3713854,3713668.0,0.005,2.0,True
+38300,"Pittsburgh, PA",2439070,2439940.0,-0.036,2.0,True
+12420,"Austin-Round Rock-San Marcos, TX",2426414,2426592.0,-0.007,2.0,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",1969540,1969337.0,0.01,2.0,True
+39340,"Provo-Orem-Lehi, UT",717519,717986.0,-0.065,2.0,True
+28660,"Killeen-Temple, TX",495126,494360.0,0.155,2.0,True
+11460,"Ann Arbor, MI",370051,369822.0,0.062,2.0,True

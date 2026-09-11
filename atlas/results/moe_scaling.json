@@ -1,0 +1,14 @@
+{
+  "all_queries": {
+    "n_queries": 107,
+    "slope": -0.71,
+    "r2": 0.914
+  },
+  "subpopulation_queries": {
+    "n_queries": 97,
+    "slope": -0.587,
+    "r2": 0.954
+  },
+  "expected": -0.5,
+  "pass": true
+}

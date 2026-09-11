@@ -22,14 +22,14 @@ GEO = "metropolitan statistical area/micropolitan statistical area"
 AGE_BANDS = [(18, 24), (25, 29), (30, 34), (35, 39), (40, 44),
              (45, 49), (50, 54), (55, 59), (60, 64), (65, 69)]
 
-RACE_MAP = {  # B02001 label fragment -> our RAC1P grouping (all ethnicities)
-    "White alone": "rac1p = 1",
-    "Black or African American alone": "rac1p = 2",
-    "American Indian and Alaska Native alone": "rac1p IN (3,4,5)",
-    "Asian alone": "rac1p = 6",
-    "Native Hawaiian and Other Pacific Islander alone": "rac1p = 7",
-    "Some other race alone": "rac1p = 8",
-    "Two or more races": "rac1p = 9",
+RACE_MAP = {  # B02001 label fragment (lowercased) -> our RAC1P grouping (all ethnicities)
+    "white alone": "rac1p = 1",
+    "black or african american alone": "rac1p = 2",
+    "american indian and alaska native alone": "rac1p IN (3,4,5)",
+    "asian alone": "rac1p = 6",
+    "native hawaiian and other pacific islander alone": "rac1p = 7",
+    "some other race alone": "rac1p = 8",
+    "two or more races": "rac1p = 9",
 }
 
 PERSONAS = {
@@ -211,7 +211,7 @@ def check_race(con, metros: pd.DataFrame) -> pd.DataFrame:
     labels = group_labels("B02001")
     var_for = {}
     for var, lab in labels.items():
-        tail = lab.split("!!")[-1].rstrip(":")
+        tail = lab.split("!!")[-1].rstrip(":").lower()
         if tail in RACE_MAP and lab.count("!!") == 2:  # top-level categories only
             var_for[tail] = var
     assert len(var_for) == 7, var_for
@@ -242,6 +242,24 @@ def check_race(con, metros: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def check_gq_total(con, metros: pd.DataFrame) -> pd.DataFrame:
+    """Total group-quarters population vs published B26001 — sensitive to the
+    bridge's known blind spot: point-mass facilities (barracks, dorm clusters)
+    inside PUMAs that straddle the metro boundary get allocated proportionally
+    to tract population instead of staying put."""
+    pub = published("B26001", metros["cbsa"].tolist())
+    rows = []
+    for _, m in metros.iterrows():
+        ours = pool(con, m["cbsa"], "gq IN (1,2)", include_inst=True, log=False)
+        p = _num(pub.loc[m["cbsa"], "B26001_001E"])
+        rows.append({"cbsa": m["cbsa"], "metro": m["cbsa_title"],
+                     "pums_gq": round(ours["est"]), "published_gq": p,
+                     "gap_pct": round((ours["est"] - p) / p * 100, 1),
+                     "pub_moe": _moe(pub.loc[m["cbsa"], "B26001_001M"]),
+                     "pums_moe": round(ours["moe"])})
+    return pd.DataFrame(rows)
+
+
 def check_rent(metros: pd.DataFrame) -> pd.DataFrame:
     """Published median gross rent only — a sanity check that the resolved CBSA
     codes are the metros we think they are (PUMS person files carry no rent)."""
@@ -264,7 +282,13 @@ def metro_quality(con, metros: pd.DataFrame) -> pd.DataFrame:
             sum(pwgtp * a) FILTER (WHERE gq = 2) / sum(pwgtp * a) AS inst_gq_share_all_ages,
             sum(pwgtp * a) FILTER (WHERE gq = 1 AND agep BETWEEN 18 AND 70)
               / sum(pwgtp * a) FILTER (WHERE gq <> 2 AND agep BETWEEN 18 AND 70)
-              AS noninst_gq_share_18_70
+              AS noninst_gq_share_18_70,
+            sum(pwgtp * a) FILTER (WHERE gq = 1 AND agep BETWEEN 18 AND 24)
+              / sum(pwgtp * a) FILTER (WHERE gq <> 2 AND agep BETWEEN 18 AND 24)
+              AS noninst_gq_share_18_24,
+            sum(pwgtp * a) FILTER (WHERE gq = 1 AND agep BETWEEN 25 AND 34)
+              / sum(pwgtp * a) FILTER (WHERE gq <> 2 AND agep BETWEEN 25 AND 34)
+              AS noninst_gq_share_25_34
         FROM contrib GROUP BY cbsa
     """).df()
     out = metros[["cbsa", "cbsa_title", "purity"]].rename(
@@ -282,17 +306,30 @@ def check_gq(quality: pd.DataFrame) -> dict:
             "pass": bool(ann > 2 * pit and kil > 2 * pit)}
 
 
-def check_moe_scaling() -> dict:
-    """Across logged pool queries, CV should scale roughly as n^-0.5."""
-    pts = [(q["n"], q["cv_pct"]) for q in QUERY_LOG
-           if q["cv_pct"] and q["n"] >= 10]
-    x = np.log([p[0] for p in pts])
-    y = np.log([p[1] for p in pts])
-    slope, intercept = np.polyfit(x, y, 1)
-    r2 = float(np.corrcoef(x, y)[0, 1] ** 2)
-    return {"n_queries": len(pts), "slope": round(float(slope), 3),
-            "r2": round(r2, 3), "expected": -0.5,
-            "pass": bool(-0.65 <= slope <= -0.35)}
+def check_moe_scaling(pop_by_cbsa: dict[str, float]) -> dict:
+    """Across logged pool queries, CV should scale roughly as n^-0.5.
+
+    Fit twice: over all logged queries, and over genuine subpopulation
+    queries only (< 20% of metro population). Near-universe estimates have
+    artificially collapsed variance because the weights are calibrated to
+    population controls, which steepens the pooled slope past -0.5.
+    """
+    def fit(pts):
+        x = np.log([p[0] for p in pts])
+        y = np.log([p[1] for p in pts])
+        slope, _ = np.polyfit(x, y, 1)
+        r2 = float(np.corrcoef(x, y)[0, 1] ** 2)
+        return {"n_queries": len(pts), "slope": round(float(slope), 3),
+                "r2": round(r2, 3)}
+
+    pts_all = [(q["n"], q["cv_pct"]) for q in QUERY_LOG
+               if q["cv_pct"] and q["n"] >= 10]
+    pts_sub = [(q["n"], q["cv_pct"]) for q in QUERY_LOG
+               if q["cv_pct"] and q["n"] >= 10
+               and q["est"] < 0.2 * pop_by_cbsa[q["cbsa"]]]
+    sub = fit(pts_sub)
+    return {"all_queries": fit(pts_all), "subpopulation_queries": sub,
+            "expected": -0.5, "pass": bool(-0.65 <= sub["slope"] <= -0.35)}
 
 
 # --------------------------------------------------------------- personas ---
@@ -350,6 +387,13 @@ def main() -> None:
     print(f"\n== Race/ethnicity vs B02001+B03003: {rc['pass_pub_moe'].sum()}/{len(rc)} "
           f"within published MOE, {rc['pass_combined_moe'].sum()}/{len(rc)} within combined MOE")
 
+    gqt = check_gq_total(con, metros)
+    gqt.to_csv(RESULTS / "calibration_gq_total.csv", index=False)
+    print(f"\n== Total GQ vs B26001: worst gap "
+          f"{gqt.loc[gqt['gap_pct'].abs().idxmax(), 'metro']} "
+          f"{gqt['gap_pct'].abs().max():.1f}%")
+    print(gqt.to_string(index=False))
+
     rent = check_rent(metros)
     rent.to_csv(RESULTS / "calibration_rent.csv", index=False)
     print("\n== Median gross rent (published B25064, eyeball only)")
@@ -360,7 +404,9 @@ def main() -> None:
     print(f"\n== Personas: tiers {pers['tier'].value_counts().to_dict()}")
 
     gq = check_gq(quality)
-    scaling = check_moe_scaling()
+    pop_by_cbsa = {r["cbsa"]: float(r["pums_est"]) for _, r in t.iterrows()}
+    scaling = check_moe_scaling(pop_by_cbsa)
+    (RESULTS / "moe_scaling.json").write_text(json.dumps(scaling, indent=2) + "\n")
     (RESULTS / "check_summary.json").write_text(json.dumps({
         "total_pop_pass": f"{int(t['pass'].sum())}/{len(t)}",
         "sex_age_within_pub_moe": f"{int(sa['pass_pub_moe'].sum())}/{len(sa)}",
@@ -369,6 +415,7 @@ def main() -> None:
         "never_married_within_combined_moe": f"{int(nm['pass_combined_moe'].sum())}/{len(nm)}",
         "race_within_pub_moe": f"{int(rc['pass_pub_moe'].sum())}/{len(rc)}",
         "race_within_combined_moe": f"{int(rc['pass_combined_moe'].sum())}/{len(rc)}",
+        "gq_total_worst_gap_pct": float(gqt["gap_pct"].abs().max()),
         "gq_contrast": gq, "moe_scaling": scaling,
         "persona_tiers": pers["tier"].value_counts().to_dict(),
     }, indent=2) + "\n")

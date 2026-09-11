@@ -1,0 +1,21 @@
+cbsa,metro,sex,pums_share,published_share,gap,pub_share_moe,pums_share_moe,pass_pub_moe,pass_combined_moe
+35620,"New York-Newark-Jersey City, NY-NJ",Male,0.5785,0.581,-0.0024,0.0058,0.0062,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,0.5006,0.498,0.0026,0.0067,0.0071,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,0.5377,0.5347,0.003,0.0095,0.0116,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,0.4477,0.446,0.0017,0.0081,0.0095,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,0.5015,0.5036,-0.002,0.0112,0.0124,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,0.4323,0.4352,-0.0029,0.0098,0.0112,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,0.514,0.5064,0.0076,0.0137,0.0172,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,0.3899,0.3836,0.0063,0.0117,0.016,True,True
+38300,"Pittsburgh, PA",Male,0.5225,0.5299,-0.0074,0.0131,0.0183,True,True
+38300,"Pittsburgh, PA",Female,0.4061,0.411,-0.0049,0.0138,0.016,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,0.5041,0.5079,-0.0038,0.0179,0.0189,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,0.4022,0.3931,0.0091,0.0159,0.0172,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,0.5214,0.5199,0.0015,0.0138,0.0173,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,0.3643,0.3654,-0.0012,0.0146,0.0177,True,True
+39340,"Provo-Orem-Lehi, UT",Male,0.2296,0.2174,0.0122,0.0186,0.0224,True,True
+39340,"Provo-Orem-Lehi, UT",Female,0.18,0.179,0.001,0.0185,0.0231,True,True
+28660,"Killeen-Temple, TX",Male,0.3766,0.3505,0.0261,0.0306,0.0389,True,True
+28660,"Killeen-Temple, TX",Female,0.3554,0.3478,0.0076,0.0326,0.0354,True,True
+11460,"Ann Arbor, MI",Male,0.5481,0.5447,0.0033,0.0368,0.047,True,True
+11460,"Ann Arbor, MI",Female,0.408,0.4241,-0.0161,0.0313,0.0443,True,True

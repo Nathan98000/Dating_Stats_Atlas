@@ -1,0 +1,160 @@
+{
+  "states": [
+    {
+      "state": "ca",
+      "fips": "06",
+      "rows_total": 1867063,
+      "rows_kept": 105418,
+      "weighted_kept": 2052816,
+      "zip_mb": 268.4,
+      "csv_mb": 1223.7,
+      "parquet_mb": 7.4,
+      "seconds": 188.0,
+      "disk_free_gb_after": 39.8
+    },
+    {
+      "state": "tx",
+      "fips": "48",
+      "rows_total": 1326295,
+      "rows_kept": 132515,
+      "weighted_kept": 3058450,
+      "zip_mb": 190.7,
+      "csv_mb": 864.3,
+      "parquet_mb": 12.3,
+      "seconds": 128.2,
+      "disk_free_gb_after": 39.8
+    },
+    {
+      "state": "ny",
+      "fips": "36",
+      "rows_total": 984474,
+      "rows_kept": 537200,
+      "weighted_kept": 12877829,
+      "zip_mb": 140.1,
+      "csv_mb": 638.8,
+      "parquet_mb": 48.8,
+      "seconds": 103.4,
+      "disk_free_gb_after": 62.2
+    },
+    {
+      "state": "pa",
+      "fips": "42",
+      "rows_total": 660142,
+      "rows_kept": 137624,
+      "weighted_kept": 2556867,
+      "zip_mb": 91.0,
+      "csv_mb": 424.7,
+      "parquet_mb": 10.7,
+      "seconds": 66.0,
+      "disk_free_gb_after": 62.2
+    },
+    {
+      "state": "ga",
+      "fips": "13",
+      "rows_total": 493651,
+      "rows_kept": 291507,
+      "weighted_kept": 6845100,
+      "zip_mb": 70.7,
+      "csv_mb": 321.2,
+      "parquet_mb": 26.8,
+      "seconds": 54.0,
+      "disk_free_gb_after": 62.2
+    },
+    {
+      "state": "mi",
+      "fips": "26",
+      "rows_total": 505689,
+      "rows_kept": 17334,
+      "weighted_kept": 370051,
+      "zip_mb": 69.9,
+      "csv_mb": 325.7,
+      "parquet_mb": 1.3,
+      "seconds": 52.6,
+      "disk_free_gb_after": 62.2
+    },
+    {
+      "state": "nj",
+      "fips": "34",
+      "rows_total": 444940,
+      "rows_kept": 323550,
+      "weighted_kept": 6955638,
+      "zip_mb": 64.2,
+      "csv_mb": 291.5,
+      "parquet_mb": 27.6,
+      "seconds": 47.1,
+      "disk_free_gb_after": 62.1
+    },
+    {
+      "state": "va",
+      "fips": "51",
+      "rows_total": 422692,
+      "rows_kept": 163981,
+      "weighted_kept": 3398011,
+      "zip_mb": 60.8,
+      "csv_mb": 276.3,
+      "parquet_mb": 13.9,
+      "seconds": 44.3,
+      "disk_free_gb_after": 62.0
+    },
+    {
+      "state": "wi",
+      "fips": "55",
+      "rows_total": 307291,
+      "rows_kept": 20674,
+      "weighted_kept": 256921,
+      "zip_mb": 41.4,
+      "csv_mb": 196.2,
+      "parquet_mb": 1.3,
+      "seconds": 30.5,
+      "disk_free_gb_after": 62.0
+    },
+    {
+      "state": "mn",
+      "fips": "27",
+      "rows_total": 291030,
+      "rows_kept": 128295,
+      "weighted_kept": 3794199,
+      "zip_mb": 39.5,
+      "csv_mb": 185.9,
+      "parquet_mb": 12.0,
+      "seconds": 28.4,
+      "disk_free_gb_after": 62.0
+    },
+    {
+      "state": "md",
+      "fips": "24",
+      "rows_total": 299422,
+      "rows_kept": 120102,
+      "weighted_kept": 2483063,
+      "zip_mb": 42.8,
+      "csv_mb": 195.7,
+      "parquet_mb": 9.5,
+      "seconds": 31.8,
+      "disk_free_gb_after": 61.7
+    },
+    {
+      "state": "ut",
+      "fips": "49",
+      "rows_total": 172453,
+      "rows_kept": 51615,
+      "weighted_kept": 869930,
+      "zip_mb": 23.3,
+      "csv_mb": 111.6,
+      "parquet_mb": 3.4,
+      "seconds": 18.0,
+      "disk_free_gb_after": 61.3
+    },
+    {
+      "state": "wv",
+      "fips": "54",
+      "rows_total": 86575,
+      "rows_kept": 7719,
+      "weighted_kept": 188819,
+      "zip_mb": 12.1,
+      "csv_mb": 55.8,
+      "parquet_mb": 0.6,
+      "seconds": 11.7,
+      "disk_free_gb_after": 61.3
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+cbsa,metro,sex,band,pums_est,published,gap,pub_moe,pums_moe,pass_pub_moe,pass_combined_moe
+35620,"New York-Newark-Jersey City, NY-NJ",Male,18-24,821119,821062.0,57,5187,2562,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,25-29,681186,682920.0,-1734,333,2220,False,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,30-34,725890,727005.0,-1115,343,2271,False,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,35-39,683028,683398.0,-370,5842,5590,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,40-44,640244,638675.0,1569,5914,5375,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,45-49,603109,602386.0,723,330,2029,False,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,50-54,630452,631925.0,-1473,291,2007,False,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,55-59,640943,642433.0,-1490,5272,5244,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,60-64,612708,612370.0,338,6144,5198,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Male,65-69,494108,499390.0,-5282,5758,5595,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,18-24,820556,820027.0,529,5330,2520,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,25-29,708060,707671.0,389,399,1822,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,30-34,726101,726198.0,-97,287,1568,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,35-39,679433,680762.0,-1329,4758,5895,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,40-44,649240,648429.0,811,4731,5940,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,45-49,622048,622523.0,-475,314,1522,False,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,50-54,658000,657731.0,269,280,1527,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,55-59,679920,681448.0,-1528,5880,6059,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,60-64,655196,654046.0,1150,6541,5889,True,True
+35620,"New York-Newark-Jersey City, NY-NJ",Female,65-69,566351,568381.0,-2030,5719,5040,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,18-24,269269,268620.0,649,3093,1418,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,25-29,213816,213308.0,508,375,1060,False,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,30-34,230629,230119.0,510,481,805,False,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,35-39,233565,233410.0,155,3196,3062,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,40-44,230415,230501.0,-86,3225,3313,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,45-49,206437,207448.0,-1011,479,790,False,False
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,50-54,209386,209464.0,-78,526,836,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,55-59,195475,197923.0,-2448,2585,2817,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,60-64,183867,182319.0,1548,2732,2963,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Male,65-69,138891,139007.0,-116,2488,2012,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,18-24,266052,266984.0,-932,3051,1355,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,25-29,221572,221224.0,348,414,660,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,30-34,233216,233158.0,58,413,668,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,35-39,241659,240682.0,977,2899,2936,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,40-44,229101,229539.0,-438,2816,3038,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,45-49,210283,210439.0,-156,453,717,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,50-54,211402,211701.0,-299,394,637,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,55-59,204241,204833.0,-592,2438,3135,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,60-64,190068,189824.0,244,2886,3145,True,True
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Female,65-69,160241,160580.0,-339,2367,2340,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,18-24,286377,286785.0,-408,3565,1485,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,25-29,210305,211788.0,-1483,387,1090,False,False
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,30-34,218524,219229.0,-705,570,1000,False,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,35-39,214777,214827.0,-50,2745,4010,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,40-44,206597,206842.0,-245,2762,4101,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,45-49,201108,201028.0,80,528,1047,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,50-54,210061,210166.0,-105,430,812,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,55-59,191099,191109.0,-10,2970,2941,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,60-64,177335,177145.0,190,3271,2896,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Male,65-69,133359,132889.0,470,2648,1998,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,18-24,283370,283034.0,336,3536,1696,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,25-29,220477,220977.0,-500,507,722,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,30-34,233927,233963.0,-36,403,832,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,35-39,227085,229189.0,-2104,3568,3901,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,40-44,225263,224013.0,1250,3529,3975,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,45-49,219655,219116.0,539,457,1033,False,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,50-54,220161,220388.0,-227,331,938,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,55-59,202802,204117.0,-1315,2635,3105,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,60-64,190784,189210.0,1574,3172,3192,True,True
+12060,"Atlanta-Sandy Springs-Roswell, GA",Female,65-69,155383,156752.0,-1369,3238,2313,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,18-24,157935,155480.0,2455,2173,1716,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,25-29,125699,127001.0,-1302,330,1371,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,30-34,136251,136604.0,-353,408,1728,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,35-39,139662,139763.0,-101,2350,3802,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,40-44,131396,129513.0,1883,2296,3229,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,45-49,110956,111948.0,-992,280,1649,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,50-54,114597,115655.0,-1058,314,1573,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,55-59,115238,116417.0,-1179,1945,2847,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,60-64,117716,118208.0,-492,2044,2693,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Male,65-69,91115,91633.0,-518,1615,2265,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,18-24,151659,151624.0,35,2222,1935,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,25-29,125556,124165.0,1391,222,1769,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,30-34,129856,131076.0,-1220,316,1630,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,35-39,134794,135284.0,-490,2271,3839,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,40-44,127870,126548.0,1322,2219,3131,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,45-49,107969,108402.0,-433,290,1681,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,50-54,113195,112627.0,568,289,1541,False,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,55-59,114733,115509.0,-776,1808,2801,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,60-64,120882,120282.0,600,1986,2635,True,True
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Female,65-69,99700,100537.0,-837,1836,2211,True,True
+38300,"Pittsburgh, PA",Male,18-24,100450,99746.0,704,1650,1194,True,True
+38300,"Pittsburgh, PA",Male,25-29,77246,77497.0,-251,202,666,False,True
+38300,"Pittsburgh, PA",Male,30-34,84385,84022.0,363,254,647,False,True
+38300,"Pittsburgh, PA",Male,35-39,82386,81297.0,1089,1637,2123,True,True
+38300,"Pittsburgh, PA",Male,40-44,74305,75707.0,-1402,1684,2057,True,True
+38300,"Pittsburgh, PA",Male,45-49,68424,67868.0,556,240,776,False,True
+38300,"Pittsburgh, PA",Male,50-54,75958,75923.0,35,256,744,True,True
+38300,"Pittsburgh, PA",Male,55-59,81474,80526.0,948,1314,1925,True,True
+38300,"Pittsburgh, PA",Male,60-64,86993,88255.0,-1262,1731,1969,True,True
+38300,"Pittsburgh, PA",Male,65-69,81763,81536.0,227,1690,1597,True,True
+38300,"Pittsburgh, PA",Female,18-24,100300,98583.0,1717,1754,1117,True,True
+38300,"Pittsburgh, PA",Female,25-29,74148,74254.0,-106,257,552,True,True
+38300,"Pittsburgh, PA",Female,30-34,81190,81123.0,67,218,781,True,True
+38300,"Pittsburgh, PA",Female,35-39,76953,78169.0,-1216,1609,2062,True,True
+38300,"Pittsburgh, PA",Female,40-44,73572,72911.0,661,1570,1890,True,True
+38300,"Pittsburgh, PA",Female,45-49,67158,67317.0,-159,226,652,True,True
+38300,"Pittsburgh, PA",Female,50-54,76523,75986.0,537,144,818,False,True
+38300,"Pittsburgh, PA",Female,55-59,82735,82710.0,25,1528,1892,True,True
+38300,"Pittsburgh, PA",Female,60-64,94051,94949.0,-898,2121,1868,True,True
+38300,"Pittsburgh, PA",Female,65-69,88624,88409.0,215,1585,1862,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,18-24,113017,113662.0,-645,2502,1712,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,25-29,101120,101479.0,-359,264,708,False,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,30-34,112693,112984.0,-291,209,734,False,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,35-39,107717,107794.0,-77,2683,2951,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,40-44,99929,99544.0,385,2680,2814,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,45-49,84657,85275.0,-618,299,679,False,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,50-54,77870,77944.0,-74,269,742,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,55-59,66354,66044.0,310,2045,1978,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,60-64,59390,59294.0,96,2165,1908,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Male,65-69,46639,46855.0,-216,1381,1257,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,18-24,113187,113094.0,93,2489,1634,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,25-29,95528,95922.0,-394,195,491,False,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,30-34,104910,104793.0,117,174,601,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,35-39,97416,98757.0,-1341,2188,2453,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,40-44,93882,92865.0,1017,2155,2432,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,45-49,78946,79196.0,-250,237,621,False,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,50-54,72827,72945.0,-118,350,524,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,55-59,62562,62239.0,323,1591,1655,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,60-64,63679,63681.0,-2,2046,1606,True,True
+12420,"Austin-Round Rock-San Marcos, TX",Female,65-69,52400,51969.0,431,1788,1491,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,18-24,88992,88356.0,636,1567,1206,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,25-29,80812,80295.0,517,70,693,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,30-34,89649,89156.0,493,40,634,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,35-39,79737,79940.0,-203,1587,1902,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,40-44,70743,70367.0,376,1581,2058,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,45-49,66286,65910.0,376,115,519,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,50-54,66880,66218.0,662,106,548,False,False
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,55-59,63927,64179.0,-252,1466,1670,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,60-64,57479,57214.0,265,1628,1653,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Male,65-69,44721,45032.0,-311,1422,1219,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,18-24,82657,82274.0,383,1537,901,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,25-29,69716,69909.0,-193,64,587,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,30-34,75863,76217.0,-354,160,529,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,35-39,70066,69875.0,191,1438,1796,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,40-44,65758,66313.0,-555,1430,1818,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,45-49,63688,63859.0,-171,85,464,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,50-54,64116,64250.0,-134,20,395,False,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,55-59,61973,62183.0,-210,1189,1692,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,60-64,54066,54486.0,-420,1406,1630,True,True
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Female,65-69,47636,47927.0,-291,1377,1425,True,True
+39340,"Provo-Orem-Lehi, UT",Male,18-24,59986,60175.0,-189,1678,647,True,True
+39340,"Provo-Orem-Lehi, UT",Male,25-29,32328,32085.0,243,26,458,False,True
+39340,"Provo-Orem-Lehi, UT",Male,30-34,24617,24670.0,-53,9,389,False,True
+39340,"Provo-Orem-Lehi, UT",Male,35-39,23123,23379.0,-256,871,961,True,True
+39340,"Provo-Orem-Lehi, UT",Male,40-44,22174,22027.0,147,875,986,True,True
+39340,"Provo-Orem-Lehi, UT",Male,45-49,19331,19304.0,27,148,342,True,True
+39340,"Provo-Orem-Lehi, UT",Male,50-54,15071,15183.0,-112,74,210,False,True
+39340,"Provo-Orem-Lehi, UT",Male,55-59,12888,12957.0,-69,523,662,True,True
+39340,"Provo-Orem-Lehi, UT",Male,60-64,11327,11189.0,138,645,679,True,True
+39340,"Provo-Orem-Lehi, UT",Male,65-69,9856,9567.0,289,641,542,True,True
+39340,"Provo-Orem-Lehi, UT",Female,18-24,59438,59507.0,-69,1339,630,True,True
+39340,"Provo-Orem-Lehi, UT",Female,25-29,29340,29281.0,59,10,372,False,True
+39340,"Provo-Orem-Lehi, UT",Female,30-34,23636,23656.0,-20,74,298,True,True
+39340,"Provo-Orem-Lehi, UT",Female,35-39,22609,22826.0,-217,744,980,True,True
+39340,"Provo-Orem-Lehi, UT",Female,40-44,20693,20611.0,82,750,995,True,True
+39340,"Provo-Orem-Lehi, UT",Female,45-49,18364,18187.0,177,113,263,False,True
+39340,"Provo-Orem-Lehi, UT",Female,50-54,14701,14604.0,97,87,203,False,True
+39340,"Provo-Orem-Lehi, UT",Female,55-59,12743,12630.0,113,496,576,True,True
+39340,"Provo-Orem-Lehi, UT",Female,60-64,11302,11264.0,38,570,542,True,True
+39340,"Provo-Orem-Lehi, UT",Female,65-69,10442,10428.0,14,558,585,True,True
+28660,"Killeen-Temple, TX",Male,18-24,29026,30364.0,-1338,1181,696,False,True
+28660,"Killeen-Temple, TX",Male,25-29,20132,20579.0,-447,309,400,False,True
+28660,"Killeen-Temple, TX",Male,30-34,18604,19442.0,-838,171,248,False,False
+28660,"Killeen-Temple, TX",Male,35-39,17211,17738.0,-527,840,916,True,True
+28660,"Killeen-Temple, TX",Male,40-44,15961,16313.0,-352,836,851,True,True
+28660,"Killeen-Temple, TX",Male,45-49,13200,13209.0,-9,169,274,True,True
+28660,"Killeen-Temple, TX",Male,50-54,12646,12549.0,97,203,254,True,True
+28660,"Killeen-Temple, TX",Male,55-59,11987,11558.0,429,617,624,True,True
+28660,"Killeen-Temple, TX",Male,60-64,12147,11498.0,649,814,682,True,True
+28660,"Killeen-Temple, TX",Male,65-69,10832,9979.0,853,613,507,False,False
+28660,"Killeen-Temple, TX",Female,18-24,23328,23903.0,-575,1019,448,True,True
+28660,"Killeen-Temple, TX",Female,25-29,18441,19420.0,-979,151,279,False,False
+28660,"Killeen-Temple, TX",Female,30-34,18813,19454.0,-641,164,258,False,False
+28660,"Killeen-Temple, TX",Female,35-39,16864,17737.0,-873,959,852,True,True
+28660,"Killeen-Temple, TX",Female,40-44,16851,17186.0,-335,945,815,True,True
+28660,"Killeen-Temple, TX",Female,45-49,13986,14428.0,-442,145,223,False,False
+28660,"Killeen-Temple, TX",Female,50-54,13206,12963.0,243,98,186,False,False
+28660,"Killeen-Temple, TX",Female,55-59,12825,12146.0,679,662,721,False,True
+28660,"Killeen-Temple, TX",Female,60-64,13837,13207.0,630,828,748,True,True
+28660,"Killeen-Temple, TX",Female,65-69,11881,11390.0,491,657,543,True,True
+11460,"Ann Arbor, MI",Male,18-24,32911,32833.0,78,1470,806,True,True
+11460,"Ann Arbor, MI",Male,25-29,14179,14219.0,-40,3,370,False,True
+11460,"Ann Arbor, MI",Male,30-34,13062,13008.0,54,9,375,False,True
+11460,"Ann Arbor, MI",Male,35-39,12589,12259.0,330,616,874,True,True
+11460,"Ann Arbor, MI",Male,40-44,10078,10477.0,-399,624,864,True,True
+11460,"Ann Arbor, MI",Male,45-49,10018,9990.0,28,26,323,False,True
+11460,"Ann Arbor, MI",Male,50-54,10531,10500.0,31,26,306,False,True
+11460,"Ann Arbor, MI",Male,55-59,9652,9728.0,-76,534,660,True,True
+11460,"Ann Arbor, MI",Male,60-64,10873,10576.0,297,660,686,True,True
+11460,"Ann Arbor, MI",Male,65-69,8839,8921.0,-82,540,655,True,True
+11460,"Ann Arbor, MI",Female,18-24,32252,32191.0,61,1418,807,True,True
+11460,"Ann Arbor, MI",Female,25-29,13233,13386.0,-153,5,462,False,True
+11460,"Ann Arbor, MI",Female,30-34,11994,11856.0,138,39,385,False,True
+11460,"Ann Arbor, MI",Female,35-39,11130,10979.0,151,448,788,True,True
+11460,"Ann Arbor, MI",Female,40-44,10642,10644.0,-2,445,697,True,True
+11460,"Ann Arbor, MI",Female,45-49,9988,9958.0,30,27,305,False,True
+11460,"Ann Arbor, MI",Female,50-54,10287,10514.0,-227,3,365,False,True
+11460,"Ann Arbor, MI",Female,55-59,9831,10416.0,-585,423,760,False,True
+11460,"Ann Arbor, MI",Female,60-64,10981,10572.0,409,601,689,True,True
+11460,"Ann Arbor, MI",Female,65-69,9768,9626.0,142,645,613,True,True
