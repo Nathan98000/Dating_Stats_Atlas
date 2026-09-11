@@ -18,6 +18,20 @@
       "path": "data/raw/3379e3381d965de1/2020_Census_Tract_to_2020_PUMA.txt",
       "sha256": "5262f460b2c8dbe86b00549e916317b1791fdc595c9af72ab18f6f6a67040531"
     },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pca.zip": {
+      "bytes": 268363882,
+      "evicted": true,
+      "fetched_at": "2026-09-11T13:50:17-0400",
+      "path": "data/raw/f865187719d985d7/csv_pca.zip",
+      "sha256": "4bfcabfdac8ba51becd0c9f2b285c0830d34d3c28a6094779b11e6da0a0a13bd"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pdc.zip": {
+      "bytes": 4739881,
+      "evicted": true,
+      "fetched_at": "2026-09-11T13:46:25-0400",
+      "path": "data/raw/04cb0c206606b6a4/csv_pdc.zip",
+      "sha256": "bc9ea5024f1fe1755274171bd3374488f63ef454baf1e46c2c77a74b67e79ee9"
+    },
     "https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2020-2024.csv": {
       "bytes": 330431,
       "evicted": false,
