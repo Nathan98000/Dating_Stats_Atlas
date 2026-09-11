@@ -1,0 +1,172 @@
+{
+  "data_version": "fixture-b4d99c1c1dea",
+  "model_version": "m1.0.0",
+  "schema_version": "cube-v1",
+  "created_at": "2026-09-11T16:14:01-0400",
+  "axes": [
+    {
+      "name": "metro",
+      "levels": [
+        "11460",
+        "12060",
+        "12420",
+        "20580",
+        "26580",
+        "28660",
+        "33460",
+        "35620",
+        "38300",
+        "39340",
+        "41940",
+        "47900"
+      ]
+    },
+    {
+      "name": "sex",
+      "levels": [
+        "male",
+        "female"
+      ]
+    },
+    {
+      "name": "age",
+      "levels": [
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70"
+      ]
+    },
+    {
+      "name": "marital",
+      "levels": [
+        "never",
+        "previously",
+        "currently"
+      ]
+    },
+    {
+      "name": "education",
+      "levels": [
+        "hs_or_less",
+        "some_college",
+        "bachelors",
+        "graduate"
+      ]
+    },
+    {
+      "name": "income",
+      "levels": [
+        "lt25k",
+        "25_50k",
+        "50_75k",
+        "75_100k",
+        "100_150k",
+        "150_250k",
+        "ge250k"
+      ]
+    },
+    {
+      "name": "race_eth",
+      "levels": [
+        "hispanic",
+        "nh_white",
+        "nh_black",
+        "nh_asian",
+        "nh_aian",
+        "nh_nhpi",
+        "nh_twoplus",
+        "nh_other"
+      ]
+    }
+  ],
+  "cube_shape": [
+    12,
+    2,
+    53,
+    3,
+    4,
+    7,
+    8
+  ],
+  "cube_cells": 854784,
+  "universe": "ages 18-70, institutional group quarters excluded",
+  "cube_dtypes": {
+    "pool_cube": "float32 sum PWGTP*a_eff",
+    "count_cube": "float32 sum a_eff (fractional allocated respondents)",
+    "sumw2_cube": "float32 sum (PWGTP*a_eff)^2"
+  },
+  "variance_model": {
+    "form": "log(RSE) = alpha + beta*log(n_alloc), per metro",
+    "validation_p90_rel_err": 0.4401177024463431,
+    "beta_median": -0.5696143620308548,
+    "fallback_metros": 1,
+    "shippable": false,
+    "used_by_api": false,
+    "note": "failed the 15% p90 validation gate; shipped as diagnostic only. Serve-time tiers gate on min(n_alloc, kish) >= 100, which the 28k-point battery shows agrees with the full n+CV policy on 100% of realistic queries (tier_study)."
+  },
+  "tier_policy": {
+    "suppress": "min(n_alloc, kish) < 100, or empty pool/rivals",
+    "shown_unranked": "never fires under m1.0.0 (see tier_study.json: middle tier share 0.0 over 23,262 ranked-set battery points; max true CV at the gate 12.9%)",
+    "agreement_with_specified_policy": 1.0
+  },
+  "sources": {
+    "delineation": "OMB Bulletin No. 23-01 (July 21, 2023), list1_2023.xlsx",
+    "acs": "2024/acs/acs5 (ACS 2020-2024 5-year)",
+    "dhc": "2020/dec/dhc (2020 Census DHC, tract P1/P5)",
+    "pums": "ACS 2020-2024 5-year PUMS person+housing files (51 states)",
+    "tract_puma_relationship": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/2020_Census_Tract_to_2020_PUMA.txt",
+    "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P5; household records use a_hh",
+    "n_source_files_fetched": 106
+  },
+  "fixture_of": "b4d99c1c1dea"
+}

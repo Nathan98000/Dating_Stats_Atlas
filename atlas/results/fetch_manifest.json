@@ -1,7 +1,7 @@
 {
   "api_datasets": {
     "2020/dec/dhc": "2026-09-11T15:17:03-0400",
-    "2024/acs/acs5": "2026-09-11T15:57:24-0400"
+    "2024/acs/acs5": "2026-09-11T16:13:50-0400"
   },
   "files": {
     "https://www2.census.gov/geo/docs/maps-data/data/rel/2010_Census_Tract_to_2010_PUMA.txt": {
@@ -297,6 +297,83 @@
       "fetched_at": "2026-09-11T15:58:31-0400",
       "path": "data/raw/49c0cf8833a2db8e/csv_hri.zip",
       "sha256": "90fd8f5d577260ebbafbcf8231506a4aa644d3902d2303d4d109db8153a48238"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hsc.zip": {
+      "bytes": 16072562,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:58:43-0400",
+      "path": "data/raw/eaf2cf1a99fffe05/csv_hsc.zip",
+      "sha256": "d2590da5a30379c5d5bf3b2d2ad18179d487c2de21f279311fd4e8218d8ade1b"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hsd.zip": {
+      "bytes": 2882985,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:58:47-0400",
+      "path": "data/raw/7cf892a371cd7c35/csv_hsd.zip",
+      "sha256": "06e5ac014b5681f3f0b395bc7d34d2345bd667abe0e0f0a6589af3c58c5b2bde"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_htn.zip": {
+      "bytes": 20910635,
+      "evicted": true,
+      "fetched_at": "2026-09-11T15:59:04-0400",
+      "path": "data/raw/581483b5044f80de/csv_htn.zip",
+      "sha256": "7e5740ef030b9368f5dd8c30f44742e11963584391a8fea0148c0080a7c96e94"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_htx.zip": {
+      "bytes": 76328738,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:00:00-0400",
+      "path": "data/raw/31d04d53b63144a4/csv_htx.zip",
+      "sha256": "15a22511e75b24c4be7801e9948219a5facef2c459aad845df3dff5af5569f7e"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hut.zip": {
+      "bytes": 8448202,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:00:10-0400",
+      "path": "data/raw/91fc1d4f9431c757/csv_hut.zip",
+      "sha256": "58e9127e335fae31fda2416ae802a073e2e947a4a11767018f2e631c13fd2fa0"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hva.zip": {
+      "bytes": 24953509,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:00:30-0400",
+      "path": "data/raw/0d0c4c0cb2d58f53/csv_hva.zip",
+      "sha256": "fc6e7f985e348fa44cb0d62c2cee9d76ea12c61e6a93958a0a4b3c51ebc9d33a"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hvt.zip": {
+      "bytes": 2380315,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:00:35-0400",
+      "path": "data/raw/00b4ec671b4d115e/csv_hvt.zip",
+      "sha256": "dd4176ab0e756023d44bbbb376755194496776d455de8e27cabc032baff99a7a"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hwa.zip": {
+      "bytes": 22362974,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:00:49-0400",
+      "path": "data/raw/aa9dab8dc643e7ce/csv_hwa.zip",
+      "sha256": "8953f0bc35023b333f466219a6246f08a850cbda48c0510ec0744e59d0b74c93"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hwi.zip": {
+      "bytes": 18696327,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:01:04-0400",
+      "path": "data/raw/0310aeffd56d1ab6/csv_hwi.zip",
+      "sha256": "f1e83717c01e0b887b2addcd7abe28530b4df12f2f07f8f5ae691cd78ea70372"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hwv.zip": {
+      "bytes": 5803220,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:01:09-0400",
+      "path": "data/raw/16f8033f04de3a83/csv_hwv.zip",
+      "sha256": "3f162f927c2b1e4943f76a533afe63537b28ecb1d57c4be241b4f30d5f05b41c"
+    },
+    "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_hwy.zip": {
+      "bytes": 1965892,
+      "evicted": true,
+      "fetched_at": "2026-09-11T16:01:12-0400",
+      "path": "data/raw/d132865b812854f7/csv_hwy.zip",
+      "sha256": "237dfb058226c66f8dbf9efabadda1290aa69e3951e8198177be39fef608a815"
     },
     "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_pak.zip": {
       "bytes": 4770408,

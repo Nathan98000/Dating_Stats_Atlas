@@ -1000,6 +1000,127 @@
       "parquet_mb": 1.7,
       "seconds": 4.2,
       "disk_free_gb_after": 159.7
+    },
+    {
+      "file": "housing",
+      "state": "sc",
+      "rows_total": 131050,
+      "rows_kept": 127062,
+      "zip_mb": 16.1,
+      "csv_mb": 71.8,
+      "parquet_mb": 9.2,
+      "seconds": 12.9,
+      "disk_free_gb_after": 159.7
+    },
+    {
+      "file": "housing",
+      "state": "sd",
+      "rows_total": 23181,
+      "rows_kept": 10114,
+      "zip_mb": 2.9,
+      "csv_mb": 12.5,
+      "parquet_mb": 0.8,
+      "seconds": 4.8,
+      "disk_free_gb_after": 159.7
+    },
+    {
+      "file": "housing",
+      "state": "tn",
+      "rows_total": 165251,
+      "rows_kept": 135591,
+      "zip_mb": 20.9,
+      "csv_mb": 91.7,
+      "parquet_mb": 11.1,
+      "seconds": 16.7,
+      "disk_free_gb_after": 159.7
+    },
+    {
+      "file": "housing",
+      "state": "tx",
+      "rows_total": 606114,
+      "rows_kept": 574492,
+      "zip_mb": 76.3,
+      "csv_mb": 335.4,
+      "parquet_mb": 45.5,
+      "seconds": 57.6,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "ut",
+      "rows_total": 67672,
+      "rows_kept": 62796,
+      "zip_mb": 8.4,
+      "csv_mb": 37.6,
+      "parquet_mb": 4.5,
+      "seconds": 9.0,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "va",
+      "rows_total": 200610,
+      "rows_kept": 195155,
+      "zip_mb": 25.0,
+      "csv_mb": 111.1,
+      "parquet_mb": 13.6,
+      "seconds": 19.6,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "vt",
+      "rows_total": 19393,
+      "rows_kept": 7966,
+      "zip_mb": 2.4,
+      "csv_mb": 10.4,
+      "parquet_mb": 0.6,
+      "seconds": 4.4,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "wa",
+      "rows_total": 179259,
+      "rows_kept": 163249,
+      "zip_mb": 22.4,
+      "csv_mb": 99.8,
+      "parquet_mb": 12.8,
+      "seconds": 14.1,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "wi",
+      "rows_total": 155482,
+      "rows_kept": 129390,
+      "zip_mb": 18.7,
+      "csv_mb": 84.4,
+      "parquet_mb": 10.4,
+      "seconds": 13.9,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "wv",
+      "rows_total": 46180,
+      "rows_kept": 37782,
+      "zip_mb": 5.8,
+      "csv_mb": 25.3,
+      "parquet_mb": 2.5,
+      "seconds": 5.1,
+      "disk_free_gb_after": 159.6
+    },
+    {
+      "file": "housing",
+      "state": "wy",
+      "rows_total": 14599,
+      "rows_kept": 5572,
+      "zip_mb": 2.0,
+      "csv_mb": 8.1,
+      "parquet_mb": 0.4,
+      "seconds": 2.8,
+      "disk_free_gb_after": 159.6
     }
   ]
 }

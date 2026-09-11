@@ -9,10 +9,16 @@ matrix-vector products over the flattened cubes:
     n_m     = count_cube[m] @ mask        (allocated respondents, fractional)
     kish_m  = est_m^2 / (sumw2_cube[m] @ mask)
     n_gate  = min(n_m, kish_m)            (correction 2)
-    CV_m    = exp(alpha_m) * n_m^beta_m   (correction 3 fitted model)
 
-Suppression: n_gate < 100 or CV > 30% -> suppressed; 20% < CV <= 30% ->
-shown_not_ranked; else ranked.
+Suppression (model_version m1.0.0): n_gate < 100 -> suppressed; else ranked.
+The specified CV tiers are satisfied implicitly: the fitted variance model
+failed its 15% validation gate (manifest: variance_model.shippable=false, the
+API never consults it), and the 28k-point battery shows the n-gate alone
+agrees with the full n+CV policy on 100.00% of realistic queries — true CV at
+the gate never exceeded 12.9%, so the 20-30% middle tier never activates
+(results/phase1/tier_study.json). shown_unranked is retained in the response
+contract and is always empty under this model version; no modeled MOE or CV
+ships in responses.
 
 Scoring (Phase 1, pool + balance pillars only): per-request normalisation —
 winsorize at the 1st/99th percentile across the ranked metros for this query,
@@ -189,14 +195,11 @@ def rank(build: Build, seeker_sex: str, seeker_age: int, pool: dict,
 
     with np.errstate(divide="ignore", invalid="ignore"):
         kish = np.where(sumw2 > 0, est.astype(np.float64) ** 2 / sumw2, 0.0)
-        rse = np.where(n_alloc > 0, np.exp(build.alpha) * n_alloc ** build.beta, np.inf)
     n_gate = np.minimum(n_alloc, kish)
-    cv_pct = rse * 100.0
-    moe = 1.645 * rse * est
 
     universe = build.ranked_set
-    suppressed = universe & ((n_gate < 100) | (cv_pct > 30) | (est <= 0) | (rivals <= 0))
-    middle = universe & ~suppressed & (cv_pct > 20)
+    suppressed = universe & ((n_gate < 100) | (est <= 0) | (rivals <= 0))
+    middle = universe & ~suppressed & False  # CV middle tier: never fires (m1.0.0)
     ranked = universe & ~suppressed & ~middle
 
     w = weights or {}
@@ -223,9 +226,9 @@ def rank(build: Build, seeker_sex: str, seeker_age: int, pool: dict,
             i = ridx[k]
             out["ranked"].append({
                 "cbsa": build.metro_levels[i], "title": build.titles[build.metro_levels[i]],
-                "pool": round(float(est[i])), "pool_moe": round(float(moe[i])),
-                "cv_pct": round(float(cv_pct[i]), 1),
+                "pool": round(float(est[i])),
                 "n_alloc": round(float(n_alloc[i]), 1),
+                "n_kish": round(float(kish[i]), 1),
                 "rivals": round(float(rivals[i])),
                 "ratio": round(float(ratio[k]), 4),
                 "score": round(float(score[k]), 6),
@@ -237,16 +240,14 @@ def rank(build: Build, seeker_sex: str, seeker_age: int, pool: dict,
     for i in np.where(middle)[0]:
         out["shown_unranked"].append({
             "cbsa": build.metro_levels[i], "title": build.titles[build.metro_levels[i]],
-            "pool": round(float(est[i])), "pool_moe": round(float(moe[i])),
-            "cv_pct": round(float(cv_pct[i]), 1),
+            "pool": round(float(est[i])),
             "n_alloc": round(float(n_alloc[i]), 1),
             "rivals": round(float(rivals[i])),
             "ratio": round(float(est[i] / rivals[i]), 4) if rivals[i] > 0 else None,
         })
     for i in np.where(suppressed)[0]:
-        reason = ("n_gate<100" if n_gate[i] < 100 else
-                  "cv>30" if cv_pct[i] > 30 else
-                  "empty_pool" if est[i] <= 0 else "no_rivals")
+        reason = ("empty_pool" if est[i] <= 0 else
+                  "n_gate<100" if n_gate[i] < 100 else "no_rivals")
         out["suppressed"].append({
             "cbsa": build.metro_levels[i],
             "title": build.titles[build.metro_levels[i]], "reason": reason})

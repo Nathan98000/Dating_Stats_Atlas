@@ -1,0 +1,25 @@
+{
+  "points": 23262,
+  "ranked_set_metros": 193,
+  "tiers": {
+    "suppressed_by_n": 11944,
+    "suppressed_by_cv_only": 0,
+    "middle_tier": 0,
+    "ranked": 11318
+  },
+  "middle_tier_share": 0.0,
+  "middle_tier_n_gate_range": null,
+  "kish_binding_share": 0.9989252858739576,
+  "cv_given_n_gate_100": {
+    "points": 11318,
+    "share_cv_over_30": 0.0,
+    "share_cv_20_30": 0.0,
+    "p50": 4.443697373672487,
+    "p99": 9.773039686158784,
+    "max": 12.879305134435198
+  },
+  "agreement_n_gate_only_vs_full_policy": 1.0,
+  "max_kish_with_cv_over_30": 16.628435549367342,
+  "max_kish_with_cv_over_20": 40.59266951417969,
+  "recommendation": "The 20-30% CV middle tier never activates once the n>=100 gate (on min(n_alloc, kish)) holds \u2014 max true CV at the gate is far below 20%. Recommend removing the middle tier and gating on n alone; the CV rules are satisfied implicitly."
+}

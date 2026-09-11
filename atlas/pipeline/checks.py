@@ -473,17 +473,17 @@ def check_gq_total(con, metros) -> pd.DataFrame:
 def metro_quality(con, metros) -> pd.DataFrame:
     q = con.execute("""
         SELECT cbsa,
-            sum(pwgtp * a_eff) FILTER (WHERE a_eff >= 0.95) / sum(pwgtp * a_eff)
-                AS purity_pums,
+            coalesce(sum(pwgtp * a_eff) FILTER (WHERE a_eff >= 0.95), 0)
+                / sum(pwgtp * a_eff) AS purity_pums,
             sum(pwgtp * a_eff) AS pop_total,
             sum(pwgtp * a_eff) FILTER (WHERE gq <> 2 AND agep BETWEEN 18 AND 70)
                 AS pop_pool_18_70,
             sum(a_eff) FILTER (WHERE gq <> 2 AND agep BETWEEN 18 AND 70)
                 AS n_alloc_adults,
-            sum(pwgtp * a_eff) FILTER (WHERE gq = 1 AND agep BETWEEN 18 AND 70)
+            coalesce(sum(pwgtp * a_eff) FILTER (WHERE gq = 1 AND agep BETWEEN 18 AND 70), 0)
               / sum(pwgtp * a_eff) FILTER (WHERE gq <> 2 AND agep BETWEEN 18 AND 70)
                 AS noninst_gq_share_18_70,
-            sum(pwgtp * a_eff) FILTER (WHERE gq = 2) / sum(pwgtp * a_eff)
+            coalesce(sum(pwgtp * a_eff) FILTER (WHERE gq = 2), 0) / sum(pwgtp * a_eff)
                 AS inst_gq_share
         FROM contrib GROUP BY cbsa
     """).df()

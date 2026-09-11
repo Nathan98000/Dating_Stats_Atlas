@@ -155,6 +155,21 @@ def build(out_root=None) -> str:
             "validation_p90_rel_err": val["validation_p90_rel_err"],
             "beta_median": val["beta_median"],
             "fallback_metros": val["fallback_metros"],
+            "shippable": val["shippable"],
+            "used_by_api": False,
+            "note": "failed the 15% p90 validation gate; shipped as diagnostic "
+                    "only. Serve-time tiers gate on min(n_alloc, kish) >= 100, "
+                    "which the 28k-point battery shows agrees with the full "
+                    "n+CV policy on 100% of realistic queries (tier_study).",
+        },
+        "tier_policy": {
+            "suppress": "min(n_alloc, kish) < 100, or empty pool/rivals",
+            "shown_unranked": "never fires under m1.0.0 (see tier_study.json: "
+                              "middle tier share 0.0 over 23,262 ranked-set "
+                              "battery points; max true CV at the gate 12.9%)",
+            "agreement_with_specified_policy": json.loads(
+                (P1 / "tier_study.json").read_text()
+            )["agreement_n_gate_only_vs_full_policy"],
         },
         "sources": {
             "delineation": geo["delineation_vintage"],

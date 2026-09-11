@@ -1,0 +1,602 @@
+{
+ "model_version": "m1.0.0",
+ "fixture_of": "b4d99c1c1dea",
+ "vectors": [
+  {
+   "name": "A_woman32_ba_men_75k",
+   "request": {
+    "name": "A_woman32_ba_men_75k",
+    "seeker": {
+     "sex": "female",
+     "age": 32
+    },
+    "pool": {
+     "age_min": 30,
+     "age_max": 40,
+     "marital": "not_married",
+     "education_min": "bachelors",
+     "income_min": 75000
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "35620",
+     "41940",
+     "47900",
+     "12420",
+     "12060",
+     "38300",
+     "33460"
+    ],
+    "scores": {
+     "35620": 0.642152,
+     "41940": 0.591634,
+     "47900": 0.492019,
+     "12420": 0.441027,
+     "12060": 0.175174,
+     "38300": 0.15057,
+     "33460": 0.149171
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "n_gate<100",
+     "26580": "n_gate<100",
+     "28660": "n_gate<100",
+     "39340": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 7,
+     "shown_unranked": 0,
+     "suppressed": 4
+    }
+   }
+  },
+  {
+   "name": "B_man28_women_never",
+   "request": {
+    "name": "B_man28_women_never",
+    "seeker": {
+     "sex": "male",
+     "age": 28
+    },
+    "pool": {
+     "age_min": 25,
+     "age_max": 33,
+     "marital": "never"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "35620",
+     "12060",
+     "47900",
+     "33460",
+     "12420",
+     "38300",
+     "41940",
+     "28660",
+     "11460",
+     "26580",
+     "39340"
+    ],
+    "scores": {
+     "35620": 1.0,
+     "12060": 0.853317,
+     "47900": 0.838643,
+     "33460": 0.659396,
+     "12420": 0.624165,
+     "38300": 0.584751,
+     "41940": 0.438248,
+     "28660": 0.30657,
+     "11460": 0.232046,
+     "26580": 0.0654,
+     "39340": 0.064817
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {},
+    "counts": {
+     "universe": 11,
+     "ranked": 11,
+     "shown_unranked": 0,
+     "suppressed": 0
+    }
+   }
+  },
+  {
+   "name": "C_woman38_grad_men_100k",
+   "request": {
+    "name": "C_woman38_grad_men_100k",
+    "seeker": {
+     "sex": "female",
+     "age": 38
+    },
+    "pool": {
+     "age_min": 35,
+     "age_max": 48,
+     "marital": "not_married",
+     "education_min": "bachelors",
+     "income_min": 100000
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "47900",
+     "35620",
+     "41940",
+     "12420",
+     "33460",
+     "12060",
+     "38300"
+    ],
+    "scores": {
+     "47900": 0.667665,
+     "35620": 0.626732,
+     "41940": 0.595582,
+     "12420": 0.566339,
+     "33460": 0.200735,
+     "12060": 0.200288,
+     "38300": 0.079207
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "n_gate<100",
+     "26580": "n_gate<100",
+     "28660": "n_gate<100",
+     "39340": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 7,
+     "shown_unranked": 0,
+     "suppressed": 4
+    }
+   }
+  },
+  {
+   "name": "D_man41_women_50k",
+   "request": {
+    "name": "D_man41_women_50k",
+    "seeker": {
+     "sex": "male",
+     "age": 41
+    },
+    "pool": {
+     "age_min": 32,
+     "age_max": 45,
+     "marital": "not_married",
+     "income_min": 50000
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "47900",
+     "35620",
+     "12060",
+     "12420",
+     "33460",
+     "11460",
+     "38300",
+     "41940",
+     "28660",
+     "39340",
+     "26580"
+    ],
+    "scores": {
+     "47900": 0.897575,
+     "35620": 0.879054,
+     "12060": 0.863165,
+     "12420": 0.655455,
+     "33460": 0.638259,
+     "11460": 0.557174,
+     "38300": 0.531931,
+     "41940": 0.511077,
+     "28660": 0.412632,
+     "39340": 0.272458,
+     "26580": 0.0
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {},
+    "counts": {
+     "universe": 11,
+     "ranked": 11,
+     "shown_unranked": 0,
+     "suppressed": 0
+    }
+   }
+  },
+  {
+   "name": "E_black_woman29_stress",
+   "request": {
+    "name": "E_black_woman29_stress",
+    "seeker": {
+     "sex": "female",
+     "age": 29
+    },
+    "pool": {
+     "age_min": 28,
+     "age_max": 38,
+     "marital": "not_married",
+     "education_min": "bachelors",
+     "income_min": 75000,
+     "race": "nh_black"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "47900",
+     "35620",
+     "12060"
+    ],
+    "scores": {
+     "47900": 0.541025,
+     "35620": 0.5,
+     "12060": 0.473503
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "n_gate<100",
+     "12420": "n_gate<100",
+     "26580": "n_gate<100",
+     "28660": "n_gate<100",
+     "33460": "n_gate<100",
+     "38300": "n_gate<100",
+     "39340": "n_gate<100",
+     "41940": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 3,
+     "shown_unranked": 0,
+     "suppressed": 8
+    }
+   }
+  },
+  {
+   "name": "race_nh_asian_men",
+   "request": {
+    "name": "race_nh_asian_men",
+    "seeker": {
+     "sex": "female",
+     "age": 30
+    },
+    "pool": {
+     "age_min": 27,
+     "age_max": 38,
+     "marital": "not_married",
+     "education_min": "bachelors",
+     "race": "nh_asian"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "41940",
+     "35620",
+     "47900",
+     "12060",
+     "12420"
+    ],
+    "scores": {
+     "41940": 0.865625,
+     "35620": 0.546862,
+     "47900": 0.266533,
+     "12060": 0.13177,
+     "12420": 0.009075
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "n_gate<100",
+     "26580": "n_gate<100",
+     "28660": "n_gate<100",
+     "33460": "n_gate<100",
+     "38300": "n_gate<100",
+     "39340": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 5,
+     "shown_unranked": 0,
+     "suppressed": 6
+    }
+   }
+  },
+  {
+   "name": "race_hispanic_women",
+   "request": {
+    "name": "race_hispanic_women",
+    "seeker": {
+     "sex": "male",
+     "age": 33
+    },
+    "pool": {
+     "age_min": 26,
+     "age_max": 38,
+     "marital": "never",
+     "race": "hispanic"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "35620",
+     "12420",
+     "41940",
+     "47900",
+     "12060"
+    ],
+    "scores": {
+     "35620": 0.995703,
+     "12420": 0.575126,
+     "41940": 0.405968,
+     "47900": 0.31933,
+     "12060": 0.003874
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "n_gate<100",
+     "26580": "n_gate<100",
+     "28660": "n_gate<100",
+     "33460": "n_gate<100",
+     "38300": "n_gate<100",
+     "39340": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 5,
+     "shown_unranked": 0,
+     "suppressed": 6
+    }
+   }
+  },
+  {
+   "name": "race_nh_white_men_grad",
+   "request": {
+    "name": "race_nh_white_men_grad",
+    "seeker": {
+     "sex": "female",
+     "age": 45
+    },
+    "pool": {
+     "age_min": 40,
+     "age_max": 55,
+     "marital": "not_married",
+     "education_min": "graduate",
+     "race": "nh_white"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "33460",
+     "38300",
+     "35620",
+     "12420",
+     "47900",
+     "12060",
+     "41940"
+    ],
+    "scores": {
+     "33460": 0.757105,
+     "38300": 0.654995,
+     "35620": 0.553984,
+     "12420": 0.430215,
+     "47900": 0.303725,
+     "12060": 0.254183,
+     "41940": 0.127405
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "n_gate<100",
+     "26580": "n_gate<100",
+     "28660": "n_gate<100",
+     "39340": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 7,
+     "shown_unranked": 0,
+     "suppressed": 4
+    }
+   }
+  },
+  {
+   "name": "below_bar_nhpi_250k",
+   "request": {
+    "name": "below_bar_nhpi_250k",
+    "seeker": {
+     "sex": "female",
+     "age": 30
+    },
+    "pool": {
+     "age_min": 25,
+     "age_max": 35,
+     "marital": "never",
+     "education_min": "graduate",
+     "income_min": 250000,
+     "race": "nh_nhpi"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [],
+    "scores": {},
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "11460": "empty_pool",
+     "12060": "empty_pool",
+     "12420": "empty_pool",
+     "26580": "empty_pool",
+     "28660": "empty_pool",
+     "33460": "empty_pool",
+     "35620": "empty_pool",
+     "38300": "empty_pool",
+     "39340": "empty_pool",
+     "41940": "empty_pool",
+     "47900": "empty_pool"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 0,
+     "shown_unranked": 0,
+     "suppressed": 11
+    }
+   }
+  },
+  {
+   "name": "broad_any",
+   "request": {
+    "name": "broad_any",
+    "seeker": {
+     "sex": "male",
+     "age": 35
+    },
+    "pool": {
+     "age_min": 25,
+     "age_max": 50,
+     "marital": "any"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "12060",
+     "35620",
+     "47900",
+     "26580",
+     "33460",
+     "38300",
+     "39340",
+     "12420",
+     "28660",
+     "41940",
+     "11460"
+    ],
+    "scores": {
+     "12060": 0.854874,
+     "35620": 0.800248,
+     "47900": 0.689226,
+     "26580": 0.5,
+     "33460": 0.473035,
+     "38300": 0.420122,
+     "39340": 0.356924,
+     "12420": 0.330227,
+     "28660": 0.298636,
+     "41940": 0.227162,
+     "11460": 0.163892
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {},
+    "counts": {
+     "universe": 11,
+     "ranked": 11,
+     "shown_unranked": 0,
+     "suppressed": 0
+    }
+   }
+  },
+  {
+   "name": "weights_pool_only",
+   "request": {
+    "name": "weights_pool_only",
+    "seeker": {
+     "sex": "female",
+     "age": 29
+    },
+    "pool": {
+     "age_min": 27,
+     "age_max": 36,
+     "marital": "not_married"
+    },
+    "weights": {
+     "pool": 1.0,
+     "balance": 0.0
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "35620",
+     "47900",
+     "12060",
+     "33460",
+     "12420",
+     "41940",
+     "38300",
+     "28660",
+     "39340",
+     "11460",
+     "26580"
+    ],
+    "scores": {
+     "35620": 1.0,
+     "47900": 0.738905,
+     "12060": 0.718786,
+     "33460": 0.60242,
+     "12420": 0.562485,
+     "41940": 0.508398,
+     "38300": 0.495854,
+     "28660": 0.099828,
+     "39340": 0.095831,
+     "11460": 0.077361,
+     "26580": 0.0
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {},
+    "counts": {
+     "universe": 11,
+     "ranked": 11,
+     "shown_unranked": 0,
+     "suppressed": 0
+    }
+   }
+  },
+  {
+   "name": "same_sex_pool",
+   "request": {
+    "name": "same_sex_pool",
+    "seeker": {
+     "sex": "male",
+     "age": 31
+    },
+    "pool": {
+     "sex": "male",
+     "age_min": 27,
+     "age_max": 38,
+     "marital": "never",
+     "education_min": "bachelors"
+    }
+   },
+   "expect": {
+    "ranked_cbsas": [
+     "35620",
+     "12420",
+     "47900",
+     "12060",
+     "33460",
+     "38300",
+     "41940",
+     "28660",
+     "11460",
+     "39340"
+    ],
+    "scores": {
+     "35620": 0.830857,
+     "12420": 0.782185,
+     "47900": 0.765472,
+     "12060": 0.712049,
+     "33460": 0.619609,
+     "38300": 0.579192,
+     "41940": 0.560392,
+     "28660": 0.5,
+     "11460": 0.272452,
+     "39340": 0.005258
+    },
+    "shown_unranked_cbsas": [],
+    "suppressed": {
+     "26580": "n_gate<100"
+    },
+    "counts": {
+     "universe": 11,
+     "ranked": 10,
+     "shown_unranked": 0,
+     "suppressed": 1
+    }
+   }
+  }
+ ]
+}

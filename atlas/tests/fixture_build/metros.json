@@ -1,0 +1,62 @@
+[
+ {
+  "cbsa": "11460",
+  "title": "Ann Arbor, MI",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "12060",
+  "title": "Atlanta-Sandy Springs-Roswell, GA",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "12420",
+  "title": "Austin-Round Rock-San Marcos, TX",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "20580",
+  "title": "Eagle Pass, TX",
+  "ranked_set": false
+ },
+ {
+  "cbsa": "26580",
+  "title": "Huntington-Ashland, WV-KY-OH",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "28660",
+  "title": "Killeen-Temple, TX",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "33460",
+  "title": "Minneapolis-St. Paul-Bloomington, MN-WI",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "35620",
+  "title": "New York-Newark-Jersey City, NY-NJ",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "38300",
+  "title": "Pittsburgh, PA",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "39340",
+  "title": "Provo-Orem-Lehi, UT",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "41940",
+  "title": "San Jose-Sunnyvale-Santa Clara, CA",
+  "ranked_set": true
+ },
+ {
+  "cbsa": "47900",
+  "title": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+  "ranked_set": true
+ }
+]

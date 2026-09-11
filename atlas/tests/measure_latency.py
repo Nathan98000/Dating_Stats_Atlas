@@ -63,7 +63,6 @@ def main() -> None:
            "max_ms": round(times[-1], 2),
            "target_p95_ms": 60}
     print(json.dumps(out, indent=2))
-    Path(sys.argv[1]).joinpath("latency.json") if False else None
     (Path(__file__).resolve().parents[1] / "results" / "phase1" /
      "latency.json").write_text(json.dumps(out, indent=2) + "\n")
 
