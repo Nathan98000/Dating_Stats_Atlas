@@ -3,3 +3,8 @@ pyarrow
 pandas
 requests
 openpyxl
+numpy
+fastapi
+uvicorn
+httpx
+pytest

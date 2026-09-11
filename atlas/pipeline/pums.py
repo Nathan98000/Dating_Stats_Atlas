@@ -1,24 +1,26 @@
-"""PUMS 2020-2024 5-year person extract: one state at a time, slimmed to Parquet.
+"""PUMS 2020-2024 5-year extract, Phase 1: person and housing files, all
+51 states, one state at a time with disk eviction.
 
-Two jobs:
-  1. verify: parse PUMS_Data_Dictionary_2020-2024.csv and assert the exact
-     semantics of every variable this pipeline relies on (the GQ variable and
-     the PUMA vintage in particular). Writes results/pums_dictionary_check.md.
-  2. extract: download csv_p{st}.zip, unzip, select + derive columns into
-     data/pums/{st}.parquet with DuckDB, then delete the CSV and evict the zip
-     (disk on this machine is tight). Only rows in PUMAs that allocate to one
-     of the ten target CBSAs are kept; all ages are kept so calibration can
-     compare against published all-age tables.
-
-Derived fields:
-  marital3   never / married (MSP 1-2, incl. separated=no) / formerly (MSP 3-5)
+Person derivations (the cube axes — Phase 1 axis definitions):
+  marital3   never (MSP=6) / currently (MSP 1-2) / previously (MSP 3-5)
              — "not currently married" downstream = MSP in (3,4,5,6)
-  edu4       lt_hs (SCHL<=15) / hs (16-17) / some_college (18-20) / ba_plus (21-24)
-  inc_adj    PINCP * ADJINC / 1e6  (constant 2024 dollars)
-  incband7   <25k / 25-50 / 50-75 / 75-100 / 100-150 / 150-200 / >=200k
+  edu4       hs_or_less (SCHL<=17, incl. GED) / some_college (18-20, incl.
+             associate) / bachelors (21) / graduate (22-24)
+  inc_adj    PINCP * ADJINC / 1e6   (constant 2024 dollars)
+  incband7   <25k / 25-50 / 50-75 / 75-100 / 100-150 / 150-250 / >=250k
+  pernp_adj  PERNP * ADJINC / 1e6   (earnings — calibration against B20001/2)
   race8      hispanic (HISP>=2) else NH white/black/asian/aian/nhpi/twoplus/other
   gq         0 household, 1 noninstitutional GQ (RELSHIPP=38),
              2 institutional GQ (RELSHIPP=37)
+
+Housing extract (calibration of household income against B19001 only —
+the cube never uses it): HINCP * ADJINC, WGTP + 80 replicate weights,
+TYPEHUGQ/NP to scope the household universe.
+
+Only rows in PUMAs that allocate to at least one target metro are kept;
+all ages are kept so calibration can compare against published all-age
+universes. `verify` asserts every semantic this file relies on against
+PUMS_Data_Dictionary_2020-2024.csv before anything is extracted.
 """
 from __future__ import annotations
 
@@ -29,7 +31,6 @@ import sys
 import time
 import zipfile
 from collections import defaultdict
-from pathlib import Path
 
 import duckdb
 
@@ -41,17 +42,19 @@ DICT_URL = (
     "PUMS_Data_Dictionary_2020-2024.csv"
 )
 PUMS_DIR = DATA / "pums"
+PUMS_H_DIR = DATA / "pums_h"
 TMP_DIR = DATA / "tmp"
-EXTRACT_LOG = RESULTS / "pums_extract_log.json"
+EXTRACT_LOG = RESULTS / "phase1" / "pums_extract_log.json"
 MIN_FREE_GB = 5.0
 
-REPWTS = [f"PWGTP{i}" for i in range(1, 81)]
-BASE_COLS = ["SERIALNO", "SPORDER", "STATE", "PUMA", "AGEP", "SEX", "MSP", "SCHL",
-             "PINCP", "ADJINC", "RAC1P", "HISP", "RELSHIPP", "PWGTP"]
+P_REPWTS = [f"PWGTP{i}" for i in range(1, 81)]
+H_REPWTS = [f"WGTP{i}" for i in range(1, 81)]
+P_BASE = ["SERIALNO", "SPORDER", "STATE", "PUMA", "AGEP", "SEX", "MSP", "SCHL",
+          "PINCP", "PERNP", "ADJINC", "RAC1P", "HISP", "RELSHIPP", "PWGTP"]
+H_BASE = ["SERIALNO", "STATE", "PUMA", "HINCP", "ADJINC", "TYPEHUGQ", "NP", "WGTP"]
 
 
 def load_dictionary() -> tuple[dict, dict]:
-    """Parse the CSV data dictionary into {var: label} and {var: [(min,max,label)]}."""
     path = fetch(DICT_URL)
     names: dict[str, str] = {}
     vals: dict[str, list] = defaultdict(list)
@@ -67,7 +70,8 @@ def load_dictionary() -> tuple[dict, dict]:
 
 
 def verify_dictionary() -> None:
-    """Assert every semantic assumption against the 2020-2024 dictionary."""
+    """Assert every semantic assumption against the 2020-2024 dictionary,
+    including the Phase 1 education and income derivations."""
     names, vals = load_dictionary()
 
     def need(var: str, label_contains: str = "") -> None:
@@ -84,64 +88,70 @@ def verify_dictionary() -> None:
         return matches[0]
 
     checks: list[str] = []
-
     for v in ["SERIALNO", "SPORDER", "AGEP", "SEX", "MSP", "SCHL", "PINCP",
               "ADJINC", "RAC1P", "HISP", "RELSHIPP", "PWGTP", "PWGTP1", "PWGTP80"]:
         need(v)
         checks.append(f"- `{v}`: {names[v]}")
 
-    # State variable: this vintage uses STATE (the brief said ST — renamed).
-    assert "STATE" in names and "ST" not in names, (
-        f"state var: STATE in dict={'STATE' in names}, ST in dict={'ST' in names}")
-    checks.append(f"- `STATE`: {names['STATE']} (NOTE: renamed from `ST` in older vintages)")
-
-    # PUMA: single column, 2020 Census definition; no PUMA10/PUMA20 pair.
+    assert "STATE" in names and "ST" not in names
+    checks.append(f"- `STATE`: {names['STATE']} (renamed from `ST` in older vintages)")
     need("PUMA", "2020 Census definition")
-    assert "PUMA10" not in names and "PUMA20" not in names, (
-        "dictionary has PUMA10/PUMA20 — dual-vintage handling would be required")
-    checks.append(f"- `PUMA`: {names['PUMA']} — single column; no PUMA10/PUMA20 in this file")
+    assert "PUMA10" not in names and "PUMA20" not in names
+    checks.append(f"- `PUMA`: {names['PUMA']} — single column; no PUMA10/PUMA20")
 
-    # Group quarters: identified on the person file by RELSHIPP 37/38.
     checks.append("- `RELSHIPP=37`: " + code("RELSHIPP", "37", "Institutionalized group quarters"))
     checks.append("- `RELSHIPP=38`: " + code("RELSHIPP", "38", "Noninstitutionalized group quarters"))
-
-    # MSP semantics (the MAR trap does not apply: MSP has b for under-15).
     checks.append("- `MSP=b`: " + code("MSP", "b", "less than 15"))
     checks.append("- `MSP=6`: " + code("MSP", "6", "Never married"))
     for v, lab in [("1", "spouse present"), ("2", "spouse absent"), ("3", "Widowed"),
                    ("4", "Divorced"), ("5", "Separated")]:
         code("MSP", v, lab)
 
-    # SCHL cutpoints for edu4.
-    checks.append("- `SCHL=15`: " + code("SCHL", "15", "12th grade - no diploma"))
-    checks.append("- `SCHL=16`: " + code("SCHL", "16", "Regular high school diploma"))
-    checks.append("- `SCHL=18`: " + code("SCHL", "18", "less than 1 year"))
-    checks.append("- `SCHL=20`: " + code("SCHL", "20", "Associate"))
-    checks.append("- `SCHL=21`: " + code("SCHL", "21", "Bachelor"))
-    checks.append("- `SCHL=22`: " + code("SCHL", "22", "Master"))
-    checks.append("- `SCHL=24`: " + code("SCHL", "24", "Doctorate"))
+    # edu4 cutpoints (Phase 1 axis: hs_or_less / some_college / bachelors / graduate)
+    checks.append("- `SCHL=16`: " + code("SCHL", "16", "Regular high school diploma") +
+                  " -> hs_or_less")
+    checks.append("- `SCHL=17`: " + code("SCHL", "17", "GED") + " -> hs_or_less")
+    checks.append("- `SCHL=18`: " + code("SCHL", "18", "less than 1 year") + " -> some_college")
+    checks.append("- `SCHL=19`: " + code("SCHL", "19", "1 or more years") + " -> some_college")
+    checks.append("- `SCHL=20`: " + code("SCHL", "20", "Associate") + " -> some_college")
+    checks.append("- `SCHL=21`: " + code("SCHL", "21", "Bachelor") + " -> bachelors")
+    checks.append("- `SCHL=22`: " + code("SCHL", "22", "Master") + " -> graduate")
+    checks.append("- `SCHL=23`: " + code("SCHL", "23", "Professional degree") + " -> graduate")
+    checks.append("- `SCHL=24`: " + code("SCHL", "24", "Doctorate") + " -> graduate")
 
-    # RAC1P / HISP for race8.
+    # income / earnings
+    need("PINCP", "Total person's income")
+    need("PERNP", "Total person's earnings")
+    checks.append(f"- `PERNP`: {names['PERNP']} (calibration vs B20001/B20002)")
+    adj = [f"{lo} ({lab})" for lo, hi, lab in vals["ADJINC"]]
+    checks.append("- `ADJINC` factors: " + "; ".join(adj))
+    checks.append("- income bands (2024 dollars): <25k / 25-50 / 50-75 / 75-100 "
+                  "/ 100-150 / 150-250 / >=250k applied to PINCP*ADJINC")
+
     checks.append("- `RAC1P=1`: " + code("RAC1P", "1", "White alone"))
     checks.append("- `RAC1P=2`: " + code("RAC1P", "2", "Black or African American alone"))
     code("RAC1P", "3", "American Indian alone")
-    code("RAC1P", "5", "American Indian")  # AIAN tribes specified/not specified
+    code("RAC1P", "5", "American Indian")
     checks.append("- `RAC1P=6`: " + code("RAC1P", "6", "Asian alone"))
     code("RAC1P", "7", "Pacific Islander")
     code("RAC1P", "8", "Some other Race alone")
     checks.append("- `RAC1P=9`: " + code("RAC1P", "9", "Two or More Races"))
     checks.append("- `HISP=01`: " + code("HISP", "01", "Not Spanish"))
-
-    # SEX codes.
     checks.append("- `SEX=1`: " + code("SEX", "1", "Male"))
     checks.append("- `SEX=2`: " + code("SEX", "2", "Female"))
 
-    # ADJINC per-year factors, recorded for traceability.
-    adj = [f"{lo} ({lab})" for lo, hi, lab in vals["ADJINC"]]
-    checks.append("- `ADJINC` factors: " + "; ".join(adj))
+    # housing file (B19001 calibration)
+    need("HINCP", "Household income")
+    need("WGTP", "Housing Unit Weight")
+    need("NP", "Number of persons")
+    for v in ["WGTP1", "WGTP80"]:
+        need(v)
+    checks.append(f"- `HINCP`: {names['HINCP']}")
+    checks.append(f"- `WGTP`: {names['WGTP']} + WGTP1..WGTP80 replicates")
+    checks.append("- `TYPEHUGQ=1`: " + code("TYPEHUGQ", "1", "Housing unit"))
 
     doc = (
-        "# PUMS 2020-2024 data dictionary verification\n\n"
+        "# PUMS 2020-2024 data dictionary verification (Phase 1)\n\n"
         f"Source: {DICT_URL}\n\n"
         "Every variable the pipeline relies on, verified programmatically against the\n"
         "dictionary (pums.py verify). Assertions fail the run if any semantic drifts.\n\n"
@@ -152,51 +162,47 @@ def verify_dictionary() -> None:
 
 
 def keep_pumas(con: duckdb.DuckDBPyConnection) -> None:
-    """Temp table of (st, puma) that allocate to any of the ten target CBSAs."""
-    metros = (RESULTS / "metros.csv").read_text().splitlines()[1:]
-    cbsas = [line.split(",")[1] for line in metros]
     con.execute(
         f"""CREATE OR REPLACE TEMP TABLE keep AS
-            SELECT DISTINCT st, puma FROM '{DATA / 'bridge.parquet'}'
-            WHERE cbsa IN ({','.join(repr(c) for c in cbsas)}) AND a > 0"""
+            SELECT DISTINCT st, puma FROM '{DATA / 'bridge.parquet'}'"""
     )
 
 
-def extract_state(postal: str, fips: str) -> dict:
-    PUMS_DIR.mkdir(parents=True, exist_ok=True)
-    out = PUMS_DIR / f"{postal}.parquet"
-    if out.exists():
-        print(f"[{postal}] parquet exists, skipping")
-        return {}
-    if disk_free_gb() < MIN_FREE_GB:
-        raise RuntimeError(f"only {disk_free_gb():.1f} GB free — refusing to continue")
-
-    t0 = time.time()
-    url = f"{PUMS_BASE}/csv_p{postal}.zip"
+def _unzip(url: str, tmp) -> tuple[list[str], int]:
     zpath = fetch(url)
     zip_bytes = zpath.stat().st_size
-
-    tmp = TMP_DIR / postal
     tmp.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zpath) as zf:
         members = [m for m in zf.namelist() if m.lower().endswith(".csv")]
         assert members, f"no csv inside {zpath.name}"
         zf.extractall(tmp, members=members)
+    return members, zip_bytes
+
+
+def extract_person(postal: str) -> dict:
+    PUMS_DIR.mkdir(parents=True, exist_ok=True)
+    out = PUMS_DIR / f"{postal}.parquet"
+    if out.exists():
+        return {}
+    if disk_free_gb() < MIN_FREE_GB:
+        raise RuntimeError(f"only {disk_free_gb():.1f} GB free — refusing to continue")
+    t0 = time.time()
+    url = f"{PUMS_BASE}/csv_p{postal}.zip"
+    tmp = TMP_DIR / f"p_{postal}"
+    members, zip_bytes = _unzip(url, tmp)
     csv_bytes = sum((tmp / m).stat().st_size for m in members)
 
     con = duckdb.connect()
     con.execute("SET preserve_insertion_order=false")
     keep_pumas(con)
-
-    # Header check: all needed columns present, and no PUMA10/PUMA20 sneaking in.
     hdr = [r[0] for r in con.execute(
         f"DESCRIBE SELECT * FROM read_csv('{tmp}/*.csv', header=true, all_varchar=true)"
     ).fetchall()]
-    missing = [c for c in BASE_COLS + REPWTS if c not in hdr]
-    assert not missing, f"[{postal}] columns missing from CSV: {missing}"
-    assert "PUMA10" not in hdr and "PUMA20" not in hdr, f"[{postal}] dual PUMA columns present"
+    missing = [c for c in P_BASE + P_REPWTS if c not in hdr]
+    assert not missing, f"[{postal}] person columns missing: {missing}"
+    assert "PUMA10" not in hdr and "PUMA20" not in hdr
 
-    rep_sql = ", ".join(f'CAST("{c}" AS INTEGER) AS {c.lower()}' for c in REPWTS)
+    rep_sql = ", ".join(f'CAST("{c}" AS INTEGER) AS {c.lower()}' for c in P_REPWTS)
     con.execute(f"""
         COPY (
             WITH raw AS (
@@ -205,13 +211,13 @@ def extract_state(postal: str, fips: str) -> dict:
                 SELECT
                     SERIALNO AS serialno,
                     CAST(SPORDER AS SMALLINT) AS sporder,
-                    STATE AS st,
-                    PUMA AS puma,
+                    STATE AS st, PUMA AS puma,
                     CAST(AGEP AS SMALLINT) AS agep,
                     CAST(SEX AS TINYINT) AS sex,
                     TRY_CAST(MSP AS TINYINT) AS msp,
                     TRY_CAST(SCHL AS TINYINT) AS schl,
                     TRY_CAST(PINCP AS INTEGER) AS pincp,
+                    TRY_CAST(PERNP AS INTEGER) AS pernp,
                     CAST(ADJINC AS INTEGER) AS adjinc,
                     CAST(RAC1P AS TINYINT) AS rac1p,
                     CAST(HISP AS TINYINT) AS hisp,
@@ -219,10 +225,10 @@ def extract_state(postal: str, fips: str) -> dict:
                     CAST(PWGTP AS INTEGER) AS pwgtp,
                     {rep_sql}
                 FROM raw
-            )
-            , derived AS (
+            ), derived AS (
                 SELECT t.*,
-                    CAST(t.pincp AS DOUBLE) * t.adjinc / 1e6 AS inc_adj
+                    CAST(t.pincp AS DOUBLE) * t.adjinc / 1e6 AS inc_adj,
+                    CAST(t.pernp AS DOUBLE) * t.adjinc / 1e6 AS pernp_adj
                 FROM typed t
                 JOIN keep k ON k.st = t.st AND k.puma = t.puma
             )
@@ -231,17 +237,17 @@ def extract_state(postal: str, fips: str) -> dict:
                      WHEN d.msp IN (1, 2) THEN 'married'
                      WHEN d.msp IN (3, 4, 5) THEN 'formerly' END AS marital3,
                 CASE WHEN d.schl IS NULL THEN NULL
-                     WHEN d.schl <= 15 THEN 'lt_hs'
-                     WHEN d.schl <= 17 THEN 'hs'
+                     WHEN d.schl <= 17 THEN 'hs_or_less'
                      WHEN d.schl <= 20 THEN 'some_college'
-                     ELSE 'ba_plus' END AS edu4,
+                     WHEN d.schl = 21 THEN 'bachelors'
+                     ELSE 'graduate' END AS edu4,
                 CASE WHEN d.inc_adj IS NULL THEN NULL
                      WHEN d.inc_adj < 25000 THEN 1
                      WHEN d.inc_adj < 50000 THEN 2
                      WHEN d.inc_adj < 75000 THEN 3
                      WHEN d.inc_adj < 100000 THEN 4
                      WHEN d.inc_adj < 150000 THEN 5
-                     WHEN d.inc_adj < 200000 THEN 6
+                     WHEN d.inc_adj < 250000 THEN 6
                      ELSE 7 END AS incband7,
                 CASE WHEN d.hisp >= 2 THEN 'hispanic'
                      WHEN d.rac1p = 1 THEN 'nh_white'
@@ -255,62 +261,109 @@ def extract_state(postal: str, fips: str) -> dict:
             FROM derived d
         ) TO '{out}' (FORMAT PARQUET, COMPRESSION ZSTD)
     """)
-
     rows_total = con.execute(
         f"SELECT count(*) FROM read_csv('{tmp}/*.csv', header=true, all_varchar=true)"
     ).fetchone()[0]
-    rows_kept, wt_kept, gq_mismatch = con.execute(f"""
-        SELECT count(*), sum(pwgtp),
+    rows_kept, gq_mismatch = con.execute(f"""
+        SELECT count(*),
                sum(CASE WHEN (serialno LIKE '%GQ%') != (relshipp IN (37,38)) THEN 1 ELSE 0 END)
         FROM '{out}'
     """).fetchone()
-    assert gq_mismatch == 0, f"[{postal}] SERIALNO GQ prefix disagrees with RELSHIPP for {gq_mismatch} rows"
-    assert rows_kept > 0, f"[{postal}] extract kept zero rows"
+    assert gq_mismatch == 0 and rows_kept > 0
     con.close()
-
     shutil.rmtree(tmp)
     evict(url)
-
-    stats = {
-        "state": postal, "fips": fips, "rows_total": rows_total, "rows_kept": rows_kept,
-        "weighted_kept": int(wt_kept), "zip_mb": round(zip_bytes / 1e6, 1),
-        "csv_mb": round(csv_bytes / 1e6, 1),
-        "parquet_mb": round(out.stat().st_size / 1e6, 1),
-        "seconds": round(time.time() - t0, 1),
-        "disk_free_gb_after": round(disk_free_gb(), 1),
-    }
-    print(f"[{postal}] {rows_total:,} rows -> kept {rows_kept:,} "
-          f"(zip {stats['zip_mb']} MB, csv {stats['csv_mb']} MB, "
-          f"parquet {stats['parquet_mb']} MB, {stats['seconds']}s, "
-          f"free {stats['disk_free_gb_after']} GB)")
-    return stats
+    return {"file": "person", "state": postal, "rows_total": rows_total,
+            "rows_kept": rows_kept, "zip_mb": round(zip_bytes / 1e6, 1),
+            "csv_mb": round(csv_bytes / 1e6, 1),
+            "parquet_mb": round(out.stat().st_size / 1e6, 1),
+            "seconds": round(time.time() - t0, 1),
+            "disk_free_gb_after": round(disk_free_gb(), 1)}
 
 
-def extract_all() -> None:
+def extract_housing(postal: str) -> dict:
+    PUMS_H_DIR.mkdir(parents=True, exist_ok=True)
+    out = PUMS_H_DIR / f"{postal}.parquet"
+    if out.exists():
+        return {}
+    if disk_free_gb() < MIN_FREE_GB:
+        raise RuntimeError(f"only {disk_free_gb():.1f} GB free — refusing to continue")
+    t0 = time.time()
+    url = f"{PUMS_BASE}/csv_h{postal}.zip"
+    tmp = TMP_DIR / f"h_{postal}"
+    members, zip_bytes = _unzip(url, tmp)
+    csv_bytes = sum((tmp / m).stat().st_size for m in members)
+
+    con = duckdb.connect()
+    con.execute("SET preserve_insertion_order=false")
+    keep_pumas(con)
+    hdr = [r[0] for r in con.execute(
+        f"DESCRIBE SELECT * FROM read_csv('{tmp}/*.csv', header=true, all_varchar=true)"
+    ).fetchall()]
+    missing = [c for c in H_BASE + H_REPWTS if c not in hdr]
+    assert not missing, f"[{postal}] housing columns missing: {missing}"
+
+    rep_sql = ", ".join(f'CAST("{c}" AS INTEGER) AS {c.lower()}' for c in H_REPWTS)
+    con.execute(f"""
+        COPY (
+            WITH raw AS (
+                SELECT * FROM read_csv('{tmp}/*.csv', header=true, all_varchar=true)
+            ), typed AS (
+                SELECT
+                    SERIALNO AS serialno, STATE AS st, PUMA AS puma,
+                    TRY_CAST(HINCP AS BIGINT) AS hincp,
+                    CAST(ADJINC AS INTEGER) AS adjinc,
+                    CAST(TYPEHUGQ AS TINYINT) AS typehugq,
+                    TRY_CAST(NP AS SMALLINT) AS np,
+                    CAST(WGTP AS INTEGER) AS wgtp,
+                    {rep_sql}
+                FROM raw
+            )
+            SELECT t.*, CAST(t.hincp AS DOUBLE) * t.adjinc / 1e6 AS hincp_adj
+            FROM typed t
+            JOIN keep k ON k.st = t.st AND k.puma = t.puma
+        ) TO '{out}' (FORMAT PARQUET, COMPRESSION ZSTD)
+    """)
+    rows_total = con.execute(
+        f"SELECT count(*) FROM read_csv('{tmp}/*.csv', header=true, all_varchar=true)"
+    ).fetchone()[0]
+    rows_kept = con.execute(f"SELECT count(*) FROM '{out}'").fetchone()[0]
+    assert rows_kept > 0
+    con.close()
+    shutil.rmtree(tmp)
+    evict(url)
+    return {"file": "housing", "state": postal, "rows_total": rows_total,
+            "rows_kept": rows_kept, "zip_mb": round(zip_bytes / 1e6, 1),
+            "csv_mb": round(csv_bytes / 1e6, 1),
+            "parquet_mb": round(out.stat().st_size / 1e6, 1),
+            "seconds": round(time.time() - t0, 1),
+            "disk_free_gb_after": round(disk_free_gb(), 1)}
+
+
+def extract_all(which: str) -> None:
     geo = json.loads((RESULTS / "geography_manifest.json").read_text())
-    fips_by_postal = {}
-    from bridge import STATE_FIPS_TO_POSTAL
-    for f in geo["involved_state_fips"]:
-        fips_by_postal[STATE_FIPS_TO_POSTAL[f]] = f
-    # Small state first as a smoke test, then the rest largest-first.
-    order = ["dc", "ca", "tx", "ny", "pa", "ga", "mi", "nj", "va", "wi", "mn", "md", "ut", "wv"]
-    assert set(order) == set(fips_by_postal), (set(order) ^ set(fips_by_postal))
-    PUMS_DIR.mkdir(parents=True, exist_ok=True)
+    order = sorted(geo["pums_states_postal"])
+    EXTRACT_LOG.parent.mkdir(parents=True, exist_ok=True)
     log = json.loads(EXTRACT_LOG.read_text()) if EXTRACT_LOG.exists() else {"states": []}
+    fn = extract_person if which == "person" else extract_housing
     for postal in order:
-        stats = extract_state(postal, fips_by_postal[postal])
+        stats = fn(postal)
         if stats:
-            log["states"] = [s for s in log["states"] if s["state"] != postal] + [stats]
+            print(f"[{which} {postal}] {stats['rows_total']:,} -> {stats['rows_kept']:,} "
+                  f"({stats['seconds']}s, parquet {stats['parquet_mb']} MB, "
+                  f"free {stats['disk_free_gb_after']} GB)", flush=True)
+            log["states"] = [s for s in log["states"]
+                             if not (s["state"] == postal and s["file"] == which)] + [stats]
             EXTRACT_LOG.write_text(json.dumps(log, indent=2) + "\n")
-    print("ALL STATES DONE")
+    print(f"ALL {which.upper()} STATES DONE", flush=True)
 
 
 if __name__ == "__main__":
     if sys.argv[1:] == ["verify"]:
         verify_dictionary()
-    elif sys.argv[1:] == ["all"]:
-        extract_all()
-    elif len(sys.argv) == 3:
-        extract_state(sys.argv[1], sys.argv[2])
+    elif sys.argv[1:] == ["person"]:
+        extract_all("person")
+    elif sys.argv[1:] == ["housing"]:
+        extract_all("housing")
     else:
-        print("usage: pums.py verify | all | <postal> <fips>")
+        print("usage: pums.py verify | person | housing")
