@@ -36,7 +36,7 @@ import json
 
 import pandas as pd
 
-from fetch import DATA, RESULTS, api_get, fetch
+from atlas.pipeline.fetch import DATA, RESULTS, api_get, fetch
 
 DELINEATION_URL = (
     "https://www2.census.gov/programs-surveys/metro-micro/geographies/"

@@ -14,12 +14,12 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pipeline"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 os.environ["BUILD_DIR"] = sys.argv[1]
 
 from fastapi.testclient import TestClient  # noqa: E402
 
-import api  # noqa: E402
+from atlas.api import app as api  # noqa: E402
 
 N = int(sys.argv[2]) if len(sys.argv) > 2 else 400
 rng = random.Random(7)
@@ -63,7 +63,7 @@ def main() -> None:
            "max_ms": round(times[-1], 2),
            "target_p95_ms": 60}
     print(json.dumps(out, indent=2))
-    (Path(__file__).resolve().parents[1] / "results" / "phase1" /
+    (Path(__file__).resolve().parents[2] / "results" / "phase1" /
      "latency.json").write_text(json.dumps(out, indent=2) + "\n")
 
 

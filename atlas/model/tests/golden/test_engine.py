@@ -4,8 +4,10 @@ import json
 import numpy as np
 import pytest
 
-import score as engine
-from conftest import FIXTURE_DIR
+from atlas import model as engine
+from pathlib import Path
+
+FIXTURE_DIR = Path(__file__).resolve().parent / "fixture_build"
 
 
 @pytest.fixture(scope="module")

@@ -15,8 +15,8 @@ import re
 
 import pandas as pd
 
-from fetch import RESULTS, SESSION, api_get
-from pool import (open_pool, pool_all_metros, pool_grouped, ratio_grouped,
+from atlas.pipeline.fetch import RESULTS, SESSION, api_get
+from atlas.pipeline.build.pool import (open_pool, pool_all_metros, pool_grouped, ratio_grouped,
                   weighted_median_by, household_income_bands, tier)
 
 ACS = "2024/acs/acs5"

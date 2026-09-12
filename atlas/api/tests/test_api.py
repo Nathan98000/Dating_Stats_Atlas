@@ -4,13 +4,16 @@ import os
 
 import pytest
 
-from conftest import FIXTURE_DIR, GOLDENS
+from pathlib import Path
+
+FIXTURE_DIR = Path(__file__).resolve().parents[2] / "model" / "tests" / "golden" / "fixture_build"
+GOLDENS = Path(__file__).resolve().parents[2] / "model" / "tests" / "golden" / "goldens.json"
 
 os.environ["BUILD_DIR"] = str(FIXTURE_DIR)
 
 from fastapi.testclient import TestClient  # noqa: E402
 
-import api  # noqa: E402
+from atlas.api import app as api  # noqa: E402
 
 
 @pytest.fixture(scope="module")

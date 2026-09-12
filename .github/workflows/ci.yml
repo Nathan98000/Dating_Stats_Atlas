@@ -16,4 +16,4 @@ jobs:
       # explicit interpreter rather than relying on activation semantics.
       - run: uv venv --clear --python 3.12
       - run: uv pip install -r requirements.lock
-      - run: .venv/bin/python -m pytest atlas/tests -q
+      - run: .venv/bin/python -m pytest atlas -q

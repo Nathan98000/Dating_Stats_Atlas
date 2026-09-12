@@ -7,8 +7,11 @@ import json
 
 import pytest
 
-import score as engine
-from conftest import FIXTURE_DIR, GOLDENS
+from atlas import model as engine
+from pathlib import Path
+
+FIXTURE_DIR = Path(__file__).resolve().parent / "fixture_build"
+GOLDENS = Path(__file__).resolve().parent / "goldens.json"
 
 
 @pytest.fixture(scope="module")

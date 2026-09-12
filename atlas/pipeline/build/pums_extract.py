@@ -34,7 +34,7 @@ from collections import defaultdict
 
 import duckdb
 
-from fetch import DATA, RESULTS, disk_free_gb, evict, fetch
+from atlas.pipeline.fetch import DATA, RESULTS, disk_free_gb, evict, fetch
 
 PUMS_BASE = "https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year"
 DICT_URL = (

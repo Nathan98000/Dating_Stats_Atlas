@@ -15,7 +15,7 @@ from typing import Literal, Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field, model_validator
 
-import score as engine
+from atlas import model as engine
 
 BUILDS_DEFAULT = Path(__file__).resolve().parents[1] / "data" / "builds"
 

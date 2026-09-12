@@ -29,7 +29,7 @@ import math
 import duckdb
 import pandas as pd
 
-from fetch import DATA, RESULTS
+from atlas.pipeline.fetch import DATA, RESULTS
 
 POOL_DB = DATA / "pool.duckdb"
 REP_SUMS = ", ".join(f"sum(pwgtp{i} * a_eff)" for i in range(1, 81))

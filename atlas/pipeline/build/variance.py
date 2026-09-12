@@ -24,8 +24,8 @@ import random
 import numpy as np
 import pandas as pd
 
-from fetch import DATA, RESULTS
-from pool import open_pool
+from atlas.pipeline.fetch import DATA, RESULTS
+from atlas.pipeline.build.pool import open_pool
 
 P1 = RESULTS / "phase1"
 POINTS_PARQUET = DATA / "variance_points.parquet"

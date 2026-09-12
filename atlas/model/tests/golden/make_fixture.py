@@ -20,8 +20,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pipeline"))
-import score as engine  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+from atlas import model as engine  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 FIXTURE = HERE / "fixture_build"
@@ -82,7 +82,7 @@ def make_fixture(build_dir: Path) -> None:
     build = engine.load_build(build_dir)
     feats = pd.read_parquet(build_dir / "features.parquet")
     phase0 = json.loads(
-        (HERE.parent / "results" / "geography_manifest.json").read_text()
+        (HERE.parents[2] / "results" / "geography_manifest.json").read_text()
     )["phase0_metros"]
     ranked = feats[feats["ranked_set"]]
     lowest_purity = ranked.nsmallest(1, "purity_pums")["cbsa"].iloc[0]

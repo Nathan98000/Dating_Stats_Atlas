@@ -31,9 +31,9 @@ import time
 import numpy as np
 import pandas as pd
 
-from fetch import DATA, RESULTS
-from pool import open_pool
-from score import MODEL_VERSION, SCHEMA_VERSION
+from atlas.pipeline.fetch import DATA, RESULTS
+from atlas.pipeline.build.pool import open_pool
+from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
 P1 = RESULTS / "phase1"
 BUILDS = DATA / "builds"
