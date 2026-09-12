@@ -1,0 +1,196 @@
+# Feature registry (§7.2): the ONLY place a sign convention, default weight,
+# winsorization bound, NAICS selection, or pleasant-day definition lives.
+# Loaded as a typed object; every scoring-referenced feature must exist here
+# and every entry must carry complete provenance (asserted at build).
+version: 1
+
+normalization:
+  winsor_percentiles: [1, 99]      # extensive quantities, per query
+  extensive: "winsorize -> log10 -> min-max across the ranked set for this query"
+  intensive: "percentile rank across the ranked set for this query"
+
+pillars:                            # default weights, sum to 1 (D05 slider
+  pool:      {default_weight: 0.30} # reallocates pool<->balance only)
+  balance:   {default_weight: 0.25}
+  reach:     {default_weight: 0.20}
+  cost:      {default_weight: 0.15}
+  lifestyle: {default_weight: 0.10}
+
+size_vs_odds:                       # D05: one scalar -> weight vector
+  # s=0 -> all pool/balance mass on pool (most options); s=1 -> all on
+  # balance (best odds); context pillar weights are untouched.
+  pool_plus_balance_mass: 0.55
+  default_s: 0.4545                 # reproduces the §8.2 example (0.30/0.25)
+
+comparator:                         # D10 named constants
+  population_distance: "abs(log(pop_a / pop_b))"
+  min_rank_gap: 5
+  never_compare_to_rank_1: true
+
+naics_venues:                       # the reach venue selection (CBP + QCEW)
+  "722511": full-service restaurants
+  "722515": coffee & snack (nonalcoholic bars)
+  "722410": drinking places (alcoholic beverages)
+  "713940": fitness & recreational sports centers
+  "712110": museums
+  "512131": motion picture theaters
+
+pleasant_day:                       # lifestyle definition (NOAA daily normals)
+  tmax_f: [55, 85]
+  tmin_floor_f: 40
+
+missing_data_policy: >
+  A metro missing a static feature keeps its other features; the pillar's
+  internal weights are renormalized over the features that metro has, and
+  the metro carries a feature_flags list naming what was missing. A metro
+  missing an entire pillar has that pillar's weight redistributed pro-rata
+  across its remaining pillars, flagged the same way. Missing never becomes
+  zero. Covered by model/tests.
+
+features:
+  - id: pool_size
+    pillar: pool
+    kind: extensive
+    direction: 1
+    weight_in_pillar: 1.0
+    computed: per_request
+    provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
+                 table: pool_cube, variables: [PWGTP, a_eff],
+                 geography: cbsa, vintage: "2020-2024",
+                 transform_id: cube_v1, tier: measured}
+
+  - id: partners_per_rival
+    pillar: balance
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 1.0
+    computed: per_request
+    provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
+                 table: pool_cube, variables: [PWGTP, a_eff],
+                 geography: cbsa, vintage: "2020-2024",
+                 transform_id: symmetric_rivals_v1, tier: measured}
+
+  - id: median_gross_rent
+    pillar: cost
+    kind: intensive
+    direction: -1
+    weight_in_pillar: 0.5
+    computed: static
+    provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
+                 table: B25064, variables: [B25064_001E],
+                 geography: cbsa, vintage: "2020-2024",
+                 transform_id: cost_rent_v1, tier: measured}
+
+  # Composition decision: all-items RPP is EXCLUDED because rent is measured
+  # directly by B25064 and all-items embeds a large housing-rents component —
+  # using both would double-count housing. Goods + Services:Other carry the
+  # non-housing price level.
+  - id: rpp_goods
+    pillar: cost
+    kind: intensive
+    direction: -1
+    weight_in_pillar: 0.25
+    computed: static
+    provenance: {source: bea_rpp, dataset: "BEA Regional Price Parities",
+                 table: MARPP_MSA_2008_2024.csv, variables: ["RPPs: Goods"],
+                 geography: cbsa, vintage: "2024",
+                 transform_id: cost_rpp_v1, tier: measured}
+
+  - id: rpp_services_other
+    pillar: cost
+    kind: intensive
+    direction: -1
+    weight_in_pillar: 0.25
+    computed: static
+    provenance: {source: bea_rpp, dataset: "BEA Regional Price Parities",
+                 table: MARPP_MSA_2008_2024.csv,
+                 variables: ["RPPs: Services: Other"],
+                 geography: cbsa, vintage: "2024",
+                 transform_id: cost_rpp_v1, tier: measured}
+
+  - id: venues_per_100k
+    pillar: reach
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.5
+    computed: static
+    provenance: {source: census_cbp, dataset: "County Business Patterns 2023",
+                 table: "CBP ESTAB by NAICS2017",
+                 variables: ["722511", "722515", "722410", "713940", "712110",
+                             "512131"],
+                 geography: cbsa, vintage: "2023",
+                 transform_id: reach_venues_v1, tier: measured}
+
+  # Named to survive into the copy: this is walkability experienced by the
+  # metro's RESIDENTS (SLD block-group population), not "% of the pool in
+  # walkable tracts" — the pool exists only at metro level after PUMA
+  # allocation, so the §5.3 mock's wording is flagged for correction.
+  - id: resident_walkability_index
+    pillar: reach
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.5
+    computed: static
+    provenance: {source: epa_sld, dataset: "EPA Smart Location Database v3.0",
+                 table: "SmartLocationDatabase MapServer",
+                 variables: [NatWalkInd, D3B, TotPop, GEOID10],
+                 geography: "block group (2010) -> cbsa",
+                 vintage: "2021-06", transform_id: reach_walkability_v1,
+                 tier: measured}
+
+  # Deliberately deferred (§11 coverage-bias regression not yet built):
+  # tracked TODO, not a stub returning zeros.
+  - id: poi_venue_density
+    pillar: reach
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.0
+    computed: static
+    status: deferred
+    todo: "Overture + Foursquare POI union with CBP coverage-bias regression (§11); Phase 2b+"
+    provenance: {source: census_cbp, dataset: "placeholder until POI union lands",
+                 table: none, variables: [], geography: cbsa, vintage: none,
+                 transform_id: none, tier: measured}
+
+  - id: pleasant_days
+    pillar: lifestyle
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.6
+    computed: static
+    provenance: {source: noaa_normals,
+                 dataset: "NCEI U.S. Climate Normals 1991-2020 daily",
+                 table: "normals-daily access CSVs",
+                 variables: [DLY-TMAX-NORMAL, DLY-TMIN-NORMAL],
+                 geography: "station -> cbsa", vintage: "1991-2020",
+                 transform_id: lifestyle_pleasant_days_v1, tier: measured}
+    deviation: "§6 listed GHCN-Daily; the Normals daily product is used instead (recorded)."
+
+  # Direction is a documented judgment: student presence proxies a younger
+  # social infrastructure. It is a lifestyle input, not a pool input — the
+  # pool already counts students through PUMS (dorms tagged noninst GQ).
+  - id: students_per_1k_adults
+    pillar: lifestyle
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.4
+    computed: static
+    provenance: {source: ipeds, dataset: "IPEDS 2023-24",
+                 table: "HD2023 + EF2023A_DIST",
+                 variables: [UNITID, CBSA, COUNTYCD, EFDELEV, EFDETOT, EFDEEXC],
+                 geography: "institution -> cbsa", vintage: "2023-24",
+                 transform_id: lifestyle_students_v1, tier: measured}
+
+  # D01: crime is never scored. Context rendering only (Phase 2b metro
+  # pages), with the FBI's own Caution Against Ranking attached.
+  - id: crime_rate_context
+    pillar: context
+    kind: intensive
+    direction: -1
+    weight_in_pillar: 0.0
+    computed: static
+    status: context_only
+    provenance: {source: fbi_cde, dataset: "FBI Crime Data Explorer",
+                 table: "offense rates (agency -> cbsa)", variables: [],
+                 geography: cbsa, vintage: "through 2025-12",
+                 transform_id: none, tier: context}

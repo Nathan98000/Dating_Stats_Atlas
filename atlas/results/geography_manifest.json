@@ -2,10 +2,84 @@
   "delineation_vintage": "OMB Bulletin No. 23-01 (July 21, 2023), list1_2023.xlsx",
   "n_target_metros": 387,
   "acs_dataset": "2024/acs/acs5 (ACS 2020-2024 5-year)",
-  "dhc_dataset": "2020/dec/dhc (2020 Census DHC, tract P1/P5)",
+  "dhc_dataset": "2020/dec/dhc (2020 Census DHC, tract P1/P18)",
+  "dhc_table": "P18 (+P1_001N)",
+  "dhc_variables": [
+    "P18_001N",
+    "P18_004N",
+    "P18_009N",
+    "P18_014N",
+    "P18_019N",
+    "P18_024N",
+    "P18_029N",
+    "P18_035N",
+    "P18_040N",
+    "P18_045N",
+    "P18_050N",
+    "P18_055N",
+    "P18_060N",
+    "P1_001N"
+  ],
   "tract_puma_relationship": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/2020_Census_Tract_to_2020_PUMA.txt",
   "puma_vintage": "2020 Census PUMAs (single PUMA column in 2020-2024 5-year PUMS)",
-  "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P5; household records use a_hh",
+  "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P18 tract GQ by major type; household records use a_hh",
+  "provenance": {
+    "delineation": {
+      "source": "census_geo",
+      "dataset": "OMB CBSA delineation",
+      "table": "list1_2023.xlsx",
+      "variables": [
+        "CBSA Code",
+        "CBSA Title",
+        "FIPS State Code",
+        "FIPS County Code"
+      ],
+      "geography": "county -> CBSA",
+      "vintage": "2023-07",
+      "transform_id": "delineation_v1",
+      "tier": "measured"
+    },
+    "tract_puma_rel": {
+      "source": "census_geo",
+      "dataset": "2020 tract to 2020 PUMA relationship",
+      "table": "2020_Census_Tract_to_2020_PUMA.txt",
+      "variables": [
+        "STATEFP",
+        "COUNTYFP",
+        "TRACTCE",
+        "PUMA5CE"
+      ],
+      "geography": "tract",
+      "vintage": "2020",
+      "transform_id": "bridge_v2",
+      "tier": "measured"
+    },
+    "dhc": {
+      "source": "census_dhc",
+      "dataset": "2020 Census DHC (dec/dhc)",
+      "table": "P18 (+P1_001N)",
+      "variables": [
+        "P18_001N",
+        "P18_004N",
+        "P18_009N",
+        "P18_014N",
+        "P18_019N",
+        "P18_024N",
+        "P18_029N",
+        "P18_035N",
+        "P18_040N",
+        "P18_045N",
+        "P18_050N",
+        "P18_055N",
+        "P18_060N",
+        "P1_001N"
+      ],
+      "geography": "tract",
+      "vintage": "2020",
+      "transform_id": "gq_alloc_v2",
+      "tier": "measured"
+    }
+  },
   "ct_reparenting": {
     "rel_tracts": 883,
     "acs_tracts": 884,

@@ -1,0 +1,138 @@
+{
+  "metros": 387,
+  "rent_jam_or_missing": 0,
+  "rpp_missing_metros": [],
+  "cbp_absent_cells_by_naics": {
+    "722511": 0,
+    "722515": 0,
+    "722410": 10,
+    "713940": 2,
+    "712110": 98,
+    "512131": 156
+  },
+  "cbp_metros_with_no_rows": [],
+  "qcew_suppressed_cells_by_naics": {
+    "722511": 111,
+    "722515": 303,
+    "722410": 174,
+    "713940": 176,
+    "712110": 281,
+    "512131": 341
+  },
+  "cbp_absent_but_qcew_positive": {
+    "722511": 0,
+    "722515": 0,
+    "722410": 7,
+    "713940": 2,
+    "712110": 74,
+    "512131": 148
+  },
+  "cbp_vs_qcew": {
+    "722511": {
+      "n": 387,
+      "log_corr": 0.9965,
+      "median_cbp_over_qcew": 1.0
+    },
+    "722515": {
+      "n": 387,
+      "log_corr": 0.9901,
+      "median_cbp_over_qcew": 1.0
+    },
+    "722410": {
+      "n": 383,
+      "log_corr": 0.9729,
+      "median_cbp_over_qcew": 0.952
+    },
+    "713940": {
+      "n": 387,
+      "log_corr": 0.987,
+      "median_cbp_over_qcew": 0.942
+    },
+    "712110": {
+      "n": 361,
+      "log_corr": 0.8594,
+      "median_cbp_over_qcew": 1.0
+    },
+    "512131": {
+      "n": 379,
+      "log_corr": 0.9138,
+      "median_cbp_over_qcew": 0.857
+    },
+    "venue_sum": {
+      "n": 387,
+      "log_corr": 0.997,
+      "median_cbp_over_qcew": 0.987
+    }
+  },
+  "sld_unmatched_bg10": 0,
+  "sld_unmatched_pop": 0.0,
+  "sld_reconciliation": {
+    "corr_log_pop": 0.999033694387145,
+    "median_log_ratio": -0.0319469933196353,
+    "max_abs_log_ratio": 0.20238580017588814,
+    "worst": [
+      {
+        "cbsa": "41100",
+        "sld_pop": 160537.24374638393,
+        "pop_total": 196549.0
+      },
+      {
+        "cbsa": "34820",
+        "sld_pop": 320932.77756716707,
+        "pop_total": 382697.74597484106
+      },
+      {
+        "cbsa": "39340",
+        "sld_pop": 601527.240795173,
+        "pop_total": 717199.656938667
+      },
+      {
+        "cbsa": "24540",
+        "sld_pop": 295056.78940724477,
+        "pop_total": 350999.0
+      },
+      {
+        "cbsa": "19300",
+        "sld_pop": 208107.0,
+        "pop_total": 246979.0
+      }
+    ],
+    "note": "SLD TotPop is ~2018 vintage at 2010 BGs vs 2020-2024 metro population; the assertion is structural (coverage), not vintage equality."
+  },
+  "noaa": {
+    "metros_without_station": [
+      "14500",
+      "24260",
+      "29740",
+      "37340"
+    ],
+    "median_station_km": 7.703802552215828,
+    "p95_station_km": 20.900266940960936,
+    "fallback_rank_gt0": 144,
+    "definition": {
+      "tmax_f": [
+        55,
+        85
+      ],
+      "tmin_floor_f": 40
+    }
+  },
+  "ipeds": {
+    "institutions": 5913,
+    "hd_cbsa_used": 4876,
+    "county_fallback_used": 765,
+    "unassigned": 272,
+    "negative_net_clipped": 0
+  },
+  "missing_by_feature": {
+    "median_gross_rent": 0,
+    "rpp_goods": 0,
+    "rpp_services_other": 0,
+    "venues_per_100k": 0,
+    "resident_walkability_index": 0,
+    "pleasant_days": 4,
+    "students_per_1k_adults": 0
+  },
+  "metros_with_any_missing": 4,
+  "spec_wording_flag": "\u00a75.3 mock says '% of the pool in walkable tracts'; the pool exists only at metro level after PUMA allocation, so the shipped feature is resident_walkability_index (SLD population-weighted walkability of the metro's residents). Frontend copy must say residents, not pool."
+}
