@@ -1,0 +1,117 @@
+{
+  "battery": {
+    "shapes": 480,
+    "points_usable": 128572,
+    "served_region_points": 22973,
+    "holdout": "30% of shapes and 20% of metros held out; gate read once per option",
+    "served_region": "n_gate=min(n_alloc,kish)>=100 and share<0.2 \u2014 intervals never display below the gate"
+  },
+  "diagnosis": {
+    "unfiltered_stratum_drivers": {
+      "log_kish_ratio_r": -0.288,
+      "log_share_r": -0.142,
+      "marital_never_r": 0.12,
+      "age_span_r": 0.01,
+      "inc_idx_r": 0.057,
+      "purity_r": 0.019,
+      "note": "within-stratum error is weight structure, calibration proximity and marital composition \u2014 not age span, income tail or purity"
+    }
+  },
+  "features": [
+    "intercept",
+    "log_n_alloc",
+    "log_kish_ratio",
+    "log_share",
+    "marital_never",
+    "marital_any",
+    "race_hispanic",
+    "race_nh_white",
+    "race_nh_black",
+    "race_nh_asian",
+    "race_nh_aian",
+    "race_nh_nhpi",
+    "race_nh_twoplus",
+    "race_nh_other"
+  ],
+  "coefficients": {
+    "intercept": -0.4163282212687377,
+    "log_n_alloc": -0.49339988358599624,
+    "log_kish_ratio": -0.3613750177011594,
+    "log_share": -0.07015452386161232,
+    "marital_never": 0.016737136973244887,
+    "marital_any": 6.985175720854284e-05,
+    "race_hispanic": -0.11570304731947821,
+    "race_nh_white": -0.02124875443492482,
+    "race_nh_black": -0.1338590679540342,
+    "race_nh_asian": -0.16023401707608825,
+    "race_nh_aian": -0.19842544571059545,
+    "race_nh_nhpi": -0.2027332851993611,
+    "race_nh_twoplus": -0.04938021751946794,
+    "race_nh_other": -0.11472359075662127
+  },
+  "option1_two_sided": {
+    "chosen_model": "M3_extended_offsets",
+    "ladder_cv_p90": {
+      "M0_power_law": 0.3088113855620366,
+      "M2_extended": 0.21210134997699534,
+      "M3_extended_offsets": 0.20870740591273898
+    },
+    "holdout_points": 9330,
+    "p90_rel_err": 0.2360204357415346,
+    "p50_rel_err": 0.08812277571166302,
+    "by_split_p90": {
+      "val_both": 0.26000707368134907,
+      "val_metro": 0.20168250797395593,
+      "val_shape": 0.2614997066699141
+    },
+    "by_race_p90": {
+      "hispanic": 0.2055060751235898,
+      "nh_asian": 0.1911553664167159,
+      "nh_black": 0.25127010472217104,
+      "nh_nhpi": 0.0015871190620869182,
+      "nh_other": 0.13737453351638051,
+      "nh_twoplus": 0.1754932652873305,
+      "nh_white": 0.2060746606722093,
+      "none": 0.24927344525589637
+    },
+    "gate": 0.15,
+    "pass": false
+  },
+  "option2_one_sided": {
+    "inflation_by_race": {
+      "hispanic": 1.301676526108705,
+      "nh_aian": 1.1258226478131261,
+      "nh_asian": 1.2915921478405006,
+      "nh_black": 1.2484107256689165,
+      "nh_nhpi": 1.199195421587314,
+      "nh_other": 1.226383774321087,
+      "nh_twoplus": 1.2496899698174104,
+      "nh_white": 1.227109720102731,
+      "none": 1.230102216812097
+    },
+    "calibration_quantile": 0.975,
+    "coverage": 0.9748124330117899,
+    "coverage_by_split": {
+      "val_both": 0.9749784296807593,
+      "val_metro": 0.9760533494998485,
+      "val_shape": 0.9739326765188834
+    },
+    "coverage_by_race": {
+      "hispanic": 0.9705882352941176,
+      "nh_asian": 0.9723926380368099,
+      "nh_black": 0.9765258215962441,
+      "nh_nhpi": 1.0,
+      "nh_other": 1.0,
+      "nh_twoplus": 0.9716981132075472,
+      "nh_white": 0.9685336689741976,
+      "none": 0.9765555883220289
+    },
+    "median_overstatement": 0.23445634203099097,
+    "p90_overstatement": 0.5154745629811875,
+    "gates": {
+      "coverage_min": 0.95,
+      "median_overstatement_max": 0.25
+    },
+    "pass": true
+  }
+}

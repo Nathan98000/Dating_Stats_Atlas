@@ -9,7 +9,7 @@ allocation weights are built per (PUMA, target):
                         household records use this, same as Phase 0)
     a_gq_inst(p, c)     share of p's institutional GQ population in c
     a_gq_noninst(p, c)  share of p's noninstitutional GQ population in c
-                        (both from 2020 Census DHC table P5 at tract level;
+                        (both from 2020 Census DHC table P18 at tract level;
                         Phase 1 correction 5 — point-mass facilities such as
                         Fort Cavazos barracks must not be smeared by
                         proportional-to-total-population allocation)
@@ -36,6 +36,9 @@ import json
 
 import pandas as pd
 
+from atlas.pipeline.adapters.census import (DelineationAdapter,
+                                             DhcTractGqAdapter,
+                                             TractPumaRelAdapter)
 from atlas.pipeline.fetch import DATA, RESULTS, api_get, fetch
 
 DELINEATION_URL = (
@@ -77,6 +80,11 @@ STATE_FIPS_TO_POSTAL = {
 
 
 def load_delineation() -> pd.DataFrame:
+    adapter = DelineationAdapter()
+    return adapter.normalize(adapter.fetch())
+
+
+def _legacy_load_delineation_unused() -> pd.DataFrame:
     path = fetch(DELINEATION_URL)
     df = pd.read_excel(path, header=2, dtype=str)
     df = df[df["CBSA Code"].str.fullmatch(r"\d{5}", na=False)].copy()
@@ -88,12 +96,12 @@ def load_delineation() -> pd.DataFrame:
 
 def target_metros(delin: pd.DataFrame) -> pd.DataFrame:
     """All metropolitan CBSAs lying entirely within the 50 states + DC."""
-    pr_cbsas = set(delin.loc[delin["FIPS State Code"] == "72", "CBSA Code"])
-    metros = delin[delin["is_metro"] & ~delin["CBSA Code"].isin(pr_cbsas)]
-    out = (metros.groupby(["CBSA Code", "CBSA Title"], as_index=False)
+    pr_cbsas = set(delin.loc[delin["FIPS State Code"] == "72", "cbsa"])
+    metros = delin[delin["is_metro"] & ~delin["cbsa"].isin(pr_cbsas)]
+    out = (metros.groupby(["cbsa", "cbsa_title"], as_index=False)
            .agg(n_counties=("county5", "size"),
                 states=("FIPS State Code", lambda s: "+".join(sorted(s.unique())))))
-    return out.rename(columns={"CBSA Code": "cbsa", "CBSA Title": "cbsa_title"})
+    return out
 
 
 def phase0_slugs(metros: pd.DataFrame) -> dict[str, str]:
@@ -162,29 +170,9 @@ def dhc_tract_gq(states: list[str]) -> pd.DataFrame:
     subtotals are selected from the group metadata by label — the DHC's P5 is
     a Hispanic-by-race table, so nothing here is positional guesswork.
     """
-    import requests as _rq
-    meta = _rq.get(f"https://api.census.gov/data/{DHC_DATASET}/groups/P18.json",
-                   timeout=60).json()["variables"]
-    inst_vars = sorted(v for v, d in meta.items() if v.endswith("N")
-                       and "!!Institutionalized population" in d["label"]
-                       and d["label"].count("!!") == 4)
-    noninst_vars = sorted(v for v, d in meta.items() if v.endswith("N")
-                          and "!!Noninstitutionalized population" in d["label"]
-                          and d["label"].count("!!") == 4)
-    assert len(inst_vars) == 6 and len(noninst_vars) == 6, (inst_vars, noninst_vars)
-
-    get = "P1_001N,P18_001N," + ",".join(inst_vars + noninst_vars)
-    frames = []
-    for st in states:
-        rows = api_get(DHC_DATASET, {"get": get, "for": "tract:*", "in": f"state:{st}"})
-        df = pd.DataFrame(rows[1:], columns=rows[0])
-        df["geoid"] = df["state"] + df["county"] + df["tract"]
-        num = df[inst_vars + noninst_vars + ["P1_001N", "P18_001N"]].apply(pd.to_numeric)
-        df["pop2020"] = num["P1_001N"]
-        df["gq_total"] = num["P18_001N"]
-        df["gq_inst"] = num[inst_vars].sum(axis=1)
-        df["gq_noninst"] = num[noninst_vars].sum(axis=1)
-        frames.append(df[["geoid", "pop2020", "gq_total", "gq_inst", "gq_noninst"]])
+    adapter = DhcTractGqAdapter()
+    dhc_tract_gq.requested_variables = adapter.requested_variables
+    frames = [adapter.fetch_state(st) for st in states]
     out = pd.concat(frames, ignore_index=True)
     bad = out[(out[["pop2020", "gq_total", "gq_inst", "gq_noninst"]] < 0).any(axis=1)]
     assert not len(bad), f"negative/jam DHC values:\n{bad.head()}"
@@ -208,17 +196,17 @@ def build() -> None:
     metros = target_metros(delin)
     target_cbsas = set(metros["cbsa"])
     print(f"  {len(metros)} metropolitan CBSAs in the 50 states + DC "
-          f"(delineation lists {delin[delin['is_metro']]['CBSA Code'].nunique()} incl. PR)")
+          f"(delineation lists {delin[delin['is_metro']]['cbsa'].nunique()} incl. PR)")
 
-    county_to_cbsa = dict(zip(delin["county5"], delin["CBSA Code"]))
+    county_to_cbsa = dict(zip(delin["county5"], delin["cbsa"]))
     assert not delin["county5"].duplicated().any()
 
     involved_states = sorted(
-        delin[delin["CBSA Code"].isin(target_cbsas)]["FIPS State Code"].str.zfill(2).unique())
+        delin[delin["cbsa"].isin(target_cbsas)]["FIPS State Code"].str.zfill(2).unique())
     assert len(involved_states) == 51, f"expected 51 states+DC, got {len(involved_states)}"
 
-    rel = pd.read_csv(fetch(REL2020_URL), dtype=str, encoding="utf-8-sig")
-    rel.columns = [c.strip() for c in rel.columns]
+    rel_adapter = TractPumaRelAdapter()
+    rel = rel_adapter.normalize(rel_adapter.fetch())
     rel = rel[rel["STATEFP"].isin(involved_states)].copy()
     rel["geoid"] = rel["STATEFP"] + rel["COUNTYFP"] + rel["TRACTCE"]
     rel["county5"] = rel["STATEFP"] + rel["COUNTYFP"]
@@ -349,10 +337,17 @@ def build() -> None:
         "delineation_vintage": DELINEATION_VINTAGE,
         "n_target_metros": len(metros),
         "acs_dataset": ACS_DATASET + " (ACS 2020-2024 5-year)",
-        "dhc_dataset": DHC_DATASET + " (2020 Census DHC, tract P1/P5)",
+        "dhc_dataset": DHC_DATASET + " (2020 Census DHC, tract P1/P18)",
+        "dhc_table": "P18 (+P1_001N)",
+        "dhc_variables": DhcTractGqAdapter().requested_variables,
         "tract_puma_relationship": REL2020_URL,
         "puma_vintage": "2020 Census PUMAs (single PUMA column in 2020-2024 5-year PUMS)",
-        "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P5; household records use a_hh",
+        "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P18 tract GQ by major type; household records use a_hh",
+        "provenance": {
+            "delineation": DelineationAdapter().provenance().as_dict(),
+            "tract_puma_rel": TractPumaRelAdapter().provenance().as_dict(),
+            "dhc": DhcTractGqAdapter().provenance().as_dict(),
+        },
         "ct_reparenting": ct_info,
         "involved_state_fips": involved_states,
         "pums_states_postal": sorted(STATE_FIPS_TO_POSTAL[s] for s in involved_states),
