@@ -15,3 +15,6 @@ __pycache__/
 # User's saved reference page (not part of the pipeline)
 Dating Stats Atlas.html
 Dating Stats Atlas_files/
+
+# LibreOffice leftovers Claude could not delete
+_to_delete/

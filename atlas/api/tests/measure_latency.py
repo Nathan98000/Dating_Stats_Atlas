@@ -26,22 +26,26 @@ rng = random.Random(7)
 EDU = [None, "some_college", "bachelors", "graduate"]
 INC = [None, 25000, 50000, 75000, 100000, 150000, 250000]
 MAR = ["never", "not_married", "any"]
-RACE = [None, None, None, "hispanic", "nh_white", "nh_black", "nh_asian"]
+
+
+MARITAL_LISTS = [["never_married"], ["never_married", "previously_married"],
+                 ["never_married", "previously_married", "currently_married"]]
+SPEC_RACES = [None, None, None, "hispanic", "white_nh", "black_nh", "asian_nh"]
 
 
 def random_request() -> dict:
     sex = rng.choice(["male", "female"])
     age = rng.randint(22, 60)
     lo = rng.randint(18, 55)
-    pool = {"age_min": lo, "age_max": min(70, lo + rng.randint(4, 20)),
-            "marital": rng.choice(MAR)}
+    seeking = {"age": [lo, min(70, lo + rng.randint(4, 20))],
+               "marital": rng.choice(MARITAL_LISTS)}
     if (e := rng.choice(EDU)):
-        pool["education_min"] = e
+        seeking["education_min"] = e
     if (i := rng.choice(INC)):
-        pool["income_min"] = i
-    if (r := rng.choice(RACE)):
-        pool["race"] = r
-    return {"seeker": {"sex": sex, "age": age}, "pool": pool}
+        seeking["income_min"] = i
+    if (r := rng.choice(SPEC_RACES)):
+        seeking["race_ethnicity"] = [r]
+    return {"self": {"sex": sex, "age": age}, "seeking": seeking}
 
 
 def main() -> None:
@@ -63,7 +67,7 @@ def main() -> None:
            "max_ms": round(times[-1], 2),
            "target_p95_ms": 60}
     print(json.dumps(out, indent=2))
-    (Path(__file__).resolve().parents[2] / "results" / "phase1" /
+    (Path(__file__).resolve().parents[2] / "results" / "phase2" /
      "latency.json").write_text(json.dumps(out, indent=2) + "\n")
 
 

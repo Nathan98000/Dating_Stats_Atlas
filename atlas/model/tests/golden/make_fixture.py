@@ -1,15 +1,16 @@
-"""Build the pinned 12-metro test fixture and regenerate goldens.
+"""Build the pinned 12-metro test fixture and regenerate goldens (m1.1.0).
 
 Run AFTER a full cube build:
 
-    python atlas/tests/make_fixture.py <build_dir>
+    python atlas/model/tests/golden/make_fixture.py <build_dir>
 
-Slices the Phase 0 ten plus two edge metros (the lowest-purity ranked-set
-metro and the smallest-population metro) out of the real build into a
-compressed fixture, then evaluates the 12 golden request vectors and writes
-goldens.json. Goldens are pinned to MODEL_VERSION: a model change that moves
-a ranking fails CI until the version is bumped and this script is re-run,
-with a note in the commit.
+Slices the Phase 0 ten plus the lowest-purity ranked metro and the smallest
+metro out of the real build, then evaluates the 12 golden request vectors
+(§8.2 request shape; four race-filtered, one deliberately below the
+suppression bar, one same-sex pool, one at the odds end of the D05 slider)
+and writes goldens.json. Goldens are pinned to MODEL_VERSION: a model
+change that moves a ranking fails CI until the version is bumped and this
+script is re-run, with a note in the commit.
 """
 from __future__ import annotations
 
@@ -28,59 +29,70 @@ FIXTURE = HERE / "fixture_build"
 
 GOLDEN_VECTORS = [
     {"name": "A_woman32_ba_men_75k",
-     "seeker": {"sex": "female", "age": 32},
-     "pool": {"age_min": 30, "age_max": 40, "marital": "not_married",
-              "education_min": "bachelors", "income_min": 75000}},
+     "self": {"sex": "female", "age": 32, "education": "bachelors"},
+     "seeking": {"age": [30, 40],
+                 "marital": ["never_married", "previously_married"],
+                 "education_min": "bachelors", "income_min": 75000}},
     {"name": "B_man28_women_never",
-     "seeker": {"sex": "male", "age": 28},
-     "pool": {"age_min": 25, "age_max": 33, "marital": "never"}},
+     "self": {"sex": "male", "age": 28},
+     "seeking": {"age": [25, 33], "marital": ["never_married"]}},
     {"name": "C_woman38_grad_men_100k",
-     "seeker": {"sex": "female", "age": 38},
-     "pool": {"age_min": 35, "age_max": 48, "marital": "not_married",
-              "education_min": "bachelors", "income_min": 100000}},
+     "self": {"sex": "female", "age": 38},
+     "seeking": {"age": [35, 48],
+                 "marital": ["never_married", "previously_married"],
+                 "education_min": "bachelors", "income_min": 100000}},
     {"name": "D_man41_women_50k",
-     "seeker": {"sex": "male", "age": 41},
-     "pool": {"age_min": 32, "age_max": 45, "marital": "not_married",
-              "income_min": 50000}},
+     "self": {"sex": "male", "age": 41},
+     "seeking": {"age": [32, 45],
+                 "marital": ["never_married", "previously_married"],
+                 "income_min": 50000}},
     {"name": "E_black_woman29_stress",
-     "seeker": {"sex": "female", "age": 29},
-     "pool": {"age_min": 28, "age_max": 38, "marital": "not_married",
-              "education_min": "bachelors", "income_min": 75000,
-              "race": "nh_black"}},
-    {"name": "race_nh_asian_men",
-     "seeker": {"sex": "female", "age": 30},
-     "pool": {"age_min": 27, "age_max": 38, "marital": "not_married",
-              "education_min": "bachelors", "race": "nh_asian"}},
+     "self": {"sex": "female", "age": 29, "race_ethnicity": "black_nh"},
+     "seeking": {"age": [28, 38],
+                 "marital": ["never_married", "previously_married"],
+                 "education_min": "bachelors", "income_min": 75000,
+                 "race_ethnicity": ["black_nh"]}},
+    {"name": "race_asian_nh_men",
+     "self": {"sex": "female", "age": 30},
+     "seeking": {"age": [27, 38],
+                 "marital": ["never_married", "previously_married"],
+                 "education_min": "bachelors", "race_ethnicity": ["asian_nh"]}},
     {"name": "race_hispanic_women",
-     "seeker": {"sex": "male", "age": 33},
-     "pool": {"age_min": 26, "age_max": 38, "marital": "never",
-              "race": "hispanic"}},
-    {"name": "race_nh_white_men_grad",
-     "seeker": {"sex": "female", "age": 45},
-     "pool": {"age_min": 40, "age_max": 55, "marital": "not_married",
-              "education_min": "graduate", "race": "nh_white"}},
+     "self": {"sex": "male", "age": 33},
+     "seeking": {"age": [26, 38], "marital": ["never_married"],
+                 "race_ethnicity": ["hispanic"]}},
+    {"name": "race_white_nh_grad_multi",
+     "self": {"sex": "female", "age": 45},
+     "seeking": {"age": [40, 55],
+                 "marital": ["never_married", "previously_married"],
+                 "education_min": "graduate",
+                 "race_ethnicity": ["white_nh", "two_or_more_nh"]}},
     {"name": "below_bar_nhpi_250k",
-     "seeker": {"sex": "female", "age": 30},
-     "pool": {"age_min": 25, "age_max": 35, "marital": "never",
-              "education_min": "graduate", "income_min": 250000,
-              "race": "nh_nhpi"}},
+     "self": {"sex": "female", "age": 30},
+     "seeking": {"age": [25, 35], "marital": ["never_married"],
+                 "education_min": "graduate", "income_min": 250000,
+                 "race_ethnicity": ["nhpi_nh"]}},
     {"name": "broad_any",
-     "seeker": {"sex": "male", "age": 35},
-     "pool": {"age_min": 25, "age_max": 50, "marital": "any"}},
-    {"name": "weights_pool_only",
-     "seeker": {"sex": "female", "age": 29},
-     "pool": {"age_min": 27, "age_max": 36, "marital": "not_married"},
-     "weights": {"pool": 1.0, "balance": 0.0}},
+     "self": {"sex": "male", "age": 35},
+     "seeking": {"age": [25, 50],
+                 "marital": ["never_married", "previously_married",
+                              "currently_married"]}},
+    {"name": "slider_best_odds",
+     "self": {"sex": "female", "age": 29},
+     "seeking": {"age": [27, 36],
+                 "marital": ["never_married", "previously_married"]},
+     "size_vs_odds": 1.0},
     {"name": "same_sex_pool",
-     "seeker": {"sex": "male", "age": 31},
-     "pool": {"sex": "male", "age_min": 27, "age_max": 38, "marital": "never",
-              "education_min": "bachelors"}},
+     "self": {"sex": "male", "age": 31},
+     "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"],
+                 "education_min": "bachelors"}},
 ]
 
 
 def make_fixture(build_dir: Path) -> None:
     build = engine.load_build(build_dir)
     feats = pd.read_parquet(build_dir / "features.parquet")
+    feats["cbsa"] = feats["cbsa"].astype(str)
     phase0 = json.loads(
         (HERE.parents[2] / "results" / "geography_manifest.json").read_text()
     )["phase0_metros"]
@@ -106,10 +118,10 @@ def make_fixture(build_dir: Path) -> None:
         FIXTURE / "fixture.npz",
         pool_cube=build.pool_flat[idx].reshape(shape),
         count_cube=build.count_flat[idx].reshape(shape),
-        sumw2_cube=build.sumw2_flat[idx].reshape(shape),
-        variance=np.stack([build.alpha[idx], build.beta[idx]], axis=1).astype(np.float32),
-    )
+        sumw2_cube=build.sumw2_flat[idx].reshape(shape))
     (FIXTURE / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    feats.set_index("cbsa").loc[chosen].reset_index().to_parquet(
+        FIXTURE / "features.parquet", index=False)
     metros_meta = [{"cbsa": c, "title": build.titles[c],
                     "ranked_set": bool(build.ranked_set[build.metro_levels.index(c)])}
                    for c in chosen]
@@ -118,27 +130,32 @@ def make_fixture(build_dir: Path) -> None:
     fx = engine.load_build(FIXTURE)
     vectors = []
     for v in GOLDEN_VECTORS:
-        res = engine.rank(fx, v["seeker"]["sex"], v["seeker"]["age"], v["pool"],
-                          v.get("weights"))
+        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds")
+                if k in v}
+        res = engine.rank(fx, engine.parse_request(body))
         vectors.append({
-            "name": v["name"], "request": v,
+            "name": v["name"], "request": body,
             "expect": {
                 "ranked_cbsas": [r["cbsa"] for r in res["ranked"]],
                 "scores": {r["cbsa"]: r["score"] for r in res["ranked"]},
+                "pools": {r["cbsa"]: r["pool"] for r in res["ranked"]},
+                "pool_moes": {r["cbsa"]: r["pool_moe"] for r in res["ranked"]},
                 "shown_unranked_cbsas": sorted(r["cbsa"] for r in res["shown_unranked"]),
                 "suppressed": {r["cbsa"]: r["reason"] for r in res["suppressed"]},
                 "counts": res["counts"],
             }})
-    n_suppressed_somewhere = sum(1 for v in vectors if v["expect"]["suppressed"])
+    n_race = sum(1 for v in GOLDEN_VECTORS
+                 if v["seeking"].get("race_ethnicity"))
+    assert n_race >= 3
     assert any(len(v["expect"]["suppressed"]) >= 6 for v in vectors), (
-        "no vector is meaningfully below the suppression bar")
+        "no vector sits meaningfully below the suppression bar")
     (HERE / "goldens.json").write_text(json.dumps({
         "model_version": engine.MODEL_VERSION,
         "fixture_of": manifest["fixture_of"],
         "vectors": vectors}, indent=1) + "\n")
     print(f"fixture: {n} metros -> {FIXTURE}")
-    print(f"goldens: {len(vectors)} vectors, "
-          f"{n_suppressed_somewhere} with suppressions -> goldens.json")
+    print(f"goldens: {len(vectors)} vectors -> goldens.json "
+          f"(model_version {engine.MODEL_VERSION})")
 
 
 if __name__ == "__main__":

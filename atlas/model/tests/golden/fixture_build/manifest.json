@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-b4d99c1c1dea",
-  "model_version": "m1.0.0",
+  "data_version": "fixture-674aa70fc57c",
+  "model_version": "m1.1.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-11T16:14:01-0400",
+  "created_at": "2026-09-12T00:38:46-0400",
   "axes": [
     {
       "name": "metro",
@@ -145,28 +145,345 @@
     "count_cube": "float32 sum a_eff (fractional allocated respondents)",
     "sumw2_cube": "float32 sum (PWGTP*a_eff)^2"
   },
-  "variance_model": {
-    "form": "log(RSE) = alpha + beta*log(n_alloc), per metro",
-    "validation_p90_rel_err": 0.4401177024463431,
-    "beta_median": -0.5696143620308548,
-    "fallback_metros": 1,
-    "shippable": false,
-    "used_by_api": false,
-    "note": "failed the 15% p90 validation gate; shipped as diagnostic only. Serve-time tiers gate on min(n_alloc, kish) >= 100, which the 28k-point battery shows agrees with the full n+CV policy on 100% of realistic queries (tier_study)."
+  "interval_model": {
+    "mechanism": "one_sided_calibrated_bound (Gate 0 Option 2)",
+    "form": "served_RSE = exp(X.beta + metro_offset) * inflation[race]",
+    "feature_names": [
+      "intercept",
+      "log_n_alloc",
+      "log_kish_ratio",
+      "log_share",
+      "marital_never",
+      "marital_any",
+      "race_hispanic",
+      "race_nh_white",
+      "race_nh_black",
+      "race_nh_asian",
+      "race_nh_aian",
+      "race_nh_nhpi",
+      "race_nh_twoplus",
+      "race_nh_other"
+    ],
+    "coefficients": [
+      -0.4163282212687377,
+      -0.49339988358599624,
+      -0.3613750177011594,
+      -0.07015452386161232,
+      0.016737136973244887,
+      6.985175720854284e-05,
+      -0.11570304731947821,
+      -0.02124875443492482,
+      -0.1338590679540342,
+      -0.16023401707608825,
+      -0.19842544571059545,
+      -0.2027332851993611,
+      -0.04938021751946794,
+      -0.11472359075662127
+    ],
+    "race_levels": [
+      "hispanic",
+      "nh_white",
+      "nh_black",
+      "nh_asian",
+      "nh_aian",
+      "nh_nhpi",
+      "nh_twoplus",
+      "nh_other"
+    ],
+    "inflation_by_race": {
+      "hispanic": 1.301676526108705,
+      "nh_aian": 1.1258226478131261,
+      "nh_asian": 1.2915921478405006,
+      "nh_black": 1.2484107256689165,
+      "nh_nhpi": 1.199195421587314,
+      "nh_other": 1.226383774321087,
+      "nh_twoplus": 1.2496899698174104,
+      "nh_white": 1.227109720102731,
+      "none": 1.230102216812097
+    },
+    "validation": {
+      "coverage": 0.9748124330117899,
+      "median_overstatement": 0.23445634203099097,
+      "p90_overstatement": 0.5154745629811875,
+      "option1_two_sided_p90_rel_err": 0.2360204357415346,
+      "gates": {
+        "coverage_min": 0.95,
+        "median_overstatement_max": 0.25
+      }
+    },
+    "copy_rule": "margins read 'at least this wide', never plus-or-minus",
+    "used_by_api": true
+  },
+  "variance_model_phase1": {
+    "note": "the Phase 1 per-metro power law is retired; its 44% p90 failure and diagnostics remain in results/phase1/variance_validation.json",
+    "used_by_api": false
   },
   "tier_policy": {
-    "suppress": "min(n_alloc, kish) < 100, or empty pool/rivals",
-    "shown_unranked": "never fires under m1.0.0 (see tier_study.json: middle tier share 0.0 over 23,262 ranked-set battery points; max true CV at the gate 12.9%)",
-    "agreement_with_specified_policy": 1.0
+    "suppress": "min(n_alloc, kish) < 100, or served CV > 30%, or empty pool/rivals",
+    "shown_unranked": "20% < served CV <= 30% (D08, computed on the served upper-bound CV \u2014 errs toward not ranking)",
+    "ranked": "served CV <= 20% and n_gate >= 100"
+  },
+  "model_defaults": {
+    "pillar_weights": {
+      "pool": 0.3,
+      "balance": 0.25,
+      "reach": 0.2,
+      "cost": 0.15,
+      "lifestyle": 0.1
+    },
+    "size_vs_odds": {
+      "pool_plus_balance_mass": 0.55,
+      "default_s": 0.4545
+    }
+  },
+  "features_block": {
+    "pool_size": {
+      "pillar": "pool",
+      "kind": "extensive",
+      "direction": 1,
+      "weight_in_pillar": 1.0,
+      "status": "active",
+      "provenance": {
+        "source": "census_acs",
+        "dataset": "ACS 2020-2024 5-year PUMS",
+        "table": "pool_cube",
+        "variables": [
+          "PWGTP",
+          "a_eff"
+        ],
+        "geography": "cbsa",
+        "vintage": "2020-2024",
+        "transform_id": "cube_v1",
+        "tier": "measured"
+      }
+    },
+    "partners_per_rival": {
+      "pillar": "balance",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 1.0,
+      "status": "active",
+      "provenance": {
+        "source": "census_acs",
+        "dataset": "ACS 2020-2024 5-year PUMS",
+        "table": "pool_cube",
+        "variables": [
+          "PWGTP",
+          "a_eff"
+        ],
+        "geography": "cbsa",
+        "vintage": "2020-2024",
+        "transform_id": "symmetric_rivals_v1",
+        "tier": "measured"
+      }
+    },
+    "median_gross_rent": {
+      "pillar": "cost",
+      "kind": "intensive",
+      "direction": -1,
+      "weight_in_pillar": 0.5,
+      "status": "active",
+      "provenance": {
+        "source": "census_acs",
+        "dataset": "ACS 2020-2024 5-year",
+        "table": "B25064",
+        "variables": [
+          "B25064_001E"
+        ],
+        "geography": "cbsa",
+        "vintage": "2020-2024",
+        "transform_id": "cost_rent_v1",
+        "tier": "measured"
+      }
+    },
+    "rpp_goods": {
+      "pillar": "cost",
+      "kind": "intensive",
+      "direction": -1,
+      "weight_in_pillar": 0.25,
+      "status": "active",
+      "provenance": {
+        "source": "bea_rpp",
+        "dataset": "BEA Regional Price Parities",
+        "table": "MARPP_MSA_2008_2024.csv",
+        "variables": [
+          "RPPs: Goods"
+        ],
+        "geography": "cbsa",
+        "vintage": "2024",
+        "transform_id": "cost_rpp_v1",
+        "tier": "measured"
+      }
+    },
+    "rpp_services_other": {
+      "pillar": "cost",
+      "kind": "intensive",
+      "direction": -1,
+      "weight_in_pillar": 0.25,
+      "status": "active",
+      "provenance": {
+        "source": "bea_rpp",
+        "dataset": "BEA Regional Price Parities",
+        "table": "MARPP_MSA_2008_2024.csv",
+        "variables": [
+          "RPPs: Services: Other"
+        ],
+        "geography": "cbsa",
+        "vintage": "2024",
+        "transform_id": "cost_rpp_v1",
+        "tier": "measured"
+      }
+    },
+    "venues_per_100k": {
+      "pillar": "reach",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.5,
+      "status": "active",
+      "provenance": {
+        "source": "census_cbp",
+        "dataset": "County Business Patterns 2023",
+        "table": "CBP ESTAB by NAICS2017",
+        "variables": [
+          "722511",
+          "722515",
+          "722410",
+          "713940",
+          "712110",
+          "512131"
+        ],
+        "geography": "cbsa",
+        "vintage": "2023",
+        "transform_id": "reach_venues_v1",
+        "tier": "measured"
+      }
+    },
+    "resident_walkability_index": {
+      "pillar": "reach",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.5,
+      "status": "active",
+      "provenance": {
+        "source": "epa_sld",
+        "dataset": "EPA Smart Location Database v3.0",
+        "table": "SmartLocationDatabase MapServer",
+        "variables": [
+          "NatWalkInd",
+          "D3B",
+          "TotPop",
+          "GEOID10"
+        ],
+        "geography": "block group (2010) -> cbsa",
+        "vintage": "2021-06",
+        "transform_id": "reach_walkability_v1",
+        "tier": "measured"
+      }
+    },
+    "poi_venue_density": {
+      "pillar": "reach",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.0,
+      "status": "deferred",
+      "provenance": {
+        "source": "census_cbp",
+        "dataset": "placeholder until POI union lands",
+        "table": "none",
+        "variables": [],
+        "geography": "cbsa",
+        "vintage": "none",
+        "transform_id": "none",
+        "tier": "measured"
+      }
+    },
+    "pleasant_days": {
+      "pillar": "lifestyle",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.6,
+      "status": "active",
+      "provenance": {
+        "source": "noaa_normals",
+        "dataset": "NCEI U.S. Climate Normals 1991-2020 daily",
+        "table": "normals-daily access CSVs",
+        "variables": [
+          "DLY-TMAX-NORMAL",
+          "DLY-TMIN-NORMAL"
+        ],
+        "geography": "station -> cbsa",
+        "vintage": "1991-2020",
+        "transform_id": "lifestyle_pleasant_days_v1",
+        "tier": "measured"
+      }
+    },
+    "students_per_1k_adults": {
+      "pillar": "lifestyle",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.4,
+      "status": "active",
+      "provenance": {
+        "source": "ipeds",
+        "dataset": "IPEDS 2023-24",
+        "table": "HD2023 + EF2023A_DIST",
+        "variables": [
+          "UNITID",
+          "CBSA",
+          "COUNTYCD",
+          "EFDELEV",
+          "EFDETOT",
+          "EFDEEXC"
+        ],
+        "geography": "institution -> cbsa",
+        "vintage": "2023-24",
+        "transform_id": "lifestyle_students_v1",
+        "tier": "measured"
+      }
+    },
+    "crime_rate_context": {
+      "pillar": "context",
+      "kind": "intensive",
+      "direction": -1,
+      "weight_in_pillar": 0.0,
+      "status": "context_only",
+      "provenance": {
+        "source": "fbi_cde",
+        "dataset": "FBI Crime Data Explorer",
+        "table": "offense rates (agency -> cbsa)",
+        "variables": [],
+        "geography": "cbsa",
+        "vintage": "through 2025-12",
+        "transform_id": "none",
+        "tier": "context"
+      }
+    }
   },
   "sources": {
     "delineation": "OMB Bulletin No. 23-01 (July 21, 2023), list1_2023.xlsx",
     "acs": "2024/acs/acs5 (ACS 2020-2024 5-year)",
-    "dhc": "2020/dec/dhc (2020 Census DHC, tract P1/P5)",
+    "dhc": "2020/dec/dhc (2020 Census DHC, tract P1/P18)",
     "pums": "ACS 2020-2024 5-year PUMS person+housing files (51 states)",
     "tract_puma_relationship": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/2020_Census_Tract_to_2020_PUMA.txt",
-    "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P5; household records use a_hh",
-    "n_source_files_fetched": 106
+    "gq_allocation": "a_gq_inst/a_gq_noninst from DHC P18 tract GQ by major type; household records use a_hh",
+    "dhc_table": "P18 (+P1_001N)",
+    "dhc_variables": [
+      "P18_001N",
+      "P18_004N",
+      "P18_009N",
+      "P18_014N",
+      "P18_019N",
+      "P18_024N",
+      "P18_029N",
+      "P18_035N",
+      "P18_040N",
+      "P18_045N",
+      "P18_050N",
+      "P18_055N",
+      "P18_060N",
+      "P1_001N"
+    ],
+    "n_source_files_fetched": 1578
   },
-  "fixture_of": "b4d99c1c1dea"
+  "fixture_of": "674aa70fc57c"
 }
