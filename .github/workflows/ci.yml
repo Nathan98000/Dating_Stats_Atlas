@@ -10,6 +10,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.12"
-      - run: uv venv && uv pip install -r requirements.lock
-      - run: uv run pytest atlas/tests -q
+          enable-cache: true
+      # Own the environment explicitly: setup-uv may already have created .venv,
+      # so --clear makes this step idempotent, and the tests run through an
+      # explicit interpreter rather than relying on activation semantics.
+      - run: uv venv --clear --python 3.12
+      - run: uv pip install -r requirements.lock
+      - run: .venv/bin/python -m pytest atlas/tests -q
