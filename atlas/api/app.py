@@ -99,11 +99,15 @@ class SeekingSpec(BaseModel):
 
 
 class Weights(BaseModel):
-    pool: float = Field(ge=0, default=0)
-    balance: float = Field(ge=0, default=0)
-    reach: float = Field(ge=0, default=0)
-    cost: float = Field(ge=0, default=0)
-    lifestyle: float = Field(ge=0, default=0)
+    # defaults are float literals: pydantic keeps a default's type as-is, so
+    # an int 0 here would make the canonical permalink JSON render "0" for
+    # defaulted pillars and "0.0" for user-sent ones — two encodings of the
+    # same request. The shared permalink test (web/tests) pins this.
+    pool: float = Field(ge=0, default=0.0)
+    balance: float = Field(ge=0, default=0.0)
+    reach: float = Field(ge=0, default=0.0)
+    cost: float = Field(ge=0, default=0.0)
+    lifestyle: float = Field(ge=0, default=0.0)
 
 
 class RankRequest(BaseModel):
@@ -152,6 +156,7 @@ def meta() -> dict:
         "tier_policy": m["tier_policy"],
         "interval_model": {k: m["interval_model"][k] for k in
                            ("mechanism", "validation", "copy_rule")},
+        "licenses": m.get("licenses", {}),
         "model_defaults": m["model_defaults"],
         "thresholds": {"n_gate_min": N_GATE_MIN,
                        "purity_flag_bar": PURITY_FLAG_BAR,

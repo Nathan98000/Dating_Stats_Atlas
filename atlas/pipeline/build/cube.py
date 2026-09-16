@@ -222,6 +222,18 @@ def build(out_root=None) -> str:
                 "default_weight": p.default_weight}
             for k, p in reg.pillars.items()
         },
+        # Attribution stays pluggable in ONE place (adapters/base.py
+        # LICENSES); the counsel memo may change the wording, and it flows
+        # base.py -> manifest -> /v1/meta -> render without touching a
+        # component.
+        "licenses": {
+            src: {"name": LICENSES[src].name, "url": LICENSES[src].url,
+                  "shippable": LICENSES[src].shippable,
+                  "attribution": LICENSES[src].attribution,
+                  "notes": LICENSES[src].notes}
+            for src in sorted({f.provenance["source"]
+                               for f in reg.features.values()})
+        },
         "features_block": {
             f.id: {"pillar": f.pillar, "kind": f.kind, "direction": f.direction,
                    "weight_in_pillar": f.weight_in_pillar, "status": f.status,
