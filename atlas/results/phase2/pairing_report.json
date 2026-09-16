@@ -1,0 +1,26 @@
+{
+  "relshipp_labels": {
+    "20": "Reference person",
+    "21": "Opposite-sex husband/wife/spouse",
+    "22": "Opposite-sex unmarried partner",
+    "23": "Same-sex husband/wife/spouse",
+    "24": "Same-sex unmarried partner"
+  },
+  "households_with_multiple_partner_records": 0,
+  "partnered_weighted_total": 104839041.72390226,
+  "partnered_share_of_adult_pool": 0.5404695649321597,
+  "national_out_group_share": 0.1683522649614579,
+  "ref_vs_partner_side_weight_ratio": 0.9905708832104206,
+  "cells": 5997,
+  "limitation": "PUMS links only the reference person's spouse/partner; couples in subfamilies are not observed. Observed couples describe who matched, not who was available \u2014 the copy says how couples here actually pair, never what people here want.",
+  "metro_level": {
+    "metros_with_rate": 387,
+    "metros_below_gate": 0,
+    "rate_p10_p50_p90": [
+      0.0955,
+      0.1419,
+      0.2275
+    ],
+    "median_moe": 0.0129
+  }
+}
