@@ -56,14 +56,24 @@ returns the project to Phase 1's measured recommendation, which had evidence beh
 - D11's design intent is preserved: honesty rests on the bar plus a visible margin in every
   row, and the bar now means exactly what the methodology page says it means.
 
-## Evidence still to be recorded
+## Evidence, recorded (Phase 2b, 2026-09-16)
 
-Phase 2b must report **the p99 and maximum true CV in the served region of the 480-shape
-battery** (n_gate ≥ 100). If that maximum is below 20%, the removed rule provably could not
-have fired on this build's data, and that number becomes the whole justification — to be added
-here and to the methodology page. If it exceeds 20%, the premise of this decision is wrong and
-the removal must stop and be reported instead; this ADR was taken on the assumption, inherited
-from Phase 1's smaller battery, that it does not.
+Measured over the 480-shape battery's served region (`n_gate ≥ 100`, est > 0; 23,028
+metro-points across all 387 metros, true 81-replicate CVs):
+
+| statistic | true CV |
+|---|---|
+| p50 | 4.82% |
+| p99 | **9.80%** |
+| p99.9 | 10.71% |
+| maximum | **11.77%** |
+
+Zero points exceed 20%; zero even exceed Phase 1's 12.9%. Restricting to ranked-set metros
+changes nothing (max identical; the max point is Fresno at n_gate = 100.04 — the gate
+boundary, where theory says the worst case lives). **The removed rule provably could not have
+fired on this build's data.** That one number is the whole justification, and it is recomputed
+into every validation report (`soft.served_region_true_cv`) whenever the battery file is on
+the build machine. The premise held; the removal proceeded.
 
 ## Re-open trigger
 

@@ -1,8 +1,13 @@
 # Feature registry (§7.2): the ONLY place a sign convention, default weight,
-# winsorization bound, NAICS selection, or pleasant-day definition lives.
-# Loaded as a typed object; every scoring-referenced feature must exist here
-# and every entry must carry complete provenance (asserted at build).
-version: 1
+# winsorization bound, NAICS selection, pleasant-day definition — or, since
+# ADR 0003, a user-facing label — lives. Loaded as a typed object; every
+# scoring-referenced feature must exist here, every entry must carry complete
+# provenance (asserted at build), and every entry must carry display_name,
+# unit and definition (asserted at load) so no rendered label lives in code.
+# Terminology rules (§12.3 + ADR 0003): no display field may contain
+# "rival", "market", "supply", "inventory" or "competitor" — asserted at
+# load. Internal keys (balance, ratio, rivals) do not change.
+version: 2
 
 normalization:
   winsor_percentiles: [1, 99]      # extensive quantities, per query
@@ -10,22 +15,34 @@ normalization:
   intensive: "percentile rank across the ranked set for this query"
 
 pillars:                            # default weights, sum to 1 (D05 slider
-  pool:      {default_weight: 0.30} # reallocates pool<->balance only)
-  balance:   {default_weight: 0.25}
-  reach:     {default_weight: 0.20}
-  cost:      {default_weight: 0.15}
-  lifestyle: {default_weight: 0.10}
+  pool:                             # reallocates pool<->balance only)
+    default_weight: 0.30
+    display_name: "Pool"
+    definition: "How many people here match what you are looking for."
+  balance:
+    default_weight: 0.25
+    display_name: "Odds"
+    definition: "Matches relative to the people looking for the same kind of match."
+  reach:
+    default_weight: 0.20
+    display_name: "Reach"
+    definition: "How easy it is to actually encounter people — venues and walkability."
+  cost:
+    default_weight: 0.15
+    display_name: "Cost"
+    definition: "What living here costs — rent and non-housing prices."
+  lifestyle:
+    default_weight: 0.10
+    display_name: "Lifestyle"
+    definition: "Climate and social infrastructure around dating life."
 
 size_vs_odds:                       # D05: one scalar -> weight vector
   # s=0 -> all pool/balance mass on pool (most options); s=1 -> all on
   # balance (best odds); context pillar weights are untouched.
   pool_plus_balance_mass: 0.55
   default_s: 0.4545                 # reproduces the §8.2 example (0.30/0.25)
-
-comparator:                         # D10 named constants
-  population_distance: "abs(log(pop_a / pop_b))"
-  min_rank_gap: 5
-  never_compare_to_rank_1: true
+  label_low: "Most options"
+  label_high: "Best odds"
 
 naics_venues:                       # the reach venue selection (CBP + QCEW)
   "722511": full-service restaurants
@@ -54,6 +71,14 @@ features:
     direction: 1
     weight_in_pillar: 1.0
     computed: per_request
+    display_name: "Compatible people"
+    unit: "people"
+    unit_short: ""
+    display_decimals: 0
+    definition: >-
+      The weighted number of people in this metro who match your filters,
+      from ACS 2020–2024 responses allocated to metros. Always shown with
+      its margin.
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
                  table: pool_cube, variables: [PWGTP, a_eff],
                  geography: cbsa, vintage: "2020-2024",
@@ -65,6 +90,15 @@ features:
     direction: 1
     weight_in_pillar: 1.0
     computed: per_request
+    display_name: "Matches per 10 people looking"
+    unit: "per 10 looking"
+    unit_short: ""
+    display_scale: 10
+    display_decimals: 1
+    definition: >-
+      For every 10 people here looking for the same kind of match you are,
+      how many people fit your filters. Above 10 means matches outnumber
+      the people seeking them.
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
                  table: pool_cube, variables: [PWGTP, a_eff],
                  geography: cbsa, vintage: "2020-2024",
@@ -76,6 +110,11 @@ features:
     direction: -1
     weight_in_pillar: 0.5
     computed: static
+    display_name: "Median rent"
+    unit: "$/month"
+    unit_short: "$/mo"
+    display_decimals: 0
+    definition: "Median gross rent across the metro (ACS table B25064). Lower scores better."
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
                  table: B25064, variables: [B25064_001E],
                  geography: cbsa, vintage: "2020-2024",
@@ -91,6 +130,11 @@ features:
     direction: -1
     weight_in_pillar: 0.25
     computed: static
+    display_name: "Price level, goods"
+    unit: "index, US = 100"
+    unit_short: "(US = 100)"
+    display_decimals: 1
+    definition: "BEA regional price parity for goods. Lower scores better."
     provenance: {source: bea_rpp, dataset: "BEA Regional Price Parities",
                  table: MARPP_MSA_2008_2024.csv, variables: ["RPPs: Goods"],
                  geography: cbsa, vintage: "2024",
@@ -102,6 +146,13 @@ features:
     direction: -1
     weight_in_pillar: 0.25
     computed: static
+    display_name: "Price level, services"
+    unit: "index, US = 100"
+    unit_short: "(US = 100)"
+    display_decimals: 1
+    definition: >-
+      BEA regional price parity for services other than housing. Lower
+      scores better.
     provenance: {source: bea_rpp, dataset: "BEA Regional Price Parities",
                  table: MARPP_MSA_2008_2024.csv,
                  variables: ["RPPs: Services: Other"],
@@ -114,6 +165,14 @@ features:
     direction: 1
     weight_in_pillar: 0.5
     computed: static
+    display_name: "Social venues"
+    unit: "per 100k adults"
+    unit_short: "per 100k adults"
+    display_decimals: 1
+    definition: >-
+      Full-service restaurants, coffee shops, bars, gyms, museums and movie
+      theaters per 100,000 adults (County Business Patterns 2023,
+      cross-checked against QCEW).
     provenance: {source: census_cbp, dataset: "County Business Patterns 2023",
                  table: "CBP ESTAB by NAICS2017",
                  variables: ["722511", "722515", "722410", "713940", "712110",
@@ -124,13 +183,21 @@ features:
   # Named to survive into the copy: this is walkability experienced by the
   # metro's RESIDENTS (SLD block-group population), not "% of the pool in
   # walkable tracts" — the pool exists only at metro level after PUMA
-  # allocation, so the §5.3 mock's wording is flagged for correction.
+  # allocation, so the §5.3 mock's wording is corrected, not inherited.
   - id: resident_walkability_index
     pillar: reach
     kind: intensive
     direction: 1
     weight_in_pillar: 0.5
     computed: static
+    display_name: "Walkability where residents live"
+    unit: "index, 1–20"
+    unit_short: "on the 1–20 index"
+    display_decimals: 1
+    definition: >-
+      EPA National Walkability Index averaged over where the metro's
+      residents actually live — never a share of the matched pool, which
+      exists only at metro level.
     provenance: {source: epa_sld, dataset: "EPA Smart Location Database v3.0",
                  table: "SmartLocationDatabase MapServer",
                  variables: [NatWalkInd, D3B, TotPop, GEOID10],
@@ -147,7 +214,13 @@ features:
     weight_in_pillar: 0.0
     computed: static
     status: deferred
-    todo: "Overture + Foursquare POI union with CBP coverage-bias regression (§11); Phase 2b+"
+    todo: "Overture + Foursquare POI union with CBP coverage-bias regression (§11); Phase 3+"
+    display_name: "Venue density (points of interest)"
+    unit: "per 100k adults"
+    unit_short: ""
+    definition: >-
+      Deferred: a POI-based venue count awaiting the coverage-bias
+      regression against CBP. Not computed and not scored.
     provenance: {source: census_cbp, dataset: "placeholder until POI union lands",
                  table: none, variables: [], geography: cbsa, vintage: none,
                  transform_id: none, tier: measured}
@@ -158,6 +231,13 @@ features:
     direction: 1
     weight_in_pillar: 0.6
     computed: static
+    display_name: "Pleasant days"
+    unit: "days/year"
+    unit_short: ""
+    display_decimals: 0
+    definition: >-
+      Days per year whose normal high sits between 55 and 85°F with a
+      normal low above 40°F (NOAA 1991–2020 climate normals).
     provenance: {source: noaa_normals,
                  dataset: "NCEI U.S. Climate Normals 1991-2020 daily",
                  table: "normals-daily access CSVs",
@@ -175,14 +255,52 @@ features:
     direction: 1
     weight_in_pillar: 0.4
     computed: static
+    display_name: "College students"
+    unit: "per 1k adults"
+    unit_short: "per 1k adults"
+    display_decimals: 1
+    definition: >-
+      Students enrolled at metro institutions per 1,000 adults, net of
+      exclusively-online enrollment (IPEDS 2023–24).
     provenance: {source: ipeds, dataset: "IPEDS 2023-24",
                  table: "HD2023 + EF2023A_DIST",
                  variables: [UNITID, CBSA, COUNTYCD, EFDELEV, EFDETOT, EFDEEXC],
                  geography: "institution -> cbsa", vintage: "2023-24",
                  transform_id: lifestyle_students_v1, tier: measured}
 
-  # D01: crime is never scored. Context rendering only (Phase 2b metro
-  # pages), with the FBI's own Caution Against Ranking attached.
+  # §4.3 / §10.4 counterweight, interim (ADR: replaced by the Phase 3
+  # assortative kernel, whose gate is reproducing the Pew intermarriage
+  # table). A counterweight, not a scored feature: weight_in_pillar is 0
+  # and asserted to stay 0. Its margin is measured directly from the 80
+  # replicate weights per cell — see POLICY_STRINGS["pairing_interval"].
+  - id: cross_group_pairing_rate
+    pillar: context
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.0
+    computed: static
+    status: context_only
+    display_name: "Partnered outside their group"
+    unit: "% of partnered people"
+    unit_short: "%"
+    display_scale: 100
+    display_decimals: 1
+    definition: >-
+      Among partnered people of a group in this metro, the share whose
+      spouse or unmarried partner is outside that group — how couples here
+      actually pair, from observed couples. It describes who matched, not
+      who was available, and never what people here want.
+    provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
+                 table: "person+household couple links (RELSHIPP 20<->21/22/23/24)",
+                 variables: [SERIALNO, RELSHIPP, RAC1P, HISP, SEX, AGEP,
+                             PWGTP, PWGTP1-80],
+                 geography: cbsa, vintage: "2020-2024",
+                 transform_id: pairing_interim_v1, tier: measured}
+
+  # D01: crime is never scored. Context rendering only (metro pages), with
+  # the FBI's own Caution Against Ranking attached. No adapter has shipped
+  # data for it yet — the metro page renders the caution and an explicit
+  # not-yet-loaded state, never a number without provenance.
   - id: crime_rate_context
     pillar: context
     kind: intensive
@@ -190,6 +308,12 @@ features:
     weight_in_pillar: 0.0
     computed: static
     status: context_only
+    display_name: "Reported crime (context)"
+    unit: "per 100k residents"
+    unit_short: "per 100k"
+    definition: >-
+      Reported offense rates at metro level, shown for context only with
+      the FBI's Caution Against Ranking. Never part of any score (D01).
     provenance: {source: fbi_cde, dataset: "FBI Crime Data Explorer",
                  table: "offense rates (agency -> cbsa)", variables: [],
                  geography: cbsa, vintage: "through 2025-12",

@@ -1,54 +1,36 @@
-"""Explanation layer (§9): deterministic templates over the exact
-attribution vector, and the D10 comparator.
+"""Explanation layer (§9, as amended by ADR 0003): deterministic templates
+over the exact feature-level attribution. The D10 comparator is retired —
+the ranking is the comparison, and a reader who wants a specific pair gets
+the compare page.
 
-D10 — the comparator is the nearest metro by population that ranks
-differently, with the population-distance metric and the minimum rank gap
-as named constants here (not in the registry, per the decision record), so
-they can be retuned against the face-validity panel without touching a
-template. Comparisons to the #1 metro are never generated.
+Every label is rendered from the build's legend (registry -> manifest ->
+Build.legend); no user-facing name lives here. Suppression and confidence
+strings come verbatim from suppression.POLICY_STRINGS.
 
-Build-time metro narratives are Phase 2b+; this module produces the
-structured metric record they will consume (§9's JSON contract) and the
-per-request explanation text from jinja templates. Suppression and
-confidence strings come verbatim from suppression.POLICY_STRINGS.
+Build-time metro narratives are Phase 3; this module produces the
+structured metric record they will consume (§9's JSON contract, feature-
+level since ADR 0003) and the per-request explanation text from jinja
+templates.
 """
 from __future__ import annotations
 
 from pathlib import Path
 
-import numpy as np
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-# D10 named constants
-MIN_RANK_GAP = 5
-POPULATION_DISTANCE = "abs(ln(pop_a / pop_b))"
+# The lead sentence names the top stats by |contribution| in score points.
+# TOP_STATS_MAX per ADR 0003 ("two or three"); a stat below
+# TOP_STATS_MIN_POINTS is noise relative to a 0-100 score and is not
+# presented as having moved anything.
+TOP_STATS_MAX = 3
+TOP_STATS_MIN_POINTS = 0.5
 
-# magnitude buckets over |contribution| in score points
+# magnitude buckets over |contribution| in score points (metric record only)
 BUCKETS = [(8.0, "large"), (3.0, "moderate"), (0.0, "slight")]
 
 _env = Environment(loader=FileSystemLoader(Path(__file__).parent / "templates"),
                    undefined=StrictUndefined, trim_blocks=True,
                    lstrip_blocks=True)
-
-
-def comparator(pops: dict[int, float], rank_of: dict[int, int]) -> dict[int, int | None]:
-    """For each metro index: the nearest-by-population metro whose rank
-    differs by at least MIN_RANK_GAP; never the #1 metro; None if no
-    candidate exists."""
-    out: dict[int, int | None] = {}
-    idx = list(rank_of)
-    for i in idx:
-        best, best_d = None, None
-        for j in idx:
-            if j == i or rank_of[j] == 1:
-                continue
-            if abs(rank_of[i] - rank_of[j]) < MIN_RANK_GAP:
-                continue
-            d = abs(np.log(pops[i] / pops[j]))
-            if best_d is None or d < best_d:
-                best, best_d = j, d
-        out[i] = best
-    return out
 
 
 def bucket(value: float) -> str:
@@ -58,57 +40,61 @@ def bucket(value: float) -> str:
     return "slight"
 
 
-PILLAR_FACTS = {
-    "pool": ("pool_ratio_vs_comparator", "compatible people"),
-    "balance": ("partners_per_rival", "partners per rival"),
-    "reach": ("resident_walkability_index", "walkability of where residents live"),
-    "cost": ("median_gross_rent", "median rent"),
-    "lifestyle": ("pleasant_days", "pleasant days a year"),
-}
+def format_value(value: float, legend_entry: dict) -> str:
+    """Real-units display string per the registry's display spec. Computed
+    server-side so the frontend never does arithmetic on a number."""
+    scaled = value * float(legend_entry.get("display_scale", 1.0))
+    nd = int(legend_entry.get("display_decimals", 1))
+    return f"{scaled:,.{nd}f}"
 
 
-def metric_record(row: dict, comparator_row: dict | None,
-                  statics: dict[str, float]) -> dict:
-    """§9's structured record — the input the Phase 2b build-time narratives
-    will consume, produced here so the contract is pinned now."""
-    contribs = sorted(row["contributions"], key=lambda c: -c["value"])
-    def fact_for(pillar: str) -> dict:
-        fact, _ = PILLAR_FACTS[pillar]
-        if pillar == "pool":
-            val = (row["pool"] / comparator_row["pool"]
-                   if comparator_row and comparator_row.get("pool") else None)
-        elif pillar == "balance":
-            val = row["ratio"]
-        else:
-            val = statics.get(PILLAR_FACTS[pillar][0])
-        return {"fact": fact, "value": None if val is None else round(float(val), 3)}
+def top_stats(stats: list[dict]) -> list[dict]:
+    """The two or three stats that moved this metro's score for these
+    weights: largest |contribution| first, floor at TOP_STATS_MIN_POINTS."""
+    moved = [s for s in stats if s.get("contribution") is not None
+             and abs(s["contribution"]) >= TOP_STATS_MIN_POINTS]
+    moved.sort(key=lambda s: -abs(s["contribution"]))
+    return moved[:TOP_STATS_MAX]
 
-    strengths = [{"pillar": c["pillar"], "contribution": c["value"],
-                  **fact_for(c["pillar"])}
-                 for c in contribs if c["value"] > 0][:2]
-    weaknesses = [{"pillar": c["pillar"], "contribution": c["value"],
-                   **fact_for(c["pillar"])}
-                  for c in reversed(contribs) if c["value"] < 0][:2]
+
+def metric_record(row: dict) -> dict:
+    """§9's structured record — the input the Phase 3 build-time narratives
+    will consume. Feature-level since ADR 0003; no comparator."""
+    contribs = sorted((s for s in row["stats"]
+                       if s.get("contribution") is not None),
+                      key=lambda s: -s["contribution"])
+    def entry(s: dict) -> dict:
+        return {"feature": s["id"], "pillar": s["pillar"],
+                "contribution": s["contribution"], "value": s["value"],
+                "bucket": bucket(s["contribution"])}
+    strengths = [entry(s) for s in contribs if s["contribution"] > 0][:2]
+    weaknesses = [entry(s) for s in reversed(contribs)
+                  if s["contribution"] < 0][:2]
     caveats = list(row.get("flags", []))
     if row["cv"] > 0.15:
-        caveats.append("cv_between_15_and_30")
+        caveats.append("served_cv_above_15")
     return {"metro": row["cbsa"], "rank": row["rank"], "pool": row["pool"],
             "pool_moe": row["pool_moe"], "tier": row["tier"],
             "strengths": strengths, "weaknesses": weaknesses,
-            "comparator": row.get("comparator"), "caveats": caveats}
+            "caveats": caveats}
 
 
-def render_explanation(record: dict, name: str, comparator_name: str | None) -> str:
-    """Per-request 'why it ranks here for you' text (§9): top two positive
-    and top two negative contributions, phrasing variant by magnitude
-    bucket, real numbers, real comparator."""
+def render_explanation(row: dict, legend: dict[str, dict]) -> str:
+    """Per-request 'why it ranks here for you' text: the top stats by
+    absolute contribution, each with its display name, its value in real
+    units, and what it did to the score — so the text changes when the
+    weights do, which is the point."""
     tpl = _env.get_template("ranked.jinja")
-    return tpl.render(
-        name=name, record=record, comparator_name=comparator_name,
-        strengths=[{**s, "bucket": bucket(s["contribution"]),
-                    "noun": PILLAR_FACTS[s["pillar"]][1]}
-                   for s in record["strengths"]],
-        weaknesses=[{**w, "bucket": bucket(w["contribution"]),
-                     "noun": PILLAR_FACTS[w["pillar"]][1]}
-                    for w in record["weaknesses"]],
-    ).strip()
+    movers = []
+    for s in top_stats(row["stats"]):
+        le = legend[s["id"]]
+        short = le.get("unit_short", "")
+        movers.append({
+            "label": le["display_name"],
+            "value": format_value(s["value"], le),
+            "unit_suffix": f" {short}" if short else "",
+            "points": f"{s['contribution']:+.1f}",
+            "positive": s["contribution"] > 0,
+        })
+    return tpl.render(name=row["name"], rank=row["rank"],
+                      movers=movers).strip()
