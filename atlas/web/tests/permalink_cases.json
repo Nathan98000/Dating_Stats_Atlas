@@ -1,0 +1,238 @@
+{
+ "data_version": "dc23609755ad",
+ "model_version": "m1.2.0",
+ "cases": [
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 30
+    },
+    "seeking": {
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married",
+      "previously_married"
+     ]
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzAsInNleCI6ImZlbWFsZSJ9fQ"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 32
+    },
+    "seeking": {
+     "age": [
+      30,
+      40
+     ],
+     "education_min": "bachelors",
+     "income_min": 75000,
+     "marital": [
+      "never_married"
+     ]
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzMwLDQwXSwiZWR1Y2F0aW9uX21pbiI6ImJhY2hlbG9ycyIsImluY29tZV9taW4iOjc1MDAwLCJtYXJpdGFsIjpbIm5ldmVyX21hcnJpZWQiXX0sInNlbGYiOnsiYWdlIjozMiwic2V4IjoiZmVtYWxlIn19"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "male",
+     "age": 29
+    },
+    "seeking": {
+     "sex": "male",
+     "age": [
+      27,
+      38
+     ],
+     "education_min": "graduate",
+     "marital": [
+      "never_married"
+     ]
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI3LDM4XSwiZWR1Y2F0aW9uX21pbiI6ImdyYWR1YXRlIiwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjI5LCJzZXgiOiJtYWxlIn19"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 29
+    },
+    "seeking": {
+     "age": [
+      28,
+      38
+     ],
+     "marital": [
+      "never_married",
+      "previously_married"
+     ],
+     "race_ethnicity": [
+      "black_nh"
+     ]
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI4LDM4XSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInJhY2VfZXRobmljaXR5IjpbImJsYWNrX25oIl19LCJzZWxmIjp7ImFnZSI6MjksInNleCI6ImZlbWFsZSJ9fQ"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "male",
+     "age": 45
+    },
+    "seeking": {
+     "age": [
+      40,
+      55
+     ],
+     "income_min": 250000,
+     "marital": [
+      "never_married",
+      "previously_married",
+      "currently_married"
+     ],
+     "race_ethnicity": [
+      "white_nh",
+      "two_or_more_nh"
+     ]
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzQwLDU1XSwiaW5jb21lX21pbiI6MjUwMDAwLCJtYXJpdGFsIjpbIm5ldmVyX21hcnJpZWQiLCJwcmV2aW91c2x5X21hcnJpZWQiLCJjdXJyZW50bHlfbWFycmllZCJdLCJyYWNlX2V0aG5pY2l0eSI6WyJ3aGl0ZV9uaCIsInR3b19vcl9tb3JlX25oIl19LCJzZWxmIjp7ImFnZSI6NDUsInNleCI6Im1hbGUifX0"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 30
+    },
+    "seeking": {
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married"
+     ]
+    },
+    "size_vs_odds": 0.0
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzAsInNleCI6ImZlbWFsZSJ9LCJzaXplX3ZzX29kZHMiOjAuMH0"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 30
+    },
+    "seeking": {
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married"
+     ]
+    },
+    "size_vs_odds": 1.0
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzAsInNleCI6ImZlbWFsZSJ9LCJzaXplX3ZzX29kZHMiOjEuMH0"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 30
+    },
+    "seeking": {
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married"
+     ]
+    },
+    "size_vs_odds": 0.35
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzAsInNleCI6ImZlbWFsZSJ9LCJzaXplX3ZzX29kZHMiOjAuMzV9"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "female",
+     "age": 30
+    },
+    "seeking": {
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married"
+     ]
+    },
+    "size_vs_odds": 0.4545
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzAsInNleCI6ImZlbWFsZSJ9LCJzaXplX3ZzX29kZHMiOjAuNDU0NX0"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "male",
+     "age": 33
+    },
+    "seeking": {
+     "age": [
+      26,
+      38
+     ],
+     "marital": [
+      "never_married"
+     ]
+    },
+    "weights": {
+     "pool": 0.5,
+     "balance": 0.5,
+     "reach": 0.0,
+     "cost": 0.0,
+     "lifestyle": 0.0
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI2LDM4XSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzMsInNleCI6Im1hbGUifSwid2VpZ2h0cyI6eyJiYWxhbmNlIjowLjUsImNvc3QiOjAuMCwibGlmZXN0eWxlIjowLjAsInBvb2wiOjAuNSwicmVhY2giOjAuMH19"
+  },
+  {
+   "body": {
+    "self": {
+     "sex": "male",
+     "age": 33
+    },
+    "seeking": {
+     "age": [
+      26,
+      38
+     ],
+     "marital": [
+      "never_married"
+     ]
+    },
+    "weights": {
+     "pool": 0.3,
+     "balance": 0.25,
+     "reach": 0.2,
+     "cost": 0.15,
+     "lifestyle": 0.1
+    }
+   },
+   "permalink": "/r/dc23609755ad/m1.2.0/eyJzZWVraW5nIjp7ImFnZSI6WzI2LDM4XSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIl19LCJzZWxmIjp7ImFnZSI6MzMsInNleCI6Im1hbGUifSwid2VpZ2h0cyI6eyJiYWxhbmNlIjowLjI1LCJjb3N0IjowLjE1LCJsaWZlc3R5bGUiOjAuMSwicG9vbCI6MC4zLCJyZWFjaCI6MC4yfX0"
+  }
+ ]
+}
