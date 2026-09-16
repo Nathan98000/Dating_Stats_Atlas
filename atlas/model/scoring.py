@@ -35,7 +35,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from atlas.model.explain import format_value, render_explanation
+from atlas.model.explain import format_value, render_explanation, top_stats
 from atlas.model.loader import Build
 from atlas.model.preferences import (PILLARS, RACE_LEVELS, SEX_LEVELS,
                                      Request, pool_mask, resolve_weights,
@@ -361,9 +361,14 @@ def rank(build: Build, req: Request) -> dict:
             if pairing is not None:
                 p_rate, p_moe, p_gate = pairing
                 if p_gate[i] >= 100 and not np.isnan(p_rate[i]):
+                    ple = build.legend["cross_group_pairing_rate"]
                     row["cross_group_pairing_rate"] = round(float(p_rate[i]), 4)
                     row["cross_group_pairing_moe"] = round(float(p_moe[i]), 4)
                     row["cross_group_pairing_n"] = round(float(p_gate[i]))
+                    row["cross_group_pairing_display"] = format_value(
+                        float(p_rate[i]), ple)
+                    row["cross_group_pairing_moe_display"] = format_value(
+                        float(p_moe[i]), ple)
                 else:
                     row["cross_group_pairing_rate"] = None
                     row["cross_group_pairing_suppressed"] = "n_below_100"
@@ -372,6 +377,9 @@ def rank(build: Build, req: Request) -> dict:
             out["ranked"].append(row)
         for row in out["ranked"]:
             row["explanation"] = render_explanation(row, build.legend)
+            # the same selection the explanation leads with, as ids, so the
+            # frontend never re-derives "what moved it" on its own
+            row["top_stats"] = [s["id"] for s in top_stats(row["stats"])]
 
     for i in np.where(suppressed)[0]:
         stats = []

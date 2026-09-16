@@ -2,7 +2,7 @@
   "data_version": "fixture-dc23609755ad",
   "model_version": "m1.2.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-16T14:32:12-0400",
+  "created_at": "2026-09-16T14:48:30-0400",
   "axes": [
     {
       "name": "metro",
@@ -263,6 +263,57 @@
       "display_name": "Lifestyle",
       "definition": "Climate and social infrastructure around dating life.",
       "default_weight": 0.1
+    }
+  },
+  "licenses": {
+    "bea_rpp": {
+      "name": "US public domain (17 USC 105); BEA terms",
+      "url": "https://www.bea.gov/",
+      "shippable": true,
+      "attribution": "Source: U.S. Bureau of Economic Analysis",
+      "notes": null
+    },
+    "census_acs": {
+      "name": "US public domain (17 USC 105); Census API terms",
+      "url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+      "shippable": true,
+      "attribution": "Source: U.S. Census Bureau",
+      "notes": null
+    },
+    "census_cbp": {
+      "name": "US public domain (17 USC 105); Census API terms",
+      "url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+      "shippable": true,
+      "attribution": "Source: U.S. Census Bureau",
+      "notes": null
+    },
+    "epa_sld": {
+      "name": "CC0 / US public domain (EPA Smart Location Database)",
+      "url": "https://www.epa.gov/smartgrowth/smart-location-mapping",
+      "shippable": true,
+      "attribution": "Source: U.S. EPA Smart Location Database v3.0",
+      "notes": "Street-network measures only; transit measures excluded (\u00a712.1: GTFS snapshot from the deepest pandemic service cuts)."
+    },
+    "fbi_cde": {
+      "name": "US public domain; FBI Crime Data Explorer",
+      "url": "https://cde.ucr.cjis.gov",
+      "shippable": true,
+      "attribution": null,
+      "notes": "Never scored (D01): metro-page context only, with the FBI's own Caution Against Ranking attached. default_weight is pinned to 0."
+    },
+    "ipeds": {
+      "name": "US public domain (17 USC 105); NCES IPEDS",
+      "url": "https://nces.ed.gov/ipeds/",
+      "shippable": true,
+      "attribution": "Source: NCES IPEDS",
+      "notes": null
+    },
+    "noaa_normals": {
+      "name": "US public domain (17 USC 105); NOAA/NCEI open data",
+      "url": "https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals",
+      "shippable": true,
+      "attribution": "Source: NOAA NCEI U.S. Climate Normals 1991-2020",
+      "notes": null
     }
   },
   "features_block": {
