@@ -1,0 +1,36 @@
+# Fly.io config for the ranking API — COMMITTED, NOT DEPLOYED (Phase 2b
+# ships configuration and a runbook only; no public URL exists until the
+# §12.2 licensing review in docs/decisions/counsel_packet returns).
+#
+# D04 is enforced by topology: no [[services]] block and no public IPs are
+# ever allocated, so the app is reachable ONLY over Fly private networking
+# (<app>.flycast / .internal) from the web app in the same organization.
+# fly.io machines run the process; the API itself still has no CORS and no
+# public documentation surface.
+app = "atlas-api"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  BUILD_DIR = "/data/build"
+
+[[mounts]]
+  source = "atlas_builds"
+  destination = "/data"
+
+# Private-only service: flycast address, no force_https, no public handler.
+[[services]]
+  internal_port = 8000
+  protocol = "tcp"
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  [[services.ports]]
+    port = 8000
+    handlers = []
+
+[[vm]]
+  size = "shared-cpu-2x"
+  memory = "2gb"

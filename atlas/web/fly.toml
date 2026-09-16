@@ -1,0 +1,22 @@
+# Fly.io config for the site — COMMITTED, NOT DEPLOYED (docs/deploy.md; no
+# public URL until the counsel review returns). The web app is the only
+# public surface; it reaches the API over Fly private networking.
+app = "atlas-web"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ATLAS_API_URL = "http://atlas-api.flycast:8000"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
