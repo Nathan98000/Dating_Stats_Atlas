@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "comment": "COMMITTED, NOT DEPLOYED — no public URL until the counsel review returns (docs/deploy.md). ATLAS_API_URL must point at a PRIVATE upstream: the API never gets a public address (D04). If the API lives on Fly, prefer the all-Fly topology in docs/deploy.md; Vercel-to-Fly requires a tunnel or authenticated upstream and is the documented fallback."
+}
