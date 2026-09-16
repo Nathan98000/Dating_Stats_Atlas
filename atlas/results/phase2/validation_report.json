@@ -1,6 +1,12 @@
 {
-  "build": "674aa70fc57c",
-  "model_version": "m1.1.0",
+  "build": "dc23609755ad",
+  "model_version": "m1.2.0",
+  "generated_by": {
+    "git_sha": "ebe08e9f73619ac60905013f27f7074ef1508c2d",
+    "git_dirty": true,
+    "generated_at": "2026-09-16T14:32:24-0400",
+    "engine_model_version": "m1.2.0"
+  },
   "hard": {
     "interval_calibration": {
       "pass": true,
@@ -16,7 +22,20 @@
       "copy_rule": "margins read 'at least this wide', never plus-or-minus"
     },
     "suppression_reasons_and_intervals": {
-      "pass": true
+      "pass": true,
+      "allowed_reasons": [
+        "empty_pool",
+        "n_below_100",
+        "no_rivals"
+      ]
+    },
+    "cube_vs_sql_differential": {
+      "pass": true,
+      "shapes": 40,
+      "seed": 2026,
+      "tolerance": 0.001,
+      "worst_rel_err": 2.03e-07,
+      "worst_detail": null
     },
     "rank_stability": {
       "pass": true,
@@ -60,6 +79,11 @@
       },
       "gate": ">= 8/10 overlap in >= 80% of replicates"
     },
+    "explanation_invariants": {
+      "pass": true,
+      "explanations_checked": 1064,
+      "problems": []
+    },
     "adversarial_artifacts": {
       "pass": true,
       "watchlist": [
@@ -87,8 +111,11 @@
           "cbsa": "41860",
           "rank": 1,
           "score": 77.1,
+          "pool": 74521,
+          "pool_moe": 2883,
+          "n_unweighted": 1867,
           "top_pillar": "pool",
-          "explanation": "San Francisco-Oakland-Fremont, CA ranks #1 for you.\nIts biggest edge is compatible people \u2014 3.0\u00d7 the compatible pool of Phoenix-Mesa-Chandler, AZ.\nIts biggest edge is partners per rival (0.567).\nIt is held back by median rent (2474.0).\nCompared with Phoenix-Mesa-Chandler, AZ \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "San Francisco-Oakland-Fremont, CA ranks #1 for you.\nWhat moved it most for your weights: compatible people at 74,521, +14.5 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 5.7, +11.6 points.\nAlso for it: social venues at 267.9 per 100k adults, +4.8 points.",
           "flags": []
         },
         {
@@ -96,8 +123,11 @@
           "cbsa": "35620",
           "rank": 2,
           "score": 76.1,
+          "pool": 190165,
+          "pool_moe": 5174,
+          "n_unweighted": 3904,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #2 for you.\nIts biggest edge is compatible people \u2014 2.8\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is walkability of where residents live (12.594).\nIt is held back by median rent (1830.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #2 for you.\nWhat moved it most for your weights: compatible people at 190,165, +19.9 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 3.9, +5.9 points.\nAlso for it: social venues at 245.1 per 100k adults, +4.0 points.",
           "flags": []
         },
         {
@@ -105,8 +135,11 @@
           "cbsa": "31080",
           "rank": 3,
           "score": 75.3,
+          "pool": 116879,
+          "pool_moe": 3724,
+          "n_unweighted": 2970,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #3 for you.\nIts biggest edge is compatible people \u2014 2.9\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIts biggest edge is walkability of where residents live (13.404).\nIt is held back by median rent (2063.0).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #3 for you.\nWhat moved it most for your weights: compatible people at 116,879, +18.0 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 3.9, +6.4 points.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.8 points.",
           "flags": []
         },
         {
@@ -114,8 +147,11 @@
           "cbsa": "35620",
           "rank": 1,
           "score": 80.2,
+          "pool": 841132,
+          "pool_moe": 10170,
+          "n_unweighted": 16873,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nIts biggest edge is compatible people \u2014 3.2\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIts biggest edge is partners per rival (0.734).\nIt is held back by median rent (1830.0).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nWhat moved it most for your weights: compatible people at 841,132, +22.4 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 7.3, +10.7 points.\nAlso for it: walkability where residents live at 12.6 on the 1\u201320 index, +4.7 points.",
           "flags": []
         },
         {
@@ -123,8 +159,11 @@
           "cbsa": "31080",
           "rank": 2,
           "score": 78.9,
+          "pool": 595498,
+          "pool_moe": 7712,
+          "n_unweighted": 15061,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #2 for you.\nIts biggest edge is compatible people \u2014 2.3\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIts biggest edge is partners per rival (0.711).\nIt is held back by median rent (2063.0).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #2 for you.\nWhat moved it most for your weights: compatible people at 595,498, +22.4 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 7.1, +9.4 points.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +5.0 points.",
           "flags": []
         },
         {
@@ -132,8 +171,11 @@
           "cbsa": "35380",
           "rank": 3,
           "score": 75.1,
+          "pool": 42790,
+          "pool_moe": 2517,
+          "n_unweighted": 675,
           "top_pillar": "balance",
-          "explanation": "New Orleans-Metairie, LA ranks #3 for you.\nIts biggest edge is partners per rival (0.84).\nIt is helped by walkability of where residents live (10.495).\nCompared with Urban Honolulu, HI \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New Orleans-Metairie, LA ranks #3 for you.\nWhat moved it most for your weights: matches per 10 people looking at 8.4, +12.5 points against the typical ranked metro.\nAlso for it: compatible people at 42,790, +6.5 points.\nAlso for it: social venues at 282.4 per 100k adults, +4.6 points.",
           "flags": []
         },
         {
@@ -141,8 +183,11 @@
           "cbsa": "31080",
           "rank": 1,
           "score": 77.7,
+          "pool": 75239,
+          "pool_moe": 3156,
+          "n_unweighted": 1776,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nIts biggest edge is compatible people \u2014 1.8\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is walkability of where residents live (13.404).\nIt is held back by median rent (2063.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nWhat moved it most for your weights: compatible people at 75,239, +17.6 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 4.2, +8.1 points.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.8 points.",
           "flags": []
         },
         {
@@ -150,8 +195,11 @@
           "cbsa": "41860",
           "rank": 2,
           "score": 76.6,
+          "pool": 48091,
+          "pool_moe": 2401,
+          "n_unweighted": 1182,
           "top_pillar": "pool",
-          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nIts biggest edge is compatible people \u2014 2.8\u00d7 the compatible pool of Phoenix-Mesa-Chandler, AZ.\nIts biggest edge is partners per rival (0.588).\nIt is held back by median rent (2474.0).\nCompared with Phoenix-Mesa-Chandler, AZ \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nWhat moved it most for your weights: compatible people at 48,091, +13.3 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 5.9, +11.9 points.\nAlso for it: social venues at 267.9 per 100k adults, +5.0 points.",
           "flags": []
         },
         {
@@ -159,8 +207,11 @@
           "cbsa": "35620",
           "rank": 3,
           "score": 75.9,
+          "pool": 106615,
+          "pool_moe": 4024,
+          "n_unweighted": 2178,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #3 for you.\nIts biggest edge is compatible people \u2014 3.8\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIts biggest edge is walkability of where residents live (12.594).\nIt is held back by median rent (1830.0).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #3 for you.\nWhat moved it most for your weights: compatible people at 106,615, +19.7 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 3.6, +5.0 points.\nAlso for it: social venues at 245.1 per 100k adults, +4.2 points.",
           "flags": []
         },
         {
@@ -168,8 +219,11 @@
           "cbsa": "35620",
           "rank": 1,
           "score": 81.0,
+          "pool": 376941,
+          "pool_moe": 6858,
+          "n_unweighted": 8090,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nIts biggest edge is compatible people \u2014 2.4\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is partners per rival (0.688).\nIt is held back by median rent (1830.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nWhat moved it most for your weights: compatible people at 376,941, +21.8 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 6.9, +11.2 points.\nAlso for it: walkability where residents live at 12.6 on the 1\u201320 index, +4.6 points.",
           "flags": []
         },
         {
@@ -177,8 +231,11 @@
           "cbsa": "41860",
           "rank": 2,
           "score": 77.0,
+          "pool": 107333,
+          "pool_moe": 3341,
+          "n_unweighted": 2787,
           "top_pillar": "pool",
-          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nIts biggest edge is compatible people \u2014 1.4\u00d7 the compatible pool of Phoenix-Mesa-Chandler, AZ.\nIts biggest edge is partners per rival (0.751).\nIt is held back by median rent (2474.0).\nCompared with Phoenix-Mesa-Chandler, AZ \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nWhat moved it most for your weights: compatible people at 107,333, +16.8 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 7.5, +11.6 points.\nAlso for it: walkability where residents live at 13.0 on the 1\u201320 index, +4.8 points.",
           "flags": []
         },
         {
@@ -186,8 +243,11 @@
           "cbsa": "31080",
           "rank": 3,
           "score": 73.9,
+          "pool": 244159,
+          "pool_moe": 5133,
+          "n_unweighted": 6171,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #3 for you.\nIts biggest edge is compatible people \u2014 1.9\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIt is helped by walkability of where residents live (13.404).\nIt is held back by median rent (2063.0).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #3 for you.\nWhat moved it most for your weights: compatible people at 244,159, +21.8 points against the typical ranked metro.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.9 points.\nAlso for it: matches per 10 people looking at 5.7, +4.2 points.",
           "flags": []
         },
         {
@@ -195,8 +255,11 @@
           "cbsa": "35620",
           "rank": 1,
           "score": 66.7,
+          "pool": 17763,
+          "pool_moe": 1806,
+          "n_unweighted": 308,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nIts biggest edge is compatible people.\nIt is helped by walkability of where residents live (12.594).\nIt is held back by partners per rival (0.029).\nIt loses a little on median rent (1830.0).",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nWhat moved it most for your weights: compatible people at 17,763, +15.8 points against the typical ranked metro.\nAlso for it: social venues at 245.1 per 100k adults, +5.0 points.\nAgainst it: matches per 10 people looking at 0.3, -4.2 points.",
           "flags": []
         },
         {
@@ -204,8 +267,11 @@
           "cbsa": "47900",
           "rank": 2,
           "score": 61.3,
+          "pool": 15012,
+          "pool_moe": 1644,
+          "n_unweighted": 241,
           "top_pillar": "balance",
-          "explanation": "Washington-Arlington-Alexandria, DC-VA-MD-WV ranks #2 for you.\nIts biggest edge is partners per rival (0.076).\nIts biggest edge is compatible people.\nIt is held back by walkability of where residents live (11.135).\nIt is held back by pleasant days a year (147.596).",
+          "explanation": "Washington-Arlington-Alexandria, DC-VA-MD-WV ranks #2 for you.\nWhat moved it most for your weights: matches per 10 people looking at 0.8, +12.5 points against the typical ranked metro.\nAlso for it: compatible people at 15,012, +9.8 points.\nAgainst it: social venues at 173.5 per 100k adults, -5.0 points.",
           "flags": []
         },
         {
@@ -213,8 +279,11 @@
           "cbsa": "12060",
           "rank": 3,
           "score": 41.4,
+          "pool": 8696,
+          "pool_moe": 1393,
+          "n_unweighted": 116,
           "top_pillar": "cost",
-          "explanation": "Atlanta-Sandy Springs-Roswell, GA ranks #3 for you.\nIts biggest edge is median rent (1672.0).\nIt is helped by partners per rival (0.061).\nIts biggest drag is compatible people.\nIt is held back by walkability of where residents live (8.507).",
+          "explanation": "Atlanta-Sandy Springs-Roswell, GA ranks #3 for you.\nWhat moved it most for your weights: compatible people at 8,696, -9.8 points against the typical ranked metro.\nAgainst it: walkability where residents live at 8.5 on the 1\u201320 index, -5.0 points.\nAlso for it: matches per 10 people looking at 0.6, +4.2 points.",
           "flags": []
         },
         {
@@ -222,8 +291,11 @@
           "cbsa": "31080",
           "rank": 1,
           "score": 78.1,
+          "pool": 68001,
+          "pool_moe": 2382,
+          "n_unweighted": 2129,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nIts biggest edge is compatible people \u2014 2.9\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIt is helped by partners per rival (0.198).\nIt is held back by median rent (2063.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nWhat moved it most for your weights: compatible people at 68,001, +18.4 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 2.0, +8.0 points.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.5 points.",
           "flags": []
         },
         {
@@ -231,8 +303,11 @@
           "cbsa": "41860",
           "rank": 2,
           "score": 76.4,
+          "pool": 46785,
+          "pool_moe": 1949,
+          "n_unweighted": 1409,
           "top_pillar": "pool",
-          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nIts biggest edge is compatible people \u2014 7.3\u00d7 the compatible pool of Phoenix-Mesa-Chandler, AZ.\nIts biggest edge is partners per rival (0.317).\nIt is held back by median rent (2474.0).\nCompared with Phoenix-Mesa-Chandler, AZ \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nWhat moved it most for your weights: compatible people at 46,785, +14.5 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 3.2, +10.2 points.\nAlso for it: social venues at 267.9 per 100k adults, +5.0 points.",
           "flags": []
         },
         {
@@ -240,8 +315,11 @@
           "cbsa": "41940",
           "rank": 3,
           "score": 76.0,
+          "pool": 33719,
+          "pool_moe": 1725,
+          "n_unweighted": 884,
           "top_pillar": "balance",
-          "explanation": "San Jose-Sunnyvale-Santa Clara, CA ranks #3 for you.\nIts biggest edge is partners per rival (0.654).\nIts biggest edge is compatible people \u2014 5.8\u00d7 the compatible pool of Las Vegas-Henderson-North Las Vegas, NV.\nIt is held back by median rent (2840.0).\nCompared with Las Vegas-Henderson-North Las Vegas, NV \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "San Jose-Sunnyvale-Santa Clara, CA ranks #3 for you.\nWhat moved it most for your weights: matches per 10 people looking at 6.5, +12.5 points against the typical ranked metro.\nAlso for it: compatible people at 33,719, +11.2 points.\nAlso for it: walkability where residents live at 13.6 on the 1\u201320 index, +5.0 points.",
           "flags": []
         },
         {
@@ -249,8 +327,11 @@
           "cbsa": "31080",
           "rank": 1,
           "score": 76.9,
+          "pool": 338044,
+          "pool_moe": 5541,
+          "n_unweighted": 9160,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nIts biggest edge is compatible people \u2014 3.3\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is walkability of where residents live (13.404).\nIt is held back by median rent (2063.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nWhat moved it most for your weights: compatible people at 338,044, +22.3 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 5.2, +6.1 points.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.9 points.",
           "flags": []
         },
         {
@@ -258,8 +339,11 @@
           "cbsa": "35620",
           "rank": 2,
           "score": 70.6,
+          "pool": 259489,
+          "pool_moe": 5822,
+          "n_unweighted": 5134,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #2 for you.\nIts biggest edge is compatible people \u2014 2.5\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is walkability of where residents live (12.594).\nIt is held back by median rent (1830.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #2 for you.\nWhat moved it most for your weights: compatible people at 259,489, +21.7 points against the typical ranked metro.\nAlso for it: walkability where residents live at 12.6 on the 1\u201320 index, +4.3 points.\nAlso for it: social venues at 245.1 per 100k adults, +4.1 points.",
           "flags": []
         },
         {
@@ -267,8 +351,11 @@
           "cbsa": "21340",
           "rank": 3,
           "score": 67.9,
+          "pool": 26316,
+          "pool_moe": 1823,
+          "n_unweighted": 504,
           "top_pillar": "balance",
-          "explanation": "El Paso, TX ranks #3 for you.\nIts biggest edge is partners per rival (0.908).\nIt is helped by median rent (1079.0).\nIt loses a little on pleasant days a year (129.645).\nCompared with Bakersfield-Delano, CA \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "El Paso, TX ranks #3 for you.\nWhat moved it most for your weights: matches per 10 people looking at 9.1, +11.4 points against the typical ranked metro.\nAlso for it: compatible people at 26,316, +5.5 points.\nAlso for it: median rent at 1,079 $/mo, +3.2 points.",
           "flags": []
         },
         {
@@ -276,8 +363,11 @@
           "cbsa": "35620",
           "rank": 1,
           "score": 66.0,
+          "pool": 46735,
+          "pool_moe": 2704,
+          "n_unweighted": 963,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nIts biggest edge is compatible people \u2014 2.3\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is walkability of where residents live (12.594).\nIt is held back by partners per rival (0.459).\nIt is held back by median rent (1830.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nWhat moved it most for your weights: compatible people at 46,735, +20.3 points against the typical ranked metro.\nAgainst it: matches per 10 people looking at 4.6, -5.2 points.\nAlso for it: social venues at 245.1 per 100k adults, +4.3 points.",
           "flags": []
         },
         {
@@ -285,8 +375,11 @@
           "cbsa": "31080",
           "rank": 2,
           "score": 62.2,
+          "pool": 25618,
+          "pool_moe": 1844,
+          "n_unweighted": 663,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #2 for you.\nIts biggest edge is compatible people \u2014 1.3\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is walkability of where residents live (13.404).\nIt is held back by median rent (2063.0).\nIt is held back by partners per rival (0.508).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #2 for you.\nWhat moved it most for your weights: compatible people at 25,618, +14.5 points against the typical ranked metro.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.7 points.\nAgainst it: matches per 10 people looking at 5.1, -3.6 points.",
           "flags": []
         },
         {
@@ -294,8 +387,11 @@
           "cbsa": "19740",
           "rank": 3,
           "score": 61.2,
+          "pool": 10886,
+          "pool_moe": 1075,
+          "n_unweighted": 353,
           "top_pillar": "balance",
-          "explanation": "Denver-Aurora-Centennial, CO ranks #3 for you.\nIts biggest edge is partners per rival (0.814).\nIt is helped by walkability of where residents live (11.844).\nIt is held back by pleasant days a year (74.795).\nIt loses a little on median rent (1874.0).\nCompared with Tampa-St. Petersburg-Clearwater, FL \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Denver-Aurora-Centennial, CO ranks #3 for you.\nWhat moved it most for your weights: matches per 10 people looking at 8.1, +12.5 points against the typical ranked metro.\nAlso for it: compatible people at 10,886, +3.4 points.\nAlso for it: walkability where residents live at 11.8 on the 1\u201320 index, +3.1 points.",
           "flags": []
         },
         {
@@ -303,8 +399,11 @@
           "cbsa": "35620",
           "rank": 1,
           "score": 68.7,
+          "pool": 3518433,
+          "pool_moe": 17990,
+          "n_unweighted": 76562,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nIts biggest edge is compatible people \u2014 1.5\u00d7 the compatible pool of Los Angeles-Long Beach-Anaheim, CA.\nIts biggest edge is walkability of where residents live (12.594).\nIt is held back by median rent (1830.0).\nIt loses a little on partners per rival (2.284).\nCompared with Los Angeles-Long Beach-Anaheim, CA \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #1 for you.\nWhat moved it most for your weights: compatible people at 3,518,433, +22.8 points against the typical ranked metro.\nAlso for it: walkability where residents live at 12.6 on the 1\u201320 index, +4.7 points.\nAlso for it: social venues at 245.1 per 100k adults, +4.0 points.",
           "flags": []
         },
         {
@@ -312,8 +411,11 @@
           "cbsa": "16980",
           "rank": 2,
           "score": 66.6,
+          "pool": 1658703,
+          "pool_moe": 12566,
+          "n_unweighted": 34822,
           "top_pillar": "pool",
-          "explanation": "Chicago-Naperville-Elgin, IL-IN ranks #2 for you.\nIts biggest edge is compatible people \u2014 1.1\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIt is helped by walkability of where residents live (11.651).\nIt is held back by median rent (1430.0).\nIt loses a little on partners per rival (2.284).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Chicago-Naperville-Elgin, IL-IN ranks #2 for you.\nWhat moved it most for your weights: compatible people at 1,658,703, +22.5 points against the typical ranked metro.\nAlso for it: walkability where residents live at 11.7 on the 1\u201320 index, +3.8 points.\nAgainst it: price level, goods at 107.3 (US = 100), -1.7 points.",
           "flags": []
         },
         {
@@ -321,8 +423,11 @@
           "cbsa": "12060",
           "rank": 3,
           "score": 66.5,
+          "pool": 1168423,
+          "pool_moe": 11326,
+          "n_unweighted": 20779,
           "top_pillar": "pool",
-          "explanation": "Atlanta-Sandy Springs-Roswell, GA ranks #3 for you.\nIts biggest edge is compatible people \u2014 1.0\u00d7 the compatible pool of Washington-Arlington-Alexandria, DC-VA-MD-WV.\nIts biggest edge is partners per rival (2.479).\nIt loses a little on median rent (1672.0).\nIt loses a little on walkability of where residents live (8.507).\nCompared with Washington-Arlington-Alexandria, DC-VA-MD-WV \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Atlanta-Sandy Springs-Roswell, GA ranks #3 for you.\nWhat moved it most for your weights: compatible people at 1,168,423, +19.8 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 24.8, +10.6 points.\nAgainst it: median rent at 1,672 $/mo, -2.4 points.",
           "flags": []
         },
         {
@@ -330,8 +435,11 @@
           "cbsa": "14500",
           "rank": 1,
           "score": 85.4,
+          "pool": 15135,
+          "pool_moe": 1026,
+          "n_unweighted": 568,
           "top_pillar": "balance",
-          "explanation": "Boulder, CO ranks #1 for you.\nIts biggest edge is partners per rival (1.032).\nIts biggest edge is walkability of where residents live (12.739).\nIt is held back by median rent (1966.0).\nCompared with Naples-Marco Island, FL \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Boulder, CO ranks #1 for you.\nWhat moved it most for your weights: matches per 10 people looking at 10.3, +24.9 points against the typical ranked metro.\nAlso for it: walkability where residents live at 12.7 on the 1\u201320 index, +4.8 points.\nAlso for it: college students at 196.3 per 1k adults, +4.7 points.",
           "flags": [
             "missing_features:pleasant_days"
           ]
@@ -341,10 +449,14 @@
           "cbsa": "20260",
           "rank": 2,
           "score": 83.3,
+          "pool": 9485,
+          "pool_moe": 900,
+          "n_unweighted": 270,
           "top_pillar": "balance",
-          "explanation": "Duluth, MN-WI ranks #2 for you.\nIts biggest edge is partners per rival (1.018).\nIt is helped by median rent (990.0).\nCompared with Norwich-New London-Willimantic, CT \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Duluth, MN-WI ranks #2 for you.\nWhat moved it most for your weights: matches per 10 people looking at 10.2, +23.8 points against the typical ranked metro.\nAlso for it: social venues at 246.3 per 100k adults, +4.1 points.\nAlso for it: median rent at 990 $/mo, +3.0 points.",
           "flags": [
-            "low_allocation_purity"
+            "low_allocation_purity",
+            "gq_flag"
           ]
         },
         {
@@ -352,8 +464,11 @@
           "cbsa": "24580",
           "rank": 3,
           "score": 81.2,
+          "pool": 13130,
+          "pool_moe": 1594,
+          "n_unweighted": 150,
           "top_pillar": "balance",
-          "explanation": "Green Bay, WI ranks #3 for you.\nIts biggest edge is partners per rival (1.093).\nIt is helped by median rent (1010.0).\nIt loses a little on walkability of where residents live (6.802).\nCompared with Clarksville, TN-KY \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Green Bay, WI ranks #3 for you.\nWhat moved it most for your weights: matches per 10 people looking at 10.9, +26.9 points against the typical ranked metro.\nAgainst it: walkability where residents live at 6.8 on the 1\u201320 index, -3.9 points.\nAlso for it: social venues at 232.7 per 100k adults, +3.4 points.",
           "flags": []
         },
         {
@@ -361,8 +476,11 @@
           "cbsa": "31080",
           "rank": 1,
           "score": 78.5,
+          "pool": 283863,
+          "pool_moe": 5488,
+          "n_unweighted": 7421,
           "top_pillar": "pool",
-          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nIts biggest edge is compatible people \u2014 1.6\u00d7 the compatible pool of Chicago-Naperville-Elgin, IL-IN.\nIts biggest edge is partners per rival (0.988).\nIt is held back by median rent (2063.0).\nCompared with Chicago-Naperville-Elgin, IL-IN \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.\nWhat moved it most for your weights: compatible people at 283,863, +22.3 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 9.9, +8.5 points.\nAlso for it: walkability where residents live at 13.4 on the 1\u201320 index, +4.9 points.",
           "flags": []
         },
         {
@@ -370,8 +488,11 @@
           "cbsa": "41860",
           "rank": 2,
           "score": 75.6,
+          "pool": 139487,
+          "pool_moe": 3795,
+          "n_unweighted": 3633,
           "top_pillar": "pool",
-          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nIts biggest edge is compatible people \u2014 2.1\u00d7 the compatible pool of Phoenix-Mesa-Chandler, AZ.\nIts biggest edge is walkability of where residents live (12.984).\nIt is held back by median rent (2474.0).\nCompared with Phoenix-Mesa-Chandler, AZ \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "San Francisco-Oakland-Fremont, CA ranks #2 for you.\nWhat moved it most for your weights: compatible people at 139,487, +17.8 points against the typical ranked metro.\nAlso for it: matches per 10 people looking at 10.0, +9.8 points.\nAlso for it: walkability where residents live at 13.0 on the 1\u201320 index, +4.8 points.",
           "flags": []
         },
         {
@@ -379,8 +500,11 @@
           "cbsa": "35620",
           "rank": 3,
           "score": 72.4,
+          "pool": 459277,
+          "pool_moe": 7650,
+          "n_unweighted": 9600,
           "top_pillar": "pool",
-          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #3 for you.\nIts biggest edge is compatible people \u2014 4.4\u00d7 the compatible pool of Dallas-Fort Worth-Arlington, TX.\nIts biggest edge is walkability of where residents live (12.594).\nIt is held back by median rent (1830.0).\nCompared with Dallas-Fort Worth-Arlington, TX \u2014 the closest metro by population that lands somewhere else \u2014 this is the trade you are making.",
+          "explanation": "New York-Newark-Jersey City, NY-NJ ranks #3 for you.\nWhat moved it most for your weights: compatible people at 459,277, +22.3 points against the typical ranked metro.\nAlso for it: walkability where residents live at 12.6 on the 1\u201320 index, +4.5 points.\nAlso for it: social venues at 245.1 per 100k adults, +4.1 points.",
           "flags": []
         }
       ]
@@ -427,6 +551,23 @@
       },
       "b12007_finding": "B12007 returns annotation jams for every CBSA in 2024 acs/acs5 \u2014 median age at first marriage is not published at metro level; state-level medians used through each metro's primary state",
       "framing": "the index measures opportunity, not outcome; partnership outcomes reflect decades of sorting and migration, so weak correlation is expected and reported as measured (\u00a711)"
+    },
+    "pairing_directional": {
+      "n_matched_metros": 124,
+      "spearman": 0.831,
+      "pearson": 0.834,
+      "warning": false,
+      "warn_rule": "spearman < 0.3 or n < 30",
+      "note": "Pew: share of NEWLYWEDS intermarried, 2011-2015 ACS; ours: share of the partnered STOCK outside their own group, 2020-2024 \u2014 levels are not comparable, direction is. Replaced by the Phase 3 kernel whose gate reproduces the Pew table.",
+      "source": "results/reference/pew_intermarriage_2015.csv"
+    },
+    "served_region_true_cv": {
+      "points": 23028,
+      "p50": 0.0482,
+      "p99": 0.098,
+      "max": 0.1177,
+      "points_above_20pct": 0,
+      "note": "true 81-replicate CV over the 480-shape battery where intervals display (n_gate >= 100); the removed CV tiers could not have fired (ADR 0002)"
     }
   },
   "hard_failures": []

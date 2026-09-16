@@ -1,47 +1,85 @@
 """Validation suite (§11), run on every build. Machine-readable report in
-results/phase2/validation_report.json; HARD gates fail the build (nonzero
-exit), SOFT gates warn and are reported as measured.
+results/phase2/validation_report.json, stamped with the git state that
+produced it (the Phase 2a face panel shipped stale against the committed
+code because nothing recorded which code rendered it); HARD gates fail the
+build (nonzero exit), SOFT gates warn and are reported as measured.
 
   hard  interval calibration     Gate 0 Option 2 coverage/overstatement
-  hard  suppression goldens      the 12 pinned vectors, exact
+  hard  suppression goldens      the 12 pinned vectors, exact; only the
+                                 n-only reason strings may appear (ADR 0002)
+  hard  cube vs SQL differential randomized filtered query shapes computed
+                                 both through the cube mask path and by SQL
+                                 over the contribution table — the check
+                                 that would have caught the Phase 1 mask
+                                 bug the day it was written
   hard  rank stability           resample pool+ratio across the 80
                                  replicates; >=8-of-10 top-10 overlap in
                                  >=80% of replicates, every persona
+  hard  explanation invariants   no rendered string carries the §12.3
+                                 banned vocabulary; the lead phrase is
+                                 position-unique (the Phase 2a panel defect,
+                                 found by hand, checked by machine since)
   hard  adversarial artifacts    college/military/prison metros in any
                                  top-10 must not be there for a
-                                 GQ-traceable reason (pool recomputed
-                                 without noninstitutional GQ)
-  soft  face validity            12 personas with attribution-consistent
-                                 explanations, written out for human review
+                                 GQ-traceable reason
+  soft  face validity            12 personas, now with pool, served margin
+                                 and n in every row so the magnitude check
+                                 can be done from the report
   soft  weight sensitivity       each pillar weight +/-20%, Kendall tau
                                  vs baseline (target >= 0.85)
   soft  external correlation     score/ratio vs B09021 living-alone share
-                                 and B12007 median age at first marriage —
-                                 reported as measured ("opportunity, not
-                                 outcome")
+                                 and B12007 (state fallback, finding)
+  soft  pairing directional      interim cross-group pairing rate vs Pew's
+                                 2015 newlywed intermarriage table — a
+                                 WARNING, not a gate; reproducing the table
+                                 is Phase 3's gate
+  soft  served-region true CV    the ADR 0002 evidence, recomputed from the
+                                 480-shape battery when the file is present
 """
 from __future__ import annotations
 
 import json
+import re
+import subprocess
 import sys
+import time
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from scipy.stats import kendalltau, pearsonr, spearmanr
 
 from atlas import model as engine
-from atlas.model.scoring import (_effective_weights, _pct_rank, _pillar_z,
-                                 _winsor_log_minmax)
+from atlas.model.scoring import score_vector
+from atlas.model.suppression import POLICY_STRINGS
 from atlas.pipeline.build.pool import open_pool
-from atlas.pipeline.fetch import RESULTS, api_get
+from atlas.pipeline.fetch import DATA, RESULTS, api_get
 
 P2 = RESULTS / "phase2"
-GOLDEN_DIR = None  # set in main from the model tests package
 
 STABILITY_OVERLAP = 8      # of top 10
 STABILITY_SHARE = 0.80
 KENDALL_MIN = 0.85
 GQ_POOL_SHARE_LIMIT = 0.15
+DIFF_SHAPES = 40
+DIFF_SEED = 2026
+DIFF_REL_TOL = 1e-3        # float32 cube accumulation vs float64 SQL
+ALLOWED_REASONS = {"n_below_100", "empty_pool", "no_rivals"}
+BANNED = re.compile(r"\b(rivals?|markets?|supply|inventory|competitors?)\b",
+                    re.IGNORECASE)
+PEW_CSV = RESULTS / "reference" / "pew_intermarriage_2015.csv"
+PAIRING_WARN_SPEARMAN = 0.30
+CUBE_TO_SPEC = {v: k for k, v in engine.SPEC_RACE.items()}
+
+
+def _git_stamp() -> dict:
+    def run(*args):
+        return subprocess.run(["git", *args], capture_output=True,
+                              text=True).stdout.strip()
+    return {"git_sha": run("rev-parse", "HEAD"),
+            "git_dirty": bool(run("status", "--porcelain")),
+            "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+            "engine_model_version": engine.MODEL_VERSION}
 
 
 def _replicate_sums(con, where: str) -> pd.DataFrame:
@@ -85,12 +123,147 @@ def _spec_to_sql(seeking: dict, self_: dict) -> tuple[str, str]:
     return w, rw
 
 
-def _score_from_vectors(build, ridx, est, ratio, weights) -> np.ndarray:
-    z_pool = _winsor_log_minmax(est)
-    z_bal = _pct_rank(ratio)
-    z, _ = _pillar_z(build, ridx, z_pool, z_bal)
-    w_eff = _effective_weights(z, weights)
-    return np.nansum(z * w_eff, axis=1)
+def _random_body(rng: np.random.Generator) -> dict:
+    """A random §8.2 request exercising partial filters on every cube axis —
+    education and income floors especially, because a transposed axis pair
+    only shows up under PARTIAL filters on the transposed axes."""
+    self_sex = rng.choice(["male", "female"])
+    seek_sex = rng.choice(["male", "female", None], p=[0.4, 0.4, 0.2])
+    lo = int(rng.integers(18, 60))
+    hi = min(70, lo + int(rng.integers(2, 30)))
+    marital = list(rng.choice(list(engine.SPEC_MARITAL), replace=False,
+                              size=int(rng.integers(1, 4))))
+    edu = rng.choice(["some_college", "bachelors", "graduate", None])
+    inc = rng.choice(sorted(engine.INCOME_FLOORS) + [None])
+    n_race = int(rng.integers(0, 4))
+    race = (list(rng.choice([CUBE_TO_SPEC[r] for r in engine.RACE_LEVELS],
+                            replace=False, size=n_race)) if n_race else None)
+    seeking = {"age": [lo, hi], "marital": marital}
+    if seek_sex:
+        seeking["sex"] = str(seek_sex)
+    if edu:
+        seeking["education_min"] = str(edu)
+    if inc is not None:
+        seeking["income_min"] = int(inc)
+    if race:
+        seeking["race_ethnicity"] = race
+    return {"self": {"sex": str(self_sex), "age": int(rng.integers(18, 71))},
+            "seeking": seeking}
+
+
+def check_differential(build, con) -> dict:
+    """Randomized cube-vs-SQL differential over the whole query path: the
+    same filtered shape summed through the flattened mask (gemv) and by SQL
+    over the contribution table must agree per metro. Phase 2a's mask-axis
+    bug is the reason this exists as a build gate."""
+    rng = np.random.default_rng(DIFF_SEED)
+    midx = {c: i for i, c in enumerate(build.metro_levels)}
+    worst = {"rel_err": 0.0}
+    for k in range(DIFF_SHAPES):
+        body = _random_body(rng)
+        req = engine.parse_request(body)
+        from atlas.model.preferences import pool_mask
+        mask = pool_mask(req.seeking)
+        est = (build.pool_flat @ mask).astype(np.float64)
+        n_alloc = (build.count_flat @ mask).astype(np.float64)
+        pw, _ = _spec_to_sql(body["seeking"], body["self"])
+        rows = con.execute(
+            f"SELECT cbsa, sum(pwgtp * a_eff), sum(a_eff) FROM contrib "
+            f"WHERE gq <> 2 AND ({pw}) GROUP BY 1").fetchall()
+        sql_est = np.zeros(len(build.metro_levels))
+        sql_n = np.zeros(len(build.metro_levels))
+        for cbsa, w, na in rows:
+            sql_est[midx[cbsa]] = float(w or 0)
+            sql_n[midx[cbsa]] = float(na or 0)
+        rel = np.abs(est - sql_est) / np.maximum(sql_est, 1.0)
+        rel_n = np.abs(n_alloc - sql_n) / np.maximum(sql_n, 1.0)
+        m = float(max(rel.max(), rel_n.max()))
+        if m > worst["rel_err"]:
+            worst = {"rel_err": m, "shape": body,
+                     "metro": build.metro_levels[int(np.argmax(rel))]}
+    ok = worst["rel_err"] < DIFF_REL_TOL
+    return {"pass": bool(ok), "shapes": DIFF_SHAPES, "seed": DIFF_SEED,
+            "tolerance": DIFF_REL_TOL,
+            "worst_rel_err": round(worst["rel_err"], 9),
+            "worst_detail": None if ok else worst}
+
+
+def check_explanations(build, persona_results) -> dict:
+    """No rendered string carries the banned vocabulary; the lead phrase is
+    position-unique. The Phase 2a panel said 'Its biggest edge is …' twice
+    on 23 of 33 rows because a pre-commit renderer keyed phrasing on the
+    magnitude bucket alone — found by reading the panel by hand, checked by
+    machine ever since."""
+    problems = []
+    for s in POLICY_STRINGS.values():
+        if BANNED.search(s):
+            problems.append({"where": "policy_strings", "text": s})
+    for fid, e in build.legend.items():
+        for k in ("display_name", "unit", "definition"):
+            if BANNED.search(str(e.get(k, ""))):
+                problems.append({"where": f"legend:{fid}.{k}",
+                                 "text": e.get(k)})
+    n_expl = 0
+    for name, res in persona_results.items():
+        for r in res["ranked"]:
+            n_expl += 1
+            if BANNED.search(r["explanation"]):
+                problems.append({"where": f"{name}:{r['cbsa']}",
+                                 "text": r["explanation"]})
+            if r["explanation"].count("What moved it most") > 1:
+                problems.append({"where": f"{name}:{r['cbsa']}",
+                                 "defect": "lead phrase repeated",
+                                 "text": r["explanation"]})
+    return {"pass": not problems, "explanations_checked": n_expl,
+            "problems": problems[:20]}
+
+
+def check_pairing_directional(build) -> dict:
+    """Interim pairing rate vs Pew's 2015 newlywed intermarriage metro table
+    (126 metros, CBSA-coded). Different quantities by construction — Pew is
+    NEWLYWEDS, ours is the partnered STOCK — so this is a direction check
+    and an explicit warning, never a gate. Phase 3's gate is reproducing
+    the Pew table itself."""
+    pew = pd.read_csv(PEW_CSV, comment="#", dtype={"msa_code": str})
+    pew = pew[pew["msa_code"] != "1"]
+    pew["total"] = pd.to_numeric(pew["total"], errors="coerce") / 100.0
+    ours = pd.DataFrame({"msa_code": build.metro_levels,
+                         "stock_rate": build.pairing_metro["rate"]})
+    m = ours.merge(pew[["msa_code", "total"]], on="msa_code").dropna()
+    sp = spearmanr(m["stock_rate"], m["total"])
+    pe = pearsonr(m["stock_rate"], m["total"])
+    warn = bool(sp.statistic < PAIRING_WARN_SPEARMAN or len(m) < 30)
+    return {
+        "n_matched_metros": int(len(m)),
+        "spearman": round(float(sp.statistic), 3),
+        "pearson": round(float(pe.statistic), 3),
+        "warning": warn,
+        "warn_rule": f"spearman < {PAIRING_WARN_SPEARMAN} or n < 30",
+        "note": "Pew: share of NEWLYWEDS intermarried, 2011-2015 ACS; ours: "
+                "share of the partnered STOCK outside their own group, "
+                "2020-2024 — levels are not comparable, direction is. "
+                "Replaced by the Phase 3 kernel whose gate reproduces the "
+                "Pew table.",
+        "source": "results/reference/pew_intermarriage_2015.csv"}
+
+
+def measure_served_region_cv() -> dict:
+    """ADR 0002's evidence, recomputed when the battery file is on disk."""
+    path = DATA / "variance_points2.parquet"
+    if not path.exists():
+        return {"skipped": "variance_points2.parquet not on this machine"}
+    df = pd.read_parquet(path)
+    df["n_gate"] = np.minimum(df["n_alloc"], df["n_kish"])
+    served = df[(df["n_gate"] >= 100) & (df["est"] > 0)]
+    cv = served["rse"]
+    return {"points": int(len(served)),
+            "p50": round(float(cv.quantile(.50)), 4),
+            "p99": round(float(cv.quantile(.99)), 4),
+            "max": round(float(cv.max()), 4),
+            "points_above_20pct": int((cv > 0.20).sum()),
+            "note": "true 81-replicate CV over the 480-shape battery where "
+                    "intervals display (n_gate >= 100); the removed CV tiers "
+                    "could not have fired (ADR 0002)"}
 
 
 def main(build_dir: str) -> int:
@@ -98,6 +271,7 @@ def main(build_dir: str) -> int:
     build = engine.load_build(build_dir)
     report: dict = {"build": build.manifest["data_version"],
                     "model_version": engine.MODEL_VERSION,
+                    "generated_by": _git_stamp(),
                     "hard": {}, "soft": {}}
     hard_fail = []
 
@@ -122,23 +296,27 @@ def main(build_dir: str) -> int:
                 if k in v}
         res = engine.rank(build, engine.parse_request(body))
         persona_results[v["name"]] = res
+        if res["shown_unranked"]:
+            golden_ok = False   # the middle tier cannot fire (ADR 0002)
         for row in res["suppressed"]:
-            if row["reason"] not in ("n_below_100", "cv_above_30",
-                                     "empty_pool", "no_rivals"):
+            if row["reason"] not in ALLOWED_REASONS:
                 golden_ok = False
         for row in res["ranked"]:
             if not row["pool_moe"] > 0:
                 golden_ok = False
-    report["hard"]["suppression_reasons_and_intervals"] = {"pass": golden_ok}
+    report["hard"]["suppression_reasons_and_intervals"] = {
+        "pass": golden_ok, "allowed_reasons": sorted(ALLOWED_REASONS)}
     if not golden_ok:
         hard_fail.append("suppression")
+
+    # ---- hard: randomized cube-vs-SQL differential --------------------------
+    report["hard"]["cube_vs_sql_differential"] = check_differential(build, con)
+    if not report["hard"]["cube_vs_sql_differential"]["pass"]:
+        hard_fail.append("cube_vs_sql_differential")
 
     # ---- hard: rank stability across replicates ----------------------------
     stab = {}
     for v in GOLDEN_VECTORS:
-        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds")
-                if k in v}
-        req = engine.parse_request(body)
         res = persona_results[v["name"]]
         ranked_cbsas = [r["cbsa"] for r in res["ranked"]]
         if len(ranked_cbsas) < 12:
@@ -156,7 +334,7 @@ def main(build_dir: str) -> int:
         for i in range(1, 81):
             est_r = P[f"r{i}"].to_numpy()
             ratio_r = est_r / np.maximum(R[f"r{i}"].to_numpy(), 1e-9)
-            score_r = _score_from_vectors(build, ridx, est_r, ratio_r, wts)
+            score_r = score_vector(build, ridx, est_r, ratio_r, wts)
             top_r = {ranked_cbsas[k] for k in np.argsort(-score_r)[:10]}
             if len(top_r & base_top) >= STABILITY_OVERLAP:
                 hits += 1
@@ -169,6 +347,12 @@ def main(build_dir: str) -> int:
                                                 f"in >= {STABILITY_SHARE:.0%} of replicates"}
     if not ok:
         hard_fail.append("rank_stability")
+
+    # ---- hard: explanation invariants ---------------------------------------
+    report["hard"]["explanation_invariants"] = check_explanations(
+        build, persona_results)
+    if not report["hard"]["explanation_invariants"]["pass"]:
+        hard_fail.append("explanation_invariants")
 
     # ---- hard: adversarial artifacts ---------------------------------------
     quality = pd.read_csv(RESULTS / "phase1" / "metro_quality.csv",
@@ -202,13 +386,17 @@ def main(build_dir: str) -> int:
         hard_fail.append("adversarial_artifacts")
 
     # ---- soft: face validity ------------------------------------------------
+    # Every row carries pool, served margin and n so the magnitude check —
+    # the one that would have caught the mask bug — can be done from here.
     face = []
     for name, res in persona_results.items():
-        top = res["ranked"][:3]
-        for row in top:
+        for row in res["ranked"][:3]:
             top_pillar = max(row["contributions"], key=lambda c: c["value"])
-            face.append({"persona": name, "cbsa": row["cbsa"], "rank": row["rank"],
-                         "score": row["score"], "top_pillar": top_pillar["pillar"],
+            face.append({"persona": name, "cbsa": row["cbsa"],
+                         "rank": row["rank"], "score": row["score"],
+                         "pool": row["pool"], "pool_moe": row["pool_moe"],
+                         "n_unweighted": row["n_unweighted"],
+                         "top_pillar": top_pillar["pillar"],
                          "explanation": row["explanation"],
                          "flags": row["flags"]})
     report["soft"]["face_validity"] = {
@@ -272,6 +460,10 @@ def main(build_dir: str) -> int:
     for a in ("score", "ratio"):
         for b in ("alone_share", "med_age_marry_state"):
             mm = m[[a, b]].dropna()
+            if len(mm) < 2:
+                corr[f"{a}_vs_{b}"] = {"n": int(len(mm)),
+                                       "pearson": None, "spearman": None}
+                continue
             corr[f"{a}_vs_{b}"] = {
                 "n": int(len(mm)),
                 "pearson": round(float(pearsonr(mm[a], mm[b]).statistic), 3),
@@ -287,13 +479,24 @@ def main(build_dir: str) -> int:
                    "weak correlation is expected and reported as measured "
                    "(§11)"}
 
+    # ---- soft: pairing directional vs Pew -----------------------------------
+    report["soft"]["pairing_directional"] = check_pairing_directional(build)
+
+    # ---- soft: ADR 0002 evidence -------------------------------------------
+    report["soft"]["served_region_true_cv"] = measure_served_region_cv()
+
     report["hard_failures"] = hard_fail
     P2.mkdir(parents=True, exist_ok=True)
     (P2 / "validation_report.json").write_text(
         json.dumps(report, indent=2, default=str) + "\n")
     print(json.dumps({"hard_failures": hard_fail,
+                      "differential": report["hard"]["cube_vs_sql_differential"],
+                      "explanations": {k: v for k, v in
+                                       report["hard"]["explanation_invariants"].items()
+                                       if k != "problems"},
                       "rank_stability": {k: v for k, v in list(stab.items())[:4]},
                       "weight_sensitivity": report["soft"]["weight_sensitivity"]["kendall_tau"],
+                      "pairing": report["soft"]["pairing_directional"],
                       "external": corr}, indent=2))
     return 1 if hard_fail else 0
 
