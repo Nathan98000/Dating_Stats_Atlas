@@ -1,0 +1,563 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Face-Validity Review</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap"><style>
+:root{
+  --paper:#fbfbfc; --raised:#ffffff; --ink:#171a20; --ink-2:#4a515e;
+  --ink-3:#737b8a; --rule:#dfe2e8; --rule-2:#eceef2;
+  --accent:#2f5d8a; --pass:#3f7a52; --warn:#8a6a1f; --crit:#9a3d3d;
+  --chip:#eef1f6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14161a; --raised:#1a1d23; --ink:#e8eaee; --ink-2:#a8b0bd;
+    --ink-3:#7b8494; --rule:#2a2e36; --rule-2:#22262d;
+    --accent:#7fa9d4; --pass:#6ba57e; --warn:#c2a04f; --crit:#cf8080;
+    --chip:#23272f;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14161a; --raised:#1a1d23; --ink:#e8eaee; --ink-2:#a8b0bd;
+  --ink-3:#7b8494; --rule:#2a2e36; --rule-2:#22262d;
+  --accent:#7fa9d4; --pass:#6ba57e; --warn:#c2a04f; --crit:#cf8080;
+  --chip:#23272f;
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.55; margin:0; padding-inline:20px;
+  padding-block:0; -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px; margin:0 auto; padding-block:44px 72px;
+  display:flex; flex-direction:column; gap:40px}
+h1,h2,h3{font-family:Newsreader,Georgia,serif; font-weight:600;
+  text-wrap:balance; margin:0; letter-spacing:-0.01em}
+h1{font-size:2.1rem; line-height:1.15}
+h2{font-size:1.35rem}
+h3{font-size:1rem; font-family:"Public Sans",sans-serif; font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:600}
+.lede{color:var(--ink-2); max-width:62ch}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-variant-numeric:tabular-nums}
+header .meta{display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:14px;
+  font-size:.82rem; color:var(--ink-2)}
+header .meta b{color:var(--ink); font-weight:600}
+section{display:flex; flex-direction:column; gap:16px}
+.verdict{display:flex; align-items:baseline; gap:12px; padding:14px 18px;
+  border-left:3px solid var(--pass); background:var(--chip);
+  font-size:.95rem}
+.verdict.bad{border-left-color:var(--crit)}
+.gates{display:flex; flex-direction:column; border-top:1px solid var(--rule)}
+.gate{display:grid; grid-template-columns:150px 1fr auto; gap:4px 18px;
+  padding:14px 0 14px 14px; border-bottom:1px solid var(--rule-2);
+  border-left:3px solid var(--pass); align-items:baseline}
+.gate .name{font-weight:600}
+.gate .detail{color:var(--ink-2); font-size:.88rem}
+.gate .stat{font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--pass); font-weight:600}
+table{border-collapse:collapse; width:100%; font-size:.88rem}
+th,td{text-align:left; padding:7px 12px 7px 0; border-bottom:1px solid var(--rule-2)}
+th{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:600}
+td.num{text-align:right; padding-right:0}
+.scroller{overflow-x:auto}
+.note{font-size:.85rem; color:var(--ink-2); max-width:66ch}
+.persona{margin-top:26px; padding-bottom:6px; border-bottom:1px solid var(--rule);
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px}
+.persona .key{font-size:.8rem; color:var(--ink-3)}
+.row{display:grid; grid-template-columns:64px 1fr; gap:0 18px;
+  padding:16px 0; border-bottom:1px solid var(--rule-2)}
+.row .gutter{display:flex; flex-direction:column; gap:2px}
+.rank{font-family:Newsreader,Georgia,serif; font-size:1.5rem; line-height:1}
+.gutter .sub{font-size:.72rem; color:var(--ink-3)}
+.expl{display:flex; flex-direction:column; gap:3px}
+.expl div:first-child{font-weight:600}
+.expl div{color:var(--ink-2)}
+.expl div:first-child{color:var(--ink)}
+.chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+.chip{font-size:.72rem; padding:2px 8px; border-radius:2px;
+  background:var(--chip); color:var(--ink-2)}
+.chip.warn{color:var(--warn); box-shadow:inset 0 0 0 1px currentColor}
+.controls{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;
+  align-items:center}
+button{font:inherit; font-size:.82rem; padding:5px 12px; cursor:pointer;
+  background:var(--raised); color:var(--ink-2);
+  border:1px solid var(--rule); border-radius:2px}
+button:hover{border-color:var(--ink-3)}
+button[aria-pressed="true"]{background:var(--ink); color:var(--paper);
+  border-color:var(--ink)}
+button.flag[aria-pressed="true"]{background:var(--crit); border-color:var(--crit);
+  color:#fff}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+input[type=text]{font:inherit; font-size:.85rem; flex:1 1 260px; min-width:0;
+  padding:5px 9px; background:var(--raised); color:var(--ink);
+  border:1px solid var(--rule); border-radius:2px}
+.bar{position:sticky; top:0; z-index:5; background:var(--paper);
+  border-bottom:1px solid var(--rule); padding:10px 0; margin-bottom:-8px;
+  display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+  justify-content:space-between; font-size:.85rem}
+.bar .count{color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:20px;
+  font-size:.85rem; color:var(--ink-2); display:flex;
+  flex-direction:column; gap:10px}
+@media (max-width:560px){
+  .gate{grid-template-columns:1fr; padding-left:12px}
+  .row{grid-template-columns:44px 1fr; gap:0 12px}
+  h1{font-size:1.7rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><div class="wrap"><header>
+<p class="eyebrow">Dating Stats Atlas · validation</p>
+<h1>Face-Validity Review</h1>
+<p class="lede">Every result has to be explainable from its own attribution.
+Automated gates check that the build still does what it did yesterday; this
+page is the check on whether the answers are <em>plausible</em>. That part
+only a person can do.</p>
+<div class="meta"><span>build <b class="mono">dc23609755ad</b></span>
+<span>model <b class="mono">m1.2.0</b></span>
+<span>rows to review <b>33</b></span>
+<span>rendered 2026-09-16</span><span>generated by <b class="mono">ebe08e9f73 (dirty tree)</b> at 2026-09-16T14:32:24-0400</span></div>
+</header><div class="verdict"><b>All 6 hard gates pass.</b><span>Nothing blocks the build; the soft checks and the rows below are the judgment calls.</span></div><section><h2>Hard gates</h2><div class="gates"><div class="gate"><div class="name">Intervals</div><div class="detail">Served margin covers the true margin on <b>97.5%</b> of held-out points (gate ≥ 95%), overstating it by <b>23.4%</b> at the median (gate ≤ 25%), 51.5% at p90. Mechanism: one_sided_calibrated_bound (Gate 0 Option 2).</div><div class="stat" style="color:var(--pass)">pass</div></div><div class="gate"><div class="name">Suppression</div><div class="detail">The 12 pinned golden vectors reproduce exact rankings, scores, pools, served margins and suppression sets; only the n-only reason strings may appear (ADR 0002) and the middle tier never fires.</div><div class="stat" style="color:var(--pass)">pass</div></div><div class="gate"><div class="name">Cube vs SQL</div><div class="detail"><b>40</b> randomized filtered shapes computed through the cube mask path and by SQL over the contribution table; worst relative disagreement <b class="mono">2.03e-07</b> (tolerance 1e-03). The check that would have caught the Phase&nbsp;2a mask bug the day it was written.</div><div class="stat" style="color:var(--pass)">pass</div></div><div class="gate"><div class="name">Explanations</div><div class="detail"><b>1064</b> rendered explanations: no §12.3 banned vocabulary anywhere, and the lead phrase is position-unique — the duplicated-sentence defect this panel caught by hand is checked by machine now.</div><div class="stat" style="color:var(--pass)">pass</div></div><div class="gate"><div class="name">Rank stability</div><div class="detail">Worst persona holds its top ten in <b>87.5%</b> of replicate rankings (gate: &gt;= 8/10 overlap in &gt;= 80% of replicates). 10 personas evaluable, 2 skipped for too few ranked metros.</div><div class="stat" style="color:var(--pass)">pass</div></div><div class="gate"><div class="name">Group-quarters artifacts</div><div class="detail"><b>0</b> appearances by the 10-metro college/military/prison watchlist in any persona top ten. Rule: a watchlist metro in a top-10 fails if &gt; 15% of that persona&#x27;s pool there is noninstitutional GQ.</div><div class="stat" style="color:var(--pass)">pass</div></div></div></section><section><h2>Soft checks</h2>
+<h3>Weight sensitivity — Kendall's τ against baseline (target ≥ 0.85)</h3>
+<p class="note">Every pillar perturbed ±20%. If one pillar were secretly the
+whole model, its τ would collapse. Range here:
+<span class="mono">0.944–0.982</span>.</p>
+<div class="scroller"><table><thead><tr><th>Perturbation</th>
+<th class="num">τ</th></tr></thead><tbody><tr><td class="mono">pool+20%</td><td class="num mono">0.963</td></tr><tr><td class="mono">pool-20%</td><td class="num mono">0.944</td></tr><tr><td class="mono">balance+20%</td><td class="num mono">0.955</td></tr><tr><td class="mono">balance-20%</td><td class="num mono">0.953</td></tr><tr><td class="mono">reach+20%</td><td class="num mono">0.969</td></tr><tr><td class="mono">reach-20%</td><td class="num mono">0.959</td></tr><tr><td class="mono">cost+20%</td><td class="num mono">0.975</td></tr><tr><td class="mono">cost-20%</td><td class="num mono">0.973</td></tr><tr><td class="mono">lifestyle+20%</td><td class="num mono">0.977</td></tr><tr><td class="mono">lifestyle-20%</td><td class="num mono">0.982</td></tr></tbody></table></div>
+<h3>External correlation — 193 ranked metros</h3>
+<p class="note">the index measures opportunity, not outcome; partnership outcomes reflect decades of sorting and migration, so weak correlation is expected and reported as measured (§11)</p>
+<div class="scroller"><table><thead><tr><th>Pair</th><th class="num">Pearson</th>
+<th class="num">Spearman</th></tr></thead><tbody><tr><td>score vs alone share</td><td class="num mono">+0.221</td><td class="num mono">+0.216</td></tr><tr><td>score vs med age marry state</td><td class="num mono">+0.256</td><td class="num mono">+0.198</td></tr><tr><td>ratio vs alone share</td><td class="num mono">+0.250</td><td class="num mono">+0.197</td></tr><tr><td>ratio vs med age marry state</td><td class="num mono">+0.201</td><td class="num mono">+0.195</td></tr></tbody></table></div>
+<p class="note"><b>Source finding.</b> B12007 returns annotation jams for every CBSA in 2024 acs/acs5 — median age at first marriage is not published at metro level; state-level medians used through each metro&#x27;s primary state</p>
+</section><section id="review"><h2>The 33 rows</h2><p class="note">reviewed by hand each build; every result must be explainable from its attribution. Three things to look for: whether the <b>magnitude</b> is plausible for that metro, whether the stated edge actually follows from the <b>attribution</b>, and whether the <b>sentence itself</b> reads like something you would publish.</p><div class="bar"><span class="count" id="progress">0 reviewed · 0 flagged</span><button type="button" id="copy">Copy review notes</button></div><div class="persona"><h3>A woman32 ba men 75k</h3><span class="key mono">3 rows</span></div><div class="row" data-id="1"
+ data-persona="A_woman32_ba_men_75k" data-cbsa="41860" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">77.1</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>San Francisco-Oakland-Fremont, CA ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 74,521, +14.5 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 5.7, +11.6 points.</div><div>Also for it: social venues at 267.9 per 100k adults, +4.8 points.</div></div>
+<div class="chips"><span class="chip mono">pool 74,521 · margin at least 2,883 · n 1,867</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 41860</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok1" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag1" aria-pressed="false">Flag this</button>
+<input type="text" id="note1" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="2"
+ data-persona="A_woman32_ba_men_75k" data-cbsa="35620" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">76.1</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 190,165, +19.9 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 3.9, +5.9 points.</div><div>Also for it: social venues at 245.1 per 100k adults, +4.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 190,165 · margin at least 5,174 · n 3,904</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok2" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag2" aria-pressed="false">Flag this</button>
+<input type="text" id="note2" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="3"
+ data-persona="A_woman32_ba_men_75k" data-cbsa="31080" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">75.3</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #3 for you.</div><div>What moved it most for your weights: compatible people at 116,879, +18.0 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 3.9, +6.4 points.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.8 points.</div></div>
+<div class="chips"><span class="chip mono">pool 116,879 · margin at least 3,724 · n 2,970</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok3" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag3" aria-pressed="false">Flag this</button>
+<input type="text" id="note3" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>B man28 women never</h3><span class="key mono">3 rows</span></div><div class="row" data-id="4"
+ data-persona="B_man28_women_never" data-cbsa="35620" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">80.2</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 841,132, +22.4 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 7.3, +10.7 points.</div><div>Also for it: walkability where residents live at 12.6 on the 1–20 index, +4.7 points.</div></div>
+<div class="chips"><span class="chip mono">pool 841,132 · margin at least 10,170 · n 16,873</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok4" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag4" aria-pressed="false">Flag this</button>
+<input type="text" id="note4" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="5"
+ data-persona="B_man28_women_never" data-cbsa="31080" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">78.9</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 595,498, +22.4 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 7.1, +9.4 points.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +5.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 595,498 · margin at least 7,712 · n 15,061</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok5" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag5" aria-pressed="false">Flag this</button>
+<input type="text" id="note5" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="6"
+ data-persona="B_man28_women_never" data-cbsa="35380" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">75.1</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New Orleans-Metairie, LA ranks #3 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 8.4, +12.5 points against the typical ranked metro.</div><div>Also for it: compatible people at 42,790, +6.5 points.</div><div>Also for it: social venues at 282.4 per 100k adults, +4.6 points.</div></div>
+<div class="chips"><span class="chip mono">pool 42,790 · margin at least 2,517 · n 675</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 35380</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok6" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag6" aria-pressed="false">Flag this</button>
+<input type="text" id="note6" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>C woman38 grad men 100k</h3><span class="key mono">3 rows</span></div><div class="row" data-id="7"
+ data-persona="C_woman38_grad_men_100k" data-cbsa="31080" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">77.7</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 75,239, +17.6 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 4.2, +8.1 points.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.8 points.</div></div>
+<div class="chips"><span class="chip mono">pool 75,239 · margin at least 3,156 · n 1,776</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok7" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag7" aria-pressed="false">Flag this</button>
+<input type="text" id="note7" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="8"
+ data-persona="C_woman38_grad_men_100k" data-cbsa="41860" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">76.6</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>San Francisco-Oakland-Fremont, CA ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 48,091, +13.3 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 5.9, +11.9 points.</div><div>Also for it: social venues at 267.9 per 100k adults, +5.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 48,091 · margin at least 2,401 · n 1,182</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 41860</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok8" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag8" aria-pressed="false">Flag this</button>
+<input type="text" id="note8" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="9"
+ data-persona="C_woman38_grad_men_100k" data-cbsa="35620" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">75.9</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #3 for you.</div><div>What moved it most for your weights: compatible people at 106,615, +19.7 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 3.6, +5.0 points.</div><div>Also for it: social venues at 245.1 per 100k adults, +4.2 points.</div></div>
+<div class="chips"><span class="chip mono">pool 106,615 · margin at least 4,024 · n 2,178</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok9" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag9" aria-pressed="false">Flag this</button>
+<input type="text" id="note9" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>D man41 women 50k</h3><span class="key mono">3 rows</span></div><div class="row" data-id="10"
+ data-persona="D_man41_women_50k" data-cbsa="35620" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">81.0</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 376,941, +21.8 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 6.9, +11.2 points.</div><div>Also for it: walkability where residents live at 12.6 on the 1–20 index, +4.6 points.</div></div>
+<div class="chips"><span class="chip mono">pool 376,941 · margin at least 6,858 · n 8,090</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok10" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag10" aria-pressed="false">Flag this</button>
+<input type="text" id="note10" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="11"
+ data-persona="D_man41_women_50k" data-cbsa="41860" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">77.0</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>San Francisco-Oakland-Fremont, CA ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 107,333, +16.8 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 7.5, +11.6 points.</div><div>Also for it: walkability where residents live at 13.0 on the 1–20 index, +4.8 points.</div></div>
+<div class="chips"><span class="chip mono">pool 107,333 · margin at least 3,341 · n 2,787</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 41860</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok11" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag11" aria-pressed="false">Flag this</button>
+<input type="text" id="note11" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="12"
+ data-persona="D_man41_women_50k" data-cbsa="31080" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">73.9</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #3 for you.</div><div>What moved it most for your weights: compatible people at 244,159, +21.8 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.9 points.</div><div>Also for it: matches per 10 people looking at 5.7, +4.2 points.</div></div>
+<div class="chips"><span class="chip mono">pool 244,159 · margin at least 5,133 · n 6,171</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok12" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag12" aria-pressed="false">Flag this</button>
+<input type="text" id="note12" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>E black woman29 stress</h3><span class="key mono">3 rows</span></div><div class="row" data-id="13"
+ data-persona="E_black_woman29_stress" data-cbsa="35620" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">66.7</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 17,763, +15.8 points against the typical ranked metro.</div><div>Also for it: social venues at 245.1 per 100k adults, +5.0 points.</div><div>Against it: matches per 10 people looking at 0.3, -4.2 points.</div></div>
+<div class="chips"><span class="chip mono">pool 17,763 · margin at least 1,806 · n 308</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok13" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag13" aria-pressed="false">Flag this</button>
+<input type="text" id="note13" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="14"
+ data-persona="E_black_woman29_stress" data-cbsa="47900" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">61.3</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Washington-Arlington-Alexandria, DC-VA-MD-WV ranks #2 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 0.8, +12.5 points against the typical ranked metro.</div><div>Also for it: compatible people at 15,012, +9.8 points.</div><div>Against it: social venues at 173.5 per 100k adults, -5.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 15,012 · margin at least 1,644 · n 241</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 47900</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok14" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag14" aria-pressed="false">Flag this</button>
+<input type="text" id="note14" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="15"
+ data-persona="E_black_woman29_stress" data-cbsa="12060" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">41.4</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Atlanta-Sandy Springs-Roswell, GA ranks #3 for you.</div><div>What moved it most for your weights: compatible people at 8,696, -9.8 points against the typical ranked metro.</div><div>Against it: walkability where residents live at 8.5 on the 1–20 index, -5.0 points.</div><div>Also for it: matches per 10 people looking at 0.6, +4.2 points.</div></div>
+<div class="chips"><span class="chip mono">pool 8,696 · margin at least 1,393 · n 116</span><span class="chip">top pillar: cost</span><span class="chip mono">CBSA 12060</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok15" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag15" aria-pressed="false">Flag this</button>
+<input type="text" id="note15" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>race asian nh men</h3><span class="key mono">3 rows</span></div><div class="row" data-id="16"
+ data-persona="race_asian_nh_men" data-cbsa="31080" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">78.1</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 68,001, +18.4 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 2.0, +8.0 points.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.5 points.</div></div>
+<div class="chips"><span class="chip mono">pool 68,001 · margin at least 2,382 · n 2,129</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok16" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag16" aria-pressed="false">Flag this</button>
+<input type="text" id="note16" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="17"
+ data-persona="race_asian_nh_men" data-cbsa="41860" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">76.4</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>San Francisco-Oakland-Fremont, CA ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 46,785, +14.5 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 3.2, +10.2 points.</div><div>Also for it: social venues at 267.9 per 100k adults, +5.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 46,785 · margin at least 1,949 · n 1,409</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 41860</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok17" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag17" aria-pressed="false">Flag this</button>
+<input type="text" id="note17" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="18"
+ data-persona="race_asian_nh_men" data-cbsa="41940" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">76.0</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>San Jose-Sunnyvale-Santa Clara, CA ranks #3 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 6.5, +12.5 points against the typical ranked metro.</div><div>Also for it: compatible people at 33,719, +11.2 points.</div><div>Also for it: walkability where residents live at 13.6 on the 1–20 index, +5.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 33,719 · margin at least 1,725 · n 884</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 41940</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok18" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag18" aria-pressed="false">Flag this</button>
+<input type="text" id="note18" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>race hispanic women</h3><span class="key mono">3 rows</span></div><div class="row" data-id="19"
+ data-persona="race_hispanic_women" data-cbsa="31080" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">76.9</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 338,044, +22.3 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 5.2, +6.1 points.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.9 points.</div></div>
+<div class="chips"><span class="chip mono">pool 338,044 · margin at least 5,541 · n 9,160</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok19" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag19" aria-pressed="false">Flag this</button>
+<input type="text" id="note19" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="20"
+ data-persona="race_hispanic_women" data-cbsa="35620" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">70.6</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 259,489, +21.7 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 12.6 on the 1–20 index, +4.3 points.</div><div>Also for it: social venues at 245.1 per 100k adults, +4.1 points.</div></div>
+<div class="chips"><span class="chip mono">pool 259,489 · margin at least 5,822 · n 5,134</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok20" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag20" aria-pressed="false">Flag this</button>
+<input type="text" id="note20" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="21"
+ data-persona="race_hispanic_women" data-cbsa="21340" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">67.9</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>El Paso, TX ranks #3 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 9.1, +11.4 points against the typical ranked metro.</div><div>Also for it: compatible people at 26,316, +5.5 points.</div><div>Also for it: median rent at 1,079 $/mo, +3.2 points.</div></div>
+<div class="chips"><span class="chip mono">pool 26,316 · margin at least 1,823 · n 504</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 21340</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok21" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag21" aria-pressed="false">Flag this</button>
+<input type="text" id="note21" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>race white nh grad multi</h3><span class="key mono">3 rows</span></div><div class="row" data-id="22"
+ data-persona="race_white_nh_grad_multi" data-cbsa="35620" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">66.0</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 46,735, +20.3 points against the typical ranked metro.</div><div>Against it: matches per 10 people looking at 4.6, -5.2 points.</div><div>Also for it: social venues at 245.1 per 100k adults, +4.3 points.</div></div>
+<div class="chips"><span class="chip mono">pool 46,735 · margin at least 2,704 · n 963</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok22" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag22" aria-pressed="false">Flag this</button>
+<input type="text" id="note22" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="23"
+ data-persona="race_white_nh_grad_multi" data-cbsa="31080" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">62.2</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 25,618, +14.5 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.7 points.</div><div>Against it: matches per 10 people looking at 5.1, -3.6 points.</div></div>
+<div class="chips"><span class="chip mono">pool 25,618 · margin at least 1,844 · n 663</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok23" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag23" aria-pressed="false">Flag this</button>
+<input type="text" id="note23" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="24"
+ data-persona="race_white_nh_grad_multi" data-cbsa="19740" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">61.2</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Denver-Aurora-Centennial, CO ranks #3 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 8.1, +12.5 points against the typical ranked metro.</div><div>Also for it: compatible people at 10,886, +3.4 points.</div><div>Also for it: walkability where residents live at 11.8 on the 1–20 index, +3.1 points.</div></div>
+<div class="chips"><span class="chip mono">pool 10,886 · margin at least 1,075 · n 353</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 19740</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok24" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag24" aria-pressed="false">Flag this</button>
+<input type="text" id="note24" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>broad any</h3><span class="key mono">3 rows</span></div><div class="row" data-id="25"
+ data-persona="broad_any" data-cbsa="35620" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">68.7</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 3,518,433, +22.8 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 12.6 on the 1–20 index, +4.7 points.</div><div>Also for it: social venues at 245.1 per 100k adults, +4.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 3,518,433 · margin at least 17,990 · n 76,562</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok25" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag25" aria-pressed="false">Flag this</button>
+<input type="text" id="note25" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="26"
+ data-persona="broad_any" data-cbsa="16980" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">66.6</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Chicago-Naperville-Elgin, IL-IN ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 1,658,703, +22.5 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 11.7 on the 1–20 index, +3.8 points.</div><div>Against it: price level, goods at 107.3 (US = 100), -1.7 points.</div></div>
+<div class="chips"><span class="chip mono">pool 1,658,703 · margin at least 12,566 · n 34,822</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 16980</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok26" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag26" aria-pressed="false">Flag this</button>
+<input type="text" id="note26" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="27"
+ data-persona="broad_any" data-cbsa="12060" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">66.5</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Atlanta-Sandy Springs-Roswell, GA ranks #3 for you.</div><div>What moved it most for your weights: compatible people at 1,168,423, +19.8 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 24.8, +10.6 points.</div><div>Against it: median rent at 1,672 $/mo, -2.4 points.</div></div>
+<div class="chips"><span class="chip mono">pool 1,168,423 · margin at least 11,326 · n 20,779</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 12060</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok27" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag27" aria-pressed="false">Flag this</button>
+<input type="text" id="note27" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>slider best odds</h3><span class="key mono">3 rows</span></div><div class="row" data-id="28"
+ data-persona="slider_best_odds" data-cbsa="14500" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">85.4</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Boulder, CO ranks #1 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 10.3, +24.9 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 12.7 on the 1–20 index, +4.8 points.</div><div>Also for it: college students at 196.3 per 1k adults, +4.7 points.</div></div>
+<div class="chips"><span class="chip mono">pool 15,135 · margin at least 1,026 · n 568</span><span class="chip warn">missing_features:pleasant_days</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 14500</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok28" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag28" aria-pressed="false">Flag this</button>
+<input type="text" id="note28" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="29"
+ data-persona="slider_best_odds" data-cbsa="20260" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">83.3</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Duluth, MN-WI ranks #2 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 10.2, +23.8 points against the typical ranked metro.</div><div>Also for it: social venues at 246.3 per 100k adults, +4.1 points.</div><div>Also for it: median rent at 990 $/mo, +3.0 points.</div></div>
+<div class="chips"><span class="chip mono">pool 9,485 · margin at least 900 · n 270</span><span class="chip warn">low_allocation_purity</span><span class="chip warn">gq_flag</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 20260</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok29" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag29" aria-pressed="false">Flag this</button>
+<input type="text" id="note29" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="30"
+ data-persona="slider_best_odds" data-cbsa="24580" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">81.2</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Green Bay, WI ranks #3 for you.</div><div>What moved it most for your weights: matches per 10 people looking at 10.9, +26.9 points against the typical ranked metro.</div><div>Against it: walkability where residents live at 6.8 on the 1–20 index, -3.9 points.</div><div>Also for it: social venues at 232.7 per 100k adults, +3.4 points.</div></div>
+<div class="chips"><span class="chip mono">pool 13,130 · margin at least 1,594 · n 150</span><span class="chip">top pillar: balance</span><span class="chip mono">CBSA 24580</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok30" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag30" aria-pressed="false">Flag this</button>
+<input type="text" id="note30" placeholder="note (optional)">
+</div></div></div><div class="persona"><h3>same sex pool</h3><span class="key mono">3 rows</span></div><div class="row" data-id="31"
+ data-persona="same_sex_pool" data-cbsa="31080" data-rank="1">
+<div class="gutter"><span class="rank">#1</span>
+<span class="sub mono">78.5</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>Los Angeles-Long Beach-Anaheim, CA ranks #1 for you.</div><div>What moved it most for your weights: compatible people at 283,863, +22.3 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 9.9, +8.5 points.</div><div>Also for it: walkability where residents live at 13.4 on the 1–20 index, +4.9 points.</div></div>
+<div class="chips"><span class="chip mono">pool 283,863 · margin at least 5,488 · n 7,421</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 31080</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok31" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag31" aria-pressed="false">Flag this</button>
+<input type="text" id="note31" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="32"
+ data-persona="same_sex_pool" data-cbsa="41860" data-rank="2">
+<div class="gutter"><span class="rank">#2</span>
+<span class="sub mono">75.6</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>San Francisco-Oakland-Fremont, CA ranks #2 for you.</div><div>What moved it most for your weights: compatible people at 139,487, +17.8 points against the typical ranked metro.</div><div>Also for it: matches per 10 people looking at 10.0, +9.8 points.</div><div>Also for it: walkability where residents live at 13.0 on the 1–20 index, +4.8 points.</div></div>
+<div class="chips"><span class="chip mono">pool 139,487 · margin at least 3,795 · n 3,633</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 41860</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok32" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag32" aria-pressed="false">Flag this</button>
+<input type="text" id="note32" placeholder="note (optional)">
+</div></div></div><div class="row" data-id="33"
+ data-persona="same_sex_pool" data-cbsa="35620" data-rank="3">
+<div class="gutter"><span class="rank">#3</span>
+<span class="sub mono">72.4</span>
+<span class="sub">score</span></div>
+<div><div class="expl"><div>New York-Newark-Jersey City, NY-NJ ranks #3 for you.</div><div>What moved it most for your weights: compatible people at 459,277, +22.3 points against the typical ranked metro.</div><div>Also for it: walkability where residents live at 12.6 on the 1–20 index, +4.5 points.</div><div>Also for it: social venues at 245.1 per 100k adults, +4.1 points.</div></div>
+<div class="chips"><span class="chip mono">pool 459,277 · margin at least 7,650 · n 9,600</span><span class="chip">top pillar: pool</span><span class="chip mono">CBSA 35620</span></div>
+<div class="controls">
+<button type="button" class="ok" id="ok33" aria-pressed="false">Reads right</button>
+<button type="button" class="flag" id="flag33" aria-pressed="false">Flag this</button>
+<input type="text" id="note33" placeholder="note (optional)">
+</div></div></div></section><footer>
+<p><b>The two gaps this page named in Phase 2a are closed.</b>
+Every row now carries its pool, served margin and n, so the magnitude check
+can be done from here. The duplicated lead sentence was diagnosed — the
+committed panel had been rendered by a pre-commit renderer that keyed
+phrasing on the magnitude bucket alone, and was never re-rendered after the
+committed template fixed it — so this report is now stamped with the git
+state that produced it, and a hard gate asserts the lead phrase is
+position-unique in every rendered explanation.</p>
+</footer></div><script>
+(function(){
+  var KEY = 'dsa-review-' + document.querySelector('.meta b').textContent.trim();
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); }
+                   catch (e) {} }
+  function progress(){
+    var done = 0, flagged = 0;
+    Object.keys(state).forEach(function(k){
+      if (state[k].v) done++;
+      if (state[k].v === 'flag') flagged++;
+    });
+    document.getElementById('progress').textContent =
+      done + ' of ' + document.querySelectorAll('.row').length +
+      ' reviewed · ' + flagged + ' flagged';
+  }
+  document.querySelectorAll('.row').forEach(function(row){
+    var id = row.dataset.id;
+    var ok = row.querySelector('.ok'), flag = row.querySelector('.flag');
+    var note = row.querySelector('input');
+    var s = state[id] || (state[id] = {v: null, n: ''});
+    function paint(){
+      ok.setAttribute('aria-pressed', s.v === 'ok');
+      flag.setAttribute('aria-pressed', s.v === 'flag');
+    }
+    note.value = s.n || '';
+    paint();
+    ok.addEventListener('click', function(){
+      s.v = s.v === 'ok' ? null : 'ok'; paint(); save(); progress(); });
+    flag.addEventListener('click', function(){
+      s.v = s.v === 'flag' ? null : 'flag'; paint(); save(); progress(); });
+    note.addEventListener('input', function(){ s.n = note.value; save(); });
+  });
+  progress();
+  document.getElementById('copy').addEventListener('click', function(){
+    var meta = document.querySelectorAll('.meta b');
+    var out = ['# Face-validity review — build ' + meta[0].textContent.trim() +
+               ', model ' + meta[1].textContent.trim(), ''];
+    var flagged = [], noted = [];
+    document.querySelectorAll('.row').forEach(function(row){
+      var s = state[row.dataset.id] || {};
+      var label = row.dataset.persona + ' · CBSA ' + row.dataset.cbsa +
+                  ' · #' + row.dataset.rank;
+      if (s.v === 'flag') flagged.push('- ' + label + (s.n ? ' — ' + s.n : ''));
+      else if (s.n) noted.push('- ' + label + ' — ' + s.n);
+    });
+    out.push('Flagged: ' + flagged.length + ' of ' +
+             document.querySelectorAll('.row').length);
+    if (flagged.length) { out.push('', '## Flagged', ''); out = out.concat(flagged); }
+    if (noted.length) { out.push('', '## Notes on rows that read right', '');
+                        out = out.concat(noted); }
+    var text = out.join('\n');
+    var btn = document.getElementById('copy');
+    function done(){ btn.textContent = 'Copied'; 
+      setTimeout(function(){ btn.textContent = 'Copy review notes'; }, 1600); }
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done);
+    else { window.prompt('Copy:', text); }
+  });
+})();
+</script></body></html>
