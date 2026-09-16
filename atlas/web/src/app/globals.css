@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — the ONE place the site's look lives (Phase 2b item 9).
+   The palette and type stack are shared with the project's validation
+   review page (pipeline/build/report_html.py), so the whole product reads
+   as one statistical publication. Re-skin here, not in components.
+--------------------------------------------------------------------------- */
+:root {
+  --paper: #fbfbfc;
+  --raised: #ffffff;
+  --ink: #171a20;
+  --ink-2: #4a515e;
+  --ink-3: #5b6472; /* 5.8:1 on paper — the review page's #737b8a sat at 4.1 */
+  --rule: #dfe2e8;
+  --rule-2: #eceef2;
+  --accent: #2f5d8a;
+  --pass: #3f7a52;
+  --warn: #8a6a1f;
+  --crit: #9a3d3d;
+  --chip: #eef1f6;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14161a;
+    --raised: #1a1d23;
+    --ink: #e8eaee;
+    --ink-2: #a8b0bd;
+    --ink-3: #7b8494;
+    --rule: #2a2e36;
+    --rule-2: #22262d;
+    --accent: #7fa9d4;
+    --pass: #6ba57e;
+    --warn: #c2a04f;
+    --crit: #cf8080;
+    --chip: #23272f;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-2: var(--rule-2);
+  --color-accent: var(--accent);
+  --color-pass: var(--pass);
+  --color-warn: var(--warn);
+  --color-crit: var(--crit);
+  --color-chip: var(--chip);
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-public-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-public-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* figures align in columns wherever they sit */
+.num {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* the size-vs-odds slider — one control, styled once */
+input[type="range"].svo {
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--rule);
+  border-radius: 0;
+}
+input[type="range"].svo::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+input[type="range"].svo::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+input[type="range"].svo:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+/* prose for the methodology page (rendered from docs/methodology.md) */
+.prose-method {
+  max-width: 68ch;
+  line-height: 1.65;
+}
+.prose-method h1 { font-family: var(--font-newsreader), Georgia, serif; font-size: 2rem; font-weight: 600; margin: 0 0 1rem; letter-spacing: -0.01em; }
+.prose-method h2 { font-family: var(--font-newsreader), Georgia, serif; font-size: 1.35rem; font-weight: 600; margin: 2.2rem 0 0.6rem; }
+.prose-method p { margin: 0.7rem 0; color: var(--ink-2); }
+.prose-method strong { color: var(--ink); }
+.prose-method blockquote { border-left: 3px solid var(--accent); padding: 0.4rem 1rem; margin: 1rem 0; color: var(--ink); background: var(--chip); }
+.prose-method table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 1rem 0; }
+.prose-method th, .prose-method td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--rule-2); color: var(--ink-2); }
+.prose-method th { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.prose-method ul { padding-left: 1.2rem; list-style: disc; color: var(--ink-2); }
+.prose-method li { margin: 0.4rem 0; }
+.prose-method code { font-family: var(--font-plex-mono), monospace; font-size: 0.9em; background: var(--chip); padding: 0 4px; }
+.prose-method a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
