@@ -1,4 +1,4 @@
-"""Build the pinned 12-metro test fixture and regenerate goldens (m1.1.0).
+"""Build the pinned 12-metro test fixture and regenerate goldens (m1.2.0).
 
 Run AFTER a full cube build:
 
@@ -122,6 +122,9 @@ def make_fixture(build_dir: Path) -> None:
     (FIXTURE / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     feats.set_index("cbsa").loc[chosen].reset_index().to_parquet(
         FIXTURE / "features.parquet", index=False)
+    cells = pd.read_parquet(Path(build_dir) / "pairing_cells.parquet")
+    cells[cells["cbsa"].astype(str).isin(set(chosen))].to_parquet(
+        FIXTURE / "pairing_cells.parquet", index=False)
     metros_meta = [{"cbsa": c, "title": build.titles[c],
                     "ranked_set": bool(build.ranked_set[build.metro_levels.index(c)])}
                    for c in chosen]
@@ -133,17 +136,27 @@ def make_fixture(build_dir: Path) -> None:
         body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds")
                 if k in v}
         res = engine.rank(fx, engine.parse_request(body))
-        vectors.append({
-            "name": v["name"], "request": body,
-            "expect": {
-                "ranked_cbsas": [r["cbsa"] for r in res["ranked"]],
-                "scores": {r["cbsa"]: r["score"] for r in res["ranked"]},
-                "pools": {r["cbsa"]: r["pool"] for r in res["ranked"]},
-                "pool_moes": {r["cbsa"]: r["pool_moe"] for r in res["ranked"]},
-                "shown_unranked_cbsas": sorted(r["cbsa"] for r in res["shown_unranked"]),
-                "suppressed": {r["cbsa"]: r["reason"] for r in res["suppressed"]},
-                "counts": res["counts"],
-            }})
+        expect = {
+            "ranked_cbsas": [r["cbsa"] for r in res["ranked"]],
+            "scores": {r["cbsa"]: r["score"] for r in res["ranked"]},
+            "pools": {r["cbsa"]: r["pool"] for r in res["ranked"]},
+            "pool_moes": {r["cbsa"]: r["pool_moe"] for r in res["ranked"]},
+            "shown_unranked_cbsas": sorted(r["cbsa"] for r in res["shown_unranked"]),
+            "suppressed": {r["cbsa"]: r["reason"] for r in res["suppressed"]},
+            "counts": res["counts"],
+        }
+        if v["seeking"].get("race_ethnicity"):
+            # Pin the §10.4 counterweight: rate, replicate-measured margin
+            # and gate for the top ranked metros of every race-filtered
+            # vector (None where the pairing cell sits below the gate).
+            expect["cross_group"] = {
+                r["cbsa"]: ([r["cross_group_pairing_rate"],
+                             r.get("cross_group_pairing_moe"),
+                             r.get("cross_group_pairing_n")]
+                            if r["cross_group_pairing_rate"] is not None
+                            else None)
+                for r in res["ranked"][:3]}
+        vectors.append({"name": v["name"], "request": body, "expect": expect})
     n_race = sum(1 for v in GOLDEN_VECTORS
                  if v["seeking"].get("race_ethnicity"))
     assert n_race >= 3

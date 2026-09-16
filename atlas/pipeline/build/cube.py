@@ -22,6 +22,12 @@ offsets in features.parquet, which also carries the static context features
 and missing-feature flags. Pillar weights and slider constants flow
 registry -> manifest["model_defaults"] -> model, so the registry stays the
 single home for both.
+m1.2.0: features.parquet gains the interim cross-group pairing composition
+columns and the build ships pairing_cells.parquet (per metro x sex x race
+replicate sums for serve-time counterweight margins); the manifest's
+features_block carries the registry display fields and a pillars block so
+no user-facing label lives in code; tier_policy is the n-only gate
+(ADR 0002).
 The build directory is immutable and content-addressed: data_version is a
 hash over the file hashes; manifest.json carries both plus every source
 vintage.
@@ -81,6 +87,9 @@ def build(out_root=None) -> str:
     metros = pd.read_csv(RESULTS / "metros.csv", dtype={"cbsa": str})
     reg = load_registry()
     statics = pd.read_csv(P2 / "static_features.csv", dtype={"cbsa": str})
+    pairing_m = pd.read_csv(P2 / "pairing_metro.csv", dtype={"cbsa": str})
+    pairing_cells = DATA / "pairing_cells.parquet"
+    assert pairing_cells.exists(), "run build.pairing before build.cube"
     iv = json.loads((P2 / "interval_validation.json").read_text())
     ioff = pd.read_csv(P2 / "interval_metro_offsets.csv", dtype={"cbsa": str})
     geo = json.loads((RESULTS / "geography_manifest.json").read_text())
@@ -134,6 +143,7 @@ def build(out_root=None) -> str:
                    "pleasant_days", "students_per_1k_adults", "feature_flags"]
     feats = (quality.merge(metros[["cbsa", "states", "n_counties"]], on="cbsa")
              .merge(statics[["cbsa"] + static_cols], on="cbsa", how="left")
+             .merge(pairing_m, on="cbsa", how="left")
              .merge(ioff.rename(columns={"offset": "interval_offset"}),
                     on="cbsa", how="left"))
     feats = feats.set_index("cbsa").loc[metro_levels].reset_index()
@@ -146,6 +156,7 @@ def build(out_root=None) -> str:
     np.save(tmp / "count_cube.npy", count_cube)
     np.save(tmp / "sumw2_cube.npy", sumw2_cube)
     feats.to_parquet(tmp / "features.parquet", index=False)
+    shutil.copyfile(pairing_cells, tmp / "pairing_cells.parquet")
     (tmp / "metros.json").write_text(json.dumps(
         [{"cbsa": r["cbsa"], "title": r["cbsa_title"],
           "ranked_set": bool(r["ranked_set"])} for _, r in feats.iterrows()],
@@ -193,19 +204,32 @@ def build(out_root=None) -> str:
             "used_by_api": False,
         },
         "tier_policy": {
-            "suppress": "min(n_alloc, kish) < 100, or served CV > 30%, or "
-                        "empty pool/rivals",
-            "shown_unranked": "20% < served CV <= 30% (D08, computed on the "
-                              "served upper-bound CV — errs toward not ranking)",
-            "ranked": "served CV <= 20% and n_gate >= 100",
+            "suppress": "min(n_alloc, kish) < 100, or empty pool, or empty "
+                        "rival set — the gate is n alone (ADR 0002)",
+            "shown_unranked": "permanently empty: the CV tiers are removed "
+                              "(measured max true CV 11.8%, p99 9.8% in the "
+                              "served region of the 480-shape battery — the "
+                              "rules could not fire)",
+            "ranked": "everything else in the ranked set; the served margin "
+                      "still renders beside every population figure",
         },
         "model_defaults": {
-            "pillar_weights": reg.pillars,
+            "pillar_weights": reg.pillar_weights,
             "size_vs_odds": reg.size_vs_odds,
+        },
+        "pillars": {
+            k: {"display_name": p.display_name, "definition": p.definition,
+                "default_weight": p.default_weight}
+            for k, p in reg.pillars.items()
         },
         "features_block": {
             f.id: {"pillar": f.pillar, "kind": f.kind, "direction": f.direction,
                    "weight_in_pillar": f.weight_in_pillar, "status": f.status,
+                   "display_name": f.display_name, "unit": f.unit,
+                   "unit_short": f.unit_short,
+                   "definition": f.definition,
+                   "display_scale": f.display_scale,
+                   "display_decimals": f.display_decimals,
                    "provenance": f.provenance}
             for f in reg.features.values()
         },

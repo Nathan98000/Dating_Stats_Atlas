@@ -1,8 +1,11 @@
-{{ name }} ranks #{{ record.rank }} for you.
-{% for s in strengths %}
-{% if loop.first %}{% if s.bucket == "large" %}Its biggest edge is {{ s.noun }}{% elif s.bucket == "moderate" %}It is helped most by {{ s.noun }}{% else %}It gets a slight lift from {{ s.noun }}{% endif %}{% else %}{% if s.bucket == "large" %}It also gains strongly from {{ s.noun }}{% elif s.bucket == "moderate" %}It also gains from {{ s.noun }}{% else %}It gains a little from {{ s.noun }}{% endif %}{% endif %}{% if s.pillar == "pool" and s.value is not none and comparator_name %} — {{ "%.1f"|format(s.value) }}× the compatible pool of {{ comparator_name }}{% elif s.value is not none %} ({{ s.value }}){% endif %}.
+{{ name }} ranks #{{ rank }} for you.
+{% if movers %}
+{% for m in movers %}
+{% if loop.first %}What moved it most for your weights: {{ m.label|lower }} at {{ m.value }}{{ m.unit_suffix }}, {{ m.points }} points against the typical ranked metro.
+{% elif m.positive %}Also for it: {{ m.label|lower }} at {{ m.value }}{{ m.unit_suffix }}, {{ m.points }} points.
+{% else %}Against it: {{ m.label|lower }} at {{ m.value }}{{ m.unit_suffix }}, {{ m.points }} points.
+{% endif %}
 {% endfor %}
-{% for w in weaknesses %}
-{% if loop.first %}{% if w.bucket == "large" %}Its biggest drag is {{ w.noun }}{% elif w.bucket == "moderate" %}It is held back by {{ w.noun }}{% else %}It loses a little on {{ w.noun }}{% endif %}{% else %}{% if w.bucket == "large" %}It also loses badly on {{ w.noun }}{% elif w.bucket == "moderate" %}It also loses on {{ w.noun }}{% else %}It loses slightly on {{ w.noun }}{% endif %}{% endif %}{% if w.value is not none %} ({{ w.value }}){% endif %}.
-{% endfor %}
-{% if comparator_name %}Compared with {{ comparator_name }} — the closest metro by population that lands somewhere else — this is the trade you are making.{% endif %}
+{% else %}
+Nothing moves it far from the typical ranked metro under your weights; its rank comes from small edges across the board.
+{% endif %}

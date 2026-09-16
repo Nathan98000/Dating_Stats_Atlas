@@ -6,12 +6,16 @@ validation suite all load builds through exactly this code path, so the
 axis contract has one enforcement point. scoring/suppression/explain import
 nothing from it beyond the Build dataclass.
 
-m1.1.0 artifact changes: variance.npy (the Phase 1 diagnostic power law) is
-retired; the interval mechanism lives in manifest["interval_model"] plus a
-per-metro offset column in features.parquet, and features.parquet carries
-the static context features, purity, pool population and missing-feature
-flags. Pillar weights and slider constants arrive through
-manifest["model_defaults"], whose source of truth is the feature registry.
+m1.2.0 artifact changes: features.parquet gains the metro-level interim
+cross-group pairing columns; pairing_cells.parquet ships the per
+metro x sex x race pairing cells with their 80 replicate sums (the §10.4
+counterweight's margins are measured directly at serve time); the manifest
+features_block carries the registry display fields so no user-facing label
+lives in code. The loader now also refuses a build whose model_version
+disagrees with the engine's — a build produced under one model version
+loaded silently into another is the same class of failure as the Phase 1
+mask bug: two things that must agree, with nothing checking that they do.
+Pass allow_model_mismatch=True only for deliberate cross-version work.
 """
 from __future__ import annotations
 
@@ -26,11 +30,24 @@ import pandas as pd
 from atlas.model.intervals import IntervalModel
 from atlas.model.preferences import (EDU_LEVELS, INC_LEVELS, MARITAL_LEVELS,
                                      N_FLAT, RACE_LEVELS, SEX_LEVELS)
-from atlas.model.versions import SCHEMA_VERSION
+from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
 STATIC_FEATURES = ["median_gross_rent", "rpp_goods", "rpp_services_other",
                    "venues_per_100k", "resident_walkability_index",
                    "pleasant_days", "students_per_1k_adults"]
+LEGEND_DISPLAY_KEYS = ("display_name", "unit", "definition")
+
+
+@dataclass
+class PairingCells:
+    """Interim cross-group pairing cells (metro, sex, race), with the 80
+    replicate numerator/denominator sums for direct margin measurement."""
+    num: np.ndarray        # (n_metros, 2, 8) weighted out-group partnered
+    den: np.ndarray        # (n_metros, 2, 8) weighted partnered
+    n_alloc: np.ndarray    # (n_metros, 2, 8) allocated respondents
+    sumw2: np.ndarray      # (n_metros, 2, 8) sum of squared weights
+    num_r: np.ndarray      # (n_metros, 2, 8, 80)
+    den_r: np.ndarray      # (n_metros, 2, 8, 80)
 
 
 @dataclass
@@ -45,10 +62,15 @@ class Build:
     sumw2_flat: np.ndarray
     pool_pop: np.ndarray            # 18-70 noninst population per metro
     purity: np.ndarray
+    gq_flag: np.ndarray             # bool (n_metros,) — dorm/barracks share
     static: dict = field(default_factory=dict)            # feature -> array
     static_direction: dict = field(default_factory=dict)  # feature -> +-1
     static_weight: dict = field(default_factory=dict)     # feature -> w in pillar
     feature_flags: list = field(default_factory=list)     # per metro, str
+    legend: dict = field(default_factory=dict)            # feature -> display/meta
+    pillars: dict = field(default_factory=dict)           # pillar -> display/weight
+    pairing_metro: dict = field(default_factory=dict)     # rate/moe/n arrays
+    pairing: PairingCells | None = None
     intervals: IntervalModel | None = None
 
 
@@ -68,9 +90,43 @@ def _validate_axes(manifest: dict) -> list[str]:
     return axes[0]["levels"]
 
 
-def load_build(path: str | Path, verify_hashes: bool = True) -> Build:
+def _load_pairing(path: Path, metro_levels: list[str]) -> PairingCells:
+    df = pd.read_parquet(path / "pairing_cells.parquet")
+    df["cbsa"] = df["cbsa"].astype(str)
+    n = len(metro_levels)
+    midx = {c: i for i, c in enumerate(metro_levels)}
+    sidx = {s: i for i, s in enumerate(SEX_LEVELS)}
+    ridx = {r: i for i, r in enumerate(RACE_LEVELS)}
+    shape = (n, 2, 8)
+    arrs = {k: np.zeros(shape, dtype=np.float64)
+            for k in ("num", "den", "n_alloc", "sumw2")}
+    num_r = np.zeros(shape + (80,), dtype=np.float32)
+    den_r = np.zeros(shape + (80,), dtype=np.float32)
+    ii = (df["cbsa"].map(midx).to_numpy(),
+          df["sex"].map(sidx).to_numpy(),
+          df["race8"].map(ridx).to_numpy())
+    assert not any(np.isnan(x.astype(float)).any() for x in ii), (
+        "pairing_cells carries an unknown metro/sex/race level")
+    for k in arrs:
+        arrs[k][ii] = df[k].to_numpy(dtype=np.float64)
+    rep_num = df[[f"num_r{i}" for i in range(1, 81)]].to_numpy(dtype=np.float32)
+    rep_den = df[[f"den_r{i}" for i in range(1, 81)]].to_numpy(dtype=np.float32)
+    num_r[ii] = rep_num
+    den_r[ii] = rep_den
+    return PairingCells(num=arrs["num"], den=arrs["den"],
+                        n_alloc=arrs["n_alloc"], sumw2=arrs["sumw2"],
+                        num_r=num_r, den_r=den_r)
+
+
+def load_build(path: str | Path, verify_hashes: bool = True,
+               allow_model_mismatch: bool = False) -> Build:
     path = Path(path)
     manifest = json.loads((path / "manifest.json").read_text())
+    if not allow_model_mismatch:
+        assert manifest["model_version"] == MODEL_VERSION, (
+            f"build model_version {manifest['model_version']!r} != engine "
+            f"{MODEL_VERSION!r}; regenerate the build, or pass "
+            f"allow_model_mismatch=True for deliberate cross-version work")
     metro_levels = _validate_axes(manifest)
     n = len(metro_levels)
 
@@ -102,8 +158,16 @@ def load_build(path: str | Path, verify_hashes: bool = True) -> Build:
     feats = feats.set_index("cbsa").loc[metro_levels]
     fb = manifest["features_block"]
     static = {f: feats[f].to_numpy(dtype=np.float64) for f in STATIC_FEATURES}
-    for f in STATIC_FEATURES:
+    for f in STATIC_FEATURES + ["cross_group_pairing_rate"]:
         assert f in fb, f"feature {f} missing from manifest features_block"
+    for fid, entry in fb.items():
+        missing = [k for k in LEGEND_DISPLAY_KEYS if not entry.get(k)]
+        assert not missing, (
+            f"manifest features_block[{fid}] missing display fields {missing} "
+            f"(ADR 0003: no user-facing label lives in code)")
+    assert "pillars" in manifest and all(
+        p.get("display_name") for p in manifest["pillars"].values()), (
+        "manifest must carry pillar display names (ADR 0003)")
 
     im_cfg = manifest["interval_model"]
     assert im_cfg["used_by_api"] is True, "interval model not marked servable"
@@ -116,6 +180,12 @@ def load_build(path: str | Path, verify_hashes: bool = True) -> Build:
         meta=dict(im_cfg.get("validation", {})))
     assert intervals.race_levels == RACE_LEVELS
 
+    pairing_metro = {
+        "rate": feats["cross_group_pairing_rate"].to_numpy(dtype=np.float64),
+        "moe": feats["cross_group_pairing_moe"].to_numpy(dtype=np.float64),
+        "n": feats["cross_group_pairing_n"].to_numpy(dtype=np.float64),
+    }
+
     return Build(
         path=path, manifest=manifest, metro_levels=metro_levels, titles=titles,
         ranked_set=ranked,
@@ -124,9 +194,14 @@ def load_build(path: str | Path, verify_hashes: bool = True) -> Build:
         sumw2_flat=np.ascontiguousarray(sumw2.reshape(n, N_FLAT)),
         pool_pop=feats["pop_pool_18_70"].to_numpy(dtype=np.float64),
         purity=feats["purity_pums"].to_numpy(dtype=np.float64),
+        gq_flag=feats["gq_flag"].to_numpy(dtype=bool),
         static=static,
         static_direction={f: int(fb[f]["direction"]) for f in STATIC_FEATURES},
         static_weight={f: float(fb[f]["weight_in_pillar"]) for f in STATIC_FEATURES},
         feature_flags=feats["feature_flags"].fillna("").tolist(),
+        legend=fb,
+        pillars=manifest["pillars"],
+        pairing_metro=pairing_metro,
+        pairing=_load_pairing(path, metro_levels),
         intervals=intervals,
     )
