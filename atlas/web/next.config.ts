@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // the e2e stack builds into its own dir so a CI-style run never clobbers
+  // a live dev server's .next (learned the hard way)
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   // content/methodology.md is synced verbatim from docs/methodology.md by
   // scripts/sync_content.mjs (predev/prebuild); trace it into server output.
   outputFileTracingIncludes: {

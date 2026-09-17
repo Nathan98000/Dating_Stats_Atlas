@@ -1,20 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-/** WCAG 2.1 AA (gate 4), checked by axe-core on the three page shapes plus
- * the identity-filtered ranking. Serious and critical violations fail. */
+/** WCAG 2.1 AA on the new palette (gate 5): axe on home, results, city and
+ * narrow-search; serious and critical violations fail. Plus the two-handle
+ * control's separate labels. */
 
 const PAGES = [
-  { name: "ranking", url: "/" },
+  { name: "home", url: "/" },
   {
-    name: "ranking with race filter",
-    url: "/?self_sex=female&self_age=29&age=28-38&marital=never,previously&race=black_nh",
+    name: "results narrowed",
+    url: "/?self_sex=female&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000",
   },
   {
-    name: "metro page",
-    url: "/metro/35620?self_sex=female&self_age=30&age=28-40&marital=never,previously",
+    name: "city page",
+    url: "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously",
   },
-  { name: "methodology", url: "/methodology" },
+  {
+    name: "narrow search",
+    url: "/?self_sex=female&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh",
+  },
 ];
 
 for (const p of PAGES) {
@@ -33,11 +37,31 @@ for (const p of PAGES) {
   });
 }
 
-test("the margin has a screen-reader rendering that cannot read as precise", async ({ page }) => {
+test("each age handle is separately labelled and tab-reachable", async ({ page }) => {
   await page.goto("/");
-  const first = page.getByTestId("ranked-list").locator("li").first();
-  await expect(first).toBeVisible();
-  const sr = await first.locator("[data-figure='pool'] .sr-only").first().textContent();
-  expect(sr).toContain("at least plus or minus");
-  expect(sr).toContain("not a precise figure");
+  const younger = page.getByLabel("Youngest age");
+  const older = page.getByLabel("Oldest age");
+  await expect(younger).toHaveCount(1);
+  await expect(older).toHaveCount(1);
+  // both reachable by Tab alone, in order
+  let sawYounger = false;
+  let sawOlder = false;
+  for (let i = 0; i < 30 && !(sawYounger && sawOlder); i++) {
+    await page.keyboard.press("Tab");
+    const label = await page.evaluate(
+      () => document.activeElement?.getAttribute("aria-label") ?? "",
+    );
+    if (label === "Youngest age") sawYounger = true;
+    if (label === "Oldest age") {
+      expect(sawYounger, "younger handle comes first in tab order").toBe(true);
+      sawOlder = true;
+    }
+  }
+  expect(sawYounger && sawOlder).toBe(true);
+  // visible focus on the handle input
+  const outline = await page.evaluate(() => {
+    const el = document.activeElement as HTMLElement;
+    return getComputedStyle(el).outlineStyle;
+  });
+  expect(outline === "none").toBe(false);
 });

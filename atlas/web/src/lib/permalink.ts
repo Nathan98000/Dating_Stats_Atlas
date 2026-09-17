@@ -10,8 +10,8 @@
  * emitted by the Python model, so a drift here fails CI rather than
  * shipping two permalink dialects. */
 
-const FLOAT_KEYS = new Set(["size_vs_odds", "pool", "balance", "reach",
-  "cost", "lifestyle"]);
+const FLOAT_KEYS = new Set(["size_vs_odds", "pool_vs_balance", "pool",
+  "balance", "reach", "cost", "lifestyle"]);
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
 
@@ -29,7 +29,7 @@ function canonical(value: Json, parentKey: string | null,
   if (typeof value === "number") {
     const floatTyped =
       (parentKey !== null && inWeights && FLOAT_KEYS.has(parentKey)) ||
-      parentKey === "size_vs_odds";
+      parentKey === "size_vs_odds" || parentKey === "pool_vs_balance";
     return pyNumber(value, floatTyped);
   }
   if (typeof value === "string") return JSON.stringify(value);
@@ -56,13 +56,17 @@ export interface RankBody {
   };
   weights?: Record<string, number>;
   size_vs_odds?: number;
+  pool_vs_balance?: number;
+  importance?: Record<string, string>;
+  sort?: string;
   data_version?: string;
   model_version?: string;
 }
 
 export function canonicalCore(body: RankBody): string {
   const core: Record<string, Json> = {};
-  for (const k of ["self", "seeking", "weights", "size_vs_odds"] as const) {
+  for (const k of ["self", "seeking", "weights", "size_vs_odds",
+                   "pool_vs_balance", "importance"] as const) {
     if (body[k] !== undefined) core[k] = body[k] as unknown as Json;
   }
   return canonical(core, null, false);

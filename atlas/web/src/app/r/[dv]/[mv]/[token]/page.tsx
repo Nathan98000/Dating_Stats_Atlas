@@ -2,17 +2,15 @@ import Link from "next/link";
 import { apiMeta, apiRank, RankError } from "@/lib/api";
 import { decodeToken } from "@/lib/permalink";
 import { bodyToPrefs, toSearchParams } from "@/lib/prefs";
-import { Explorer } from "@/components/explorer";
-import { Masthead } from "@/components/masthead";
+import { SiteHeader } from "@/components/chrome";
+import { Home } from "@/components/home";
 
 export const dynamic = "force-dynamic";
 
-/** Permalinks (§5.4/§10.1): /r/<data_version>/<model_version>/<token>
- * reproduces a ranking under both version pins. A pin mismatch is a REAL
- * page — the API's 409 means this process cannot reproduce that ranking,
- * and serving today's numbers under yesterday's link would be a silent
- * substitution. The page says so and offers the same preferences under the
- * current build instead. */
+/** Reproducibility routes survive m2.0.0 even though no permalink renders
+ * anywhere: an old link either reproduces exactly under its pins or lands
+ * on a plain page offering the same search on the current site — never a
+ * silent substitution, and never a version number in the copy (gate 2). */
 export default async function PermalinkPage({
   params,
 }: {
@@ -24,12 +22,13 @@ export default async function PermalinkPage({
     body = decodeToken(token);
   } catch {
     return (
-      <MismatchShell title="This link is not a valid permalink">
-        <p className="max-w-[60ch] text-sm text-ink-2">
-          The encoded preferences could not be read. If someone sent it to
-          you, ask for a fresh link — every ranking page shows one.
+      <Shell title="That link didn't survive the trip">
+        <p className="max-w-[60ch] text-[15px] leading-relaxed text-ink-2">
+          It looks cut short or altered. Ask whoever sent it for a fresh one,
+          or start a search of your own.
         </p>
-      </MismatchShell>
+        <StartOver />
+      </Shell>
     );
   }
   const prefs = bodyToPrefs(body);
@@ -41,75 +40,57 @@ export default async function PermalinkPage({
     ]);
     return (
       <>
-        <Masthead
-          dataVersion={meta.data_version}
-          modelVersion={meta.model_version}
-          brandAsH1
-        />
-        <div className="mx-auto max-w-6xl px-5 pb-4">
-          <p className="border-l-2 border-pass pl-3 text-sm text-ink-2">
-            Reproduced exactly under its pins: data{" "}
-            <span className="num">{dv}</span>, model <span className="num">{mv}</span>.
-          </p>
-        </div>
-        <Explorer meta={meta} initialPrefs={prefs} initialResponse={response} />
+        <SiteHeader />
+        <Home meta={meta} initialPrefs={prefs} initialResponse={response} />
       </>
     );
   } catch (e) {
     if (e instanceof RankError && e.status === 409) {
       return (
-        <MismatchShell title="This link was made under a different build">
-          <p className="max-w-[60ch] text-sm text-ink-2">
-            It pins data <span className="num">{dv}</span> and model{" "}
-            <span className="num">{mv}</span>, which this server no longer
-            serves ({e.detail}). Rankings are never silently substituted
-            across builds — when a metro moves between versions, the version
-            pin is how you can tell why.
+        <Shell title="This link came from an earlier edition of the site">
+          <p className="max-w-[62ch] text-[15px] leading-relaxed text-ink-2">
+            The way we count has been improved since it was made, and we
+            don&rsquo;t quietly swap new numbers under old links. Run the same
+            search on the current site instead — it may rank cities
+            differently, and that difference is real.
           </p>
-          <p className="mt-3 text-sm">
+          <p>
             <Link
               href={`/?${qs}`}
-              className="border border-accent px-3 py-1.5 font-semibold text-accent"
+              className="inline-flex min-h-[46px] items-center rounded-lg bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
               data-testid="rerun-current"
             >
-              Re-run these preferences under the current build
+              Run this search on the current site
             </Link>
           </p>
-        </MismatchShell>
+        </Shell>
       );
     }
     throw e;
   }
 }
 
-async function MismatchShell({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  let versions = { data_version: "unavailable", model_version: "unavailable" };
-  try {
-    const meta = await apiMeta();
-    versions = meta;
-  } catch {
-    /* the shell renders without version pins */
-  }
+function Shell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <>
-      <Masthead dataVersion={versions.data_version} modelVersion={versions.model_version} />
-      <main id="main" className="mx-auto max-w-4xl px-5" data-testid="pin-mismatch">
-        <h1 className="font-serif text-3xl font-semibold tracking-tight">{title}</h1>
-        <div className="mt-3">{children}</div>
-        <p className="mt-6 text-xs text-ink-3">
-          Why two pins:{" "}
-          <Link href="/methodology#versions" className="text-accent underline underline-offset-2">
-            a ranking can change for two unrelated reasons
-          </Link>
-          .
-        </p>
+      <SiteHeader />
+      <main id="main" className="mx-auto flex max-w-3xl flex-col gap-4 px-6 pb-16 pt-12 sm:px-12" data-testid="pin-mismatch">
+        <h1 className="font-display text-[34px] font-semibold leading-tight">{title}</h1>
+        {children}
       </main>
     </>
+  );
+}
+
+function StartOver() {
+  return (
+    <p>
+      <Link
+        href="/"
+        className="inline-flex min-h-[46px] items-center rounded-lg bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
+      >
+        Start a search
+      </Link>
+    </p>
   );
 }

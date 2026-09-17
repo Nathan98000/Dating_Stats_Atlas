@@ -1,28 +1,24 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
 
 interface Entry {
-  c: string;
-  t: string;
+  s: string; // slug
+  f: string; // "Provo, Utah"
   r: boolean;
   k: string[];
 }
 
-/** §8.3 search: the ~30 KB committed index (CBSA names, principal cities,
- * state abbreviations, hand-written colloquials), fuzzy-matched in the
- * browser. No server round-trip. */
 function score(entry: Entry, q: string): number {
   let best = 0;
-  for (const tok of [entry.t, ...entry.k]) {
+  for (const tok of [entry.f, ...entry.k]) {
     const t = tok.toLowerCase();
     if (t === q) best = Math.max(best, 100);
     else if (t.startsWith(q)) best = Math.max(best, 80 - (t.length - q.length) * 0.5);
     else if (t.includes(q)) best = Math.max(best, 50 - t.indexOf(q));
     else {
-      // subsequence with small gaps, so "twn cities" still finds it
       let i = 0;
       let gaps = 0;
       for (const ch of t) {
@@ -30,21 +26,20 @@ function score(entry: Entry, q: string): number {
         else if (i > 0) gaps++;
         if (i === q.length) break;
       }
-      if (i === q.length && gaps <= q.length * 2) {
-        best = Math.max(best, 25 - gaps);
-      }
+      if (i === q.length && gaps <= q.length * 2) best = Math.max(best, 25 - gaps);
     }
   }
   return best;
 }
 
+/** Find-a-city (§8.3): the committed index, fuzzy-matched in the browser,
+ * routed by slug. */
 export function SearchBox() {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const router = useRouter();
   const sp = useSearchParams();
-  const listRef = useRef<HTMLUListElement>(null);
 
   const results = useMemo(() => {
     const query = q.trim().toLowerCase();
@@ -56,30 +51,27 @@ export function SearchBox() {
       .slice(0, 8);
   }, [q]);
 
-  const go = (cbsa: string) => {
+  const go = (slug: string) => {
     const qs = sp.toString();
-    router.push(`/metro/${cbsa}${qs ? `?${qs}` : ""}`);
+    router.push(`/city/${slug}${qs ? `?${qs}` : ""}`);
     setOpen(false);
     setQ("");
   };
 
+  const listOpen = open && results.length > 0;
   return (
-    <div className="relative w-full max-w-xs">
-      <label className="sr-only" htmlFor="metro-search">
-        Find a metro
-      </label>
+    <div className="relative w-[190px]">
+      <label className="sr-only" htmlFor="city-search">Find a city</label>
       <input
-        id="metro-search"
+        id="city-search"
         type="search"
         role="combobox"
-        aria-expanded={open && results.length > 0}
-        aria-controls={open && results.length > 0 ? "metro-search-results" : undefined}
-        aria-activedescendant={
-          open && results[active] ? `sr-${results[active].e.c}` : undefined
-        }
+        aria-expanded={listOpen}
+        aria-controls={listOpen ? "city-search-results" : undefined}
+        aria-activedescendant={listOpen && results[active] ? `cs-${results[active].e.s}` : undefined}
         autoComplete="off"
-        placeholder="Find a metro — try “the Triangle”"
-        className="w-full border border-rule bg-raised px-3 py-1.5 text-sm text-ink placeholder:text-ink-3"
+        placeholder="Find a city"
+        className="ctl !min-h-[42px]"
         value={q}
         onChange={(e) => {
           setQ(e.target.value);
@@ -97,34 +89,32 @@ export function SearchBox() {
             setActive((a) => Math.max(a - 1, 0));
           } else if (e.key === "Enter" && results[active]) {
             e.preventDefault();
-            go(results[active].e.c);
+            go(results[active].e.s);
           } else if (e.key === "Escape") {
             setOpen(false);
           }
         }}
       />
-      {open && results.length > 0 && (
+      {listOpen && (
         <ul
-          id="metro-search-results"
+          id="city-search-results"
           role="listbox"
-          ref={listRef}
-          className="absolute z-20 mt-1 w-full border border-rule bg-raised text-sm shadow-none"
+          className="absolute right-0 z-30 mt-1 w-[260px] overflow-hidden rounded-lg border border-rule bg-surface text-sm"
         >
           {results.map((r, i) => (
             <li
-              key={r.e.c}
-              id={`sr-${r.e.c}`}
+              key={r.e.s}
+              id={`cs-${r.e.s}`}
               role="option"
               aria-selected={i === active}
-              className={`cursor-pointer px-3 py-1.5 ${i === active ? "bg-chip text-ink" : "text-ink-2"}`}
+              className={`cursor-pointer px-3.5 py-2 ${i === active ? "bg-tint text-ink" : "text-ink-2"}`}
               onMouseDown={(e) => {
                 e.preventDefault();
-                go(r.e.c);
+                go(r.e.s);
               }}
               onMouseEnter={() => setActive(i)}
             >
-              {r.e.t}
-              {!r.e.r && <span className="ml-2 text-xs text-ink-3">below population floor</span>}
+              {r.e.f}
             </li>
           ))}
         </ul>

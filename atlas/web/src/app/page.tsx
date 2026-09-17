@@ -1,14 +1,12 @@
 import { apiMeta, apiRank } from "@/lib/api";
 import { parsePrefs, toRankBody, type SearchParams } from "@/lib/prefs";
-import { Explorer } from "@/components/explorer";
-import { Masthead } from "@/components/masthead";
+import { Home } from "@/components/home";
+import { Hero } from "@/components/hero";
+import { SiteHeader } from "@/components/chrome";
 
 export const dynamic = "force-dynamic";
 
-/** Open on results, not on a form (§10.2): the first ranking is
- * server-rendered from the URL's preferences (or the stated default
- * profile), controls beside it. */
-export default async function RankingPage({
+export default async function HomePage({
   searchParams,
 }: {
   searchParams: Promise<SearchParams>;
@@ -21,12 +19,9 @@ export default async function RankingPage({
   ]);
   return (
     <>
-      <Masthead
-        dataVersion={meta.data_version}
-        modelVersion={meta.model_version}
-        brandAsH1
-      />
-      <Explorer meta={meta} initialPrefs={prefs} initialResponse={response} />
+      <SiteHeader border={false} />
+      <Hero />
+      <Home meta={meta} initialPrefs={prefs} initialResponse={response} />
     </>
   );
 }

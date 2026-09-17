@@ -27,17 +27,25 @@ describe("permalink round-trip against the Python model", () => {
     });
   }
 
-  it("prefs round-trip through a decoded body without loss", () => {
+  it("prefs round-trip through a decoded body without losing the search", () => {
     for (const c of cases.cases) {
       const { body } = decodePermalink(c.permalink);
       const prefs = bodyToPrefs(body as RankBody);
       const rebuilt = toRankBody(prefs);
-      // weights arrive from pydantic with all five pillars; prefs preserve that
       expect(rebuilt.seeking.age).toEqual(body.seeking.age);
       expect(rebuilt.seeking.marital).toEqual(body.seeking.marital);
       expect(rebuilt.seeking.race_ethnicity).toEqual(body.seeking.race_ethnicity);
-      expect(rebuilt.size_vs_odds).toEqual(body.size_vs_odds);
-      expect(rebuilt.weights).toEqual(body.weights);
+      // the deprecated size_vs_odds alias re-expresses as pool_vs_balance
+      // (ADR 0004); the slider VALUE survives, the old name does not, and
+      // explicit m1.x weight vectors reproduce on the /r/ render itself
+      // (server-side, from the decoded body) rather than in edit state.
+      const slider = body.pool_vs_balance ?? body.size_vs_odds;
+      if (slider !== undefined) {
+        expect(rebuilt.pool_vs_balance).toEqual(slider);
+      }
+      if (body.importance) {
+        expect(rebuilt.importance).toEqual(body.importance);
+      }
     }
   });
 });
