@@ -196,7 +196,9 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         assert fid in feats.columns, f"features.parquet missing {fid} (m2.1.0)"
         crime[fid] = feats[fid].to_numpy(dtype=np.float64)
     standing_all = {}
-    for fid in manifest["city_cards"]:
+    banded = list(manifest["city_cards"]) + (
+        [] if old_artifact else ["violent_crime_rate", "property_crime_rate"])
+    for fid in banded:
         col = f"standing_all_{fid}"
         assert col in feats.columns, f"features.parquet missing {col}"
         standing_all[fid] = feats[col].to_numpy(dtype=np.float64)

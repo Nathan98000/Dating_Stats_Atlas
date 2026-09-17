@@ -26,6 +26,7 @@ from __future__ import annotations
 import math
 import re
 
+import numpy as np
 import pandas as pd
 
 from atlas.pipeline.fetch import RESULTS
@@ -36,7 +37,7 @@ P2C = RESULTS / "phase2c"
 STATE_NAMES = {
     "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas",
     "CA": "California", "CO": "Colorado", "CT": "Connecticut",
-    "DE": "Delaware", "DC": "the District of Columbia", "FL": "Florida",
+    "DE": "Delaware", "DC": "District of Columbia", "FL": "Florida",
     "GA": "Georgia", "HI": "Hawaii", "ID": "Idaho", "IL": "Illinois",
     "IN": "Indiana", "IA": "Iowa", "KS": "Kansas", "KY": "Kentucky",
     "LA": "Louisiana", "ME": "Maine", "MD": "Maryland",
@@ -59,8 +60,14 @@ LARGER_MIN_POP = 400_000
 
 
 def first_city(title: str) -> str:
+    """Heuristic fallback ONLY (Phase 2e): the title's separators are
+    ambiguous — a single hyphen both joins Winston-Salem and separates
+    Minneapolis-St. Paul — so the display name prefers the TIGERweb
+    place resolution (city_points.place_name) and lands here just for
+    metros whose principal city never resolved as a place."""
     name = title.rpartition(", ")[0]
-    city = re.split(r"[-–—]", name)[0].strip()
+    city = re.split(r"--|/", name)[0].strip()
+    city = re.split(r"[-–—]", city)[0].strip()
     # the delineation's "Urban Honolulu" is a Census legalism, not a name
     return re.sub(r"^Urban ", "", city)
 
@@ -147,13 +154,27 @@ def build() -> pd.DataFrame:
     # to 130 km from the city in huge Western counties, which mis-placed
     # locator-map dots and skewed the drive-time phrases
     from atlas.pipeline.bridge.city_points import principal_city_points
-    metro_pts = principal_city_points().set_index("cbsa")[["lat", "lon"]]
-    df = df.merge(metro_pts, left_on="cbsa", right_index=True, how="left")
+    pts = principal_city_points().set_index("cbsa")
+    df = df.merge(pts[["lat", "lon", "place_name"]],
+                  left_on="cbsa", right_index=True, how="left")
     assert df["lat"].notna().all(), (
         "a metro has no anchor point — the description build cannot "
         "place it")
 
-    df["city"] = df["cbsa_title"].map(first_city)
+    # Display name = the Census-attested place name where one resolved
+    # (Phase 2e: the split heuristic shipped "Winston, NC" for
+    # Winston-Salem and "Louisville/Jefferson County" verbatim), the
+    # heuristic only as fallback; "Urban " stays a legalism either way.
+    df["city"] = np.where(
+        df["place_name"].notna(),
+        df["place_name"].fillna("").str.replace(r"^Urban ", "", regex=True),
+        df["cbsa_title"].map(first_city))
+    # registry display judgments last: the used name over a consolidated
+    # government's legal form (Lexington, Macon)
+    overrides = {o["cbsa"]: o["name"]
+                 for o in reg.city_description.get("display_overrides", [])}
+    df["city"] = df.apply(
+        lambda r: overrides.get(r["cbsa"], r["city"]), axis=1)
     df["st"] = df["cbsa_title"].map(first_state)
     df["state_full"] = df["st"].map(STATE_NAMES)
     assert df["state_full"].notna().all(), (
@@ -187,8 +208,13 @@ def build() -> pd.DataFrame:
                     drive=drive, direction=direction,
                     city=rows.at[j, "city"])
         if location is None:
+            # the article is a grammar fact of one name: "in the District
+            # of Columbia" (its display name carries no article — the
+            # Phase 2e search matrix caught "the" leaking into DC's slug)
+            state_prose = ("the " + r["state_full"]
+                           if r["st"] == "DC" else r["state_full"])
             location = reg.city_description["location_far"].format(
-                state=r["state_full"])
+                state=state_prose)
         lines.append(reg.city_description["template"].format(
             character=character, pop=pop_txt, location=location))
     rows["description"] = lines

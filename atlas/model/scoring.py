@@ -236,7 +236,13 @@ def _crime_block(build: Build, i: int) -> dict:
     available = (not any(np.isnan(v) for v in vals.values())
                  and coverage >= float(cfg["coverage_floor"]))
     out: dict = {"available": available,
-                 "caution": strings["crime_caution"]}
+                 "caution": strings["crime_caution"],
+                 # the compact strings the Phase 2e crime CARDS render:
+                 # face stays plain, everything about reporting lives in
+                 # the info popover
+                 "card_blank": strings["crime_card_blank"],
+                 "card_info_label": strings["crime_card_info"],
+                 "compare_banner": strings["crime_compare_banner"]}
     if not available:
         out["note"] = strings["crime_blank"].format(city=city)
         return out
@@ -248,13 +254,17 @@ def _crime_block(build: Build, i: int) -> dict:
     out["stats"] = []
     for fid in CRIME_RATE_IDS:
         le = build.legend[fid]
-        out["stats"].append({
+        entry = {
             "id": fid,
             "label": le["display_name"],
             "value": round(vals[fid], 1),
             "display": format_value(vals[fid], le),
             "unit_line": le["unit"],
-        })
+        }
+        band = _band_of(build, fid, i)
+        if band:
+            entry["band"] = band
+        out["stats"].append(entry)
     return out
 
 

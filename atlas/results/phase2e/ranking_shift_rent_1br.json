@@ -1,0 +1,594 @@
+{
+ "before": {
+  "build": "dd7374675de7",
+  "model": "m2.1.0"
+ },
+ "after": {
+  "build": "98dcbb161236",
+  "model": "m2.3.0"
+ },
+ "personas": {
+  "default_profile": {
+   "kendall_tau": 0.972,
+   "common_metros": 193,
+   "top10_overlap": 10,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "47300",
+     "name": "Visalia, CA",
+     "before": 152,
+     "after": 140,
+     "move": 12
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 87,
+     "after": 77,
+     "move": 10
+    },
+    {
+     "cbsa": "25180",
+     "name": "Hagerstown, MD",
+     "before": 164,
+     "after": 155,
+     "move": 9
+    },
+    {
+     "cbsa": "11260",
+     "name": "Anchorage, AK",
+     "before": 131,
+     "after": 123,
+     "move": 8
+    },
+    {
+     "cbsa": "17780",
+     "name": "College Station, TX",
+     "before": 120,
+     "after": 128,
+     "move": -8
+    },
+    {
+     "cbsa": "12060",
+     "name": "Atlanta, GA",
+     "before": 71,
+     "after": 78,
+     "move": -7
+    },
+    {
+     "cbsa": "24660",
+     "name": "Greensboro, NC",
+     "before": 154,
+     "after": 161,
+     "move": -7
+    },
+    {
+     "cbsa": "28020",
+     "name": "Kalamazoo, MI",
+     "before": 122,
+     "after": 129,
+     "move": -7
+    }
+   ]
+  },
+  "A_woman32_ba_men_75k": {
+   "kendall_tau": 0.983,
+   "common_metros": 58,
+   "top10_overlap": 10,
+   "median_abs_move": 0.0,
+   "biggest_moves": [
+    {
+     "cbsa": "47260",
+     "name": "Virginia Beach, VA",
+     "before": 50,
+     "after": 47,
+     "move": 3
+    },
+    {
+     "cbsa": "12060",
+     "name": "Atlanta, GA",
+     "before": 47,
+     "after": 49,
+     "move": -2
+    },
+    {
+     "cbsa": "17820",
+     "name": "Colorado Springs, CO",
+     "before": 38,
+     "after": 36,
+     "move": 2
+    },
+    {
+     "cbsa": "40140",
+     "name": "Riverside, CA",
+     "before": 28,
+     "after": 26,
+     "move": 2
+    },
+    {
+     "cbsa": "41700",
+     "name": "San Antonio, TX",
+     "before": 27,
+     "after": 29,
+     "move": -2
+    },
+    {
+     "cbsa": "12580",
+     "name": "Baltimore, MD",
+     "before": 55,
+     "after": 54,
+     "move": 1
+    },
+    {
+     "cbsa": "16740",
+     "name": "Charlotte, NC",
+     "before": 56,
+     "after": 57,
+     "move": -1
+    },
+    {
+     "cbsa": "17140",
+     "name": "Cincinnati, OH",
+     "before": 32,
+     "after": 31,
+     "move": 1
+    }
+   ]
+  },
+  "B_man28_women_never": {
+   "kendall_tau": 0.976,
+   "common_metros": 193,
+   "top10_overlap": 10,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "43900",
+     "name": "Spartanburg, SC",
+     "before": 114,
+     "after": 126,
+     "move": -12
+    },
+    {
+     "cbsa": "47300",
+     "name": "Visalia, CA",
+     "before": 154,
+     "after": 145,
+     "move": 9
+    },
+    {
+     "cbsa": "49180",
+     "name": "Winston-Salem, NC",
+     "before": 77,
+     "after": 86,
+     "move": -9
+    },
+    {
+     "cbsa": "25180",
+     "name": "Hagerstown, MD",
+     "before": 164,
+     "after": 156,
+     "move": 8
+    },
+    {
+     "cbsa": "17780",
+     "name": "College Station, TX",
+     "before": 162,
+     "after": 169,
+     "move": -7
+    },
+    {
+     "cbsa": "19660",
+     "name": "Deltona, FL",
+     "before": 83,
+     "after": 76,
+     "move": 7
+    },
+    {
+     "cbsa": "23420",
+     "name": "Fresno, CA",
+     "before": 63,
+     "after": 56,
+     "move": 7
+    },
+    {
+     "cbsa": "44140",
+     "name": "Springfield, MA",
+     "before": 59,
+     "after": 52,
+     "move": 7
+    }
+   ]
+  },
+  "C_woman38_grad_men_100k": {
+   "kendall_tau": 0.988,
+   "common_metros": 41,
+   "top10_overlap": 10,
+   "median_abs_move": 0.0,
+   "biggest_moves": [
+    {
+     "cbsa": "12580",
+     "name": "Baltimore, MD",
+     "before": 39,
+     "after": 38,
+     "move": 1
+    },
+    {
+     "cbsa": "14460",
+     "name": "Boston, MA",
+     "before": 14,
+     "after": 15,
+     "move": -1
+    },
+    {
+     "cbsa": "18140",
+     "name": "Columbus, OH",
+     "before": 25,
+     "after": 24,
+     "move": 1
+    },
+    {
+     "cbsa": "19100",
+     "name": "Dallas, TX",
+     "before": 27,
+     "after": 28,
+     "move": -1
+    },
+    {
+     "cbsa": "29820",
+     "name": "Las Vegas, NV",
+     "before": 15,
+     "after": 14,
+     "move": 1
+    },
+    {
+     "cbsa": "36740",
+     "name": "Orlando, FL",
+     "before": 24,
+     "after": 25,
+     "move": -1
+    },
+    {
+     "cbsa": "37980",
+     "name": "Philadelphia, PA",
+     "before": 20,
+     "after": 21,
+     "move": -1
+    },
+    {
+     "cbsa": "39580",
+     "name": "Raleigh, NC",
+     "before": 38,
+     "after": 39,
+     "move": -1
+    }
+   ]
+  },
+  "D_man41_women_50k": {
+   "kendall_tau": 0.971,
+   "common_metros": 136,
+   "top10_overlap": 9,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "47300",
+     "name": "Visalia, CA",
+     "before": 122,
+     "after": 113,
+     "move": 9
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 85,
+     "after": 77,
+     "move": 8
+    },
+    {
+     "cbsa": "49180",
+     "name": "Winston-Salem, NC",
+     "before": 78,
+     "after": 86,
+     "move": -8
+    },
+    {
+     "cbsa": "17900",
+     "name": "Columbia, SC",
+     "before": 44,
+     "after": 50,
+     "move": -6
+    },
+    {
+     "cbsa": "16860",
+     "name": "Chattanooga, TN",
+     "before": 91,
+     "after": 96,
+     "move": -5
+    },
+    {
+     "cbsa": "24660",
+     "name": "Greensboro, NC",
+     "before": 33,
+     "after": 38,
+     "move": -5
+    },
+    {
+     "cbsa": "24860",
+     "name": "Greenville, SC",
+     "before": 31,
+     "after": 36,
+     "move": -5
+    },
+    {
+     "cbsa": "27260",
+     "name": "Jacksonville, FL",
+     "before": 39,
+     "after": 34,
+     "move": 5
+    }
+   ]
+  },
+  "E_black_woman29_stress": {
+   "skipped": "4 common"
+  },
+  "race_asian_nh_men": {
+   "kendall_tau": 0.937,
+   "common_metros": 23,
+   "top10_overlap": 9,
+   "median_abs_move": 2.0,
+   "biggest_moves": [
+    {
+     "cbsa": "12580",
+     "name": "Baltimore, MD",
+     "before": 29,
+     "after": 23,
+     "move": 6
+    },
+    {
+     "cbsa": "12060",
+     "name": "Atlanta, GA",
+     "before": 26,
+     "after": 22,
+     "move": 4
+    },
+    {
+     "cbsa": "19740",
+     "name": "Denver, CO",
+     "before": 8,
+     "after": 11,
+     "move": -3
+    },
+    {
+     "cbsa": "19820",
+     "name": "Detroit, MI",
+     "before": 24,
+     "after": 21,
+     "move": 3
+    },
+    {
+     "cbsa": "26420",
+     "name": "Houston, TX",
+     "before": 20,
+     "after": 17,
+     "move": 3
+    },
+    {
+     "cbsa": "40140",
+     "name": "Riverside, CA",
+     "before": 19,
+     "after": 16,
+     "move": 3
+    },
+    {
+     "cbsa": "12420",
+     "name": "Austin, TX",
+     "before": 9,
+     "after": 7,
+     "move": 2
+    },
+    {
+     "cbsa": "37980",
+     "name": "Philadelphia, PA",
+     "before": 21,
+     "after": 19,
+     "move": 2
+    }
+   ]
+  },
+  "race_hispanic_women": {
+   "kendall_tau": 0.909,
+   "common_metros": 71,
+   "top10_overlap": 9,
+   "median_abs_move": 5.0,
+   "biggest_moves": [
+    {
+     "cbsa": "47300",
+     "name": "Visalia, CA",
+     "before": 87,
+     "after": 67,
+     "move": 20
+    },
+    {
+     "cbsa": "33700",
+     "name": "Modesto, CA",
+     "before": 78,
+     "after": 59,
+     "move": 19
+    },
+    {
+     "cbsa": "44700",
+     "name": "Stockton, CA",
+     "before": 85,
+     "after": 66,
+     "move": 19
+    },
+    {
+     "cbsa": "15980",
+     "name": "Cape Coral, FL",
+     "before": 88,
+     "after": 71,
+     "move": 17
+    },
+    {
+     "cbsa": "39900",
+     "name": "Reno, NV",
+     "before": 86,
+     "after": 70,
+     "move": 16
+    },
+    {
+     "cbsa": "31180",
+     "name": "Lubbock, TX",
+     "before": 70,
+     "after": 56,
+     "move": 14
+    },
+    {
+     "cbsa": "41620",
+     "name": "Salt Lake City, UT",
+     "before": 79,
+     "after": 65,
+     "move": 14
+    },
+    {
+     "cbsa": "28880",
+     "name": "Kiryas Joel, NY",
+     "before": 75,
+     "after": 62,
+     "move": 13
+    }
+   ]
+  },
+  "below_bar_nhpi_250k": {
+   "skipped": "0 common"
+  },
+  "slider_best_odds": {
+   "kendall_tau": 0.981,
+   "common_metros": 193,
+   "top10_overlap": 9,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "47300",
+     "name": "Visalia, CA",
+     "before": 115,
+     "after": 103,
+     "move": 12
+    },
+    {
+     "cbsa": "39300",
+     "name": "Providence, RI",
+     "before": 63,
+     "after": 54,
+     "move": 9
+    },
+    {
+     "cbsa": "25180",
+     "name": "Hagerstown, MD",
+     "before": 117,
+     "after": 109,
+     "move": 8
+    },
+    {
+     "cbsa": "29460",
+     "name": "Lakeland, FL",
+     "before": 134,
+     "after": 128,
+     "move": 6
+    },
+    {
+     "cbsa": "11700",
+     "name": "Asheville, NC",
+     "before": 52,
+     "after": 57,
+     "move": -5
+    },
+    {
+     "cbsa": "33700",
+     "name": "Modesto, CA",
+     "before": 57,
+     "after": 52,
+     "move": 5
+    },
+    {
+     "cbsa": "11260",
+     "name": "Anchorage, AK",
+     "before": 45,
+     "after": 41,
+     "move": 4
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 108,
+     "after": 104,
+     "move": 4
+    }
+   ]
+  },
+  "same_sex_pool": {
+   "kendall_tau": 0.968,
+   "common_metros": 120,
+   "top10_overlap": 10,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "24660",
+     "name": "Greensboro, NC",
+     "before": 88,
+     "after": 94,
+     "move": -6
+    },
+    {
+     "cbsa": "49180",
+     "name": "Winston-Salem, NC",
+     "before": 112,
+     "after": 118,
+     "move": -6
+    },
+    {
+     "cbsa": "16740",
+     "name": "Charlotte, NC",
+     "before": 46,
+     "after": 51,
+     "move": -5
+    },
+    {
+     "cbsa": "16860",
+     "name": "Chattanooga, TN",
+     "before": 111,
+     "after": 116,
+     "move": -5
+    },
+    {
+     "cbsa": "20500",
+     "name": "Durham, NC",
+     "before": 73,
+     "after": 78,
+     "move": -5
+    },
+    {
+     "cbsa": "23420",
+     "name": "Fresno, CA",
+     "before": 82,
+     "after": 77,
+     "move": 5
+    },
+    {
+     "cbsa": "25420",
+     "name": "Harrisburg, PA",
+     "before": 80,
+     "after": 75,
+     "move": 5
+    },
+    {
+     "cbsa": "28140",
+     "name": "Kansas City, MO",
+     "before": 38,
+     "after": 43,
+     "move": -5
+    }
+   ]
+  }
+ }
+}

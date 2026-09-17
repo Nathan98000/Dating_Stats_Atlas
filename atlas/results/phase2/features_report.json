@@ -1,6 +1,13 @@
 {
   "metros": 387,
-  "rent_jam_or_missing": 0,
+  "rent": {
+    "variable": {
+      "B25031_003E": "Median gross rent --!!Total:!!1 bedroom"
+    },
+    "metros_on_one_bedroom": 387,
+    "metros_on_all_units_fallback": [],
+    "jam_or_missing_after_fallback": 0
+  },
   "rpp_missing_metros": [],
   "cbp_absent_cells_by_naics": {
     "722511": 0,
