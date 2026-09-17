@@ -9,16 +9,20 @@ export interface Band {
   tone: "good" | "neutral" | "poor";
 }
 
-/** Crime context (item 5; never scored): rates arrive only with their
- * coverage figure and the FBI's caution, or as the blank state. */
+/** Crime context (never scored): rates arrive only with their coverage
+ * figure and the FBI's caution — since Phase 2e as two CARDS whose
+ * detail lives in the ⓘ popover, plus the compare page's banner. */
 export interface CrimeBlock {
   available: boolean;
   caution: string;
+  card_blank: string;
+  card_info_label: string;
+  compare_banner: string;
   note?: string;
   coverage_line?: string;
   coverage_pct?: number;
   stats?: { id: string; label: string; value: number; display: string;
-            unit_line: string }[];
+            unit_line: string; band?: Band }[];
 }
 
 export interface Stat {

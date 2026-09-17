@@ -14,7 +14,7 @@ import { BalanceTally } from "@/components/tally";
 import { CityArt } from "@/components/city-art";
 import { CityNarrowCard, CityWideners } from "@/components/city-cards";
 import { CompareLauncher } from "@/components/compare-launcher";
-import { CrimeSection } from "@/components/crime-block";
+import { CrimeCards } from "@/components/crime-cards";
 import type { Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -78,7 +78,7 @@ export default async function CityPage({
               </Link>
             </div>
           </div>
-          <LocatorMap metros={meta.metros} focus={metro} />
+          <LocatorMap focus={metro} />
         </div>
 
         {/* item 7: every page gets a face — deterministic artwork in the
@@ -155,6 +155,9 @@ export default async function CityPage({
             {cards.map((c) => (
               <StatCard key={c.id} card={c} meta={meta} />
             ))}
+            {/* item 2: crime as two cards in the SAME grid — rate, band,
+                ⓘ; the reporting story lives in the popover */}
+            {crime && <CrimeCards crime={crime} meta={meta} />}
             <div className="flex flex-col justify-center gap-2.5 rounded-xl border border-tint-border bg-tint p-[18px]">
               <span className="font-display text-[17px] font-semibold leading-snug text-accent-hover">
                 See how {city} stacks up against a city you know
@@ -163,8 +166,6 @@ export default async function CityPage({
             </div>
           </div>
         </section>
-
-        {crime && <CrimeSection crime={crime} city={city} />}
       </div>
     </>
   );

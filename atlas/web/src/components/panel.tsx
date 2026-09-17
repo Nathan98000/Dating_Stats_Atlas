@@ -3,6 +3,7 @@
 import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
 import { IMPORTANCE_PILLARS, type Level, type Prefs } from "@/lib/prefs";
+import { InfoTip } from "./info-tip";
 
 const EDU_OPTIONS: { value: "" | "bachelors" | "graduate"; label: string }[] = [
   { value: "", label: "Any" },
@@ -62,8 +63,10 @@ export function SearchPanel({
           <InfoTip
             id={`${uid}-svo-info`}
             label="What the slider changes"
-            text={meta.policy_strings.slider_info}
-          />
+            testid="slider-info"
+          >
+            {meta.policy_strings.slider_info}
+          </InfoTip>
         </div>
         <input
           id={`${uid}-svo`}
@@ -102,18 +105,11 @@ export function SearchPanel({
             </select>
           </Field>
           <Field label="My age" htmlFor={`${uid}-myage`}>
-            <input
+            <MyAgeField
               id={`${uid}-myage`}
-              type="number"
-              inputMode="numeric"
-              className="ctl"
-              min={18}
-              max={70}
               value={prefs.selfAge}
-              onChange={(e) => {
-                const v = parseInt(e.target.value, 10);
-                if (Number.isFinite(v)) set({ selfAge: Math.min(70, Math.max(18, v)) });
-              }}
+              errorText={meta.policy_strings.age_range_error}
+              onCommit={(v) => set({ selfAge: v })}
             />
           </Field>
         </div>
@@ -252,10 +248,8 @@ export function SearchPanel({
           through /v1/meta — student life is no longer bundled with the
           weather, and the frontend still sends choices, never weights. */}
       <div className="flex flex-col gap-3 border-t border-rule pt-5" data-testid="importance">
-        <div>
-          <p className="text-sm font-semibold">How much do these matter?</p>
-          <p className="text-[12.5px] text-ink-3">Beyond the people themselves.</p>
-        </div>
+        {/* item 7: no subheading — the four labels carry it */}
+        <p className="text-sm font-semibold">How much do these matter?</p>
         <div className="flex flex-col gap-3">
           {IMPORTANCE_PILLARS.map((pillar) => (
             <ImportanceRow
@@ -274,47 +268,61 @@ export function SearchPanel({
   );
 }
 
-/** Item 2's information affordance: a real button, not a hover-only
- * tooltip — it opens on hover AND focus AND tap, closes on Escape and
- * blur, and is wired with aria-expanded + aria-describedby so the note
- * reaches keyboard and touch users (gate 2/5). */
-function InfoTip({ id, label, text }: { id: string; label: string; text: string }) {
-  const [open, setOpen] = useState(false);
+/** Item 8: a real editable number field — click in, type 34, tab away.
+ * The draft is validated on BLUR, never per keystroke (per-keystroke
+ * clamping turned typing "34" into 18 then 70: the "3" clamped before
+ * the "4" arrived). Out-of-range or empty shows the registry's message
+ * and keeps the last good value. */
+function MyAgeField({
+  id,
+  value,
+  errorText,
+  onCommit,
+}: {
+  id: string;
+  value: number;
+  errorText: string;
+  onCommit: (v: number) => void;
+}) {
+  const [draft, setDraft] = useState<string | null>(null);
+  const [invalid, setInvalid] = useState(false);
   return (
-    <span className="relative inline-flex">
-      <button
-        type="button"
-        data-testid="slider-info"
-        aria-label={label}
-        aria-expanded={open}
-        aria-describedby={open ? id : undefined}
-        className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-ink-3 text-[12px] font-bold leading-none text-ink-2 hover:border-accent hover:text-accent"
-        // click/tap OPENS (a toggle would fight the hover-open on pointer
-        // devices: the click's own hover reopens, the toggle re-closes);
-        // closing is Escape, blur, or the pointer leaving — and on touch,
-        // tapping anywhere else blurs
-        onClick={() => setOpen(true)}
-        onMouseEnter={() => setOpen(true)}
-        onMouseLeave={() => setOpen(false)}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setOpen(false)}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") setOpen(false);
+    <>
+      <input
+        id={id}
+        type="number"
+        inputMode="numeric"
+        className="ctl"
+        min={18}
+        max={70}
+        data-testid="my-age"
+        aria-invalid={invalid || undefined}
+        aria-describedby={invalid ? `${id}-err` : undefined}
+        value={draft ?? String(value)}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={() => {
+          if (draft === null) return;
+          const v = parseInt(draft, 10);
+          if (Number.isFinite(v) && v >= 18 && v <= 70) {
+            setInvalid(false);
+            setDraft(null);
+            if (v !== value) onCommit(v);
+          } else {
+            setInvalid(true);
+            setDraft(null); // fall back to the last good value
+          }
         }}
-      >
-        i
-      </button>
-      {open && (
-        <span
-          id={id}
-          role="note"
-          data-testid="slider-info-note"
-          className="absolute left-1/2 top-[30px] z-40 w-[290px] -translate-x-1/2 rounded-lg border border-rule bg-surface px-3.5 py-3 text-[12.5px] font-normal leading-relaxed text-ink-2"
-        >
-          {text}
-        </span>
+        onKeyDown={(e) => {
+          if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+        }}
+      />
+      {invalid && (
+        <p id={`${id}-err`} role="status" data-testid="my-age-error"
+           className="pt-1 text-[12px] leading-snug text-poor">
+          {errorText}
+        </p>
       )}
-    </span>
+    </>
   );
 }
 

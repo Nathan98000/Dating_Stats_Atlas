@@ -26,6 +26,7 @@ const PAGES = [
   },
   { name: "compare landing", url: "/compare" },
   { name: "stat page", url: "/stats/median_gross_rent" },
+  { name: "what we measure", url: "/what-we-measure" },
   { name: "how it works", url: "/how-it-works" },
 ];
 

@@ -84,6 +84,7 @@ for (const [name, url] of [
   ["stat page", "/stats/median_gross_rent"],
   ["stat page, population", "/stats/who_lives_here"],
   ["crime explainer", "/about-crime-data"],
+  ["what we measure", "/what-we-measure"],
   ["how it works", "/how-it-works"],
 ] as const) {
   test(`no banned string renders: ${name}`, async ({ page }) => {

@@ -1,14 +1,30 @@
 import fs from "fs";
 import path from "path";
+import { Attribution } from "./attribution";
+import cityImages from "@/data/city-images.json";
 
-/** Every city page gets a face (item 7) without a 387-photograph
- * licensing project: a deterministic abstract composition seeded from the
- * city's CBSA code, drawn in the site palette. Decorative only —
- * aria-hidden, no data encoded, nothing that reads as a chart or as a
- * real skyline. A photograph placed at web/public/cities/<slug>.jpg
- * (about 1600×400, wide crop — same conventions as the home hero)
- * overrides the artwork for that city; sourcing photographs stays with
- * the licensing review, never with this component. */
+/** Every city page gets a face. Since Phase 2e item 4 that face is a
+ * real photograph wherever one CLEARED: sourced from the city's
+ * Wikipedia lead image, licence read from the Commons API (public
+ * domain, CC0, CC-BY, CC-BY-SA ship; NC/ND or unreadable terms refuse),
+ * recorded row-by-row in the committed manifest, displayed UNMODIFIED —
+ * scaled to fit, never cropped, recoloured or composited, because an
+ * adapted CC-BY-SA image would drag its licence onto the adaptation —
+ * with the manifest's attribution rendered beneath. Alt text describes
+ * the view (from the file's own description); the generative fallback
+ * stays aria-hidden with the heading carrying the city's name. A photo
+ * ships ONLY through the manifest: an unlisted file has no recorded
+ * licence and does not render. */
+
+interface CityImage {
+  file: string;
+  alt: string | null;
+  author: string | null;
+  license: string;
+  license_url: string | null;
+  source_url: string;
+}
+const IMAGES = cityImages as unknown as Record<string, CityImage>;
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;
@@ -25,15 +41,21 @@ const HUES = ["var(--tint)", "var(--male)", "var(--female)", "var(--good)",
   "var(--accent)", "var(--tint-border)"];
 
 export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
-  const photo = path.join(process.cwd(), "public", "cities", `${slug}.jpg`);
-  if (fs.existsSync(photo)) {
+  const img = IMAGES[slug];
+  if (img && fs.existsSync(
+      path.join(process.cwd(), "public", "cities", img.file))) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={`/cities/${slug}.jpg`}
-        alt=""
-        className="h-[200px] w-full rounded-xl object-cover max-sm:h-[140px]"
-      />
+      <figure data-testid="city-photo">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/cities/${img.file}`}
+          alt={img.alt ?? ""}
+          className="max-h-[380px] w-full rounded-xl border border-rule bg-surface object-contain"
+        />
+        <figcaption className="pt-1.5">
+          <Attribution image={img} />
+        </figcaption>
+      </figure>
     );
   }
   const rand = mulberry32(parseInt(cbsa, 10) * 2654435761);
