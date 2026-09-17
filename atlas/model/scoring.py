@@ -189,14 +189,22 @@ def _balance_block(build: Build, i: int, bal: dict, sought_word: str,
 def _band_of(build: Build, fid: str, i: int) -> dict | None:
     """Three-band standing across all 387 cities (registry thresholds,
     registry labels — the wireframe placed these by judgement; the shipped
-    page reads the build)."""
+    page reads the build). A feature with registry band_edges bands by
+    ABSOLUTE value instead of percentile — population's case, where
+    tertiles over mostly-small metros would call a 700k city 'one of the
+    biggest'."""
     sa = build.standing_all.get(fid)
     le = build.legend.get(fid, {})
     if sa is None or np.isnan(sa[i]) or not le.get("band_labels"):
         return None
-    bands = build.manifest["standing_bands"]
     pct = float(sa[i])
-    k = 0 if pct < bands["low_below"] else (2 if pct > bands["high_above"] else 1)
+    edges = le.get("band_edges")
+    if edges:
+        v = float(build.static[fid][i])
+        k = 0 if v < edges[0] else (2 if v >= edges[1] else 1)
+    else:
+        bands = build.manifest["standing_bands"]
+        k = 0 if pct < bands["low_below"] else (2 if pct > bands["high_above"] else 1)
     return {"key": ["low", "mid", "high"][k],
             "standing_all": round(pct, 1),
             "label": le["band_labels"][k],
@@ -216,13 +224,17 @@ def _card_stats(build: Build, i: int) -> list[dict]:
             entry["missing"] = True
         else:
             entry["value"] = round(v, 4)
-            entry["display"] = format_value(v, le)
-            unit = le.get("unit", "")
-            if le.get("unit_template") and fid == "who_lives_here":
+            if fid == "who_lives_here":
+                # spoken figures, per the board: 700,000 people, of whom
+                # 430,000 are adults — never precision to the person
+                from atlas.model.explain import format_pop
+                entry["display"] = format_pop(v)
                 adults = float(build.pool_pop[i])
-                unit = le["unit_template"].format(
-                    adults=f"{adults:,.0f}")
-            entry["unit_line"] = unit
+                entry["unit_line"] = le["unit_template"].format(
+                    adults=format_pop(adults))
+            else:
+                entry["display"] = format_value(v, le)
+                entry["unit_line"] = le.get("unit", "")
             band = _band_of(build, fid, i)
             if band:
                 entry["band"] = band

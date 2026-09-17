@@ -29,6 +29,19 @@ def bucket(value: float) -> str:
     return "slight"
 
 
+def format_pop(pop: float) -> str:
+    """Spoken population figures for the who-lives-here card: 717,200
+    reads as 700,000 and 1,281,004 as 1.3 million — precision to the
+    person would claim more than a survey knows."""
+    if pop >= 950_000:
+        m = round(pop / 100_000) / 10
+        m_txt = f"{m:.0f}" if float(m).is_integer() else f"{m:.1f}"
+        return f"{m_txt} million"
+    if pop >= 95_000:
+        return f"{round(pop / 50_000) * 50_000:,.0f}"
+    return f"{round(pop / 10_000) * 10_000:,.0f}"
+
+
 def format_value(value: float, legend_entry: dict) -> str:
     """Real-units display string per the registry's display spec. Computed
     server-side so the frontend never does arithmetic on a number."""
