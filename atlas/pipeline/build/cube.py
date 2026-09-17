@@ -274,6 +274,7 @@ def build(out_root=None) -> str:
                    "mover_phrase": f.mover_phrase,
                    "band_labels": list(f.band_labels) if f.band_labels else None,
                    "band_tones": list(f.band_tones) if f.band_tones else None,
+                   "band_edges": list(f.band_edges) if f.band_edges else None,
                    "definition": f.definition,
                    "display_scale": f.display_scale,
                    "display_decimals": f.display_decimals,

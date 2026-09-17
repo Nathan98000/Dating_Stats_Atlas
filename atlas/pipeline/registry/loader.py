@@ -42,6 +42,7 @@ class FeatureSpec:
     mover_phrase: str | None = None
     band_labels: tuple[str, ...] | None = None
     band_tones: tuple[str, ...] | None = None
+    band_edges: tuple[float, ...] | None = None
     display_scale: float = 1.0
     display_decimals: int = 1
     status: str = "active"
@@ -110,6 +111,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             mover_phrase=f.get("mover_phrase"),
             band_labels=tuple(f["band_labels"]) if "band_labels" in f else None,
             band_tones=tuple(f["band_tones"]) if "band_tones" in f else None,
+            band_edges=tuple(float(x) for x in f["band_edges"])
+                if "band_edges" in f else None,
             display_scale=float(f.get("display_scale", 1.0)),
             display_decimals=int(f.get("display_decimals", 1)),
             status=f.get("status", "active"), deviation=f.get("deviation"),
@@ -130,6 +133,9 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         if spec.status == "retired":
             assert spec.weight_in_pillar == 0 and spec.retired_reason, (
                 f"{spec.id}: retired entries carry weight 0 and a reason")
+        if spec.band_edges is not None:
+            assert len(spec.band_edges) == 2, spec.id
+            assert spec.band_edges[0] < spec.band_edges[1], spec.id
         if spec.band_labels is not None:
             assert len(spec.band_labels) == 3, (
                 f"{spec.id}: band_labels must name the three bands")

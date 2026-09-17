@@ -410,6 +410,10 @@ features:
     unit_short: ""
     unit_template: "people, of whom {adults} are adults"
     display_decimals: 0
+    # population bands by ABSOLUTE size, not percentile: most metros are
+    # small, so tertiles would call every top-third metro "biggest" —
+    # 717k Provo included, which misleads. Edges are a registry judgment.
+    band_edges: [500000, 2000000]
     band_labels: ["One of the smaller cities", "A mid-sized city",
                   "One of the biggest cities"]
     band_tones: [neutral, neutral, neutral]

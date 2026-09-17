@@ -1,9 +1,10 @@
 # How the numbers are made
 
-This page is versioned with the model (m2.0.0). It is written for
-visitors; the technical record — decision documents, validation reports,
-and the precise uncertainty figures — is in the project repository and
-available on request.
+This page is written for visitors and kept in step with the counting
+method itself — when the method changes, so does this page. The technical
+record — decision documents, validation reports, and the precise
+uncertainty figures — is in the project repository and available on
+request.
 
 ## Where the data comes from
 
