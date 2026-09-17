@@ -25,6 +25,12 @@ export function SiteHeader({ border = true }: { border?: boolean }) {
           Compare cities
         </Link>
         <Link
+          href="/what-we-measure"
+          className="text-sm font-semibold text-ink-2 hover:text-ink"
+        >
+          What we measure
+        </Link>
+        <Link
           href="/how-it-works"
           className="text-sm font-semibold text-ink-2 hover:text-ink"
         >

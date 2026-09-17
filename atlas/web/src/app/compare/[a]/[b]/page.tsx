@@ -11,8 +11,7 @@ import {
 } from "@/lib/prefs";
 import { SiteHeader } from "@/components/chrome";
 import { BalanceTally } from "@/components/tally";
-import type { Card, CrimeBlock, Meta, MetroMeta, RankedRow,
-              SuppressedRow } from "@/lib/types";
+import type { Card, Meta, RankedRow, SuppressedRow } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -190,53 +189,58 @@ export default async function ComparePage({
           </table>
         </div>
 
-        {/* item 5 on the compare page: the non-comparability note sits
-            BETWEEN the two columns, where it will actually be read —
-            never a difference column for crime */}
+        {/* Phase 2e item 11: two numbers per city, side by side like the
+            other stats, ONE plain banner above them, the detail one
+            click away. No coverage percentages, no agency talk. */}
         <section className="flex flex-col gap-4 rounded-xl border border-rule bg-surface px-7 py-6" data-testid="compare-crime">
           <h2 className="font-display text-[21px] font-semibold">Reported crime</h2>
-          <div className="grid grid-cols-[1fr_minmax(200px,260px)_1fr] gap-7 max-md:grid-cols-1">
-            <CrimeColumn metro={mA} crime={rowA?.crime} />
-            <p
-              className="self-center rounded-lg border border-tint-border bg-tint px-4 py-3.5 text-[12.5px] leading-relaxed text-accent-hover"
-              data-testid="crime-compare-note"
-            >
-              {policy.crime_compare_note}
-            </p>
-            <CrimeColumn metro={mB} crime={rowB?.crime} />
-          </div>
-          <p className="max-w-[76ch] border-t border-rule pt-4 text-[13px] leading-relaxed text-ink-3">
-            {(rowA?.crime ?? rowB?.crime)?.caution}{" "}
-            <Link href="/about-crime-data" className="font-semibold text-accent hover:text-accent-hover">
+          <p
+            className="max-w-[76ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13px] leading-relaxed text-accent-hover"
+            data-testid="crime-compare-banner"
+          >
+            {(rowA?.crime ?? rowB?.crime)?.compare_banner}{" "}
+            <Link href="/about-crime-data" className="font-semibold underline underline-offset-2">
               About these figures
             </Link>
           </p>
+          <table className="w-full max-w-[560px] text-sm">
+            <thead>
+              <tr className="border-b border-rule text-left">
+                <th scope="col" className="py-2 pr-4 text-[13px] font-semibold text-ink-3" />
+                {[mA, mB].map((m) => (
+                  <th key={m.slug} scope="col" className="py-2 pr-4 font-display text-[15px] font-semibold">
+                    {m.display_name}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {(["violent_crime_rate", "property_crime_rate"] as const).map((fid) => (
+                <tr key={fid} className="border-b border-rule last:border-b-0">
+                  <th scope="row" className="py-2.5 pr-4 text-left text-[13px] font-semibold text-ink-2">
+                    {meta.features[fid].display_name}
+                  </th>
+                  {[rowA, rowB].map((r, i) => {
+                    const s = r?.crime?.stats?.find((x) => x.id === fid);
+                    return (
+                      <td key={i} className="py-2.5 pr-4">
+                        {s ? (
+                          <span className="font-display text-[19px] font-semibold">{s.display}</span>
+                        ) : (
+                          <span className="text-[12.5px] text-ink-3">
+                            {r?.crime?.card_blank ?? "Not covered"}
+                          </span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
       </div>
     </>
-  );
-}
-
-function CrimeColumn({ metro, crime }: { metro: MetroMeta; crime?: CrimeBlock }) {
-  return (
-    <div className="flex flex-col gap-3">
-      <span className="font-display text-[16px] font-semibold">{metro.display_name}</span>
-      {crime?.available ? (
-        <>
-          {crime.stats!.map((s) => (
-            <div key={s.id} className="flex items-baseline justify-between gap-3">
-              <span className="text-[13px] text-ink-2">{s.label}</span>
-              <span className="font-display text-[19px] font-semibold">{s.display}</span>
-            </div>
-          ))}
-          <p className="text-[12px] leading-snug text-ink-3">{crime.coverage_line}</p>
-        </>
-      ) : (
-        <p className="text-[13px] leading-relaxed text-ink-3">
-          {crime?.note ?? "Not covered"}
-        </p>
-      )}
-    </div>
   );
 }
 

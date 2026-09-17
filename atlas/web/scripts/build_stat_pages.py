@@ -53,19 +53,34 @@ def main() -> None:
             rows.append({
                 "slug": build.slugs[i],
                 "name": build.display_names[i],
-                "value": v,
+                "_v": v,
                 "display": display,
                 "unit_line": unit_line,
                 "band": ({"label": band["label"], "tone": band["tone"],
                           "key": band["key"]} if band else None),
             })
         # order by the measure itself; direction decides which end leads
-        # (cheap rent first, most venues first) — never by any score
+        # (cheap rent first, most venues first) — never by any score.
+        # Positions are numbered ONCE in this order; the page's reverse
+        # sort shows the same numbers in reverse (item 1).
         reverse = int(le["direction"]) > 0
-        rows.sort(key=lambda r: r["value"], reverse=reverse)
+        rows.sort(key=lambda r: r["_v"], reverse=reverse)
         for pos, r in enumerate(rows):
             r["pos"] = pos + 1
-            del r["value"]
+        # the distribution strip (Phase 2e item 6): every ranked city as
+        # a tick along the stat's own range, plus formatted end labels —
+        # computed here from the same values the rows carry
+        finite = sorted(r["_v"] for r in rows)
+        lo_v, hi_v = finite[0], finite[-1]
+        span = (hi_v - lo_v) or 1.0
+        ticks = [round((r["_v"] - lo_v) / span * 100, 2) for r in rows]
+        if fid == "who_lives_here":
+            axis = [format_pop(lo_v), format_pop(hi_v)]
+        else:
+            axis = [format_value(lo_v, le), format_value(hi_v, le)]
+        for r in rows:
+            del r["_v"]
+
         missing = int(build.ranked_set.sum()) - len(rows)
         pages[fid] = {
             # the page heading says "Cities by {title}" — population's
@@ -76,6 +91,14 @@ def main() -> None:
             "definition": le["definition"],
             "rows": rows,
             "missing_in_ranked_set": missing,
+            # position #1 is the registry-direction-good end; the page's
+            # reverse toggle shows the SAME numbers in reverse (item 1)
+            "default_is_low_first": not reverse,
+            "strip": {"ticks": ticks, "axis": axis},
+            # per-page disclosure sentences from the registry (the rent
+            # page's rent-stabilisation note, item 9.4)
+            "note": {"median_gross_rent": m["strings"].get("rent_page_note")}
+                    .get(fid),
         }
     out = WEB / "src" / "data" / "stat-pages.json"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -84,7 +107,10 @@ def main() -> None:
     payload = {"of_build": m["data_version"], "pages": pages,
                "order": list(m["stat_pages"]),
                "strings": {"intro": m["strings"]["stat_page_intro"],
-                           "missing": m["strings"]["stat_page_missing"]}}
+                           "missing": m["strings"]["stat_page_missing"],
+                           "sort_low": m["strings"]["stat_sort_low"],
+                           "sort_high": m["strings"]["stat_sort_high"],
+                           "strip_label": m["strings"]["stat_strip_label"]}}
     out.write_text(json.dumps(payload, separators=(",", ":"),
                               ensure_ascii=False) + "\n", encoding="utf-8")
     n = len(pages)

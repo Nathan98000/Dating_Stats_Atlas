@@ -8,42 +8,56 @@ import { expect, test } from "@playwright/test";
 const CITY_URL =
   "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously";
 
-test("crime renders with coverage and caution, or as the blank state — never scored", async ({ page }) => {
+test("crime is two cards in the stats grid, detail in the popover — never scored", async ({ page }) => {
+  // Phase 2e item 2: rate + five-band position on the face, coverage and
+  // the FBI's caution INSIDE the accessible popover, with the explainer
+  // link; nothing about agencies or panels on the card face
   await page.goto(CITY_URL);
-  const section = page.getByTestId("crime-section");
-  await expect(section).toBeVisible();
-  await expect(page.getByTestId("crime-caution")).toContainText(/caution/i);
-  await expect(page.getByTestId("crime-caution")).toContainText(/never part of any score/i);
-  const hasFigures = (await section.locator("[data-crime]").count()) > 0;
-  if (hasFigures) {
-    await expect(section).toContainText("Violent crime");
-    await expect(section).toContainText("Property crime");
-    // the trap the adapter exists to avoid: a rate never renders without
-    // its coverage sentence
-    await expect(page.getByTestId("crime-coverage")).toContainText(
-      /reported a full year/);
-  } else {
-    await expect(page.getByTestId("crime-blank")).toBeVisible();
+  const violent = page.locator('[data-card="violent_crime_rate"]');
+  const property = page.locator('[data-card="property_crime_rate"]');
+  await expect(violent).toBeVisible();
+  await expect(property).toBeVisible();
+  const face = (await violent.textContent()) ?? "";
+  // the face carries rate, unit and band — never NIBRS, agencies,
+  // panels or coverage talk (that lives in the popover)
+  expect(face).not.toMatch(/NIBRS|agenc|panel|coverage|full year/i);
+  // the ⓘ opens on hover AND focus, closes on Escape (the Phase 2d
+  // pattern, shared component)
+  const info = violent.getByTestId("crime-info-violent_crime_rate");
+  await info.hover();
+  const note = page.getByTestId("crime-info-violent_crime_rate-note");
+  await expect(note).toBeVisible();
+  await expect(note).toContainText(/caution/i);
+  await expect(note).toContainText(/never part of any score/i);
+  await expect(
+    note.getByRole("link", { name: "About these figures" })).toBeVisible();
+  await info.focus();
+  await page.keyboard.press("Escape");
+  await expect(note).toHaveCount(0);
+  // a figure card also carries its five-band position
+  if (!face.includes("Not enough")) {
+    await expect(violent).toContainText(
+      /Far lower|Lower than|About average|Higher than|Far higher/);
   }
-  // crime never appears among the ranked stats or as a score input
-  await expect(section).not.toContainText(/out of 100/);
 });
 
-test("crime on the compare page keeps the note between the columns", async ({ page }) => {
+test("compare-page crime: two plain numbers and one banner, detail one click away", async ({ page }) => {
+  // Phase 2e item 11
   await page.goto(
     "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously");
   const block = page.getByTestId("compare-crime");
   await expect(block).toBeVisible();
-  const note = page.getByTestId("crime-compare-note");
-  await expect(note).toContainText(/aren't comparable/);
-  // spatially between the two city columns on desktop: the note's box
-  // sits strictly right of column A and left of column B
-  const cols = block.locator("div.grid > div");
-  const a = await cols.nth(0).boundingBox();
-  const noteBox = await note.boundingBox();
-  const b = await cols.nth(1).boundingBox();
-  expect(a!.x + a!.width).toBeLessThanOrEqual(noteBox!.x + 1);
-  expect(noteBox!.x + noteBox!.width).toBeLessThanOrEqual(b!.x + 1);
+  const banner = page.getByTestId("crime-compare-banner");
+  await expect(banner).toContainText(/aren't reliably comparable/);
+  await expect(
+    banner.getByRole("link", { name: "About these figures" })).toBeVisible();
+  // beyond the banner: numbers only — no coverage percentages, no
+  // agency talk, no paragraph (the banner itself is where the one
+  // plain-language why lives)
+  const table = (await block.locator("table").textContent()) ?? "";
+  expect(table).not.toMatch(/coverage|agenc|panel|%/i);
+  await expect(block).toContainText("Violent crime");
+  await expect(block).toContainText("Property crime");
 });
 
 test("stat pages agree with the city page cell for cell", async ({ page }) => {
@@ -118,7 +132,9 @@ test("How it works carries every item-10 disclosure, structured", async ({ page 
   // structure, not dumped prose (gate 6)
   expect(await article.locator("h2").count()).toBeGreaterThanOrEqual(7);
   expect(await article.locator("table").count()).toBeGreaterThanOrEqual(1);
-  expect(await article.locator("ul li").count()).toBeGreaterThanOrEqual(7);
+  // the stat index moved to What we measure in Phase 2e, taking its
+  // seven bullets with it; real lists remain
+  expect(await article.locator("ul li").count()).toBeGreaterThanOrEqual(2);
   const text = (await article.textContent()) ?? "";
   for (const [what, re] of [
     ["source and cadence", /American Community Survey/],
@@ -133,8 +149,13 @@ test("How it works carries every item-10 disclosure, structured", async ({ page 
   ] as const) {
     expect(text, `must disclose: ${what}`).toMatch(re);
   }
-  // the stat-page index (item 9), linked
-  await expect(article.getByRole("link", { name: /Cities by rent/ })).toBeVisible();
+  // Phase 2e item 12: the index moved to What we measure; How it works
+  // LINKS to it instead of repeating it
   await expect(
-    article.getByRole("link", { name: /Cities by population/ })).toBeVisible();
+    article.getByRole("link", { name: /What we measure/ })).toBeVisible();
+  expect(text).not.toMatch(/Cities by rent/);
+  // and the m2.2.0 race disclosure describes summable arithmetic, with
+  // no always-counted claim anywhere
+  expect(text).toMatch(/eight boxes/i);
+  expect(text).not.toMatch(/always (counted|included)/i);
 });
