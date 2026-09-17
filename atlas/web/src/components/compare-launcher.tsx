@@ -3,15 +3,11 @@
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
-
-interface Entry {
-  s: string; // slug
-  f: string; // display name full
-  k: string[];
-}
+import { searchCities, type CityEntry } from "@/lib/search";
 
 /** Pick a second city; the compare URL carries both slugs and the whole
- * preference query string. */
+ * preference query string. Matching goes through lib/search — the one
+ * matcher every city chooser shares (item 5). */
 export function CompareLauncher({
   slug,
   primary = false,
@@ -25,14 +21,10 @@ export function CompareLauncher({
   const [q, setQ] = useState("");
   const router = useRouter();
   const sp = useSearchParams();
-  const results = useMemo(() => {
-    const query = q.trim().toLowerCase();
-    if (query.length < 2) return [];
-    return (index as Entry[])
-      .filter((e) => e.s !== slug)
-      .filter((e) => [e.f, ...e.k].some((t) => t.toLowerCase().includes(query)))
-      .slice(0, 6);
-  }, [q, slug]);
+  const results = useMemo(
+    () => searchCities(index as CityEntry[], q, { limit: 6, exclude: slug }),
+    [q, slug],
+  );
 
   const label = small ? "Compare cities" : "Compare with another city";
   if (!open) {
