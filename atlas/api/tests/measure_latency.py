@@ -28,8 +28,8 @@ INC = [None, 25000, 50000, 75000, 100000, 150000, 250000]
 MAR = ["never", "not_married", "any"]
 
 
-MARITAL_LISTS = [["never_married"], ["never_married", "previously_married"],
-                 ["never_married", "previously_married", "currently_married"]]
+MARITAL_LISTS = [["never_married"], ["previously_married"],
+                 ["never_married", "previously_married"]]
 SPEC_RACES = [None, None, None, "hispanic", "white_nh", "black_nh", "asian_nh"]
 
 
