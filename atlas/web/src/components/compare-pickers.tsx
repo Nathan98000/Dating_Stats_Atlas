@@ -3,12 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
-
-interface Entry {
-  s: string; // slug
-  f: string; // display name full
-  k: string[];
-}
+import { searchCities, type CityEntry } from "@/lib/search";
 
 /** The compare landing page's two city pickers (item 8): the same
  * client-side search index as Find-a-city, pre-filled from the URL when
@@ -24,8 +19,8 @@ export function ComparePickers({
   const router = useRouter();
   const sp = useSearchParams();
   const bySlug = useMemo(() => {
-    const m = new Map<string, Entry>();
-    for (const e of index as Entry[]) m.set(e.s, e);
+    const m = new Map<string, CityEntry>();
+    for (const e of index as CityEntry[]) m.set(e.s, e);
     return m;
   }, []);
   const [a, setA] = useState<string | undefined>(
@@ -89,14 +84,13 @@ function CityPicker({
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  const results = useMemo(() => {
-    const query = q.trim().toLowerCase();
-    if (query.length < 2) return [];
-    return (index as Entry[])
-      .filter((e) => e.s !== exclude)
-      .filter((e) => [e.f, ...e.k].some((t) => t.toLowerCase().includes(query)))
-      .slice(0, 7);
-  }, [q, exclude]);
+  // the SHARED matcher (lib/search): the unranked includes() this
+  // replaced served seven upstate metros for "new york" and dropped the
+  // city itself off the end (item 5)
+  const results = useMemo(
+    () => searchCities(index as CityEntry[], q, { limit: 7, exclude }),
+    [q, exclude],
+  );
   const listOpen = open && results.length > 0;
 
   const choose = (slug: string, name: string) => {

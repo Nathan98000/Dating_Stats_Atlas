@@ -3,37 +3,11 @@
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
+import { searchCities, type CityEntry } from "@/lib/search";
 
-interface Entry {
-  s: string; // slug
-  f: string; // "Provo, Utah"
-  r: boolean;
-  k: string[];
-}
-
-function score(entry: Entry, q: string): number {
-  let best = 0;
-  for (const tok of [entry.f, ...entry.k]) {
-    const t = tok.toLowerCase();
-    if (t === q) best = Math.max(best, 100);
-    else if (t.startsWith(q)) best = Math.max(best, 80 - (t.length - q.length) * 0.5);
-    else if (t.includes(q)) best = Math.max(best, 50 - t.indexOf(q));
-    else {
-      let i = 0;
-      let gaps = 0;
-      for (const ch of t) {
-        if (ch === q[i]) i++;
-        else if (i > 0) gaps++;
-        if (i === q.length) break;
-      }
-      if (i === q.length && gaps <= q.length * 2) best = Math.max(best, 25 - gaps);
-    }
-  }
-  return best;
-}
-
-/** Find-a-city (§8.3): the committed index, fuzzy-matched in the browser,
- * routed by slug. */
+/** Find-a-city (§8.3): the committed index, matched in the browser
+ * through lib/search — the ONE matcher every city chooser shares since
+ * Phase 2e item 5 — routed by slug. */
 export function SearchBox() {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
@@ -41,15 +15,10 @@ export function SearchBox() {
   const router = useRouter();
   const sp = useSearchParams();
 
-  const results = useMemo(() => {
-    const query = q.trim().toLowerCase();
-    if (query.length < 2) return [];
-    return (index as Entry[])
-      .map((e) => ({ e, s: score(e, query) }))
-      .filter((r) => r.s > 0)
-      .sort((a, b) => b.s - a.s)
-      .slice(0, 8);
-  }, [q]);
+  const results = useMemo(
+    () => searchCities(index as CityEntry[], q, { limit: 8 }),
+    [q],
+  );
 
   const go = (slug: string) => {
     const qs = sp.toString();
@@ -68,7 +37,7 @@ export function SearchBox() {
         role="combobox"
         aria-expanded={listOpen}
         aria-controls={listOpen ? "city-search-results" : undefined}
-        aria-activedescendant={listOpen && results[active] ? `cs-${results[active].e.s}` : undefined}
+        aria-activedescendant={listOpen && results[active] ? `cs-${results[active].s}` : undefined}
         autoComplete="off"
         placeholder="Find a city"
         className="ctl !min-h-[42px]"
@@ -89,7 +58,7 @@ export function SearchBox() {
             setActive((a) => Math.max(a - 1, 0));
           } else if (e.key === "Enter" && results[active]) {
             e.preventDefault();
-            go(results[active].e.s);
+            go(results[active].s);
           } else if (e.key === "Escape") {
             setOpen(false);
           }
@@ -103,18 +72,18 @@ export function SearchBox() {
         >
           {results.map((r, i) => (
             <li
-              key={r.e.s}
-              id={`cs-${r.e.s}`}
+              key={r.s}
+              id={`cs-${r.s}`}
               role="option"
               aria-selected={i === active}
               className={`cursor-pointer px-3.5 py-2 ${i === active ? "bg-tint text-ink" : "text-ink-2"}`}
               onMouseDown={(e) => {
                 e.preventDefault();
-                go(r.e.s);
+                go(r.s);
               }}
               onMouseEnter={() => setActive(i)}
             >
-              {r.e.f}
+              {r.f}
             </li>
           ))}
         </ul>

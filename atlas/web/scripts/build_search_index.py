@@ -55,20 +55,35 @@ COLLOQUIAL = {
 }
 
 
-def tokens_from_title(title: str) -> list[str]:
+def tokens_from_title(title: str) -> tuple[list[str], list[str]]:
+    """(city tokens, state tokens). Kept apart since Phase 2e item 5: a
+    state token scoring like a city name is how 'new york' filled the
+    compare picker with upstate metros — the shared scorer caps state
+    tokens, so the split must survive into the index."""
     name, _, states = title.rpartition(", ")
-    toks = [re.sub(r"^Urban ", "", t.strip())
+    city = [re.sub(r"^Urban ", "", t.strip())
             for t in re.split(r"[-–—]", name) if t.strip()]
-    toks += [s.strip() for s in states.split("-") if s.strip()]
-    return toks
+    st = [s.strip() for s in states.split("-") if s.strip()]
+    return city, st
 
 
 def main() -> None:
     build_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_BUILD
     metros = json.loads((build_dir / "metros.json").read_text())
+    # a colloquial keyed to a slug that no longer exists is silently dead
+    # — DC's "DC"/"the DMV" entries were, from Phase 2c until the item-5
+    # search matrix caught it
+    slugs = {m["slug"] for m in metros}
+    dead = sorted(set(COLLOQUIAL) - slugs)
+    assert not dead, f"colloquial keys with no matching slug: {dead}"
     rows = []
     for m in metros:
-        toks = tokens_from_title(m["title"]) + COLLOQUIAL.get(m["slug"], [])
+        city_toks, st_toks = tokens_from_title(m["title"])
+        toks = city_toks + COLLOQUIAL.get(m["slug"], [])
+        # the full state name joins the STATE tokens (capped in scoring),
+        # from the display name's own tail
+        state_full = m["display_name_full"].rsplit(", ", 1)[-1]
+        st = st_toks + [state_full]
         seen, keep = set(), []
         for t in toks:
             k = t.lower()
@@ -76,7 +91,8 @@ def main() -> None:
                 seen.add(k)
                 keep.append(t)
         rows.append({"s": m["slug"], "f": m["display_name_full"],
-                     "r": m["ranked_set"], "k": keep})
+                     "r": m["ranked_set"], "k": keep,
+                     "st": list(dict.fromkeys(st))})
     out = WEB / "src" / "data" / "search-index.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False)
