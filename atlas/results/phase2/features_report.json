@@ -99,22 +99,18 @@
     ],
     "note": "SLD TotPop is ~2018 vintage at 2010 BGs vs 2020-2024 metro population; the assertion is structural (coverage), not vintage equality."
   },
-  "noaa": {
-    "metros_without_station": [
-      "14500",
-      "24260",
-      "29740",
-      "37340"
-    ],
-    "median_station_km": 7.703802552215828,
-    "p95_station_km": 20.900266940960936,
-    "fallback_rank_gt0": 144,
+  "ghcn_pleasant_days": {
+    "metros_without_station": [],
+    "median_station_km": 8.487587599909023,
+    "p95_station_km": 37.07709229018462,
+    "fallback_rank_gt0": 95,
     "definition": {
       "tmax_f": [
         55,
         85
       ],
-      "tmin_floor_f": 40
+      "tmin_floor_f": 40,
+      "prcp_max_in": 0.1
     }
   },
   "ipeds": {
@@ -130,9 +126,9 @@
     "rpp_services_other": 0,
     "venues_per_100k": 0,
     "resident_walkability_index": 0,
-    "pleasant_days": 4,
+    "pleasant_days": 0,
     "students_per_1k_adults": 0
   },
-  "metros_with_any_missing": 4,
+  "metros_with_any_missing": 0,
   "spec_wording_flag": "\u00a75.3 mock says '% of the pool in walkable tracts'; the pool exists only at metro level after PUMA allocation, so the shipped feature is resident_walkability_index (SLD population-weighted walkability of the metro's residents). Frontend copy must say residents, not pool."
 }

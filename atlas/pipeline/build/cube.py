@@ -89,6 +89,21 @@ def build(out_root=None) -> str:
     statics = pd.read_csv(P2 / "static_features.csv", dtype={"cbsa": str})
     city_meta = pd.read_csv(RESULTS / "phase2c" / "city_meta.csv",
                             dtype={"cbsa": str})
+    # crime context for the registry-chosen year (Phase 2d item 5; D01):
+    # rates over the COVERED population plus the coverage share itself;
+    # the serving layer applies the coverage floor, so the artifact keeps
+    # the raw figures and the floor stays a registry decision
+    crime_all = pd.read_csv(RESULTS / "phase2d" / "crime_metro.csv",
+                            dtype={"cbsa": str})
+    crime = (crime_all[crime_all["year"] == int(reg.crime["year"])]
+             .rename(columns={"violent_per_100k": "violent_crime_rate",
+                              "property_per_100k": "property_crime_rate",
+                              "coverage": "crime_coverage"})
+             [["cbsa", "violent_crime_rate", "property_crime_rate",
+               "crime_coverage"]])
+    assert len(crime) > 300, (
+        f"crime table has {len(crime)} metros for {reg.crime['year']}; "
+        f"run build.crime first")
     pairing_m = pd.read_csv(P2 / "pairing_metro.csv", dtype={"cbsa": str})
     pairing_cells = DATA / "pairing_cells.parquet"
     assert pairing_cells.exists(), "run build.pairing before build.cube"
@@ -147,6 +162,7 @@ def build(out_root=None) -> str:
              .merge(statics[["cbsa"] + static_cols], on="cbsa", how="left")
              .merge(pairing_m, on="cbsa", how="left")
              .merge(city_meta, on="cbsa", how="left")
+             .merge(crime, on="cbsa", how="left")
              .merge(ioff.rename(columns={"offset": "interval_offset"}),
                     on="cbsa", how="left"))
     feats = feats.set_index("cbsa").loc[metro_levels].reset_index()
@@ -248,9 +264,13 @@ def build(out_root=None) -> str:
         },
         "standing_bands": reg.standing_bands,
         "city_cards": list(reg.city_cards),
+        "stat_pages": list(reg.stat_pages),
+        "crime": reg.crime,
+        "strings": reg.strings,
         "pillars": {
             k: {"display_name": p.display_name, "definition": p.definition,
-                "default_weight": p.default_weight}
+                "default_weight": p.default_weight,
+                "control_subtitle": p.control_subtitle}
             for k, p in reg.pillars.items()
         },
         # Attribution stays pluggable in ONE place (adapters/base.py
@@ -272,6 +292,8 @@ def build(out_root=None) -> str:
                    "unit_short": f.unit_short,
                    "unit_template": f.unit_template,
                    "mover_phrase": f.mover_phrase,
+                   "stat_page_name": f.stat_page_name,
+                   "band_direction": f.band_direction,
                    "band_labels": list(f.band_labels) if f.band_labels else None,
                    "band_tones": list(f.band_tones) if f.band_tones else None,
                    "band_edges": list(f.band_edges) if f.band_edges else None,
@@ -311,8 +333,24 @@ def build(out_root=None) -> str:
 
     out_dir = (out_root or BUILDS) / data_version
     if out_dir.exists():
+        # same data, possibly refreshed display metadata: data_version
+        # hashes the DATA files (the manifest cannot contain its own
+        # hash), so a registry display change alone lands here. Refresh
+        # the manifest in place rather than silently discarding it — the
+        # first everyday-prices band fix vanished exactly that way.
+        old = json.loads((out_dir / "manifest.json").read_text())
+        new = json.loads((tmp / "manifest.json").read_text())
+        for k in ("created_at",):
+            old.pop(k, None), new.pop(k, None)
+        if old != new:
+            shutil.copyfile(tmp / "manifest.json", out_dir / "manifest.json")
+            (P2 / "build_manifest.json").write_text(
+                json.dumps(manifest, indent=2) + "\n")
+            print(f"build {data_version}: data identical, manifest "
+                  f"refreshed (display metadata)")
+        else:
+            print(f"build {data_version} already exists")
         shutil.rmtree(tmp)
-        print(f"build {data_version} already exists")
         return data_version
     tmp.rename(out_dir)
     (P2 / "build_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

@@ -1,4 +1,4 @@
-"""Scoring, m2.0.0 — five pillars over the cubes plus the static feature
+"""Scoring, m2.1.0 — six pillars over the cubes plus the static feature
 matrix; pure numpy over a loaded Build.
 
 ADR 0004's model change: the balance pillar scores DATING POOL BALANCE,
@@ -25,6 +25,8 @@ is asserted on every request. Margins keep being computed and returned
 decision, not a change to the mechanism (ADR 0004 item 3).
 """
 from __future__ import annotations
+
+from bisect import bisect_right
 
 import numpy as np
 
@@ -187,28 +189,73 @@ def _balance_block(build: Build, i: int, bal: dict, sought_word: str,
 
 
 def _band_of(build: Build, fid: str, i: int) -> dict | None:
-    """Three-band standing across all 387 cities (registry thresholds,
-    registry labels — the wireframe placed these by judgement; the shipped
-    page reads the build). A feature with registry band_edges bands by
-    ABSOLUTE value instead of percentile — population's case, where
-    tertiles over mostly-small metros would call a 700k city 'one of the
-    biggest'."""
+    """Five-band standing across all 387 cities, cut on national quintiles
+    (registry thresholds, registry labels; m2.1.0). The label states the
+    POSITION; the tone comes from the registry's band_direction — cheap
+    rent colours good, a big student share colours nothing. A feature with
+    registry band_edges bands by ABSOLUTE value instead of percentile —
+    population's case, where quantiles over mostly-small metros would call
+    a 700k city 'one of the biggest'."""
     sa = build.standing_all.get(fid)
     le = build.legend.get(fid, {})
     if sa is None or np.isnan(sa[i]) or not le.get("band_labels"):
         return None
     pct = float(sa[i])
+    bands = build.manifest["standing_bands"]
     edges = le.get("band_edges")
+    # bisect on the manifest's plain lists: this runs ~3,000 times per
+    # request (193 rows x 16 banded figures), and a numpy conversion per
+    # call cost ~12 ms of the p50 before this was caught
     if edges:
-        v = float(build.static[fid][i])
-        k = 0 if v < edges[0] else (2 if v >= edges[1] else 1)
+        k = bisect_right(edges, float(build.static[fid][i]))
     else:
-        bands = build.manifest["standing_bands"]
-        k = 0 if pct < bands["low_below"] else (2 if pct > bands["high_above"] else 1)
-    return {"key": ["low", "mid", "high"][k],
+        k = bisect_right(bands["edges"], pct)
+    return {"key": bands["keys"][k],
             "standing_all": round(pct, 1),
             "label": le["band_labels"][k],
             "tone": le["band_tones"][k]}
+
+
+CRIME_RATE_IDS = ("violent_crime_rate", "property_crime_rate")
+
+
+def _crime_block(build: Build, i: int) -> dict:
+    """Crime context (Phase 2d item 5; D01: never scored). Rates render
+    ONLY with their coverage figure and the FBI's caution attached, and
+    only where coverage clears the registry floor — the reporting panel
+    differs by metro, so a rate without its coverage would invite exactly
+    the comparison the FBI cautions against. Everything here is composed
+    from registry strings and legend fields; the rates' denominator is the
+    covered population (never the metro's), which the adapter enforced."""
+    strings = build.manifest["strings"]
+    cfg = build.manifest["crime"]
+    city = build.display_names[i].split(",")[0]
+    vals = {fid: float(build.crime[fid][i]) for fid in
+            (*CRIME_RATE_IDS, "crime_coverage")}
+    coverage = vals["crime_coverage"]
+    available = (not any(np.isnan(v) for v in vals.values())
+                 and coverage >= float(cfg["coverage_floor"]))
+    out: dict = {"available": available,
+                 "caution": strings["crime_caution"]}
+    if not available:
+        out["note"] = strings["crime_blank"].format(city=city)
+        return out
+    cov_le = build.legend["crime_coverage"]
+    cov_display = format_value(coverage, cov_le) + "%"
+    out["coverage_line"] = strings["crime_coverage_line"].format(
+        coverage=cov_display, year=int(cfg["year"]))
+    out["coverage_pct"] = round(coverage * 100, 1)
+    out["stats"] = []
+    for fid in CRIME_RATE_IDS:
+        le = build.legend[fid]
+        out["stats"].append({
+            "id": fid,
+            "label": le["display_name"],
+            "value": round(vals[fid], 1),
+            "display": format_value(vals[fid], le),
+            "unit_line": le["unit"],
+        })
+    return out
 
 
 def _card_stats(build: Build, i: int) -> list[dict]:
@@ -392,6 +439,7 @@ def rank(build: Build, req: Request) -> dict:
                 "flags": _row_flags(build, i),
                 "stats": stats,
                 "cards": _card_stats(build, i),
+                "crime": _crime_block(build, i),
                 "contributions": [
                     {"pillar": p, "value": round(v, 2)}
                     for p, v in pillar_contrib.items()],
@@ -414,5 +462,6 @@ def rank(build: Build, req: Request) -> dict:
             "balance": _balance_block(build, i, bal, sought_word,
                                       seeker_word),
             "cards": _card_stats(build, i),
+            "crime": _crime_block(build, i),
         })
     return out

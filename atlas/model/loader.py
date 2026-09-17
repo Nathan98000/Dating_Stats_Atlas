@@ -39,6 +39,11 @@ STATIC_FEATURES = ["median_gross_rent", "rpp_goods", "rpp_services_other",
 # and national standings ship in features.parquet
 CARD_ONLY_FEATURES = {"everyday_prices": "everyday_prices",
                       "who_lives_here": "pop_total"}
+# crime context (Phase 2d item 5; D01): values for the registry-chosen
+# year, NaN where coverage failed or nothing reported — never scored,
+# asserted at registry load and again in the engine tests
+CRIME_FEATURES = ("violent_crime_rate", "property_crime_rate",
+                  "crime_coverage")
 LEGEND_DISPLAY_KEYS = ("display_name", "unit", "definition")
 
 
@@ -72,6 +77,7 @@ class Build:
     purity: np.ndarray
     gq_flag: np.ndarray             # bool (n_metros,) — dorm/barracks share
     static: dict = field(default_factory=dict)            # feature -> array
+    crime: dict = field(default_factory=dict)             # crime feature -> array
     standing_all: dict = field(default_factory=dict)      # feature -> pct/387
     static_direction: dict = field(default_factory=dict)  # feature -> +-1
     static_weight: dict = field(default_factory=dict)     # feature -> w in pillar
@@ -177,23 +183,48 @@ def load_build(path: str | Path, verify_hashes: bool = True,
     static = {f: feats[f].to_numpy(dtype=np.float64) for f in STATIC_FEATURES}
     for fid, col in CARD_ONLY_FEATURES.items():
         static[fid] = feats[col].to_numpy(dtype=np.float64)
+    # m2.1.0 artifact requirements — strict for the build being served,
+    # relaxed only under allow_model_mismatch (deliberate cross-version
+    # work on an older artifact, e.g. the split-equivalence gate)
+    old_artifact = allow_model_mismatch and not all(
+        fid in feats.columns for fid in CRIME_FEATURES)
+    crime = {}
+    for fid in CRIME_FEATURES:
+        if old_artifact:
+            crime[fid] = np.full(len(feats), np.nan)
+            continue
+        assert fid in feats.columns, f"features.parquet missing {fid} (m2.1.0)"
+        crime[fid] = feats[fid].to_numpy(dtype=np.float64)
     standing_all = {}
     for fid in manifest["city_cards"]:
         col = f"standing_all_{fid}"
         assert col in feats.columns, f"features.parquet missing {col}"
         standing_all[fid] = feats[col].to_numpy(dtype=np.float64)
-    assert {"low_below", "high_above"} <= set(manifest["standing_bands"]), (
-        "manifest must carry the standing-band thresholds (ADR 0004)")
+    if not old_artifact:
+        bands = manifest["standing_bands"]
+        assert (len(bands.get("edges", [])) == len(bands.get("keys", [])) - 1
+                and len(bands.get("keys", [])) == 5), (
+            "manifest must carry the five-band standing thresholds (m2.1.0)")
+        assert "strings" in manifest and "crime" in manifest, (
+            "manifest must carry the registry strings and crime block (m2.1.0)")
+        assert {"year", "coverage_floor"} <= set(manifest["crime"])
     for f in STATIC_FEATURES + ["pool_balance"]:
         assert f in fb, f"feature {f} missing from manifest features_block"
+    if not old_artifact:
+        for f in CRIME_FEATURES:
+            assert f in fb, f"feature {f} missing from manifest features_block"
     for fid, entry in fb.items():
         missing = [k for k in LEGEND_DISPLAY_KEYS if not entry.get(k)]
         assert not missing, (
             f"manifest features_block[{fid}] missing display fields {missing} "
             f"(ADR 0003: no user-facing label lives in code)")
     for fid in manifest["city_cards"]:
-        assert fb[fid].get("band_labels"), (
-            f"city card {fid} missing band_labels in the manifest")
+        labels = fb[fid].get("band_labels")
+        tones = fb[fid].get("band_tones")
+        assert labels and tones and (old_artifact or len(labels) == 5
+                                     and len(tones) == 5), (
+            f"city card {fid} needs five band_labels and five derived "
+            f"band_tones in the manifest (m2.1.0)")
     assert "pillars" in manifest and all(
         p.get("display_name") for p in manifest["pillars"].values()), (
         "manifest must carry pillar display names (ADR 0003)")
@@ -227,6 +258,7 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         purity=feats["purity_pums"].to_numpy(dtype=np.float64),
         gq_flag=feats["gq_flag"].to_numpy(dtype=bool),
         static=static,
+        crime=crime,
         standing_all=standing_all,
         static_direction={f: int(fb[f]["direction"]) for f in STATIC_FEATURES},
         static_weight={f: float(fb[f]["weight_in_pillar"]) for f in STATIC_FEATURES},

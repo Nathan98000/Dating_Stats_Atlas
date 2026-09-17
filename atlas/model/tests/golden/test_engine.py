@@ -1,7 +1,9 @@
-"""Engine unit tests, m2.0.0: schema contract, mask semantics, the plain
+"""Engine unit tests, m2.1.0: schema contract, mask semantics, the plain
 sex-ratio balance and its separate gate (ADR 0004), the always-counted
-race groups, the two-value marital contract, the importance controls, the
-feature-level attribution identity, and the banned-vocabulary rules."""
+race groups, the two-value marital contract, the six pillars and four
+importance controls (ADR 0005), the five-band standing with direction-
+derived tones, the never-scored crime block, the feature-level attribution
+identity, and the banned-vocabulary rules."""
 import json
 import re
 from pathlib import Path
@@ -205,14 +207,23 @@ def test_same_sex_balance_is_not_applicable(build):
 
 
 def test_importance_controls_map_through_registry(build):
+    """m2.1.0: FOUR controls (cost, reach, students, weather), each mapped
+    through the registry level table; neutral settings reproduce the
+    six-pillar registry defaults exactly."""
     defaults = build.manifest["model_defaults"]
     w = importance_weights(0.4545, {"cost": "a_lot", "reach": "not_much",
-                                    "lifestyle": "some"}, defaults)
+                                    "students": "a_lot",
+                                    "weather": "not_much"}, defaults)
     tot = sum(w.values())
     w = {k: v / tot for k, v in w.items()}
     assert w["cost"] > w["reach"], "a_lot must outweigh not_much"
     assert min(w.values()) > 0, "'Not much' is a floor, never zero"
     assert sum(w.values()) == pytest.approx(1.0)
+    # students and weather move INDEPENDENTLY — the reason for the split
+    w_s = importance_weights(0.4545, {"students": "a_lot"}, defaults)
+    assert w_s["students"] > w_s["weather"] / 0.06 * 0.04, (
+        "raising students must not raise weather")
+    assert w_s["weather"] == pytest.approx(defaults["pillar_weights"]["weather"])
     # neutral settings reproduce the registry defaults exactly
     w0 = importance_weights(defaults["size_vs_odds"]["default_s"],
                             {}, defaults)
@@ -221,18 +232,37 @@ def test_importance_controls_map_through_registry(build):
         assert w0[p] / tot0 == pytest.approx(v, abs=1e-3)
 
 
-def test_deprecated_slider_still_accepted(build):
+def test_lifestyle_alias_maps_to_both_halves(build):
+    """The m2.0.0 bundled control is accepted for exactly this version:
+    its level lands on weather AND students, which reproduces what it used
+    to mean; naming it alongside either half is a contradiction."""
+    defaults = build.manifest["model_defaults"]
+    w = importance_weights(0.4545, {"lifestyle": "a_lot"}, defaults)
+    mult = float(defaults["importance_levels"]["a_lot"])
+    assert w["weather"] == pytest.approx(
+        defaults["pillar_weights"]["weather"] * mult)
+    assert w["students"] == pytest.approx(
+        defaults["pillar_weights"]["students"] * mult)
+    with pytest.raises(ValueError, match="deprecated name"):
+        importance_weights(0.5, {"lifestyle": "a_lot", "weather": "some"},
+                           defaults)
+    with pytest.raises(ValueError, match="unknown importance"):
+        importance_weights(0.5, {"nightlife": "a_lot"}, defaults)
+
+
+def test_size_vs_odds_removed(build):
+    """Accepted-but-deprecated for exactly m2.0.0 (ADR 0004); m2.1.0
+    removes it with a loud error naming the replacement."""
     body = {"self": {"sex": "female", "age": 29},
             "seeking": {"age": [27, 36], "marital": ["never_married"]},
             "size_vs_odds": 1.0}
-    res = engine.rank(build, engine.parse_request(body))
-    assert res["weights"]["balance"] == pytest.approx(0.55)
-    assert res["weights"]["pool"] == 0.0
+    with pytest.raises(ValueError, match="pool_vs_balance"):
+        engine.rank(build, engine.parse_request(body))
 
 
 def test_slider_is_a_pure_function():
     defaults = {"pool": 0.30, "balance": 0.25, "reach": 0.20,
-                "cost": 0.15, "lifestyle": 0.10}
+                "cost": 0.15, "weather": 0.06, "students": 0.04}
     w0 = slider_weights(0.0, defaults, 0.55)
     w1 = slider_weights(1.0, defaults, 0.55)
     assert w0["pool"] == pytest.approx(0.55) and w0["balance"] == 0.0
@@ -271,7 +301,7 @@ def test_attribution_identity_and_pillar_sums(build, response):
     sc = score_components(build, ridx, np.linspace(1e3, 5e4, 5),
                           np.linspace(0.8, 1.3, 5),
                           {"pool": .3, "balance": .25, "reach": .2,
-                           "cost": .15, "lifestyle": .1})
+                           "cost": .15, "weather": .06, "students": .04})
     ref_score = (sc["w_eff"] * np.where(~np.isnan(sc["z"]),
                                         sc["ref"][None, :], 0.0)).sum(axis=1)
     assert np.allclose(sc["contrib"].sum(axis=1), sc["score"] - ref_score)
@@ -308,7 +338,7 @@ def test_summary_line_lead_is_position_unique(build, response):
          "contribution": 12.0},
         {"id": "median_gross_rent", "pillar": "cost", "value": 1830.0,
          "contribution": 11.0},
-        {"id": "pleasant_days", "pillar": "lifestyle", "value": 90.0,
+        {"id": "pleasant_days", "pillar": "weather", "value": 90.0,
          "contribution": -6.0},
     ]
     out = summary_line(row, build.legend)
@@ -323,14 +353,25 @@ def test_cards_carry_bands_from_the_build(build, response):
     row = response["ranked"][0]
     cards = {c["id"]: c for c in row["cards"]}
     assert set(cards) == set(build.manifest["city_cards"])
+    band_keys = tuple(build.manifest["standing_bands"]["keys"])
+    assert len(band_keys) == 5, "five bands since m2.1.0 (item 6)"
     for cid, c in cards.items():
         if c.get("missing"):
             continue
         assert "display" in c and "unit_line" in c
         band = c.get("band")
-        assert band and band["key"] in ("low", "mid", "high")
+        assert band and band["key"] in band_keys
         assert band["label"] in build.legend[cid]["band_labels"]
         assert band["tone"] in ("good", "neutral", "poor")
+        # the tone comes from the registry's band_direction, one rule for
+        # every feature — position labels can never colour as virtue by
+        # accident (item 6)
+        direction = build.legend[cid]["band_direction"]
+        pos = band_keys.index(band["key"])
+        expect_tone = {"good_low": ("good", "good", "neutral", "poor", "poor"),
+                       "good_high": ("poor", "poor", "neutral", "good", "good"),
+                       "neutral": ("neutral",) * 5}[direction][pos]
+        assert band["tone"] == expect_tone, (cid, band)
     wlh = cards["who_lives_here"]
     assert "adults" in wlh["unit_line"], (
         "who_lives_here composes its adults figure server-side")
@@ -346,11 +387,44 @@ def test_permalink_is_deterministic():
     body = {"self": {"sex": "female", "age": 32},
             "seeking": {"age": [30, 40], "marital": ["never_married"]},
             "pool_vs_balance": 0.7,
-            "importance": {"cost": "a_lot", "reach": "some",
-                           "lifestyle": "some"}}
+            "importance": {"cost": "a_lot", "students": "not_much"}}
     a = engine.permalink("dv1", MODEL_VERSION, body)
     b = engine.permalink("dv1", MODEL_VERSION, dict(body))
     assert a == b and a.startswith(f"/r/dv1/{MODEL_VERSION}/")
+
+
+def test_crime_is_context_never_scored(build, response):
+    """Gate 4 of the phase (D01 standing): crime arrives as a composed
+    context block with its coverage figure and the FBI's caution — and no
+    crime feature ever enters the scored set, the stats list, or a weight.
+    Where coverage misses the registry floor, the blank state serves
+    instead of a figure."""
+    from atlas.model.scoring import scored_features
+    scored_ids = {f["id"] for f in scored_features(build)}
+    assert not any("crime" in fid for fid in scored_ids)
+    floor = float(build.manifest["crime"]["coverage_floor"])
+    seen_available = 0
+    for r in response["ranked"] + response["suppressed"]:
+        assert "crime" in r
+        blk = r["crime"]
+        assert BANNED.search(blk["caution"]) is None
+        assert "rank" in blk["caution"].lower() and "caution" in blk[
+            "caution"].lower(), "the FBI's caution against ranking renders"
+        for s in r.get("stats", []):
+            assert "crime" not in s["id"], "crime may never enter stats"
+        if blk["available"]:
+            seen_available += 1
+            assert blk["coverage_pct"] >= floor * 100
+            assert "coverage_line" in blk
+            labels = {s["label"] for s in blk["stats"]}
+            assert labels == {"Violent crime", "Property crime"}
+            for s in blk["stats"]:
+                assert s["value"] >= 0 and s["display"]
+        else:
+            assert "note" in blk and blk["note"]
+    assert seen_available >= 1, (
+        "the fixture should carry at least one metro above the coverage "
+        "floor — if this fails, the coverage table itself is the finding")
 
 
 def test_missing_feature_policy_renormalizes(build):
@@ -363,7 +437,7 @@ def test_missing_feature_policy_renormalizes(build):
     b2.static["pleasant_days"][ridx[1]] = np.nan
     b2.static["students_per_1k_adults"][ridx[1]] = np.nan
     weights = {"pool": .3, "balance": .25, "reach": .2, "cost": .15,
-               "lifestyle": .1}
+               "weather": .06, "students": .04}
     sc = score_components(b2, ridx, np.full(len(ridx), 1000.0),
                           np.full(len(ridx), 1.1), weights)
     feats = [f["id"] for f in sc["feats"]]

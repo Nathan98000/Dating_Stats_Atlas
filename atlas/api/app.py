@@ -19,10 +19,14 @@ removal — both noted here as the contract docs):
     metro; counts by reason.
   - marital accepts only never_married / previously_married; the cube
     keeps its third level.
-  - weights come from named controls: {pool_vs_balance: 0..1, importance:
-    {cost|reach|lifestyle: not_much|some|a_lot}}, mapped through registry
-    constants server-side. size_vs_odds stays accepted-but-deprecated for
-    exactly this version. Explicit weight vectors still win.
+  - m2.1.0 (ADR 0005): weights come from named controls
+    {pool_vs_balance: 0..1, importance: {cost|reach|students|weather:
+    not_much|some|a_lot}}, mapped through registry constants server-side;
+    importance.lifestyle is a deprecated alias landing on both split
+    pillars for exactly this version; size_vs_odds is REMOVED (its one
+    deprecation version, m2.0.0, has been served). Rows gain the composed
+    crime context block; bands are five with direction-derived tones.
+    Explicit weight vectors still win.
   - pool_moe and cv are STILL returned (the interval machinery is intact;
     Gate 0's bound stays in the manifest) — they are simply never rendered
     by the site. Technical wording lives under /v1/meta technical_strings.
@@ -35,7 +39,7 @@ from pathlib import Path
 from typing import Literal, Optional
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from atlas import model as engine
 from atlas.model.preferences import ALLOWED_MARITAL, SELECTABLE_RACES
@@ -113,16 +117,24 @@ class Weights(BaseModel):
     balance: float = Field(ge=0, default=0.0)
     reach: float = Field(ge=0, default=0.0)
     cost: float = Field(ge=0, default=0.0)
-    lifestyle: float = Field(ge=0, default=0.0)
+    weather: float = Field(ge=0, default=0.0)
+    students: float = Field(ge=0, default=0.0)
 
 
 class Importance(BaseModel):
-    cost: Literal["not_much", "some", "a_lot"] = "some"
-    reach: Literal["not_much", "some", "a_lot"] = "some"
-    lifestyle: Literal["not_much", "some", "a_lot"] = "some"
+    model_config = ConfigDict(extra="forbid")
+    # m2.1.0: four controls. "lifestyle" is the m2.0.0 bundled control,
+    # accepted as a deprecated alias for exactly this version — the model
+    # applies its level to both split pillars and rejects contradictions.
+    cost: Optional[Literal["not_much", "some", "a_lot"]] = None
+    reach: Optional[Literal["not_much", "some", "a_lot"]] = None
+    students: Optional[Literal["not_much", "some", "a_lot"]] = None
+    weather: Optional[Literal["not_much", "some", "a_lot"]] = None
+    lifestyle: Optional[Literal["not_much", "some", "a_lot"]] = None
 
 
 class RankRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     data_version: Optional[str] = None
     model_version: Optional[str] = None
     self: SelfSpec
@@ -130,20 +142,17 @@ class RankRequest(BaseModel):
     weights: Optional[Weights] = None
     pool_vs_balance: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     importance: Optional[Importance] = None
-    # deprecated alias for pool_vs_balance, accepted for m2.0.0 only
-    size_vs_odds: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     sort: Literal["best_first", "worst_first"] = "best_first"
+    # size_vs_odds was accepted-but-deprecated for exactly m2.0.0
+    # (ADR 0004); m2.1.0 removes it, and an unknown field now fails
+    # loudly rather than being silently dropped
 
     @model_validator(mode="after")
     def _check(self):
         named = (self.pool_vs_balance is not None
                  or self.importance is not None)
-        if self.weights is not None and (named or self.size_vs_odds is not None):
+        if self.weights is not None and named:
             raise ValueError("pass either weights or the named controls, not both")
-        if self.size_vs_odds is not None and named:
-            raise ValueError(
-                "size_vs_odds is the deprecated name for pool_vs_balance; "
-                "send one, not both")
         if self.weights is not None and sum(
                 self.weights.model_dump().values()) <= 0:
             raise ValueError("weights must not all be zero")
@@ -175,11 +184,17 @@ def meta() -> dict:
         "pillars": m["pillars"],
         "pillar_order": engine.PILLARS,
         "features": m["features_block"],
-        "policy_strings": POLICY_STRINGS,
+        # registry-owned strings (m2.1.0) merge over the versioned policy
+        # strings: ONE lookup for every rendered sentence, still nothing
+        # improvised in a component
+        "policy_strings": {**POLICY_STRINGS, **m["strings"]},
         "technical_strings": TECHNICAL_STRINGS,
         "tier_policy": m["tier_policy"],
         "standing_bands": m["standing_bands"],
         "city_cards": m["city_cards"],
+        "stat_pages": m["stat_pages"],
+        "crime": {"year": m["crime"]["year"],
+                  "coverage_floor": m["crime"]["coverage_floor"]},
         "interval_model": {k: m["interval_model"][k] for k in
                            ("mechanism", "validation", "copy_rule")},
         "licenses": m.get("licenses", {}),
@@ -193,6 +208,7 @@ def meta() -> dict:
             "marital": list(ALLOWED_MARITAL),
             "race_ethnicity": list(SELECTABLE_RACES),
             "importance_levels": list(m["model_defaults"]["importance_levels"]),
+            "importance_pillars": list(engine.IMPORTANCE_PILLARS),
             "age": [18, 70],
         },
         "sources": m["sources"],

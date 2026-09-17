@@ -7,13 +7,20 @@
 # Terminology (§12.3 + ADR 0003/0004): no display field may contain "odds",
 # "rival", "market", "supply", "inventory" or "competitor" — asserted at
 # load. Internal keys (balance, size_vs_odds) do not change.
-version: 3
+version: 4
 
 normalization:
   winsor_percentiles: [1, 99]      # extensive quantities, per query
   extensive: "winsorize -> log10 -> min-max across the ranked set for this query"
   intensive: "percentile rank across the ranked set for this query"
 
+# Six pillars since m2.1.0 (Phase 2d item 4): the old lifestyle pillar
+# split into weather and students so each gets its own importance control.
+# The old lifestyle 0.10 divides in the proportion its two features
+# already carried inside it (pleasant days 0.6, students 0.4), so at
+# default settings the split reproduces m2.0.0 scoring exactly (asserted
+# against a pinned snapshot). control_subtitle is the one-line caption
+# under each importance control.
 pillars:                            # default weights, sum to 1
   pool:
     default_weight: 0.30
@@ -28,16 +35,24 @@ pillars:                            # default weights, sum to 1
       other filter.
   reach:
     default_weight: 0.20
-    display_name: "Going out & getting around"
+    display_name: "Social life"
     definition: "Places to go out, and how walkable daily life is."
+    control_subtitle: "bars, cafés and restaurants, and walkable streets"
   cost:
     default_weight: 0.15
     display_name: "Cost of living"
     definition: "What living here costs — rent and everyday prices."
-  lifestyle:
-    default_weight: 0.10
-    display_name: "Weather & local life"
-    definition: "Nice days a year and the student presence around town."
+    control_subtitle: "rent and everyday prices"
+  weather:
+    default_weight: 0.06
+    display_name: "Weather"
+    definition: "Mild, dry days a year."
+    control_subtitle: "mild, dry days a year"
+  students:
+    default_weight: 0.04
+    display_name: "Student life"
+    definition: "How many college students live there."
+    control_subtitle: "how many college students live there"
 
 size_vs_odds:                       # internal key unchanged; the control is
   # "Dating pool size vs balance" (ADR 0004). One scalar divides the
@@ -47,28 +62,94 @@ size_vs_odds:                       # internal key unchanged; the control is
   label_low: "Dating pool size"
   label_high: "Dating pool balance"
 
-# The three-step home-page controls (ADR 0004). "Not much" is a small floor,
-# not zero: nothing showed zeroing a pillar leaves the ranking sane, and a
-# floor keeps every stat's effect explainable. The frontend sends the level
-# names; this table is the only place they become numbers.
+# The three-step home-page controls (ADR 0004), FOUR of them since m2.1.0:
+# cost, reach (Social life), students, weather. "Not much" is a small
+# floor, not zero: nothing showed zeroing a pillar leaves the ranking
+# sane, and a floor keeps every stat's effect explainable. The frontend
+# sends the level names; this table is the only place they become numbers.
 importance_levels:
   not_much: 0.4
   some: 1.0
   a_lot: 2.0
 
-# Three-band standing across ALL 387 cities, computed at build time
-# (ADR 0004 / v3 city page). Tertiles: standing below low_below is the low
-# band, above high_above the high band. The wireframe placed bands by
-# judgement and said so; the shipped page reads these.
+# Five-band standing across ALL 387 cities (Phase 2d item 6), cut on
+# national quintiles at build time. A feature with band_edges bands by
+# ABSOLUTE value instead (population's case). Labels are per-feature and
+# purely POSITIONAL; whether a position is good, bad or neither comes
+# from that feature's band_direction, never from the position itself —
+# cheap rent is good and a big student share is neither.
 standing_bands:
-  low_below: 33.4
-  high_above: 66.6
+  edges: [20, 40, 60, 80]
+  keys: [lowest, low, mid, high, highest]
 
 # The v3 city-page cards, in board order. who_lives_here and
 # everyday_prices are display stats (never scored).
 city_cards: [median_gross_rent, everyday_prices, venues_per_100k,
              resident_walkability_index, pleasant_days,
              students_per_1k_adults, who_lives_here]
+
+# Per-statistic ranking pages (Phase 2d item 9): every STATIC statistic,
+# served from a build-time JSON over the 193-city ranked set. Never
+# matches or balance (both depend on the visitor's search) and never
+# crime (the FBI's caution — it gets an explainer page instead).
+stat_pages: [median_gross_rent, everyday_prices, venues_per_100k,
+             resident_walkability_index, pleasant_days,
+             students_per_1k_adults, who_lives_here]
+
+# Crime context (Phase 2d item 5; D01: never scored). year is the served
+# reference year, chosen from the pull's own coverage-by-year table:
+# 2025 is the latest complete year AND the best-covered (372 of 387
+# metros clear the floor; the 2021 transition year managed 295).
+# coverage_floor: below this share of the metro's population in
+# full-year-reporting agencies, the blank state renders instead of a
+# figure (at 0.6, 15 metros blank in 2025 — New Orleans squeaks by at
+# 0.61, which is the number doing its job). The implausibility bars name
+# the NIBRS transition failure mode: an agency over the population bar
+# whose whole year of "reported" months sums below BOTH offence bars
+# (New York City's 2021 submissions put its violent rate under 2 per
+# 100k; Orlando filed twelve literal zeros for 2024 and 2025) is counted
+# as not reporting — 13 agency-years excluded, each named in the build
+# report.
+crime:
+  year: 2025
+  coverage_floor: 0.6
+  implausible_min_pop: 100000
+  implausible_violent_per_100k: 10
+  implausible_property_per_100k: 100
+
+# Registry-owned interface strings new in Phase 2d (the ground rule made
+# explicit: every new user-facing string lives here, not in code).
+strings:
+  slider_info: >-
+    Leaning toward size favours cities where more people match your whole
+    search — the most possible matches. Leaning toward balance favours
+    cities where single men and women in your ages come out closest to
+    even. Same survey, two different questions.
+  crime_caution: >-
+    The FBI cautions against using these figures to rank or compare
+    places: how much crime gets reported, and how many of a city's police
+    agencies report at all, differ too much from city to city. That is why
+    crime is never part of any score on this site.
+  crime_coverage_line: >-
+    Police agencies covering {coverage} of the people here reported a full
+    year of {year} data. The rates count only what those agencies cover.
+  crime_blank: >-
+    Not enough of {city}'s police agencies reported a full year of data
+    for a figure we'd stand behind, so none is shown.
+  crime_compare_note: >-
+    Read each city's crime figures on their own. Different shares of each
+    city's police agencies report, so the two columns aren't comparable —
+    the FBI itself cautions against comparisons like that.
+  stat_page_link: "See all cities by {name}"
+  stat_page_intro: >-
+    Every city this site can rank, ordered by one measure. Your search
+    never changes these figures.
+  stat_page_missing: >-
+    {n} of the ranked cities don't have this figure and are left off
+    this list rather than shown as zero.
+  compare_default_note: >-
+    These figures use the stated default search — {search}. Change
+    anything on the home page and they become yours.
 
 # The one-line city description (ADR 0004): composed at build from data the
 # artifact already holds — never hand-written, never a model call in this
@@ -99,9 +180,16 @@ naics_venues:                       # the reach venue selection (CBP + QCEW)
   "712110": museums
   "512131": motion picture theaters
 
-pleasant_day:                       # lifestyle definition (NOAA daily normals)
+# Pleasant-day definition (Phase 2d item 11): computed on ACTUAL daily
+# observations (GHCN-Daily 1991-2020), never on normals — averaging
+# destroys the day-to-day variation this statistic counts, which is how
+# San Francisco served 365. Precipitation joined the definition: a mild
+# day with real rain is not a nice day. All three thresholds live here
+# where they can be argued with.
+pleasant_day:
   tmax_f: [55, 85]
   tmin_floor_f: 40
+  prcp_max_in: 0.1
 
 missing_data_policy: >
   A metro missing a static feature keeps its other features; the pillar's
@@ -195,9 +283,10 @@ features:
     unit_short: "$/mo"
     display_decimals: 0
     mover_phrase: "rent"
-    band_labels: ["Cheaper than most cities", "About average for rent",
-                  "Pricier than most cities"]
-    band_tones: [good, neutral, poor]
+    band_direction: good_low
+    band_labels: ["Far cheaper than most cities", "Cheaper than most cities",
+                  "About average for rent", "Pricier than most cities",
+                  "Among the priciest cities"]
     definition: "The typical monthly rent across the city (Census ACS)."
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
                  table: B25064, variables: [B25064_001E],
@@ -261,9 +350,15 @@ features:
     unit: "where the US average is 100"
     unit_short: "(US = 100)"
     display_decimals: 0
-    band_labels: ["A little below average", "About the US average",
-                  "Above the US average"]
-    band_tones: [good, neutral, poor]
+    band_direction: good_low
+    # ABSOLUTE edges, not percentile: these labels speak in US-average
+    # units, and most metros price below 100 — a percentile band called a
+    # 98 "above the US average", which the number itself contradicts
+    # (caught on Provo's card). Same precedent as population's edges.
+    band_edges: [90, 97, 103, 110]
+    band_labels: ["Far below the US average", "Below the US average",
+                  "About the US average", "Above the US average",
+                  "Far above the US average"]
     definition: >-
       Goods and services prices together, where the US average is 100 —
       the average of the two BEA price levels the score uses.
@@ -284,9 +379,10 @@ features:
     unit_short: "per 100k adults"
     display_decimals: 0
     mover_phrase: "places to go out"
-    band_labels: ["Fewer than most cities", "About average",
-                  "More than most cities"]
-    band_tones: [poor, neutral, good]
+    band_direction: good_high
+    band_labels: ["Far fewer than most cities", "Fewer than most cities",
+                  "About average", "More than most cities",
+                  "Far more than most cities"]
     definition: >-
       Restaurants, coffee shops, bars, gyms, museums and movie theaters
       per 100,000 adults (Census business data).
@@ -311,9 +407,10 @@ features:
     unit_short: "on the 1–20 index"
     display_decimals: 1
     mover_phrase: "walkable neighbourhoods"
-    band_labels: ["Less walkable than most", "About average",
-                  "More walkable than most"]
-    band_tones: [poor, neutral, good]
+    band_direction: good_high
+    band_labels: ["Among the least walkable", "Less walkable than most",
+                  "About average", "More walkable than most",
+                  "Among the most walkable"]
     definition: >-
       A federal walkability index of where the city's residents live,
       from 1 to 20.
@@ -344,49 +441,55 @@ features:
                  table: none, variables: [], geography: cbsa, vintage: none,
                  transform_id: none, tier: measured}
 
+  # m2.1.0 (Phase 2d item 11): computed on GHCN-Daily OBSERVATIONS, with
+  # precipitation in the definition. The Phase 2a deviation to daily
+  # Normals is CLOSED: normals average away the day-to-day variation this
+  # statistic counts, which served San Francisco 365 nice days a year.
   - id: pleasant_days
-    pillar: lifestyle
+    pillar: weather
     kind: intensive
     direction: 1
-    weight_in_pillar: 0.6
+    weight_in_pillar: 1.0
     computed: static
     display_name: "Nice days a year"
     unit: "mild and dry enough to be outside"
     unit_short: ""
     display_decimals: 0
     mover_phrase: "the weather"
-    band_labels: ["Fewer than most cities", "About average",
-                  "More than most cities"]
-    band_tones: [poor, neutral, good]
+    band_direction: good_high
+    band_labels: ["Far fewer than most cities", "Fewer than most cities",
+                  "About average", "More than most cities",
+                  "Far more than most cities"]
     definition: >-
-      Days a year whose normal high sits between 55 and 85°F with a low
-      above 40°F (NOAA climate normals).
-    provenance: {source: noaa_normals,
-                 dataset: "NCEI U.S. Climate Normals 1991-2020 daily",
-                 table: "normals-daily access CSVs",
-                 variables: [DLY-TMAX-NORMAL, DLY-TMIN-NORMAL],
+      Days a year that actually stayed between 55 and 85°F, didn't dip
+      below 40°F, and saw no more than a light shower — counted from
+      thirty years of daily weather-station records, then averaged.
+    provenance: {source: ghcn_daily,
+                 dataset: "NOAA GHCN-Daily",
+                 table: "daily-summaries access CSVs, 1991-2020",
+                 variables: [TMAX, TMIN, PRCP],
                  geography: "station -> cbsa", vintage: "1991-2020",
-                 transform_id: lifestyle_pleasant_days_v1, tier: measured}
-    deviation: "§6 listed GHCN-Daily; the Normals daily product is used instead (recorded)."
+                 transform_id: lifestyle_pleasant_days_v2, tier: measured}
 
   # Direction is a documented judgment: student presence proxies a younger
   # social infrastructure. Band tones are neutral in every band — a heavy
   # student presence is a character, not a virtue (the v3 board colours it
   # neutrally too).
   - id: students_per_1k_adults
-    pillar: lifestyle
+    pillar: students
     kind: intensive
     direction: 1
-    weight_in_pillar: 0.4
+    weight_in_pillar: 1.0
     computed: static
     display_name: "Students"
     unit: "college students per 1,000 adults"
     unit_short: "per 1k adults"
     display_decimals: 0
     mover_phrase: "the student crowd"
-    band_labels: ["Fewer than most cities", "About average",
+    band_direction: neutral
+    band_labels: ["Far fewer than most cities", "Fewer than most cities",
+                  "About average", "More than most cities",
                   "Far more than most cities"]
-    band_tones: [neutral, neutral, neutral]
     definition: >-
       Students enrolled at the city's colleges per 1,000 adults, not
       counting online-only enrollment (federal education data).
@@ -406,17 +509,19 @@ features:
     computed: static
     status: context_only
     display_name: "Who lives here"
+    stat_page_name: "population"
     unit: "people"
     unit_short: ""
     unit_template: "people, of whom {adults} are adults"
     display_decimals: 0
     # population bands by ABSOLUTE size, not percentile: most metros are
-    # small, so tertiles would call every top-third metro "biggest" —
+    # small, so quantiles would call every top-band metro "biggest" —
     # 717k Provo included, which misleads. Edges are a registry judgment.
-    band_edges: [500000, 2000000]
-    band_labels: ["One of the smaller cities", "A mid-sized city",
+    band_edges: [250000, 500000, 1000000, 2500000]
+    band_direction: neutral
+    band_labels: ["One of the smaller cities", "A modest-sized city",
+                  "A mid-sized city", "A big city",
                   "One of the biggest cities"]
-    band_tones: [neutral, neutral, neutral]
     definition: >-
       Everyone the Census counts as living in the metro area, and how many
       of them are adults aged 18 to 70.
@@ -456,22 +561,73 @@ features:
                  geography: cbsa, vintage: "2020-2024",
                  transform_id: pairing_interim_v1, tier: measured}
 
-  # D01: crime is never scored. Context rendering only, with the FBI's own
-  # Caution Against Ranking attached; no adapter has shipped data for it.
-  - id: crime_rate_context
+  # D01: crime is never scored — context rendering only, with the FBI's
+  # caution rendered beside every figure (strings.crime_caution). Built by
+  # the Phase 2d adapter: agency offences -> county via ORI -> CBSA via
+  # the pinned delineation; rates divide by the population the reporting
+  # agencies cover, never by the metro's; coverage ships beside the rates
+  # and gates rendering (crime.coverage_floor). No composite, no ranking,
+  # no stat page — an explainer page instead.
+  - id: violent_crime_rate
     pillar: context
     kind: intensive
     direction: -1
     weight_in_pillar: 0.0
     computed: static
     status: context_only
-    display_name: "Reported crime (context)"
-    unit: "per 100k residents"
-    unit_short: ""
+    display_name: "Violent crime"
+    unit: "reported per 100,000 people a year"
+    unit_short: "per 100k"
+    display_decimals: 0
     definition: >-
-      Reported offense rates at metro level, shown for context only with
-      the FBI's caution against ranking attached. Never part of any score.
+      Murder, rape, robbery and aggravated assault reported to police, per
+      100,000 people in the areas whose agencies reported a full year
+      (FBI Crime Data Explorer).
     provenance: {source: fbi_cde, dataset: "FBI Crime Data Explorer",
-                 table: "offense rates (agency -> cbsa)", variables: [],
-                 geography: cbsa, vintage: "through 2025-12",
-                 transform_id: none, tier: context}
+                 table: "summarized agency offences (agency -> cbsa)",
+                 variables: [violent-crime],
+                 geography: "agency -> county -> cbsa", vintage: "2021-2025",
+                 transform_id: crime_rates_v1, tier: context}
+
+  - id: property_crime_rate
+    pillar: context
+    kind: intensive
+    direction: -1
+    weight_in_pillar: 0.0
+    computed: static
+    status: context_only
+    display_name: "Property crime"
+    unit: "reported per 100,000 people a year"
+    unit_short: "per 100k"
+    display_decimals: 0
+    definition: >-
+      Burglary, larceny-theft and motor vehicle theft reported to police,
+      per 100,000 people in the areas whose agencies reported a full year
+      (FBI Crime Data Explorer).
+    provenance: {source: fbi_cde, dataset: "FBI Crime Data Explorer",
+                 table: "summarized agency offences (agency -> cbsa)",
+                 variables: [property-crime],
+                 geography: "agency -> county -> cbsa", vintage: "2021-2025",
+                 transform_id: crime_rates_v1, tier: context}
+
+  - id: crime_coverage
+    pillar: context
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.0
+    computed: static
+    status: context_only
+    display_name: "Reporting coverage"
+    unit: "of people here live in areas whose police reported a full year"
+    unit_short: ""
+    display_scale: 100
+    display_decimals: 0
+    definition: >-
+      The share of the metro's population living in areas whose police
+      agencies reported a full year of data — the reason crime figures
+      aren't comparable between cities.
+    provenance: {source: fbi_cde, dataset: "FBI Crime Data Explorer",
+                 table: "summarized agency offences (agency -> cbsa)",
+                 variables: [violent-crime, property-crime],
+                 geography: "agency -> county -> cbsa", vintage: "2021-2025",
+                 transform_id: crime_rates_v1, tier: context}

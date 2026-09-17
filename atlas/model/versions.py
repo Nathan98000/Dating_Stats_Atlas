@@ -20,11 +20,25 @@ importance controls map to weights through registry constants; margins
 keep being computed and returned but no longer render. Second breaking
 contract change after ADR 0003.
 
+m2.1.0 — Phase 2d (ADR 0005): six pillars — lifestyle splits into weather
+(0.06) and students (0.04), dividing its 0.10 in the proportion its two
+features already carried, so default-setting scores reproduce m2.0.0
+exactly (asserted against a pinned snapshot); four importance controls
+(cost, reach, students, weather; "lifestyle" accepted as a deprecated
+alias applying to both halves for exactly this version; size_vs_odds is
+gone, its one deprecation version served). pleasant_days is recomputed
+from GHCN-Daily observations with a precipitation threshold — the Normals
+substitution averaged away the variation the statistic counts and served
+San Francisco 365 — which moves the weather pillar and therefore scores.
+Standing bands go from tertiles to national quintiles with tones derived
+from a registry direction. Crime context arrives (FBI CDE, coverage-
+gated, never scored, D01) and static stat pages ship from the build.
+
 m1.2.0 — Phase 2b (ADRs 0002+0003): n-only suppression; feature-level
 attribution; comparator retired; interim pairing counterweight.
 m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m2.0.0"
+MODEL_VERSION = "m2.1.0"
 SCHEMA_VERSION = "cube-v1"
