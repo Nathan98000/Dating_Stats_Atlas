@@ -208,6 +208,11 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         assert "strings" in manifest and "crime" in manifest, (
             "manifest must carry the registry strings and crime block (m2.1.0)")
         assert {"year", "coverage_floor"} <= set(manifest["crime"])
+        from atlas.model.preferences import SELECTABLE_RACES
+        assert [g["id"] for g in manifest.get("race_groups", [])] == \
+            list(SELECTABLE_RACES), (
+            "manifest race_groups must name the eight selectable groups in "
+            "panel order (m2.2.0/ADR 0006)")
     for f in STATIC_FEATURES + ["pool_balance"]:
         assert f in fb, f"feature {f} missing from manifest features_block"
     if not old_artifact:

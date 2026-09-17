@@ -85,6 +85,7 @@ class Registry:
     size_vs_odds: dict
     importance_levels: dict[str, float]
     standing_bands: dict
+    race_groups: tuple[dict, ...]
     city_cards: tuple[str, ...]
     stat_pages: tuple[str, ...]
     crime: dict
@@ -214,6 +215,13 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     assert all(0 < e < 100 for e in bands["edges"]), bands
     assert len(bands["keys"]) == N_BANDS, bands
 
+    race_groups = tuple({"id": str(g["id"]), "label": str(g["label"])}
+                        for g in raw["race_groups"])
+    assert len(race_groups) == 8 and len({g["id"] for g in race_groups}) == 8, (
+        "eight equal race groups, one rule (m2.2.0/ADR 0006)")
+    for g in race_groups:
+        _assert_display_clean(f"race_groups.{g['id']}", g["label"])
+
     cards = tuple(str(c) for c in raw["city_cards"])
     for c in cards:
         assert c in feats, f"city_cards names unknown feature {c}"
@@ -252,7 +260,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         version=int(raw["version"]), pillars=pillars, features=feats,
         naics_venues={str(k): str(v) for k, v in raw["naics_venues"].items()},
         pleasant_day=raw["pleasant_day"], size_vs_odds=raw["size_vs_odds"],
-        importance_levels=levels, standing_bands=bands, city_cards=cards,
+        importance_levels=levels, standing_bands=bands,
+        race_groups=race_groups, city_cards=cards,
         stat_pages=stat_pages, crime=dict(crime), strings=strings,
         city_description=desc,
         winsor_percentiles=tuple(raw["normalization"]["winsor_percentiles"]),

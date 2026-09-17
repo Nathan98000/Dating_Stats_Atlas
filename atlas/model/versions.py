@@ -20,6 +20,17 @@ importance controls map to weights through registry constants; margins
 keep being computed and returned but no longer render. Second breaking
 contract change after ADR 0003.
 
+m2.2.0 — Phase 2e (ADR 0006, reversing ADR 0004's always-counted rule):
+race and ethnicity become eight equal checkboxes. A selection filters the
+pool to exactly the ticked groups — "Two or more races" and "Another
+race" are no longer ORed into every selection — and zero ticked or all
+eight ticked means no filter. DEFAULT-SETTING OUTPUTS REPRODUCE m2.1.0
+EXACTLY (asserted against the pinned snapshot): the unfiltered universe
+is unchanged, balance_masks is untouched and race-blind as m2.0.0 made
+it, and only race-filtered requests move — they no longer include the
+two groups the visitor did not tick. Goldens with race filters
+regenerated under the bump.
+
 m2.1.0 — Phase 2d (ADR 0005): six pillars — lifestyle splits into weather
 (0.06) and students (0.04), dividing its 0.10 in the proportion its two
 features already carried, so default-setting scores reproduce m2.0.0
@@ -40,5 +51,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m2.1.0"
+MODEL_VERSION = "m2.2.0"
 SCHEMA_VERSION = "cube-v1"

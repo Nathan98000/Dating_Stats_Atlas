@@ -135,6 +135,9 @@ crime never gets one (D01).
 
 ## 6. The race-panel disclosure moved (raised, not decided)
 
+*[Decided in Phase 2e: ADR 0006 makes the eight groups equal — no
+always-on rule, no special disclosure needed.]*
+
 Item 3 stripped the editorial sentence from the race control; the
 always-counted-groups disclosure now lives ONLY on How it works and in
 the methodology. Whether to keep the always-on rule with its relocated

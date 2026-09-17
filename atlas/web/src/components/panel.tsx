@@ -4,15 +4,6 @@ import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
 import { IMPORTANCE_PILLARS, type Level, type Prefs } from "@/lib/prefs";
 
-const RACE_LABELS: Record<string, string> = {
-  hispanic: "Hispanic",
-  white_nh: "White",
-  black_nh: "Black",
-  asian_nh: "Asian",
-  aian_nh: "Native American",
-  nhpi_nh: "Pacific Islander",
-};
-const ALL_SIX = Object.keys(RACE_LABELS);
 const EDU_OPTIONS: { value: "" | "bachelors" | "graduate"; label: string }[] = [
   { value: "", label: "Any" },
   { value: "bachelors", label: "College degree" },
@@ -54,7 +45,11 @@ export function SearchPanel({
   const set = (patch: Partial<Prefs>) => onChange({ ...prefs, ...patch });
   const seekSexEffective = prefs.seekSex ?? (prefs.selfSex === "female" ? "male" : "female");
   const s = prefs.poolVsBalance ?? 0.4545;
-  const raceSelected = prefs.race ?? ALL_SIX;
+  // m2.2.0 (ADR 0006): eight equal groups, ids and labels from the
+  // registry through /v1/meta — the panel types no race wording
+  const raceGroups = meta.race_groups;
+  const allIds = raceGroups.map((g) => g.id);
+  const raceSelected = prefs.race ?? allIds;
 
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-rule bg-surface p-6">
@@ -203,9 +198,9 @@ export function SearchPanel({
           </Field>
         </div>
 
-        {/* Item 3: nothing editorial here — label, six boxes, clear-all.
-            The always-counted-groups disclosure moved to How it works and
-            the methodology (the report says so). */}
+        {/* Nothing editorial here — label, boxes, clear-all. Eight equal
+            groups since m2.2.0 (ADR 0006): the selection is the filter,
+            and zero or all eight ticked means everyone. */}
         <fieldset data-testid="race-panel">
           <div className="mb-2 flex items-baseline justify-between">
             <legend className="text-[13px] font-semibold text-ink-2">
@@ -222,30 +217,30 @@ export function SearchPanel({
             ) : null}
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
-            {ALL_SIX.map((r) => {
-              const on = raceSelected.includes(r);
+            {raceGroups.map((g) => {
+              const on = raceSelected.includes(g.id);
               return (
-                <label key={r} className="flex cursor-pointer items-center gap-2 text-sm">
+                <label key={g.id} className="flex cursor-pointer items-center gap-2 text-sm">
                   <input
                     type="checkbox"
                     className="check"
                     checked={on}
                     onChange={(e) => {
-                      const cur = new Set(prefs.race ?? ALL_SIX);
-                      if (e.target.checked) cur.add(r);
-                      else cur.delete(r);
-                      // all six or none = no filter; the model treats both
-                      // as everyone, and the URL says so honestly
-                      const next = [...cur].filter((x) => ALL_SIX.includes(x));
+                      const cur = new Set(prefs.race ?? allIds);
+                      if (e.target.checked) cur.add(g.id);
+                      else cur.delete(g.id);
+                      // all eight or none = no filter; the model treats
+                      // both as everyone, and the URL says so honestly
+                      const next = allIds.filter((x) => cur.has(x));
                       set({
                         race:
-                          next.length === 0 || next.length === ALL_SIX.length
+                          next.length === 0 || next.length === allIds.length
                             ? undefined
                             : next,
                       });
                     }}
                   />
-                  {RACE_LABELS[r]}
+                  {g.label}
                 </label>
               );
             })}

@@ -52,6 +52,10 @@ def test_meta_carries_the_v3_vocabulary(client):
     assert m["city_cards"][0] == "median_gross_rent"
     assert m["controls"]["marital"] == ["never_married", "previously_married"]
     assert m["controls"]["race_ethnicity"] == list(api.SELECTABLE_RACES)
+    # m2.2.0: eight equal groups, labels from the registry (ADR 0006)
+    assert [g["id"] for g in m["race_groups"]] == list(api.SELECTABLE_RACES)
+    assert len(m["race_groups"]) == 8
+    assert all(g["label"] for g in m["race_groups"])
     assert set(m["controls"]["importance_levels"]) == \
         {"not_much", "some", "a_lot"}
     # registry strings merge into the one policy-strings lookup (item 8's
@@ -110,25 +114,35 @@ def test_marital_restricted_to_two_values(client):
     assert r.status_code == 422
 
 
-def test_always_counted_race_groups_not_selectable(client):
+def test_eight_race_groups_selectable_and_equal(client):
+    """m2.2.0 (ADR 0006): the two formerly always-counted groups are
+    ordinary checkboxes; empty and all-eight both mean no filter."""
     r = client.post("/v1/rank", json={
         "self": {"sex": "female", "age": 32},
         "seeking": {"age": [30, 40], "marital": ["never_married"],
                     "race_ethnicity": ["two_or_more_nh"]}})
-    assert r.status_code == 422
-    # zero-of-six arrives as an empty list: treated as no filter, not as
-    # the two always-on groups alone
-    r0 = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 30},
-        "seeking": {"age": [28, 40], "marital": ["never_married"],
-                    "race_ethnicity": []}})
+    assert r.status_code == 200
+    r2 = client.post("/v1/rank", json={
+        "self": {"sex": "female", "age": 32},
+        "seeking": {"age": [30, 40], "marital": ["never_married"],
+                    "race_ethnicity": ["other_nh", "two_or_more_nh"]}})
+    assert r2.status_code == 200
     rall = client.post("/v1/rank", json={
         "self": {"sex": "female", "age": 30},
         "seeking": {"age": [28, 40], "marital": ["never_married"]}})
-    assert r0.status_code == 200
-    p0 = {x["cbsa"]: x["pool"] for x in r0.json()["ranked"]}
-    pall = {x["cbsa"]: x["pool"] for x in rall.json()["ranked"]}
-    assert p0 == pall
+    for body in (
+        {"self": {"sex": "female", "age": 30},
+         "seeking": {"age": [28, 40], "marital": ["never_married"],
+                     "race_ethnicity": []}},
+        {"self": {"sex": "female", "age": 30},
+         "seeking": {"age": [28, 40], "marital": ["never_married"],
+                     "race_ethnicity": list(api.SELECTABLE_RACES)}},
+    ):
+        resp = client.post("/v1/rank", json=body)
+        assert resp.status_code == 200
+        got = {x["cbsa"]: x["pool"] for x in resp.json()["ranked"]}
+        want = {x["cbsa"]: x["pool"] for x in rall.json()["ranked"]}
+        assert got == want, "empty and all-eight are the unfiltered universe"
 
 
 def test_named_controls_and_conflicts(client):

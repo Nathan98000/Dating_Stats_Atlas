@@ -62,12 +62,11 @@ They select **who is counted as living in a city and matching your
 search — nothing more**. They say nothing about who dates or marries
 whom, and this site makes no claim about that.
 
-**Two groups are always included in every count, whatever you tick:
-people of two or more races, and anyone whose race isn't in the list.**
-That's a deliberate rule — those two groups fit any selection — and it's
-why a filtered pool can be a little larger than the boxes you ticked
-would suggest. Unticking every box means the same as ticking all six:
-no filter at all.
+There are eight boxes — the Census Bureau's race and ethnicity
+categories, including "Two or more races" and "Another race" — and
+**the boxes you tick are exactly who gets counted, with nothing added**.
+Tick two groups and the count is the sum of those two groups. Unticking
+every box means the same as ticking all eight: no filter at all.
 
 ## How does the score work?
 

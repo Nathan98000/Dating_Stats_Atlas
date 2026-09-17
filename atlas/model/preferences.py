@@ -13,14 +13,16 @@ m2.0.0 (ADR 0004):
     own ±5 window was considered and rejected — it would make the figure
     move when the seeker's age moves, which is exactly the instability the
     redefinition removes).
-  - Race filters select who matches, nothing more, and two groups are
-    ALWAYS counted: "Two or more races" and "Another race" are ORed into
-    every race selection here, in the model, not in a frontend. Zero
-    selected groups means no race filter at all (treated as all groups),
-    so an unticked panel never quietly shrinks the pool to the two
-    always-on categories.
   - The API accepts only never_married and previously_married; the cube
     keeps its third (currently-married) level untouched.
+
+m2.2.0 (ADR 0006, reversing ADR 0004's always-counted rule): race and
+ethnicity are EIGHT equal checkboxes. A selection filters the pool to
+exactly the ticked groups and adds nothing — a control whose arithmetic
+the visitor can check beats one that quietly counts people they did not
+tick. Zero ticked or all eight ticked means no filter at all (the same
+universe either way). Race enters the pool and nothing else:
+balance_masks stays race-blind on purpose.
 
 D05 slider semantics survive as pool_vs_balance: one scalar dividing the
 people-mass between pool (0 = size) and balance (1 = balance); the
@@ -46,10 +48,10 @@ SPEC_RACE = {"hispanic": "hispanic", "white_nh": "nh_white",
              "black_nh": "nh_black", "asian_nh": "nh_asian",
              "aian_nh": "nh_aian", "nhpi_nh": "nh_nhpi",
              "two_or_more_nh": "nh_twoplus", "other_nh": "nh_other"}
-# the six groups a visitor can tick; the other two are always counted
+# m2.2.0: all eight groups are ordinary checkboxes — one rule, no
+# special casing (ADR 0006 reversed ADR 0004's two always-counted groups)
 SELECTABLE_RACES = ("hispanic", "white_nh", "black_nh", "asian_nh",
-                    "aian_nh", "nhpi_nh")
-ALWAYS_COUNTED_RACES = ("two_or_more_nh", "other_nh")
+                    "aian_nh", "nhpi_nh", "two_or_more_nh", "other_nh")
 SPEC_MARITAL = {"never_married": 0, "previously_married": 1,
                 "currently_married": 2}
 # m2.0.0: the site offers exactly two meanings of single (ADR 0004)
@@ -154,21 +156,16 @@ def balance_masks(req: Request) -> tuple[np.ndarray, np.ndarray]:
 
 
 def resolve_race_levels(selected: list[str] | None) -> tuple[str, ...] | None:
-    """ADR 0004: the two always-counted groups are ORed into every race
-    selection, HERE in the model, so no client can drop them. Zero
-    selected groups (or all six) means no filter at all — an unticked
-    panel never shrinks the pool to just the always-on categories."""
+    """m2.2.0 (ADR 0006): the selection IS the filter — exactly the
+    ticked groups, nothing added. Zero ticked or all eight ticked means
+    no filter at all (the identical universe, spelled two ways)."""
     if not selected:
         return None
     for r in selected:
         assert r in SPEC_RACE, f"unknown race {r!r}"
-        assert r not in ALWAYS_COUNTED_RACES, (
-            f"{r} is always counted and is not a selectable filter")
     if set(selected) >= set(SELECTABLE_RACES):
         return None
-    cube = [SPEC_RACE[r] for r in selected]
-    cube += [SPEC_RACE[r] for r in ALWAYS_COUNTED_RACES]
-    return tuple(dict.fromkeys(cube))
+    return tuple(dict.fromkeys(SPEC_RACE[r] for r in selected))
 
 
 def parse_request(body: dict) -> Request:

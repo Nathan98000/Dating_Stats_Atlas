@@ -128,23 +128,54 @@ def test_balance_ignores_filters_end_to_end(build):
     assert checked >= 5
 
 
-def test_always_counted_race_groups():
-    """'Two or more races' and 'Another race' are ORed into every race
-    selection in the MODEL, and zero-of-six (or all six) means no filter."""
+def test_eight_equal_race_groups(build):
+    """m2.2.0 (ADR 0006, reversing ADR 0004's always-counted rule): the
+    selection IS the filter. Three assertions the brief named: ticking
+    only two_or_more_nh masks that one cube level; a partial selection's
+    pool equals the sum of its ticked groups' pools to float tolerance;
+    and no served figure includes a level the visitor did not tick."""
+    assert len(engine.SELECTABLE_RACES) == 8
     assert resolve_race_levels(None) is None
     assert resolve_race_levels([]) is None
-    assert resolve_race_levels(list(engine.SELECTABLE_RACES)) is None
-    got = resolve_race_levels(["white_nh"])
-    assert set(got) == {"nh_white", "nh_twoplus", "nh_other"}
-    with pytest.raises(AssertionError, match="always counted"):
-        resolve_race_levels(["two_or_more_nh"])
-    # and the pool reconciles: one selected group NEVER yields less than
-    # the bare single-group mask would
-    m_with = engine.mask_vector("male", 28, 38, frozenset({0}), None, None,
-                                got)
-    m_alone = engine.mask_vector("male", 28, 38, frozenset({0}), None, None,
-                                 ("nh_white",))
-    assert m_with.sum() > m_alone.sum()
+    assert resolve_race_levels(list(engine.SELECTABLE_RACES)) is None, (
+        "all eight ticked is the same universe as none ticked")
+
+    # 1. the newly selectable groups are ordinary filters
+    got = resolve_race_levels(["two_or_more_nh"])
+    assert got == ("nh_twoplus",)
+    m = engine.mask_vector("male", 28, 38, frozenset({0}), None, None, got)
+    M = m.reshape(2, 53, 3, 4, 7, 8)
+    r_i = engine.RACE_LEVELS.index("nh_twoplus")
+    assert M[..., r_i].sum() == m.sum(), "weight outside the ticked level"
+
+    # 2. a partial selection adds NOTHING: its pool is exactly the sum of
+    # its ticked groups' pools, per metro, to float tolerance
+    sel = ["white_nh", "asian_nh", "other_nh"]
+    spec = engine.parse_request({
+        "self": {"sex": "female", "age": 30},
+        "seeking": {"age": [28, 40], "marital": ["never_married"],
+                    "race_ethnicity": sel}}).seeking
+    pool = build.pool_flat @ engine.mask_vector(
+        spec.sex, spec.age_min, spec.age_max, spec.marital_levels,
+        None, None, spec.race_cube_levels)
+    parts = np.zeros_like(pool)
+    for r in sel:
+        parts += build.pool_flat @ engine.mask_vector(
+            spec.sex, spec.age_min, spec.age_max, spec.marital_levels,
+            None, None, resolve_race_levels([r]))
+    assert np.allclose(pool, parts, rtol=1e-6), (
+        "the arithmetic a visitor can check: ticked groups sum to the pool")
+
+    # 3. no served figure includes an unticked level: the selection mask
+    # carries zero weight on every level outside the selection
+    mask = engine.mask_vector(spec.sex, spec.age_min, spec.age_max,
+                              spec.marital_levels, None, None,
+                              spec.race_cube_levels)
+    Msel = mask.reshape(2, 53, 3, 4, 7, 8)
+    unticked = [i for i, lv in enumerate(engine.RACE_LEVELS)
+                if lv not in set(spec.race_cube_levels)]
+    assert Msel[..., unticked].sum() == 0.0, (
+        "a figure must never include a group the visitor did not tick")
 
 
 def test_marital_contract_is_two_values():

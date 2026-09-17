@@ -1,0 +1,90 @@
+{
+ "build": "dd7374675de7",
+ "default_exactness": {
+  "default_profile": {
+   "max_abs_score_diff": 0.0
+  },
+  "A_woman32_ba_men_75k": {
+   "max_abs_score_diff": 0.0
+  },
+  "B_man28_women_never": {
+   "max_abs_score_diff": 0.0
+  },
+  "C_woman38_grad_men_100k": {
+   "max_abs_score_diff": 0.0
+  },
+  "D_man41_women_50k": {
+   "max_abs_score_diff": 0.0
+  },
+  "slider_best_odds": {
+   "max_abs_score_diff": 0.0
+  },
+  "same_sex_pool": {
+   "max_abs_score_diff": 0.0
+  }
+ },
+ "race_filtered_moves": {
+  "E_black_woman29_stress": {
+   "ranked_before": 9,
+   "ranked_after": 4,
+   "max_abs_score_diff": 12.063486449022214
+  },
+  "race_asian_nh_men": {
+   "ranked_before": 29,
+   "ranked_after": 23,
+   "max_abs_score_diff": 6.719192243792776
+  },
+  "race_hispanic_women": {
+   "ranked_before": 89,
+   "ranked_after": 71,
+   "max_abs_score_diff": 7.767269678026079
+  },
+  "below_bar_nhpi_250k": {
+   "ranked_before": 0,
+   "ranked_after": 0,
+   "max_abs_score_diff": 0.0
+  }
+ },
+ "worked_searches": [
+  {
+   "search": "asian_nh in Los Angeles",
+   "metro": "Los Angeles, CA",
+   "pool_old_rule": 132312,
+   "pool_new_rule": 99728,
+   "drop": 32584,
+   "drop_pct": 24.6
+  },
+  {
+   "search": "black_nh + hispanic in Chicago",
+   "metro": "Chicago, IL",
+   "pool_old_rule": 204625,
+   "pool_new_rule": 190519,
+   "drop": 14106,
+   "drop_pct": 6.9
+  },
+  {
+   "search": "asian_nh in Urban Honolulu",
+   "metro": "Honolulu, HI",
+   "pool_old_rule": 26792,
+   "pool_new_rule": 15943,
+   "drop": 10849,
+   "drop_pct": 40.5
+  }
+ ],
+ "worst_default_abs_diff": 0.0,
+ "interval_strata": {
+  "note": "intervals.served_rse takes the max over the selected levels' calibrated strata; both newly selectable levels have their own",
+  "nh_twoplus_inflation": 1.25,
+  "nh_other_inflation": 1.226
+ },
+ "thin_cell_suppression_example": {
+  "search": "other_nh alone, women seeking men 28-40 never married",
+  "ranked": 2,
+  "suppressed": 191,
+  "reasons": {
+   "n_below_100": 181,
+   "empty_pool": 10
+  },
+  "example": "Akron, OH -> n_below_100 (the ordinary reason, no special case)"
+ }
+}
