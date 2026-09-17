@@ -177,7 +177,12 @@ def build(out_root=None) -> str:
     # bands by judgement and said so; the shipped page reads these columns.
     feats["everyday_prices"] = feats[["rpp_goods", "rpp_services_other"]].mean(axis=1)
     card_source = {"who_lives_here": "pop_total"}
-    for fid in reg.city_cards:
+    # the crime cards (Phase 2e item 2) band like any other card stat:
+    # national percentile among the metros with a figure for the served
+    # year, labels and (neutral) tones from the registry
+    banded = list(reg.city_cards) + ["violent_crime_rate",
+                                     "property_crime_rate"]
+    for fid in banded:
         col = card_source.get(fid, fid)
         v = feats[col].astype(float)
         pct = v.rank(method="average", pct=True) * 100.0

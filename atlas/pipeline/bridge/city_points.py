@@ -36,6 +36,7 @@ TIGERWEB_PLACES = ("https://tigerweb.geo.census.gov/arcgis/rest/services/"
                    "TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer")
 OUT = RESULTS / "phase2d" / "city_points.csv"
 GUARD_KM = 20.0
+SANITY_KM = 150.0   # Reno's genuine place-to-county gap is 133 km
 
 ABBR_TO_FIPS = {
     "AL": "01", "AK": "02", "AZ": "04", "AR": "05", "CA": "06", "CO": "08",
@@ -102,31 +103,40 @@ def principal_city_points(force: bool = False) -> pd.DataFrame:
         city_part, state_part = title.rsplit(",", 1)
         state = state_part.strip().split("-")[0]
         fips = ABBR_TO_FIPS[state]
-        candidates = []
+        # Candidate order (Phase 2e finding): the natural short name
+        # first — "Lexington" before the consolidated government's legal
+        # "Lexington-Fayette" — then the whole first segment, which is
+        # what saves a hyphenated real city name ("Winston-Salem") whose
+        # short split ("Winston") is no place at all. Double hyphens are
+        # the delineation's own separator; "/" carries consolidations.
+        # Every candidate must sit within SANITY_KM of the metro's own
+        # county anchor, so a same-named town elsewhere in the state can
+        # never hijack the metro.
         seg = city_part.split(",")[0].strip()
-        candidates.append(seg)                       # "Winston-Salem"
-        if "-" in seg:
-            candidates.append(seg.split("-")[0].strip())   # "Minneapolis"
-        if "/" in seg:
-            candidates.append(seg.split("/")[0].strip())
-        got = None
+        candidates = [seg.split("-")[0].strip(),
+                      seg.split("--")[0].strip(),
+                      seg.split("/")[0].strip(),
+                      seg]
+        ca = county_anchor.loc[m["cbsa"]]
+        got, matched = None, None
         for cand in dict.fromkeys(candidates):
-            got = _lookup(layers, cand, fips)
-            if got:
-                break
+            pt = _lookup(layers, cand, fips)
+            if pt:
+                far = float(_haversine_km(pt[0], pt[1],
+                                          float(ca["lat"]), float(ca["lon"])))
+                near_station = float(_haversine_km(
+                    pt[0], pt[1], inv_lat, inv_lon).min())
+                if far <= SANITY_KM and near_station <= GUARD_KM:
+                    got, matched = pt, cand
+                    break
             time.sleep(0.05)
         if got:
-            nearest = float(_haversine_km(got[0], got[1],
-                                          inv_lat, inv_lon).min())
-            if nearest > GUARD_KM:
-                got = None    # offshore or empty-range point (Farallones)
-        if got:
             rows.append({"cbsa": m["cbsa"], "lat": got[0], "lon": got[1],
-                         "anchor": "place"})
+                         "anchor": "place", "place_name": matched})
         else:
-            ca = county_anchor.loc[m["cbsa"]]
             rows.append({"cbsa": m["cbsa"], "lat": float(ca["lat"]),
-                         "lon": float(ca["lon"]), "anchor": "county"})
+                         "lon": float(ca["lon"]), "anchor": "county",
+                         "place_name": None})
     df = pd.DataFrame(rows)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUT, index=False)

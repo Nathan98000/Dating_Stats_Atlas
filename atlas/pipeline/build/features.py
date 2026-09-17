@@ -59,13 +59,44 @@ def build() -> None:
         quality[["cbsa", "pop_pool_18_70"]], on="cbsa")
     report: dict = {"metros": len(out)}
 
-    # ---- cost: B25064 rent + BEA RPP ---------------------------------------
-    rent_ad = AcsSummaryAdapter(
-        "B25064", "metropolitan statistical area/micropolitan statistical area")
+    # ---- cost: B25031 ONE-BEDROOM rent + BEA RPP ---------------------------
+    # m2.3.0 (ADR 0006): the all-units median (B25064) moves with the
+    # local mix of studios and family houses — a metro of new two-bedroom
+    # stock reads expensive for reasons that have nothing to do with a
+    # single person's rent. The one-bedroom median is the number a single
+    # person actually faces. The variable is selected from the group's
+    # metadata BY LABEL, never by a guessed code (the DHC P5/P18
+    # discipline); fallback for a metro without a one-bedroom median is
+    # the all-units median with a flag (none needed for 2020-2024 — all
+    # 387 metros publish the one-bedroom figure).
+    geo_msa = "metropolitan statistical area/micropolitan statistical area"
+    rent_ad = AcsSummaryAdapter("B25031", geo_msa)
+    one_bed_vars = [k for k, v in rent_ad.group_labels().items()
+                    if v.endswith("!!1 bedroom")]
+    assert one_bed_vars == ["B25031_003E"], (
+        f"one-bedroom variable resolved to {one_bed_vars} — the label "
+        f"lookup must land on exactly one variable")
     rent = rent_ad.normalize(rent_ad.fetch())
     out["median_gross_rent"] = out["cbsa"].map(
-        lambda c: _num(rent.loc[c, "B25064_001E"]) if c in rent.index else np.nan)
-    report["rent_jam_or_missing"] = int(out["median_gross_rent"].isna().sum())
+        lambda c: _num(rent.loc[c, one_bed_vars[0]]) if c in rent.index
+        else np.nan)
+    need_fallback = out["median_gross_rent"].isna()
+    if need_fallback.any():
+        fallback_ad = AcsSummaryAdapter("B25064", geo_msa)
+        all_units = fallback_ad.normalize(fallback_ad.fetch())
+        out.loc[need_fallback, "median_gross_rent"] = out.loc[
+            need_fallback, "cbsa"].map(
+            lambda c: _num(all_units.loc[c, "B25064_001E"])
+            if c in all_units.index else np.nan).astype(float)
+    report["rent"] = {
+        "variable": {one_bed_vars[0]: "Median gross rent --!!Total:!!1 bedroom"},
+        "metros_on_one_bedroom": int((~need_fallback).sum()),
+        "metros_on_all_units_fallback": sorted(
+            out.loc[need_fallback & out["median_gross_rent"].notna(),
+                    "cbsa"]),
+        "jam_or_missing_after_fallback": int(
+            out["median_gross_rent"].isna().sum()),
+    }
 
     bea = BeaRppAdapter()
     braw = bea.fetch()

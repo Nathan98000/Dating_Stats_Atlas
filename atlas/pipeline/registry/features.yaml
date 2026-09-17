@@ -155,6 +155,13 @@ strings:
     Read each city's crime figures on their own. Different shares of each
     city's police agencies report, so the two columns aren't comparable —
     the FBI itself cautions against comparisons like that.
+  crime_compare_banner: >-
+    These two figures aren't reliably comparable between cities — how
+    much crime gets reported, and how many police agencies report it,
+    differ from place to place.
+  crime_card_blank: >-
+    Not enough police reporting here for a figure worth showing.
+  crime_card_info: "About this figure"
   stat_page_link: "See all cities by {name}"
   stat_page_intro: >-
     Every city this site can rank, ordered by one measure. Your search
@@ -162,6 +169,24 @@ strings:
   stat_page_missing: >-
     {n} of the ranked cities don't have this figure and are left off
     this list rather than shown as zero.
+  age_range_error: "Ages run 18 to 70 here — that's the survey's own range."
+  measure_page_intro: >-
+    Everything this site measures, in plain words: the two counts about
+    people, and the place stats behind the four importance controls.
+    Every figure links to its own list of cities.
+  measure_people_heading: "The people"
+  measure_crime_note: >-
+    Shown on city pages with its reporting coverage — never part of any
+    score, and not reliably comparable between cities.
+  stat_sort_low: "Lowest first"
+  stat_sort_high: "Highest first"
+  stat_strip_label: "How the figures spread across every ranked city"
+  rent_page_note: >-
+    One thing to know when reading this list: a city's median is pulled
+    down by rent-controlled and rent-stabilised homes where they are
+    common — New York most of all. That is a property of what renters
+    actually pay, not an error, so it is disclosed here rather than
+    adjusted away.
   compare_default_note: >-
     These figures use the stated default search — {search}. Change
     anything on the home page and they become yours.
@@ -186,6 +211,14 @@ city_description:
     - {max_minutes: 185, text: "about three hours"}
   location_near: "{drive} {direction} of {city}"
   location_far: "in {state}"
+  # Display-name judgments (Phase 2e): where the Census-attested place
+  # name is a consolidated government's legal form, the name people use
+  # wins — a registry decision, not code. (Winston-Salem is the opposite
+  # case: the legal place name IS the used name, and the old title-split
+  # heuristic had maimed it to "Winston".)
+  display_overrides:
+    - {cbsa: "30460", name: "Lexington"}      # not "Lexington-Fayette"
+    - {cbsa: "31420", name: "Macon"}          # not "Macon-Bibb County"
 
 naics_venues:                       # the reach venue selection (CBP + QCEW)
   "722511": full-service restaurants
@@ -287,6 +320,11 @@ features:
                  geography: cbsa, vintage: "2020-2024",
                  transform_id: symmetric_rivals_v1, tier: measured}
 
+  # m2.3.0 (ADR 0006): the ONE-BEDROOM median gross rent (B25031),
+  # selected from the group metadata by label. The all-units median moved
+  # with each metro's mix of studios and family houses; the one-bedroom
+  # figure is the rent a single person actually faces. Gross rent
+  # includes utilities — the unit line says so.
   - id: median_gross_rent
     pillar: cost
     kind: intensive
@@ -294,7 +332,7 @@ features:
     weight_in_pillar: 0.5
     computed: static
     display_name: "Rent"
-    unit: "a month, typical"
+    unit: "a month for a typical one-bedroom, utilities included"
     unit_short: "$/mo"
     display_decimals: 0
     mover_phrase: "rent"
@@ -302,11 +340,13 @@ features:
     band_labels: ["Far cheaper than most cities", "Cheaper than most cities",
                   "About average for rent", "Pricier than most cities",
                   "Among the priciest cities"]
-    definition: "The typical monthly rent across the city (Census ACS)."
+    definition: >-
+      The typical monthly rent for a one-bedroom home across the city,
+      utilities included (Census ACS).
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
-                 table: B25064, variables: [B25064_001E],
+                 table: B25031, variables: [B25031_003E],
                  geography: cbsa, vintage: "2020-2024",
-                 transform_id: cost_rent_v1, tier: measured}
+                 transform_id: cost_rent_1br_v2, tier: measured}
 
   # Composition decision: all-items RPP is EXCLUDED because rent is measured
   # directly by B25064 and all-items embeds a large housing-rents component —
@@ -583,6 +623,11 @@ features:
   # agencies cover, never by the metro's; coverage ships beside the rates
   # and gates rendering (crime.coverage_floor). No composite, no ranking,
   # no stat page — an explainer page instead.
+  # Phase 2e item 2: the crime cards carry a five-band POSITION with
+  # band_direction neutral, deliberately — colouring a low rate "good"
+  # would make exactly the between-cities comparison the FBI cautions
+  # against and the popover disclaims. The position is descriptive; the
+  # tone stays quiet (the students precedent).
   - id: violent_crime_rate
     pillar: context
     kind: intensive
@@ -594,6 +639,10 @@ features:
     unit: "reported per 100,000 people a year"
     unit_short: "per 100k"
     display_decimals: 0
+    band_direction: neutral
+    band_labels: ["Far lower than most cities", "Lower than most cities",
+                  "About average", "Higher than most cities",
+                  "Far higher than most cities"]
     definition: >-
       Murder, rape, robbery and aggravated assault reported to police, per
       100,000 people in the areas whose agencies reported a full year
@@ -615,6 +664,10 @@ features:
     unit: "reported per 100,000 people a year"
     unit_short: "per 100k"
     display_decimals: 0
+    band_direction: neutral
+    band_labels: ["Far lower than most cities", "Lower than most cities",
+                  "About average", "Higher than most cities",
+                  "Far higher than most cities"]
     definition: >-
       Burglary, larceny-theft and motor vehicle theft reported to police,
       per 100,000 people in the areas whose agencies reported a full year

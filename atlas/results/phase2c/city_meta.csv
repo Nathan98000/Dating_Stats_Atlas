@@ -4,7 +4,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 16980,"Chicago, IL","Chicago, Illinois",chicago-illinois,Illinois,41.8370453,-87.6849386,A vast metro area of about 9.4 million people in Illinois.
 19100,"Dallas, TX","Dallas, Texas",dallas-texas,Texas,32.7933334,-96.7665128,A vast metro area of about 8 million people in Texas.
 26420,"Houston, TX","Houston, Texas",houston-texas,Texas,29.7857435,-95.3888059,A vast metro area of about 7.4 million people in Texas.
-47900,"Washington, DC","Washington, the District of Columbia",washington-the-district-of-columbia,the District of Columbia,38.9042429,-77.0165243,A vast metro area of about 6.3 million people in the District of Columbia.
+47900,"Washington, DC","Washington, District of Columbia",washington-district-of-columbia,District of Columbia,38.9042429,-77.0165243,A vast metro area of about 6.3 million people in the District of Columbia.
 37980,"Philadelphia, PA","Philadelphia, Pennsylvania",philadelphia-pennsylvania,Pennsylvania,40.0092973,-75.1332708,A vast metro area of about 6.3 million people an hour and a half southwest of New York.
 12060,"Atlanta, GA","Atlanta, Georgia",atlanta-georgia,Georgia,33.7629088,-84.4226745,A vast metro area of about 6.3 million people in Georgia.
 33100,"Miami, FL","Miami, Florida",miami-florida,Florida,25.775163,-80.2086152,A vast metro area of about 6.3 million people in Florida.
@@ -41,7 +41,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 33340,"Milwaukee, WI","Milwaukee, Wisconsin",milwaukee-wisconsin,Wisconsin,43.0633484,-87.9666952,A major city of about 1.6 million people an hour and a half north of Chicago.
 39580,"Raleigh, NC","Raleigh, North Carolina",raleigh-north-carolina,North Carolina,35.8314561,-78.6395585,A major city of about 1.5 million people about three hours east of Charlotte.
 36420,"Oklahoma City, OK","Oklahoma City, Oklahoma",oklahoma-city-oklahoma,Oklahoma,35.4670795,-97.5136565,A major city of about 1.5 million people in Oklahoma.
-31140,"Louisville/Jefferson County, KY","Louisville/Jefferson County, Kentucky",louisville-jefferson-county-kentucky,Kentucky,38.224692,-85.7410672,A major city of about 1.4 million people two hours southwest of Cincinnati.
+31140,"Louisville, KY","Louisville, Kentucky",louisville-kentucky,Kentucky,38.224692,-85.7410672,A major city of about 1.4 million people two hours southwest of Cincinnati.
 32820,"Memphis, TN","Memphis, Tennessee",memphis-tennessee,Tennessee,35.1091639,-89.9685113,A major city of about 1.3 million people in Tennessee.
 40060,"Richmond, VA","Richmond, Virginia",richmond-virginia,Virginia,37.531399,-77.4760085,A major city of about 1.3 million people two hours south of Washington.
 41620,"Salt Lake City, UT","Salt Lake City, Utah",salt-lake-city-utah,Utah,40.7753661,-111.927266,A major city of about 1.3 million people in Utah.
@@ -85,7 +85,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 28880,"Kiryas Joel, NY","Kiryas Joel, New York",kiryas-joel-new-york,New York,41.3390099,-74.1669411,"A city of about 700,000 people an hour north of New York."
 10420,"Akron, OH","Akron, Ohio",akron-ohio,Ohio,41.0804559,-81.5214295,"A city of about 700,000 people half an hour south of Cleveland."
 31540,"Madison, WI","Madison, Wisconsin",madison-wisconsin,Wisconsin,43.0878147,-89.4298563,"A college town of about 700,000 people an hour and a half west of Milwaukee."
-49180,"Winston, NC","Winston, North Carolina",winston-north-carolina,North Carolina,36.1028627,-80.2608286,"A city of about 700,000 people an hour and a half northeast of Charlotte."
+49180,"Winston-Salem, NC","Winston-Salem, North Carolina",winston-salem-north-carolina,North Carolina,36.1028627,-80.2608286,"A city of about 700,000 people an hour and a half northeast of Charlotte."
 45060,"Syracuse, NY","Syracuse, New York",syracuse-new-york,New York,43.04126,-76.1432118,"A college town of about 650,000 people an hour and a half east of Rochester."
 36260,"Ogden, UT","Ogden, Utah",ogden-utah,Utah,41.2283911,-111.9681469,"A city of about 650,000 people half an hour north of Salt Lake City."
 48620,"Wichita, KS","Wichita, Kansas",wichita-kansas,Kansas,37.6893435,-97.3483526,"A city of about 650,000 people about three hours northwest of Tulsa."
@@ -106,7 +106,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 33700,"Modesto, CA","Modesto, California",modesto-california,California,37.6375332,-121.0030494,"A city of about 550,000 people an hour northeast of San Jose."
 37860,"Pensacola, FL","Pensacola, Florida",pensacola-florida,Florida,30.4409891,-87.1912416,"A city of about 550,000 people in Florida."
 38940,"Port St. Lucie, FL","Port St. Lucie, Florida",port-st-lucie-florida,Florida,27.2805537,-80.3882609,"A city of about 500,000 people two hours southeast of Orlando."
-30460,"Lexington, KY","Lexington, Kentucky",lexington-kentucky,Kentucky,38.0406383,-84.4582383,"A college town of about 500,000 people an hour and a half east of Louisville/Jefferson County."
+30460,"Lexington, KY","Lexington, Kentucky",lexington-kentucky,Kentucky,38.0406383,-84.4582383,"A college town of about 500,000 people an hour and a half east of Louisville."
 26620,"Huntsville, AL","Huntsville, Alabama",huntsville-alabama,Alabama,34.6887404,-86.6750752,"A city of about 500,000 people an hour and a half north of Birmingham."
 28660,"Killeen, TX","Killeen, Texas",killeen-texas,Texas,31.0752731,-97.7316166,"A city of about 500,000 people an hour north of Austin."
 44180,"Springfield, MO","Springfield, Missouri",springfield-missouri,Missouri,37.1953372,-93.292363,"A college town of about 500,000 people about three hours southeast of Kansas City."
@@ -183,7 +183,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 16300,"Cedar Rapids, IA","Cedar Rapids, Iowa",cedar-rapids-iowa,Iowa,41.964226,-91.6791636,"A city of about 300,000 people two hours east of Des Moines."
 43640,"Slidell, LA","Slidell, Louisiana",slidell-louisiana,Louisiana,30.2889132,-89.7829264,"A city of about 250,000 people half an hour northeast of New Orleans."
 11100,"Amarillo, TX","Amarillo, Texas",amarillo-texas,Texas,35.1999034,-101.8301942,"A city of about 250,000 people in Texas."
-21780,"Evansville, IN","Evansville, Indiana",evansville-indiana,Indiana,37.9877366,-87.5347053,"A city of about 250,000 people two hours west of Louisville/Jefferson County."
+21780,"Evansville, IN","Evansville, Indiana",evansville-indiana,Indiana,37.9877366,-87.5347053,"A city of about 250,000 people two hours west of Louisville."
 29700,"Laredo, TX","Laredo, Texas",laredo-texas,Texas,27.5603789,-99.4891809,"A city of about 250,000 people two hours northwest of McAllen."
 21500,"Erie, PA","Erie, Pennsylvania",erie-pennsylvania,Pennsylvania,42.1165941,-80.0735032,"A city of about 250,000 people an hour and a half northeast of Youngstown."
 42100,"Santa Cruz, CA","Santa Cruz, California",santa-cruz-california,California,36.974385,-122.0352679,"A college town of about 250,000 people half an hour southwest of San Jose."
@@ -242,7 +242,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 28740,"Kingston, NY","Kingston, New York",kingston-new-york,New York,41.9472124,-74.2654582,"A city of about 200,000 people an hour north of Kiryas Joel."
 17660,"Coeur d'Alene, ID","Coeur d'Alene, Idaho",coeur-dalene-idaho,Idaho,47.7028866,-116.7957993,"A city of about 200,000 people half an hour east of Spokane."
 27180,"Jackson, TN","Jackson, Tennessee",jackson-tennessee,Tennessee,35.658451,-88.8373992,"A city of about 200,000 people an hour and a half northeast of Memphis."
-13980,"Blacksburg, VA","Blacksburg, Virginia",blacksburg-virginia,Virginia,37.2312641,-80.4267452,"A college town of about 200,000 people an hour and a half north of Winston."
+13980,"Blacksburg, VA","Blacksburg, Virginia",blacksburg-virginia,Virginia,37.2312641,-80.4267452,"A college town of about 200,000 people an hour and a half north of Winston-Salem."
 39820,"Redding, CA","Redding, California",redding-california,California,40.5702768,-122.3667659,"A city of about 200,000 people about three hours north of Sacramento."
 10180,"Abilene, TX","Abilene, Texas",abilene-texas,Texas,32.4545143,-99.7381473,"A city of about 200,000 people about three hours northwest of Killeen."
 20940,"El Centro, CA","El Centro, California",el-centro-california,California,32.7863511,-115.5602059,"A city of about 200,000 people an hour and a half east of San Diego."
@@ -317,7 +317,7 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 17420,"Cleveland, TN","Cleveland, Tennessee",cleveland-tennessee,Tennessee,35.1800438,-84.8712876,"A city of about 150,000 people half an hour east of Chattanooga."
 30020,"Lawton, OK","Lawton, Oklahoma",lawton-oklahoma,Oklahoma,34.6627327,-98.4762078,"A city of about 150,000 people an hour and a half southwest of Oklahoma City."
 11180,"Ames, IA","Ames, Iowa",ames-iowa,Iowa,42.0257252,-93.622491,"A college town of about 150,000 people half an hour north of Des Moines."
-21060,"Elizabethtown, KY","Elizabethtown, Kentucky",elizabethtown-kentucky,Kentucky,37.6958356,-85.9631827,"A city of about 150,000 people an hour south of Louisville/Jefferson County."
+21060,"Elizabethtown, KY","Elizabethtown, Kentucky",elizabethtown-kentucky,Kentucky,37.6958356,-85.9631827,"A city of about 150,000 people an hour south of Louisville."
 44420,"Staunton, VA","Staunton, Virginia",staunton-virginia,Virginia,38.1579778,-79.0618761,"A city of about 100,000 people two hours northwest of Richmond."
 24020,"Glens Falls, NY","Glens Falls, New York",glens-falls-new-york,New York,43.3111604,-73.6452865,"A city of about 150,000 people an hour north of Albany."
 33540,"Missoula, MT","Missoula, Montana",missoula-montana,Montana,46.8743587,-114.0261362,"A college town of about 150,000 people in Montana."
@@ -341,8 +341,8 @@ cbsa,display_name,display_name_full,slug,state_full,lat,lon,description
 41780,"Sandusky, OH","Sandusky, Ohio",sandusky-ohio,Ohio,41.4558849,-82.7144356,"A city of about 100,000 people an hour east of Toledo."
 48700,"Williamsport, PA","Williamsport, Pennsylvania",williamsport-pennsylvania,Pennsylvania,41.2400192,-77.0355914,"A city of about 100,000 people an hour and a half north of Harrisburg."
 30340,"Lewiston, ME","Lewiston, Maine",lewiston-maine,Maine,44.1676811,-70.2074347,"A city of about 100,000 people an hour north of Portland."
-36980,"Owensboro, KY","Owensboro, Kentucky",owensboro-kentucky,Kentucky,37.7571718,-87.1173984,"A city of about 100,000 people an hour and a half southwest of Louisville/Jefferson County."
-13220,"Beckley, WV","Beckley, West Virginia",beckley-west-virginia,West Virginia,37.773222,-81.1615445,"A city of about 100,000 people about three hours northwest of Winston."
+36980,"Owensboro, KY","Owensboro, Kentucky",owensboro-kentucky,Kentucky,37.7571718,-87.1173984,"A city of about 100,000 people an hour and a half southwest of Louisville."
+13220,"Beckley, WV","Beckley, West Virginia",beckley-west-virginia,West Virginia,37.773222,-81.1615445,"A city of about 100,000 people about three hours northwest of Winston-Salem."
 31020,"Longview, WA","Longview, Washington",longview-washington,Washington,46.1457073,-122.9642987,"A city of about 100,000 people an hour north of Portland."
 34620,"Muncie, IN","Muncie, Indiana",muncie-indiana,Indiana,40.1988257,-85.3950595,"A college town of about 100,000 people an hour northeast of Indianapolis."
 33140,"Michigan City, IN","Michigan City, Indiana",michigan-city-indiana,Indiana,41.7087757,-86.8668754,"A city of about 100,000 people an hour east of Chicago."

@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-dd7374675de7",
-  "model_version": "m2.2.0",
+  "data_version": "fixture-98dcbb161236",
+  "model_version": "m2.3.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-17T14:09:39-0400",
+  "created_at": "2026-09-17T14:46:23-0400",
   "axes": [
     {
       "name": "metro",
@@ -325,9 +325,20 @@
     "crime_coverage_line": "Police agencies covering {coverage} of the people here reported a full year of {year} data. The rates count only what those agencies cover.",
     "crime_blank": "Not enough of {city}'s police agencies reported a full year of data for a figure we'd stand behind, so none is shown.",
     "crime_compare_note": "Read each city's crime figures on their own. Different shares of each city's police agencies report, so the two columns aren't comparable \u2014 the FBI itself cautions against comparisons like that.",
+    "crime_compare_banner": "These two figures aren't reliably comparable between cities \u2014 how much crime gets reported, and how many police agencies report it, differ from place to place.",
+    "crime_card_blank": "Not enough police reporting here for a figure worth showing.",
+    "crime_card_info": "About this figure",
     "stat_page_link": "See all cities by {name}",
     "stat_page_intro": "Every city this site can rank, ordered by one measure. Your search never changes these figures.",
     "stat_page_missing": "{n} of the ranked cities don't have this figure and are left off this list rather than shown as zero.",
+    "age_range_error": "Ages run 18 to 70 here \u2014 that's the survey's own range.",
+    "measure_page_intro": "Everything this site measures, in plain words: the two counts about people, and the place stats behind the four importance controls. Every figure links to its own list of cities.",
+    "measure_people_heading": "The people",
+    "measure_crime_note": "Shown on city pages with its reporting coverage \u2014 never part of any score, and not reliably comparable between cities.",
+    "stat_sort_low": "Lowest first",
+    "stat_sort_high": "Highest first",
+    "stat_strip_label": "How the figures spread across every ranked city",
+    "rent_page_note": "One thing to know when reading this list: a city's median is pulled down by rent-controlled and rent-stabilised homes where they are common \u2014 New York most of all. That is a property of what renters actually pay, not an error, so it is disclosed here rather than adjusted away.",
     "compare_default_note": "These figures use the stated default search \u2014 {search}. Change anything on the home page and they become yours."
   },
   "pillars": {
@@ -529,7 +540,7 @@
       "weight_in_pillar": 0.5,
       "status": "active",
       "display_name": "Rent",
-      "unit": "a month, typical",
+      "unit": "a month for a typical one-bedroom, utilities included",
       "unit_short": "$/mo",
       "unit_template": null,
       "mover_phrase": "rent",
@@ -550,20 +561,20 @@
         "poor"
       ],
       "band_edges": null,
-      "definition": "The typical monthly rent across the city (Census ACS).",
+      "definition": "The typical monthly rent for a one-bedroom home across the city, utilities included (Census ACS).",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
       "provenance": {
         "source": "census_acs",
         "dataset": "ACS 2020-2024 5-year",
-        "table": "B25064",
+        "table": "B25031",
         "variables": [
-          "B25064_001E"
+          "B25031_003E"
         ],
         "geography": "cbsa",
         "vintage": "2020-2024",
-        "transform_id": "cost_rent_v1",
+        "transform_id": "cost_rent_1br_v2",
         "tier": "measured"
       }
     },
@@ -1012,9 +1023,21 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
-      "band_direction": null,
-      "band_labels": null,
-      "band_tones": null,
+      "band_direction": "neutral",
+      "band_labels": [
+        "Far lower than most cities",
+        "Lower than most cities",
+        "About average",
+        "Higher than most cities",
+        "Far higher than most cities"
+      ],
+      "band_tones": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
       "band_edges": null,
       "definition": "Murder, rape, robbery and aggravated assault reported to police, per 100,000 people in the areas whose agencies reported a full year (FBI Crime Data Explorer).",
       "display_scale": 1.0,
@@ -1045,9 +1068,21 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
-      "band_direction": null,
-      "band_labels": null,
-      "band_tones": null,
+      "band_direction": "neutral",
+      "band_labels": [
+        "Far lower than most cities",
+        "Lower than most cities",
+        "About average",
+        "Higher than most cities",
+        "Far higher than most cities"
+      ],
+      "band_tones": [
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
       "band_edges": null,
       "definition": "Burglary, larceny-theft and motor vehicle theft reported to police, per 100,000 people in the areas whose agencies reported a full year (FBI Crime Data Explorer).",
       "display_scale": 1.0,
@@ -1127,5 +1162,5 @@
     ],
     "n_source_files_fetched": 2580
   },
-  "fixture_of": "dd7374675de7"
+  "fixture_of": "98dcbb161236"
 }

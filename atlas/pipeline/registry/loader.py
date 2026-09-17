@@ -254,7 +254,9 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     _assert_display_clean("city_description", desc["template"],
                           desc["location_near"], desc["location_far"],
                           *(c["text"] for c in desc["characters"]),
-                          *(d["text"] for d in desc["drive_phrases"]))
+                          *(d["text"] for d in desc["drive_phrases"]),
+                          *(o["name"] for o in desc.get("display_overrides",
+                                                        [])))
 
     return Registry(
         version=int(raw["version"]), pillars=pillars, features=feats,

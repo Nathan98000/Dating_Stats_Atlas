@@ -20,6 +20,20 @@ importance controls map to weights through registry constants; margins
 keep being computed and returned but no longer render. Second breaking
 contract change after ADR 0003.
 
+m2.3.0 — Phase 2e (ADR 0006): rent becomes the ONE-BEDROOM median gross
+rent (B25031, variable selected from group metadata by label) — the
+all-units median moved with each metro's unit mix, reading family-stock
+metros as expensive for reasons a single person's rent never sees. The
+cost pillar's internal weights are unchanged; only the rent input moves,
+and with it the cost pillar and every score (goldens regenerated; the
+before/after is in PHASE2E.md — Austin stays high at the 87th percentile
+because its one-bedroom rents really are high; Provo drops ten points
+because its family stock was the inflation). Fallback for a metro
+without a one-bedroom median: the all-units median, flagged in the build
+report (none needed in 2020-2024). Crime rates gain five-band standings
+with deliberately NEUTRAL tones (colouring them would make the exact
+comparison the FBI caution disclaims).
+
 m2.2.0 — Phase 2e (ADR 0006, reversing ADR 0004's always-counted rule):
 race and ethnicity become eight equal checkboxes. A selection filters the
 pool to exactly the ticked groups — "Two or more races" and "Another
@@ -51,5 +65,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m2.2.0"
+MODEL_VERSION = "m2.3.0"
 SCHEMA_VERSION = "cube-v1"
