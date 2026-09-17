@@ -19,6 +19,12 @@ export function SiteHeader({ border = true }: { border?: boolean }) {
           Browse cities
         </Link>
         <Link
+          href="/compare"
+          className="text-sm font-semibold text-ink-2 hover:text-ink"
+        >
+          Compare cities
+        </Link>
+        <Link
           href="/how-it-works"
           className="text-sm font-semibold text-ink-2 hover:text-ink"
         >

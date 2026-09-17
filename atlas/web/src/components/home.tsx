@@ -124,7 +124,21 @@ export function Home({
       </div>
 
       <div className="mx-auto grid max-w-6xl grid-cols-[360px_1fr] gap-10 px-6 pb-16 pt-8 sm:px-12 max-lg:grid-cols-1">
-        <div ref={panelRef} id="search-panel" className="lg:sticky lg:top-16 lg:self-start">
+        {/* Item 1: the panel follows the page. Sticky with its own
+            max-height and internal scroll, so a panel taller than the
+            viewport scrolls inside itself instead of trapping the page;
+            tabIndex + role make the scroll container keyboard-reachable
+            (arrow keys scroll it). At phone width it goes back to being a
+            normal block above the results. */}
+        <div
+          ref={panelRef}
+          id="search-panel"
+          tabIndex={0}
+          role="region"
+          aria-label="Your search"
+          data-testid="search-panel"
+          className="lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:touch-pan-y lg:self-start lg:overflow-y-auto"
+        >
           <SearchPanel prefs={prefs} meta={meta} onChange={onChange} sameSexNote={sameSex} />
         </div>
 

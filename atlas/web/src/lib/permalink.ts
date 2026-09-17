@@ -10,8 +10,8 @@
  * emitted by the Python model, so a drift here fails CI rather than
  * shipping two permalink dialects. */
 
-const FLOAT_KEYS = new Set(["size_vs_odds", "pool_vs_balance", "pool",
-  "balance", "reach", "cost", "lifestyle"]);
+const FLOAT_KEYS = new Set(["pool_vs_balance", "pool", "balance", "reach",
+  "cost", "weather", "students"]);
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
 
@@ -29,7 +29,7 @@ function canonical(value: Json, parentKey: string | null,
   if (typeof value === "number") {
     const floatTyped =
       (parentKey !== null && inWeights && FLOAT_KEYS.has(parentKey)) ||
-      parentKey === "size_vs_odds" || parentKey === "pool_vs_balance";
+      parentKey === "pool_vs_balance";
     return pyNumber(value, floatTyped);
   }
   if (typeof value === "string") return JSON.stringify(value);
@@ -64,8 +64,11 @@ export interface RankBody {
 }
 
 export function canonicalCore(body: RankBody): string {
+  // size_vs_odds left the contract in m2.1.0 — old tokens still DECODE
+  // (the /r/ page routes them to the earlier-edition path) but nothing
+  // encodes it anymore, mirroring the Python core keys exactly
   const core: Record<string, Json> = {};
-  for (const k of ["self", "seeking", "weights", "size_vs_odds",
+  for (const k of ["self", "seeking", "weights",
                    "pool_vs_balance", "importance"] as const) {
     if (body[k] !== undefined) core[k] = body[k] as unknown as Json;
   }

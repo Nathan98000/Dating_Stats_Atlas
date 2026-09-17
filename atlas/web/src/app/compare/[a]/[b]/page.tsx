@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { apiMeta, apiRank } from "@/lib/api";
 import {
   describeSearch,
+  isDefaultSearch,
   parsePrefs,
   toRankBody,
   toSearchParams,
@@ -10,7 +11,8 @@ import {
 } from "@/lib/prefs";
 import { SiteHeader } from "@/components/chrome";
 import { BalanceTally } from "@/components/tally";
-import type { Card, Meta, RankedRow, SuppressedRow } from "@/lib/types";
+import type { Card, CrimeBlock, Meta, MetroMeta, RankedRow,
+              SuppressedRow } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -65,6 +67,15 @@ export default async function ComparePage({
           For {describeSearch(prefs).toLowerCase()} — the same search and the
           same yardstick as your results.
         </p>
+        {isDefaultSearch(sp) && (
+          <p className="max-w-[64ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13.5px] leading-relaxed text-accent-hover" data-testid="default-profile-note">
+            {policy.compare_default_note.replace(
+              "{search}", describeSearch(prefs).toLowerCase())}{" "}
+            <Link href={`/?${qs}#search-panel`} className="font-bold underline underline-offset-2">
+              Make it your search
+            </Link>
+          </p>
+        )}
 
         <div className="overflow-x-auto rounded-xl border border-rule bg-surface">
           <table className="w-full min-w-[620px] text-sm" data-testid="compare-table">
@@ -178,8 +189,54 @@ export default async function ComparePage({
             </tbody>
           </table>
         </div>
+
+        {/* item 5 on the compare page: the non-comparability note sits
+            BETWEEN the two columns, where it will actually be read —
+            never a difference column for crime */}
+        <section className="flex flex-col gap-4 rounded-xl border border-rule bg-surface px-7 py-6" data-testid="compare-crime">
+          <h2 className="font-display text-[21px] font-semibold">Reported crime</h2>
+          <div className="grid grid-cols-[1fr_minmax(200px,260px)_1fr] gap-7 max-md:grid-cols-1">
+            <CrimeColumn metro={mA} crime={rowA?.crime} />
+            <p
+              className="self-center rounded-lg border border-tint-border bg-tint px-4 py-3.5 text-[12.5px] leading-relaxed text-accent-hover"
+              data-testid="crime-compare-note"
+            >
+              {policy.crime_compare_note}
+            </p>
+            <CrimeColumn metro={mB} crime={rowB?.crime} />
+          </div>
+          <p className="max-w-[76ch] border-t border-rule pt-4 text-[13px] leading-relaxed text-ink-3">
+            {(rowA?.crime ?? rowB?.crime)?.caution}{" "}
+            <Link href="/about-crime-data" className="font-semibold text-accent hover:text-accent-hover">
+              About these figures
+            </Link>
+          </p>
+        </section>
       </div>
     </>
+  );
+}
+
+function CrimeColumn({ metro, crime }: { metro: MetroMeta; crime?: CrimeBlock }) {
+  return (
+    <div className="flex flex-col gap-3">
+      <span className="font-display text-[16px] font-semibold">{metro.display_name}</span>
+      {crime?.available ? (
+        <>
+          {crime.stats!.map((s) => (
+            <div key={s.id} className="flex items-baseline justify-between gap-3">
+              <span className="text-[13px] text-ink-2">{s.label}</span>
+              <span className="font-display text-[19px] font-semibold">{s.display}</span>
+            </div>
+          ))}
+          <p className="text-[12px] leading-snug text-ink-3">{crime.coverage_line}</p>
+        </>
+      ) : (
+        <p className="text-[13px] leading-relaxed text-ink-3">
+          {crime?.note ?? "Not covered"}
+        </p>
+      )}
+    </div>
   );
 }
 

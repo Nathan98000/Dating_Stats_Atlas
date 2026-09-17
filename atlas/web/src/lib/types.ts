@@ -3,10 +3,22 @@
  * nothing here is ever derived arithmetic. */
 
 export interface Band {
-  key: "low" | "mid" | "high";
+  key: string; // one of meta.standing_bands.keys (five since m2.1.0)
   standing_all: number;
   label: string;
   tone: "good" | "neutral" | "poor";
+}
+
+/** Crime context (item 5; never scored): rates arrive only with their
+ * coverage figure and the FBI's caution, or as the blank state. */
+export interface CrimeBlock {
+  available: boolean;
+  caution: string;
+  note?: string;
+  coverage_line?: string;
+  coverage_pct?: number;
+  stats?: { id: string; label: string; value: number; display: string;
+            unit_line: string }[];
 }
 
 export interface Stat {
@@ -60,6 +72,7 @@ export interface RankedRow {
   flags: string[];
   stats: Stat[];
   cards: Card[];
+  crime: CrimeBlock;
   contributions: { pillar: string; value: number }[];
   top_stats: string[];
   summary_line: string;
@@ -75,6 +88,7 @@ export interface SuppressedRow {
   flags: string[];
   balance: BalanceBlock;
   cards: Card[];
+  crime: CrimeBlock;
 }
 
 export interface RankResponse {
@@ -109,6 +123,8 @@ export interface FeatureLegend {
   unit_short: string;
   unit_template?: string | null;
   mover_phrase?: string | null;
+  stat_page_name?: string | null;
+  band_direction?: "good_low" | "good_high" | "neutral" | null;
   band_labels?: string[] | null;
   band_tones?: string[] | null;
   definition: string;
@@ -134,14 +150,17 @@ export interface Meta {
   model_version: string;
   pillars: Record<
     string,
-    { display_name: string; definition: string; default_weight: number }
+    { display_name: string; definition: string; default_weight: number;
+      control_subtitle?: string | null }
   >;
   pillar_order: string[];
   features: Record<string, FeatureLegend>;
   policy_strings: Record<string, string>;
   technical_strings: Record<string, string>;
-  standing_bands: { low_below: number; high_above: number };
+  standing_bands: { edges: number[]; keys: string[] };
   city_cards: string[];
+  stat_pages: string[];
+  crime: { year: number; coverage_floor: number };
   licenses: Record<
     string,
     { name: string; url: string; attribution: string | null; notes: string | null }
@@ -152,6 +171,7 @@ export interface Meta {
     marital: string[];
     race_ethnicity: string[];
     importance_levels: string[];
+    importance_pillars: string[];
     age: [number, number];
   };
   metros: MetroMeta[];

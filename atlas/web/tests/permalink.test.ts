@@ -43,8 +43,26 @@ describe("permalink round-trip against the Python model", () => {
       if (slider !== undefined) {
         expect(rebuilt.pool_vs_balance).toEqual(slider);
       }
-      if (body.importance) {
-        expect(rebuilt.importance).toEqual(body.importance);
+      // importance compares RESOLVED: a partial m2.1.0 body defaults its
+      // missing controls to "some", and the one-version lifestyle alias
+      // lands on both split pillars — the semantics survive, the spelling
+      // need not (ADR 0005)
+      const resolve = (imp?: Record<string, string>) => {
+        const out: Record<string, string> = {
+          cost: "some", reach: "some", students: "some", weather: "some",
+        };
+        for (const [k, v] of Object.entries(imp ?? {})) {
+          if (k === "lifestyle") {
+            out.weather = v;
+            out.students = v;
+          } else if (k in out) {
+            out[k] = v;
+          }
+        }
+        return out;
+      };
+      if (body.importance || rebuilt.importance) {
+        expect(resolve(rebuilt.importance)).toEqual(resolve(body.importance));
       }
     }
   });

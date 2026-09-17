@@ -3,8 +3,14 @@
  * body. It never computes a ranking number — that is the API's job. */
 import type { RankBody } from "./permalink";
 
-export const PILLARS = ["pool", "balance", "reach", "cost", "lifestyle"] as const;
+export const PILLARS = ["pool", "balance", "reach", "cost", "weather",
+  "students"] as const;
 export type Level = "not_much" | "some" | "a_lot";
+/** The four m2.1.0 importance controls (item 4): Cost of living, Social
+ * life, Student life, Weather — labels and subtitles arrive from the
+ * registry through /v1/meta, never from here. */
+export const IMPORTANCE_PILLARS = ["cost", "reach", "students", "weather"] as const;
+export type ImportancePillar = (typeof IMPORTANCE_PILLARS)[number];
 
 export interface Prefs {
   selfSex: "male" | "female";
@@ -17,7 +23,7 @@ export interface Prefs {
   incomeMin?: number;
   race?: string[]; // the six selectable spec names; absent = all
   poolVsBalance?: number; // 0..1
-  importance: { cost: Level; reach: Level; lifestyle: Level };
+  importance: Record<ImportancePillar, Level>;
   sort: "best_first" | "worst_first";
 }
 
@@ -29,7 +35,7 @@ export const DEFAULT_PREFS: Prefs = {
   ageMin: 28,
   ageMax: 40,
   marital: ["never_married", "previously_married"],
-  importance: { cost: "some", reach: "some", lifestyle: "some" },
+  importance: { cost: "some", reach: "some", students: "some", weather: "some" },
   sort: "best_first",
 };
 
@@ -42,12 +48,22 @@ const MARITAL_LONG: Record<string, string> = Object.fromEntries(
 );
 const LEVEL_SHORT: Record<Level, string> = { not_much: "n", some: "s", a_lot: "a" };
 const LEVEL_LONG: Record<string, Level> = { n: "not_much", s: "some", a: "a_lot" };
+const IMPORTANCE_PARAMS = [["ic", "cost"], ["ir", "reach"], ["ist", "students"],
+  ["iw", "weather"]] as const;
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
-function one(sp: SearchParams, k: string): string | undefined {
+export function one(sp: SearchParams, k: string): string | undefined {
   const v = sp[k];
   return Array.isArray(v) ? v[0] : v;
+}
+
+/** True when the URL carries none of the preference params — the visitor
+ * gets the stated default profile, and pages that show it say so. */
+export function isDefaultSearch(sp: SearchParams): boolean {
+  const prefKeys = ["self_sex", "self_age", "sex", "age", "marital", "edu",
+    "inc", "race", "s", "ic", "ir", "ist", "iw", "il", "sort"];
+  return !prefKeys.some((k) => one(sp, k) !== undefined);
 }
 
 export function parsePrefs(sp: SearchParams): Prefs {
@@ -85,9 +101,15 @@ export function parsePrefs(sp: SearchParams): Prefs {
   }
   const s = parseFloat(one(sp, "s") ?? "");
   if (Number.isFinite(s) && s >= 0 && s <= 1) p.poolVsBalance = s;
-  for (const [param, pillar] of [["ic", "cost"], ["ir", "reach"], ["il", "lifestyle"]] as const) {
+  for (const [param, pillar] of IMPORTANCE_PARAMS) {
     const lv = LEVEL_LONG[one(sp, param) ?? ""];
     if (lv) p.importance[pillar] = lv;
+  }
+  // the m2.0.0 URL param for the bundled control: applies to both halves
+  const il = LEVEL_LONG[one(sp, "il") ?? ""];
+  if (il) {
+    p.importance.weather = il;
+    p.importance.students = il;
   }
   if (one(sp, "sort") === "worst_first") p.sort = "worst_first";
   return p;
@@ -104,7 +126,7 @@ export function toSearchParams(p: Prefs): URLSearchParams {
   if (p.incomeMin !== undefined) sp.set("inc", String(p.incomeMin));
   if (p.race?.length) sp.set("race", p.race.join(","));
   if (p.poolVsBalance !== undefined) sp.set("s", String(p.poolVsBalance));
-  for (const [param, pillar] of [["ic", "cost"], ["ir", "reach"], ["il", "lifestyle"]] as const) {
+  for (const [param, pillar] of IMPORTANCE_PARAMS) {
     if (p.importance[pillar] !== "some") {
       sp.set(param, LEVEL_SHORT[p.importance[pillar]]);
     }
@@ -137,13 +159,24 @@ export function toRankBody(p: Prefs): RankBody {
 }
 
 export function bodyToPrefs(body: RankBody): Prefs {
+  // importance keys from an older token: "lifestyle" was the bundled
+  // control — its level lands on both split pillars; unknown keys drop
+  const imp = { ...DEFAULT_PREFS.importance };
+  for (const [k, v] of Object.entries(body.importance ?? {})) {
+    if ((IMPORTANCE_PILLARS as readonly string[]).includes(k)) {
+      imp[k as ImportancePillar] = v as Level;
+    } else if (k === "lifestyle") {
+      imp.weather = v as Level;
+      imp.students = v as Level;
+    }
+  }
   const p: Prefs = {
     selfSex: body.self.sex === "male" ? "male" : "female",
     selfAge: body.self.age,
     ageMin: body.seeking.age[0],
     ageMax: body.seeking.age[1],
     marital: [...body.seeking.marital],
-    importance: { ...DEFAULT_PREFS.importance, ...(body.importance ?? {}) },
+    importance: imp,
     sort: (body.sort as Prefs["sort"]) ?? "best_first",
   };
   if (body.seeking.sex === "male" || body.seeking.sex === "female") {

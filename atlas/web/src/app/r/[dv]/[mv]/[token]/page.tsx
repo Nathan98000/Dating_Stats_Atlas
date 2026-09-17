@@ -34,10 +34,16 @@ export default async function PermalinkPage({
   const prefs = bodyToPrefs(body);
   const qs = toSearchParams(prefs).toString();
   try {
-    const [meta, response] = await Promise.all([
-      apiMeta(),
-      apiRank({ ...body, data_version: dv, model_version: mv }),
-    ]);
+    const meta = await apiMeta();
+    if (mv !== meta.model_version) {
+      // decide by the pin, not by error ordering: an older token may
+      // carry fields the current contract refuses (m2.0.0's size_vs_odds
+      // would 422 before the version check could 409), and either way
+      // the honest answer is the earlier-edition page
+      throw new RankError(409, "model_version pin predates this site");
+    }
+    const response = await apiRank(
+      { ...body, data_version: dv, model_version: mv });
     return (
       <>
         <SiteHeader />

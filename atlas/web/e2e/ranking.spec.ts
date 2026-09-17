@@ -75,20 +75,36 @@ test("the city count appears only when something is excluded", async ({ page }) 
   await expect(page.getByTestId("excluded-note")).not.toContainText(/\b0\b/);
 });
 
-test("each importance control changes the order", async ({ page }) => {
+test("each of the four importance controls changes the ranking", async ({ page }) => {
+  // item 4: cost, social life, student life, weather — each its own
+  // control, each mapped through the registry, each moving the order
   await page.goto("/");
   const rows = page.getByTestId("ranked-list").locator("li");
   await expect(rows.first()).toBeVisible();
-  const order = () =>
-    rows.evaluateAll((els) => els.map((e) => e.getAttribute("data-cbsa")));
-  let prev = await order();
-  for (const row of ["Cost of living", "Going out & getting around", "Weather & local life"]) {
+  const state = () =>
+    rows.evaluateAll((els) =>
+      els.map((e) => `${e.getAttribute("data-cbsa")}:${e.querySelector('[data-testid="score"]')?.textContent}`));
+  let prev = await state();
+  for (const row of ["Cost of living", "Social life", "Student life", "Weather"]) {
     const group = page.getByRole("radiogroup", { name: `${row} importance` });
     await group.getByRole("radio", { name: "A lot" }).click();
-    await expect.poll(async () => JSON.stringify(await order()), { timeout: 10_000 })
+    await expect.poll(async () => JSON.stringify(await state()), { timeout: 10_000 })
       .not.toBe(JSON.stringify(prev));
-    prev = await order();
+    prev = await state();
   }
+});
+
+test("student life and weather move independently", async ({ page }) => {
+  // the reason for the split: a student-town lover who hates cold could
+  // never say so with the bundled control
+  await page.goto("/?ist=a&iw=n");
+  await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  const stGroup = page.getByRole("radiogroup", { name: "Student life importance" });
+  await expect(stGroup.getByRole("radio", { name: "A lot" })).toHaveAttribute(
+    "aria-checked", "true");
+  const wGroup = page.getByRole("radiogroup", { name: "Weather importance" });
+  await expect(wGroup.getByRole("radio", { name: "Not much" })).toHaveAttribute(
+    "aria-checked", "true");
 });
 
 test("the slider moves weight between pool size and balance", async ({ page }) => {
@@ -118,7 +134,10 @@ test("unticking every race group means everyone, not the leftovers", async ({ pa
     els.map((e) => e.getAttribute("data-cbsa")),
   );
   const panel = page.getByTestId("race-panel");
-  await expect(panel).toContainText("are always counted");
+  // item 3: nothing editorial in this section — the always-counted
+  // disclosure lives on How it works now, so it must NOT render here
+  await expect(panel).not.toContainText("always counted");
+  await expect(panel).not.toContainText("counts who lives");
   const boxes = panel.locator("input.check");
   const n = await boxes.count();
   // plain clicks: unticking the LAST box snaps every box back on (zero
