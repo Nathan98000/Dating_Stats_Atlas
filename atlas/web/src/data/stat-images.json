@@ -1,1 +1,50 @@
-{}
+{
+"everyday_prices": {
+"alt": "A typical Stop & Shop supermarket",
+"author": "NYC Guru",
+"file": "everyday_prices.jpg",
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Stop%26Shop.jpg"
+},
+"median_gross_rent": {
+"alt": "Apartment complex in California",
+"author": "TheSanFranRacer",
+"file": "median_gross_rent.webp",
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:2019.07.10_metro_California-housing_Blog-post_related.webp"
+},
+"pleasant_days": {
+"alt": "\"The Picnic\"",
+"author": "Thomas Cole",
+"file": "pleasant_days.jpg",
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Thomas_Cole%27s_%22The_Picnic%22,_Brooklyn_Museum_IMG_3787.JPG"
+},
+"resident_walkability_index": {
+"alt": "Pompei",
+"author": "Tanya Dedyukhina",
+"file": "resident_walkability_index.jpg",
+"license": "CC BY 3.0",
+"license_url": "https://creativecommons.org/licenses/by/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Pompei_-_panoramio_(26).jpg"
+},
+"students_per_1k_adults": {
+"alt": "View west along part of High Street, Oxford. The Queen's College is on the right. All Souls' College and the tower and spire of the University Church of St Mary",
+"author": "Diliff",
+"file": "students_per_1k_adults.jpg",
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Oxford_High_Street_Facing_West,_Oxford,_UK_-_Diliff.jpg"
+},
+"venues_per_100k": {
+"alt": "times square night 2013 new york city manhattan",
+"author": "chensiyuan",
+"file": "venues_per_100k.jpg",
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:1_times_square_night_2013.jpg"
+}
+}
