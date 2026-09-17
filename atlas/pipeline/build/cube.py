@@ -263,6 +263,7 @@ def build(out_root=None) -> str:
             "importance_levels": reg.importance_levels,
         },
         "standing_bands": reg.standing_bands,
+        "race_groups": list(reg.race_groups),
         "city_cards": list(reg.city_cards),
         "stat_pages": list(reg.stat_pages),
         "crime": reg.crime,

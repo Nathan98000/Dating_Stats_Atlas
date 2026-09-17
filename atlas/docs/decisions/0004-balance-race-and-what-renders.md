@@ -61,7 +61,10 @@ the reason). `pairing_cells.parquet` and the couples linkage remain in the pipel
 says nothing about marriage. This narrows §10.4/D02's counterweight decision to
 what it protected: no claim without evidence; now, no claim at all.
 
-**Two groups are always counted.** "Two or more races" and "Another race" are ORed
+**Two groups are always counted.** *[SUPERSEDED in m2.2.0 by ADR 0006:
+the two groups became ordinary checkboxes — eight equal groups, the
+selection is the filter, nothing added. The paragraph below stands as
+the m2.0.0 record.]* "Two or more races" and "Another race" are ORed
 into every race selection in `preferences.resolve_race_levels` — the model, not a
 frontend — so the pool can exceed the sum of the six selectable groups; the panel's
 one-line explanation says so and the reconciliation is tested. **Zero-of-six is

@@ -21,7 +21,8 @@ export interface Prefs {
   marital: string[]; // never_married / previously_married
   educationMin?: "bachelors" | "graduate";
   incomeMin?: number;
-  race?: string[]; // the six selectable spec names; absent = all
+  race?: string[]; // spec ids of ticked groups (all eight equal since
+  // m2.2.0/ADR 0006); absent = all — zero and all-eight mean everyone
   poolVsBalance?: number; // 0..1
   importance: Record<ImportancePillar, Level>;
   sort: "best_first" | "worst_first";
@@ -50,6 +51,10 @@ const LEVEL_SHORT: Record<Level, string> = { not_much: "n", some: "s", a_lot: "a
 const LEVEL_LONG: Record<string, Level> = { n: "not_much", s: "some", a: "a_lot" };
 const IMPORTANCE_PARAMS = [["ic", "cost"], ["ir", "reach"], ["ist", "students"],
   ["iw", "weather"]] as const;
+// the contract's eight race ids (labels live in the registry): needed
+// here so a URL or token listing all eight normalizes to "no filter"
+export const RACE_IDS = ["hispanic", "white_nh", "black_nh", "asian_nh",
+  "aian_nh", "nhpi_nh", "two_or_more_nh", "other_nh"] as const;
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -95,9 +100,11 @@ export function parsePrefs(sp: SearchParams): Prefs {
   if (Number.isFinite(inc)) p.incomeMin = inc;
   const race = one(sp, "race");
   if (race !== undefined) {
-    const parts = race.split(",").filter(Boolean);
-    // zero ticked = all (the model treats it the same; the URL stays honest)
-    if (parts.length) p.race = parts;
+    const known = new Set<string>(RACE_IDS);
+    const parts = [...new Set(race.split(",").filter((r) => known.has(r)))];
+    // zero ticked = all, and ALL EIGHT ticked = all too (m2.2.0): both
+    // normalize to no filter so one search has one spelling
+    if (parts.length && parts.length < RACE_IDS.length) p.race = parts;
   }
   const s = parseFloat(one(sp, "s") ?? "");
   if (Number.isFinite(s) && s >= 0 && s <= 1) p.poolVsBalance = s;
@@ -187,7 +194,11 @@ export function bodyToPrefs(body: RankBody): Prefs {
     p.educationMin = body.seeking.education_min;
   }
   if (body.seeking.income_min !== undefined) p.incomeMin = body.seeking.income_min;
-  if (body.seeking.race_ethnicity?.length) p.race = [...body.seeking.race_ethnicity];
+  if (body.seeking.race_ethnicity?.length) {
+    const sel = [...new Set(body.seeking.race_ethnicity)];
+    // a token listing all eight round-trips to "no filter" (m2.2.0)
+    if (sel.length < RACE_IDS.length) p.race = sel;
+  }
   if (body.pool_vs_balance !== undefined) p.poolVsBalance = body.pool_vs_balance;
   else if (body.size_vs_odds !== undefined) p.poolVsBalance = body.size_vs_odds;
   return p;
@@ -232,7 +243,7 @@ export function searchChips(p: Prefs): { label: string; active: boolean }[] {
     chips.push({ label: `Earning $${p.incomeMin.toLocaleString("en-US")}+`, active: true });
   }
   if (p.race?.length) {
-    chips.push({ label: `${p.race.length} of 6 groups`, active: true });
+    chips.push({ label: `${p.race.length} of ${RACE_IDS.length} groups`, active: true });
   }
   return chips;
 }

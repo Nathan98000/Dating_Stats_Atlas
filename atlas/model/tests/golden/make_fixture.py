@@ -72,6 +72,13 @@ GOLDEN_VECTORS = [
      "seeking": {"age": [25, 35], "marital": ["never_married"],
                  "education_min": "graduate", "income_min": 250000,
                  "race_ethnicity": ["nhpi_nh"]}},
+    # m2.2.0: the formerly always-counted pair as an ordinary selection —
+    # thin in small metros, so ordinary suppression must carry it with no
+    # special-cased message (ADR 0006)
+    {"name": "race_two_or_more_and_other",
+     "self": {"sex": "female", "age": 31},
+     "seeking": {"age": [26, 40], "marital": ["never_married"],
+                 "race_ethnicity": ["two_or_more_nh", "other_nh"]}},
     # m2.0.0: currently_married left the contract (ADR 0004) — the broad
     # vector is now the widest legal search
     {"name": "broad_any",

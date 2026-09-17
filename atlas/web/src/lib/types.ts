@@ -158,6 +158,7 @@ export interface Meta {
   policy_strings: Record<string, string>;
   technical_strings: Record<string, string>;
   standing_bands: { edges: number[]; keys: string[] };
+  race_groups: { id: string; label: string }[];
   city_cards: string[];
   stat_pages: string[];
   crime: { year: number; coverage_floor: number };

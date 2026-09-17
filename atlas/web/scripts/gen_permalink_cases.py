@@ -53,6 +53,17 @@ BODIES = [
                  "marital": ["never_married", "previously_married"],
                  "race_ethnicity": ["white_nh", "asian_nh"],
                  "income_min": 250000}},
+    # m2.2.0 (ADR 0006): the formerly always-counted pair as an ordinary
+    # selection, and an explicit all-eight list (the API accepts it as
+    # no-filter; the frontend round-trips it to no filter)
+    {"self": {"sex": "female", "age": 31},
+     "seeking": {"age": [26, 40], "marital": ["never_married"],
+                 "race_ethnicity": ["two_or_more_nh", "other_nh"]}},
+    {"self": {"sex": "female", "age": 31},
+     "seeking": {"age": [26, 40], "marital": ["never_married"],
+                 "race_ethnicity": ["hispanic", "white_nh", "black_nh",
+                                    "asian_nh", "aian_nh", "nhpi_nh",
+                                    "two_or_more_nh", "other_nh"]}},
     # float-typed fields: integral floats are the dialect trap (Python
     # renders 1.0, JSON.stringify renders 1)
     {"self": {"sex": "female", "age": 30},

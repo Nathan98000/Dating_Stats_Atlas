@@ -88,8 +88,8 @@ class SeekingSpec(BaseModel):
     income_min: Optional[int] = None
     # m2.0.0: the site counts single people only (ADR 0004)
     marital: list[Literal[tuple(ALLOWED_MARITAL)]]                 # type: ignore[valid-type]
-    # only the six selectable groups arrive here; the two always-counted
-    # groups are ORed in by the model (preferences.resolve_race_levels)
+    # m2.2.0 (ADR 0006): eight equal groups — the selection IS the
+    # filter, nothing added; zero or all eight means no filter
     race_ethnicity: Optional[list[Literal[tuple(SELECTABLE_RACES)]]] = None  # type: ignore[valid-type]
     religion: Optional[str] = None
 
@@ -191,6 +191,7 @@ def meta() -> dict:
         "technical_strings": TECHNICAL_STRINGS,
         "tier_policy": m["tier_policy"],
         "standing_bands": m["standing_bands"],
+        "race_groups": m["race_groups"],
         "city_cards": m["city_cards"],
         "stat_pages": m["stat_pages"],
         "crime": {"year": m["crime"]["year"],

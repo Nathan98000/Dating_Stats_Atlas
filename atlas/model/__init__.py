@@ -5,7 +5,7 @@ intervals, explanation. No I/O except loader.py (documented there). The API
 is thin transport over this package; the golden tests exercise it directly.
 """
 from atlas.model.loader import Build, load_build
-from atlas.model.preferences import (ALLOWED_MARITAL, ALWAYS_COUNTED_RACES,
+from atlas.model.preferences import (ALLOWED_MARITAL,
                                      EDU_LEVELS, IMPORTANCE_PILLARS,
                                      INC_LEVELS, INCOME_FLOORS,
                                      MARITAL_LEVELS, N_FLAT, PILLARS,
@@ -23,5 +23,5 @@ __all__ = [
     "IMPORTANCE_PILLARS",
     "SEX_LEVELS", "MARITAL_LEVELS", "EDU_LEVELS", "INC_LEVELS", "RACE_LEVELS",
     "INCOME_FLOORS", "SPEC_RACE", "SPEC_MARITAL", "ALLOWED_MARITAL",
-    "SELECTABLE_RACES", "ALWAYS_COUNTED_RACES",
+    "SELECTABLE_RACES",
 ]

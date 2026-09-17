@@ -34,7 +34,12 @@ describe("permalink round-trip against the Python model", () => {
       const rebuilt = toRankBody(prefs);
       expect(rebuilt.seeking.age).toEqual(body.seeking.age);
       expect(rebuilt.seeking.marital).toEqual(body.seeking.marital);
-      expect(rebuilt.seeking.race_ethnicity).toEqual(body.seeking.race_ethnicity);
+      // race compares RESOLVED (m2.2.0): all eight ticked IS no filter,
+      // so a token listing all eight round-trips to the absent spelling
+      const resolveRace = (r?: string[]) =>
+        r && r.length > 0 && r.length < 8 ? [...r].sort() : undefined;
+      expect(resolveRace(rebuilt.seeking.race_ethnicity)).toEqual(
+        resolveRace(body.seeking.race_ethnicity));
       // the deprecated size_vs_odds alias re-expresses as pool_vs_balance
       // (ADR 0004); the slider VALUE survives, the old name does not, and
       // explicit m1.x weight vectors reproduce on the /r/ render itself

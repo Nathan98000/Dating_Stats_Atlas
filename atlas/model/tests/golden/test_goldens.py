@@ -1,4 +1,4 @@
-"""Golden tests (m2.1.0): fourteen pinned request vectors against the
+"""Golden tests (m2.2.0): fifteen pinned request vectors against the
 pinned 12-metro fixture. Exact rankings, scores, pools, balance figures,
 summary lines and suppression. A model change that moves any of these
 fails until MODEL_VERSION is bumped and goldens are regenerated
@@ -33,7 +33,10 @@ def test_model_version_pinned(goldens):
 
 def test_goldens_cover_required_shapes(goldens):
     vecs = goldens["vectors"]
-    assert len(vecs) == 14
+    assert len(vecs) == 15
+    # m2.2.0: the formerly always-counted pair as an ordinary selection
+    assert any(set(v["request"]["seeking"].get("race_ethnicity") or [])
+               == {"two_or_more_nh", "other_nh"} for v in vecs)
     race_filtered = [v for v in vecs
                      if v["request"]["seeking"].get("race_ethnicity")]
     assert len(race_filtered) >= 3

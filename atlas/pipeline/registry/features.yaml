@@ -117,6 +117,21 @@ crime:
   implausible_violent_per_100k: 10
   implausible_property_per_100k: 100
 
+# The race and ethnicity control (m2.2.0, ADR 0006): EIGHT equal groups,
+# one rule — the selection is the filter, nothing added, and zero or all
+# eight ticked means everyone. Labels live here so the panel types
+# nothing; order is the panel's order. These are the ACS race/ethnicity
+# categories the cube carries (ADR 0001).
+race_groups:
+  - {id: hispanic, label: "Hispanic"}
+  - {id: white_nh, label: "White"}
+  - {id: black_nh, label: "Black"}
+  - {id: asian_nh, label: "Asian"}
+  - {id: aian_nh, label: "Native American"}
+  - {id: nhpi_nh, label: "Pacific Islander"}
+  - {id: two_or_more_nh, label: "Two or more races"}
+  - {id: other_nh, label: "Another race"}
+
 # Registry-owned interface strings new in Phase 2d (the ground rule made
 # explicit: every new user-facing string lives here, not in code).
 strings:

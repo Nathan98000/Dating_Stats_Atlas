@@ -102,11 +102,9 @@ POLICY_STRINGS = {
                         "the comparison, so balance doesn’t apply — "
                         "the other measures carry its weight.",
 
-    # HomeV3: race panel one-liner (approved)
-    "race_panel": "All included. Untick any you’d rather leave out — "
-                  "this counts who lives in each city, nothing more. People "
-                  "of two or more races, and anyone whose race isn’t "
-                  "listed, are always counted.",
+    # the m2.0.0 race-panel one-liner is GONE (m2.2.0/ADR 0006): the
+    # panel stopped rendering it in Phase 2d, and its always-counted
+    # claim stopped being true when the eight groups became equal
 
     # movers line pieces (HomeV3: "Biggest pluses: … · Rent counts against it")
     "pluses_lead": "Biggest pluses: ",
