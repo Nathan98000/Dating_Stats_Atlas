@@ -35,6 +35,10 @@ from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 STATIC_FEATURES = ["median_gross_rent", "rpp_goods", "rpp_services_other",
                    "venues_per_100k", "resident_walkability_index",
                    "pleasant_days", "students_per_1k_adults"]
+# display-only stats the v3 city cards read (never scored); their values
+# and national standings ship in features.parquet
+CARD_ONLY_FEATURES = {"everyday_prices": "everyday_prices",
+                      "who_lives_here": "pop_total"}
 LEGEND_DISPLAY_KEYS = ("display_name", "unit", "definition")
 
 
@@ -56,6 +60,10 @@ class Build:
     manifest: dict
     metro_levels: list[str]
     titles: dict[str, str]
+    display_names: list[str]        # "Provo, UT" (v3 list rows)
+    display_names_full: list[str]   # "Provo, Utah" (v3 city page)
+    slugs: list[str]                # "provo-utah" (routes; no code renders)
+    descriptions: list[str]         # the formulaic one-line description
     ranked_set: np.ndarray          # bool (n_metros,)
     pool_flat: np.ndarray           # (n_metros, N_FLAT) float32
     count_flat: np.ndarray
@@ -64,6 +72,7 @@ class Build:
     purity: np.ndarray
     gq_flag: np.ndarray             # bool (n_metros,) — dorm/barracks share
     static: dict = field(default_factory=dict)            # feature -> array
+    standing_all: dict = field(default_factory=dict)      # feature -> pct/387
     static_direction: dict = field(default_factory=dict)  # feature -> +-1
     static_weight: dict = field(default_factory=dict)     # feature -> w in pillar
     feature_flags: list = field(default_factory=list)     # per metro, str
@@ -152,19 +161,39 @@ def load_build(path: str | Path, verify_hashes: bool = True,
     assert [m["cbsa"] for m in metros_meta] == metro_levels
     ranked = np.array([m["ranked_set"] for m in metros_meta], dtype=bool)
     titles = {m["cbsa"]: m["title"] for m in metros_meta}
+    for m in metros_meta:
+        for k in ("display_name", "display_name_full", "slug", "description"):
+            assert m.get(k), f"metros.json entry {m['cbsa']} missing {k} (m2.0.0)"
+    display_names = [m["display_name"] for m in metros_meta]
+    display_names_full = [m["display_name_full"] for m in metros_meta]
+    slugs = [m["slug"] for m in metros_meta]
+    assert len(set(slugs)) == len(slugs), "city slugs must be unique"
+    descriptions = [m["description"] for m in metros_meta]
 
     feats = pd.read_parquet(path / "features.parquet")
     feats["cbsa"] = feats["cbsa"].astype(str)
     feats = feats.set_index("cbsa").loc[metro_levels]
     fb = manifest["features_block"]
     static = {f: feats[f].to_numpy(dtype=np.float64) for f in STATIC_FEATURES}
-    for f in STATIC_FEATURES + ["cross_group_pairing_rate"]:
+    for fid, col in CARD_ONLY_FEATURES.items():
+        static[fid] = feats[col].to_numpy(dtype=np.float64)
+    standing_all = {}
+    for fid in manifest["city_cards"]:
+        col = f"standing_all_{fid}"
+        assert col in feats.columns, f"features.parquet missing {col}"
+        standing_all[fid] = feats[col].to_numpy(dtype=np.float64)
+    assert {"low_below", "high_above"} <= set(manifest["standing_bands"]), (
+        "manifest must carry the standing-band thresholds (ADR 0004)")
+    for f in STATIC_FEATURES + ["pool_balance"]:
         assert f in fb, f"feature {f} missing from manifest features_block"
     for fid, entry in fb.items():
         missing = [k for k in LEGEND_DISPLAY_KEYS if not entry.get(k)]
         assert not missing, (
             f"manifest features_block[{fid}] missing display fields {missing} "
             f"(ADR 0003: no user-facing label lives in code)")
+    for fid in manifest["city_cards"]:
+        assert fb[fid].get("band_labels"), (
+            f"city card {fid} missing band_labels in the manifest")
     assert "pillars" in manifest and all(
         p.get("display_name") for p in manifest["pillars"].values()), (
         "manifest must carry pillar display names (ADR 0003)")
@@ -188,6 +217,8 @@ def load_build(path: str | Path, verify_hashes: bool = True,
 
     return Build(
         path=path, manifest=manifest, metro_levels=metro_levels, titles=titles,
+        display_names=display_names, display_names_full=display_names_full,
+        slugs=slugs, descriptions=descriptions,
         ranked_set=ranked,
         pool_flat=np.ascontiguousarray(pool.reshape(n, N_FLAT)),
         count_flat=np.ascontiguousarray(count.reshape(n, N_FLAT)),
@@ -196,6 +227,7 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         purity=feats["purity_pums"].to_numpy(dtype=np.float64),
         gq_flag=feats["gq_flag"].to_numpy(dtype=bool),
         static=static,
+        standing_all=standing_all,
         static_direction={f: int(fb[f]["direction"]) for f in STATIC_FEATURES},
         static_weight={f: float(fb[f]["weight_in_pillar"]) for f in STATIC_FEATURES},
         feature_flags=feats["feature_flags"].fillna("").tolist(),

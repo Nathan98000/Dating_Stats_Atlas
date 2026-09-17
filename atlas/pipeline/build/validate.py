@@ -50,6 +50,8 @@ import pandas as pd
 from scipy.stats import kendalltau, pearsonr, spearmanr
 
 from atlas import model as engine
+from atlas.model.preferences import (ALLOWED_MARITAL, SELECTABLE_RACES,
+                                     resolve_race_levels)
 from atlas.model.scoring import score_vector
 from atlas.model.suppression import POLICY_STRINGS
 from atlas.pipeline.build.pool import open_pool
@@ -64,8 +66,8 @@ GQ_POOL_SHARE_LIMIT = 0.15
 DIFF_SHAPES = 40
 DIFF_SEED = 2026
 DIFF_REL_TOL = 1e-3        # float32 cube accumulation vs float64 SQL
-ALLOWED_REASONS = {"n_below_100", "empty_pool", "no_rivals"}
-BANNED = re.compile(r"\b(rivals?|markets?|supply|inventory|competitors?)\b",
+ALLOWED_REASONS = {"n_below_100", "empty_pool"}
+BANNED = re.compile(r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
                     re.IGNORECASE)
 PEW_CSV = RESULTS / "reference" / "pew_intermarriage_2015.csv"
 PAIRING_WARN_SPEARMAN = 0.30
@@ -110,17 +112,19 @@ def _spec_to_sql(seeking: dict, self_: dict) -> tuple[str, str]:
     if seeking.get("income_min"):
         w += f" AND inc_adj >= {seeking['income_min']}"
     if seeking.get("race_ethnicity"):
-        cubes = [engine.SPEC_RACE[r] for r in seeking["race_ethnicity"]]
-        w += " AND race8 IN (" + ",".join(f"'{c}'" for c in cubes) + ")"
-    r_sex = 1 if self_["sex"] == "male" else 2
-    rlo, rhi = max(18, self_["age"] - 5), min(70, self_["age"] + 5)
-    rw = f"sex = {r_sex} AND agep BETWEEN {rlo} AND {rhi} AND msp IN ({msp})"
-    if seeking.get("education_min"):
-        tail = {"some_college": "'some_college','bachelors','graduate'",
-                "bachelors": "'bachelors','graduate'",
-                "graduate": "'graduate'"}[seeking["education_min"]]
-        rw += f" AND edu4 IN ({tail})"
-    return w, rw
+        # the model ORs the two always-counted groups into every selection
+        # (ADR 0004); the SQL mirror must do exactly the same
+        cubes = resolve_race_levels(list(seeking["race_ethnicity"]))
+        if cubes is not None:
+            w += " AND race8 IN (" + ",".join(f"'{c}'" for c in cubes) + ")"
+    # balance (ADR 0004): the plain sex ratio over the SEEKING window
+    b_sex_sought = sexcode
+    b_sex_seeker = 1 if self_["sex"] == "male" else 2
+    bw_sought = (f"sex = {b_sex_sought} AND agep BETWEEN {lo} AND {hi} "
+                 f"AND msp IN ({msp})")
+    bw_seeker = (f"sex = {b_sex_seeker} AND agep BETWEEN {lo} AND {hi} "
+                 f"AND msp IN ({msp})")
+    return w, bw_sought, bw_seeker
 
 
 def _random_body(rng: np.random.Generator) -> dict:
@@ -131,12 +135,12 @@ def _random_body(rng: np.random.Generator) -> dict:
     seek_sex = rng.choice(["male", "female", None], p=[0.4, 0.4, 0.2])
     lo = int(rng.integers(18, 60))
     hi = min(70, lo + int(rng.integers(2, 30)))
-    marital = list(rng.choice(list(engine.SPEC_MARITAL), replace=False,
-                              size=int(rng.integers(1, 4))))
+    marital = list(rng.choice(list(ALLOWED_MARITAL), replace=False,
+                              size=int(rng.integers(1, 3))))
     edu = rng.choice(["some_college", "bachelors", "graduate", None])
     inc = rng.choice(sorted(engine.INCOME_FLOORS) + [None])
     n_race = int(rng.integers(0, 4))
-    race = (list(rng.choice([CUBE_TO_SPEC[r] for r in engine.RACE_LEVELS],
+    race = (list(rng.choice(list(SELECTABLE_RACES),
                             replace=False, size=n_race)) if n_race else None)
     seeking = {"age": [lo, hi], "marital": marital}
     if seek_sex:
@@ -166,18 +170,27 @@ def check_differential(build, con) -> dict:
         mask = pool_mask(req.seeking)
         est = (build.pool_flat @ mask).astype(np.float64)
         n_alloc = (build.count_flat @ mask).astype(np.float64)
-        pw, _ = _spec_to_sql(body["seeking"], body["self"])
-        rows = con.execute(
-            f"SELECT cbsa, sum(pwgtp * a_eff), sum(a_eff) FROM contrib "
-            f"WHERE gq <> 2 AND ({pw}) GROUP BY 1").fetchall()
-        sql_est = np.zeros(len(build.metro_levels))
-        sql_n = np.zeros(len(build.metro_levels))
-        for cbsa, w, na in rows:
-            sql_est[midx[cbsa]] = float(w or 0)
-            sql_n[midx[cbsa]] = float(na or 0)
-        rel = np.abs(est - sql_est) / np.maximum(sql_est, 1.0)
-        rel_n = np.abs(n_alloc - sql_n) / np.maximum(sql_n, 1.0)
-        m = float(max(rel.max(), rel_n.max()))
+        pw, bws, bwk = _spec_to_sql(body["seeking"], body["self"])
+        from atlas.model.preferences import balance_masks
+        m_sought, m_seeker = balance_masks(req)
+        cube_bs = (build.pool_flat @ m_sought).astype(np.float64)
+        cube_bk = (build.pool_flat @ m_seeker).astype(np.float64)
+        rels = []
+        for where, cube_vals, with_n in ((pw, est, True), (bws, cube_bs, False),
+                                         (bwk, cube_bk, False)):
+            rows = con.execute(
+                f"SELECT cbsa, sum(pwgtp * a_eff), sum(a_eff) FROM contrib "
+                f"WHERE gq <> 2 AND ({where}) GROUP BY 1").fetchall()
+            sql_est = np.zeros(len(build.metro_levels))
+            sql_n = np.zeros(len(build.metro_levels))
+            for cbsa, w, na in rows:
+                sql_est[midx[cbsa]] = float(w or 0)
+                sql_n[midx[cbsa]] = float(na or 0)
+            rels.append(np.abs(cube_vals - sql_est) / np.maximum(sql_est, 1.0))
+            if with_n:
+                rels.append(np.abs(n_alloc - sql_n) / np.maximum(sql_n, 1.0))
+        rel = rels[0]
+        m = float(max(r.max() for r in rels))
         if m > worst["rel_err"]:
             worst = {"rel_err": m, "shape": body,
                      "metro": build.metro_levels[int(np.argmax(rel))]}
@@ -203,17 +216,21 @@ def check_explanations(build, persona_results) -> dict:
             if BANNED.search(str(e.get(k, ""))):
                 problems.append({"where": f"legend:{fid}.{k}",
                                  "text": e.get(k)})
+    for d in build.descriptions:
+        if BANNED.search(d):
+            problems.append({"where": "city_description", "text": d})
     n_expl = 0
     for name, res in persona_results.items():
         for r in res["ranked"]:
             n_expl += 1
-            if BANNED.search(r["explanation"]):
-                problems.append({"where": f"{name}:{r['cbsa']}",
-                                 "text": r["explanation"]})
-            if r["explanation"].count("What moved it most") > 1:
+            for text in (r["summary_line"], r["balance"].get("display", "")):
+                if BANNED.search(text):
+                    problems.append({"where": f"{name}:{r['cbsa']}",
+                                     "text": text})
+            if r["summary_line"].count("Biggest pluses:") > 1:
                 problems.append({"where": f"{name}:{r['cbsa']}",
                                  "defect": "lead phrase repeated",
-                                 "text": r["explanation"]})
+                                 "text": r["summary_line"]})
     return {"pass": not problems, "explanations_checked": n_expl,
             "problems": problems[:20]}
 
@@ -292,8 +309,8 @@ def main(build_dir: str) -> int:
     persona_results = {}
     golden_ok = True
     for v in GOLDEN_VECTORS:
-        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds")
-                if k in v}
+        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds",
+                                  "pool_vs_balance", "importance") if k in v}
         res = engine.rank(build, engine.parse_request(body))
         persona_results[v["name"]] = res
         if res["shown_unranked"]:
@@ -322,19 +339,26 @@ def main(build_dir: str) -> int:
         if len(ranked_cbsas) < 12:
             stab[v["name"]] = {"skipped": f"only {len(ranked_cbsas)} ranked"}
             continue
-        pw, rw = _spec_to_sql(v["seeking"], v["self"])
+        pw, bws, bwk = _spec_to_sql(v["seeking"], v["self"])
         P = _replicate_sums(con, pw).set_index("cbsa")
-        R = _replicate_sums(con, rw).set_index("cbsa")
+        BS = _replicate_sums(con, bws).set_index("cbsa")
+        BK = _replicate_sums(con, bwk).set_index("cbsa")
         P = P.reindex(ranked_cbsas).fillna(0.0)
-        R = R.reindex(ranked_cbsas).fillna(0.0)
+        BS = BS.reindex(ranked_cbsas).fillna(0.0)
+        BK = BK.reindex(ranked_cbsas).fillna(0.0)
         ridx = np.array([build.metro_levels.index(c) for c in ranked_cbsas])
         wts = res["weights"]
+        base_avail = np.array([
+            next(r for r in res["ranked"] if r["cbsa"] == c)
+            ["balance"]["available"] for c in ranked_cbsas])
         base_top = set(ranked_cbsas[:10])
         hits = 0
         for i in range(1, 81):
             est_r = P[f"r{i}"].to_numpy()
-            ratio_r = est_r / np.maximum(R[f"r{i}"].to_numpy(), 1e-9)
-            score_r = score_vector(build, ridx, est_r, ratio_r, wts)
+            bal_r = BS[f"r{i}"].to_numpy() / np.maximum(
+                BK[f"r{i}"].to_numpy(), 1e-9)
+            bal_r = np.where(base_avail, bal_r, np.nan)
+            score_r = score_vector(build, ridx, est_r, bal_r, wts)
             top_r = {ranked_cbsas[k] for k in np.argsort(-score_r)[:10]}
             if len(top_r & base_top) >= STABILITY_OVERLAP:
                 hits += 1
@@ -364,7 +388,7 @@ def main(build_dir: str) -> int:
         for row in res["ranked"][:10]:
             if row["cbsa"] in adversarial:
                 body = next(v for v in GOLDEN_VECTORS if v["name"] == name)
-                pw, _ = _spec_to_sql(body["seeking"], body["self"])
+                pw, _, _ = _spec_to_sql(body["seeking"], body["self"])
                 tot, hh_only = con.execute(
                     f"SELECT sum(pwgtp * a_eff) FILTER (WHERE gq <> 2), "
                     f"sum(pwgtp * a_eff) FILTER (WHERE gq = 0) "
@@ -396,8 +420,11 @@ def main(build_dir: str) -> int:
                          "rank": row["rank"], "score": row["score"],
                          "pool": row["pool"], "pool_moe": row["pool_moe"],
                          "n_unweighted": row["n_unweighted"],
+                         "balance": (row["balance"]["display"]
+                                     if row["balance"]["available"]
+                                     else None),
                          "top_pillar": top_pillar["pillar"],
-                         "explanation": row["explanation"],
+                         "explanation": row["summary_line"],
                          "flags": row["flags"]})
     report["soft"]["face_validity"] = {
         "note": "reviewed by hand each build; every result must be "
@@ -452,7 +479,9 @@ def main(build_dir: str) -> int:
                      for _, r in metros_df.iterrows()}
     b_res = persona_results["B_man28_women_never"]
     ours = pd.DataFrame([{"cbsa": r["cbsa"], "score": r["score"],
-                          "ratio": r["ratio"]} for r in b_res["ranked"]])
+                          "ratio": (r["balance"]["value"]
+                                    if r["balance"]["available"] else None)}
+                         for r in b_res["ranked"]])
     ours["med_age_marry_state"] = ours["cbsa"].map(
         lambda c: state_med.get(primary_state.get(c)))
     m = ours.merge(ext[["cbsa", "alone_share"]], on="cbsa")

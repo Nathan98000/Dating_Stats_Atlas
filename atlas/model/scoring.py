@@ -1,46 +1,39 @@
-"""Scoring, m1.2.0 — five pillars over the cubes plus the static feature
+"""Scoring, m2.0.0 — five pillars over the cubes plus the static feature
 matrix; pure numpy over a loaded Build.
 
-Normalisation (§7.2), per request, across the RANKED SET FOR THIS QUERY
-(never the build's full ranked set — suppression shrinks the query's set
-and normalizing over the wrong one is a silent bias):
+ADR 0004's model change: the balance pillar scores DATING POOL BALANCE,
+the plain sex ratio of single adults in the searched age range —
+count(sought sex) / count(seeker sex), same ages, same marital selection,
+never filtered by race, education or income. One quantity, computed once,
+here: the pillar scores it and the UI displays it. The pool÷rivals ratio
+and the rival mask are gone from the serving path.
+
+Balance is gated separately from the pool (its two counts are whole
+age-by-sex slices, so they clear the n-gate almost everywhere even when
+the filtered pool does not): the city page and the narrow-search state can
+still show balance when the pool has nothing to say.
+
+Normalisation (§7.2), per request, across the RANKED SET FOR THIS QUERY:
   extensive (pool):       winsorize 1/99 -> log10 -> min-max -> [0,100]
   intensive (everything): percentile rank -> [0,100], direction from the
                           registry (via the manifest features_block)
 
-Attribution (ADR 0003): the FEATURE is the primitive. Each stat's
-contribution is w_pillar_eff x weight_in_pillar_eff x (z_f - ref_f), where
-ref_f is the median of that normalized feature across this query's ranked
-set — defined once, at feature level, because the median of a weighted sum
-is not the weighted sum of medians and two reference points would break
-§7.5's exact additivity. A pillar's contribution is the sum of its
-features'; the sum identity is asserted on every request.
-
-Missing features (registry missing_data_policy): a metro missing a static
-feature has its pillar-internal weights renormalized over what it has; a
-metro missing an entire pillar has that pillar's weight redistributed
-pro-rata; flags name what was missing. Missing never becomes zero.
-
-Suppression (ADR 0002): the gate is n alone — min(n_alloc, kish) < 100,
-empty pool, or empty rival set. No CV rule ranks or demotes anything;
-shown_unranked is a permanently empty array kept for contract stability.
-
-Every metro row (ranked or suppressed) carries a stats block, so the metro
-and compare pages render from one /v1/rank response and never renormalize
-over a smaller set. score_moe is a first-order propagation from the served
-(upper-bound) intervals with the query's normalisation frozen — a
-documented approximation that belongs in the detail, not the row.
+Attribution stays feature-level (ADR 0003) with the reference defined once
+as the feature-level median over the query's ranked set; the sum identity
+is asserted on every request. Margins keep being computed and returned
+(pool_moe, cv) — they no longer render anywhere, which is the display
+decision, not a change to the mechanism (ADR 0004 item 3).
 """
 from __future__ import annotations
 
 import numpy as np
 
-from atlas.model.explain import format_value, render_explanation, top_stats
+from atlas.model.explain import format_value, summary_line, top_stats
 from atlas.model.loader import Build
-from atlas.model.preferences import (PILLARS, RACE_LEVELS, SEX_LEVELS,
-                                     Request, pool_mask, resolve_weights,
-                                     rival_spec)
-from atlas.model.suppression import (PURITY_FLAG_BAR, suppression_reason,
+from atlas.model.preferences import (PILLARS, Request, balance_masks,
+                                     pool_mask, resolve_weights)
+from atlas.model.suppression import (N_GATE_MIN, POLICY_STRINGS,
+                                     PURITY_FLAG_BAR, suppression_reason,
                                      tier_masks)
 
 
@@ -56,7 +49,7 @@ def scored_features(build: Build) -> list[dict]:
                               "u": float(e["weight_in_pillar"]),
                               "direction": int(e["direction"]),
                               "kind": e["kind"]})
-    assert feats[0]["id"] == "pool_size" and feats[1]["id"] == "partners_per_rival"
+    assert feats[0]["id"] == "pool_size" and feats[1]["id"] == "pool_balance"
     return feats
 
 
@@ -117,10 +110,11 @@ def _feature_weights(z: np.ndarray, pillar_idx: np.ndarray, u: np.ndarray,
 
 
 def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
-                     ratio: np.ndarray, weights: dict[str, float]) -> dict:
+                     balance: np.ndarray, weights: dict[str, float]) -> dict:
     """z, raw values, effective weights, score, feature-level reference and
     contributions for the ranked metros. Shared by rank() and the
-    validation suite's replicate resampling."""
+    validation suite's replicate resampling. `balance` is the sex ratio
+    (sought/seeker), NaN where its own gate failed."""
     feats = scored_features(build)
     n, F = len(ridx), len(feats)
     z = np.full((n, F), np.nan)
@@ -129,9 +123,9 @@ def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
         if f["id"] == "pool_size":
             raw[:, j] = est
             z[:, j] = _winsor_log_minmax(est)
-        elif f["id"] == "partners_per_rival":
-            raw[:, j] = ratio
-            z[:, j] = _pct_rank(ratio)
+        elif f["id"] == "pool_balance":
+            raw[:, j] = balance
+            z[:, j] = _pct_rank(balance)
         else:
             raw[:, j] = build.static[f["id"]][ridx]
             z[:, j] = _pct_rank(raw[:, j] * f["direction"])
@@ -158,35 +152,82 @@ def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
 
 
 def score_vector(build: Build, ridx: np.ndarray, est: np.ndarray,
-                 ratio: np.ndarray, weights: dict[str, float]) -> np.ndarray:
+                 balance: np.ndarray, weights: dict[str, float]) -> np.ndarray:
     """Score only — the validation suite's replicate-resampling entry."""
-    return score_components(build, ridx, est, ratio, weights)["score"]
+    return score_components(build, ridx, est, balance, weights)["score"]
 
 
-def _pairing_rates(build: Build, sex: str, race_levels: tuple[str, ...]
-                   ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """(rate, moe, n_gate) per metro for the sought sex x selected race
-    groups: the share of partnered people in any selected group whose
-    partner is outside their OWN group. The margin is measured directly
-    from the 80 replicate sums (V = (4/80) * sum((r_i - r)^2))."""
-    p = build.pairing
-    si = SEX_LEVELS.index(sex)
-    ri = [RACE_LEVELS.index(r) for r in race_levels]
-    num = p.num[:, si, ri].sum(axis=-1)
-    den = p.den[:, si, ri].sum(axis=-1)
-    n_alloc = p.n_alloc[:, si, ri].sum(axis=-1)
-    sumw2 = p.sumw2[:, si, ri].sum(axis=-1)
-    with np.errstate(invalid="ignore", divide="ignore"):
-        kish = np.where(sumw2 > 0, den ** 2 / sumw2, 0.0)
-        rate = np.where(den > 0, num / np.maximum(den, 1e-9), np.nan)
-    gate = np.minimum(n_alloc, kish)
-    nr = p.num_r[:, si, ri, :].astype(np.float64).sum(axis=1)   # (n, 80)
-    dr = p.den_r[:, si, ri, :].astype(np.float64).sum(axis=1)
-    with np.errstate(invalid="ignore", divide="ignore"):
-        rr = np.where(dr > 0, nr / np.maximum(dr, 1e-9), rate[:, None])
-    var = 4.0 / 80.0 * np.nansum((rr - rate[:, None]) ** 2, axis=1)
-    moe = 1.645 * np.sqrt(var)
-    return rate, moe, gate
+def _balance_block(build: Build, i: int, bal: dict, sought_word: str,
+                   seeker_word: str) -> dict:
+    """The one balance quantity, served per metro with its own gate
+    (ADR 0004): value (ratio), per-100 integer, composed display strings.
+    Never a bare number without its gate having passed — and never the
+    degenerate "100 per 100" of a same-sex search, where both sides are
+    the same people and the quantity does not exist."""
+    if bal["same_sex"]:
+        return {"available": False,
+                "note": POLICY_STRINGS["balance_same_sex"]}
+    if not bal["ok"][i]:
+        return {"available": False,
+                "note": POLICY_STRINGS["balance_unavailable"]}
+    ratio = float(bal["ratio"][i])
+    per_100 = int(round(ratio * 100))
+    return {
+        "available": True,
+        "value": round(ratio, 4),
+        "per_100": per_100,
+        "display": POLICY_STRINGS["balance_row_caption"].format(
+            ratio=per_100, sought=sought_word, seekers=seeker_word),
+        "sought_word": sought_word,
+        "seeker_word": seeker_word,
+        "standing": (round(float(bal["standing"][i]), 1)
+                     if bal["standing"] is not None
+                     and not np.isnan(bal["standing"][i]) else None),
+    }
+
+
+def _band_of(build: Build, fid: str, i: int) -> dict | None:
+    """Three-band standing across all 387 cities (registry thresholds,
+    registry labels — the wireframe placed these by judgement; the shipped
+    page reads the build)."""
+    sa = build.standing_all.get(fid)
+    le = build.legend.get(fid, {})
+    if sa is None or np.isnan(sa[i]) or not le.get("band_labels"):
+        return None
+    bands = build.manifest["standing_bands"]
+    pct = float(sa[i])
+    k = 0 if pct < bands["low_below"] else (2 if pct > bands["high_above"] else 1)
+    return {"key": ["low", "mid", "high"][k],
+            "standing_all": round(pct, 1),
+            "label": le["band_labels"][k],
+            "tone": le["band_tones"][k]}
+
+
+def _card_stats(build: Build, i: int) -> list[dict]:
+    """The v3 city-page cards, straight from the artifact: value, display
+    string, unit line, band. Every figure the card shows is composed here."""
+    out = []
+    for fid in build.manifest["city_cards"]:
+        le = build.legend[fid]
+        v = float(build.static[fid][i]) if fid in build.static else np.nan
+        entry: dict = {"id": fid}
+        if np.isnan(v):
+            entry["value"] = None
+            entry["missing"] = True
+        else:
+            entry["value"] = round(v, 4)
+            entry["display"] = format_value(v, le)
+            unit = le.get("unit", "")
+            if le.get("unit_template") and fid == "who_lives_here":
+                adults = float(build.pool_pop[i])
+                unit = le["unit_template"].format(
+                    adults=f"{adults:,.0f}")
+            entry["unit_line"] = unit
+            band = _band_of(build, fid, i)
+            if band:
+                entry["band"] = band
+        out.append(entry)
+    return out
 
 
 def _row_flags(build: Build, i: int) -> list[str]:
@@ -201,62 +242,63 @@ def _row_flags(build: Build, i: int) -> list[str]:
     return f
 
 
-def _context_stats(build: Build, i: int, ranked_rates: np.ndarray | None) -> list[dict]:
-    """Metro-level context entries (never weighted, never scored): the
-    interim cross-group pairing composition with its replicate-measured
-    margin."""
-    le = build.legend["cross_group_pairing_rate"]
-    rate = build.pairing_metro["rate"][i]
-    if np.isnan(rate):
-        return [{"id": "cross_group_pairing_rate", "value": None,
-                 "suppressed": "n_below_100"}]
-    entry = {"id": "cross_group_pairing_rate",
-             "value": round(float(rate), 4),
-             "display": format_value(float(rate), le),
-             "moe": round(float(build.pairing_metro["moe"][i]), 4),
-             "moe_display": format_value(float(build.pairing_metro["moe"][i]), le),
-             "n_unweighted": round(float(build.pairing_metro["n"][i]))}
-    if ranked_rates is not None and len(ranked_rates):
-        entry["standing"] = round(float(
-            _pct_rank_interp(ranked_rates, np.array([rate]))[0]), 1)
-    return [entry]
-
-
 def rank(build: Build, req: Request) -> dict:
     mask_p = pool_mask(req.seeking)
-    rspec = rival_spec(req)
-    mask_r = pool_mask(rspec)
+    m_sought, m_seeker = balance_masks(req)
 
     est = (build.pool_flat @ mask_p).astype(np.float64)
     n_alloc = (build.count_flat @ mask_p).astype(np.float64)
     sumw2 = (build.sumw2_flat @ mask_p).astype(np.float64)
-    r_est = (build.pool_flat @ mask_r).astype(np.float64)
-    r_alloc = (build.count_flat @ mask_r).astype(np.float64)
-    r_sumw2 = (build.sumw2_flat @ mask_r).astype(np.float64)
+
+    b_sought = (build.pool_flat @ m_sought).astype(np.float64)
+    b_sought_n = (build.count_flat @ m_sought).astype(np.float64)
+    b_sought_w2 = (build.sumw2_flat @ m_sought).astype(np.float64)
+    b_seeker = (build.pool_flat @ m_seeker).astype(np.float64)
+    b_seeker_n = (build.count_flat @ m_seeker).astype(np.float64)
+    b_seeker_w2 = (build.sumw2_flat @ m_seeker).astype(np.float64)
 
     with np.errstate(divide="ignore", invalid="ignore"):
         kish = np.where(sumw2 > 0, est ** 2 / sumw2, 0.0)
-        r_kish = np.where(r_sumw2 > 0, r_est ** 2 / r_sumw2, 0.0)
+        k_sought = np.where(b_sought_w2 > 0, b_sought ** 2 / b_sought_w2, 0.0)
+        k_seeker = np.where(b_seeker_w2 > 0, b_seeker ** 2 / b_seeker_w2, 0.0)
     n_gate = np.minimum(n_alloc, kish)
     share = est / np.maximum(build.pool_pop, 1.0)
-    r_share = r_est / np.maximum(build.pool_pop, 1.0)
 
+    # the served margin: computed, returned, never rendered (ADR 0004)
     im = build.intervals
     rse = im.served_rse(n_alloc, kish, share, req.seeking.marital_levels,
                         list(req.seeking.race_cube_levels)
                         if req.seeking.race_cube_levels else None)
-    r_rse = im.served_rse(r_alloc, r_kish, r_share, rspec.marital_levels, None)
     with np.errstate(invalid="ignore"):
         moe = np.where(est > 0, 1.645 * rse * est, 0.0)
 
+    # dating pool balance, gated separately per quantity (ADR 0004). For a
+    # same-sex search the two counts are the same count and the ratio is 1
+    # by construction — the quantity does not exist, so it is served as
+    # not-applicable and its pillar weight redistributes (the check that
+    # caught this: rank stability collapsed to 0.05 on the same-sex persona
+    # because a constant pillar left the top-10 boundary to noise).
+    same_sex = req.seeking.sex == req.self_sex
+    bal_ok = ((np.minimum(b_sought_n, k_sought) >= N_GATE_MIN)
+              & (np.minimum(b_seeker_n, k_seeker) >= N_GATE_MIN)
+              & (b_seeker > 0)
+              & (not same_sex))
+    with np.errstate(divide="ignore", invalid="ignore"):
+        bal_ratio = np.where(bal_ok, b_sought / np.maximum(b_seeker, 1e-9),
+                             np.nan)
+
     universe = build.ranked_set
-    suppressed, ranked = tier_masks(universe, est, n_gate, r_est)
+    suppressed, ranked = tier_masks(universe, est, n_gate)
 
     weights = resolve_weights(req, build.manifest["model_defaults"])
-    reasons = {}
+    reasons: dict[str, int] = {}
     for i in np.where(suppressed)[0]:
         r = suppression_reason(float(est[i]), float(n_gate[i]))
         reasons[r] = reasons.get(r, 0) + 1
+
+    sought_word = "men" if req.seeking.sex == "male" else "women"
+    seeker_word = "men" if req.self_sex == "male" else "women"
+
     out = {"counts": {"universe": int(universe.sum()),
                       "ranked": int(ranked.sum()),
                       "shown_unranked": 0,
@@ -264,51 +306,31 @@ def rank(build: Build, req: Request) -> dict:
                       "suppressed_by_reason": reasons},
            "weights": weights,
            "few_metros_notice": bool(ranked.sum() < 40),
+           "balance_applies": not same_sex,
+           "balance_words": {"sought": sought_word, "seeker": seeker_word},
            "ranked": [], "shown_unranked": [], "suppressed": []}
 
-    pairing = None
-    if req.seeking.race_cube_levels:
-        pairing = _pairing_rates(build, req.seeking.sex,
-                                 req.seeking.race_cube_levels)
-
     ridx = np.where(ranked)[0]
-    ranked_raw_by_feat: dict[str, np.ndarray] = {}
-    ranked_metro_rates = None
+    bal = {"ratio": bal_ratio, "ok": bal_ok, "standing": None,
+           "same_sex": same_sex}
     if len(ridx):
-        ratio = est[ridx] / r_est[ridx]
-        sc = score_components(build, ridx, est[ridx], ratio, weights)
+        # standing of a metro's balance among the query's ranked set
+        ranked_bal = bal_ratio[ridx]
+        st = np.full(len(bal_ratio), np.nan)
+        st[ridx] = _pct_rank(ranked_bal)
+        off = np.where(~ranked & bal_ok)[0]
+        if len(off):
+            st[off] = _pct_rank_interp(ranked_bal, bal_ratio[off])
+        bal["standing"] = st
+
+        balance_scored = np.where(bal_ok[ridx], bal_ratio[ridx], np.nan)
+        sc = score_components(build, ridx, est[ridx], balance_scored, weights)
         feats, z, raw, w_eff, score, contrib = (
             sc["feats"], sc["z"], sc["raw"], sc["w_eff"], sc["score"],
             sc["contrib"])
-        for j, f in enumerate(feats):
-            ranked_raw_by_feat[f["id"]] = raw[:, j]
-        ranked_metro_rates = build.pairing_metro["rate"][ridx]
-        ranked_metro_rates = ranked_metro_rates[~np.isnan(ranked_metro_rates)]
 
-        # first-order score interval from the served pool/rival bounds,
-        # normalisation frozen at the point estimates
-        r_moe_rel = np.sqrt(rse[ridx] ** 2 + r_rse[ridx] ** 2)
-        lo, hi = np.percentile(est[ridx], [1, 99])
-        span = (np.log10(np.maximum(np.clip(est[ridx], lo, hi), 1)).max()
-                - np.log10(np.maximum(np.clip(est[ridx], lo, hi), 1)).min())
-        if span > 0:
-            dz_pool = (np.log10(np.maximum(np.clip(est[ridx] + moe[ridx], lo, hi), 1))
-                       - np.log10(np.maximum(np.clip(est[ridx] - moe[ridx], lo, hi), 1))
-                       ) / span * 100.0 / 2
-        else:
-            dz_pool = np.zeros(len(ridx))
-        ratio_hi = ratio * (1 + r_moe_rel)
-        ratio_lo = ratio / (1 + r_moe_rel)
-        dz_bal = np.abs(_pct_rank_interp(ratio, ratio_hi)
-                        - _pct_rank_interp(ratio, ratio_lo)) / 2
-        score_moe = w_eff[:, 0] * dz_pool + w_eff[:, 1] * dz_bal
-
-        # standing = percentile of the raw value among this query's ranked
-        # set, ascending — direction-free; the registry says which way is
-        # scored as better.
         standing = np.column_stack([_pct_rank(raw[:, j])
                                     for j in range(raw.shape[1])])
-
         order = np.argsort(-score, kind="stable")
         for pos, k in enumerate(order):
             i = int(ridx[k])
@@ -320,7 +342,7 @@ def rank(build: Build, req: Request) -> dict:
                                   "value": None, "missing": True,
                                   "weight": 0.0, "contribution": None})
                     continue
-                stats.append({
+                entry = {
                     "id": f["id"], "pillar": f["pillar"],
                     "value": round(float(raw[k, j]), 4),
                     "display": format_value(float(raw[k, j]), le),
@@ -328,9 +350,12 @@ def rank(build: Build, req: Request) -> dict:
                     "z": round(float(z[k, j]), 2),
                     "weight": round(float(w_eff[k, j]), 4),
                     "contribution": round(float(contrib[k, j]), 2),
-                })
-            stats += _context_stats(build, i, ranked_metro_rates)
-            pillar_contrib = {}
+                }
+                band = _band_of(build, f["id"], i)
+                if band:
+                    entry["band"] = band
+                stats.append(entry)
+            pillar_contrib: dict[str, float] = {}
             for j, f in enumerate(feats):
                 if not np.isnan(z[k, j]):
                     pillar_contrib[f["pillar"]] = (
@@ -339,74 +364,43 @@ def rank(build: Build, req: Request) -> dict:
             row = {
                 "cbsa": build.metro_levels[i],
                 "name": build.titles[build.metro_levels[i]],
+                "display_name": build.display_names[i],
+                "slug": build.slugs[i],
                 "rank": pos + 1,
                 "score": round(float(score[k]), 1),
-                "score_moe": round(float(score_moe[k]), 1),
+                "score_display": str(int(round(float(score[k])))),
                 "pool": round(float(est[i])),
                 "pool_moe": round(float(moe[i])),
                 "cv": round(float(rse[i]), 3),
                 "n_unweighted": round(float(n_gate[i])),
                 "tier": "measured",
-                "ratio": round(float(ratio[k]), 4),
-                "ratio_moe": round(float(ratio[k] * r_moe_rel[k]), 4),
-                "rivals": round(float(r_est[i])),
+                "balance": _balance_block(build, i, bal, sought_word,
+                                          seeker_word),
                 "allocation_purity": round(float(build.purity[i]), 3),
                 "flags": _row_flags(build, i),
                 "stats": stats,
-                # pillar contributions are SUMS of their features' (ADR 0003)
+                "cards": _card_stats(build, i),
                 "contributions": [
                     {"pillar": p, "value": round(v, 2)}
                     for p, v in pillar_contrib.items()],
             }
-            if pairing is not None:
-                p_rate, p_moe, p_gate = pairing
-                if p_gate[i] >= 100 and not np.isnan(p_rate[i]):
-                    ple = build.legend["cross_group_pairing_rate"]
-                    row["cross_group_pairing_rate"] = round(float(p_rate[i]), 4)
-                    row["cross_group_pairing_moe"] = round(float(p_moe[i]), 4)
-                    row["cross_group_pairing_n"] = round(float(p_gate[i]))
-                    row["cross_group_pairing_display"] = format_value(
-                        float(p_rate[i]), ple)
-                    row["cross_group_pairing_moe_display"] = format_value(
-                        float(p_moe[i]), ple)
-                else:
-                    row["cross_group_pairing_rate"] = None
-                    row["cross_group_pairing_suppressed"] = "n_below_100"
-            else:
-                row["cross_group_pairing_rate"] = None
-            out["ranked"].append(row)
-        for row in out["ranked"]:
-            row["explanation"] = render_explanation(row, build.legend)
-            # the same selection the explanation leads with, as ids, so the
-            # frontend never re-derives "what moved it" on its own
             row["top_stats"] = [s["id"] for s in top_stats(row["stats"])]
+            row["summary_line"] = summary_line(row, build.legend)
+            out["ranked"].append(row)
 
     for i in np.where(suppressed)[0]:
-        stats = []
-        for fid in ("median_gross_rent", "rpp_goods", "rpp_services_other",
-                    "venues_per_100k", "resident_walkability_index",
-                    "pleasant_days", "students_per_1k_adults"):
-            v = float(build.static[fid][i])
-            if np.isnan(v):
-                stats.append({"id": fid,
-                              "pillar": build.legend[fid]["pillar"],
-                              "value": None, "missing": True})
-                continue
-            entry = {"id": fid, "pillar": build.legend[fid]["pillar"],
-                     "value": round(v, 4),
-                     "display": format_value(v, build.legend[fid])}
-            base = ranked_raw_by_feat.get(fid)
-            if base is not None and len(base):
-                entry["standing"] = round(float(
-                    _pct_rank_interp(base, np.array([v]))[0]), 1)
-            stats.append(entry)
-        stats += _context_stats(build, i, ranked_metro_rates)
         out["suppressed"].append({
             "cbsa": build.metro_levels[i],
             "name": build.titles[build.metro_levels[i]],
+            "display_name": build.display_names[i],
+            "slug": build.slugs[i],
             "reason": suppression_reason(float(est[i]), float(n_gate[i])),
             "n_unweighted": round(float(n_gate[i])),
             "flags": _row_flags(build, i),
-            "stats": stats,
+            # balance usually survives the pool's suppression — that is the
+            # point of gating it separately (ADR 0004)
+            "balance": _balance_block(build, i, bal, sought_word,
+                                      seeker_word),
+            "cards": _card_stats(build, i),
         })
     return out

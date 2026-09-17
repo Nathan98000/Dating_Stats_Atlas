@@ -1,28 +1,27 @@
-"""Suppression policy, m1.2.0 — the gate is sample size alone (ADR 0002):
+"""Suppression policy, m2.0.0 — the gate is sample size alone (ADR 0002),
+and with the rival apparatus retired (ADR 0004) the reasons reduce to two:
 
-    suppressed    min(n_alloc, kish) < 100, or an empty pool, or an empty
-                  rival set (the odds ratio has no denominator)
+    suppressed    min(n_alloc, kish) < 100, or an empty pool
     ranked        everything else in the ranked set
 
-The CV tiers are removed. Measured basis: over the 480-shape battery's
-served region (n_gate >= 100, 23,028 metro-points), true 81-replicate CV
-maxes at 11.8% (p99 9.8%) — the 20%/30% rules could not fire on the data,
-while computing them on the served CV (a bound that overstates by 23% at
-the median) let the interval model's conservatism demote metros, which
-nobody decided. `shown_unranked` remains in the response contract as a
-permanently empty array; the `cv_above_20` / `cv_above_30` reason strings
-can no longer be produced.
+Dating pool balance carries its own separate gate (its two counts are
+whole age-by-sex slices, so it usually survives even when the filtered
+pool does not) — asserted per quantity in scoring, never wholesale.
 
-The served margin is UNAFFECTED: every population figure still carries its
-margin in the row, in the exact words of POLICY_STRINGS["interval"]. This
-module decides which metros get a rank, never what is shown beside a
-number.
+Suppression is now the only VISIBLE expression of uncertainty (ADR 0004):
+no margin, CV or interval renders anywhere, which is exactly why the gate
+has to keep working. The interval machinery itself is untouched — the API
+keeps returning pool_moe, Gate 0's calibrated bound stays in the manifest,
+and the technical strings live under TECHNICAL_STRINGS (returned by the
+API, never rendered by the site; the methodology page explains margins in
+plain language instead).
 
-Purity (measured in Phase 2a): interval coverage does not degrade at low
-purity and calibration agreement drops only ~5pp in the worst bin, so
-purity is a FLAG, not a gate. GQ_SHARE_FLAG_BAR mirrors the adversarial
-validation gate: metros where dorm/barracks residents are a large share of
-the adult population carry a visible flag rather than being dropped.
+POLICY_STRINGS are the rendered vocabulary, versioned with MODEL_VERSION.
+The v3 boards' wording is approved copy — NarrowV3 and MetroV3 verbatim,
+StatesV3's count sentence as a template — and it lives here so it stays
+versioned (never improvised in a component). None of it states a count of
+people or cities beyond the two counts StatesV3 itself shows, and nothing
+in it ever says zero.
 """
 from __future__ import annotations
 
@@ -34,10 +33,10 @@ GQ_SHARE_FLAG_BAR = 0.15
 FEW_METROS_NOTICE = 40
 
 
-def tier_masks(universe: np.ndarray, est: np.ndarray, n_gate: np.ndarray,
-               rivals: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """(suppressed, ranked). No middle tier exists in m1.2.0."""
-    suppressed = universe & ((n_gate < N_GATE_MIN) | (est <= 0) | (rivals <= 0))
+def tier_masks(universe: np.ndarray, est: np.ndarray,
+               n_gate: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """(suppressed, ranked). No middle tier; no rival condition (m2.0.0)."""
+    suppressed = universe & ((n_gate < N_GATE_MIN) | (est <= 0))
     ranked = universe & ~suppressed
     return suppressed, ranked
 
@@ -45,66 +44,100 @@ def tier_masks(universe: np.ndarray, est: np.ndarray, n_gate: np.ndarray,
 def suppression_reason(est: float, n_gate: float) -> str:
     if est <= 0:
         return "empty_pool"
-    if n_gate < N_GATE_MIN:
-        return "n_below_100"
-    return "no_rivals"
+    return "n_below_100"
 
 
-# Fixed strings keyed to the policy table (§5.2) — rendered verbatim, never
-# improvised per request or in the frontend. Versioned with MODEL_VERSION.
-# "interval" carries the required margin wording: "at least this wide",
-# never a bare plus-or-minus.
+# ---------------------------------------------------------------------------
+# Rendered strings (versioned, approved copy from the v3 boards).
+# ---------------------------------------------------------------------------
 POLICY_STRINGS = {
-    "n_below_100": "Too few people in this sample to estimate.",
-    "empty_pool": "No one in this sample matches.",
-    "no_rivals": "No one in this sample is looking for the same kind of "
-                 "match, so the odds ratio has no denominator here.",
-    "ranked": "Enough sample to support an ordering; the margin of error is "
-              "shown beside the figure.",
-    "suppression_policy": "A metro is suppressed when fewer than 100 "
-                          "effective respondents (the smaller of the "
-                          "allocated count and the Kish effective sample "
-                          "size) sit in the queried range, or when its pool "
-                          "or comparison set is empty. No precision rule "
-                          "beyond that: a rule keyed to the coefficient of "
-                          "variation was measured unable to fire on this "
-                          "data and was removed rather than carried "
-                          "(ADR 0002).",
-    "interval": "Every margin shown is 'at least this wide': the true margin "
-                "of error is at or below the shown margin on at least 95% of "
-                "held-out validation queries (measured: 97.5%), and the shown "
-                "margin overstates the true one by 23% at the median "
-                "(gate: at most 25%). Margins are calibrated upper bounds, "
-                "never plus-or-minus.",
-    "margin_row": "margin at least",
-    "cv_detail": "The precision figure shown here is the served coefficient "
-                 "of variation — an upper bound from the same calibrated "
-                 "mechanism as the margin. It overstates the true CV by 23% "
-                 "at the median and it decides nothing: no rule ranks or "
-                 "suppresses on it.",
-    "score_moe_detail": "The score margin is a first-order approximation "
-                        "stacked on the one-sided pool and odds bounds, with "
-                        "this query's normalization frozen — an "
-                        "approximation, labelled as one, and shown here "
-                        "rather than in the ranking row.",
-    "pairing_interval": "The pairing-rate margin is measured directly from "
-                        "the survey's 80 replicate weights (90% confidence) "
-                        "— the same machinery every other margin here is "
-                        "calibrated against, computed exactly for this "
-                        "figure rather than bounded by a model.",
-    "pairing_framing": "This is how couples here actually pair — observed "
-                       "couples describe who matched, not who was available, "
-                       "and never what people here want.",
-    "low_allocation_purity": "A large share of this metro's estimate arrives "
-                             "through PUMAs it shares with other areas; "
-                             "systematic allocation error is likelier here.",
-    "gq_flag": "A notable share of this metro's adults live in group "
-               "quarters such as dormitories or barracks; pools here can "
-               "lean on those populations.",
-    "missing_features": "One or more context stats are unavailable for this "
-                        "metro; the remaining stats carry their weight, and "
-                        "nothing missing was counted as zero.",
-    "few_metros": "Fewer than 40 metros have enough sample to rank for this "
-                  "query. What is shown is what the data supports — a "
-                  "narrower list is the product working correctly.",
+    # suppression reasons, spoken plainly
+    "n_below_100": "Too few people in the survey match this search here for "
+                   "an answer worth trusting.",
+    "empty_pool": "The survey turns up nobody matching this search here — "
+                  "which is about the survey's reach, not the city.",
+
+    # StatesV3: the list heading's count sentence — shown ONLY when at
+    # least one city is excluded, never with a zero
+    "excluded_count": "{n} more cities don’t have enough people matching "
+                      "this search to give an answer worth trusting. Widen "
+                      "your search and they come back.",
+    "list_heading": "Cities for you",
+    "list_heading_count": "{n} cities for you",
+
+    # NarrowV3, verbatim (approved): the all-suppressed state
+    "narrow_title": "This one’s a tall order almost anywhere",
+    "narrow_body": "{search} is a very small group in any city — small "
+                   "enough that the Census survey doesn’t turn up sample "
+                   "to say anything dependable about where they live. Rather "
+                   "than dress up a guess, we’d rather point you back a "
+                   "step. Loosen any one thing and the picture fills right "
+                   "in.",
+    "narrow_note": "This doesn’t mean nobody fits your description — "
+                   "it means too few of them show up in the survey for us to "
+                   "tell you where they are. The narrower the search, the "
+                   "more often that happens.",
+
+    # MetroV3, verbatim (approved): the city page's card when the pool has
+    # nothing to say for this search
+    "city_narrow_title": "A search this specific is hard to answer here",
+    "city_narrow_body": "You’re looking for {search}. That’s a small "
+                        "slice of any city, and {city} is on the smaller side "
+                        "— too few people like that turn up in the Census "
+                        "survey here for us to give you a figure we’d "
+                        "stand behind. Loosen one thing and {city} may well "
+                        "have an answer.",
+
+    # HomeV3: the balance footnote — rewritten for the m2.0.0 definition
+    # (the board's "like for like" caption described the superseded
+    # like-for-like comparison; ADR 0004 records the supersession)
+    "balance_caption": "Balance compares all single men with all single "
+                       "women in the ages you picked — before any other "
+                       "filter. Counts come from the Census Bureau’s "
+                       "survey of 3.5 million households a year.",
+    "balance_row_caption": "{ratio} {sought} per 100 {seekers}",
+    "balance_unavailable": "Not enough survey sample here to compare the "
+                           "two sides.",
+    "balance_same_sex": "In a same-sex search everyone is on both sides of "
+                        "the comparison, so balance doesn’t apply — "
+                        "the other measures carry its weight.",
+
+    # HomeV3: race panel one-liner (approved)
+    "race_panel": "All included. Untick any you’d rather leave out — "
+                  "this counts who lives in each city, nothing more. People "
+                  "of two or more races, and anyone whose race isn’t "
+                  "listed, are always counted.",
+
+    # movers line pieces (HomeV3: "Biggest pluses: … · Rent counts against it")
+    "pluses_lead": "Biggest pluses: ",
+    "minus_tail": " counts against it",
+
+    # flags, spoken plainly
+    "low_allocation_purity": "Estimates here lean on survey areas this city "
+                             "shares with its neighbours.",
+    "gq_flag": "A notable share of adults here live in group housing such "
+               "as dorms or barracks.",
+    "missing_features": "One or two of the place stats aren’t available "
+                        "here; the rest carry their weight.",
+}
+
+# Returned by the API for the record and the methodology page's
+# plain-language account — never rendered on a product page (ADR 0004).
+TECHNICAL_STRINGS = {
+    "interval": "Every served margin is 'at least this wide': the true "
+                "margin of error is at or below the served margin on at "
+                "least 95% of held-out validation queries (measured: 97.5%), "
+                "and the served margin overstates the true one by 23% at the "
+                "median (gate: at most 25%). Margins are calibrated upper "
+                "bounds.",
+    "suppression_policy": "A city is left out when fewer than 100 effective "
+                          "respondents (the smaller of the allocated count "
+                          "and the Kish effective sample size) sit in the "
+                          "queried range, or when its pool is empty. "
+                          "Precision is expressed by leaving a city out, "
+                          "never by publishing a number we cannot stand "
+                          "behind (ADR 0002/0004).",
+    "balance_gate": "Balance is gated separately from the pool: each of its "
+                    "two whole age-by-sex counts must clear the same "
+                    "100-effective-respondent bar.",
 }

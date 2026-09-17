@@ -1,0 +1,325 @@
+{
+ "old_model": "m1.2.0",
+ "new_model": "m2.0.0",
+ "note": "same request under both models where still legal; requests using currently_married or a now-always-counted race group are skipped as no longer expressible",
+ "personas": {
+  "default_profile": {
+   "n_common": 193,
+   "kendall_tau": 0.786,
+   "top10_overlap": 8,
+   "median_abs_rank_move": 9.0,
+   "p90_abs_rank_move": 35.60000000000002,
+   "biggest_movers": [
+    {
+     "city": "Fort Collins, CO",
+     "from": 157,
+     "to": 63
+    },
+    {
+     "city": "Davenport, IA",
+     "from": 42,
+     "to": 113
+    },
+    {
+     "city": "Ann Arbor, MI",
+     "from": 138,
+     "to": 67
+    },
+    {
+     "city": "Kalamazoo, MI",
+     "from": 168,
+     "to": 99
+    },
+    {
+     "city": "Lansing, MI",
+     "from": 155,
+     "to": 93
+    }
+   ]
+  },
+  "A_woman32_ba_men_75k": {
+   "n_common": 58,
+   "kendall_tau": 0.632,
+   "top10_overlap": 8,
+   "median_abs_rank_move": 5.0,
+   "p90_abs_rank_move": 15.200000000000017,
+   "biggest_movers": [
+    {
+     "city": "Baltimore, MD",
+     "from": 23,
+     "to": 55
+    },
+    {
+     "city": "Raleigh, NC",
+     "from": 25,
+     "to": 54
+    },
+    {
+     "city": "San Antonio, TX",
+     "from": 48,
+     "to": 25
+    },
+    {
+     "city": "Colorado Springs, CO",
+     "from": 53,
+     "to": 34
+    },
+    {
+     "city": "Riverside, CA",
+     "from": 55,
+     "to": 37
+    }
+   ]
+  },
+  "B_man28_women_never": {
+   "n_common": 193,
+   "kendall_tau": 0.86,
+   "top10_overlap": 9,
+   "median_abs_rank_move": 6.0,
+   "p90_abs_rank_move": 22.0,
+   "biggest_movers": [
+    {
+     "city": "Gainesville, FL",
+     "from": 140,
+     "to": 75
+    },
+    {
+     "city": "Vallejo, CA",
+     "from": 95,
+     "to": 144
+    },
+    {
+     "city": "Kalamazoo, MI",
+     "from": 172,
+     "to": 129
+    },
+    {
+     "city": "Denver, CO",
+     "from": 36,
+     "to": 77
+    },
+    {
+     "city": "Tallahassee, FL",
+     "from": 88,
+     "to": 48
+    }
+   ]
+  },
+  "C_woman38_grad_men_100k": {
+   "n_common": 41,
+   "kendall_tau": 0.749,
+   "top10_overlap": 8,
+   "median_abs_rank_move": 2.0,
+   "p90_abs_rank_move": 9.0,
+   "biggest_movers": [
+    {
+     "city": "Washington, DC",
+     "from": 10,
+     "to": 24
+    },
+    {
+     "city": "Dallas, TX",
+     "from": 15,
+     "to": 29
+    },
+    {
+     "city": "Baltimore, MD",
+     "from": 23,
+     "to": 37
+    },
+    {
+     "city": "Raleigh, NC",
+     "from": 29,
+     "to": 39
+    },
+    {
+     "city": "San Antonio, TX",
+     "from": 35,
+     "to": 26
+    }
+   ]
+  },
+  "D_man41_women_50k": {
+   "n_common": 136,
+   "kendall_tau": 0.488,
+   "top10_overlap": 6,
+   "median_abs_rank_move": 20.5,
+   "p90_abs_rank_move": 53.0,
+   "biggest_movers": [
+    {
+     "city": "Madison, WI",
+     "from": 22,
+     "to": 90
+    },
+    {
+     "city": "Brownsville, TX",
+     "from": 133,
+     "to": 67
+    },
+    {
+     "city": "McAllen, TX",
+     "from": 127,
+     "to": 63
+    },
+    {
+     "city": "San Jose, CA",
+     "from": 10,
+     "to": 73
+    },
+    {
+     "city": "Minneapolis, MN",
+     "from": 23,
+     "to": 85
+    }
+   ]
+  },
+  "E_black_woman29_stress": {
+   "skipped": "only 4 common"
+  },
+  "race_asian_nh_men": {
+   "n_common": 23,
+   "kendall_tau": 0.628,
+   "top10_overlap": 7,
+   "median_abs_rank_move": 3.0,
+   "p90_abs_rank_move": 8.8,
+   "biggest_movers": [
+    {
+     "city": "Denver, CO",
+     "from": 22,
+     "to": 9
+    },
+    {
+     "city": "Washington, DC",
+     "from": 14,
+     "to": 23
+    },
+    {
+     "city": "Austin, TX",
+     "from": 17,
+     "to": 8
+    },
+    {
+     "city": "Portland, OR",
+     "from": 15,
+     "to": 7
+    },
+    {
+     "city": "Houston, TX",
+     "from": 11,
+     "to": 19
+    }
+   ]
+  },
+  "race_hispanic_women": {
+   "n_common": 71,
+   "kendall_tau": 0.277,
+   "top10_overlap": 5,
+   "median_abs_rank_move": 21.0,
+   "p90_abs_rank_move": 42.0,
+   "biggest_movers": [
+    {
+     "city": "Modesto, CA",
+     "from": 28,
+     "to": 82
+    },
+    {
+     "city": "Oxnard, CA",
+     "from": 27,
+     "to": 78
+    },
+    {
+     "city": "Corpus Christi, TX",
+     "from": 7,
+     "to": 57
+    },
+    {
+     "city": "Santa Maria, CA",
+     "from": 26,
+     "to": 75
+    },
+    {
+     "city": "Baltimore, MD",
+     "from": 70,
+     "to": 23
+    }
+   ]
+  },
+  "race_white_nh_grad_multi": {
+   "skipped": "race group now always counted (ADR 0004)"
+  },
+  "below_bar_nhpi_250k": {
+   "skipped": "only 0 common"
+  },
+  "broad_any": {
+   "skipped": "marital narrowed (ADR 0004)"
+  },
+  "slider_best_odds": {
+   "n_common": 193,
+   "kendall_tau": 0.646,
+   "top10_overlap": 6,
+   "median_abs_rank_move": 16.0,
+   "p90_abs_rank_move": 52.80000000000001,
+   "biggest_movers": [
+    {
+     "city": "Provo, UT",
+     "from": 162,
+     "to": 31
+    },
+    {
+     "city": "College Station, TX",
+     "from": 135,
+     "to": 29
+    },
+    {
+     "city": "Kalamazoo, MI",
+     "from": 126,
+     "to": 23
+    },
+    {
+     "city": "Ann Arbor, MI",
+     "from": 150,
+     "to": 47
+    },
+    {
+     "city": "Santa Cruz, CA",
+     "from": 112,
+     "to": 14
+    }
+   ]
+  },
+  "same_sex_pool": {
+   "n_common": 120,
+   "kendall_tau": 0.557,
+   "top10_overlap": 5,
+   "median_abs_rank_move": 17.0,
+   "p90_abs_rank_move": 44.0,
+   "biggest_movers": [
+    {
+     "city": "Fresno, CA",
+     "from": 46,
+     "to": 101
+    },
+    {
+     "city": "Omaha, NE",
+     "from": 97,
+     "to": 43
+    },
+    {
+     "city": "Colorado Springs, CO",
+     "from": 52,
+     "to": 103
+    },
+    {
+     "city": "Waterbury, CT",
+     "from": 62,
+     "to": 112
+    },
+    {
+     "city": "Spokane, WA",
+     "from": 44,
+     "to": 94
+    }
+   ]
+  }
+ }
+}

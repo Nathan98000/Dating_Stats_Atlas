@@ -66,22 +66,33 @@ GOLDEN_VECTORS = [
      "seeking": {"age": [40, 55],
                  "marital": ["never_married", "previously_married"],
                  "education_min": "graduate",
-                 "race_ethnicity": ["white_nh", "two_or_more_nh"]}},
+                 "race_ethnicity": ["white_nh", "asian_nh"]}},
     {"name": "below_bar_nhpi_250k",
      "self": {"sex": "female", "age": 30},
      "seeking": {"age": [25, 35], "marital": ["never_married"],
                  "education_min": "graduate", "income_min": 250000,
                  "race_ethnicity": ["nhpi_nh"]}},
+    # m2.0.0: currently_married left the contract (ADR 0004) — the broad
+    # vector is now the widest legal search
     {"name": "broad_any",
      "self": {"sex": "male", "age": 35},
-     "seeking": {"age": [25, 50],
-                 "marital": ["never_married", "previously_married",
-                              "currently_married"]}},
+     "seeking": {"age": [18, 70],
+                 "marital": ["never_married", "previously_married"]}},
+    # deprecated-alias coverage: size_vs_odds is accepted for exactly this
+    # version (ADR 0004)
     {"name": "slider_best_odds",
      "self": {"sex": "female", "age": 29},
      "seeking": {"age": [27, 36],
                  "marital": ["never_married", "previously_married"]},
      "size_vs_odds": 1.0},
+    # the v3 controls: named knobs, mapped through registry constants
+    {"name": "importance_controls",
+     "self": {"sex": "female", "age": 34},
+     "seeking": {"age": [30, 44],
+                 "marital": ["never_married", "previously_married"]},
+     "pool_vs_balance": 0.7,
+     "importance": {"cost": "a_lot", "reach": "not_much",
+                    "lifestyle": "some"}},
     {"name": "same_sex_pool",
      "self": {"sex": "male", "age": 31},
      "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"],
@@ -125,7 +136,9 @@ def make_fixture(build_dir: Path) -> None:
     cells = pd.read_parquet(Path(build_dir) / "pairing_cells.parquet")
     cells[cells["cbsa"].astype(str).isin(set(chosen))].to_parquet(
         FIXTURE / "pairing_cells.parquet", index=False)
-    metros_meta = [{"cbsa": c, "title": build.titles[c],
+    src_meta = {m["cbsa"]: m for m in json.loads(
+        (Path(build_dir) / "metros.json").read_text())}
+    metros_meta = [{**src_meta[c],
                     "ranked_set": bool(build.ranked_set[build.metro_levels.index(c)])}
                    for c in chosen]
     (FIXTURE / "metros.json").write_text(json.dumps(metros_meta, indent=1) + "\n")
@@ -133,29 +146,31 @@ def make_fixture(build_dir: Path) -> None:
     fx = engine.load_build(FIXTURE)
     vectors = []
     for v in GOLDEN_VECTORS:
-        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds")
-                if k in v}
+        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds",
+                                  "pool_vs_balance", "importance") if k in v}
         res = engine.rank(fx, engine.parse_request(body))
         expect = {
             "ranked_cbsas": [r["cbsa"] for r in res["ranked"]],
             "scores": {r["cbsa"]: r["score"] for r in res["ranked"]},
+            "score_displays": {r["cbsa"]: r["score_display"]
+                               for r in res["ranked"]},
             "pools": {r["cbsa"]: r["pool"] for r in res["ranked"]},
             "pool_moes": {r["cbsa"]: r["pool_moe"] for r in res["ranked"]},
+            # m2.0.0: dating pool balance pinned per metro — per-100 integer
+            # where its own gate passes, None where it does not
+            "balance_per_100": {
+                r["cbsa"]: (r["balance"]["per_100"]
+                            if r["balance"]["available"] else None)
+                for r in res["ranked"]},
+            "summary_lines": {r["cbsa"]: r["summary_line"]
+                              for r in res["ranked"][:3]},
             "shown_unranked_cbsas": sorted(r["cbsa"] for r in res["shown_unranked"]),
             "suppressed": {r["cbsa"]: r["reason"] for r in res["suppressed"]},
+            "suppressed_balance_available": {
+                r["cbsa"]: r["balance"]["available"]
+                for r in res["suppressed"][:6]},
             "counts": res["counts"],
         }
-        if v["seeking"].get("race_ethnicity"):
-            # Pin the §10.4 counterweight: rate, replicate-measured margin
-            # and gate for the top ranked metros of every race-filtered
-            # vector (None where the pairing cell sits below the gate).
-            expect["cross_group"] = {
-                r["cbsa"]: ([r["cross_group_pairing_rate"],
-                             r.get("cross_group_pairing_moe"),
-                             r.get("cross_group_pairing_n")]
-                            if r["cross_group_pairing_rate"] is not None
-                            else None)
-                for r in res["ranked"][:3]}
         vectors.append({"name": v["name"], "request": body, "expect": expect})
     n_race = sum(1 for v in GOLDEN_VECTORS
                  if v["seeking"].get("race_ethnicity"))

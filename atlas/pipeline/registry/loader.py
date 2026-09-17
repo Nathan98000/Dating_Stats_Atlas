@@ -1,13 +1,14 @@
-"""Typed loader for the feature registry, with the §7.2 + ADR 0003
+"""Typed loader for the feature registry, with the §7.2 + ADR 0003/0004
 assertions: every scoring-referenced feature exists, every entry has
 complete provenance AND complete display fields (no user-facing label lives
-in code), crime and the pairing counterweight are pinned to weight 0, no
-display string uses the §12.3 banned vocabulary, and weights are coherent.
+in code), retired and context features are pinned to weight 0, no display
+string uses the banned vocabulary (now including "odds"), band labels come
+in threes with valid tones, and weights are coherent.
 """
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import yaml
@@ -15,9 +16,13 @@ import yaml
 REGISTRY_PATH = Path(__file__).resolve().parent / "features.yaml"
 PROV_KEYS = {"source", "dataset", "table", "variables", "geography",
              "vintage", "transform_id", "tier"}
-# §12.3 / ADR 0003: accurate modelling terms, corrosive product copy.
+# §12.3 / ADR 0003 / ADR 0004: accurate modelling terms, corrosive product
+# copy. "odds" joined the list when balance became the plain sex ratio.
 BANNED_DISPLAY_TERMS = re.compile(
-    r"\b(rivals?|markets?|supply|inventory|competitors?)\b", re.IGNORECASE)
+    r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
+    re.IGNORECASE)
+STATUSES = ("active", "deferred", "context_only", "retired")
+BAND_TONES = ("good", "neutral", "poor")
 
 
 @dataclass(frozen=True)
@@ -32,12 +37,17 @@ class FeatureSpec:
     display_name: str
     unit: str
     definition: str
-    unit_short: str = ""      # sentence-context suffix; "" when the
-    display_scale: float = 1.0  # display_name already carries the unit
+    unit_short: str = ""
+    unit_template: str | None = None
+    mover_phrase: str | None = None
+    band_labels: tuple[str, ...] | None = None
+    band_tones: tuple[str, ...] | None = None
+    display_scale: float = 1.0
     display_decimals: int = 1
-    status: str = "active"    # active | deferred | context_only
+    status: str = "active"
     deviation: str | None = None
     todo: str | None = None
+    retired_reason: str | None = None
 
 
 @dataclass(frozen=True)
@@ -56,6 +66,10 @@ class Registry:
     naics_venues: dict[str, str]
     pleasant_day: dict
     size_vs_odds: dict
+    importance_levels: dict[str, float]
+    standing_bands: dict[str, float]
+    city_cards: tuple[str, ...]
+    city_description: dict
     winsor_percentiles: tuple[float, float]
     missing_data_policy: str
 
@@ -71,11 +85,11 @@ class Registry:
         return [f for f in self.scored() if f.pillar == pillar]
 
 
-def _assert_display_clean(owner: str, *texts: str) -> None:
+def _assert_display_clean(owner: str, *texts) -> None:
     for t in texts:
-        m = BANNED_DISPLAY_TERMS.search(t or "")
+        m = BANNED_DISPLAY_TERMS.search(str(t or ""))
         assert not m, (f"{owner}: display field contains banned term "
-                       f"{m.group(0)!r} (§12.3/ADR 0003): {t!r}")
+                       f"{m.group(0)!r} (§12.3/ADR 0004): {t!r}")
 
 
 def load_registry(path: Path = REGISTRY_PATH) -> Registry:
@@ -92,17 +106,36 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             display_name=str(f["display_name"]), unit=str(f["unit"]),
             definition=str(f["definition"]).strip(),
             unit_short=str(f.get("unit_short", "")),
+            unit_template=f.get("unit_template"),
+            mover_phrase=f.get("mover_phrase"),
+            band_labels=tuple(f["band_labels"]) if "band_labels" in f else None,
+            band_tones=tuple(f["band_tones"]) if "band_tones" in f else None,
             display_scale=float(f.get("display_scale", 1.0)),
             display_decimals=int(f.get("display_decimals", 1)),
             status=f.get("status", "active"), deviation=f.get("deviation"),
-            todo=f.get("todo"))
+            todo=f.get("todo"), retired_reason=f.get("retired_reason"))
         assert spec.kind in ("extensive", "intensive"), spec.id
         assert spec.direction in (-1, 1), spec.id
+        assert spec.status in STATUSES, (spec.id, spec.status)
         assert PROV_KEYS <= set(spec.provenance), (
             f"{spec.id}: incomplete provenance, missing "
             f"{PROV_KEYS - set(spec.provenance)}")
-        _assert_display_clean(spec.id, spec.display_name, spec.unit,
-                              spec.unit_short, spec.definition)
+        if spec.status != "retired":
+            # a retired entry's display fields are history, not UI; every
+            # live entry's rendered strings stay clean
+            _assert_display_clean(spec.id, spec.display_name, spec.unit,
+                                  spec.unit_short, spec.unit_template,
+                                  spec.mover_phrase, spec.definition,
+                                  *(spec.band_labels or ()))
+        if spec.status == "retired":
+            assert spec.weight_in_pillar == 0 and spec.retired_reason, (
+                f"{spec.id}: retired entries carry weight 0 and a reason")
+        if spec.band_labels is not None:
+            assert len(spec.band_labels) == 3, (
+                f"{spec.id}: band_labels must name the three bands")
+            assert spec.band_tones is not None and len(spec.band_tones) == 3, (
+                f"{spec.id}: band_labels require band_tones")
+            assert all(t in BAND_TONES for t in spec.band_tones), spec.id
         feats[spec.id] = spec
 
     pillars = {}
@@ -120,11 +153,13 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
                 if f.pillar == p and f.status == "active")
         assert abs(w - 1.0) < 1e-9, f"pillar {p} feature weights sum to {w}"
 
-    for fid in ("crime_rate_context", "cross_group_pairing_rate"):
+    for fid in ("crime_rate_context", "everyday_prices", "who_lives_here"):
         spec = feats[fid]
         assert spec.weight_in_pillar == 0 and spec.status == "context_only", (
-            f"{fid} must stay unscored "
-            f"({'D01' if fid.startswith('crime') else 'ADR 0003 counterweight'})")
+            f"{fid} must stay unscored")
+    for fid in ("partners_per_rival", "cross_group_pairing_rate"):
+        assert feats[fid].status == "retired", (
+            f"{fid} left serving in m2.0.0 (ADR 0004)")
     deferred = [f.id for f in feats.values() if f.status == "deferred"]
     for fid in deferred:
         assert feats[fid].weight_in_pillar == 0 and feats[fid].todo, fid
@@ -132,10 +167,38 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     assert "comparator" not in raw, (
         "the D10 comparator is retired (ADR 0003); remove the registry block")
 
+    levels = {str(k): float(v) for k, v in raw["importance_levels"].items()}
+    assert set(levels) == {"not_much", "some", "a_lot"}, levels
+    assert all(v > 0 for v in levels.values()), (
+        "importance multipliers are floors, never zero (ADR 0004)")
+    assert levels["not_much"] < levels["some"] < levels["a_lot"]
+
+    bands = {str(k): float(v) for k, v in raw["standing_bands"].items()}
+    assert set(bands) == {"low_below", "high_above"}
+    assert 0 < bands["low_below"] < bands["high_above"] < 100
+
+    cards = tuple(str(c) for c in raw["city_cards"])
+    for c in cards:
+        assert c in feats, f"city_cards names unknown feature {c}"
+        assert feats[c].band_labels is not None, (
+            f"city card {c} needs band_labels")
+
+    _assert_display_clean("size_vs_odds labels",
+                          raw["size_vs_odds"].get("label_low"),
+                          raw["size_vs_odds"].get("label_high"))
+
+    desc = raw["city_description"]
+    _assert_display_clean("city_description", desc["template"],
+                          desc["location_near"], desc["location_far"],
+                          *(c["text"] for c in desc["characters"]),
+                          *(d["text"] for d in desc["drive_phrases"]))
+
     return Registry(
         version=int(raw["version"]), pillars=pillars, features=feats,
         naics_venues={str(k): str(v) for k, v in raw["naics_venues"].items()},
         pleasant_day=raw["pleasant_day"], size_vs_odds=raw["size_vs_odds"],
+        importance_levels=levels, standing_bands=bands, city_cards=cards,
+        city_description=desc,
         winsor_percentiles=tuple(raw["normalization"]["winsor_percentiles"]),
         missing_data_policy=raw["missing_data_policy"].strip())
 

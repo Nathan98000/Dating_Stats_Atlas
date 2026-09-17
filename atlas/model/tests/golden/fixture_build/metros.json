@@ -2,61 +2,133 @@
  {
   "cbsa": "11460",
   "title": "Ann Arbor, MI",
+  "display_name": "Ann Arbor, MI",
+  "display_name_full": "Ann Arbor, Michigan",
+  "slug": "ann-arbor-michigan",
+  "description": "A college town of about 350,000 people an hour southwest of Detroit.",
+  "lat": 42.2522,
+  "lon": -83.8434,
   "ranked_set": true
  },
  {
   "cbsa": "12060",
   "title": "Atlanta-Sandy Springs-Roswell, GA",
+  "display_name": "Atlanta, GA",
+  "display_name_full": "Atlanta, Georgia",
+  "slug": "atlanta-georgia",
+  "description": "A vast metro area of about 6.3 million people in Georgia.",
+  "lat": 33.797,
+  "lon": -84.321,
   "ranked_set": true
  },
  {
   "cbsa": "12420",
   "title": "Austin-Round Rock-San Marcos, TX",
+  "display_name": "Austin, TX",
+  "display_name_full": "Austin, Texas",
+  "slug": "austin-texas",
+  "description": "A major city of about 2.4 million people about three hours west of Houston.",
+  "lat": 30.3166,
+  "lon": -97.7751,
   "ranked_set": true
  },
  {
   "cbsa": "20580",
   "title": "Eagle Pass, TX",
+  "display_name": "Eagle Pass, TX",
+  "display_name_full": "Eagle Pass, Texas",
+  "slug": "eagle-pass-texas",
+  "description": "A city of about 60,000 people about three hours southwest of San Antonio.",
+  "lat": 28.7298,
+  "lon": -100.3167,
   "ranked_set": false
  },
  {
   "cbsa": "26580",
   "title": "Huntington-Ashland, WV-KY-OH",
+  "display_name": "Huntington, WV",
+  "display_name_full": "Huntington, West Virginia",
+  "slug": "huntington-west-virginia",
+  "description": "A city of about 350,000 people two hours south of Columbus.",
+  "lat": 38.4335,
+  "lon": -82.4507,
   "ranked_set": true
  },
  {
   "cbsa": "28660",
   "title": "Killeen-Temple, TX",
+  "display_name": "Killeen, TX",
+  "display_name_full": "Killeen, Texas",
+  "slug": "killeen-texas",
+  "description": "A city of about 500,000 people an hour and a half north of Austin.",
+  "lat": 31.2141,
+  "lon": -97.6388,
   "ranked_set": true
  },
  {
   "cbsa": "33460",
   "title": "Minneapolis-St. Paul-Bloomington, MN-WI",
+  "display_name": "Minneapolis, MN",
+  "display_name_full": "Minneapolis, Minnesota",
+  "slug": "minneapolis-minnesota",
+  "description": "A major city of about 3.7 million people in Minnesota.",
+  "lat": 45.0127,
+  "lon": -93.4271,
   "ranked_set": true
  },
  {
   "cbsa": "35620",
   "title": "New York-Newark-Jersey City, NY-NJ",
+  "display_name": "New York, NY",
+  "display_name_full": "New York, New York",
+  "slug": "new-york-new-york",
+  "description": "A vast metro area of about 19.8 million people in New York.",
+  "lat": 40.7536,
+  "lon": -74.027,
   "ranked_set": true
  },
  {
   "cbsa": "38300",
   "title": "Pittsburgh, PA",
+  "display_name": "Pittsburgh, PA",
+  "display_name_full": "Pittsburgh, Pennsylvania",
+  "slug": "pittsburgh-pennsylvania",
+  "description": "A major city of about 2.4 million people in Pennsylvania.",
+  "lat": 40.5158,
+  "lon": -79.9938,
   "ranked_set": true
  },
  {
   "cbsa": "39340",
   "title": "Provo-Orem-Lehi, UT",
+  "display_name": "Provo, UT",
+  "display_name_full": "Provo, Utah",
+  "slug": "provo-utah",
+  "description": "A college town of about 700,000 people an hour south of Salt Lake City.",
+  "lat": 40.1204,
+  "lon": -111.6686,
   "ranked_set": true
  },
  {
   "cbsa": "41940",
   "title": "San Jose-Sunnyvale-Santa Clara, CA",
+  "display_name": "San Jose, CA",
+  "display_name_full": "San Jose, California",
+  "slug": "san-jose-california",
+  "description": "A major city of about 2 million people an hour southeast of San Francisco.",
+  "lat": 37.2216,
+  "lon": -121.6895,
   "ranked_set": true
  },
  {
   "cbsa": "47900",
   "title": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+  "display_name": "Washington, DC",
+  "display_name_full": "Washington, the District of Columbia",
+  "slug": "washington-the-district-of-columbia",
+  "description": "A vast metro area of about 6.3 million people in the District of Columbia.",
+  "lat": 38.8352,
+  "lon": -77.2692,
   "ranked_set": true
  }
 ]

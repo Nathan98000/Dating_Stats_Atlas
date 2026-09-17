@@ -1,8 +1,8 @@
 {
-  "data_version": "dc23609755ad",
-  "model_version": "m1.2.0",
+  "data_version": "2c8d7285c720",
+  "model_version": "m2.0.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-16T14:48:30-0400",
+  "created_at": "2026-09-17T06:53:41-0400",
   "axes": [
     {
       "name": "metro",
@@ -594,9 +594,10 @@
     "used_by_api": false
   },
   "tier_policy": {
-    "suppress": "min(n_alloc, kish) < 100, or empty pool, or empty rival set \u2014 the gate is n alone (ADR 0002)",
+    "suppress": "min(n_alloc, kish) < 100, or empty pool \u2014 the gate is n alone (ADR 0002; the rival condition left with the rival apparatus, ADR 0004)",
     "shown_unranked": "permanently empty: the CV tiers are removed (measured max true CV 11.8%, p99 9.8% in the served region of the 480-shape battery \u2014 the rules could not fire)",
-    "ranked": "everything else in the ranked set; the served margin still renders beside every population figure"
+    "ranked": "everything else in the ranked set; margins are computed and returned but no longer rendered (ADR 0004) \u2014 suppression is the visible expression of uncertainty",
+    "balance_gate": "dating pool balance gates separately: both age-by-sex counts must clear the same 100-effective-respondent bar"
   },
   "model_defaults": {
     "pillar_weights": {
@@ -609,34 +610,52 @@
     "size_vs_odds": {
       "pool_plus_balance_mass": 0.55,
       "default_s": 0.4545,
-      "label_low": "Most options",
-      "label_high": "Best odds"
+      "label_low": "Dating pool size",
+      "label_high": "Dating pool balance"
+    },
+    "importance_levels": {
+      "not_much": 0.4,
+      "some": 1.0,
+      "a_lot": 2.0
     }
   },
+  "standing_bands": {
+    "low_below": 33.4,
+    "high_above": 66.6
+  },
+  "city_cards": [
+    "median_gross_rent",
+    "everyday_prices",
+    "venues_per_100k",
+    "resident_walkability_index",
+    "pleasant_days",
+    "students_per_1k_adults",
+    "who_lives_here"
+  ],
   "pillars": {
     "pool": {
-      "display_name": "Pool",
+      "display_name": "Dating pool size",
       "definition": "How many people here match what you are looking for.",
       "default_weight": 0.3
     },
     "balance": {
-      "display_name": "Odds",
-      "definition": "Matches relative to the people looking for the same kind of match.",
+      "display_name": "Dating pool balance",
+      "definition": "Single men per 100 single women in the ages you picked (or the mirror, if you are looking for women) \u2014 the plain ratio, before any other filter.",
       "default_weight": 0.25
     },
     "reach": {
-      "display_name": "Reach",
-      "definition": "How easy it is to actually encounter people \u2014 venues and walkability.",
+      "display_name": "Going out & getting around",
+      "definition": "Places to go out, and how walkable daily life is.",
       "default_weight": 0.2
     },
     "cost": {
-      "display_name": "Cost",
-      "definition": "What living here costs \u2014 rent and non-housing prices.",
+      "display_name": "Cost of living",
+      "definition": "What living here costs \u2014 rent and everyday prices.",
       "default_weight": 0.15
     },
     "lifestyle": {
-      "display_name": "Lifestyle",
-      "definition": "Climate and social infrastructure around dating life.",
+      "display_name": "Weather & local life",
+      "definition": "Nice days a year and the student presence around town.",
       "default_weight": 0.1
     }
   },
@@ -698,12 +717,17 @@
       "direction": 1,
       "weight_in_pillar": 1.0,
       "status": "active",
-      "display_name": "Compatible people",
-      "unit": "people",
+      "display_name": "People who match",
+      "unit": "people match what you're looking for",
       "unit_short": "",
-      "definition": "The weighted number of people in this metro who match your filters, from ACS 2020\u20132024 responses allocated to metros. Always shown with its margin.",
+      "unit_template": null,
+      "mover_phrase": "the size of the pool",
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "The number of people in each city who match your whole search, counted from the Census Bureau's household survey.",
       "display_scale": 1.0,
       "display_decimals": 0,
+      "retired_reason": null,
       "provenance": {
         "source": "census_acs",
         "dataset": "ACS 2020-2024 5-year PUMS",
@@ -718,18 +742,54 @@
         "tier": "measured"
       }
     },
-    "partners_per_rival": {
+    "pool_balance": {
       "pillar": "balance",
       "kind": "intensive",
       "direction": 1,
       "weight_in_pillar": 1.0,
       "status": "active",
+      "display_name": "Dating pool balance",
+      "unit": "per 100",
+      "unit_short": "per 100",
+      "unit_template": null,
+      "mover_phrase": "the balance",
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Single men per 100 single women in the ages you picked (or women per 100 men, if you are looking for women) \u2014 everyone single in that age range, before any other filter.",
+      "display_scale": 100.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "census_acs",
+        "dataset": "ACS 2020-2024 5-year PUMS",
+        "table": "pool_cube",
+        "variables": [
+          "PWGTP",
+          "a_eff"
+        ],
+        "geography": "cbsa",
+        "vintage": "2020-2024",
+        "transform_id": "sex_ratio_v2",
+        "tier": "measured"
+      }
+    },
+    "partners_per_rival": {
+      "pillar": "balance",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.0,
+      "status": "retired",
       "display_name": "Matches per 10 people looking",
       "unit": "per 10 looking",
       "unit_short": "",
-      "definition": "For every 10 people here looking for the same kind of match you are, how many people fit your filters. Above 10 means matches outnumber the people seeking them.",
+      "unit_template": null,
+      "mover_phrase": null,
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Retired in m2.0.0. For every 10 people looking for the same kind of match, how many people fit your filters.",
       "display_scale": 10.0,
       "display_decimals": 1,
+      "retired_reason": "Read as the city's sex ratio when it was pool-over-competition after every filter; replaced by pool_balance, the plain sex ratio (ADR 0004, m2.0.0).",
       "provenance": {
         "source": "census_acs",
         "dataset": "ACS 2020-2024 5-year PUMS",
@@ -750,12 +810,25 @@
       "direction": -1,
       "weight_in_pillar": 0.5,
       "status": "active",
-      "display_name": "Median rent",
-      "unit": "$/month",
+      "display_name": "Rent",
+      "unit": "a month, typical",
       "unit_short": "$/mo",
-      "definition": "Median gross rent across the metro (ACS table B25064). Lower scores better.",
+      "unit_template": null,
+      "mover_phrase": "rent",
+      "band_labels": [
+        "Cheaper than most cities",
+        "About average for rent",
+        "Pricier than most cities"
+      ],
+      "band_tones": [
+        "good",
+        "neutral",
+        "poor"
+      ],
+      "definition": "The typical monthly rent across the city (Census ACS).",
       "display_scale": 1.0,
       "display_decimals": 0,
+      "retired_reason": null,
       "provenance": {
         "source": "census_acs",
         "dataset": "ACS 2020-2024 5-year",
@@ -775,12 +848,17 @@
       "direction": -1,
       "weight_in_pillar": 0.25,
       "status": "active",
-      "display_name": "Price level, goods",
-      "unit": "index, US = 100",
+      "display_name": "Prices for goods",
+      "unit": "where the US average is 100",
       "unit_short": "(US = 100)",
-      "definition": "BEA regional price parity for goods. Lower scores better.",
+      "unit_template": null,
+      "mover_phrase": "everyday prices",
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Price level for goods, where the US average is 100 (BEA).",
       "display_scale": 1.0,
       "display_decimals": 1,
+      "retired_reason": null,
       "provenance": {
         "source": "bea_rpp",
         "dataset": "BEA Regional Price Parities",
@@ -800,12 +878,17 @@
       "direction": -1,
       "weight_in_pillar": 0.25,
       "status": "active",
-      "display_name": "Price level, services",
-      "unit": "index, US = 100",
+      "display_name": "Prices for services",
+      "unit": "where the US average is 100",
       "unit_short": "(US = 100)",
-      "definition": "BEA regional price parity for services other than housing. Lower scores better.",
+      "unit_template": null,
+      "mover_phrase": "everyday prices",
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Price level for services other than housing, where the US average is 100 (BEA).",
       "display_scale": 1.0,
       "display_decimals": 1,
+      "retired_reason": null,
       "provenance": {
         "source": "bea_rpp",
         "dataset": "BEA Regional Price Parities",
@@ -819,18 +902,70 @@
         "tier": "measured"
       }
     },
+    "everyday_prices": {
+      "pillar": "context",
+      "kind": "intensive",
+      "direction": -1,
+      "weight_in_pillar": 0.0,
+      "status": "context_only",
+      "display_name": "Everyday prices",
+      "unit": "where the US average is 100",
+      "unit_short": "(US = 100)",
+      "unit_template": null,
+      "mover_phrase": null,
+      "band_labels": [
+        "A little below average",
+        "About the US average",
+        "Above the US average"
+      ],
+      "band_tones": [
+        "good",
+        "neutral",
+        "poor"
+      ],
+      "definition": "Goods and services prices together, where the US average is 100 \u2014 the average of the two BEA price levels the score uses.",
+      "display_scale": 1.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "bea_rpp",
+        "dataset": "BEA Regional Price Parities",
+        "table": "MARPP_MSA_2008_2024.csv",
+        "variables": [
+          "RPPs: Goods",
+          "RPPs: Services: Other"
+        ],
+        "geography": "cbsa",
+        "vintage": "2024",
+        "transform_id": "cost_rpp_composite_v1",
+        "tier": "measured"
+      }
+    },
     "venues_per_100k": {
       "pillar": "reach",
       "kind": "intensive",
       "direction": 1,
       "weight_in_pillar": 0.5,
       "status": "active",
-      "display_name": "Social venues",
-      "unit": "per 100k adults",
+      "display_name": "Places to go out",
+      "unit": "bars, caf\u00e9s and venues per 100,000 adults",
       "unit_short": "per 100k adults",
-      "definition": "Full-service restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults (County Business Patterns 2023, cross-checked against QCEW).",
+      "unit_template": null,
+      "mover_phrase": "places to go out",
+      "band_labels": [
+        "Fewer than most cities",
+        "About average",
+        "More than most cities"
+      ],
+      "band_tones": [
+        "poor",
+        "neutral",
+        "good"
+      ],
+      "definition": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults (Census business data).",
       "display_scale": 1.0,
-      "display_decimals": 1,
+      "display_decimals": 0,
+      "retired_reason": null,
       "provenance": {
         "source": "census_cbp",
         "dataset": "County Business Patterns 2023",
@@ -855,12 +990,25 @@
       "direction": 1,
       "weight_in_pillar": 0.5,
       "status": "active",
-      "display_name": "Walkability where residents live",
-      "unit": "index, 1\u201320",
+      "display_name": "Getting around on foot",
+      "unit": "walkability, 1 to 20",
       "unit_short": "on the 1\u201320 index",
-      "definition": "EPA National Walkability Index averaged over where the metro's residents actually live \u2014 never a share of the matched pool, which exists only at metro level.",
+      "unit_template": null,
+      "mover_phrase": "walkable neighbourhoods",
+      "band_labels": [
+        "Less walkable than most",
+        "About average",
+        "More walkable than most"
+      ],
+      "band_tones": [
+        "poor",
+        "neutral",
+        "good"
+      ],
+      "definition": "A federal walkability index of where the city's residents live, from 1 to 20.",
       "display_scale": 1.0,
       "display_decimals": 1,
+      "retired_reason": null,
       "provenance": {
         "source": "epa_sld",
         "dataset": "EPA Smart Location Database v3.0",
@@ -886,9 +1034,14 @@
       "display_name": "Venue density (points of interest)",
       "unit": "per 100k adults",
       "unit_short": "",
-      "definition": "Deferred: a POI-based venue count awaiting the coverage-bias regression against CBP. Not computed and not scored.",
+      "unit_template": null,
+      "mover_phrase": null,
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Deferred: a POI-based venue count awaiting the coverage-bias regression against Census business data. Not computed and not scored.",
       "display_scale": 1.0,
       "display_decimals": 1,
+      "retired_reason": null,
       "provenance": {
         "source": "census_cbp",
         "dataset": "placeholder until POI union lands",
@@ -906,12 +1059,25 @@
       "direction": 1,
       "weight_in_pillar": 0.6,
       "status": "active",
-      "display_name": "Pleasant days",
-      "unit": "days/year",
+      "display_name": "Nice days a year",
+      "unit": "mild and dry enough to be outside",
       "unit_short": "",
-      "definition": "Days per year whose normal high sits between 55 and 85\u00b0F with a normal low above 40\u00b0F (NOAA 1991\u20132020 climate normals).",
+      "unit_template": null,
+      "mover_phrase": "the weather",
+      "band_labels": [
+        "Fewer than most cities",
+        "About average",
+        "More than most cities"
+      ],
+      "band_tones": [
+        "poor",
+        "neutral",
+        "good"
+      ],
+      "definition": "Days a year whose normal high sits between 55 and 85\u00b0F with a low above 40\u00b0F (NOAA climate normals).",
       "display_scale": 1.0,
       "display_decimals": 0,
+      "retired_reason": null,
       "provenance": {
         "source": "noaa_normals",
         "dataset": "NCEI U.S. Climate Normals 1991-2020 daily",
@@ -932,12 +1098,25 @@
       "direction": 1,
       "weight_in_pillar": 0.4,
       "status": "active",
-      "display_name": "College students",
-      "unit": "per 1k adults",
+      "display_name": "Students",
+      "unit": "college students per 1,000 adults",
       "unit_short": "per 1k adults",
-      "definition": "Students enrolled at metro institutions per 1,000 adults, net of exclusively-online enrollment (IPEDS 2023\u201324).",
+      "unit_template": null,
+      "mover_phrase": "the student crowd",
+      "band_labels": [
+        "Fewer than most cities",
+        "About average",
+        "Far more than most cities"
+      ],
+      "band_tones": [
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "definition": "Students enrolled at the city's colleges per 1,000 adults, not counting online-only enrollment (federal education data).",
       "display_scale": 1.0,
-      "display_decimals": 1,
+      "display_decimals": 0,
+      "retired_reason": null,
       "provenance": {
         "source": "ipeds",
         "dataset": "IPEDS 2023-24",
@@ -956,18 +1135,61 @@
         "tier": "measured"
       }
     },
-    "cross_group_pairing_rate": {
+    "who_lives_here": {
       "pillar": "context",
       "kind": "intensive",
       "direction": 1,
       "weight_in_pillar": 0.0,
       "status": "context_only",
+      "display_name": "Who lives here",
+      "unit": "people",
+      "unit_short": "",
+      "unit_template": "people, of whom {adults} are adults",
+      "mover_phrase": null,
+      "band_labels": [
+        "One of the smaller cities",
+        "A mid-sized city",
+        "One of the biggest cities"
+      ],
+      "band_tones": [
+        "neutral",
+        "neutral",
+        "neutral"
+      ],
+      "definition": "Everyone the Census counts as living in the metro area, and how many of them are adults aged 18 to 70.",
+      "display_scale": 1.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "census_acs",
+        "dataset": "ACS 2020-2024 5-year",
+        "table": "B01003 (bridged to metros)",
+        "variables": [
+          "B01003_001E"
+        ],
+        "geography": "cbsa",
+        "vintage": "2020-2024",
+        "transform_id": "pop_bridge_v1",
+        "tier": "measured"
+      }
+    },
+    "cross_group_pairing_rate": {
+      "pillar": "context",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.0,
+      "status": "retired",
       "display_name": "Partnered outside their group",
       "unit": "% of partnered people",
       "unit_short": "%",
-      "definition": "Among partnered people of a group in this metro, the share whose spouse or unmarried partner is outside that group \u2014 how couples here actually pair, from observed couples. It describes who matched, not who was available, and never what people here want.",
+      "unit_template": null,
+      "mover_phrase": null,
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Retired in m2.0.0. Among partnered people of a group, the share whose spouse or partner is outside that group.",
       "display_scale": 100.0,
       "display_decimals": 1,
+      "retired_reason": "Race filters carry no claim about who partners with whom (ADR 0004); retired from serving in m2.0.0. pairing_cells.parquet and the couples linkage remain for Phase 3.",
       "provenance": {
         "source": "census_acs",
         "dataset": "ACS 2020-2024 5-year PUMS",
@@ -996,10 +1218,15 @@
       "status": "context_only",
       "display_name": "Reported crime (context)",
       "unit": "per 100k residents",
-      "unit_short": "per 100k",
-      "definition": "Reported offense rates at metro level, shown for context only with the FBI's Caution Against Ranking. Never part of any score (D01).",
+      "unit_short": "",
+      "unit_template": null,
+      "mover_phrase": null,
+      "band_labels": null,
+      "band_tones": null,
+      "definition": "Reported offense rates at metro level, shown for context only with the FBI's caution against ranking attached. Never part of any score.",
       "display_scale": 1.0,
       "display_decimals": 1,
+      "retired_reason": null,
       "provenance": {
         "source": "fbi_cde",
         "dataset": "FBI Crime Data Explorer",
@@ -1040,8 +1267,8 @@
   },
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
-    "features.parquet": "b386fa749cc5bae83e1f3787fb40598f342e943a0876cf2e2a9762baaf07d972",
-    "metros.json": "29424d4c32f80e6c613cfa7a3cee2ef66d429083e245a762fe475f74ffa83af4",
+    "features.parquet": "7c94a489b0d6edfaf7b8ec8b2b78e150c4316bbd914c6e18f7b6a2d7c7fd29cf",
+    "metros.json": "7b62d05105bf892cd958a19ed6a3e141cd9151d83156e3a0a12c8dd9fb4fcd21",
     "pairing_cells.parquet": "a770d6e79d20dd5129390f4599ba63741c84bd047e039a399faed7370e82c824",
     "pool_cube.npy": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",
     "sumw2_cube.npy": "5637faa542a5a7d5c85e2b64fe98d3cbaaa215c8c7c1a30c0446eb23a7add9b0"
