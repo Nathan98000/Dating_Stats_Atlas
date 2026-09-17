@@ -69,6 +69,12 @@ PUBLIC_DOMAIN_NOAA = LicenseTerms(
     shippable=True,
     attribution="Source: NOAA NCEI U.S. Climate Normals 1991-2020",
 )
+PUBLIC_DOMAIN_GHCN = LicenseTerms(
+    name="US public domain (17 USC 105); NOAA/NCEI open data",
+    url="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
+    shippable=True,
+    attribution="Source: NOAA GHCN-Daily, 1991–2020 observations",
+)
 PUBLIC_DOMAIN_IPEDS = LicenseTerms(
     name="US public domain (17 USC 105); NCES IPEDS",
     url="https://nces.ed.gov/ipeds/",
@@ -92,6 +98,7 @@ LICENSES: dict[str, LicenseTerms] = {
     "bea_rpp": PUBLIC_DOMAIN_BEA,
     "epa_sld": EPA_SLD_CC0,
     "noaa_normals": PUBLIC_DOMAIN_NOAA,
+    "ghcn_daily": PUBLIC_DOMAIN_GHCN,
     "ipeds": PUBLIC_DOMAIN_IPEDS,
     "fbi_cde": FBI_CDE_CONTEXT_ONLY,
 }

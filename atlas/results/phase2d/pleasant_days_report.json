@@ -1,0 +1,13 @@
+{
+  "metros": 387,
+  "metros_without_station": [],
+  "median_station_km": 8.487587599909023,
+  "p95_station_km": 37.07709229018462,
+  "fallback_rank_gt0": 95,
+  "max": 336.22295081967206,
+  "min": 33.61773373390079,
+  "median": 115.178771794038,
+  "median_abs_change_vs_normals": 44.4576082344619,
+  "at_365_normals": 3,
+  "at_365_ghcn": 0
+}
