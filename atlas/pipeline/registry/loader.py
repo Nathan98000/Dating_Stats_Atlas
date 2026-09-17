@@ -2,8 +2,14 @@
 assertions: every scoring-referenced feature exists, every entry has
 complete provenance AND complete display fields (no user-facing label lives
 in code), retired and context features are pinned to weight 0, no display
-string uses the banned vocabulary (now including "odds"), band labels come
-in threes with valid tones, and weights are coherent.
+string uses the banned vocabulary (now including "odds"), and weights are
+coherent.
+
+Phase 2d (m2.1.0): standing bands come in FIVES with per-feature
+band_direction — the loader derives the tone of each band from direction
+alone (good_low, good_high or neutral), so a position label can never be
+coloured as a virtue by accident. The registry also owns the crime
+context block, the stat-pages list and the new interface strings.
 """
 from __future__ import annotations
 
@@ -22,7 +28,14 @@ BANNED_DISPLAY_TERMS = re.compile(
     r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
     re.IGNORECASE)
 STATUSES = ("active", "deferred", "context_only", "retired")
-BAND_TONES = ("good", "neutral", "poor")
+N_BANDS = 5
+# tones are DERIVED from direction, one rule for every feature: the two
+# low bands, the middle, the two high bands
+BAND_DIRECTION_TONES = {
+    "good_low": ("good", "good", "neutral", "poor", "poor"),
+    "good_high": ("poor", "poor", "neutral", "good", "good"),
+    "neutral": ("neutral",) * 5,
+}
 
 
 @dataclass(frozen=True)
@@ -40,8 +53,10 @@ class FeatureSpec:
     unit_short: str = ""
     unit_template: str | None = None
     mover_phrase: str | None = None
+    stat_page_name: str | None = None   # "See all cities by {this}"
+    band_direction: str | None = None
     band_labels: tuple[str, ...] | None = None
-    band_tones: tuple[str, ...] | None = None
+    band_tones: tuple[str, ...] | None = None     # derived from direction
     band_edges: tuple[float, ...] | None = None
     display_scale: float = 1.0
     display_decimals: int = 1
@@ -57,6 +72,7 @@ class PillarSpec:
     default_weight: float
     display_name: str
     definition: str
+    control_subtitle: str | None = None
 
 
 @dataclass(frozen=True)
@@ -68,8 +84,11 @@ class Registry:
     pleasant_day: dict
     size_vs_odds: dict
     importance_levels: dict[str, float]
-    standing_bands: dict[str, float]
+    standing_bands: dict
     city_cards: tuple[str, ...]
+    stat_pages: tuple[str, ...]
+    crime: dict
+    strings: dict[str, str]
     city_description: dict
     winsor_percentiles: tuple[float, float]
     missing_data_policy: str
@@ -109,8 +128,11 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             unit_short=str(f.get("unit_short", "")),
             unit_template=f.get("unit_template"),
             mover_phrase=f.get("mover_phrase"),
+            stat_page_name=f.get("stat_page_name"),
+            band_direction=f.get("band_direction"),
             band_labels=tuple(f["band_labels"]) if "band_labels" in f else None,
-            band_tones=tuple(f["band_tones"]) if "band_tones" in f else None,
+            band_tones=(BAND_DIRECTION_TONES[f["band_direction"]]
+                        if "band_direction" in f else None),
             band_edges=tuple(float(x) for x in f["band_edges"])
                 if "band_edges" in f else None,
             display_scale=float(f.get("display_scale", 1.0)),
@@ -129,19 +151,22 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             _assert_display_clean(spec.id, spec.display_name, spec.unit,
                                   spec.unit_short, spec.unit_template,
                                   spec.mover_phrase, spec.definition,
+                                  spec.stat_page_name,
                                   *(spec.band_labels or ()))
         if spec.status == "retired":
             assert spec.weight_in_pillar == 0 and spec.retired_reason, (
                 f"{spec.id}: retired entries carry weight 0 and a reason")
         if spec.band_edges is not None:
-            assert len(spec.band_edges) == 2, spec.id
-            assert spec.band_edges[0] < spec.band_edges[1], spec.id
+            assert len(spec.band_edges) == N_BANDS - 1, (
+                f"{spec.id}: {N_BANDS} bands need {N_BANDS - 1} edges")
+            assert list(spec.band_edges) == sorted(spec.band_edges), spec.id
         if spec.band_labels is not None:
-            assert len(spec.band_labels) == 3, (
-                f"{spec.id}: band_labels must name the three bands")
-            assert spec.band_tones is not None and len(spec.band_tones) == 3, (
-                f"{spec.id}: band_labels require band_tones")
-            assert all(t in BAND_TONES for t in spec.band_tones), spec.id
+            assert len(spec.band_labels) == N_BANDS, (
+                f"{spec.id}: band_labels must name the five bands")
+            assert spec.band_direction in BAND_DIRECTION_TONES, (
+                f"{spec.id}: band_labels require band_direction "
+                f"(one of {sorted(BAND_DIRECTION_TONES)}) — the tone of a "
+                f"position comes from direction, never from the position")
         feats[spec.id] = spec
 
     pillars = {}
@@ -150,19 +175,22 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             f"pillar {k}: missing display fields (ADR 0003)")
         pillars[k] = PillarSpec(id=k, default_weight=float(v["default_weight"]),
                                 display_name=str(v["display_name"]),
-                                definition=str(v["definition"]).strip())
+                                definition=str(v["definition"]).strip(),
+                                control_subtitle=v.get("control_subtitle"))
         _assert_display_clean(f"pillar {k}", pillars[k].display_name,
-                              pillars[k].definition)
+                              pillars[k].definition,
+                              pillars[k].control_subtitle)
     assert abs(sum(p.default_weight for p in pillars.values()) - 1.0) < 1e-9
     for p in pillars:
         w = sum(f.weight_in_pillar for f in feats.values()
                 if f.pillar == p and f.status == "active")
         assert abs(w - 1.0) < 1e-9, f"pillar {p} feature weights sum to {w}"
 
-    for fid in ("crime_rate_context", "everyday_prices", "who_lives_here"):
+    for fid in ("violent_crime_rate", "property_crime_rate", "crime_coverage",
+                "everyday_prices", "who_lives_here"):
         spec = feats[fid]
         assert spec.weight_in_pillar == 0 and spec.status == "context_only", (
-            f"{fid} must stay unscored")
+            f"{fid} must stay unscored" + (" (D01)" if "crime" in fid else ""))
     for fid in ("partners_per_rival", "cross_group_pairing_rate"):
         assert feats[fid].status == "retired", (
             f"{fid} left serving in m2.0.0 (ADR 0004)")
@@ -179,15 +207,36 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         "importance multipliers are floors, never zero (ADR 0004)")
     assert levels["not_much"] < levels["some"] < levels["a_lot"]
 
-    bands = {str(k): float(v) for k, v in raw["standing_bands"].items()}
-    assert set(bands) == {"low_below", "high_above"}
-    assert 0 < bands["low_below"] < bands["high_above"] < 100
+    bands = {"edges": [float(x) for x in raw["standing_bands"]["edges"]],
+             "keys": [str(k) for k in raw["standing_bands"]["keys"]]}
+    assert len(bands["edges"]) == N_BANDS - 1, bands
+    assert bands["edges"] == sorted(bands["edges"]), bands
+    assert all(0 < e < 100 for e in bands["edges"]), bands
+    assert len(bands["keys"]) == N_BANDS, bands
 
     cards = tuple(str(c) for c in raw["city_cards"])
     for c in cards:
         assert c in feats, f"city_cards names unknown feature {c}"
         assert feats[c].band_labels is not None, (
             f"city card {c} needs band_labels")
+
+    stat_pages = tuple(str(c) for c in raw["stat_pages"])
+    for c in stat_pages:
+        assert c in feats and feats[c].computed == "static", (
+            f"stat_pages must name static features; {c} is not "
+            f"(matches and balance depend on the visitor's search, and "
+            f"crime never gets a ranking page)")
+        assert "crime" not in c, "crime never gets a ranking page (D01)"
+
+    crime = raw["crime"]
+    assert {"year", "coverage_floor", "implausible_min_pop",
+            "implausible_violent_per_100k",
+            "implausible_property_per_100k"} <= set(crime), crime
+    assert 0.0 < float(crime["coverage_floor"]) < 1.0, crime
+
+    strings = {str(k): str(v).strip() for k, v in raw["strings"].items()}
+    for k, v in strings.items():
+        _assert_display_clean(f"strings.{k}", v)
 
     _assert_display_clean("size_vs_odds labels",
                           raw["size_vs_odds"].get("label_low"),
@@ -204,6 +253,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         naics_venues={str(k): str(v) for k, v in raw["naics_venues"].items()},
         pleasant_day=raw["pleasant_day"], size_vs_odds=raw["size_vs_odds"],
         importance_levels=levels, standing_bands=bands, city_cards=cards,
+        stat_pages=stat_pages, crime=dict(crime), strings=strings,
         city_description=desc,
         winsor_percentiles=tuple(raw["normalization"]["winsor_percentiles"]),
         missing_data_policy=raw["missing_data_policy"].strip())

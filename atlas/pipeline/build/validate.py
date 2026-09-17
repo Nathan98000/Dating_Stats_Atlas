@@ -219,7 +219,11 @@ def check_explanations(build, persona_results) -> dict:
     for d in build.descriptions:
         if BANNED.search(d):
             problems.append({"where": "city_description", "text": d})
+    for k, s in build.manifest.get("strings", {}).items():
+        if BANNED.search(s):
+            problems.append({"where": f"registry_strings:{k}", "text": s})
     n_expl = 0
+    floor = float(build.manifest["crime"]["coverage_floor"])
     for name, res in persona_results.items():
         for r in res["ranked"]:
             n_expl += 1
@@ -231,6 +235,28 @@ def check_explanations(build, persona_results) -> dict:
                 problems.append({"where": f"{name}:{r['cbsa']}",
                                  "defect": "lead phrase repeated",
                                  "text": r["summary_line"]})
+            # crime (item 5): figures only ever render beside their
+            # coverage and caution, and only above the registry floor
+            blk = r.get("crime")
+            if not blk:
+                problems.append({"where": f"{name}:{r['cbsa']}",
+                                 "defect": "row missing crime block"})
+                continue
+            for text in (blk.get("caution", ""), blk.get("note", ""),
+                         blk.get("coverage_line", "")):
+                if text and BANNED.search(text):
+                    problems.append({"where": f"{name}:{r['cbsa']}:crime",
+                                     "text": text})
+            if blk["available"]:
+                if not blk.get("coverage_line") or len(blk.get("stats", [])) != 2:
+                    problems.append({"where": f"{name}:{r['cbsa']}:crime",
+                                     "defect": "figures without coverage"})
+                if blk.get("coverage_pct", 0) < floor * 100:
+                    problems.append({"where": f"{name}:{r['cbsa']}:crime",
+                                     "defect": "figures below the coverage floor"})
+            elif not blk.get("note"):
+                problems.append({"where": f"{name}:{r['cbsa']}:crime",
+                                 "defect": "blank state without its note"})
     return {"pass": not problems, "explanations_checked": n_expl,
             "problems": problems[:20]}
 
@@ -309,7 +335,7 @@ def main(build_dir: str) -> int:
     persona_results = {}
     golden_ok = True
     for v in GOLDEN_VECTORS:
-        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds",
+        body = {k: v[k] for k in ("self", "seeking", "weights",
                                   "pool_vs_balance", "importance") if k in v}
         res = engine.rank(build, engine.parse_request(body))
         persona_results[v["name"]] = res
@@ -450,7 +476,91 @@ def main(build_dir: str) -> int:
             taus[f"{pillar}{'+' if direction > 0 else '-'}20%"] = round(float(tau), 4)
     report["soft"]["weight_sensitivity"] = {
         "kendall_tau": taus, "target": KENDALL_MIN,
+        "default_weights": dict(build.manifest["model_defaults"]["pillar_weights"]),
+        "note": "six pillars since m2.1.0. Read tau AGAINST the weight: "
+                "students (0.04) and weather (0.06) clear the bar largely "
+                "because ±20% of a small weight moves few ranks — that is "
+                "arithmetic, not robustness, and is reported as such.",
         "pass": all(t >= KENDALL_MIN for t in taus.values())}
+
+    # ---- hard: pleasant-days sanity (item 11) -------------------------------
+    # The Normals defect served San Francisco 365; these assertions make
+    # the recomputation's two headline claims machine-checked on every
+    # build: nobody at 365, and the wettest and coldest metros in the set
+    # sit in the bottom half / bottom decile respectively.
+    pdays = build.static["pleasant_days"]
+    aux = pd.read_csv(RESULTS / "phase2d" / "pleasant_days_ghcn.csv",
+                      dtype={"cbsa": str}).set_index("cbsa")
+    aux = aux.reindex(build.metro_levels)
+    order = pd.Series(pdays, index=build.metro_levels).rank(ascending=False)
+    # The brief's "wettest metro near the bottom" guess is DISPROVED by
+    # the climate under the approved thresholds: the drizzle belt's wet
+    # days are mostly cold days already excluded by temperature (Longview
+    # WA, most rain-days, sits mid-pack on real data), and the most
+    # inches fall on the warm Gulf coast in storms that leave plenty of
+    # mild dry days. What must actually hold is the MECHANISM: the rain
+    # term only ever removes days, and removes most where wet days are
+    # mild ones. Both wetness measures and the removed-days figure ship
+    # so the report can tell that story with numbers.
+    coldest = aux["winter_tmin_f"].idxmin()
+    n = int(np.isfinite(pdays).sum())
+    removed = aux["pleasant_days_no_rain"] - aux["pleasant_days"]
+    fin = removed.notna()
+    from scipy.stats import spearmanr as _sp
+    rain_corr = float(_sp(removed[fin], aux.loc[fin, "rainy_days"]).statistic)
+    checks = {
+        "max_pleasant_days": round(float(np.nanmax(pdays)), 1),
+        "no_metro_at_365": bool(np.nanmax(pdays) < 364.5),
+        "rain_term_only_removes": bool((removed[fin] >= -1e-9).all()),
+        "median_days_removed_by_rain": round(float(removed[fin].median()), 1),
+        "max_days_removed_by_rain": [aux.index[removed.idxmax() == aux.index][0]
+                                     if fin.any() else None,
+                                     round(float(removed[fin].max()), 1)],
+        "removed_vs_rainy_days_spearman": round(rain_corr, 3),
+        "wettest_by_rain_days": [aux["rainy_days"].idxmax(),
+                                 int(order[aux["rainy_days"].idxmax()])],
+        "wettest_by_inches": [aux["annual_precip_in"].idxmax(),
+                              int(order[aux["annual_precip_in"].idxmax()])],
+        "coldest_metro": coldest,
+        "coldest_rank_of_n": [int(order[coldest]), n],
+        "coldest_in_bottom_decile": bool(order[coldest] > n * 0.9),
+        "metros_with_value": n,
+    }
+    ok = (checks["no_metro_at_365"] and checks["rain_term_only_removes"]
+          and rain_corr > 0.5 and checks["coldest_in_bottom_decile"])
+    report["hard"]["pleasant_days_sanity"] = {"pass": bool(ok), **checks}
+    if not ok:
+        hard_fail.append("pleasant_days_sanity")
+
+    # ---- hard: crime consistency (item 5, D01) ------------------------------
+    # Never scored (the scored set carries no crime feature), coverage in
+    # [0,1], and property > violent essentially everywhere — the reverse
+    # is so rare in US data that more than 5% of metros violating it means
+    # the aggregation is broken, not the country.
+    from atlas.model.scoring import scored_features
+    scored_ids = {f["id"] for f in scored_features(build)}
+    v_ = build.crime["violent_crime_rate"]
+    p_ = build.crime["property_crime_rate"]
+    c_ = build.crime["crime_coverage"]
+    have = np.isfinite(v_) & np.isfinite(p_) & np.isfinite(c_)
+    viol = [build.metro_levels[i] for i in np.where(have & (v_ >= p_))[0]]
+    cov_ok = bool(np.all((c_[np.isfinite(c_)] >= 0)
+                         & (c_[np.isfinite(c_)] <= 1.0)))
+    crime_checks = {
+        "crime_in_scored_set": sorted(x for x in scored_ids if "crime" in x),
+        "metros_with_figures": int(have.sum()),
+        "metros_above_floor": int(
+            (c_[np.isfinite(c_)] >= float(
+                build.manifest["crime"]["coverage_floor"])).sum()),
+        "coverage_in_unit_interval": cov_ok,
+        "violent_ge_property_metros": viol,
+    }
+    ok = (not crime_checks["crime_in_scored_set"] and cov_ok
+          and have.sum() > 300
+          and len(viol) <= 0.05 * max(int(have.sum()), 1))
+    report["hard"]["crime_consistency"] = {"pass": bool(ok), **crime_checks}
+    if not ok:
+        hard_fail.append("crime_consistency")
 
     # ---- soft: external correlation ----------------------------------------
     geo = "metropolitan statistical area/micropolitan statistical area"

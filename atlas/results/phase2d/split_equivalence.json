@@ -1,0 +1,61 @@
+{
+ "old_build": "2c8d7285c720",
+ "tolerance": 1e-09,
+ "personas": {
+  "default_profile": {
+   "metros": 193,
+   "max_abs_score_diff_complete_metros": 3.552713678800501e-15
+  },
+  "A_woman32_ba_men_75k": {
+   "metros": 58,
+   "max_abs_score_diff_complete_metros": 7.105427357601002e-15
+  },
+  "B_man28_women_never": {
+   "metros": 193,
+   "max_abs_score_diff_complete_metros": 7.105427357601002e-15
+  },
+  "C_woman38_grad_men_100k": {
+   "metros": 41,
+   "max_abs_score_diff_complete_metros": 7.105427357601002e-15
+  },
+  "D_man41_women_50k": {
+   "metros": 136,
+   "max_abs_score_diff_complete_metros": 1.4210854715202004e-14
+  },
+  "E_black_woman29_stress": {
+   "metros": 9,
+   "max_abs_score_diff_complete_metros": 0.0
+  },
+  "race_asian_nh_men": {
+   "metros": 29,
+   "max_abs_score_diff_complete_metros": 1.4210854715202004e-14
+  },
+  "race_hispanic_women": {
+   "metros": 89,
+   "max_abs_score_diff_complete_metros": 7.105427357601002e-15
+  },
+  "below_bar_nhpi_250k": {
+   "metros": 0,
+   "max_abs_score_diff_complete_metros": 0.0
+  },
+  "slider_best_odds": {
+   "metros": 193,
+   "max_abs_score_diff_complete_metros": 1.4210854715202004e-14
+  },
+  "same_sex_pool": {
+   "metros": 120,
+   "max_abs_score_diff_complete_metros": 0.0
+  }
+ },
+ "metros_with_missing_lifestyle_feature": [
+  "14500",
+  "24260",
+  "29740",
+  "37340"
+ ],
+ "worst_abs_score_diff_complete_metros": 1.4210854715202004e-14,
+ "missing_pillar_policy_moves": {
+  "14500": 3.929,
+  "37340": 2.372
+ }
+}

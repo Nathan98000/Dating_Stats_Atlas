@@ -5,9 +5,9 @@
   "display_name": "Ann Arbor, MI",
   "display_name_full": "Ann Arbor, Michigan",
   "slug": "ann-arbor-michigan",
-  "description": "A college town of about 350,000 people an hour southwest of Detroit.",
-  "lat": 42.2522,
-  "lon": -83.8434,
+  "description": "A college town of about 350,000 people half an hour west of Detroit.",
+  "lat": 42.2761,
+  "lon": -83.7312,
   "ranked_set": true
  },
  {
@@ -17,8 +17,8 @@
   "display_name_full": "Atlanta, Georgia",
   "slug": "atlanta-georgia",
   "description": "A vast metro area of about 6.3 million people in Georgia.",
-  "lat": 33.797,
-  "lon": -84.321,
+  "lat": 33.7629,
+  "lon": -84.4227,
   "ranked_set": true
  },
  {
@@ -28,8 +28,8 @@
   "display_name_full": "Austin, Texas",
   "slug": "austin-texas",
   "description": "A major city of about 2.4 million people about three hours west of Houston.",
-  "lat": 30.3166,
-  "lon": -97.7751,
+  "lat": 30.2986,
+  "lon": -97.7541,
   "ranked_set": true
  },
  {
@@ -39,8 +39,8 @@
   "display_name_full": "Eagle Pass, Texas",
   "slug": "eagle-pass-texas",
   "description": "A city of about 60,000 people about three hours southwest of San Antonio.",
-  "lat": 28.7298,
-  "lon": -100.3167,
+  "lat": 28.7011,
+  "lon": -100.4762,
   "ranked_set": false
  },
  {
@@ -50,8 +50,8 @@
   "display_name_full": "Huntington, West Virginia",
   "slug": "huntington-west-virginia",
   "description": "A city of about 350,000 people two hours south of Columbus.",
-  "lat": 38.4335,
-  "lon": -82.4507,
+  "lat": 38.4093,
+  "lon": -82.4335,
   "ranked_set": true
  },
  {
@@ -60,9 +60,9 @@
   "display_name": "Killeen, TX",
   "display_name_full": "Killeen, Texas",
   "slug": "killeen-texas",
-  "description": "A city of about 500,000 people an hour and a half north of Austin.",
-  "lat": 31.2141,
-  "lon": -97.6388,
+  "description": "A city of about 500,000 people an hour north of Austin.",
+  "lat": 31.0753,
+  "lon": -97.7316,
   "ranked_set": true
  },
  {
@@ -72,8 +72,8 @@
   "display_name_full": "Minneapolis, Minnesota",
   "slug": "minneapolis-minnesota",
   "description": "A major city of about 3.7 million people in Minnesota.",
-  "lat": 45.0127,
-  "lon": -93.4271,
+  "lat": 44.9633,
+  "lon": -93.2683,
   "ranked_set": true
  },
  {
@@ -83,8 +83,8 @@
   "display_name_full": "New York, New York",
   "slug": "new-york-new-york",
   "description": "A vast metro area of about 19.8 million people in New York.",
-  "lat": 40.7536,
-  "lon": -74.027,
+  "lat": 40.6627,
+  "lon": -73.9387,
   "ranked_set": true
  },
  {
@@ -94,8 +94,8 @@
   "display_name_full": "Pittsburgh, Pennsylvania",
   "slug": "pittsburgh-pennsylvania",
   "description": "A major city of about 2.4 million people in Pennsylvania.",
-  "lat": 40.5158,
-  "lon": -79.9938,
+  "lat": 40.4399,
+  "lon": -79.9755,
   "ranked_set": true
  },
  {
@@ -105,8 +105,8 @@
   "display_name_full": "Provo, Utah",
   "slug": "provo-utah",
   "description": "A college town of about 700,000 people an hour south of Salt Lake City.",
-  "lat": 40.1204,
-  "lon": -111.6686,
+  "lat": 40.2453,
+  "lon": -111.6451,
   "ranked_set": true
  },
  {
@@ -116,8 +116,8 @@
   "display_name_full": "San Jose, California",
   "slug": "san-jose-california",
   "description": "A major city of about 2 million people an hour southeast of San Francisco.",
-  "lat": 37.2216,
-  "lon": -121.6895,
+  "lat": 37.296,
+  "lon": -121.8146,
   "ranked_set": true
  },
  {
@@ -127,8 +127,8 @@
   "display_name_full": "Washington, the District of Columbia",
   "slug": "washington-the-district-of-columbia",
   "description": "A vast metro area of about 6.3 million people in the District of Columbia.",
-  "lat": 38.8352,
-  "lon": -77.2692,
+  "lat": 38.9042,
+  "lon": -77.0165,
   "ranked_set": true
  }
 ]

@@ -1,4 +1,4 @@
-"""Build the pinned 12-metro test fixture and regenerate goldens (m1.2.0).
+"""Build the pinned 12-metro test fixture and regenerate goldens (m2.1.0).
 
 Run AFTER a full cube build:
 
@@ -78,21 +78,29 @@ GOLDEN_VECTORS = [
      "self": {"sex": "male", "age": 35},
      "seeking": {"age": [18, 70],
                  "marital": ["never_married", "previously_married"]}},
-    # deprecated-alias coverage: size_vs_odds is accepted for exactly this
-    # version (ADR 0004)
-    {"name": "slider_best_odds",
+    # the slider at its balance end (size_vs_odds itself left the contract
+    # in m2.1.0, its one deprecation version served)
+    {"name": "slider_all_balance",
      "self": {"sex": "female", "age": 29},
      "seeking": {"age": [27, 36],
                  "marital": ["never_married", "previously_married"]},
-     "size_vs_odds": 1.0},
-    # the v3 controls: named knobs, mapped through registry constants
+     "pool_vs_balance": 1.0},
+    # the four m2.1.0 controls: named knobs, mapped through registry
+    # constants — students and weather now separately steerable (item 4)
     {"name": "importance_controls",
      "self": {"sex": "female", "age": 34},
      "seeking": {"age": [30, 44],
                  "marital": ["never_married", "previously_married"]},
      "pool_vs_balance": 0.7,
      "importance": {"cost": "a_lot", "reach": "not_much",
-                    "lifestyle": "some"}},
+                    "students": "a_lot", "weather": "not_much"}},
+    # the deprecated bundled control, accepted for exactly m2.1.0: its
+    # level applies to both split pillars (what it used to mean)
+    {"name": "importance_lifestyle_alias",
+     "self": {"sex": "male", "age": 36},
+     "seeking": {"age": [30, 42],
+                 "marital": ["never_married", "previously_married"]},
+     "importance": {"lifestyle": "a_lot"}},
     {"name": "same_sex_pool",
      "self": {"sex": "male", "age": 31},
      "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"],
@@ -146,7 +154,7 @@ def make_fixture(build_dir: Path) -> None:
     fx = engine.load_build(FIXTURE)
     vectors = []
     for v in GOLDEN_VECTORS:
-        body = {k: v[k] for k in ("self", "seeking", "weights", "size_vs_odds",
+        body = {k: v[k] for k in ("self", "seeking", "weights",
                                   "pool_vs_balance", "importance") if k in v}
         res = engine.rank(fx, engine.parse_request(body))
         expect = {

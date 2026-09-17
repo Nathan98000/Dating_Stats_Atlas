@@ -1,4 +1,4 @@
-"""Golden tests (m2.0.0): thirteen pinned request vectors against the
+"""Golden tests (m2.1.0): fourteen pinned request vectors against the
 pinned 12-metro fixture. Exact rankings, scores, pools, balance figures,
 summary lines and suppression. A model change that moves any of these
 fails until MODEL_VERSION is bumped and goldens are regenerated
@@ -33,14 +33,21 @@ def test_model_version_pinned(goldens):
 
 def test_goldens_cover_required_shapes(goldens):
     vecs = goldens["vectors"]
-    assert len(vecs) == 13
+    assert len(vecs) == 14
     race_filtered = [v for v in vecs
                      if v["request"]["seeking"].get("race_ethnicity")]
     assert len(race_filtered) >= 3
     assert any(len(v["expect"]["suppressed"]) >= 6 for v in vecs)
-    assert any("size_vs_odds" in v["request"] for v in vecs), (
-        "the deprecated alias needs coverage for exactly this version")
+    assert not any("size_vs_odds" in v["request"] for v in vecs), (
+        "size_vs_odds left the contract in m2.1.0 — its one deprecation "
+        "version was m2.0.0")
     assert any("pool_vs_balance" in v["request"] for v in vecs)
+    # the four m2.1.0 controls and the one-version lifestyle alias both
+    # need pinned coverage (ADR 0005)
+    assert any({"students", "weather"} <= set(v["request"].get("importance")
+                                              or {}) for v in vecs)
+    assert any("lifestyle" in (v["request"].get("importance") or {})
+               for v in vecs)
 
 
 def test_exact_rankings_scores_and_suppression(build, goldens):

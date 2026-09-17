@@ -1,8 +1,8 @@
 {
-  "data_version": "2c8d7285c720",
-  "model_version": "m2.0.0",
+  "data_version": "dd7374675de7",
+  "model_version": "m2.1.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-17T07:19:17-0400",
+  "created_at": "2026-09-17T12:40:44-0400",
   "axes": [
     {
       "name": "metro",
@@ -605,7 +605,8 @@
       "balance": 0.25,
       "reach": 0.2,
       "cost": 0.15,
-      "lifestyle": 0.1
+      "weather": 0.06,
+      "students": 0.04
     },
     "size_vs_odds": {
       "pool_plus_balance_mass": 0.55,
@@ -620,8 +621,19 @@
     }
   },
   "standing_bands": {
-    "low_below": 33.4,
-    "high_above": 66.6
+    "edges": [
+      20.0,
+      40.0,
+      60.0,
+      80.0
+    ],
+    "keys": [
+      "lowest",
+      "low",
+      "mid",
+      "high",
+      "highest"
+    ]
   },
   "city_cards": [
     "median_gross_rent",
@@ -632,31 +644,69 @@
     "students_per_1k_adults",
     "who_lives_here"
   ],
+  "stat_pages": [
+    "median_gross_rent",
+    "everyday_prices",
+    "venues_per_100k",
+    "resident_walkability_index",
+    "pleasant_days",
+    "students_per_1k_adults",
+    "who_lives_here"
+  ],
+  "crime": {
+    "year": 2025,
+    "coverage_floor": 0.6,
+    "implausible_min_pop": 100000,
+    "implausible_violent_per_100k": 10,
+    "implausible_property_per_100k": 100
+  },
+  "strings": {
+    "slider_info": "Leaning toward size favours cities where more people match your whole search \u2014 the most possible matches. Leaning toward balance favours cities where single men and women in your ages come out closest to even. Same survey, two different questions.",
+    "crime_caution": "The FBI cautions against using these figures to rank or compare places: how much crime gets reported, and how many of a city's police agencies report at all, differ too much from city to city. That is why crime is never part of any score on this site.",
+    "crime_coverage_line": "Police agencies covering {coverage} of the people here reported a full year of {year} data. The rates count only what those agencies cover.",
+    "crime_blank": "Not enough of {city}'s police agencies reported a full year of data for a figure we'd stand behind, so none is shown.",
+    "crime_compare_note": "Read each city's crime figures on their own. Different shares of each city's police agencies report, so the two columns aren't comparable \u2014 the FBI itself cautions against comparisons like that.",
+    "stat_page_link": "See all cities by {name}",
+    "stat_page_intro": "Every city this site can rank, ordered by one measure. Your search never changes these figures.",
+    "stat_page_missing": "{n} of the ranked cities don't have this figure and are left off this list rather than shown as zero.",
+    "compare_default_note": "These figures use the stated default search \u2014 {search}. Change anything on the home page and they become yours."
+  },
   "pillars": {
     "pool": {
       "display_name": "Dating pool size",
       "definition": "How many people here match what you are looking for.",
-      "default_weight": 0.3
+      "default_weight": 0.3,
+      "control_subtitle": null
     },
     "balance": {
       "display_name": "Dating pool balance",
       "definition": "Single men per 100 single women in the ages you picked (or the mirror, if you are looking for women) \u2014 the plain ratio, before any other filter.",
-      "default_weight": 0.25
+      "default_weight": 0.25,
+      "control_subtitle": null
     },
     "reach": {
-      "display_name": "Going out & getting around",
+      "display_name": "Social life",
       "definition": "Places to go out, and how walkable daily life is.",
-      "default_weight": 0.2
+      "default_weight": 0.2,
+      "control_subtitle": "bars, caf\u00e9s and restaurants, and walkable streets"
     },
     "cost": {
       "display_name": "Cost of living",
       "definition": "What living here costs \u2014 rent and everyday prices.",
-      "default_weight": 0.15
+      "default_weight": 0.15,
+      "control_subtitle": "rent and everyday prices"
     },
-    "lifestyle": {
-      "display_name": "Weather & local life",
-      "definition": "Nice days a year and the student presence around town.",
-      "default_weight": 0.1
+    "weather": {
+      "display_name": "Weather",
+      "definition": "Mild, dry days a year.",
+      "default_weight": 0.06,
+      "control_subtitle": "mild, dry days a year"
+    },
+    "students": {
+      "display_name": "Student life",
+      "definition": "How many college students live there.",
+      "default_weight": 0.04,
+      "control_subtitle": "how many college students live there"
     }
   },
   "licenses": {
@@ -695,18 +745,18 @@
       "attribution": null,
       "notes": "Never scored (D01): metro-page context only, with the FBI's own Caution Against Ranking attached. default_weight is pinned to 0."
     },
+    "ghcn_daily": {
+      "name": "US public domain (17 USC 105); NOAA/NCEI open data",
+      "url": "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
+      "shippable": true,
+      "attribution": "Source: NOAA GHCN-Daily, 1991\u20132020 observations",
+      "notes": null
+    },
     "ipeds": {
       "name": "US public domain (17 USC 105); NCES IPEDS",
       "url": "https://nces.ed.gov/ipeds/",
       "shippable": true,
       "attribution": "Source: NCES IPEDS",
-      "notes": null
-    },
-    "noaa_normals": {
-      "name": "US public domain (17 USC 105); NOAA/NCEI open data",
-      "url": "https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals",
-      "shippable": true,
-      "attribution": "Source: NOAA NCEI U.S. Climate Normals 1991-2020",
       "notes": null
     }
   },
@@ -722,6 +772,8 @@
       "unit_short": "",
       "unit_template": null,
       "mover_phrase": "the size of the pool",
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -754,6 +806,8 @@
       "unit_short": "per 100",
       "unit_template": null,
       "mover_phrase": "the balance",
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -786,6 +840,8 @@
       "unit_short": "",
       "unit_template": null,
       "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -818,14 +874,20 @@
       "unit_short": "$/mo",
       "unit_template": null,
       "mover_phrase": "rent",
+      "stat_page_name": null,
+      "band_direction": "good_low",
       "band_labels": [
+        "Far cheaper than most cities",
         "Cheaper than most cities",
         "About average for rent",
-        "Pricier than most cities"
+        "Pricier than most cities",
+        "Among the priciest cities"
       ],
       "band_tones": [
         "good",
+        "good",
         "neutral",
+        "poor",
         "poor"
       ],
       "band_edges": null,
@@ -857,6 +919,8 @@
       "unit_short": "(US = 100)",
       "unit_template": null,
       "mover_phrase": "everyday prices",
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -888,6 +952,8 @@
       "unit_short": "(US = 100)",
       "unit_template": null,
       "mover_phrase": "everyday prices",
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -919,17 +985,28 @@
       "unit_short": "(US = 100)",
       "unit_template": null,
       "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": "good_low",
       "band_labels": [
-        "A little below average",
+        "Far below the US average",
+        "Below the US average",
         "About the US average",
-        "Above the US average"
+        "Above the US average",
+        "Far above the US average"
       ],
       "band_tones": [
         "good",
+        "good",
         "neutral",
+        "poor",
         "poor"
       ],
-      "band_edges": null,
+      "band_edges": [
+        90.0,
+        97.0,
+        103.0,
+        110.0
+      ],
       "definition": "Goods and services prices together, where the US average is 100 \u2014 the average of the two BEA price levels the score uses.",
       "display_scale": 1.0,
       "display_decimals": 0,
@@ -959,14 +1036,20 @@
       "unit_short": "per 100k adults",
       "unit_template": null,
       "mover_phrase": "places to go out",
+      "stat_page_name": null,
+      "band_direction": "good_high",
       "band_labels": [
+        "Far fewer than most cities",
         "Fewer than most cities",
         "About average",
-        "More than most cities"
+        "More than most cities",
+        "Far more than most cities"
       ],
       "band_tones": [
         "poor",
+        "poor",
         "neutral",
+        "good",
         "good"
       ],
       "band_edges": null,
@@ -1003,14 +1086,20 @@
       "unit_short": "on the 1\u201320 index",
       "unit_template": null,
       "mover_phrase": "walkable neighbourhoods",
+      "stat_page_name": null,
+      "band_direction": "good_high",
       "band_labels": [
+        "Among the least walkable",
         "Less walkable than most",
         "About average",
-        "More walkable than most"
+        "More walkable than most",
+        "Among the most walkable"
       ],
       "band_tones": [
         "poor",
+        "poor",
         "neutral",
+        "good",
         "good"
       ],
       "band_edges": null,
@@ -1045,6 +1134,8 @@
       "unit_short": "",
       "unit_template": null,
       "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -1064,62 +1155,75 @@
       }
     },
     "pleasant_days": {
-      "pillar": "lifestyle",
+      "pillar": "weather",
       "kind": "intensive",
       "direction": 1,
-      "weight_in_pillar": 0.6,
+      "weight_in_pillar": 1.0,
       "status": "active",
       "display_name": "Nice days a year",
       "unit": "mild and dry enough to be outside",
       "unit_short": "",
       "unit_template": null,
       "mover_phrase": "the weather",
+      "stat_page_name": null,
+      "band_direction": "good_high",
       "band_labels": [
+        "Far fewer than most cities",
         "Fewer than most cities",
         "About average",
-        "More than most cities"
+        "More than most cities",
+        "Far more than most cities"
       ],
       "band_tones": [
         "poor",
+        "poor",
         "neutral",
+        "good",
         "good"
       ],
       "band_edges": null,
-      "definition": "Days a year whose normal high sits between 55 and 85\u00b0F with a low above 40\u00b0F (NOAA climate normals).",
+      "definition": "Days a year that actually stayed between 55 and 85\u00b0F, didn't dip below 40\u00b0F, and saw no more than a light shower \u2014 counted from thirty years of daily weather-station records, then averaged.",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
       "provenance": {
-        "source": "noaa_normals",
-        "dataset": "NCEI U.S. Climate Normals 1991-2020 daily",
-        "table": "normals-daily access CSVs",
+        "source": "ghcn_daily",
+        "dataset": "NOAA GHCN-Daily",
+        "table": "daily-summaries access CSVs, 1991-2020",
         "variables": [
-          "DLY-TMAX-NORMAL",
-          "DLY-TMIN-NORMAL"
+          "TMAX",
+          "TMIN",
+          "PRCP"
         ],
         "geography": "station -> cbsa",
         "vintage": "1991-2020",
-        "transform_id": "lifestyle_pleasant_days_v1",
+        "transform_id": "lifestyle_pleasant_days_v2",
         "tier": "measured"
       }
     },
     "students_per_1k_adults": {
-      "pillar": "lifestyle",
+      "pillar": "students",
       "kind": "intensive",
       "direction": 1,
-      "weight_in_pillar": 0.4,
+      "weight_in_pillar": 1.0,
       "status": "active",
       "display_name": "Students",
       "unit": "college students per 1,000 adults",
       "unit_short": "per 1k adults",
       "unit_template": null,
       "mover_phrase": "the student crowd",
+      "stat_page_name": null,
+      "band_direction": "neutral",
       "band_labels": [
+        "Far fewer than most cities",
         "Fewer than most cities",
         "About average",
+        "More than most cities",
         "Far more than most cities"
       ],
       "band_tones": [
+        "neutral",
+        "neutral",
         "neutral",
         "neutral",
         "neutral"
@@ -1158,19 +1262,27 @@
       "unit_short": "",
       "unit_template": "people, of whom {adults} are adults",
       "mover_phrase": null,
+      "stat_page_name": "population",
+      "band_direction": "neutral",
       "band_labels": [
         "One of the smaller cities",
+        "A modest-sized city",
         "A mid-sized city",
+        "A big city",
         "One of the biggest cities"
       ],
       "band_tones": [
         "neutral",
         "neutral",
+        "neutral",
+        "neutral",
         "neutral"
       ],
       "band_edges": [
+        250000.0,
         500000.0,
-        2000000.0
+        1000000.0,
+        2500000.0
       ],
       "definition": "Everyone the Census counts as living in the metro area, and how many of them are adults aged 18 to 70.",
       "display_scale": 1.0,
@@ -1200,6 +1312,8 @@
       "unit_short": "%",
       "unit_template": null,
       "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
@@ -1227,32 +1341,103 @@
         "tier": "measured"
       }
     },
-    "crime_rate_context": {
+    "violent_crime_rate": {
       "pillar": "context",
       "kind": "intensive",
       "direction": -1,
       "weight_in_pillar": 0.0,
       "status": "context_only",
-      "display_name": "Reported crime (context)",
-      "unit": "per 100k residents",
-      "unit_short": "",
+      "display_name": "Violent crime",
+      "unit": "reported per 100,000 people a year",
+      "unit_short": "per 100k",
       "unit_template": null,
       "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
-      "definition": "Reported offense rates at metro level, shown for context only with the FBI's caution against ranking attached. Never part of any score.",
+      "definition": "Murder, rape, robbery and aggravated assault reported to police, per 100,000 people in the areas whose agencies reported a full year (FBI Crime Data Explorer).",
       "display_scale": 1.0,
-      "display_decimals": 1,
+      "display_decimals": 0,
       "retired_reason": null,
       "provenance": {
         "source": "fbi_cde",
         "dataset": "FBI Crime Data Explorer",
-        "table": "offense rates (agency -> cbsa)",
-        "variables": [],
-        "geography": "cbsa",
-        "vintage": "through 2025-12",
-        "transform_id": "none",
+        "table": "summarized agency offences (agency -> cbsa)",
+        "variables": [
+          "violent-crime"
+        ],
+        "geography": "agency -> county -> cbsa",
+        "vintage": "2021-2025",
+        "transform_id": "crime_rates_v1",
+        "tier": "context"
+      }
+    },
+    "property_crime_rate": {
+      "pillar": "context",
+      "kind": "intensive",
+      "direction": -1,
+      "weight_in_pillar": 0.0,
+      "status": "context_only",
+      "display_name": "Property crime",
+      "unit": "reported per 100,000 people a year",
+      "unit_short": "per 100k",
+      "unit_template": null,
+      "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
+      "band_labels": null,
+      "band_tones": null,
+      "band_edges": null,
+      "definition": "Burglary, larceny-theft and motor vehicle theft reported to police, per 100,000 people in the areas whose agencies reported a full year (FBI Crime Data Explorer).",
+      "display_scale": 1.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "fbi_cde",
+        "dataset": "FBI Crime Data Explorer",
+        "table": "summarized agency offences (agency -> cbsa)",
+        "variables": [
+          "property-crime"
+        ],
+        "geography": "agency -> county -> cbsa",
+        "vintage": "2021-2025",
+        "transform_id": "crime_rates_v1",
+        "tier": "context"
+      }
+    },
+    "crime_coverage": {
+      "pillar": "context",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.0,
+      "status": "context_only",
+      "display_name": "Reporting coverage",
+      "unit": "of people here live in areas whose police reported a full year",
+      "unit_short": "",
+      "unit_template": null,
+      "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
+      "band_labels": null,
+      "band_tones": null,
+      "band_edges": null,
+      "definition": "The share of the metro's population living in areas whose police agencies reported a full year of data \u2014 the reason crime figures aren't comparable between cities.",
+      "display_scale": 100.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "fbi_cde",
+        "dataset": "FBI Crime Data Explorer",
+        "table": "summarized agency offences (agency -> cbsa)",
+        "variables": [
+          "violent-crime",
+          "property-crime"
+        ],
+        "geography": "agency -> county -> cbsa",
+        "vintage": "2021-2025",
+        "transform_id": "crime_rates_v1",
         "tier": "context"
       }
     }
@@ -1281,12 +1466,12 @@
       "P18_060N",
       "P1_001N"
     ],
-    "n_source_files_fetched": 1578
+    "n_source_files_fetched": 2580
   },
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
-    "features.parquet": "7c94a489b0d6edfaf7b8ec8b2b78e150c4316bbd914c6e18f7b6a2d7c7fd29cf",
-    "metros.json": "7b62d05105bf892cd958a19ed6a3e141cd9151d83156e3a0a12c8dd9fb4fcd21",
+    "features.parquet": "2e273ea4177f3aa92e429b697b3c61a6ad9b8acaf494f90b4d75fa80a8785432",
+    "metros.json": "53b1e30e58d94c35f45b493ba7c174983a0826d540edb4423a685783f062db49",
     "pairing_cells.parquet": "a770d6e79d20dd5129390f4599ba63741c84bd047e039a399faed7370e82c824",
     "pool_cube.npy": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",
     "sumw2_cube.npy": "5637faa542a5a7d5c85e2b64fe98d3cbaaa215c8c7c1a30c0446eb23a7add9b0"

@@ -1,11 +1,11 @@
 {
-  "build": "2c8d7285c720",
-  "model_version": "m2.0.0",
+  "build": "dd7374675de7",
+  "model_version": "m2.1.0",
   "generated_by": {
-    "git_sha": "c8a29600a1360251052cec14c7f2a497aee25dc0",
+    "git_sha": "8dba59c288099fa094f0bc5d7be0330db3555b36",
     "git_dirty": true,
-    "generated_at": "2026-09-17T07:44:40-0400",
-    "engine_model_version": "m2.0.0"
+    "generated_at": "2026-09-17T12:41:09-0400",
+    "engine_model_version": "m2.1.0"
   },
   "hard": {
     "interval_calibration": {
@@ -69,11 +69,14 @@
         "broad_any": {
           "share_replicates_with_>=8of10_overlap": 1.0
         },
-        "slider_best_odds": {
-          "share_replicates_with_>=8of10_overlap": 1.0
+        "slider_all_balance": {
+          "share_replicates_with_>=8of10_overlap": 0.9
         },
         "importance_controls": {
-          "share_replicates_with_>=8of10_overlap": 0.9875
+          "share_replicates_with_>=8of10_overlap": 0.95
+        },
+        "importance_lifestyle_alias": {
+          "share_replicates_with_>=8of10_overlap": 1.0
         },
         "same_sex_pool": {
           "share_replicates_with_>=8of10_overlap": 1.0
@@ -83,7 +86,7 @@
     },
     "explanation_invariants": {
       "pass": true,
-      "explanations_checked": 1287,
+      "explanations_checked": 1480,
       "problems": []
     },
     "adversarial_artifacts": {
@@ -102,6 +105,41 @@
       ],
       "top10_appearances": [],
       "rule": "a watchlist metro in a top-10 fails if > 15% of that persona's pool there is noninstitutional GQ"
+    },
+    "pleasant_days_sanity": {
+      "pass": true,
+      "max_pleasant_days": 336.2,
+      "no_metro_at_365": true,
+      "rain_term_only_removes": true,
+      "median_days_removed_by_rain": 35.3,
+      "max_days_removed_by_rain": [
+        "27740",
+        52.4
+      ],
+      "removed_vs_rainy_days_spearman": 0.809,
+      "wettest_by_rain_days": [
+        "31020",
+        57
+      ],
+      "wettest_by_inches": [
+        "19300",
+        106
+      ],
+      "coldest_metro": "21820",
+      "coldest_rank_of_n": [
+        373,
+        387
+      ],
+      "coldest_in_bottom_decile": true,
+      "metros_with_value": 387
+    },
+    "crime_consistency": {
+      "pass": true,
+      "crime_in_scored_set": [],
+      "metros_with_figures": 386,
+      "metros_above_floor": 372,
+      "coverage_in_unit_interval": true,
+      "violent_ge_property_metros": []
     }
   },
   "soft": {
@@ -125,7 +163,7 @@
           "persona": "A_woman32_ba_men_75k",
           "cbsa": "41860",
           "rank": 2,
-          "score": 73.6,
+          "score": 73.3,
           "pool": 74521,
           "pool_moe": 2883,
           "n_unweighted": 1867,
@@ -138,7 +176,7 @@
           "persona": "A_woman32_ba_men_75k",
           "cbsa": "41940",
           "rank": 3,
-          "score": 71.2,
+          "score": 71.6,
           "pool": 30569,
           "pool_moe": 1865,
           "n_unweighted": 785,
@@ -151,7 +189,7 @@
           "persona": "B_man28_women_never",
           "cbsa": "35620",
           "rank": 1,
-          "score": 78.6,
+          "score": 78.4,
           "pool": 841132,
           "pool_moe": 10170,
           "n_unweighted": 16873,
@@ -164,7 +202,7 @@
           "persona": "B_man28_women_never",
           "cbsa": "31080",
           "rank": 2,
-          "score": 75.7,
+          "score": 75.8,
           "pool": 595498,
           "pool_moe": 7712,
           "n_unweighted": 15061,
@@ -177,7 +215,7 @@
           "persona": "B_man28_women_never",
           "cbsa": "35380",
           "rank": 3,
-          "score": 74.8,
+          "score": 74.4,
           "pool": 42790,
           "pool_moe": 2517,
           "n_unweighted": 675,
@@ -190,7 +228,7 @@
           "persona": "C_woman38_grad_men_100k",
           "cbsa": "31080",
           "rank": 1,
-          "score": 75.8,
+          "score": 75.9,
           "pool": 75239,
           "pool_moe": 3156,
           "n_unweighted": 1776,
@@ -203,7 +241,7 @@
           "persona": "C_woman38_grad_men_100k",
           "cbsa": "41860",
           "rank": 2,
-          "score": 72.2,
+          "score": 71.9,
           "pool": 48091,
           "pool_moe": 2401,
           "n_unweighted": 1182,
@@ -216,7 +254,7 @@
           "persona": "C_woman38_grad_men_100k",
           "cbsa": "41940",
           "rank": 3,
-          "score": 68.2,
+          "score": 68.4,
           "pool": 17018,
           "pool_moe": 1352,
           "n_unweighted": 511,
@@ -229,7 +267,7 @@
           "persona": "D_man41_women_50k",
           "cbsa": "35620",
           "rank": 1,
-          "score": 71.7,
+          "score": 71.3,
           "pool": 376941,
           "pool_moe": 6858,
           "n_unweighted": 8090,
@@ -240,21 +278,8 @@
         },
         {
           "persona": "D_man41_women_50k",
-          "cbsa": "35380",
-          "rank": 2,
-          "score": 71.1,
-          "pool": 17741,
-          "pool_moe": 1521,
-          "n_unweighted": 350,
-          "balance": "112 women per 100 men",
-          "top_pillar": "balance",
-          "explanation": "Biggest pluses: the balance, places to go out, the size of the pool",
-          "flags": []
-        },
-        {
-          "persona": "D_man41_women_50k",
           "cbsa": "37980",
-          "rank": 3,
+          "rank": 2,
           "score": 70.8,
           "pool": 113695,
           "pool_moe": 4228,
@@ -265,10 +290,23 @@
           "flags": []
         },
         {
+          "persona": "D_man41_women_50k",
+          "cbsa": "35380",
+          "rank": 3,
+          "score": 70.7,
+          "pool": 17741,
+          "pool_moe": 1521,
+          "n_unweighted": 350,
+          "balance": "112 women per 100 men",
+          "top_pillar": "balance",
+          "explanation": "Biggest pluses: the balance, places to go out, the size of the pool",
+          "flags": []
+        },
+        {
           "persona": "E_black_woman29_stress",
           "cbsa": "35620",
           "rank": 1,
-          "score": 71.9,
+          "score": 71.1,
           "pool": 28594,
           "pool_moe": 2326,
           "n_unweighted": 530,
@@ -281,7 +319,7 @@
           "persona": "E_black_woman29_stress",
           "cbsa": "31080",
           "rank": 2,
-          "score": 65.5,
+          "score": 66.2,
           "pool": 15513,
           "pool_moe": 1705,
           "n_unweighted": 294,
@@ -294,7 +332,7 @@
           "persona": "E_black_woman29_stress",
           "cbsa": "41860",
           "rank": 3,
-          "score": 59.6,
+          "score": 58.9,
           "pool": 9181,
           "pool_moe": 1193,
           "n_unweighted": 203,
@@ -307,7 +345,7 @@
           "persona": "race_asian_nh_men",
           "cbsa": "41940",
           "rank": 1,
-          "score": 75.2,
+          "score": 75.4,
           "pool": 37023,
           "pool_moe": 1932,
           "n_unweighted": 982,
@@ -320,7 +358,7 @@
           "persona": "race_asian_nh_men",
           "cbsa": "41860",
           "rank": 2,
-          "score": 72.8,
+          "score": 72.3,
           "pool": 58317,
           "pool_moe": 2391,
           "n_unweighted": 1632,
@@ -333,7 +371,7 @@
           "persona": "race_asian_nh_men",
           "cbsa": "31080",
           "rank": 3,
-          "score": 71.6,
+          "score": 71.8,
           "pool": 87141,
           "pool_moe": 2996,
           "n_unweighted": 2458,
@@ -346,7 +384,7 @@
           "persona": "race_hispanic_women",
           "cbsa": "35620",
           "rank": 1,
-          "score": 79.0,
+          "score": 78.1,
           "pool": 307938,
           "pool_moe": 6443,
           "n_unweighted": 6056,
@@ -372,7 +410,7 @@
           "persona": "race_hispanic_women",
           "cbsa": "16980",
           "rank": 3,
-          "score": 68.0,
+          "score": 66.0,
           "pool": 119124,
           "pool_moe": 4064,
           "n_unweighted": 2379,
@@ -383,21 +421,8 @@
         },
         {
           "persona": "race_white_nh_grad_multi",
-          "cbsa": "41860",
-          "rank": 1,
-          "score": 70.5,
-          "pool": 23149,
-          "pool_moe": 1631,
-          "n_unweighted": 632,
-          "balance": "100 men per 100 women",
-          "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the balance, places to go out",
-          "flags": []
-        },
-        {
-          "persona": "race_white_nh_grad_multi",
           "cbsa": "31080",
-          "rank": 2,
+          "rank": 1,
           "score": 70.4,
           "pool": 36620,
           "pool_moe": 2122,
@@ -409,9 +434,22 @@
         },
         {
           "persona": "race_white_nh_grad_multi",
+          "cbsa": "41860",
+          "rank": 2,
+          "score": 70.1,
+          "pool": 23149,
+          "pool_moe": 1631,
+          "n_unweighted": 632,
+          "balance": "100 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, the balance, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "race_white_nh_grad_multi",
           "cbsa": "42660",
           "rank": 3,
-          "score": 63.2,
+          "score": 63.8,
           "pool": 13470,
           "pool_moe": 1271,
           "n_unweighted": 388,
@@ -424,7 +462,7 @@
           "persona": "broad_any",
           "cbsa": "35620",
           "rank": 1,
-          "score": 77.6,
+          "score": 77.3,
           "pool": 3653520,
           "pool_moe": 18480,
           "n_unweighted": 77388,
@@ -437,7 +475,7 @@
           "persona": "broad_any",
           "cbsa": "37980",
           "rank": 2,
-          "score": 72.7,
+          "score": 72.9,
           "pool": 1164858,
           "pool_moe": 11480,
           "n_unweighted": 20060,
@@ -450,7 +488,7 @@
           "persona": "broad_any",
           "cbsa": "35380",
           "rank": 3,
-          "score": 72.6,
+          "score": 72.2,
           "pool": 209437,
           "pool_moe": 4504,
           "n_unweighted": 4087,
@@ -460,10 +498,10 @@
           "flags": []
         },
         {
-          "persona": "slider_best_odds",
+          "persona": "slider_all_balance",
           "cbsa": "22020",
           "rank": 1,
-          "score": 87.1,
+          "score": 85.9,
           "pool": 10757,
           "pool_moe": 1345,
           "n_unweighted": 157,
@@ -475,25 +513,23 @@
           ]
         },
         {
-          "persona": "slider_best_odds",
-          "cbsa": "14500",
+          "persona": "slider_all_balance",
+          "cbsa": "30700",
           "rank": 2,
-          "score": 86.9,
-          "pool": 15135,
-          "pool_moe": 1026,
-          "n_unweighted": 568,
-          "balance": "136 men per 100 women",
+          "score": 84.9,
+          "pool": 12370,
+          "pool_moe": 1363,
+          "n_unweighted": 199,
+          "balance": "135 men per 100 women",
           "top_pillar": "balance",
-          "explanation": "Biggest pluses: the balance, walkable neighbourhoods, the student crowd",
-          "flags": [
-            "missing_features:pleasant_days"
-          ]
+          "explanation": "Biggest pluses: the balance, walkable neighbourhoods \u00b7 The weather counts against it",
+          "flags": []
         },
         {
-          "persona": "slider_best_odds",
+          "persona": "slider_all_balance",
           "cbsa": "20260",
           "rank": 3,
-          "score": 85.6,
+          "score": 84.4,
           "pool": 9485,
           "pool_moe": 900,
           "n_unweighted": 270,
@@ -509,7 +545,7 @@
           "persona": "importance_controls",
           "cbsa": "22020",
           "rank": 1,
-          "score": 74.5,
+          "score": 76.0,
           "pool": 12905,
           "pool_moe": 1512,
           "n_unweighted": 168,
@@ -524,7 +560,7 @@
           "persona": "importance_controls",
           "cbsa": "20260",
           "rank": 2,
-          "score": 74.1,
+          "score": 75.6,
           "pool": 12375,
           "pool_moe": 1012,
           "n_unweighted": 349,
@@ -538,22 +574,61 @@
         },
         {
           "persona": "importance_controls",
-          "cbsa": "38300",
+          "cbsa": "30700",
           "rank": 3,
-          "score": 71.0,
-          "pool": 106483,
-          "pool_moe": 3378,
-          "n_unweighted": 2400,
-          "balance": "114 men per 100 women",
+          "score": 71.7,
+          "pool": 13210,
+          "pool_moe": 1395,
+          "n_unweighted": 212,
+          "balance": "121 men per 100 women",
           "top_pillar": "balance",
-          "explanation": "Biggest pluses: the balance, the size of the pool, rent",
+          "explanation": "Biggest pluses: the balance, rent, everyday prices",
+          "flags": []
+        },
+        {
+          "persona": "importance_lifestyle_alias",
+          "cbsa": "35380",
+          "rank": 1,
+          "score": 74.3,
+          "pool": 56144,
+          "pool_moe": 2715,
+          "n_unweighted": 957,
+          "balance": "110 women per 100 men",
+          "top_pillar": "balance",
+          "explanation": "Biggest pluses: the balance, the size of the pool, the weather",
+          "flags": []
+        },
+        {
+          "persona": "importance_lifestyle_alias",
+          "cbsa": "35620",
+          "rank": 2,
+          "score": 71.8,
+          "pool": 841638,
+          "pool_moe": 9953,
+          "n_unweighted": 17128,
+          "balance": "95 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "importance_lifestyle_alias",
+          "cbsa": "37980",
+          "rank": 3,
+          "score": 70.6,
+          "pool": 271099,
+          "pool_moe": 6466,
+          "n_unweighted": 4150,
+          "balance": "102 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, the balance, walkable neighbourhoods",
           "flags": []
         },
         {
           "persona": "same_sex_pool",
           "cbsa": "31080",
           "rank": 1,
-          "score": 76.6,
+          "score": 76.7,
           "pool": 283863,
           "pool_moe": 5488,
           "n_unweighted": 7421,
@@ -566,7 +641,7 @@
           "persona": "same_sex_pool",
           "cbsa": "35620",
           "rank": 2,
-          "score": 76.2,
+          "score": 75.5,
           "pool": 459277,
           "pool_moe": 7650,
           "n_unweighted": 9600,
@@ -579,7 +654,7 @@
           "persona": "same_sex_pool",
           "cbsa": "41860",
           "rank": 3,
-          "score": 71.1,
+          "score": 70.9,
           "pool": 139487,
           "pool_moe": 3795,
           "n_unweighted": 3633,
@@ -592,18 +667,29 @@
     },
     "weight_sensitivity": {
       "kendall_tau": {
-        "pool+20%": 0.9371,
-        "pool-20%": 0.9383,
+        "pool+20%": 0.9443,
+        "pool-20%": 0.9298,
         "balance+20%": 0.954,
-        "balance-20%": 0.9214,
-        "reach+20%": 0.9564,
-        "reach-20%": 0.9601,
-        "cost+20%": 0.9673,
-        "cost-20%": 0.9649,
-        "lifestyle+20%": 0.971,
-        "lifestyle-20%": 0.9806
+        "balance-20%": 0.9419,
+        "reach+20%": 0.9685,
+        "reach-20%": 0.9649,
+        "cost+20%": 0.9601,
+        "cost-20%": 0.9734,
+        "weather+20%": 0.9819,
+        "weather-20%": 0.9794,
+        "students+20%": 0.9867,
+        "students-20%": 0.9891
       },
       "target": 0.85,
+      "default_weights": {
+        "pool": 0.3,
+        "balance": 0.25,
+        "reach": 0.2,
+        "cost": 0.15,
+        "weather": 0.06,
+        "students": 0.04
+      },
+      "note": "six pillars since m2.1.0. Read tau AGAINST the weight: students (0.04) and weather (0.06) clear the bar largely because \u00b120% of a small weight moves few ranks \u2014 that is arithmetic, not robustness, and is reported as such.",
       "pass": true
     },
     "external_correlation": {
@@ -611,13 +697,13 @@
       "correlations": {
         "score_vs_alone_share": {
           "n": 193,
-          "pearson": 0.261,
-          "spearman": 0.261
+          "pearson": 0.207,
+          "spearman": 0.196
         },
         "score_vs_med_age_marry_state": {
           "n": 193,
-          "pearson": 0.221,
-          "spearman": 0.163
+          "pearson": 0.235,
+          "spearman": 0.18
         },
         "ratio_vs_alone_share": {
           "n": 193,

@@ -1,5 +1,5 @@
-"""API tests against the pinned fixture build — the m2.0.0 contract
-(ADR 0004)."""
+"""API tests against the pinned fixture build — the m2.1.0 contract
+(ADR 0005 over ADR 0004)."""
 import json
 import os
 from pathlib import Path
@@ -40,14 +40,28 @@ def test_meta_carries_the_v3_vocabulary(client):
     m = client.get("/v1/meta").json()
     assert m["features"]["pool_balance"]["display_name"] == "Dating pool balance"
     assert m["features"]["median_gross_rent"]["display_name"] == "Rent"
-    assert m["features"]["median_gross_rent"]["band_labels"][0] == \
-        "Cheaper than most cities"
+    assert len(m["features"]["median_gross_rent"]["band_labels"]) == 5
+    assert m["features"]["median_gross_rent"]["band_direction"] == "good_low"
     assert m["pillars"]["balance"]["display_name"] == "Dating pool balance"
+    # the four importance controls carry their registry subtitles (item 4)
+    assert m["controls"]["importance_pillars"] == \
+        ["cost", "reach", "students", "weather"]
+    for p in m["controls"]["importance_pillars"]:
+        assert m["pillars"][p].get("control_subtitle"), p
+    assert m["pillars"]["reach"]["display_name"] == "Social life"
     assert m["city_cards"][0] == "median_gross_rent"
     assert m["controls"]["marital"] == ["never_married", "previously_married"]
     assert m["controls"]["race_ethnicity"] == list(api.SELECTABLE_RACES)
     assert set(m["controls"]["importance_levels"]) == \
         {"not_much", "some", "a_lot"}
+    # registry strings merge into the one policy-strings lookup (item 8's
+    # ground rule: every new string lives in the registry)
+    for k in ("slider_info", "crime_caution", "crime_compare_note",
+              "stat_page_link", "stat_page_intro"):
+        assert m["policy_strings"].get(k), k
+    assert m["stat_pages"] and "who_lives_here" in m["stat_pages"]
+    assert not any("crime" in s for s in m["stat_pages"])
+    assert 0 < m["crime"]["coverage_floor"] < 1
     # technical wording exists for the record and stays out of the
     # rendered vocabulary
     assert "at least" in m["technical_strings"]["interval"]
@@ -121,17 +135,48 @@ def test_named_controls_and_conflicts(client):
     ok = client.post("/v1/rank", json={
         **BODY, "pool_vs_balance": 0.7,
         "importance": {"cost": "a_lot", "reach": "not_much",
-                       "lifestyle": "some"}})
+                       "students": "a_lot", "weather": "not_much"}})
     assert ok.status_code == 200
     w = ok.json()["weights"]
     assert w["balance"] > w["pool"]
     assert w["cost"] > w["reach"] > 0
-    conflict = client.post("/v1/rank", json={
-        **BODY, "pool_vs_balance": 0.5, "size_vs_odds": 0.5})
-    assert conflict.status_code == 422
+    assert w["students"] > w["weather"] > 0, (
+        "students at a_lot with weather at not_much must order that way — "
+        "the split's whole point")
+    # the m2.0.0 bundled control: accepted as an alias for exactly this
+    # version, contradiction with either half refused
+    alias = client.post("/v1/rank", json={
+        **BODY, "importance": {"lifestyle": "a_lot"}})
+    assert alias.status_code == 200
+    wa = alias.json()["weights"]
+    assert wa["weather"] > w["weather"] and wa["students"] > 0
+    clash = client.post("/v1/rank", json={
+        **BODY, "importance": {"lifestyle": "a_lot", "weather": "some"}})
+    assert clash.status_code == 422
+    # size_vs_odds served its one deprecation version (m2.0.0) and is gone
+    svo = client.post("/v1/rank", json={**BODY, "size_vs_odds": 0.5})
+    assert svo.status_code == 422
     both = client.post("/v1/rank", json={
         **BODY, "weights": {"pool": 1.0}, "pool_vs_balance": 0.5})
     assert both.status_code == 422
+
+
+def test_crime_block_served_never_scored(client):
+    """Item 5 through HTTP: every row carries the composed crime block
+    (figures + coverage + caution, or the blank state), crime never
+    appears among the scored stats, and the weights never name it."""
+    r = client.post("/v1/rank", json=BODY).json()
+    assert set(r["weights"]) == {"pool", "balance", "reach", "cost",
+                                 "weather", "students"}
+    for row in r["ranked"] + r["suppressed"]:
+        blk = row["crime"]
+        assert "caution" in blk
+        if blk["available"]:
+            assert "coverage_line" in blk and len(blk["stats"]) == 2
+        else:
+            assert blk["note"]
+        for s in row.get("stats", []):
+            assert "crime" not in s["id"]
 
 
 def test_income_floor_validation(client):

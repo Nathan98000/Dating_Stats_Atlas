@@ -54,8 +54,14 @@ SPEC_MARITAL = {"never_married": 0, "previously_married": 1,
                 "currently_married": 2}
 # m2.0.0: the site offers exactly two meanings of single (ADR 0004)
 ALLOWED_MARITAL = ("never_married", "previously_married")
-PILLARS = ["pool", "balance", "reach", "cost", "lifestyle"]
-IMPORTANCE_PILLARS = ("cost", "reach", "lifestyle")
+# m2.1.0 (Phase 2d item 4): lifestyle split into weather and students so
+# each carries its own importance control — six pillars, four controls.
+PILLARS = ["pool", "balance", "reach", "cost", "weather", "students"]
+IMPORTANCE_PILLARS = ("cost", "reach", "students", "weather")
+# the old bundled control, accepted as a deprecated alias for exactly one
+# version: its level applies to BOTH split pillars, which reproduces the
+# m2.0.0 behaviour it named
+DEPRECATED_IMPORTANCE_ALIAS = {"lifestyle": ("weather", "students")}
 
 N_FLAT = 2 * 53 * 3 * 4 * 7 * 8  # per-metro cells
 
@@ -206,6 +212,33 @@ def slider_weights(s: float, defaults: dict[str, float],
     return w
 
 
+def resolve_importance_levels(importance: dict[str, str]) -> dict[str, str]:
+    """The four named controls, with the m2.0.0 'lifestyle' control
+    accepted as a deprecated alias for exactly one version: its level
+    applies to both split pillars (reproducing what it used to mean).
+    Naming lifestyle AND either of its halves is a contradiction and
+    raises."""
+    out = {k: v for k, v in importance.items() if k in IMPORTANCE_PILLARS}
+    unknown = [k for k in importance
+               if k not in IMPORTANCE_PILLARS
+               and k not in DEPRECATED_IMPORTANCE_ALIAS]
+    if unknown:
+        raise ValueError(
+            f"unknown importance controls {sorted(unknown)}; "
+            f"the controls are {sorted(IMPORTANCE_PILLARS)}")
+    for alias, targets in DEPRECATED_IMPORTANCE_ALIAS.items():
+        if alias in importance:
+            clash = [t for t in targets if t in importance]
+            if clash:
+                raise ValueError(
+                    f"importance.{alias} is the deprecated name for "
+                    f"{' and '.join(targets)}; send one or the other, "
+                    f"not both")
+            for t in targets:
+                out[t] = importance[alias]
+    return out
+
+
 def importance_weights(s: float, importance: dict[str, str],
                        manifest_defaults: dict) -> dict[str, float]:
     """The v3 home-page controls -> a full weight vector, entirely from
@@ -218,9 +251,10 @@ def importance_weights(s: float, importance: dict[str, str],
     defaults = dict(manifest_defaults["pillar_weights"])
     mass = float(manifest_defaults["size_vs_odds"]["pool_plus_balance_mass"])
     mult = manifest_defaults["importance_levels"]
+    levels = resolve_importance_levels(importance)
     w = slider_weights(s, defaults, mass)
     for p in IMPORTANCE_PILLARS:
-        level = importance.get(p, "some")
+        level = levels.get(p, "some")
         if level not in mult:
             raise ValueError(f"importance.{p} must be one of {sorted(mult)}")
         w[p] = defaults[p] * float(mult[level])
@@ -229,28 +263,25 @@ def importance_weights(s: float, importance: dict[str, str],
 
 def resolve_weights(req: Request, manifest_defaults: dict) -> dict[str, float]:
     """Explicit weights win; else the v3 controls (pool_vs_balance +
-    importance); else the deprecated size_vs_odds slider (accepted for one
-    version, ADR 0004); else defaults. Normalized to sum to 1."""
+    importance); else defaults. Normalized to sum to 1. The size_vs_odds
+    alias was accepted-but-deprecated for exactly m2.0.0 (ADR 0004) and is
+    gone in m2.1.0 — the transport rejects it before this runs."""
     defaults = dict(manifest_defaults["pillar_weights"])
     svo = manifest_defaults["size_vs_odds"]
     raw = req.raw
-    knobs = [k for k in ("weights", "size_vs_odds", "pool_vs_balance")
+    knobs = [k for k in ("weights", "pool_vs_balance")
              if k in raw and raw[k] is not None]
-    if "weights" in knobs and len(knobs) > 1:
+    if "weights" in knobs and (len(knobs) > 1 or "importance" in raw):
         raise ValueError("pass either weights or the named controls, not both")
-    if "size_vs_odds" in knobs and "pool_vs_balance" in knobs:
+    if "size_vs_odds" in raw and raw["size_vs_odds"] is not None:
         raise ValueError(
-            "size_vs_odds is the deprecated name for pool_vs_balance; "
-            "send one, not both")
+            "size_vs_odds left the contract in m2.1.0; send pool_vs_balance")
     if "pool_vs_balance" in knobs or "importance" in raw:
         s = float(raw.get("pool_vs_balance", svo["default_s"]))
         if not 0.0 <= s <= 1.0:
             raise ValueError("pool_vs_balance must be in [0,1]")
         w = importance_weights(s, dict(raw.get("importance") or {}),
                                manifest_defaults)
-    elif "size_vs_odds" in knobs:
-        w = slider_weights(float(raw["size_vs_odds"]), defaults,
-                           float(svo["pool_plus_balance_mass"]))
     elif req.weights:
         w = {p: float(req.weights.get(p, 0.0)) for p in PILLARS}
     else:
@@ -268,7 +299,7 @@ def permalink(data_version: str, model_version: str, body: dict) -> str:
     every ranking the API ever serves remains reproducible."""
     import base64
     import json
-    core = {k: body[k] for k in ("self", "seeking", "weights", "size_vs_odds",
+    core = {k: body[k] for k in ("self", "seeking", "weights",
                                  "pool_vs_balance", "importance")
             if k in body}
     blob = json.dumps(core, sort_keys=True, separators=(",", ":")).encode()

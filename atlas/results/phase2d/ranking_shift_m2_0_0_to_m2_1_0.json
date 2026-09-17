@@ -1,0 +1,594 @@
+{
+ "before": {
+  "build": "2c8d7285c720",
+  "model": "m2.0.0"
+ },
+ "after": {
+  "build": "dd7374675de7",
+  "model": "m2.1.0"
+ },
+ "personas": {
+  "default_profile": {
+   "kendall_tau": 0.913,
+   "common_metros": 193,
+   "top10_overlap": 10,
+   "median_abs_move": 4.0,
+   "biggest_moves": [
+    {
+     "cbsa": "42200",
+     "name": "Santa Maria, CA",
+     "before": 100,
+     "after": 64,
+     "move": 36
+    },
+    {
+     "cbsa": "37340",
+     "name": "Palm Bay, FL",
+     "before": 83,
+     "after": 49,
+     "move": 34
+    },
+    {
+     "cbsa": "28420",
+     "name": "Kennewick, WA",
+     "before": 85,
+     "after": 55,
+     "move": 30
+    },
+    {
+     "cbsa": "37100",
+     "name": "Oxnard, CA",
+     "before": 61,
+     "after": 35,
+     "move": 26
+    },
+    {
+     "cbsa": "18880",
+     "name": "Crestview, FL",
+     "before": 69,
+     "after": 94,
+     "move": -25
+    },
+    {
+     "cbsa": "28020",
+     "name": "Kalamazoo, MI",
+     "before": 99,
+     "after": 122,
+     "move": -23
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 109,
+     "after": 87,
+     "move": 22
+    },
+    {
+     "cbsa": "45780",
+     "name": "Toledo, OH",
+     "before": 62,
+     "after": 84,
+     "move": -22
+    }
+   ]
+  },
+  "A_woman32_ba_men_75k": {
+   "kendall_tau": 0.894,
+   "common_metros": 58,
+   "top10_overlap": 9,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "37100",
+     "name": "Oxnard, CA",
+     "before": 40,
+     "after": 26,
+     "move": 14
+    },
+    {
+     "cbsa": "40140",
+     "name": "Riverside, CA",
+     "before": 37,
+     "after": 28,
+     "move": 9
+    },
+    {
+     "cbsa": "39580",
+     "name": "Raleigh, NC",
+     "before": 54,
+     "after": 46,
+     "move": 8
+    },
+    {
+     "cbsa": "33340",
+     "name": "Milwaukee, WI",
+     "before": 30,
+     "after": 37,
+     "move": -7
+    },
+    {
+     "cbsa": "12060",
+     "name": "Atlanta, GA",
+     "before": 53,
+     "after": 47,
+     "move": 6
+    },
+    {
+     "cbsa": "26900",
+     "name": "Indianapolis, IN",
+     "before": 47,
+     "after": 53,
+     "move": -6
+    },
+    {
+     "cbsa": "40380",
+     "name": "Rochester, NY",
+     "before": 46,
+     "after": 51,
+     "move": -5
+    },
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 20,
+     "after": 15,
+     "move": 5
+    }
+   ]
+  },
+  "B_man28_women_never": {
+   "kendall_tau": 0.915,
+   "common_metros": 193,
+   "top10_overlap": 9,
+   "median_abs_move": 4.0,
+   "biggest_moves": [
+    {
+     "cbsa": "37100",
+     "name": "Oxnard, CA",
+     "before": 139,
+     "after": 100,
+     "move": 39
+    },
+    {
+     "cbsa": "42200",
+     "name": "Santa Maria, CA",
+     "before": 128,
+     "after": 93,
+     "move": 35
+    },
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 73,
+     "after": 41,
+     "move": 32
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 125,
+     "after": 97,
+     "move": 28
+    },
+    {
+     "cbsa": "14500",
+     "name": "Boulder, CO",
+     "before": 130,
+     "after": 153,
+     "move": -23
+    },
+    {
+     "cbsa": "37340",
+     "name": "Palm Bay, FL",
+     "before": 151,
+     "after": 129,
+     "move": 22
+    },
+    {
+     "cbsa": "23420",
+     "name": "Fresno, CA",
+     "before": 84,
+     "after": 63,
+     "move": 21
+    },
+    {
+     "cbsa": "46540",
+     "name": "Utica, NY",
+     "before": 103,
+     "after": 124,
+     "move": -21
+    }
+   ]
+  },
+  "C_woman38_grad_men_100k": {
+   "kendall_tau": 0.907,
+   "common_metros": 41,
+   "top10_overlap": 10,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "40140",
+     "name": "Riverside, CA",
+     "before": 34,
+     "after": 28,
+     "move": 6
+    },
+    {
+     "cbsa": "33460",
+     "name": "Minneapolis, MN",
+     "before": 14,
+     "after": 19,
+     "move": -5
+    },
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 18,
+     "after": 13,
+     "move": 5
+    },
+    {
+     "cbsa": "17410",
+     "name": "Cleveland, OH",
+     "before": 28,
+     "after": 32,
+     "move": -4
+    },
+    {
+     "cbsa": "29820",
+     "name": "Las Vegas, NV",
+     "before": 19,
+     "after": 15,
+     "move": 4
+    },
+    {
+     "cbsa": "18140",
+     "name": "Columbus, OH",
+     "before": 22,
+     "after": 25,
+     "move": -3
+    },
+    {
+     "cbsa": "41700",
+     "name": "San Antonio, TX",
+     "before": 26,
+     "after": 29,
+     "move": -3
+    },
+    {
+     "cbsa": "41740",
+     "name": "San Diego, CA",
+     "before": 9,
+     "after": 6,
+     "move": 3
+    }
+   ]
+  },
+  "D_man41_women_50k": {
+   "kendall_tau": 0.902,
+   "common_metros": 136,
+   "top10_overlap": 9,
+   "median_abs_move": 3.0,
+   "biggest_moves": [
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 65,
+     "after": 43,
+     "move": 22
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 106,
+     "after": 85,
+     "move": 21
+    },
+    {
+     "cbsa": "29820",
+     "name": "Las Vegas, NV",
+     "before": 55,
+     "after": 34,
+     "move": 21
+    },
+    {
+     "cbsa": "42200",
+     "name": "Santa Maria, CA",
+     "before": 109,
+     "after": 88,
+     "move": 21
+    },
+    {
+     "cbsa": "14500",
+     "name": "Boulder, CO",
+     "before": 104,
+     "after": 121,
+     "move": -17
+    },
+    {
+     "cbsa": "45220",
+     "name": "Tallahassee, FL",
+     "before": 48,
+     "after": 63,
+     "move": -15
+    },
+    {
+     "cbsa": "47930",
+     "name": "Waterbury, CT",
+     "before": 81,
+     "after": 96,
+     "move": -15
+    },
+    {
+     "cbsa": "12100",
+     "name": "Atlantic City, NJ",
+     "before": 100,
+     "after": 87,
+     "move": 13
+    }
+   ]
+  },
+  "E_black_woman29_stress": {
+   "skipped": "9 common"
+  },
+  "race_asian_nh_men": {
+   "kendall_tau": 0.926,
+   "common_metros": 29,
+   "top10_overlap": 10,
+   "median_abs_move": 1.0,
+   "biggest_moves": [
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 17,
+     "after": 13,
+     "move": 4
+    },
+    {
+     "cbsa": "33460",
+     "name": "Minneapolis, MN",
+     "before": 14,
+     "after": 17,
+     "move": -3
+    },
+    {
+     "cbsa": "19100",
+     "name": "Dallas, TX",
+     "before": 13,
+     "after": 15,
+     "move": -2
+    },
+    {
+     "cbsa": "19820",
+     "name": "Detroit, MI",
+     "before": 22,
+     "after": 24,
+     "move": -2
+    },
+    {
+     "cbsa": "40140",
+     "name": "Riverside, CA",
+     "before": 21,
+     "after": 19,
+     "move": 2
+    },
+    {
+     "cbsa": "12420",
+     "name": "Austin, TX",
+     "before": 8,
+     "after": 9,
+     "move": -1
+    },
+    {
+     "cbsa": "12580",
+     "name": "Baltimore, MD",
+     "before": 28,
+     "after": 29,
+     "move": -1
+    },
+    {
+     "cbsa": "14460",
+     "name": "Boston, MA",
+     "before": 12,
+     "after": 11,
+     "move": 1
+    }
+   ]
+  },
+  "race_hispanic_women": {
+   "kendall_tau": 0.9,
+   "common_metros": 89,
+   "top10_overlap": 10,
+   "median_abs_move": 2.0,
+   "biggest_moves": [
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 68,
+     "after": 53,
+     "move": 15
+    },
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 41,
+     "after": 27,
+     "move": 14
+    },
+    {
+     "cbsa": "42200",
+     "name": "Santa Maria, CA",
+     "before": 75,
+     "after": 64,
+     "move": 11
+    },
+    {
+     "cbsa": "25540",
+     "name": "Hartford, CT",
+     "before": 31,
+     "after": 41,
+     "move": -10
+    },
+    {
+     "cbsa": "32900",
+     "name": "Merced, CA",
+     "before": 72,
+     "after": 62,
+     "move": 10
+    },
+    {
+     "cbsa": "37100",
+     "name": "Oxnard, CA",
+     "before": 78,
+     "after": 68,
+     "move": 10
+    },
+    {
+     "cbsa": "39580",
+     "name": "Raleigh, NC",
+     "before": 55,
+     "after": 45,
+     "move": 10
+    },
+    {
+     "cbsa": "40140",
+     "name": "Riverside, CA",
+     "before": 32,
+     "after": 22,
+     "move": 10
+    }
+   ]
+  },
+  "below_bar_nhpi_250k": {
+   "skipped": "0 common"
+  },
+  "slider_best_odds": {
+   "kendall_tau": 0.941,
+   "common_metros": 193,
+   "top10_overlap": 9,
+   "median_abs_move": 3.0,
+   "biggest_moves": [
+    {
+     "cbsa": "37100",
+     "name": "Oxnard, CA",
+     "before": 50,
+     "after": 26,
+     "move": 24
+    },
+    {
+     "cbsa": "12540",
+     "name": "Bakersfield, CA",
+     "before": 128,
+     "after": 108,
+     "move": 20
+    },
+    {
+     "cbsa": "42200",
+     "name": "Santa Maria, CA",
+     "before": 38,
+     "after": 18,
+     "move": 20
+    },
+    {
+     "cbsa": "32900",
+     "name": "Merced, CA",
+     "before": 82,
+     "after": 64,
+     "move": 18
+    },
+    {
+     "cbsa": "45780",
+     "name": "Toledo, OH",
+     "before": 106,
+     "after": 124,
+     "move": -18
+    },
+    {
+     "cbsa": "28020",
+     "name": "Kalamazoo, MI",
+     "before": 23,
+     "after": 39,
+     "move": -16
+    },
+    {
+     "cbsa": "37340",
+     "name": "Palm Bay, FL",
+     "before": 115,
+     "after": 100,
+     "move": 15
+    },
+    {
+     "cbsa": "39580",
+     "name": "Raleigh, NC",
+     "before": 137,
+     "after": 122,
+     "move": 15
+    }
+   ]
+  },
+  "same_sex_pool": {
+   "kendall_tau": 0.868,
+   "common_metros": 120,
+   "top10_overlap": 8,
+   "median_abs_move": 4.0,
+   "biggest_moves": [
+    {
+     "cbsa": "37100",
+     "name": "Oxnard, CA",
+     "before": 102,
+     "after": 69,
+     "move": 33
+    },
+    {
+     "cbsa": "42200",
+     "name": "Santa Maria, CA",
+     "before": 89,
+     "after": 59,
+     "move": 30
+    },
+    {
+     "cbsa": "37340",
+     "name": "Palm Bay, FL",
+     "before": 108,
+     "after": 81,
+     "move": 27
+    },
+    {
+     "cbsa": "14500",
+     "name": "Boulder, CO",
+     "before": 26,
+     "after": 50,
+     "move": -24
+    },
+    {
+     "cbsa": "40900",
+     "name": "Sacramento, CA",
+     "before": 47,
+     "after": 24,
+     "move": 23
+    },
+    {
+     "cbsa": "23420",
+     "name": "Fresno, CA",
+     "before": 101,
+     "after": 82,
+     "move": 19
+    },
+    {
+     "cbsa": "29820",
+     "name": "Las Vegas, NV",
+     "before": 41,
+     "after": 25,
+     "move": 16
+    },
+    {
+     "cbsa": "45220",
+     "name": "Tallahassee, FL",
+     "before": 88,
+     "after": 103,
+     "move": -15
+    }
+   ]
+  }
+ }
+}
