@@ -1,0 +1,155 @@
+{
+  "roster_agencies": 19636,
+  "metro_agencies": 11750,
+  "assigned_by_latlon": 489,
+  "unassigned_no_coords": 621,
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "coverage_by_year": [
+    {
+      "year": 2021,
+      "median_coverage": 0.9417699568321858,
+      "p25_coverage": 0.653500709026797,
+      "metros_ge_floor": 295
+    },
+    {
+      "year": 2022,
+      "median_coverage": 0.9827372103191955,
+      "p25_coverage": 0.9216665241171296,
+      "metros_ge_floor": 353
+    },
+    {
+      "year": 2023,
+      "median_coverage": 0.9867197678550278,
+      "p25_coverage": 0.929086887025864,
+      "metros_ge_floor": 359
+    },
+    {
+      "year": 2024,
+      "median_coverage": 1.0,
+      "p25_coverage": 0.9588459397148995,
+      "metros_ge_floor": 370
+    },
+    {
+      "year": 2025,
+      "median_coverage": 0.9971301881696227,
+      "p25_coverage": 0.9528084849763274,
+      "metros_ge_floor": 372
+    }
+  ],
+  "excluded_implausible": [
+    {
+      "ori": "AL0030100",
+      "agency": "Montgomery Police Department",
+      "year": 2021,
+      "pop": 195361.0,
+      "violent": 9.0,
+      "property": 20.0
+    },
+    {
+      "ori": "CA0331300",
+      "agency": "Riverside Police Department",
+      "year": 2021,
+      "pop": 333437.0,
+      "violent": 3.0,
+      "property": 12.0
+    },
+    {
+      "ori": "CA0500200",
+      "agency": "Modesto Police Department",
+      "year": 2021,
+      "pop": 216946.0,
+      "violent": 1.0,
+      "property": 2.0
+    },
+    {
+      "ori": "FL0370300",
+      "agency": "Tallahassee Police Department",
+      "year": 2021,
+      "pop": 197883.0,
+      "violent": 17.0,
+      "property": 90.0
+    },
+    {
+      "ori": "FL0480000",
+      "agency": "Orange County Sheriff's Office",
+      "year": 2023,
+      "pop": 923154.0,
+      "violent": 0.0,
+      "property": 0.0
+    },
+    {
+      "ori": "FL0480400",
+      "agency": "Orlando Police Department",
+      "year": 2024,
+      "pop": 325168.0,
+      "violent": 0.0,
+      "property": 0.0
+    },
+    {
+      "ori": "FL0480400",
+      "agency": "Orlando Police Department",
+      "year": 2025,
+      "pop": 341975.0,
+      "violent": 0.0,
+      "property": 0.0
+    },
+    {
+      "ori": "FL0531200",
+      "agency": "Lakeland Police Department",
+      "year": 2022,
+      "pop": 118365.0,
+      "violent": 9.0,
+      "property": 38.0
+    },
+    {
+      "ori": "GA0360000",
+      "agency": "Columbia County Sheriff's Office",
+      "year": 2021,
+      "pop": 143185.0,
+      "violent": 4.0,
+      "property": 71.0
+    },
+    {
+      "ori": "GA1210000",
+      "agency": "Augusta-Richmond County Sheriff's Office",
+      "year": 2021,
+      "pop": 197199.0,
+      "violent": 3.0,
+      "property": 23.0
+    },
+    {
+      "ori": "NJ0150700",
+      "agency": "Toms River Township Police Department",
+      "year": 2021,
+      "pop": 100051.0,
+      "violent": 6.0,
+      "property": 20.0
+    },
+    {
+      "ori": "NY0303000",
+      "agency": "New York City Police Department",
+      "year": 2021,
+      "pop": 8475387.0,
+      "violent": 123.0,
+      "property": 481.0
+    },
+    {
+      "ori": "NY0510100",
+      "agency": "Suffolk County Police Department",
+      "year": 2025,
+      "pop": 1366793.0,
+      "violent": 0.0,
+      "property": 0.0
+    }
+  ],
+  "coverage_floor": 0.6,
+  "chosen_year": 2025,
+  "zero_pop_offense_share_median": 0.008968609865470852,
+  "agency_pop_over_census_median": 1.0038301062650758
+}
