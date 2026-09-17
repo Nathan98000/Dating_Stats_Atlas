@@ -31,7 +31,7 @@ address and no public IPs**.
 5. `fly deploy -a atlas-web --config atlas/web/fly.toml`. The web app finds
    the API at `http://atlas-api.flycast:8000` (set in its `[env]`).
 6. Smoke: `fly ssh console -a atlas-web -C "curl -s http://atlas-api.flycast:8000/v1/health"`,
-   then the site's own `/methodology` (it renders only if `/v1/meta`
+   then the site’s own `/how-it-works` (it renders only if `/v1/meta`
    answers).
 
 **Rollback / new build:** put the new `<data_version>` directory on the
@@ -70,6 +70,6 @@ CORS. If neither is acceptable to counsel, use Topology A.
 - [ ] `data_version` + `model_version` in `/v1/health` match the artifact
       you shipped
 - [ ] no public IPs on `atlas-api` (`fly ips list -a atlas-api`)
-- [ ] attribution strings render on `/methodology` (they flow from
+- [ ] attribution strings render on `/how-it-works` (they flow from
       `adapters/base.py` LICENSES through the manifest — if counsel changed
       wording, it changed there and the build was regenerated)

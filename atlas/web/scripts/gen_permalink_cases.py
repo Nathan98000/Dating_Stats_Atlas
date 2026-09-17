@@ -29,15 +29,25 @@ BODIES = [
     {"self": {"sex": "male", "age": 29},
      "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"],
                  "education_min": "graduate"}},
+    # m2.0.0 named controls (ADR 0004): the frontend sends choices
+    {"self": {"sex": "female", "age": 34},
+     "seeking": {"age": [30, 44],
+                 "marital": ["never_married", "previously_married"]},
+     "pool_vs_balance": 0.7,
+     "importance": {"cost": "a_lot", "reach": "not_much",
+                    "lifestyle": "some"}},
+    {"self": {"sex": "female", "age": 34},
+     "seeking": {"age": [30, 44], "marital": ["never_married"]},
+     "pool_vs_balance": 1.0,
+     "importance": {"cost": "some", "reach": "some", "lifestyle": "some"}},
     {"self": {"sex": "female", "age": 29},
      "seeking": {"age": [28, 38],
                  "marital": ["never_married", "previously_married"],
                  "race_ethnicity": ["black_nh"]}},
     {"self": {"sex": "male", "age": 45},
      "seeking": {"age": [40, 55],
-                 "marital": ["never_married", "previously_married",
-                              "currently_married"],
-                 "race_ethnicity": ["white_nh", "two_or_more_nh"],
+                 "marital": ["never_married", "previously_married"],
+                 "race_ethnicity": ["white_nh", "asian_nh"],
                  "income_min": 250000}},
     # float-typed fields: integral floats are the dialect trap (Python
     # renders 1.0, JSON.stringify renders 1)
@@ -62,13 +72,14 @@ BODIES = [
                  "lifestyle": 0.1}},
 ]
 
-DV, MV = "dc23609755ad", engine.MODEL_VERSION
+DV, MV = "2c8d7285c720", engine.MODEL_VERSION
 
 
 def main() -> None:
     cases = []
     for raw in BODIES:
         body = RankRequest.model_validate(raw).model_dump(exclude_none=True)
+        body.pop("sort", None)  # exactly as app.py does before encoding
         cases.append({"body": body,
                       "permalink": engine.permalink(DV, MV, body)})
     out = WEB / "tests" / "permalink_cases.json"

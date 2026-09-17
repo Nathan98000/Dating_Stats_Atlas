@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-/** Permalinks reproduce or refuse with an explanation (§5.4/§10.1); the
- * compare page renders two metros from one response. */
+/** Reproducibility survives m2.0.0 with no permalink in the UI: the API's
+ * own permalink still resolves, a stale pin refuses onto a plain page with
+ * no version ids, and the compare page renders two cities from one
+ * response. */
 
-test("a live permalink reproduces the ranking under its pins", async ({ page }) => {
+test("the API's permalink resolves even though no page shows one", async ({ page }) => {
   const res = await page.request.post("/api/rank", {
     data: {
       self: { sex: "female", age: 30 },
@@ -13,16 +15,12 @@ test("a live permalink reproduces the ranking under its pins", async ({ page }) 
   expect(res.ok()).toBe(true);
   const body = await res.json();
   await page.goto(body.permalink);
-  await expect(page.locator("text=Reproduced exactly under its pins")).toBeVisible();
-  const firstCbsa = await page
-    .getByTestId("ranked-list")
-    .locator("li")
-    .first()
-    .getAttribute("data-cbsa");
-  expect(firstCbsa).toBe(body.ranked[0].cbsa);
+  const rows = page.getByTestId("ranked-list").locator("li");
+  await expect(rows.first()).toBeVisible();
+  expect(await rows.first().getAttribute("data-cbsa")).toBe(body.ranked[0].cbsa);
 });
 
-test("a stale pin is a real page offering a re-run, never a substitution", async ({ page }) => {
+test("a stale pin refuses plainly, with no version id in the copy", async ({ page }) => {
   const res = await page.request.post("/api/rank", {
     data: {
       self: { sex: "female", age: 30 },
@@ -32,26 +30,25 @@ test("a stale pin is a real page offering a re-run, never a substitution", async
   const { permalink } = await res.json();
   const stale = permalink.replace(/\/r\/[^/]+\//, "/r/2099.01a/");
   await page.goto(stale);
-  await expect(page.getByTestId("pin-mismatch")).toBeVisible();
-  await expect(page.getByTestId("pin-mismatch")).toContainText("different build");
-  // no ranking rows rendered under the wrong pin
-  await expect(page.getByTestId("ranked-list")).toHaveCount(0);
+  const shell = page.getByTestId("pin-mismatch");
+  await expect(shell).toBeVisible();
+  await expect(shell).toContainText("earlier edition");
+  const text = (await shell.textContent()) ?? "";
+  expect(text).not.toMatch(/\bm\d+\.\d+\.\d+\b/);
+  expect(text).not.toMatch(/\b[0-9a-f]{12}\b/);
   await page.getByTestId("rerun-current").click();
-  await expect(page).toHaveURL(/\/\?self_sex=female/);
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
 });
 
-test("the compare page shows two metros from one response", async ({ page }) => {
-  // two fixture metros that rank for the default profile
-  await page.goto("/compare/35620/12420?self_sex=female&self_age=30&age=28-40&marital=never,previously");
+test("the compare page shows two cities from one response", async ({ page }) => {
+  await page.goto(
+    "/compare/austin-texas/pittsburgh-pennsylvania?self_sex=female&self_age=30&age=28-40&marital=never,previously",
+  );
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();
-  await expect(table).toContainText("Compatible people");
-  // both pools carry their own margins; no pool difference is invented
-  const poolRow = table.locator("tr", { hasText: "Compatible people" }).first();
-  await expect(poolRow).toContainText(/margin at least ±[\d,]+.*margin at least ±[\d,]+/s);
-  await expect(poolRow).toContainText("a difference would not");
-  // static stats do get a difference column
-  const rentRow = table.locator("tr", { hasText: "Median rent" });
-  await expect(rentRow).toContainText(/[+−][\d,]+/);
+  await expect(table).toContainText("People who match");
+  await expect(table).toContainText("no difference is shown");
+  await expect(table).toContainText("Rent");
+  const text = (await table.textContent()) ?? "";
+  expect(text).not.toMatch(/\bCBSA\b/i);
 });

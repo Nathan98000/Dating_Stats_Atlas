@@ -1,6 +1,13 @@
-/** Types mirroring the §8.2 response contract (as amended by ADRs
- * 0002/0003) and GET /v1/meta. The API computes every number; these types
- * carry them — nothing here is ever derived arithmetic. */
+/** Types mirroring the m2.0.0 response contract (ADR 0004) and GET
+ * /v1/meta. The API computes every number; these types carry them —
+ * nothing here is ever derived arithmetic. */
+
+export interface Band {
+  key: "low" | "mid" | "high";
+  standing_all: number;
+  label: string;
+  tone: "good" | "neutral" | "poor";
+}
 
 export interface Stat {
   id: string;
@@ -12,53 +19,69 @@ export interface Stat {
   weight?: number;
   contribution?: number | null;
   missing?: boolean;
-  moe?: number;
-  moe_display?: string;
-  n_unweighted?: number;
-  suppressed?: string;
+  band?: Band;
+}
+
+export interface Card {
+  id: string;
+  value: number | null;
+  display?: string;
+  unit_line?: string;
+  band?: Band;
+  missing?: boolean;
+}
+
+export interface BalanceBlock {
+  available: boolean;
+  note?: string;
+  value?: number;
+  per_100?: number;
+  display?: string;
+  sought_word?: string;
+  seeker_word?: string;
+  standing?: number | null;
 }
 
 export interface RankedRow {
   cbsa: string;
   name: string;
+  display_name: string;
+  slug: string;
   rank: number;
   score: number;
-  score_moe: number;
+  score_display: string;
   pool: number;
   pool_moe: number;
   cv: number;
   n_unweighted: number;
   tier: string;
-  ratio: number;
-  ratio_moe: number;
-  rivals: number;
+  balance: BalanceBlock;
   allocation_purity: number;
   flags: string[];
   stats: Stat[];
+  cards: Card[];
   contributions: { pillar: string; value: number }[];
-  explanation: string;
-  top_stats?: string[];
-  cross_group_pairing_rate: number | null;
-  cross_group_pairing_moe?: number;
-  cross_group_pairing_n?: number;
-  cross_group_pairing_display?: string;
-  cross_group_pairing_moe_display?: string;
-  cross_group_pairing_suppressed?: string;
+  top_stats: string[];
+  summary_line: string;
 }
 
 export interface SuppressedRow {
   cbsa: string;
   name: string;
+  display_name: string;
+  slug: string;
   reason: string;
   n_unweighted: number;
   flags: string[];
-  stats: Stat[];
+  balance: BalanceBlock;
+  cards: Card[];
 }
 
 export interface RankResponse {
   data_version: string;
   model_version: string;
   permalink: string;
+  sort: "best_first" | "worst_first";
   counts: {
     universe: number;
     ranked: number;
@@ -68,6 +91,8 @@ export interface RankResponse {
   };
   weights: Record<string, number>;
   few_metros_notice: boolean;
+  balance_applies: boolean;
+  balance_words: { sought: string; seeker: string };
   ranked: RankedRow[];
   shown_unranked: RankedRow[];
   suppressed: SuppressedRow[];
@@ -82,25 +107,31 @@ export interface FeatureLegend {
   display_name: string;
   unit: string;
   unit_short: string;
+  unit_template?: string | null;
+  mover_phrase?: string | null;
+  band_labels?: string[] | null;
+  band_tones?: string[] | null;
   definition: string;
   display_scale: number;
   display_decimals: number;
-  provenance: {
-    source: string;
-    dataset: string;
-    table: string;
-    variables: string[];
-    geography: string;
-    vintage: string;
-    transform_id: string;
-    tier: string;
-  };
+  provenance: Record<string, unknown>;
+}
+
+export interface MetroMeta {
+  cbsa: string;
+  title: string;
+  display_name: string;
+  display_name_full: string;
+  slug: string;
+  description: string;
+  lat: number;
+  lon: number;
+  ranked_set: boolean;
 }
 
 export interface Meta {
   data_version: string;
   model_version: string;
-  schema_version: string;
   pillars: Record<
     string,
     { display_name: string; definition: string; default_weight: number }
@@ -108,44 +139,20 @@ export interface Meta {
   pillar_order: string[];
   features: Record<string, FeatureLegend>;
   policy_strings: Record<string, string>;
-  tier_policy: Record<string, string>;
-  interval_model: {
-    mechanism: string;
-    copy_rule: string;
-    validation: Record<string, unknown>;
-  };
-  model_defaults: {
-    pillar_weights: Record<string, number>;
-    size_vs_odds: {
-      pool_plus_balance_mass: number;
-      default_s: number;
-      label_low: string;
-      label_high: string;
-    };
-  };
+  technical_strings: Record<string, string>;
+  standing_bands: { low_below: number; high_above: number };
+  city_cards: string[];
   licenses: Record<
     string,
-    {
-      name: string;
-      url: string;
-      shippable: boolean;
-      attribution: string | null;
-      notes: string | null;
-    }
+    { name: string; url: string; attribution: string | null; notes: string | null }
   >;
-  thresholds: Record<string, number>;
   controls: {
     income_band_edges: number[];
     education_levels: string[];
     marital: string[];
     race_ethnicity: string[];
+    importance_levels: string[];
     age: [number, number];
   };
-  sources: Record<string, unknown>;
-  metros: { cbsa: string; title: string; ranked_set: boolean }[];
-}
-
-export interface ApiError {
-  status: number;
-  detail: string;
+  metros: MetroMeta[];
 }

@@ -1,45 +1,47 @@
-/** URL state (§10.1): every preference lives in the query string, and the
- * query string is the only client-side source of truth. This module maps
- * searchParams <-> a typed pref state <-> the §8.2 request body. It never
- * computes a ranking number — that is the API's job alone. */
+/** URL state (§10.1): every preference lives in the query string. This
+ * module maps searchParams <-> a typed pref state <-> the m2.0.0 request
+ * body. It never computes a ranking number — that is the API's job. */
 import type { RankBody } from "./permalink";
 
 export const PILLARS = ["pool", "balance", "reach", "cost", "lifestyle"] as const;
+export type Level = "not_much" | "some" | "a_lot";
 
 export interface Prefs {
   selfSex: "male" | "female";
   selfAge: number;
-  seekSex?: "male" | "female";
+  seekSex?: "male" | "female"; // absent = opposite of selfSex
   ageMin: number;
   ageMax: number;
-  marital: string[]; // spec names
-  educationMin?: string;
+  marital: string[]; // never_married / previously_married
+  educationMin?: "bachelors" | "graduate";
   incomeMin?: number;
-  race?: string[]; // spec names
-  sizeVsOdds?: number; // slider, mutually exclusive with weights
-  weights?: Record<string, number>; // fine-tune, full 5-pillar vector
+  race?: string[]; // the six selectable spec names; absent = all
+  poolVsBalance?: number; // 0..1
+  importance: { cost: Level; reach: Level; lifestyle: Level };
+  sort: "best_first" | "worst_first";
 }
 
-/** §10.2's "sensible default profile": a woman of 30 seeking men 28-40 who
- * never married or were previously married, no education/income/identity
- * filters, default weights. Arbitrary by necessity, stated on the page,
- * and one click from being the visitor's own. */
+/** The stated default profile: a woman of 30 seeking men 28–40, never
+ * married or divorced/widowed, everything mattering "some". */
 export const DEFAULT_PREFS: Prefs = {
   selfSex: "female",
   selfAge: 30,
   ageMin: 28,
   ageMax: 40,
   marital: ["never_married", "previously_married"],
+  importance: { cost: "some", reach: "some", lifestyle: "some" },
+  sort: "best_first",
 };
 
 const MARITAL_SHORT: Record<string, string> = {
   never: "never_married",
   previously: "previously_married",
-  currently: "currently_married",
 };
 const MARITAL_LONG: Record<string, string> = Object.fromEntries(
   Object.entries(MARITAL_SHORT).map(([s, l]) => [l, s]),
 );
+const LEVEL_SHORT: Record<Level, string> = { not_much: "n", some: "s", a_lot: "a" };
+const LEVEL_LONG: Record<string, Level> = { n: "not_much", s: "some", a: "a_lot" };
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -49,7 +51,11 @@ function one(sp: SearchParams, k: string): string | undefined {
 }
 
 export function parsePrefs(sp: SearchParams): Prefs {
-  const p: Prefs = { ...DEFAULT_PREFS, marital: [...DEFAULT_PREFS.marital] };
+  const p: Prefs = {
+    ...DEFAULT_PREFS,
+    marital: [...DEFAULT_PREFS.marital],
+    importance: { ...DEFAULT_PREFS.importance },
+  };
   const selfSex = one(sp, "self_sex");
   if (selfSex === "male" || selfSex === "female") p.selfSex = selfSex;
   const selfAge = parseInt(one(sp, "self_age") ?? "", 10);
@@ -60,6 +66,7 @@ export function parsePrefs(sp: SearchParams): Prefs {
   if (age) {
     p.ageMin = Math.max(18, parseInt(age[1], 10));
     p.ageMax = Math.min(70, parseInt(age[2], 10));
+    if (p.ageMin > p.ageMax) [p.ageMin, p.ageMax] = [p.ageMax, p.ageMin];
   }
   const marital = one(sp, "marital");
   if (marital) {
@@ -67,26 +74,22 @@ export function parsePrefs(sp: SearchParams): Prefs {
     if (parts.length) p.marital = parts;
   }
   const edu = one(sp, "edu");
-  if (edu && ["some_college", "bachelors", "graduate"].includes(edu)) {
-    p.educationMin = edu;
-  }
+  if (edu === "bachelors" || edu === "graduate") p.educationMin = edu;
   const inc = parseInt(one(sp, "inc") ?? "", 10);
   if (Number.isFinite(inc)) p.incomeMin = inc;
   const race = one(sp, "race");
-  if (race) {
+  if (race !== undefined) {
     const parts = race.split(",").filter(Boolean);
+    // zero ticked = all (the model treats it the same; the URL stays honest)
     if (parts.length) p.race = parts;
   }
   const s = parseFloat(one(sp, "s") ?? "");
-  if (Number.isFinite(s) && s >= 0 && s <= 1) p.sizeVsOdds = s;
-  const w = one(sp, "w");
-  if (w) {
-    const vals = w.split(",").map(Number);
-    if (vals.length === PILLARS.length && vals.every((v) => Number.isFinite(v) && v >= 0)) {
-      p.weights = Object.fromEntries(PILLARS.map((k, i) => [k, vals[i]]));
-      p.sizeVsOdds = undefined; // explicit weights win, matching the API rule
-    }
+  if (Number.isFinite(s) && s >= 0 && s <= 1) p.poolVsBalance = s;
+  for (const [param, pillar] of [["ic", "cost"], ["ir", "reach"], ["il", "lifestyle"]] as const) {
+    const lv = LEVEL_LONG[one(sp, param) ?? ""];
+    if (lv) p.importance[pillar] = lv;
   }
+  if (one(sp, "sort") === "worst_first") p.sort = "worst_first";
   return p;
 }
 
@@ -100,38 +103,39 @@ export function toSearchParams(p: Prefs): URLSearchParams {
   if (p.educationMin) sp.set("edu", p.educationMin);
   if (p.incomeMin !== undefined) sp.set("inc", String(p.incomeMin));
   if (p.race?.length) sp.set("race", p.race.join(","));
-  if (p.weights) sp.set("w", PILLARS.map((k) => p.weights![k]).join(","));
-  else if (p.sizeVsOdds !== undefined) sp.set("s", String(p.sizeVsOdds));
+  if (p.poolVsBalance !== undefined) sp.set("s", String(p.poolVsBalance));
+  for (const [param, pillar] of [["ic", "cost"], ["ir", "reach"], ["il", "lifestyle"]] as const) {
+    if (p.importance[pillar] !== "some") {
+      sp.set(param, LEVEL_SHORT[p.importance[pillar]]);
+    }
+  }
+  if (p.sort !== "best_first") sp.set("sort", p.sort);
   return sp;
 }
 
-export function toRankBody(p: Prefs, pins?: { dataVersion: string; modelVersion: string }): RankBody {
+export function toRankBody(p: Prefs): RankBody {
   const body: RankBody = {
     self: { sex: p.selfSex, age: p.selfAge },
     seeking: {
       age: [p.ageMin, p.ageMax],
       marital: [...p.marital],
     },
+    sort: p.sort,
   };
   if (p.seekSex) body.seeking.sex = p.seekSex;
   if (p.educationMin) body.seeking.education_min = p.educationMin;
   if (p.incomeMin !== undefined) body.seeking.income_min = p.incomeMin;
   if (p.race?.length) body.seeking.race_ethnicity = [...p.race];
-  if (p.weights) {
-    // the API's Weights model carries all five pillars; send the full vector
-    body.weights = Object.fromEntries(PILLARS.map((k) => [k, p.weights![k] ?? 0]));
-  } else if (p.sizeVsOdds !== undefined) {
-    body.size_vs_odds = p.sizeVsOdds;
-  }
-  if (pins) {
-    body.data_version = pins.dataVersion;
-    body.model_version = pins.modelVersion;
+  const touched =
+    p.poolVsBalance !== undefined ||
+    Object.values(p.importance).some((l) => l !== "some");
+  if (touched) {
+    body.pool_vs_balance = p.poolVsBalance ?? 0.4545;
+    body.importance = { ...p.importance };
   }
   return body;
 }
 
-/** The reverse of toRankBody, for permalink tokens (/r/...) — a decoded
- * body becomes URL state so "re-run under the current build" is one link. */
 export function bodyToPrefs(body: RankBody): Prefs {
   const p: Prefs = {
     selfSex: body.self.sex === "male" ? "male" : "female",
@@ -139,38 +143,106 @@ export function bodyToPrefs(body: RankBody): Prefs {
     ageMin: body.seeking.age[0],
     ageMax: body.seeking.age[1],
     marital: [...body.seeking.marital],
+    importance: { ...DEFAULT_PREFS.importance, ...(body.importance ?? {}) },
+    sort: (body.sort as Prefs["sort"]) ?? "best_first",
   };
   if (body.seeking.sex === "male" || body.seeking.sex === "female") {
     p.seekSex = body.seeking.sex;
   }
-  if (body.seeking.education_min) p.educationMin = body.seeking.education_min;
+  if (body.seeking.education_min === "bachelors"
+      || body.seeking.education_min === "graduate") {
+    p.educationMin = body.seeking.education_min;
+  }
   if (body.seeking.income_min !== undefined) p.incomeMin = body.seeking.income_min;
   if (body.seeking.race_ethnicity?.length) p.race = [...body.seeking.race_ethnicity];
-  if (body.weights) p.weights = { ...body.weights };
-  else if (body.size_vs_odds !== undefined) p.sizeVsOdds = body.size_vs_odds;
+  if (body.pool_vs_balance !== undefined) p.poolVsBalance = body.pool_vs_balance;
+  else if (body.size_vs_odds !== undefined) p.poolVsBalance = body.size_vs_odds;
   return p;
 }
 
-export function describePrefs(p: Prefs, opts?: { withIdentity?: boolean }): string {
+const MARITAL_WORDS: Record<string, string> = {
+  never_married: "never married",
+  previously_married: "divorced or widowed",
+};
+const EDU_WORDS: Record<string, string> = {
+  bachelors: "a college degree",
+  graduate: "a graduate degree",
+};
+
+/** Plain-words restatement of the search (chips, headings, and the
+ * narrow-state body's {search} slot — NarrowV3's own grammar). */
+export function describeSearch(p: Prefs): string {
   const seek = p.seekSex ?? (p.selfSex === "female" ? "male" : "female");
-  const seekNoun = seek === "male" ? "men" : "women";
-  const selfNoun = p.selfSex === "male" ? "man" : "woman";
-  const maritalWords: Record<string, string> = {
-    never_married: "never married",
-    previously_married: "previously married",
-    currently_married: "currently married",
-  };
-  let s = `a ${selfNoun}, ${p.selfAge}, seeking ${seekNoun} ${p.ageMin}–${p.ageMax}, ` +
-    p.marital.map((m) => maritalWords[m]).join(" or ");
-  if (p.educationMin) {
-    const edu: Record<string, string> = {
-      some_college: "some college or more",
-      bachelors: "bachelor's or more",
-      graduate: "a graduate degree",
-    };
-    s += `, with ${edu[p.educationMin]}`;
+  const noun = seek === "male" ? "Men" : "Women";
+  let s = `${noun} ${p.ageMin}–${p.ageMax}, `
+    + p.marital.map((m) => MARITAL_WORDS[m]).join(" or ");
+  if (p.educationMin) s += `, with ${EDU_WORDS[p.educationMin]}`;
+  if (p.incomeMin !== undefined) {
+    s += `, earning $${p.incomeMin.toLocaleString("en-US")} or more`;
   }
-  if (p.incomeMin !== undefined) s += `, earning $${p.incomeMin.toLocaleString()}+`;
-  if (opts?.withIdentity && p.race?.length) s += `, with an identity filter active`;
   return s;
+}
+
+export function searchChips(p: Prefs): { label: string; active: boolean }[] {
+  const seek = p.seekSex ?? (p.selfSex === "female" ? "male" : "female");
+  const chips = [
+    { label: `${p.selfSex === "female" ? "Woman" : "Man"}, ${p.selfAge}`, active: false },
+    { label: `${seek === "male" ? "Men" : "Women"} ${p.ageMin}–${p.ageMax}`, active: false },
+    { label: p.marital.length === 2 ? "Single"
+        : p.marital[0] === "never_married" ? "Never married" : "Divorced or widowed",
+      active: p.marital.length === 1 },
+  ];
+  if (p.educationMin) {
+    chips.push({ label: p.educationMin === "bachelors" ? "College degree" : "Graduate degree", active: true });
+  }
+  if (p.incomeMin !== undefined) {
+    chips.push({ label: `Earning $${p.incomeMin.toLocaleString("en-US")}+`, active: true });
+  }
+  if (p.race?.length) {
+    chips.push({ label: `${p.race.length} of 6 groups`, active: true });
+  }
+  return chips;
+}
+
+/** The narrow-state wideners (NarrowV3/MetroV3): each restates the query
+ * it would produce, and each is a one-click, one-change loosening. */
+export function wideners(p: Prefs): { label: string; sub: string; next: Prefs }[] {
+  const out: { label: string; sub: string; next: Prefs }[] = [];
+  const span = p.ageMax - p.ageMin;
+  const wMin = Math.max(18, p.ageMin - 3);
+  const wMax = Math.min(70, p.ageMax + Math.max(2, Math.round(span / 2)));
+  out.push({
+    label: `Widen the ages to ${wMin}–${wMax}`,
+    sub: "everything else stays the same",
+    next: { ...p, ageMin: wMin, ageMax: wMax },
+  });
+  if (p.incomeMin !== undefined) {
+    out.push({
+      label: "Drop the income filter",
+      sub: p.educationMin ? "keeps the ages and the degree" : "keeps everything else",
+      next: { ...p, incomeMin: undefined },
+    });
+  }
+  if (p.educationMin) {
+    out.push({
+      label: "Any degree",
+      sub: p.incomeMin !== undefined ? "keeps the ages and the income" : "keeps everything else",
+      next: { ...p, educationMin: undefined },
+    });
+  }
+  if (p.race?.length) {
+    out.push({
+      label: "Include every group",
+      sub: "keeps everything else",
+      next: { ...p, race: undefined },
+    });
+  }
+  if (p.marital.length === 1) {
+    out.push({
+      label: "Never married or divorced",
+      sub: "keeps everything else",
+      next: { ...p, marital: ["never_married", "previously_married"] },
+    });
+  }
+  return out.slice(0, 3);
 }
