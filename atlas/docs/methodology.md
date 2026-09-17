@@ -107,17 +107,11 @@ population its figures actually cover; crime is never part of any score;
 and there is deliberately no "cities by crime" list.
 [More about the crime figures.](/about-crime-data)
 
-## Every city by one measure
+## Every measure, every city
 
-Preference-free lists of every ranked city, straight from the build:
-
-- [Cities by rent](/stats/median_gross_rent)
-- [Cities by everyday prices](/stats/everyday_prices)
-- [Cities by places to go out](/stats/venues_per_100k)
-- [Cities by getting around on foot](/stats/resident_walkability_index)
-- [Cities by nice days a year](/stats/pleasant_days)
-- [Cities by students](/stats/students_per_1k_adults)
-- [Cities by population](/stats/who_lives_here)
+The full list of what this site measures — each statistic in plain
+words, with a preference-free list of every ranked city — lives on one
+page: [What we measure](/what-we-measure).
 
 ## Can a result be reproduced later?
 

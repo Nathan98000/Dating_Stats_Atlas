@@ -81,9 +81,11 @@ that and to specify required attribution or disclaimer language.
 | County Business Patterns | Census Bureau | Venue and establishment counts by industry | A scored feature | Yes |
 | Quarterly Census of Employment and Wages | Bureau of Labor Statistics | Cross-check on the above | Accuracy check | No — check only |
 | Smart Location Database v3.0 | EPA | Street-network walkability measures | A scored feature | Yes |
-| Climate Normals 1991–2020 | NOAA | Pleasant-day counts | A scored feature | Yes |
+| GHCN-Daily observations 1991–2020 | NOAA | Pleasant-day counts (replaced Climate Normals in Phase 2d) | A scored feature | Yes |
 | IPEDS 2024–25 | NCES / Dept. of Education | Student population by metro | A scored feature | Yes |
-| Crime Data Explorer | FBI | Offence rates | Displayed on metro pages with the FBI's own comparability caveat; **never** part of any ranking | Yes, as context |
+| Crime Data Explorer | FBI | Offence rates and reporting coverage | Displayed on metro pages with the FBI's own comparability caveat; **never** part of any ranking | Yes, as context |
+| Cartographic boundary file (state, 1:20M) | Census Bureau | State outlines for the locator map | Projected at build time into static geometry | Yes, as drawings |
+| **City and stat-page photographs** | Wikipedia / Wikimedia Commons contributors | One lead photograph per city page and per stat page | Displayed unmodified with per-image attribution; licences read from the Commons API and restricted to public domain, CC0, CC-BY and CC-BY-SA; per-image manifest (source, author, licence, deed link, retrieval date, hash) at `results/phase2e/city_images.csv` | Yes — **the site's first third-party shipped assets; needs counsel's read before launch** |
 
 Note for question 1: we obtain some of this through the Census Bureau's API (which has its
 own terms of service, attached) and some by downloading bulk files from the Bureau's public
