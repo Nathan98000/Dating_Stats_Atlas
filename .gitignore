@@ -3,6 +3,10 @@ atlas/data/
 
 # Secrets
 CENSUS_API_KEY.txt
+FBI Crime Data API Key.txt
+
+# Office lock files (the key's Word owner-file among them)
+~$*
 
 # Python
 .venv/
