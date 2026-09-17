@@ -44,7 +44,11 @@ test("the city page: description, cards with bands, ranked card", async ({ page 
     expect(t.length).toBeGreaterThan(10);
   }
   const rent = page.locator('[data-card="median_gross_rent"]');
-  await expect(rent).toContainText(/Cheaper than most cities|About average for rent|Pricier than most cities/);
+  // five bands since m2.1.0 (item 6)
+  await expect(rent).toContainText(
+    /Far cheaper than most cities|Cheaper than most cities|About average for rent|Pricier than most cities|Among the priciest cities/,
+  );
+  await expect(rent.getByRole("link", { name: /See all cities by rent/ })).toBeVisible();
 });
 
 test("balance renders on the city page when the pool is suppressed", async ({ page }) => {
@@ -76,6 +80,10 @@ for (const [name, url] of [
   ["narrow state", BELOW_BAR],
   ["city page", "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously"],
   ["compare", "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously"],
+  ["compare landing", "/compare"],
+  ["stat page", "/stats/median_gross_rent"],
+  ["stat page, population", "/stats/who_lives_here"],
+  ["crime explainer", "/about-crime-data"],
   ["how it works", "/how-it-works"],
 ] as const) {
   test(`no banned string renders: ${name}`, async ({ page }) => {

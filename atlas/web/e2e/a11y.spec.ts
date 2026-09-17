@@ -1,9 +1,10 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-/** WCAG 2.1 AA on the new palette (gate 5): axe on home, results, city and
- * narrow-search; serious and critical violations fail. Plus the two-handle
- * control's separate labels. */
+/** WCAG 2.1 AA on the new palette (Phase 2d gate 2): axe across home,
+ * results, city, compare, a stat page and How it works — serious and
+ * critical violations fail. Plus the two-handle control's separate
+ * labels. */
 
 const PAGES = [
   { name: "home", url: "/" },
@@ -19,6 +20,13 @@ const PAGES = [
     name: "narrow search",
     url: "/?self_sex=female&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh",
   },
+  {
+    name: "compare",
+    url: "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously",
+  },
+  { name: "compare landing", url: "/compare" },
+  { name: "stat page", url: "/stats/median_gross_rent" },
+  { name: "how it works", url: "/how-it-works" },
 ];
 
 for (const p of PAGES) {

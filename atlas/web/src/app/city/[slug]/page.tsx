@@ -11,8 +11,10 @@ import {
 import { SiteHeader } from "@/components/chrome";
 import { LocatorMap } from "@/components/locator-map";
 import { BalanceTally } from "@/components/tally";
+import { CityArt } from "@/components/city-art";
 import { CityNarrowCard, CityWideners } from "@/components/city-cards";
 import { CompareLauncher } from "@/components/compare-launcher";
+import { CrimeSection } from "@/components/crime-block";
 import type { Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -44,6 +46,7 @@ export default async function CityPage({
   const policy = meta.policy_strings;
   const cards: Card[] = (ranked ?? suppressed)?.cards ?? [];
   const balance = (ranked ?? suppressed)?.balance;
+  const crime = (ranked ?? suppressed)?.crime;
   const city = metro.display_name_full.split(",")[0];
 
   return (
@@ -77,6 +80,10 @@ export default async function CityPage({
           </div>
           <LocatorMap metros={meta.metros} focus={metro} />
         </div>
+
+        {/* item 7: every page gets a face — deterministic artwork in the
+            site palette, overridden by a photo when one exists */}
+        <CityArt cbsa={metro.cbsa} slug={slug} />
 
         {/* for-your-search: the ranked card, or the approved narrow card */}
         {ranked ? (
@@ -156,6 +163,8 @@ export default async function CityPage({
             </div>
           </div>
         </section>
+
+        {crime && <CrimeSection crime={crime} city={city} />}
       </div>
     </>
   );
@@ -164,12 +173,21 @@ export default async function CityPage({
 function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta }) {
   const le = meta.features[card.id];
   if (!le) return null;
+  // item 6: the position label is descriptive; its COLOUR comes from the
+  // registry's direction through the served tone — and the lit segment
+  // matches, so "cheaper" can glow green while "more students" stays quiet
   const toneColor =
     card.band?.tone === "good" ? "text-good"
     : card.band?.tone === "poor" ? "text-poor"
     : "text-ink-2";
+  const segColor =
+    card.band?.tone === "good" ? "var(--good)"
+    : card.band?.tone === "poor" ? "var(--poor)"
+    : "var(--ink-3)";
   const isDollar = card.id === "median_gross_rent";
-  const segments: ("low" | "mid" | "high")[] = ["low", "mid", "high"];
+  const segments = meta.standing_bands.keys;
+  const statPage = meta.stat_pages.includes(card.id);
+  const statName = (le.stat_page_name ?? le.display_name).toLowerCase();
   return (
     <div className="flex flex-col gap-2.5 rounded-xl border border-rule bg-surface p-[18px]" data-card={card.id}>
       <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
@@ -193,7 +211,7 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
                     className="h-1.5 flex-1 rounded-full"
                     style={{
                       background:
-                        card.band!.key === seg ? "var(--accent)" : "var(--rule)",
+                        card.band!.key === seg ? segColor : "var(--rule)",
                     }}
                   />
                 ))}
@@ -202,6 +220,14 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
                 {card.band.label}
               </span>
             </>
+          )}
+          {statPage && (
+            <Link
+              href={`/stats/${card.id}`}
+              className="mt-auto pt-1 text-[12.5px] font-semibold text-accent hover:text-accent-hover"
+            >
+              {meta.policy_strings.stat_page_link.replace("{name}", statName)}
+            </Link>
           )}
         </>
       )}

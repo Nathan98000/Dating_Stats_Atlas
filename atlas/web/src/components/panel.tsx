@@ -1,8 +1,8 @@
 "use client";
 
-import { useId, useRef } from "react";
+import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
-import { type Level, type Prefs } from "@/lib/prefs";
+import { IMPORTANCE_PILLARS, type Level, type Prefs } from "@/lib/prefs";
 
 const RACE_LABELS: Record<string, string> = {
   hispanic: "Hispanic",
@@ -22,11 +22,6 @@ const LEVELS: { value: Level; label: string }[] = [
   { value: "not_much", label: "Not much" },
   { value: "some", label: "Some" },
   { value: "a_lot", label: "A lot" },
-];
-const IMPORTANCE_ROWS: { pillar: "cost" | "reach" | "lifestyle"; label: string }[] = [
-  { pillar: "cost", label: "Cost of living" },
-  { pillar: "reach", label: "Going out & getting around" },
-  { pillar: "lifestyle", label: "Weather & local life" },
 ];
 
 function Field({ label, htmlFor, children }: {
@@ -65,9 +60,16 @@ export function SearchPanel({
     <div className="flex flex-col gap-6 rounded-xl border border-rule bg-surface p-6">
       {/* the slider: the hero control */}
       <div className="flex flex-col gap-2.5">
-        <label htmlFor={`${uid}-svo`} className="text-sm font-semibold">
-          What matters more to you?
-        </label>
+        <div className="flex items-center gap-2">
+          <label htmlFor={`${uid}-svo`} className="text-sm font-semibold">
+            What matters more to you?
+          </label>
+          <InfoTip
+            id={`${uid}-svo-info`}
+            label="What the slider changes"
+            text={meta.policy_strings.slider_info}
+          />
+        </div>
         <input
           id={`${uid}-svo`}
           type="range"
@@ -201,8 +203,11 @@ export function SearchPanel({
           </Field>
         </div>
 
+        {/* Item 3: nothing editorial here — label, six boxes, clear-all.
+            The always-counted-groups disclosure moved to How it works and
+            the methodology (the report says so). */}
         <fieldset data-testid="race-panel">
-          <div className="mb-1.5 flex items-baseline justify-between">
+          <div className="mb-2 flex items-baseline justify-between">
             <legend className="text-[13px] font-semibold text-ink-2">
               Race &amp; ethnicity
             </legend>
@@ -216,9 +221,6 @@ export function SearchPanel({
               </button>
             ) : null}
           </div>
-          <p className="mb-2 text-[12.5px] leading-relaxed text-ink-3">
-            {meta.policy_strings.race_panel}
-          </p>
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
             {ALL_SIX.map((r) => {
               const on = raceSelected.includes(r);
@@ -251,16 +253,20 @@ export function SearchPanel({
         </fieldset>
       </div>
 
+      {/* Item 4: FOUR controls, labels and subtitles from the registry
+          through /v1/meta — student life is no longer bundled with the
+          weather, and the frontend still sends choices, never weights. */}
       <div className="flex flex-col gap-3 border-t border-rule pt-5" data-testid="importance">
         <div>
           <p className="text-sm font-semibold">How much do these matter?</p>
           <p className="text-[12.5px] text-ink-3">Beyond the people themselves.</p>
         </div>
-        <div className="grid grid-cols-[150px_1fr] items-center gap-x-3 gap-y-2.5 max-sm:grid-cols-1">
-          {IMPORTANCE_ROWS.map(({ pillar, label }) => (
+        <div className="flex flex-col gap-3">
+          {IMPORTANCE_PILLARS.map((pillar) => (
             <ImportanceRow
               key={pillar}
-              label={label}
+              label={meta.pillars[pillar]?.display_name ?? pillar}
+              subtitle={meta.pillars[pillar]?.control_subtitle ?? ""}
               value={prefs.importance[pillar]}
               onPick={(lv) =>
                 set({ importance: { ...prefs.importance, [pillar]: lv } })
@@ -273,18 +279,69 @@ export function SearchPanel({
   );
 }
 
+/** Item 2's information affordance: a real button, not a hover-only
+ * tooltip — it opens on hover AND focus AND tap, closes on Escape and
+ * blur, and is wired with aria-expanded + aria-describedby so the note
+ * reaches keyboard and touch users (gate 2/5). */
+function InfoTip({ id, label, text }: { id: string; label: string; text: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <span className="relative inline-flex">
+      <button
+        type="button"
+        data-testid="slider-info"
+        aria-label={label}
+        aria-expanded={open}
+        aria-describedby={open ? id : undefined}
+        className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-ink-3 text-[12px] font-bold leading-none text-ink-2 hover:border-accent hover:text-accent"
+        // click/tap OPENS (a toggle would fight the hover-open on pointer
+        // devices: the click's own hover reopens, the toggle re-closes);
+        // closing is Escape, blur, or the pointer leaving — and on touch,
+        // tapping anywhere else blurs
+        onClick={() => setOpen(true)}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setOpen(false)}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setOpen(false);
+        }}
+      >
+        i
+      </button>
+      {open && (
+        <span
+          id={id}
+          role="note"
+          data-testid="slider-info-note"
+          className="absolute left-1/2 top-[30px] z-40 w-[290px] -translate-x-1/2 rounded-lg border border-rule bg-surface px-3.5 py-3 text-[12.5px] font-normal leading-relaxed text-ink-2"
+        >
+          {text}
+        </span>
+      )}
+    </span>
+  );
+}
+
 function ImportanceRow({
   label,
+  subtitle,
   value,
   onPick,
 }: {
   label: string;
+  subtitle: string;
   value: Level;
   onPick: (lv: Level) => void;
 }) {
   return (
-    <>
-      <span className="text-[13px] text-ink-2">{label}</span>
+    <div className="grid grid-cols-[150px_1fr] items-center gap-x-3 max-sm:grid-cols-1 max-sm:gap-y-1">
+      <span className="flex flex-col">
+        <span className="text-[13px] font-semibold text-ink-2">{label}</span>
+        {subtitle ? (
+          <span className="text-[11.5px] leading-snug text-ink-3">{subtitle}</span>
+        ) : null}
+      </span>
       <div role="radiogroup" aria-label={`${label} importance`} className="flex gap-[5px]">
         {LEVELS.map((lv) => {
           const on = value === lv.value;
@@ -302,7 +359,7 @@ function ImportanceRow({
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 

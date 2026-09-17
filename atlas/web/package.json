@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "build:index": "python3 scripts/build_search_index.py",
+    "build:stats": "python3 scripts/build_stat_pages.py",
     "predev": "node scripts/sync_content.mjs",
     "prebuild": "node scripts/sync_content.mjs"
   },
