@@ -1,16 +1,31 @@
 """Preferences -> cube masks and canonical request handling. Pure; no I/O.
 
-Speaks the §8.2 contract's vocabulary (self/seeking, spec race names like
+Speaks the contract's vocabulary (self/seeking, spec race names like
 "black_nh", marital as a list of levels) and turns it into flat 0/1 mask
-vectors over the per-metro cell space, plus the derived symmetric rival
-window (Phase 1 correction 4: rivals carry the pool's marital screen and
-education floor; no income floor, no race screen — the pairing kernel is
-Phase 3).
+vectors over the per-metro cell space.
 
-D05 slider: slider_weights(s, defaults) reallocates the pool+balance mass
-between pool (s=0, most options) and balance (s=1, best odds); context
-pillar weights are untouched. The mass and default weights come from the
-build manifest, whose source of truth is the feature registry.
+m2.0.0 (ADR 0004):
+  - balance_masks() replaces the symmetric-rivals apparatus: dating pool
+    balance is the plain sex ratio of single adults in the SEEKING age
+    range — sought sex over seeker sex, same ages, same marital selection,
+    never filtered by race, education or income. seeking.age is used for
+    both sexes: the simple, explainable choice (a union with the seeker's
+    own ±5 window was considered and rejected — it would make the figure
+    move when the seeker's age moves, which is exactly the instability the
+    redefinition removes).
+  - Race filters select who matches, nothing more, and two groups are
+    ALWAYS counted: "Two or more races" and "Another race" are ORed into
+    every race selection here, in the model, not in a frontend. Zero
+    selected groups means no race filter at all (treated as all groups),
+    so an unticked panel never quietly shrinks the pool to the two
+    always-on categories.
+  - The API accepts only never_married and previously_married; the cube
+    keeps its third (currently-married) level untouched.
+
+D05 slider semantics survive as pool_vs_balance: one scalar dividing the
+people-mass between pool (0 = size) and balance (1 = balance); the
+three-step importance controls scale the context pillars through registry
+constants, and everything renormalizes to sum to 1.
 """
 from __future__ import annotations
 
@@ -26,14 +41,21 @@ RACE_LEVELS = ["hispanic", "nh_white", "nh_black", "nh_asian", "nh_aian",
                "nh_nhpi", "nh_twoplus", "nh_other"]
 INCOME_FLOORS = {25_000: 1, 50_000: 2, 75_000: 3, 100_000: 4, 150_000: 5, 250_000: 6}
 
-# §8.2 vocabulary <-> cube levels
+# spec vocabulary <-> cube levels
 SPEC_RACE = {"hispanic": "hispanic", "white_nh": "nh_white",
              "black_nh": "nh_black", "asian_nh": "nh_asian",
              "aian_nh": "nh_aian", "nhpi_nh": "nh_nhpi",
              "two_or_more_nh": "nh_twoplus", "other_nh": "nh_other"}
+# the six groups a visitor can tick; the other two are always counted
+SELECTABLE_RACES = ("hispanic", "white_nh", "black_nh", "asian_nh",
+                    "aian_nh", "nhpi_nh")
+ALWAYS_COUNTED_RACES = ("two_or_more_nh", "other_nh")
 SPEC_MARITAL = {"never_married": 0, "previously_married": 1,
                 "currently_married": 2}
+# m2.0.0: the site offers exactly two meanings of single (ADR 0004)
+ALLOWED_MARITAL = ("never_married", "previously_married")
 PILLARS = ["pool", "balance", "reach", "cost", "lifestyle"]
+IMPORTANCE_PILLARS = ("cost", "reach", "lifestyle")
 
 N_FLAT = 2 * 53 * 3 * 4 * 7 * 8  # per-metro cells
 
@@ -111,18 +133,41 @@ def pool_mask(spec: PoolSpec) -> np.ndarray:
                        spec.education_min, spec.income_min, spec.race_cube_levels)
 
 
-def rival_spec(req: Request) -> PoolSpec:
-    """Symmetric crude rivals (Phase 1 correction 4)."""
-    return PoolSpec(sex=req.self_sex,
-                    age_min=max(18, req.self_age - 5),
-                    age_max=min(70, req.self_age + 5),
-                    marital_levels=req.seeking.marital_levels,
-                    education_min=req.seeking.education_min,
-                    income_min=None, race_cube_levels=None)
+def balance_masks(req: Request) -> tuple[np.ndarray, np.ndarray]:
+    """(sought mask, seeker mask) for dating pool balance (ADR 0004): the
+    plain sex ratio of single adults in the SEEKING age range. Both masks
+    carry only sex, seeking.age and the marital selection — race, education
+    and income never touch balance, deliberately, so the figure means what
+    its name says and stays put as filters move."""
+    seek = req.seeking
+    sought = mask_vector(seek.sex, seek.age_min, seek.age_max,
+                         seek.marital_levels, None, None, None)
+    seeker = mask_vector(req.self_sex, seek.age_min, seek.age_max,
+                         seek.marital_levels, None, None, None)
+    return sought, seeker
+
+
+def resolve_race_levels(selected: list[str] | None) -> tuple[str, ...] | None:
+    """ADR 0004: the two always-counted groups are ORed into every race
+    selection, HERE in the model, so no client can drop them. Zero
+    selected groups (or all six) means no filter at all — an unticked
+    panel never shrinks the pool to just the always-on categories."""
+    if not selected:
+        return None
+    for r in selected:
+        assert r in SPEC_RACE, f"unknown race {r!r}"
+        assert r not in ALWAYS_COUNTED_RACES, (
+            f"{r} is always counted and is not a selectable filter")
+    if set(selected) >= set(SELECTABLE_RACES):
+        return None
+    cube = [SPEC_RACE[r] for r in selected]
+    cube += [SPEC_RACE[r] for r in ALWAYS_COUNTED_RACES]
+    return tuple(dict.fromkeys(cube))
 
 
 def parse_request(body: dict) -> Request:
-    """§8.2 request body -> typed Request. Raises ValueError on bad input."""
+    """Contract request body -> typed Request. Raises ValueError on bad
+    input."""
     self_ = body["self"]
     seeking = body["seeking"]
     sex = seeking.get("sex") or SEX_LEVELS[1 - SEX_LEVELS.index(self_["sex"])]
@@ -130,9 +175,13 @@ def parse_request(body: dict) -> Request:
     marital = seeking.get("marital")
     if not marital:
         raise ValueError("seeking.marital must list at least one status")
+    for m in marital:
+        if m not in ALLOWED_MARITAL:
+            raise ValueError(
+                "marital status must be never_married or previously_married "
+                "— the site counts single people only (ADR 0004)")
     levels = frozenset(SPEC_MARITAL[m] for m in marital)
-    race = seeking.get("race_ethnicity")
-    race_levels = tuple(SPEC_RACE[r] for r in race) if race else None
+    race_levels = resolve_race_levels(seeking.get("race_ethnicity"))
     if seeking.get("religion") is not None:
         raise ValueError("religion is the modelled tier and ships in Phase 4")
     spec = PoolSpec(sex=sex, age_min=int(age[0]), age_max=int(age[1]),
@@ -148,24 +197,59 @@ def parse_request(body: dict) -> Request:
 
 def slider_weights(s: float, defaults: dict[str, float],
                    mass: float) -> dict[str, float]:
-    """D05: one scalar -> a full weight vector. s=0 puts the pool+balance
-    mass on pool (most options); s=1 puts it on balance (best odds)."""
-    assert 0.0 <= s <= 1.0, "size_vs_odds must be in [0,1]"
+    """One scalar dividing the people-mass: s=0 puts it on pool (size),
+    s=1 on balance."""
+    assert 0.0 <= s <= 1.0, "pool_vs_balance must be in [0,1]"
     w = {k: v for k, v in defaults.items() if k not in ("pool", "balance")}
     w["pool"] = mass * (1.0 - s)
     w["balance"] = mass * s
     return w
 
 
+def importance_weights(s: float, importance: dict[str, str],
+                       manifest_defaults: dict) -> dict[str, float]:
+    """The v3 home-page controls -> a full weight vector, entirely from
+    registry constants (the frontend sends choices, never weights): the
+    context pillars scale by the level multiplier, the people-mass splits
+    by the slider, and the result renormalizes to sum to 1. 'Not much' is
+    a small floor rather than zero — nothing showed zeroing a pillar
+    leaves the ranking sane, and the floor keeps every stat's contribution
+    explainable."""
+    defaults = dict(manifest_defaults["pillar_weights"])
+    mass = float(manifest_defaults["size_vs_odds"]["pool_plus_balance_mass"])
+    mult = manifest_defaults["importance_levels"]
+    w = slider_weights(s, defaults, mass)
+    for p in IMPORTANCE_PILLARS:
+        level = importance.get(p, "some")
+        if level not in mult:
+            raise ValueError(f"importance.{p} must be one of {sorted(mult)}")
+        w[p] = defaults[p] * float(mult[level])
+    return w
+
+
 def resolve_weights(req: Request, manifest_defaults: dict) -> dict[str, float]:
-    """Explicit weights win; else the size_vs_odds slider; else defaults.
-    Weights are normalized to sum to 1 over the five pillars."""
+    """Explicit weights win; else the v3 controls (pool_vs_balance +
+    importance); else the deprecated size_vs_odds slider (accepted for one
+    version, ADR 0004); else defaults. Normalized to sum to 1."""
     defaults = dict(manifest_defaults["pillar_weights"])
     svo = manifest_defaults["size_vs_odds"]
-    if req.weights and "size_vs_odds" in req.raw:
-        raise ValueError("pass either weights or size_vs_odds, not both")
-    if "size_vs_odds" in req.raw:
-        w = slider_weights(float(req.raw["size_vs_odds"]), defaults,
+    raw = req.raw
+    knobs = [k for k in ("weights", "size_vs_odds", "pool_vs_balance")
+             if k in raw and raw[k] is not None]
+    if "weights" in knobs and len(knobs) > 1:
+        raise ValueError("pass either weights or the named controls, not both")
+    if "size_vs_odds" in knobs and "pool_vs_balance" in knobs:
+        raise ValueError(
+            "size_vs_odds is the deprecated name for pool_vs_balance; "
+            "send one, not both")
+    if "pool_vs_balance" in knobs or "importance" in raw:
+        s = float(raw.get("pool_vs_balance", svo["default_s"]))
+        if not 0.0 <= s <= 1.0:
+            raise ValueError("pool_vs_balance must be in [0,1]")
+        w = importance_weights(s, dict(raw.get("importance") or {}),
+                               manifest_defaults)
+    elif "size_vs_odds" in knobs:
+        w = slider_weights(float(raw["size_vs_odds"]), defaults,
                            float(svo["pool_plus_balance_mass"]))
     elif req.weights:
         w = {p: float(req.weights.get(p, 0.0)) for p in PILLARS}
@@ -179,10 +263,13 @@ def resolve_weights(req: Request, manifest_defaults: dict) -> dict[str, float]:
 
 def permalink(data_version: str, model_version: str, body: dict) -> str:
     """Deterministic, reproducible permalink (§5.4): both version pins plus
-    the canonical preference vector, base64url-encoded."""
+    the canonical preference vector, base64url-encoded. No permalink
+    renders in the UI (ADR 0004), but the property stays load-bearing:
+    every ranking the API ever serves remains reproducible."""
     import base64
     import json
-    core = {k: body[k] for k in ("self", "seeking", "weights", "size_vs_odds")
+    core = {k: body[k] for k in ("self", "seeking", "weights", "size_vs_odds",
+                                 "pool_vs_balance", "importance")
             if k in body}
     blob = json.dumps(core, sort_keys=True, separators=(",", ":")).encode()
     tok = base64.urlsafe_b64encode(blob).decode().rstrip("=")

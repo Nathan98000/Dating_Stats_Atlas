@@ -1,24 +1,17 @@
-"""Explanation layer (§9, as amended by ADR 0003): deterministic templates
-over the exact feature-level attribution. The D10 comparator is retired —
-the ranking is the comparison, and a reader who wants a specific pair gets
-the compare page.
+"""Explanation layer, m2.0.0: the movers line and the display-string
+helpers. The v3 boards replace per-row sentences with one plain line —
+"Biggest pluses: the size of the pool, the balance, walkable
+neighbourhoods · Rent counts against it" — composed HERE, server-side,
+from registry mover phrases, so the frontend never selects or words what
+moved a city. The jinja template and its renderer left with the old row
+copy; the §9 metric record stays for the deferred build-time narratives.
 
 Every label is rendered from the build's legend (registry -> manifest ->
-Build.legend); no user-facing name lives here. Suppression and confidence
-strings come verbatim from suppression.POLICY_STRINGS.
-
-Build-time metro narratives are Phase 3; this module produces the
-structured metric record they will consume (§9's JSON contract, feature-
-level since ADR 0003) and the per-request explanation text from jinja
-templates.
+Build.legend); no user-facing name lives here.
 """
 from __future__ import annotations
 
-from pathlib import Path
-
-from jinja2 import Environment, FileSystemLoader, StrictUndefined
-
-# The lead sentence names the top stats by |contribution| in score points.
+# The movers line names the top stats by |contribution| in score points.
 # TOP_STATS_MAX per ADR 0003 ("two or three"); a stat below
 # TOP_STATS_MIN_POINTS is noise relative to a 0-100 score and is not
 # presented as having moved anything.
@@ -27,10 +20,6 @@ TOP_STATS_MIN_POINTS = 0.5
 
 # magnitude buckets over |contribution| in score points (metric record only)
 BUCKETS = [(8.0, "large"), (3.0, "moderate"), (0.0, "slight")]
-
-_env = Environment(loader=FileSystemLoader(Path(__file__).parent / "templates"),
-                   undefined=StrictUndefined, trim_blocks=True,
-                   lstrip_blocks=True)
 
 
 def bucket(value: float) -> str:
@@ -57,9 +46,37 @@ def top_stats(stats: list[dict]) -> list[dict]:
     return moved[:TOP_STATS_MAX]
 
 
+def summary_line(row: dict, legend: dict[str, dict]) -> str:
+    """The v3 row line: pluses named by their registry mover phrases, the
+    single biggest minus appended as '· X counts against it' (HomeV3's
+    exact shape). Position-unique lead by construction; the validation
+    suite still asserts it, because the last renderer that looked obviously
+    correct wasn't."""
+    from atlas.model.suppression import POLICY_STRINGS
+    movers = top_stats(row["stats"])
+    pluses = [s for s in movers if s["contribution"] > 0]
+    minuses = [s for s in movers if s["contribution"] < 0]
+
+    def phrase(s: dict) -> str:
+        le = legend[s["id"]]
+        return le.get("mover_phrase") or le["display_name"].lower()
+
+    parts = []
+    if pluses:
+        parts.append(POLICY_STRINGS["pluses_lead"]
+                     + ", ".join(phrase(s) for s in pluses))
+    if minuses:
+        worst = min(minuses, key=lambda s: s["contribution"])
+        p = phrase(worst)
+        parts.append(p[0].upper() + p[1:] + POLICY_STRINGS["minus_tail"])
+    if not parts:
+        return "Close to the middle of the pack on everything you weighted"
+    return " · ".join(parts)
+
+
 def metric_record(row: dict) -> dict:
-    """§9's structured record — the input the Phase 3 build-time narratives
-    will consume. Feature-level since ADR 0003; no comparator."""
+    """§9's structured record — the input the deferred build-time
+    narratives will consume. Feature-level since ADR 0003."""
     contribs = sorted((s for s in row["stats"]
                        if s.get("contribution") is not None),
                       key=lambda s: -s["contribution"])
@@ -77,24 +94,3 @@ def metric_record(row: dict) -> dict:
             "pool_moe": row["pool_moe"], "tier": row["tier"],
             "strengths": strengths, "weaknesses": weaknesses,
             "caveats": caveats}
-
-
-def render_explanation(row: dict, legend: dict[str, dict]) -> str:
-    """Per-request 'why it ranks here for you' text: the top stats by
-    absolute contribution, each with its display name, its value in real
-    units, and what it did to the score — so the text changes when the
-    weights do, which is the point."""
-    tpl = _env.get_template("ranked.jinja")
-    movers = []
-    for s in top_stats(row["stats"]):
-        le = legend[s["id"]]
-        short = le.get("unit_short", "")
-        movers.append({
-            "label": le["display_name"],
-            "value": format_value(s["value"], le),
-            "unit_suffix": f" {short}" if short else "",
-            "points": f"{s['contribution']:+.1f}",
-            "positive": s["contribution"] > 0,
-        })
-    return tpl.render(name=row["name"], rank=row["rank"],
-                      movers=movers).strip()

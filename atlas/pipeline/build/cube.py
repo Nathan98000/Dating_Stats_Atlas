@@ -87,6 +87,8 @@ def build(out_root=None) -> str:
     metros = pd.read_csv(RESULTS / "metros.csv", dtype={"cbsa": str})
     reg = load_registry()
     statics = pd.read_csv(P2 / "static_features.csv", dtype={"cbsa": str})
+    city_meta = pd.read_csv(RESULTS / "phase2c" / "city_meta.csv",
+                            dtype={"cbsa": str})
     pairing_m = pd.read_csv(P2 / "pairing_metro.csv", dtype={"cbsa": str})
     pairing_cells = DATA / "pairing_cells.parquet"
     assert pairing_cells.exists(), "run build.pairing before build.cube"
@@ -144,11 +146,26 @@ def build(out_root=None) -> str:
     feats = (quality.merge(metros[["cbsa", "states", "n_counties"]], on="cbsa")
              .merge(statics[["cbsa"] + static_cols], on="cbsa", how="left")
              .merge(pairing_m, on="cbsa", how="left")
+             .merge(city_meta, on="cbsa", how="left")
              .merge(ioff.rename(columns={"offset": "interval_offset"}),
                     on="cbsa", how="left"))
     feats = feats.set_index("cbsa").loc[metro_levels].reset_index()
     assert feats["interval_offset"].notna().all(), "metro missing interval offset"
+    assert feats["description"].notna().all(), "metro missing city description"
     feats["feature_flags"] = feats["feature_flags"].fillna("")
+
+    # m2.0.0 display stats (ADR 0004): the "Everyday prices" card is the
+    # simple average of the two scored BEA price levels; who_lives_here
+    # reads pop_total. Standing bands come from the NATIONAL percentile of
+    # each card stat, computed here at build time — the wireframe placed
+    # bands by judgement and said so; the shipped page reads these columns.
+    feats["everyday_prices"] = feats[["rpp_goods", "rpp_services_other"]].mean(axis=1)
+    card_source = {"who_lives_here": "pop_total"}
+    for fid in reg.city_cards:
+        col = card_source.get(fid, fid)
+        v = feats[col].astype(float)
+        pct = v.rank(method="average", pct=True) * 100.0
+        feats[f"standing_all_{fid}"] = pct.where(v.notna())
 
     tmp = BUILDS / f"_tmp_{int(time.time())}"
     tmp.mkdir(parents=True, exist_ok=True)
@@ -159,6 +176,11 @@ def build(out_root=None) -> str:
     shutil.copyfile(pairing_cells, tmp / "pairing_cells.parquet")
     (tmp / "metros.json").write_text(json.dumps(
         [{"cbsa": r["cbsa"], "title": r["cbsa_title"],
+          "display_name": r["display_name"],
+          "display_name_full": r["display_name_full"],
+          "slug": r["slug"],
+          "description": r["description"],
+          "lat": round(float(r["lat"]), 4), "lon": round(float(r["lon"]), 4),
           "ranked_set": bool(r["ranked_set"])} for _, r in feats.iterrows()],
         indent=1) + "\n")
 
@@ -204,19 +226,28 @@ def build(out_root=None) -> str:
             "used_by_api": False,
         },
         "tier_policy": {
-            "suppress": "min(n_alloc, kish) < 100, or empty pool, or empty "
-                        "rival set — the gate is n alone (ADR 0002)",
+            "suppress": "min(n_alloc, kish) < 100, or empty pool — the gate "
+                        "is n alone (ADR 0002; the rival condition left with "
+                        "the rival apparatus, ADR 0004)",
             "shown_unranked": "permanently empty: the CV tiers are removed "
                               "(measured max true CV 11.8%, p99 9.8% in the "
                               "served region of the 480-shape battery — the "
                               "rules could not fire)",
-            "ranked": "everything else in the ranked set; the served margin "
-                      "still renders beside every population figure",
+            "ranked": "everything else in the ranked set; margins are "
+                      "computed and returned but no longer rendered "
+                      "(ADR 0004) — suppression is the visible expression "
+                      "of uncertainty",
+            "balance_gate": "dating pool balance gates separately: both "
+                            "age-by-sex counts must clear the same "
+                            "100-effective-respondent bar",
         },
         "model_defaults": {
             "pillar_weights": reg.pillar_weights,
             "size_vs_odds": reg.size_vs_odds,
+            "importance_levels": reg.importance_levels,
         },
+        "standing_bands": reg.standing_bands,
+        "city_cards": list(reg.city_cards),
         "pillars": {
             k: {"display_name": p.display_name, "definition": p.definition,
                 "default_weight": p.default_weight}
@@ -239,9 +270,14 @@ def build(out_root=None) -> str:
                    "weight_in_pillar": f.weight_in_pillar, "status": f.status,
                    "display_name": f.display_name, "unit": f.unit,
                    "unit_short": f.unit_short,
+                   "unit_template": f.unit_template,
+                   "mover_phrase": f.mover_phrase,
+                   "band_labels": list(f.band_labels) if f.band_labels else None,
+                   "band_tones": list(f.band_tones) if f.band_tones else None,
                    "definition": f.definition,
                    "display_scale": f.display_scale,
                    "display_decimals": f.display_decimals,
+                   "retired_reason": f.retired_reason,
                    "provenance": f.provenance}
             for f in reg.features.values()
         },

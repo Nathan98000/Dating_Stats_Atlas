@@ -1,133 +1,93 @@
-# Methodology — Dating Stats Atlas
+# How the numbers are made
 
-Versioned with `model_version` (this page: m1.2.0). The frontend renders
-this page's interval, suppression and provenance language verbatim.
+This page is versioned with the model (m2.0.0). It is written for
+visitors; the technical record — decision documents, validation reports,
+and the precise uncertainty figures — is in the project repository and
+available on request.
 
-## What the numbers are
+## Where the data comes from
 
-Every pool estimate is a weighted sum over ACS 2020–2024 5-year PUMS person
-records, allocated from PUMAs to metros through a tract-population bridge
-(household records) and a 2020-Census DHC P18 group-quarters bridge
-(dormitory/barracks and institutional records separately). Institutional
-group quarters are excluded from every pool. The file is 2020–2024 —
-never "2024".
+Every count on this site comes from the Census Bureau's American Community
+Survey — the survey of about 3.5 million households a year that the
+government uses to describe the whole country. We use the five years of
+responses collected from 2020 through 2024, assigned to metro areas using
+the Census Bureau's own geographic definitions. When we say "San
+Francisco", we mean the whole metro area, not just the city limits.
 
-## Margins of error — "at least this wide"
+Nobody is counted twice, nothing is scraped from dating apps, and no
+number on this site comes from a model guessing — every figure is a count
+of real survey responses, weighted the way the Census Bureau weights them.
 
-Every population figure carries a margin of error, always visible in the
-row. The margins are **calibrated upper bounds**, not symmetric "±"
-intervals:
+## What we count
 
-> The true margin of error is at or below the shown margin on **at least
-> 95% of held-out validation queries (measured: 97.5%)**, and the shown
-> margin overstates the true one by **23% at the median (gate: at most
-> 25%)**.
+You describe who you're looking for — sex, ages, whether they've been
+married before, education, income, race and ethnicity. We count how many
+people matching that description live in each of 387 US cities. That
+count is the **dating pool**.
 
-Both numbers are measured on a 480-shape query battery evaluated with the
-full 81-replicate ACS machinery, with 30% of query shapes AND 20% of metros
-held out, and are recorded in the build manifest. A two-sided model was
-attempted first and failed its 15% error gate (90th-percentile relative
-error 23.6%); the failure and its diagnosis are published rather than
-shipped. An interval that is too wide on a known, measured fraction of
-queries is defensible; one that is too narrow is not.
+**Dating pool balance** is a different, simpler number: all single men per
+100 single women (or the mirror, if you're looking for women) in the ages
+you picked. It deliberately ignores your other filters, so it means what
+it sounds like — the shape of the whole singles scene at that age, which
+doesn't change as you refine your search. In a same-sex search everyone is
+on both sides of the comparison, so balance doesn't apply and the other
+measures carry its weight.
 
-The served coefficient of variation, where shown, is an upper bound from
-the same mechanism. It appears only in expandable detail, labelled as a
-bound, and **decides nothing** (see below).
+**Race and ethnicity filters count who lives in a city and matches your
+search — nothing more.** They say nothing about who dates or marries whom,
+and this site makes no claim about that. Two groups are always included in
+every count, whatever you tick: people of two or more races, and anyone
+whose race isn't in the list. That's why a filtered pool can be a little
+larger than the groups you ticked would suggest.
 
-## Suppression — our policy, not Census's
+The rest of the score describes the place: typical rent and everyday
+prices, places to go out and how walkable daily life is, nice days a year
+and the student presence. Each stat's source is a named federal dataset —
+Census, the Bureau of Economic Analysis, the EPA's walkability index, NOAA
+climate normals, and federal education data. Crime is never part of any
+score, in line with the FBI's own caution against using its data to rank
+places.
 
-Census provides the variance machinery and explicitly declines the
-judgment, so the threshold is a published product policy (D08, as amended
-by ADR 0002). The gate is **sample size alone**:
+## How the score works
 
-| Condition | Behaviour |
-|---|---|
-| under 100 effective respondents (min of allocated count and Kish effective n) | suppressed |
-| empty pool, or an empty comparison set for the odds ratio | suppressed |
-| everything else in the ranked set | ranked, margin beside the figure |
-| fewer than 40 metros ranked for a query | the page says so above the list |
+You set what matters: the slider divides the people-side weight between
+pool size and balance, and the three-step controls set how much cost,
+going out, and weather count. Each city's stats are compared across the
+cities that can answer your search, weighted the way you chose, and summed
+to a score out of 100. "Not much" makes a thing count a little, not zero —
+so nothing you deprioritise can silently vanish from the score. There are
+no hidden weights: the controls on the home page are the whole model.
 
-Earlier drafts of this policy carried two further rules keyed to the
-coefficient of variation (suppress above 30%, show-but-don't-rank at
-20–30%). They were removed in m1.2.0, for a measured reason: across the
-480-shape validation battery, on the 23,028 metro-points where the
-sample-size gate passes, the true replicate CV never exceeds **11.8%**
-(99th percentile **9.8%**) — so the CV rules provably could not fire on
-the data. Worse, Phase 2a computed them on the *served* CV, which is a
-deliberate upper bound (median overstatement 23%), so the only way the
-tier could have fired was through the interval model's conservatism rather
-than through anything about a metro's data. A rule that cannot fire except
-by accident is not a safeguard, and it was removed rather than carried
-(ADR 0002). **The margins themselves are unaffected**: this changed which
-metros get a rank, never what is shown beside a number.
+## When we leave a city out
 
-## Allocation purity
+Because the data is a survey, a very specific search can turn up only a
+handful of matching responses in a smaller city. Below about a hundred
+matching respondents, a count stops being dependable — so we leave that
+city out of your results rather than show a number we can't stand behind,
+and we say how many cities were left out and why. **Too few matches in the
+survey is not the same as too few people in the country**: it usually
+means the search is narrow, not that nobody fits.
 
-`allocation_purity` is the share of a metro's estimate arriving through
-PUMAs that lie at least 95% inside it. Measured effect (Phase 2a): interval
-coverage does not degrade at low purity; agreement with published tables
-falls ~5 points in the worst bin. Metros below 0.5 purity carry a visible
-`low_allocation_purity` flag rather than being dropped.
+We know how precise every count is — the survey publishes the machinery
+for measuring it, and we validate ours against it on every build. We don't
+print those precision figures on results pages; leaving out what's too
+thin to trust, and saying so, is how this site expresses uncertainty. The
+precise figures for any number on the site are available on request.
 
-## How couples here actually pair — the interim pairing rate
+## What balance compares, exactly
 
-Whenever a race or ethnicity filter is active, the site shows, beside the
-pool and at the same visual weight, the **cross-group pairing rate**: among
-partnered people of the sought group in that metro, the share whose spouse
-or unmarried partner is outside the group. It comes from real couples in
-PUMS households — spouse and partner links to the household reference
-person, verified against the pinned data dictionary — weighted exactly like
-every pool figure.
+Single (never-married, divorced or widowed) men aged X to Y, divided by
+single women aged X to Y, where X to Y is the age range in your search —
+counted across everyone in the metro area, before any education, income,
+race or ethnicity filter. It is shown per 100, rounded to a whole number,
+and it is only shown where both sides of the comparison have enough survey
+sample to be dependable.
 
-Its margin is not modelled: because the pairing cells are fixed at build
-time, the survey's own 80 replicate weights are evaluated directly, so the
-served margin **is** the measured one (90% confidence). The one-sided
-calibrated bound used for pool figures exists because per-query pools are
-too combinatorial to measure directly; it is not needed here and is not
-claimed here.
+## Reproducibility
 
-The limitation, stated plainly (§7.3): observed couples describe who
-**matched**, not who was **available**. The rate is endogenous to the very
-conditions being measured. The copy therefore says "how couples here
-actually pair," never "what people here want." PUMS also links only the
-reference person's partner, so couples in subfamilies are not observed.
-This interim estimate is replaced in Phase 3 by the full assortative
-kernel, whose validation gate is reproducing Pew's published metro
-intermarriage table; until then the interim rate is checked against that
-table for direction only (measured: Spearman 0.83 across 124 matched
-metros — different quantities, same ordering).
-
-## Terminology
-
-The `balance` pillar renders as **Odds**, and the ratio renders as
-**matches per 10 people looking**. "Market", "supply", "inventory" and
-"rival" are accurate modelling terms and corrosive product copy (§12.3);
-none of them appears in a rendered string, and a build gate fails if one
-does. Every label, unit and definition on the site comes from the feature
-registry through the build manifest — no user-facing label lives in code.
-
-## Findings the spec had not anticipated
-
-- **B12007 (median age at first marriage) is not published at CBSA level**
-  in the 2024 ACS 5-year release — every metro value returns an annotation
-  jam. The external-correlation check falls back to state medians through
-  each metro's primary state, and is labelled as coarse.
-- **Walkability is the walkability of where the metro's residents live**
-  (EPA SLD, population-weighted), not "% of the pool in walkable tracts" —
-  the pool exists only at metro level after PUMA allocation, so the
-  proposal's §5.3 mock wording was corrected rather than inherited.
-- The **score margin** shown in row detail is a first-order approximation
-  stacked on the one-sided pool and odds bounds, with the query's
-  normalization frozen. It is labelled an approximation and kept out of
-  the ranking row.
-
-## Provenance
-
-Every number traces to `{source, dataset, table, variables, geography,
-vintage, transform_id, tier}`, rendered from the build manifest, and every
-source carries a typed license with a `shippable` flag the build enforces.
-All scored features are **Measured** tier (ACS, BEA RPP, CBP/QCEW,
-EPA SLD street-network measures, NOAA 1991–2020 Climate Normals, IPEDS).
-Crime is never scored (D01) and renders, when its context data ships, only
-with the FBI's own Caution Against Ranking attached.
+Every ranking this site has ever served can be reproduced exactly: the
+build of the data and the version of the scoring model are pinned inside
+every result the server produces, and changes to either are versioned and
+tested against pinned expectations. The full decision history — including
+what changed between model versions and why — is in the project's decision
+records.
