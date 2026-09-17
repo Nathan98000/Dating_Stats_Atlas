@@ -1,6 +1,6 @@
-"""Build the static context-feature matrix for the three Phase 2a pillars
-(cost, reach, lifestyle) across all 387 metros, with the four traps from the
-brief handled explicitly:
+"""Build the static context-feature matrix for the place pillars (cost,
+reach, weather, students since m2.1.0) across all 387 metros, with the four
+traps from the Phase 2a brief handled explicitly:
 
   - CBP/QCEW suppression: disclosure flags and absent cells are not nulls;
     absence counts per NAICS go in the report, and the two sources are
@@ -31,7 +31,6 @@ from atlas.pipeline.adapters.cbp import CbpAdapter
 from atlas.pipeline.adapters.census import AcsSummaryAdapter, DelineationAdapter
 from atlas.pipeline.adapters.epa_sld import EpaSldAdapter
 from atlas.pipeline.adapters.ipeds import IpedsAdapter
-from atlas.pipeline.adapters.noaa_normals import NoaaNormalsAdapter
 from atlas.pipeline.adapters.qcew import QcewAdapter
 from atlas.pipeline.bridge.bg10_tract20 import bg10_to_metro_weights, crosswalk_sld
 from atlas.pipeline.fetch import RESULTS
@@ -166,21 +165,25 @@ def build() -> None:
     assert report["sld_reconciliation"]["max_abs_log_ratio"] < 0.35, (
         f"SLD metro totals fail reconciliation: {report['sld_reconciliation']}")
 
-    # ---- lifestyle: NOAA pleasant days + IPEDS students --------------------
-    delin_ad = DelineationAdapter()
-    delin = delin_ad.normalize(delin_ad.fetch())
-    central = delin[(delin["Central/Outlying County"] == "Central")
-                    & delin["cbsa"].isin(set(out["cbsa"]))][["cbsa", "county5"]]
-    noaa = NoaaNormalsAdapter()
-    nd = noaa.metro_pleasant_days(central)
+    # ---- weather: GHCN-Daily pleasant days (m2.1.0, item 11) ---------------
+    # Computed on actual observations by build.pleasant_days (the long
+    # fetch runs once, standalone); the Normals-based count is retired —
+    # averaging destroyed the day-to-day variation the statistic exists to
+    # count, which is how San Francisco served 365.
+    ghcn_csv = RESULTS / "phase2d" / "pleasant_days_ghcn.csv"
+    assert ghcn_csv.exists(), "run build.pleasant_days before build.features"
+    nd = pd.read_csv(ghcn_csv, dtype={"cbsa": str})
     out = out.merge(nd[["cbsa", "pleasant_days"]], on="cbsa", how="left")
-    report["noaa"] = {
+    report["ghcn_pleasant_days"] = {
         "metros_without_station": sorted(nd[nd["pleasant_days"].isna()]["cbsa"]),
         "median_station_km": float(nd["station_km"].median()),
         "p95_station_km": float(nd["station_km"].quantile(0.95)),
         "fallback_rank_gt0": int((nd["station_rank"].fillna(0) > 0).sum()),
-        "definition": {"tmax_f": reg.pleasant_day["tmax_f"],
-                       "tmin_floor_f": reg.pleasant_day["tmin_floor_f"]}}
+        "definition": dict(reg.pleasant_day)}
+
+    # ---- students: IPEDS ---------------------------------------------------
+    delin_ad = DelineationAdapter()
+    delin = delin_ad.normalize(delin_ad.fetch())
 
     ip = IpedsAdapter()
     iraw = ip.fetch()

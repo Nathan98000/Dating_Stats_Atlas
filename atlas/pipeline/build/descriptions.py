@@ -28,8 +28,6 @@ import re
 
 import pandas as pd
 
-from atlas.pipeline.adapters.census import DelineationAdapter
-from atlas.pipeline.adapters.noaa_normals import county_internal_points
 from atlas.pipeline.fetch import RESULTS
 from atlas.pipeline.registry.loader import load_registry
 
@@ -144,17 +142,16 @@ def build() -> pd.DataFrame:
           .merge(statics[["cbsa", "students_per_1k_adults"]], on="cbsa",
                  how="left"))
 
-    # metro point = mean of central-county internal points (cached TIGERweb)
-    delin_ad = DelineationAdapter()
-    delin = delin_ad.normalize(delin_ad.fetch())
-    central = delin[delin["Central/Outlying County"] == "Central"]
-    pts = county_internal_points()
-    cc = central.merge(pts, left_on="county5", right_on="GEOID", how="left")
-    metro_pts = cc.groupby("cbsa")[["lat", "lon"]].mean()
+    # metro point = the PRINCIPAL CITY's internal point since Phase 2d
+    # (county-anchor fallback inside): the old central-county mean sat up
+    # to 130 km from the city in huge Western counties, which mis-placed
+    # locator-map dots and skewed the drive-time phrases
+    from atlas.pipeline.bridge.city_points import principal_city_points
+    metro_pts = principal_city_points().set_index("cbsa")[["lat", "lon"]]
     df = df.merge(metro_pts, left_on="cbsa", right_index=True, how="left")
     assert df["lat"].notna().all(), (
-        "a metro has no central-county internal point — the description "
-        "build cannot place it")
+        "a metro has no anchor point — the description build cannot "
+        "place it")
 
     df["city"] = df["cbsa_title"].map(first_city)
     df["st"] = df["cbsa_title"].map(first_state)
