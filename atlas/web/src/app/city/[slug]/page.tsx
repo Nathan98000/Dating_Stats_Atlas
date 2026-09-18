@@ -189,7 +189,7 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
   // students" stays quiet
   const toneColor = toneText(card.band?.tone);
   const segColor = toneSeg(card.band?.tone);
-  const isDollar = card.id === "median_gross_rent";
+  const isDollar = card.id === "rent_1br";
   const segments = meta.standing_bands.keys;
   const statPage = meta.stat_pages.includes(card.id);
   const statName = (le.stat_page_name ?? le.display_name).toLowerCase();

@@ -31,8 +31,7 @@ const DATA = statPages as unknown as {
                           source: { name: string; url: string };
                           rows: StatRow[]; missing_in_ranked_set: number;
                           default_is_low_first: boolean;
-                          strip: { ticks: number[]; axis: [string, string] };
-                          note: string | null }>;
+                          strip: { ticks: number[]; axis: [string, string] } }>;
   order: string[];
   strings: { missing: string; sort_low: string; sort_high: string;
              strip_label: string; col_city: string; source_prefix: string };
@@ -51,7 +50,7 @@ export default async function StatPage({
   const { fid } = await params;
   const page = DATA.pages[fid];
   if (!page) notFound();
-  const isDollar = fid === "median_gross_rent";
+  const isDollar = fid === "rent_1br";
   const img = IMAGES[fid];
   const imgExists =
     img && fs.existsSync(path.join(process.cwd(), "public", "stats", img.file));
@@ -95,11 +94,6 @@ export default async function StatPage({
               {page.source.name}
             </a>
           </p>
-          {page.note && (
-            <p className="max-w-[64ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13.5px] leading-relaxed text-accent-hover" data-testid="stat-note">
-              {page.note}
-            </p>
-          )}
         </div>
 
         {/* item 6: the distribution strip — every ranked city as a tick

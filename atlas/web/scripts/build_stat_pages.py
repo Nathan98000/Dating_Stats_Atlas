@@ -26,7 +26,7 @@ from atlas.model.explain import format_pop, format_value  # noqa: E402
 from atlas.model.loader import load_build  # noqa: E402
 from atlas.model.scoring import _band_of  # noqa: E402
 
-DEFAULT_BUILD = REPO / "atlas" / "data" / "builds" / "98dcbb161236"
+DEFAULT_BUILD = REPO / "atlas" / "data" / "builds" / "5d0e3ca2f708"
 
 
 def main() -> None:
@@ -103,10 +103,10 @@ def main() -> None:
             # reverse toggle shows the SAME numbers in reverse (item 1)
             "default_is_low_first": not reverse,
             "strip": {"ticks": ticks, "axis": axis},
-            # per-page disclosure sentences from the registry (the rent
-            # page's caution box, item 9.3)
-            "note": {"median_gross_rent": m["strings"].get("rent_page_note")}
-                    .get(fid),
+            # the rent page's caution box was DELETED in Phase 2g item
+            # 1.5 with its registry string: HUD's measure trims the
+            # subsidised bottom and adjusts to recent movers, so the
+            # note's rent-regulation drag is not in this number
         }
     out = WEB / "src" / "data" / "stat-pages.json"
     out.parent.mkdir(parents=True, exist_ok=True)

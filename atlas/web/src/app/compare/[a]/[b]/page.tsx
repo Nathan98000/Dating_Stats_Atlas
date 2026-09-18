@@ -203,7 +203,7 @@ export default async function ComparePage({
                         {c && c.display !== undefined ? (
                           <div className="flex flex-col">
                             <span className="text-[16px] font-semibold">
-                              {id === "median_gross_rent" ? "$" : ""}
+                              {id === "rent_1br" ? "$" : ""}
                               {c.display}
                             </span>
                             {c.band && (
@@ -226,7 +226,7 @@ export default async function ComparePage({
                       decimals={le.display_decimals}
                       direction={grey ? 0 : le.direction}
                       grey={grey}
-                      dollar={id === "median_gross_rent"}
+                      dollar={id === "rent_1br"}
                     />
                   </Row>
                 );

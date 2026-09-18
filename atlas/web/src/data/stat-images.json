@@ -7,14 +7,6 @@
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:Stop%26Shop.jpg"
 },
-"median_gross_rent": {
-"alt": "Apartment complex in California",
-"author": "TheSanFranRacer",
-"file": "median_gross_rent.webp",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:2019.07.10_metro_California-housing_Blog-post_related.webp"
-},
 "pleasant_days": {
 "alt": "\"The Picnic\"",
 "author": "Thomas Cole",
@@ -46,5 +38,13 @@
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:1_times_square_night_2013.jpg"
+},
+"rent_1br": {
+"alt": "Apartment complex in California",
+"author": "TheSanFranRacer",
+"file": "rent_1br.webp",
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:2019.07.10_metro_California-housing_Blog-post_related.webp"
 }
 }

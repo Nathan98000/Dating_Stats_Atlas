@@ -13,7 +13,7 @@ const CITY_URL =
   "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously";
 
 test("stat pages sort both ways without renumbering, strip renders", async ({ page }) => {
-  await page.goto("/stats/median_gross_rent");
+  await page.goto("/stats/rent_1br");
   await expect(page.getByTestId("stat-strip")).toBeVisible();
   const rows = page.getByTestId("stat-list").locator("li");
   const first = await rows.first().getAttribute("data-pos");
@@ -30,8 +30,9 @@ test("stat pages sort both ways without renumbering, strip renders", async ({ pa
     .getByRole("radio", { name: "Lowest first" }).focus();
   await page.keyboard.press("Enter");
   await expect(rows.first()).toHaveAttribute("data-pos", "1");
-  // the rent page carries its rent-stabilisation disclosure (item 9.4)
-  await expect(page.getByTestId("stat-note")).toContainText(/stabilis/);
+  // the rent-stabilisation caution was DELETED in Phase 2g item 1.5:
+  // HUD's measure trims subsidised units and adjusts to recent movers
+  await expect(page.getByTestId("stat-note")).toHaveCount(0);
 });
 
 test("the locator is a real map: state borders, home state filled, dot placed", async ({ page }) => {

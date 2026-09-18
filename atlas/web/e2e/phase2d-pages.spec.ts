@@ -67,12 +67,12 @@ test("compare-page crime: two plain numbers and one banner, detail one click awa
 test("stat pages agree with the city page cell for cell", async ({ page }) => {
   // gate 5: same artifact, same formatting code — asserted through the UI
   await page.goto(CITY_URL);
-  const rentCard = page.locator('[data-card="median_gross_rent"]');
+  const rentCard = page.locator('[data-card="rent_1br"]');
   const cityRent = (await rentCard.locator("span").nth(1).textContent())!.trim();
   const daysCard = page.locator('[data-card="pleasant_days"]');
   const cityDays = (await daysCard.locator("span").nth(1).textContent())!.trim();
 
-  await page.goto("/stats/median_gross_rent");
+  await page.goto("/stats/rent_1br");
   const rentRow = page.locator('[data-slug="provo-utah"]');
   await expect(rentRow).toBeVisible();
   await expect(rentRow).toContainText(cityRent);
@@ -83,7 +83,7 @@ test("stat pages agree with the city page cell for cell", async ({ page }) => {
 });
 
 test("stat pages cover the ranked set and never rank crime", async ({ page }) => {
-  await page.goto("/stats/median_gross_rent");
+  await page.goto("/stats/rent_1br");
   const rows = page.getByTestId("stat-list").locator("li");
   const n = await rows.count();
   expect(n).toBeGreaterThan(5); // the 12-metro fixture's ranked subset
@@ -105,10 +105,10 @@ test("stat pages cover the ranked set and never rank crime", async ({ page }) =>
 test("the card links to its stat page", async ({ page }) => {
   await page.goto(CITY_URL);
   const link = page
-    .locator('[data-card="median_gross_rent"]')
+    .locator('[data-card="rent_1br"]')
     .getByRole("link", { name: /See all cities by rent/ });
   await link.click();
-  await expect(page).toHaveURL(/\/stats\/median_gross_rent/);
+  await expect(page).toHaveURL(/\/stats\/rent_1br/);
   await expect(page.locator("h1")).toContainText(/rent/i);
 });
 
@@ -129,37 +129,40 @@ test("the compare landing picks two cities and goes", async ({ page }) => {
   await expect(page).toHaveURL(/self_sex=female/);
 });
 
-test("How it works carries every item-10 disclosure, structured", async ({ page }) => {
+test("How it works is Nathan's rewrite, corrections in, deleted sections gone", async ({ page }) => {
+  // Phase 2g item 5: the page is his draft with the two corrections —
+  // 387 counted / 193 ranked on two conditions, and rent credited to HUD
   await page.goto("/how-it-works");
   const article = page.locator("article.prose-method");
   await expect(article).toBeVisible();
-  // structure, not dumped prose (gate 6)
-  expect(await article.locator("h2").count()).toBeGreaterThanOrEqual(7);
   expect(await article.locator("table").count()).toBeGreaterThanOrEqual(1);
-  // the stat index moved to What we measure in Phase 2e, taking its
-  // seven bullets with it; real lists remain
-  expect(await article.locator("ul li").count()).toBeGreaterThanOrEqual(2);
-  const text = (await article.textContent()) ?? "";
+  // the markdown's own line breaks survive into textContent; the
+  // assertions read the prose, not the wrapping
+  const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
   for (const [what, re] of [
-    ["source and cadence", /American Community Survey/],
+    ["correction A: 387 counted, 193 ranked, two conditions",
+     /387 US metro areas, and rank the 193 with at least 250,000 people and enough survey sample/],
+    ["correction B: rent credited to HUD",
+     /HUD 50th percentile rent estimates, FY2027/],
+    ["the typo fix", /nationally-recognized/],
     ["what a match counts", /whole search/i],
     ["what balance compares", /single men per 100/i],
+    ["the same-sex paragraph", /same-sex search/i],
     ["race selects who is counted", /nothing more/i],
-    ["the two always-counted groups (moved from the panel, item 3)",
-     /two or more races/i],
     ["why cities are left out", /leave that city out|left out/i],
-    ["why margins are not printed", /precision/i],
-    ["crime shown never ranked", /never part of any score/i],
   ] as const) {
-    expect(text, `must disclose: ${what}`).toMatch(re);
+    expect(text, `must carry: ${what}`).toMatch(re);
   }
-  // Phase 2e item 12: the index moved to What we measure; How it works
-  // LINKS to it instead of repeating it
+  // the three deleted sections are GONE (confirmed removals, ADR 0008):
+  // margins of error, crime-never-ranked, reproducibility — and the old
+  // intro's "available on request" tail went with the margins story
+  expect(text).not.toMatch(/margins? of error/i);
+  expect(text).not.toMatch(/available on request/i);
+  expect(text).not.toMatch(/reproduced/i);
+  expect(text).not.toMatch(/Why is crime shown/);
+  // the crime story lives in the table's own note and the crime page
+  expect(text).toMatch(/shown, never scored/);
   await expect(
     article.getByRole("link", { name: /What we measure/ })).toBeVisible();
-  expect(text).not.toMatch(/Cities by rent/);
-  // and the m2.2.0 race disclosure describes summable arithmetic, with
-  // no always-counted claim anywhere
-  expect(text).toMatch(/eight boxes/i);
   expect(text).not.toMatch(/always (counted|included)/i);
 });
