@@ -40,7 +40,11 @@ personal information. A visitor's preferences live in the page URL and are never
 **Aggregate only, with suppression.** Every figure displayed is a population estimate for a
 metro area of at least 250,000 people. Where the underlying sample is too small to support
 an estimate — fewer than 100 survey respondents — we suppress the result and say so rather
-than publishing a number.
+than publishing a number. One disclosure decision a reviewer will otherwise ask about
+(Phase 2g, ADR 0008): the site computes margins of error on every count and suppresses on
+them, but since the methodology-page rewrite it no longer tells visitors anywhere that this
+uncertainty machinery exists — the removal was deliberate, and the technical figures remain
+available on request.
 
 **Build time versus serve time.** A build process reads the source data and produces a
 fixed, immutable data file. The website reads only that file. Some sources are read **only
@@ -82,6 +86,7 @@ that and to specify required attribution or disclaimer language.
 | Quarterly Census of Employment and Wages | Bureau of Labor Statistics | Cross-check on the above | Accuracy check | No — check only |
 | Smart Location Database v3.0 | EPA | Street-network walkability measures | A scored feature | Yes |
 | GHCN-Daily observations 1991–2020 | NOAA | Pleasant-day counts (replaced Climate Normals in Phase 2d) | A scored feature | Yes |
+| 50th Percentile Rent Estimates, FY2027 | HUD | The rent statistic (replaced ACS B25031 in Phase 2g); county file aggregated to metros with ACS renter-household weights | A scored feature; a work of the US government like the rows above | Yes |
 | IPEDS 2024–25 | NCES / Dept. of Education | Student population by metro | A scored feature | Yes |
 | Crime Data Explorer | FBI | Offence rates and reporting coverage | Displayed on metro pages with the FBI's own comparability caveat; **never** part of any ranking | Yes, as context |
 | Cartographic boundary file (state, 1:20M) | Census Bureau | State outlines for the locator map | Projected at build time into static geometry | Yes, as drawings |
