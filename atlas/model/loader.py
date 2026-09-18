@@ -32,7 +32,7 @@ from atlas.model.preferences import (EDU_LEVELS, INC_LEVELS, MARITAL_LEVELS,
                                      N_FLAT, RACE_LEVELS, SEX_LEVELS)
 from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
-STATIC_FEATURES = ["median_gross_rent", "rpp_goods", "rpp_services_other",
+STATIC_FEATURES = ["rent_1br", "rpp_goods", "rpp_services_other",
                    "venues_per_100k", "resident_walkability_index",
                    "pleasant_days", "students_per_1k_adults"]
 # display-only stats the v3 city cards read (never scored); their values
@@ -180,6 +180,19 @@ def load_build(path: str | Path, verify_hashes: bool = True,
     feats["cbsa"] = feats["cbsa"].astype(str)
     feats = feats.set_index("cbsa").loc[metro_levels]
     fb = manifest["features_block"]
+    if (allow_model_mismatch and "rent_1br" not in feats.columns
+            and "median_gross_rent" in feats.columns):
+        # pre-m2.4.0 artifact under deliberate cross-version work: rent
+        # was renamed in Phase 2g (ADR 0008); the old column IS the old
+        # rent, so the comparison instruments can read both builds
+        _ren = lambda k: "rent_1br" if k == "median_gross_rent" else k  # noqa: E731
+        feats = feats.rename(columns={
+            "median_gross_rent": "rent_1br",
+            "standing_all_median_gross_rent": "standing_all_rent_1br"})
+        fb = {_ren(k): v for k, v in fb.items()}
+        manifest = dict(manifest)
+        manifest["city_cards"] = [_ren(c) for c in manifest["city_cards"]]
+        manifest["stat_pages"] = [_ren(c) for c in manifest["stat_pages"]]
     static = {f: feats[f].to_numpy(dtype=np.float64) for f in STATIC_FEATURES}
     for fid, col in CARD_ONLY_FEATURES.items():
         static[fid] = feats[col].to_numpy(dtype=np.float64)

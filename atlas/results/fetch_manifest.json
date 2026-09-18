@@ -1,8 +1,8 @@
 {
   "api_datasets": {
     "2020/dec/dhc": "2026-09-12T00:38:33-0400",
-    "2023/cbp": "2026-09-17T14:16:21-0400",
-    "2024/acs/acs5": "2026-09-17T14:30:06-0400"
+    "2023/cbp": "2026-09-18T13:01:28-0400",
+    "2024/acs/acs5": "2026-09-18T13:11:28-0400"
   },
   "files": {
     "https://apps.bea.gov/regional/zip/MARPP.zip": {
@@ -25,6 +25,20 @@
       "fetched_at": "2026-09-11T21:44:04-0400",
       "path": "data/raw/9eb1bb9d2732afd6/HD2023.zip",
       "sha256": "e11d35af6f50fbe2f51d8ddd5a9d4f49860abbab7d73beae1f8524f13ad8945b"
+    },
+    "https://www.huduser.gov/portal/datasets/50thper/FY2027_FMR_50_area.xlsx": {
+      "bytes": 141701,
+      "evicted": false,
+      "fetched_at": "2026-09-18T12:59:37-0400",
+      "path": "data/raw/04b99e3e1f8812b4/FY2027_FMR_50_area.xlsx",
+      "sha256": "46a89a77336adb0be4960970bb94fa8c5e395b4d7f809b0f53253d1a8dfb95ec"
+    },
+    "https://www.huduser.gov/portal/datasets/50thper/FY2027_FMR_50_county.xlsx": {
+      "bytes": 404877,
+      "evicted": false,
+      "fetched_at": "2026-09-18T12:59:37-0400",
+      "path": "data/raw/14ba7700aa890898/FY2027_FMR_50_county.xlsx",
+      "sha256": "4769fafa09503406b1ced86e6aa74fe7e0e7f324384e38a26c76fdaae52381f2"
     },
     "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=CA006130257&startDate=1991-01-01&endDate=2020-12-31&dataTypes=TMAX,TMIN,PRCP&format=csv&units=standard": {
       "bytes": 425423,

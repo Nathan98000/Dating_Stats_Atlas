@@ -1,0 +1,118 @@
+{
+ "build": "5d0e3ca2f708",
+ "cities": [
+  {
+   "cbsa": "39340",
+   "label": "Provo-Orem, UT (single FMR area)",
+   "hud_rows": 2,
+   "fmr_areas": 1,
+   "traced_weighted_mean": 1304.0,
+   "served_value": 1304.0,
+   "api_display": "1,304",
+   "rows_summarised": [
+    {
+     "county5": "49023",
+     "sub": "99999",
+     "rent_1br": 1304.0,
+     "renter_households": 625.0
+    },
+    {
+     "county5": "49049",
+     "sub": "99999",
+     "rent_1br": 1304.0,
+     "renter_households": 64389.0
+    }
+   ]
+  },
+  {
+   "cbsa": "12420",
+   "label": "Austin-Round Rock, TX (the metro that started this)",
+   "hud_rows": 5,
+   "fmr_areas": 1,
+   "traced_weighted_mean": 1638.0,
+   "served_value": 1638.0,
+   "api_display": "1,638",
+   "rows_summarised": [
+    {
+     "county5": "48021",
+     "sub": "99999",
+     "rent_1br": 1638.0,
+     "renter_households": 8682.0
+    },
+    {
+     "county5": "48055",
+     "sub": "99999",
+     "rent_1br": 1638.0,
+     "renter_households": 4110.0
+    },
+    {
+     "county5": "48209",
+     "sub": "99999",
+     "rent_1br": 1638.0,
+     "renter_households": 35807.0
+    },
+    {
+     "county5": "48453",
+     "sub": "99999",
+     "rent_1br": 1638.0,
+     "renter_households": 279582.0
+    },
+    {
+     "county5": "48491",
+     "sub": "99999",
+     "rent_1br": 1638.0,
+     "renter_households": 84783.0
+    }
+   ]
+  },
+  {
+   "cbsa": "10180",
+   "label": "Abilene, TX (three counties, one FMR area)",
+   "hud_rows": 3,
+   "fmr_areas": 1,
+   "traced_weighted_mean": 1112.0,
+   "served_value": 1112.0,
+   "api_display": "1,112",
+   "rows_summarised": [
+    {
+     "county5": "48059",
+     "sub": "99999",
+     "rent_1br": 1112.0,
+     "renter_households": 999.0
+    },
+    {
+     "county5": "48253",
+     "sub": "99999",
+     "rent_1br": 1112.0,
+     "renter_households": 1160.0
+    },
+    {
+     "county5": "48441",
+     "sub": "99999",
+     "rent_1br": 1112.0,
+     "renter_households": 21677.0
+    }
+   ]
+  },
+  {
+   "cbsa": "35620",
+   "label": "New York-Newark-Jersey City, NY-NJ (multiple HMFAs)",
+   "hud_rows": 22,
+   "fmr_areas": 7,
+   "traced_weighted_mean": 2757.0931,
+   "served_value": 2757.0931,
+   "api_display": "2,757",
+   "rows_summarised": "22 rows (town-level; full detail in the HUD file)"
+  },
+  {
+   "cbsa": "14460",
+   "label": "Boston-Cambridge-Newton, MA-NH (multiple HMFAs, town rows)",
+   "hud_rows": 197,
+   "fmr_areas": 6,
+   "traced_weighted_mean": 2481.3075,
+   "served_value": 2481.3075,
+   "api_display": "2,481",
+   "rows_summarised": "197 rows (town-level; full detail in the HUD file)"
+  }
+ ]
+}

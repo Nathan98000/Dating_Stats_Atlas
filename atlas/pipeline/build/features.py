@@ -28,18 +28,22 @@ import pandas as pd
 
 from atlas.pipeline.adapters.bea_rpp import BeaRppAdapter
 from atlas.pipeline.adapters.cbp import CbpAdapter
-from atlas.pipeline.adapters.census import AcsSummaryAdapter, DelineationAdapter
+from atlas.pipeline.adapters.census import (ACS_DATASET, AcsSummaryAdapter,
+                                            DelineationAdapter)
 from atlas.pipeline.adapters.epa_sld import EpaSldAdapter
+from atlas.pipeline.adapters.hud_fmr50 import HudFmr50Adapter
 from atlas.pipeline.adapters.ipeds import IpedsAdapter
 from atlas.pipeline.adapters.qcew import QcewAdapter
 from atlas.pipeline.bridge.bg10_tract20 import bg10_to_metro_weights, crosswalk_sld
-from atlas.pipeline.fetch import RESULTS
+from atlas.pipeline.fetch import RESULTS, api_get
 from atlas.pipeline.registry.loader import load_registry
 
 P2 = RESULTS / "phase2"
-STATIC_FEATURES = ["median_gross_rent", "rpp_goods", "rpp_services_other",
+STATIC_FEATURES = ["rent_1br", "rpp_goods", "rpp_services_other",
                    "venues_per_100k", "resident_walkability_index",
                    "pleasant_days", "students_per_1k_adults"]
+NE_STATE_FIPS = {"CT": "09", "MA": "25", "ME": "23",
+                 "NH": "33", "RI": "44", "VT": "50"}
 
 
 def _num(x):
@@ -59,43 +63,152 @@ def build() -> None:
         quality[["cbsa", "pop_pool_18_70"]], on="cbsa")
     report: dict = {"metros": len(out)}
 
-    # ---- cost: B25031 ONE-BEDROOM rent + BEA RPP ---------------------------
-    # m2.3.0 (ADR 0006): the all-units median (B25064) moves with the
-    # local mix of studios and family houses — a metro of new two-bedroom
-    # stock reads expensive for reasons that have nothing to do with a
-    # single person's rent. The one-bedroom median is the number a single
-    # person actually faces. The variable is selected from the group's
-    # metadata BY LABEL, never by a guessed code (the DHC P5/P18
-    # discipline); fallback for a metro without a one-bedroom median is
-    # the all-units median with a flag (none needed for 2020-2024 — all
-    # 387 metros publish the one-bedroom figure).
-    geo_msa = "metropolitan statistical area/micropolitan statistical area"
-    rent_ad = AcsSummaryAdapter("B25031", geo_msa)
-    one_bed_vars = [k for k, v in rent_ad.group_labels().items()
-                    if v.endswith("!!1 bedroom")]
-    assert one_bed_vars == ["B25031_003E"], (
-        f"one-bedroom variable resolved to {one_bed_vars} — the label "
-        f"lookup must land on exactly one variable")
-    rent = rent_ad.normalize(rent_ad.fetch())
-    out["median_gross_rent"] = out["cbsa"].map(
-        lambda c: _num(rent.loc[c, one_bed_vars[0]]) if c in rent.index
-        else np.nan)
-    need_fallback = out["median_gross_rent"].isna()
-    if need_fallback.any():
-        fallback_ad = AcsSummaryAdapter("B25064", geo_msa)
-        all_units = fallback_ad.normalize(fallback_ad.fetch())
-        out.loc[need_fallback, "median_gross_rent"] = out.loc[
-            need_fallback, "cbsa"].map(
-            lambda c: _num(all_units.loc[c, "B25064_001E"])
-            if c in all_units.index else np.nan).astype(float)
+    # ---- cost: HUD FY2027 50th-percentile 1-BR rent + BEA RPP --------------
+    # m2.4.0 (ADR 0008): rent comes from HUD's 50th Percentile Rent
+    # Estimates — gross rent (shelter + tenant-paid utilities) on HUD's
+    # adjusted-standard-quality ACS 2020-2024 base, trended into the
+    # fiscal year. HUD publishes per FMR AREA; the county file joins to
+    # the site's metros through the same OMB 23-01 delineation the build
+    # already holds. One rule everywhere: a metro's rent is the mean of
+    # its counties' one-bedroom medians WEIGHTED BY RENTER-OCCUPIED
+    # HOUSEHOLDS (B25003_003E) — renters, not population, because this
+    # is an average of rents and should be weighted by the households
+    # actually paying one. In the six New England states HUD publishes
+    # town (county-subdivision) rows instead of county rows, so the same
+    # weight applies one level down. A weighted mean of medians is NOT
+    # the metro's median (the ADR owns that); the check that keeps it
+    # honest: wherever a metro is a single FMR area, the weights cannot
+    # move the mean, and the figure must equal HUD's published area
+    # figure exactly.
+    hud = HudFmr50Adapter()
+    hraw = hud.fetch()
+    hrep = hud.validate(hraw)
+    assert hrep.passed, hrep.failures
+    hrows = hud.normalize(hraw)
+    delin = DelineationAdapter()
+    dd = delin.normalize(delin.fetch())
+    county_to_cbsa = dict(zip(dd["county5"], dd["cbsa"]))
+    site_cbsas = set(out["cbsa"])
+    site_counties = set(dd.loc[dd["cbsa"].isin(site_cbsas), "county5"])
+    missing_counties = site_counties - set(hrows["county5"])
+    assert not missing_counties, (
+        f"{len(missing_counties)} delineation counties absent from the "
+        f"HUD county file: {sorted(missing_counties)[:8]}")
+    hrows = hrows[hrows["county5"].isin(site_counties)].copy()
+    hrows["cbsa"] = hrows["county5"].map(county_to_cbsa)
+
+    # renter-occupied households: county level everywhere, county
+    # subdivision in New England (HUD's town rows carry sub codes).
+    # HUD's subdivision codes lag FIPS revisions — Massachusetts "Town
+    # cities" (Watertown, Methuen, Amesbury, Easthampton) and two tiny
+    # Maine townships carry pre-revision codes against ACS 2024's
+    # current ones — so unmatched rows fall back to a NAME join within
+    # the county (refused on a within-county name collision), and only
+    # a row under 1,000 people may end at weight zero. Every fallback
+    # and every zero-weight row is named in the report.
+    r_rows = AcsSummaryAdapter("B25003", "county").fetch().meta["rows"]
+    rframe = pd.DataFrame(r_rows[1:], columns=r_rows[0])
+    rframe["county5"] = rframe["state"] + rframe["county"]
+    county_renters = dict(zip(rframe["county5"],
+                              pd.to_numeric(rframe["B25003_003E"])))
+
+    def _town_key(name: str) -> str:
+        drop = {"town", "city", "plantation", "township", "gore", "grant",
+                "location", "purchase", "ut"}
+        toks = [t for t in str(name).lower().replace(",", " ").split()
+                if t not in drop]
+        return " ".join(toks)
+
+    cousub_renters: dict[tuple[str, str], float] = {}
+    cousub_by_name: dict[tuple[str, str], float | None] = {}
+    for st in sorted(NE_STATE_FIPS.values()):
+        rows_st = api_get(ACS_DATASET,
+                          {"get": "NAME,B25003_003E",
+                           "for": "county subdivision:*",
+                           "in": f"state:{st}"})
+        f = pd.DataFrame(rows_st[1:], columns=rows_st[0])
+        for _, r in f.iterrows():
+            c5 = r["state"] + r["county"]
+            w = float(r["B25003_003E"])
+            cousub_renters[(c5, r["county subdivision"])] = w
+            key = (c5, _town_key(r["NAME"].split(",")[0]))
+            # a within-county name collision poisons the fallback for
+            # that name rather than guessing between towns
+            cousub_by_name[key] = None if key in cousub_by_name else w
+
+    is_town = hrows["county_sub_code"] != "99999"
+    hrows["w"] = np.where(
+        is_town,
+        [cousub_renters.get((c, s), np.nan) for c, s in
+         zip(hrows["county5"], hrows["county_sub_code"])],
+        hrows["county5"].map(county_renters))
+    name_fallback_rows = []
+    zero_weight_rows = []
+    for i in hrows.index[is_town & hrows["w"].isna()]:
+        row = hrows.loc[i]
+        by_name = cousub_by_name.get(
+            (row["county5"], _town_key(row["town_name"])))
+        if by_name is not None:
+            hrows.loc[i, "w"] = by_name
+            name_fallback_rows.append(
+                f"{row['town_name']} ({row['county5']}/"
+                f"{row['county_sub_code']})")
+        else:
+            assert float(row["pop2023"]) < 1000, (
+                f"HUD town row {row['town_name']} ({row['county5']}/"
+                f"{row['county_sub_code']}, pop {row['pop2023']:.0f}) has "
+                f"no renter-household weight by code or name — investigate "
+                f"before shipping")
+            zero_weight_rows.append(
+                f"{row['town_name']} ({row['county5']}/"
+                f"{row['county_sub_code']}, pop {row['pop2023']:.0f})")
+    hrows["w"] = hrows["w"].fillna(0.0)
+
+    def _metro_rent(g: pd.DataFrame) -> float:
+        wsum = float(g["w"].sum())
+        assert wsum > 0, f"metro {g['cbsa'].iloc[0]}: zero renter weight"
+        return float((g["rent_1br"] * g["w"]).sum() / wsum)
+
+    metro_rent = hrows.groupby("cbsa").apply(_metro_rent, include_groups=False)
+    out["rent_1br"] = out["cbsa"].map(metro_rent)
+    assert out["rent_1br"].notna().all() and len(out) == 387, (
+        f"HUD rent must cover every metro: "
+        f"{int(out['rent_1br'].isna().sum())} missing of {len(out)}")
+    ranked_flags = quality.set_index("cbsa")["ranked_set"]
+    ranked_cbsas = set(ranked_flags[ranked_flags].index)
+    assert out.loc[out["cbsa"].isin(ranked_cbsas), "rent_1br"].notna().all() \
+        and len(ranked_cbsas) == 193, "all 193 ranked metros need a figure"
+
+    # the exactness check: single-FMR-area metros must equal HUD's own
+    # published area figure to the cent; multi-area metros report the
+    # spread a single number is papering over
+    areas = hud.areas(hraw).set_index("hud_area_code")
+    n_area = hrows.groupby("cbsa")["hud_area_code"].nunique()
+    single = sorted(n_area[n_area == 1].index)
+    exact = 0
+    for c in single:
+        code = hrows.loc[hrows["cbsa"] == c, "hud_area_code"].iloc[0]
+        assert abs(float(metro_rent[c]) - float(areas.loc[code, "rent_1br"])) \
+            < 1e-9, (c, code, metro_rent[c], areas.loc[code, "rent_1br"])
+        exact += 1
+    spreads = (hrows.groupby("cbsa")["rent_1br"]
+               .agg(lambda v: float(v.max() - v.min())))
+    multi = sorted(n_area[n_area > 1].index)
+    widest = spreads.loc[multi].sort_values(ascending=False).head(10)
+    titles = dict(zip(out["cbsa"], out["cbsa_title"]))
     report["rent"] = {
-        "variable": {one_bed_vars[0]: "Median gross rent --!!Total:!!1 bedroom"},
-        "metros_on_one_bedroom": int((~need_fallback).sum()),
-        "metros_on_all_units_fallback": sorted(
-            out.loc[need_fallback & out["median_gross_rent"].notna(),
-                    "cbsa"]),
-        "jam_or_missing_after_fallback": int(
-            out["median_gross_rent"].isna().sum()),
+        "source": "HUD FY2027 50th Percentile Rent Estimates, county file "
+                  "(rent_50_1), renter-household-weighted (B25003_003E)",
+        "county_rows_used": int(len(hrows)),
+        "ne_town_rows": int(is_town.sum()),
+        "ne_code_revision_name_fallbacks": name_fallback_rows,
+        "ne_zero_weight_rows_under_1000_pop": zero_weight_rows,
+        "metros_covered": int(out["rent_1br"].notna().sum()),
+        "single_fmr_area_metros_exact_vs_area_file": exact,
+        "multi_fmr_area_metros": len(multi),
+        "widest_within_metro_spreads": [
+            {"cbsa": c, "title": titles.get(c, c),
+             "spread": round(float(s), 0)} for c, s in widest.items()],
     }
 
     bea = BeaRppAdapter()

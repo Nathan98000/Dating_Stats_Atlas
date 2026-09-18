@@ -39,9 +39,9 @@ def test_health(client):
 def test_meta_carries_the_v3_vocabulary(client):
     m = client.get("/v1/meta").json()
     assert m["features"]["pool_balance"]["display_name"] == "Dating pool balance"
-    assert m["features"]["median_gross_rent"]["display_name"] == "Rent"
-    assert len(m["features"]["median_gross_rent"]["band_labels"]) == 5
-    assert m["features"]["median_gross_rent"]["band_direction"] == "good_low"
+    assert m["features"]["rent_1br"]["display_name"] == "Rent"
+    assert len(m["features"]["rent_1br"]["band_labels"]) == 5
+    assert m["features"]["rent_1br"]["band_direction"] == "good_low"
     assert m["pillars"]["balance"]["display_name"] == "Dating pool balance"
     # the four importance controls carry their registry subtitles (item 4)
     assert m["controls"]["importance_pillars"] == \
@@ -49,7 +49,7 @@ def test_meta_carries_the_v3_vocabulary(client):
     for p in m["controls"]["importance_pillars"]:
         assert m["pillars"][p].get("control_subtitle"), p
     assert m["pillars"]["reach"]["display_name"] == "Social life"
-    assert m["city_cards"][0] == "median_gross_rent"
+    assert m["city_cards"][0] == "rent_1br"
     assert m["controls"]["marital"] == ["never_married", "previously_married"]
     assert m["controls"]["race_ethnicity"] == list(api.SELECTABLE_RACES)
     # m2.2.0: eight equal groups, labels from the registry (ADR 0006)
@@ -73,7 +73,7 @@ def test_meta_carries_the_v3_vocabulary(client):
     assert [g["heading"] for g in m["measure_page"]] == \
         ["people", "cost", "reach", "students", "weather", "context"]
     assert m["measure_page"][1]["features"] == \
-        ["median_gross_rent", "everyday_prices"]
+        ["rent_1br", "everyday_prices"]
     assert m["stat_pages"] and "who_lives_here" in m["stat_pages"]
     assert not any("crime" in s for s in m["stat_pages"])
     assert 0 < m["crime"]["coverage_floor"] < 1

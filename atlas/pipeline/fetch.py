@@ -64,12 +64,14 @@ def census_api_key() -> str:
     return key
 
 
-def fetch(url: str, timeout: int = 300) -> Path:
+def fetch(url: str, timeout: int = 300, headers: dict | None = None) -> Path:
     """Download url into the content-addressed cache; return local path.
 
     Cache key is the URL hash; integrity is the SHA-256 of the content,
     recorded in the manifest. A file already on disk with the manifest's
-    byte size is reused without re-downloading.
+    byte size is reused without re-downloading. `headers` overrides for
+    hosts that refuse the pipeline's plain UA (huduser.gov answers a
+    non-browser agent with an empty 202 instead of the file).
     """
     m = _load_manifest()
     key = hashlib.sha256(url.encode()).hexdigest()[:16]
@@ -83,7 +85,7 @@ def fetch(url: str, timeout: int = 300) -> Path:
     part = dest.with_suffix(dest.suffix + ".part")
     sha = hashlib.sha256()
     n = 0
-    with SESSION.get(url, stream=True, timeout=timeout) as r:
+    with SESSION.get(url, stream=True, timeout=timeout, headers=headers) as r:
         r.raise_for_status()
         with open(part, "wb") as f:
             for chunk in r.iter_content(chunk_size=1 << 20):

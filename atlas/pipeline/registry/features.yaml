@@ -85,7 +85,7 @@ standing_bands:
 
 # The v3 city-page cards, in board order. who_lives_here and
 # everyday_prices are display stats (never scored).
-city_cards: [median_gross_rent, everyday_prices, venues_per_100k,
+city_cards: [rent_1br, everyday_prices, venues_per_100k,
              resident_walkability_index, pleasant_days,
              students_per_1k_adults, who_lives_here]
 
@@ -93,7 +93,7 @@ city_cards: [median_gross_rent, everyday_prices, venues_per_100k,
 # served from a build-time JSON over the 193-city ranked set. Never
 # matches or balance (both depend on the visitor's search) and never
 # crime (the FBI's caution — it gets an explainer page instead).
-stat_pages: [median_gross_rent, everyday_prices, venues_per_100k,
+stat_pages: [rent_1br, everyday_prices, venues_per_100k,
              resident_walkability_index, pleasant_days,
              students_per_1k_adults, who_lives_here]
 
@@ -195,10 +195,10 @@ strings:
   stat_sort_low: "Lowest first"
   stat_sort_high: "Highest first"
   stat_strip_label: "How the figures spread across every ranked city"
-  rent_page_note: >-
-    Note: A city's median rent is pulled down by rent-controlled and
-    rent-stabilised homes. In cities with more rent regulation, new
-    renters are likely to see higher prices.
+  # rent_page_note was DELETED in Phase 2g (item 1.5): HUD trims the
+  # subsidised bottom of the rent distribution and adjusts to recent
+  # movers, so the stabilised-tenancy drag the note described is not in
+  # this measure.
   compare_default_note: >-
     These figures use the stated default search — {search}. Change
     anything on the home page and they become yours.
@@ -224,6 +224,9 @@ sources:
   census_acs:
     name: "U.S. Census Bureau's American Community Survey 5-Year Data"
     url: "https://www.census.gov/programs-surveys/acs/"
+  hud_fmr50:
+    name: "U.S. Department of Housing and Urban Development, FY2027 50th Percentile Rent Estimates"
+    url: "https://www.huduser.gov/portal/datasets/50per.html"
   bea_rpp:
     name: "Bureau of Economic Analysis Regional Price Parities, 2024"
     url: "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area"
@@ -252,7 +255,7 @@ sources:
 # appends the combined crime card with strings.measure_crime_note.
 measure_page:
   - {heading: people, pillars: [pool, balance]}
-  - {heading: cost, features: [median_gross_rent, everyday_prices]}
+  - {heading: cost, features: [rent_1br, everyday_prices]}
   - {heading: reach, features: [venues_per_100k, resident_walkability_index]}
   - {heading: students, features: [students_per_1k_adults]}
   - {heading: weather, features: [pleasant_days]}
@@ -387,12 +390,16 @@ features:
                  geography: cbsa, vintage: "2020-2024",
                  transform_id: symmetric_rivals_v1, tier: measured}
 
-  # m2.3.0 (ADR 0006): the ONE-BEDROOM median gross rent (B25031),
-  # selected from the group metadata by label. The all-units median moved
-  # with each metro's mix of studios and family houses; the one-bedroom
-  # figure is the rent a single person actually faces. Gross rent
-  # includes utilities — the unit line says so.
-  - id: median_gross_rent
+  # m2.4.0 (ADR 0008): rent comes from HUD's FY2027 50th Percentile Rent
+  # Estimates — a gross rent (shelter plus tenant-paid utilities, so the
+  # unit line's "with utilities" stays true), on HUD's adjusted-standard-
+  # quality ACS 2020-2024 base, trended into the fiscal year. The id was
+  # renamed from median_gross_rent while there is no public URL: the
+  # metro figure is a renter-household-weighted mean of county medians,
+  # not itself a median. Aggregation county -> metro (and county
+  # subdivision -> county in New England) happens in build/features.py,
+  # weighted by ACS renter-occupied households (B25003_003E).
+  - id: rent_1br
     pillar: cost
     kind: intensive
     direction: -1
@@ -410,10 +417,11 @@ features:
     definition: >-
       The typical monthly rent for a one-bedroom home across the city,
       utilities included
-    provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
-                 table: B25031, variables: [B25031_003E],
-                 geography: cbsa, vintage: "2020-2024",
-                 transform_id: cost_rent_1br_v2, tier: measured}
+    provenance: {source: hud_fmr50,
+                 dataset: "HUD 50th Percentile Rent Estimates, FY2027",
+                 table: FY2027_FMR_50_county.xlsx, variables: [rent_50_1],
+                 geography: "county -> cbsa", vintage: "FY2027",
+                 transform_id: cost_rent_1br_hud_v1, tier: measured}
 
   # Composition decision: all-items RPP is EXCLUDED because rent is measured
   # directly by B25064 and all-items embeds a large housing-rents component —
@@ -582,9 +590,14 @@ features:
     band_labels: ["Far fewer than most cities", "Fewer than most cities",
                   "About average", "More than most cities",
                   "Far more than most cities"]
+    # Phase 2g item 3: Nathan wrote "average between 55 and 85°F"; the
+    # rule is on the day's HIGH (tmax_f below), so "average" would
+    # describe a different statistic — "reach" ships instead, flagged in
+    # PHASE2G.md for his confirmation. The 30-year clause moved to the
+    # stat page's source line (NOAA GHCN-Daily, 1991–2020).
     definition: >-
-      Days a year that stay between 55 and 85°F, don't dip below 40°F,
-      and see no more than a light shower, averaged over the past 30 years
+      Days a year that reach between 55 and 85°F, don't dip below 40°F,
+      and see no more than a light shower
     provenance: {source: ghcn_daily,
                  dataset: "NOAA GHCN-Daily",
                  table: "daily-summaries access CSVs, 1991-2020",

@@ -66,18 +66,17 @@ POLICY_STRINGS = {
     "list_heading": "Cities for you",
     "list_heading_count": "{n} cities for you",
 
-    # NarrowV3, verbatim (approved): the all-suppressed state
+    # the all-suppressed state (Phase 2g item 2.2, Nathan's copy
+    # verbatim; {search} arrives capitalised from describeSearch so it
+    # reads as the sentence start). narrow_note was DELETED in 2g item
+    # 2.3 — the body's second sentence now says what the note said.
     "narrow_title": "This one’s a tall order almost anywhere",
-    "narrow_body": "{search} is a very small group in any city — small "
-                   "enough that the Census survey doesn’t turn up sample "
-                   "to say anything dependable about where they live. Rather "
-                   "than dress up a guess, we’d rather point you back a "
-                   "step. Loosen any one thing and the picture fills right "
-                   "in.",
-    "narrow_note": "This doesn’t mean nobody fits your description — "
-                   "it means too few of them show up in the survey for us to "
-                   "tell you where they are. The narrower the search, the "
-                   "more often that happens.",
+    "narrow_body": "{search} is a very small group in any city. This "
+                   "doesn’t mean nobody matches that description, but "
+                   "we’re unable to find enough people in the Census data "
+                   "to make any reliable estimates. Try expanding your "
+                   "search to see more cities that match what you’re "
+                   "looking for.",
 
     # MetroV3, verbatim (approved): the city page's card when the pool has
     # nothing to say for this search

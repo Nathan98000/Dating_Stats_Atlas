@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-98dcbb161236",
-  "model_version": "m2.3.1",
+  "data_version": "fixture-5d0e3ca2f708",
+  "model_version": "m2.4.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-18T07:32:24-0400",
+  "created_at": "2026-09-18T13:01:53-0400",
   "axes": [
     {
       "name": "metro",
@@ -295,7 +295,7 @@
     }
   ],
   "city_cards": [
-    "median_gross_rent",
+    "rent_1br",
     "everyday_prices",
     "venues_per_100k",
     "resident_walkability_index",
@@ -304,7 +304,7 @@
     "who_lives_here"
   ],
   "stat_pages": [
-    "median_gross_rent",
+    "rent_1br",
     "everyday_prices",
     "venues_per_100k",
     "resident_walkability_index",
@@ -344,7 +344,6 @@
     "stat_sort_low": "Lowest first",
     "stat_sort_high": "Highest first",
     "stat_strip_label": "How the figures spread across every ranked city",
-    "rent_page_note": "Note: A city's median rent is pulled down by rent-controlled and rent-stabilised homes. In cities with more rent regulation, new renters are likely to see higher prices.",
     "compare_default_note": "These figures use the stated default search \u2014 {search}. Change anything on the home page and they become yours.",
     "compare_page_subtitle": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
     "compare_diff_legend": "Green means the difference favors {a} for your search; red means it favors {b}. Grey means we don't judge it: population is just a fact, and a measure you set to \"Not much\" still counts toward the score \u2014 it just matters least to you."
@@ -360,7 +359,7 @@
     {
       "heading": "cost",
       "features": [
-        "median_gross_rent",
+        "rent_1br",
         "everyday_prices"
       ]
     },
@@ -395,6 +394,10 @@
     "census_acs": {
       "name": "U.S. Census Bureau's American Community Survey 5-Year Data",
       "url": "https://www.census.gov/programs-surveys/acs/"
+    },
+    "hud_fmr50": {
+      "name": "U.S. Department of Housing and Urban Development, FY2027 50th Percentile Rent Estimates",
+      "url": "https://www.huduser.gov/portal/datasets/50per.html"
     },
     "bea_rpp": {
       "name": "Bureau of Economic Analysis Regional Price Parities, 2024",
@@ -500,6 +503,13 @@
       "url": "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
       "shippable": true,
       "attribution": "Source: NOAA GHCN-Daily, 1991\u20132020 observations",
+      "notes": null
+    },
+    "hud_fmr50": {
+      "name": "US public domain (17 USC 105); HUD open data",
+      "url": "https://www.huduser.gov/portal/datasets/50per.html",
+      "shippable": true,
+      "attribution": "Source: U.S. Department of Housing and Urban Development",
       "notes": null
     },
     "ipeds": {
@@ -613,7 +623,7 @@
         "tier": "measured"
       }
     },
-    "median_gross_rent": {
+    "rent_1br": {
       "pillar": "cost",
       "kind": "intensive",
       "direction": -1,
@@ -646,15 +656,15 @@
       "display_decimals": 0,
       "retired_reason": null,
       "provenance": {
-        "source": "census_acs",
-        "dataset": "ACS 2020-2024 5-year",
-        "table": "B25031",
+        "source": "hud_fmr50",
+        "dataset": "HUD 50th Percentile Rent Estimates, FY2027",
+        "table": "FY2027_FMR_50_county.xlsx",
         "variables": [
-          "B25031_003E"
+          "rent_50_1"
         ],
-        "geography": "cbsa",
-        "vintage": "2020-2024",
-        "transform_id": "cost_rent_1br_v2",
+        "geography": "county -> cbsa",
+        "vintage": "FY2027",
+        "transform_id": "cost_rent_1br_hud_v1",
         "tier": "measured"
       }
     },
@@ -932,7 +942,7 @@
         "good_strong"
       ],
       "band_edges": null,
-      "definition": "Days a year that stay between 55 and 85\u00b0F, don't dip below 40\u00b0F, and see no more than a light shower, averaged over the past 30 years",
+      "definition": "Days a year that reach between 55 and 85\u00b0F, don't dip below 40\u00b0F, and see no more than a light shower",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1240,7 +1250,7 @@
       "P18_060N",
       "P1_001N"
     ],
-    "n_source_files_fetched": 2580
+    "n_source_files_fetched": 2582
   },
-  "fixture_of": "98dcbb161236"
+  "fixture_of": "5d0e3ca2f708"
 }

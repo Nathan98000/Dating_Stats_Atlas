@@ -20,6 +20,20 @@ importance controls map to weights through registry constants; margins
 keep being computed and returned but no longer render. Second breaking
 contract change after ADR 0003.
 
+m2.4.0 — Phase 2g (ADR 0008): rent moves from the ACS one-bedroom
+median (B25031) to HUD's FY2027 50th Percentile Rent Estimates — a
+gross rent on HUD's adjusted-standard-quality ACS 2020-2024 base,
+carried into the fiscal year by recent-mover, inflation and trend
+factors, so the card speaks in current dollars instead of a five-year
+average. The metro figure is a renter-household-weighted mean of the
+county file's medians (B25003_003E weights; New England town rows
+collapse the same way one level down), exact against HUD's published
+area figure wherever a metro is a single FMR area. The feature id is
+renamed rent_1br while no public URL exists. Rent carries 0.5 of the
+cost pillar, so scores and ranks move (goldens regenerated; the
+before/after is in PHASE2G.md); pool counts, balance and every other
+pillar's inputs are byte-identical to m2.3.1's build, asserted.
+
 m2.3.1 — Phase 2f (ADR 0007): DISPLAY ONLY. The tone vocabulary widens
 from three to five (good_strong/good/neutral/poor/poor_strong): the two
 extreme bands of a directed feature now read harder than the two middle
@@ -78,5 +92,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m2.3.1"
+MODEL_VERSION = "m2.4.0"
 SCHEMA_VERSION = "cube-v1"

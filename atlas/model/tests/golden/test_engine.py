@@ -367,7 +367,7 @@ def test_summary_line_lead_is_position_unique(build, response):
     row["stats"] = [
         {"id": "pool_size", "pillar": "pool", "value": 84200.0,
          "contribution": 12.0},
-        {"id": "median_gross_rent", "pillar": "cost", "value": 1830.0,
+        {"id": "rent_1br", "pillar": "cost", "value": 1830.0,
          "contribution": 11.0},
         {"id": "pleasant_days", "pillar": "weather", "value": 90.0,
          "contribution": -6.0},
@@ -416,7 +416,14 @@ def test_cards_carry_bands_from_the_build(build, response):
 
 def test_score_display_is_a_whole_number(response):
     for r in response["ranked"]:
-        assert r["score_display"] == str(int(round(r["score"])))
+        # score_display rounds the UNROUNDED score; r["score"] is already
+        # rounded to one decimal, so re-rounding it can disagree by one
+        # exactly at a .5 (first seen when m2.4.0's rent swap landed a
+        # score at 41.5: display 41 from 41.4x, round(41.5) -> 42). The
+        # display must be a whole number within half a point of the
+        # served score, never recomputed from it.
+        assert r["score_display"] == str(int(r["score_display"]))
+        assert abs(int(r["score_display"]) - r["score"]) <= 0.55
         assert 0 <= int(r["score_display"]) <= 100
 
 
@@ -483,7 +490,7 @@ def test_missing_feature_policy_renormalizes(build):
     feats = [f["id"] for f in sc["feats"]]
     w = sc["w_eff"]
     assert w[0, feats.index("rpp_goods")] == 0.0
-    assert w[0, feats.index("median_gross_rent")] > 0.15 * 0.5
+    assert w[0, feats.index("rent_1br")] > 0.15 * 0.5
     assert w[1, feats.index("pleasant_days")] == 0.0
     assert w[1, feats.index("pool_size")] > 0.3
     assert w.sum(axis=1) == pytest.approx(np.ones(len(ridx)))
