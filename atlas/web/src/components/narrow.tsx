@@ -38,6 +38,10 @@ export function NarrowState({
           {body}
         </p>
       </div>
+      {/* Phase 2g item 2.3: the note box below the wideners is GONE —
+          the body's second sentence now says what it said. Its "How it
+          works" link went with it; the header nav still carries the
+          route on this screen, recorded in PHASE2G.md. */}
       <div className="flex flex-wrap justify-center gap-4">
         {opts.map((w, i) =>
           i === 0 ? (
@@ -62,19 +66,6 @@ export function NarrowState({
             </button>
           ),
         )}
-      </div>
-      <div className="flex max-w-[74ch] items-start gap-3 rounded-xl border border-rule bg-surface px-[22px] py-[18px] text-left">
-        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" className="mt-0.5 flex-shrink-0">
-          <circle cx="10" cy="10" r="8.5" fill="none" stroke="var(--ink-3)" strokeWidth="1.6" />
-          <path d="M10 9V14.5" fill="none" stroke="var(--ink-3)" strokeWidth="1.8" strokeLinecap="round" />
-          <circle cx="10" cy="6" r="1.1" fill="var(--ink-3)" />
-        </svg>
-        <span className="text-sm leading-relaxed text-ink-2">
-          {policy.narrow_note}{" "}
-          <a href="/how-it-works" className="font-semibold text-accent hover:text-accent-hover">
-            How it works
-          </a>
-        </span>
       </div>
     </div>
   );

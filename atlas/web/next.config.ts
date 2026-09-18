@@ -9,6 +9,17 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/methodology": ["./content/methodology.md"],
   },
+  // Phase 2g item 1.3: the rent feature was renamed while no public URL
+  // exists; the old path keeps working for anything that saved it
+  async redirects() {
+    return [
+      {
+        source: "/stats/median_gross_rent",
+        destination: "/stats/rent_1br",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

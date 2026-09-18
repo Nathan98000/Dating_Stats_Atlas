@@ -11,13 +11,21 @@ test("the narrow state leads with the shape of the problem, never a count", asyn
   const narrow = page.getByTestId("narrow-state");
   await expect(narrow).toBeVisible();
   await expect(narrow).toContainText("This one’s a tall order almost anywhere");
-  // too few in the survey is not too few in the country — stated plainly
-  await expect(narrow).toContainText(/too few of them show up in the survey/);
-  await expect(narrow).toContainText(/doesn’t mean nobody fits your description/);
+  // Phase 2g item 2.2: Nathan's body, with the search phrase opening the
+  // sentence; too-few-in-the-survey is still not too-few-in-the-country
+  await expect(narrow).toContainText(/doesn’t mean nobody matches that description/);
+  await expect(narrow).toContainText(/unable to find enough people in the Census data/);
+  await expect(narrow).toContainText(/Try expanding your search/);
+  // item 2.3: the note box under the wideners is gone
+  await expect(narrow).not.toContainText(/The narrower the search/);
   const text = (await narrow.textContent()) ?? "";
   expect(text).not.toMatch(/\b0\b/);
   expect(text).not.toMatch(/\bzero\b/i);
   expect(text).not.toMatch(/\d+ cities/);
+  // the body reads as a sentence: the capitalised search phrase leads
+  expect(text).toMatch(/Men \d+–\d+.* is a very small group in any city/);
+  // the screen still offers a route to the explainer (the header nav)
+  await expect(page.getByRole("link", { name: "How it works" })).toBeVisible();
   // the wideners restate the loosened query and apply it in one click.
   // On the 12-metro fixture one loosening may still be too narrow — the
   // guarantee is the state changed honestly, not that any search recovers.
@@ -37,13 +45,13 @@ test("the city page: description, cards with bands, ranked card", async ({ page 
   await expect(page.getByTestId("city-description")).toContainText(/college town|city of about/);
   await expect(page.getByTestId("ranked-card")).toBeVisible();
   // every card shows value, unit line and a band label from the API
-  for (const id of ["median_gross_rent", "pleasant_days", "who_lives_here"]) {
+  for (const id of ["rent_1br", "pleasant_days", "who_lives_here"]) {
     const card = page.locator(`[data-card="${id}"]`);
     await expect(card).toBeVisible();
     const t = (await card.textContent()) ?? "";
     expect(t.length).toBeGreaterThan(10);
   }
-  const rent = page.locator('[data-card="median_gross_rent"]');
+  const rent = page.locator('[data-card="rent_1br"]');
   // five bands since m2.1.0 (item 6)
   await expect(rent).toContainText(
     /Far cheaper than most cities|Cheaper than most cities|About average for rent|Pricier than most cities|Among the priciest cities/,
@@ -81,7 +89,7 @@ for (const [name, url] of [
   ["city page", "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously"],
   ["compare", "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously"],
   ["compare landing", "/compare"],
-  ["stat page", "/stats/median_gross_rent"],
+  ["stat page", "/stats/rent_1br"],
   ["stat page, population", "/stats/who_lives_here"],
   ["crime explainer", "/about-crime-data"],
   ["what we measure", "/what-we-measure"],

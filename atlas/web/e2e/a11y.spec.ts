@@ -25,9 +25,10 @@ const PAGES = [
     url: "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously",
   },
   { name: "compare landing", url: "/compare" },
-  { name: "stat page", url: "/stats/median_gross_rent" },
+  { name: "stat page", url: "/stats/rent_1br" },
   { name: "what we measure", url: "/what-we-measure" },
   { name: "how it works", url: "/how-it-works" },
+  { name: "about crime data", url: "/about-crime-data" },
 ];
 
 for (const p of PAGES) {

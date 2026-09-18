@@ -58,7 +58,7 @@ REFUSE = re.compile(r"\b(nc|nd)\b", re.IGNORECASE)
 # stat-page subjects (item 6): hand-chosen article per page, few enough
 # to review by hand; the lead image rides the same licensing pipeline
 STAT_SUBJECTS = {
-    "median_gross_rent": ["Apartment"],
+    "rent_1br": ["Apartment"],
     "everyday_prices": ["Supermarket", "Grocery store"],
     "venues_per_100k": ["Nightlife", "Restaurant", "Coffeehouse"],
     "resident_walkability_index": ["Sidewalk", "Pedestrian"],

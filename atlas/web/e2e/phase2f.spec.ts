@@ -36,8 +36,8 @@ test("all four coloured tones render, extremes darker, position × direction onl
     "color", RGB.good_strong);
   await expect(label("pleasant_days")).toHaveText("Far fewer than most cities");
   await expect(label("pleasant_days")).toHaveCSS("color", RGB.poor_strong);
-  await expect(label("median_gross_rent")).toHaveText("Pricier than most cities");
-  await expect(label("median_gross_rent")).toHaveCSS("color", RGB.poor);
+  await expect(label("rent_1br")).toHaveText("Pricier than most cities");
+  await expect(label("rent_1br")).toHaveCSS("color", RGB.poor);
   await expect(label("students_per_1k_adults")).toHaveText(
     "Far more than most cities");
   await expect(label("students_per_1k_adults")).toHaveCSS("color", RGB.neutral);
@@ -47,7 +47,7 @@ test("all four coloured tones render, extremes darker, position × direction onl
   await expect(label("resident_walkability_index")).toHaveCSS("color", RGB.good);
   // the lit indicator segment takes the label's colour (item 1)
   const lit = page.locator(
-    '[data-card="median_gross_rent"] div[aria-hidden] span',
+    '[data-card="rent_1br"] div[aria-hidden] span',
   ).nth(4); // Austin rent: highest band lit
   await expect(lit).toHaveCSS("background-color", RGB.poor_strong);
 });
@@ -185,7 +185,7 @@ test("every compare difference equals the subtraction of the two displayed value
   }
   // rent carries $ after the sign (item 6.2); population stays grey
   const byId = Object.fromEntries(rows.map((r) => [r.id, r]));
-  expect(byId.median_gross_rent.diff).toMatch(/^[+−]\$/);
+  expect(byId.rent_1br.diff).toMatch(/^[+−]\$/);
   expect(byId.who_lives_here.color).toBe(RGB.grey);
   // the legend line explains the colours, from the registry (item 6.3)
   await expect(page.getByTestId("diff-legend")).toContainText(
@@ -205,12 +205,14 @@ test("either side missing gives an em dash (gate 5)", async ({ page }) => {
 });
 
 test("stat pages: source line, header row, no band labels (items 9.2/9.4/9.5)", async ({ page }) => {
-  await page.goto("/stats/median_gross_rent");
+  await page.goto("/stats/rent_1br");
   const source = page.getByTestId("stat-source");
+  // Phase 2g item 1.4: rent's source line is HUD's, verbatim
   await expect(source).toContainText(
-    "Source: U.S. Census Bureau's American Community Survey 5-Year Data");
+    "Source: U.S. Department of Housing and Urban Development, " +
+    "FY2027 50th Percentile Rent Estimates");
   await expect(source.getByRole("link")).toHaveAttribute(
-    "href", "https://www.census.gov/programs-surveys/acs/");
+    "href", "https://www.huduser.gov/portal/datasets/50per.html");
   const header = page.getByTestId("stat-list-header");
   await expect(header).toContainText("City Name");
   await expect(header).toContainText("Rent");
