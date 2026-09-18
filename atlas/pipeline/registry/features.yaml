@@ -25,14 +25,15 @@ pillars:                            # default weights, sum to 1
   pool:
     default_weight: 0.30
     display_name: "Dating pool size"
-    definition: "How many people here match what you are looking for."
+    # Phase 2f item 8.3 (Nathan's copy, verbatim): also the What-we-measure
+    # card body for this measure
+    definition: "How many people here match what you're looking for"
   balance:
     default_weight: 0.25
     display_name: "Dating pool balance"
     definition: >-
-      Single men per 100 single women in the ages you picked (or the
-      mirror, if you are looking for women) — the plain ratio, before any
-      other filter.
+      Number of single men per 100 single women in your selected age range
+      (or the opposite, if you're looking for women)
   reach:
     default_weight: 0.20
     display_name: "Social life"
@@ -135,16 +136,28 @@ race_groups:
 # Registry-owned interface strings new in Phase 2d (the ground rule made
 # explicit: every new user-facing string lives here, not in code).
 strings:
+  # Phase 2f: Nathan's line-by-line copy, verbatim (his blocks mix
+  # American and British forms — "favors" beside the site's older
+  # "stabilised" — and both ship as given, noted in PHASE2F.md).
+  home_title: "Which city has the best dating scene for you?"
+  home_subtitle: >-
+    Select who you're looking for and what matters to you. Find out how
+    many people match your search in each city based on Census data.
   slider_info: >-
-    Leaning toward size favours cities where more people match your whole
-    search — the most possible matches. Leaning toward balance favours
-    cities where single men and women in your ages come out closest to
-    even. Same survey, two different questions.
+    Leaning towards size favors larger cities with the most possible
+    matches. Leaning towards balance favors cities with a larger share of
+    single men/women in your preferred age range.
+  # item 5.3/6.4: the FBI caution boxes. The rendered box appends the
+  # crime_see_more link and a closing full stop, so the surface reads
+  # exactly Nathan's block including its final "See more details."
   crime_caution: >-
-    The FBI cautions against using these figures to rank or compare
-    places: how much crime gets reported, and how many of a city's police
-    agencies report at all, differ too much from city to city. That is why
-    crime is never part of any score on this site.
+    The FBI cautions against using this number to compare cities. Data
+    can be affected by how much crime is reported and whether local
+    agencies send data to the FBI at all.
+  crime_see_more: "See more details"
+  # kept for the record and the blank state's sibling wording; since
+  # Phase 2f the per-city coverage figure renders NOWHERE on the card
+  # (flagged in PHASE2F.md) — the explainer page covers coverage in prose
   crime_coverage_line: >-
     Police agencies covering {coverage} of the people here reported a full
     year of {year} data. The rates count only what those agencies cover.
@@ -156,40 +169,94 @@ strings:
     city's police agencies report, so the two columns aren't comparable —
     the FBI itself cautions against comparisons like that.
   crime_compare_banner: >-
-    These two figures aren't reliably comparable between cities — how
-    much crime gets reported, and how many police agencies report it,
-    differ from place to place.
+    The FBI cautions against using these numbers to compare cities. Data
+    can be affected by how much crime is reported and whether local
+    agencies send data to the FBI at all.
   crime_card_blank: >-
     Not enough police reporting here for a figure worth showing.
   crime_card_info: "About this figure"
+  # item 5.4: the shared blank state for a card or compare cell without a
+  # figure. Crime keeps its own wording above — its blank is about police
+  # reporting, and "not enough reliable data" would blame the wrong thing.
+  card_missing: "Not enough reliable data available."
   stat_page_link: "See all cities by {name}"
-  stat_page_intro: >-
-    Every city this site can rank, ordered by one measure. Your search
-    never changes these figures.
   stat_page_missing: >-
     {n} of the ranked cities don't have this figure and are left off
     this list rather than shown as zero.
+  stat_col_city: "City Name"
+  stat_source_prefix: "Source:"
   age_range_error: "Ages run 18 to 70 here — that's the survey's own range."
-  measure_page_intro: >-
-    Everything this site measures, in plain words: the two counts about
-    people, and the place stats behind the four importance controls.
-    Every figure links to its own list of cities.
   measure_people_heading: "The people"
+  measure_context_heading: "Also on every city page"
+  measure_crime_link: "About the crime figures"
   measure_crime_note: >-
-    Shown on city pages with its reporting coverage — never part of any
-    score, and not reliably comparable between cities.
+    Crime reported per 100,000 people a year (not used to calculate city
+    rankings)
   stat_sort_low: "Lowest first"
   stat_sort_high: "Highest first"
   stat_strip_label: "How the figures spread across every ranked city"
   rent_page_note: >-
-    One thing to know when reading this list: a city's median is pulled
-    down by rent-controlled and rent-stabilised homes where they are
-    common — New York most of all. That is a property of what renters
-    actually pay, not an error, so it is disclosed here rather than
-    adjusted away.
+    Note: A city's median rent is pulled down by rent-controlled and
+    rent-stabilised homes. In cities with more rent regulation, new
+    renters are likely to see higher prices.
   compare_default_note: >-
     These figures use the stated default search — {search}. Change
     anything on the home page and they become yours.
+  # item 7: the compare landing subheading
+  compare_page_subtitle: >-
+    View two cities side by side. Learn how each ranks in your search,
+    and see every city's stats with the differences between them.
+  # item 6.3: the line under the compare table. Grey is "we don't judge
+  # it" — and a measure set to Not much still carries weight, it is
+  # never excluded ({a}/{b} are the two city names, left and right).
+  compare_diff_legend: >-
+    Green means the difference favors {a} for your search; red means it
+    favors {b}. Grey means we don't judge it: population is just a fact,
+    and a measure you set to "Not much" still counts toward the score —
+    it just matters least to you.
+
+# Phase 2f item 9.2: the stat pages' source lines — one display name and
+# link per source_id, joined through each feature's provenance.source
+# (docs/sources.md is the verified human copy these came from). Names
+# carry the vintage where one belongs; rent's reads exactly as approved,
+# with the vintage already in "5-Year Data".
+sources:
+  census_acs:
+    name: "U.S. Census Bureau's American Community Survey 5-Year Data"
+    url: "https://www.census.gov/programs-surveys/acs/"
+  bea_rpp:
+    name: "Bureau of Economic Analysis Regional Price Parities, 2024"
+    url: "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area"
+  census_cbp:
+    name: "U.S. Census Bureau's County Business Patterns, 2023"
+    url: "https://www.census.gov/programs-surveys/cbp.html"
+  epa_sld:
+    name: "EPA Smart Location Database v3.0, June 2021"
+    url: "https://www.epa.gov/smartgrowth/smart-location-mapping"
+  ghcn_daily:
+    name: "NOAA's daily weather station records (GHCN-Daily), 1991–2020"
+    url: "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily"
+  ipeds:
+    name: "U.S. Department of Education's IPEDS college enrollment data, 2023–24"
+    url: "https://nces.ed.gov/ipeds/use-the-data"
+  fbi_cde:
+    name: "FBI Crime Data Explorer, 2025"
+    url: "https://cde.ucr.cjis.gov/"
+
+# Phase 2f item 8.5: the What-we-measure page's composition — group ->
+# ordered ids, so the page composes nothing. Cost of living shows Rent
+# and Everyday prices (the two scored RPP components stay the scored
+# features; only this page's presentation changes — the methodology page
+# still documents that everyday prices is their average). "pillars" rows
+# render pillar display fields (the two people measures); crime: true
+# appends the combined crime card with strings.measure_crime_note.
+measure_page:
+  - {heading: people, pillars: [pool, balance]}
+  - {heading: cost, features: [median_gross_rent, everyday_prices]}
+  - {heading: reach, features: [venues_per_100k, resident_walkability_index]}
+  - {heading: students, features: [students_per_1k_adults]}
+  - {heading: weather, features: [pleasant_days]}
+  - {heading: context, features: [who_lives_here], crime: true}
 
 # The one-line city description (ADR 0004): composed at build from data the
 # artifact already holds — never hand-written, never a model call in this
@@ -332,7 +399,7 @@ features:
     weight_in_pillar: 0.5
     computed: static
     display_name: "Rent"
-    unit: "a month for a typical one-bedroom, utilities included"
+    unit: "median 1-bedroom monthly rent, with utilities"
     unit_short: "$/mo"
     display_decimals: 0
     mover_phrase: "rent"
@@ -342,7 +409,7 @@ features:
                   "Among the priciest cities"]
     definition: >-
       The typical monthly rent for a one-bedroom home across the city,
-      utilities included (Census ACS).
+      utilities included
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
                  table: B25031, variables: [B25031_003E],
                  geography: cbsa, vintage: "2020-2024",
@@ -414,9 +481,7 @@ features:
     band_labels: ["Far below the US average", "Below the US average",
                   "About the US average", "Above the US average",
                   "Far above the US average"]
-    definition: >-
-      Goods and services prices together, where the US average is 100 —
-      the average of the two BEA price levels the score uses.
+    definition: "The price of goods and services, where the US average is 100."
     provenance: {source: bea_rpp, dataset: "BEA Regional Price Parities",
                  table: MARPP_MSA_2008_2024.csv,
                  variables: ["RPPs: Goods", "RPPs: Services: Other"],
@@ -440,7 +505,7 @@ features:
                   "Far more than most cities"]
     definition: >-
       Restaurants, coffee shops, bars, gyms, museums and movie theaters
-      per 100,000 adults (Census business data).
+      per 100,000 adults
     provenance: {source: census_cbp, dataset: "County Business Patterns 2023",
                  table: "CBP ESTAB by NAICS2017",
                  variables: ["722511", "722515", "722410", "713940", "712110",
@@ -458,6 +523,9 @@ features:
     weight_in_pillar: 0.5
     computed: static
     display_name: "Getting around on foot"
+    # item 8.4: the stat-page link reads "See all cities by walkability" —
+    # "by getting around on foot" is not a sentence (population precedent)
+    stat_page_name: "walkability"
     unit: "walkability, 1 to 20"
     unit_short: "on the 1–20 index"
     display_decimals: 1
@@ -467,8 +535,7 @@ features:
                   "About average", "More walkable than most",
                   "Among the most walkable"]
     definition: >-
-      A federal walkability index of where the city's residents live,
-      from 1 to 20.
+      A walkability index of where the city's residents live, from 1 to 20.
     provenance: {source: epa_sld, dataset: "EPA Smart Location Database v3.0",
                  table: "SmartLocationDatabase MapServer",
                  variables: [NatWalkInd, D3B, TotPop, GEOID10],
@@ -516,9 +583,8 @@ features:
                   "About average", "More than most cities",
                   "Far more than most cities"]
     definition: >-
-      Days a year that actually stayed between 55 and 85°F, didn't dip
-      below 40°F, and saw no more than a light shower — counted from
-      thirty years of daily weather-station records, then averaged.
+      Days a year that stay between 55 and 85°F, don't dip below 40°F,
+      and see no more than a light shower, averaged over the past 30 years
     provenance: {source: ghcn_daily,
                  dataset: "NOAA GHCN-Daily",
                  table: "daily-summaries access CSVs, 1991-2020",
@@ -547,7 +613,7 @@ features:
                   "Far more than most cities"]
     definition: >-
       Students enrolled at the city's colleges per 1,000 adults, not
-      counting online-only enrollment (federal education data).
+      counting online-only enrollment
     provenance: {source: ipeds, dataset: "IPEDS 2023-24",
                  table: "HD2023 + EF2023A_DIST",
                  variables: [UNITID, CBSA, COUNTYCD, EFDELEV, EFDETOT, EFDEEXC],
@@ -578,8 +644,8 @@ features:
                   "A mid-sized city", "A big city",
                   "One of the biggest cities"]
     definition: >-
-      Everyone the Census counts as living in the metro area, and how many
-      of them are adults aged 18 to 70.
+      Everyone living in the metro area, and how many are adults aged 18
+      to 70.
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
                  table: "B01003 (bridged to metros)",
                  variables: [B01003_001E],

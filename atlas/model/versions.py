@@ -20,6 +20,19 @@ importance controls map to weights through registry constants; margins
 keep being computed and returned but no longer render. Second breaking
 contract change after ADR 0003.
 
+m2.3.1 — Phase 2f (ADR 0007): DISPLAY ONLY. The tone vocabulary widens
+from three to five (good_strong/good/neutral/poor/poor_strong): the two
+extreme bands of a directed feature now read harder than the two middle
+bands, derived in the registry loader exactly as before — position
+crossed with band_direction, never judgment per label. Registry copy
+moves with Nathan's line-by-line review (home headline, slider note,
+crime caution boxes, card blank states, definitions, the What-we-measure
+composition and per-source stat-page attribution lines). NO NUMBER
+MOVES: every score, rank, pool, balance and card value is identical to
+m2.3.0 (asserted by pipeline/build/display_only_diff.py against the
+m2.3.0 fixture across all fifteen golden vectors); goldens regenerated
+under the bump differ only in the version line.
+
 m2.3.0 — Phase 2e (ADR 0006): rent becomes the ONE-BEDROOM median gross
 rent (B25031, variable selected from group metadata by label) — the
 all-units median moved with each metro's unit mix, reading family-stock
@@ -65,5 +78,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m2.3.0"
+MODEL_VERSION = "m2.3.1"
 SCHEMA_VERSION = "cube-v1"

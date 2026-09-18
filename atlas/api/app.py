@@ -194,6 +194,9 @@ def meta() -> dict:
         "race_groups": m["race_groups"],
         "city_cards": m["city_cards"],
         "stat_pages": m["stat_pages"],
+        # Phase 2f item 8.5: What-we-measure composes from this list,
+        # never from a hard-coded array of ids in the component
+        "measure_page": m["measure_page"],
         "crime": {"year": m["crime"]["year"],
                   "coverage_floor": m["crime"]["coverage_floor"]},
         "interval_model": {k: m["interval_model"][k] for k in

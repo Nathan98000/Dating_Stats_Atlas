@@ -1,8 +1,8 @@
 {
   "data_version": "98dcbb161236",
-  "model_version": "m2.3.0",
+  "model_version": "m2.3.1",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-17T14:46:23-0400",
+  "created_at": "2026-09-18T07:32:24-0400",
   "axes": [
     {
       "name": "metro",
@@ -695,37 +695,117 @@
     "implausible_property_per_100k": 100
   },
   "strings": {
-    "slider_info": "Leaning toward size favours cities where more people match your whole search \u2014 the most possible matches. Leaning toward balance favours cities where single men and women in your ages come out closest to even. Same survey, two different questions.",
-    "crime_caution": "The FBI cautions against using these figures to rank or compare places: how much crime gets reported, and how many of a city's police agencies report at all, differ too much from city to city. That is why crime is never part of any score on this site.",
+    "home_title": "Which city has the best dating scene for you?",
+    "home_subtitle": "Select who you're looking for and what matters to you. Find out how many people match your search in each city based on Census data.",
+    "slider_info": "Leaning towards size favors larger cities with the most possible matches. Leaning towards balance favors cities with a larger share of single men/women in your preferred age range.",
+    "crime_caution": "The FBI cautions against using this number to compare cities. Data can be affected by how much crime is reported and whether local agencies send data to the FBI at all.",
+    "crime_see_more": "See more details",
     "crime_coverage_line": "Police agencies covering {coverage} of the people here reported a full year of {year} data. The rates count only what those agencies cover.",
     "crime_blank": "Not enough of {city}'s police agencies reported a full year of data for a figure we'd stand behind, so none is shown.",
     "crime_compare_note": "Read each city's crime figures on their own. Different shares of each city's police agencies report, so the two columns aren't comparable \u2014 the FBI itself cautions against comparisons like that.",
-    "crime_compare_banner": "These two figures aren't reliably comparable between cities \u2014 how much crime gets reported, and how many police agencies report it, differ from place to place.",
+    "crime_compare_banner": "The FBI cautions against using these numbers to compare cities. Data can be affected by how much crime is reported and whether local agencies send data to the FBI at all.",
     "crime_card_blank": "Not enough police reporting here for a figure worth showing.",
     "crime_card_info": "About this figure",
+    "card_missing": "Not enough reliable data available.",
     "stat_page_link": "See all cities by {name}",
-    "stat_page_intro": "Every city this site can rank, ordered by one measure. Your search never changes these figures.",
     "stat_page_missing": "{n} of the ranked cities don't have this figure and are left off this list rather than shown as zero.",
+    "stat_col_city": "City Name",
+    "stat_source_prefix": "Source:",
     "age_range_error": "Ages run 18 to 70 here \u2014 that's the survey's own range.",
-    "measure_page_intro": "Everything this site measures, in plain words: the two counts about people, and the place stats behind the four importance controls. Every figure links to its own list of cities.",
     "measure_people_heading": "The people",
-    "measure_crime_note": "Shown on city pages with its reporting coverage \u2014 never part of any score, and not reliably comparable between cities.",
+    "measure_context_heading": "Also on every city page",
+    "measure_crime_link": "About the crime figures",
+    "measure_crime_note": "Crime reported per 100,000 people a year (not used to calculate city rankings)",
     "stat_sort_low": "Lowest first",
     "stat_sort_high": "Highest first",
     "stat_strip_label": "How the figures spread across every ranked city",
-    "rent_page_note": "One thing to know when reading this list: a city's median is pulled down by rent-controlled and rent-stabilised homes where they are common \u2014 New York most of all. That is a property of what renters actually pay, not an error, so it is disclosed here rather than adjusted away.",
-    "compare_default_note": "These figures use the stated default search \u2014 {search}. Change anything on the home page and they become yours."
+    "rent_page_note": "Note: A city's median rent is pulled down by rent-controlled and rent-stabilised homes. In cities with more rent regulation, new renters are likely to see higher prices.",
+    "compare_default_note": "These figures use the stated default search \u2014 {search}. Change anything on the home page and they become yours.",
+    "compare_page_subtitle": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+    "compare_diff_legend": "Green means the difference favors {a} for your search; red means it favors {b}. Grey means we don't judge it: population is just a fact, and a measure you set to \"Not much\" still counts toward the score \u2014 it just matters least to you."
+  },
+  "measure_page": [
+    {
+      "heading": "people",
+      "pillars": [
+        "pool",
+        "balance"
+      ]
+    },
+    {
+      "heading": "cost",
+      "features": [
+        "median_gross_rent",
+        "everyday_prices"
+      ]
+    },
+    {
+      "heading": "reach",
+      "features": [
+        "venues_per_100k",
+        "resident_walkability_index"
+      ]
+    },
+    {
+      "heading": "students",
+      "features": [
+        "students_per_1k_adults"
+      ]
+    },
+    {
+      "heading": "weather",
+      "features": [
+        "pleasant_days"
+      ]
+    },
+    {
+      "heading": "context",
+      "features": [
+        "who_lives_here"
+      ],
+      "crime": true
+    }
+  ],
+  "sources_display": {
+    "census_acs": {
+      "name": "U.S. Census Bureau's American Community Survey 5-Year Data",
+      "url": "https://www.census.gov/programs-surveys/acs/"
+    },
+    "bea_rpp": {
+      "name": "Bureau of Economic Analysis Regional Price Parities, 2024",
+      "url": "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area"
+    },
+    "census_cbp": {
+      "name": "U.S. Census Bureau's County Business Patterns, 2023",
+      "url": "https://www.census.gov/programs-surveys/cbp.html"
+    },
+    "epa_sld": {
+      "name": "EPA Smart Location Database v3.0, June 2021",
+      "url": "https://www.epa.gov/smartgrowth/smart-location-mapping"
+    },
+    "ghcn_daily": {
+      "name": "NOAA's daily weather station records (GHCN-Daily), 1991\u20132020",
+      "url": "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily"
+    },
+    "ipeds": {
+      "name": "U.S. Department of Education's IPEDS college enrollment data, 2023\u201324",
+      "url": "https://nces.ed.gov/ipeds/use-the-data"
+    },
+    "fbi_cde": {
+      "name": "FBI Crime Data Explorer, 2025",
+      "url": "https://cde.ucr.cjis.gov/"
+    }
   },
   "pillars": {
     "pool": {
       "display_name": "Dating pool size",
-      "definition": "How many people here match what you are looking for.",
+      "definition": "How many people here match what you're looking for",
       "default_weight": 0.3,
       "control_subtitle": null
     },
     "balance": {
       "display_name": "Dating pool balance",
-      "definition": "Single men per 100 single women in the ages you picked (or the mirror, if you are looking for women) \u2014 the plain ratio, before any other filter.",
+      "definition": "Number of single men per 100 single women in your selected age range (or the opposite, if you're looking for women)",
       "default_weight": 0.25,
       "control_subtitle": null
     },
@@ -915,7 +995,7 @@
       "weight_in_pillar": 0.5,
       "status": "active",
       "display_name": "Rent",
-      "unit": "a month for a typical one-bedroom, utilities included",
+      "unit": "median 1-bedroom monthly rent, with utilities",
       "unit_short": "$/mo",
       "unit_template": null,
       "mover_phrase": "rent",
@@ -929,14 +1009,14 @@
         "Among the priciest cities"
       ],
       "band_tones": [
-        "good",
+        "good_strong",
         "good",
         "neutral",
         "poor",
-        "poor"
+        "poor_strong"
       ],
       "band_edges": null,
-      "definition": "The typical monthly rent for a one-bedroom home across the city, utilities included (Census ACS).",
+      "definition": "The typical monthly rent for a one-bedroom home across the city, utilities included",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1040,11 +1120,11 @@
         "Far above the US average"
       ],
       "band_tones": [
-        "good",
+        "good_strong",
         "good",
         "neutral",
         "poor",
-        "poor"
+        "poor_strong"
       ],
       "band_edges": [
         90.0,
@@ -1052,7 +1132,7 @@
         103.0,
         110.0
       ],
-      "definition": "Goods and services prices together, where the US average is 100 \u2014 the average of the two BEA price levels the score uses.",
+      "definition": "The price of goods and services, where the US average is 100.",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1091,14 +1171,14 @@
         "Far more than most cities"
       ],
       "band_tones": [
-        "poor",
+        "poor_strong",
         "poor",
         "neutral",
         "good",
-        "good"
+        "good_strong"
       ],
       "band_edges": null,
-      "definition": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults (Census business data).",
+      "definition": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1131,7 +1211,7 @@
       "unit_short": "on the 1\u201320 index",
       "unit_template": null,
       "mover_phrase": "walkable neighbourhoods",
-      "stat_page_name": null,
+      "stat_page_name": "walkability",
       "band_direction": "good_high",
       "band_labels": [
         "Among the least walkable",
@@ -1141,14 +1221,14 @@
         "Among the most walkable"
       ],
       "band_tones": [
-        "poor",
+        "poor_strong",
         "poor",
         "neutral",
         "good",
-        "good"
+        "good_strong"
       ],
       "band_edges": null,
-      "definition": "A federal walkability index of where the city's residents live, from 1 to 20.",
+      "definition": "A walkability index of where the city's residents live, from 1 to 20.",
       "display_scale": 1.0,
       "display_decimals": 1,
       "retired_reason": null,
@@ -1220,14 +1300,14 @@
         "Far more than most cities"
       ],
       "band_tones": [
-        "poor",
+        "poor_strong",
         "poor",
         "neutral",
         "good",
-        "good"
+        "good_strong"
       ],
       "band_edges": null,
-      "definition": "Days a year that actually stayed between 55 and 85\u00b0F, didn't dip below 40\u00b0F, and saw no more than a light shower \u2014 counted from thirty years of daily weather-station records, then averaged.",
+      "definition": "Days a year that stay between 55 and 85\u00b0F, don't dip below 40\u00b0F, and see no more than a light shower, averaged over the past 30 years",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1274,7 +1354,7 @@
         "neutral"
       ],
       "band_edges": null,
-      "definition": "Students enrolled at the city's colleges per 1,000 adults, not counting online-only enrollment (federal education data).",
+      "definition": "Students enrolled at the city's colleges per 1,000 adults, not counting online-only enrollment",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1329,7 +1409,7 @@
         1000000.0,
         2500000.0
       ],
-      "definition": "Everyone the Census counts as living in the metro area, and how many of them are adults aged 18 to 70.",
+      "definition": "Everyone living in the metro area, and how many are adults aged 18 to 70.",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
