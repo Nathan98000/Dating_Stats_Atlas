@@ -27,10 +27,12 @@ test("crime is two cards in the stats grid, detail in the popover — never scor
   await info.hover();
   const note = page.getByTestId("crime-info-violent_crime_rate-note");
   await expect(note).toBeVisible();
-  await expect(note).toContainText(/caution/i);
-  await expect(note).toContainText(/never part of any score/i);
+  // Phase 2f item 5.3: the approved caution, with "See more details" as
+  // the link; the per-city coverage sentence left this surface
+  await expect(note).toContainText(/FBI cautions against using this number/);
+  await expect(note).not.toContainText(/reported a full year/);
   await expect(
-    note.getByRole("link", { name: "About these figures" })).toBeVisible();
+    note.getByRole("link", { name: "See more details" })).toBeVisible();
   await info.focus();
   await page.keyboard.press("Escape");
   await expect(note).toHaveCount(0);
@@ -48,16 +50,18 @@ test("compare-page crime: two plain numbers and one banner, detail one click awa
   const block = page.getByTestId("compare-crime");
   await expect(block).toBeVisible();
   const banner = page.getByTestId("crime-compare-banner");
-  await expect(banner).toContainText(/aren't reliably comparable/);
+  // Phase 2f item 6.4: the approved caution wording, verbatim
+  await expect(banner).toContainText(
+    /FBI cautions against using these numbers to compare cities/);
   await expect(
-    banner.getByRole("link", { name: "About these figures" })).toBeVisible();
-  // beyond the banner: numbers only — no coverage percentages, no
-  // agency talk, no paragraph (the banner itself is where the one
-  // plain-language why lives)
+    banner.getByRole("link", { name: "See more details" })).toBeVisible();
+  // beyond the banner: numbers with their per-100,000 unit (item 6.5) —
+  // still no coverage percentages, no agency talk, no paragraph
   const table = (await block.locator("table").textContent()) ?? "";
   expect(table).not.toMatch(/coverage|agenc|panel|%/i);
   await expect(block).toContainText("Violent crime");
   await expect(block).toContainText("Property crime");
+  expect(table).toContain("reported per 100,000 people a year");
 });
 
 test("stat pages agree with the city page cell for cell", async ({ page }) => {

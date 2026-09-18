@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Meta, RankResponse } from "@/lib/types";
 import {
+  PREFS_COOKIE,
+  PREFS_COOKIE_MAX_AGE,
   searchChips,
   toRankBody,
   toSearchParams,
@@ -66,6 +68,15 @@ export function Home({
       setPrefs(next);
       const qs = toSearchParams(next).toString();
       window.history.replaceState(null, "", `${window.location.pathname}?${qs}`);
+      // Phase 2f item 2 (ADR 0007): the search follows the visitor. The
+      // query string stays the shareable form; the cookie is only the
+      // fallback for a bare URL, and explicit parameters always win.
+      try {
+        document.cookie = `${PREFS_COOKIE}=${encodeURIComponent(qs)}; ` +
+          `path=/; max-age=${PREFS_COOKIE_MAX_AGE}; samesite=lax`;
+      } catch {
+        /* a blocked cookie jar never blocks the search itself */
+      }
       if (timer.current) clearTimeout(timer.current);
       timer.current = setTimeout(() => refetch(next), 180);
     },

@@ -22,6 +22,13 @@
   --female: #C25C86;
   --good: #2E7D6B;
   --poor: #B0543E; /* the board's #C2624A sits at 4.1:1 on white; this holds 5.0:1 */
+  /* Phase 2f item 1: the strong pair for the extreme bands — measured
+     7.19:1 / 8.11:1 on paper and 7.64:1 / 8.61:1 on white. The LIGHT
+     pair measures below AA on the tint background (4.19:1 / 4.27:1), so
+     no tone label may sit on tint; nothing does today, and the contrast
+     test pins the backgrounds each tone actually uses. */
+  --good-strong: #1B5E4B;
+  --poor-strong: #8A2B18;
   color-scheme: light;
 }
 
@@ -40,6 +47,8 @@
   --color-female: var(--female);
   --color-good: var(--good);
   --color-poor: var(--poor);
+  --color-good-strong: var(--good-strong);
+  --color-poor-strong: var(--poor-strong);
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-figtree), "Helvetica Neue", Arial, sans-serif;
   --radius-ctl: 8px;
@@ -175,6 +184,30 @@ input[type="range"].svo::-moz-range-thumb {
   background: var(--surface); border: 3px solid var(--accent); cursor: grab;
 }
 input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* Phase 2f item 5.2: every city-page card is a subgrid over the card
+   grid's rows (name / value / unit / segments / band label / link), so
+   the five-segment indicators sit at one height across a row of cards
+   even when one unit line wraps and its neighbour's does not. The card
+   overrides the parent's 16px row gap with its own 10px internal one;
+   browsers without subgrid fall back to the old flex column with a
+   two-line minimum on the unit row. */
+.stat-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+  row-gap: 10px;
+}
+@supports not (grid-template-rows: subgrid) {
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .stat-card .unit-line {
+    min-height: 36px; /* two lines at 12.5px/1.45 */
+  }
+}
 
 /* rendered markdown (How it works, the crime explainer): real headings,
    real lists, a real table — item 10's "structure, not dumped prose" */

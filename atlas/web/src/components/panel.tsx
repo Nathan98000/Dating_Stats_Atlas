@@ -54,44 +54,7 @@ export function SearchPanel({
 
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-rule bg-surface p-6">
-      {/* the slider: the hero control */}
-      <div className="flex flex-col gap-2.5">
-        <div className="flex items-center gap-2">
-          <label htmlFor={`${uid}-svo`} className="text-sm font-semibold">
-            What matters more to you?
-          </label>
-          <InfoTip
-            id={`${uid}-svo-info`}
-            label="What the slider changes"
-            testid="slider-info"
-          >
-            {meta.policy_strings.slider_info}
-          </InfoTip>
-        </div>
-        <input
-          id={`${uid}-svo`}
-          type="range"
-          className="svo"
-          min={0}
-          max={1}
-          step={0.05}
-          value={s}
-          style={{ "--fill": `${s * 100}%` } as React.CSSProperties}
-          aria-valuetext={`${Math.round(s * 100)} percent toward dating pool balance`}
-          onChange={(e) => set({ poolVsBalance: parseFloat(e.target.value) })}
-        />
-        <div className="flex justify-between text-[12.5px] font-semibold text-ink-2">
-          <span>{"Dating pool size"}</span>
-          <span>{"Dating pool balance"}</span>
-        </div>
-        {sameSexNote && (
-          <p className="text-[12.5px] leading-relaxed text-ink-3">
-            {meta.policy_strings.balance_same_sex}
-          </p>
-        )}
-      </div>
-
-      <div className="flex flex-col gap-4 border-t border-rule pt-5">
+      <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_96px] gap-3">
           <Field label="I'm a" htmlFor={`${uid}-you`}>
             <select
@@ -244,24 +207,65 @@ export function SearchPanel({
         </fieldset>
       </div>
 
-      {/* Item 4: FOUR controls, labels and subtitles from the registry
-          through /v1/meta — student life is no longer bundled with the
-          weather, and the frontend still sends choices, never weights. */}
-      <div className="flex flex-col gap-3 border-t border-rule pt-5" data-testid="importance">
-        {/* item 7: no subheading — the four labels carry it */}
-        <p className="text-sm font-semibold">How much do these matter?</p>
-        <div className="flex flex-col gap-3">
-          {IMPORTANCE_PILLARS.map((pillar) => (
-            <ImportanceRow
-              key={pillar}
-              label={meta.pillars[pillar]?.display_name ?? pillar}
-              subtitle={meta.pillars[pillar]?.control_subtitle ?? ""}
-              value={prefs.importance[pillar]}
-              onPick={(lv) =>
-                set({ importance: { ...prefs.importance, [pillar]: lv } })
-              }
-            />
-          ))}
+      {/* Phase 2f item 4.5: the slider sits WITH the other weighting
+          control — one bordered group, the slider immediately above
+          "How much do these matter?" — instead of opening the panel.
+          The search fields above it keep their order untouched. */}
+      <div className="flex flex-col gap-5 border-t border-rule pt-5" data-testid="weighting">
+        <div className="flex flex-col gap-2.5">
+          <div className="flex items-center gap-2">
+            <label htmlFor={`${uid}-svo`} className="text-sm font-semibold">
+              What matters more to you?
+            </label>
+            <InfoTip
+              id={`${uid}-svo-info`}
+              label="What the slider changes"
+              testid="slider-info"
+            >
+              {meta.policy_strings.slider_info}
+            </InfoTip>
+          </div>
+          <input
+            id={`${uid}-svo`}
+            type="range"
+            className="svo"
+            min={0}
+            max={1}
+            step={0.05}
+            value={s}
+            style={{ "--fill": `${s * 100}%` } as React.CSSProperties}
+            aria-valuetext={`${Math.round(s * 100)} percent toward dating pool balance`}
+            onChange={(e) => set({ poolVsBalance: parseFloat(e.target.value) })}
+          />
+          <div className="flex justify-between text-[12.5px] font-semibold text-ink-2">
+            <span>{"Dating pool size"}</span>
+            <span>{"Dating pool balance"}</span>
+          </div>
+          {sameSexNote && (
+            <p className="text-[12.5px] leading-relaxed text-ink-3">
+              {meta.policy_strings.balance_same_sex}
+            </p>
+          )}
+        </div>
+
+        {/* Item 4 (2d): FOUR controls, labels and subtitles from the
+            registry through /v1/meta — the frontend still sends choices,
+            never weights. */}
+        <div className="flex flex-col gap-3" data-testid="importance">
+          <p className="text-sm font-semibold">How much do these matter?</p>
+          <div className="flex flex-col gap-3">
+            {IMPORTANCE_PILLARS.map((pillar) => (
+              <ImportanceRow
+                key={pillar}
+                label={meta.pillars[pillar]?.display_name ?? pillar}
+                subtitle={meta.pillars[pillar]?.control_subtitle ?? ""}
+                value={prefs.importance[pillar]}
+                onPick={(lv) =>
+                  set({ importance: { ...prefs.importance, [pillar]: lv } })
+                }
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -1,41 +1,48 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { SearchBox } from "./search";
+import { BrandLink, NavLinks } from "./nav-links";
+import { NAV_DESTINATIONS } from "@/lib/nav";
 
-/** The v3 header: brand, two links, find-a-city. */
+/** The v3 header: brand, nav, find-a-city. Since Phase 2f item 2 the
+ * links carry the visitor's preference query string when the page has
+ * one (the Suspense fallback renders the same links bare, so nothing
+ * shifts). */
 export function SiteHeader({ border = true }: { border?: boolean }) {
   return (
     <header
       className={`flex flex-wrap items-center justify-between gap-x-10 gap-y-3 px-6 py-5 sm:px-12 ${border ? "border-b border-rule" : ""}`}
     >
-      <Link
-        href="/"
-        className="font-display text-[23px] font-semibold tracking-tight text-ink"
+      <Suspense
+        fallback={
+          <Link
+            href="/"
+            className="font-display text-[23px] font-semibold tracking-tight text-ink"
+          >
+            Dating Stats Atlas
+          </Link>
+        }
       >
-        Dating Stats Atlas
-      </Link>
+        <BrandLink />
+      </Suspense>
       <div className="flex items-center gap-6">
-        <Link href="/" className="text-sm font-semibold text-ink-2 hover:text-ink">
-          Browse cities
-        </Link>
-        <Link
-          href="/compare"
-          className="text-sm font-semibold text-ink-2 hover:text-ink"
+        <Suspense
+          fallback={
+            <>
+              {NAV_DESTINATIONS.map((d) => (
+                <Link
+                  key={d.href}
+                  href={d.href}
+                  className="text-sm font-semibold text-ink-2 hover:text-ink"
+                >
+                  {d.label}
+                </Link>
+              ))}
+            </>
+          }
         >
-          Compare cities
-        </Link>
-        <Link
-          href="/what-we-measure"
-          className="text-sm font-semibold text-ink-2 hover:text-ink"
-        >
-          What we measure
-        </Link>
-        <Link
-          href="/how-it-works"
-          className="text-sm font-semibold text-ink-2 hover:text-ink"
-        >
-          How it works
-        </Link>
+          <NavLinks />
+        </Suspense>
         <Suspense fallback={<div className="h-[42px] w-[190px]" />}>
           <SearchBox />
         </Suspense>

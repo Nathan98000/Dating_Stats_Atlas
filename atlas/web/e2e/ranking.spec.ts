@@ -5,14 +5,28 @@ import { expect, test } from "@playwright/test";
  * sort reversal, the count-only-when-excluded rule, importance controls
  * moving the order, and a hydration-clean load. */
 
-test("first results are server-rendered, with the hero slot", async ({ page }) => {
+test("first results are server-rendered, with the hero", async ({ page }) => {
   const errors: string[] = [];
   page.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());
   });
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  await expect(page.getByTestId("hero-placeholder")).toBeVisible();
+  // Phase 2f item 4.1: the sourced photograph with its attribution when
+  // the (gitignored, re-fetchable) file is present; the labelled
+  // placeholder otherwise — never a photo without its manifest credit
+  const photo = page.getByTestId("hero-photo");
+  if (await photo.count()) {
+    await expect(photo.locator("img")).toBeVisible();
+    await expect(
+      photo.locator("figcaption").getByRole("link", { name: "source" }),
+    ).toBeVisible();
+  } else {
+    await expect(page.getByTestId("hero-placeholder")).toBeVisible();
+  }
+  // items 4.2/4.3: headline and subhead from the registry
+  await expect(page.locator("h1")).toHaveText(
+    "Which city has the best dating scene for you?");
   // scores are whole numbers out of 100 with a meter, not a decimal
   const score = await page.getByTestId("score").first().textContent();
   expect(score).toMatch(/^\d{1,3}$/);
