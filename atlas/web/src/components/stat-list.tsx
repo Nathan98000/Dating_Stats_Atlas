@@ -7,7 +7,15 @@ import { useState } from "react";
  * Positions are numbered ONCE, at build time, in the direction the
  * registry's direction field calls good; reversing the sort shows the
  * SAME numbers in reverse order — the rule the results list already
- * follows. Toggle labels arrive from the registry via the build JSON. */
+ * follows. Since Phase 2f item 9.4 rows carry no band label (the
+ * ordering already says it and the distribution strip carries the
+ * spread), and item 9.5 adds a header row: the list STAYS an <ol> with
+ * an aria-hidden header strip on the same grid, because each row's link
+ * already carries its position as an sr-only prefix and its value line
+ * carries the unit in words — converting to a <table> would announce
+ * the position twice and re-plumb the sort toggle's semantics for no
+ * gain. Toggle labels and headers arrive from the registry via the
+ * build JSON. */
 
 export interface StatRow {
   slug: string;
@@ -15,21 +23,22 @@ export interface StatRow {
   display: string;
   unit_line: string;
   pos: number;
-  band: { label: string; tone: string; key: string } | null;
 }
 
 export function StatList({
   rows,
   isDollar,
   ariaLabel,
+  colName,
   defaultIsLowFirst,
   strings,
 }: {
   rows: StatRow[];
   isDollar: boolean;
   ariaLabel: string;
+  colName: string;
   defaultIsLowFirst: boolean;
-  strings: { sort_low: string; sort_high: string };
+  strings: { sort_low: string; sort_high: string; col_city: string };
 }) {
   const [reversed, setReversed] = useState(false);
   const shown = reversed ? [...rows].reverse() : rows;
@@ -62,7 +71,20 @@ export function StatList({
           })}
         </div>
       </div>
-      <ol aria-label={ariaLabel} data-testid="stat-list">
+      <div>
+        {/* item 9.5: the header strip — visual column labels on the same
+            grid as the rows; hidden from the tree because each row
+            already reads "position: city — value unit" on its own */}
+        <div
+          aria-hidden="true"
+          data-testid="stat-list-header"
+          className="grid grid-cols-[44px_1fr_auto] items-baseline gap-x-4 border-b-2 border-rule pb-2 text-[12px] font-bold uppercase tracking-wide text-ink-3"
+        >
+          <span />
+          <span>{strings.col_city}</span>
+          <span className="text-right">{colName}</span>
+        </div>
+        <ol aria-label={ariaLabel} data-testid="stat-list">
         {shown.map((r) => (
           <li
             key={r.slug}
@@ -81,15 +103,6 @@ export function StatList({
                 <span className="sr-only">{r.pos}: </span>
                 {r.name}
               </Link>
-              {r.band && (
-                <span
-                  className={`ml-2.5 text-[12px] font-semibold ${
-                    r.band.tone === "good" ? "text-good"
-                    : r.band.tone === "poor" ? "text-poor" : "text-ink-3"}`}
-                >
-                  {r.band.label}
-                </span>
-              )}
             </span>
             <span className="text-right">
               <span className="font-display text-[19px] font-semibold">
@@ -102,7 +115,8 @@ export function StatList({
             </span>
           </li>
         ))}
-      </ol>
+        </ol>
+      </div>
     </>
   );
 }

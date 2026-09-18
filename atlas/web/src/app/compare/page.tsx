@@ -1,15 +1,14 @@
 import { Suspense } from "react";
+import { apiMeta } from "@/lib/api";
 import { SiteHeader } from "@/components/chrome";
 import { ComparePickers } from "@/components/compare-pickers";
 import { one, type SearchParams } from "@/lib/prefs";
 
 export const dynamic = "force-dynamic";
 
-/** The compare landing (item 8), reachable from the nav: two city
+/** The compare landing (2d item 8), reachable from the nav: two city
  * pickers over the same client-side index, pre-filled from ?a=&b= when
- * present. The side-by-side view they lead to renders both cities from
- * one ranking response — a visitor with no preferences set gets the
- * stated default profile there, labelled and one click from theirs. */
+ * present. The subheading arrives from the registry (Phase 2f item 7). */
 export default async function CompareLandingPage({
   searchParams,
 }: {
@@ -18,6 +17,7 @@ export default async function CompareLandingPage({
   const sp = await searchParams;
   const a = one(sp, "a");
   const b = one(sp, "b");
+  const meta = await apiMeta();
   return (
     <>
       <SiteHeader />
@@ -27,9 +27,7 @@ export default async function CompareLandingPage({
             Compare two cities
           </h1>
           <p className="max-w-[58ch] text-[15.5px] leading-relaxed text-ink-2">
-            Side by side: where each lands for your search, the size and
-            balance of its dating pool, and every place stat with the
-            difference between them.
+            {meta.policy_strings.compare_page_subtitle}
           </p>
         </div>
         <Suspense fallback={<div className="h-[120px]" />}>

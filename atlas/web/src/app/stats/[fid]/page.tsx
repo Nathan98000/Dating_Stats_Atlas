@@ -27,13 +27,15 @@ interface StatImage {
 
 const DATA = statPages as unknown as {
   pages: Record<string, { title: string; unit: string; definition: string;
+                          col_name: string;
+                          source: { name: string; url: string };
                           rows: StatRow[]; missing_in_ranked_set: number;
                           default_is_low_first: boolean;
                           strip: { ticks: number[]; axis: [string, string] };
                           note: string | null }>;
   order: string[];
-  strings: { intro: string; missing: string; sort_low: string;
-             sort_high: string; strip_label: string };
+  strings: { missing: string; sort_low: string; sort_high: string;
+             strip_label: string; col_city: string; source_prefix: string };
 };
 const IMAGES = statImages as unknown as Record<string, StatImage>;
 
@@ -81,8 +83,17 @@ export default async function StatPage({
           <p className="max-w-[64ch] text-[15px] leading-relaxed text-ink-2">
             {page.definition}
           </p>
-          <p className="max-w-[64ch] text-[13.5px] text-ink-3">
-            {DATA.strings.intro}
+          {/* item 9.2: the live source line — name, vintage and link
+              from the registry's sources block via the build JSON */}
+          <p className="max-w-[64ch] text-[12.5px] text-ink-3" data-testid="stat-source">
+            {DATA.strings.source_prefix}{" "}
+            <a
+              href={page.source.url}
+              rel="noopener"
+              className="font-semibold underline underline-offset-2 hover:text-ink-2"
+            >
+              {page.source.name}
+            </a>
           </p>
           {page.note && (
             <p className="max-w-[64ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13.5px] leading-relaxed text-accent-hover" data-testid="stat-note">
@@ -123,6 +134,7 @@ export default async function StatPage({
           rows={page.rows}
           isDollar={isDollar}
           ariaLabel={`Cities by ${page.title.toLowerCase()}`}
+          colName={page.col_name}
           defaultIsLowFirst={page.default_is_low_first}
           strings={DATA.strings}
         />

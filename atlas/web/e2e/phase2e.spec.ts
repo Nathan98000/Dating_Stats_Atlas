@@ -143,8 +143,17 @@ test("What we measure lists every statistic, grouped, with crime's own line", as
   }
   await expect(page.getByRole("link", { name: /See all cities by rent/ }))
     .toBeVisible();
+  // Phase 2f item 8.5: the cost group shows Rent AND Everyday prices;
+  // the two RPP component cards left this page (they stay scored)
+  const cost = page.locator('[data-group="cost"]');
+  await expect(cost).toContainText("Everyday prices");
+  await expect(page.locator("main")).not.toContainText("Prices for goods");
+  // item 8.4: walkability's own link name, from the registry
+  await expect(page.getByRole("link", { name: "See all cities by walkability" }))
+    .toBeVisible();
   const crimeRow = page.getByTestId("measure-crime");
-  await expect(crimeRow).toContainText(/never part of any score/i);
+  await expect(crimeRow).toContainText(
+    /not used to calculate city rankings/);
   await crimeRow.getByRole("link", { name: /About the crime figures/ }).click();
   await expect(page).toHaveURL(/about-crime-data/);
 });

@@ -2,11 +2,17 @@
  * /v1/meta. The API computes every number; these types carry them —
  * nothing here is ever derived arithmetic. */
 
+/** Five tones since m2.3.1 (Phase 2f item 1): the extreme bands read
+ * harder than the middles. Derived server-side from band position ×
+ * band_direction; the phrase always carries the meaning — colour is
+ * never the only signal (WCAG 1.4.1). */
+export type Tone = "good_strong" | "good" | "neutral" | "poor" | "poor_strong";
+
 export interface Band {
   key: string; // one of meta.standing_bands.keys (five since m2.1.0)
   standing_all: number;
   label: string;
-  tone: "good" | "neutral" | "poor";
+  tone: Tone;
 }
 
 /** Crime context (never scored): rates arrive only with their coverage
@@ -166,6 +172,15 @@ export interface Meta {
   city_cards: string[];
   stat_pages: string[];
   crime: { year: number; coverage_floor: number };
+  /** Phase 2f item 8.5: the What-we-measure composition — group headed by
+   * a pillar id (or "people"/"context", which name registry strings) over
+   * ordered pillar/feature ids; the page composes nothing. */
+  measure_page: {
+    heading: string;
+    pillars?: string[];
+    features?: string[];
+    crime?: boolean;
+  }[];
   licenses: Record<
     string,
     { name: string; url: string; attribution: string | null; notes: string | null }

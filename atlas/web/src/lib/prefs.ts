@@ -58,6 +58,21 @@ export const RACE_IDS = ["hispanic", "white_nh", "black_nh", "asian_nh",
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
+/** The preference dialect's parameter names — the ONE list behind
+ * isDefaultSearch, the nav links' carried query (Phase 2f item 2) and
+ * the cookie fallback. */
+export const PREF_KEYS = ["self_sex", "self_age", "sex", "age", "marital",
+  "edu", "inc", "race", "s", "ic", "ir", "ist", "iw", "il", "sort"] as const;
+
+/** Phase 2f item 2 (ADR 0007): preferences persist in a cookie so the
+ * search follows the visitor across the site. The query string stays the
+ * shareable form, and EXPLICIT PARAMETERS ALWAYS WIN — the cookie is
+ * read only when the URL carries no preference parameter at all, so a
+ * shared link, a permalink or a reproduction route is never overridden
+ * by whatever the visitor last searched. */
+export const PREFS_COOKIE = "dsa_prefs";
+export const PREFS_COOKIE_MAX_AGE = 180 * 24 * 60 * 60; // ~180 days
+
 export function one(sp: SearchParams, k: string): string | undefined {
   const v = sp[k];
   return Array.isArray(v) ? v[0] : v;
@@ -66,9 +81,37 @@ export function one(sp: SearchParams, k: string): string | undefined {
 /** True when the URL carries none of the preference params — the visitor
  * gets the stated default profile, and pages that show it say so. */
 export function isDefaultSearch(sp: SearchParams): boolean {
-  const prefKeys = ["self_sex", "self_age", "sex", "age", "marital", "edu",
-    "inc", "race", "s", "ic", "ir", "ist", "iw", "il", "sort"];
-  return !prefKeys.some((k) => one(sp, k) !== undefined);
+  return !PREF_KEYS.some((k) => one(sp, k) !== undefined);
+}
+
+/** The cookie's stored query string back into searchParams shape; null
+ * when the cookie is absent, unreadable, or carries no preference key. */
+export function cookieSearchParams(
+  value: string | undefined,
+): SearchParams | null {
+  if (!value) return null;
+  try {
+    const usp = new URLSearchParams(decodeURIComponent(value));
+    const sp: SearchParams = {};
+    for (const k of PREF_KEYS) {
+      const v = usp.get(k);
+      if (v !== null) sp[k] = v;
+    }
+    return isDefaultSearch(sp) ? null : sp;
+  } catch {
+    return null;
+  }
+}
+
+/** The preference subset of a query string, for nav links that carry the
+ * visitor's search from page to page (Phase 2f item 2). */
+export function prefQueryString(usp: URLSearchParams): string {
+  const out = new URLSearchParams();
+  for (const k of PREF_KEYS) {
+    const v = usp.get(k);
+    if (v !== null) out.set(k, v);
+  }
+  return out.toString();
 }
 
 export function parsePrefs(sp: SearchParams): Prefs {
