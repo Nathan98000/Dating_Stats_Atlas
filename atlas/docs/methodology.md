@@ -1,18 +1,12 @@
 # How the numbers are made
 
-**In a minute:** every count on this site comes from the Census Bureau's
-American Community Survey — five years of it, 2020 through 2024. You
-describe who you're looking for; we count how many such people live in
-each of 387 US metro areas, add a few facts about each place from named
-federal datasets, and weight it all the way you choose. Nothing is
-scraped from dating apps, nothing is guessed by a model, and when the
-survey is too thin to answer a search in some city, we leave that city
-out and say so instead of publishing a shaky number.
-
-This page is kept in step with the counting method itself — when the
-method changes, so does this page. The technical record — decision
-documents, validation reports, and precise uncertainty figures — is in
-the project repository and available on request.
+**In a minute:** Every count on this site comes from the Census Bureau's
+American Community Survey from 2020 through 2024. You select what you're
+looking for; we count how many matching people live in each of 387 US
+metro areas, and rank the 193 with at least 250,000 people and enough
+survey sample to answer. We use additional information from
+nationally-recognized datasets and weigh it all together to find your
+best city match.
 
 ## Where does the data come from?
 
@@ -21,12 +15,12 @@ the project repository and available on request.
   Bureau weighs them. Metro areas follow the government's own
   definitions: "San Francisco" means the whole metro area, not the city
   limits.
-- **Place stats** — each from one named federal source, updated when
-  that source publishes:
+- **Place stats** — each from a nationally-recognized source, updated
+  when that source publishes:
 
 | Stat | Source |
 | --- | --- |
-| Rent | Census Bureau (American Community Survey) |
+| Rent | HUD 50th percentile rent estimates, FY2027 |
 | Everyday prices | Bureau of Economic Analysis price levels |
 | Places to go out | Census Bureau business data |
 | Getting around on foot | EPA's national walkability index |
@@ -88,35 +82,8 @@ leave that city out of your results and say how many were left out.
 **Too few matches in the survey is not the same as too few people in the
 country**: it usually means the search is narrow, not that nobody fits.
 
-## Why aren't margins of error printed on every number?
-
-We measure how precise every count is — the survey publishes the
-machinery, and we validate ours against it on every build. But a page of
-plus-or-minus figures helps almost nobody. Instead, precision is
-expressed by **leaving out** what's too thin to trust, and saying so.
-The precise figures behind any number on the site are available on
-request.
-
-## Why is crime shown but never ranked?
-
-Police agencies report to the FBI voluntarily, and different shares of
-each city's agencies report in any year — so two cities' crime figures
-aren't comparable, and the FBI itself cautions against ranking places by
-them. City pages show reported crime with the share of the metro's
-population its figures actually cover; crime is never part of any score;
-and there is deliberately no "cities by crime" list.
-[More about the crime figures.](/about-crime-data)
-
 ## Every measure, every city
 
 The full list of what this site measures — each statistic in plain
 words, with a preference-free list of every ranked city — lives on one
 page: [What we measure](/what-we-measure).
-
-## Can a result be reproduced later?
-
-Yes — exactly. The build of the data and the version of the scoring
-model are pinned inside every result the server produces, and changes to
-either are versioned and tested against pinned expectations. The full
-decision history — what changed between model versions and why — is in
-the project's decision records.
