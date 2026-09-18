@@ -29,11 +29,14 @@ BANNED_DISPLAY_TERMS = re.compile(
     re.IGNORECASE)
 STATUSES = ("active", "deferred", "context_only", "retired")
 N_BANDS = 5
-# tones are DERIVED from direction, one rule for every feature: the two
-# low bands, the middle, the two high bands
+# tones are DERIVED from direction, one rule for every feature. Phase 2f
+# item 1: FIVE tones — the extreme bands read harder than the middles
+# ("among the most" outweighs "more than most"), still position crossed
+# with band_direction and nothing else. Colour is never the only signal:
+# the band label carries the meaning (WCAG 1.4.1).
 BAND_DIRECTION_TONES = {
-    "good_low": ("good", "good", "neutral", "poor", "poor"),
-    "good_high": ("poor", "poor", "neutral", "good", "good"),
+    "good_low": ("good_strong", "good", "neutral", "poor", "poor_strong"),
+    "good_high": ("poor_strong", "poor", "neutral", "good", "good_strong"),
     "neutral": ("neutral",) * 5,
 }
 
@@ -93,6 +96,10 @@ class Registry:
     city_description: dict
     winsor_percentiles: tuple[float, float]
     missing_data_policy: str
+    # Phase 2f: the stat pages' source lines (9.2) and the What-we-measure
+    # composition (8.5), both registry judgments rather than code
+    sources: dict[str, dict] = field(default_factory=dict)
+    measure_page: tuple[dict, ...] = ()
 
     @property
     def pillar_weights(self) -> dict[str, float]:
@@ -245,6 +252,43 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     strings = {str(k): str(v).strip() for k, v in raw["strings"].items()}
     for k, v in strings.items():
         _assert_display_clean(f"strings.{k}", v)
+    for gone in ("stat_page_intro", "measure_page_intro"):
+        assert gone not in strings, (
+            f"strings.{gone} was deleted in Phase 2f (items 8.1/9.1) — "
+            f"the pages open straight into their content now")
+
+    # Phase 2f item 9.2: one display name + link per source_id, rendered
+    # under each stat page's subheading. Every stat page's feature must
+    # trace to an entry here; names carry the vintage where one belongs.
+    sources = {str(k): {"name": str(v["name"]), "url": str(v["url"])}
+               for k, v in raw.get("sources", {}).items()}
+    for k, v in sources.items():
+        _assert_display_clean(f"sources.{k}", v["name"])
+        assert v["url"].startswith("https://"), (k, v["url"])
+    for fid in raw.get("stat_pages", []):
+        src = feats[str(fid)].provenance["source"]
+        assert src in sources, (
+            f"stat page {fid} has no sources.{src} entry for its source "
+            f"line (Phase 2f item 9.2)")
+
+    # Phase 2f item 8.5: the What-we-measure composition — group ->
+    # ordered ids, so the page composes nothing. A "pillars" row renders
+    # pillar display fields (the two people measures); a "features" row
+    # renders feature display fields; crime: true appends the combined
+    # crime card. Headings: "people"/"context" name their registry
+    # strings, anything else names a pillar.
+    measure_page = tuple(raw.get("measure_page", []))
+    for group in measure_page:
+        h = group["heading"]
+        if h in ("people", "context"):
+            assert f"measure_{h}_heading" in strings, (
+                f"measure_page heading {h!r} needs strings.measure_{h}_heading")
+        else:
+            assert h in pillars, f"measure_page heading {h!r}: unknown pillar"
+        for pid in group.get("pillars", []):
+            assert pid in pillars, f"measure_page names unknown pillar {pid}"
+        for fid in group.get("features", []):
+            assert fid in feats, f"measure_page names unknown feature {fid}"
 
     _assert_display_clean("size_vs_odds labels",
                           raw["size_vs_odds"].get("label_low"),
@@ -267,7 +311,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         stat_pages=stat_pages, crime=dict(crime), strings=strings,
         city_description=desc,
         winsor_percentiles=tuple(raw["normalization"]["winsor_percentiles"]),
-        missing_data_policy=raw["missing_data_policy"].strip())
+        missing_data_policy=raw["missing_data_policy"].strip(),
+        sources=sources, measure_page=measure_page)
 
 
 def assert_scoring_features_registered(referenced: list[str],

@@ -1,0 +1,21 @@
+{
+ "old": {
+  "build": "fixture-98dcbb161236",
+  "model": "m2.3.0"
+ },
+ "new": {
+  "build": "fixture-98dcbb161236",
+  "model": "m2.3.1"
+ },
+ "vectors": 15,
+ "numeric_fields_compared": 10935,
+ "all_numeric_identical": true,
+ "strings_equal": 16393,
+ "allowed_string_diffs": {
+  "tone": 544,
+  "rent_unit_line": 165,
+  "crime_caution": 165,
+  "crime_compare_banner": 165
+ },
+ "findings": []
+}

@@ -393,15 +393,21 @@ def test_cards_carry_bands_from_the_build(build, response):
         band = c.get("band")
         assert band and band["key"] in band_keys
         assert band["label"] in build.legend[cid]["band_labels"]
-        assert band["tone"] in ("good", "neutral", "poor")
+        assert band["tone"] in ("good_strong", "good", "neutral", "poor",
+                                "poor_strong")
         # the tone comes from the registry's band_direction, one rule for
         # every feature — position labels can never colour as virtue by
-        # accident (item 6)
+        # accident (item 6). Phase 2f item 1: FIVE tones — the extremes
+        # read harder than the middles, still direction crossed with
+        # position and nothing else.
         direction = build.legend[cid]["band_direction"]
         pos = band_keys.index(band["key"])
-        expect_tone = {"good_low": ("good", "good", "neutral", "poor", "poor"),
-                       "good_high": ("poor", "poor", "neutral", "good", "good"),
-                       "neutral": ("neutral",) * 5}[direction][pos]
+        expect_tone = {
+            "good_low": ("good_strong", "good", "neutral", "poor",
+                         "poor_strong"),
+            "good_high": ("poor_strong", "poor", "neutral", "good",
+                          "good_strong"),
+            "neutral": ("neutral",) * 5}[direction][pos]
         assert band["tone"] == expect_tone, (cid, band)
     wlh = cards["who_lives_here"]
     assert "adults" in wlh["unit_line"], (
@@ -439,8 +445,11 @@ def test_crime_is_context_never_scored(build, response):
         assert "crime" in r
         blk = r["crime"]
         assert BANNED.search(blk["caution"]) is None
-        assert "rank" in blk["caution"].lower() and "caution" in blk[
-            "caution"].lower(), "the FBI's caution against ranking renders"
+        # Phase 2f item 5.3: the approved caution names comparing cities
+        # rather than ranking them; the sentence must still be the FBI's
+        # caution, composed from the registry
+        assert "caution" in blk["caution"].lower() and "compare" in blk[
+            "caution"].lower(), "the FBI's caution renders"
         for s in r.get("stats", []):
             assert "crime" not in s["id"], "crime may never enter stats"
         if blk["available"]:

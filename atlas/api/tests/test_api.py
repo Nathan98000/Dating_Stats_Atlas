@@ -59,10 +59,21 @@ def test_meta_carries_the_v3_vocabulary(client):
     assert set(m["controls"]["importance_levels"]) == \
         {"not_much", "some", "a_lot"}
     # registry strings merge into the one policy-strings lookup (item 8's
-    # ground rule: every new string lives in the registry)
+    # ground rule: every new string lives in the registry). Phase 2f: the
+    # review's new strings are here, and the two deleted intro paragraphs
+    # are GONE rather than orphaned.
     for k in ("slider_info", "crime_caution", "crime_compare_note",
-              "stat_page_link", "stat_page_intro"):
+              "stat_page_link", "home_title", "home_subtitle",
+              "card_missing", "crime_see_more", "compare_diff_legend",
+              "compare_page_subtitle", "measure_context_heading"):
         assert m["policy_strings"].get(k), k
+    for gone in ("stat_page_intro", "measure_page_intro"):
+        assert gone not in m["policy_strings"], gone
+    # the What-we-measure composition ships from the registry (item 8.5)
+    assert [g["heading"] for g in m["measure_page"]] == \
+        ["people", "cost", "reach", "students", "weather", "context"]
+    assert m["measure_page"][1]["features"] == \
+        ["median_gross_rent", "everyday_prices"]
     assert m["stat_pages"] and "who_lives_here" in m["stat_pages"]
     assert not any("crime" in s for s in m["stat_pages"])
     assert 0 < m["crime"]["coverage_floor"] < 1

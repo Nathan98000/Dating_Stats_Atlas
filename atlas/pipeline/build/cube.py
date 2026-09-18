@@ -273,6 +273,11 @@ def build(out_root=None) -> str:
         "stat_pages": list(reg.stat_pages),
         "crime": reg.crime,
         "strings": reg.strings,
+        # Phase 2f: the What-we-measure composition (item 8.5) and the
+        # stat pages' per-source display names and links (item 9.2) —
+        # registry judgments carried to the pages through the manifest
+        "measure_page": list(reg.measure_page),
+        "sources_display": reg.sources,
         "pillars": {
             k: {"display_name": p.display_name, "definition": p.definition,
                 "default_weight": p.default_weight,

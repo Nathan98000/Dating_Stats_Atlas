@@ -58,10 +58,11 @@ POLICY_STRINGS = {
                   "which is about the survey's reach, not the city.",
 
     # StatesV3: the list heading's count sentence — shown ONLY when at
-    # least one city is excluded, never with a zero
-    "excluded_count": "{n} more cities don’t have enough people matching "
-                      "this search to give an answer worth trusting. Widen "
-                      "your search and they come back.",
+    # least one city is excluded, never with a zero (wording per Nathan's
+    # Phase 2f review, item 4.6, verbatim)
+    "excluded_count": "{n} cities don’t have enough people matching this "
+                      "search to make a reliable estimate. Widen your "
+                      "search to see more cities.",
     "list_heading": "Cities for you",
     "list_heading_count": "{n} cities for you",
 
