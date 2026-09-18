@@ -81,6 +81,12 @@ PUBLIC_DOMAIN_IPEDS = LicenseTerms(
     shippable=True,
     attribution="Source: NCES IPEDS",
 )
+PUBLIC_DOMAIN_HUD = LicenseTerms(
+    name="US public domain (17 USC 105); HUD open data",
+    url="https://www.huduser.gov/portal/datasets/50per.html",
+    shippable=True,
+    attribution="Source: U.S. Department of Housing and Urban Development",
+)
 FBI_CDE_CONTEXT_ONLY = LicenseTerms(
     name="US public domain; FBI Crime Data Explorer",
     url="https://cde.ucr.cjis.gov",
@@ -100,5 +106,6 @@ LICENSES: dict[str, LicenseTerms] = {
     "noaa_normals": PUBLIC_DOMAIN_NOAA,
     "ghcn_daily": PUBLIC_DOMAIN_GHCN,
     "ipeds": PUBLIC_DOMAIN_IPEDS,
+    "hud_fmr50": PUBLIC_DOMAIN_HUD,
     "fbi_cde": FBI_CDE_CONTEXT_ONLY,
 }

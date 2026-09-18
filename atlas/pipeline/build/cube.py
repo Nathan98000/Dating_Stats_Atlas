@@ -155,7 +155,7 @@ def build(out_root=None) -> str:
     print(f"cube: {n_cells:,} cells, {len(rows):,} nonzero; max count cell "
           f"{max_count:,.1f} (uint16 would hold the magnitude but not the fraction)")
 
-    static_cols = ["median_gross_rent", "rpp_goods", "rpp_services_other",
+    static_cols = ["rent_1br", "rpp_goods", "rpp_services_other",
                    "venues_per_100k", "resident_walkability_index",
                    "pleasant_days", "students_per_1k_adults", "feature_flags"]
     feats = (quality.merge(metros[["cbsa", "states", "n_counties"]], on="cbsa")

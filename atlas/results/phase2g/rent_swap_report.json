@@ -1,0 +1,217 @@
+{
+ "old": {
+  "build": "98dcbb161236",
+  "model": "m2.3.1",
+  "rent": "ACS B25031 one-bedroom median, 2020-2024"
+ },
+ "new": {
+  "build": "5d0e3ca2f708",
+  "model": "m2.4.0",
+  "rent": "HUD FY2027 50th-percentile one-bedroom"
+ },
+ "level_shift_hud_over_acs": {
+  "median": 1.278,
+  "p10": 1.144,
+  "p90": 1.458,
+  "min": {
+   "cbsa": "17780",
+   "name": "College Station, TX",
+   "ratio": 1.057
+  },
+  "max": {
+   "cbsa": "42100",
+   "name": "Santa Cruz, CA",
+   "ratio": 1.925
+  }
+ },
+ "austin": {
+  "acs": 1500,
+  "hud": 1638,
+  "ratio": 1.092,
+  "stat_page_pos_old": 169,
+  "stat_page_pos_new": 134,
+  "overall_rank_old": 6,
+  "overall_rank_new": 6
+ },
+ "stat_page_biggest_moves": [
+  {
+   "cbsa": "44140",
+   "name": "Springfield, MA",
+   "acs": 869,
+   "hud": 1530,
+   "old_pos": 44,
+   "new_pos": 124,
+   "move": -80
+  },
+  {
+   "cbsa": "39300",
+   "name": "Providence, RI",
+   "acs": 961,
+   "hud": 1646,
+   "old_pos": 74,
+   "new_pos": 137,
+   "move": -63
+  },
+  {
+   "cbsa": "42540",
+   "name": "Scranton, PA",
+   "acs": 755,
+   "hud": 1187,
+   "old_pos": 15,
+   "new_pos": 64,
+   "move": -49
+  },
+  {
+   "cbsa": "49340",
+   "name": "Worcester, MA",
+   "acs": 1068,
+   "hud": 1748,
+   "old_pos": 103,
+   "new_pos": 152,
+   "move": -49
+  },
+  {
+   "cbsa": "17780",
+   "name": "College Station, TX",
+   "acs": 1068,
+   "hud": 1129,
+   "old_pos": 102,
+   "new_pos": 54,
+   "move": 48
+  },
+  {
+   "cbsa": "38940",
+   "name": "Port St. Lucie, FL",
+   "acs": 1193,
+   "hud": 1929,
+   "old_pos": 125,
+   "new_pos": 172,
+   "move": -47
+  },
+  {
+   "cbsa": "15380",
+   "name": "Buffalo, NY",
+   "acs": 869,
+   "hud": 1306,
+   "old_pos": 43,
+   "new_pos": 88,
+   "move": -45
+  },
+  {
+   "cbsa": "17900",
+   "name": "Columbia, SC",
+   "acs": 1106,
+   "hud": 1208,
+   "old_pos": 113,
+   "new_pos": 69,
+   "move": 44
+  },
+  {
+   "cbsa": "43640",
+   "name": "Slidell, LA",
+   "acs": 1158,
+   "hud": 1256,
+   "old_pos": 119,
+   "new_pos": 76,
+   "move": 43
+  },
+  {
+   "cbsa": "40220",
+   "name": "Roanoke, VA",
+   "acs": 892,
+   "hud": 1320,
+   "old_pos": 52,
+   "new_pos": 92,
+   "move": -40
+  }
+ ],
+ "overall_rank": {
+  "changed": 162,
+  "of": 193,
+  "kendall_tau": 0.963,
+  "biggest_moves": [
+   {
+    "cbsa": "17780",
+    "name": "College Station, TX",
+    "old": 128,
+    "new": 114,
+    "move": 14
+   },
+   {
+    "cbsa": "49340",
+    "name": "Worcester, MA",
+    "old": 67,
+    "new": 81,
+    "move": -14
+   },
+   {
+    "cbsa": "44140",
+    "name": "Springfield, MA",
+    "old": 158,
+    "new": 171,
+    "move": -13
+   },
+   {
+    "cbsa": "12100",
+    "name": "Atlantic City, NJ",
+    "old": 111,
+    "new": 122,
+    "move": -11
+   },
+   {
+    "cbsa": "15380",
+    "name": "Buffalo, NY",
+    "old": 61,
+    "new": 72,
+    "move": -11
+   },
+   {
+    "cbsa": "14740",
+    "name": "Bremerton, WA",
+    "old": 72,
+    "new": 62,
+    "move": 10
+   },
+   {
+    "cbsa": "38940",
+    "name": "Port St. Lucie, FL",
+    "old": 98,
+    "new": 108,
+    "move": -10
+   },
+   {
+    "cbsa": "45060",
+    "name": "Syracuse, NY",
+    "old": 68,
+    "new": 78,
+    "move": -10
+   },
+   {
+    "cbsa": "31140",
+    "name": "Louisville, KY",
+    "old": 86,
+    "new": 77,
+    "move": 9
+   },
+   {
+    "cbsa": "38860",
+    "name": "Portland, ME",
+    "old": 117,
+    "new": 126,
+    "move": -9
+   }
+  ]
+ },
+ "gate4_byte_identity": {
+  "cubes_and_metros_identical": {
+   "pool_cube.npy": true,
+   "count_cube.npy": true,
+   "sumw2_cube.npy": true,
+   "pairing_cells.parquet": true,
+   "metros.json": true
+  },
+  "non_rent_feature_columns_identical": true,
+  "pool_counts_identical": true,
+  "balance_figures_identical": true
+ }
+}

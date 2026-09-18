@@ -1,12 +1,72 @@
 {
   "metros": 387,
   "rent": {
-    "variable": {
-      "B25031_003E": "Median gross rent --!!Total:!!1 bedroom"
-    },
-    "metros_on_one_bedroom": 387,
-    "metros_on_all_units_fallback": [],
-    "jam_or_missing_after_fallback": 0
+    "source": "HUD FY2027 50th Percentile Rent Estimates, county file (rent_50_1), renter-household-weighted (B25003_003E)",
+    "county_rows_used": 1909,
+    "ne_town_rows": 757,
+    "ne_code_revision_name_fallbacks": [
+      "Easthampton city (25015/19370)",
+      "Drew UT (23019/18580)",
+      "Amesbury city (25009/01260)",
+      "Watertown city (25017/73440)",
+      "Methuen city (25009/40710)"
+    ],
+    "ne_zero_weight_rows_under_1000_pop": [],
+    "metros_covered": 387,
+    "single_fmr_area_metros_exact_vs_area_file": 246,
+    "multi_fmr_area_metros": 141,
+    "widest_within_metro_spreads": [
+      {
+        "cbsa": "47900",
+        "title": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+        "spread": 1282.0
+      },
+      {
+        "cbsa": "35620",
+        "title": "New York-Newark-Jersey City, NY-NJ",
+        "spread": 1007.0
+      },
+      {
+        "cbsa": "12060",
+        "title": "Atlanta-Sandy Springs-Roswell, GA",
+        "spread": 997.0
+      },
+      {
+        "cbsa": "34980",
+        "title": "Nashville-Davidson--Murfreesboro--Franklin, TN",
+        "spread": 961.0
+      },
+      {
+        "cbsa": "39300",
+        "title": "Providence-Warwick, RI-MA",
+        "spread": 922.0
+      },
+      {
+        "cbsa": "14460",
+        "title": "Boston-Cambridge-Newton, MA-NH",
+        "spread": 902.0
+      },
+      {
+        "cbsa": "20500",
+        "title": "Durham-Chapel Hill, NC",
+        "spread": 884.0
+      },
+      {
+        "cbsa": "16740",
+        "title": "Charlotte-Concord-Gastonia, NC-SC",
+        "spread": 878.0
+      },
+      {
+        "cbsa": "16980",
+        "title": "Chicago-Naperville-Elgin, IL-IN",
+        "spread": 870.0
+      },
+      {
+        "cbsa": "41860",
+        "title": "San Francisco-Oakland-Fremont, CA",
+        "spread": 861.0
+      }
+    ]
   },
   "rpp_missing_metros": [],
   "cbp_absent_cells_by_naics": {
@@ -128,7 +188,7 @@
     "negative_net_clipped": 0
   },
   "missing_by_feature": {
-    "median_gross_rent": 0,
+    "rent_1br": 0,
     "rpp_goods": 0,
     "rpp_services_other": 0,
     "venues_per_100k": 0,
