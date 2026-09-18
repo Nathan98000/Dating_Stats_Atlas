@@ -1,21 +1,24 @@
-"""Phase 2f item 4.1: source the home hero through the SAME pipeline and
-licence gate as the city photographs (city_images.py), preferring public
-domain / CC0 — the hero renders as a cropped band, and a crop of a
-CC-BY-SA image is an adaptation that drags ShareAlike onto the page, so
-this script REFUSES any licence that is not PD/CC0 rather than quietly
-shipping one (rendering an attributed image uncropped instead is a
-deliberate decision for a person to make, not a fallback for a script).
+"""Phase 2g item 2.1: the hero is a couple, sourced through the SAME
+licence gate as every other shipped image, still public domain / CC0
+only — the hero renders as a cropped band, and cropping a CC-BY-SA
+photo makes it an adaptation carrying ShareAlike — and preferring an
+image where the faces are NOT identifiable: a recognizable couple on
+the front page of a dating-statistics site is a publicity-rights
+question, not just a licence one, and Commons images almost never carry
+model releases.
 
-Subject: Burlington's Church Street Marketplace — the HomeV3 art
-direction almost verbatim (people on a pedestrian city street, faces
-small, city legible, documentary not stock), whose Wikipedia lead image
-cleared as public domain in the Phase 2e run; the licence is re-read
-LIVE here, never trusted from the old manifest.
+Candidates are Commons FILE titles (a couple photograph has no
+Wikipedia article whose lead image to take); each is read through
+imageinfo -> clear_licence exactly like the city photographs, and the
+first to clear the strict PD/CC0 bar ships. The shipped image frames
+the couple from the shoulders down — no faces in frame at all, which is
+the strongest available answer to the publicity question. The other
+candidates reviewed are listed in PHASE2G.md with their licences.
 
 Outputs:
   web/public/hero.jpg            gitignored like every shipped photo;
                                  this script re-materialises it
-  results/phase2f/hero_image.csv the committed manifest row
+  results/phase2g/hero_image.csv the committed manifest row
   web/src/data/hero.json         the render-side record; its sha256 is
                                  what lets the page attach attribution
                                  ONLY while the file on disk is this
@@ -30,25 +33,50 @@ import csv
 import json
 import re
 import time
-from pathlib import Path
 
-from atlas.pipeline.build.city_images import download, source_one
+from atlas.pipeline.build.city_images import (THUMB_WIDTH, clear_licence,
+                                              download, imageinfo)
 from atlas.pipeline.fetch import RESULTS
 
-HERO_ARTICLE = "Burlington, Vermont"
+# in preference order; the first to clear the PD/CC0 gate ships
+HERO_FILE_CANDIDATES = [
+    "Adult couple holding hands.jpg",       # CC0; faces out of frame
+    "Senior-3336451 1920.jpg",              # CC0; from behind
+    "Couple walking into St Johns College Oxford.jpg",  # PD; from behind
+]
+HERO_ALT = ("A couple walking a city path holding hands, photographed "
+            "from the shoulders down")
 STRICT_PD = re.compile(r"^(public domain|pd\b|cc0)", re.IGNORECASE)
 
-P2F = RESULTS / "phase2f"
+P2G = RESULTS / "phase2g"
 WEB = RESULTS.parents[0] / "web"
 
 
 def main() -> None:
-    rec, reason = source_one([HERO_ARTICLE])
-    assert rec is not None, f"hero source refused: {reason}"
-    assert STRICT_PD.match(rec["license"]), (
-        f"hero licence {rec['license']!r} is not public domain/CC0 — the "
-        f"band crop would be an adaptation carrying its terms; choose "
-        f"another subject or decide to ship uncropped")
+    rec = None
+    for name in HERO_FILE_CANDIDATES:
+        ii = imageinfo(name)
+        if not ii:
+            print(f"  {name}: no imageinfo")
+            continue
+        cleared, reason = clear_licence(ii)
+        if not cleared:
+            print(f"  {name}: {reason}")
+            continue
+        if not STRICT_PD.match(cleared["license"]):
+            print(f"  {name}: {cleared['license']} is not PD/CC0 — the "
+                  f"band crop would be an adaptation; skipping")
+            continue
+        use_thumb = (ii.get("width") or 0) > THUMB_WIDTH
+        rec = {
+            "file_title": f"File:{name}",
+            "source_url": ii.get("descriptionurl"),
+            "image_url": (ii.get("thumburl") if use_thumb else None)
+                         or ii.get("url"),
+            **cleared,
+        }
+        break
+    assert rec is not None, "no hero candidate cleared the PD/CC0 gate"
 
     dest = WEB / "public" / "hero.jpg"
     if dest.exists():
@@ -57,10 +85,10 @@ def main() -> None:
     assert sha, f"download failed: {rec['image_url']}"
 
     retrieved = time.strftime("%Y-%m-%d")
-    P2F.mkdir(parents=True, exist_ok=True)
+    P2G.mkdir(parents=True, exist_ok=True)
     row = {
-        "subject": HERO_ARTICLE,
-        "page_title": rec["page_title"],
+        "subject": "couple holding hands (Phase 2g item 2.1)",
+        "page_title": "",
         "file_title": rec["file_title"],
         "source_url": rec["source_url"],
         "image_url": rec["image_url"],
@@ -70,9 +98,9 @@ def main() -> None:
         "retrieved": retrieved,
         "sha256": sha,
         "file": "hero.jpg",
-        "alt": rec.get("description") or "",
+        "alt": HERO_ALT,
     }
-    with (P2F / "hero_image.csv").open("w", newline="") as f:
+    with (P2G / "hero_image.csv").open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(row))
         w.writeheader()
         w.writerow(row)
@@ -80,7 +108,7 @@ def main() -> None:
     hero_json = {
         "file": "hero.jpg",
         "sha256": sha,
-        "alt": rec.get("description") or None,
+        "alt": HERO_ALT,
         "author": rec.get("author") or None,
         "license": rec["license"],
         "license_url": rec.get("license_url"),
@@ -89,7 +117,7 @@ def main() -> None:
     out = WEB / "src" / "data" / "hero.json"
     out.write_text(json.dumps(hero_json, indent=1, ensure_ascii=False) + "\n")
     print(f"hero: {rec['file_title']} ({rec['license']}) -> {dest}")
-    print(f"manifest: {P2F / 'hero_image.csv'}; render record: {out}")
+    print(f"manifest: {P2G / 'hero_image.csv'}; render record: {out}")
 
 
 if __name__ == "__main__":
