@@ -48,6 +48,7 @@ playwright-report/
 .next-prod/
 
 # sourced photographs (manifest committed; files re-fetchable by
-# pipeline/build/city_images.py, pinned by manifest hashes)
+# pipeline/build/city_images.py / hero_image.py, pinned by manifest hashes)
 public/cities/
 public/stats/
+public/hero.jpg
