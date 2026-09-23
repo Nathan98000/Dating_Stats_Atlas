@@ -980,8 +980,43 @@ def ship_sample(sample: str) -> None:
     C = table_to_dense(nat)
     fit = fit_national(C, A, bandwidth=tuple(report["samples"][sample]["bandwidth"]))
     fits = {sample: {"fit": fit, "fg": gauge(fit["f"], A, fit["N_s"])}}
+    report["sample_choice"] = sample_choice(report, list(report["samples"]), metro_levels,
+                                            forced=sample)
     _ship(report, fits, metro_levels, A, sample, provisional=False)
     (P3 / "kernel_report.json").write_text(json.dumps(report, indent=1, default=_json) + "\n")
+
+
+def sample_choice(report: dict, samples: list[str], metro_levels: list[str],
+                  forced: str | None = None) -> dict:
+    """The stated decision: recent unions ship unless their counts and
+    margins cannot support a stable fit; then the time-weighted sample
+    with the smallest out-of-sample Pew error; the stock never ships."""
+    scores = {n: report["samples"][n]["pew"]["corrected_errors"]["shrunk_dial"]["median_abs_pts"]
+              for n in samples if "pew" in report["samples"][n]}
+    pew_best = min(scores, key=lambda n: scores[n])
+    best = "recent" if "recent" in samples else pew_best
+    stable = None
+    if "recent" in samples:
+        stable = recent_supports_fit(report["samples"]["recent"], metro_levels)
+        if not stable["pass"]:
+            decays = [n for n in samples if n.startswith("decay_h") and n in scores]
+            best = min(decays, key=lambda n: scores[n]) if decays else pew_best
+    if forced is not None:
+        best = forced
+    return {
+        "rule": "recent unions ship unless their counts and margins cannot support a "
+                "stable fit (IPF converged, face validity, every edu cell and every "
+                "own-group race cell >= 100 effective sides, no metro below 100 Kish "
+                "sides); then the time-weighted sample with the smallest out-of-sample "
+                "Pew error. The stock is never shipped (a 1985 marriage voting as loudly "
+                "as a 2024 one).",
+        "recent_stability": stable,
+        "scores_median_abs_pts": scores, "pew_best_sample": pew_best,
+        "pew_confound": "Pew's newlyweds are 2011-2015 unions; samples that weight "
+                        "older unions more move toward Pew's period as well as toward "
+                        "its pattern, so the Pew criterion cannot separate 'fits current "
+                        "pairing better' from 'sits closer to the test period'",
+        "shipped": best}
 
 
 def _ship(report: dict, fits: dict, metro_levels: list[str], A: np.ndarray, best: str,
@@ -1293,41 +1328,9 @@ def main(argv: list[str]) -> None:
             _ship(report, fits, metro_levels, A, "recent", provisional=True)
             (P3 / "kernel_report.json").write_text(json.dumps(report, indent=1, default=_json) + "\n")
 
-    # ---- choose the sample ---------------------------------------------------
-    # The brief's default is recent unions; the time-weighted family (half-
-    # life by out-of-sample Pew fit) is the fallback ONLY if the recent
-    # sample cannot support a stable fit, judged on counts and margins:
-    # the IPF converges, face validity passes, every education cell and
-    # every own-group race cell holds >= 100 effective couple-sides, and
-    # no metro's couples fall below 100 Kish sides. The Pew-best sample is
-    # named beside the decision because the Pew criterion is CONFOUNDED
-    # with period: Pew's 2011-15 newlyweds are the very unions the stock
-    # and the long half-lives add, so an older-weighted sample fits Pew
-    # better whether or not it describes current pairing better.
-    scores = {n: report["samples"][n]["pew"]["corrected_errors"]["shrunk_dial"]["median_abs_pts"]
-              for n in samples}
-    pew_best = min(scores, key=lambda n: scores[n])
-    best = "recent" if "recent" in samples else pew_best
-    stable = None
-    if "recent" in samples:
-        stable = recent_supports_fit(report["samples"]["recent"], metro_levels)
-        if not stable["pass"]:
-            decays = [n for n in samples if n.startswith("decay_h")]
-            best = min(decays, key=lambda n: scores[n]) if decays else pew_best
-    report["sample_choice"] = {
-        "rule": "recent unions ship unless their counts and margins cannot support a "
-                "stable fit (IPF converged, face validity, every edu cell and every "
-                "own-group race cell >= 100 effective sides, no metro below 100 Kish "
-                "sides); then the time-weighted sample with the smallest out-of-sample "
-                "Pew error. The stock is never shipped (a 1985 marriage voting as loudly "
-                "as a 2024 one).",
-        "recent_stability": stable,
-        "scores_median_abs_pts": scores, "pew_best_sample": pew_best,
-        "pew_confound": "Pew's newlyweds are 2011-2015 unions; samples that weight "
-                        "older unions more move toward Pew's period as well as toward "
-                        "its pattern, so the Pew criterion cannot separate 'fits current "
-                        "pairing better' from 'sits closer to the test period'",
-        "shipped": best}
+    # ---- choose the sample (the stated rule; see sample_choice) ---------------
+    report["sample_choice"] = sample_choice(report, samples, metro_levels)
+    best = report["sample_choice"]["shipped"]
     # ---- the shipped kernel: dials where earned ------------------------------
     _ship(report, fits, metro_levels, A, best, provisional=False)
     report["seconds_total"] = round(time.time() - t_start, 1)

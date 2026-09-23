@@ -1,0 +1,6302 @@
+{
+ "metros": 387,
+ "samples": {
+  "recent": {
+   "spec": {
+    "where": "(NOT married OR union_year >= 2019)",
+    "weight": "1.0"
+   },
+   "couple_sides_weighted": 24196035.3,
+   "n_alloc": 986769.8,
+   "n_kish": 535833.5,
+   "mean_weight_per_side": 24.52,
+   "cells_nonzero": 246038,
+   "margins": {
+    "edu_4x4": {
+     "cells": 16,
+     "n_alloc_min": 12486.4,
+     "n_alloc_median": 53840.9,
+     "n_kish_min": 6637.8,
+     "n_kish_median": 30104.6,
+     "cells_below_30_effective": 0,
+     "cells_below_100_effective": 0,
+     "rel_moe_median": 0.0086,
+     "rel_moe_p90": 0.0169,
+     "rel_moe_max": 0.0198
+    },
+    "race_8x8_by_sex": {
+     "cells": 126,
+     "n_alloc_min": 1.0,
+     "n_alloc_median": 348.9,
+     "n_kish_min": 1.0,
+     "n_kish_median": 182.4,
+     "cells_below_30_effective": 31,
+     "cells_below_100_effective": 52,
+     "rel_moe_median": 0.1022,
+     "rel_moe_p90": 0.4091,
+     "rel_moe_max": 1.6007
+    },
+    "age_gap_by_sex": {
+     "cells": 198,
+     "n_alloc_min": 1.0,
+     "n_alloc_median": 153.7,
+     "n_kish_min": 1.0,
+     "n_kish_median": 94.0,
+     "cells_below_30_effective": 76,
+     "cells_below_100_effective": 101,
+     "rel_moe_median": 0.1578,
+     "rel_moe_p90": 0.8756,
+     "rel_moe_max": 1.9962
+    }
+   },
+   "race_cells_empty": 2,
+   "gap_cells_empty": 12,
+   "floored_cells": {
+    "age": 12,
+    "edu": 0,
+    "race": 2,
+    "race_cells": [
+     [
+      "male",
+      "nh_other",
+      "nh_nhpi"
+     ],
+     [
+      "female",
+      "nh_nhpi",
+      "nh_other"
+     ]
+    ],
+    "age_gaps": [
+     [
+      "male",
+      -52
+     ],
+     [
+      "male",
+      -51
+     ],
+     [
+      "male",
+      -50
+     ],
+     [
+      "male",
+      50
+     ],
+     [
+      "male",
+      51
+     ],
+     [
+      "male",
+      52
+     ],
+     [
+      "female",
+      -52
+     ],
+     [
+      "female",
+      -51
+     ],
+     [
+      "female",
+      -50
+     ],
+     [
+      "female",
+      50
+     ],
+     [
+      "female",
+      51
+     ],
+     [
+      "female",
+      52
+     ]
+    ]
+   },
+   "ipf": {
+    "raw_iterations": 7,
+    "smoothed_iterations": 2,
+    "converged": true,
+    "final_change": 6.360216014065036e-07
+   },
+   "bandwidth": [
+    0.25,
+    0.25
+   ],
+   "bandwidth_cv": {
+    "candidates": [
+     0.25,
+     0.35,
+     0.5,
+     0.75,
+     1.0,
+     1.5,
+     2.0,
+     3.0,
+     5.0
+    ],
+    "deviance": {
+     "male": [
+      210365.244311894,
+      210367.54880682626,
+      211554.01402272735,
+      244855.41376471368,
+      335293.29408975184,
+      633881.4346976082,
+      1047732.8600526352,
+      2121861.6537122224,
+      4846737.765907174
+     ],
+     "female": [
+      207860.96600396972,
+      207863.26252564753,
+      209045.62139591938,
+      242234.9939464898,
+      332432.3725625789,
+      630525.4181428095,
+      1043832.843894359,
+      2116586.296381473,
+      4830627.93080859
+     ]
+    },
+    "chosen": [
+     0.25,
+     0.25
+    ]
+   },
+   "face_validity": {
+    "age_peak_at_30": {
+     "male": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     },
+     "female": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     }
+    },
+    "age_pass": true,
+    "edu_diagonal_dominant_rows": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "edu_pass": true,
+    "race_diagonal_exceeds_offdiagonal": {
+     "male": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     },
+     "female": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     }
+    },
+    "race_pass": true,
+    "pass": true
+   },
+   "separability": {
+    "thin_cell_weight": 735.6133615307164,
+    "tables": {
+     "edu_by_seeker_sex": {
+      "cells": 32,
+      "cells_with_couples": 32,
+      "G2": 194581.3,
+      "dissimilarity_index": 0.0367,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0062,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 151198.6,
+        "fitted": 198950.5,
+        "ratio": 0.76
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1
+        ],
+        "observed": 156391.1,
+        "fitted": 189475.6,
+        "ratio": 0.825
+       },
+       {
+        "cell": [
+         1,
+         1,
+         2
+        ],
+        "observed": 533161.0,
+        "fitted": 645294.3,
+        "ratio": 0.826
+       },
+       {
+        "cell": [
+         0,
+         1,
+         0
+        ],
+        "observed": 767512.5,
+        "fitted": 902862.2,
+        "ratio": 0.85
+       },
+       {
+        "cell": [
+         0,
+         2,
+         1
+        ],
+        "observed": 549260.3,
+        "fitted": 646032.3,
+        "ratio": 0.85
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3
+        ],
+        "observed": 333344.5,
+        "fitted": 285592.6,
+        "ratio": 1.167
+       },
+       {
+        "cell": [
+         1,
+         2,
+         3
+        ],
+        "observed": 439800.0,
+        "fitted": 511913.2,
+        "ratio": 0.859
+       },
+       {
+        "cell": [
+         0,
+         1,
+         2
+        ],
+        "observed": 851408.0,
+        "fitted": 739274.7,
+        "ratio": 1.152
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "gap_band_by_seeker_edu": {
+      "cells": 64,
+      "cells_with_couples": 64,
+      "G2": 363544.6,
+      "dissimilarity_index": 0.0438,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0627,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 9029.7,
+        "fitted": 21013.4,
+        "ratio": 0.43
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2
+        ],
+        "observed": 24958.8,
+        "fitted": 46479.5,
+        "ratio": 0.537
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 29771.1,
+        "fitted": 50713.4,
+        "ratio": 0.587
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2
+        ],
+        "observed": 26413.5,
+        "fitted": 40402.3,
+        "ratio": 0.654
+       },
+       {
+        "cell": [
+         0,
+         6,
+         2
+        ],
+        "observed": 74089.1,
+        "fitted": 112529.2,
+        "ratio": 0.658
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 16130.7,
+        "fitted": 24458.5,
+        "ratio": 0.66
+       },
+       {
+        "cell": [
+         1,
+         7,
+         3
+        ],
+        "observed": 71781.2,
+        "fitted": 107491.7,
+        "ratio": 0.668
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 118802.0,
+        "fitted": 81035.2,
+        "ratio": 1.466
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "edu_s"
+      ]
+     },
+     "gap_band_by_seeker_race": {
+      "cells": 128,
+      "cells_with_couples": 128,
+      "G2": 146522.9,
+      "dissimilarity_index": 0.0257,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0299,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         6,
+         5
+        ],
+        "observed": 1691.2,
+        "fitted": 925.6,
+        "ratio": 1.827
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 6769.5,
+        "fitted": 11457.7,
+        "ratio": 0.591
+       },
+       {
+        "cell": [
+         0,
+         7,
+         4
+        ],
+        "observed": 1185.0,
+        "fitted": 738.8,
+        "ratio": 1.604
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 12228.7,
+        "fitted": 19340.6,
+        "ratio": 0.632
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 70499.9,
+        "fitted": 44742.8,
+        "ratio": 1.576
+       },
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 5028.6,
+        "fitted": 7861.4,
+        "ratio": 0.64
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 19429.8,
+        "fitted": 30156.3,
+        "ratio": 0.644
+       },
+       {
+        "cell": [
+         1,
+         2,
+         5
+        ],
+        "observed": 2347.6,
+        "fitted": 1538.2,
+        "ratio": 1.526
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "race_s"
+      ]
+     },
+     "race_pair_by_edu_pair": {
+      "cells": 2048,
+      "cells_with_couples": 1800,
+      "G2": 958858.4,
+      "dissimilarity_index": 0.0718,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1606,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         3
+        ],
+        "observed": 982.2,
+        "fitted": 2769.5,
+        "ratio": 0.355
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         3,
+         0
+        ],
+        "observed": 899.1,
+        "fitted": 2510.8,
+        "ratio": 0.358
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 3464.0,
+        "fitted": 9637.5,
+        "ratio": 0.359
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 2269.0,
+        "fitted": 6241.1,
+        "ratio": 0.364
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 3053.9,
+        "fitted": 8145.0,
+        "ratio": 0.375
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3,
+         0,
+         3
+        ],
+        "observed": 299.6,
+        "fitted": 792.3,
+        "ratio": 0.378
+       },
+       {
+        "cell": [
+         1,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 8035.2,
+        "fitted": 21076.2,
+        "ratio": 0.381
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         0
+        ],
+        "observed": 3994.1,
+        "fitted": 10113.5,
+        "ratio": 0.395
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "race_s",
+       "race_c",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "same_race_by_seeker_age_cohort": {
+      "cells": 160,
+      "cells_with_couples": 160,
+      "G2": 164368.5,
+      "dissimilarity_index": 0.0237,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0227,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         4,
+         2,
+         0
+        ],
+        "observed": 10922.2,
+        "fitted": 19195.0,
+        "ratio": 0.569
+       },
+       {
+        "cell": [
+         1,
+         4,
+         6,
+         1
+        ],
+        "observed": 9621.8,
+        "fitted": 5483.2,
+        "ratio": 1.755
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0
+        ],
+        "observed": 9298.7,
+        "fitted": 5375.8,
+        "ratio": 1.73
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 7116.5,
+        "fitted": 12220.6,
+        "ratio": 0.582
+       },
+       {
+        "cell": [
+         0,
+         4,
+         6,
+         1
+        ],
+        "observed": 13241.0,
+        "fitted": 7883.3,
+        "ratio": 1.68
+       },
+       {
+        "cell": [
+         0,
+         4,
+         5,
+         1
+        ],
+        "observed": 455.6,
+        "fitted": 762.3,
+        "ratio": 0.598
+       },
+       {
+        "cell": [
+         1,
+         4,
+         0,
+         0
+        ],
+        "observed": 44852.7,
+        "fitted": 68821.4,
+        "ratio": 0.652
+       },
+       {
+        "cell": [
+         0,
+         4,
+         2,
+         0
+        ],
+        "observed": 45022.5,
+        "fitted": 68305.2,
+        "ratio": 0.659
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "race_s",
+       "same_race"
+      ]
+     },
+     "same_edu_by_seeker_age_cohort": {
+      "cells": 80,
+      "cells_with_couples": 80,
+      "G2": 176052.5,
+      "dissimilarity_index": 0.0312,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.037,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         0
+        ],
+        "observed": 67425.6,
+        "fitted": 97936.8,
+        "ratio": 0.688
+       },
+       {
+        "cell": [
+         1,
+         3,
+         3,
+         1
+        ],
+        "observed": 50324.2,
+        "fitted": 72344.6,
+        "ratio": 0.696
+       },
+       {
+        "cell": [
+         1,
+         4,
+         3,
+         1
+        ],
+        "observed": 32820.5,
+        "fitted": 45349.7,
+        "ratio": 0.724
+       },
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         1
+        ],
+        "observed": 124849.2,
+        "fitted": 94338.0,
+        "ratio": 1.323
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         1
+        ],
+        "observed": 50307.0,
+        "fitted": 65523.1,
+        "ratio": 0.768
+       },
+       {
+        "cell": [
+         1,
+         3,
+         2,
+         1
+        ],
+        "observed": 81768.1,
+        "fitted": 106435.5,
+        "ratio": 0.768
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         0
+        ],
+        "observed": 160035.6,
+        "fitted": 203353.3,
+        "ratio": 0.787
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         1
+        ],
+        "observed": 327155.5,
+        "fitted": 260166.3,
+        "ratio": 1.257
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "edu_s",
+       "same_edu"
+      ]
+     }
+    },
+    "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+    "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+   },
+   "national_outgroup_share": 0.2385,
+   "seconds": 8.5,
+   "dials": {
+    "age": {
+     "tau": 0.065,
+     "tau2": 0.00423133953946801,
+     "precision_weighted_mean_theta": 0.9943,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.3826,
+     "theta_hat_p10_p50_p90": [
+      0.8722,
+      0.9888,
+      1.1054
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "edu": {
+     "tau": 0.0778,
+     "tau2": 0.006052317586648141,
+     "precision_weighted_mean_theta": 0.9567,
+     "metros_prior_share_above_0_9": 4,
+     "prior_share_median": 0.6942,
+     "theta_hat_p10_p50_p90": [
+      0.7224,
+      0.9434,
+      1.1062
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "race": {
+     "tau": 0.1299,
+     "tau2": 0.016882920950641155,
+     "precision_weighted_mean_theta": 0.9005,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.2744,
+     "theta_hat_p10_p50_p90": [
+      0.6328,
+      0.8867,
+      1.1319
+     ],
+     "theta_hat_at_bounds": 0
+    }
+   },
+   "split_half_dial_test": {
+    "age": {
+     "heldout_loglik_national": -270229887.1181672,
+     "heldout_loglik_raw_dial": -270205023.57040304,
+     "heldout_loglik_shrunk_dial": -270193040.3125005,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 1.5228447652705732,
+     "gain_raw_minus_national_per_1000_weighted_sides": 1.0275876802235882,
+     "metros_where_shrunk_beats_national": 243,
+     "metros_where_raw_beats_national": 210,
+     "metros_where_shrunk_beats_raw": 237,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "edu": {
+     "heldout_loglik_national": -270229887.1181672,
+     "heldout_loglik_raw_dial": -270243063.33106995,
+     "heldout_loglik_shrunk_dial": -270215832.1685104,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 0.5808782097598166,
+     "gain_raw_minus_national_per_1000_weighted_sides": -0.54456082371109,
+     "metros_where_shrunk_beats_national": 204,
+     "metros_where_raw_beats_national": 163,
+     "metros_where_shrunk_beats_raw": 256,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "race": {
+     "heldout_loglik_national": -270229887.1181672,
+     "heldout_loglik_raw_dial": -270103268.84888464,
+     "heldout_loglik_shrunk_dial": -270084833.17651916,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 5.994946691403001,
+     "gain_raw_minus_national_per_1000_weighted_sides": 5.233017220231424,
+     "metros_where_shrunk_beats_national": 249,
+     "metros_where_raw_beats_national": 222,
+     "metros_where_shrunk_beats_raw": 246,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    }
+   },
+   "pew": {
+    "metros_matched": 124,
+    "pew_national": 0.16,
+    "our_national_fitting_sample": 0.2385,
+    "level_offset_ratio_ours_over_pew": 1.4906,
+    "correction": "predictions divided by the national ratio (Pew's US row vs our national fitting-sample share) \u2014 one constant from a row outside the metro test set; raw errors also reported",
+    "raw_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 37.71,
+      "p90_abs_pts": 50.38,
+      "max_abs_pts": 54.46,
+      "mean_signed_pts": 37.1
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 4.58,
+      "p90_abs_pts": 10.02,
+      "max_abs_pts": 13.83,
+      "mean_signed_pts": 3.6
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 5.46,
+      "p90_abs_pts": 10.59,
+      "max_abs_pts": 16.04,
+      "mean_signed_pts": 5.74
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 5.84,
+      "p90_abs_pts": 10.76,
+      "max_abs_pts": 15.6,
+      "mean_signed_pts": 5.79
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 6.39,
+      "p90_abs_pts": 11.24,
+      "max_abs_pts": 18.27,
+      "mean_signed_pts": 6.61
+     }
+    },
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 19.7,
+      "p90_abs_pts": 29.01,
+      "max_abs_pts": 34.53,
+      "mean_signed_pts": 19.43
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.38,
+      "p90_abs_pts": 9.78,
+      "max_abs_pts": 21.58,
+      "mean_signed_pts": -3.04
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.52,
+      "p90_abs_pts": 7.08,
+      "max_abs_pts": 13.14,
+      "mean_signed_pts": -1.61
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.63,
+      "p90_abs_pts": 7.21,
+      "max_abs_pts": 13.16,
+      "mean_signed_pts": -1.58
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.47,
+      "p90_abs_pts": 7.85,
+      "max_abs_pts": 13.51,
+      "mean_signed_pts": -1.02
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 87,
+      "b_better_metros": 37,
+      "median_paired_diff_pts": -0.705,
+      "mean_paired_diff_pts": -1.311,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 53,
+      "b_better_metros": 71,
+      "median_paired_diff_pts": 0.024,
+      "mean_paired_diff_pts": 0.061,
+      "sign_test_p": 0.1265
+     },
+     "raw_vs_national": {
+      "a_better_metros": 88,
+      "b_better_metros": 36,
+      "median_paired_diff_pts": -0.829,
+      "mean_paired_diff_pts": -1.372,
+      "sign_test_p": 0.0
+     }
+    },
+    "bar": {
+     "national_only_median_abs_pts": 3.38,
+     "shrunk_beats_national_materially": true,
+     "shrunk_median_below_raw_median": false,
+     "shrunk_not_worse_than_raw_paired": true
+    }
+   },
+   "composition_check": {
+    "r2_pew_on_random_pairing_expectation": 0.196,
+    "availability_adjusted_ratio_observed_over_random": {
+     "min": 0.156,
+     "max": 1.049,
+     "median": 0.485
+    },
+    "one_national_multiplier": {
+     "rho": 0.4226,
+     "n": 124,
+     "median_abs_pts": 3.94,
+     "p90_abs_pts": 9.58,
+     "max_abs_pts": 20.3,
+     "mean_signed_pts": -1.37,
+     "share_off_by_over_1_5x": 0.25
+    },
+    "jackson_ms": {
+     "pew": 0.03,
+     "one_multiplier_predicted": 0.1586,
+     "national_only_corrected": 0.1026,
+     "shrunk_corrected": 0.0834,
+     "observed_2020_24": 0.1246
+    }
+   },
+   "lomo_seconds": 715.3,
+   "lomo_iterations_median": 4.0
+  },
+  "stock": {
+   "spec": {
+    "where": "TRUE",
+    "weight": "1.0"
+   },
+   "couple_sides_weighted": 99333455.9,
+   "n_alloc": 4591004.2,
+   "n_kish": 2410639.6,
+   "mean_weight_per_side": 21.64,
+   "cells_nonzero": 485492,
+   "margins": {
+    "edu_4x4": {
+     "cells": 16,
+     "n_alloc_min": 62474.7,
+     "n_alloc_median": 273881.7,
+     "n_kish_min": 32930.9,
+     "n_kish_median": 146116.5,
+     "cells_below_30_effective": 0,
+     "cells_below_100_effective": 0,
+     "rel_moe_median": 0.0041,
+     "rel_moe_p90": 0.0081,
+     "rel_moe_max": 0.0096
+    },
+    "race_8x8_by_sex": {
+     "cells": 128,
+     "n_alloc_min": 7.0,
+     "n_alloc_median": 1090.3,
+     "n_kish_min": 3.6,
+     "n_kish_median": 597.3,
+     "cells_below_30_effective": 14,
+     "cells_below_100_effective": 30,
+     "rel_moe_median": 0.057,
+     "rel_moe_p90": 0.3845,
+     "rel_moe_max": 0.7513
+    },
+    "age_gap_by_sex": {
+     "cells": 198,
+     "n_alloc_min": 1.0,
+     "n_alloc_median": 321.4,
+     "n_kish_min": 1.0,
+     "n_kish_median": 187.3,
+     "cells_below_30_effective": 63,
+     "cells_below_100_effective": 90,
+     "rel_moe_median": 0.1144,
+     "rel_moe_p90": 0.8013,
+     "rel_moe_max": 1.8021
+    }
+   },
+   "race_cells_empty": 0,
+   "gap_cells_empty": 12,
+   "floored_cells": {
+    "age": 15,
+    "edu": 0,
+    "race": 0,
+    "race_cells": [],
+    "age_gaps": [
+     [
+      "male",
+      -52
+     ],
+     [
+      "male",
+      -51
+     ],
+     [
+      "male",
+      -50
+     ],
+     [
+      "male",
+      50
+     ],
+     [
+      "male",
+      51
+     ],
+     [
+      "male",
+      52
+     ],
+     [
+      "female",
+      -52
+     ],
+     [
+      "female",
+      -51
+     ],
+     [
+      "female",
+      -50
+     ],
+     [
+      "female",
+      -49
+     ],
+     [
+      "female",
+      -45
+     ],
+     [
+      "female",
+      -44
+     ],
+     [
+      "female",
+      50
+     ],
+     [
+      "female",
+      51
+     ],
+     [
+      "female",
+      52
+     ]
+    ]
+   },
+   "ipf": {
+    "raw_iterations": 7,
+    "smoothed_iterations": 2,
+    "converged": true,
+    "final_change": 5.19561342663181e-08
+   },
+   "bandwidth": [
+    0.25,
+    0.25
+   ],
+   "bandwidth_cv": {
+    "candidates": [
+     0.25,
+     0.35,
+     0.5,
+     0.75,
+     1.0,
+     1.5,
+     2.0,
+     3.0,
+     5.0
+    ],
+    "deviance": {
+     "male": [
+      743673.1374225494,
+      743682.4957457612,
+      748500.3504129688,
+      883716.0339608691,
+      1253585.0029104864,
+      2512000.2084832024,
+      4331483.711680673,
+      9328920.937725857,
+      22862555.087233137
+     ],
+     "female": [
+      728992.7343506769,
+      729001.8905918009,
+      733715.7117982116,
+      866018.9385963724,
+      1228034.0947597688,
+      2460447.795128888,
+      4242623.447844943,
+      9132594.279845132,
+      22331253.08087409
+     ]
+    },
+    "chosen": [
+     0.25,
+     0.25
+    ]
+   },
+   "face_validity": {
+    "age_peak_at_30": {
+     "male": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     },
+     "female": {
+      "multiplier_peak_age": 31,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     }
+    },
+    "age_pass": true,
+    "edu_diagonal_dominant_rows": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "edu_pass": true,
+    "race_diagonal_exceeds_offdiagonal": {
+     "male": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     },
+     "female": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     }
+    },
+    "race_pass": true,
+    "pass": true
+   },
+   "separability": {
+    "thin_cell_weight": 649.0962613127795,
+    "tables": {
+     "edu_by_seeker_sex": {
+      "cells": 32,
+      "cells_with_couples": 32,
+      "G2": 134320.3,
+      "dissimilarity_index": 0.0157,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         1,
+         2
+        ],
+        "observed": 2432028.2,
+        "fitted": 2638778.8,
+        "ratio": 0.922
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1
+        ],
+        "observed": 1051993.1,
+        "fitted": 1126858.0,
+        "ratio": 0.934
+       },
+       {
+        "cell": [
+         0,
+         1,
+         2
+        ],
+        "observed": 3155783.6,
+        "fitted": 2949032.9,
+        "ratio": 1.07
+       },
+       {
+        "cell": [
+         0,
+         3,
+         2
+        ],
+        "observed": 2838996.3,
+        "fitted": 2670360.9,
+        "ratio": 1.063
+       },
+       {
+        "cell": [
+         1,
+         3,
+         2
+        ],
+        "observed": 2859209.0,
+        "fitted": 3027844.3,
+        "ratio": 0.944
+       },
+       {
+        "cell": [
+         0,
+         2,
+         1
+        ],
+        "observed": 2507264.7,
+        "fitted": 2648276.5,
+        "ratio": 0.947
+       },
+       {
+        "cell": [
+         1,
+         3,
+         1
+        ],
+        "observed": 1441665.6,
+        "fitted": 1366800.7,
+        "ratio": 1.055
+       },
+       {
+        "cell": [
+         0,
+         1,
+         0
+        ],
+        "observed": 3017157.5,
+        "fitted": 3174669.7,
+        "ratio": 0.95
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "gap_band_by_seeker_edu": {
+      "cells": 64,
+      "cells_with_couples": 64,
+      "G2": 1474666.6,
+      "dissimilarity_index": 0.0448,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0584,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 30137.7,
+        "fitted": 74707.5,
+        "ratio": 0.403
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 40925.2,
+        "fitted": 79232.4,
+        "ratio": 0.517
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2
+        ],
+        "observed": 63001.8,
+        "fitted": 114193.8,
+        "ratio": 0.552
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2
+        ],
+        "observed": 67013.7,
+        "fitted": 117080.4,
+        "ratio": 0.572
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 150043.4,
+        "fitted": 249850.9,
+        "ratio": 0.601
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 256428.9,
+        "fitted": 159419.3,
+        "ratio": 1.609
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0
+        ],
+        "observed": 187229.4,
+        "fitted": 116761.9,
+        "ratio": 1.604
+       },
+       {
+        "cell": [
+         1,
+         7,
+         3
+        ],
+        "observed": 304154.8,
+        "fitted": 456144.9,
+        "ratio": 0.667
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "edu_s"
+      ]
+     },
+     "gap_band_by_seeker_race": {
+      "cells": 128,
+      "cells_with_couples": 128,
+      "G2": 1224792.3,
+      "dissimilarity_index": 0.0386,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0529,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 18341.4,
+        "fitted": 49571.3,
+        "ratio": 0.37
+       },
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 14473.0,
+        "fitted": 30622.6,
+        "ratio": 0.473
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 51840.8,
+        "fitted": 105278.3,
+        "ratio": 0.492
+       },
+       {
+        "cell": [
+         1,
+         0,
+         4
+        ],
+        "observed": 2072.9,
+        "fitted": 1071.0,
+        "ratio": 1.935
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 76536.3,
+        "fitted": 147499.1,
+        "ratio": 0.519
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 152276.6,
+        "fitted": 85579.6,
+        "ratio": 1.779
+       },
+       {
+        "cell": [
+         1,
+         1,
+         4
+        ],
+        "observed": 6599.3,
+        "fitted": 3777.5,
+        "ratio": 1.747
+       },
+       {
+        "cell": [
+         0,
+         6,
+         5
+        ],
+        "observed": 4091.3,
+        "fitted": 2468.2,
+        "ratio": 1.658
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "race_s"
+      ]
+     },
+     "race_pair_by_edu_pair": {
+      "cells": 2048,
+      "cells_with_couples": 1952,
+      "G2": 2764059.0,
+      "dissimilarity_index": 0.0514,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1128,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         4,
+         0,
+         2,
+         2
+        ],
+        "observed": 170.4,
+        "fitted": 663.0,
+        "ratio": 0.257
+       },
+       {
+        "cell": [
+         1,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 29267.2,
+        "fitted": 108685.3,
+        "ratio": 0.269
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 8045.7,
+        "fitted": 29584.7,
+        "ratio": 0.272
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 9853.9,
+        "fitted": 34370.4,
+        "ratio": 0.287
+       },
+       {
+        "cell": [
+         1,
+         5,
+         5,
+         3,
+         2
+        ],
+        "observed": 277.4,
+        "fitted": 841.9,
+        "ratio": 0.33
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 6325.4,
+        "fitted": 18842.4,
+        "ratio": 0.336
+       },
+       {
+        "cell": [
+         0,
+         2,
+         3,
+         2,
+         0
+        ],
+        "observed": 2613.2,
+        "fitted": 919.1,
+        "ratio": 2.843
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         3
+        ],
+        "observed": 2741.9,
+        "fitted": 7274.0,
+        "ratio": 0.377
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "race_s",
+       "race_c",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "same_race_by_seeker_age_cohort": {
+      "cells": 160,
+      "cells_with_couples": 160,
+      "G2": 947600.2,
+      "dissimilarity_index": 0.0238,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0425,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0
+        ],
+        "observed": 10229.6,
+        "fitted": 2326.5,
+        "ratio": 4.397
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         0
+        ],
+        "observed": 21532.6,
+        "fitted": 9038.1,
+        "ratio": 2.382
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         0
+        ],
+        "observed": 97558.6,
+        "fitted": 45968.2,
+        "ratio": 2.122
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2,
+         0
+        ],
+        "observed": 29315.7,
+        "fitted": 14188.2,
+        "ratio": 2.066
+       },
+       {
+        "cell": [
+         1,
+         4,
+         2,
+         0
+        ],
+        "observed": 62695.7,
+        "fitted": 110824.2,
+        "ratio": 0.566
+       },
+       {
+        "cell": [
+         1,
+         0,
+         6,
+         1
+        ],
+        "observed": 18273.7,
+        "fitted": 32013.1,
+        "ratio": 0.571
+       },
+       {
+        "cell": [
+         0,
+         0,
+         7,
+         0
+        ],
+        "observed": 2241.2,
+        "fitted": 1291.0,
+        "ratio": 1.736
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 81721.4,
+        "fitted": 138493.8,
+        "ratio": 0.59
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "race_s",
+       "same_race"
+      ]
+     },
+     "same_edu_by_seeker_age_cohort": {
+      "cells": 80,
+      "cells_with_couples": 80,
+      "G2": 273041.8,
+      "dissimilarity_index": 0.0193,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0039,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         0
+        ],
+        "observed": 71561.8,
+        "fitted": 100934.4,
+        "ratio": 0.709
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         0
+        ],
+        "observed": 182441.6,
+        "fitted": 242727.4,
+        "ratio": 0.752
+       },
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         1
+        ],
+        "observed": 130963.9,
+        "fitted": 101591.4,
+        "ratio": 1.289
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         1
+        ],
+        "observed": 8712.5,
+        "fitted": 10401.9,
+        "ratio": 0.838
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         1
+        ],
+        "observed": 1057826.3,
+        "fitted": 1253942.2,
+        "ratio": 0.844
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         1
+        ],
+        "observed": 578277.2,
+        "fitted": 494046.8,
+        "ratio": 1.17
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         1
+        ],
+        "observed": 433106.9,
+        "fitted": 372821.1,
+        "ratio": 1.162
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         0
+        ],
+        "observed": 558100.4,
+        "fitted": 642330.8,
+        "ratio": 0.869
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "edu_s",
+       "same_edu"
+      ]
+     }
+    },
+    "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+    "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+   },
+   "national_outgroup_share": 0.1669,
+   "seconds": 9.9,
+   "dials": {
+    "age": {
+     "tau": 0.0642,
+     "tau2": 0.004127200117320917,
+     "precision_weighted_mean_theta": 0.9988,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1314,
+     "theta_hat_p10_p50_p90": [
+      0.9189,
+      1.0026,
+      1.1142
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "edu": {
+     "tau": 0.0724,
+     "tau2": 0.0052400473414066645,
+     "precision_weighted_mean_theta": 0.9818,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.3009,
+     "theta_hat_p10_p50_p90": [
+      0.8725,
+      0.9953,
+      1.1017
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "race": {
+     "tau": 0.1189,
+     "tau2": 0.014134284180681921,
+     "precision_weighted_mean_theta": 0.9313,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.0884,
+     "theta_hat_p10_p50_p90": [
+      0.7862,
+      0.9666,
+      1.1395
+     ],
+     "theta_hat_at_bounds": 0
+    }
+   },
+   "split_half_dial_test": {
+    "age": {
+     "heldout_loglik_national": -1058478146.8408332,
+     "heldout_loglik_raw_dial": -1058274499.5321343,
+     "heldout_loglik_shrunk_dial": -1058267164.8183519,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 2.123977471607277,
+     "gain_raw_minus_national_per_1000_weighted_sides": 2.050138162213287,
+     "metros_where_shrunk_beats_national": 267,
+     "metros_where_raw_beats_national": 247,
+     "metros_where_shrunk_beats_raw": 248,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "edu": {
+     "heldout_loglik_national": -1058478146.8408332,
+     "heldout_loglik_raw_dial": -1058419839.8463433,
+     "heldout_loglik_shrunk_dial": -1058406649.1902686,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 0.7197741176521335,
+     "gain_raw_minus_national_per_1000_weighted_sides": 0.5869824418080841,
+     "metros_where_shrunk_beats_national": 235,
+     "metros_where_raw_beats_national": 216,
+     "metros_where_shrunk_beats_raw": 249,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "race": {
+     "heldout_loglik_national": -1058478146.8408332,
+     "heldout_loglik_raw_dial": -1057987393.9907645,
+     "heldout_loglik_shrunk_dial": -1057975244.3538078,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 5.062770468757541,
+     "gain_raw_minus_national_per_1000_weighted_sides": 4.940458838218,
+     "metros_where_shrunk_beats_national": 250,
+     "metros_where_raw_beats_national": 242,
+     "metros_where_shrunk_beats_raw": 274,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    }
+   },
+   "pew": {
+    "metros_matched": 124,
+    "pew_national": 0.16,
+    "our_national_fitting_sample": 0.1669,
+    "level_offset_ratio_ours_over_pew": 1.0431,
+    "correction": "predictions divided by the national ratio (Pew's US row vs our national fitting-sample share) \u2014 one constant from a row outside the metro test set; raw errors also reported",
+    "raw_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 36.84,
+      "p90_abs_pts": 49.39,
+      "max_abs_pts": 55.14,
+      "mean_signed_pts": 36.03
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.45,
+      "p90_abs_pts": 7.97,
+      "max_abs_pts": 23.55,
+      "mean_signed_pts": -2.21
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 1.99,
+      "p90_abs_pts": 6.13,
+      "max_abs_pts": 13.03,
+      "mean_signed_pts": -0.84
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.01,
+      "p90_abs_pts": 6.15,
+      "max_abs_pts": 13.05,
+      "mean_signed_pts": -0.82
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.21,
+      "p90_abs_pts": 6.35,
+      "max_abs_pts": 10.73,
+      "mean_signed_pts": -0.07
+     }
+    },
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 34.69,
+      "p90_abs_pts": 46.88,
+      "max_abs_pts": 52.73,
+      "mean_signed_pts": 33.86
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.32,
+      "p90_abs_pts": 8.57,
+      "max_abs_pts": 24.31,
+      "mean_signed_pts": -2.81
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.3,
+      "p90_abs_pts": 6.3,
+      "max_abs_pts": 13.69,
+      "mean_signed_pts": -1.49
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.32,
+      "p90_abs_pts": 6.29,
+      "max_abs_pts": 13.71,
+      "mean_signed_pts": -1.47
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.32,
+      "p90_abs_pts": 6.13,
+      "max_abs_pts": 11.4,
+      "mean_signed_pts": -0.75
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 86,
+      "b_better_metros": 38,
+      "median_paired_diff_pts": -0.728,
+      "mean_paired_diff_pts": -1.498,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 58,
+      "b_better_metros": 66,
+      "median_paired_diff_pts": 0.003,
+      "mean_paired_diff_pts": 0.003,
+      "sign_test_p": 0.5298
+     },
+     "raw_vs_national": {
+      "a_better_metros": 83,
+      "b_better_metros": 41,
+      "median_paired_diff_pts": -0.754,
+      "mean_paired_diff_pts": -1.501,
+      "sign_test_p": 0.0002
+     }
+    },
+    "bar": {
+     "national_only_median_abs_pts": 3.32,
+     "shrunk_beats_national_materially": true,
+     "shrunk_median_below_raw_median": false,
+     "shrunk_not_worse_than_raw_paired": true
+    }
+   },
+   "composition_check": {
+    "r2_pew_on_random_pairing_expectation": 0.2,
+    "availability_adjusted_ratio_observed_over_random": {
+     "min": 0.119,
+     "max": 0.827,
+     "median": 0.346
+    },
+    "one_national_multiplier": {
+     "rho": 0.2981,
+     "n": 124,
+     "median_abs_pts": 4.14,
+     "p90_abs_pts": 9.5,
+     "max_abs_pts": 21.47,
+     "mean_signed_pts": -1.55,
+     "share_off_by_over_1_5x": 0.234
+    },
+    "jackson_ms": {
+     "pew": 0.03,
+     "one_multiplier_predicted": 0.1662,
+     "national_only_corrected": 0.1043,
+     "shrunk_corrected": 0.0693,
+     "observed_2020_24": 0.0774
+    }
+   },
+   "lomo_seconds": 1506.8,
+   "lomo_iterations_median": 3.0
+  },
+  "decay_h5": {
+   "spec": {
+    "where": "TRUE",
+    "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 5.0) ELSE 1.0 END)"
+   },
+   "couple_sides_weighted": 33379883.7,
+   "n_alloc": 1385259.4,
+   "n_kish": 974833.9,
+   "mean_weight_per_side": 24.1,
+   "cells_nonzero": 485492,
+   "margins": {
+    "edu_4x4": {
+     "cells": 16,
+     "n_alloc_min": 18158.3,
+     "n_alloc_median": 80093.6,
+     "n_kish_min": 13139.8,
+     "n_kish_median": 60658.2,
+     "cells_below_30_effective": 0,
+     "cells_below_100_effective": 0,
+     "rel_moe_median": 0.0064,
+     "rel_moe_p90": 0.0124,
+     "rel_moe_max": 0.0151
+    },
+    "race_8x8_by_sex": {
+     "cells": 128,
+     "n_alloc_min": 1.8,
+     "n_alloc_median": 441.2,
+     "n_kish_min": 1.8,
+     "n_kish_median": 316.5,
+     "cells_below_30_effective": 19,
+     "cells_below_100_effective": 51,
+     "rel_moe_median": 0.0833,
+     "rel_moe_p90": 0.4388,
+     "rel_moe_max": 1.0545
+    },
+    "age_gap_by_sex": {
+     "cells": 198,
+     "n_alloc_min": 0.8,
+     "n_alloc_median": 181.2,
+     "n_kish_min": 1.0,
+     "n_kish_median": 139.5,
+     "cells_below_30_effective": 69,
+     "cells_below_100_effective": 92,
+     "rel_moe_median": 0.1305,
+     "rel_moe_p90": 0.819,
+     "rel_moe_max": 1.8017
+    }
+   },
+   "race_cells_empty": 0,
+   "gap_cells_empty": 12,
+   "floored_cells": {
+    "age": 12,
+    "edu": 0,
+    "race": 0,
+    "race_cells": [],
+    "age_gaps": [
+     [
+      "male",
+      -52
+     ],
+     [
+      "male",
+      -51
+     ],
+     [
+      "male",
+      -50
+     ],
+     [
+      "male",
+      50
+     ],
+     [
+      "male",
+      51
+     ],
+     [
+      "male",
+      52
+     ],
+     [
+      "female",
+      -52
+     ],
+     [
+      "female",
+      -51
+     ],
+     [
+      "female",
+      -50
+     ],
+     [
+      "female",
+      50
+     ],
+     [
+      "female",
+      51
+     ],
+     [
+      "female",
+      52
+     ]
+    ]
+   },
+   "ipf": {
+    "raw_iterations": 7,
+    "smoothed_iterations": 2,
+    "converged": true,
+    "final_change": 1.1443452030144333e-07
+   },
+   "bandwidth": [
+    0.25,
+    0.25
+   ],
+   "bandwidth_cv": {
+    "candidates": [
+     0.25,
+     0.35,
+     0.5,
+     0.75,
+     1.0,
+     1.5,
+     2.0,
+     3.0,
+     5.0
+    ],
+    "deviance": {
+     "male": [
+      278385.61291170376,
+      278388.7116907821,
+      279984.0919682667,
+      324755.28850572987,
+      446390.07962406625,
+      849267.678626217,
+      1412693.2294455646,
+      2906814.9660360315,
+      6843773.265971561
+     ],
+     "female": [
+      273686.52371835575,
+      273689.58523172117,
+      275265.7791815996,
+      319503.14442069584,
+      439779.0385424518,
+      838841.1296987969,
+      1397675.1921574003,
+      2880361.654136819,
+      6783475.362163637
+     ]
+    },
+    "chosen": [
+     0.25,
+     0.25
+    ]
+   },
+   "face_validity": {
+    "age_peak_at_30": {
+     "male": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     },
+     "female": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     }
+    },
+    "age_pass": true,
+    "edu_diagonal_dominant_rows": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "edu_pass": true,
+    "race_diagonal_exceeds_offdiagonal": {
+     "male": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     },
+     "female": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     }
+    },
+    "race_pass": true,
+    "pass": true
+   },
+   "separability": {
+    "thin_cell_weight": 722.8945712575958,
+    "tables": {
+     "edu_by_seeker_sex": {
+      "cells": 32,
+      "cells_with_couples": 32,
+      "G2": 208446.5,
+      "dissimilarity_index": 0.0324,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0072,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 239356.6,
+        "fitted": 299622.4,
+        "ratio": 0.799
+       },
+       {
+        "cell": [
+         1,
+         1,
+         2
+        ],
+        "observed": 748365.9,
+        "fitted": 891270.1,
+        "ratio": 0.84
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1
+        ],
+        "observed": 246815.0,
+        "fitted": 293554.8,
+        "ratio": 0.841
+       },
+       {
+        "cell": [
+         0,
+         1,
+         0
+        ],
+        "observed": 1012170.1,
+        "fitted": 1174528.5,
+        "ratio": 0.862
+       },
+       {
+        "cell": [
+         0,
+         2,
+         1
+        ],
+        "observed": 772103.6,
+        "fitted": 894325.3,
+        "ratio": 0.863
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3
+        ],
+        "observed": 493195.4,
+        "fitted": 432929.6,
+        "ratio": 1.139
+       },
+       {
+        "cell": [
+         0,
+         1,
+         2
+        ],
+        "observed": 1169746.7,
+        "fitted": 1026842.6,
+        "ratio": 1.139
+       },
+       {
+        "cell": [
+         1,
+         2,
+         1
+        ],
+        "observed": 1136924.5,
+        "fitted": 1014702.9,
+        "ratio": 1.12
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "gap_band_by_seeker_edu": {
+      "cells": 64,
+      "cells_with_couples": 64,
+      "G2": 550950.5,
+      "dissimilarity_index": 0.0457,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0606,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 12011.8,
+        "fitted": 31043.1,
+        "ratio": 0.387
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2
+        ],
+        "observed": 32658.7,
+        "fitted": 59277.3,
+        "ratio": 0.551
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 20294.9,
+        "fitted": 36467.4,
+        "ratio": 0.557
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 45004.2,
+        "fitted": 79455.9,
+        "ratio": 0.566
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2
+        ],
+        "observed": 33241.3,
+        "fitted": 55513.5,
+        "ratio": 0.599
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 143666.1,
+        "fitted": 93018.7,
+        "ratio": 1.544
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 69288.4,
+        "fitted": 104058.7,
+        "ratio": 0.666
+       },
+       {
+        "cell": [
+         1,
+         7,
+         3
+        ],
+        "observed": 113299.9,
+        "fitted": 169421.4,
+        "ratio": 0.669
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "edu_s"
+      ]
+     },
+     "gap_band_by_seeker_race": {
+      "cells": 128,
+      "cells_with_couples": 128,
+      "G2": 294333.3,
+      "dissimilarity_index": 0.0314,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0376,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 8559.8,
+        "fitted": 19382.5,
+        "ratio": 0.442
+       },
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 6578.4,
+        "fitted": 12198.2,
+        "ratio": 0.539
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 27118.2,
+        "fitted": 49628.5,
+        "ratio": 0.546
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 17633.1,
+        "fitted": 31958.6,
+        "ratio": 0.552
+       },
+       {
+        "cell": [
+         0,
+         6,
+         5
+        ],
+        "observed": 1918.6,
+        "fitted": 1128.9,
+        "ratio": 1.7
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 86536.5,
+        "fitted": 51889.3,
+        "ratio": 1.668
+       },
+       {
+        "cell": [
+         1,
+         1,
+         4
+        ],
+        "observed": 3324.2,
+        "fitted": 2022.9,
+        "ratio": 1.643
+       },
+       {
+        "cell": [
+         1,
+         0,
+         4
+        ],
+        "observed": 1263.4,
+        "fitted": 788.9,
+        "ratio": 1.601
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "race_s"
+      ]
+     },
+     "race_pair_by_edu_pair": {
+      "cells": 2048,
+      "cells_with_couples": 1952,
+      "G2": 1157676.9,
+      "dissimilarity_index": 0.0662,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1511,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 4449.9,
+        "fitted": 13069.7,
+        "ratio": 0.34
+       },
+       {
+        "cell": [
+         1,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 10882.0,
+        "fitted": 31664.9,
+        "ratio": 0.344
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 3737.3,
+        "fitted": 10694.9,
+        "ratio": 0.349
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 2809.4,
+        "fitted": 7923.1,
+        "ratio": 0.355
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         3
+        ],
+        "observed": 1330.4,
+        "fitted": 3635.3,
+        "ratio": 0.366
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3,
+         0,
+         3
+        ],
+        "observed": 397.7,
+        "fitted": 1059.5,
+        "ratio": 0.375
+       },
+       {
+        "cell": [
+         1,
+         3,
+         6,
+         3,
+         0
+        ],
+        "observed": 356.1,
+        "fitted": 918.1,
+        "ratio": 0.388
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         3,
+         0
+        ],
+        "observed": 1183.3,
+        "fitted": 3011.8,
+        "ratio": 0.393
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "race_s",
+       "race_c",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "same_race_by_seeker_age_cohort": {
+      "cells": 160,
+      "cells_with_couples": 160,
+      "G2": 214848.1,
+      "dissimilarity_index": 0.0218,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0223,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0
+        ],
+        "observed": 9576.8,
+        "fitted": 4031.9,
+        "ratio": 2.375
+       },
+       {
+        "cell": [
+         1,
+         4,
+         2,
+         0
+        ],
+        "observed": 14381.1,
+        "fitted": 24870.8,
+        "ratio": 0.578
+       },
+       {
+        "cell": [
+         1,
+         4,
+         6,
+         1
+        ],
+        "observed": 14530.7,
+        "fitted": 8675.6,
+        "ratio": 1.675
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 11356.1,
+        "fitted": 18644.2,
+        "ratio": 0.609
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2,
+         0
+        ],
+        "observed": 27818.8,
+        "fitted": 16998.6,
+        "ratio": 1.637
+       },
+       {
+        "cell": [
+         1,
+         4,
+         5,
+         1
+        ],
+        "observed": 583.8,
+        "fitted": 950.7,
+        "ratio": 0.614
+       },
+       {
+        "cell": [
+         0,
+         4,
+         6,
+         1
+        ],
+        "observed": 20405.0,
+        "fitted": 12814.4,
+        "ratio": 1.592
+       },
+       {
+        "cell": [
+         0,
+         4,
+         2,
+         0
+        ],
+        "observed": 59418.2,
+        "fitted": 90039.1,
+        "ratio": 0.66
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "race_s",
+       "same_race"
+      ]
+     },
+     "same_edu_by_seeker_age_cohort": {
+      "cells": 80,
+      "cells_with_couples": 80,
+      "G2": 173001.7,
+      "dissimilarity_index": 0.0269,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.015,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         0
+        ],
+        "observed": 66867.5,
+        "fitted": 96902.1,
+        "ratio": 0.69
+       },
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         1
+        ],
+        "observed": 123601.2,
+        "fitted": 93566.6,
+        "ratio": 1.321
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         0
+        ],
+        "observed": 162672.9,
+        "fitted": 212429.1,
+        "ratio": 0.766
+       },
+       {
+        "cell": [
+         1,
+         4,
+         3,
+         1
+        ],
+        "observed": 57104.5,
+        "fitted": 74567.7,
+        "ratio": 0.766
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         1
+        ],
+        "observed": 90736.2,
+        "fitted": 116435.5,
+        "ratio": 0.779
+       },
+       {
+        "cell": [
+         1,
+         3,
+         3,
+         1
+        ],
+        "observed": 121897.8,
+        "fitted": 148159.7,
+        "ratio": 0.823
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         1
+        ],
+        "observed": 392414.4,
+        "fitted": 327906.9,
+        "ratio": 1.197
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 162240.0,
+        "fitted": 136540.7,
+        "ratio": 1.188
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "edu_s",
+       "same_edu"
+      ]
+     }
+    },
+    "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+    "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+   },
+   "national_outgroup_share": 0.2203,
+   "seconds": 9.8,
+   "dials": {
+    "age": {
+     "tau": 0.0674,
+     "tau2": 0.004548647223688129,
+     "precision_weighted_mean_theta": 0.9972,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.2397,
+     "theta_hat_p10_p50_p90": [
+      0.8896,
+      0.9885,
+      1.1092
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "edu": {
+     "tau": 0.0745,
+     "tau2": 0.005556297544108222,
+     "precision_weighted_mean_theta": 0.967,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.5557,
+     "theta_hat_p10_p50_p90": [
+      0.8257,
+      0.9621,
+      1.0932
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "race": {
+     "tau": 0.1225,
+     "tau2": 0.015001720793672733,
+     "precision_weighted_mean_theta": 0.9145,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1886,
+     "theta_hat_p10_p50_p90": [
+      0.6945,
+      0.9108,
+      1.1284
+     ],
+     "theta_hat_at_bounds": 0
+    }
+   },
+   "split_half_dial_test": {
+    "age": {
+     "heldout_loglik_national": -369440505.8505476,
+     "heldout_loglik_raw_dial": -369379077.94072837,
+     "heldout_loglik_shrunk_dial": -369372769.7467698,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 2.0292492422670545,
+     "gain_raw_minus_national_per_1000_weighted_sides": 1.8402673390192683,
+     "metros_where_shrunk_beats_national": 258,
+     "metros_where_raw_beats_national": 236,
+     "metros_where_shrunk_beats_raw": 225,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "edu": {
+     "heldout_loglik_national": -369440505.8505476,
+     "heldout_loglik_raw_dial": -369435794.10844827,
+     "heldout_loglik_shrunk_dial": -369419261.97452337,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 0.6364275020366484,
+     "gain_raw_minus_national_per_1000_weighted_sides": 0.1411551381256604,
+     "metros_where_shrunk_beats_national": 204,
+     "metros_where_raw_beats_national": 179,
+     "metros_where_shrunk_beats_raw": 254,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "race": {
+     "heldout_loglik_national": -369440505.8505476,
+     "heldout_loglik_raw_dial": -369264869.2061041,
+     "heldout_loglik_shrunk_dial": -369252294.9952419,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 5.638451493583211,
+     "gain_raw_minus_national_per_1000_weighted_sides": 5.261751234177122,
+     "metros_where_shrunk_beats_national": 254,
+     "metros_where_raw_beats_national": 245,
+     "metros_where_shrunk_beats_raw": 243,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    }
+   },
+   "pew": {
+    "metros_matched": 124,
+    "pew_national": 0.16,
+    "our_national_fitting_sample": 0.2203,
+    "level_offset_ratio_ours_over_pew": 1.3769,
+    "correction": "predictions divided by the national ratio (Pew's US row vs our national fitting-sample share) \u2014 one constant from a row outside the metro test set; raw errors also reported",
+    "raw_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 37.63,
+      "p90_abs_pts": 50.36,
+      "max_abs_pts": 54.71,
+      "mean_signed_pts": 37.01
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.72,
+      "p90_abs_pts": 9.21,
+      "max_abs_pts": 15.38,
+      "mean_signed_pts": 2.17
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 4.24,
+      "p90_abs_pts": 8.4,
+      "max_abs_pts": 13.73,
+      "mean_signed_pts": 4.06
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 4.34,
+      "p90_abs_pts": 8.54,
+      "max_abs_pts": 13.48,
+      "mean_signed_pts": 4.09
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 5.05,
+      "p90_abs_pts": 9.33,
+      "max_abs_pts": 15.0,
+      "mean_signed_pts": 4.96
+     }
+    },
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 22.85,
+      "p90_abs_pts": 32.48,
+      "max_abs_pts": 38.04,
+      "mean_signed_pts": 22.34
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.33,
+      "p90_abs_pts": 9.65,
+      "max_abs_pts": 22.67,
+      "mean_signed_pts": -2.96
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.48,
+      "p90_abs_pts": 7.05,
+      "max_abs_pts": 12.73,
+      "mean_signed_pts": -1.59
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.48,
+      "p90_abs_pts": 7.11,
+      "max_abs_pts": 12.83,
+      "mean_signed_pts": -1.57
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.35,
+      "p90_abs_pts": 7.37,
+      "max_abs_pts": 12.09,
+      "mean_signed_pts": -0.94
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 91,
+      "b_better_metros": 33,
+      "median_paired_diff_pts": -0.71,
+      "mean_paired_diff_pts": -1.406,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 54,
+      "b_better_metros": 70,
+      "median_paired_diff_pts": 0.013,
+      "mean_paired_diff_pts": 0.034,
+      "sign_test_p": 0.1777
+     },
+     "raw_vs_national": {
+      "a_better_metros": 92,
+      "b_better_metros": 32,
+      "median_paired_diff_pts": -0.793,
+      "mean_paired_diff_pts": -1.439,
+      "sign_test_p": 0.0
+     }
+    },
+    "bar": {
+     "national_only_median_abs_pts": 3.33,
+     "shrunk_beats_national_materially": true,
+     "shrunk_median_below_raw_median": false,
+     "shrunk_not_worse_than_raw_paired": true
+    }
+   },
+   "composition_check": {
+    "r2_pew_on_random_pairing_expectation": 0.196,
+    "availability_adjusted_ratio_observed_over_random": {
+     "min": 0.139,
+     "max": 1.01,
+     "median": 0.449
+    },
+    "one_national_multiplier": {
+     "rho": 0.3889,
+     "n": 124,
+     "median_abs_pts": 4.04,
+     "p90_abs_pts": 9.61,
+     "max_abs_pts": 20.8,
+     "mean_signed_pts": -1.45,
+     "share_off_by_over_1_5x": 0.266
+    },
+    "jackson_ms": {
+     "pew": 0.03,
+     "one_multiplier_predicted": 0.1596,
+     "national_only_corrected": 0.1039,
+     "shrunk_corrected": 0.0778,
+     "observed_2020_24": 0.1066
+    }
+   },
+   "lomo_seconds": 944.9,
+   "lomo_iterations_median": 3.0
+  },
+  "decay_h10": {
+   "spec": {
+    "where": "TRUE",
+    "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 10.0) ELSE 1.0 END)"
+   },
+   "couple_sides_weighted": 47130975.0,
+   "n_alloc": 2018559.5,
+   "n_kish": 1459108.0,
+   "mean_weight_per_side": 23.35,
+   "cells_nonzero": 485492,
+   "margins": {
+    "edu_4x4": {
+     "cells": 16,
+     "n_alloc_min": 27094.6,
+     "n_alloc_median": 120221.5,
+     "n_kish_min": 20217.1,
+     "n_kish_median": 91920.3,
+     "cells_below_30_effective": 0,
+     "cells_below_100_effective": 0,
+     "rel_moe_median": 0.0053,
+     "rel_moe_p90": 0.0101,
+     "rel_moe_max": 0.0123
+    },
+    "race_8x8_by_sex": {
+     "cells": 128,
+     "n_alloc_min": 2.8,
+     "n_alloc_median": 588.9,
+     "n_kish_min": 3.1,
+     "n_kish_median": 455.1,
+     "cells_below_30_effective": 15,
+     "cells_below_100_effective": 42,
+     "rel_moe_median": 0.0719,
+     "rel_moe_p90": 0.4068,
+     "rel_moe_max": 0.84
+    },
+    "age_gap_by_sex": {
+     "cells": 198,
+     "n_alloc_min": 0.9,
+     "n_alloc_median": 228.7,
+     "n_kish_min": 1.0,
+     "n_kish_median": 165.6,
+     "cells_below_30_effective": 67,
+     "cells_below_100_effective": 91,
+     "rel_moe_median": 0.122,
+     "rel_moe_p90": 0.816,
+     "rel_moe_max": 1.8018
+    }
+   },
+   "race_cells_empty": 0,
+   "gap_cells_empty": 12,
+   "floored_cells": {
+    "age": 12,
+    "edu": 0,
+    "race": 0,
+    "race_cells": [],
+    "age_gaps": [
+     [
+      "male",
+      -52
+     ],
+     [
+      "male",
+      -51
+     ],
+     [
+      "male",
+      -50
+     ],
+     [
+      "male",
+      50
+     ],
+     [
+      "male",
+      51
+     ],
+     [
+      "male",
+      52
+     ],
+     [
+      "female",
+      -52
+     ],
+     [
+      "female",
+      -51
+     ],
+     [
+      "female",
+      -50
+     ],
+     [
+      "female",
+      50
+     ],
+     [
+      "female",
+      51
+     ],
+     [
+      "female",
+      52
+     ]
+    ]
+   },
+   "ipf": {
+    "raw_iterations": 7,
+    "smoothed_iterations": 2,
+    "converged": true,
+    "final_change": 9.560676496776415e-08
+   },
+   "bandwidth": [
+    0.25,
+    0.25
+   ],
+   "bandwidth_cv": {
+    "candidates": [
+     0.25,
+     0.35,
+     0.5,
+     0.75,
+     1.0,
+     1.5,
+     2.0,
+     3.0,
+     5.0
+    ],
+    "deviance": {
+     "male": [
+      374300.49431892234,
+      374304.8039388548,
+      376523.53461375536,
+      438777.6808480717,
+      608146.772307671,
+      1173240.427116223,
+      1972658.5456629677,
+      4128226.018334838,
+      9935611.08171016
+     ],
+     "female": [
+      367021.95979544625,
+      367026.1963552375,
+      369207.3164025608,
+      430414.031998753,
+      597056.2609896164,
+      1153912.033215282,
+      1942506.0556112789,
+      4068941.5207723454,
+      9789627.83084516
+     ]
+    },
+    "chosen": [
+     0.25,
+     0.25
+    ]
+   },
+   "face_validity": {
+    "age_peak_at_30": {
+     "male": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     },
+     "female": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     }
+    },
+    "age_pass": true,
+    "edu_diagonal_dominant_rows": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "edu_pass": true,
+    "race_diagonal_exceeds_offdiagonal": {
+     "male": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     },
+     "female": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     }
+    },
+    "race_pass": true,
+    "pass": true
+   },
+   "separability": {
+    "thin_cell_weight": 700.4644900380774,
+    "tables": {
+     "edu_by_seeker_sex": {
+      "cells": 32,
+      "cells_with_couples": 32,
+      "G2": 199114.5,
+      "dissimilarity_index": 0.0266,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 383330.4,
+        "fitted": 452648.5,
+        "ratio": 0.847
+       },
+       {
+        "cell": [
+         1,
+         1,
+         2
+        ],
+        "observed": 1081716.4,
+        "fitted": 1256931.2,
+        "ratio": 0.861
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1
+        ],
+        "observed": 394904.4,
+        "fitted": 456574.8,
+        "ratio": 0.865
+       },
+       {
+        "cell": [
+         0,
+         1,
+         0
+        ],
+        "observed": 1391035.2,
+        "fitted": 1577503.9,
+        "ratio": 0.882
+       },
+       {
+        "cell": [
+         0,
+         2,
+         1
+        ],
+        "observed": 1116495.0,
+        "fitted": 1263059.2,
+        "ratio": 0.884
+       },
+       {
+        "cell": [
+         0,
+         1,
+         2
+        ],
+        "observed": 1621582.7,
+        "fitted": 1446367.9,
+        "ratio": 1.121
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3
+        ],
+        "observed": 720941.8,
+        "fitted": 651623.7,
+        "ratio": 1.106
+       },
+       {
+        "cell": [
+         1,
+         2,
+         1
+        ],
+        "observed": 1575295.2,
+        "fitted": 1428730.9,
+        "ratio": 1.103
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "gap_band_by_seeker_edu": {
+      "cells": 64,
+      "cells_with_couples": 64,
+      "G2": 807096.1,
+      "dissimilarity_index": 0.0467,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0628,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 16533.0,
+        "fitted": 43284.9,
+        "ratio": 0.382
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 25954.9,
+        "fitted": 49912.6,
+        "ratio": 0.52
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2
+        ],
+        "observed": 41792.6,
+        "fitted": 75417.3,
+        "ratio": 0.554
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2
+        ],
+        "observed": 41507.7,
+        "fitted": 73117.0,
+        "ratio": 0.568
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 68395.9,
+        "fitted": 120131.8,
+        "ratio": 0.569
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 174455.8,
+        "fitted": 109611.2,
+        "ratio": 1.592
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0
+        ],
+        "observed": 124315.0,
+        "fitted": 78460.1,
+        "ratio": 1.584
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 96986.7,
+        "fitted": 148547.6,
+        "ratio": 0.653
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "edu_s"
+      ]
+     },
+     "gap_band_by_seeker_race": {
+      "cells": 128,
+      "cells_with_couples": 128,
+      "G2": 506418.1,
+      "dissimilarity_index": 0.035,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0552,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 11205.2,
+        "fitted": 28718.5,
+        "ratio": 0.39
+       },
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 8809.9,
+        "fitted": 17401.3,
+        "ratio": 0.506
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 38617.5,
+        "fitted": 75116.1,
+        "ratio": 0.514
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 25682.4,
+        "fitted": 49702.1,
+        "ratio": 0.517
+       },
+       {
+        "cell": [
+         1,
+         0,
+         4
+        ],
+        "observed": 1499.2,
+        "fitted": 841.3,
+        "ratio": 1.782
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 105341.7,
+        "fitted": 60952.6,
+        "ratio": 1.728
+       },
+       {
+        "cell": [
+         1,
+         1,
+         4
+        ],
+        "observed": 4111.0,
+        "fitted": 2404.7,
+        "ratio": 1.71
+       },
+       {
+        "cell": [
+         0,
+         6,
+         5
+        ],
+        "observed": 2409.1,
+        "fitted": 1443.9,
+        "ratio": 1.668
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "race_s"
+      ]
+     },
+     "race_pair_by_edu_pair": {
+      "cells": 2048,
+      "cells_with_couples": 1952,
+      "G2": 1491203.4,
+      "dissimilarity_index": 0.061,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1253,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 14926.4,
+        "fitted": 47814.6,
+        "ratio": 0.312
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 5784.2,
+        "fitted": 18157.5,
+        "ratio": 0.319
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 4709.2,
+        "fitted": 14705.8,
+        "ratio": 0.32
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 3642.4,
+        "fitted": 10489.2,
+        "ratio": 0.347
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         3
+        ],
+        "observed": 1720.3,
+        "fitted": 4761.4,
+        "ratio": 0.361
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3,
+         0,
+         3
+        ],
+        "observed": 552.5,
+        "fitted": 1416.1,
+        "ratio": 0.39
+       },
+       {
+        "cell": [
+         0,
+         3,
+         2,
+         0,
+         0
+        ],
+        "observed": 405.1,
+        "fitted": 994.5,
+        "ratio": 0.407
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         3,
+         0
+        ],
+        "observed": 1525.6,
+        "fitted": 3671.4,
+        "ratio": 0.416
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "race_s",
+       "race_c",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "same_race_by_seeker_age_cohort": {
+      "cells": 160,
+      "cells_with_couples": 160,
+      "G2": 341593.2,
+      "dissimilarity_index": 0.0217,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.031,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0
+        ],
+        "observed": 9877.1,
+        "fitted": 3303.9,
+        "ratio": 2.99
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 21431.4,
+        "fitted": 37677.4,
+        "ratio": 0.569
+       },
+       {
+        "cell": [
+         1,
+         4,
+         2,
+         0
+        ],
+        "observed": 22007.4,
+        "fitted": 38459.5,
+        "ratio": 0.572
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2,
+         0
+        ],
+        "observed": 28499.2,
+        "fitted": 16345.3,
+        "ratio": 1.744
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         0
+        ],
+        "observed": 20844.7,
+        "fitted": 12503.3,
+        "ratio": 1.667
+       },
+       {
+        "cell": [
+         1,
+         4,
+         6,
+         1
+        ],
+        "observed": 27601.1,
+        "fitted": 16901.1,
+        "ratio": 1.633
+       },
+       {
+        "cell": [
+         0,
+         4,
+         2,
+         0
+        ],
+        "observed": 85354.9,
+        "fitted": 133343.7,
+        "ratio": 0.64
+       },
+       {
+        "cell": [
+         0,
+         4,
+         6,
+         1
+        ],
+        "observed": 38019.3,
+        "fitted": 24412.1,
+        "ratio": 1.557
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "race_s",
+       "same_race"
+      ]
+     },
+     "same_edu_by_seeker_age_cohort": {
+      "cells": 80,
+      "cells_with_couples": 80,
+      "G2": 180510.6,
+      "dissimilarity_index": 0.0233,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0078,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         0
+        ],
+        "observed": 69007.7,
+        "fitted": 99067.2,
+        "ratio": 0.697
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         0
+        ],
+        "observed": 171347.2,
+        "fitted": 226800.6,
+        "ratio": 0.755
+       },
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         1
+        ],
+        "observed": 126996.1,
+        "fitted": 96936.6,
+        "ratio": 1.31
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         1
+        ],
+        "observed": 209430.1,
+        "fitted": 255680.0,
+        "ratio": 0.819
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         1
+        ],
+        "observed": 8359.1,
+        "fitted": 9924.3,
+        "ratio": 0.842
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         1
+        ],
+        "observed": 467196.4,
+        "fitted": 397169.9,
+        "ratio": 1.176
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 338383.4,
+        "fitted": 292133.4,
+        "ratio": 1.158
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         1
+        ],
+        "observed": 406997.0,
+        "fitted": 351543.5,
+        "ratio": 1.158
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "edu_s",
+       "same_edu"
+      ]
+     }
+    },
+    "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+    "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+   },
+   "national_outgroup_share": 0.2035,
+   "seconds": 9.9,
+   "dials": {
+    "age": {
+     "tau": 0.067,
+     "tau2": 0.004490527022855774,
+     "precision_weighted_mean_theta": 0.998,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1801,
+     "theta_hat_p10_p50_p90": [
+      0.8992,
+      0.9882,
+      1.11
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "edu": {
+     "tau": 0.0736,
+     "tau2": 0.005413629870390208,
+     "precision_weighted_mean_theta": 0.9745,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.4443,
+     "theta_hat_p10_p50_p90": [
+      0.8553,
+      0.9854,
+      1.0978
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "race": {
+     "tau": 0.1197,
+     "tau2": 0.014329095305337762,
+     "precision_weighted_mean_theta": 0.9227,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1414,
+     "theta_hat_p10_p50_p90": [
+      0.7363,
+      0.9297,
+      1.128
+     ],
+     "theta_hat_at_bounds": 0
+    }
+   },
+   "split_half_dial_test": {
+    "age": {
+     "heldout_loglik_national": -515939641.97292256,
+     "heldout_loglik_raw_dial": -515840379.7247985,
+     "heldout_loglik_shrunk_dial": -515834807.8334563,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 2.224315100710287,
+     "gain_raw_minus_national_per_1000_weighted_sides": 2.1060936690743777,
+     "metros_where_shrunk_beats_national": 272,
+     "metros_where_raw_beats_national": 252,
+     "metros_where_shrunk_beats_raw": 233,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "edu": {
+     "heldout_loglik_national": -515939641.97292256,
+     "heldout_loglik_raw_dial": -515920789.5854836,
+     "heldout_loglik_shrunk_dial": -515907903.99226743,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 0.6733996195959437,
+     "gain_raw_minus_national_per_1000_weighted_sides": 0.3999999454222604,
+     "metros_where_shrunk_beats_national": 213,
+     "metros_where_raw_beats_national": 192,
+     "metros_where_shrunk_beats_raw": 248,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "race": {
+     "heldout_loglik_national": -515939641.97292256,
+     "heldout_loglik_raw_dial": -515695489.22202104,
+     "heldout_loglik_shrunk_dial": -515684470.61591285,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 5.414090348382775,
+     "gain_raw_minus_national_per_1000_weighted_sides": 5.180303415232963,
+     "metros_where_shrunk_beats_national": 258,
+     "metros_where_raw_beats_national": 250,
+     "metros_where_shrunk_beats_raw": 252,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    }
+   },
+   "pew": {
+    "metros_matched": 124,
+    "pew_national": 0.16,
+    "our_national_fitting_sample": 0.2035,
+    "level_offset_ratio_ours_over_pew": 1.2719,
+    "correction": "predictions divided by the national ratio (Pew's US row vs our national fitting-sample share) \u2014 one constant from a row outside the metro test set; raw errors also reported",
+    "raw_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 37.42,
+      "p90_abs_pts": 50.36,
+      "max_abs_pts": 54.93,
+      "mean_signed_pts": 36.81
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.72,
+      "p90_abs_pts": 8.04,
+      "max_abs_pts": 18.58,
+      "mean_signed_pts": 0.81
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 3.18,
+      "p90_abs_pts": 7.71,
+      "max_abs_pts": 11.32,
+      "mean_signed_pts": 2.47
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 3.36,
+      "p90_abs_pts": 7.65,
+      "max_abs_pts": 11.18,
+      "mean_signed_pts": 2.5
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 3.93,
+      "p90_abs_pts": 7.75,
+      "max_abs_pts": 12.44,
+      "mean_signed_pts": 3.37
+     }
+    },
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 26.14,
+      "p90_abs_pts": 36.68,
+      "max_abs_pts": 41.85,
+      "mean_signed_pts": 25.4
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.34,
+      "p90_abs_pts": 9.39,
+      "max_abs_pts": 23.59,
+      "mean_signed_pts": -2.91
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.34,
+      "p90_abs_pts": 6.71,
+      "max_abs_pts": 13.03,
+      "mean_signed_pts": -1.6
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.44,
+      "p90_abs_pts": 6.78,
+      "max_abs_pts": 13.08,
+      "mean_signed_pts": -1.58
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.37,
+      "p90_abs_pts": 7.05,
+      "max_abs_pts": 11.28,
+      "mean_signed_pts": -0.89
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 90,
+      "b_better_metros": 34,
+      "median_paired_diff_pts": -0.788,
+      "mean_paired_diff_pts": -1.45,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 52,
+      "b_better_metros": 72,
+      "median_paired_diff_pts": 0.008,
+      "mean_paired_diff_pts": 0.02,
+      "sign_test_p": 0.0876
+     },
+     "raw_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.868,
+      "mean_paired_diff_pts": -1.47,
+      "sign_test_p": 0.0
+     }
+    },
+    "bar": {
+     "national_only_median_abs_pts": 3.34,
+     "shrunk_beats_national_materially": true,
+     "shrunk_median_below_raw_median": false,
+     "shrunk_not_worse_than_raw_paired": true
+    }
+   },
+   "composition_check": {
+    "r2_pew_on_random_pairing_expectation": 0.196,
+    "availability_adjusted_ratio_observed_over_random": {
+     "min": 0.136,
+     "max": 0.961,
+     "median": 0.419
+    },
+    "one_national_multiplier": {
+     "rho": 0.3593,
+     "n": 124,
+     "median_abs_pts": 4.04,
+     "p90_abs_pts": 9.6,
+     "max_abs_pts": 21.15,
+     "mean_signed_pts": -1.5,
+     "share_off_by_over_1_5x": 0.266
+    },
+    "jackson_ms": {
+     "pew": 0.03,
+     "one_multiplier_predicted": 0.1612,
+     "national_only_corrected": 0.104,
+     "shrunk_corrected": 0.0735,
+     "observed_2020_24": 0.0966
+    }
+   },
+   "lomo_seconds": 440.0,
+   "lomo_iterations_median": 3.0
+  },
+  "decay_h20": {
+   "spec": {
+    "where": "TRUE",
+    "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 20.0) ELSE 1.0 END)"
+   },
+   "couple_sides_weighted": 63408785.2,
+   "n_alloc": 2799230.4,
+   "n_kish": 1926577.4,
+   "mean_weight_per_side": 22.65,
+   "cells_nonzero": 485492,
+   "margins": {
+    "edu_4x4": {
+     "cells": 16,
+     "n_alloc_min": 37972.8,
+     "n_alloc_median": 168078.7,
+     "n_kish_min": 26677.2,
+     "n_kish_median": 119625.4,
+     "cells_below_30_effective": 0,
+     "cells_below_100_effective": 0,
+     "rel_moe_median": 0.0046,
+     "rel_moe_p90": 0.0089,
+     "rel_moe_max": 0.0107
+    },
+    "race_8x8_by_sex": {
+     "cells": 128,
+     "n_alloc_min": 4.1,
+     "n_alloc_median": 753.6,
+     "n_kish_min": 4.2,
+     "n_kish_median": 550.2,
+     "cells_below_30_effective": 14,
+     "cells_below_100_effective": 34,
+     "rel_moe_median": 0.0635,
+     "rel_moe_p90": 0.385,
+     "rel_moe_max": 0.7674
+    },
+    "age_gap_by_sex": {
+     "cells": 198,
+     "n_alloc_min": 0.9,
+     "n_alloc_median": 266.7,
+     "n_kish_min": 1.0,
+     "n_kish_median": 178.2,
+     "cells_below_30_effective": 66,
+     "cells_below_100_effective": 90,
+     "rel_moe_median": 0.1161,
+     "rel_moe_p90": 0.8031,
+     "rel_moe_max": 1.8019
+    }
+   },
+   "race_cells_empty": 0,
+   "gap_cells_empty": 12,
+   "floored_cells": {
+    "age": 12,
+    "edu": 0,
+    "race": 0,
+    "race_cells": [],
+    "age_gaps": [
+     [
+      "male",
+      -52
+     ],
+     [
+      "male",
+      -51
+     ],
+     [
+      "male",
+      -50
+     ],
+     [
+      "male",
+      50
+     ],
+     [
+      "male",
+      51
+     ],
+     [
+      "male",
+      52
+     ],
+     [
+      "female",
+      -52
+     ],
+     [
+      "female",
+      -51
+     ],
+     [
+      "female",
+      -50
+     ],
+     [
+      "female",
+      50
+     ],
+     [
+      "female",
+      51
+     ],
+     [
+      "female",
+      52
+     ]
+    ]
+   },
+   "ipf": {
+    "raw_iterations": 7,
+    "smoothed_iterations": 1,
+    "converged": true,
+    "final_change": 9.695068903390698e-07
+   },
+   "bandwidth": [
+    0.25,
+    0.25
+   ],
+   "bandwidth_cv": {
+    "candidates": [
+     0.25,
+     0.35,
+     0.5,
+     0.75,
+     1.0,
+     1.5,
+     2.0,
+     3.0,
+     5.0
+    ],
+    "deviance": {
+     "male": [
+      484652.5768772582,
+      484658.35579800693,
+      487633.4989543757,
+      571118.2014865588,
+      798745.5070689294,
+      1564574.4588778347,
+      2659258.559494394,
+      5644139.97325271,
+      13761893.394567141
+     ],
+     "female": [
+      474796.98592205544,
+      474802.649866865,
+      477718.6051786807,
+      559551.752487933,
+      782808.9033494473,
+      1534810.299498785,
+      2610403.226465261,
+      5541585.41564975,
+      13494054.792162439
+     ]
+    },
+    "chosen": [
+     0.25,
+     0.25
+    ]
+   },
+   "face_validity": {
+    "age_peak_at_30": {
+     "male": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     },
+     "female": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     }
+    },
+    "age_pass": true,
+    "edu_diagonal_dominant_rows": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "edu_pass": true,
+    "race_diagonal_exceeds_offdiagonal": {
+     "male": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     },
+     "female": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     }
+    },
+    "race_pass": true,
+    "pass": true
+   },
+   "separability": {
+    "thin_cell_weight": 679.5666170375555,
+    "tables": {
+     "edu_by_seeker_sex": {
+      "cells": 32,
+      "cells_with_couples": 32,
+      "G2": 167747.4,
+      "dissimilarity_index": 0.0203,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         1,
+         2
+        ],
+        "observed": 1491980.7,
+        "fitted": 1688213.3,
+        "ratio": 0.884
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1
+        ],
+        "observed": 588671.9,
+        "fitted": 659701.9,
+        "ratio": 0.892
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 571800.6,
+        "fitted": 638610.6,
+        "ratio": 0.895
+       },
+       {
+        "cell": [
+         0,
+         1,
+         0
+        ],
+        "observed": 1871242.0,
+        "fitted": 2063871.2,
+        "ratio": 0.907
+       },
+       {
+        "cell": [
+         0,
+         1,
+         2
+        ],
+        "observed": 2122320.1,
+        "fitted": 1926087.3,
+        "ratio": 1.102
+       },
+       {
+        "cell": [
+         0,
+         2,
+         1
+        ],
+        "observed": 1539708.8,
+        "fitted": 1696060.1,
+        "ratio": 0.908
+       },
+       {
+        "cell": [
+         1,
+         2,
+         1
+        ],
+        "observed": 2060917.7,
+        "fitted": 1904566.4,
+        "ratio": 1.082
+       },
+       {
+        "cell": [
+         1,
+         3,
+         1
+        ],
+        "observed": 939592.8,
+        "fitted": 868562.9,
+        "ratio": 1.082
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "gap_band_by_seeker_edu": {
+      "cells": 64,
+      "cells_with_couples": 64,
+      "G2": 1054986.0,
+      "dissimilarity_index": 0.0464,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0593,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 21281.2,
+        "fitted": 54900.9,
+        "ratio": 0.388
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 31418.9,
+        "fitted": 61531.2,
+        "ratio": 0.511
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2
+        ],
+        "observed": 49374.8,
+        "fitted": 88931.0,
+        "ratio": 0.555
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2
+        ],
+        "observed": 50861.3,
+        "fitted": 90715.6,
+        "ratio": 0.561
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 95342.1,
+        "fitted": 164399.6,
+        "ratio": 0.58
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0
+        ],
+        "observed": 146904.4,
+        "fitted": 90770.2,
+        "ratio": 1.618
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 204200.4,
+        "fitted": 126962.1,
+        "ratio": 1.608
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 126341.2,
+        "fitted": 193274.3,
+        "ratio": 0.654
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "edu_s"
+      ]
+     },
+     "gap_band_by_seeker_race": {
+      "cells": 128,
+      "cells_with_couples": 128,
+      "G2": 742556.5,
+      "dissimilarity_index": 0.0368,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0571,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 13790.9,
+        "fitted": 37029.6,
+        "ratio": 0.372
+       },
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 10905.2,
+        "fitted": 22311.1,
+        "ratio": 0.489
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 34520.5,
+        "fitted": 68860.5,
+        "ratio": 0.501
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 51323.8,
+        "fitted": 101229.6,
+        "ratio": 0.507
+       },
+       {
+        "cell": [
+         1,
+         0,
+         4
+        ],
+        "observed": 1714.4,
+        "fitted": 910.9,
+        "ratio": 1.882
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 122776.9,
+        "fitted": 69809.0,
+        "ratio": 1.759
+       },
+       {
+        "cell": [
+         1,
+         1,
+         4
+        ],
+        "observed": 4946.0,
+        "fitted": 2849.7,
+        "ratio": 1.736
+       },
+       {
+        "cell": [
+         0,
+         6,
+         5
+        ],
+        "observed": 2969.9,
+        "fitted": 1790.0,
+        "ratio": 1.659
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "race_s"
+      ]
+     },
+     "race_pair_by_edu_pair": {
+      "cells": 2048,
+      "cells_with_couples": 1952,
+      "G2": 1876995.9,
+      "dissimilarity_index": 0.0561,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1161,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 19517.3,
+        "fitted": 67282.7,
+        "ratio": 0.29
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 5791.7,
+        "fitted": 19490.4,
+        "ratio": 0.297
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 7169.5,
+        "fitted": 23683.8,
+        "ratio": 0.303
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 4528.5,
+        "fitted": 13308.0,
+        "ratio": 0.34
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         3
+        ],
+        "observed": 2085.6,
+        "fitted": 5749.2,
+        "ratio": 0.363
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         1,
+         3
+        ],
+        "observed": 1834.7,
+        "fitted": 684.0,
+        "ratio": 2.682
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2,
+         0,
+         0
+        ],
+        "observed": 293.7,
+        "fitted": 778.5,
+        "ratio": 0.377
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3,
+         0,
+         3
+        ],
+        "observed": 694.6,
+        "fitted": 1750.8,
+        "ratio": 0.397
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "race_s",
+       "race_c",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "same_race_by_seeker_age_cohort": {
+      "cells": 160,
+      "cells_with_couples": 160,
+      "G2": 527038.0,
+      "dissimilarity_index": 0.0224,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0423,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0
+        ],
+        "observed": 10046.2,
+        "fitted": 2828.9,
+        "ratio": 3.551
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         0
+        ],
+        "observed": 21172.1,
+        "fitted": 10922.6,
+        "ratio": 1.938
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2,
+         0
+        ],
+        "observed": 28888.4,
+        "fitted": 15534.6,
+        "ratio": 1.86
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 37762.2,
+        "fitted": 67485.5,
+        "ratio": 0.56
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         0
+        ],
+        "observed": 90866.8,
+        "fitted": 51010.7,
+        "ratio": 1.781
+       },
+       {
+        "cell": [
+         1,
+         4,
+         2,
+         0
+        ],
+        "observed": 33414.8,
+        "fitted": 59236.7,
+        "ratio": 0.564
+       },
+       {
+        "cell": [
+         0,
+         4,
+         2,
+         0
+        ],
+        "observed": 120253.7,
+        "fitted": 194753.9,
+        "ratio": 0.617
+       },
+       {
+        "cell": [
+         1,
+         0,
+         6,
+         1
+        ],
+        "observed": 17681.6,
+        "fitted": 28407.3,
+        "ratio": 0.622
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "race_s",
+       "same_race"
+      ]
+     },
+     "same_edu_by_seeker_age_cohort": {
+      "cells": 80,
+      "cells_with_couples": 80,
+      "G2": 199742.9,
+      "dissimilarity_index": 0.0208,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0059,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         0
+        ],
+        "observed": 70227.1,
+        "fitted": 100077.1,
+        "ratio": 0.702
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         0
+        ],
+        "observed": 176543.1,
+        "fitted": 234895.5,
+        "ratio": 0.752
+       },
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         1
+        ],
+        "observed": 128901.1,
+        "fitted": 99051.1,
+        "ratio": 1.301
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         1
+        ],
+        "observed": 426141.7,
+        "fitted": 509596.9,
+        "ratio": 0.836
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         1
+        ],
+        "observed": 8526.7,
+        "fitted": 10193.3,
+        "ratio": 0.836
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         1
+        ],
+        "observed": 517018.4,
+        "fitted": 441702.0,
+        "ratio": 1.171
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         1
+        ],
+        "observed": 419214.0,
+        "fitted": 360861.6,
+        "ratio": 1.162
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         0
+        ],
+        "observed": 496835.7,
+        "fitted": 572152.0,
+        "ratio": 0.868
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "edu_s",
+       "same_edu"
+      ]
+     }
+    },
+    "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+    "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+   },
+   "national_outgroup_share": 0.1884,
+   "seconds": 9.2,
+   "dials": {
+    "age": {
+     "tau": 0.0658,
+     "tau2": 0.0043299576001964235,
+     "precision_weighted_mean_theta": 0.9983,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1491,
+     "theta_hat_p10_p50_p90": [
+      0.9068,
+      0.9908,
+      1.1089
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "edu": {
+     "tau": 0.0732,
+     "tau2": 0.005356396303559322,
+     "precision_weighted_mean_theta": 0.9784,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.3639,
+     "theta_hat_p10_p50_p90": [
+      0.863,
+      0.994,
+      1.1049
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "race": {
+     "tau": 0.1189,
+     "tau2": 0.014137242739773268,
+     "precision_weighted_mean_theta": 0.9269,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1116,
+     "theta_hat_p10_p50_p90": [
+      0.756,
+      0.9508,
+      1.1373
+     ],
+     "theta_hat_at_bounds": 0
+    }
+   },
+   "split_half_dial_test": {
+    "age": {
+     "heldout_loglik_national": -686841068.2125932,
+     "heldout_loglik_raw_dial": -686705066.7637444,
+     "heldout_loglik_shrunk_dial": -686699354.5482187,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 2.234921611725994,
+     "gain_raw_minus_national_per_1000_weighted_sides": 2.144836057976381,
+     "metros_where_shrunk_beats_national": 271,
+     "metros_where_raw_beats_national": 257,
+     "metros_where_shrunk_beats_raw": 239,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "edu": {
+     "heldout_loglik_national": -686841068.2125932,
+     "heldout_loglik_raw_dial": -686807992.5982972,
+     "heldout_loglik_shrunk_dial": -686796477.2650477,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 0.7032298035389348,
+     "gain_raw_minus_national_per_1000_weighted_sides": 0.5216251060717739,
+     "metros_where_shrunk_beats_national": 230,
+     "metros_where_raw_beats_national": 211,
+     "metros_where_shrunk_beats_raw": 243,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "race": {
+     "heldout_loglik_national": -686841068.2125932,
+     "heldout_loglik_raw_dial": -686518294.7363318,
+     "heldout_loglik_shrunk_dial": -686507586.181524,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 5.2592401844137795,
+     "gain_raw_minus_national_per_1000_weighted_sides": 5.0903589359053525,
+     "metros_where_shrunk_beats_national": 255,
+     "metros_where_raw_beats_national": 249,
+     "metros_where_shrunk_beats_raw": 263,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    }
+   },
+   "pew": {
+    "metros_matched": 124,
+    "pew_national": 0.16,
+    "our_national_fitting_sample": 0.1884,
+    "level_offset_ratio_ours_over_pew": 1.1775,
+    "correction": "predictions divided by the national ratio (Pew's US row vs our national fitting-sample share) \u2014 one constant from a row outside the metro test set; raw errors also reported",
+    "raw_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 37.5,
+      "p90_abs_pts": 50.0,
+      "max_abs_pts": 55.04,
+      "mean_signed_pts": 36.54
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.31,
+      "p90_abs_pts": 7.76,
+      "max_abs_pts": 20.9,
+      "mean_signed_pts": -0.44
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.24,
+      "p90_abs_pts": 6.43,
+      "max_abs_pts": 10.52,
+      "mean_signed_pts": 1.09
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.27,
+      "p90_abs_pts": 6.48,
+      "max_abs_pts": 10.55,
+      "mean_signed_pts": 1.11
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.69,
+      "p90_abs_pts": 6.97,
+      "max_abs_pts": 11.18,
+      "mean_signed_pts": 1.95
+     }
+    },
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 29.64,
+      "p90_abs_pts": 40.51,
+      "max_abs_pts": 45.83,
+      "mean_signed_pts": 28.53
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.32,
+      "p90_abs_pts": 9.02,
+      "max_abs_pts": 24.08,
+      "mean_signed_pts": -2.87
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.28,
+      "p90_abs_pts": 6.37,
+      "max_abs_pts": 13.3,
+      "mean_signed_pts": -1.58
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.28,
+      "p90_abs_pts": 6.43,
+      "max_abs_pts": 13.33,
+      "mean_signed_pts": -1.56
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.37,
+      "p90_abs_pts": 6.69,
+      "max_abs_pts": 11.1,
+      "mean_signed_pts": -0.84
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.878,
+      "mean_paired_diff_pts": -1.479,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 57,
+      "b_better_metros": 67,
+      "median_paired_diff_pts": 0.005,
+      "mean_paired_diff_pts": 0.008,
+      "sign_test_p": 0.4191
+     },
+     "raw_vs_national": {
+      "a_better_metros": 90,
+      "b_better_metros": 34,
+      "median_paired_diff_pts": -0.848,
+      "mean_paired_diff_pts": -1.487,
+      "sign_test_p": 0.0
+     }
+    },
+    "bar": {
+     "national_only_median_abs_pts": 3.32,
+     "shrunk_beats_national_materially": true,
+     "shrunk_median_below_raw_median": false,
+     "shrunk_not_worse_than_raw_paired": true
+    }
+   },
+   "composition_check": {
+    "r2_pew_on_random_pairing_expectation": 0.198,
+    "availability_adjusted_ratio_observed_over_random": {
+     "min": 0.13,
+     "max": 0.9,
+     "median": 0.388
+    },
+    "one_national_multiplier": {
+     "rho": 0.3337,
+     "n": 124,
+     "median_abs_pts": 4.1,
+     "p90_abs_pts": 9.57,
+     "max_abs_pts": 21.35,
+     "mean_signed_pts": -1.53,
+     "share_off_by_over_1_5x": 0.25
+    },
+    "jackson_ms": {
+     "pew": 0.03,
+     "one_multiplier_predicted": 0.163,
+     "national_only_corrected": 0.1041,
+     "shrunk_corrected": 0.0712,
+     "observed_2020_24": 0.0886
+    }
+   },
+   "lomo_seconds": 457.7,
+   "lomo_iterations_median": 3.0
+  },
+  "decay_h40": {
+   "spec": {
+    "where": "TRUE",
+    "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 40.0) ELSE 1.0 END)"
+   },
+   "couple_sides_weighted": 77540622.3,
+   "n_alloc": 3495337.0,
+   "n_kish": 2203013.3,
+   "mean_weight_per_side": 22.18,
+   "cells_nonzero": 485492,
+   "margins": {
+    "edu_4x4": {
+     "cells": 16,
+     "n_alloc_min": 47554.1,
+     "n_alloc_median": 209705.2,
+     "n_kish_min": 30308.8,
+     "n_kish_median": 135021.3,
+     "cells_below_30_effective": 0,
+     "cells_below_100_effective": 0,
+     "rel_moe_median": 0.0043,
+     "rel_moe_p90": 0.0084,
+     "rel_moe_max": 0.01
+    },
+    "race_8x8_by_sex": {
+     "cells": 128,
+     "n_alloc_min": 5.2,
+     "n_alloc_median": 889.2,
+     "n_kish_min": 4.7,
+     "n_kish_median": 593.2,
+     "cells_below_30_effective": 14,
+     "cells_below_100_effective": 31,
+     "rel_moe_median": 0.0593,
+     "rel_moe_p90": 0.3801,
+     "rel_moe_max": 0.7511
+    },
+    "age_gap_by_sex": {
+     "cells": 198,
+     "n_alloc_min": 1.0,
+     "n_alloc_median": 291.5,
+     "n_kish_min": 1.0,
+     "n_kish_median": 183.7,
+     "cells_below_30_effective": 64,
+     "cells_below_100_effective": 90,
+     "rel_moe_median": 0.1149,
+     "rel_moe_p90": 0.7967,
+     "rel_moe_max": 1.802
+    }
+   },
+   "race_cells_empty": 0,
+   "gap_cells_empty": 12,
+   "floored_cells": {
+    "age": 13,
+    "edu": 0,
+    "race": 0,
+    "race_cells": [],
+    "age_gaps": [
+     [
+      "male",
+      -52
+     ],
+     [
+      "male",
+      -51
+     ],
+     [
+      "male",
+      -50
+     ],
+     [
+      "male",
+      50
+     ],
+     [
+      "male",
+      51
+     ],
+     [
+      "male",
+      52
+     ],
+     [
+      "female",
+      -52
+     ],
+     [
+      "female",
+      -51
+     ],
+     [
+      "female",
+      -50
+     ],
+     [
+      "female",
+      -45
+     ],
+     [
+      "female",
+      50
+     ],
+     [
+      "female",
+      51
+     ],
+     [
+      "female",
+      52
+     ]
+    ]
+   },
+   "ipf": {
+    "raw_iterations": 7,
+    "smoothed_iterations": 1,
+    "converged": true,
+    "final_change": 8.658551610837447e-07
+   },
+   "bandwidth": [
+    0.25,
+    0.25
+   ],
+   "bandwidth_cv": {
+    "candidates": [
+     0.25,
+     0.35,
+     0.5,
+     0.75,
+     1.0,
+     1.5,
+     2.0,
+     3.0,
+     5.0
+    ],
+    "deviance": {
+     "male": [
+      583474.0902267246,
+      583481.2214381965,
+      587152.5386127172,
+      690181.1503742902,
+      971531.9946980809,
+      1923303.0966716926,
+      3291899.9174715285,
+      7041329.821732403,
+      17244109.34552287
+     ],
+     "female": [
+      571600.9727394301,
+      571607.9537495322,
+      575201.9482987938,
+      676069.6930273091,
+      951648.5969764795,
+      1884717.5895329537,
+      3226918.272002238,
+      6900891.017892506,
+      16868851.896321602
+     ]
+    },
+    "chosen": [
+     0.25,
+     0.25
+    ]
+   },
+   "face_validity": {
+    "age_peak_at_30": {
+     "male": {
+      "multiplier_peak_age": 30,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     },
+     "female": {
+      "multiplier_peak_age": 31,
+      "distribution_peak_age": 30,
+      "within_3_years": true
+     }
+    },
+    "age_pass": true,
+    "edu_diagonal_dominant_rows": [
+     true,
+     true,
+     true,
+     true
+    ],
+    "edu_pass": true,
+    "race_diagonal_exceeds_offdiagonal": {
+     "male": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     },
+     "female": {
+      "hispanic": true,
+      "nh_white": true,
+      "nh_black": true,
+      "nh_asian": true,
+      "nh_aian": true,
+      "nh_nhpi": true,
+      "nh_twoplus": true,
+      "nh_other": true
+     }
+    },
+    "race_pass": true,
+    "pass": true
+   },
+   "separability": {
+    "thin_cell_weight": 665.5205751449172,
+    "tables": {
+     "edu_by_seeker_sex": {
+      "cells": 32,
+      "cells_with_couples": 32,
+      "G2": 145861.7,
+      "dissimilarity_index": 0.0176,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         1,
+         2
+        ],
+        "observed": 1857470.0,
+        "fitted": 2062309.6,
+        "ratio": 0.901
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1
+        ],
+        "observed": 766632.2,
+        "fitted": 841191.9,
+        "ratio": 0.911
+       },
+       {
+        "cell": [
+         0,
+         1,
+         2
+        ],
+        "observed": 2537842.0,
+        "fitted": 2333002.2,
+        "ratio": 1.088
+       },
+       {
+        "cell": [
+         0,
+         2,
+         1
+        ],
+        "observed": 1916200.9,
+        "fitted": 2070965.4,
+        "ratio": 0.925
+       },
+       {
+        "cell": [
+         0,
+         1,
+         0
+        ],
+        "observed": 2310359.9,
+        "fitted": 2495370.4,
+        "ratio": 0.926
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 745040.7,
+        "fitted": 802528.8,
+        "ratio": 0.928
+       },
+       {
+        "cell": [
+         1,
+         3,
+         1
+        ],
+        "observed": 1141957.7,
+        "fitted": 1067398.0,
+        "ratio": 1.07
+       },
+       {
+        "cell": [
+         1,
+         2,
+         1
+        ],
+        "observed": 2463942.3,
+        "fitted": 2309177.9,
+        "ratio": 1.067
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "gap_band_by_seeker_edu": {
+      "cells": 64,
+      "cells_with_couples": 64,
+      "G2": 1235148.7,
+      "dissimilarity_index": 0.0459,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0567,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 24981.8,
+        "fitted": 63397.3,
+        "ratio": 0.394
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 35472.6,
+        "fitted": 69400.1,
+        "ratio": 0.511
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2
+        ],
+        "observed": 55189.1,
+        "fitted": 99994.1,
+        "ratio": 0.552
+       },
+       {
+        "cell": [
+         0,
+         7,
+         2
+        ],
+        "observed": 57702.8,
+        "fitted": 101981.5,
+        "ratio": 0.566
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 117597.0,
+        "fitted": 199692.5,
+        "ratio": 0.589
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0
+        ],
+        "observed": 163956.5,
+        "fitted": 101256.1,
+        "ratio": 1.619
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 226390.4,
+        "fitted": 140509.0,
+        "ratio": 1.611
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 149481.2,
+        "fitted": 226991.6,
+        "ratio": 0.659
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "edu_s"
+      ]
+     },
+     "gap_band_by_seeker_race": {
+      "cells": 128,
+      "cells_with_couples": 128,
+      "G2": 936852.5,
+      "dissimilarity_index": 0.0377,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0544,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         0,
+         3
+        ],
+        "observed": 15725.2,
+        "fitted": 42648.0,
+        "ratio": 0.369
+       },
+       {
+        "cell": [
+         0,
+         7,
+         3
+        ],
+        "observed": 12436.5,
+        "fitted": 25884.0,
+        "ratio": 0.48
+       },
+       {
+        "cell": [
+         0,
+         6,
+         3
+        ],
+        "observed": 41635.9,
+        "fitted": 83983.4,
+        "ratio": 0.496
+       },
+       {
+        "cell": [
+         1,
+         1,
+         3
+        ],
+        "observed": 61633.6,
+        "fitted": 120949.8,
+        "ratio": 0.51
+       },
+       {
+        "cell": [
+         1,
+         0,
+         4
+        ],
+        "observed": 1869.2,
+        "fitted": 974.1,
+        "ratio": 1.919
+       },
+       {
+        "cell": [
+         0,
+         7,
+         0
+        ],
+        "observed": 135449.6,
+        "fitted": 76481.3,
+        "ratio": 1.771
+       },
+       {
+        "cell": [
+         1,
+         1,
+         4
+        ],
+        "observed": 5619.7,
+        "fitted": 3222.9,
+        "ratio": 1.744
+       },
+       {
+        "cell": [
+         0,
+         6,
+         5
+        ],
+        "observed": 3428.3,
+        "fitted": 2068.7,
+        "ratio": 1.657
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "gap_band",
+       "race_s"
+      ]
+     },
+     "race_pair_by_edu_pair": {
+      "cells": 2048,
+      "cells_with_couples": 1952,
+      "G2": 2218254.4,
+      "dissimilarity_index": 0.0535,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1158,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         1,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 23399.1,
+        "fitted": 83866.0,
+        "ratio": 0.279
+       },
+       {
+        "cell": [
+         0,
+         3,
+         1,
+         0,
+         0
+        ],
+        "observed": 6695.0,
+        "fitted": 23539.8,
+        "ratio": 0.284
+       },
+       {
+        "cell": [
+         1,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 8269.9,
+        "fitted": 28091.9,
+        "ratio": 0.294
+       },
+       {
+        "cell": [
+         1,
+         5,
+         5,
+         3,
+         2
+        ],
+        "observed": 217.8,
+        "fitted": 672.6,
+        "ratio": 0.324
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         0,
+         0
+        ],
+        "observed": 5252.8,
+        "fitted": 15578.5,
+        "ratio": 0.337
+       },
+       {
+        "cell": [
+         0,
+         2,
+         3,
+         2,
+         0
+        ],
+        "observed": 2164.5,
+        "fitted": 734.3,
+        "ratio": 2.948
+       },
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0,
+         3
+        ],
+        "observed": 2360.6,
+        "fitted": 6424.3,
+        "ratio": 0.367
+       },
+       {
+        "cell": [
+         0,
+         3,
+         0,
+         1,
+         3
+        ],
+        "observed": 2084.6,
+        "fitted": 786.2,
+        "ratio": 2.652
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "race_s",
+       "race_c",
+       "edu_s",
+       "edu_c"
+      ]
+     },
+     "same_race_by_seeker_age_cohort": {
+      "cells": 160,
+      "cells_with_couples": 160,
+      "G2": 695473.8,
+      "dissimilarity_index": 0.0234,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0464,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         3,
+         0
+        ],
+        "observed": 10136.0,
+        "fitted": 2576.5,
+        "ratio": 3.934
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         0
+        ],
+        "observed": 21348.0,
+        "fitted": 10001.3,
+        "ratio": 2.135
+       },
+       {
+        "cell": [
+         1,
+         0,
+         2,
+         0
+        ],
+        "observed": 29097.0,
+        "fitted": 14934.6,
+        "ratio": 1.948
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         0
+        ],
+        "observed": 94048.4,
+        "fitted": 48561.0,
+        "ratio": 1.937
+       },
+       {
+        "cell": [
+         1,
+         4,
+         2,
+         0
+        ],
+        "observed": 44474.5,
+        "fitted": 79100.1,
+        "ratio": 0.562
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         0
+        ],
+        "observed": 54159.5,
+        "fitted": 95228.2,
+        "ratio": 0.569
+       },
+       {
+        "cell": [
+         1,
+         0,
+         6,
+         1
+        ],
+        "observed": 17968.3,
+        "fitted": 30045.4,
+        "ratio": 0.598
+       },
+       {
+        "cell": [
+         0,
+         0,
+         7,
+         0
+        ],
+        "observed": 2219.2,
+        "fitted": 1339.8,
+        "ratio": 1.656
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "race_s",
+       "same_race"
+      ]
+     },
+     "same_edu_by_seeker_age_cohort": {
+      "cells": 80,
+      "cells_with_couples": 80,
+      "G2": 224761.9,
+      "dissimilarity_index": 0.0195,
+      "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0049,
+      "worst_thick_cells": [
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         0
+        ],
+        "observed": 70879.2,
+        "fitted": 100528.8,
+        "ratio": 0.705
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         0
+        ],
+        "observed": 179397.4,
+        "fitted": 238913.1,
+        "ratio": 0.751
+       },
+       {
+        "cell": [
+         0,
+         0,
+         2,
+         1
+        ],
+        "observed": 129911.8,
+        "fitted": 100262.3,
+        "ratio": 1.296
+       },
+       {
+        "cell": [
+         1,
+         0,
+         3,
+         1
+        ],
+        "observed": 8617.1,
+        "fitted": 10307.6,
+        "ratio": 0.836
+       },
+       {
+        "cell": [
+         0,
+         4,
+         3,
+         1
+        ],
+        "observed": 656342.7,
+        "fitted": 780391.8,
+        "ratio": 0.841
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         1
+        ],
+        "observed": 546031.1,
+        "fitted": 466812.4,
+        "ratio": 1.17
+       },
+       {
+        "cell": [
+         1,
+         0,
+         0,
+         1
+        ],
+        "observed": 425934.0,
+        "fitted": 366418.3,
+        "ratio": 1.162
+       },
+       {
+        "cell": [
+         0,
+         1,
+         3,
+         0
+        ],
+        "observed": 525694.8,
+        "fitted": 604913.5,
+        "ratio": 0.869
+       }
+      ],
+      "dims": [
+       "sex_s",
+       "age_cohort",
+       "edu_s",
+       "same_edu"
+      ]
+     }
+    },
+    "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+    "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+   },
+   "national_outgroup_share": 0.1784,
+   "seconds": 9.1,
+   "dials": {
+    "age": {
+     "tau": 0.065,
+     "tau2": 0.004225783262453872,
+     "precision_weighted_mean_theta": 0.9985,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.136,
+     "theta_hat_p10_p50_p90": [
+      0.911,
+      0.9934,
+      1.1122
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "edu": {
+     "tau": 0.0729,
+     "tau2": 0.005311775203432223,
+     "precision_weighted_mean_theta": 0.9802,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.3259,
+     "theta_hat_p10_p50_p90": [
+      0.8667,
+      0.9958,
+      1.1043
+     ],
+     "theta_hat_at_bounds": 0
+    },
+    "race": {
+     "tau": 0.1188,
+     "tau2": 0.01411943837990791,
+     "precision_weighted_mean_theta": 0.929,
+     "metros_prior_share_above_0_9": 0,
+     "prior_share_median": 0.1002,
+     "theta_hat_p10_p50_p90": [
+      0.7706,
+      0.9564,
+      1.1388
+     ],
+     "theta_hat_at_bounds": 0
+    }
+   },
+   "split_half_dial_test": {
+    "age": {
+     "heldout_loglik_national": -833744376.5902853,
+     "heldout_loglik_raw_dial": -833580416.3202996,
+     "heldout_loglik_shrunk_dial": -833574218.3143516,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 2.1944404224202843,
+     "gain_raw_minus_national_per_1000_weighted_sides": 2.114508049362302,
+     "metros_where_shrunk_beats_national": 269,
+     "metros_where_raw_beats_national": 252,
+     "metros_where_shrunk_beats_raw": 250,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "edu": {
+     "heldout_loglik_national": -833744376.5902853,
+     "heldout_loglik_raw_dial": -833700537.5549889,
+     "heldout_loglik_shrunk_dial": -833688909.561899,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 0.715328646430018,
+     "gain_raw_minus_national_per_1000_weighted_sides": 0.5653686287458491,
+     "metros_where_shrunk_beats_national": 241,
+     "metros_where_raw_beats_national": 216,
+     "metros_where_shrunk_beats_raw": 247,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    },
+    "race": {
+     "heldout_loglik_national": -833744376.5902853,
+     "heldout_loglik_raw_dial": -833354845.3791026,
+     "heldout_loglik_shrunk_dial": -833343818.190685,
+     "gain_shrunk_minus_national_per_1000_weighted_sides": 5.165787786690292,
+     "gain_raw_minus_national_per_1000_weighted_sides": 5.023576026043707,
+     "metros_where_shrunk_beats_national": 256,
+     "metros_where_raw_beats_national": 245,
+     "metros_where_shrunk_beats_raw": 271,
+     "metros": 387,
+     "rule": "earns a dial when the shrunk dial beats the national kernel on held-out couples in total AND in more than half the metros",
+     "earns_dial": true
+    }
+   },
+   "pew": {
+    "metros_matched": 124,
+    "pew_national": 0.16,
+    "our_national_fitting_sample": 0.1784,
+    "level_offset_ratio_ours_over_pew": 1.115,
+    "correction": "predictions divided by the national ratio (Pew's US row vs our national fitting-sample share) \u2014 one constant from a row outside the metro test set; raw errors also reported",
+    "raw_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 37.24,
+      "p90_abs_pts": 49.71,
+      "max_abs_pts": 55.08,
+      "mean_signed_pts": 36.32
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.17,
+      "p90_abs_pts": 7.71,
+      "max_abs_pts": 22.21,
+      "mean_signed_pts": -1.26
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.08,
+      "p90_abs_pts": 6.69,
+      "max_abs_pts": 11.7,
+      "mean_signed_pts": 0.19
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.08,
+      "p90_abs_pts": 6.62,
+      "max_abs_pts": 11.72,
+      "mean_signed_pts": 0.21
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.44,
+      "p90_abs_pts": 6.25,
+      "max_abs_pts": 10.35,
+      "mean_signed_pts": 1.02
+     }
+    },
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 31.85,
+      "p90_abs_pts": 43.41,
+      "max_abs_pts": 48.84,
+      "mean_signed_pts": 30.86
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.31,
+      "p90_abs_pts": 8.81,
+      "max_abs_pts": 24.25,
+      "mean_signed_pts": -2.84
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.16,
+      "p90_abs_pts": 6.3,
+      "max_abs_pts": 13.48,
+      "mean_signed_pts": -1.54
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.19,
+      "p90_abs_pts": 6.33,
+      "max_abs_pts": 13.51,
+      "mean_signed_pts": -1.52
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.33,
+      "p90_abs_pts": 6.51,
+      "max_abs_pts": 11.25,
+      "mean_signed_pts": -0.8
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 90,
+      "b_better_metros": 34,
+      "median_paired_diff_pts": -0.758,
+      "mean_paired_diff_pts": -1.491,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 57,
+      "b_better_metros": 67,
+      "median_paired_diff_pts": 0.005,
+      "mean_paired_diff_pts": 0.005,
+      "sign_test_p": 0.4191
+     },
+     "raw_vs_national": {
+      "a_better_metros": 90,
+      "b_better_metros": 34,
+      "median_paired_diff_pts": -0.766,
+      "mean_paired_diff_pts": -1.496,
+      "sign_test_p": 0.0
+     }
+    },
+    "bar": {
+     "national_only_median_abs_pts": 3.31,
+     "shrunk_beats_national_materially": true,
+     "shrunk_median_below_raw_median": false,
+     "shrunk_not_worse_than_raw_paired": true
+    }
+   },
+   "composition_check": {
+    "r2_pew_on_random_pairing_expectation": 0.199,
+    "availability_adjusted_ratio_observed_over_random": {
+     "min": 0.125,
+     "max": 0.86,
+     "median": 0.37
+    },
+    "one_national_multiplier": {
+     "rho": 0.3171,
+     "n": 124,
+     "median_abs_pts": 4.11,
+     "p90_abs_pts": 9.54,
+     "max_abs_pts": 21.43,
+     "mean_signed_pts": -1.54,
+     "share_off_by_over_1_5x": 0.242
+    },
+    "jackson_ms": {
+     "pew": 0.03,
+     "one_multiplier_predicted": 0.1644,
+     "national_only_corrected": 0.1042,
+     "shrunk_corrected": 0.0702,
+     "observed_2020_24": 0.0834
+    }
+   },
+   "lomo_seconds": 529.4,
+   "lomo_iterations_median": 3.0
+  }
+ },
+ "workers": 8,
+ "shipped": {
+  "sample": "recent",
+  "dial_components": [
+   "age",
+   "edu",
+   "race"
+  ],
+  "provisional": false,
+  "artifact": [
+   "data/kernel.json",
+   "data/kernel.npz"
+  ],
+  "face_validity": {
+   "age_peak_at_30": {
+    "male": {
+     "multiplier_peak_age": 30,
+     "distribution_peak_age": 30,
+     "within_3_years": true
+    },
+    "female": {
+     "multiplier_peak_age": 30,
+     "distribution_peak_age": 30,
+     "within_3_years": true
+    }
+   },
+   "age_pass": true,
+   "edu_diagonal_dominant_rows": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "edu_pass": true,
+   "race_diagonal_exceeds_offdiagonal": {
+    "male": {
+     "hispanic": true,
+     "nh_white": true,
+     "nh_black": true,
+     "nh_asian": true,
+     "nh_aian": true,
+     "nh_nhpi": true,
+     "nh_twoplus": true,
+     "nh_other": true
+    },
+    "female": {
+     "hispanic": true,
+     "nh_white": true,
+     "nh_black": true,
+     "nh_asian": true,
+     "nh_aian": true,
+     "nh_nhpi": true,
+     "nh_twoplus": true,
+     "nh_other": true
+    }
+   },
+   "race_pass": true,
+   "pass": true
+  }
+ },
+ "sample_choice": {
+  "rule": "recent unions ship unless their counts and margins cannot support a stable fit (IPF converged, face validity, every edu cell and every own-group race cell >= 100 effective sides, no metro below 100 Kish sides); then the time-weighted sample with the smallest out-of-sample Pew error. The stock is never shipped (a 1985 marriage voting as loudly as a 2024 one).",
+  "recent_stability": {
+   "ipf_converged": true,
+   "face_validity": true,
+   "edu_cells_min_effective": 6637.8,
+   "own_group_race_cells_min_effective": 178.5,
+   "own_group_race_cells_below_100": 0,
+   "metros_below_100_kish_sides": 0,
+   "pass": true
+  },
+  "scores_median_abs_pts": {
+   "recent": 2.63,
+   "stock": 2.32,
+   "decay_h5": 2.48,
+   "decay_h10": 2.44,
+   "decay_h20": 2.28,
+   "decay_h40": 2.19
+  },
+  "pew_best_sample": "decay_h40",
+  "pew_confound": "Pew's newlyweds are 2011-2015 unions; samples that weight older unions more move toward Pew's period as well as toward its pattern, so the Pew criterion cannot separate 'fits current pairing better' from 'sits closer to the test period'",
+  "shipped": "recent"
+ },
+ "seconds_total": 5240.7
+}

@@ -1,8 +1,8 @@
 {
-  "data_version": "b7f53afb9997",
+  "data_version": "59fd352c5c2f",
   "model_version": "m3.0.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-23T16:02:47-0400",
+  "created_at": "2026-09-23T17:17:16-0400",
   "axes": [
     {
       "name": "metro",
@@ -625,7 +625,7 @@
       "edu": 0.0778,
       "race": 0.1299
     },
-    "generated_at": "2026-09-23T16:01:38-0400"
+    "generated_at": "2026-09-23T17:16:02-0400"
   },
   "model_defaults": {
     "pillar_weights": {
@@ -1726,8 +1726,8 @@
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
     "features.parquet": "4e65791d0c7bfa6160eeb87e6a037d733cd98f5a0e7efe8d4355b0104428342a",
-    "kernel.json": "2140ec5f5d0c4a61f615b6b0ccc6a199eb87c6eecc3d3104f44d8bed30c466df",
-    "kernel.npz": "0a006af382ed3f1c2bae27da250e4ae05ed44581f6d654c6c69d738d9cbeaaaf",
+    "kernel.json": "2a18f8eaf7bc9dde8a63988b625aac1c59e0752bdb3f0c78e92df68ba590ad6c",
+    "kernel.npz": "240428730bdb861cafb890eb157b6d7ab29d2e3eb3a4e1f5f1a479902d4c4d0a",
     "metros.json": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",
     "pairing_cells.parquet": "ea906b4b4b7fee95b39f7258782dd2535ac59e92b3d7bd7c245bbec9e451ec68",
     "pool_cube.npy": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",
