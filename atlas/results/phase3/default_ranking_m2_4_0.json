@@ -1,0 +1,1575 @@
+{
+ "model_version": "m2.4.0",
+ "build": "5d0e3ca2f708",
+ "request": {
+  "self": {
+   "sex": "female",
+   "age": 30
+  },
+  "seeking": {
+   "age": [
+    28,
+    40
+   ],
+   "marital": [
+    "never_married",
+    "previously_married"
+   ]
+  }
+ },
+ "weights": {
+  "pool": 0.3,
+  "balance": 0.25,
+  "reach": 0.2,
+  "cost": 0.15,
+  "weather": 0.06,
+  "students": 0.04
+ },
+ "ranked": [
+  {
+   "cbsa": "41860",
+   "display_name": "San Francisco, CA",
+   "rank": 1,
+   "score": 72.7,
+   "pool": 266309,
+   "balance_per_100": 118
+  },
+  {
+   "cbsa": "42660",
+   "display_name": "Seattle, WA",
+   "rank": 2,
+   "score": 72.6,
+   "pool": 230026,
+   "balance_per_100": 126
+  },
+  {
+   "cbsa": "31080",
+   "display_name": "Los Angeles, CA",
+   "rank": 3,
+   "score": 72.5,
+   "pool": 783728,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "41740",
+   "display_name": "San Diego, CA",
+   "rank": 4,
+   "score": 71.0,
+   "pool": 180289,
+   "balance_per_100": 123
+  },
+  {
+   "cbsa": "41940",
+   "display_name": "San Jose, CA",
+   "rank": 5,
+   "score": 70.9,
+   "pool": 108026,
+   "balance_per_100": 148
+  },
+  {
+   "cbsa": "12420",
+   "display_name": "Austin, TX",
+   "rank": 6,
+   "score": 69.8,
+   "pool": 143263,
+   "balance_per_100": 125
+  },
+  {
+   "cbsa": "38900",
+   "display_name": "Portland, OR",
+   "rank": 7,
+   "score": 68.2,
+   "pool": 137480,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "38060",
+   "display_name": "Phoenix, AZ",
+   "rank": 8,
+   "score": 66.1,
+   "pool": 245750,
+   "balance_per_100": 118
+  },
+  {
+   "cbsa": "19740",
+   "display_name": "Denver, CO",
+   "rank": 9,
+   "score": 65.1,
+   "pool": 175065,
+   "balance_per_100": 125
+  },
+  {
+   "cbsa": "35620",
+   "display_name": "New York, NY",
+   "rank": 10,
+   "score": 64.8,
+   "pool": 1010198,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "38300",
+   "display_name": "Pittsburgh, PA",
+   "rank": 11,
+   "score": 64.2,
+   "pool": 105699,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "33100",
+   "display_name": "Miami, FL",
+   "rank": 12,
+   "score": 63.7,
+   "pool": 317303,
+   "balance_per_100": 110
+  },
+  {
+   "cbsa": "14460",
+   "display_name": "Boston, MA",
+   "rank": 13,
+   "score": 62.0,
+   "pool": 241745,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "29820",
+   "display_name": "Las Vegas, NV",
+   "rank": 14,
+   "score": 61.7,
+   "pool": 128125,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "16980",
+   "display_name": "Chicago, IL",
+   "rank": 15,
+   "score": 61.6,
+   "pool": 454126,
+   "balance_per_100": 108
+  },
+  {
+   "cbsa": "31540",
+   "display_name": "Madison, WI",
+   "rank": 16,
+   "score": 60.7,
+   "pool": 33066,
+   "balance_per_100": 129
+  },
+  {
+   "cbsa": "41700",
+   "display_name": "San Antonio, TX",
+   "rank": 17,
+   "score": 60.6,
+   "pool": 129556,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "40900",
+   "display_name": "Sacramento, CA",
+   "rank": 18,
+   "score": 60.6,
+   "pool": 114270,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "33460",
+   "display_name": "Minneapolis, MN",
+   "rank": 19,
+   "score": 59.6,
+   "pool": 173483,
+   "balance_per_100": 122
+  },
+  {
+   "cbsa": "30700",
+   "display_name": "Lincoln, NE",
+   "rank": 20,
+   "score": 59.5,
+   "pool": 14215,
+   "balance_per_100": 135
+  },
+  {
+   "cbsa": "39300",
+   "display_name": "Providence, RI",
+   "rank": 21,
+   "score": 59.2,
+   "pool": 85275,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "18580",
+   "display_name": "Corpus Christi, TX",
+   "rank": 22,
+   "score": 58.7,
+   "pool": 20729,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "26420",
+   "display_name": "Houston, TX",
+   "rank": 23,
+   "score": 58.6,
+   "pool": 329566,
+   "balance_per_100": 105
+  },
+  {
+   "cbsa": "46520",
+   "display_name": "Honolulu, HI",
+   "rank": 24,
+   "score": 58.5,
+   "pool": 49125,
+   "balance_per_100": 123
+  },
+  {
+   "cbsa": "45300",
+   "display_name": "Tampa, FL",
+   "rank": 25,
+   "score": 58.4,
+   "pool": 158402,
+   "balance_per_100": 110
+  },
+  {
+   "cbsa": "36420",
+   "display_name": "Oklahoma City, OK",
+   "rank": 26,
+   "score": 58.0,
+   "pool": 64046,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "40140",
+   "display_name": "Riverside, CA",
+   "rank": 27,
+   "score": 57.8,
+   "pool": 230167,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "22020",
+   "display_name": "Fargo, ND",
+   "rank": 28,
+   "score": 57.6,
+   "pool": 12685,
+   "balance_per_100": 131
+  },
+  {
+   "cbsa": "41620",
+   "display_name": "Salt Lake City, UT",
+   "rank": 29,
+   "score": 57.3,
+   "pool": 62002,
+   "balance_per_100": 121
+  },
+  {
+   "cbsa": "14500",
+   "display_name": "Boulder, CO",
+   "rank": 30,
+   "score": 57.1,
+   "pool": 16851,
+   "balance_per_100": 139
+  },
+  {
+   "cbsa": "21340",
+   "display_name": "El Paso, TX",
+   "rank": 31,
+   "score": 56.7,
+   "pool": 40242,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "19780",
+   "display_name": "Des Moines, IA",
+   "rank": 32,
+   "score": 56.4,
+   "pool": 31694,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "17140",
+   "display_name": "Cincinnati, OH",
+   "rank": 33,
+   "score": 55.7,
+   "pool": 94820,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "20260",
+   "display_name": "Duluth, MN",
+   "rank": 34,
+   "score": 55.6,
+   "pool": 11384,
+   "balance_per_100": 134
+  },
+  {
+   "cbsa": "37100",
+   "display_name": "Oxnard, CA",
+   "rank": 35,
+   "score": 55.4,
+   "pool": 40590,
+   "balance_per_100": 123
+  },
+  {
+   "cbsa": "46060",
+   "display_name": "Tucson, AZ",
+   "rank": 36,
+   "score": 54.5,
+   "pool": 46823,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "39900",
+   "display_name": "Reno, NV",
+   "rank": 37,
+   "score": 54.4,
+   "pool": 29819,
+   "balance_per_100": 129
+  },
+  {
+   "cbsa": "19100",
+   "display_name": "Dallas, TX",
+   "rank": 38,
+   "score": 54.4,
+   "pool": 343431,
+   "balance_per_100": 105
+  },
+  {
+   "cbsa": "37980",
+   "display_name": "Philadelphia, PA",
+   "rank": 39,
+   "score": 54.3,
+   "pool": 297568,
+   "balance_per_100": 100
+  },
+  {
+   "cbsa": "14260",
+   "display_name": "Boise City, ID",
+   "rank": 40,
+   "score": 54.1,
+   "pool": 32769,
+   "balance_per_100": 125
+  },
+  {
+   "cbsa": "18140",
+   "display_name": "Columbus, OH",
+   "rank": 41,
+   "score": 53.9,
+   "pool": 103318,
+   "balance_per_100": 112
+  },
+  {
+   "cbsa": "43620",
+   "display_name": "Sioux Falls, SD",
+   "rank": 42,
+   "score": 53.7,
+   "pool": 13541,
+   "balance_per_100": 130
+  },
+  {
+   "cbsa": "48620",
+   "display_name": "Wichita, KS",
+   "rank": 43,
+   "score": 53.6,
+   "pool": 25902,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "21660",
+   "display_name": "Eugene, OR",
+   "rank": 44,
+   "score": 53.6,
+   "pool": 18595,
+   "balance_per_100": 118
+  },
+  {
+   "cbsa": "36740",
+   "display_name": "Orlando, FL",
+   "rank": 45,
+   "score": 53.2,
+   "pool": 139434,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "41500",
+   "display_name": "Salinas, CA",
+   "rank": 46,
+   "score": 53.0,
+   "pool": 20773,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "42100",
+   "display_name": "Santa Cruz, CA",
+   "rank": 47,
+   "score": 52.8,
+   "pool": 11880,
+   "balance_per_100": 134
+  },
+  {
+   "cbsa": "19820",
+   "display_name": "Detroit, MI",
+   "rank": 48,
+   "score": 52.2,
+   "pool": 201644,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "22220",
+   "display_name": "Fayetteville, AR",
+   "rank": 49,
+   "score": 52.2,
+   "pool": 22653,
+   "balance_per_100": 125
+  },
+  {
+   "cbsa": "37340",
+   "display_name": "Palm Bay, FL",
+   "rank": 50,
+   "score": 52.0,
+   "pool": 26305,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "47900",
+   "display_name": "Washington, DC",
+   "rank": 51,
+   "score": 51.7,
+   "pool": 308116,
+   "balance_per_100": 106
+  },
+  {
+   "cbsa": "17820",
+   "display_name": "Colorado Springs, CO",
+   "rank": 52,
+   "score": 51.5,
+   "pool": 33481,
+   "balance_per_100": 127
+  },
+  {
+   "cbsa": "33340",
+   "display_name": "Milwaukee, WI",
+   "rank": 53,
+   "score": 51.1,
+   "pool": 73906,
+   "balance_per_100": 103
+  },
+  {
+   "cbsa": "17410",
+   "display_name": "Cleveland, OH",
+   "rank": 54,
+   "score": 51.1,
+   "pool": 98768,
+   "balance_per_100": 103
+  },
+  {
+   "cbsa": "24580",
+   "display_name": "Green Bay, WI",
+   "rank": 55,
+   "score": 51.1,
+   "pool": 15134,
+   "balance_per_100": 129
+  },
+  {
+   "cbsa": "28420",
+   "display_name": "Kennewick, WA",
+   "rank": 56,
+   "score": 51.0,
+   "pool": 14276,
+   "balance_per_100": 129
+  },
+  {
+   "cbsa": "15980",
+   "display_name": "Cape Coral, FL",
+   "rank": 57,
+   "score": 50.9,
+   "pool": 31405,
+   "balance_per_100": 118
+  },
+  {
+   "cbsa": "22660",
+   "display_name": "Fort Collins, CO",
+   "rank": 58,
+   "score": 50.4,
+   "pool": 15763,
+   "balance_per_100": 128
+  },
+  {
+   "cbsa": "42020",
+   "display_name": "San Luis Obispo, CA",
+   "rank": 59,
+   "score": 50.4,
+   "pool": 10893,
+   "balance_per_100": 122
+  },
+  {
+   "cbsa": "48900",
+   "display_name": "Wilmington, NC",
+   "rank": 60,
+   "score": 49.9,
+   "pool": 17022,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "35380",
+   "display_name": "New Orleans, LA",
+   "rank": 61,
+   "score": 49.6,
+   "pool": 54156,
+   "balance_per_100": 91
+  },
+  {
+   "cbsa": "14740",
+   "display_name": "Bremerton, WA",
+   "rank": 62,
+   "score": 49.3,
+   "pool": 13166,
+   "balance_per_100": 135
+  },
+  {
+   "cbsa": "42200",
+   "display_name": "Santa Maria, CA",
+   "rank": 63,
+   "score": 49.1,
+   "pool": 19942,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "11100",
+   "display_name": "Amarillo, TX",
+   "rank": 64,
+   "score": 49.1,
+   "pool": 11517,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "10900",
+   "display_name": "Allentown, PA",
+   "rank": 65,
+   "score": 49.1,
+   "pool": 38388,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "36260",
+   "display_name": "Ogden, UT",
+   "rank": 66,
+   "score": 48.8,
+   "pool": 23293,
+   "balance_per_100": 130
+  },
+  {
+   "cbsa": "19430",
+   "display_name": "Dayton, OH",
+   "rank": 67,
+   "score": 48.6,
+   "pool": 34568,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "47260",
+   "display_name": "Virginia Beach, VA",
+   "rank": 68,
+   "score": 48.6,
+   "pool": 80697,
+   "balance_per_100": 105
+  },
+  {
+   "cbsa": "25420",
+   "display_name": "Harrisburg, PA",
+   "rank": 69,
+   "score": 48.4,
+   "pool": 25797,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "27260",
+   "display_name": "Jacksonville, FL",
+   "rank": 70,
+   "score": 48.4,
+   "pool": 78575,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "12060",
+   "display_name": "Atlanta, GA",
+   "rank": 71,
+   "score": 48.3,
+   "pool": 280389,
+   "balance_per_100": 98
+  },
+  {
+   "cbsa": "15380",
+   "display_name": "Buffalo, NY",
+   "rank": 72,
+   "score": 48.1,
+   "pool": 53161,
+   "balance_per_100": 104
+  },
+  {
+   "cbsa": "11460",
+   "display_name": "Ann Arbor, MI",
+   "rank": 73,
+   "score": 48.1,
+   "pool": 16552,
+   "balance_per_100": 120
+  },
+  {
+   "cbsa": "25540",
+   "display_name": "Hartford, CT",
+   "rank": 74,
+   "score": 47.8,
+   "pool": 50747,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "41180",
+   "display_name": "St. Louis, MO",
+   "rank": 75,
+   "score": 47.5,
+   "pool": 116761,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "19660",
+   "display_name": "Deltona, FL",
+   "rank": 76,
+   "score": 47.5,
+   "pool": 27637,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "31140",
+   "display_name": "Louisville, KY",
+   "rank": 77,
+   "score": 47.4,
+   "pool": 60673,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "45060",
+   "display_name": "Syracuse, NY",
+   "rank": 78,
+   "score": 47.4,
+   "pool": 29846,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "36540",
+   "display_name": "Omaha, NE",
+   "rank": 79,
+   "score": 47.2,
+   "pool": 36813,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "10740",
+   "display_name": "Albuquerque, NM",
+   "rank": 80,
+   "score": 47.2,
+   "pool": 50119,
+   "balance_per_100": 110
+  },
+  {
+   "cbsa": "49340",
+   "display_name": "Worcester, MA",
+   "rank": 81,
+   "score": 47.0,
+   "pool": 39331,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "45780",
+   "display_name": "Toledo, OH",
+   "rank": 82,
+   "score": 46.8,
+   "pool": 27985,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "42220",
+   "display_name": "Santa Rosa, CA",
+   "rank": 83,
+   "score": 46.8,
+   "pool": 22792,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "39340",
+   "display_name": "Provo, UT",
+   "rank": 84,
+   "score": 46.6,
+   "pool": 18232,
+   "balance_per_100": 128
+  },
+  {
+   "cbsa": "12540",
+   "display_name": "Bakersfield, CA",
+   "rank": 85,
+   "score": 46.5,
+   "pool": 42258,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "24340",
+   "display_name": "Grand Rapids, MI",
+   "rank": 86,
+   "score": 45.9,
+   "pool": 46808,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "28140",
+   "display_name": "Kansas City, MO",
+   "rank": 87,
+   "score": 45.8,
+   "pool": 88074,
+   "balance_per_100": 104
+  },
+  {
+   "cbsa": "45940",
+   "display_name": "Trenton, NJ",
+   "rank": 88,
+   "score": 45.5,
+   "pool": 16726,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "35840",
+   "display_name": "North Port, FL",
+   "rank": 89,
+   "score": 45.4,
+   "pool": 26384,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "42540",
+   "display_name": "Scranton, PA",
+   "rank": 90,
+   "score": 45.2,
+   "pool": 26315,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "35980",
+   "display_name": "Norwich, CT",
+   "rank": 91,
+   "score": 45.1,
+   "pool": 13108,
+   "balance_per_100": 121
+  },
+  {
+   "cbsa": "16300",
+   "display_name": "Cedar Rapids, IA",
+   "rank": 92,
+   "score": 45.1,
+   "pool": 11879,
+   "balance_per_100": 108
+  },
+  {
+   "cbsa": "14860",
+   "display_name": "Bridgeport, CT",
+   "rank": 93,
+   "score": 44.9,
+   "pool": 37314,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "26900",
+   "display_name": "Indianapolis, IN",
+   "rank": 94,
+   "score": 44.8,
+   "pool": 86761,
+   "balance_per_100": 103
+  },
+  {
+   "cbsa": "18880",
+   "display_name": "Crestview, FL",
+   "rank": 95,
+   "score": 44.7,
+   "pool": 12649,
+   "balance_per_100": 135
+  },
+  {
+   "cbsa": "44700",
+   "display_name": "Stockton, CA",
+   "rank": 96,
+   "score": 44.7,
+   "pool": 37269,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "10580",
+   "display_name": "Albany, NY",
+   "rank": 97,
+   "score": 44.3,
+   "pool": 39687,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "33700",
+   "display_name": "Modesto, CA",
+   "rank": 98,
+   "score": 44.1,
+   "pool": 26660,
+   "balance_per_100": 112
+  },
+  {
+   "cbsa": "34980",
+   "display_name": "Nashville, TN",
+   "rank": 99,
+   "score": 43.8,
+   "pool": 92693,
+   "balance_per_100": 104
+  },
+  {
+   "cbsa": "29620",
+   "display_name": "Lansing, MI",
+   "rank": 100,
+   "score": 43.6,
+   "pool": 19357,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "19340",
+   "display_name": "Davenport, IA",
+   "rank": 101,
+   "score": 43.1,
+   "pool": 15399,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "10420",
+   "display_name": "Akron, OH",
+   "rank": 102,
+   "score": 43.0,
+   "pool": 29350,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "46540",
+   "display_name": "Utica, NY",
+   "rank": 103,
+   "score": 43.0,
+   "pool": 11834,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "49620",
+   "display_name": "York, PA",
+   "rank": 104,
+   "score": 42.9,
+   "pool": 19893,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "44060",
+   "display_name": "Spokane, WA",
+   "rank": 105,
+   "score": 42.8,
+   "pool": 25881,
+   "balance_per_100": 108
+  },
+  {
+   "cbsa": "26620",
+   "display_name": "Huntsville, AL",
+   "rank": 106,
+   "score": 42.5,
+   "pool": 22352,
+   "balance_per_100": 119
+  },
+  {
+   "cbsa": "24860",
+   "display_name": "Greenville, SC",
+   "rank": 107,
+   "score": 42.4,
+   "pool": 38464,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "38940",
+   "display_name": "Port St. Lucie, FL",
+   "rank": 108,
+   "score": 42.4,
+   "pool": 19122,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "34820",
+   "display_name": "Myrtle Beach, SC",
+   "rank": 109,
+   "score": 42.3,
+   "pool": 14986,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "46140",
+   "display_name": "Tulsa, OK",
+   "rank": 110,
+   "score": 42.1,
+   "pool": 41290,
+   "balance_per_100": 104
+  },
+  {
+   "cbsa": "31700",
+   "display_name": "Manchester, NH",
+   "rank": 111,
+   "score": 42.0,
+   "pool": 22226,
+   "balance_per_100": 129
+  },
+  {
+   "cbsa": "16740",
+   "display_name": "Charlotte, NC",
+   "rank": 112,
+   "score": 41.9,
+   "pool": 121514,
+   "balance_per_100": 99
+  },
+  {
+   "cbsa": "40380",
+   "display_name": "Rochester, NY",
+   "rank": 113,
+   "score": 41.9,
+   "pool": 46710,
+   "balance_per_100": 98
+  },
+  {
+   "cbsa": "17780",
+   "display_name": "College Station, TX",
+   "rank": 114,
+   "score": 41.6,
+   "pool": 10118,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "23420",
+   "display_name": "Fresno, CA",
+   "rank": 115,
+   "score": 41.6,
+   "pool": 56812,
+   "balance_per_100": 105
+  },
+  {
+   "cbsa": "29180",
+   "display_name": "Lafayette, LA",
+   "rank": 116,
+   "score": 41.4,
+   "pool": 19502,
+   "balance_per_100": 106
+  },
+  {
+   "cbsa": "39580",
+   "display_name": "Raleigh, NC",
+   "rank": 117,
+   "score": 41.3,
+   "pool": 58135,
+   "balance_per_100": 103
+  },
+  {
+   "cbsa": "30460",
+   "display_name": "Lexington, KY",
+   "rank": 118,
+   "score": 41.3,
+   "pool": 21069,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "11260",
+   "display_name": "Anchorage, AK",
+   "rank": 119,
+   "score": 41.3,
+   "pool": 20423,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "39740",
+   "display_name": "Reading, PA",
+   "rank": 120,
+   "score": 41.2,
+   "pool": 19578,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "28020",
+   "display_name": "Kalamazoo, MI",
+   "rank": 121,
+   "score": 40.9,
+   "pool": 11309,
+   "balance_per_100": 120
+  },
+  {
+   "cbsa": "12100",
+   "display_name": "Atlantic City, NJ",
+   "rank": 122,
+   "score": 40.8,
+   "pool": 14806,
+   "balance_per_100": 105
+  },
+  {
+   "cbsa": "34940",
+   "display_name": "Naples, FL",
+   "rank": 123,
+   "score": 40.3,
+   "pool": 12811,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "12580",
+   "display_name": "Baltimore, MD",
+   "rank": 124,
+   "score": 40.3,
+   "pool": 132894,
+   "balance_per_100": 97
+  },
+  {
+   "cbsa": "44180",
+   "display_name": "Springfield, MO",
+   "rank": 125,
+   "score": 40.0,
+   "pool": 17151,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "38860",
+   "display_name": "Portland, ME",
+   "rank": 126,
+   "score": 39.8,
+   "pool": 23115,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "36500",
+   "display_name": "Olympia, WA",
+   "rank": 127,
+   "score": 39.8,
+   "pool": 12842,
+   "balance_per_100": 123
+  },
+  {
+   "cbsa": "28880",
+   "display_name": "Kiryas Joel, NY",
+   "rank": 128,
+   "score": 39.8,
+   "pool": 26603,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "35300",
+   "display_name": "New Haven, CT",
+   "rank": 129,
+   "score": 39.6,
+   "pool": 27343,
+   "balance_per_100": 99
+  },
+  {
+   "cbsa": "28940",
+   "display_name": "Knoxville, TN",
+   "rank": 130,
+   "score": 39.5,
+   "pool": 35257,
+   "balance_per_100": 110
+  },
+  {
+   "cbsa": "47380",
+   "display_name": "Waco, TX",
+   "rank": 131,
+   "score": 39.5,
+   "pool": 11887,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "37860",
+   "display_name": "Pensacola, FL",
+   "rank": 132,
+   "score": 39.5,
+   "pool": 22537,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "41420",
+   "display_name": "Salem, OR",
+   "rank": 133,
+   "score": 39.3,
+   "pool": 18698,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "22420",
+   "display_name": "Flint, MI",
+   "rank": 134,
+   "score": 38.7,
+   "pool": 19624,
+   "balance_per_100": 114
+  },
+  {
+   "cbsa": "29700",
+   "display_name": "Laredo, TX",
+   "rank": 135,
+   "score": 37.8,
+   "pool": 10846,
+   "balance_per_100": 112
+  },
+  {
+   "cbsa": "26580",
+   "display_name": "Huntington, WV",
+   "rank": 136,
+   "score": 37.7,
+   "pool": 12321,
+   "balance_per_100": 118
+  },
+  {
+   "cbsa": "49660",
+   "display_name": "Youngstown, OH",
+   "rank": 137,
+   "score": 37.1,
+   "pool": 18419,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "12940",
+   "display_name": "Baton Rouge, LA",
+   "rank": 138,
+   "score": 37.1,
+   "pool": 38831,
+   "balance_per_100": 99
+  },
+  {
+   "cbsa": "16860",
+   "display_name": "Chattanooga, TN",
+   "rank": 139,
+   "score": 36.8,
+   "pool": 23598,
+   "balance_per_100": 110
+  },
+  {
+   "cbsa": "23060",
+   "display_name": "Fort Wayne, IN",
+   "rank": 140,
+   "score": 36.5,
+   "pool": 17614,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "46700",
+   "display_name": "Vallejo, CA",
+   "rank": 141,
+   "score": 36.3,
+   "pool": 22007,
+   "balance_per_100": 108
+  },
+  {
+   "cbsa": "16700",
+   "display_name": "Charleston, SC",
+   "rank": 142,
+   "score": 36.2,
+   "pool": 36890,
+   "balance_per_100": 95
+  },
+  {
+   "cbsa": "42340",
+   "display_name": "Savannah, GA",
+   "rank": 143,
+   "score": 36.0,
+   "pool": 20474,
+   "balance_per_100": 99
+  },
+  {
+   "cbsa": "21500",
+   "display_name": "Erie, PA",
+   "rank": 144,
+   "score": 35.7,
+   "pool": 11446,
+   "balance_per_100": 98
+  },
+  {
+   "cbsa": "28700",
+   "display_name": "Kingsport, TN",
+   "rank": 145,
+   "score": 35.6,
+   "pool": 11499,
+   "balance_per_100": 116
+  },
+  {
+   "cbsa": "40060",
+   "display_name": "Richmond, VA",
+   "rank": 146,
+   "score": 35.6,
+   "pool": 62245,
+   "balance_per_100": 99
+  },
+  {
+   "cbsa": "47300",
+   "display_name": "Visalia, CA",
+   "rank": 147,
+   "score": 35.2,
+   "pool": 22195,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "37900",
+   "display_name": "Peoria, IL",
+   "rank": 148,
+   "score": 35.0,
+   "pool": 13786,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "32820",
+   "display_name": "Memphis, TN",
+   "rank": 149,
+   "score": 34.9,
+   "pool": 59830,
+   "balance_per_100": 87
+  },
+  {
+   "cbsa": "15940",
+   "display_name": "Canton, OH",
+   "rank": 150,
+   "score": 34.9,
+   "pool": 15350,
+   "balance_per_100": 106
+  },
+  {
+   "cbsa": "11700",
+   "display_name": "Asheville, NC",
+   "rank": 151,
+   "score": 34.5,
+   "pool": 18812,
+   "balance_per_100": 104
+  },
+  {
+   "cbsa": "43640",
+   "display_name": "Slidell, LA",
+   "rank": 152,
+   "score": 34.3,
+   "pool": 10059,
+   "balance_per_100": 103
+  },
+  {
+   "cbsa": "24540",
+   "display_name": "Greeley, CO",
+   "rank": 153,
+   "score": 33.6,
+   "pool": 13963,
+   "balance_per_100": 118
+  },
+  {
+   "cbsa": "43780",
+   "display_name": "South Bend, IN",
+   "rank": 154,
+   "score": 33.6,
+   "pool": 13741,
+   "balance_per_100": 109
+  },
+  {
+   "cbsa": "32580",
+   "display_name": "McAllen, TX",
+   "rank": 155,
+   "score": 33.0,
+   "pool": 34971,
+   "balance_per_100": 97
+  },
+  {
+   "cbsa": "25180",
+   "display_name": "Hagerstown, MD",
+   "rank": 156,
+   "score": 32.8,
+   "pool": 13538,
+   "balance_per_100": 115
+  },
+  {
+   "cbsa": "25060",
+   "display_name": "Gulfport, MS",
+   "rank": 157,
+   "score": 32.7,
+   "pool": 16067,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "29460",
+   "display_name": "Lakeland, FL",
+   "rank": 158,
+   "score": 32.4,
+   "pool": 34609,
+   "balance_per_100": 106
+  },
+  {
+   "cbsa": "32900",
+   "display_name": "Merced, CA",
+   "rank": 159,
+   "score": 32.4,
+   "pool": 14091,
+   "balance_per_100": 105
+  },
+  {
+   "cbsa": "24660",
+   "display_name": "Greensboro, NC",
+   "rank": 160,
+   "score": 32.0,
+   "pool": 31898,
+   "balance_per_100": 97
+  },
+  {
+   "cbsa": "13140",
+   "display_name": "Beaumont, TX",
+   "rank": 161,
+   "score": 31.9,
+   "pool": 15240,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "13460",
+   "display_name": "Bend, OR",
+   "rank": 162,
+   "score": 31.7,
+   "pool": 10890,
+   "balance_per_100": 111
+  },
+  {
+   "cbsa": "30780",
+   "display_name": "Little Rock, AR",
+   "rank": 163,
+   "score": 31.5,
+   "pool": 29272,
+   "balance_per_100": 90
+  },
+  {
+   "cbsa": "28660",
+   "display_name": "Killeen, TX",
+   "rank": 164,
+   "score": 31.4,
+   "pool": 19877,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "21780",
+   "display_name": "Evansville, IN",
+   "rank": 165,
+   "score": 31.3,
+   "pool": 10588,
+   "balance_per_100": 108
+  },
+  {
+   "cbsa": "31180",
+   "display_name": "Lubbock, TX",
+   "rank": 166,
+   "score": 31.3,
+   "pool": 14396,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "20500",
+   "display_name": "Durham, NC",
+   "rank": 167,
+   "score": 30.6,
+   "pool": 26922,
+   "balance_per_100": 94
+  },
+  {
+   "cbsa": "17300",
+   "display_name": "Clarksville, TN",
+   "rank": 168,
+   "score": 30.5,
+   "pool": 13485,
+   "balance_per_100": 113
+  },
+  {
+   "cbsa": "47930",
+   "display_name": "Waterbury, CT",
+   "rank": 169,
+   "score": 30.5,
+   "pool": 19616,
+   "balance_per_100": 108
+  },
+  {
+   "cbsa": "15180",
+   "display_name": "Brownsville, TX",
+   "rank": 170,
+   "score": 29.7,
+   "pool": 15456,
+   "balance_per_100": 100
+  },
+  {
+   "cbsa": "44140",
+   "display_name": "Springfield, MA",
+   "rank": 171,
+   "score": 29.4,
+   "pool": 23185,
+   "balance_per_100": 98
+  },
+  {
+   "cbsa": "13820",
+   "display_name": "Birmingham, AL",
+   "rank": 172,
+   "score": 29.2,
+   "pool": 46237,
+   "balance_per_100": 94
+  },
+  {
+   "cbsa": "23540",
+   "display_name": "Gainesville, FL",
+   "rank": 173,
+   "score": 28.9,
+   "pool": 15127,
+   "balance_per_100": 96
+  },
+  {
+   "cbsa": "40420",
+   "display_name": "Rockford, IL",
+   "rank": 174,
+   "score": 28.5,
+   "pool": 14162,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "25860",
+   "display_name": "Hickory, NC",
+   "rank": 175,
+   "score": 28.0,
+   "pool": 13414,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "17900",
+   "display_name": "Columbia, SC",
+   "rank": 176,
+   "score": 27.8,
+   "pool": 33568,
+   "balance_per_100": 86
+  },
+  {
+   "cbsa": "40220",
+   "display_name": "Roanoke, VA",
+   "rank": 177,
+   "score": 27.5,
+   "pool": 12133,
+   "balance_per_100": 101
+  },
+  {
+   "cbsa": "36100",
+   "display_name": "Ocala, FL",
+   "rank": 178,
+   "score": 26.7,
+   "pool": 14834,
+   "balance_per_100": 107
+  },
+  {
+   "cbsa": "43340",
+   "display_name": "Shreveport, LA",
+   "rank": 179,
+   "score": 26.6,
+   "pool": 17691,
+   "balance_per_100": 96
+  },
+  {
+   "cbsa": "45220",
+   "display_name": "Tallahassee, FL",
+   "rank": 180,
+   "score": 26.2,
+   "pool": 16297,
+   "balance_per_100": 93
+  },
+  {
+   "cbsa": "31340",
+   "display_name": "Lynchburg, VA",
+   "rank": 181,
+   "score": 25.0,
+   "pool": 8526,
+   "balance_per_100": 99
+  },
+  {
+   "cbsa": "27140",
+   "display_name": "Jackson, MS",
+   "rank": 182,
+   "score": 24.7,
+   "pool": 24770,
+   "balance_per_100": 86
+  },
+  {
+   "cbsa": "33660",
+   "display_name": "Mobile, AL",
+   "rank": 183,
+   "score": 23.7,
+   "pool": 18046,
+   "balance_per_100": 88
+  },
+  {
+   "cbsa": "49180",
+   "display_name": "Winston-Salem, NC",
+   "rank": 184,
+   "score": 23.3,
+   "pool": 24964,
+   "balance_per_100": 93
+  },
+  {
+   "cbsa": "46220",
+   "display_name": "Tuscaloosa, AL",
+   "rank": 185,
+   "score": 23.2,
+   "pool": 10966,
+   "balance_per_100": 103
+  },
+  {
+   "cbsa": "33860",
+   "display_name": "Montgomery, AL",
+   "rank": 186,
+   "score": 22.7,
+   "pool": 16819,
+   "balance_per_100": 87
+  },
+  {
+   "cbsa": "30980",
+   "display_name": "Longview, TX",
+   "rank": 187,
+   "score": 21.8,
+   "pool": 9915,
+   "balance_per_100": 96
+  },
+  {
+   "cbsa": "29540",
+   "display_name": "Lancaster, PA",
+   "rank": 188,
+   "score": 21.7,
+   "pool": 16886,
+   "balance_per_100": 98
+  },
+  {
+   "cbsa": "12260",
+   "display_name": "Augusta, GA",
+   "rank": 189,
+   "score": 21.5,
+   "pool": 29070,
+   "balance_per_100": 96
+  },
+  {
+   "cbsa": "49420",
+   "display_name": "Yakima, WA",
+   "rank": 190,
+   "score": 21.0,
+   "pool": 10045,
+   "balance_per_100": 96
+  },
+  {
+   "cbsa": "22180",
+   "display_name": "Fayetteville, NC",
+   "rank": 191,
+   "score": 19.3,
+   "pool": 17787,
+   "balance_per_100": 94
+  },
+  {
+   "cbsa": "17980",
+   "display_name": "Columbus, GA",
+   "rank": 192,
+   "score": 19.3,
+   "pool": 14741,
+   "balance_per_100": 88
+  },
+  {
+   "cbsa": "43900",
+   "display_name": "Spartanburg, SC",
+   "rank": 193,
+   "score": 16.6,
+   "pool": 13502,
+   "balance_per_100": 93
+  }
+ ],
+ "suppressed": []
+}

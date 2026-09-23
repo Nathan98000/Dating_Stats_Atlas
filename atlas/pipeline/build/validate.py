@@ -128,10 +128,13 @@ def _weighted_sums_sql(con, where: str, replicates: bool = False) -> pd.DataFram
     pool (and, optionally, per replicate)."""
     reps = (", " + ", ".join(f"sum(c.pwgtp{i} * c.a_eff * kw.w)" for i in range(1, 81))
             if replicates else "")
+    # the search filter applies to contrib alone (a subquery, so its
+    # unqualified column names never collide with the weight table's)
     rows = con.execute(
-        f"SELECT c.cbsa, sum(c.pwgtp * c.a_eff * kw.w){reps} FROM contrib c "
+        f"SELECT c.cbsa, sum(c.pwgtp * c.a_eff * kw.w){reps} "
+        f"FROM (SELECT * FROM contrib WHERE gq <> 2 AND ({where})) c "
         f"JOIN kw ON kw.cbsa = c.cbsa AND kw.agep = c.agep AND kw.edu4 = c.edu4 "
-        f"AND kw.race8 = c.race8 WHERE c.gq <> 2 AND ({where}) GROUP BY 1").fetchall()
+        f"AND kw.race8 = c.race8 GROUP BY 1").fetchall()
     cols = ["cbsa", "num"] + ([f"r{i}" for i in range(1, 81)] if replicates else [])
     return pd.DataFrame([[r[0]] + [float(x or 0) for x in r[1:]] for r in rows],
                         columns=cols)
@@ -457,15 +460,31 @@ def main(build_dir: str) -> int:
         wts = res["weights"]
         base_top = set(ranked_cbsas[:10])
         hits = 0
+        match_reps = np.zeros((80, len(ranked_cbsas)))
         for i in range(1, 81):
             est_r = P[f"r{i}"].to_numpy()
             nat_rate_r = W_all[f"r{i}"].sum() / max(P_all[f"r{i}"].sum(), 1e-9)
             match_r = 100.0 * (W[f"r{i}"].to_numpy() / np.maximum(est_r, 1e-9)) / nat_rate_r
+            match_reps[i - 1] = match_r
             score_r = score_vector(build, ridx, est_r, match_r, wts)
             top_r = {ranked_cbsas[k] for k in np.argsort(-score_r)[:10]}
             if len(top_r & base_top) >= STABILITY_OVERLAP:
                 hits += 1
-        stab[v["name"]] = {"share_replicates_with_>=8of10_overlap": hits / 80}
+        # m3.0.0 diagnostics, so a failure can be read from the report: the
+        # index's replicate sd (successive-difference scaling), its spread
+        # across the ranked set, and how bunched the scores are at the
+        # top-10 boundary
+        point = np.array([r["match"]["value"] for r in res["ranked"]], float)
+        sd = np.sqrt(4.0 / 80.0 * ((match_reps - point[None, :]) ** 2).sum(axis=0))
+        scores = np.array([r["score"] for r in res["ranked"]], float)
+        stab[v["name"]] = {
+            "share_replicates_with_>=8of10_overlap": hits / 80,
+            "match_index_replicate_sd_median": round(float(np.median(sd)), 2),
+            "match_index_replicate_sd_p90": round(float(np.percentile(sd, 90)), 2),
+            "match_index_p10_p90_spread": round(float(np.percentile(point, 90)
+                                                      - np.percentile(point, 10)), 1),
+            "score_gap_rank10_to_rank11": round(float(scores[9] - scores[10]), 2),
+            "score_span_ranks_7_to_14": round(float(scores[6] - scores[13]), 2)}
     shares = [s["share_replicates_with_>=8of10_overlap"]
               for s in stab.values() if "skipped" not in s]
     ok = all(s >= STABILITY_SHARE for s in shares)

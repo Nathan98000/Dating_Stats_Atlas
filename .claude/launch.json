@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "atlas/web"],
       "port": 3000
+    },
+    {
+      "name": "api",
+      "runtimeExecutable": "env",
+      "runtimeArgs": ["BUILD_DIR=/Users/nathann/Downloads/Projects/Dating_Stats_Atlas/atlas/data/builds/b7f53afb9997", ".venv/bin/python", "-m", "uvicorn", "atlas.api.app:app", "--host", "127.0.0.1", "--port", "8000", "--log-level", "warning"],
+      "port": 8000
     }
   ]
 }

@@ -87,7 +87,10 @@ export function SearchPanel({
             marginal for the visitor's sex and age, and the registry note
             says so. Labels, levels and the note all come from /v1/meta. */}
         <div className="flex flex-col gap-2" data-testid="about-you">
-          <div className="grid grid-cols-2 gap-3">
+          {/* stacked, not side by side: the registry's option wording
+              ("Prefer not to say", "High school or less") does not fit a
+              half-width select in the 360px panel */}
+          <div className="flex flex-col gap-3">
             <Field label={policy.self_edu_label} htmlFor={`${uid}-selfedu`}>
               <select
                 id={`${uid}-selfedu`}

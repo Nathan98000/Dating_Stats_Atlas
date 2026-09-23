@@ -1,0 +1,59 @@
+{
+ "note": "index with the component vs refitted without it, over the ranked set; a filter to ONE level of the sought attribute should leave the two vectors proportional (constant ratio) so the component drops out of the ranking",
+ "cases": [
+  {
+   "component": "race",
+   "case": "Black woman 30 seeking Black men",
+   "metros": 193,
+   "kendall_tau_with_vs_without": 0.548,
+   "ratio_cv_pct": 8.95,
+   "median_abs_change_pts": 4.57,
+   "top5_same": false
+  },
+  {
+   "component": "race",
+   "case": "Black woman 30, unfiltered",
+   "metros": 193,
+   "kendall_tau_with_vs_without": -0.006,
+   "ratio_cv_pct": 62.83,
+   "median_abs_change_pts": 36.31,
+   "top5_same": false
+  },
+  {
+   "component": "race",
+   "case": "Asian man 35 seeking Asian women",
+   "metros": 193,
+   "kendall_tau_with_vs_without": 0.646,
+   "ratio_cv_pct": 15.77,
+   "median_abs_change_pts": 11.0,
+   "top5_same": true
+  },
+  {
+   "component": "race",
+   "case": "Asian man 35, unfiltered",
+   "metros": 193,
+   "kendall_tau_with_vs_without": 0.354,
+   "ratio_cv_pct": 55.88,
+   "median_abs_change_pts": 35.18,
+   "top5_same": false
+  },
+  {
+   "component": "edu",
+   "case": "graduate woman 32 seeking graduate men",
+   "metros": 193,
+   "kendall_tau_with_vs_without": 0.698,
+   "ratio_cv_pct": 5.92,
+   "median_abs_change_pts": 3.91,
+   "top5_same": false
+  },
+  {
+   "component": "edu",
+   "case": "graduate woman 32, unfiltered",
+   "metros": 193,
+   "kendall_tau_with_vs_without": 0.397,
+   "ratio_cv_pct": 19.97,
+   "median_abs_change_pts": 16.48,
+   "top5_same": false
+  }
+ ]
+}

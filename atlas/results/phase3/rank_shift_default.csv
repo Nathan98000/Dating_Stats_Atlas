@@ -1,0 +1,194 @@
+cbsa,metro,rank_m2_4_0,rank_m3_0_0,move
+35620,"New York, NY",10,1,9
+14460,"Boston, MA",13,2,11
+16980,"Chicago, IL",15,3,12
+41860,"San Francisco, CA",1,4,-3
+37980,"Philadelphia, PA",39,5,34
+31080,"Los Angeles, CA",3,6,-3
+35380,"New Orleans, LA",61,7,54
+12420,"Austin, TX",6,8,-2
+42660,"Seattle, WA",2,9,-7
+12060,"Atlanta, GA",71,10,61
+41940,"San Jose, CA",5,11,-6
+47900,"Washington, DC",51,12,39
+26420,"Houston, TX",23,13,10
+19100,"Dallas, TX",38,14,24
+41740,"San Diego, CA",4,15,-11
+19740,"Denver, CO",9,16,-7
+38300,"Pittsburgh, PA",11,17,-6
+33340,"Milwaukee, WI",53,18,35
+33100,"Miami, FL",12,19,-7
+38900,"Portland, OR",7,20,-13
+12580,"Baltimore, MD",124,21,103
+38060,"Phoenix, AZ",8,22,-14
+17410,"Cleveland, OH",54,23,31
+39580,"Raleigh, NC",117,24,93
+31540,"Madison, WI",16,25,-9
+19820,"Detroit, MI",48,26,22
+41180,"St. Louis, MO",75,27,48
+16740,"Charlotte, NC",112,28,84
+18140,"Columbus, OH",41,29,12
+15380,"Buffalo, NY",72,30,42
+36740,"Orlando, FL",45,31,14
+47260,"Virginia Beach, VA",68,32,36
+40380,"Rochester, NY",113,33,80
+25540,"Hartford, CT",74,34,40
+32820,"Memphis, TN",149,35,114
+45300,"Tampa, FL",25,36,-11
+14500,"Boulder, CO",30,37,-7
+39300,"Providence, RI",21,38,-17
+33460,"Minneapolis, MN",19,39,-20
+26900,"Indianapolis, IN",94,40,54
+28140,"Kansas City, MO",87,41,46
+41700,"San Antonio, TX",17,42,-25
+14860,"Bridgeport, CT",93,43,50
+35300,"New Haven, CT",129,44,85
+34980,"Nashville, TN",99,45,54
+10580,"Albany, NY",97,46,51
+40060,"Richmond, VA",146,47,99
+16700,"Charleston, SC",142,48,94
+20500,"Durham, NC",167,49,118
+21340,"El Paso, TX",31,50,-19
+21500,"Erie, PA",144,51,93
+42340,"Savannah, GA",143,52,91
+17140,"Cincinnati, OH",33,53,-20
+22660,"Fort Collins, CO",58,54,4
+41620,"Salt Lake City, UT",29,55,-26
+11460,"Ann Arbor, MI",73,56,17
+12940,"Baton Rouge, LA",138,57,81
+40140,"Riverside, CA",27,58,-31
+23540,"Gainesville, FL",173,59,114
+17900,"Columbia, SC",176,60,116
+36420,"Oklahoma City, OK",26,61,-35
+40900,"Sacramento, CA",18,62,-44
+36540,"Omaha, NE",79,63,16
+22020,"Fargo, ND",28,64,-36
+45780,"Toledo, OH",82,65,17
+29820,"Las Vegas, NV",14,66,-52
+24660,"Greensboro, NC",160,67,93
+17780,"College Station, TX",114,68,46
+45220,"Tallahassee, FL",180,69,111
+46060,"Tucson, AZ",36,70,-34
+13820,"Birmingham, AL",172,71,101
+17820,"Colorado Springs, CO",52,72,-20
+42200,"Santa Maria, CA",63,73,-10
+19780,"Des Moines, IA",32,74,-42
+48900,"Wilmington, NC",60,75,-15
+45940,"Trenton, NJ",88,76,12
+12100,"Atlantic City, NJ",122,77,45
+42020,"San Luis Obispo, CA",59,78,-19
+27260,"Jacksonville, FL",70,79,-9
+31140,"Louisville, KY",77,80,-3
+30460,"Lexington, KY",118,81,37
+30780,"Little Rock, AR",163,82,81
+19430,"Dayton, OH",67,83,-16
+10420,"Akron, OH",102,84,18
+24860,"Greenville, SC",107,85,22
+26620,"Huntsville, AL",106,86,20
+27140,"Jackson, MS",182,87,95
+33860,"Montgomery, AL",186,88,98
+10740,"Albuquerque, NM",80,89,-9
+45060,"Syracuse, NY",78,90,-12
+21660,"Eugene, OR",44,91,-47
+24340,"Grand Rapids, MI",86,92,-6
+37340,"Palm Bay, FL",50,93,-43
+43620,"Sioux Falls, SD",42,94,-52
+38860,"Portland, ME",126,95,31
+35840,"North Port, FL",89,96,-7
+28880,"Kiryas Joel, NY",128,97,31
+10900,"Allentown, PA",65,98,-33
+28020,"Kalamazoo, MI",121,99,22
+25060,"Gulfport, MS",157,100,57
+44060,"Spokane, WA",105,101,4
+33660,"Mobile, AL",183,102,81
+14260,"Boise City, ID",40,103,-63
+44180,"Springfield, MO",125,104,21
+25420,"Harrisburg, PA",69,105,-36
+49340,"Worcester, MA",81,106,-25
+46220,"Tuscaloosa, AL",185,107,78
+29620,"Lansing, MI",100,108,-8
+18580,"Corpus Christi, TX",22,109,-87
+19340,"Davenport, IA",101,110,-9
+30700,"Lincoln, NE",20,111,-91
+37100,"Oxnard, CA",35,112,-77
+42100,"Santa Cruz, CA",47,113,-66
+43640,"Slidell, LA",152,114,38
+12260,"Augusta, GA",189,115,74
+37900,"Peoria, IL",148,116,32
+46520,"Honolulu, HI",24,117,-93
+31180,"Lubbock, TX",166,118,48
+17980,"Columbus, GA",192,119,73
+20260,"Duluth, MN",34,120,-86
+22220,"Fayetteville, AR",49,121,-72
+16300,"Cedar Rapids, IA",92,122,-30
+29180,"Lafayette, LA",116,123,-7
+43340,"Shreveport, LA",179,124,55
+19660,"Deltona, FL",76,125,-49
+46140,"Tulsa, OK",110,126,-16
+48620,"Wichita, KS",43,127,-84
+42220,"Santa Rosa, CA",83,128,-45
+22180,"Fayetteville, NC",191,129,62
+39900,"Reno, NV",37,130,-93
+49180,"Winston-Salem, NC",184,131,53
+11700,"Asheville, NC",151,132,19
+11100,"Amarillo, TX",64,133,-69
+13460,"Bend, OR",162,134,28
+23420,"Fresno, CA",115,135,-20
+37860,"Pensacola, FL",132,136,-4
+32580,"McAllen, TX",155,137,18
+28420,"Kennewick, WA",56,138,-82
+34820,"Myrtle Beach, SC",109,139,-30
+13140,"Beaumont, TX",161,140,21
+15980,"Cape Coral, FL",57,141,-84
+43780,"South Bend, IN",154,142,12
+12540,"Bakersfield, CA",85,143,-58
+29540,"Lancaster, PA",188,144,44
+36500,"Olympia, WA",127,145,-18
+47380,"Waco, TX",131,146,-15
+31700,"Manchester, NH",111,147,-36
+41500,"Salinas, CA",46,148,-102
+28660,"Killeen, TX",164,149,15
+32900,"Merced, CA",159,150,9
+42540,"Scranton, PA",90,151,-61
+24540,"Greeley, CO",153,152,1
+15180,"Brownsville, TX",170,153,17
+41420,"Salem, OR",133,154,-21
+44140,"Springfield, MA",171,155,16
+36260,"Ogden, UT",66,156,-90
+46540,"Utica, NY",103,157,-54
+47930,"Waterbury, CT",169,158,11
+33700,"Modesto, CA",98,159,-61
+46700,"Vallejo, CA",141,160,-19
+14740,"Bremerton, WA",62,161,-99
+28940,"Knoxville, TN",130,162,-32
+11260,"Anchorage, AK",119,163,-44
+39340,"Provo, UT",84,164,-80
+23060,"Fort Wayne, IN",140,165,-25
+31340,"Lynchburg, VA",181,166,15
+29700,"Laredo, TX",135,167,-32
+29460,"Lakeland, FL",158,168,-10
+15940,"Canton, OH",150,169,-19
+44700,"Stockton, CA",96,170,-74
+24580,"Green Bay, WI",55,171,-116
+21780,"Evansville, IN",165,172,-7
+16860,"Chattanooga, TN",139,173,-34
+40220,"Roanoke, VA",177,174,3
+22420,"Flint, MI",134,175,-41
+18880,"Crestview, FL",95,176,-81
+49660,"Youngstown, OH",137,177,-40
+40420,"Rockford, IL",174,178,-4
+49420,"Yakima, WA",190,179,11
+39740,"Reading, PA",120,180,-60
+38940,"Port St. Lucie, FL",108,181,-73
+35980,"Norwich, CT",91,182,-91
+34940,"Naples, FL",123,183,-60
+17300,"Clarksville, TN",168,184,-16
+49620,"York, PA",104,185,-81
+30980,"Longview, TX",187,186,1
+26580,"Huntington, WV",136,187,-51
+47300,"Visalia, CA",147,188,-41
+25860,"Hickory, NC",175,189,-14
+43900,"Spartanburg, SC",193,190,3
+36100,"Ocala, FL",178,191,-13
+28700,"Kingsport, TN",145,192,-47
+25180,"Hagerstown, MD",156,193,-37
