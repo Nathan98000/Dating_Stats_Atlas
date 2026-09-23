@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Meta, RankedRow } from "@/lib/types";
 import { BalanceTally } from "./tally";
+import { MatchFigure } from "./match";
 
 /** A v3 result row: rank numeral, city, the pool figure large with its
  * plain caption, the movers line, the balance tally, and the score out of
@@ -49,11 +50,16 @@ export function ResultRow({
         <p className="max-w-[64ch] text-sm leading-relaxed text-ink-2">
           {row.summary_line}
         </p>
-        <div className="mt-1 flex flex-col gap-1.5" data-testid="balance-tally">
-          <span className="text-[13px] font-semibold text-ink-2">
-            {meta.features.pool_balance.display_name}
-          </span>
-          <BalanceTally balance={row.balance} compact />
+        <div className="mt-1 flex flex-wrap gap-x-10 gap-y-3">
+          <div className="flex flex-col gap-1.5" data-testid="balance-tally">
+            <span className="text-[13px] font-semibold text-ink-2">
+              {meta.features.pool_balance.display_name}
+            </span>
+            <BalanceTally balance={row.balance} compact />
+          </div>
+          {/* m3.0.0 (ADR 0009): chances of matching — the scored figure,
+              the API's display string, the registry information box */}
+          <MatchFigure match={row.match} meta={meta} id={`match-${row.cbsa}`} compact />
         </div>
       </div>
 

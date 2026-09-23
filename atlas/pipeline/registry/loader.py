@@ -195,10 +195,21 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert abs(w - 1.0) < 1e-9, f"pillar {p} feature weights sum to {w}"
 
     for fid in ("violent_crime_rate", "property_crime_rate", "crime_coverage",
-                "everyday_prices", "who_lives_here"):
+                "everyday_prices", "who_lives_here", "pool_balance"):
         spec = feats[fid]
         assert spec.weight_in_pillar == 0 and spec.status == "context_only", (
-            f"{fid} must stay unscored" + (" (D01)" if "crime" in fid else ""))
+            f"{fid} must stay unscored" + (" (D01)" if "crime" in fid else
+                                            " (ADR 0009)" if fid == "pool_balance" else ""))
+    # m3.0.0 (ADR 0009): the slider's second pole is the match pillar,
+    # carried entirely by match_propensity; balance is display-only
+    assert "match" in pillars and "balance" not in pillars, (
+        "the people pillars are pool and match since m3.0.0 (ADR 0009)")
+    assert feats["match_propensity"].pillar == "match" and \
+        feats["match_propensity"].weight_in_pillar == 1.0 and \
+        feats["match_propensity"].status == "active", (
+        "match_propensity carries the match pillar at weight 1.0")
+    assert feats["match_propensity"].band_labels and \
+        feats["match_propensity"].band_direction == "good_high"
     for fid in ("partners_per_rival", "cross_group_pairing_rate"):
         assert feats[fid].status == "retired", (
             f"{fid} left serving in m2.0.0 (ADR 0004)")
@@ -256,6 +267,16 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert gone not in strings, (
             f"strings.{gone} was deleted in Phase 2f (items 8.1/9.1) — "
             f"the pages open straight into their content now")
+    # m3.0.0 (ADR 0009): every new user-facing string of the phase lives
+    # here — the information box, the kernel account, the two optional
+    # inputs' labels and note, the four education levels
+    for need_key in ("match_info", "match_how", "match_how_link",
+                     "match_unit_line", "self_edu_label", "self_race_label",
+                     "prefer_not_to_say", "about_you_note", "edu_hs_or_less",
+                     "edu_some_college", "edu_bachelors", "edu_graduate"):
+        assert strings.get(need_key), f"strings.{need_key} is required (m3.0.0)"
+    assert "matching" in strings["slider_info"] and "balance favors" not in strings["slider_info"], (
+        "slider_info must describe the chances-of-matching pole (ADR 0009)")
 
     # Phase 2f item 9.2: one display name + link per source_id, rendered
     # under each stat page's subheading. Every stat page's feature must
@@ -293,6 +314,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     _assert_display_clean("size_vs_odds labels",
                           raw["size_vs_odds"].get("label_low"),
                           raw["size_vs_odds"].get("label_high"))
+    assert raw["size_vs_odds"]["label_high"] == pillars["match"].display_name, (
+        "the slider's high pole names the match pillar (ADR 0009)")
 
     desc = raw["city_description"]
     _assert_display_clean("city_description", desc["template"],

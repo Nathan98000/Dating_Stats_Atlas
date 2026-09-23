@@ -5,6 +5,30 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.0.0 — Phase 3 (ADR 0009): the slider's second pole is CHANCES OF
+MATCHING. A new match pillar (default 0.25, the weight balance carried)
+scores match_propensity — the kernel-weighted share of the visitor's own
+matched pool, served as an index where 100 is the national average for
+that same search: sum_c w(seeker, c) n_c / sum_c n_c over the
+search-masked cube cells, a RATE (so it trades against pool size rather
+than duplicating it), divided by the same ratio over the cube summed
+across every metro. The weights come from the assortative kernel fitted
+on recent couples (pipeline/build/kernel.py) — age gap by seeker sex,
+4x4 education, 8x8 race/ethnicity by seeker sex, odds multipliers
+relative to random pairing given availability, one per-metro dial per
+component where the leave-one-metro-out test earned one; race enters on
+the same footing as age and education, Nathan's decision. Two OPTIONAL
+seeker inputs (self.education, self.race_ethnicity) sharpen the kernel;
+an unset one falls back to the population-average marginal for the
+seeker's sex and age, so every combination answers. The margin of the
+index comes from sumw2 with the weights squared (delta method on the
+ratio); suppression still gates on the UNWEIGHTED n. Balance is
+DEMOTED to a displayed statistic (pool_balance: context_only, weight 0)
+— computed exactly as before, shown everywhere it was, scored nowhere.
+The slider control is pool_vs_match; pool_vs_balance is accepted as a
+deprecated alias for exactly this version (the size_vs_odds precedent).
+Goldens regenerated; the before/after across the 193 is in PHASE3.md.
+
 m2.0.0 — Phase 2c (ADR 0004): balance is redefined as the plain sex ratio
 of single adults in the searched age range — count(sought sex) /
 count(seeker sex), same ages, same marital selection, deliberately NOT
@@ -92,5 +116,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m2.4.0"
+MODEL_VERSION = "m3.0.0"
 SCHEMA_VERSION = "cube-v1"

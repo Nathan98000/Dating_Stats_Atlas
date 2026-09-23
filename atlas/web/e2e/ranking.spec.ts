@@ -121,7 +121,7 @@ test("student life and weather move independently", async ({ page }) => {
     "aria-checked", "true");
 });
 
-test("the slider moves weight between pool size and balance", async ({ page }) => {
+test("the slider moves weight between pool size and chances of matching", async ({ page }) => {
   await page.goto("/");
   const rows = page.getByTestId("ranked-list").locator("li");
   await expect(rows.first()).toBeVisible();

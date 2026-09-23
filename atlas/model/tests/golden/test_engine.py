@@ -1,9 +1,12 @@
-"""Engine unit tests, m2.1.0: schema contract, mask semantics, the plain
-sex-ratio balance and its separate gate (ADR 0004), the always-counted
+"""Engine unit tests, m3.0.0: schema contract, mask semantics (and the
+weighted path's sibling), the plain sex-ratio balance and its separate
+gate (ADR 0004) — displayed, unscored since ADR 0009 — the eight equal
 race groups, the two-value marital contract, the six pillars and four
-importance controls (ADR 0005), the five-band standing with direction-
-derived tones, the never-scored crime block, the feature-level attribution
-identity, and the banned-vocabulary rules."""
+importance controls (ADR 0005), chances of matching with its four
+disclosure combinations, the unweighted-n gate, the deprecated slider
+alias, the five-band standing with direction-derived tones, the
+never-scored crime block, the feature-level attribution identity, and the
+banned-vocabulary rules."""
 import json
 import re
 from pathlib import Path
@@ -14,10 +17,12 @@ import pytest
 from atlas import model as engine
 from atlas.model.explain import summary_line
 from atlas.model.intervals import IntervalModel
-from atlas.model.preferences import (ALLOWED_MARITAL, balance_masks,
-                                     importance_weights, resolve_race_levels,
+from atlas.model.loader import reduce_cube, reduced_key
+from atlas.model.preferences import (ALLOWED_MARITAL, INCOME_FLOORS,
+                                     balance_masks, importance_weights,
+                                     resolve_race_levels, seeker_weights,
                                      slider_weights)
-from atlas.model.scoring import score_components
+from atlas.model.scoring import match_index, score_components, scored_features
 from atlas.model.suppression import (POLICY_STRINGS, TECHNICAL_STRINGS,
                                      tier_masks)
 from atlas.model.versions import MODEL_VERSION
@@ -81,6 +86,202 @@ def test_mask_axis_semantics():
     M2 = M.copy()
     M2[sex_i, ages, 0:2, 2:4, 3:7, race] = 0.0
     assert M2.sum() == 0.0, "mask has weight outside the intended cells"
+
+
+def test_weighted_mask_axis_semantics(build):
+    """The weighted path's sibling of test_mask_axis_semantics (ADR 0009):
+    the reduced cubes summed under the pool's own axis vectors must equal
+    pool_flat @ mask for every partial filter — and a weight that picks
+    out ONE (age, education, race) cell must recover exactly that cell's
+    masked pool, so the (age, edu, race) broadcast can never be
+    transposed the way the Phase 1 mask was."""
+    body = {"self": {"sex": "female", "age": 32},
+            "seeking": {"age": [30, 34], "marital": ["never_married",
+                                                     "previously_married"],
+                        "education_min": "bachelors", "income_min": 75000,
+                        "race_ethnicity": ["black_nh"]}}
+    req = engine.parse_request(body)
+    mt = match_index(build, req)
+    est = (build.pool_flat @ engine.mask_vector(
+        req.seeking.sex, 30, 34, req.seeking.marital_levels, "bachelors",
+        75000, ("nh_black",))).astype(np.float64)
+    assert np.allclose(mt["den"], est, rtol=1e-5, atol=1e-3), (
+        "the reduced-cube denominator disagrees with the masked pool")
+    # every reduced-cube key reproduces the plain masked sums cell by cell
+    n = len(build.metro_levels)
+    pool7 = build.pool_flat.reshape(n, 2, 53, 3, 4, 7, 8)
+    red = reduce_cube(pool7)
+    for mar in ({0}, {1}, {0, 1}):
+        for floor_i in range(7):
+            mi, fi = reduced_key(frozenset(mar), floor_i)
+            want = pool7[:, :, :, sorted(mar), :, floor_i:, :].sum(axis=(3, 5))
+            assert np.allclose(red[mi, fi], want, rtol=1e-5, atol=1e-2)
+    # a one-cell weight: age 31, bachelors, nh_black only
+    a_i, e_i, r_i = 31 - 18, engine.EDU_LEVELS.index("bachelors"), \
+        engine.RACE_LEVELS.index("nh_black")
+    one = np.zeros((53, 4, 8)); one[a_i, e_i, r_i] = 1.0
+    mi, fi = reduced_key(req.seeking.marital_levels, INCOME_FLOORS[75000])
+    R = build.reduced_pool[mi, fi, :, engine.SEX_LEVELS.index("male")].astype(np.float64)
+    picked = np.einsum("maer,aer->m", R, one)
+    cell = pool7[:, engine.SEX_LEVELS.index("male"), a_i, :, e_i, INCOME_FLOORS[75000]:, r_i]
+    cell = cell[:, [0, 1], :].sum(axis=(1, 2))
+    assert np.allclose(picked, cell, rtol=1e-5, atol=1e-2)
+
+
+def test_seeker_weights_four_disclosure_combinations(build):
+    """Item 5's requirement: an unset field drops its component to the
+    population-average marginal, both unset leaves the age term alone,
+    and every combination answers validly and suppression-correctly."""
+    k = build.kernel
+    base = {"self": {"sex": "female", "age": 30},
+            "seeking": {"age": [28, 40],
+                        "marital": ["never_married", "previously_married"]}}
+    combos = {"both": {"education": "bachelors", "race_ethnicity": "black_nh"},
+              "edu_only": {"education": "bachelors"},
+              "race_only": {"race_ethnicity": "black_nh"},
+              "neither": {}}
+    results = {}
+    for name, extra in combos.items():
+        body = json.loads(json.dumps(base))
+        body["self"].update(extra)
+        res = engine.rank(build, engine.parse_request(body))
+        results[name] = res
+        assert res["counts"]["ranked"] > 0
+        for r in res["ranked"]:
+            assert r["match"]["available"] and np.isfinite(r["match"]["value"])
+            assert r["match"]["display"] == str(int(round(r["match"]["value"])))
+            assert r["match"]["moe"] is not None and r["match"]["moe"] >= 0
+        assert res["match_inputs"]["education"] == extra.get("education")
+    # suppression is identical across the four: the gate is the unweighted n
+    sup = {name: {r["cbsa"]: r["reason"] for r in res["suppressed"]}
+           for name, res in results.items()}
+    assert len({json.dumps(s, sort_keys=True) for s in sup.values()}) == 1
+    # the mixture kernels: both-unset averages over every (edu, race) level
+    # of the seeker's sex and age; a disclosed level selects that level
+    age_v, W_none = seeker_weights(k, "female", 30, None, None)
+    _, W_both = seeker_weights(k, "female", 30, "bachelors", "nh_black")
+    _, W_edu = seeker_weights(k, "female", 30, "bachelors", None)
+    assert age_v.shape == (len(build.metro_levels), 53) and W_none.shape[1:] == (4, 8)
+    assert (W_none > 0).all() and (W_both > 0).all()
+    # the disclosed-edu kernel is the mixture over race of that edu's
+    # per-race kernels: rebuild it by hand from the artifact
+    si, ai = 1, 30 - 18
+    P = k.avail[si, ai][engine.EDU_LEVELS.index("bachelors")].astype(float)
+    P = P / P.sum()
+    mix = P[None, :] * np.exp(k.log_norm[:, si, ai, engine.EDU_LEVELS.index("bachelors")].astype(float))
+    E = np.exp(k.dials[:, 1][:, None] * k.f_edu[engine.EDU_LEVELS.index("bachelors")][None, :])
+    Rr = np.exp(k.dials[:, 2][:, None, None] * k.f_race[si][None, :, :])
+    want = np.einsum("mr,mf,mrg->mfg", mix, E, Rr)
+    assert np.allclose(W_edu, want, rtol=1e-6)
+    # the index differs between disclosures (the disclosure gap the report
+    # measures) but every one is centred on 100 nationally (pool-weighted)
+    for name, res in results.items():
+        req = engine.parse_request({**base, "self": {**base["self"], **combos[name]}})
+        mt = match_index(build, req)
+        ok = np.isfinite(mt["index"]) & (mt["den"] > 0)
+        assert abs((mt["index"][ok] * mt["den"][ok]).sum() / mt["den"][ok].sum() - 100.0) < 1e-6
+
+
+def test_match_gates_on_unweighted_n(build):
+    """The kernel can neither rescue nor condemn a cell: a metro is
+    suppressed exactly when min(n_alloc, kish) < 100 on the UNWEIGHTED
+    pool, whatever the weights do."""
+    body = {"self": {"sex": "female", "age": 30, "education": "graduate",
+                     "race_ethnicity": "asian_nh"},
+            "seeking": {"age": [25, 35], "marital": ["never_married"],
+                        "education_min": "graduate", "income_min": 150000}}
+    req = engine.parse_request(body)
+    res = engine.rank(build, req)
+    mask = engine.mask_vector(req.seeking.sex, 25, 35, req.seeking.marital_levels,
+                              "graduate", 150000, None)
+    est = (build.pool_flat @ mask).astype(np.float64)
+    n_alloc = (build.count_flat @ mask).astype(np.float64)
+    sumw2 = (build.sumw2_flat @ mask).astype(np.float64)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        kish = np.where(sumw2 > 0, est ** 2 / sumw2, 0.0)
+    gate = np.minimum(n_alloc, kish)
+    want_suppressed = {build.metro_levels[i] for i in np.where(
+        build.ranked_set & ((gate < 100) | (est <= 0)))[0]}
+    assert {r["cbsa"] for r in res["suppressed"]} == want_suppressed
+    assert res["suppressed"], "the stress shape should suppress something"
+    for r in res["suppressed"]:
+        assert "match" not in r, "a suppressed row must not carry a match figure"
+
+
+def test_match_index_is_a_rate_with_the_delta_method_margin(build):
+    """Unit weights give an index of exactly 100 everywhere with a zero
+    margin; scaling every weight by a constant changes nothing (a rate,
+    normalised to the national average); the margin follows
+    Var(R) = sum s2 (w - R)^2 / D^2."""
+    body = {"self": {"sex": "male", "age": 35},
+            "seeking": {"age": [30, 42],
+                        "marital": ["never_married", "previously_married"]}}
+    req = engine.parse_request(body)
+    k = build.kernel
+    from dataclasses import replace
+    flat_k = replace(k, f_age=np.zeros_like(k.f_age), f_edu=np.zeros_like(k.f_edu),
+                     f_race=np.zeros_like(k.f_race), log_norm=np.zeros_like(k.log_norm),
+                     dials=np.ones_like(k.dials))
+    b2 = replace(build, kernel=flat_k)
+    mt = match_index(b2, req)
+    ok = mt["den"] > 0
+    # (the mixture weights sum to 1 - 1e-16, so the margin is ~1e-7, not 0)
+    assert np.allclose(mt["index"][ok], 100.0) and np.allclose(mt["moe"][ok], 0.0, atol=1e-5)
+    # scaling: log_norm + c multiplies every weight by e^c
+    scaled = replace(flat_k, log_norm=np.full_like(k.log_norm, 0.7))
+    mt2 = match_index(replace(build, kernel=scaled), req)
+    assert np.allclose(mt2["index"][ok], 100.0)
+    # the real kernel: recompute the margin by hand for one metro
+    mt3 = match_index(build, req)
+    i = int(np.where(ok)[0][0])
+    age_v, W = seeker_weights(k, "male", 35, None, None)
+    a = np.zeros(53); a[30 - 18:42 - 18 + 1] = 1.0
+    mi, fi = reduced_key(req.seeking.marital_levels, 0)
+    tau = engine.SEX_LEVELS.index("female")
+    R = build.reduced_pool[mi, fi, i, tau].astype(float)
+    S2 = build.reduced_sumw2[mi, fi, i, tau].astype(float)
+    w = (age_v[i] * a)[:, None, None] * W[i][None, :, :]
+    msk = a[:, None, None] * np.ones((1, 4, 8))
+    D = (R * msk).sum(); Rt = (R * w).sum() / D
+    var = (S2 * msk * (w - Rt) ** 2).sum() / D ** 2
+    assert np.isclose(mt3["rate"][i], Rt)
+    assert np.isclose(mt3["moe"][i], 1.645 * np.sqrt(var) * 100 / mt3["national_rate"])
+
+
+def test_balance_displayed_never_scored(build, response):
+    """ADR 0009: pool_balance keeps its block on every row and its
+    computation, and is nowhere in the scored set or the weights."""
+    scored_ids = [f["id"] for f in scored_features(build)]
+    assert "pool_balance" not in scored_ids
+    assert scored_ids[:2] == ["pool_size", "match_propensity"]
+    assert set(response["weights"]) == {"pool", "match", "reach", "cost",
+                                        "weather", "students"}
+    for r in response["ranked"]:
+        assert r["balance"]["available"] and r["balance"]["per_100"] > 0
+        assert not any(s["id"] == "pool_balance" for s in r["stats"])
+        ms = next(s for s in r["stats"] if s["id"] == "match_propensity")
+        assert ms["weight"] > 0 and ms["band"]["label"] in \
+            build.legend["match_propensity"]["band_labels"]
+        assert r["match"]["band"] == ms["band"]
+
+
+def test_slider_alias_accepted_for_one_version(build):
+    """pool_vs_balance is the deprecated name for pool_vs_match in
+    m3.0.0: same weights, same permalink; both together is a contradiction."""
+    base = {"self": {"sex": "female", "age": 29},
+            "seeking": {"age": [27, 36], "marital": ["never_married"]}}
+    new = engine.rank(build, engine.parse_request({**base, "pool_vs_match": 0.8}))
+    old = engine.rank(build, engine.parse_request({**base, "pool_vs_balance": 0.8}))
+    assert new["weights"] == old["weights"]
+    assert [r["cbsa"] for r in new["ranked"]] == [r["cbsa"] for r in old["ranked"]]
+    assert engine.permalink("dv", MODEL_VERSION, {**base, "pool_vs_balance": 0.8}) == \
+        engine.permalink("dv", MODEL_VERSION, {**base, "pool_vs_match": 0.8})
+    with pytest.raises(ValueError, match="deprecated name"):
+        engine.rank(build, engine.parse_request(
+            {**base, "pool_vs_match": 0.8, "pool_vs_balance": 0.2}))
+    with pytest.raises(ValueError, match="self.education"):
+        engine.parse_request({**base, "self": {"sex": "female", "age": 29,
+                                               "education": "phd"}})
 
 
 def test_balance_masks_are_the_plain_sex_ratio():
@@ -231,8 +432,10 @@ def test_same_sex_balance_is_not_applicable(build):
         assert r["balance"]["available"] is False
         assert "doesn’t apply" in r["balance"]["note"]
     row = res["ranked"][0]
-    bal_stat = next(s for s in row["stats"] if s["id"] == "pool_balance")
-    assert bal_stat["value"] is None and bal_stat["weight"] == 0.0
+    # ADR 0009: balance is no longer a stat at all; the weights still sum
+    # to one over the scored set, and the match figure is served
+    assert not any(s["id"] == "pool_balance" for s in row["stats"])
+    assert row["match"]["available"]
     scored = [s for s in row["stats"] if s.get("contribution") is not None]
     assert sum(s["weight"] for s in scored) == pytest.approx(1.0, abs=0.002)
 
@@ -248,6 +451,7 @@ def test_importance_controls_map_through_registry(build):
     tot = sum(w.values())
     w = {k: v / tot for k, v in w.items()}
     assert w["cost"] > w["reach"], "a_lot must outweigh not_much"
+    assert "match" in w and "balance" not in w
     assert min(w.values()) > 0, "'Not much' is a floor, never zero"
     assert sum(w.values()) == pytest.approx(1.0)
     # students and weather move INDEPENDENTLY — the reason for the split
@@ -287,17 +491,17 @@ def test_size_vs_odds_removed(build):
     body = {"self": {"sex": "female", "age": 29},
             "seeking": {"age": [27, 36], "marital": ["never_married"]},
             "size_vs_odds": 1.0}
-    with pytest.raises(ValueError, match="pool_vs_balance"):
+    with pytest.raises(ValueError, match="pool_vs_match"):
         engine.rank(build, engine.parse_request(body))
 
 
 def test_slider_is_a_pure_function():
-    defaults = {"pool": 0.30, "balance": 0.25, "reach": 0.20,
+    defaults = {"pool": 0.30, "match": 0.25, "reach": 0.20,
                 "cost": 0.15, "weather": 0.06, "students": 0.04}
     w0 = slider_weights(0.0, defaults, 0.55)
     w1 = slider_weights(1.0, defaults, 0.55)
-    assert w0["pool"] == pytest.approx(0.55) and w0["balance"] == 0.0
-    assert w1["balance"] == pytest.approx(0.55) and w1["pool"] == 0.0
+    assert w0["pool"] == pytest.approx(0.55) and w0["match"] == 0.0
+    assert w1["match"] == pytest.approx(0.55) and w1["pool"] == 0.0
 
 
 def test_interval_machinery_still_computes(build, response):
@@ -330,8 +534,8 @@ def test_attribution_identity_and_pillar_sums(build, response):
             assert abs(by_pillar[c["pillar"]] - c["value"]) < 0.05
     ridx = np.where(build.ranked_set)[0][:5]
     sc = score_components(build, ridx, np.linspace(1e3, 5e4, 5),
-                          np.linspace(0.8, 1.3, 5),
-                          {"pool": .3, "balance": .25, "reach": .2,
+                          np.linspace(80, 130, 5),
+                          {"pool": .3, "match": .25, "reach": .2,
                            "cost": .15, "weather": .06, "students": .04})
     ref_score = (sc["w_eff"] * np.where(~np.isnan(sc["z"]),
                                         sc["ref"][None, :], 0.0)).sum(axis=1)
@@ -430,7 +634,7 @@ def test_score_display_is_a_whole_number(response):
 def test_permalink_is_deterministic():
     body = {"self": {"sex": "female", "age": 32},
             "seeking": {"age": [30, 40], "marital": ["never_married"]},
-            "pool_vs_balance": 0.7,
+            "pool_vs_match": 0.7,
             "importance": {"cost": "a_lot", "students": "not_much"}}
     a = engine.permalink("dv1", MODEL_VERSION, body)
     b = engine.permalink("dv1", MODEL_VERSION, dict(body))
@@ -483,10 +687,10 @@ def test_missing_feature_policy_renormalizes(build):
     b2.static["rpp_goods"][ridx[0]] = np.nan
     b2.static["pleasant_days"][ridx[1]] = np.nan
     b2.static["students_per_1k_adults"][ridx[1]] = np.nan
-    weights = {"pool": .3, "balance": .25, "reach": .2, "cost": .15,
+    weights = {"pool": .3, "match": .25, "reach": .2, "cost": .15,
                "weather": .06, "students": .04}
     sc = score_components(b2, ridx, np.full(len(ridx), 1000.0),
-                          np.full(len(ridx), 1.1), weights)
+                          np.full(len(ridx), 100.0), weights)
     feats = [f["id"] for f in sc["feats"]]
     w = sc["w_eff"]
     assert w[0, feats.index("rpp_goods")] == 0.0

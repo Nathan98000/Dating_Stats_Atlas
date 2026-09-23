@@ -12,6 +12,7 @@ import { effectiveSearchParams } from "@/lib/server-prefs";
 import { SiteHeader } from "@/components/chrome";
 import { LocatorMap } from "@/components/locator-map";
 import { BalanceTally } from "@/components/tally";
+import { MatchFigure } from "@/components/match";
 import { CityArt } from "@/components/city-art";
 import { CityNarrowCard, CityWideners } from "@/components/city-cards";
 import { CompareLauncher } from "@/components/compare-launcher";
@@ -119,6 +120,8 @@ export default async function CityPage({
               <div className="min-w-[220px]">
                 <BalanceTally balance={ranked.balance} compact />
               </div>
+              {/* m3.0.0: chances of matching beside pool and balance */}
+              <MatchFigure match={ranked.match} meta={meta} id={`match-${metro.cbsa}`} />
             </div>
             <p className="max-w-[72ch] text-sm text-ink-2">{ranked.summary_line}</p>
           </section>

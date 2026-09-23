@@ -1,4 +1,4 @@
-"""Build the pinned 12-metro test fixture and regenerate goldens (m2.1.0).
+"""Build the pinned 12-metro test fixture and regenerate goldens (m3.0.0).
 
 Run AFTER a full cube build:
 
@@ -85,20 +85,37 @@ GOLDEN_VECTORS = [
      "self": {"sex": "male", "age": 35},
      "seeking": {"age": [18, 70],
                  "marital": ["never_married", "previously_married"]}},
-    # the slider at its balance end (size_vs_odds itself left the contract
-    # in m2.1.0, its one deprecation version served)
-    {"name": "slider_all_balance",
+    # the slider at its chances-of-matching end (m3.0.0: pool_vs_match;
+    # size_vs_odds left the contract in m2.1.0)
+    {"name": "slider_all_match",
+     "self": {"sex": "female", "age": 29},
+     "seeking": {"age": [27, 36],
+                 "marital": ["never_married", "previously_married"]},
+     "pool_vs_match": 1.0},
+    # the deprecated slider name, accepted for exactly m3.0.0 (ADR 0009)
+    {"name": "slider_alias_pool_vs_balance",
      "self": {"sex": "female", "age": 29},
      "seeking": {"age": [27, 36],
                  "marital": ["never_married", "previously_married"]},
      "pool_vs_balance": 1.0},
+    # m3.0.0: the four disclosure combinations of the optional seeker
+    # inputs — both, education only, race only (E above), neither (the
+    # rest) — all answering, all gated on the unweighted n
+    {"name": "self_edu_and_race",
+     "self": {"sex": "male", "age": 34, "education": "graduate",
+              "race_ethnicity": "asian_nh"},
+     "seeking": {"age": [28, 40],
+                 "marital": ["never_married", "previously_married"]}},
+    {"name": "self_edu_only_hs",
+     "self": {"sex": "female", "age": 27, "education": "hs_or_less"},
+     "seeking": {"age": [25, 38], "marital": ["never_married"]}},
     # the four m2.1.0 controls: named knobs, mapped through registry
     # constants — students and weather now separately steerable (item 4)
     {"name": "importance_controls",
      "self": {"sex": "female", "age": 34},
      "seeking": {"age": [30, 44],
                  "marital": ["never_married", "previously_married"]},
-     "pool_vs_balance": 0.7,
+     "pool_vs_match": 0.7,
      "importance": {"cost": "a_lot", "reach": "not_much",
                     "students": "a_lot", "weather": "not_much"}},
     # the deprecated bundled control, accepted for exactly m2.1.0: its
@@ -151,6 +168,16 @@ def make_fixture(build_dir: Path) -> None:
     cells = pd.read_parquet(Path(build_dir) / "pairing_cells.parquet")
     cells[cells["cbsa"].astype(str).isin(set(chosen))].to_parquet(
         FIXTURE / "pairing_cells.parquet", index=False)
+    # m3.0.0: the kernel, its per-metro arrays sliced to the fixture
+    kz = np.load(Path(build_dir) / "kernel.npz", allow_pickle=False)
+    kj = json.loads((Path(build_dir) / "kernel.json").read_text())
+    kj["dials"] = {c: kj["dials"][c] for c in chosen}
+    np.savez_compressed(FIXTURE / "kernel.npz",
+                        f_age=kz["f_age"], f_edu=kz["f_edu"], f_race=kz["f_race"],
+                        dials=kz["dials"][idx], log_norm=kz["log_norm"][idx],
+                        avail_national=kz["avail_national"],
+                        metro_levels=np.array(chosen))
+    (FIXTURE / "kernel.json").write_text(json.dumps(kj, indent=1) + "\n")
     src_meta = {m["cbsa"]: m for m in json.loads(
         (Path(build_dir) / "metros.json").read_text())}
     metros_meta = [{**src_meta[c],
@@ -162,7 +189,8 @@ def make_fixture(build_dir: Path) -> None:
     vectors = []
     for v in GOLDEN_VECTORS:
         body = {k: v[k] for k in ("self", "seeking", "weights",
-                                  "pool_vs_balance", "importance") if k in v}
+                                  "pool_vs_match", "pool_vs_balance",
+                                  "importance") if k in v}
         res = engine.rank(fx, engine.parse_request(body))
         expect = {
             "ranked_cbsas": [r["cbsa"] for r in res["ranked"]],
@@ -177,6 +205,9 @@ def make_fixture(build_dir: Path) -> None:
                 r["cbsa"]: (r["balance"]["per_100"]
                             if r["balance"]["available"] else None)
                 for r in res["ranked"]},
+            # m3.0.0: the chances-of-matching index, pinned to two
+            # decimals per ranked metro
+            "match_index": {r["cbsa"]: r["match"]["value"] for r in res["ranked"]},
             "summary_lines": {r["cbsa"]: r["summary_line"]
                               for r in res["ranked"][:3]},
             "shown_unranked_cbsas": sorted(r["cbsa"] for r in res["shown_unranked"]),

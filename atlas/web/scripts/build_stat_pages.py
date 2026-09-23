@@ -26,11 +26,23 @@ from atlas.model.explain import format_pop, format_value  # noqa: E402
 from atlas.model.loader import load_build  # noqa: E402
 from atlas.model.scoring import _band_of  # noqa: E402
 
-DEFAULT_BUILD = REPO / "atlas" / "data" / "builds" / "5d0e3ca2f708"
+BUILDS = REPO / "atlas" / "data" / "builds"
+
+
+def default_build() -> Path:
+    """Without an argument: the newest complete build under data/builds
+    (by the manifest's created_at), named on stdout so a stale choice is
+    visible. Pass the build directory explicitly to pin it."""
+    complete = [p for p in BUILDS.iterdir()
+                if (p / "manifest.json").exists() and (p / "pool_cube.npy").exists()]
+    assert complete, f"no complete build under {BUILDS}"
+    newest = max(complete, key=lambda p: json.loads((p / "manifest.json").read_text())["created_at"])
+    print(f"build: {newest.name} (newest complete build; pass a path to pin another)")
+    return newest
 
 
 def main() -> None:
-    build_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_BUILD
+    build_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else default_build()
     build = load_build(build_dir)
     m = build.manifest
     pages: dict[str, dict] = {}

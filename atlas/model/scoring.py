@@ -1,5 +1,21 @@
-"""Scoring, m2.1.0 — six pillars over the cubes plus the static feature
+"""Scoring, m3.0.0 — six pillars over the cubes plus the static feature
 matrix; pure numpy over a loaded Build.
+
+ADR 0009's model change: the match pillar scores CHANCES OF MATCHING
+(match_propensity) — the kernel-weighted share of the visitor's own
+matched pool, sum_c w(seeker, c) n_c / sum_c n_c over the search-masked
+cells, served as an index where 100 is the national average for that same
+search (the cube summed over every metro). A RATE, not a count, so it
+trades against pool size rather than duplicating it. The weights are the
+shipped assortative kernel's (preferences.seeker_weights); the sum runs
+over the loader's reduced cubes with the same axis vectors the pool mask
+uses (match_index below). Its margin comes from sumw2 with the weights
+squared — the delta-method variance of the ratio,
+Var(R) = sum_c s2_c (w_c - R)^2 / D^2 — computed and returned, never
+rendered (ADR 0004 still). Suppression gates on the UNWEIGHTED n exactly
+as before: the kernel can neither rescue nor condemn a cell. Balance is
+computed exactly as in m2.x and served on every row (its own gate), but
+it is a displayed statistic now, out of the pillar set.
 
 ADR 0004's model change: the balance pillar scores DATING POOL BALANCE,
 the plain sex ratio of single adults in the searched age range —
@@ -31,9 +47,10 @@ from bisect import bisect_right
 import numpy as np
 
 from atlas.model.explain import format_value, summary_line, top_stats
-from atlas.model.loader import Build
-from atlas.model.preferences import (PILLARS, Request, balance_masks,
-                                     pool_mask, resolve_weights)
+from atlas.model.loader import Build, reduced_key
+from atlas.model.preferences import (INCOME_FLOORS, PILLARS, SEX_LEVELS, Request,
+                                     axis_vectors, balance_masks, pool_mask,
+                                     resolve_weights, seeker_weights)
 from atlas.model.suppression import (N_GATE_MIN, POLICY_STRINGS,
                                      PURITY_FLAG_BAR, suppression_reason,
                                      tier_masks)
@@ -51,8 +68,62 @@ def scored_features(build: Build) -> list[dict]:
                               "u": float(e["weight_in_pillar"]),
                               "direction": int(e["direction"]),
                               "kind": e["kind"]})
-    assert feats[0]["id"] == "pool_size" and feats[1]["id"] == "pool_balance"
+    assert feats[0]["id"] == "pool_size" and feats[1]["id"] == "match_propensity"
     return feats
+
+
+def match_index(build: Build, req: Request) -> dict:
+    """match_propensity for every metro (ADR 0009): the kernel-weighted
+    share of the search-masked pool, as an index with 100 = the national
+    average for this search, plus its delta-method margin in index
+    points. Reads the reduced cubes keyed on the marital selection and
+    income floor, applies the SAME per-axis vectors the pool mask is
+    built from, and the seeker's per-metro kernel factors.
+
+        num_m = sum_{a,e,r} R_m[a,e,r] * age_vec_m[a] * W_m[e,r]
+        den_m = sum_{a,e,r} R_m[a,e,r]            (masked cells only)
+        rate_m = num_m / den_m ;  index_m = 100 * rate_m / (sum num / sum den)
+
+    With unit weights num == den == pool_flat @ mask (the weighted path's
+    mask-axis test)."""
+    seek = req.seeking
+    k = build.kernel
+    assert k is not None, "build carries no kernel"
+    _, a, _, e, _, r = axis_vectors(seek.sex, seek.age_min, seek.age_max,
+                                    seek.marital_levels, seek.education_min,
+                                    seek.income_min, seek.race_cube_levels)
+    a, e, r = a.astype(np.float64), e.astype(np.float64), r.astype(np.float64)
+    mi, fi = reduced_key(seek.marital_levels,
+                         INCOME_FLOORS[seek.income_min] if seek.income_min else 0)
+    tau = SEX_LEVELS.index(seek.sex)
+    R = build.reduced_pool[mi, fi, :, tau].astype(np.float64)       # (n, 53, 4, 8)
+    S2 = build.reduced_sumw2[mi, fi, :, tau].astype(np.float64)
+    age_vec, W = seeker_weights(k, req.self_sex, req.self_age, req.self_edu,
+                                req.self_race)
+    er = e[:, None] * r[None, :]                                     # (4, 8)
+    av = age_vec * a[None, :]                                        # (n, 53)
+    Wm = W * er[None, :, :]                                          # (n, 4, 8)
+    num = np.einsum("maer,ma,mer->m", R, av, Wm)
+    den = np.einsum("maer,a,er->m", R, a, er)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        rate = np.where(den > 0, num / np.maximum(den, 1e-300), np.nan)
+    den_nat, num_nat = float(den.sum()), float(num.sum())
+    nat_rate = num_nat / den_nat if den_nat > 0 else np.nan
+    with np.errstate(invalid="ignore", divide="ignore"):
+        index = 100.0 * rate / nat_rate
+    # margin: Var(N/D) ~ [Var N - 2R Cov(N,D) + R^2 Var D] / D^2 with the
+    # cell sums of squared record weights standing in for the variances:
+    # Var N = sum s2 w^2, Cov = sum s2 w, Var D = sum s2 — i.e.
+    # sum_c s2_c (w_c - R)^2 / D^2
+    s2w2 = np.einsum("maer,ma,mer->m", S2, av ** 2, Wm ** 2)
+    s2w = np.einsum("maer,ma,mer->m", S2, av, Wm)
+    s2 = np.einsum("maer,a,er->m", S2, a, er)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        var = np.where(den > 0, (s2w2 - 2.0 * rate * s2w + rate ** 2 * s2)
+                       / np.maximum(den, 1e-300) ** 2, np.nan)
+        moe = 1.645 * np.sqrt(np.maximum(var, 0.0)) * 100.0 / nat_rate
+    return {"index": index, "moe": moe, "rate": rate, "national_rate": nat_rate,
+            "num": num, "den": den}
 
 
 def _winsor_log_minmax(x: np.ndarray, lo_hi=(1, 99)) -> np.ndarray:
@@ -112,11 +183,11 @@ def _feature_weights(z: np.ndarray, pillar_idx: np.ndarray, u: np.ndarray,
 
 
 def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
-                     balance: np.ndarray, weights: dict[str, float]) -> dict:
+                     match: np.ndarray, weights: dict[str, float]) -> dict:
     """z, raw values, effective weights, score, feature-level reference and
     contributions for the ranked metros. Shared by rank() and the
-    validation suite's replicate resampling. `balance` is the sex ratio
-    (sought/seeker), NaN where its own gate failed."""
+    validation suite's replicate resampling. `match` is the
+    match_propensity index (100 = national average for the search)."""
     feats = scored_features(build)
     n, F = len(ridx), len(feats)
     z = np.full((n, F), np.nan)
@@ -125,9 +196,9 @@ def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
         if f["id"] == "pool_size":
             raw[:, j] = est
             z[:, j] = _winsor_log_minmax(est)
-        elif f["id"] == "pool_balance":
-            raw[:, j] = balance
-            z[:, j] = _pct_rank(balance)
+        elif f["id"] == "match_propensity":
+            raw[:, j] = match
+            z[:, j] = _pct_rank(match)
         else:
             raw[:, j] = build.static[f["id"]][ridx]
             z[:, j] = _pct_rank(raw[:, j] * f["direction"])
@@ -154,9 +225,9 @@ def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
 
 
 def score_vector(build: Build, ridx: np.ndarray, est: np.ndarray,
-                 balance: np.ndarray, weights: dict[str, float]) -> np.ndarray:
+                 match: np.ndarray, weights: dict[str, float]) -> np.ndarray:
     """Score only — the validation suite's replicate-resampling entry."""
-    return score_components(build, ridx, est, balance, weights)["score"]
+    return score_components(build, ridx, est, match, weights)["score"]
 
 
 def _balance_block(build: Build, i: int, bal: dict, sought_word: str,
@@ -186,6 +257,21 @@ def _balance_block(build: Build, i: int, bal: dict, sought_word: str,
                      if bal["standing"] is not None
                      and not np.isnan(bal["standing"][i]) else None),
     }
+
+
+def _band_from_standing(build: Build, fid: str, standing: float) -> dict | None:
+    """Five-band position of a PER-REQUEST statistic within the query's
+    ranked set (m3.0.0: match_propensity), cut on the registry's standing
+    edges with the feature's registry labels and direction-derived
+    tones — the same rule the national bands use, applied to the
+    standing this request computed."""
+    le = build.legend.get(fid, {})
+    if not le.get("band_labels") or standing is None or np.isnan(standing):
+        return None
+    bands = build.manifest["standing_bands"]
+    k = bisect_right(bands["edges"], float(standing))
+    return {"key": bands["keys"][k], "standing_all": round(float(standing), 1),
+            "label": le["band_labels"][k], "tone": le["band_tones"][k]}
 
 
 def _band_of(build: Build, fid: str, i: int) -> dict | None:
@@ -311,9 +397,26 @@ def _row_flags(build: Build, i: int) -> list[str]:
     return f
 
 
+def _match_block(mt: dict, i: int, build: Build, standing: float | None) -> dict:
+    """Chances of matching for one ranked metro: the index, its display
+    string, the (unrendered) margin and its within-query band."""
+    le = build.legend["match_propensity"]
+    v = float(mt["index"][i])
+    out = {"available": bool(np.isfinite(v)),
+           "value": round(v, 2) if np.isfinite(v) else None,
+           "display": format_value(v, le) if np.isfinite(v) else None,
+           "moe": round(float(mt["moe"][i]), 2) if np.isfinite(mt["moe"][i]) else None,
+           "unit_line": le["unit"]}
+    band = _band_from_standing(build, "match_propensity", standing)
+    if band:
+        out["band"] = band
+    return out
+
+
 def rank(build: Build, req: Request) -> dict:
     mask_p = pool_mask(req.seeking)
     m_sought, m_seeker = balance_masks(req)
+    mt = match_index(build, req)
 
     est = (build.pool_flat @ mask_p).astype(np.float64)
     n_alloc = (build.count_flat @ mask_p).astype(np.float64)
@@ -377,6 +480,11 @@ def rank(build: Build, req: Request) -> dict:
            "few_metros_notice": bool(ranked.sum() < 40),
            "balance_applies": not same_sex,
            "balance_words": {"sought": sought_word, "seeker": seeker_word},
+           # m3.0.0: what the visitor disclosed and the national reference
+           # the index is measured against (technical record)
+           "match_inputs": {"education": req.self_edu, "race_ethnicity": req.self_race,
+                            "national_rate": (round(float(mt["national_rate"]), 6)
+                                              if np.isfinite(mt["national_rate"]) else None)},
            "ranked": [], "shown_unranked": [], "suppressed": []}
 
     ridx = np.where(ranked)[0]
@@ -392,8 +500,8 @@ def rank(build: Build, req: Request) -> dict:
             st[off] = _pct_rank_interp(ranked_bal, bal_ratio[off])
         bal["standing"] = st
 
-        balance_scored = np.where(bal_ok[ridx], bal_ratio[ridx], np.nan)
-        sc = score_components(build, ridx, est[ridx], balance_scored, weights)
+        match_scored = mt["index"][ridx]
+        sc = score_components(build, ridx, est[ridx], match_scored, weights)
         feats, z, raw, w_eff, score, contrib = (
             sc["feats"], sc["z"], sc["raw"], sc["w_eff"], sc["score"],
             sc["contrib"])
@@ -420,7 +528,9 @@ def rank(build: Build, req: Request) -> dict:
                     "weight": round(float(w_eff[k, j]), 4),
                     "contribution": round(float(contrib[k, j]), 2),
                 }
-                band = _band_of(build, f["id"], i)
+                band = (_band_from_standing(build, f["id"], float(standing[k, j]))
+                        if f["id"] == "match_propensity"
+                        else _band_of(build, f["id"], i))
                 if band:
                     entry["band"] = band
                 stats.append(entry)
@@ -445,6 +555,8 @@ def rank(build: Build, req: Request) -> dict:
                 "tier": "measured",
                 "balance": _balance_block(build, i, bal, sought_word,
                                           seeker_word),
+                "match": _match_block(mt, i, build, float(standing[k, feats.index(
+                    next(f for f in feats if f["id"] == "match_propensity"))])),
                 "allocation_purity": round(float(build.purity[i]), 3),
                 "flags": _row_flags(build, i),
                 "stats": stats,

@@ -1,6 +1,6 @@
-"""Golden tests (m2.2.0): fifteen pinned request vectors against the
+"""Golden tests (m3.0.0): eighteen pinned request vectors against the
 pinned 12-metro fixture. Exact rankings, scores, pools, balance figures,
-summary lines and suppression. A model change that moves any of these
+chances-of-matching indexes, summary lines and suppression. A model change that moves any of these
 fails until MODEL_VERSION is bumped and goldens are regenerated
 (make_fixture.py) with a note in the commit.
 """
@@ -33,7 +33,7 @@ def test_model_version_pinned(goldens):
 
 def test_goldens_cover_required_shapes(goldens):
     vecs = goldens["vectors"]
-    assert len(vecs) == 15
+    assert len(vecs) == 18
     # m2.2.0: the formerly always-counted pair as an ordinary selection
     assert any(set(v["request"]["seeking"].get("race_ethnicity") or [])
                == {"two_or_more_nh", "other_nh"} for v in vecs)
@@ -44,7 +44,13 @@ def test_goldens_cover_required_shapes(goldens):
     assert not any("size_vs_odds" in v["request"] for v in vecs), (
         "size_vs_odds left the contract in m2.1.0 — its one deprecation "
         "version was m2.0.0")
+    assert any("pool_vs_match" in v["request"] for v in vecs)
+    # m3.0.0: the deprecated slider name pinned for its one version, and
+    # the four disclosure combinations of the optional seeker inputs
     assert any("pool_vs_balance" in v["request"] for v in vecs)
+    combos = {(bool(v["request"]["self"].get("education")),
+               bool(v["request"]["self"].get("race_ethnicity"))) for v in vecs}
+    assert combos == {(True, True), (True, False), (False, True), (False, False)}
     # the four m2.1.0 controls and the one-version lifestyle alias both
     # need pinned coverage (ADR 0005)
     assert any({"students", "weather"} <= set(v["request"].get("importance")
@@ -72,6 +78,8 @@ def test_exact_rankings_scores_and_suppression(build, goldens):
                        if r["balance"]["available"] else None)
             assert got_bal == want_bal, (
                 f"{v['name']}: balance moved for {r['cbsa']}")
+            assert r["match"]["value"] == exp["match_index"][r["cbsa"]], (
+                f"{v['name']}: chances of matching moved for {r['cbsa']}")
         for cbsa, line in exp["summary_lines"].items():
             got = next(r for r in res["ranked"] if r["cbsa"] == cbsa)
             assert got["summary_line"] == line, f"{v['name']}: movers moved"
@@ -93,8 +101,9 @@ def test_every_ranked_row_carries_the_contract(build, goldens):
     for r in res["ranked"]:
         for key in ("cbsa", "name", "display_name", "slug", "rank", "score",
                     "score_display", "pool", "pool_moe", "cv", "n_unweighted",
-                    "tier", "balance", "allocation_purity", "contributions",
-                    "summary_line", "flags", "stats", "cards", "top_stats"):
+                    "tier", "balance", "match", "allocation_purity",
+                    "contributions", "summary_line", "flags", "stats", "cards",
+                    "top_stats"):
             assert key in r, f"ranked row missing {key}"
         for gone in ("ratio", "ratio_moe", "rivals", "comparator",
                      "cross_group_pairing_rate", "explanation"):

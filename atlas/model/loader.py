@@ -16,6 +16,16 @@ disagrees with the engine's — a build produced under one model version
 loaded silently into another is the same class of failure as the Phase 1
 mask bug: two things that must agree, with nothing checking that they do.
 Pass allow_model_mismatch=True only for deliberate cross-version work.
+
+m3.0.0 artifact changes (ADR 0009): the build ships kernel.json +
+kernel.npz (the assortative kernel with its per-metro dials and
+normalisers), loaded into Build.kernel; and the loader precomputes the
+REDUCED cubes the weighted path sums over — pool and sumw2 collapsed to
+(metro, sex, age, education, race) for each of the 3 marital selections
+x 7 income floors, so a request's kernel-weighted sum is an einsum over
+1,696 cells per metro instead of a 28,448-cell masked pass. The reduced
+sums with unit weights must equal pool_flat @ mask (asserted in tests:
+the weighted path's mask-axis sibling).
 """
 from __future__ import annotations
 
@@ -28,8 +38,9 @@ import numpy as np
 import pandas as pd
 
 from atlas.model.intervals import IntervalModel
-from atlas.model.preferences import (EDU_LEVELS, INC_LEVELS, MARITAL_LEVELS,
-                                     N_FLAT, RACE_LEVELS, SEX_LEVELS)
+from atlas.model.preferences import (EDU_LEVELS, INC_LEVELS, KERNEL_COMPONENTS,
+                                     MARITAL_LEVELS, N_FLAT, RACE_LEVELS,
+                                     SEX_LEVELS, Kernel)
 from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
 STATIC_FEATURES = ["rent_1br", "rpp_goods", "rpp_services_other",
@@ -87,6 +98,74 @@ class Build:
     pairing_metro: dict = field(default_factory=dict)     # rate/moe/n arrays
     pairing: PairingCells | None = None
     intervals: IntervalModel | None = None
+    # m3.0.0: the kernel and the reduced cubes the weighted path reads
+    kernel: Kernel | None = None
+    reduced_pool: np.ndarray | None = None    # (3 marital sets, 7 floors, n, 2, 53, 4, 8) float32
+    reduced_sumw2: np.ndarray | None = None
+
+
+# marital selections the reduced cubes are keyed on, in the order the
+# cube's marital axis reads (never=0, previously=1); income floors are
+# the seven band indices (0 = no floor)
+REDUCED_MARITAL_SETS = ((0,), (1,), (0, 1))
+
+
+def reduced_key(marital_levels: frozenset[int], income_floor_idx: int) -> tuple[int, int]:
+    sel = tuple(sorted(marital_levels))
+    assert sel in REDUCED_MARITAL_SETS, f"marital selection {sel} not reducible"
+    return REDUCED_MARITAL_SETS.index(sel), int(income_floor_idx)
+
+
+def reduce_cube(cube: np.ndarray) -> np.ndarray:
+    """(n, 2, 53, 3, 4, 7, 8) -> (3, 7, n, 2, 53, 4, 8): summed over the
+    marital selection and over income bands at or above each floor."""
+    n = cube.shape[0]
+    out = np.empty((len(REDUCED_MARITAL_SETS), 7, n, 2, 53, 4, 8), dtype=np.float32)
+    c64 = cube.astype(np.float64, copy=False)
+    for mi, msel in enumerate(REDUCED_MARITAL_SETS):
+        base = c64[:, :, :, list(msel), :, :, :].sum(axis=3)          # (n, 2, 53, 4, 7, 8)
+        cum = np.flip(np.cumsum(np.flip(base, axis=4), axis=4), axis=4)
+        for f in range(7):
+            out[mi, f] = cum[:, :, :, :, f, :]
+    return out
+
+
+def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
+    meta = json.loads((path / "kernel.json").read_text())
+    z = np.load(path / "kernel.npz", allow_pickle=False)
+    assert meta["version"] == "kernel_v1", meta["version"]
+    assert list(z["metro_levels"]) == metro_levels, (
+        "kernel.npz metro order disagrees with the build's metros")
+    assert meta["sex_levels"] == SEX_LEVELS and meta["edu_levels"] == EDU_LEVELS \
+        and meta["race_levels"] == RACE_LEVELS, "kernel level coding drifted"
+    f_age = np.asarray(z["f_age"], dtype=np.float64)
+    f_edu = np.asarray(z["f_edu"], dtype=np.float64)
+    f_race = np.asarray(z["f_race"], dtype=np.float64)
+    dials = np.asarray(z["dials"], dtype=np.float64)
+    log_norm = np.asarray(z["log_norm"], dtype=np.float32)
+    avail = np.asarray(z["avail_national"], dtype=np.float64)
+    n = len(metro_levels)
+    if log_norm.shape == (n, 2 * 53 * 4 * 8):
+        # the writer stores the per-seeker normalisers flat in seeker-type
+        # order (sex, age, edu, race), which is exactly this reshape
+        log_norm = log_norm.reshape(n, 2, 53, 4, 8)
+    assert f_age.shape == (2, 105) and f_edu.shape == (4, 4) and f_race.shape == (2, 8, 8)
+    assert dials.shape == (n, 3) and log_norm.shape == (n, 2, 53, 4, 8)
+    assert avail.shape == (2, 53, 4, 8) and (avail >= 0).all()
+    assert np.isfinite(f_age).all() and np.isfinite(f_edu).all() and np.isfinite(f_race).all()
+    assert np.isfinite(dials).all() and (dials >= 0).all()
+    comps = tuple(meta.get("dial_components", []))
+    for j, c in enumerate(KERNEL_COMPONENTS):
+        if c not in comps:
+            assert np.allclose(dials[:, j], 1.0), (
+                f"component {c} earned no dial but carries non-unit dials")
+    return Kernel(f_age=f_age, f_edu=f_edu, f_race=f_race, dials=dials,
+                  log_norm=log_norm, avail=avail, gap_offset=int(meta["gap_offset"]),
+                  dial_components=comps,
+                  meta={k: meta.get(k) for k in ("version", "fitting_sample",
+                                                  "fitting_sample_spec", "bandwidth_years",
+                                                  "dials_tau", "generated_at", "gauge",
+                                                  "form")})
 
 
 def _validate_axes(manifest: dict) -> list[str]:
@@ -228,8 +307,12 @@ def load_build(path: str | Path, verify_hashes: bool = True,
             list(SELECTABLE_RACES), (
             "manifest race_groups must name the eight selectable groups in "
             "panel order (m2.2.0/ADR 0006)")
-    for f in STATIC_FEATURES + ["pool_balance"]:
+    for f in STATIC_FEATURES + ["pool_balance", "match_propensity"]:
         assert f in fb, f"feature {f} missing from manifest features_block"
+    assert fb["pool_balance"].get("status") == "context_only" and \
+        float(fb["pool_balance"]["weight_in_pillar"]) == 0.0, (
+        "pool_balance is displayed, never scored (ADR 0009)")
+    assert fb["match_propensity"]["pillar"] == "match", "match_propensity carries the match pillar"
     if not old_artifact:
         for f in CRIME_FEATURES:
             assert f in fb, f"feature {f} missing from manifest features_block"
@@ -266,6 +349,15 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         "n": feats["cross_group_pairing_n"].to_numpy(dtype=np.float64),
     }
 
+    # m3.0.0: the kernel is part of the served artifact; a build without
+    # it cannot serve chances of matching
+    assert (path / "kernel.json").exists() and (path / "kernel.npz").exists(), (
+        "build is missing kernel.json / kernel.npz (m3.0.0); run "
+        "build.kernel before build.cube")
+    kernel = _load_kernel(path, metro_levels)
+    reduced_pool = reduce_cube(pool)
+    reduced_sumw2 = reduce_cube(sumw2)
+
     return Build(
         path=path, manifest=manifest, metro_levels=metro_levels, titles=titles,
         display_names=display_names, display_names_full=display_names_full,
@@ -288,4 +380,7 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         pairing_metro=pairing_metro,
         pairing=_load_pairing(path, metro_levels),
         intervals=intervals,
+        kernel=kernel,
+        reduced_pool=reduced_pool,
+        reduced_sumw2=reduced_sumw2,
     )

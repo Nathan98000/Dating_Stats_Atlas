@@ -19,8 +19,17 @@ describe("permalink round-trip against the Python model", () => {
       const { dataVersion, modelVersion, body } = decodePermalink(c.permalink);
       expect(dataVersion).toBe(cases.data_version);
       expect(modelVersion).toBe(cases.model_version);
-      // decode inverts the encode (numeric equality: 1.0 === 1 in JS)
-      expect(body).toEqual(c.body as RankBody);
+      // decode inverts the encode (numeric equality: 1.0 === 1 in JS) —
+      // up to the m3.0.0 canonicalisation: a body sent with the
+      // deprecated pool_vs_balance name encodes as pool_vs_match, exactly
+      // as the Python model does, so the decoded body carries the
+      // canonical name (ADR 0009)
+      const canonicalBody = { ...(c.body as RankBody) };
+      if (canonicalBody.pool_vs_balance !== undefined) {
+        canonicalBody.pool_vs_match = canonicalBody.pool_vs_balance;
+        delete canonicalBody.pool_vs_balance;
+      }
+      expect(body).toEqual(canonicalBody);
       // encode reproduces Python's bytes exactly, integral floats included
       const re = encodePermalink(dataVersion, modelVersion, body);
       expect(re).toBe(c.permalink);
@@ -40,14 +49,17 @@ describe("permalink round-trip against the Python model", () => {
         r && r.length > 0 && r.length < 8 ? [...r].sort() : undefined;
       expect(resolveRace(rebuilt.seeking.race_ethnicity)).toEqual(
         resolveRace(body.seeking.race_ethnicity));
-      // the deprecated size_vs_odds alias re-expresses as pool_vs_balance
-      // (ADR 0004); the slider VALUE survives, the old name does not, and
+      // the deprecated names re-express as pool_vs_match (ADR 0009 over
+      // ADR 0004); the slider VALUE survives, the old name does not, and
       // explicit m1.x weight vectors reproduce on the /r/ render itself
       // (server-side, from the decoded body) rather than in edit state.
-      const slider = body.pool_vs_balance ?? body.size_vs_odds;
+      const slider = body.pool_vs_match ?? body.pool_vs_balance ?? body.size_vs_odds;
       if (slider !== undefined) {
-        expect(rebuilt.pool_vs_balance).toEqual(slider);
+        expect(rebuilt.pool_vs_match).toEqual(slider);
       }
+      // the seeker's optional attributes survive the round trip
+      expect(rebuilt.self.education).toEqual(body.self.education);
+      expect(rebuilt.self.race_ethnicity).toEqual(body.self.race_ethnicity);
       // importance compares RESOLVED: a partial m2.1.0 body defaults its
       // missing controls to "some", and the one-version lifestyle alias
       // lands on both split pillars — the semantics survive, the spelling

@@ -3,8 +3,13 @@
  * body. It never computes a ranking number — that is the API's job. */
 import type { RankBody } from "./permalink";
 
-export const PILLARS = ["pool", "balance", "reach", "cost", "weather",
+export const PILLARS = ["pool", "match", "reach", "cost", "weather",
   "students"] as const;
+/** m3.0.0: the seeker's own optional attributes (ADR 0009) — cube level
+ * names for education, spec ids for race; labels live in the registry */
+export const SELF_EDU_LEVELS = ["hs_or_less", "some_college", "bachelors",
+  "graduate"] as const;
+export type SelfEdu = (typeof SELF_EDU_LEVELS)[number];
 export type Level = "not_much" | "some" | "a_lot";
 /** The four m2.1.0 importance controls (item 4): Cost of living, Social
  * life, Student life, Weather — labels and subtitles arrive from the
@@ -23,7 +28,11 @@ export interface Prefs {
   incomeMin?: number;
   race?: string[]; // spec ids of ticked groups (all eight equal since
   // m2.2.0/ADR 0006); absent = all — zero and all-eight mean everyone
-  poolVsBalance?: number; // 0..1
+  /** m3.0.0: optional "about you" inputs; absent = not disclosed, and
+   * the API falls back to the population-average marginal */
+  selfEdu?: SelfEdu;
+  selfRace?: string;
+  poolVsMatch?: number; // 0..1 (the URL param stays "s")
   importance: Record<ImportancePillar, Level>;
   sort: "best_first" | "worst_first";
 }
@@ -61,8 +70,9 @@ export type SearchParams = Record<string, string | string[] | undefined>;
 /** The preference dialect's parameter names — the ONE list behind
  * isDefaultSearch, the nav links' carried query (Phase 2f item 2) and
  * the cookie fallback. */
-export const PREF_KEYS = ["self_sex", "self_age", "sex", "age", "marital",
-  "edu", "inc", "race", "s", "ic", "ir", "ist", "iw", "il", "sort"] as const;
+export const PREF_KEYS = ["self_sex", "self_age", "self_edu", "self_race",
+  "sex", "age", "marital", "edu", "inc", "race", "s", "ic", "ir", "ist", "iw",
+  "il", "sort"] as const;
 
 /** Phase 2f item 2 (ADR 0007): preferences persist in a cookie so the
  * search follows the visitor across the site. The query string stays the
@@ -124,6 +134,12 @@ export function parsePrefs(sp: SearchParams): Prefs {
   if (selfSex === "male" || selfSex === "female") p.selfSex = selfSex;
   const selfAge = parseInt(one(sp, "self_age") ?? "", 10);
   if (Number.isFinite(selfAge)) p.selfAge = Math.min(70, Math.max(18, selfAge));
+  const selfEdu = one(sp, "self_edu");
+  if ((SELF_EDU_LEVELS as readonly string[]).includes(selfEdu ?? "")) {
+    p.selfEdu = selfEdu as SelfEdu;
+  }
+  const selfRace = one(sp, "self_race");
+  if ((RACE_IDS as readonly string[]).includes(selfRace ?? "")) p.selfRace = selfRace;
   const seekSex = one(sp, "sex");
   if (seekSex === "male" || seekSex === "female") p.seekSex = seekSex;
   const age = (one(sp, "age") ?? "").match(/^(\d+)-(\d+)$/);
@@ -150,7 +166,7 @@ export function parsePrefs(sp: SearchParams): Prefs {
     if (parts.length && parts.length < RACE_IDS.length) p.race = parts;
   }
   const s = parseFloat(one(sp, "s") ?? "");
-  if (Number.isFinite(s) && s >= 0 && s <= 1) p.poolVsBalance = s;
+  if (Number.isFinite(s) && s >= 0 && s <= 1) p.poolVsMatch = s;
   for (const [param, pillar] of IMPORTANCE_PARAMS) {
     const lv = LEVEL_LONG[one(sp, param) ?? ""];
     if (lv) p.importance[pillar] = lv;
@@ -169,13 +185,15 @@ export function toSearchParams(p: Prefs): URLSearchParams {
   const sp = new URLSearchParams();
   sp.set("self_sex", p.selfSex);
   sp.set("self_age", String(p.selfAge));
+  if (p.selfEdu) sp.set("self_edu", p.selfEdu);
+  if (p.selfRace) sp.set("self_race", p.selfRace);
   if (p.seekSex) sp.set("sex", p.seekSex);
   sp.set("age", `${p.ageMin}-${p.ageMax}`);
   sp.set("marital", p.marital.map((m) => MARITAL_LONG[m]).join(","));
   if (p.educationMin) sp.set("edu", p.educationMin);
   if (p.incomeMin !== undefined) sp.set("inc", String(p.incomeMin));
   if (p.race?.length) sp.set("race", p.race.join(","));
-  if (p.poolVsBalance !== undefined) sp.set("s", String(p.poolVsBalance));
+  if (p.poolVsMatch !== undefined) sp.set("s", String(p.poolVsMatch));
   for (const [param, pillar] of IMPORTANCE_PARAMS) {
     if (p.importance[pillar] !== "some") {
       sp.set(param, LEVEL_SHORT[p.importance[pillar]]);
@@ -194,15 +212,17 @@ export function toRankBody(p: Prefs): RankBody {
     },
     sort: p.sort,
   };
+  if (p.selfEdu) body.self.education = p.selfEdu;
+  if (p.selfRace) body.self.race_ethnicity = p.selfRace;
   if (p.seekSex) body.seeking.sex = p.seekSex;
   if (p.educationMin) body.seeking.education_min = p.educationMin;
   if (p.incomeMin !== undefined) body.seeking.income_min = p.incomeMin;
   if (p.race?.length) body.seeking.race_ethnicity = [...p.race];
   const touched =
-    p.poolVsBalance !== undefined ||
+    p.poolVsMatch !== undefined ||
     Object.values(p.importance).some((l) => l !== "some");
   if (touched) {
-    body.pool_vs_balance = p.poolVsBalance ?? 0.4545;
+    body.pool_vs_match = p.poolVsMatch ?? 0.4545;
     body.importance = { ...p.importance };
   }
   return body;
@@ -229,6 +249,12 @@ export function bodyToPrefs(body: RankBody): Prefs {
     importance: imp,
     sort: (body.sort as Prefs["sort"]) ?? "best_first",
   };
+  if ((SELF_EDU_LEVELS as readonly string[]).includes(body.self.education ?? "")) {
+    p.selfEdu = body.self.education as SelfEdu;
+  }
+  if ((RACE_IDS as readonly string[]).includes(body.self.race_ethnicity ?? "")) {
+    p.selfRace = body.self.race_ethnicity;
+  }
   if (body.seeking.sex === "male" || body.seeking.sex === "female") {
     p.seekSex = body.seeking.sex;
   }
@@ -242,8 +268,11 @@ export function bodyToPrefs(body: RankBody): Prefs {
     // a token listing all eight round-trips to "no filter" (m2.2.0)
     if (sel.length < RACE_IDS.length) p.race = sel;
   }
-  if (body.pool_vs_balance !== undefined) p.poolVsBalance = body.pool_vs_balance;
-  else if (body.size_vs_odds !== undefined) p.poolVsBalance = body.size_vs_odds;
+  // the slider value survives whichever name a token carries: the m3.0.0
+  // control, the m2.x pool_vs_balance alias, or m2.0.0's size_vs_odds
+  if (body.pool_vs_match !== undefined) p.poolVsMatch = body.pool_vs_match;
+  else if (body.pool_vs_balance !== undefined) p.poolVsMatch = body.pool_vs_balance;
+  else if (body.size_vs_odds !== undefined) p.poolVsMatch = body.size_vs_odds;
   return p;
 }
 
