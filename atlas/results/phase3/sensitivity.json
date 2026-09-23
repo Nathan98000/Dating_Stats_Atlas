@@ -1,0 +1,72 @@
+{
+ "reference_search": "opposite sex, ages [age-2, age+10] clipped to 18-70, never or previously married, no other filter (the site's default window)",
+ "kernel_without": "the national kernel refitted by IPF with that component held at zero (the other two absorb what they can), the shipped dials kept for the remaining components",
+ "by_component": {
+  "age": {
+   "median_of_level_medians_pts": 3.08,
+   "largest_level_median_pts": 5.55,
+   "largest_level": [
+    "18-24",
+    "male"
+   ],
+   "levels_where_top1_changes": 9,
+   "levels": 10,
+   "min_kendall_tau": 0.127
+  },
+  "edu": {
+   "median_of_level_medians_pts": 7.98,
+   "largest_level_median_pts": 15.08,
+   "largest_level": [
+    "graduate",
+    "female"
+   ],
+   "levels_where_top1_changes": 5,
+   "levels": 8,
+   "min_kendall_tau": 0.408
+  },
+  "race": {
+   "median_of_level_medians_pts": 23.17,
+   "largest_level_median_pts": 38.18,
+   "largest_level": [
+    "nh_black",
+    "female"
+   ],
+   "levels_where_top1_changes": 16,
+   "levels": 16,
+   "min_kendall_tau": -0.162
+  }
+ },
+ "disclosure_gap": {
+  "edu": {
+   "median_of_median_gaps_pts": 7.84,
+   "largest_median_gap_pts": 18.73,
+   "largest_max_gap_pts": 107.5,
+   "largest_median_gap_level": [
+    "male",
+    30,
+    "graduate"
+   ]
+  },
+  "race": {
+   "median_of_median_gaps_pts": 25.09,
+   "largest_median_gap_pts": 39.66,
+   "largest_max_gap_pts": 2648.98,
+   "largest_median_gap_level": [
+    "male",
+    35,
+    "nh_black"
+   ]
+  },
+  "both": {
+   "median_of_median_gaps_pts": 26.79,
+   "largest_median_gap_pts": 47.48,
+   "largest_max_gap_pts": 2956.7,
+   "largest_median_gap_level": [
+    "male",
+    35,
+    "graduate+nh_asian"
+   ]
+  }
+ },
+ "seconds": 334.6
+}

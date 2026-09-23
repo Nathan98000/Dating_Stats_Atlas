@@ -1,0 +1,193 @@
+{
+ "default_search": {
+  "self": {
+   "sex": "female",
+   "age": 30
+  },
+  "seeking": {
+   "age": [
+    28,
+    40
+   ],
+   "marital": [
+    "never_married",
+    "previously_married"
+   ]
+  }
+ },
+ "ranked": 193,
+ "rank_shift_vs_m2_4_0": {
+  "metros_compared": 193,
+  "ranks_changed": 193,
+  "kendall_tau": 0.399,
+  "median_abs_move": 34.0,
+  "max_abs_move": 118,
+  "biggest_moves": [
+   {
+    "metro": "Durham, NC",
+    "cbsa": "20500",
+    "old_rank": 167,
+    "new_rank": 49,
+    "move": 118
+   },
+   {
+    "metro": "Columbia, SC",
+    "cbsa": "17900",
+    "old_rank": 176,
+    "new_rank": 60,
+    "move": 116
+   },
+   {
+    "metro": "Green Bay, WI",
+    "cbsa": "24580",
+    "old_rank": 55,
+    "new_rank": 171,
+    "move": -116
+   },
+   {
+    "metro": "Memphis, TN",
+    "cbsa": "32820",
+    "old_rank": 149,
+    "new_rank": 35,
+    "move": 114
+   },
+   {
+    "metro": "Gainesville, FL",
+    "cbsa": "23540",
+    "old_rank": 173,
+    "new_rank": 59,
+    "move": 114
+   },
+   {
+    "metro": "Tallahassee, FL",
+    "cbsa": "45220",
+    "old_rank": 180,
+    "new_rank": 69,
+    "move": 111
+   },
+   {
+    "metro": "Baltimore, MD",
+    "cbsa": "12580",
+    "old_rank": 124,
+    "new_rank": 21,
+    "move": 103
+   },
+   {
+    "metro": "Salinas, CA",
+    "cbsa": "41500",
+    "old_rank": 46,
+    "new_rank": 148,
+    "move": -102
+   },
+   {
+    "metro": "Birmingham, AL",
+    "cbsa": "13820",
+    "old_rank": 172,
+    "new_rank": 71,
+    "move": 101
+   },
+   {
+    "metro": "Richmond, VA",
+    "cbsa": "40060",
+    "old_rank": 146,
+    "new_rank": 47,
+    "move": 99
+   }
+  ],
+  "top10_old": [
+   "San Francisco, CA",
+   "Seattle, WA",
+   "Los Angeles, CA",
+   "San Diego, CA",
+   "San Jose, CA",
+   "Austin, TX",
+   "Portland, OR",
+   "Phoenix, AZ",
+   "Denver, CO",
+   "New York, NY"
+  ],
+  "top10_new": [
+   "New York, NY",
+   "Boston, MA",
+   "Chicago, IL",
+   "San Francisco, CA",
+   "Philadelphia, PA",
+   "Los Angeles, CA",
+   "New Orleans, LA",
+   "Austin, TX",
+   "Seattle, WA",
+   "Atlanta, GA"
+  ]
+ },
+ "pole_correlation_default": {
+  "n": 193,
+  "pearson_log_pool": 0.344,
+  "spearman": 0.335
+ },
+ "pole_correlation_battery": {
+  "seekers": 153,
+  "pearson_log_pool_median": 0.043,
+  "pearson_log_pool_min": -0.425,
+  "pearson_log_pool_max": 0.429,
+  "abs_pearson_p90": 0.364,
+  "seekers_abs_above_0_7": 0,
+  "spearman_median": 0.079,
+  "stop_condition_abs_above_0_7": false
+ },
+ "default_index_distribution": {
+  "p10_p50_p90": [
+   89.4,
+   96.3,
+   106.8
+  ],
+  "min_max": [
+   83.3,
+   115.1
+  ],
+  "top5": [
+   [
+    "Ann Arbor, MI",
+    115.11
+   ],
+   [
+    "Fort Collins, CO",
+    114.19
+   ],
+   [
+    "Raleigh, NC",
+    113.0
+   ],
+   [
+    "Tuscaloosa, AL",
+    111.82
+   ],
+   [
+    "Boston, MA",
+    111.19
+   ]
+  ],
+  "bottom5": [
+   [
+    "Salinas, CA",
+    83.28
+   ],
+   [
+    "Hagerstown, MD",
+    84.07
+   ],
+   [
+    "Green Bay, WI",
+    84.36
+   ],
+   [
+    "Ocala, FL",
+    84.5
+   ],
+   [
+    "Kingsport, TN",
+    85.26
+   ]
+  ],
+  "moe_index_median": 4.03
+ }
+}

@@ -1,8 +1,8 @@
 {
-  "data_version": "5d0e3ca2f708",
-  "model_version": "m2.4.0",
+  "data_version": "b7f53afb9997",
+  "model_version": "m3.0.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-18T13:01:53-0400",
+  "created_at": "2026-09-23T16:02:47-0400",
   "axes": [
     {
       "name": "metro",
@@ -597,12 +597,40 @@
     "suppress": "min(n_alloc, kish) < 100, or empty pool \u2014 the gate is n alone (ADR 0002; the rival condition left with the rival apparatus, ADR 0004)",
     "shown_unranked": "permanently empty: the CV tiers are removed (measured max true CV 11.8%, p99 9.8% in the served region of the 480-shape battery \u2014 the rules could not fire)",
     "ranked": "everything else in the ranked set; margins are computed and returned but no longer rendered (ADR 0004) \u2014 suppression is the visible expression of uncertainty",
-    "balance_gate": "dating pool balance gates separately: both age-by-sex counts must clear the same 100-effective-respondent bar"
+    "balance_gate": "dating pool balance gates separately: both age-by-sex counts must clear the same 100-effective-respondent bar",
+    "match_gate": "chances of matching gates on the UNWEIGHTED n of the same masked pool (ADR 0009): the kernel can neither rescue nor condemn a cell"
+  },
+  "kernel": {
+    "version": "kernel_v1",
+    "form": "w = exp(theta_age f_age(gap; sex_s) + theta_edu f_edu(edu_s, edu_c) + theta_race f_race(race_s, race_c; sex_s) + log_norm(metro, seeker))",
+    "gauge": "each component: availability-weighted mean multiplier 1 on its own margin under random pairing; log_norm makes the full kernel average exactly 1 over the national single adult population per seeker type",
+    "fitting_sample": "recent",
+    "fitting_sample_spec": {
+      "where": "(NOT married OR union_year >= 2019)",
+      "weight": "1.0"
+    },
+    "couple_sides_weighted": 24196035.3,
+    "n_alloc": 986769.8,
+    "bandwidth_years": [
+      0.25,
+      0.25
+    ],
+    "dial_components": [
+      "age",
+      "edu",
+      "race"
+    ],
+    "dials_tau": {
+      "age": 0.065,
+      "edu": 0.0778,
+      "race": 0.1299
+    },
+    "generated_at": "2026-09-23T16:01:38-0400"
   },
   "model_defaults": {
     "pillar_weights": {
       "pool": 0.3,
-      "balance": 0.25,
+      "match": 0.25,
       "reach": 0.2,
       "cost": 0.15,
       "weather": 0.06,
@@ -612,7 +640,7 @@
       "pool_plus_balance_mass": 0.55,
       "default_s": 0.4545,
       "label_low": "Dating pool size",
-      "label_high": "Dating pool balance"
+      "label_high": "Chances of matching"
     },
     "importance_levels": {
       "not_much": 0.4,
@@ -697,7 +725,19 @@
   "strings": {
     "home_title": "Which city has the best dating scene for you?",
     "home_subtitle": "Select who you're looking for and what matters to you. Find out how many people match your search in each city based on Census data.",
-    "slider_info": "Leaning towards size favors larger cities with the most possible matches. Leaning towards balance favors cities with a larger share of single men/women in your preferred age range.",
+    "slider_info": "Leaning towards size favors larger cities with the most possible matches. Leaning towards chances of matching favors cities where the people who match your search line up more closely with you on age, education, and background, based on historical Census marriage data.",
+    "match_info": "This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps, the education pairings and the racial and ethnic pairings that occur. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+    "match_how": "The chances-of-matching figure is built from real couples in the Census Bureau's household survey, using each partner's age, education and race or ethnicity. Across the whole country we measure how often each age gap, each education pairing and each racial or ethnic pairing actually occurs, compared with how often it would occur if single people paired at random. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age, education and background. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
+    "match_how_link": "How this is measured",
+    "match_unit_line": "where 100 is the US average",
+    "self_edu_label": "My education",
+    "self_race_label": "My race or ethnicity",
+    "prefer_not_to_say": "Prefer not to say",
+    "about_you_note": "Optional: your education and your race or ethnicity feed only the chances-of-matching figure. Leave either unset and the average for people of your age and sex is used instead.",
+    "edu_hs_or_less": "High school or less",
+    "edu_some_college": "Some college",
+    "edu_bachelors": "College degree",
+    "edu_graduate": "Graduate degree",
     "crime_caution": "The FBI cautions against using this number to compare cities. Data can be affected by how much crime is reported and whether local agencies send data to the FBI at all.",
     "crime_see_more": "See more details",
     "crime_coverage_line": "Police agencies covering {coverage} of the people here reported a full year of {year} data. The rates count only what those agencies cover.",
@@ -728,7 +768,10 @@
       "heading": "people",
       "pillars": [
         "pool",
-        "balance"
+        "match"
+      ],
+      "features": [
+        "pool_balance"
       ]
     },
     {
@@ -806,9 +849,9 @@
       "default_weight": 0.3,
       "control_subtitle": null
     },
-    "balance": {
-      "display_name": "Dating pool balance",
-      "definition": "Number of single men per 100 single women in your selected age range (or the opposite, if you're looking for women)",
+    "match": {
+      "display_name": "Chances of matching",
+      "definition": "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education and background, where 100 is the US average",
       "default_weight": 0.25,
       "control_subtitle": null
     },
@@ -931,11 +974,11 @@
       }
     },
     "pool_balance": {
-      "pillar": "balance",
+      "pillar": "context",
       "kind": "intensive",
       "direction": 1,
-      "weight_in_pillar": 1.0,
-      "status": "active",
+      "weight_in_pillar": 0.0,
+      "status": "context_only",
       "display_name": "Dating pool balance",
       "unit": "per 100",
       "unit_short": "per 100",
@@ -946,7 +989,7 @@
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
-      "definition": "Single men per 100 single women in the ages you picked (or women per 100 men, if you are looking for women) \u2014 everyone single in that age range, before any other filter.",
+      "definition": "Number of single men per 100 single women in your selected age range (or the opposite, if you're looking for women)",
       "display_scale": 100.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -964,8 +1007,61 @@
         "tier": "measured"
       }
     },
+    "match_propensity": {
+      "pillar": "match",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 1.0,
+      "status": "active",
+      "display_name": "Chances of matching",
+      "unit": "where 100 is the US average",
+      "unit_short": "(US = 100)",
+      "unit_template": null,
+      "mover_phrase": "your chances of matching",
+      "stat_page_name": null,
+      "band_direction": "good_high",
+      "band_labels": [
+        "Far below most cities",
+        "Below most cities",
+        "About average",
+        "Above most cities",
+        "Far above most cities"
+      ],
+      "band_tones": [
+        "poor_strong",
+        "poor",
+        "neutral",
+        "good",
+        "good_strong"
+      ],
+      "band_edges": null,
+      "definition": "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education and background, where 100 is the US average",
+      "display_scale": 1.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "census_acs",
+        "dataset": "ACS 2020-2024 5-year PUMS",
+        "table": "pool_cube x kernel (person+household couple links, RELSHIPP 20<->21/22)",
+        "variables": [
+          "PWGTP",
+          "a_eff",
+          "AGEP",
+          "SCHL",
+          "RAC1P",
+          "HISP",
+          "MARHYP",
+          "SERIALNO",
+          "RELSHIPP"
+        ],
+        "geography": "cbsa",
+        "vintage": "2020-2024",
+        "transform_id": "match_propensity_v1",
+        "tier": "measured"
+      }
+    },
     "partners_per_rival": {
-      "pillar": "balance",
+      "pillar": "match",
       "kind": "intensive",
       "direction": 1,
       "weight_in_pillar": 0.0,
@@ -1629,9 +1725,11 @@
   },
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
-    "features.parquet": "c794892caa92aa196ba4b119a184299e508e65e282da0d4222a2e234188d3a0e",
+    "features.parquet": "4e65791d0c7bfa6160eeb87e6a037d733cd98f5a0e7efe8d4355b0104428342a",
+    "kernel.json": "2140ec5f5d0c4a61f615b6b0ccc6a199eb87c6eecc3d3104f44d8bed30c466df",
+    "kernel.npz": "0a006af382ed3f1c2bae27da250e4ae05ed44581f6d654c6c69d738d9cbeaaaf",
     "metros.json": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",
-    "pairing_cells.parquet": "a770d6e79d20dd5129390f4599ba63741c84bd047e039a399faed7370e82c824",
+    "pairing_cells.parquet": "ea906b4b4b7fee95b39f7258782dd2535ac59e92b3d7bd7c245bbec9e451ec68",
     "pool_cube.npy": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",
     "sumw2_cube.npy": "5637faa542a5a7d5c85e2b64fe98d3cbaaa215c8c7c1a30c0446eb23a7add9b0"
   }
