@@ -78,11 +78,11 @@ test("the slider explanation opens on hover, focus and tap, closes on Escape and
   await expect(btn).toHaveAttribute("aria-expanded", "false");
   await expect(note).toHaveCount(0);
 
-  // hover — the Phase 2f slider copy, verbatim (item 4.4)
+  // hover — the Phase 3 slider copy, verbatim (ADR 0009)
   await btn.hover();
   await expect(note).toBeVisible();
   await expect(note).toContainText(/size favors larger cities/);
-  await expect(note).toContainText(/balance favors cities with a larger share/);
+  await expect(note).toContainText(/chances of matching favors cities where the people who match your search line up more closely/);
   await page.mouse.move(10, 10);
   await expect(note).toHaveCount(0);
 

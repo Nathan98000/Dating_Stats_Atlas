@@ -1,17 +1,21 @@
 /** Permalink encode/decode, byte-compatible with atlas.model.preferences
  * .permalink(): canonical JSON (recursively sorted keys, compact
- * separators) over {self, seeking, weights, size_vs_odds}, base64url with
- * padding stripped, under /r/<data_version>/<model_version>/<token>.
+ * separators) over {self, seeking, weights, pool_vs_match, importance},
+ * base64url with padding stripped, under
+ * /r/<data_version>/<model_version>/<token>.
  *
  * One asymmetry matters: Python renders integral floats as "1.0" while
- * JSON.stringify renders 1. The §8.2 float-typed fields (size_vs_odds and
+ * JSON.stringify renders 1. The §8.2 float-typed fields (the slider and
  * the pillar weights) are therefore formatted Python-style. The shared
  * test (tests/permalink.test.ts) asserts byte equality against cases
  * emitted by the Python model, so a drift here fails CI rather than
- * shipping two permalink dialects. */
+ * shipping two permalink dialects. m3.0.0 (ADR 0009): the slider is
+ * pool_vs_match and the pillar is match; pool_vs_balance still DECODES
+ * (old tokens route to the earlier-edition page) and, when a body
+ * carries it, encodes as the canonical control exactly as Python does. */
 
-const FLOAT_KEYS = new Set(["pool_vs_balance", "pool", "balance", "reach",
-  "cost", "weather", "students"]);
+const FLOAT_KEYS = new Set(["pool_vs_match", "pool_vs_balance", "pool",
+  "match", "balance", "reach", "cost", "weather", "students"]);
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
 
@@ -29,7 +33,7 @@ function canonical(value: Json, parentKey: string | null,
   if (typeof value === "number") {
     const floatTyped =
       (parentKey !== null && inWeights && FLOAT_KEYS.has(parentKey)) ||
-      parentKey === "pool_vs_balance";
+      parentKey === "pool_vs_match" || parentKey === "pool_vs_balance";
     return pyNumber(value, floatTyped);
   }
   if (typeof value === "string") return JSON.stringify(value);
@@ -56,7 +60,8 @@ export interface RankBody {
   };
   weights?: Record<string, number>;
   size_vs_odds?: number;
-  pool_vs_balance?: number;
+  pool_vs_balance?: number; // deprecated alias, decoded and re-expressed
+  pool_vs_match?: number;
   importance?: Record<string, string>;
   sort?: string;
   data_version?: string;
@@ -69,8 +74,13 @@ export function canonicalCore(body: RankBody): string {
   // encodes it anymore, mirroring the Python core keys exactly
   const core: Record<string, Json> = {};
   for (const k of ["self", "seeking", "weights",
-                   "pool_vs_balance", "importance"] as const) {
+                   "pool_vs_match", "importance"] as const) {
     if (body[k] !== undefined) core[k] = body[k] as unknown as Json;
+  }
+  // the deprecated alias encodes as the canonical control (Python does
+  // the same), so one search has one permalink whichever name was sent
+  if (core.pool_vs_match === undefined && body.pool_vs_balance !== undefined) {
+    core.pool_vs_match = body.pool_vs_balance;
   }
   return canonical(core, null, false);
 }

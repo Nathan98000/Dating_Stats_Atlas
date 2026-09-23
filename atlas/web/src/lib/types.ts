@@ -53,6 +53,18 @@ export interface Card {
   missing?: boolean;
 }
 
+/** m3.0.0 (ADR 0009): chances of matching for a ranked row — the index
+ * (100 = the US average for this search), its display string, the
+ * unrendered margin and its within-query band. Computed by the API. */
+export interface MatchBlock {
+  available: boolean;
+  value?: number | null;
+  display?: string | null;
+  moe?: number | null;
+  unit_line?: string;
+  band?: Band;
+}
+
 export interface BalanceBlock {
   available: boolean;
   note?: string;
@@ -78,6 +90,7 @@ export interface RankedRow {
   n_unweighted: number;
   tier: string;
   balance: BalanceBlock;
+  match: MatchBlock;
   allocation_purity: number;
   flags: string[];
   stats: Stat[];
@@ -117,6 +130,8 @@ export interface RankResponse {
   few_metros_notice: boolean;
   balance_applies: boolean;
   balance_words: { sought: string; seeker: string };
+  match_inputs: { education: string | null; race_ethnicity: string | null;
+                  national_rate: number | null };
   ranked: RankedRow[];
   shown_unranked: RankedRow[];
   suppressed: SuppressedRow[];
@@ -193,6 +208,12 @@ export interface Meta {
     importance_levels: string[];
     importance_pillars: string[];
     age: [number, number];
+    /** m3.0.0: the slider's pole labels and the seeker's own education
+     * levels, registry-owned */
+    slider_labels: { low: string; high: string };
+    slider_control: string;
+    self_education_levels: string[];
   };
+  kernel: Record<string, unknown>;
   metros: MetroMeta[];
 }

@@ -11,10 +11,18 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  both through the cube mask path and by SQL
                                  over the contribution table — the check
                                  that would have caught the Phase 1 mask
-                                 bug the day it was written
-  hard  rank stability           resample pool+ratio across the 80
+                                 bug the day it was written; since m3.0.0
+                                 the same shapes also run the KERNEL-
+                                 WEIGHTED sum both ways (the weighted
+                                 path's mask-axis sibling)
+  hard  rank stability           resample pool+match across the 80
                                  replicates; >=8-of-10 top-10 overlap in
                                  >=80% of replicates, every persona
+  hard  kernel face validity     a 30-year-old's age weight peaks within
+                                 three years of 30; the education matrix
+                                 is diagonal-dominant; every race group's
+                                 own-group multiplier beats its
+                                 off-diagonals, both sexes (ADR 0009)
   hard  explanation invariants   no rendered string carries the §12.3
                                  banned vocabulary; the lead phrase is
                                  position-unique (the Phase 2a panel defect,
@@ -29,10 +37,10 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  vs baseline (target >= 0.85)
   soft  external correlation     score/ratio vs B09021 living-alone share
                                  and B12007 (state fallback, finding)
-  soft  pairing directional      interim cross-group pairing rate vs Pew's
-                                 2015 newlywed intermarriage table — a
-                                 WARNING, not a gate; reproducing the table
-                                 is Phase 3's gate
+  soft  pew reproduction         the Phase 3 out-of-sample Pew comparison
+                                 (results/phase3/kernel_report.json): the
+                                 shrunk kernel must beat national-only and
+                                 raw per-metro; reported as measured
   soft  served-region true CV    the ADR 0002 evidence, recomputed from the
                                  480-shape battery when the file is present
 """
@@ -50,9 +58,10 @@ import pandas as pd
 from scipy.stats import kendalltau, pearsonr, spearmanr
 
 from atlas import model as engine
-from atlas.model.preferences import (ALLOWED_MARITAL, SELECTABLE_RACES,
-                                     resolve_race_levels)
-from atlas.model.scoring import score_vector
+from atlas.model.preferences import (ALLOWED_MARITAL, EDU_LEVELS, RACE_LEVELS,
+                                     SELECTABLE_RACES, SEX_LEVELS,
+                                     resolve_race_levels, seeker_weights)
+from atlas.model.scoring import match_index, score_vector
 from atlas.model.suppression import POLICY_STRINGS
 from atlas.pipeline.build.pool import open_pool
 from atlas.pipeline.fetch import DATA, RESULTS, api_get
@@ -70,7 +79,7 @@ ALLOWED_REASONS = {"n_below_100", "empty_pool"}
 BANNED = re.compile(r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
                     re.IGNORECASE)
 PEW_CSV = RESULTS / "reference" / "pew_intermarriage_2015.csv"
-PAIRING_WARN_SPEARMAN = 0.30
+KERNEL_REPORT = RESULTS / "phase3" / "kernel_report.json"
 CUBE_TO_SPEC = {v: k for k, v in engine.SPEC_RACE.items()}
 
 
@@ -93,6 +102,39 @@ def _replicate_sums(con, where: str) -> pd.DataFrame:
                           "est": float(r[1] or 0),
                           **{f"r{i}": float(r[2 + i - 1] or 0)
                              for i in range(1, 81)}} for r in rows])
+
+
+def _kernel_weights_table(con, build, req) -> None:
+    """The seeker's per-metro kernel weights over (age, edu4, race8) as a
+    temp table kw(cbsa, agep, edu4, race8, w) — the SQL side of the
+    weighted differential and of the replicate resampling."""
+    age_vec, W = seeker_weights(build.kernel, req.self_sex, req.self_age,
+                                req.self_edu, req.self_race)
+    n = len(build.metro_levels)
+    full = age_vec[:, :, None, None] * W[:, None, :, :]           # (n, 53, 4, 8)
+    m_i, a_i, e_i, r_i = np.indices(full.shape).reshape(4, -1)
+    df = pd.DataFrame({"cbsa": np.array(build.metro_levels)[m_i],
+                       "agep": a_i + 18,
+                       "edu4": np.array(EDU_LEVELS)[e_i],
+                       "race8": np.array(RACE_LEVELS)[r_i],
+                       "w": full.ravel()})
+    con.register("kw_df", df)
+    con.execute("CREATE OR REPLACE TEMP TABLE kw AS SELECT * FROM kw_df")
+    con.unregister("kw_df")
+
+
+def _weighted_sums_sql(con, where: str, replicates: bool = False) -> pd.DataFrame:
+    """Per metro: sum of kernel weight x person weight over the masked
+    pool (and, optionally, per replicate)."""
+    reps = (", " + ", ".join(f"sum(c.pwgtp{i} * c.a_eff * kw.w)" for i in range(1, 81))
+            if replicates else "")
+    rows = con.execute(
+        f"SELECT c.cbsa, sum(c.pwgtp * c.a_eff * kw.w){reps} FROM contrib c "
+        f"JOIN kw ON kw.cbsa = c.cbsa AND kw.agep = c.agep AND kw.edu4 = c.edu4 "
+        f"AND kw.race8 = c.race8 WHERE c.gq <> 2 AND ({where}) GROUP BY 1").fetchall()
+    cols = ["cbsa", "num"] + ([f"r{i}" for i in range(1, 81)] if replicates else [])
+    return pd.DataFrame([[r[0]] + [float(x or 0) for x in r[1:]] for r in rows],
+                        columns=cols)
 
 
 def _spec_to_sql(seeking: dict, self_: dict) -> tuple[str, str]:
@@ -176,6 +218,17 @@ def check_differential(build, con) -> dict:
         cube_bs = (build.pool_flat @ m_sought).astype(np.float64)
         cube_bk = (build.pool_flat @ m_seeker).astype(np.float64)
         rels = []
+        # m3.0.0: the kernel-weighted numerator and its denominator through
+        # the reduced cubes vs the same sums by SQL over contrib joined to
+        # the seeker's weight table — the weighted path's own differential
+        mt = match_index(build, req)
+        _kernel_weights_table(con, build, req)
+        wsql = _weighted_sums_sql(con, pw).set_index("cbsa")["num"]
+        sql_num = np.zeros(len(build.metro_levels))
+        for cbsa, v in wsql.items():
+            sql_num[midx[cbsa]] = v
+        rels.append(np.abs(mt["num"] - sql_num) / np.maximum(sql_num, 1.0))
+        rels.append(np.abs(mt["den"] - est) / np.maximum(est, 1.0))
         for where, cube_vals, with_n in ((pw, est, True), (bws, cube_bs, False),
                                          (bwk, cube_bk, False)):
             rows = con.execute(
@@ -261,33 +314,57 @@ def check_explanations(build, persona_results) -> dict:
             "problems": problems[:20]}
 
 
-def check_pairing_directional(build) -> dict:
-    """Interim pairing rate vs Pew's 2015 newlywed intermarriage metro table
-    (126 metros, CBSA-coded). Different quantities by construction — Pew is
-    NEWLYWEDS, ours is the partnered STOCK — so this is a direction check
-    and an explicit warning, never a gate. Phase 3's gate is reproducing
-    the Pew table itself."""
-    pew = pd.read_csv(PEW_CSV, comment="#", dtype={"msa_code": str})
-    pew = pew[pew["msa_code"] != "1"]
-    pew["total"] = pd.to_numeric(pew["total"], errors="coerce") / 100.0
-    ours = pd.DataFrame({"msa_code": build.metro_levels,
-                         "stock_rate": build.pairing_metro["rate"]})
-    m = ours.merge(pew[["msa_code", "total"]], on="msa_code").dropna()
-    sp = spearmanr(m["stock_rate"], m["total"])
-    pe = pearsonr(m["stock_rate"], m["total"])
-    warn = bool(sp.statistic < PAIRING_WARN_SPEARMAN or len(m) < 30)
-    return {
-        "n_matched_metros": int(len(m)),
-        "spearman": round(float(sp.statistic), 3),
-        "pearson": round(float(pe.statistic), 3),
-        "warning": warn,
-        "warn_rule": f"spearman < {PAIRING_WARN_SPEARMAN} or n < 30",
-        "note": "Pew: share of NEWLYWEDS intermarried, 2011-2015 ACS; ours: "
-                "share of the partnered STOCK outside their own group, "
-                "2020-2024 — levels are not comparable, direction is. "
-                "Replaced by the Phase 3 kernel whose gate reproduces the "
-                "Pew table.",
-        "source": "results/reference/pew_intermarriage_2015.csv"}
+def check_kernel_face(build) -> dict:
+    """The three face-validity checks on the SHIPPED kernel (ADR 0009):
+    a 30-year-old's age weight peaks within three years of 30, the
+    education matrix is diagonal-dominant, and every race group's
+    own-group multiplier exceeds each of its off-diagonals, both sexes.
+    Any failure is a finding."""
+    k = build.kernel
+    out: dict = {"peak_age_at_30": {}, "edu_rows_diagonal_dominant": [],
+                 "race_rows_diagonal_max": {}}
+    ok = True
+    for si, name in enumerate(SEX_LEVELS):
+        gaps = np.arange(53) - (30 - 18) + k.gap_offset
+        peak = int(np.argmax(k.f_age[si][gaps])) + 18
+        out["peak_age_at_30"][name] = peak
+        ok &= abs(peak - 30) <= 3
+        rows = {}
+        for r in range(8):
+            row = k.f_race[si, r]
+            rows[RACE_LEVELS[r]] = bool(row[r] > np.delete(row, r).max())
+        out["race_rows_diagonal_max"][name] = rows
+        ok &= all(rows.values())
+    for e in range(4):
+        d = bool(k.f_edu[e, e] == k.f_edu[e].max())
+        out["edu_rows_diagonal_dominant"].append(d)
+        ok &= d
+    out["pass"] = bool(ok)
+    return out
+
+
+def check_pew_reproduction() -> dict:
+    """The Phase 3 out-of-sample Pew comparison as the kernel run recorded
+    it: three models' corrected error distributions and whether the
+    shrunk kernel beat national-only AND raw per-metro (the item 11 bar).
+    Soft here — reported as measured; the kernel run is where it gates."""
+    if not KERNEL_REPORT.exists():
+        return {"skipped": "results/phase3/kernel_report.json not on this machine"}
+    rep = json.loads(KERNEL_REPORT.read_text())
+    ship = rep["shipped"]["sample"]
+    pew = rep["samples"][ship]["pew"]
+    ce = pew["corrected_errors"]
+    return {"fitting_sample": ship, "metros": pew["metros_matched"],
+            "level_offset_ratio": pew["level_offset_ratio_ours_over_pew"],
+            "median_abs_pts": {m: ce[m]["median_abs_pts"] for m in
+                               ("national_only", "raw_dial", "shrunk_dial")},
+            "p90_abs_pts": {m: ce[m]["p90_abs_pts"] for m in
+                            ("national_only", "raw_dial", "shrunk_dial")},
+            "shrunk_beats_both": bool(
+                ce["shrunk_dial"]["median_abs_pts"] < ce["national_only"]["median_abs_pts"]
+                and ce["shrunk_dial"]["median_abs_pts"] < ce["raw_dial"]["median_abs_pts"]),
+            "source": "results/phase3/kernel_report.json (leave-one-metro-out, "
+                      "level offset from Pew's US row only)"}
 
 
 def measure_served_region_cv() -> dict:
@@ -336,7 +413,8 @@ def main(build_dir: str) -> int:
     golden_ok = True
     for v in GOLDEN_VECTORS:
         body = {k: v[k] for k in ("self", "seeking", "weights",
-                                  "pool_vs_balance", "importance") if k in v}
+                                  "pool_vs_match", "pool_vs_balance",
+                                  "importance") if k in v}
         res = engine.rank(build, engine.parse_request(body))
         persona_results[v["name"]] = res
         if res["shown_unranked"]:
@@ -366,25 +444,24 @@ def main(build_dir: str) -> int:
             stab[v["name"]] = {"skipped": f"only {len(ranked_cbsas)} ranked"}
             continue
         pw, bws, bwk = _spec_to_sql(v["seeking"], v["self"])
-        P = _replicate_sums(con, pw).set_index("cbsa")
-        BS = _replicate_sums(con, bws).set_index("cbsa")
-        BK = _replicate_sums(con, bwk).set_index("cbsa")
-        P = P.reindex(ranked_cbsas).fillna(0.0)
-        BS = BS.reindex(ranked_cbsas).fillna(0.0)
-        BK = BK.reindex(ranked_cbsas).fillna(0.0)
+        body = {k: v[k] for k in ("self", "seeking") if k in v}
+        req = engine.parse_request(body)
+        # replicate sums of the pool (every metro, for the national
+        # reference) and of the kernel-weighted numerator
+        P_all = _replicate_sums(con, pw).set_index("cbsa")
+        _kernel_weights_table(con, build, req)
+        W_all = _weighted_sums_sql(con, pw, replicates=True).set_index("cbsa")
+        P = P_all.reindex(ranked_cbsas).fillna(0.0)
+        W = W_all.reindex(ranked_cbsas).fillna(0.0)
         ridx = np.array([build.metro_levels.index(c) for c in ranked_cbsas])
         wts = res["weights"]
-        base_avail = np.array([
-            next(r for r in res["ranked"] if r["cbsa"] == c)
-            ["balance"]["available"] for c in ranked_cbsas])
         base_top = set(ranked_cbsas[:10])
         hits = 0
         for i in range(1, 81):
             est_r = P[f"r{i}"].to_numpy()
-            bal_r = BS[f"r{i}"].to_numpy() / np.maximum(
-                BK[f"r{i}"].to_numpy(), 1e-9)
-            bal_r = np.where(base_avail, bal_r, np.nan)
-            score_r = score_vector(build, ridx, est_r, bal_r, wts)
+            nat_rate_r = W_all[f"r{i}"].sum() / max(P_all[f"r{i}"].sum(), 1e-9)
+            match_r = 100.0 * (W[f"r{i}"].to_numpy() / np.maximum(est_r, 1e-9)) / nat_rate_r
+            score_r = score_vector(build, ridx, est_r, match_r, wts)
             top_r = {ranked_cbsas[k] for k in np.argsort(-score_r)[:10]}
             if len(top_r & base_top) >= STABILITY_OVERLAP:
                 hits += 1
@@ -403,6 +480,11 @@ def main(build_dir: str) -> int:
         build, persona_results)
     if not report["hard"]["explanation_invariants"]["pass"]:
         hard_fail.append("explanation_invariants")
+
+    # ---- hard: kernel face validity (ADR 0009) ------------------------------
+    report["hard"]["kernel_face_validity"] = check_kernel_face(build)
+    if not report["hard"]["kernel_face_validity"]["pass"]:
+        hard_fail.append("kernel_face_validity")
 
     # ---- hard: adversarial artifacts ---------------------------------------
     quality = pd.read_csv(RESULTS / "phase1" / "metro_quality.csv",
@@ -618,8 +700,8 @@ def main(build_dir: str) -> int:
                    "weak correlation is expected and reported as measured "
                    "(§11)"}
 
-    # ---- soft: pairing directional vs Pew -----------------------------------
-    report["soft"]["pairing_directional"] = check_pairing_directional(build)
+    # ---- soft: the Phase 3 Pew reproduction, as recorded -------------------
+    report["soft"]["pew_reproduction"] = check_pew_reproduction()
 
     # ---- soft: ADR 0002 evidence -------------------------------------------
     report["soft"]["served_region_true_cv"] = measure_served_region_cv()
@@ -635,7 +717,8 @@ def main(build_dir: str) -> int:
                                        if k != "problems"},
                       "rank_stability": {k: v for k, v in list(stab.items())[:4]},
                       "weight_sensitivity": report["soft"]["weight_sensitivity"]["kendall_tau"],
-                      "pairing": report["soft"]["pairing_directional"],
+                      "pew": report["soft"]["pew_reproduction"],
+                      "kernel_face": report["hard"]["kernel_face_validity"]["pass"],
                       "external": corr}, indent=2))
     return 1 if hard_fail else 0
 

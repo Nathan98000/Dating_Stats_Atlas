@@ -28,6 +28,11 @@ replicate sums for serve-time counterweight margins); the manifest's
 features_block carries the registry display fields and a pillars block so
 no user-facing label lives in code; tier_policy is the n-only gate
 (ADR 0002).
+m3.0.0 (ADR 0009): the build ships kernel.json + kernel.npz (the
+assortative kernel, its per-metro dials and normalisers — build.kernel
+writes them to data/), hashed into data_version like every other file;
+the manifest carries a kernel summary and the match pillar's display
+fields through features_block/pillars as before.
 The build directory is immutable and content-addressed: data_version is a
 hash over the file hashes; manifest.json carries both plus every source
 vintage.
@@ -107,6 +112,10 @@ def build(out_root=None) -> str:
     pairing_m = pd.read_csv(P2 / "pairing_metro.csv", dtype={"cbsa": str})
     pairing_cells = DATA / "pairing_cells.parquet"
     assert pairing_cells.exists(), "run build.pairing before build.cube"
+    kernel_json, kernel_npz = DATA / "kernel.json", DATA / "kernel.npz"
+    assert kernel_json.exists() and kernel_npz.exists(), (
+        "run build.kernel before build.cube (m3.0.0)")
+    kernel_meta = json.loads(kernel_json.read_text())
     iv = json.loads((P2 / "interval_validation.json").read_text())
     ioff = pd.read_csv(P2 / "interval_metro_offsets.csv", dtype={"cbsa": str})
     geo = json.loads((RESULTS / "geography_manifest.json").read_text())
@@ -195,6 +204,11 @@ def build(out_root=None) -> str:
     np.save(tmp / "sumw2_cube.npy", sumw2_cube)
     feats.to_parquet(tmp / "features.parquet", index=False)
     shutil.copyfile(pairing_cells, tmp / "pairing_cells.parquet")
+    shutil.copyfile(kernel_json, tmp / "kernel.json")
+    shutil.copyfile(kernel_npz, tmp / "kernel.npz")
+    kz = np.load(tmp / "kernel.npz", allow_pickle=False)
+    assert list(kz["metro_levels"]) == metro_levels, (
+        "kernel.npz metro order disagrees with the build's metros")
     (tmp / "metros.json").write_text(json.dumps(
         [{"cbsa": r["cbsa"], "title": r["cbsa_title"],
           "display_name": r["display_name"],
@@ -261,7 +275,18 @@ def build(out_root=None) -> str:
             "balance_gate": "dating pool balance gates separately: both "
                             "age-by-sex counts must clear the same "
                             "100-effective-respondent bar",
+            "match_gate": "chances of matching gates on the UNWEIGHTED n of "
+                          "the same masked pool (ADR 0009): the kernel can "
+                          "neither rescue nor condemn a cell",
         },
+        # m3.0.0 (ADR 0009): the kernel's summary — form, fitting sample,
+        # dial components, generation stamp; the arrays are in the two
+        # kernel files, hashed below
+        "kernel": {k: kernel_meta.get(k) for k in
+                   ("version", "form", "gauge", "fitting_sample",
+                    "fitting_sample_spec", "couple_sides_weighted", "n_alloc",
+                    "bandwidth_years", "dial_components", "dials_tau",
+                    "generated_at")},
         "model_defaults": {
             "pillar_weights": reg.pillar_weights,
             "size_vs_odds": reg.size_vs_odds,

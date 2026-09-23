@@ -24,10 +24,19 @@ tick. Zero ticked or all eight ticked means no filter at all (the same
 universe either way). Race enters the pool and nothing else:
 balance_masks stays race-blind on purpose.
 
-D05 slider semantics survive as pool_vs_balance: one scalar dividing the
-people-mass between pool (0 = size) and balance (1 = balance); the
-three-step importance controls scale the context pillars through registry
-constants, and everything renormalizes to sum to 1.
+D05 slider semantics survive as pool_vs_match (m3.0.0, ADR 0009): one
+scalar dividing the people-mass between pool (0 = size) and match (1 =
+chances of matching); pool_vs_balance is accepted as a deprecated alias
+for exactly this version. The three-step importance controls scale the
+context pillars through registry constants, and everything renormalizes
+to sum to 1.
+
+m3.0.0 also puts the assortative kernel's seeker side here: Kernel is the
+shipped artifact (kernel.json + kernel.npz, loaded by loader.py) and
+seeker_weights() turns the visitor's own sex, age and OPTIONAL education
+and race/ethnicity into per-metro weight factors over the partner cells
+(age x education x race) — the population-average marginal standing in
+for whatever the visitor left unset. Pure numpy, no I/O.
 """
 from __future__ import annotations
 
@@ -58,7 +67,11 @@ SPEC_MARITAL = {"never_married": 0, "previously_married": 1,
 ALLOWED_MARITAL = ("never_married", "previously_married")
 # m2.1.0 (Phase 2d item 4): lifestyle split into weather and students so
 # each carries its own importance control — six pillars, four controls.
-PILLARS = ["pool", "balance", "reach", "cost", "weather", "students"]
+PILLARS = ["pool", "match", "reach", "cost", "weather", "students"]
+# m3.0.0: the slider control and its one-version deprecated alias
+SLIDER_CONTROL = "pool_vs_match"
+DEPRECATED_SLIDER_ALIAS = "pool_vs_balance"
+KERNEL_COMPONENTS = ("age", "edu", "race")
 IMPORTANCE_PILLARS = ("cost", "reach", "students", "weather")
 # the old bundled control, accepted as a deprecated alias for exactly one
 # version: its level applies to BOTH split pillars, which reproduces the
@@ -87,7 +100,74 @@ class Request:
     weights: dict[str, float]
     pinned_data_version: str | None = None
     pinned_model_version: str | None = None
+    # m3.0.0: the two OPTIONAL seeker attributes, as cube level names
+    # (None = not disclosed -> population-average marginal)
+    self_edu: str | None = None
+    self_race: str | None = None
     raw: dict = field(default_factory=dict, compare=False)
+
+
+@dataclass
+class Kernel:
+    """The shipped assortative kernel (pipeline/build/kernel.py). Log
+    multipliers per component in the reporting gauge, a per-metro dial
+    (power) per component, and the per-metro, per-seeker-type normaliser
+    that makes exp(log w + log_norm) average exactly 1 over the national
+    single adult population."""
+    f_age: np.ndarray        # (2, 105): seeker sex x (partner age - seeker age + gap_offset)
+    f_edu: np.ndarray        # (4, 4):   seeker edu x partner edu
+    f_race: np.ndarray       # (2, 8, 8): seeker sex x seeker race x partner race
+    dials: np.ndarray        # (n_metros, 3): theta per (age, edu, race); 1 = national
+    log_norm: np.ndarray     # (n_metros, 2, 53, 4, 8)
+    avail: np.ndarray        # (2, 53, 4, 8): national single adults by sex, age, edu, race
+    gap_offset: int = 52
+    dial_components: tuple[str, ...] = ()
+    meta: dict = field(default_factory=dict)
+
+
+def seeker_weights(k: Kernel, self_sex: str, self_age: int,
+                   self_edu: str | None, self_race: str | None
+                   ) -> tuple[np.ndarray, np.ndarray]:
+    """Per-metro kernel factors for one seeker: (age_vec, W) with
+    age_vec[m, a_c] the age-gap multiplier by partner age and
+    W[m, e_c, r_c] the education x race multiplier — the full weight over
+    a partner cell is age_vec[m, a_c] * W[m, e_c, r_c].
+
+    Degradation is the rule, not a special case: an undisclosed education
+    or race is a MIXTURE over that attribute's levels with weights = the
+    national single population of the seeker's own sex and age at each
+    level (times the per-level normaliser, so each mixed-in kernel has
+    mean 1). Both disclosed -> a single level; both unset -> the mixture
+    over all 32 (education, race) combinations. All four combinations go
+    through this one function."""
+    si = SEX_LEVELS.index(self_sex)
+    ai = int(self_age) - 18
+    assert 0 <= ai < 53, "seeker age outside the cube"
+    theta = k.dials                                            # (M, 3)
+    gaps = np.arange(53) - ai + k.gap_offset
+    fa = k.f_age[si][gaps]                                     # (53,)
+    age_vec = np.exp(theta[:, 0:1] * fa[None, :])              # (M, 53)
+    P = k.avail[si, ai].astype(np.float64).copy()              # (4, 8)
+    if self_edu is not None:
+        keep = np.zeros(4); keep[EDU_LEVELS.index(self_edu)] = 1.0
+        P = P * keep[:, None]
+    if self_race is not None:
+        keep = np.zeros(8); keep[RACE_LEVELS.index(self_race)] = 1.0
+        P = P * keep[None, :]
+    if P.sum() <= 0:
+        # a level with nobody single of this sex and age nationally: the
+        # disclosed level(s) still select, uniformly over what is allowed
+        P = np.ones((4, 8))
+        if self_edu is not None:
+            P *= np.eye(4)[EDU_LEVELS.index(self_edu)][:, None]
+        if self_race is not None:
+            P *= np.eye(8)[RACE_LEVELS.index(self_race)][None, :]
+    P = P / P.sum()
+    mix = P[None, :, :] * np.exp(k.log_norm[:, si, ai].astype(np.float64))   # (M, 4, 8)
+    E = np.exp(theta[:, 1][:, None, None] * k.f_edu[None, :, :])             # (M, e_s, e_c)
+    R = np.exp(theta[:, 2][:, None, None] * k.f_race[si][None, :, :])        # (M, r_s, r_c)
+    W = np.einsum("mer,mef,mrg->mfg", mix, E, R)                             # (M, e_c, r_c)
+    return age_vec, W
 
 
 def _axis_vec(size: int, on: list[int]) -> np.ndarray:
@@ -96,10 +176,15 @@ def _axis_vec(size: int, on: list[int]) -> np.ndarray:
     return v
 
 
-def mask_vector(sex: str, age_min: int, age_max: int,
-                marital_levels: frozenset[int],
-                education_min: str | None, income_min: int | None,
-                race_cube_levels: tuple[str, ...] | None) -> np.ndarray:
+def axis_vectors(sex: str, age_min: int, age_max: int,
+                 marital_levels: frozenset[int],
+                 education_min: str | None, income_min: int | None,
+                 race_cube_levels: tuple[str, ...] | None
+                 ) -> tuple[np.ndarray, ...]:
+    """The six per-axis 0/1 vectors (sex, age, marital, education, income,
+    race) one search selects — shared by the flattened mask and, since
+    m3.0.0, by the kernel-weighted path, so the two can never disagree
+    about which cells a search covers."""
     assert sex in SEX_LEVELS, f"sex must be one of {SEX_LEVELS}"
     assert marital_levels and marital_levels <= {0, 1, 2}, "empty marital set"
     a0, a1 = max(18, int(age_min)), min(70, int(age_max))
@@ -128,6 +213,15 @@ def mask_vector(sex: str, age_min: int, age_max: int,
             assert rl in RACE_LEVELS, f"unknown race level {rl!r}"
             idx.append(RACE_LEVELS.index(rl))
         r = _axis_vec(8, idx)
+    return s, a, m, e, i, r
+
+
+def mask_vector(sex: str, age_min: int, age_max: int,
+                marital_levels: frozenset[int],
+                education_min: str | None, income_min: int | None,
+                race_cube_levels: tuple[str, ...] | None) -> np.ndarray:
+    s, a, m, e, i, r = axis_vectors(sex, age_min, age_max, marital_levels,
+                                    education_min, income_min, race_cube_levels)
     # Output order MUST be the cube's axis order (sex, age, marital,
     # education, income, race). Phase 1 shipped "samier" here — income and
     # education transposed in the flattened mask — which silently scrambled
@@ -192,21 +286,45 @@ def parse_request(body: dict) -> Request:
                     education_min=seeking.get("education_min"),
                     income_min=seeking.get("income_min"),
                     race_cube_levels=race_levels)
+    # m3.0.0: the optional seeker attributes; neither is ever required
+    self_edu = self_.get("education")
+    if self_edu is not None and self_edu not in EDU_LEVELS:
+        raise ValueError(f"self.education must be one of {EDU_LEVELS}")
+    self_race = self_.get("race_ethnicity")
+    if self_race is not None:
+        if self_race not in SPEC_RACE:
+            raise ValueError(f"self.race_ethnicity must be one of {list(SPEC_RACE)}")
+        self_race = SPEC_RACE[self_race]
     return Request(self_sex=self_["sex"], self_age=int(self_["age"]),
                    seeking=spec, weights=dict(body.get("weights") or {}),
                    pinned_data_version=body.get("data_version"),
-                   pinned_model_version=body.get("model_version"), raw=body)
+                   pinned_model_version=body.get("model_version"),
+                   self_edu=self_edu, self_race=self_race, raw=body)
 
 
 def slider_weights(s: float, defaults: dict[str, float],
                    mass: float) -> dict[str, float]:
     """One scalar dividing the people-mass: s=0 puts it on pool (size),
-    s=1 on balance."""
-    assert 0.0 <= s <= 1.0, "pool_vs_balance must be in [0,1]"
-    w = {k: v for k, v in defaults.items() if k not in ("pool", "balance")}
+    s=1 on match (chances of matching). Identical mechanics to the
+    m2.x pool_vs_balance control (ADR 0009)."""
+    assert 0.0 <= s <= 1.0, f"{SLIDER_CONTROL} must be in [0,1]"
+    w = {k: v for k, v in defaults.items() if k not in ("pool", "match")}
     w["pool"] = mass * (1.0 - s)
-    w["balance"] = mass * s
+    w["match"] = mass * s
     return w
+
+
+def slider_value(raw: dict) -> float | None:
+    """The slider's value from a request body: pool_vs_match, or the
+    deprecated pool_vs_balance alias (exactly m3.0.0); naming both is a
+    contradiction and raises."""
+    new = raw.get(SLIDER_CONTROL)
+    old = raw.get(DEPRECATED_SLIDER_ALIAS)
+    if new is not None and old is not None:
+        raise ValueError(
+            f"{DEPRECATED_SLIDER_ALIAS} is the deprecated name for "
+            f"{SLIDER_CONTROL}; send one or the other, not both")
+    return new if new is not None else old
 
 
 def resolve_importance_levels(importance: dict[str, str]) -> dict[str, str]:
@@ -259,24 +377,26 @@ def importance_weights(s: float, importance: dict[str, str],
 
 
 def resolve_weights(req: Request, manifest_defaults: dict) -> dict[str, float]:
-    """Explicit weights win; else the v3 controls (pool_vs_balance +
-    importance); else defaults. Normalized to sum to 1. The size_vs_odds
-    alias was accepted-but-deprecated for exactly m2.0.0 (ADR 0004) and is
-    gone in m2.1.0 — the transport rejects it before this runs."""
+    """Explicit weights win; else the v3 controls (pool_vs_match +
+    importance); else defaults. Normalized to sum to 1. pool_vs_balance
+    is accepted as a deprecated alias for exactly m3.0.0 (ADR 0009), the
+    way size_vs_odds was for m2.0.0; size_vs_odds itself is gone."""
     defaults = dict(manifest_defaults["pillar_weights"])
     svo = manifest_defaults["size_vs_odds"]
     raw = req.raw
-    knobs = [k for k in ("weights", "pool_vs_balance")
-             if k in raw and raw[k] is not None]
+    slider = slider_value(raw)
+    knobs = [k for k in ("weights",) if k in raw and raw[k] is not None]
+    if slider is not None:
+        knobs.append(SLIDER_CONTROL)
     if "weights" in knobs and (len(knobs) > 1 or "importance" in raw):
         raise ValueError("pass either weights or the named controls, not both")
     if "size_vs_odds" in raw and raw["size_vs_odds"] is not None:
         raise ValueError(
-            "size_vs_odds left the contract in m2.1.0; send pool_vs_balance")
-    if "pool_vs_balance" in knobs or "importance" in raw:
-        s = float(raw.get("pool_vs_balance", svo["default_s"]))
+            f"size_vs_odds left the contract in m2.1.0; send {SLIDER_CONTROL}")
+    if slider is not None or "importance" in raw:
+        s = float(slider if slider is not None else svo["default_s"])
         if not 0.0 <= s <= 1.0:
-            raise ValueError("pool_vs_balance must be in [0,1]")
+            raise ValueError(f"{SLIDER_CONTROL} must be in [0,1]")
         w = importance_weights(s, dict(raw.get("importance") or {}),
                                manifest_defaults)
     elif req.weights:
@@ -297,8 +417,12 @@ def permalink(data_version: str, model_version: str, body: dict) -> str:
     import base64
     import json
     core = {k: body[k] for k in ("self", "seeking", "weights",
-                                 "pool_vs_balance", "importance")
+                                 SLIDER_CONTROL, "importance")
             if k in body}
+    # the deprecated alias encodes as the canonical control, so one
+    # search has one permalink whichever name the client sent
+    if SLIDER_CONTROL not in core and body.get(DEPRECATED_SLIDER_ALIAS) is not None:
+        core[SLIDER_CONTROL] = body[DEPRECATED_SLIDER_ALIAS]
     blob = json.dumps(core, sort_keys=True, separators=(",", ":")).encode()
     tok = base64.urlsafe_b64encode(blob).decode().rstrip("=")
     return f"/r/{data_version}/{model_version}/{tok}"

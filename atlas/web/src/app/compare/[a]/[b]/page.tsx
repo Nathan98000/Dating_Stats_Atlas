@@ -177,6 +177,39 @@ export default async function ComparePage({
                   direction={meta.features.pool_size.direction}
                 />
               </Row>
+              {/* m3.0.0 (ADR 0009): chances of matching, a ranked row's
+                  index with its band; the difference reads through the
+                  registry direction like every scored stat */}
+              <Row label={meta.features.match_propensity.display_name}>
+                {[rankA, rankB].map((r, i) => (
+                  <td key={i} className="px-5 py-3.5">
+                    {r?.match?.available && r.match.display != null ? (
+                      <div className="flex flex-col">
+                        <span className="font-display text-[21px] font-semibold">
+                          {r.match.display}
+                        </span>
+                        <span className="text-[12px] text-ink-3">
+                          {r.match.unit_line ?? meta.features.match_propensity.unit}
+                        </span>
+                        {r.match.band && (
+                          <span className={`text-[12px] font-semibold ${toneText(r.match.band.tone)}`}>
+                            {r.match.band.label}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-ink-3">—</span>
+                    )}
+                  </td>
+                ))}
+                <DiffCell
+                  id="match_propensity"
+                  a={rankA?.match?.available ? rankA.match.display ?? undefined : undefined}
+                  b={rankB?.match?.available ? rankB.match.display ?? undefined : undefined}
+                  decimals={meta.features.match_propensity.display_decimals}
+                  direction={meta.features.match_propensity.direction}
+                />
+              </Row>
               <Row label={meta.features.pool_balance.display_name}>
                 {[rowA, rowB].map((r, i) => (
                   <td key={i} className="px-5 py-3.5">

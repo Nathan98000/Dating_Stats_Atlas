@@ -2,7 +2,8 @@
 
 import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
-import { IMPORTANCE_PILLARS, type Level, type Prefs } from "@/lib/prefs";
+import { IMPORTANCE_PILLARS, SELF_EDU_LEVELS, type Level, type Prefs,
+  type SelfEdu } from "@/lib/prefs";
 import { InfoTip } from "./info-tip";
 
 const EDU_OPTIONS: { value: "" | "bachelors" | "graduate"; label: string }[] = [
@@ -45,7 +46,11 @@ export function SearchPanel({
   const uid = useId();
   const set = (patch: Partial<Prefs>) => onChange({ ...prefs, ...patch });
   const seekSexEffective = prefs.seekSex ?? (prefs.selfSex === "female" ? "male" : "female");
-  const s = prefs.poolVsBalance ?? 0.4545;
+  const s = prefs.poolVsMatch ?? 0.4545;
+  const policy = meta.policy_strings;
+  // m3.0.0 (ADR 0009): the pole labels and every string of the two
+  // optional "about you" inputs arrive from the registry through /v1/meta
+  const poles = meta.controls.slider_labels;
   // m2.2.0 (ADR 0006): eight equal groups, ids and labels from the
   // registry through /v1/meta — the panel types no race wording
   const raceGroups = meta.race_groups;
@@ -75,6 +80,48 @@ export function SearchPanel({
               onCommit={(v) => set({ selfAge: v })}
             />
           </Field>
+        </div>
+
+        {/* m3.0.0: two OPTIONAL inputs about the visitor. Neither is ever
+            required to see a ranking; unset means the population-average
+            marginal for the visitor's sex and age, and the registry note
+            says so. Labels, levels and the note all come from /v1/meta. */}
+        <div className="flex flex-col gap-2" data-testid="about-you">
+          <div className="grid grid-cols-2 gap-3">
+            <Field label={policy.self_edu_label} htmlFor={`${uid}-selfedu`}>
+              <select
+                id={`${uid}-selfedu`}
+                className="ctl"
+                data-testid="self-edu"
+                value={prefs.selfEdu ?? ""}
+                onChange={(e) =>
+                  set({ selfEdu: (e.target.value || undefined) as SelfEdu | undefined })
+                }
+              >
+                <option value="">{policy.prefer_not_to_say}</option>
+                {SELF_EDU_LEVELS.map((lv) => (
+                  <option key={lv} value={lv}>{policy[`edu_${lv}`]}</option>
+                ))}
+              </select>
+            </Field>
+            <Field label={policy.self_race_label} htmlFor={`${uid}-selfrace`}>
+              <select
+                id={`${uid}-selfrace`}
+                className="ctl"
+                data-testid="self-race"
+                value={prefs.selfRace ?? ""}
+                onChange={(e) => set({ selfRace: e.target.value || undefined })}
+              >
+                <option value="">{policy.prefer_not_to_say}</option>
+                {raceGroups.map((g) => (
+                  <option key={g.id} value={g.id}>{g.label}</option>
+                ))}
+              </select>
+            </Field>
+          </div>
+          <p className="text-[12px] leading-snug text-ink-3" data-testid="about-you-note">
+            {policy.about_you_note}
+          </p>
         </div>
 
         <Field label="I'm looking for" htmlFor={`${uid}-seek`}>
@@ -234,12 +281,12 @@ export function SearchPanel({
             step={0.05}
             value={s}
             style={{ "--fill": `${s * 100}%` } as React.CSSProperties}
-            aria-valuetext={`${Math.round(s * 100)} percent toward dating pool balance`}
-            onChange={(e) => set({ poolVsBalance: parseFloat(e.target.value) })}
+            aria-valuetext={`${Math.round(s * 100)} percent toward ${poles.high.toLowerCase()}`}
+            onChange={(e) => set({ poolVsMatch: parseFloat(e.target.value) })}
           />
-          <div className="flex justify-between text-[12.5px] font-semibold text-ink-2">
-            <span>{"Dating pool size"}</span>
-            <span>{"Dating pool balance"}</span>
+          <div className="flex justify-between text-[12.5px] font-semibold text-ink-2" data-testid="slider-poles">
+            <span>{poles.low}</span>
+            <span>{poles.high}</span>
           </div>
           {sameSexNote && (
             <p className="text-[12.5px] leading-relaxed text-ink-3">

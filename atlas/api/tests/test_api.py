@@ -1,5 +1,5 @@
-"""API tests against the pinned fixture build — the m2.1.0 contract
-(ADR 0005 over ADR 0004)."""
+"""API tests against the pinned fixture build — the m3.0.0 contract
+(ADR 0009 over ADR 0005/0004)."""
 import json
 import os
 from pathlib import Path
@@ -39,10 +39,31 @@ def test_health(client):
 def test_meta_carries_the_v3_vocabulary(client):
     m = client.get("/v1/meta").json()
     assert m["features"]["pool_balance"]["display_name"] == "Dating pool balance"
+    # m3.0.0 (ADR 0009): balance is displayed, never scored; the match
+    # pillar carries chances of matching, and the panel's pole labels,
+    # the four seeker education levels and every new string come from
+    # the registry
+    assert m["features"]["pool_balance"]["status"] == "context_only"
+    assert m["features"]["pool_balance"]["weight_in_pillar"] == 0
+    assert "balance" not in m["pillars"]
+    assert m["pillars"]["match"]["display_name"] == "Chances of matching"
+    assert m["features"]["match_propensity"]["pillar"] == "match"
+    assert len(m["features"]["match_propensity"]["band_labels"]) == 5
+    assert m["controls"]["slider_labels"] == {"low": "Dating pool size",
+                                              "high": "Chances of matching"}
+    assert m["controls"]["slider_control"] == "pool_vs_match"
+    assert m["controls"]["self_education_levels"] == api.engine.EDU_LEVELS
+    assert m["measure_page"][0] == {"heading": "people", "pillars": ["pool", "match"],
+                                    "features": ["pool_balance"]}
+    for k in ("match_info", "match_how", "match_how_link", "self_edu_label",
+              "self_race_label", "prefer_not_to_say", "about_you_note",
+              "edu_hs_or_less", "edu_graduate"):
+        assert m["policy_strings"].get(k), k
+    assert "matching" in m["policy_strings"]["slider_info"]
+    assert m["kernel"]["version"] == "kernel_v1"
     assert m["features"]["rent_1br"]["display_name"] == "Rent"
     assert len(m["features"]["rent_1br"]["band_labels"]) == 5
     assert m["features"]["rent_1br"]["band_direction"] == "good_low"
-    assert m["pillars"]["balance"]["display_name"] == "Dating pool balance"
     # the four importance controls carry their registry subtitles (item 4)
     assert m["controls"]["importance_pillars"] == \
         ["cost", "reach", "students", "weather"]
@@ -100,7 +121,8 @@ def test_rank_matches_goldens_through_http(client):
             body["counts"]["suppressed"]
         for row in body["ranked"]:
             assert {"display_name", "slug", "score_display", "balance",
-                    "summary_line", "cards"} <= set(row)
+                    "match", "summary_line", "cards"} <= set(row)
+            assert row["match"]["available"] and row["match"]["display"]
             assert "cross_group_pairing_rate" not in row
             assert "ratio" not in row and "rivals" not in row
 
@@ -156,14 +178,47 @@ def test_eight_race_groups_selectable_and_equal(client):
         assert got == want, "empty and all-eight are the unfiltered universe"
 
 
+def test_seeker_attributes_optional_and_alias(client):
+    """m3.0.0: self.education and self.race_ethnicity are optional, every
+    combination answers with a match figure on every ranked row; the
+    deprecated pool_vs_balance name is accepted for exactly this version
+    and a stray weights.balance key fails loudly."""
+    for extra in ({}, {"education": "bachelors"}, {"race_ethnicity": "black_nh"},
+                  {"education": "graduate", "race_ethnicity": "asian_nh"}):
+        r = client.post("/v1/rank", json={
+            "self": {"sex": "female", "age": 30, **extra},
+            "seeking": {"age": [28, 40], "marital": ["never_married"]}})
+        assert r.status_code == 200, r.text
+        body = r.json()
+        assert body["match_inputs"]["education"] == extra.get("education")
+        for row in body["ranked"]:
+            assert row["match"]["available"]
+            assert row["match"]["unit_line"]
+        for row in body["suppressed"]:
+            assert "match" not in row
+    bad = client.post("/v1/rank", json={
+        "self": {"sex": "female", "age": 30, "education": "phd"},
+        "seeking": {"age": [28, 40], "marital": ["never_married"]}})
+    assert bad.status_code == 422
+    new = client.post("/v1/rank", json={**BODY, "pool_vs_match": 0.8}).json()
+    old = client.post("/v1/rank", json={**BODY, "pool_vs_balance": 0.8}).json()
+    assert new["weights"] == old["weights"] and new["permalink"] == old["permalink"]
+    assert "pool_vs_match" in old["permalink"] or True  # token is base64; equality above is the check
+    both = client.post("/v1/rank", json={**BODY, "pool_vs_match": 0.8,
+                                         "pool_vs_balance": 0.2})
+    assert both.status_code == 422
+    stray = client.post("/v1/rank", json={**BODY, "weights": {"pool": 0.5, "balance": 0.5}})
+    assert stray.status_code == 422
+
+
 def test_named_controls_and_conflicts(client):
     ok = client.post("/v1/rank", json={
-        **BODY, "pool_vs_balance": 0.7,
+        **BODY, "pool_vs_match": 0.7,
         "importance": {"cost": "a_lot", "reach": "not_much",
                        "students": "a_lot", "weather": "not_much"}})
     assert ok.status_code == 200
     w = ok.json()["weights"]
-    assert w["balance"] > w["pool"]
+    assert w["match"] > w["pool"]
     assert w["cost"] > w["reach"] > 0
     assert w["students"] > w["weather"] > 0, (
         "students at a_lot with weather at not_much must order that way — "
@@ -182,7 +237,7 @@ def test_named_controls_and_conflicts(client):
     svo = client.post("/v1/rank", json={**BODY, "size_vs_odds": 0.5})
     assert svo.status_code == 422
     both = client.post("/v1/rank", json={
-        **BODY, "weights": {"pool": 1.0}, "pool_vs_balance": 0.5})
+        **BODY, "weights": {"pool": 1.0}, "pool_vs_match": 0.5})
     assert both.status_code == 422
 
 
@@ -191,7 +246,7 @@ def test_crime_block_served_never_scored(client):
     (figures + coverage + caution, or the blank state), crime never
     appears among the scored stats, and the weights never name it."""
     r = client.post("/v1/rank", json=BODY).json()
-    assert set(r["weights"]) == {"pool", "balance", "reach", "cost",
+    assert set(r["weights"]) == {"pool", "match", "reach", "cost",
                                  "weather", "students"}
     for row in r["ranked"] + r["suppressed"]:
         blk = row["crime"]

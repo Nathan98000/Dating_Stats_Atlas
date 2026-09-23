@@ -30,6 +30,17 @@ removal — both noted here as the contract docs):
   - pool_moe and cv are STILL returned (the interval machinery is intact;
     Gate 0's bound stays in the manifest) — they are simply never rendered
     by the site. Technical wording lives under /v1/meta technical_strings.
+  - m3.0.0 (ADR 0009): the slider control is pool_vs_match; pool_vs_balance
+    is accepted as a deprecated alias for exactly this version (naming
+    both is a 422). weights names the match pillar (balance is no longer a
+    pillar; an unknown weight key is a 422). self.education and
+    self.race_ethnicity are OPTIONAL and sharpen chances of matching; every
+    ranked row carries a `match` block {available, value, display, moe,
+    unit_line, band} beside its stats entry, and the response carries
+    match_inputs (what was disclosed, the national reference rate). The
+    balance block stays on every row, displayed and unscored. /v1/meta
+    gains controls.slider_labels and controls.self_education_levels (the
+    registry's pole labels and the four levels) and a kernel summary.
 """
 from __future__ import annotations
 
@@ -42,7 +53,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from atlas import model as engine
-from atlas.model.preferences import ALLOWED_MARITAL, SELECTABLE_RACES
+from atlas.model.preferences import (ALLOWED_MARITAL, DEPRECATED_SLIDER_ALIAS,
+                                     SELECTABLE_RACES, SLIDER_CONTROL)
 from atlas.model.suppression import (FEW_METROS_NOTICE, GQ_SHARE_FLAG_BAR,
                                      N_GATE_MIN, POLICY_STRINGS,
                                      PURITY_FLAG_BAR, TECHNICAL_STRINGS)
@@ -113,8 +125,10 @@ class Weights(BaseModel):
     # int 0 here would make the canonical permalink JSON render "0" for
     # defaulted pillars and "0.0" for user-sent ones — two encodings of the
     # same request. The shared permalink test (web/tests) pins this.
+    # m3.0.0: the pillar is match; a stray "balance" key fails loudly
+    model_config = ConfigDict(extra="forbid")
     pool: float = Field(ge=0, default=0.0)
-    balance: float = Field(ge=0, default=0.0)
+    match: float = Field(ge=0, default=0.0)
     reach: float = Field(ge=0, default=0.0)
     cost: float = Field(ge=0, default=0.0)
     weather: float = Field(ge=0, default=0.0)
@@ -140,6 +154,9 @@ class RankRequest(BaseModel):
     self: SelfSpec
     seeking: SeekingSpec
     weights: Optional[Weights] = None
+    pool_vs_match: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    # deprecated alias for exactly m3.0.0 (ADR 0009), as size_vs_odds was
+    # for m2.0.0: accepted, mapped, gone next version
     pool_vs_balance: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     importance: Optional[Importance] = None
     sort: Literal["best_first", "worst_first"] = "best_first"
@@ -149,7 +166,11 @@ class RankRequest(BaseModel):
 
     @model_validator(mode="after")
     def _check(self):
-        named = (self.pool_vs_balance is not None
+        if self.pool_vs_match is not None and self.pool_vs_balance is not None:
+            raise ValueError(f"{DEPRECATED_SLIDER_ALIAS} is the deprecated name for "
+                             f"{SLIDER_CONTROL}; send one or the other, not both")
+        named = (self.pool_vs_match is not None
+                 or self.pool_vs_balance is not None
                  or self.importance is not None)
         if self.weights is not None and named:
             raise ValueError("pass either weights or the named controls, not both")
@@ -167,7 +188,8 @@ def health() -> dict:
             "schema_version": BUILD.manifest["schema_version"],
             "metros": len(BUILD.metro_levels),
             "ranked_set": int(BUILD.ranked_set.sum()),
-            "interval": BUILD.manifest["interval_model"]["validation"]}
+            "interval": BUILD.manifest["interval_model"]["validation"],
+            "kernel": BUILD.kernel.meta.get("version")}
 
 
 @app.get("/v1/meta")
@@ -209,6 +231,15 @@ def meta() -> dict:
         "controls": {
             "income_band_edges": sorted(engine.INCOME_FLOORS),
             "education_levels": engine.EDU_LEVELS,
+            # m3.0.0: the slider's pole labels and the seeker's own
+            # education levels (registry-owned wording, never typed by
+            # the panel)
+            "slider_labels": {
+                "low": m["model_defaults"]["size_vs_odds"]["label_low"],
+                "high": m["model_defaults"]["size_vs_odds"]["label_high"]},
+            "slider_control": SLIDER_CONTROL,
+            "slider_deprecated_alias": DEPRECATED_SLIDER_ALIAS,
+            "self_education_levels": engine.EDU_LEVELS,
             "marital": list(ALLOWED_MARITAL),
             "race_ethnicity": list(SELECTABLE_RACES),
             "importance_levels": list(m["model_defaults"]["importance_levels"]),
@@ -216,6 +247,9 @@ def meta() -> dict:
             "age": [18, 70],
         },
         "sources": m["sources"],
+        # the kernel's technical record (rendered nowhere; the plain-words
+        # account is strings.match_how)
+        "kernel": {**BUILD.kernel.meta, "dial_components": list(BUILD.kernel.dial_components)},
         "metros": [{"cbsa": c,
                     "title": BUILD.titles[c],
                     "display_name": BUILD.display_names[i],

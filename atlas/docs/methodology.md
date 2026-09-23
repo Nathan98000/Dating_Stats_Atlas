@@ -35,6 +35,30 @@ never married or previously married, and any education, income, race or
 ethnicity filters you set. That count is the **dating pool**, and it is
 the biggest part of the score.
 
+## What are the chances of matching?
+
+<a id="chances-of-matching"></a>
+
+**Chances of matching** is how closely the people who match your search
+resemble the people who actually pair with someone like you, on age,
+education and background, where 100 is the US average.
+
+The chances-of-matching figure is built from real couples in the Census
+Bureau's household survey, using each partner's age, education and race
+or ethnicity. Across the whole country we measure how often each age
+gap, each education pairing and each racial or ethnic pairing actually
+occurs, compared with how often it would occur if single people paired
+at random. That pattern, adjusted a little for each city's own couples,
+is then applied to the single people who match your search in each
+city, so the figure says how closely they resemble the people who
+typically pair with someone of your sex, age, education and background.
+It is an aggregate pattern from recent unions, not a prediction about
+any one person, and 100 is the US average for your search.
+
+Your own education and your race or ethnicity are optional inputs. They
+feed only this figure; leave either unset and the average for people of
+your age and sex is used instead.
+
 ## What does balance compare?
 
 **Dating pool balance** is a simpler number: all single men per 100
@@ -45,10 +69,11 @@ filter**. It deliberately ignores your other filters so it means what it
 sounds like: the shape of the whole singles scene at that age, which
 doesn't move as you refine your search. It's shown per 100, rounded to a
 whole number, and only where both sides of the comparison have enough
-survey sample to be dependable.
+survey sample to be dependable. It is shown for information and is not
+part of the score.
 
 In a same-sex search everyone is on both sides of the comparison, so
-balance doesn't apply and the other measures carry its weight.
+balance doesn't apply.
 
 ## What do the race and ethnicity boxes do?
 
@@ -65,8 +90,8 @@ every box means the same as ticking all eight: no filter at all.
 ## How does the score work?
 
 You set what matters. The slider divides the people-side weight between
-pool size and balance; four controls — cost of living, social life,
-student life, weather — set how much each place stat counts. "Not much"
+pool size and chances of matching; four controls — cost of living, social
+life, student life, weather — set how much each place stat counts. "Not much"
 makes a thing count a little, not zero, so nothing you deprioritise can
 silently vanish. Each city's stats are compared across the cities that
 can answer your search, weighted your way, and summed to a score out
