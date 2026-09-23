@@ -16,6 +16,7 @@ dictionary (pums.py verify). Assertions fail the run if any semantic drifts.
 - `RAC1P`: Recoded detailed race code
 - `HISP`: Recoded detailed Hispanic origin
 - `RELSHIPP`: Relationship to reference person
+- `MARHYP`: Year last married
 - `PWGTP`: Person weight
 - `PWGTP1`: Person Weight replicate 1
 - `PWGTP80`: Person Weight replicate 80
@@ -25,6 +26,11 @@ dictionary (pums.py verify). Assertions fail the run if any semantic drifts.
 - `RELSHIPP=38`: Noninstitutionalized group quarters population
 - `MSP=b`: N/A (age less than 15 years)
 - `MSP=6`: Never married
+- `MARHYP`: Year last married -> Phase 3 fitting sample (unions formed since 2019)
+- `MARHYP=bbbb`: N/A (age less than 15 years; never married)
+- `MARHYP=1945`: 1945 or earlier (Bottom-coded)
+- `MARHYP=2024`: 2024
+- `RELSHIPP=20..24`: Reference person; Opposite-sex husband/wife/spouse; Opposite-sex unmarried partner; Same-sex husband/wife/spouse; Same-sex unmarried partner
 - `SCHL=16`: Regular high school diploma -> hs_or_less
 - `SCHL=17`: GED or alternative credential -> hs_or_less
 - `SCHL=18`: Some college, but less than 1 year -> some_college

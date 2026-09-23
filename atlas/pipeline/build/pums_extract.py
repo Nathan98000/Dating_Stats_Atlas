@@ -12,6 +12,11 @@ Person derivations (the cube axes — Phase 1 axis definitions):
   race8      hispanic (HISP>=2) else NH white/black/asian/aian/nhpi/twoplus/other
   gq         0 household, 1 noninstitutional GQ (RELSHIPP=38),
              2 institutional GQ (RELSHIPP=37)
+  marhyp     MARHYP, year last married (NULL when never married / under
+             15) — Phase 3's fitting-sample clock for the assortative
+             kernel; svy_year is the record's survey year (the first four
+             characters of SERIALNO in a 5-year file), so years since a
+             union formed is svy_year - marhyp
 
 Housing extract (calibration of household income against B19001 only —
 the cube never uses it): HINCP * ADJINC, WGTP + 80 replicate weights,
@@ -50,7 +55,8 @@ MIN_FREE_GB = 5.0
 P_REPWTS = [f"PWGTP{i}" for i in range(1, 81)]
 H_REPWTS = [f"WGTP{i}" for i in range(1, 81)]
 P_BASE = ["SERIALNO", "SPORDER", "STATE", "PUMA", "AGEP", "SEX", "MSP", "SCHL",
-          "PINCP", "PERNP", "ADJINC", "RAC1P", "HISP", "RELSHIPP", "PWGTP"]
+          "PINCP", "PERNP", "ADJINC", "RAC1P", "HISP", "RELSHIPP", "MARHYP",
+          "PWGTP"]
 H_BASE = ["SERIALNO", "STATE", "PUMA", "HINCP", "ADJINC", "TYPEHUGQ", "NP", "WGTP"]
 
 
@@ -89,7 +95,8 @@ def verify_dictionary() -> None:
 
     checks: list[str] = []
     for v in ["SERIALNO", "SPORDER", "AGEP", "SEX", "MSP", "SCHL", "PINCP",
-              "ADJINC", "RAC1P", "HISP", "RELSHIPP", "PWGTP", "PWGTP1", "PWGTP80"]:
+              "ADJINC", "RAC1P", "HISP", "RELSHIPP", "MARHYP", "PWGTP", "PWGTP1",
+              "PWGTP80"]:
         need(v)
         checks.append(f"- `{v}`: {names[v]}")
 
@@ -106,6 +113,22 @@ def verify_dictionary() -> None:
     for v, lab in [("1", "spouse present"), ("2", "spouse absent"), ("3", "Widowed"),
                    ("4", "Divorced"), ("5", "Separated")]:
         code("MSP", v, lab)
+
+    # Phase 3: the kernel's fitting-sample clock. MARHYP is the year of
+    # the LAST marriage (so for a couple currently married to each other
+    # it is the year their union formed); blank = never married or under
+    # 15, bottom-coded at 1945, top at the last survey year.
+    need("MARHYP", "Year last married")
+    checks.append("- `MARHYP`: " + names["MARHYP"] +
+                  " -> Phase 3 fitting sample (unions formed since 2019)")
+    checks.append("- `MARHYP=bbbb`: " + code("MARHYP", "bbbb", "never married"))
+    checks.append("- `MARHYP=1945`: " + code("MARHYP", "1945", "Bottom-coded"))
+    checks.append("- `MARHYP=2024`: " + code("MARHYP", "2024", "2024"))
+    checks.append("- `RELSHIPP=20..24`: " + "; ".join(
+        code("RELSHIPP", c, lab) for c, lab in
+        [("20", "Reference person"), ("21", "Opposite-sex husband"),
+         ("22", "Opposite-sex unmarried partner"),
+         ("23", "Same-sex husband"), ("24", "Same-sex unmarried partner")]))
 
     # edu4 cutpoints (Phase 1 axis: hs_or_less / some_college / bachelors / graduate)
     checks.append("- `SCHL=16`: " + code("SCHL", "16", "Regular high school diploma") +
@@ -222,6 +245,8 @@ def extract_person(postal: str) -> dict:
                     CAST(RAC1P AS TINYINT) AS rac1p,
                     CAST(HISP AS TINYINT) AS hisp,
                     CAST(RELSHIPP AS TINYINT) AS relshipp,
+                    TRY_CAST(MARHYP AS SMALLINT) AS marhyp,
+                    CAST(substr(SERIALNO, 1, 4) AS SMALLINT) AS svy_year,
                     CAST(PWGTP AS INTEGER) AS pwgtp,
                     {rep_sql}
                 FROM raw
@@ -264,12 +289,17 @@ def extract_person(postal: str) -> dict:
     rows_total = con.execute(
         f"SELECT count(*) FROM read_csv('{tmp}/*.csv', header=true, all_varchar=true)"
     ).fetchone()[0]
-    rows_kept, gq_mismatch = con.execute(f"""
+    rows_kept, gq_mismatch, bad_year, bad_marhyp = con.execute(f"""
         SELECT count(*),
-               sum(CASE WHEN (serialno LIKE '%GQ%') != (relshipp IN (37,38)) THEN 1 ELSE 0 END)
+               sum(CASE WHEN (serialno LIKE '%GQ%') != (relshipp IN (37,38)) THEN 1 ELSE 0 END),
+               sum(CASE WHEN svy_year NOT BETWEEN 2020 AND 2024 THEN 1 ELSE 0 END),
+               sum(CASE WHEN marhyp IS NOT NULL AND (marhyp < 1945 OR marhyp > svy_year)
+                        THEN 1 ELSE 0 END)
         FROM '{out}'
     """).fetchone()
     assert gq_mismatch == 0 and rows_kept > 0
+    assert bad_year == 0, f"[{postal}] {bad_year} rows outside survey years 2020-2024"
+    assert bad_marhyp == 0, f"[{postal}] {bad_marhyp} rows with MARHYP outside 1945..survey year"
     con.close()
     shutil.rmtree(tmp)
     evict(url)
