@@ -25,3 +25,7 @@ Dating Stats Atlas_files/
 
 # LibreOffice leftovers Claude could not delete
 _to_delete/
+
+# Phase 3 scratch (regenerable by build.kernel)
+atlas/results/phase3/_*
+atlas/results/phase3/*_run.log
