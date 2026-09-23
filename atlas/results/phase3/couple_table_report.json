@@ -1,0 +1,97 @@
+{
+  "relshipp_labels": {
+    "20": "Reference person",
+    "21": "Opposite-sex husband/wife/spouse",
+    "22": "Opposite-sex unmarried partner",
+    "23": "Same-sex husband/wife/spouse",
+    "24": "Same-sex unmarried partner"
+  },
+  "recent_since": 2019,
+  "linkage_qc": {
+    "sides": 6665228,
+    "households": 3206736,
+    "a_eff_mismatch": 0,
+    "married_no_year": 0,
+    "married_discordant_year": 0,
+    "married_sides": 5924666,
+    "same_sex_sides": 117522,
+    "both_18_70": 5351540,
+    "union_after_survey": 0
+  },
+  "seconds_couples_table": 29.9,
+  "limitation": "PUMS links only the reference person's spouse/partner; couples in subfamilies are not observed. Opposite-sex couples with both members aged 18-70 enter the kernel table; same-sex couples are counted and excluded from the fit (the kernel is applied to every search, including same-sex ones, without a separately modelled same-sex pairing pattern).",
+  "samples": {
+    "recent": {
+      "where": "(NOT married OR union_year >= 2019)",
+      "weight": "1.0",
+      "national_cells": 246038,
+      "couple_sides_rows": 1118376,
+      "n_alloc": 986769.8,
+      "n_kish": 535833.5,
+      "weighted_sides": 24196035.3,
+      "metros": 387,
+      "metro_rows": 1000896,
+      "seconds": 4.2
+    },
+    "stock": {
+      "where": "TRUE",
+      "weight": "1.0",
+      "national_cells": 485492,
+      "couple_sides_rows": 5248126,
+      "n_alloc": 4591004.2,
+      "n_kish": 2410639.6,
+      "weighted_sides": 99333455.9,
+      "metros": 387,
+      "metro_rows": 3951184,
+      "seconds": 15.2
+    },
+    "decay_h5": {
+      "where": "TRUE",
+      "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 5.0) ELSE 1.0 END)",
+      "national_cells": 485492,
+      "couple_sides_rows": 5248126,
+      "n_alloc": 1385259.4,
+      "n_kish": 974833.9,
+      "weighted_sides": 33379883.7,
+      "metros": 387,
+      "metro_rows": 3951184,
+      "seconds": 17.4
+    },
+    "decay_h10": {
+      "where": "TRUE",
+      "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 10.0) ELSE 1.0 END)",
+      "national_cells": 485492,
+      "couple_sides_rows": 5248126,
+      "n_alloc": 2018559.5,
+      "n_kish": 1459108.0,
+      "weighted_sides": 47130975.0,
+      "metros": 387,
+      "metro_rows": 3951184,
+      "seconds": 20.2
+    },
+    "decay_h20": {
+      "where": "TRUE",
+      "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 20.0) ELSE 1.0 END)",
+      "national_cells": 485492,
+      "couple_sides_rows": 5248126,
+      "n_alloc": 2799230.4,
+      "n_kish": 1926577.4,
+      "weighted_sides": 63408785.2,
+      "metros": 387,
+      "metro_rows": 3951184,
+      "seconds": 17.8
+    },
+    "decay_h40": {
+      "where": "TRUE",
+      "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 40.0) ELSE 1.0 END)",
+      "national_cells": 485492,
+      "couple_sides_rows": 5248126,
+      "n_alloc": 3495337.0,
+      "n_kish": 2203013.3,
+      "weighted_sides": 77540622.3,
+      "metros": 387,
+      "metro_rows": 3951184,
+      "seconds": 23.2
+    }
+  }
+}
