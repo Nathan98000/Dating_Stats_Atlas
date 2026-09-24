@@ -95,6 +95,25 @@ FBI_CDE_CONTEXT_ONLY = LicenseTerms(
           "Caution Against Ranking attached. default_weight is pinned to 0.",
 )
 
+# Phase 3c (A3): the one non-federal, non-Commons source the build reads.
+# A validation reference only, read OUTSIDE any adapter by build.kernel,
+# build.kernel_refine and build.validate; marked non-shippable so that
+# assert_all_shippable refuses any published field that ever traces to it,
+# and guarded directly by build.validate's hard "pew never shipped" check,
+# because the provenance assertion cannot see a file no adapter feeds.
+PEW_INTERMARRIAGE_REFERENCE = LicenseTerms(
+    name="Pew Research Center, 'Intermarriage across the U.S. by metro area' "
+         "(2017); Pew terms and conditions",
+    url="https://www.pewresearch.org/about/terms-and-conditions/",
+    shippable=False,
+    attribution="Pew Research Center",
+    notes="results/reference/pew_intermarriage_2015.csv, accessed 2026-09-16: "
+          "the 2011-2015 newlywed intermarriage rates for 124 metros and the "
+          "nation. Out-of-sample check on the chances-of-matching kernel "
+          "(leave one metro out, predict its rate, compare); never chooses a "
+          "kernel (ADR 0009 §2 as amended), never scored, never shipped.",
+)
+
 LICENSES: dict[str, LicenseTerms] = {
     "census_acs": PUBLIC_DOMAIN_CENSUS,
     "census_dhc": PUBLIC_DOMAIN_CENSUS,
@@ -108,4 +127,5 @@ LICENSES: dict[str, LicenseTerms] = {
     "ipeds": PUBLIC_DOMAIN_IPEDS,
     "hud_fmr50": PUBLIC_DOMAIN_HUD,
     "fbi_cde": FBI_CDE_CONTEXT_ONLY,
+    "pew_intermarriage": PEW_INTERMARRIAGE_REFERENCE,
 }

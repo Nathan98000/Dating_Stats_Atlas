@@ -1,9 +1,10 @@
 # Data sources
 
 Every number the site serves comes from one of the sources below. Each one is a
-public dataset from a federal statistical agency, with the single exception of
-the city and stat-page photographs, which come from Wikimedia Commons under
-licences recorded per image.
+public dataset from a federal statistical agency, with two exceptions: the city
+and stat-page photographs, which come from Wikimedia Commons under licences
+recorded per image, and one Pew Research Center table that the build reads as a
+check and never serves (listed under "Used as a check only").
 
 The adapters in `atlas/pipeline/adapters/` carry the machine-readable version of
 this list: `source_id`, `vintage` and a `LicenseTerms` record per source, with
@@ -12,7 +13,7 @@ this list: `source_id`, `vintage` and a `LicenseTerms` record per source, with
 source, dataset, table, variables, geography and vintage. This page is the human
 copy — the one to hand to counsel or link from the methodology page.
 
-Last checked against the build: 18 September 2026 (model m2.4.0).
+Last checked against the build: 24 September 2026 (model m3.2.0, build f20cb02c3af8).
 
 ## Sources that reach the site
 
@@ -168,6 +169,18 @@ Commons `imageinfo` / `extmetadata` fields.
 
 Read from `https://data.bls.gov/cew/data/api/2023/a/industry/{naics}.csv`.
 Licence basis: US public domain (17 USC 105); [BLS copyright statement](https://www.bls.gov/opub/copyright-information.htm).
+
+| Source | Publisher | Why it is here | Link |
+|---|---|---|---|
+| "Intermarriage across the U.S. by metro area" — the share of newlyweds married to someone of a different race or ethnicity, 2011–2015, for the nation and the 124 metros with 200 or more newlyweds in sample | Pew Research Center | Out-of-sample check on the chances-of-matching model (ADR 0009 §4): each metro is left out in turn, its intermarriage rate is predicted from the fitted pairing pattern and its own composition, and the predictions are compared with Pew's. Reported as measured by `build.validate` (soft); never used to choose a kernel, never scored, never shipped — `build.validate` fails (hard) if any derived value reaches the artifact | [pewresearch.org (feature, 18 May 2017)](https://www.pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area/) |
+
+Saved as `results/reference/pew_intermarriage_2015.csv` on 16 September 2026 from the
+feature's data endpoint (`https://www.pewresearch.org/wp-json/prc-api/v2/interactive?slug=intermarriage-map`),
+with the source, date and Pew's copyright in the file header. Read outside any
+adapter (by `build.kernel`, `build.kernel_refine` and `build.validate`); registered in
+`adapters/base.py` as `pew_intermarriage`, non-shippable. © Pew Research Center, used
+as a factual reference with attribution; its terms page is among the counsel packet's
+attachments.
 
 ## Superseded
 
