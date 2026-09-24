@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-f20cb02c3af8",
-  "model_version": "m3.2.0",
+  "data_version": "fixture-ee4f08cf33e1",
+  "model_version": "m3.3.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-24T00:34:36-0400",
+  "created_at": "2026-09-24T13:47:05-0400",
   "axes": [
     {
       "name": "metro",
@@ -237,6 +237,38 @@
     "couple_sides_weighted": 33379883.735795714,
     "n_alloc": 1385259.4166418696,
     "bandwidth_years": [
+      1.0,
+      0.5,
+      0.5,
+      0.35,
+      0.35,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.25,
+      0.25,
+      0.25,
       0.25,
       0.25
     ],
@@ -246,11 +278,11 @@
       "race"
     ],
     "dials_tau": {
-      "age": 0.0674,
-      "edu": 0.0775,
-      "race": 0.1216
+      "age": 0.0638,
+      "edu": 0.0784,
+      "race": 0.1219
     },
-    "generated_at": "2026-09-24T00:31:52-0400"
+    "generated_at": "2026-09-24T13:44:59-0400"
   },
   "model_defaults": {
     "pillar_weights": {
@@ -357,7 +389,7 @@
     "match_unit_line": "where 100 is the US average",
     "match_display_cap": "250",
     "match_display_cap_token": "+",
-    "match_same_sex_note": "For a same-sex search the age gaps come from same-sex couples in the same survey; the education pairings and the racial and ethnic pairings are borrowed from opposite-sex couples, because the same-sex couples in the survey do not support a dependable measure of them on their own.",
+    "match_same_sex_note": "For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are borrowed from opposite-sex couples, because the same-sex couples in the survey are too few to measure them dependably on their own.",
     "match_same_sex_note_all_fallback": "For a same-sex search the age gaps, the education pairings and the racial and ethnic pairings all come from opposite-sex couples, because same-sex couples in the survey are too few to measure them on their own.",
     "self_edu_label": "My education",
     "self_race_label": "My race or ethnicity",
@@ -1352,5 +1384,5 @@
     ],
     "n_source_files_fetched": 2582
   },
-  "fixture_of": "f20cb02c3af8"
+  "fixture_of": "ee4f08cf33e1"
 }
