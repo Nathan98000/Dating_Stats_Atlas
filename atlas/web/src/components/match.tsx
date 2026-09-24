@@ -29,6 +29,7 @@ export function MatchFigure({
         <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
         <InfoTip id={id} label={le.display_name} testid="match-info">
           {policy.match_info}{" "}
+          {match.note ? <span data-testid="match-same-sex-note">{match.note}{" "}</span> : null}
           <Link
             href="/how-it-works#chances-of-matching"
             className="font-semibold text-accent underline underline-offset-2 hover:text-accent-hover"

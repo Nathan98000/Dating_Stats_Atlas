@@ -176,12 +176,19 @@ def test_seeker_weights_four_disclosure_combinations(build):
     # the disclosed-edu kernel is the mixture over race of that edu's
     # per-race kernels: rebuild it by hand from the artifact
     si, ai = 1, 30 - 18
-    P = k.avail[si, ai][engine.EDU_LEVELS.index("bachelors")].astype(float)
+    e_s = engine.EDU_LEVELS.index("bachelors")
+    P = k.avail[si, ai][e_s].astype(float)
     P = P / P.sum()
-    mix = P[None, :] * np.exp(k.log_norm[:, si, ai, engine.EDU_LEVELS.index("bachelors")].astype(float))
-    E = np.exp(k.dials[:, 1][:, None] * k.f_edu[engine.EDU_LEVELS.index("bachelors")][None, :])
+    mix = P[None, :] * np.exp(k.log_norm[:, si, ai, e_s].astype(float))
+    E = np.exp(k.dials[:, 1][:, None] * k.f_edu[si, e_s][None, :])
     Rr = np.exp(k.dials[:, 2][:, None, None] * k.f_race[si][None, :, :])
-    want = np.einsum("mr,mf,mrg->mfg", mix, E, Rr)
+    if k.f_int is None:
+        want = np.einsum("mr,mf,mrg->mfg", mix, E, Rr)
+    else:
+        # m3.2.0: the race x education interaction multiplies in per
+        # (seeker race, partner race, partner edu) for the disclosed edu
+        G = np.exp(k.f_int[si, :, :, e_s, :])                     # (r_s, r_c, e_c)
+        want = np.einsum("mr,mf,mrg,rgf->mfg", mix, E, Rr, G)
     assert np.allclose(W_edu, want, rtol=1e-6)
     # the index differs between disclosures (the disclosure gap the report
     # measures) but every one is centred on 100 nationally (pool-weighted)
@@ -244,6 +251,65 @@ def test_match_display_cap_is_presentational(build):
     assert match_display(9999.0, build)[1] is True
 
 
+def test_same_sex_search_says_whose_patterns_it_uses(build):
+    """m3.2.0 (Phase 3b B3): a same-sex search's match block carries the
+    registry sentence naming which components come from same-sex couples
+    and which fall back to opposite-sex couples; an opposite-sex search
+    carries no note; the served weights for a same-sex search follow the
+    artifact's composition (same-sex terms at dial 1 for the listed
+    components, the metro's dialled opposite-sex term for the rest)."""
+    from atlas.model.scoring import same_sex_note
+    k = build.kernel
+    strings = build.manifest["strings"]
+    ss_body = {"self": {"sex": "male", "age": 31},
+               "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"]}}
+    os_body = {"self": {"sex": "male", "age": 31},
+               "seeking": {"age": [27, 38], "marital": ["never_married"]}}
+    res = engine.rank(build, engine.parse_request(ss_body))
+    assert res["match_inputs"]["same_sex"] is True
+    want = strings["match_same_sex_note"] if (k.same_sex is not None and k.same_sex.components) \
+        else strings["match_same_sex_note_all_fallback"]
+    assert want == same_sex_note(build)
+    assert res["match_inputs"]["same_sex_components"] == (list(k.same_sex.components) if k.same_sex else [])
+    for r in res["ranked"]:
+        assert r["match"]["note"] == want
+        assert not BANNED.search(r["match"]["note"])
+    res_os = engine.rank(build, engine.parse_request(os_body))
+    assert res_os["match_inputs"]["same_sex"] is False
+    assert all("note" not in r["match"] for r in res_os["ranked"])
+    # the composition, rebuilt by hand for the undisclosed seeker
+    age_v, W = seeker_weights(k, "male", 31, None, None, same_sex=True)
+    si, ai = 0, 31 - 18
+    gaps = np.arange(53) - ai + k.gap_offset
+    ss = k.same_sex
+    if ss is not None and "age" in ss.components:
+        assert np.allclose(age_v, np.exp(ss.f_age[si, ss.cohort_of_age[ai]][gaps])[None, :])
+    else:
+        assert np.allclose(age_v, np.exp(k.dials[:, 0:1] * k.f_age[si, k.cohort_of_age[ai]][gaps][None, :]))
+    P = k.avail[si, ai].astype(float); P = P / P.sum()
+    ln = ss.log_norm if ss is not None else k.log_norm
+    mix = P[None] * np.exp(ln[:, si, ai].astype(float))
+    M = k.dials.shape[0]
+    E = (np.repeat(np.exp(ss.f_edu[si])[None], M, 0) if ss is not None and "edu" in ss.components
+         else np.exp(k.dials[:, 1][:, None, None] * k.f_edu[si][None]))
+    R = (np.repeat(np.exp(ss.f_race[si])[None], M, 0) if ss is not None and "race" in ss.components
+         else np.exp(k.dials[:, 2][:, None, None] * k.f_race[si][None]))
+    use_int = k.f_int is not None and not (ss is not None and ("edu" in ss.components or "race" in ss.components))
+    if use_int:
+        G = np.exp(k.f_int[si]).transpose(2, 0, 3, 1)
+        want_W = (mix[:, :, :, None, None] * E[:, :, None, :, None] * R[:, None, :, None, :] * G[None]).sum(axis=(1, 2))
+    else:
+        want_W = np.einsum("mer,mef,mrg->mfg", mix, E, R)
+    assert np.allclose(W, want_W, rtol=1e-6)
+    # and the same-sex path differs from the opposite-sex path exactly when
+    # the artifact carries same-sex terms
+    _, W_os = seeker_weights(k, "male", 31, None, None, same_sex=False)
+    if ss is not None and ss.components:
+        assert not np.allclose(W, W_os)
+    else:
+        assert np.allclose(W, W_os)
+
+
 def test_match_gates_on_unweighted_n(build):
     """The kernel can neither rescue nor condemn a cell: a metro is
     suppressed exactly when min(n_alloc, kish) < 100 on the UNWEIGHTED
@@ -283,7 +349,7 @@ def test_match_index_is_a_rate_with_the_delta_method_margin(build):
     from dataclasses import replace
     flat_k = replace(k, f_age=np.zeros_like(k.f_age), f_edu=np.zeros_like(k.f_edu),
                      f_race=np.zeros_like(k.f_race), log_norm=np.zeros_like(k.log_norm),
-                     dials=np.ones_like(k.dials))
+                     dials=np.ones_like(k.dials), f_int=None, same_sex=None)
     b2 = replace(build, kernel=flat_k)
     mt = match_index(b2, req)
     ok = mt["den"] > 0

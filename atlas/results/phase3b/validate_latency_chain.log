@@ -1,0 +1,11 @@
+validate done: 1
+load at measurement: { 2.48 4.34 6.80 }
+{
+  "n": 400,
+  "p50_ms": 30.71,
+  "p95_ms": 41.11,
+  "p99_ms": 47.16,
+  "max_ms": 50.26,
+  "target_p95_ms": 60
+}
+LATENCY DONE

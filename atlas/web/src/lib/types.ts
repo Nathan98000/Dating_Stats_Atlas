@@ -65,6 +65,9 @@ export interface MatchBlock {
    * skips capped figures */
   display?: string | null;
   capped?: boolean;
+  /** m3.2.0: for a same-sex search, the registry sentence saying whose
+   * pairing patterns the figure is built from (rendered in the box) */
+  note?: string;
   moe?: number | null;
   unit_line?: string;
   band?: Band;

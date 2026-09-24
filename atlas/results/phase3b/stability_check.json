@@ -1,0 +1,1027 @@
+{
+ "build": "ae1efbef9f0e",
+ "gate": "every persona >= 0.8",
+ "candidates": {
+  "baseline": {
+   "artifact": "atlas/results/phase3b/_candidates/baseline",
+   "kernel_version": "kernel_v2",
+   "pass": true,
+   "min_share": 0.95,
+   "personas_below_bar": [],
+   "replicate_sd_median_across_personas": 2.82,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.69,
+     "match_index_replicate_sd_p90": 4.18,
+     "match_index_p10_p90_spread": 14.4,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.1,
+     "match_index_replicate_sd_p90": 3.35,
+     "match_index_p10_p90_spread": 25.9,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 6.3
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 3.37,
+     "match_index_replicate_sd_p90": 5.35,
+     "match_index_p10_p90_spread": 12.5,
+     "score_gap_rank10_to_rank11": 1.5,
+     "score_span_ranks_7_to_14": 8.3
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 4.05,
+     "match_index_replicate_sd_p90": 6.7,
+     "match_index_p10_p90_spread": 25.2,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 1.3
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.63,
+     "match_index_p10_p90_spread": 18.5,
+     "score_gap_rank10_to_rank11": 4.6,
+     "score_span_ranks_7_to_14": 8.3
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.93,
+     "match_index_replicate_sd_p90": 4.71,
+     "match_index_p10_p90_spread": 10.1,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 4.1,
+     "match_index_replicate_sd_p90": 5.95,
+     "match_index_p10_p90_spread": 16.5,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 10.4
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.59,
+     "match_index_replicate_sd_p90": 7.08,
+     "match_index_p10_p90_spread": 21.0,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 10.1
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.75,
+     "match_index_replicate_sd_p90": 4.13,
+     "match_index_p10_p90_spread": 28.4,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 4.9
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 2.01,
+     "match_index_replicate_sd_p90": 3.14,
+     "match_index_p10_p90_spread": 19.0,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 3.6
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 2.01,
+     "match_index_replicate_sd_p90": 3.14,
+     "match_index_p10_p90_spread": 19.0,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 3.6
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.64,
+     "match_index_replicate_sd_p90": 16.97,
+     "match_index_p10_p90_spread": 91.5,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.85,
+     "match_index_replicate_sd_p90": 4.39,
+     "match_index_p10_p90_spread": 29.5,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.3
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.76,
+     "match_index_replicate_sd_p90": 4.05,
+     "match_index_p10_p90_spread": 17.7,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 4.5
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.55,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 1.4,
+     "score_span_ranks_7_to_14": 6.8
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.49,
+     "match_index_replicate_sd_p90": 5.18,
+     "match_index_p10_p90_spread": 19.6,
+     "score_gap_rank10_to_rank11": 1.8,
+     "score_span_ranks_7_to_14": 4.7
+    }
+   },
+   "seconds": 42.4
+  },
+  "B1_age_cohorts": {
+   "artifact": "atlas/results/phase3b/_candidates/B1_age_cohorts",
+   "kernel_version": "kernel_v2",
+   "pass": false,
+   "min_share": 0.675,
+   "personas_below_bar": [
+    "race_hispanic_women",
+    "slider_alias_pool_vs_balance",
+    "slider_all_match"
+   ],
+   "replicate_sd_median_across_personas": 3.01,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.72,
+     "match_index_replicate_sd_p90": 4.26,
+     "match_index_p10_p90_spread": 15.4,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 6.2
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.54,
+     "match_index_replicate_sd_p90": 4.02,
+     "match_index_p10_p90_spread": 25.0,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 5.5
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.98,
+     "match_index_replicate_sd_p90": 4.49,
+     "match_index_p10_p90_spread": 12.5,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 7.7
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.29,
+     "match_index_replicate_sd_p90": 4.91,
+     "match_index_p10_p90_spread": 22.9,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 2.6
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.0,
+     "match_index_replicate_sd_p90": 4.96,
+     "match_index_p10_p90_spread": 18.1,
+     "score_gap_rank10_to_rank11": 5.1,
+     "score_span_ranks_7_to_14": 9.5
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 0.675,
+     "match_index_replicate_sd_median": 3.54,
+     "match_index_replicate_sd_p90": 5.28,
+     "match_index_p10_p90_spread": 12.4,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 3.4
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.02,
+     "match_index_replicate_sd_p90": 4.45,
+     "match_index_p10_p90_spread": 13.8,
+     "score_gap_rank10_to_rank11": 1.7,
+     "score_span_ranks_7_to_14": 8.3
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 5.25,
+     "match_index_replicate_sd_p90": 8.02,
+     "match_index_p10_p90_spread": 22.6,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 8.7
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.26,
+     "match_index_replicate_sd_p90": 4.72,
+     "match_index_p10_p90_spread": 29.0,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 2.9
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.7875,
+     "match_index_replicate_sd_median": 2.11,
+     "match_index_replicate_sd_p90": 3.18,
+     "match_index_p10_p90_spread": 16.3,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 2.4
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.7875,
+     "match_index_replicate_sd_median": 2.11,
+     "match_index_replicate_sd_p90": 3.18,
+     "match_index_p10_p90_spread": 16.3,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 2.4
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.65,
+     "match_index_replicate_sd_p90": 17.13,
+     "match_index_p10_p90_spread": 89.1,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.35,
+     "match_index_replicate_sd_p90": 5.09,
+     "match_index_p10_p90_spread": 32.9,
+     "score_gap_rank10_to_rank11": 1.2,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.67,
+     "match_index_replicate_sd_p90": 3.73,
+     "match_index_p10_p90_spread": 15.8,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.65,
+     "match_index_replicate_sd_p90": 4.2,
+     "match_index_p10_p90_spread": 25.6,
+     "score_gap_rank10_to_rank11": 1.5,
+     "score_span_ranks_7_to_14": 7.5
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.78,
+     "match_index_replicate_sd_p90": 5.69,
+     "match_index_p10_p90_spread": 19.6,
+     "score_gap_rank10_to_rank11": 2.2,
+     "score_span_ranks_7_to_14": 5.6
+    }
+   },
+   "seconds": 29.0
+  },
+  "B2a_race_x_edu": {
+   "artifact": "atlas/results/phase3b/_candidates/B2a_race_x_edu",
+   "kernel_version": "kernel_v2",
+   "pass": true,
+   "min_share": 0.8,
+   "personas_below_bar": [],
+   "replicate_sd_median_across_personas": 2.87,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.83,
+     "match_index_replicate_sd_p90": 4.28,
+     "match_index_p10_p90_spread": 18.8,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 4.5
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.16,
+     "match_index_replicate_sd_p90": 3.45,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 6.6
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.925,
+     "match_index_replicate_sd_median": 3.33,
+     "match_index_replicate_sd_p90": 5.2,
+     "match_index_p10_p90_spread": 12.8,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 7.7
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.8,
+     "match_index_replicate_sd_median": 4.11,
+     "match_index_replicate_sd_p90": 6.51,
+     "match_index_p10_p90_spread": 23.4,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 1.1
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.9,
+     "match_index_replicate_sd_p90": 4.9,
+     "match_index_p10_p90_spread": 21.7,
+     "score_gap_rank10_to_rank11": 4.1,
+     "score_span_ranks_7_to_14": 9.5
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.42,
+     "match_index_p10_p90_spread": 10.6,
+     "score_gap_rank10_to_rank11": 1.6,
+     "score_span_ranks_7_to_14": 9.3
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.02,
+     "match_index_replicate_sd_p90": 5.89,
+     "match_index_p10_p90_spread": 15.6,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 11.3
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.42,
+     "match_index_replicate_sd_p90": 6.79,
+     "match_index_p10_p90_spread": 20.2,
+     "score_gap_rank10_to_rank11": 2.5,
+     "score_span_ranks_7_to_14": 8.7
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.75,
+     "match_index_replicate_sd_p90": 4.17,
+     "match_index_p10_p90_spread": 29.0,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 3.01,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 3.01,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.88,
+     "match_index_replicate_sd_p90": 18.11,
+     "match_index_p10_p90_spread": 90.6,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 3.7
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.96,
+     "match_index_replicate_sd_p90": 4.62,
+     "match_index_p10_p90_spread": 35.2,
+     "score_gap_rank10_to_rank11": 1.1,
+     "score_span_ranks_7_to_14": 5.1
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 2.69,
+     "match_index_replicate_sd_p90": 4.04,
+     "match_index_p10_p90_spread": 16.8,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.3
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.78,
+     "match_index_replicate_sd_p90": 4.53,
+     "match_index_p10_p90_spread": 28.1,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 6.8
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.36,
+     "match_index_replicate_sd_p90": 5.11,
+     "match_index_p10_p90_spread": 16.7,
+     "score_gap_rank10_to_rank11": 2.0,
+     "score_span_ranks_7_to_14": 5.1
+    }
+   },
+   "seconds": 32.1
+  },
+  "B2b_edu_by_sex": {
+   "artifact": "atlas/results/phase3b/_candidates/B2b_edu_by_sex",
+   "kernel_version": "kernel_v2",
+   "pass": true,
+   "min_share": 0.825,
+   "personas_below_bar": [],
+   "replicate_sd_median_across_personas": 2.81,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.72,
+     "match_index_replicate_sd_p90": 4.23,
+     "match_index_p10_p90_spread": 15.5,
+     "score_gap_rank10_to_rank11": 1.2,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.16,
+     "match_index_replicate_sd_p90": 3.42,
+     "match_index_p10_p90_spread": 26.3,
+     "score_gap_rank10_to_rank11": 1.4,
+     "score_span_ranks_7_to_14": 6.9
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 3.37,
+     "match_index_replicate_sd_p90": 5.33,
+     "match_index_p10_p90_spread": 13.2,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 7.1
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.9375,
+     "match_index_replicate_sd_median": 4.0,
+     "match_index_replicate_sd_p90": 6.57,
+     "match_index_p10_p90_spread": 23.6,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 2.0
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.78,
+     "match_index_replicate_sd_p90": 4.55,
+     "match_index_p10_p90_spread": 18.7,
+     "score_gap_rank10_to_rank11": 4.6,
+     "score_span_ranks_7_to_14": 9.1
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 2.85,
+     "match_index_replicate_sd_p90": 4.51,
+     "match_index_p10_p90_spread": 9.8,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 7.6
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 4.07,
+     "match_index_replicate_sd_p90": 5.98,
+     "match_index_p10_p90_spread": 16.2,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 10.4
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.47,
+     "match_index_replicate_sd_p90": 6.92,
+     "match_index_p10_p90_spread": 20.4,
+     "score_gap_rank10_to_rank11": 0.6,
+     "score_span_ranks_7_to_14": 9.4
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.73,
+     "match_index_replicate_sd_p90": 4.2,
+     "match_index_p10_p90_spread": 29.4,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.825,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 2.98,
+     "match_index_p10_p90_spread": 16.3,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 4.3
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.825,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 2.98,
+     "match_index_p10_p90_spread": 16.3,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 4.3
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.83,
+     "match_index_replicate_sd_p90": 17.1,
+     "match_index_p10_p90_spread": 93.1,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.04,
+     "match_index_replicate_sd_p90": 4.73,
+     "match_index_p10_p90_spread": 31.6,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 3.0
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 2.69,
+     "match_index_replicate_sd_p90": 4.06,
+     "match_index_p10_p90_spread": 16.6,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.3
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.76,
+     "match_index_replicate_sd_p90": 4.5,
+     "match_index_p10_p90_spread": 28.1,
+     "score_gap_rank10_to_rank11": 1.1,
+     "score_span_ranks_7_to_14": 7.2
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.46,
+     "match_index_replicate_sd_p90": 5.15,
+     "match_index_p10_p90_spread": 18.2,
+     "score_gap_rank10_to_rank11": 1.8,
+     "score_span_ranks_7_to_14": 5.7
+    }
+   },
+   "seconds": 31.1
+  },
+  "B2a_plus_B2b": {
+   "artifact": "atlas/results/phase3b/_candidates/shipped",
+   "kernel_version": "kernel_v2",
+   "pass": false,
+   "min_share": 0.75,
+   "personas_below_bar": [
+    "D_man41_women_50k"
+   ],
+   "replicate_sd_median_across_personas": 2.88,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.84,
+     "match_index_replicate_sd_p90": 4.32,
+     "match_index_p10_p90_spread": 18.5,
+     "score_gap_rank10_to_rank11": 1.2,
+     "score_span_ranks_7_to_14": 4.4
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.16,
+     "match_index_replicate_sd_p90": 3.45,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 1.1,
+     "score_span_ranks_7_to_14": 6.6
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.925,
+     "match_index_replicate_sd_median": 3.37,
+     "match_index_replicate_sd_p90": 5.25,
+     "match_index_p10_p90_spread": 13.1,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 7.1
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.75,
+     "match_index_replicate_sd_median": 4.1,
+     "match_index_replicate_sd_p90": 6.5,
+     "match_index_p10_p90_spread": 23.5,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 1.3
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.92,
+     "match_index_replicate_sd_p90": 4.9,
+     "match_index_p10_p90_spread": 22.2,
+     "score_gap_rank10_to_rank11": 4.1,
+     "score_span_ranks_7_to_14": 9.5
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.41,
+     "match_index_p10_p90_spread": 10.7,
+     "score_gap_rank10_to_rank11": 1.6,
+     "score_span_ranks_7_to_14": 9.5
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.03,
+     "match_index_replicate_sd_p90": 5.95,
+     "match_index_p10_p90_spread": 15.6,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 11.3
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.39,
+     "match_index_replicate_sd_p90": 6.81,
+     "match_index_p10_p90_spread": 20.0,
+     "score_gap_rank10_to_rank11": 1.8,
+     "score_span_ranks_7_to_14": 8.7
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.75,
+     "match_index_replicate_sd_p90": 4.17,
+     "match_index_p10_p90_spread": 29.0,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.9375,
+     "match_index_replicate_sd_median": 1.96,
+     "match_index_replicate_sd_p90": 3.02,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.6,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.9375,
+     "match_index_replicate_sd_median": 1.96,
+     "match_index_replicate_sd_p90": 3.02,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.6,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.88,
+     "match_index_replicate_sd_p90": 17.91,
+     "match_index_p10_p90_spread": 90.7,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 3.7
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.97,
+     "match_index_replicate_sd_p90": 4.63,
+     "match_index_p10_p90_spread": 35.2,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 5.2
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.7,
+     "match_index_replicate_sd_p90": 4.05,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.6
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.77,
+     "match_index_replicate_sd_p90": 4.51,
+     "match_index_p10_p90_spread": 28.0,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 6.6
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.37,
+     "match_index_replicate_sd_p90": 5.1,
+     "match_index_p10_p90_spread": 17.0,
+     "score_gap_rank10_to_rank11": 1.8,
+     "score_span_ranks_7_to_14": 5.3
+    }
+   },
+   "seconds": 15.0
+  },
+  "shipped": {
+   "artifact": "atlas/results/phase3b/_candidates/shipped",
+   "kernel_version": "kernel_v2",
+   "pass": true,
+   "min_share": 0.8,
+   "personas_below_bar": [],
+   "replicate_sd_median_across_personas": 2.87,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.83,
+     "match_index_replicate_sd_p90": 4.28,
+     "match_index_p10_p90_spread": 18.8,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 4.5
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.16,
+     "match_index_replicate_sd_p90": 3.45,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 6.6
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.925,
+     "match_index_replicate_sd_median": 3.33,
+     "match_index_replicate_sd_p90": 5.2,
+     "match_index_p10_p90_spread": 12.8,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 7.7
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.8,
+     "match_index_replicate_sd_median": 4.11,
+     "match_index_replicate_sd_p90": 6.51,
+     "match_index_p10_p90_spread": 23.4,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 1.1
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.9,
+     "match_index_replicate_sd_p90": 4.9,
+     "match_index_p10_p90_spread": 21.7,
+     "score_gap_rank10_to_rank11": 4.1,
+     "score_span_ranks_7_to_14": 9.5
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.42,
+     "match_index_p10_p90_spread": 10.6,
+     "score_gap_rank10_to_rank11": 1.6,
+     "score_span_ranks_7_to_14": 9.3
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.02,
+     "match_index_replicate_sd_p90": 5.89,
+     "match_index_p10_p90_spread": 15.6,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 11.3
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.42,
+     "match_index_replicate_sd_p90": 6.79,
+     "match_index_p10_p90_spread": 20.2,
+     "score_gap_rank10_to_rank11": 2.5,
+     "score_span_ranks_7_to_14": 8.7
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.75,
+     "match_index_replicate_sd_p90": 4.17,
+     "match_index_p10_p90_spread": 29.0,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 3.01,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 3.01,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.88,
+     "match_index_replicate_sd_p90": 18.11,
+     "match_index_p10_p90_spread": 90.6,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 3.7
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.96,
+     "match_index_replicate_sd_p90": 4.62,
+     "match_index_p10_p90_spread": 35.2,
+     "score_gap_rank10_to_rank11": 1.1,
+     "score_span_ranks_7_to_14": 5.1
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 2.69,
+     "match_index_replicate_sd_p90": 4.04,
+     "match_index_p10_p90_spread": 16.8,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.3
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.78,
+     "match_index_replicate_sd_p90": 4.53,
+     "match_index_p10_p90_spread": 28.1,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 6.8
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.36,
+     "match_index_replicate_sd_p90": 5.11,
+     "match_index_p10_p90_spread": 16.7,
+     "score_gap_rank10_to_rank11": 2.0,
+     "score_span_ranks_7_to_14": 5.1
+    }
+   },
+   "seconds": 19.5
+  },
+  "shipped_final": {
+   "artifact": "atlas/results/phase3b/_candidates/shipped_final",
+   "kernel_version": "kernel_v2",
+   "pass": true,
+   "min_share": 0.8,
+   "personas_below_bar": [],
+   "replicate_sd_median_across_personas": 2.81,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.83,
+     "match_index_replicate_sd_p90": 4.28,
+     "match_index_p10_p90_spread": 18.8,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 4.5
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.16,
+     "match_index_replicate_sd_p90": 3.45,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 6.6
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.925,
+     "match_index_replicate_sd_median": 3.33,
+     "match_index_replicate_sd_p90": 5.2,
+     "match_index_p10_p90_spread": 12.8,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 7.7
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.8,
+     "match_index_replicate_sd_median": 4.11,
+     "match_index_replicate_sd_p90": 6.51,
+     "match_index_p10_p90_spread": 23.4,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 1.1
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.9,
+     "match_index_replicate_sd_p90": 4.9,
+     "match_index_p10_p90_spread": 21.7,
+     "score_gap_rank10_to_rank11": 4.1,
+     "score_span_ranks_7_to_14": 9.5
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.42,
+     "match_index_p10_p90_spread": 10.6,
+     "score_gap_rank10_to_rank11": 1.6,
+     "score_span_ranks_7_to_14": 9.3
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.02,
+     "match_index_replicate_sd_p90": 5.89,
+     "match_index_p10_p90_spread": 15.6,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 11.3
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.42,
+     "match_index_replicate_sd_p90": 6.79,
+     "match_index_p10_p90_spread": 20.2,
+     "score_gap_rank10_to_rank11": 2.5,
+     "score_span_ranks_7_to_14": 8.7
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.75,
+     "match_index_replicate_sd_p90": 4.17,
+     "match_index_p10_p90_spread": 29.0,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 3.01,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 1.95,
+     "match_index_replicate_sd_p90": 3.01,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.88,
+     "match_index_replicate_sd_p90": 18.11,
+     "match_index_p10_p90_spread": 90.6,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 3.7
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.96,
+     "match_index_replicate_sd_p90": 4.62,
+     "match_index_p10_p90_spread": 35.2,
+     "score_gap_rank10_to_rank11": 1.1,
+     "score_span_ranks_7_to_14": 5.1
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 2.69,
+     "match_index_replicate_sd_p90": 4.04,
+     "match_index_p10_p90_spread": 16.8,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.3
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.78,
+     "match_index_replicate_sd_p90": 4.53,
+     "match_index_p10_p90_spread": 28.1,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 6.8
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 1.71,
+     "match_index_replicate_sd_p90": 2.64,
+     "match_index_p10_p90_spread": 9.9,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 6.9
+    }
+   },
+   "seconds": 14.1
+  }
+ }
+}

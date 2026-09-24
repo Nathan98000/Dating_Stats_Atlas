@@ -40,7 +40,7 @@ import pandas as pd
 from atlas.model.intervals import IntervalModel
 from atlas.model.preferences import (EDU_LEVELS, INC_LEVELS, KERNEL_COMPONENTS,
                                      MARITAL_LEVELS, N_FLAT, RACE_LEVELS,
-                                     SEX_LEVELS, Kernel)
+                                     SEX_LEVELS, Kernel, SameSexTerms)
 from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
 STATIC_FEATURES = ["rent_1br", "rpp_goods", "rpp_services_other",
@@ -130,17 +130,34 @@ def reduce_cube(cube: np.ndarray) -> np.ndarray:
     return out
 
 
+def _cohorts(edges: np.ndarray) -> np.ndarray:
+    return np.digitize(np.arange(18, 71), np.asarray(edges, dtype=int)) if len(edges) \
+        else np.zeros(53, dtype=int)
+
+
 def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
+    """kernel_v1 (m3.0.0/m3.1.0: one gap curve per sex, a pooled 4x4) and
+    kernel_v2 (m3.2.0: a curve per sex x cohort, education per sex, the
+    optional interaction, the optional same-sex terms) both load into the
+    one in-memory representation."""
     meta = json.loads((path / "kernel.json").read_text())
     z = np.load(path / "kernel.npz", allow_pickle=False)
-    assert meta["version"] == "kernel_v1", meta["version"]
+    assert meta["version"] in ("kernel_v1", "kernel_v2"), meta["version"]
+    v2 = meta["version"] == "kernel_v2"
     assert list(z["metro_levels"]) == metro_levels, (
         "kernel.npz metro order disagrees with the build's metros")
     assert meta["sex_levels"] == SEX_LEVELS and meta["edu_levels"] == EDU_LEVELS \
         and meta["race_levels"] == RACE_LEVELS, "kernel level coding drifted"
     f_age = np.asarray(z["f_age"], dtype=np.float64)
+    if f_age.ndim == 2:
+        f_age = f_age[:, None, :]
+    edges = np.asarray(z["cohort_edges"], dtype=int) if "cohort_edges" in z.files else np.zeros(0, int)
+    cohort_of_age = _cohorts(edges)
     f_edu = np.asarray(z["f_edu"], dtype=np.float64)
+    if f_edu.ndim == 2:
+        f_edu = np.stack([f_edu, f_edu])
     f_race = np.asarray(z["f_race"], dtype=np.float64)
+    f_int = np.asarray(z["f_int"], dtype=np.float64) if "f_int" in z.files else None
     dials = np.asarray(z["dials"], dtype=np.float64)
     log_norm = np.asarray(z["log_norm"], dtype=np.float32)
     avail = np.asarray(z["avail_national"], dtype=np.float64)
@@ -149,23 +166,52 @@ def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
         # the writer stores the per-seeker normalisers flat in seeker-type
         # order (sex, age, edu, race), which is exactly this reshape
         log_norm = log_norm.reshape(n, 2, 53, 4, 8)
-    assert f_age.shape == (2, 105) and f_edu.shape == (4, 4) and f_race.shape == (2, 8, 8)
+    K = len(edges) + 1
+    assert f_age.shape == (2, K, 105) and f_edu.shape == (2, 4, 4) and f_race.shape == (2, 8, 8), (
+        f_age.shape, f_edu.shape, f_race.shape)
     assert dials.shape == (n, 3) and log_norm.shape == (n, 2, 53, 4, 8)
     assert avail.shape == (2, 53, 4, 8) and (avail >= 0).all()
     assert np.isfinite(f_age).all() and np.isfinite(f_edu).all() and np.isfinite(f_race).all()
     assert np.isfinite(dials).all() and (dials >= 0).all()
+    if f_int is not None:
+        assert f_int.shape == (2, 8, 8, 4, 4) and np.isfinite(f_int).all()
     comps = tuple(meta.get("dial_components", []))
     for j, c in enumerate(KERNEL_COMPONENTS):
         if c not in comps:
             assert np.allclose(dials[:, j], 1.0), (
                 f"component {c} earned no dial but carries non-unit dials")
+    same_sex = None
+    if "ss_f_age" in z.files:
+        ss_meta = meta.get("same_sex") or {}
+        ss_comps = tuple(ss_meta.get("components_from_same_sex_couples", []))
+        assert ss_comps and set(ss_comps) <= set(KERNEL_COMPONENTS), ss_comps
+        ss_age = np.asarray(z["ss_f_age"], dtype=np.float64)
+        if ss_age.ndim == 2:
+            ss_age = ss_age[:, None, :]
+        ss_edges = np.asarray(z["ss_cohort_edges"], dtype=int) if "ss_cohort_edges" in z.files \
+            else np.zeros(0, int)
+        ss_edu = np.asarray(z["ss_f_edu"], dtype=np.float64)
+        if ss_edu.ndim == 2:
+            ss_edu = np.stack([ss_edu, ss_edu])
+        ss_race = np.asarray(z["ss_f_race"], dtype=np.float64)
+        ss_ln = np.asarray(z["ss_log_norm"], dtype=np.float32)
+        assert ss_age.shape == (2, len(ss_edges) + 1, 105) and ss_edu.shape == (2, 4, 4) \
+            and ss_race.shape == (2, 8, 8) and ss_ln.shape == (n, 2, 53, 4, 8)
+        assert np.isfinite(ss_age).all() and np.isfinite(ss_edu).all() and np.isfinite(ss_race).all()
+        same_sex = SameSexTerms(f_age=ss_age, cohort_of_age=_cohorts(ss_edges), f_edu=ss_edu,
+                                f_race=ss_race, log_norm=ss_ln, components=ss_comps)
     return Kernel(f_age=f_age, f_edu=f_edu, f_race=f_race, dials=dials,
                   log_norm=log_norm, avail=avail, gap_offset=int(meta["gap_offset"]),
-                  dial_components=comps,
+                  dial_components=comps, cohort_of_age=cohort_of_age, f_int=f_int,
+                  same_sex=same_sex,
                   meta={k: meta.get(k) for k in ("version", "fitting_sample",
                                                   "fitting_sample_spec", "bandwidth_years",
                                                   "dials_tau", "generated_at", "gauge",
-                                                  "form")})
+                                                  "form", "age_cohorts", "edu_by_sex",
+                                                  "interaction", "refinements", "same_sex")
+                        if v2 or k in ("version", "fitting_sample", "fitting_sample_spec",
+                                       "bandwidth_years", "dials_tau", "generated_at",
+                                       "gauge", "form")})
 
 
 def _validate_axes(manifest: dict) -> list[str]:

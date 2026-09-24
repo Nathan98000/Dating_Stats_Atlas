@@ -1,0 +1,468 @@
+search,metros,median_abs_change_pts,p90_abs_change_pts,max_abs_change_pts,kendall_tau_index,top_by_index_before,top_by_index_after,top1_changes,top10_score_overlap
+persona:A_woman32_ba_men_75k,193,1.88,3.91,6.5,0.892,"Canton, OH | Waco, TX | Greeley, CO","Canton, OH | Waco, TX | Greeley, CO",False,9
+persona:B_man28_women_never,193,0.96,2.27,3.79,0.926,"San Jose, CA | Ann Arbor, MI | Madison, WI","San Jose, CA | Ann Arbor, MI | Madison, WI",False,10
+persona:C_woman38_grad_men_100k,193,0.76,1.79,2.87,0.947,"Duluth, MN | Kalamazoo, MI | Lincoln, NE","Duluth, MN | Kalamazoo, MI | Lincoln, NE",False,9
+persona:D_man41_women_50k,193,1.04,2.3,3.8,0.924,"Fargo, ND | Green Bay, WI | Huntington, WV","Fargo, ND | Huntington, WV | Green Bay, WI",False,9
+persona:E_black_woman29_stress,161,0.82,2.24,3.77,0.979,"Scranton, PA | Omaha, NE | Des Moines, IA","Scranton, PA | Omaha, NE | Des Moines, IA",False,4
+persona:race_asian_nh_men,192,1.88,4.58,10.23,0.929,"Myrtle Beach, SC | York, PA | Greenville, SC","Myrtle Beach, SC | York, PA | Greenville, SC",False,10
+persona:race_hispanic_women,193,1.71,4.37,13.36,0.799,"Fargo, ND | Green Bay, WI | Birmingham, AL","Fargo, ND | Green Bay, WI | Gainesville, FL",False,8
+persona:race_white_nh_grad_multi,193,0.74,1.51,3.48,0.958,"Slidell, LA | Santa Cruz, CA | Peoria, IL","Slidell, LA | Santa Cruz, CA | Peoria, IL",False,9
+persona:race_two_or_more_and_other,193,1.76,4.23,7.9,0.902,"Corpus Christi, TX | Visalia, CA | Baltimore, MD","Corpus Christi, TX | Visalia, CA | Spartanburg, SC",False,9
+persona:broad_any,193,0.9,2.01,3.39,0.945,"Denver, CO | Salt Lake City, UT | Seattle, WA","Denver, CO | San Francisco, CA | Seattle, WA",False,10
+persona:slider_all_match,193,1.24,2.31,3.56,0.916,"Ann Arbor, MI | Boulder, CO | Madison, WI","Tuscaloosa, AL | Ann Arbor, MI | Boulder, CO",True,9
+persona:slider_alias_pool_vs_balance,193,1.24,2.31,3.56,0.916,"Ann Arbor, MI | Boulder, CO | Madison, WI","Tuscaloosa, AL | Ann Arbor, MI | Boulder, CO",True,9
+persona:self_edu_and_race,193,1.28,3.39,16.91,0.959,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Seattle, WA",False,10
+persona:self_edu_only_hs,193,1.79,4.24,7.79,0.906,"Montgomery, AL | Yakima, WA | Brownsville, TX","Yakima, WA | Montgomery, AL | Brownsville, TX",True,9
+persona:importance_controls,193,1.07,2.23,2.92,0.903,"Ann Arbor, MI | Atlanta, GA | Jackson, MS","Jackson, MS | Atlanta, GA | Montgomery, AL",True,10
+persona:importance_lifestyle_alias,193,0.88,2.04,3.41,0.936,"Cedar Rapids, IA | Madison, WI | Lancaster, PA","Madison, WI | Lancaster, PA | Cedar Rapids, IA",True,9
+persona:same_sex_pool,193,0.65,2.23,8.29,0.908,"San Jose, CA | Green Bay, WI | Madison, WI","San Jose, CA | Green Bay, WI | Sioux Falls, SD",False,10
+male:25:undisclosed,193,0.93,2.06,3.42,0.936,"Provo, UT | College Station, TX | Ann Arbor, MI","Ann Arbor, MI | College Station, TX | Provo, UT",True,10
+male:25:edu=hs_or_less,193,0.73,1.7,4.07,0.95,"Provo, UT | McAllen, TX | Visalia, CA","Provo, UT | McAllen, TX | Visalia, CA",False,10
+male:25:edu=some_college,193,1.39,3.54,6.37,0.876,"Provo, UT | San Luis Obispo, CA | Santa Cruz, CA","Provo, UT | San Luis Obispo, CA | Lincoln, NE",False,9
+male:25:edu=bachelors,193,1.14,2.57,4.43,0.97,"Ann Arbor, MI | Madison, WI | San Jose, CA","Ann Arbor, MI | Madison, WI | Boulder, CO",False,9
+male:25:edu=graduate,193,1.31,3.11,9.44,0.971,"San Jose, CA | Ann Arbor, MI | Madison, WI","San Jose, CA | Ann Arbor, MI | Madison, WI",False,9
+male:25:race=hispanic,193,1.26,3.7,13.48,0.977,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+male:25:race=nh_white,193,1.43,3.07,4.43,0.97,"Provo, UT | Lincoln, NE | Madison, WI","Provo, UT | Lincoln, NE | Madison, WI",False,9
+male:25:race=nh_black,193,1.21,3.17,9.48,0.97,"Montgomery, AL | Memphis, TN | Jackson, MS","Jackson, MS | Montgomery, AL | Memphis, TN",True,10
+male:25:race=nh_asian,193,1.28,3.53,11.76,0.964,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,9
+male:25:race=nh_aian,193,2.35,5.73,56.24,0.942,"Sioux Falls, SD | Anchorage, AK | Duluth, MN","Sioux Falls, SD | Anchorage, AK | Duluth, MN",False,8
+male:25:race=nh_nhpi,193,2.11,7.87,93.28,0.95,"Fayetteville, AR | Salem, OR | Anchorage, AK","Fayetteville, AR | Honolulu, HI | Anchorage, AK",False,10
+male:25:race=nh_twoplus,193,0.95,2.66,6.03,0.954,"Fayetteville, AR | Lincoln, NE | Ann Arbor, MI","Fayetteville, AR | Ann Arbor, MI | Lincoln, NE",False,10
+male:25:race=nh_other,193,1.56,5.49,19.48,0.958,"Lynchburg, VA | Reading, PA | Peoria, IL","Lynchburg, VA | Peoria, IL | Reading, PA",False,9
+male:25:edu=hs_or_less:race=hispanic,193,5.37,10.83,31.82,0.952,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+male:25:edu=hs_or_less:race=nh_white,193,2.45,7.2,13.54,0.95,"Provo, UT | Springfield, MO | Duluth, MN","Provo, UT | Duluth, MN | Springfield, MO",False,9
+male:25:edu=hs_or_less:race=nh_black,193,1.92,5.87,11.49,0.953,"Memphis, TN | Montgomery, AL | Jackson, MS","Montgomery, AL | Memphis, TN | Jackson, MS",True,10
+male:25:edu=hs_or_less:race=nh_asian,193,7.53,15.62,131.97,0.875,"San Jose, CA | Honolulu, HI | Stockton, CA","San Jose, CA | Honolulu, HI | Stockton, CA",False,10
+male:25:edu=hs_or_less:race=nh_aian,193,2.0,5.83,62.34,0.952,"Sioux Falls, SD | Anchorage, AK | Duluth, MN","Sioux Falls, SD | Anchorage, AK | Duluth, MN",False,10
+male:25:edu=hs_or_less:race=nh_nhpi,193,2.56,10.45,88.18,0.953,"Fayetteville, AR | Anchorage, AK | Salem, OR","Fayetteville, AR | Anchorage, AK | Honolulu, HI",False,10
+male:25:edu=hs_or_less:race=nh_twoplus,193,2.4,6.23,14.11,0.908,"Fayetteville, AR | Evansville, IN | Oklahoma City, OK","Fayetteville, AR | Honolulu, HI | Evansville, IN",False,9
+male:25:edu=hs_or_less:race=nh_other,193,1.59,6.09,23.12,0.953,"Peoria, IL | Atlantic City, NJ | Akron, OH","Peoria, IL | Akron, OH | Atlantic City, NJ",False,10
+male:25:edu=some_college:race=hispanic,193,5.4,11.31,34.16,0.954,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:25:edu=some_college:race=nh_white,193,2.08,4.67,7.28,0.949,"Provo, UT | Duluth, MN | Lincoln, NE","Provo, UT | Duluth, MN | Lincoln, NE",False,10
+male:25:edu=some_college:race=nh_black,193,2.88,7.54,16.73,0.948,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,9
+male:25:edu=some_college:race=nh_asian,193,3.32,8.34,29.05,0.926,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+male:25:edu=some_college:race=nh_aian,193,2.48,7.41,88.57,0.923,"Anchorage, AK | Sioux Falls, SD | Duluth, MN","Anchorage, AK | Duluth, MN | Sioux Falls, SD",False,9
+male:25:edu=some_college:race=nh_nhpi,193,5.84,13.65,134.36,0.918,"Fayetteville, AR | Salem, OR | Honolulu, HI","Fayetteville, AR | Salem, OR | Honolulu, HI",False,9
+male:25:edu=some_college:race=nh_twoplus,193,1.75,4.41,12.77,0.923,"Fayetteville, AR | San Luis Obispo, CA | Provo, UT","Fayetteville, AR | San Luis Obispo, CA | Provo, UT",False,10
+male:25:edu=some_college:race=nh_other,193,2.31,6.86,17.96,0.963,"Lynchburg, VA | Reading, PA | Slidell, LA","Lynchburg, VA | Bridgeport, CT | Slidell, LA",False,10
+male:25:edu=bachelors:race=hispanic,193,7.86,15.01,41.82,0.903,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:25:edu=bachelors:race=nh_white,193,2.52,5.25,8.54,0.949,"Madison, WI | Ann Arbor, MI | Lincoln, NE","Madison, WI | Ann Arbor, MI | Boulder, CO",False,9
+male:25:edu=bachelors:race=nh_black,193,2.25,6.56,11.05,0.966,"Jackson, MS | Memphis, TN | Montgomery, AL","Jackson, MS | Memphis, TN | Montgomery, AL",False,9
+male:25:edu=bachelors:race=nh_asian,193,2.38,5.16,29.33,0.957,"San Jose, CA | San Francisco, CA | Ann Arbor, MI","San Jose, CA | San Francisco, CA | Ann Arbor, MI",False,9
+male:25:edu=bachelors:race=nh_aian,193,2.7,6.14,25.17,0.938,"Anchorage, AK | Duluth, MN | Sioux Falls, SD","Anchorage, AK | Duluth, MN | Sioux Falls, SD",False,10
+male:25:edu=bachelors:race=nh_nhpi,193,3.99,11.08,76.87,0.947,"Fayetteville, AR | Lafayette, LA | Honolulu, HI","Fayetteville, AR | Lafayette, LA | San Jose, CA",False,10
+male:25:edu=bachelors:race=nh_twoplus,193,1.9,4.44,12.54,0.941,"Fayetteville, AR | Ann Arbor, MI | Boulder, CO","Fayetteville, AR | Ann Arbor, MI | Boulder, CO",False,10
+male:25:edu=bachelors:race=nh_other,193,2.22,9.78,42.78,0.918,"Lynchburg, VA | Reading, PA | Bridgeport, CT","Lynchburg, VA | Reading, PA | Naples, FL",False,10
+male:25:edu=graduate:race=hispanic,193,7.43,14.03,38.99,0.896,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:25:edu=graduate:race=nh_white,193,3.38,6.69,13.41,0.936,"Ann Arbor, MI | Madison, WI | Boulder, CO","Ann Arbor, MI | Madison, WI | Boulder, CO",False,9
+male:25:edu=graduate:race=nh_black,193,1.89,4.96,11.54,0.945,"Jackson, MS | Durham, NC | Memphis, TN","Jackson, MS | Durham, NC | Montgomery, AL",False,10
+male:25:edu=graduate:race=nh_asian,193,1.41,3.87,15.83,0.953,"San Jose, CA | San Francisco, CA | Ann Arbor, MI","San Jose, CA | Ann Arbor, MI | San Francisco, CA",False,10
+male:25:edu=graduate:race=nh_aian,193,1.86,6.05,36.52,0.951,"Anchorage, AK | Duluth, MN | Sioux Falls, SD","Anchorage, AK | Duluth, MN | Sioux Falls, SD",False,9
+male:25:edu=graduate:race=nh_nhpi,193,2.81,7.45,92.87,0.951,"Lafayette, LA | Fayetteville, AR | San Jose, CA","Lafayette, LA | Fayetteville, AR | San Jose, CA",False,10
+male:25:edu=graduate:race=nh_twoplus,193,3.01,5.9,14.9,0.933,"Fayetteville, AR | Ann Arbor, MI | Boulder, CO","Ann Arbor, MI | Fayetteville, AR | Durham, NC",True,10
+male:25:edu=graduate:race=nh_other,193,1.94,6.2,22.63,0.946,"Cedar Rapids, IA | Lynchburg, VA | Raleigh, NC","Cedar Rapids, IA | Lynchburg, VA | Raleigh, NC",False,10
+male:30:undisclosed,193,1.04,2.39,3.69,0.94,"San Jose, CA | Fort Collins, CO | Boulder, CO","San Jose, CA | Fort Collins, CO | Boulder, CO",False,10
+male:30:edu=hs_or_less,193,0.91,1.82,4.57,0.938,"Laredo, TX | Yakima, WA | Visalia, CA","Laredo, TX | Yakima, WA | McAllen, TX",False,10
+male:30:edu=some_college,193,1.41,3.85,7.03,0.875,"Fargo, ND | Fort Collins, CO | Provo, UT","Fargo, ND | Fort Collins, CO | Provo, UT",False,7
+male:30:edu=bachelors,193,1.25,3.19,4.11,0.969,"Boulder, CO | San Jose, CA | Ann Arbor, MI","Boulder, CO | Ann Arbor, MI | Boston, MA",False,10
+male:30:edu=graduate,193,1.53,3.08,11.99,0.969,"San Jose, CA | Ann Arbor, MI | San Francisco, CA","San Jose, CA | San Francisco, CA | Ann Arbor, MI",False,10
+male:30:race=hispanic,193,0.91,3.2,9.25,0.977,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+male:30:race=nh_white,193,1.47,3.14,5.46,0.967,"Portland, ME | Fargo, ND | Fort Collins, CO","Portland, ME | Fort Collins, CO | Fargo, ND",False,9
+male:30:race=nh_black,193,1.2,3.9,10.58,0.968,"Memphis, TN | Tuscaloosa, AL | Jackson, MS","Jackson, MS | Memphis, TN | Tuscaloosa, AL",True,10
+male:30:race=nh_asian,193,1.25,4.8,14.82,0.952,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:30:race=nh_aian,193,2.3,6.52,60.49,0.944,"Anchorage, AK | Duluth, MN | Yakima, WA","Duluth, MN | Anchorage, AK | Yakima, WA",True,10
+male:30:race=nh_nhpi,193,2.53,6.91,73.86,0.951,"Fayetteville, AR | Anchorage, AK | Yakima, WA","Fayetteville, AR | Anchorage, AK | Honolulu, HI",False,10
+male:30:race=nh_twoplus,193,1.17,2.78,6.79,0.953,"Fayetteville, AR | Honolulu, HI | Madison, WI","Fayetteville, AR | Madison, WI | Honolulu, HI",False,9
+male:30:race=nh_other,193,1.61,4.95,11.53,0.961,"Reading, PA | Providence, RI | Greensboro, NC","Reading, PA | Providence, RI | Greensboro, NC",False,10
+male:30:edu=hs_or_less:race=hispanic,193,5.32,12.08,36.06,0.951,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Laredo, TX | Brownsville, TX",False,10
+male:30:edu=hs_or_less:race=nh_white,193,2.7,8.45,17.52,0.943,"Duluth, MN | Ogden, UT | Kingsport, TN","Duluth, MN | Spokane, WA | Kingsport, TN",False,10
+male:30:edu=hs_or_less:race=nh_black,193,2.38,6.14,12.37,0.948,"Tuscaloosa, AL | Memphis, TN | Jackson, MS","Tuscaloosa, AL | Memphis, TN | Jackson, MS",False,10
+male:30:edu=hs_or_less:race=nh_asian,193,8.62,19.61,123.08,0.845,"San Jose, CA | Honolulu, HI | Stockton, CA","Honolulu, HI | San Jose, CA | Stockton, CA",True,9
+male:30:edu=hs_or_less:race=nh_aian,193,2.08,6.1,64.04,0.951,"Anchorage, AK | Duluth, MN | Yakima, WA","Duluth, MN | Anchorage, AK | Yakima, WA",True,9
+male:30:edu=hs_or_less:race=nh_nhpi,193,2.93,10.22,66.49,0.955,"Fayetteville, AR | Anchorage, AK | Salt Lake City, UT","Fayetteville, AR | Anchorage, AK | Honolulu, HI",False,10
+male:30:edu=hs_or_less:race=nh_twoplus,193,2.6,7.91,18.37,0.895,"Fayetteville, AR | Anchorage, AK | Green Bay, WI","Fayetteville, AR | Anchorage, AK | Green Bay, WI",False,10
+male:30:edu=hs_or_less:race=nh_other,193,1.59,5.73,17.1,0.954,"Reading, PA | Greensboro, NC | Waterbury, CT","Reading, PA | Greensboro, NC | Waterbury, CT",False,10
+male:30:edu=some_college:race=hispanic,193,4.78,11.42,34.24,0.954,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:30:edu=some_college:race=nh_white,193,2.28,5.19,8.09,0.951,"Fargo, ND | Fort Collins, CO | Portland, ME","Fargo, ND | Fort Collins, CO | Portland, ME",False,9
+male:30:edu=some_college:race=nh_black,193,2.88,7.9,19.89,0.954,"Memphis, TN | Tuscaloosa, AL | Jackson, MS","Jackson, MS | Memphis, TN | Tuscaloosa, AL",True,9
+male:30:edu=some_college:race=nh_asian,193,4.61,9.78,50.33,0.915,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+male:30:edu=some_college:race=nh_aian,193,2.88,7.46,82.07,0.931,"Duluth, MN | Anchorage, AK | Yakima, WA","Duluth, MN | Anchorage, AK | Sioux Falls, SD",False,10
+male:30:edu=some_college:race=nh_nhpi,193,6.53,13.8,106.39,0.919,"Fayetteville, AR | Anchorage, AK | Yakima, WA","Fayetteville, AR | Provo, UT | Anchorage, AK",False,9
+male:30:edu=some_college:race=nh_twoplus,193,1.74,5.23,12.22,0.918,"Fayetteville, AR | Honolulu, HI | Anchorage, AK","Fayetteville, AR | Fargo, ND | Fort Collins, CO",False,9
+male:30:edu=some_college:race=nh_other,193,1.88,5.92,25.44,0.963,"Reading, PA | Greensboro, NC | Providence, RI","Reading, PA | Providence, RI | Greensboro, NC",False,10
+male:30:edu=bachelors:race=hispanic,193,6.76,14.93,42.45,0.918,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:30:edu=bachelors:race=nh_white,193,2.95,6.13,8.99,0.933,"Boulder, CO | Madison, WI | Portland, ME","Boulder, CO | Madison, WI | Ann Arbor, MI",False,10
+male:30:edu=bachelors:race=nh_black,193,2.61,6.55,12.33,0.956,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Atlanta, GA",False,10
+male:30:edu=bachelors:race=nh_asian,193,2.9,5.94,41.9,0.946,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:30:edu=bachelors:race=nh_aian,193,2.54,6.14,23.85,0.943,"Anchorage, AK | Duluth, MN | Tulsa, OK","Anchorage, AK | Duluth, MN | Tulsa, OK",False,10
+male:30:edu=bachelors:race=nh_nhpi,193,4.95,11.48,87.89,0.947,"Anchorage, AK | Fayetteville, AR | Olympia, WA","Anchorage, AK | Fayetteville, AR | Olympia, WA",False,10
+male:30:edu=bachelors:race=nh_twoplus,193,2.1,5.0,11.75,0.935,"Ann Arbor, MI | Madison, WI | Boulder, CO","Ann Arbor, MI | Madison, WI | Boulder, CO",False,10
+male:30:edu=bachelors:race=nh_other,193,2.39,8.86,22.58,0.922,"New Haven, CT | Providence, RI | Manchester, NH","New Haven, CT | Providence, RI | Manchester, NH",False,10
+male:30:edu=graduate:race=hispanic,193,5.63,12.73,36.72,0.912,"McAllen, TX | El Paso, TX | Brownsville, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:30:edu=graduate:race=nh_white,193,3.89,6.92,16.12,0.93,"Ann Arbor, MI | Boulder, CO | Boston, MA","Ann Arbor, MI | Boulder, CO | Boston, MA",False,9
+male:30:edu=graduate:race=nh_black,193,1.51,4.13,11.31,0.952,"Jackson, MS | Montgomery, AL | Atlanta, GA","Jackson, MS | Montgomery, AL | Atlanta, GA",False,10
+male:30:edu=graduate:race=nh_asian,193,1.3,4.59,16.02,0.962,"San Jose, CA | San Francisco, CA | Seattle, WA","San Jose, CA | San Francisco, CA | Seattle, WA",False,10
+male:30:edu=graduate:race=nh_aian,193,1.68,6.09,35.85,0.951,"Anchorage, AK | Tulsa, OK | Duluth, MN","Anchorage, AK | Duluth, MN | Sioux Falls, SD",False,10
+male:30:edu=graduate:race=nh_nhpi,193,2.74,6.85,54.15,0.952,"Anchorage, AK | San Jose, CA | Fayetteville, AR","Anchorage, AK | San Jose, CA | Honolulu, HI",False,10
+male:30:edu=graduate:race=nh_twoplus,193,3.36,6.25,15.85,0.93,"Ann Arbor, MI | Boulder, CO | Madison, WI","Ann Arbor, MI | San Jose, CA | San Francisco, CA",False,10
+male:30:edu=graduate:race=nh_other,193,2.0,5.12,19.68,0.953,"Scranton, PA | New Haven, CT | Providence, RI","Scranton, PA | New Haven, CT | Providence, RI",False,10
+male:35:undisclosed,193,0.95,2.01,3.46,0.941,"Cedar Rapids, IA | Fort Collins, CO | Boulder, CO","Fort Collins, CO | Cedar Rapids, IA | Boulder, CO",True,10
+male:35:edu=hs_or_less,193,0.79,1.89,4.4,0.95,"Brownsville, TX | Merced, CA | Yakima, WA","Brownsville, TX | Laredo, TX | Yakima, WA",False,10
+male:35:edu=some_college,193,1.26,3.32,6.86,0.893,"Cedar Rapids, IA | Bremerton, WA | Fort Collins, CO","Cedar Rapids, IA | Fort Collins, CO | Bremerton, WA",False,9
+male:35:edu=bachelors,193,1.27,3.12,4.8,0.96,"Boulder, CO | San Francisco, CA | Madison, WI","Boulder, CO | San Francisco, CA | Fort Collins, CO",False,10
+male:35:edu=graduate,193,1.66,3.46,9.11,0.96,"San Francisco, CA | Ann Arbor, MI | San Jose, CA","San Francisco, CA | San Jose, CA | Ann Arbor, MI",False,10
+male:35:race=hispanic,193,1.13,3.17,7.8,0.974,"Brownsville, TX | McAllen, TX | Laredo, TX","Brownsville, TX | McAllen, TX | Laredo, TX",False,10
+male:35:race=nh_white,193,1.1,2.84,4.92,0.969,"Cedar Rapids, IA | Sioux Falls, SD | Portland, ME","Cedar Rapids, IA | Portland, ME | Sioux Falls, SD",False,9
+male:35:race=nh_black,193,1.12,3.33,8.66,0.972,"Montgomery, AL | Memphis, TN | Jackson, MS","Montgomery, AL | Memphis, TN | Jackson, MS",False,10
+male:35:race=nh_asian,193,1.61,5.45,20.62,0.938,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:35:race=nh_aian,193,2.3,6.82,35.5,0.954,"Sioux Falls, SD | Green Bay, WI | Anchorage, AK","Sioux Falls, SD | Green Bay, WI | Anchorage, AK",False,9
+male:35:race=nh_nhpi,193,2.0,7.12,110.13,0.957,"Fayetteville, AR | Yakima, WA | Honolulu, HI","Fayetteville, AR | Yakima, WA | Honolulu, HI",False,9
+male:35:race=nh_twoplus,193,0.95,3.11,5.58,0.953,"Fayetteville, AR | Madison, WI | Cedar Rapids, IA","Fayetteville, AR | Madison, WI | Cedar Rapids, IA",False,10
+male:35:race=nh_other,193,1.77,6.24,20.25,0.955,"Myrtle Beach, SC | Kennewick, WA | Huntsville, AL","Myrtle Beach, SC | Kennewick, WA | Huntsville, AL",False,10
+male:35:edu=hs_or_less:race=hispanic,193,5.28,12.09,30.31,0.945,"Brownsville, TX | McAllen, TX | Laredo, TX","Brownsville, TX | McAllen, TX | Laredo, TX",False,10
+male:35:edu=hs_or_less:race=nh_white,193,3.43,8.22,18.73,0.944,"Cedar Rapids, IA | Canton, OH | Kingsport, TN","Cedar Rapids, IA | Canton, OH | Kingsport, TN",False,10
+male:35:edu=hs_or_less:race=nh_black,193,2.06,6.45,11.94,0.953,"Montgomery, AL | Tuscaloosa, AL | Memphis, TN","Montgomery, AL | Memphis, TN | Tuscaloosa, AL",False,9
+male:35:edu=hs_or_less:race=nh_asian,193,10.55,21.33,144.15,0.839,"San Jose, CA | Honolulu, HI | San Francisco, CA","Honolulu, HI | San Jose, CA | Stockton, CA",True,10
+male:35:edu=hs_or_less:race=nh_aian,193,1.99,6.91,38.84,0.956,"Green Bay, WI | Sioux Falls, SD | Duluth, MN","Sioux Falls, SD | Green Bay, WI | Duluth, MN",True,10
+male:35:edu=hs_or_less:race=nh_nhpi,193,3.06,9.35,97.52,0.953,"Fayetteville, AR | Yakima, WA | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Yakima, WA",False,9
+male:35:edu=hs_or_less:race=nh_twoplus,193,2.6,8.62,19.13,0.898,"Fayetteville, AR | Canton, OH | Green Bay, WI","Fayetteville, AR | Canton, OH | Green Bay, WI",False,10
+male:35:edu=hs_or_less:race=nh_other,193,2.2,7.0,22.19,0.95,"Kennewick, WA | College Station, TX | Providence, RI","Kennewick, WA | College Station, TX | Providence, RI",False,10
+male:35:edu=some_college:race=hispanic,193,5.02,10.76,30.16,0.951,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,9
+male:35:edu=some_college:race=nh_white,193,1.77,4.21,7.78,0.956,"Cedar Rapids, IA | Sioux Falls, SD | Duluth, MN","Cedar Rapids, IA | Sioux Falls, SD | Portland, ME",False,8
+male:35:edu=some_college:race=nh_black,193,2.56,6.53,20.1,0.958,"Montgomery, AL | Jackson, MS | Memphis, TN","Montgomery, AL | Jackson, MS | Memphis, TN",False,10
+male:35:edu=some_college:race=nh_asian,193,3.54,9.82,35.94,0.918,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:35:edu=some_college:race=nh_aian,193,3.22,8.98,51.27,0.941,"Green Bay, WI | Sioux Falls, SD | Anchorage, AK","Sioux Falls, SD | Green Bay, WI | Anchorage, AK",True,10
+male:35:edu=some_college:race=nh_nhpi,193,6.67,14.3,242.17,0.914,"Fayetteville, AR | Yakima, WA | Honolulu, HI","Fayetteville, AR | Yakima, WA | Honolulu, HI",False,9
+male:35:edu=some_college:race=nh_twoplus,193,1.63,4.19,14.19,0.93,"Fayetteville, AR | Cedar Rapids, IA | Madison, WI","Fayetteville, AR | Cedar Rapids, IA | Madison, WI",False,10
+male:35:edu=some_college:race=nh_other,193,1.97,6.17,18.55,0.968,"Columbia, SC | New Orleans, LA | Myrtle Beach, SC","Columbia, SC | New Orleans, LA | Myrtle Beach, SC",False,10
+male:35:edu=bachelors:race=hispanic,193,6.48,15.8,39.63,0.917,"El Paso, TX | McAllen, TX | Brownsville, TX","El Paso, TX | McAllen, TX | Brownsville, TX",False,10
+male:35:edu=bachelors:race=nh_white,193,2.75,5.85,11.11,0.938,"Boulder, CO | Portland, ME | Fort Collins, CO","Boulder, CO | Portland, ME | Fort Collins, CO",False,8
+male:35:edu=bachelors:race=nh_black,193,2.68,6.75,14.49,0.963,"Memphis, TN | Columbia, SC | Jackson, MS","Memphis, TN | Columbia, SC | Jackson, MS",False,10
+male:35:edu=bachelors:race=nh_asian,193,3.11,7.26,34.9,0.939,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:35:edu=bachelors:race=nh_aian,193,2.31,6.2,31.65,0.945,"Anchorage, AK | Sioux Falls, SD | Albuquerque, NM","Anchorage, AK | Sioux Falls, SD | Albuquerque, NM",False,10
+male:35:edu=bachelors:race=nh_nhpi,193,4.7,10.97,349.83,0.938,"Fayetteville, AR | Yakima, WA | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Yakima, WA",False,10
+male:35:edu=bachelors:race=nh_twoplus,193,2.0,4.62,12.34,0.936,"Madison, WI | Cedar Rapids, IA | Fayetteville, AR","Madison, WI | Cedar Rapids, IA | Fayetteville, AR",False,10
+male:35:edu=bachelors:race=nh_other,193,3.09,10.9,39.09,0.91,"Myrtle Beach, SC | Huntsville, AL | Clarksville, TN","Myrtle Beach, SC | Huntsville, AL | Clarksville, TN",False,10
+male:35:edu=graduate:race=hispanic,193,5.73,13.69,39.4,0.918,"El Paso, TX | McAllen, TX | Brownsville, TX","El Paso, TX | Lancaster, PA | McAllen, TX",False,9
+male:35:edu=graduate:race=nh_white,193,3.73,7.06,13.71,0.932,"Boulder, CO | Portland, ME | Ann Arbor, MI","Boulder, CO | Ann Arbor, MI | Portland, ME",False,10
+male:35:edu=graduate:race=nh_black,193,1.49,4.08,10.85,0.953,"Columbia, SC | Memphis, TN | Durham, NC","Columbia, SC | Memphis, TN | Atlanta, GA",False,10
+male:35:edu=graduate:race=nh_asian,193,1.6,4.39,18.57,0.956,"San Jose, CA | San Francisco, CA | Ann Arbor, MI","San Jose, CA | San Francisco, CA | Ann Arbor, MI",False,10
+male:35:edu=graduate:race=nh_aian,193,1.59,5.92,47.78,0.952,"Anchorage, AK | Sioux Falls, SD | Oklahoma City, OK","Anchorage, AK | Sioux Falls, SD | Albuquerque, NM",False,10
+male:35:edu=graduate:race=nh_nhpi,193,2.91,6.87,250.44,0.948,"Fayetteville, AR | Ogden, UT | Honolulu, HI","Fayetteville, AR | Ogden, UT | Honolulu, HI",False,10
+male:35:edu=graduate:race=nh_twoplus,193,3.42,6.26,14.94,0.927,"Madison, WI | Ann Arbor, MI | Boulder, CO","San Francisco, CA | Madison, WI | Ann Arbor, MI",True,10
+male:35:edu=graduate:race=nh_other,193,2.16,6.76,24.25,0.948,"Scranton, PA | Myrtle Beach, SC | Springfield, MA","Scranton, PA | Myrtle Beach, SC | Huntsville, AL",False,10
+male:40:undisclosed,193,0.8,1.95,4.01,0.944,"Fargo, ND | Greeley, CO | Merced, CA","Fargo, ND | Lincoln, NE | Boulder, CO",False,10
+male:40:edu=hs_or_less,193,0.74,1.83,4.57,0.962,"Merced, CA | McAllen, TX | Yakima, WA","Merced, CA | McAllen, TX | Yakima, WA",False,9
+male:40:edu=some_college,193,1.17,3.2,8.53,0.901,"Fargo, ND | Boise City, ID | Duluth, MN","Fargo, ND | Duluth, MN | Lincoln, NE",False,9
+male:40:edu=bachelors,193,1.33,2.88,6.14,0.956,"Boulder, CO | Lincoln, NE | Asheville, NC","Boulder, CO | Lincoln, NE | Asheville, NC",False,9
+male:40:edu=graduate,193,1.57,3.31,9.23,0.958,"Boulder, CO | Lincoln, NE | San Francisco, CA","Boulder, CO | San Francisco, CA | Lincoln, NE",False,10
+male:40:race=hispanic,193,1.5,3.68,11.38,0.969,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:40:race=nh_white,193,1.01,3.15,6.22,0.968,"Fargo, ND | Lincoln, NE | Duluth, MN","Fargo, ND | Lincoln, NE | Duluth, MN",False,10
+male:40:race=nh_black,193,1.28,3.55,11.53,0.97,"Montgomery, AL | Memphis, TN | Jackson, MS","Montgomery, AL | Jackson, MS | Memphis, TN",False,9
+male:40:race=nh_asian,193,2.19,7.49,81.6,0.936,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:40:race=nh_aian,193,2.36,6.33,60.24,0.943,"Anchorage, AK | Sioux Falls, SD | Green Bay, WI","Sioux Falls, SD | Anchorage, AK | Green Bay, WI",True,9
+male:40:race=nh_nhpi,193,2.59,7.69,48.81,0.952,"Salt Lake City, UT | Honolulu, HI | Anchorage, AK","Salt Lake City, UT | Honolulu, HI | Anchorage, AK",False,9
+male:40:race=nh_twoplus,193,1.18,4.0,7.44,0.937,"Fayetteville, AR | Provo, UT | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Provo, UT",False,10
+male:40:race=nh_other,193,2.03,5.39,29.31,0.954,"Providence, RI | Atlantic City, NJ | Tallahassee, FL","Providence, RI | Tallahassee, FL | Worcester, MA",False,10
+male:40:edu=hs_or_less:race=hispanic,193,5.87,12.46,23.09,0.943,"McAllen, TX | Brownsville, TX | Merced, CA","McAllen, TX | Brownsville, TX | Merced, CA",False,10
+male:40:edu=hs_or_less:race=nh_white,193,4.21,10.02,15.96,0.934,"Fargo, ND | Spokane, WA | Duluth, MN","Fargo, ND | Duluth, MN | Spokane, WA",False,9
+male:40:edu=hs_or_less:race=nh_black,193,2.02,7.14,13.57,0.945,"Montgomery, AL | Memphis, TN | Shreveport, LA","Montgomery, AL | Memphis, TN | Shreveport, LA",False,10
+male:40:edu=hs_or_less:race=nh_asian,193,10.96,23.26,235.64,0.846,"Manchester, NH | San Jose, CA | San Francisco, CA","Manchester, NH | San Jose, CA | Honolulu, HI",False,10
+male:40:edu=hs_or_less:race=nh_aian,193,2.19,6.28,59.06,0.952,"Anchorage, AK | Green Bay, WI | Sioux Falls, SD","Anchorage, AK | Sioux Falls, SD | Green Bay, WI",False,10
+male:40:edu=hs_or_less:race=nh_nhpi,193,2.88,9.83,88.02,0.953,"Salt Lake City, UT | Anchorage, AK | Honolulu, HI","Salt Lake City, UT | Honolulu, HI | Anchorage, AK",False,10
+male:40:edu=hs_or_less:race=nh_twoplus,193,3.19,9.85,18.14,0.872,"Fayetteville, AR | Cedar Rapids, IA | Providence, RI","Fayetteville, AR | Cedar Rapids, IA | Bremerton, WA",False,9
+male:40:edu=hs_or_less:race=nh_other,193,2.21,6.88,37.61,0.943,"Providence, RI | Tallahassee, FL | Worcester, MA","Tallahassee, FL | Providence, RI | Worcester, MA",True,10
+male:40:edu=some_college:race=hispanic,193,5.28,12.83,34.32,0.949,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:40:edu=some_college:race=nh_white,193,1.77,3.58,7.87,0.961,"Fargo, ND | Duluth, MN | Spokane, WA","Fargo, ND | Duluth, MN | Lincoln, NE",False,9
+male:40:edu=some_college:race=nh_black,193,2.31,6.09,16.87,0.96,"Montgomery, AL | Jackson, MS | Memphis, TN","Montgomery, AL | Jackson, MS | Memphis, TN",False,10
+male:40:edu=some_college:race=nh_asian,193,3.34,8.2,26.14,0.922,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,9
+male:40:edu=some_college:race=nh_aian,193,2.88,8.44,88.94,0.936,"Anchorage, AK | Sioux Falls, SD | Yakima, WA","Anchorage, AK | Sioux Falls, SD | Yakima, WA",False,9
+male:40:edu=some_college:race=nh_nhpi,193,6.9,13.81,77.97,0.908,"Honolulu, HI | Salt Lake City, UT | South Bend, IN","Honolulu, HI | Salt Lake City, UT | Savannah, GA",False,10
+male:40:edu=some_college:race=nh_twoplus,193,1.41,4.28,14.31,0.938,"Fayetteville, AR | Duluth, MN | Wichita, KS","Fayetteville, AR | Duluth, MN | Provo, UT",False,10
+male:40:edu=some_college:race=nh_other,193,2.09,6.43,26.74,0.966,"Atlantic City, NJ | Peoria, IL | Providence, RI","Atlantic City, NJ | Peoria, IL | Providence, RI",False,10
+male:40:edu=bachelors:race=hispanic,193,6.76,14.37,42.43,0.91,"El Paso, TX | Brownsville, TX | McAllen, TX","El Paso, TX | Brownsville, TX | McAllen, TX",False,10
+male:40:edu=bachelors:race=nh_white,193,2.69,6.02,10.1,0.94,"Boulder, CO | Lincoln, NE | Asheville, NC","Boulder, CO | Lincoln, NE | Asheville, NC",False,10
+male:40:edu=bachelors:race=nh_black,193,2.68,6.19,12.34,0.961,"Jackson, MS | Tallahassee, FL | Atlanta, GA","Jackson, MS | Tallahassee, FL | Atlanta, GA",False,10
+male:40:edu=bachelors:race=nh_asian,193,3.21,7.54,45.43,0.938,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,9
+male:40:edu=bachelors:race=nh_aian,193,2.48,6.63,26.51,0.941,"Sioux Falls, SD | Anchorage, AK | Yakima, WA","Sioux Falls, SD | Anchorage, AK | Yakima, WA",False,9
+male:40:edu=bachelors:race=nh_nhpi,193,5.29,11.95,59.47,0.944,"Honolulu, HI | Salt Lake City, UT | South Bend, IN","Honolulu, HI | Salt Lake City, UT | Sacramento, CA",False,9
+male:40:edu=bachelors:race=nh_twoplus,193,1.88,4.51,13.82,0.937,"Fayetteville, AR | Boulder, CO | Honolulu, HI","Fayetteville, AR | Boulder, CO | Honolulu, HI",False,10
+male:40:edu=bachelors:race=nh_other,193,3.39,11.79,47.34,0.893,"Raleigh, NC | Providence, RI | Waco, TX","Providence, RI | Raleigh, NC | Waco, TX",True,10
+male:40:edu=graduate:race=hispanic,193,5.82,12.4,40.76,0.912,"El Paso, TX | Brownsville, TX | McAllen, TX","El Paso, TX | Brownsville, TX | McAllen, TX",False,10
+male:40:edu=graduate:race=nh_white,193,3.65,7.15,16.81,0.929,"Boulder, CO | Lincoln, NE | Asheville, NC","Boulder, CO | Lincoln, NE | Fort Collins, CO",False,9
+male:40:edu=graduate:race=nh_black,193,1.41,4.13,10.74,0.961,"Atlanta, GA | Jackson, MS | Tallahassee, FL","Atlanta, GA | Jackson, MS | Tallahassee, FL",False,9
+male:40:edu=graduate:race=nh_asian,193,1.75,5.22,20.49,0.95,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:40:edu=graduate:race=nh_aian,193,1.61,6.47,37.97,0.952,"Sioux Falls, SD | Yakima, WA | Anchorage, AK","Sioux Falls, SD | Yakima, WA | Anchorage, AK",False,9
+male:40:edu=graduate:race=nh_nhpi,193,3.12,8.19,48.5,0.947,"Honolulu, HI | Sacramento, CA | Bakersfield, CA","Honolulu, HI | Sacramento, CA | Seattle, WA",False,10
+male:40:edu=graduate:race=nh_twoplus,193,3.61,6.68,19.28,0.925,"Boulder, CO | Fayetteville, AR | Honolulu, HI","Honolulu, HI | Boulder, CO | San Francisco, CA",True,9
+male:40:edu=graduate:race=nh_other,193,2.28,6.98,20.85,0.936,"Raleigh, NC | Providence, RI | Modesto, CA","Raleigh, NC | Providence, RI | Modesto, CA",False,10
+male:50:undisclosed,193,0.75,1.8,3.49,0.921,"Provo, UT | Ogden, UT | Eugene, OR","Provo, UT | Ogden, UT | Eugene, OR",False,10
+male:50:edu=hs_or_less,193,0.57,1.65,5.79,0.957,"Laredo, TX | McAllen, TX | Yakima, WA","Laredo, TX | McAllen, TX | Yakima, WA",False,10
+male:50:edu=some_college,193,1.09,3.22,8.15,0.895,"Provo, UT | Eugene, OR | Ogden, UT","Provo, UT | Eugene, OR | Des Moines, IA",False,10
+male:50:edu=bachelors,193,1.26,2.98,6.1,0.954,"Provo, UT | Madison, WI | Boulder, CO","Provo, UT | Madison, WI | Boulder, CO",False,10
+male:50:edu=graduate,193,1.61,3.49,12.04,0.953,"Boulder, CO | Madison, WI | San Francisco, CA","Boulder, CO | Madison, WI | San Francisco, CA",False,10
+male:50:race=hispanic,193,1.77,4.62,19.83,0.967,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Laredo, TX | Brownsville, TX",False,10
+male:50:race=nh_white,193,1.09,3.37,10.22,0.967,"Provo, UT | Eugene, OR | Ogden, UT","Provo, UT | Eugene, OR | Des Moines, IA",False,10
+male:50:race=nh_black,193,1.16,3.3,8.97,0.971,"Memphis, TN | Jackson, MS | Montgomery, AL","Memphis, TN | Jackson, MS | Montgomery, AL",False,9
+male:50:race=nh_asian,193,2.51,7.26,29.44,0.935,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+male:50:race=nh_aian,193,2.39,6.5,53.52,0.938,"Anchorage, AK | Yakima, WA | Tulsa, OK","Anchorage, AK | Yakima, WA | Albuquerque, NM",False,9
+male:50:race=nh_nhpi,193,2.06,6.24,26.35,0.952,"Provo, UT | Fayetteville, AR | Honolulu, HI","Provo, UT | Fayetteville, AR | Honolulu, HI",False,10
+male:50:race=nh_twoplus,193,1.21,3.79,12.1,0.935,"Fayetteville, AR | Eugene, OR | Kalamazoo, MI","Fayetteville, AR | Eugene, OR | Kalamazoo, MI",False,9
+male:50:race=nh_other,193,1.8,5.75,87.03,0.955,"Fargo, ND | Fayetteville, NC | Roanoke, VA","Fargo, ND | Fayetteville, NC | Peoria, IL",False,10
+male:50:edu=hs_or_less:race=hispanic,193,6.29,13.2,53.24,0.946,"McAllen, TX | Laredo, TX | Brownsville, TX","McAllen, TX | Laredo, TX | Brownsville, TX",False,10
+male:50:edu=hs_or_less:race=nh_white,193,3.94,9.29,25.7,0.934,"Lancaster, PA | Duluth, MN | Evansville, IN","Duluth, MN | Evansville, IN | Lancaster, PA",True,10
+male:50:edu=hs_or_less:race=nh_black,193,2.04,6.39,19.26,0.944,"Memphis, TN | Jackson, MS | Tuscaloosa, AL","Memphis, TN | Jackson, MS | Montgomery, AL",False,9
+male:50:edu=hs_or_less:race=nh_asian,193,9.42,22.74,150.6,0.846,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,9
+male:50:edu=hs_or_less:race=nh_aian,193,2.16,7.19,56.75,0.947,"Anchorage, AK | Yakima, WA | Tulsa, OK","Anchorage, AK | Yakima, WA | Tulsa, OK",False,10
+male:50:edu=hs_or_less:race=nh_nhpi,193,3.0,9.36,104.56,0.95,"Fayetteville, AR | Honolulu, HI | Provo, UT","Fayetteville, AR | Provo, UT | Honolulu, HI",False,10
+male:50:edu=hs_or_less:race=nh_twoplus,193,3.37,10.1,30.43,0.852,"Fayetteville, AR | Yakima, WA | Manchester, NH","Fayetteville, AR | Manchester, NH | Duluth, MN",False,9
+male:50:edu=hs_or_less:race=nh_other,193,2.24,9.27,65.03,0.942,"Fargo, ND | Hickory, NC | Fayetteville, NC","Fargo, ND | Fayetteville, NC | Hickory, NC",False,9
+male:50:edu=some_college:race=hispanic,193,6.16,11.94,40.68,0.95,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:50:edu=some_college:race=nh_white,193,1.43,3.36,7.93,0.957,"Provo, UT | Des Moines, IA | Eugene, OR","Provo, UT | Des Moines, IA | Eugene, OR",False,9
+male:50:edu=some_college:race=nh_black,193,2.02,5.43,10.88,0.964,"Memphis, TN | Jackson, MS | Montgomery, AL","Jackson, MS | Memphis, TN | Montgomery, AL",True,10
+male:50:edu=some_college:race=nh_asian,193,2.56,5.99,19.35,0.94,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+male:50:edu=some_college:race=nh_aian,193,3.05,8.46,65.62,0.928,"Yakima, WA | Anchorage, AK | Tulsa, OK","Yakima, WA | Anchorage, AK | Duluth, MN",False,10
+male:50:edu=some_college:race=nh_nhpi,193,6.77,13.96,93.76,0.913,"Provo, UT | Fayetteville, AR | Honolulu, HI","Provo, UT | Fayetteville, AR | Honolulu, HI",False,10
+male:50:edu=some_college:race=nh_twoplus,193,1.29,4.3,12.52,0.924,"Fayetteville, AR | Eugene, OR | Kalamazoo, MI","Fayetteville, AR | Eugene, OR | Provo, UT",False,9
+male:50:edu=some_college:race=nh_other,193,2.01,6.61,90.76,0.971,"Fargo, ND | Roanoke, VA | Fayetteville, NC","Fargo, ND | Roanoke, VA | Fayetteville, NC",False,9
+male:50:edu=bachelors:race=hispanic,193,7.2,15.31,47.8,0.91,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,9
+male:50:edu=bachelors:race=nh_white,193,2.4,5.28,9.44,0.932,"Provo, UT | Madison, WI | Boulder, CO","Provo, UT | Madison, WI | Boulder, CO",False,9
+male:50:edu=bachelors:race=nh_black,193,2.39,5.98,9.97,0.968,"Jackson, MS | Atlanta, GA | Memphis, TN","Jackson, MS | Atlanta, GA | Memphis, TN",False,10
+male:50:edu=bachelors:race=nh_asian,193,3.05,7.44,32.93,0.945,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:50:edu=bachelors:race=nh_aian,193,2.35,6.91,26.85,0.935,"Fayetteville, AR | Rockford, IL | Anchorage, AK","Fayetteville, AR | Rockford, IL | Albuquerque, NM",False,8
+male:50:edu=bachelors:race=nh_nhpi,193,5.24,11.88,159.61,0.937,"Provo, UT | Clarksville, TN | Honolulu, HI","Provo, UT | Clarksville, TN | Honolulu, HI",False,9
+male:50:edu=bachelors:race=nh_twoplus,193,1.57,4.25,9.43,0.936,"Kalamazoo, MI | Ann Arbor, MI | Provo, UT","Kalamazoo, MI | Ann Arbor, MI | Provo, UT",False,9
+male:50:edu=bachelors:race=nh_other,193,2.93,12.09,125.98,0.905,"Fargo, ND | Peoria, IL | Raleigh, NC","Fargo, ND | Peoria, IL | Raleigh, NC",False,9
+male:50:edu=graduate:race=hispanic,193,5.75,12.46,42.18,0.911,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+male:50:edu=graduate:race=nh_white,193,3.02,6.46,19.45,0.932,"Boulder, CO | Madison, WI | Provo, UT","Boulder, CO | Madison, WI | Provo, UT",False,9
+male:50:edu=graduate:race=nh_black,193,1.52,4.09,10.44,0.957,"Jackson, MS | Atlanta, GA | Montgomery, AL","Jackson, MS | Atlanta, GA | Montgomery, AL",False,10
+male:50:edu=graduate:race=nh_asian,193,1.52,4.59,28.1,0.964,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+male:50:edu=graduate:race=nh_aian,193,1.92,5.91,40.44,0.95,"Fayetteville, AR | Rockford, IL | Salem, OR","Fayetteville, AR | Rockford, IL | Salem, OR",False,10
+male:50:edu=graduate:race=nh_nhpi,193,2.96,7.92,127.18,0.953,"Provo, UT | Clarksville, TN | Honolulu, HI","Provo, UT | Honolulu, HI | Clarksville, TN",False,10
+male:50:edu=graduate:race=nh_twoplus,193,3.04,6.49,19.02,0.919,"Ann Arbor, MI | San Francisco, CA | Kalamazoo, MI","Ann Arbor, MI | San Francisco, CA | Boulder, CO",False,9
+male:50:edu=graduate:race=nh_other,193,2.13,7.47,70.46,0.95,"Fargo, ND | Gainesville, FL | Bend, OR","Gainesville, FL | Fargo, ND | Bend, OR",True,10
+female:25:undisclosed,193,1.34,2.42,3.38,0.908,"Ann Arbor, MI | Boulder, CO | Madison, WI","Ann Arbor, MI | Madison, WI | Boulder, CO",False,9
+female:25:edu=hs_or_less,193,1.68,4.2,8.39,0.91,"Yakima, WA | Montgomery, AL | Laredo, TX","Yakima, WA | Laredo, TX | Montgomery, AL",False,10
+female:25:edu=some_college,193,2.12,4.29,6.31,0.725,"Provo, UT | Jackson, MS | Fayetteville, NC","Provo, UT | Fayetteville, NC | Jackson, MS",False,8
+female:25:edu=bachelors,193,2.02,3.98,7.05,0.927,"Ann Arbor, MI | Madison, WI | Boulder, CO","Madison, WI | Ann Arbor, MI | Boulder, CO",True,10
+female:25:edu=graduate,193,1.07,2.22,3.56,0.967,"San Jose, CA | Ann Arbor, MI | Boulder, CO","San Jose, CA | Ann Arbor, MI | Boulder, CO",False,10
+female:25:race=hispanic,193,1.25,2.79,7.89,0.973,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+female:25:race=nh_white,193,1.76,3.88,6.03,0.946,"Madison, WI | Portland, ME | Fargo, ND","Portland, ME | Madison, WI | Fargo, ND",True,9
+female:25:race=nh_black,193,1.21,2.87,6.55,0.976,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,10
+female:25:race=nh_asian,193,1.12,2.97,14.26,0.962,"San Jose, CA | San Francisco, CA | Seattle, WA","San Jose, CA | San Francisco, CA | Seattle, WA",False,10
+female:25:race=nh_aian,193,2.76,7.12,37.72,0.892,"Yakima, WA | Sioux Falls, SD | Anchorage, AK","Sioux Falls, SD | Yakima, WA | Anchorage, AK",True,9
+female:25:race=nh_nhpi,193,2.88,8.61,78.26,0.931,"Fayetteville, AR | Honolulu, HI | Salem, OR","Fayetteville, AR | Honolulu, HI | Anchorage, AK",False,10
+female:25:race=nh_twoplus,193,1.15,3.08,6.03,0.92,"Fayetteville, AR | Fargo, ND | Ann Arbor, MI","Fayetteville, AR | Fargo, ND | Ann Arbor, MI",False,9
+female:25:race=nh_other,193,1.48,5.46,14.79,0.94,"Ocala, FL | New Orleans, LA | Hagerstown, MD","Ocala, FL | New Orleans, LA | Boston, MA",False,10
+female:25:edu=hs_or_less:race=hispanic,193,7.32,15.82,42.05,0.935,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,9
+female:25:edu=hs_or_less:race=nh_white,193,2.63,5.66,10.22,0.953,"Duluth, MN | Canton, OH | Kingsport, TN","Canton, OH | Kingsport, TN | Duluth, MN",True,10
+female:25:edu=hs_or_less:race=nh_black,193,1.45,3.84,6.86,0.982,"Montgomery, AL | Jackson, MS | Memphis, TN","Montgomery, AL | Jackson, MS | Memphis, TN",False,10
+female:25:edu=hs_or_less:race=nh_asian,193,11.25,23.56,98.93,0.822,"San Jose, CA | Stockton, CA | Honolulu, HI","San Jose, CA | Honolulu, HI | Stockton, CA",False,9
+female:25:edu=hs_or_less:race=nh_aian,193,2.26,6.93,62.19,0.923,"Yakima, WA | Anchorage, AK | Tulsa, OK","Yakima, WA | Anchorage, AK | Tulsa, OK",False,9
+female:25:edu=hs_or_less:race=nh_nhpi,193,5.27,13.09,132.93,0.944,"Fayetteville, AR | Anchorage, AK | Salem, OR","Fayetteville, AR | Honolulu, HI | Anchorage, AK",False,10
+female:25:edu=hs_or_less:race=nh_twoplus,193,2.23,6.2,28.17,0.925,"Fayetteville, AR | Anchorage, AK | Canton, OH","Fayetteville, AR | Anchorage, AK | Clarksville, TN",False,9
+female:25:edu=hs_or_less:race=nh_other,193,3.57,9.58,28.46,0.91,"Ocala, FL | Hagerstown, MD | Amarillo, TX","Ocala, FL | Amarillo, TX | Cape Coral, FL",False,9
+female:25:edu=some_college:race=hispanic,193,3.93,6.61,16.26,0.967,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+female:25:edu=some_college:race=nh_white,193,2.77,6.54,9.8,0.912,"Provo, UT | Duluth, MN | Fargo, ND","Provo, UT | Duluth, MN | Cedar Rapids, IA",False,9
+female:25:edu=some_college:race=nh_black,193,1.28,3.13,6.7,0.973,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,10
+female:25:edu=some_college:race=nh_asian,193,2.24,7.45,26.42,0.908,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | Honolulu, HI | San Francisco, CA",False,9
+female:25:edu=some_college:race=nh_aian,193,3.2,8.37,38.32,0.882,"Sioux Falls, SD | Yakima, WA | Anchorage, AK","Sioux Falls, SD | Anchorage, AK | Yakima, WA",False,8
+female:25:edu=some_college:race=nh_nhpi,193,4.66,12.22,88.58,0.93,"Fayetteville, AR | Hickory, NC | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Hickory, NC",False,10
+female:25:edu=some_college:race=nh_twoplus,193,1.77,4.54,7.7,0.876,"Fayetteville, AR | Fargo, ND | Clarksville, TN","Fayetteville, AR | Fargo, ND | Clarksville, TN",False,9
+female:25:edu=some_college:race=nh_other,193,2.29,7.08,24.17,0.91,"Hagerstown, MD | Ocala, FL | Flint, MI","Hagerstown, MD | Ocala, FL | Flint, MI",False,10
+female:25:edu=bachelors:race=hispanic,193,8.09,13.76,34.64,0.921,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:25:edu=bachelors:race=nh_white,193,1.53,3.35,6.4,0.963,"Madison, WI | Boulder, CO | Ann Arbor, MI","Madison, WI | Boulder, CO | Portland, ME",False,9
+female:25:edu=bachelors:race=nh_black,193,3.64,6.42,12.28,0.96,"Jackson, MS | Memphis, TN | Montgomery, AL","Jackson, MS | Memphis, TN | Montgomery, AL",False,10
+female:25:edu=bachelors:race=nh_asian,193,2.64,4.95,32.63,0.965,"San Jose, CA | San Francisco, CA | Seattle, WA","San Jose, CA | San Francisco, CA | Seattle, WA",False,10
+female:25:edu=bachelors:race=nh_aian,193,4.18,9.39,21.28,0.886,"Sioux Falls, SD | Tulsa, OK | Anchorage, AK","Sioux Falls, SD | Anchorage, AK | Tulsa, OK",False,10
+female:25:edu=bachelors:race=nh_nhpi,193,6.74,13.53,122.28,0.904,"Hickory, NC | Fayetteville, AR | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Hickory, NC",True,10
+female:25:edu=bachelors:race=nh_twoplus,193,1.89,4.28,6.28,0.924,"Ann Arbor, MI | Fayetteville, AR | Boulder, CO","Ann Arbor, MI | Fayetteville, AR | Boulder, CO",False,9
+female:25:edu=bachelors:race=nh_other,193,3.15,7.07,17.06,0.945,"New Orleans, LA | Savannah, GA | Greensboro, NC","New Orleans, LA | Gainesville, FL | Savannah, GA",False,10
+female:25:edu=graduate:race=hispanic,193,9.08,16.24,43.16,0.868,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:25:edu=graduate:race=nh_white,193,0.99,2.97,4.88,0.976,"Boulder, CO | Madison, WI | Ann Arbor, MI","Madison, WI | Boulder, CO | Ann Arbor, MI",True,9
+female:25:edu=graduate:race=nh_black,193,3.11,6.21,13.01,0.951,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,9
+female:25:edu=graduate:race=nh_asian,193,2.32,7.05,22.17,0.934,"San Jose, CA | San Francisco, CA | Seattle, WA","San Jose, CA | San Francisco, CA | Seattle, WA",False,10
+female:25:edu=graduate:race=nh_aian,193,3.39,6.29,14.34,0.939,"Sioux Falls, SD | Olympia, WA | Anchorage, AK","Sioux Falls, SD | Olympia, WA | Anchorage, AK",False,9
+female:25:edu=graduate:race=nh_nhpi,193,6.01,12.5,101.66,0.933,"Lincoln, NE | Hickory, NC | Salt Lake City, UT","Lincoln, NE | Fayetteville, AR | Salt Lake City, UT",False,10
+female:25:edu=graduate:race=nh_twoplus,193,0.94,2.41,13.3,0.975,"Ann Arbor, MI | Boulder, CO | Boston, MA","Ann Arbor, MI | Boulder, CO | Madison, WI",False,10
+female:25:edu=graduate:race=nh_other,193,2.07,5.31,14.48,0.965,"Gainesville, FL | New Orleans, LA | Columbia, SC","Gainesville, FL | New Orleans, LA | Columbia, SC",False,10
+female:30:undisclosed,193,1.18,2.36,3.55,0.914,"Ann Arbor, MI | Fort Collins, CO | Raleigh, NC","Ann Arbor, MI | Fort Collins, CO | Tuscaloosa, AL",False,9
+female:30:edu=hs_or_less,193,1.88,4.27,7.75,0.899,"Yakima, WA | Merced, CA | Montgomery, AL","Yakima, WA | Merced, CA | McAllen, TX",False,9
+female:30:edu=some_college,193,2.15,4.4,6.92,0.786,"Memphis, TN | Montgomery, AL | Jackson, MS","Memphis, TN | Montgomery, AL | Columbus, GA",False,9
+female:30:edu=bachelors,193,2.35,4.61,7.24,0.913,"Ann Arbor, MI | Boulder, CO | Fort Collins, CO","Ann Arbor, MI | Fort Collins, CO | Boulder, CO",False,10
+female:30:edu=graduate,193,1.53,2.75,4.28,0.96,"San Jose, CA | Ann Arbor, MI | Boston, MA","San Jose, CA | Ann Arbor, MI | Boston, MA",False,10
+female:30:race=hispanic,193,1.12,2.68,10.76,0.971,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,9
+female:30:race=nh_white,193,1.89,4.13,7.43,0.947,"Portland, ME | Fort Collins, CO | Pittsburgh, PA","Portland, ME | Fort Collins, CO | Pittsburgh, PA",False,9
+female:30:race=nh_black,193,1.26,2.77,7.42,0.974,"Jackson, MS | Montgomery, AL | Memphis, TN","Montgomery, AL | Jackson, MS | Memphis, TN",True,10
+female:30:race=nh_asian,193,1.07,2.9,7.37,0.962,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+female:30:race=nh_aian,193,2.88,7.4,58.86,0.899,"Yakima, WA | Anchorage, AK | Gulfport, MS","Yakima, WA | Anchorage, AK | Sioux Falls, SD",False,9
+female:30:race=nh_nhpi,193,3.05,7.33,64.72,0.939,"Fayetteville, AR | Reading, PA | Honolulu, HI","Fayetteville, AR | Reading, PA | Honolulu, HI",False,10
+female:30:race=nh_twoplus,193,1.03,2.67,5.66,0.936,"Fayetteville, AR | Honolulu, HI | Ann Arbor, MI","Fayetteville, AR | Honolulu, HI | Fargo, ND",False,10
+female:30:race=nh_other,193,1.64,7.0,41.32,0.951,"Greensboro, NC | Flint, MI | Ocala, FL","Greensboro, NC | Ocala, FL | Flint, MI",False,9
+female:30:edu=hs_or_less:race=hispanic,193,7.58,15.99,39.14,0.922,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Laredo, TX | Brownsville, TX",False,10
+female:30:edu=hs_or_less:race=nh_white,193,2.85,5.71,10.36,0.959,"Canton, OH | Kingsport, TN | Erie, PA","Canton, OH | Kingsport, TN | Erie, PA",False,10
+female:30:edu=hs_or_less:race=nh_black,193,1.51,3.7,7.92,0.982,"Montgomery, AL | Memphis, TN | Jackson, MS","Montgomery, AL | Memphis, TN | Jackson, MS",False,10
+female:30:edu=hs_or_less:race=nh_asian,193,12.93,24.32,112.33,0.815,"San Jose, CA | Stockton, CA | Honolulu, HI","Stockton, CA | Honolulu, HI | San Jose, CA",True,9
+female:30:edu=hs_or_less:race=nh_aian,193,2.59,7.56,84.2,0.915,"Yakima, WA | Anchorage, AK | Sioux Falls, SD","Yakima, WA | Anchorage, AK | Sioux Falls, SD",False,10
+female:30:edu=hs_or_less:race=nh_nhpi,193,5.62,14.53,145.1,0.947,"Fayetteville, AR | Reading, PA | Honolulu, HI","Fayetteville, AR | Reading, PA | Honolulu, HI",False,9
+female:30:edu=hs_or_less:race=nh_twoplus,193,2.25,6.15,26.07,0.91,"Fayetteville, AR | Canton, OH | Flint, MI","Fayetteville, AR | Honolulu, HI | Flint, MI",False,8
+female:30:edu=hs_or_less:race=nh_other,193,3.6,10.95,39.3,0.915,"Ocala, FL | Akron, OH | Visalia, CA","Ocala, FL | Akron, OH | Lakeland, FL",False,9
+female:30:edu=some_college:race=hispanic,193,3.96,6.8,18.62,0.971,"Brownsville, TX | McAllen, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",True,9
+female:30:edu=some_college:race=nh_white,193,2.85,6.34,11.91,0.915,"Portland, ME | Canton, OH | Sioux Falls, SD","Canton, OH | Portland, ME | Duluth, MN",True,8
+female:30:edu=some_college:race=nh_black,193,1.43,3.14,8.21,0.972,"Memphis, TN | Jackson, MS | Montgomery, AL","Memphis, TN | Montgomery, AL | Jackson, MS",False,10
+female:30:edu=some_college:race=nh_asian,193,2.25,6.72,31.59,0.91,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | Honolulu, HI | San Francisco, CA",False,9
+female:30:edu=some_college:race=nh_aian,193,3.15,7.87,56.78,0.895,"Yakima, WA | Gulfport, MS | Anchorage, AK","Yakima, WA | Gulfport, MS | Anchorage, AK",False,8
+female:30:edu=some_college:race=nh_nhpi,193,4.85,12.0,109.16,0.929,"Fayetteville, AR | Reading, PA | Salem, OR","Fayetteville, AR | Reading, PA | Honolulu, HI",False,10
+female:30:edu=some_college:race=nh_twoplus,193,1.61,4.7,7.76,0.887,"Fayetteville, AR | Honolulu, HI | Peoria, IL","Fayetteville, AR | Honolulu, HI | Peoria, IL",False,8
+female:30:edu=some_college:race=nh_other,193,2.3,7.76,65.43,0.921,"Greensboro, NC | Flint, MI | Waco, TX","Flint, MI | Greensboro, NC | Ocala, FL",True,10
+female:30:edu=bachelors:race=hispanic,193,7.62,13.96,39.06,0.916,"Brownsville, TX | McAllen, TX | El Paso, TX","Brownsville, TX | McAllen, TX | El Paso, TX",False,10
+female:30:edu=bachelors:race=nh_white,193,1.68,3.48,5.64,0.955,"Boulder, CO | Fort Collins, CO | Madison, WI","Fort Collins, CO | Boulder, CO | Portland, ME",True,10
+female:30:edu=bachelors:race=nh_black,193,3.58,6.78,13.38,0.962,"Jackson, MS | Memphis, TN | Montgomery, AL","Jackson, MS | Memphis, TN | Montgomery, AL",False,9
+female:30:edu=bachelors:race=nh_asian,193,2.84,5.41,37.92,0.96,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+female:30:edu=bachelors:race=nh_aian,193,4.52,9.55,19.98,0.895,"Gulfport, MS | Yakima, WA | Sioux Falls, SD","Gulfport, MS | Yakima, WA | Sioux Falls, SD",False,10
+female:30:edu=bachelors:race=nh_nhpi,193,6.66,12.71,110.61,0.917,"Fayetteville, AR | Honolulu, HI | Reading, PA","Fayetteville, AR | Reading, PA | Honolulu, HI",False,9
+female:30:edu=bachelors:race=nh_twoplus,193,2.13,4.53,6.6,0.92,"Ann Arbor, MI | Boulder, CO | San Francisco, CA","Ann Arbor, MI | Boulder, CO | Fort Collins, CO",False,9
+female:30:edu=bachelors:race=nh_other,193,3.59,7.56,56.01,0.946,"Greensboro, NC | Bend, OR | Green Bay, WI","Greensboro, NC | Bend, OR | Green Bay, WI",False,9
+female:30:edu=graduate:race=hispanic,193,8.95,16.0,47.5,0.876,"Brownsville, TX | McAllen, TX | El Paso, TX","Brownsville, TX | McAllen, TX | El Paso, TX",False,9
+female:30:edu=graduate:race=nh_white,193,1.05,2.93,5.41,0.974,"Ann Arbor, MI | Boulder, CO | Boston, MA","Ann Arbor, MI | Boulder, CO | Madison, WI",False,10
+female:30:edu=graduate:race=nh_black,193,2.99,6.69,15.04,0.951,"Tuscaloosa, AL | Jackson, MS | Atlanta, GA","Tuscaloosa, AL | Jackson, MS | Memphis, TN",False,9
+female:30:edu=graduate:race=nh_asian,193,1.96,8.07,19.79,0.942,"San Jose, CA | San Francisco, CA | Seattle, WA","San Jose, CA | San Francisco, CA | Seattle, WA",False,10
+female:30:edu=graduate:race=nh_aian,193,3.5,6.48,14.93,0.947,"Gulfport, MS | Anchorage, AK | Sioux Falls, SD","Gulfport, MS | Sioux Falls, SD | Anchorage, AK",False,10
+female:30:edu=graduate:race=nh_nhpi,193,5.23,11.4,65.23,0.942,"Fayetteville, AR | Honolulu, HI | San Jose, CA","Fayetteville, AR | Honolulu, HI | San Jose, CA",False,10
+female:30:edu=graduate:race=nh_twoplus,193,0.94,2.27,13.87,0.976,"Ann Arbor, MI | San Jose, CA | Boston, MA","Ann Arbor, MI | Boston, MA | Boulder, CO",False,10
+female:30:edu=graduate:race=nh_other,193,1.99,5.86,35.12,0.964,"Greensboro, NC | Gainesville, FL | Lincoln, NE","Greensboro, NC | Gainesville, FL | Lincoln, NE",False,10
+female:35:undisclosed,193,0.98,2.07,3.36,0.913,"Ann Arbor, MI | College Station, TX | Boulder, CO","Ann Arbor, MI | College Station, TX | Tuscaloosa, AL",False,10
+female:35:edu=hs_or_less,193,2.07,4.4,8.57,0.895,"Visalia, CA | McAllen, TX | Merced, CA","McAllen, TX | Visalia, CA | Merced, CA",True,9
+female:35:edu=some_college,193,1.9,4.15,5.65,0.824,"Jackson, MS | Memphis, TN | Fayetteville, NC","Jackson, MS | Memphis, TN | Montgomery, AL",False,9
+female:35:edu=bachelors,193,2.41,4.78,6.67,0.906,"Ann Arbor, MI | Boulder, CO | Fort Collins, CO","Ann Arbor, MI | Boulder, CO | Fort Collins, CO",False,10
+female:35:edu=graduate,193,1.87,3.17,5.05,0.954,"Ann Arbor, MI | Boulder, CO | San Francisco, CA","Ann Arbor, MI | Boulder, CO | San Francisco, CA",False,9
+female:35:race=hispanic,193,1.33,3.72,8.71,0.961,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+female:35:race=nh_white,193,1.84,4.17,6.61,0.949,"Ann Arbor, MI | Portland, ME | Provo, UT","Ann Arbor, MI | Portland, ME | Duluth, MN",False,8
+female:35:race=nh_black,193,1.35,2.78,7.37,0.972,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,9
+female:35:race=nh_asian,193,1.36,3.51,10.43,0.96,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,9
+female:35:race=nh_aian,193,2.7,7.58,58.8,0.912,"Anchorage, AK | Yakima, WA | Sioux Falls, SD","Anchorage, AK | Yakima, WA | Sioux Falls, SD",False,9
+female:35:race=nh_nhpi,193,3.08,12.08,86.02,0.946,"Fayetteville, AR | Honolulu, HI | Reading, PA","Fayetteville, AR | Honolulu, HI | Reading, PA",False,10
+female:35:race=nh_twoplus,193,1.25,3.07,7.93,0.926,"Fayetteville, AR | Ann Arbor, MI | Sioux Falls, SD","Fayetteville, AR | Ann Arbor, MI | Sioux Falls, SD",False,8
+female:35:race=nh_other,193,1.84,6.36,45.15,0.941,"Lincoln, NE | Atlantic City, NJ | Waco, TX","Lincoln, NE | Atlantic City, NJ | Waco, TX",False,10
+female:35:edu=hs_or_less:race=hispanic,193,7.72,16.56,36.49,0.923,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+female:35:edu=hs_or_less:race=nh_white,193,3.11,6.05,10.7,0.956,"Kingsport, TN | Duluth, MN | Canton, OH","Kingsport, TN | Duluth, MN | Canton, OH",False,10
+female:35:edu=hs_or_less:race=nh_black,193,1.43,3.56,7.85,0.98,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,10
+female:35:edu=hs_or_less:race=nh_asian,193,13.95,24.94,116.15,0.821,"San Jose, CA | Honolulu, HI | Stockton, CA","Honolulu, HI | San Jose, CA | Stockton, CA",True,9
+female:35:edu=hs_or_less:race=nh_aian,193,2.83,7.82,72.88,0.913,"Anchorage, AK | Yakima, WA | Sioux Falls, SD","Anchorage, AK | Yakima, WA | Sioux Falls, SD",False,9
+female:35:edu=hs_or_less:race=nh_nhpi,193,6.27,12.22,145.42,0.951,"Fayetteville, AR | Reading, PA | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Reading, PA",False,9
+female:35:edu=hs_or_less:race=nh_twoplus,193,2.14,7.21,43.75,0.912,"Fayetteville, AR | Sioux Falls, SD | Flint, MI","Fayetteville, AR | Sioux Falls, SD | Bremerton, WA",False,9
+female:35:edu=hs_or_less:race=nh_other,193,4.48,11.09,28.5,0.913,"Atlantic City, NJ | Provo, UT | Evansville, IN","Atlantic City, NJ | Columbus, GA | Provo, UT",False,10
+female:35:edu=some_college:race=hispanic,193,3.86,6.47,16.66,0.974,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:35:edu=some_college:race=nh_white,193,2.63,5.67,9.62,0.933,"Duluth, MN | Sioux Falls, SD | Springfield, MO","Duluth, MN | Springfield, MO | Sioux Falls, SD",False,9
+female:35:edu=some_college:race=nh_black,193,1.52,3.09,7.73,0.969,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,9
+female:35:edu=some_college:race=nh_asian,193,2.12,5.32,16.26,0.913,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+female:35:edu=some_college:race=nh_aian,193,2.74,7.79,61.18,0.909,"Anchorage, AK | Yakima, WA | Albuquerque, NM","Anchorage, AK | Yakima, WA | Albuquerque, NM",False,9
+female:35:edu=some_college:race=nh_nhpi,193,5.46,13.89,50.08,0.931,"Fayetteville, AR | Honolulu, HI | Reading, PA","Fayetteville, AR | Honolulu, HI | Reading, PA",False,10
+female:35:edu=some_college:race=nh_twoplus,193,1.78,4.81,8.46,0.888,"Fayetteville, AR | Sioux Falls, SD | Bremerton, WA","Fayetteville, AR | Sioux Falls, SD | Bremerton, WA",False,8
+female:35:edu=some_college:race=nh_other,193,2.55,6.93,51.93,0.92,"Waco, TX | Evansville, IN | Atlantic City, NJ","Waco, TX | Evansville, IN | Wilmington, NC",False,9
+female:35:edu=bachelors:race=hispanic,193,7.54,13.63,35.33,0.918,"McAllen, TX | El Paso, TX | Brownsville, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:35:edu=bachelors:race=nh_white,193,1.47,3.46,4.79,0.96,"Ann Arbor, MI | Boulder, CO | Provo, UT","Ann Arbor, MI | Boulder, CO | Fort Collins, CO",False,9
+female:35:edu=bachelors:race=nh_black,193,3.42,6.92,16.4,0.959,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,10
+female:35:edu=bachelors:race=nh_asian,193,3.22,6.04,31.26,0.957,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+female:35:edu=bachelors:race=nh_aian,193,4.37,10.02,23.63,0.895,"Yakima, WA | Anchorage, AK | Albuquerque, NM","Anchorage, AK | Yakima, WA | Albuquerque, NM",True,8
+female:35:edu=bachelors:race=nh_nhpi,193,7.68,15.29,144.21,0.925,"Fort Wayne, IN | Fayetteville, AR | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Fort Wayne, IN",True,9
+female:35:edu=bachelors:race=nh_twoplus,193,2.18,4.91,7.78,0.916,"Fayetteville, AR | Ann Arbor, MI | Boulder, CO","Fayetteville, AR | Ann Arbor, MI | Boulder, CO",False,9
+female:35:edu=bachelors:race=nh_other,193,3.54,7.49,67.42,0.95,"Lincoln, NE | Atlantic City, NJ | Waco, TX","Lincoln, NE | Waco, TX | Atlantic City, NJ",False,10
+female:35:edu=graduate:race=hispanic,193,8.39,15.34,42.56,0.88,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:35:edu=graduate:race=nh_white,193,0.99,2.99,5.04,0.972,"Ann Arbor, MI | Boulder, CO | Bend, OR","Ann Arbor, MI | Boulder, CO | Bend, OR",False,10
+female:35:edu=graduate:race=nh_black,193,2.7,6.57,15.21,0.951,"Atlanta, GA | Washington, DC | Jackson, MS","Jackson, MS | Atlanta, GA | Memphis, TN",True,10
+female:35:edu=graduate:race=nh_asian,193,2.17,6.9,20.95,0.935,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Ann Arbor, MI",False,10
+female:35:edu=graduate:race=nh_aian,193,3.23,7.64,17.87,0.936,"Anchorage, AK | Yakima, WA | Greenville, SC","Anchorage, AK | Yakima, WA | Albuquerque, NM",False,10
+female:35:edu=graduate:race=nh_nhpi,193,6.22,11.39,273.09,0.939,"Fort Wayne, IN | Salt Lake City, UT | Honolulu, HI","Fort Wayne, IN | Fayetteville, AR | Honolulu, HI",False,10
+female:35:edu=graduate:race=nh_twoplus,193,0.89,2.13,9.5,0.979,"Ann Arbor, MI | Fayetteville, AR | Boulder, CO","Ann Arbor, MI | Fayetteville, AR | Boulder, CO",False,10
+female:35:edu=graduate:race=nh_other,193,2.44,5.93,95.38,0.964,"Lincoln, NE | Atlantic City, NJ | Nashville, TN","Lincoln, NE | Atlantic City, NJ | Nashville, TN",False,10
+female:40:undisclosed,193,0.84,1.74,3.2,0.918,"Tuscaloosa, AL | Savannah, GA | Fargo, ND","Tuscaloosa, AL | Savannah, GA | Jackson, MS",False,10
+female:40:edu=hs_or_less,193,2.33,5.08,8.82,0.886,"McAllen, TX | Bakersfield, CA | Merced, CA","McAllen, TX | Merced, CA | Salinas, CA",False,9
+female:40:edu=some_college,193,1.85,3.75,5.35,0.854,"Fargo, ND | Jackson, MS | Tuscaloosa, AL","Jackson, MS | Fargo, ND | Tuscaloosa, AL",True,8
+female:40:edu=bachelors,193,2.43,4.73,8.09,0.891,"Ann Arbor, MI | Boulder, CO | San Francisco, CA","Boulder, CO | Ann Arbor, MI | Fargo, ND",True,10
+female:40:edu=graduate,193,1.95,3.66,5.82,0.944,"Ann Arbor, MI | Washington, DC | San Francisco, CA","Ann Arbor, MI | Washington, DC | Boulder, CO",False,9
+female:40:race=hispanic,193,1.82,5.25,13.76,0.96,"Brownsville, TX | McAllen, TX | El Paso, TX","McAllen, TX | Brownsville, TX | Laredo, TX",True,10
+female:40:race=nh_white,193,1.75,3.86,6.7,0.951,"Provo, UT | Duluth, MN | Portland, ME","Duluth, MN | Provo, UT | Portland, ME",True,9
+female:40:race=nh_black,193,1.28,2.74,6.29,0.979,"Montgomery, AL | Jackson, MS | Memphis, TN","Montgomery, AL | Jackson, MS | Memphis, TN",False,10
+female:40:race=nh_asian,193,2.39,5.58,15.77,0.936,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,9
+female:40:race=nh_aian,193,2.73,7.46,44.5,0.912,"Yakima, WA | Tulsa, OK | Anchorage, AK","Yakima, WA | Albuquerque, NM | Anchorage, AK",False,10
+female:40:race=nh_nhpi,193,3.39,9.78,88.95,0.936,"Honolulu, HI | Fayetteville, AR | Yakima, WA","Honolulu, HI | Fayetteville, AR | Salt Lake City, UT",False,9
+female:40:race=nh_twoplus,193,1.21,3.28,17.09,0.922,"Fayetteville, AR | Honolulu, HI | Portland, ME","Fayetteville, AR | Honolulu, HI | Portland, ME",False,9
+female:40:race=nh_other,193,2.01,7.12,57.35,0.942,"Lafayette, LA | Atlantic City, NJ | Manchester, NH","Lafayette, LA | Atlantic City, NJ | Manchester, NH",False,9
+female:40:edu=hs_or_less:race=hispanic,193,7.94,16.8,39.79,0.926,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,10
+female:40:edu=hs_or_less:race=nh_white,193,3.09,6.31,11.12,0.955,"Duluth, MN | Erie, PA | York, PA","Duluth, MN | Erie, PA | York, PA",False,9
+female:40:edu=hs_or_less:race=nh_black,193,1.22,4.0,6.71,0.981,"Montgomery, AL | Jackson, MS | Memphis, TN","Montgomery, AL | Memphis, TN | Jackson, MS",False,10
+female:40:edu=hs_or_less:race=nh_asian,193,14.94,27.53,130.06,0.795,"San Jose, CA | Honolulu, HI | Stockton, CA","Honolulu, HI | San Jose, CA | San Francisco, CA",True,9
+female:40:edu=hs_or_less:race=nh_aian,193,2.63,7.11,52.91,0.915,"Yakima, WA | Anchorage, AK | Green Bay, WI","Yakima, WA | Anchorage, AK | Green Bay, WI",False,7
+female:40:edu=hs_or_less:race=nh_nhpi,193,5.89,13.27,196.27,0.935,"Honolulu, HI | Fayetteville, AR | Olympia, WA","Honolulu, HI | Fayetteville, AR | Olympia, WA",False,9
+female:40:edu=hs_or_less:race=nh_twoplus,193,2.42,7.8,54.03,0.909,"Fayetteville, AR | Akron, OH | Spokane, WA","Fayetteville, AR | Akron, OH | Spokane, WA",False,9
+female:40:edu=hs_or_less:race=nh_other,193,3.85,11.77,41.27,0.911,"Lafayette, LA | Atlantic City, NJ | Columbus, GA","Atlantic City, NJ | Lafayette, LA | Columbus, GA",True,9
+female:40:edu=some_college:race=hispanic,193,3.63,6.19,18.65,0.973,"Brownsville, TX | McAllen, TX | El Paso, TX","Brownsville, TX | McAllen, TX | El Paso, TX",False,9
+female:40:edu=some_college:race=nh_white,193,2.24,5.35,8.56,0.936,"Duluth, MN | Fargo, ND | Provo, UT","Duluth, MN | Fargo, ND | Sioux Falls, SD",False,9
+female:40:edu=some_college:race=nh_black,193,1.38,2.99,6.8,0.973,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,10
+female:40:edu=some_college:race=nh_asian,193,2.03,5.7,17.4,0.916,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,9
+female:40:edu=some_college:race=nh_aian,193,2.69,8.15,47.33,0.912,"Yakima, WA | Tulsa, OK | Anchorage, AK","Yakima, WA | Albuquerque, NM | Anchorage, AK",False,9
+female:40:edu=some_college:race=nh_nhpi,193,6.06,13.81,94.49,0.925,"Fayetteville, AR | Honolulu, HI | Yakima, WA","Fayetteville, AR | Honolulu, HI | Sioux Falls, SD",False,9
+female:40:edu=some_college:race=nh_twoplus,193,1.87,4.89,8.12,0.882,"Fayetteville, AR | Spokane, WA | Honolulu, HI","Fayetteville, AR | Spokane, WA | Sioux Falls, SD",False,9
+female:40:edu=some_college:race=nh_other,193,2.59,7.89,76.35,0.919,"Lafayette, LA | Manchester, NH | Atlantic City, NJ","Lafayette, LA | Manchester, NH | Atlantic City, NJ",False,9
+female:40:edu=bachelors:race=hispanic,193,8.12,13.99,45.27,0.911,"Brownsville, TX | El Paso, TX | McAllen, TX","Brownsville, TX | El Paso, TX | McAllen, TX",False,10
+female:40:edu=bachelors:race=nh_white,193,1.57,3.38,6.56,0.96,"Provo, UT | Boulder, CO | Bend, OR","Provo, UT | Boulder, CO | Portland, ME",False,9
+female:40:edu=bachelors:race=nh_black,193,3.27,6.8,16.21,0.956,"Jackson, MS | Memphis, TN | Montgomery, AL","Jackson, MS | Montgomery, AL | Memphis, TN",False,9
+female:40:edu=bachelors:race=nh_asian,193,3.39,6.26,29.54,0.943,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Honolulu, HI",False,10
+female:40:edu=bachelors:race=nh_aian,193,4.38,10.0,23.61,0.893,"Yakima, WA | Albuquerque, NM | Tulsa, OK","Albuquerque, NM | Yakima, WA | Tulsa, OK",True,10
+female:40:edu=bachelors:race=nh_nhpi,193,8.67,16.02,204.88,0.919,"Yakima, WA | Honolulu, HI | Salt Lake City, UT","Honolulu, HI | Yakima, WA | Salt Lake City, UT",True,9
+female:40:edu=bachelors:race=nh_twoplus,193,2.28,5.09,7.7,0.9,"Boulder, CO | Ann Arbor, MI | Honolulu, HI","Boulder, CO | Ann Arbor, MI | Fayetteville, AR",False,9
+female:40:edu=bachelors:race=nh_other,193,3.57,8.24,73.15,0.945,"Lafayette, LA | Columbia, SC | Charleston, SC","Lafayette, LA | Columbia, SC | Charleston, SC",False,9
+female:40:edu=graduate:race=hispanic,193,8.93,16.53,53.61,0.872,"El Paso, TX | McAllen, TX | Brownsville, TX","El Paso, TX | McAllen, TX | Brownsville, TX",False,10
+female:40:edu=graduate:race=nh_white,193,1.13,2.78,5.71,0.972,"Ann Arbor, MI | Boulder, CO | Bend, OR","Ann Arbor, MI | Boulder, CO | Bend, OR",False,10
+female:40:edu=graduate:race=nh_black,193,2.87,6.34,14.48,0.944,"Atlanta, GA | Memphis, TN | Jackson, MS","Atlanta, GA | Jackson, MS | Memphis, TN",False,9
+female:40:edu=graduate:race=nh_asian,193,2.1,7.19,27.46,0.931,"San Jose, CA | San Francisco, CA | Ann Arbor, MI","San Jose, CA | San Francisco, CA | Ann Arbor, MI",False,9
+female:40:edu=graduate:race=nh_aian,193,3.21,7.33,22.22,0.93,"Albuquerque, NM | Tulsa, OK | Yakima, WA","Albuquerque, NM | Tulsa, OK | Yakima, WA",False,10
+female:40:edu=graduate:race=nh_nhpi,193,7.01,13.5,154.57,0.944,"Bridgeport, CT | Salt Lake City, UT | Fort Wayne, IN","Bridgeport, CT | Salt Lake City, UT | Fort Wayne, IN",False,10
+female:40:edu=graduate:race=nh_twoplus,193,0.93,2.32,6.7,0.968,"Ann Arbor, MI | Boulder, CO | Bend, OR","Ann Arbor, MI | Boulder, CO | Bend, OR",False,10
+female:40:edu=graduate:race=nh_other,193,2.54,6.74,44.47,0.966,"Lafayette, LA | Lincoln, NE | Kiryas Joel, NY","Lafayette, LA | Lincoln, NE | Kiryas Joel, NY",False,10
+female:50:undisclosed,193,0.59,1.96,3.69,0.913,"Raleigh, NC | Ann Arbor, MI | Atlanta, GA","Raleigh, NC | Atlanta, GA | Ann Arbor, MI",False,9
+female:50:edu=hs_or_less,193,2.98,5.97,12.27,0.87,"McAllen, TX | Yakima, WA | Brownsville, TX","McAllen, TX | Yakima, WA | Brownsville, TX",False,10
+female:50:edu=some_college,193,1.86,3.98,5.71,0.823,"Tuscaloosa, AL | Birmingham, AL | Evansville, IN","Tuscaloosa, AL | Evansville, IN | Birmingham, AL",False,8
+female:50:edu=bachelors,193,2.22,4.48,6.39,0.899,"Boulder, CO | Lincoln, NE | Ann Arbor, MI","Boulder, CO | Lincoln, NE | Ann Arbor, MI",False,9
+female:50:edu=graduate,193,1.84,3.3,5.06,0.951,"Boulder, CO | Ann Arbor, MI | Washington, DC","Boulder, CO | Ann Arbor, MI | Lincoln, NE",False,7
+female:50:race=hispanic,193,3.07,7.27,16.58,0.953,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,9
+female:50:race=nh_white,193,1.83,3.87,6.53,0.934,"Lincoln, NE | Boulder, CO | Fargo, ND","Lincoln, NE | Provo, UT | Fargo, ND",False,8
+female:50:race=nh_black,193,1.17,2.83,5.89,0.976,"Montgomery, AL | Jackson, MS | Memphis, TN","Montgomery, AL | Jackson, MS | Memphis, TN",False,9
+female:50:race=nh_asian,193,3.55,9.35,42.31,0.905,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+female:50:race=nh_aian,193,2.72,7.26,71.89,0.91,"Green Bay, WI | Yakima, WA | Anchorage, AK","Green Bay, WI | Yakima, WA | Anchorage, AK",False,10
+female:50:race=nh_nhpi,193,3.58,9.1,56.1,0.915,"Tallahassee, FL | Honolulu, HI | Myrtle Beach, SC","Honolulu, HI | Tallahassee, FL | Myrtle Beach, SC",True,10
+female:50:race=nh_twoplus,193,0.99,2.97,9.47,0.918,"Fayetteville, AR | Boulder, CO | Honolulu, HI","Fayetteville, AR | Honolulu, HI | Boulder, CO",False,9
+female:50:race=nh_other,193,2.22,7.96,25.12,0.942,"Wilmington, NC | Greenville, SC | Jackson, MS","Wilmington, NC | Jackson, MS | Greenville, SC",False,10
+female:50:edu=hs_or_less:race=hispanic,193,10.27,19.5,54.36,0.925,"McAllen, TX | Brownsville, TX | Laredo, TX","McAllen, TX | Brownsville, TX | Laredo, TX",False,9
+female:50:edu=hs_or_less:race=nh_white,193,2.48,5.15,9.37,0.951,"Springfield, MO | Duluth, MN | Hickory, NC","Springfield, MO | Duluth, MN | Kingsport, TN",False,9
+female:50:edu=hs_or_less:race=nh_black,193,1.3,4.01,7.47,0.983,"Montgomery, AL | Memphis, TN | Jackson, MS","Montgomery, AL | Memphis, TN | Jackson, MS",False,10
+female:50:edu=hs_or_less:race=nh_asian,193,16.46,31.21,209.42,0.781,"Honolulu, HI | San Jose, CA | San Francisco, CA","Honolulu, HI | San Jose, CA | Anchorage, AK",False,9
+female:50:edu=hs_or_less:race=nh_aian,193,2.62,6.94,60.53,0.923,"Green Bay, WI | Yakima, WA | Duluth, MN","Green Bay, WI | Yakima, WA | Duluth, MN",False,10
+female:50:edu=hs_or_less:race=nh_nhpi,193,6.19,15.26,191.71,0.931,"Honolulu, HI | Salem, OR | Stockton, CA","Honolulu, HI | Salem, OR | Stockton, CA",False,10
+female:50:edu=hs_or_less:race=nh_twoplus,193,2.02,6.0,32.84,0.902,"Fayetteville, AR | Slidell, LA | Evansville, IN","Fayetteville, AR | Slidell, LA | Honolulu, HI",False,9
+female:50:edu=hs_or_less:race=nh_other,193,4.19,11.95,56.4,0.926,"Jackson, MS | Greenville, SC | Yakima, WA","Jackson, MS | Greenville, SC | Yakima, WA",False,9
+female:50:edu=some_college:race=hispanic,193,3.78,7.44,24.86,0.973,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,9
+female:50:edu=some_college:race=nh_white,193,2.23,5.49,9.21,0.924,"Duluth, MN | Provo, UT | Cedar Rapids, IA","Duluth, MN | Provo, UT | Springfield, MO",False,9
+female:50:edu=some_college:race=nh_black,193,1.37,3.25,6.25,0.972,"Jackson, MS | Montgomery, AL | Memphis, TN","Jackson, MS | Montgomery, AL | Memphis, TN",False,10
+female:50:edu=some_college:race=nh_asian,193,2.34,5.98,14.58,0.904,"San Jose, CA | Honolulu, HI | San Francisco, CA","Honolulu, HI | San Jose, CA | San Francisco, CA",True,10
+female:50:edu=some_college:race=nh_aian,193,2.57,7.73,67.75,0.909,"Yakima, WA | Green Bay, WI | Anchorage, AK","Yakima, WA | Green Bay, WI | Anchorage, AK",False,10
+female:50:edu=some_college:race=nh_nhpi,193,5.55,12.34,73.41,0.914,"Tallahassee, FL | Honolulu, HI | Myrtle Beach, SC","Tallahassee, FL | Honolulu, HI | Myrtle Beach, SC",False,10
+female:50:edu=some_college:race=nh_twoplus,193,1.84,4.55,8.57,0.861,"Fayetteville, AR | Evansville, IN | Honolulu, HI","Fayetteville, AR | Evansville, IN | Honolulu, HI",False,9
+female:50:edu=some_college:race=nh_other,193,2.82,8.19,34.69,0.921,"Fayetteville, AR | Greenville, SC | Erie, PA","Fayetteville, AR | Greenville, SC | Jackson, MS",False,9
+female:50:edu=bachelors:race=hispanic,193,8.2,14.46,56.56,0.905,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:50:edu=bachelors:race=nh_white,193,1.42,3.48,5.47,0.949,"Lincoln, NE | Boulder, CO | Madison, WI","Lincoln, NE | Boulder, CO | Madison, WI",False,9
+female:50:edu=bachelors:race=nh_black,193,3.32,6.62,13.32,0.957,"Memphis, TN | Jackson, MS | Montgomery, AL","Memphis, TN | Jackson, MS | Montgomery, AL",False,9
+female:50:edu=bachelors:race=nh_asian,193,3.23,6.0,33.4,0.945,"San Jose, CA | Honolulu, HI | San Francisco, CA","San Jose, CA | Honolulu, HI | San Francisco, CA",False,10
+female:50:edu=bachelors:race=nh_aian,193,4.41,10.15,138.06,0.878,"Yakima, WA | Green Bay, WI | Anchorage, AK","Yakima, WA | Green Bay, WI | Anchorage, AK",False,10
+female:50:edu=bachelors:race=nh_nhpi,193,7.84,12.88,66.64,0.904,"Honolulu, HI | Tallahassee, FL | Myrtle Beach, SC","Honolulu, HI | Tallahassee, FL | Myrtle Beach, SC",False,10
+female:50:edu=bachelors:race=nh_twoplus,193,2.16,4.88,8.28,0.9,"Fayetteville, AR | Boulder, CO | Lincoln, NE","Fayetteville, AR | Boulder, CO | Lincoln, NE",False,8
+female:50:edu=bachelors:race=nh_other,193,3.37,9.43,42.87,0.941,"Wilmington, NC | Manchester, NH | Fort Wayne, IN","Wilmington, NC | Manchester, NH | Slidell, LA",False,9
+female:50:edu=graduate:race=hispanic,193,9.02,15.93,67.13,0.879,"McAllen, TX | Brownsville, TX | El Paso, TX","McAllen, TX | Brownsville, TX | El Paso, TX",False,10
+female:50:edu=graduate:race=nh_white,193,1.04,2.98,6.1,0.968,"Boulder, CO | Lincoln, NE | Ann Arbor, MI","Boulder, CO | Lincoln, NE | Ann Arbor, MI",False,10
+female:50:edu=graduate:race=nh_black,193,2.78,6.41,12.12,0.948,"Atlanta, GA | Jackson, MS | Washington, DC","Atlanta, GA | Jackson, MS | Memphis, TN",False,10
+female:50:edu=graduate:race=nh_asian,193,2.2,6.82,43.33,0.934,"San Jose, CA | San Francisco, CA | Honolulu, HI","San Jose, CA | San Francisco, CA | Fargo, ND",False,10
+female:50:edu=graduate:race=nh_aian,193,2.75,7.02,47.0,0.934,"Yakima, WA | Green Bay, WI | Anchorage, AK","Yakima, WA | Green Bay, WI | Laredo, TX",False,9
+female:50:edu=graduate:race=nh_nhpi,193,6.73,11.8,46.12,0.94,"Honolulu, HI | Tallahassee, FL | San Jose, CA","Honolulu, HI | Tallahassee, FL | San Jose, CA",False,10
+female:50:edu=graduate:race=nh_twoplus,193,0.76,1.84,6.11,0.972,"Boulder, CO | Fayetteville, AR | Ann Arbor, MI","Boulder, CO | Ann Arbor, MI | Fayetteville, AR",False,10
+female:50:edu=graduate:race=nh_other,193,2.54,7.29,43.41,0.962,"Wilmington, NC | Manchester, NH | Scranton, PA","Wilmington, NC | Manchester, NH | Greenville, SC",False,9

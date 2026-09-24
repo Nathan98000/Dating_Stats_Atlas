@@ -93,5 +93,32 @@
       "metro_rows": 3951184,
       "seconds": 23.2
     }
+  },
+  "same_sex_samples": {
+    "decay_h5": {
+      "sample": "decay_h5",
+      "where": "TRUE",
+      "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 5.0) ELSE 1.0 END)",
+      "universe": "same_sex AND age_s BETWEEN 18 AND 70 AND age_c BETWEEN 18 AND 70 AND edu_s IS NOT NULL AND edu_c IS NOT NULL AND NOT (married AND union_year IS NULL)",
+      "national_cells": 65733,
+      "couple_sides_rows": 103414,
+      "n_alloc": 65010.6,
+      "n_kish": 39988.9,
+      "weighted_sides": 1452508.4,
+      "by_sex": {
+        "female": {
+          "rows": 53266,
+          "n_alloc": 32711.9,
+          "n_kish": 19977.8
+        },
+        "male": {
+          "rows": 50148,
+          "n_alloc": 32298.7,
+          "n_kish": 20075.6
+        }
+      },
+      "metros_with_couples": 387,
+      "seconds": 2.4
+    }
   }
 }

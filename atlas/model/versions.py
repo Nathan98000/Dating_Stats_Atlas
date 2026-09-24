@@ -5,6 +5,29 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.2.0 — Phase 3b, Part B (ADR 0010): the kernel gains a race x
+education two-way term per seeker sex, shrunk toward no interaction by
+empirical Bayes (tau 0.18; a cell keeps n/(n+31) of its raw log ratio),
+undialled — the one refinement of three that both improves held-out
+likelihood (+14.1 per 1,000 weighted couple-sides, leave-one-metro-out
+split-half) and passes the standing rank-stability gate (0.800). The
+cohort age term (+70.4, the best fit) fails the gate and is dropped; the
+sex-specific education matrix (+2.8) passes alone but fails in
+combination with the interaction and is dropped. Artifact kernel_v2 (a
+gap curve per sex x cohort, an education matrix per sex, the optional
+interaction, optional same-sex terms; v1 still loads). Same-sex searches
+take their AGE term from a kernel fitted on the 65,011 allocated
+same-sex couple-sides (+205.7 per 1,000 sides held-out over the
+opposite-sex fallback, 374 of 387 metros; served at dial 1), while
+education and race keep the opposite-sex term with the metro's dial —
+education because its same-sex matrix fails the standing face-validity
+gate (not diagonal-dominant in the bachelor's row), race because the
+small groups' own-group cells hold 5-44 effective sides. A same-sex
+search's rows carry the registry sentence
+saying whose patterns the figure is built from (match.note), and the
+response says so (match_inputs.same_sex, same_sex_components). Goldens
+regenerated; the before/after is in PHASE3B.md.
+
 m3.1.0 — Phase 3b, Part A (ADR 0009 amended): the kernel's fitting
 sample moves from recent unions alone to EVERY union weighted by
 exponential decay with a five-year half-life (unmarried partners at
@@ -129,5 +152,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.1.0"
+MODEL_VERSION = "m3.2.0"
 SCHEMA_VERSION = "cube-v1"

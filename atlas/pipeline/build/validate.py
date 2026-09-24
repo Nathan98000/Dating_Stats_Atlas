@@ -109,7 +109,8 @@ def _kernel_weights_table(con, build, req) -> None:
     temp table kw(cbsa, agep, edu4, race8, w) — the SQL side of the
     weighted differential and of the replicate resampling."""
     age_vec, W = seeker_weights(build.kernel, req.self_sex, req.self_age,
-                                req.self_edu, req.self_race)
+                                req.self_edu, req.self_race,
+                                same_sex=(req.seeking.sex == req.self_sex))
     n = len(build.metro_levels)
     full = age_vec[:, :, None, None] * W[:, None, :, :]           # (n, 53, 4, 8)
     m_i, a_i, e_i, r_i = np.indices(full.shape).reshape(4, -1)
@@ -324,12 +325,13 @@ def check_kernel_face(build) -> dict:
     own-group multiplier exceeds each of its off-diagonals, both sexes.
     Any failure is a finding."""
     k = build.kernel
-    out: dict = {"peak_age_at_30": {}, "edu_rows_diagonal_dominant": [],
+    out: dict = {"peak_age_at_30": {}, "edu_rows_diagonal_dominant": {},
                  "race_rows_diagonal_max": {}}
     ok = True
+    c30 = int(k.cohort_of_age[30 - 18])
     for si, name in enumerate(SEX_LEVELS):
         gaps = np.arange(53) - (30 - 18) + k.gap_offset
-        peak = int(np.argmax(k.f_age[si][gaps])) + 18
+        peak = int(np.argmax(k.f_age[si, c30][gaps])) + 18
         out["peak_age_at_30"][name] = peak
         ok &= abs(peak - 30) <= 3
         rows = {}
@@ -338,10 +340,30 @@ def check_kernel_face(build) -> dict:
             rows[RACE_LEVELS[r]] = bool(row[r] > np.delete(row, r).max())
         out["race_rows_diagonal_max"][name] = rows
         ok &= all(rows.values())
-    for e in range(4):
-        d = bool(k.f_edu[e, e] == k.f_edu[e].max())
-        out["edu_rows_diagonal_dominant"].append(d)
-        ok &= d
+        # m3.2.0: the education matrix is per seeker sex
+        d = [bool(k.f_edu[si, e, e] == k.f_edu[si, e].max()) for e in range(4)]
+        out["edu_rows_diagonal_dominant"][name] = d
+        ok &= all(d)
+    # m3.2.0: the same checks on the same-sex terms that ship (B3)
+    ss = k.same_sex
+    if ss is not None:
+        rec = {"components": list(ss.components)}
+        for si, name in enumerate(SEX_LEVELS):
+            gaps = np.arange(53) - (30 - 18) + k.gap_offset
+            if "age" in ss.components:
+                peak = int(np.argmax(ss.f_age[si, ss.cohort_of_age[30 - 18]][gaps])) + 18
+                rec[f"peak_age_at_30_{name}"] = peak
+                ok &= abs(peak - 30) <= 3
+            if "edu" in ss.components:
+                d = [bool(ss.f_edu[si, e, e] == ss.f_edu[si, e].max()) for e in range(4)]
+                rec[f"edu_diagonal_dominant_{name}"] = d
+                ok &= all(d)
+            if "race" in ss.components:
+                rows = {RACE_LEVELS[r]: bool(ss.f_race[si, r, r] > np.delete(ss.f_race[si, r], r).max())
+                        for r in range(8)}
+                rec[f"race_diagonal_max_{name}"] = rows
+                ok &= all(rows.values())
+        out["same_sex_terms"] = rec
     out["pass"] = bool(ok)
     return out
 
@@ -351,13 +373,26 @@ def check_pew_reproduction() -> dict:
     it: three models' corrected error distributions and whether the
     shrunk kernel beat national-only AND raw per-metro (the item 11 bar).
     Soft here — reported as measured; the kernel run is where it gates."""
-    if not KERNEL_REPORT.exists():
-        return {"skipped": "results/phase3/kernel_report.json not on this machine"}
-    rep = json.loads(KERNEL_REPORT.read_text())
-    ship = rep["shipped"]["sample"]
-    pew = rep["samples"][ship]["pew"]
+    # m3.2.0 (Phase 3b): the shipped FORM's own leave-one-metro-out record
+    # when the refinement run wrote one; else the Phase 3 sample record
+    refine = RESULTS / "phase3b" / "refine_heldout.json"
+    if refine.exists() and "shipped" in json.loads(refine.read_text()).get("forms", {}):
+        rec = json.loads(refine.read_text())
+        pew = rec["forms"]["shipped"]["pew"]
+        ship = f"{rec['sample']} (shipped form, results/phase3b/refine_heldout.json)"
+        source = "results/phase3b/refine_heldout.json (leave-one-metro-out on the shipped form)"
+        metros = 124
+    else:
+        if not KERNEL_REPORT.exists():
+            return {"skipped": "results/phase3/kernel_report.json not on this machine"}
+        rep = json.loads(KERNEL_REPORT.read_text())
+        ship = rep["shipped"]["sample"]
+        pew = rep["samples"][ship]["pew"]
+        metros = pew["metros_matched"]
+        source = ("results/phase3/kernel_report.json (leave-one-metro-out, "
+                  "level offset from Pew's US row only)")
     ce = pew["corrected_errors"]
-    return {"fitting_sample": ship, "metros": pew["metros_matched"],
+    return {"fitting_sample": ship, "metros": metros,
             "level_offset_ratio": pew["level_offset_ratio_ours_over_pew"],
             "median_abs_pts": {m: ce[m]["median_abs_pts"] for m in
                                ("national_only", "raw_dial", "shrunk_dial")},
@@ -366,8 +401,9 @@ def check_pew_reproduction() -> dict:
             "shrunk_beats_both": bool(
                 ce["shrunk_dial"]["median_abs_pts"] < ce["national_only"]["median_abs_pts"]
                 and ce["shrunk_dial"]["median_abs_pts"] < ce["raw_dial"]["median_abs_pts"]),
-            "source": "results/phase3/kernel_report.json (leave-one-metro-out, "
-                      "level offset from Pew's US row only)"}
+            "tie_accepted": "ADR 0009 §4 (amended, m3.1.0): the tie against the raw per-metro "
+                            "dial clears the bar on Nathan's decision",
+            "source": source}
 
 
 def measure_served_region_cv() -> dict:

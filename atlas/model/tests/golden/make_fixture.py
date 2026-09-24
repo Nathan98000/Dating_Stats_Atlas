@@ -172,10 +172,12 @@ def make_fixture(build_dir: Path) -> None:
     kz = np.load(Path(build_dir) / "kernel.npz", allow_pickle=False)
     kj = json.loads((Path(build_dir) / "kernel.json").read_text())
     kj["dials"] = {c: kj["dials"][c] for c in chosen}
+    # every array as shipped; the per-metro ones (dials, the normalisers,
+    # the same-sex normalisers) sliced to the fixture's metros
+    per_metro = {"dials", "log_norm", "ss_log_norm"}
     np.savez_compressed(FIXTURE / "kernel.npz",
-                        f_age=kz["f_age"], f_edu=kz["f_edu"], f_race=kz["f_race"],
-                        dials=kz["dials"][idx], log_norm=kz["log_norm"][idx],
-                        avail_national=kz["avail_national"],
+                        **{k: (kz[k][idx] if k in per_metro else kz[k])
+                           for k in kz.files if k != "metro_levels"},
                         metro_levels=np.array(chosen))
     (FIXTURE / "kernel.json").write_text(json.dumps(kj, indent=1) + "\n")
     src_meta = {m["cbsa"]: m for m in json.loads(

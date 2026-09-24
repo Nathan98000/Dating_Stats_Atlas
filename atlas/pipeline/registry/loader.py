@@ -281,6 +281,9 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     # token are registry-owned; the ceiling is a positive number
     for need_key in ("match_display_cap", "match_display_cap_token"):
         assert strings.get(need_key), f"strings.{need_key} is required (m3.1.0)"
+    # m3.2.0 (Phase 3b, B3): a same-sex search says whose patterns it uses
+    for need_key in ("match_same_sex_note", "match_same_sex_note_all_fallback"):
+        assert strings.get(need_key), f"strings.{need_key} is required (m3.2.0)"
     assert float(strings["match_display_cap"]) > 0, "strings.match_display_cap must be a positive number"
 
     # Phase 2f item 9.2: one display name + link per source_id, rendered
