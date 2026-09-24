@@ -1,7 +1,10 @@
 # ADR 0010 — Three refinements of the kernel: the race × education term ships, the cohort age term and the sex-specific education matrix are held back by the stability gate; same-sex terms per component
 
 Date: 2026-09-24 (Phase 3b Part B, model m3.2.0, build f20cb02c3af8)
-Status: accepted
+Status: accepted; amended 2026-09-24 (Phase 3c B2, model m3.3.0 — §4
+same-sex education is served, the face check for same-sex matrices, the
+interaction decided by held-out fit; the Phase 3b text stands where it is
+not marked as amended, and the stability gate it names is now ADR 0011's)
 
 ## Context
 
@@ -97,6 +100,69 @@ now selects between is not fit. Whether the gate should read differently
 for a per-request feature (the m3.0.0 alternatives: accept the churn,
 change the intensive normalisation, or a wider top-k) is Nathan's call;
 nothing here moved it.
+
+## Amended, m3.3.0 (Phase 3c B2): same-sex searches use the measured education pattern
+
+**Nathan's decision.** Serve the same-sex education term. It was held
+back only by the face-validity rule that every education matrix is
+diagonal-dominant — a regularity of opposite-sex couples that the
+same-sex data contradict in one row (bachelor's with graduate 2.44
+against bachelor's with bachelor's 2.05, on cells of 1,505–2,619
+effective sides), not by support (smallest cell 255 effective sides) and
+not by fit.
+
+**The face check for the same-sex education matrix** (`build.validate`
+`check_kernel_face`, `kernel_refine.face_validity(same_sex=True)`): (a)
+every own-level multiplier is above 1, and (b) each own-level multiplier
+is above every multiplier two or more levels away. Diagonal dominance
+stays the rule for opposite-sex matrices and is kept as a soft reading
+for the same-sex one. This rule was written after the same-sex fit was
+seen, and this note says so: its job is to catch a broken fit (a matrix
+that pairs a level mostly away from itself, or below random), not to
+veto the pattern Nathan decided to serve. On the fitted matrix
+(`results/phase3c/samesex_fit.json`): own levels 1.19 / 1.42 / 2.05 /
+4.55, all above 1; each above every level two or more away; the soft
+reading fails the bachelor's row as before.
+
+**Held-out fit, re-measured against what m3.2.0 serves** (leave one
+metro out, the same-sex kernel refitted without the metro's same-sex
+couples and the shipped opposite-sex form without its opposite-sex
+couples, the metro's same-sex couples scored; 387 metros, 1,452,508
+weighted sides; `lomo_samesex.json`). Against the served composition —
+age from same-sex couples, education and race from opposite-sex couples,
+the interaction riding — the education term measured on same-sex couples
+gains **+6.98 per 1,000 weighted sides** with the interaction switched
+off (m3.2.0's rule; better in 266 of 387 metros) and **+15.90** with it
+forced on (301 of 387). Both positive, so the term ships; the
+brief's stop condition did not fire.
+
+**The interaction.** Phase 3b let the opposite-sex race × education
+interaction ride on same-sex searches because both terms it corrects
+were opposite-sex; with education now same-sex that reason no longer
+holds, so both compositions were scored and the better one is served:
+**the interaction rides** (+8.92 per 1,000 sides over the composition
+without it). The artifact records the choice (`same_sex.
+interaction_applies`), the loader reads it, and `seeker_weights` applies
+it; an m3.2.0 artifact without the field gets that release's rule.
+
+**Race stays borrowed**: its support has not changed (the three small
+groups' own-group cells hold 5–44 effective sides).
+
+**The gate** (ADR 0011): the same-sex education term touches the 51
+same-sex test searches and reads **0.871** against the m3.2.0 reference
+— those searches wobble 12.9% less in total — and passes; twelve
+same-sex searches' wobble rose by more than 25%, several from bases near
+zero, and they are named in PHASE3C.md as findings.
+
+**The page.** `strings.match_same_sex_note` now reads: "For a same-sex
+search the age gaps and the education pairings come from same-sex
+couples in the same survey; the racial and ethnic pairings are borrowed
+from opposite-sex couples, because the same-sex couples in the survey are
+too few to measure them dependably on their own." The methodology page
+carries the same sentence. The m3.2.0 sentence gave the wrong reason for
+education (which was well measured). The loader now asserts that the
+served sentence names exactly the kernel's `same_sex_components`
+(`loader.same_sex_note_names`), so the two cannot disagree again.
 
 ## Consequences
 

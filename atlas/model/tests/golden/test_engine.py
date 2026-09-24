@@ -271,6 +271,11 @@ def test_same_sex_search_says_whose_patterns_it_uses(build):
         else strings["match_same_sex_note_all_fallback"]
     assert want == same_sex_note(build)
     assert res["match_inputs"]["same_sex_components"] == (list(k.same_sex.components) if k.same_sex else [])
+    # m3.3.0 (Phase 3c B2): the served sentence names exactly the
+    # components the kernel takes from same-sex couples (loader-asserted)
+    from atlas.model.loader import same_sex_note_names
+    if k.same_sex is not None and k.same_sex.components:
+        assert same_sex_note_names(want) == set(k.same_sex.components)
     for r in res["ranked"]:
         assert r["match"]["note"] == want
         assert not BANNED.search(r["match"]["note"])
@@ -294,7 +299,8 @@ def test_same_sex_search_says_whose_patterns_it_uses(build):
          else np.exp(k.dials[:, 1][:, None, None] * k.f_edu[si][None]))
     R = (np.repeat(np.exp(ss.f_race[si])[None], M, 0) if ss is not None and "race" in ss.components
          else np.exp(k.dials[:, 2][:, None, None] * k.f_race[si][None]))
-    use_int = k.f_int is not None and not (ss is not None and ("edu" in ss.components or "race" in ss.components))
+    # m3.3.0: the artifact says whether the interaction rides on a same-sex search
+    use_int = k.f_int is not None and (ss is None or ss.interaction)
     if use_int:
         G = np.exp(k.f_int[si]).transpose(2, 0, 3, 1)
         want_W = (mix[:, :, :, None, None] * E[:, :, None, :, None] * R[:, None, :, None, :] * G[None]).sum(axis=(1, 2))
@@ -834,3 +840,25 @@ def test_technical_strings_are_separate():
     assert "at least" in TECHNICAL_STRINGS["interval"]
     assert not any("margin" in v.lower() for v in POLICY_STRINGS.values()), (
         "rendered policy strings must not speak of margins (ADR 0004)")
+
+
+def test_same_sex_note_names_reads_the_sentence():
+    """The parser behind the loader assertion: the clause before the
+    semicolon names what comes from same-sex couples, the clause after it
+    what is borrowed; a sentence that names a component on both sides, or
+    on neither, is rejected."""
+    from atlas.model.loader import same_sex_note_names
+    m320 = ("For a same-sex search the age gaps come from same-sex couples in the same survey; "
+            "the education pairings and the racial and ethnic pairings are borrowed from "
+            "opposite-sex couples, because ...")
+    m330 = ("For a same-sex search the age gaps and the education pairings come from same-sex "
+            "couples in the same survey; the racial and ethnic pairings are borrowed from "
+            "opposite-sex couples, because ...")
+    assert same_sex_note_names(m320) == {"age"}
+    assert same_sex_note_names(m330) == {"age", "edu"}
+    with pytest.raises(AssertionError):
+        same_sex_note_names("For a same-sex search the age gaps come from same-sex couples; "
+                            "the age gaps are borrowed")
+    with pytest.raises(AssertionError):
+        same_sex_note_names("For a same-sex search the age gaps come from same-sex couples; "
+                            "the education pairings are borrowed")

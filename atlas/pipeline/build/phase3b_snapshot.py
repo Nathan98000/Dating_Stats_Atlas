@@ -7,18 +7,24 @@ recomputing anything.
 
     python -m atlas.pipeline.build.phase3b_snapshot <build_dir> <tag>
         -> results/phase3b/snapshot_<tag>.json
+    SNAPSHOT_DIR=results/phase3c ... (Phase 3c: read and write there instead)
 """
 from __future__ import annotations
 
 import json
+import os
 import sys
+from pathlib import Path
 
 import numpy as np
 
 from atlas import model as engine
 from atlas.pipeline.fetch import RESULTS
 
-P3B = RESULTS / "phase3b"
+P3B = Path(os.environ["SNAPSHOT_DIR"]) if os.environ.get("SNAPSHOT_DIR") else RESULTS / "phase3b"
+# Phase 3c: the reference searches whose full rank shift is reported
+# beside the default search's (the brief: the same-sex reference search)
+RANK_SHIFT_REFERENCE = ("same_sex_man_31",)
 DEFAULT = {"self": {"sex": "female", "age": 30},
            "seeking": {"age": [28, 40],
                        "marital": ["never_married", "previously_married"]}}
@@ -136,6 +142,25 @@ def compare(tag_a: str, tag_b: str) -> None:
             "range_before": xa["index_min_max"], "range_after": xb["index_min_max"],
             "metros_above_250_before": xa["metros_index_above_250"], "metros_above_250_after": xb["metros_index_above_250"],
             "moe_median_before": xa["moe_median"], "moe_median_after": xb["moe_median"]}
+        if name in RANK_SHIFT_REFERENCE:
+            qa = {r["cbsa"]: r for r in xa["rows"]}
+            qb = {r["cbsa"]: r for r in xb["rows"]}
+            cm = [c for c in qb if c in qa]
+            mv = {c: qa[c]["rank"] - qb[c]["rank"] for c in cm}
+            out["reference"][name]["rank_shift"] = {
+                "metros_compared": len(cm),
+                "ranks_changed": int(sum(1 for c in cm if mv[c] != 0)),
+                "kendall_tau": round(float(kendalltau([qa[c]["rank"] for c in cm], [qb[c]["rank"] for c in cm]).statistic), 3),
+                "median_abs_move": float(np.median([abs(mv[c]) for c in cm])),
+                "p90_abs_move": float(np.percentile([abs(mv[c]) for c in cm], 90)),
+                "max_abs_move": int(max(abs(mv[c]) for c in cm)),
+                "biggest_moves": [{"metro": qb[c]["metro"], "cbsa": c, "rank_before": qa[c]["rank"],
+                                   "rank_after": qb[c]["rank"], "move": mv[c]}
+                                  for c in sorted(cm, key=lambda c: -abs(mv[c]))[:10]],
+                "top10_before": [qa[c]["metro"] for c in sorted(cm, key=lambda c: qa[c]["rank"])[:10]],
+                "top10_after": [qb[c]["metro"] for c in sorted(cm, key=lambda c: qb[c]["rank"])[:10]],
+                "index_median_abs_change_pts": round(float(np.median([abs(qb[c]["index"] - qa[c]["index"]) for c in cm])), 2),
+                "index_max_abs_change_pts": round(float(max(abs(qb[c]["index"] - qa[c]["index"]) for c in cm)), 2)}
     (P3B / f"rank_shift_{tag_a}_to_{tag_b}.json").write_text(json.dumps(out, indent=1) + "\n")
     pd.DataFrame([{"cbsa": c, "metro": rb[c]["metro"], f"rank_{tag_a}": ra[c]["rank"], f"rank_{tag_b}": rb[c]["rank"],
                    "move": moves[c], f"index_{tag_a}": ra[c]["index"], f"index_{tag_b}": rb[c]["index"]}

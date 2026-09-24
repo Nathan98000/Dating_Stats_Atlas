@@ -1,0 +1,888 @@
+{
+ "sample": "decay_h5",
+ "support": {
+  "rule": {
+   "edu": "every 4x4 cell >= 100 effective sides",
+   "race": "every own-group cell >= 100",
+   "age": "every gap within 10 years >= 100"
+  },
+  "by_sex": {
+   "female": {
+    "sides_weighted": 753650.7,
+    "sides_alloc": 32711.9,
+    "sides_kish": 19977.8,
+    "edu_cells_kish": {
+     "bachelors->bachelors": 2619.2,
+     "bachelors->graduate": 1505.1,
+     "bachelors->hs_or_less": 568.2,
+     "bachelors->some_college": 1325.6,
+     "graduate->bachelors": 1574.0,
+     "graduate->graduate": 2581.0,
+     "graduate->hs_or_less": 281.4,
+     "graduate->some_college": 576.8,
+     "hs_or_less->bachelors": 626.0,
+     "hs_or_less->graduate": 254.9,
+     "hs_or_less->hs_or_less": 2011.7,
+     "hs_or_less->some_college": 1242.6,
+     "some_college->bachelors": 1307.6,
+     "some_college->graduate": 682.2,
+     "some_college->hs_or_less": 1221.5,
+     "some_college->some_college": 2306.5
+    },
+    "edu_min_kish": 254.9,
+    "race_own_group_kish": {
+     "hispanic": 1912.6,
+     "nh_aian": 40.5,
+     "nh_asian": 471.8,
+     "nh_black": 1183.2,
+     "nh_nhpi": 17.6,
+     "nh_other": 36.5,
+     "nh_twoplus": 265.2,
+     "nh_white": 11298.2
+    },
+    "race_cells_below_30": 35,
+    "race_cells_empty": 2,
+    "race_own_min_kish": 17.6,
+    "race_own_groups_present": 8,
+    "age_gap_within_10_min_kish": 253.2,
+    "age_gaps_within_10_below_100": [],
+    "supported": {
+     "edu": true,
+     "race": false,
+     "age": true
+    }
+   },
+   "male": {
+    "sides_weighted": 698857.6,
+    "sides_alloc": 32298.7,
+    "sides_kish": 20075.6,
+    "edu_cells_kish": {
+     "bachelors->bachelors": 2594.5,
+     "bachelors->graduate": 1745.7,
+     "bachelors->hs_or_less": 721.1,
+     "bachelors->some_college": 1477.6,
+     "graduate->bachelors": 1661.5,
+     "graduate->graduate": 2176.0,
+     "graduate->hs_or_less": 430.5,
+     "graduate->some_college": 863.1,
+     "hs_or_less->bachelors": 708.6,
+     "hs_or_less->graduate": 411.4,
+     "hs_or_less->hs_or_less": 1452.0,
+     "hs_or_less->some_college": 1048.6,
+     "some_college->bachelors": 1506.1,
+     "some_college->graduate": 785.0,
+     "some_college->hs_or_less": 1060.1,
+     "some_college->some_college": 1718.5
+    },
+    "edu_min_kish": 411.4,
+    "race_own_group_kish": {
+     "hispanic": 1755.1,
+     "nh_aian": 12.5,
+     "nh_asian": 263.8,
+     "nh_black": 498.8,
+     "nh_nhpi": 4.9,
+     "nh_other": 43.2,
+     "nh_twoplus": 196.7,
+     "nh_white": 10579.5
+    },
+    "race_cells_below_30": 30,
+    "race_cells_empty": 6,
+    "race_own_min_kish": 4.9,
+    "race_own_groups_present": 8,
+    "age_gap_within_10_min_kish": 252.7,
+    "age_gaps_within_10_below_100": [],
+    "supported": {
+     "edu": true,
+     "race": false,
+     "age": true
+    }
+   }
+  },
+  "supported": {
+   "age": true,
+   "edu": true,
+   "race": false
+  }
+ },
+ "fit": {
+  "form": {
+   "name": "samesex",
+   "age_edges": [],
+   "age_cohorts": [
+    "18-70"
+   ],
+   "edu_by_sex": false,
+   "interaction": false
+  },
+  "same_sex": true,
+  "ipf": {
+   "raw_iterations": 200,
+   "smoothed_iterations": 200,
+   "interaction_iterations": 0,
+   "converged": false,
+   "final_change": 1.0207775550726786e-06
+  },
+  "bandwidth_by_sex_cohort": {
+   "male:18-70": 0.75,
+   "female:18-70": 0.25
+  },
+  "face_validity": {
+   "age_peak_at_30": {
+    "male": {
+     "multiplier_peak_age": 30,
+     "distribution_peak_age": 30,
+     "within_3_years": true
+    },
+    "female": {
+     "multiplier_peak_age": 30,
+     "distribution_peak_age": 30,
+     "within_3_years": true
+    }
+   },
+   "age_pass": true,
+   "edu_pass": true,
+   "race_diagonal_exceeds_offdiagonal": {
+    "male": {
+     "hispanic": true,
+     "nh_white": true,
+     "nh_black": true,
+     "nh_asian": true,
+     "nh_aian": true,
+     "nh_nhpi": true,
+     "nh_twoplus": true,
+     "nh_other": true
+    },
+    "female": {
+     "hispanic": true,
+     "nh_white": true,
+     "nh_black": true,
+     "nh_asian": true,
+     "nh_aian": true,
+     "nh_nhpi": true,
+     "nh_twoplus": true,
+     "nh_other": true
+    }
+   },
+   "race_pass": true,
+   "pass": true,
+   "edu_diagonal_dominant_rows_soft": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "edu_own_level_above_1": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "edu_own_level_above_two_or_more_away": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "edu_rule": "same-sex (ADR 0010 amended): own level > 1 and above every level >= 2 away"
+  },
+  "separability": {
+   "thin_cell_weight": 670.2794043470085,
+   "tables": {
+    "edu_by_seeker_sex": {
+     "cells": 32,
+     "cells_with_couples": 32,
+     "G2": 33688.6,
+     "dissimilarity_index": 0.0571,
+     "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1481,
+     "worst_thick_cells": [
+      {
+       "cell": [
+        0,
+        0,
+        3
+       ],
+       "observed": 12341.6,
+       "fitted": 7378.5,
+       "ratio": 1.673
+      },
+      {
+       "cell": [
+        1,
+        0,
+        3
+       ],
+       "observed": 9153.2,
+       "fitted": 14116.3,
+       "ratio": 0.648
+      },
+      {
+       "cell": [
+        0,
+        1,
+        3
+       ],
+       "observed": 26541.0,
+       "fitted": 18980.2,
+       "ratio": 1.398
+      },
+      {
+       "cell": [
+        1,
+        1,
+        3
+       ],
+       "observed": 22214.2,
+       "fitted": 29775.0,
+       "ratio": 0.746
+      },
+      {
+       "cell": [
+        0,
+        0,
+        2
+       ],
+       "observed": 24431.7,
+       "fitted": 18259.1,
+       "ratio": 1.338
+      },
+      {
+       "cell": [
+        1,
+        2,
+        0
+       ],
+       "observed": 23668.8,
+       "fitted": 17732.7,
+       "ratio": 1.335
+      },
+      {
+       "cell": [
+        0,
+        0,
+        0
+       ],
+       "observed": 50411.8,
+       "fitted": 65563.1,
+       "ratio": 0.769
+      },
+      {
+       "cell": [
+        1,
+        0,
+        2
+       ],
+       "observed": 22933.0,
+       "fitted": 29105.7,
+       "ratio": 0.788
+      }
+     ],
+     "dims": [
+      "sex_s",
+      "edu_s",
+      "edu_c"
+     ]
+    },
+    "gap_band_by_seeker_edu": {
+     "cells": 64,
+     "cells_with_couples": 64,
+     "G2": 14351.2,
+     "dissimilarity_index": 0.0348,
+     "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0385,
+     "worst_thick_cells": [
+      {
+       "cell": [
+        0,
+        7,
+        0
+       ],
+       "observed": 19038.7,
+       "fitted": 12843.2,
+       "ratio": 1.482
+      },
+      {
+       "cell": [
+        0,
+        7,
+        3
+       ],
+       "observed": 10075.9,
+       "fitted": 14915.0,
+       "ratio": 0.676
+      },
+      {
+       "cell": [
+        1,
+        0,
+        0
+       ],
+       "observed": 10313.6,
+       "fitted": 7190.4,
+       "ratio": 1.434
+      },
+      {
+       "cell": [
+        1,
+        0,
+        2
+       ],
+       "observed": 5777.4,
+       "fitted": 8190.8,
+       "ratio": 0.705
+      },
+      {
+       "cell": [
+        1,
+        7,
+        0
+       ],
+       "observed": 10657.9,
+       "fitted": 8138.2,
+       "ratio": 1.31
+      },
+      {
+       "cell": [
+        0,
+        7,
+        2
+       ],
+       "observed": 17151.1,
+       "fitted": 21177.6,
+       "ratio": 0.81
+      },
+      {
+       "cell": [
+        1,
+        7,
+        2
+       ],
+       "observed": 8028.2,
+       "fitted": 9417.1,
+       "ratio": 0.853
+      },
+      {
+       "cell": [
+        1,
+        1,
+        2
+       ],
+       "observed": 16470.3,
+       "fitted": 19203.4,
+       "ratio": 0.858
+      }
+     ],
+     "dims": [
+      "sex_s",
+      "gap_band",
+      "edu_s"
+     ]
+    },
+    "gap_band_by_seeker_race": {
+     "cells": 128,
+     "cells_with_couples": 128,
+     "G2": 16349.4,
+     "dissimilarity_index": 0.0333,
+     "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0663,
+     "worst_thick_cells": [
+      {
+       "cell": [
+        0,
+        0,
+        3
+       ],
+       "observed": 2035.9,
+       "fitted": 3294.0,
+       "ratio": 0.618
+      },
+      {
+       "cell": [
+        0,
+        7,
+        3
+       ],
+       "observed": 5471.6,
+       "fitted": 3525.5,
+       "ratio": 1.552
+      },
+      {
+       "cell": [
+        0,
+        7,
+        2
+       ],
+       "observed": 8458.7,
+       "fitted": 5753.8,
+       "ratio": 1.47
+      },
+      {
+       "cell": [
+        1,
+        7,
+        6
+       ],
+       "observed": 1377.8,
+       "fitted": 1977.8,
+       "ratio": 0.697
+      },
+      {
+       "cell": [
+        1,
+        0,
+        2
+       ],
+       "observed": 4836.9,
+       "fitted": 3371.0,
+       "ratio": 1.435
+      },
+      {
+       "cell": [
+        1,
+        7,
+        3
+       ],
+       "observed": 1573.5,
+       "fitted": 1111.4,
+       "ratio": 1.416
+      },
+      {
+       "cell": [
+        1,
+        0,
+        6
+       ],
+       "observed": 1156.9,
+       "fitted": 1632.0,
+       "ratio": 0.709
+      },
+      {
+       "cell": [
+        0,
+        1,
+        3
+       ],
+       "observed": 2959.7,
+       "fitted": 4103.9,
+       "ratio": 0.721
+      }
+     ],
+     "dims": [
+      "sex_s",
+      "gap_band",
+      "race_s"
+     ]
+    },
+    "race_pair_by_edu_pair": {
+     "cells": 2048,
+     "cells_with_couples": 1323,
+     "G2": 121323.7,
+     "dissimilarity_index": 0.0921,
+     "share_of_couples_in_thick_cells_off_by_over_25pct": 0.2224,
+     "worst_thick_cells": [
+      {
+       "cell": [
+        1,
+        2,
+        1,
+        0,
+        2
+       ],
+       "observed": 137.4,
+       "fitted": 700.8,
+       "ratio": 0.196
+      },
+      {
+       "cell": [
+        0,
+        3,
+        1,
+        0,
+        0
+       ],
+       "observed": 237.3,
+       "fitted": 832.3,
+       "ratio": 0.285
+      },
+      {
+       "cell": [
+        0,
+        6,
+        0,
+        0,
+        0
+       ],
+       "observed": 225.2,
+       "fitted": 694.8,
+       "ratio": 0.324
+      },
+      {
+       "cell": [
+        0,
+        2,
+        0,
+        0,
+        0
+       ],
+       "observed": 382.7,
+       "fitted": 1104.8,
+       "ratio": 0.346
+      },
+      {
+       "cell": [
+        0,
+        1,
+        0,
+        0,
+        0
+       ],
+       "observed": 2729.0,
+       "fitted": 7196.9,
+       "ratio": 0.379
+      },
+      {
+       "cell": [
+        0,
+        1,
+        3,
+        0,
+        0
+       ],
+       "observed": 282.0,
+       "fitted": 676.2,
+       "ratio": 0.417
+      },
+      {
+       "cell": [
+        1,
+        6,
+        1,
+        1,
+        3
+       ],
+       "observed": 421.6,
+       "fitted": 1009.9,
+       "ratio": 0.418
+      },
+      {
+       "cell": [
+        0,
+        0,
+        2,
+        0,
+        0
+       ],
+       "observed": 328.6,
+       "fitted": 773.3,
+       "ratio": 0.425
+      }
+     ],
+     "dims": [
+      "sex_s",
+      "race_s",
+      "race_c",
+      "edu_s",
+      "edu_c"
+     ]
+    },
+    "same_race_by_seeker_age_cohort": {
+     "cells": 160,
+     "cells_with_couples": 160,
+     "G2": 13262.7,
+     "dissimilarity_index": 0.0309,
+     "share_of_couples_in_thick_cells_off_by_over_25pct": 0.0327,
+     "worst_thick_cells": [
+      {
+       "cell": [
+        1,
+        4,
+        3,
+        0
+       ],
+       "observed": 679.1,
+       "fitted": 1413.7,
+       "ratio": 0.48
+      },
+      {
+       "cell": [
+        0,
+        4,
+        3,
+        1
+       ],
+       "observed": 1147.5,
+       "fitted": 675.8,
+       "ratio": 1.698
+      },
+      {
+       "cell": [
+        1,
+        4,
+        3,
+        1
+       ],
+       "observed": 1880.5,
+       "fitted": 1146.0,
+       "ratio": 1.641
+      },
+      {
+       "cell": [
+        1,
+        3,
+        6,
+        1
+       ],
+       "observed": 1465.1,
+       "fitted": 947.7,
+       "ratio": 1.546
+      },
+      {
+       "cell": [
+        0,
+        3,
+        6,
+        1
+       ],
+       "observed": 1190.1,
+       "fitted": 772.5,
+       "ratio": 1.541
+      },
+      {
+       "cell": [
+        1,
+        0,
+        3,
+        1
+       ],
+       "observed": 759.1,
+       "fitted": 1056.4,
+       "ratio": 0.719
+      },
+      {
+       "cell": [
+        0,
+        0,
+        2,
+        0
+       ],
+       "observed": 1288.2,
+       "fitted": 1765.7,
+       "ratio": 0.73
+      },
+      {
+       "cell": [
+        1,
+        0,
+        6,
+        1
+       ],
+       "observed": 976.1,
+       "fitted": 1331.5,
+       "ratio": 0.733
+      }
+     ],
+     "dims": [
+      "sex_s",
+      "age_cohort",
+      "race_s",
+      "same_race"
+     ]
+    },
+    "same_edu_by_seeker_age_cohort": {
+     "cells": 80,
+     "cells_with_couples": 80,
+     "G2": 22287.7,
+     "dissimilarity_index": 0.0469,
+     "share_of_couples_in_thick_cells_off_by_over_25pct": 0.1014,
+     "worst_thick_cells": [
+      {
+       "cell": [
+        1,
+        0,
+        0,
+        0
+       ],
+       "observed": 11971.6,
+       "fitted": 17288.4,
+       "ratio": 0.692
+      },
+      {
+       "cell": [
+        1,
+        0,
+        0,
+        1
+       ],
+       "observed": 17625.1,
+       "fitted": 12308.3,
+       "ratio": 1.432
+      },
+      {
+       "cell": [
+        0,
+        3,
+        0,
+        1
+       ],
+       "observed": 8185.3,
+       "fitted": 11308.6,
+       "ratio": 0.724
+      },
+      {
+       "cell": [
+        0,
+        2,
+        0,
+        1
+       ],
+       "observed": 11362.5,
+       "fitted": 15558.0,
+       "ratio": 0.73
+      },
+      {
+       "cell": [
+        0,
+        4,
+        0,
+        1
+       ],
+       "observed": 10018.5,
+       "fitted": 13295.7,
+       "ratio": 0.754
+      },
+      {
+       "cell": [
+        0,
+        3,
+        0,
+        0
+       ],
+       "observed": 12908.7,
+       "fitted": 9785.4,
+       "ratio": 1.319
+      },
+      {
+       "cell": [
+        0,
+        2,
+        0,
+        0
+       ],
+       "observed": 18702.6,
+       "fitted": 14507.1,
+       "ratio": 1.289
+      },
+      {
+       "cell": [
+        0,
+        4,
+        0,
+        0
+       ],
+       "observed": 14898.1,
+       "fitted": 11620.8,
+       "ratio": 1.282
+      }
+     ],
+     "dims": [
+      "sex_s",
+      "age_cohort",
+      "edu_s",
+      "same_edu"
+     ]
+    }
+   },
+   "gap_bands": "<-10, -10..-6, -5..-3, -2..0, 1..2, 3..5, 6..10, >10 (partner minus seeker)",
+   "age_cohorts": "18-24, 25-34, 35-44, 45-54, 55-70 (seeker)"
+  },
+  "seconds": 113.3
+ },
+ "couple_sides_weighted": 1452508.3739627274,
+ "n_alloc": 65010.57758343802,
+ "fallback_form": {
+  "name": "shipped",
+  "age_edges": [],
+  "age_cohorts": [
+   "18-70"
+  ],
+  "edu_by_sex": false,
+  "interaction": true
+ },
+ "heldout": {
+  "metros": 387,
+  "sides": 1452508.3739627276,
+  "totals": {
+   "fallback": -17420640.380235475,
+   "all_samesex": -17038413.440854356,
+   "only_age": -17121834.59322713,
+   "only_edu": -17414421.25924192,
+   "only_race": -17358799.57799546,
+   "served_m3_2_0": -17121834.59322713,
+   "age_edu_ss_no_interaction": -17111693.2468151,
+   "age_edu_ss_with_interaction": -17098741.91212655
+  },
+  "gain_per_1000_sides": {
+   "fallback": 0.0,
+   "all_samesex": 263.14955991498266,
+   "only_age": 205.7170838837537,
+   "only_edu": 4.281642092422235,
+   "only_race": 42.57517777422532,
+   "served_m3_2_0": 205.7170838837537,
+   "age_edu_ss_no_interaction": 212.6990377188022,
+   "age_edu_ss_with_interaction": 221.61556785433453
+  },
+  "metros_better_than_fallback": {
+   "all_samesex": 372,
+   "only_age": 374,
+   "only_edu": 244,
+   "only_race": 272,
+   "served_m3_2_0": 374,
+   "age_edu_ss_no_interaction": 369,
+   "age_edu_ss_with_interaction": 375
+  },
+  "components": {
+   "age": {
+    "supported": true,
+    "improves_heldout": true,
+    "face_validity_pass": true,
+    "ships": true
+   },
+   "edu": {
+    "supported": true,
+    "improves_heldout": true,
+    "face_validity_pass": true,
+    "ships": true
+   },
+   "race": {
+    "supported": false,
+    "improves_heldout": true,
+    "face_validity_pass": true,
+    "ships": false
+   }
+  },
+  "served_from_same_sex_couples": [
+   "age",
+   "edu"
+  ],
+  "fallback_components": [
+   "race"
+  ],
+  "vs_m3_2_0_served": {
+   "baseline": "age from same-sex couples, education and race from opposite-sex couples, the interaction riding (what m3.2.0 serves)",
+   "gain_per_1000_sides": {
+    "age_edu_ss_no_interaction": 6.981953835048494,
+    "age_edu_ss_with_interaction": 15.898483970580822
+   },
+   "metros_better_than_served": {
+    "age_edu_ss_no_interaction": 266,
+    "age_edu_ss_with_interaction": 301
+   },
+   "education_term_improves_on_served": true
+  },
+  "interaction_decision": {
+   "rule": "serve whichever of {interaction off, interaction on} predicts held-out same-sex couples better, education and age from same-sex couples, race borrowed",
+   "interaction_applies": true,
+   "margin_per_1000_sides": 8.91653013553233
+  },
+  "interaction_applies": true,
+  "stop_condition_education_no_longer_improves": false
+ },
+ "seconds": 1880.5
+}

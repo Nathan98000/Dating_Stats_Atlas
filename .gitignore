@@ -33,3 +33,7 @@ atlas/results/phase3/*_run.log
 # Phase 3b candidate kernels and run logs (regenerable)
 atlas/results/phase3b/_*
 atlas/results/phase3b/*_run.log
+
+# Phase 3c working files (the 3b pattern): candidate artifacts, npz fit stores, chain scripts, run logs
+atlas/results/phase3c/_*
+atlas/results/phase3c/*_run.log

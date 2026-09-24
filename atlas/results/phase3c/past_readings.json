@@ -1,0 +1,1085 @@
+{
+ "reference_build": "f20cb02c3af8",
+ "kernels": {
+  "m3.1.0": {
+   "source": "data/builds/ae1efbef9f0e (complete)",
+   "version": "kernel_v1"
+  },
+  "m3.0.0": {
+   "source": "results/phase3c/_candidates/m3_0_0_rebuilt",
+   "terms_from_record": true,
+   "dials_from_record": true,
+   "log_norm_recomputed": "kernel.log_norm_for(terms, avail_national, dials)",
+   "record_precision": "the record stores the terms and dials as written by the m3.0.0 build",
+   "version": "kernel_v1"
+  }
+ },
+ "readings": {
+  "m3.1.0 -> m3.2.0": {
+   "candidate": "reference",
+   "reference_build": "f20cb02c3af8",
+   "candidate_build": "f20cb02c3af8",
+   "searches_compared": 516,
+   "searches_touched": 516,
+   "basis": "touched searches",
+   "wobble_candidate": 316.209462,
+   "wobble_reference": 309.5112,
+   "ratio": 1.021641,
+   "tolerance": 0.1,
+   "pass": true,
+   "ratio_over_all_searches": 1.021641,
+   "searches_wobble_rose_more_than_25pct": [
+    {
+     "search": "female:30:edu=hs_or_less:race=nh_asian",
+     "reference": 0.085455,
+     "candidate": 0.523864
+    },
+    {
+     "search": "female:25:edu=bachelors:race=hispanic",
+     "reference": 0.035909,
+     "candidate": 0.1925
+    },
+    {
+     "search": "male:35:edu=some_college:race=hispanic",
+     "reference": 0.057273,
+     "candidate": 0.297727
+    },
+    {
+     "search": "samesex:female:25:undisclosed",
+     "reference": 0.234091,
+     "candidate": 1.004867
+    },
+    {
+     "search": "samesex:female:30:undisclosed",
+     "reference": 0.159091,
+     "candidate": 0.641932
+    },
+    {
+     "search": "male:30:race=nh_black",
+     "reference": 0.118182,
+     "candidate": 0.451439
+    },
+    {
+     "search": "female:25:edu=graduate:race=nh_asian",
+     "reference": 0.07,
+     "candidate": 0.2425
+    },
+    {
+     "search": "samesex:female:50:edu=hs_or_less",
+     "reference": 0.1375,
+     "candidate": 0.464773
+    },
+    {
+     "search": "male:30:edu=bachelors",
+     "reference": 0.095,
+     "candidate": 0.32
+    },
+    {
+     "search": "samesex:female:40:undisclosed",
+     "reference": 0.160682,
+     "candidate": 0.497727
+    },
+    {
+     "search": "male:50:edu=some_college:race=nh_black",
+     "reference": 0.16,
+     "candidate": 0.482462
+    },
+    {
+     "search": "male:30:edu=some_college:race=nh_black",
+     "reference": 0.128182,
+     "candidate": 0.378314
+    },
+    {
+     "search": "male:35:edu=bachelors:race=hispanic",
+     "reference": 0.150455,
+     "candidate": 0.4425
+    },
+    {
+     "search": "samesex:male:30:edu=graduate",
+     "reference": 0.08,
+     "candidate": 0.2175
+    },
+    {
+     "search": "male:40:edu=bachelors:race=hispanic",
+     "reference": 0.08,
+     "candidate": 0.212727
+    },
+    {
+     "search": "female:50:edu=hs_or_less",
+     "reference": 0.0875,
+     "candidate": 0.2275
+    },
+    {
+     "search": "samesex:female:50:edu=some_college",
+     "reference": 0.649318,
+     "candidate": 1.685817
+    },
+    {
+     "search": "samesex:female:50:undisclosed",
+     "reference": 0.3325,
+     "candidate": 0.851591
+    },
+    {
+     "search": "male:30:edu=graduate",
+     "reference": 0.114545,
+     "candidate": 0.285682
+    },
+    {
+     "search": "male:25:edu=some_college:race=nh_asian",
+     "reference": 0.157273,
+     "candidate": 0.374318
+    },
+    {
+     "search": "female:35:edu=hs_or_less:race=nh_asian",
+     "reference": 0.207273,
+     "candidate": 0.483864
+    },
+    {
+     "search": "male:50:edu=hs_or_less:race=nh_asian",
+     "reference": 0.106136,
+     "candidate": 0.247727
+    },
+    {
+     "search": "male:50:edu=bachelors:race=nh_asian",
+     "reference": 0.0675,
+     "candidate": 0.1575
+    },
+    {
+     "search": "male:30:edu=bachelors:race=nh_white",
+     "reference": 0.335909,
+     "candidate": 0.743182
+    },
+    {
+     "search": "male:35:edu=graduate:race=nh_asian",
+     "reference": 0.1175,
+     "candidate": 0.25
+    },
+    {
+     "search": "female:35:race=hispanic",
+     "reference": 0.146364,
+     "candidate": 0.309773
+    },
+    {
+     "search": "female:25:edu=graduate:race=nh_black",
+     "reference": 0.108864,
+     "candidate": 0.229773
+    },
+    {
+     "search": "male:35:race=hispanic",
+     "reference": 0.06,
+     "candidate": 0.126136
+    },
+    {
+     "search": "male:50:race=nh_black",
+     "reference": 0.119773,
+     "candidate": 0.248106
+    },
+    {
+     "search": "male:40:edu=hs_or_less:race=nh_twoplus",
+     "reference": 0.792481,
+     "candidate": 1.635409
+    },
+    {
+     "search": "female:35:edu=some_college:race=nh_asian",
+     "reference": 0.100909,
+     "candidate": 0.206364
+    },
+    {
+     "search": "male:30:edu=bachelors:race=nh_aian",
+     "reference": 0.2575,
+     "candidate": 0.526364
+    },
+    {
+     "search": "male:50:edu=graduate:race=hispanic",
+     "reference": 0.263864,
+     "candidate": 0.5375
+    },
+    {
+     "search": "persona:importance_lifestyle_alias",
+     "reference": 0.235455,
+     "candidate": 0.478636
+    },
+    {
+     "search": "male:30:edu=bachelors:race=hispanic",
+     "reference": 0.0775,
+     "candidate": 0.1575
+    },
+    {
+     "search": "female:35:edu=bachelors:race=nh_aian",
+     "reference": 0.465682,
+     "candidate": 0.944098
+    },
+    {
+     "search": "male:25:edu=graduate:race=hispanic",
+     "reference": 0.1425,
+     "candidate": 0.281591
+    },
+    {
+     "search": "male:25:edu=bachelors",
+     "reference": 0.075682,
+     "candidate": 0.147727
+    },
+    {
+     "search": "female:30:edu=graduate:race=nh_white",
+     "reference": 0.257955,
+     "candidate": 0.497955
+    },
+    {
+     "search": "male:50:edu=some_college:race=nh_asian",
+     "reference": 0.2475,
+     "candidate": 0.4775
+    },
+    {
+     "search": "female:40:edu=bachelors:race=nh_black",
+     "reference": 0.241818,
+     "candidate": 0.456136
+    },
+    {
+     "search": "female:40:edu=bachelors:race=nh_aian",
+     "reference": 0.479545,
+     "candidate": 0.899848
+    },
+    {
+     "search": "female:35:edu=bachelors:race=hispanic",
+     "reference": 0.1925,
+     "candidate": 0.360909
+    },
+    {
+     "search": "male:30:race=nh_asian",
+     "reference": 0.0875,
+     "candidate": 0.160682
+    },
+    {
+     "search": "female:25:edu=some_college:race=nh_aian",
+     "reference": 0.732254,
+     "candidate": 1.316748
+    },
+    {
+     "search": "male:25:edu=graduate:race=nh_white",
+     "reference": 0.215,
+     "candidate": 0.386364
+    },
+    {
+     "search": "female:35:edu=hs_or_less:race=hispanic",
+     "reference": 0.251136,
+     "candidate": 0.449318
+    },
+    {
+     "search": "male:25:edu=some_college:race=nh_nhpi",
+     "reference": 0.229091,
+     "candidate": 0.398902
+    },
+    {
+     "search": "female:25:edu=some_college:race=nh_twoplus",
+     "reference": 1.203295,
+     "candidate": 2.057315
+    },
+    {
+     "search": "female:50:edu=graduate:race=nh_aian",
+     "reference": 0.618333,
+     "candidate": 1.056496
+    },
+    {
+     "search": "female:35:race=nh_aian",
+     "reference": 0.635682,
+     "candidate": 1.085227
+    },
+    {
+     "search": "female:30:edu=some_college:race=nh_asian",
+     "reference": 0.126818,
+     "candidate": 0.215
+    },
+    {
+     "search": "female:30:undisclosed",
+     "reference": 0.3425,
+     "candidate": 0.579545
+    },
+    {
+     "search": "male:40:race=nh_aian",
+     "reference": 0.85642,
+     "candidate": 1.439053
+    },
+    {
+     "search": "female:25:edu=hs_or_less:race=hispanic",
+     "reference": 0.195455,
+     "candidate": 0.327727
+    },
+    {
+     "search": "female:30:race=hispanic",
+     "reference": 0.151364,
+     "candidate": 0.250909
+    },
+    {
+     "search": "samesex:male:25:edu=graduate",
+     "reference": 0.180682,
+     "candidate": 0.2875
+    },
+    {
+     "search": "female:40:edu=bachelors:race=nh_white",
+     "reference": 0.271515,
+     "candidate": 0.431818
+    },
+    {
+     "search": "female:35:edu=some_college",
+     "reference": 0.52,
+     "candidate": 0.825227
+    },
+    {
+     "search": "female:30:edu=graduate:race=hispanic",
+     "reference": 0.22,
+     "candidate": 0.348182
+    },
+    {
+     "search": "male:50:edu=bachelors:race=hispanic",
+     "reference": 0.224318,
+     "candidate": 0.354545
+    },
+    {
+     "search": "female:40:race=nh_asian",
+     "reference": 0.164773,
+     "candidate": 0.26
+    },
+    {
+     "search": "female:30:edu=some_college",
+     "reference": 0.346591,
+     "candidate": 0.546364
+    },
+    {
+     "search": "male:40:edu=bachelors:race=nh_asian",
+     "reference": 0.155909,
+     "candidate": 0.245682
+    },
+    {
+     "search": "male:30:edu=hs_or_less:race=nh_aian",
+     "reference": 0.511004,
+     "candidate": 0.804678
+    },
+    {
+     "search": "female:40:edu=graduate:race=nh_asian",
+     "reference": 0.321364,
+     "candidate": 0.505114
+    },
+    {
+     "search": "male:25:race=nh_asian",
+     "reference": 0.166591,
+     "candidate": 0.260455
+    },
+    {
+     "search": "female:35:edu=bachelors:race=nh_twoplus",
+     "reference": 0.249091,
+     "candidate": 0.386818
+    },
+    {
+     "search": "male:50:edu=some_college:race=hispanic",
+     "reference": 0.095909,
+     "candidate": 0.148182
+    },
+    {
+     "search": "samesex:female:35:edu=some_college",
+     "reference": 0.487045,
+     "candidate": 0.751004
+    },
+    {
+     "search": "male:40:edu=graduate:race=nh_black",
+     "reference": 0.271818,
+     "candidate": 0.418864
+    },
+    {
+     "search": "male:35:edu=some_college:race=nh_nhpi",
+     "reference": 0.343409,
+     "candidate": 0.527917
+    },
+    {
+     "search": "female:30:edu=bachelors:race=nh_asian",
+     "reference": 0.104318,
+     "candidate": 0.16
+    },
+    {
+     "search": "female:50:edu=graduate:race=nh_black",
+     "reference": 0.234545,
+     "candidate": 0.357273
+    },
+    {
+     "search": "male:25:edu=hs_or_less:race=hispanic",
+     "reference": 0.233864,
+     "candidate": 0.352273
+    },
+    {
+     "search": "female:50:edu=bachelors",
+     "reference": 0.493826,
+     "candidate": 0.73
+    },
+    {
+     "search": "female:35:edu=some_college:race=nh_aian",
+     "reference": 0.712955,
+     "candidate": 1.047652
+    },
+    {
+     "search": "samesex:female:40:edu=some_college",
+     "reference": 0.776364,
+     "candidate": 1.129924
+    },
+    {
+     "search": "male:50:edu=bachelors:race=nh_white",
+     "reference": 0.602045,
+     "candidate": 0.873068
+    },
+    {
+     "search": "female:35:edu=some_college:race=nh_black",
+     "reference": 0.196818,
+     "candidate": 0.283636
+    },
+    {
+     "search": "male:35:edu=some_college:race=nh_white",
+     "reference": 0.737784,
+     "candidate": 1.057936
+    },
+    {
+     "search": "female:25:edu=graduate:race=nh_aian",
+     "reference": 0.371818,
+     "candidate": 0.532273
+    },
+    {
+     "search": "male:35:race=nh_black",
+     "reference": 0.129318,
+     "candidate": 0.184773
+    },
+    {
+     "search": "female:35:edu=graduate",
+     "reference": 0.390455,
+     "candidate": 0.557273
+    },
+    {
+     "search": "female:30:edu=graduate:race=nh_asian",
+     "reference": 0.050682,
+     "candidate": 0.072045
+    },
+    {
+     "search": "persona:self_edu_and_race",
+     "reference": 0.116818,
+     "candidate": 0.165909
+    },
+    {
+     "search": "female:25:edu=bachelors:race=nh_twoplus",
+     "reference": 0.475227,
+     "candidate": 0.674773
+    },
+    {
+     "search": "female:50:race=nh_aian",
+     "reference": 1.281364,
+     "candidate": 1.804545
+    },
+    {
+     "search": "female:40:edu=bachelors:race=nh_asian",
+     "reference": 0.131364,
+     "candidate": 0.184773
+    },
+    {
+     "search": "female:50:race=nh_black",
+     "reference": 0.201591,
+     "candidate": 0.282727
+    },
+    {
+     "search": "male:25:edu=hs_or_less:race=nh_twoplus",
+     "reference": 1.639015,
+     "candidate": 2.293746
+    },
+    {
+     "search": "male:25:edu=graduate:race=nh_black",
+     "reference": 0.305,
+     "candidate": 0.425455
+    },
+    {
+     "search": "female:50:edu=graduate:race=hispanic",
+     "reference": 0.245909,
+     "candidate": 0.341364
+    },
+    {
+     "search": "male:25:race=hispanic",
+     "reference": 0.089545,
+     "candidate": 0.123636
+    },
+    {
+     "search": "male:30:edu=bachelors:race=nh_black",
+     "reference": 0.2575,
+     "candidate": 0.355
+    },
+    {
+     "search": "male:30:edu=hs_or_less",
+     "reference": 0.5725,
+     "candidate": 0.784545
+    },
+    {
+     "search": "male:30:edu=bachelors:race=nh_asian",
+     "reference": 0.106364,
+     "candidate": 0.145227
+    },
+    {
+     "search": "samesex:female:30:edu=some_college",
+     "reference": 0.523409,
+     "candidate": 0.711364
+    },
+    {
+     "search": "male:30:edu=graduate:race=nh_other",
+     "reference": 0.525227,
+     "candidate": 0.706364
+    },
+    {
+     "search": "male:25:edu=bachelors:race=nh_nhpi",
+     "reference": 0.226818,
+     "candidate": 0.305
+    },
+    {
+     "search": "male:30:edu=graduate:race=nh_nhpi",
+     "reference": 0.205227,
+     "candidate": 0.275227
+    },
+    {
+     "search": "female:30:edu=hs_or_less:race=nh_other",
+     "reference": 1.398977,
+     "candidate": 1.872497
+    },
+    {
+     "search": "female:40:edu=graduate:race=nh_nhpi",
+     "reference": 0.621591,
+     "candidate": 0.83089
+    },
+    {
+     "search": "samesex:female:25:edu=some_college",
+     "reference": 0.721667,
+     "candidate": 0.960019
+    },
+    {
+     "search": "male:30:edu=some_college:race=nh_asian",
+     "reference": 0.136364,
+     "candidate": 0.181136
+    },
+    {
+     "search": "female:50:race=hispanic",
+     "reference": 0.206364,
+     "candidate": 0.274015
+    },
+    {
+     "search": "female:25:race=nh_twoplus",
+     "reference": 0.567178,
+     "candidate": 0.751742
+    },
+    {
+     "search": "male:30:race=hispanic",
+     "reference": 0.189091,
+     "candidate": 0.247727
+    },
+    {
+     "search": "male:25:edu=bachelors:race=hispanic",
+     "reference": 0.189091,
+     "candidate": 0.2475
+    },
+    {
+     "search": "female:40:edu=some_college:race=nh_aian",
+     "reference": 1.350227,
+     "candidate": 1.765379
+    },
+    {
+     "search": "male:30:edu=some_college:race=hispanic",
+     "reference": 0.082273,
+     "candidate": 0.1075
+    },
+    {
+     "search": "samesex:male:50:edu=graduate",
+     "reference": 0.435,
+     "candidate": 0.566591
+    },
+    {
+     "search": "male:40:edu=bachelors:race=nh_nhpi",
+     "reference": 0.592955,
+     "candidate": 0.767254
+    },
+    {
+     "search": "female:40:edu=bachelors:race=hispanic",
+     "reference": 0.113409,
+     "candidate": 0.146591
+    },
+    {
+     "search": "female:35:edu=some_college:race=nh_other",
+     "reference": 1.87763,
+     "candidate": 2.421404
+    },
+    {
+     "search": "female:40:edu=some_college:race=nh_nhpi",
+     "reference": 0.826591,
+     "candidate": 1.065814
+    },
+    {
+     "search": "male:50:edu=graduate:race=nh_white",
+     "reference": 0.471591,
+     "candidate": 0.606496
+    },
+    {
+     "search": "female:40:undisclosed",
+     "reference": 0.553864,
+     "candidate": 0.712273
+    },
+    {
+     "search": "male:40:edu=bachelors",
+     "reference": 0.422045,
+     "candidate": 0.537045
+    },
+    {
+     "search": "male:30:edu=some_college:race=nh_aian",
+     "reference": 0.534792,
+     "candidate": 0.677955
+    },
+    {
+     "search": "samesex:female:25:edu=graduate",
+     "reference": 0.244091,
+     "candidate": 0.309318
+    },
+    {
+     "search": "male:50:edu=bachelors",
+     "reference": 0.294318,
+     "candidate": 0.369545
+    },
+    {
+     "search": "female:25:edu=graduate:race=nh_nhpi",
+     "reference": 0.513182,
+     "candidate": 0.642955
+    }
+   ],
+   "old_rule": {
+    "min_share_personas": 0.8,
+    "pass_at_0_80": true,
+    "reading": "soft (ADR 0011): the >= 8-of-10 overlap in >= 80% of replicates, every persona"
+   },
+   "totals": {
+    "m3.1.0": {
+     "searches_scored": 516,
+     "searches_skipped": 2,
+     "wobble_sum": 309.5112,
+     "wobble_median": 0.4774,
+     "wobble_max": 2.1567,
+     "old_rule_min_share_personas": 0.95,
+     "old_rule_min_share_all": 0.875,
+     "seconds": 50.0
+    },
+    "m3.2.0": {
+     "searches_scored": 516,
+     "searches_skipped": 2,
+     "wobble_sum": 316.209462,
+     "wobble_median": 0.4705,
+     "wobble_max": 2.494,
+     "old_rule_min_share_personas": 0.8,
+     "old_rule_min_share_all": 0.775,
+     "seconds": 84.2
+    }
+   }
+  },
+  "m3.0.0 -> m3.1.0": {
+   "candidate": "m3.1.0",
+   "reference_build": "f20cb02c3af8",
+   "candidate_build": "f20cb02c3af8",
+   "searches_compared": 516,
+   "searches_touched": 516,
+   "basis": "touched searches",
+   "wobble_candidate": 309.5112,
+   "wobble_reference": 319.631289,
+   "ratio": 0.968338,
+   "tolerance": 0.1,
+   "pass": true,
+   "ratio_over_all_searches": 0.968338,
+   "searches_wobble_rose_more_than_25pct": [
+    {
+     "search": "female:25:race=nh_asian",
+     "reference": 0.010682,
+     "candidate": 0.08
+    },
+    {
+     "search": "female:25:edu=bachelors:race=nh_asian",
+     "reference": 0.006818,
+     "candidate": 0.031818
+    },
+    {
+     "search": "female:35:edu=hs_or_less:race=nh_asian",
+     "reference": 0.045,
+     "candidate": 0.207273
+    },
+    {
+     "search": "male:25:edu=bachelors:race=hispanic",
+     "reference": 0.063182,
+     "candidate": 0.189091
+    },
+    {
+     "search": "female:30:edu=bachelors:race=hispanic",
+     "reference": 0.0675,
+     "candidate": 0.1775
+    },
+    {
+     "search": "female:25:edu=bachelors:race=hispanic",
+     "reference": 0.014545,
+     "candidate": 0.035909
+    },
+    {
+     "search": "male:30:race=hispanic",
+     "reference": 0.077273,
+     "candidate": 0.189091
+    },
+    {
+     "search": "male:25:race=nh_black",
+     "reference": 0.280682,
+     "candidate": 0.631818
+    },
+    {
+     "search": "male:30:edu=graduate:race=hispanic",
+     "reference": 0.075,
+     "candidate": 0.1675
+    },
+    {
+     "search": "male:25:edu=hs_or_less:race=nh_asian",
+     "reference": 0.1125,
+     "candidate": 0.235
+    },
+    {
+     "search": "male:25:edu=bachelors:race=nh_asian",
+     "reference": 0.053182,
+     "candidate": 0.107045
+    },
+    {
+     "search": "male:30:edu=hs_or_less:race=nh_asian",
+     "reference": 0.155455,
+     "candidate": 0.308636
+    },
+    {
+     "search": "female:25:edu=graduate",
+     "reference": 0.1375,
+     "candidate": 0.2625
+    },
+    {
+     "search": "male:35:edu=bachelors:race=nh_asian",
+     "reference": 0.158864,
+     "candidate": 0.303182
+    },
+    {
+     "search": "female:40:edu=hs_or_less:race=nh_nhpi",
+     "reference": 0.732008,
+     "candidate": 1.388636
+    },
+    {
+     "search": "female:50:edu=graduate:race=nh_asian",
+     "reference": 0.159318,
+     "candidate": 0.3
+    },
+    {
+     "search": "female:40:edu=hs_or_less:race=nh_asian",
+     "reference": 0.217008,
+     "candidate": 0.405682
+    },
+    {
+     "search": "samesex:female:25:edu=bachelors",
+     "reference": 0.194318,
+     "candidate": 0.3575
+    },
+    {
+     "search": "female:35:edu=graduate:race=nh_asian",
+     "reference": 0.204091,
+     "candidate": 0.375
+    },
+    {
+     "search": "samesex:female:40:edu=bachelors",
+     "reference": 0.274318,
+     "candidate": 0.499773
+    },
+    {
+     "search": "male:35:edu=bachelors:race=nh_black",
+     "reference": 0.2575,
+     "candidate": 0.4675
+    },
+    {
+     "search": "female:25:edu=some_college:race=hispanic",
+     "reference": 0.105909,
+     "candidate": 0.183864
+    },
+    {
+     "search": "female:30:race=nh_black",
+     "reference": 0.189318,
+     "candidate": 0.303864
+    },
+    {
+     "search": "male:35:edu=graduate:race=hispanic",
+     "reference": 0.217045,
+     "candidate": 0.346818
+    },
+    {
+     "search": "male:40:edu=graduate:race=nh_asian",
+     "reference": 0.152955,
+     "candidate": 0.238864
+    },
+    {
+     "search": "male:50:edu=hs_or_less:race=nh_black",
+     "reference": 0.256818,
+     "candidate": 0.393636
+    },
+    {
+     "search": "female:40:edu=some_college:race=nh_asian",
+     "reference": 0.126136,
+     "candidate": 0.190455
+    },
+    {
+     "search": "female:30:edu=bachelors:race=nh_nhpi",
+     "reference": 0.346818,
+     "candidate": 0.520909
+    },
+    {
+     "search": "male:25:edu=bachelors:race=nh_black",
+     "reference": 0.335909,
+     "candidate": 0.502462
+    },
+    {
+     "search": "samesex:female:40:edu=graduate",
+     "reference": 0.394318,
+     "candidate": 0.589545
+    },
+    {
+     "search": "female:25:edu=hs_or_less:race=hispanic",
+     "reference": 0.134773,
+     "candidate": 0.195455
+    },
+    {
+     "search": "female:50:edu=hs_or_less:race=nh_black",
+     "reference": 0.1475,
+     "candidate": 0.2125
+    },
+    {
+     "search": "female:50:edu=hs_or_less:race=nh_white",
+     "reference": 0.628428,
+     "candidate": 0.901591
+    },
+    {
+     "search": "male:50:edu=graduate:race=nh_black",
+     "reference": 0.256364,
+     "candidate": 0.367045
+    },
+    {
+     "search": "male:40:edu=graduate:race=nh_black",
+     "reference": 0.19,
+     "candidate": 0.271818
+    },
+    {
+     "search": "female:25:edu=hs_or_less:race=nh_black",
+     "reference": 0.158864,
+     "candidate": 0.225909
+    },
+    {
+     "search": "female:25:edu=some_college",
+     "reference": 0.898314,
+     "candidate": 1.273842
+    },
+    {
+     "search": "samesex:female:40:edu=some_college",
+     "reference": 0.550455,
+     "candidate": 0.776364
+    },
+    {
+     "search": "female:25:edu=graduate:race=nh_nhpi",
+     "reference": 0.365682,
+     "candidate": 0.513182
+    },
+    {
+     "search": "female:35:edu=hs_or_less:race=nh_nhpi",
+     "reference": 0.639432,
+     "candidate": 0.896818
+    },
+    {
+     "search": "female:25:edu=graduate:race=nh_asian",
+     "reference": 0.05,
+     "candidate": 0.07
+    },
+    {
+     "search": "male:30:edu=graduate:race=nh_aian",
+     "reference": 0.2225,
+     "candidate": 0.31
+    },
+    {
+     "search": "female:25:edu=bachelors:race=nh_white",
+     "reference": 0.342273,
+     "candidate": 0.475227
+    },
+    {
+     "search": "female:25:race=nh_white",
+     "reference": 0.616004,
+     "candidate": 0.85447
+    },
+    {
+     "search": "male:50:edu=graduate",
+     "reference": 0.259091,
+     "candidate": 0.3575
+    },
+    {
+     "search": "female:25:race=hispanic",
+     "reference": 0.240227,
+     "candidate": 0.328409
+    },
+    {
+     "search": "samesex:female:30:edu=bachelors",
+     "reference": 0.3075,
+     "candidate": 0.42
+    },
+    {
+     "search": "persona:race_white_nh_grad_multi",
+     "reference": 1.225189,
+     "candidate": 1.67331
+    },
+    {
+     "search": "male:50:edu=some_college:race=hispanic",
+     "reference": 0.070227,
+     "candidate": 0.095909
+    },
+    {
+     "search": "male:25:edu=some_college:race=hispanic",
+     "reference": 0.255,
+     "candidate": 0.346364
+    },
+    {
+     "search": "male:25:edu=graduate:race=nh_aian",
+     "reference": 0.615795,
+     "candidate": 0.829621
+    },
+    {
+     "search": "male:40:edu=some_college:race=nh_twoplus",
+     "reference": 0.562273,
+     "candidate": 0.747727
+    },
+    {
+     "search": "male:25:race=nh_nhpi",
+     "reference": 0.116364,
+     "candidate": 0.154545
+    },
+    {
+     "search": "female:50:race=nh_nhpi",
+     "reference": 0.479773,
+     "candidate": 0.634318
+    },
+    {
+     "search": "male:40:edu=some_college:race=nh_asian",
+     "reference": 0.195189,
+     "candidate": 0.257784
+    },
+    {
+     "search": "female:50:edu=hs_or_less:race=nh_asian",
+     "reference": 0.3425,
+     "candidate": 0.451591
+    },
+    {
+     "search": "female:50:race=nh_white",
+     "reference": 0.716364,
+     "candidate": 0.927973
+    },
+    {
+     "search": "samesex:male:25:edu=graduate",
+     "reference": 0.139773,
+     "candidate": 0.180682
+    },
+    {
+     "search": "female:30:edu=some_college:race=hispanic",
+     "reference": 0.265227,
+     "candidate": 0.3425
+    },
+    {
+     "search": "male:30:edu=some_college",
+     "reference": 0.978106,
+     "candidate": 1.261913
+    },
+    {
+     "search": "male:25:edu=hs_or_less",
+     "reference": 0.3425,
+     "candidate": 0.441591
+    },
+    {
+     "search": "female:40:edu=graduate:race=nh_twoplus",
+     "reference": 0.48,
+     "candidate": 0.618864
+    },
+    {
+     "search": "samesex:male:35:edu=hs_or_less",
+     "reference": 0.638409,
+     "candidate": 0.818939
+    },
+    {
+     "search": "male:35:edu=some_college:race=nh_twoplus",
+     "reference": 1.061629,
+     "candidate": 1.358258
+    },
+    {
+     "search": "female:30:race=nh_twoplus",
+     "reference": 0.588144,
+     "candidate": 0.749242
+    },
+    {
+     "search": "male:35:edu=bachelors:race=nh_twoplus",
+     "reference": 0.1625,
+     "candidate": 0.206591
+    },
+    {
+     "search": "samesex:female:50:edu=some_college",
+     "reference": 0.5125,
+     "candidate": 0.649318
+    },
+    {
+     "search": "male:30:edu=hs_or_less:race=nh_nhpi",
+     "reference": 0.320227,
+     "candidate": 0.404773
+    },
+    {
+     "search": "female:35:edu=graduate:race=hispanic",
+     "reference": 0.19,
+     "candidate": 0.24
+    },
+    {
+     "search": "samesex:female:30:edu=some_college",
+     "reference": 0.414545,
+     "candidate": 0.523409
+    },
+    {
+     "search": "samesex:female:50:edu=bachelors",
+     "reference": 0.431364,
+     "candidate": 0.544318
+    },
+    {
+     "search": "male:50:race=nh_twoplus",
+     "reference": 0.509773,
+     "candidate": 0.639053
+    },
+    {
+     "search": "male:40:edu=graduate:race=nh_aian",
+     "reference": 0.584318,
+     "candidate": 0.732273
+    }
+   ],
+   "old_rule": {
+    "min_share_personas": 0.95,
+    "pass_at_0_80": true,
+    "reading": "soft (ADR 0011): the >= 8-of-10 overlap in >= 80% of replicates, every persona"
+   },
+   "totals": {
+    "m3.0.0": {
+     "searches_scored": 516,
+     "searches_skipped": 2,
+     "wobble_sum": 319.631289,
+     "wobble_median": 0.4736,
+     "wobble_max": 2.7858,
+     "old_rule_min_share_personas": 0.7,
+     "old_rule_min_share_all": 0.7,
+     "seconds": 50.0
+    },
+    "m3.1.0": {
+     "searches_scored": 516,
+     "searches_skipped": 2,
+     "wobble_sum": 309.5112,
+     "wobble_median": 0.4774,
+     "wobble_max": 2.1567,
+     "old_rule_min_share_personas": 0.95,
+     "old_rule_min_share_all": 0.875,
+     "seconds": 50.0
+    }
+   }
+  }
+ }
+}
