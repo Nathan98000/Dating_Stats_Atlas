@@ -238,7 +238,11 @@ def test_match_display_cap_is_presentational(build):
         assert stat["display"] == r["match"]["display"]
     for r in none_capped["ranked"]:
         assert not r["match"]["capped"]
-        assert r["match"]["display"] == str(int(round(r["match"]["value"])))
+        # the served value is rounded to two decimals and the display to a
+        # whole number from the raw index, so compare within half a unit
+        # rather than re-rounding the rounded value (m3.3.0 produced a
+        # 79.50 that re-rounds to 80 while the raw 79.496 displays as 79)
+        assert abs(float(r["match"]["display"].replace(",", "")) - r["match"]["value"]) <= 0.5 + 1e-6
     # the shipped ceiling: capped exactly when the rounded figure exceeds it
     cap = float(strings["match_display_cap"])
     for r in shipped["ranked"]:

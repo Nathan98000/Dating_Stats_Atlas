@@ -5,6 +5,26 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.3.0 — Phase 3c (ADR 0011; ADR 0010 amended): the rank-stability gate
+becomes total WOBBLE against the fixed m3.2.0 reference (the mean rank
+move of the cities in either top 10 over the 80 replicates, summed over
+the searches a change touches; fail above 1.10x), which lets the cohort
+age term ship: a gap curve per seeker sex and age cohort (Phase 3b's
+seventeen cohorts, B1) added to the shipped form (baseline + race x
+education) — held-out gain +69.7 per 1,000 weighted couple-sides over
+m3.2.0's form, better in 386 of 387 metros, gate 0.971. The sex-specific
+education matrix is dropped as measured (-0.003 per 1,000 on the shipped
+form; with the cohort term it ties the cohort term to 0.001 and adds
+nothing). Same-sex searches take the EDUCATION term from same-sex
+couples (face check for the same-sex matrix: own level above 1 and above
+every level two or more away), with the opposite-sex race x education
+interaction riding by held-out fit (+8.9 per 1,000 same-sex sides over
+the composition without it); race stays borrowed; the artifact records
+same_sex.interaction_applies. The same-sex sentence names what is served
+and the loader asserts it against same_sex_components. Scores and
+rankings move for every search (a new age term, a new same-sex
+composition); goldens regenerated.
+
 m3.2.0 — Phase 3b, Part B (ADR 0010): the kernel gains a race x
 education two-way term per seeker sex, shrunk toward no interaction by
 empirical Bayes (tau 0.18; a cell keeps n/(n+31) of its raw log ratio),
@@ -152,5 +172,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.2.0"
+MODEL_VERSION = "m3.3.0"
 SCHEMA_VERSION = "cube-v1"

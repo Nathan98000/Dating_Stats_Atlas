@@ -1,0 +1,492 @@
+{
+ "from": {
+  "tag": "m3_2_0",
+  "build": "f20cb02c3af8",
+  "model_version": "m3.2.0",
+  "kernel_sample": "decay_h5"
+ },
+ "to": {
+  "tag": "m3_3_0",
+  "build": "ee4f08cf33e1",
+  "model_version": "m3.3.0",
+  "kernel_sample": "decay_h5"
+ },
+ "default_search": {
+  "self": {
+   "sex": "female",
+   "age": 30
+  },
+  "seeking": {
+   "age": [
+    28,
+    40
+   ],
+   "marital": [
+    "never_married",
+    "previously_married"
+   ]
+  }
+ },
+ "rank_shift": {
+  "metros_compared": 193,
+  "ranks_changed": 170,
+  "kendall_tau": 0.94,
+  "median_abs_move": 2.0,
+  "p90_abs_move": 11.0,
+  "max_abs_move": 26,
+  "biggest_moves": [
+   {
+    "metro": "Provo, UT",
+    "cbsa": "39340",
+    "rank_before": 153,
+    "rank_after": 179,
+    "move": -26
+   },
+   {
+    "metro": "Deltona, FL",
+    "cbsa": "19660",
+    "rank_before": 125,
+    "rank_after": 105,
+    "move": 20
+   },
+   {
+    "metro": "College Station, TX",
+    "cbsa": "17780",
+    "rank_before": 71,
+    "rank_after": 90,
+    "move": -19
+   },
+   {
+    "metro": "Myrtle Beach, SC",
+    "cbsa": "34820",
+    "rank_before": 134,
+    "rank_after": 117,
+    "move": 17
+   },
+   {
+    "metro": "Vallejo, CA",
+    "cbsa": "46700",
+    "rank_before": 161,
+    "rank_after": 145,
+    "move": 16
+   },
+   {
+    "metro": "Lincoln, NE",
+    "cbsa": "30700",
+    "rank_before": 111,
+    "rank_after": 126,
+    "move": -15
+   },
+   {
+    "metro": "McAllen, TX",
+    "cbsa": "32580",
+    "rank_before": 144,
+    "rank_after": 159,
+    "move": -15
+   },
+   {
+    "metro": "North Port, FL",
+    "cbsa": "35840",
+    "rank_before": 102,
+    "rank_after": 88,
+    "move": 14
+   },
+   {
+    "metro": "Cape Coral, FL",
+    "cbsa": "15980",
+    "rank_before": 143,
+    "rank_after": 129,
+    "move": 14
+   },
+   {
+    "metro": "Lubbock, TX",
+    "cbsa": "31180",
+    "rank_before": 117,
+    "rank_after": 131,
+    "move": -14
+   }
+  ],
+  "top10_before": [
+   "New York, NY",
+   "Boston, MA",
+   "Chicago, IL",
+   "Philadelphia, PA",
+   "San Francisco, CA",
+   "Los Angeles, CA",
+   "New Orleans, LA",
+   "San Jose, CA",
+   "Seattle, WA",
+   "Atlanta, GA"
+  ],
+  "top10_after": [
+   "New York, NY",
+   "Boston, MA",
+   "Philadelphia, PA",
+   "Chicago, IL",
+   "San Francisco, CA",
+   "Los Angeles, CA",
+   "New Orleans, LA",
+   "Seattle, WA",
+   "Atlanta, GA",
+   "San Jose, CA"
+  ]
+ },
+ "index_shift": {
+  "median_abs_change_pts": 0.8,
+  "p90_abs_change_pts": 2.17,
+  "max_abs_change_pts": 4.86,
+  "range_before": [
+   84.0,
+   114.9
+  ],
+  "range_after": [
+   85.2,
+   111.5
+  ],
+  "p10_p50_p90_before": [
+   90.0,
+   96.7,
+   107.7
+  ],
+  "p10_p50_p90_after": [
+   90.4,
+   97.0,
+   106.2
+  ],
+  "moe_median_before": 3.98,
+  "moe_median_after": 4.12,
+  "kendall_tau_index": 0.891
+ },
+ "reference": {
+  "grad_asian_woman_30": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 637.3,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 9,
+    "score": 70.9
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 631.62,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 9,
+    "score": 70.9
+   },
+   "range_before": [
+    14.0,
+    637.3
+   ],
+   "range_after": [
+    13.8,
+    631.6
+   ],
+   "metros_above_250_before": 2,
+   "metros_above_250_after": 2,
+   "moe_median_before": 12.51,
+   "moe_median_after": 12.62
+  },
+  "black_woman_30": {
+   "top_before": {
+    "metro": "Montgomery, AL",
+    "cbsa": "33860",
+    "index": 316.04,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 80,
+    "score": 47.4
+   },
+   "top_after": {
+    "metro": "Montgomery, AL",
+    "cbsa": "33860",
+    "index": 317.25,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 80,
+    "score": 47.4
+   },
+   "range_before": [
+    17.7,
+    316.0
+   ],
+   "range_after": [
+    17.1,
+    317.2
+   ],
+   "metros_above_250_before": 7,
+   "metros_above_250_after": 7,
+   "moe_median_before": 11.94,
+   "moe_median_after": 11.96
+  },
+  "grad_woman_30": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 192.25,
+    "display": "192",
+    "band": "Far above most cities",
+    "rank": 8,
+    "score": 70.9
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 189.7,
+    "display": "190",
+    "band": "Far above most cities",
+    "rank": 8,
+    "score": 70.9
+   },
+   "range_before": [
+    42.2,
+    192.2
+   ],
+   "range_after": [
+    42.6,
+    189.7
+   ],
+   "metros_above_250_before": 0,
+   "metros_above_250_after": 0,
+   "moe_median_before": 6.65,
+   "moe_median_after": 6.7
+  },
+  "nhpi_man_35": {
+   "top_before": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 2767.25,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 39,
+    "score": 54.3
+   },
+   "top_after": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 2482.16,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 37,
+    "score": 54.3
+   },
+   "range_before": [
+    13.4,
+    2767.2
+   ],
+   "range_after": [
+    13.6,
+    2482.2
+   ],
+   "metros_above_250_before": 11,
+   "metros_above_250_after": 11,
+   "moe_median_before": 10.56,
+   "moe_median_after": 10.36
+  },
+  "nhpi_woman_35": {
+   "top_before": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 1047.44,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 38,
+    "score": 54.8
+   },
+   "top_after": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 1006.64,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 37,
+    "score": 54.8
+   },
+   "range_before": [
+    19.2,
+    1047.4
+   ],
+   "range_after": [
+    19.4,
+    1006.6
+   ],
+   "metros_above_250_before": 8,
+   "metros_above_250_after": 8,
+   "moe_median_before": 7.23,
+   "moe_median_after": 6.76
+  },
+  "grad_asian_man_34": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 600.4,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 12,
+    "score": 68.7
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 583.78,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 12,
+    "score": 68.7
+   },
+   "range_before": [
+    9.9,
+    600.4
+   ],
+   "range_after": [
+    10.2,
+    583.8
+   ],
+   "metros_above_250_before": 2,
+   "metros_above_250_after": 2,
+   "moe_median_before": 14.11,
+   "moe_median_after": 13.97
+  },
+  "same_sex_man_31": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 116.56,
+    "display": "117",
+    "band": "Far above most cities",
+    "rank": 4,
+    "score": 72.4
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 115.53,
+    "display": "116",
+    "band": "Far above most cities",
+    "rank": 5,
+    "score": 72.4
+   },
+   "range_before": [
+    88.6,
+    116.6
+   ],
+   "range_after": [
+    88.9,
+    115.5
+   ],
+   "metros_above_250_before": 0,
+   "metros_above_250_after": 0,
+   "moe_median_before": 3.11,
+   "moe_median_after": 3.33,
+   "rank_shift": {
+    "metros_compared": 120,
+    "ranks_changed": 100,
+    "kendall_tau": 0.862,
+    "median_abs_move": 4.0,
+    "p90_abs_move": 15.0,
+    "max_abs_move": 32,
+    "biggest_moves": [
+     {
+      "metro": "New Haven, CT",
+      "cbsa": "35300",
+      "rank_before": 69,
+      "rank_after": 37,
+      "move": 32
+     },
+     {
+      "metro": "Palm Bay, FL",
+      "cbsa": "37340",
+      "rank_before": 65,
+      "rank_after": 39,
+      "move": 26
+     },
+     {
+      "metro": "Gainesville, FL",
+      "cbsa": "23540",
+      "rank_before": 95,
+      "rank_after": 72,
+      "move": 23
+     },
+     {
+      "metro": "Detroit, MI",
+      "cbsa": "19820",
+      "rank_before": 42,
+      "rank_after": 62,
+      "move": -20
+     },
+     {
+      "metro": "Colorado Springs, CO",
+      "cbsa": "17820",
+      "rank_before": 84,
+      "rank_after": 64,
+      "move": 20
+     },
+     {
+      "metro": "Cincinnati, OH",
+      "cbsa": "17140",
+      "rank_before": 49,
+      "rank_after": 67,
+      "move": -18
+     },
+     {
+      "metro": "Harrisburg, PA",
+      "cbsa": "25420",
+      "rank_before": 71,
+      "rank_after": 89,
+      "move": -18
+     },
+     {
+      "metro": "Santa Rosa, CA",
+      "cbsa": "42220",
+      "rank_before": 48,
+      "rank_after": 65,
+      "move": -17
+     },
+     {
+      "metro": "Washington, DC",
+      "cbsa": "47900",
+      "rank_before": 46,
+      "rank_after": 30,
+      "move": 16
+     },
+     {
+      "metro": "Miami, FL",
+      "cbsa": "33100",
+      "rank_before": 50,
+      "rank_after": 34,
+      "move": 16
+     }
+    ],
+    "top10_before": [
+     "San Francisco, CA",
+     "Los Angeles, CA",
+     "Seattle, WA",
+     "San Jose, CA",
+     "Boston, MA",
+     "New York, NY",
+     "San Diego, CA",
+     "Portland, OR",
+     "Pittsburgh, PA",
+     "Madison, WI"
+    ],
+    "top10_after": [
+     "San Francisco, CA",
+     "Los Angeles, CA",
+     "Boston, MA",
+     "Seattle, WA",
+     "San Jose, CA",
+     "New York, NY",
+     "San Diego, CA",
+     "Portland, OR",
+     "Pittsburgh, PA",
+     "Denver, CO"
+    ],
+    "index_median_abs_change_pts": 0.97,
+    "index_max_abs_change_pts": 4.36
+   }
+  }
+ }
+}
