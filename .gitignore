@@ -29,3 +29,7 @@ _to_delete/
 # Phase 3 scratch (regenerable by build.kernel)
 atlas/results/phase3/_*
 atlas/results/phase3/*_run.log
+
+# Phase 3b candidate kernels and run logs (regenerable)
+atlas/results/phase3b/_*
+atlas/results/phase3b/*_run.log

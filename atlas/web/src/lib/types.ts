@@ -59,7 +59,12 @@ export interface Card {
 export interface MatchBlock {
   available: boolean;
   value?: number | null;
+  /** the API's display string — capped at the registry ceiling with its
+   * token ("250+") when `capped` is true (m3.1.0); never parsed back
+   * into a number by the site except the compare difference, which
+   * skips capped figures */
   display?: string | null;
+  capped?: boolean;
   moe?: number | null;
   unit_line?: string;
   band?: Band;

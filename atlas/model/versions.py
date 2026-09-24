@@ -5,6 +5,19 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.1.0 — Phase 3b, Part A (ADR 0009 amended): the kernel's fitting
+sample moves from recent unions alone to EVERY union weighted by
+exponential decay with a five-year half-life (unmarried partners at
+weight 1), chosen by the standing rank-stability gate, shortest half-life
+first — five years is the first candidate on which all eighteen personas
+reach the 0.80 bar (the m3.0.0 recent-only kernel failed three at 0.70–
+0.71); the Pew number was not the criterion. The chances-of-matching
+DISPLAY is capped at a registry ceiling (250, rendered "250+") through
+one formatting helper; scoring is untouched and rankings are asserted
+bit-identical with and without the cap. The Pew tie against the raw
+per-metro dial is accepted on the record (ADR 0009 §4). Goldens
+regenerated; the before/after is in PHASE3B.md.
+
 m3.0.0 — Phase 3 (ADR 0009): the slider's second pole is CHANCES OF
 MATCHING. A new match pillar (default 0.25, the weight balance carried)
 scores match_propensity — the kernel-weighted share of the visitor's own
@@ -116,5 +129,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.0.0"
+MODEL_VERSION = "m3.1.0"
 SCHEMA_VERSION = "cube-v1"

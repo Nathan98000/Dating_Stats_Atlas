@@ -277,6 +277,11 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert strings.get(need_key), f"strings.{need_key} is required (m3.0.0)"
     assert "matching" in strings["slider_info"] and "balance favors" not in strings["slider_info"], (
         "slider_info must describe the chances-of-matching pole (ADR 0009)")
+    # m3.1.0 (Phase 3b, A3): the match figure's display ceiling and its
+    # token are registry-owned; the ceiling is a positive number
+    for need_key in ("match_display_cap", "match_display_cap_token"):
+        assert strings.get(need_key), f"strings.{need_key} is required (m3.1.0)"
+    assert float(strings["match_display_cap"]) > 0, "strings.match_display_cap must be a positive number"
 
     # Phase 2f item 9.2: one display name + link per source_id, rendered
     # under each stat page's subheading. Every stat page's feature must
