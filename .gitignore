@@ -37,3 +37,23 @@ atlas/results/phase3b/*_run.log
 # Phase 3c working files (the 3b pattern): candidate artifacts, npz fit stores, chain scripts, run logs
 atlas/results/phase3c/_*
 atlas/results/phase3c/*_run.log
+
+# Nathan's phase briefs (kept locally, not versioned)
+atlas/PHASE*_PROMPT.md
+
+# Phase 3c seed copies, byte-identical to the committed Phase 3b records (PHASE3C.md deviations, B2)
+atlas/results/phase3c/dials_B1_age_cohorts.csv
+atlas/results/phase3c/dials_B2a_race_x_edu.csv
+atlas/results/phase3c/dials_B2b_edu_by_sex.csv
+atlas/results/phase3c/dials_baseline.csv
+atlas/results/phase3c/dials_shipped.csv
+atlas/results/phase3c/pew_lomo_B1_age_cohorts.csv
+atlas/results/phase3c/pew_lomo_B2a_race_x_edu.csv
+atlas/results/phase3c/pew_lomo_B2b_edu_by_sex.csv
+atlas/results/phase3c/pew_lomo_baseline.csv
+atlas/results/phase3c/pew_lomo_shipped.csv
+atlas/results/phase3c/multipliers_samesex_samesex.json
+atlas/results/phase3c/snapshot_m3_2_0.json
+
+# Licence snapshots for counsel: third-party pages, kept locally (MANIFEST.md is committed)
+atlas/docs/decisions/counsel_packet/attachments/*.pdf

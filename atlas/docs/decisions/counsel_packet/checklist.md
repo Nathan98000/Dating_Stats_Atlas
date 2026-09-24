@@ -5,6 +5,10 @@ which records the method) is written. Three things remain, and they're all mecha
 
 ## 1. Save the licence pages as dated PDFs (about 30 minutes)
 
+**Done 24 September 2026** — all 17 are in `attachments/`, three of them marked `NONE-FOUND`
+(BEA, IPEDS, PRRI); `attachments/MANIFEST.md` lists the pages in each file and how each was saved.
+The PDFs stay out of git (third-party pages; the repository is public).
+
 A legal opinion is only good for the terms the lawyer actually read, and terms change. So the
 packet attaches a dated snapshot of each one.
 
