@@ -57,10 +57,13 @@ def test_meta_carries_the_v3_vocabulary(client):
                                     "features": ["pool_balance"]}
     for k in ("match_info", "match_how", "match_how_link", "self_edu_label",
               "self_race_label", "prefer_not_to_say", "about_you_note",
-              "edu_hs_or_less", "edu_graduate"):
+              "edu_hs_or_less", "edu_graduate",
+              # m3.1.0 / m3.2.0: the display cap and the same-sex sentence
+              "match_display_cap", "match_display_cap_token",
+              "match_same_sex_note", "match_same_sex_note_all_fallback"):
         assert m["policy_strings"].get(k), k
     assert "matching" in m["policy_strings"]["slider_info"]
-    assert m["kernel"]["version"] == "kernel_v1"
+    assert m["kernel"]["version"] in ("kernel_v1", "kernel_v2")
     assert m["features"]["rent_1br"]["display_name"] == "Rent"
     assert len(m["features"]["rent_1br"]["band_labels"]) == 5
     assert m["features"]["rent_1br"]["band_direction"] == "good_low"

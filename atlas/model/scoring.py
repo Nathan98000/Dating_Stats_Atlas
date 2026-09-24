@@ -99,7 +99,7 @@ def match_index(build: Build, req: Request) -> dict:
     R = build.reduced_pool[mi, fi, :, tau].astype(np.float64)       # (n, 53, 4, 8)
     S2 = build.reduced_sumw2[mi, fi, :, tau].astype(np.float64)
     age_vec, W = seeker_weights(k, req.self_sex, req.self_age, req.self_edu,
-                                req.self_race)
+                                req.self_race, same_sex=(seek.sex == req.self_sex))
     er = e[:, None] * r[None, :]                                     # (4, 8)
     av = age_vec * a[None, :]                                        # (n, 53)
     Wm = W * er[None, :, :]                                          # (n, 4, 8)
@@ -415,10 +415,23 @@ def match_display(value: float, build: Build) -> tuple[str, bool]:
     return shown, False
 
 
-def _match_block(mt: dict, i: int, build: Build, standing: float | None) -> dict:
+def same_sex_note(build: Build) -> str:
+    """m3.2.0 (Phase 3b B3): the one registry sentence a same-sex search
+    carries in its information box, saying whose pairing patterns the
+    figure is built from — the components fitted on same-sex couples and
+    the ones that fall back to opposite-sex couples."""
+    strings = build.manifest["strings"]
+    ss = build.kernel.same_sex
+    return strings["match_same_sex_note"] if ss is not None and ss.components \
+        else strings["match_same_sex_note_all_fallback"]
+
+
+def _match_block(mt: dict, i: int, build: Build, standing: float | None,
+                 same_sex: bool = False) -> dict:
     """Chances of matching for one ranked metro: the index, its display
-    string (capped by match_display), the (unrendered) margin and its
-    within-query band."""
+    string (capped by match_display), the (unrendered) margin, its
+    within-query band and, for a same-sex search, the registry sentence
+    naming whose patterns it is built from."""
     le = build.legend["match_propensity"]
     v = float(mt["index"][i])
     shown, capped = match_display(v, build) if np.isfinite(v) else (None, False)
@@ -428,6 +441,8 @@ def _match_block(mt: dict, i: int, build: Build, standing: float | None) -> dict
            "capped": capped,
            "moe": round(float(mt["moe"][i]), 2) if np.isfinite(mt["moe"][i]) else None,
            "unit_line": le["unit"]}
+    if same_sex:
+        out["note"] = same_sex_note(build)
     band = _band_from_standing(build, "match_propensity", standing)
     if band:
         out["band"] = band
@@ -505,7 +520,13 @@ def rank(build: Build, req: Request) -> dict:
            # the index is measured against (technical record)
            "match_inputs": {"education": req.self_edu, "race_ethnicity": req.self_race,
                             "national_rate": (round(float(mt["national_rate"]), 6)
-                                              if np.isfinite(mt["national_rate"]) else None)},
+                                              if np.isfinite(mt["national_rate"]) else None),
+                            # m3.2.0: a same-sex search says which components
+                            # come from same-sex couples (the row's note
+                            # carries the sentence)
+                            "same_sex": same_sex,
+                            "same_sex_components": (list(build.kernel.same_sex.components)
+                                                    if same_sex and build.kernel.same_sex else [])},
            "ranked": [], "shown_unranked": [], "suppressed": []}
 
     ridx = np.where(ranked)[0]
@@ -579,7 +600,7 @@ def rank(build: Build, req: Request) -> dict:
                 "balance": _balance_block(build, i, bal, sought_word,
                                           seeker_word),
                 "match": _match_block(mt, i, build, float(standing[k, feats.index(
-                    next(f for f in feats if f["id"] == "match_propensity"))])),
+                    next(f for f in feats if f["id"] == "match_propensity"))]), same_sex),
                 "allocation_purity": round(float(build.purity[i]), 3),
                 "flags": _row_flags(build, i),
                 "stats": stats,

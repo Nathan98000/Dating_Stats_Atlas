@@ -45,3 +45,21 @@ test("an uncapped search computes the chances-of-matching difference as before",
   await expect(table).not.toContainText("250+");
   await expect(table.locator('[data-diff-for="match_propensity"]')).toHaveText(/^[+−]\d+$|^0$/);
 });
+
+test("a same-sex search says in the information box whose pairing patterns the figure is built from", async ({ page }) => {
+  await page.goto("/?self_sex=male&self_age=31&sex=male&age=27-38&marital=never");
+  const first = page.getByTestId("ranked-list").locator("li").first();
+  await expect(first).toBeVisible();
+  await first.getByTestId("match-info").focus();
+  const note = first.getByTestId("match-info-note");
+  await expect(note).toBeVisible();
+  await expect(note.getByTestId("match-same-sex-note")).toContainText(/For a same-sex search/);
+  await expect(note.getByTestId("match-same-sex-note")).toContainText(/opposite-sex couples/);
+  // an opposite-sex search carries no such sentence
+  await page.goto("/?self_sex=male&self_age=31&age=27-38&marital=never");
+  const row = page.getByTestId("ranked-list").locator("li").first();
+  await expect(row).toBeVisible();
+  await row.getByTestId("match-info").focus();
+  await expect(row.getByTestId("match-info-note")).toBeVisible();
+  await expect(row.getByTestId("match-same-sex-note")).toHaveCount(0);
+});

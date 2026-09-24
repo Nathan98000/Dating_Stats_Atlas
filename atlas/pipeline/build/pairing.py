@@ -322,6 +322,11 @@ KERNEL_UNIVERSE = ("NOT same_sex AND age_s BETWEEN 18 AND 70 "
                    "AND NOT (married AND union_year IS NULL)")
 
 
+# Phase 3b (m3.2.0, B3): the same-sex couples the kernel fit excluded,
+# at the same grain, so same-sex pairing terms can be fitted from them
+SAME_SEX_UNIVERSE = KERNEL_UNIVERSE.replace("NOT same_sex", "same_sex", 1)
+
+
 def _agg_cols(wt: str, replicates: bool) -> str:
     cols = [f"sum(pwgtp * a_eff * {wt}) AS w",
             f"sum(a_eff * {wt}) AS n_alloc",
@@ -333,14 +338,14 @@ def _agg_cols(wt: str, replicates: bool) -> str:
 
 
 def national_table(con, sample: str, spec: tuple[str, str] | None = None,
-                   replicates: bool = True) -> pd.DataFrame:
+                   replicates: bool = True, universe: str = KERNEL_UNIVERSE) -> pd.DataFrame:
     """The national couple table at the kernel grain for one sample."""
     where, wt = spec or SAMPLES[sample]
     df = con.execute(f"""
 SELECT sex_s, age_s, edu_s, race_s, age_c, edu_c, race_c,
        {_agg_cols(wt, replicates)}
 FROM couples
-WHERE {KERNEL_UNIVERSE} AND ({where})
+WHERE {universe} AND ({where})
 GROUP BY 1, 2, 3, 4, 5, 6, 7
 """).df()
     df["sex_s"] = df["sex_s"].map({1: "male", 2: "female"})
@@ -348,7 +353,8 @@ GROUP BY 1, 2, 3, 4, 5, 6, 7
     return df
 
 
-def metro_table(con, sample: str, spec: tuple[str, str] | None = None) -> pd.DataFrame:
+def metro_table(con, sample: str, spec: tuple[str, str] | None = None,
+                universe: str = KERNEL_UNIVERSE) -> pd.DataFrame:
     """The same grain by metro, no replicates, with a split-half `fold`
     keyed on the household serial (both sides of a couple land in the
     same half) for the leave-one-metro-out dial test."""
@@ -357,7 +363,7 @@ def metro_table(con, sample: str, spec: tuple[str, str] | None = None) -> pd.Dat
 SELECT cbsa, hash(serialno) % 2 AS fold, sex_s, age_s, edu_s, race_s, age_c, edu_c, race_c,
        {_agg_cols(wt, False)}
 FROM couples
-WHERE {KERNEL_UNIVERSE} AND ({where})
+WHERE {universe} AND ({where})
 GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
 """).df()
     df["fold"] = df["fold"].astype(int)
@@ -455,9 +461,45 @@ def build_couple_tables(samples: dict[str, tuple[str, str]] | None = None,
     return report
 
 
+def build_same_sex_tables(sample: str = "decay_h5") -> dict:
+    """Phase 3b B3: the same-sex couple tables (national with replicates,
+    metro with the household fold) for one fitting sample, written as
+    couple_table_{national,metro}_samesex_<sample>.parquet. The spec is
+    the sample's own (the decay weights apply to married same-sex unions
+    exactly as to married opposite-sex ones)."""
+    con = open_pool()
+    con.execute("SET enable_progress_bar=false")
+    spec = decay_sample(float(sample[len("decay_h"):])) if sample.startswith("decay_h") else SAMPLES[sample]
+    t0 = time.time()
+    nat = national_table(con, sample, spec, universe=SAME_SEX_UNIVERSE)
+    nat.to_parquet(DATA / f"couple_table_national_samesex_{sample}.parquet", index=False)
+    met = metro_table(con, sample, spec, universe=SAME_SEX_UNIVERSE)
+    met.to_parquet(DATA / f"couple_table_metro_samesex_{sample}.parquet", index=False)
+    con.close()
+    w = nat["w"].to_numpy(); s2 = nat["sumw2"].to_numpy()
+    rec = {"sample": sample, "where": spec[0], "weight": spec[1], "universe": SAME_SEX_UNIVERSE,
+           "national_cells": int(len(nat)), "couple_sides_rows": int(nat["n_rows"].sum()),
+           "n_alloc": round(float(nat["n_alloc"].sum()), 1),
+           "n_kish": round(float(w.sum() ** 2 / s2.sum()), 1),
+           "weighted_sides": round(float(w.sum()), 1),
+           "by_sex": {sex: {"rows": int(g["n_rows"].sum()), "n_alloc": round(float(g["n_alloc"].sum()), 1),
+                            "n_kish": round(float(g["w"].sum() ** 2 / g["sumw2"].sum()), 1)}
+                      for sex, g in nat.groupby("sex_s")},
+           "metros_with_couples": int(met["cbsa"].nunique()),
+           "seconds": round(time.time() - t0, 1)}
+    path = P3 / "couple_table_report.json"
+    report = json.loads(path.read_text()) if path.exists() else {}
+    report.setdefault("same_sex_samples", {})[sample] = rec
+    path.write_text(json.dumps(report, indent=2, default=str) + "\n")
+    print(json.dumps(rec, indent=1))
+    return rec
+
+
 if __name__ == "__main__":
     import sys
     if sys.argv[1:] == ["couples"]:
         build_couple_tables()
+    elif sys.argv[1:2] == ["samesex"]:
+        build_same_sex_tables(sys.argv[2] if len(sys.argv) > 2 else "decay_h5")
     else:
         build()

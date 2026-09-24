@@ -1,0 +1,139 @@
+{
+ "build": "ae1efbef9f0e",
+ "searches": 468,
+ "forms": {
+  "shipped_final": {
+   "searches": 467,
+   "median_of_median_abs_change_pts": 2.31,
+   "p90_of_median_abs_change_pts": 6.1,
+   "largest_median_abs_change_pts": 16.46,
+   "searches_where_top1_changes": 53,
+   "min_kendall_tau_index": 0.547,
+   "median_kendall_tau_index": 0.941,
+   "min_top10_score_overlap": 4,
+   "personas_median_abs_change_pts": 1.24,
+   "most_affected": [
+    {
+     "search": "female:50:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 16.46,
+     "p90_abs_change_pts": 31.21,
+     "max_abs_change_pts": 209.42,
+     "kendall_tau_index": 0.781,
+     "top_by_index_before": "Honolulu, HI | San Jose, CA | San Francisco, CA",
+     "top_by_index_after": "Honolulu, HI | San Jose, CA | Anchorage, AK",
+     "top1_changes": false,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "female:40:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 14.94,
+     "p90_abs_change_pts": 27.53,
+     "max_abs_change_pts": 130.06,
+     "kendall_tau_index": 0.795,
+     "top_by_index_before": "San Jose, CA | Honolulu, HI | Stockton, CA",
+     "top_by_index_after": "Honolulu, HI | San Jose, CA | San Francisco, CA",
+     "top1_changes": true,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "female:35:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 13.95,
+     "p90_abs_change_pts": 24.94,
+     "max_abs_change_pts": 116.15,
+     "kendall_tau_index": 0.821,
+     "top_by_index_before": "San Jose, CA | Honolulu, HI | Stockton, CA",
+     "top_by_index_after": "Honolulu, HI | San Jose, CA | Stockton, CA",
+     "top1_changes": true,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "female:30:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 12.93,
+     "p90_abs_change_pts": 24.32,
+     "max_abs_change_pts": 112.33,
+     "kendall_tau_index": 0.815,
+     "top_by_index_before": "San Jose, CA | Stockton, CA | Honolulu, HI",
+     "top_by_index_after": "Stockton, CA | Honolulu, HI | San Jose, CA",
+     "top1_changes": true,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "female:25:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 11.25,
+     "p90_abs_change_pts": 23.56,
+     "max_abs_change_pts": 98.93,
+     "kendall_tau_index": 0.822,
+     "top_by_index_before": "San Jose, CA | Stockton, CA | Honolulu, HI",
+     "top_by_index_after": "San Jose, CA | Honolulu, HI | Stockton, CA",
+     "top1_changes": false,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "male:40:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 10.96,
+     "p90_abs_change_pts": 23.26,
+     "max_abs_change_pts": 235.64,
+     "kendall_tau_index": 0.846,
+     "top_by_index_before": "Manchester, NH | San Jose, CA | San Francisco, CA",
+     "top_by_index_after": "Manchester, NH | San Jose, CA | Honolulu, HI",
+     "top1_changes": false,
+     "top10_score_overlap": 10
+    },
+    {
+     "search": "male:35:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 10.55,
+     "p90_abs_change_pts": 21.33,
+     "max_abs_change_pts": 144.15,
+     "kendall_tau_index": 0.839,
+     "top_by_index_before": "San Jose, CA | Honolulu, HI | San Francisco, CA",
+     "top_by_index_after": "Honolulu, HI | San Jose, CA | Stockton, CA",
+     "top1_changes": true,
+     "top10_score_overlap": 10
+    },
+    {
+     "search": "female:50:edu=hs_or_less:race=hispanic",
+     "metros": 193,
+     "median_abs_change_pts": 10.27,
+     "p90_abs_change_pts": 19.5,
+     "max_abs_change_pts": 54.36,
+     "kendall_tau_index": 0.925,
+     "top_by_index_before": "McAllen, TX | Brownsville, TX | Laredo, TX",
+     "top_by_index_after": "McAllen, TX | Brownsville, TX | Laredo, TX",
+     "top1_changes": false,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "male:50:edu=hs_or_less:race=nh_asian",
+     "metros": 193,
+     "median_abs_change_pts": 9.42,
+     "p90_abs_change_pts": 22.74,
+     "max_abs_change_pts": 150.6,
+     "kendall_tau_index": 0.846,
+     "top_by_index_before": "San Jose, CA | Honolulu, HI | San Francisco, CA",
+     "top_by_index_after": "San Jose, CA | Honolulu, HI | San Francisco, CA",
+     "top1_changes": false,
+     "top10_score_overlap": 9
+    },
+    {
+     "search": "female:25:edu=graduate:race=hispanic",
+     "metros": 193,
+     "median_abs_change_pts": 9.08,
+     "p90_abs_change_pts": 16.24,
+     "max_abs_change_pts": 43.16,
+     "kendall_tau_index": 0.868,
+     "top_by_index_before": "McAllen, TX | Brownsville, TX | El Paso, TX",
+     "top_by_index_after": "McAllen, TX | Brownsville, TX | El Paso, TX",
+     "top1_changes": false,
+     "top10_score_overlap": 10
+    }
+   ]
+  }
+ }
+}

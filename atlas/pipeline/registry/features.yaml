@@ -194,6 +194,22 @@ strings:
   # figure.
   match_display_cap: "250"
   match_display_cap_token: "+"
+  # m3.2.0 (Phase 3b, B3): the one sentence a same-sex search carries in
+  # its information box, saying whose pairing patterns the figure is
+  # built from. The API serves the first when the shipped kernel carries
+  # same-sex terms (naming which components they cover) and the second
+  # when every component falls back to opposite-sex couples.
+  match_same_sex_note: >-
+    For a same-sex search the age gaps come from same-sex couples in the
+    same survey; the education pairings and the racial and ethnic
+    pairings are borrowed from opposite-sex couples, because the same-sex
+    couples in the survey do not support a dependable measure of them on
+    their own.
+  match_same_sex_note_all_fallback: >-
+    For a same-sex search the age gaps, the education pairings and the
+    racial and ethnic pairings all come from opposite-sex couples, because
+    same-sex couples in the survey are too few to measure them on their
+    own.
   # the two optional "about you" inputs (m3.0.0): labels, the one-line
   # note saying why they are asked and that they are optional, the
   # unset option and the four education levels

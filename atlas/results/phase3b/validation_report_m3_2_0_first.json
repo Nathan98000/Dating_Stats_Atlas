@@ -1,0 +1,1037 @@
+{
+  "build": "f20cb02c3af8",
+  "model_version": "m3.2.0",
+  "generated_by": {
+    "git_sha": "228d4a52529e0795734a6e03bb4a93b58396df44",
+    "git_dirty": true,
+    "generated_at": "2026-09-24T00:35:33-0400",
+    "engine_model_version": "m3.2.0"
+  },
+  "hard": {
+    "interval_calibration": {
+      "pass": true,
+      "coverage": 0.9748124330117899,
+      "median_overstatement": 0.23445634203099097,
+      "p90_overstatement": 0.5154745629811875,
+      "option1_two_sided_p90_rel_err": 0.2360204357415346,
+      "gates": {
+        "coverage_min": 0.95,
+        "median_overstatement_max": 0.25
+      },
+      "mechanism": "one_sided_calibrated_bound (Gate 0 Option 2)",
+      "copy_rule": "margins read 'at least this wide', never plus-or-minus"
+    },
+    "suppression_reasons_and_intervals": {
+      "pass": true,
+      "allowed_reasons": [
+        "empty_pool",
+        "n_below_100"
+      ]
+    },
+    "cube_vs_sql_differential": {
+      "pass": true,
+      "shapes": 40,
+      "seed": 2026,
+      "tolerance": 0.001,
+      "worst_rel_err": 1.98e-07,
+      "worst_detail": null
+    },
+    "rank_stability": {
+      "pass": true,
+      "per_persona": {
+        "A_woman32_ba_men_75k": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.83,
+          "match_index_replicate_sd_p90": 4.28,
+          "match_index_p10_p90_spread": 18.8,
+          "score_gap_rank10_to_rank11": 0.4,
+          "score_span_ranks_7_to_14": 4.5
+        },
+        "B_man28_women_never": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.16,
+          "match_index_replicate_sd_p90": 3.45,
+          "match_index_p10_p90_spread": 26.0,
+          "score_gap_rank10_to_rank11": 1.0,
+          "score_span_ranks_7_to_14": 6.6
+        },
+        "C_woman38_grad_men_100k": {
+          "share_replicates_with_>=8of10_overlap": 0.925,
+          "match_index_replicate_sd_median": 3.33,
+          "match_index_replicate_sd_p90": 5.2,
+          "match_index_p10_p90_spread": 12.8,
+          "score_gap_rank10_to_rank11": 0.5,
+          "score_span_ranks_7_to_14": 7.7
+        },
+        "D_man41_women_50k": {
+          "share_replicates_with_>=8of10_overlap": 0.8,
+          "match_index_replicate_sd_median": 4.11,
+          "match_index_replicate_sd_p90": 6.51,
+          "match_index_p10_p90_spread": 23.4,
+          "score_gap_rank10_to_rank11": 0.2,
+          "score_span_ranks_7_to_14": 1.1
+        },
+        "E_black_woman29_stress": {
+          "skipped": "only 4 ranked"
+        },
+        "race_asian_nh_men": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.9,
+          "match_index_replicate_sd_p90": 4.9,
+          "match_index_p10_p90_spread": 21.7,
+          "score_gap_rank10_to_rank11": 4.1,
+          "score_span_ranks_7_to_14": 9.5
+        },
+        "race_hispanic_women": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.79,
+          "match_index_replicate_sd_p90": 4.42,
+          "match_index_p10_p90_spread": 10.6,
+          "score_gap_rank10_to_rank11": 1.6,
+          "score_span_ranks_7_to_14": 9.3
+        },
+        "race_white_nh_grad_multi": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 4.02,
+          "match_index_replicate_sd_p90": 5.89,
+          "match_index_p10_p90_spread": 15.6,
+          "score_gap_rank10_to_rank11": 0.7,
+          "score_span_ranks_7_to_14": 11.3
+        },
+        "below_bar_nhpi_250k": {
+          "skipped": "only 0 ranked"
+        },
+        "race_two_or_more_and_other": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 4.42,
+          "match_index_replicate_sd_p90": 6.79,
+          "match_index_p10_p90_spread": 20.2,
+          "score_gap_rank10_to_rank11": 2.5,
+          "score_span_ranks_7_to_14": 8.7
+        },
+        "broad_any": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.75,
+          "match_index_replicate_sd_p90": 4.17,
+          "match_index_p10_p90_spread": 29.0,
+          "score_gap_rank10_to_rank11": 0.3,
+          "score_span_ranks_7_to_14": 4.8
+        },
+        "slider_all_match": {
+          "share_replicates_with_>=8of10_overlap": 0.95,
+          "match_index_replicate_sd_median": 1.95,
+          "match_index_replicate_sd_p90": 3.01,
+          "match_index_p10_p90_spread": 16.9,
+          "score_gap_rank10_to_rank11": 0.7,
+          "score_span_ranks_7_to_14": 4.1
+        },
+        "slider_alias_pool_vs_balance": {
+          "share_replicates_with_>=8of10_overlap": 0.95,
+          "match_index_replicate_sd_median": 1.95,
+          "match_index_replicate_sd_p90": 3.01,
+          "match_index_p10_p90_spread": 16.9,
+          "score_gap_rank10_to_rank11": 0.7,
+          "score_span_ranks_7_to_14": 4.1
+        },
+        "self_edu_and_race": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 7.88,
+          "match_index_replicate_sd_p90": 18.11,
+          "match_index_p10_p90_spread": 90.6,
+          "score_gap_rank10_to_rank11": 0.2,
+          "score_span_ranks_7_to_14": 3.7
+        },
+        "self_edu_only_hs": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.96,
+          "match_index_replicate_sd_p90": 4.62,
+          "match_index_p10_p90_spread": 35.2,
+          "score_gap_rank10_to_rank11": 1.1,
+          "score_span_ranks_7_to_14": 5.1
+        },
+        "importance_controls": {
+          "share_replicates_with_>=8of10_overlap": 0.975,
+          "match_index_replicate_sd_median": 2.69,
+          "match_index_replicate_sd_p90": 4.04,
+          "match_index_p10_p90_spread": 16.8,
+          "score_gap_rank10_to_rank11": 0.7,
+          "score_span_ranks_7_to_14": 3.3
+        },
+        "importance_lifestyle_alias": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 2.78,
+          "match_index_replicate_sd_p90": 4.53,
+          "match_index_p10_p90_spread": 28.1,
+          "score_gap_rank10_to_rank11": 0.3,
+          "score_span_ranks_7_to_14": 6.8
+        },
+        "same_sex_pool": {
+          "share_replicates_with_>=8of10_overlap": 1.0,
+          "match_index_replicate_sd_median": 1.71,
+          "match_index_replicate_sd_p90": 2.64,
+          "match_index_p10_p90_spread": 9.9,
+          "score_gap_rank10_to_rank11": 1.0,
+          "score_span_ranks_7_to_14": 6.9
+        }
+      },
+      "gate": ">= 8/10 overlap in >= 80% of replicates"
+    },
+    "explanation_invariants": {
+      "pass": true,
+      "explanations_checked": 2065,
+      "problems": []
+    },
+    "kernel_face_validity": {
+      "peak_age_at_30": {
+        "male": 30,
+        "female": 30
+      },
+      "edu_rows_diagonal_dominant": {
+        "male": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "female": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "race_rows_diagonal_max": {
+        "male": {
+          "hispanic": true,
+          "nh_white": true,
+          "nh_black": true,
+          "nh_asian": true,
+          "nh_aian": true,
+          "nh_nhpi": true,
+          "nh_twoplus": true,
+          "nh_other": true
+        },
+        "female": {
+          "hispanic": true,
+          "nh_white": true,
+          "nh_black": true,
+          "nh_asian": true,
+          "nh_aian": true,
+          "nh_nhpi": true,
+          "nh_twoplus": true,
+          "nh_other": true
+        }
+      },
+      "same_sex_terms": {
+        "components": [
+          "age"
+        ],
+        "peak_age_at_30_male": 30,
+        "peak_age_at_30_female": 30
+      },
+      "pass": true
+    },
+    "adversarial_artifacts": {
+      "pass": true,
+      "watchlist": [
+        "11180",
+        "11200",
+        "22380",
+        "25260",
+        "27060",
+        "27340",
+        "31900",
+        "33140",
+        "44300",
+        "47220"
+      ],
+      "top10_appearances": [],
+      "rule": "a watchlist metro in a top-10 fails if > 15% of that persona's pool there is noninstitutional GQ"
+    },
+    "pleasant_days_sanity": {
+      "pass": true,
+      "max_pleasant_days": 336.2,
+      "no_metro_at_365": true,
+      "rain_term_only_removes": true,
+      "median_days_removed_by_rain": 35.3,
+      "max_days_removed_by_rain": [
+        "27740",
+        52.4
+      ],
+      "removed_vs_rainy_days_spearman": 0.809,
+      "wettest_by_rain_days": [
+        "31020",
+        57
+      ],
+      "wettest_by_inches": [
+        "19300",
+        106
+      ],
+      "coldest_metro": "21820",
+      "coldest_rank_of_n": [
+        373,
+        387
+      ],
+      "coldest_in_bottom_decile": true,
+      "metros_with_value": 387
+    },
+    "crime_consistency": {
+      "pass": true,
+      "crime_in_scored_set": [],
+      "metros_with_figures": 386,
+      "metros_above_floor": 372,
+      "coverage_in_unit_interval": true,
+      "violent_ge_property_metros": []
+    }
+  },
+  "soft": {
+    "face_validity": {
+      "note": "reviewed by hand each build; every result must be explainable from its attribution",
+      "rows": [
+        {
+          "persona": "A_woman32_ba_men_75k",
+          "cbsa": "14460",
+          "rank": 1,
+          "score": 64.9,
+          "pool": 54256,
+          "pool_moe": 2499,
+          "n_unweighted": 1423,
+          "balance": "108 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "A_woman32_ba_men_75k",
+          "cbsa": "41860",
+          "rank": 2,
+          "score": 64.1,
+          "pool": 74521,
+          "pool_moe": 2883,
+          "n_unweighted": 1867,
+          "balance": "121 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "A_woman32_ba_men_75k",
+          "cbsa": "35620",
+          "rank": 3,
+          "score": 61.0,
+          "pool": 190165,
+          "pool_moe": 5174,
+          "n_unweighted": 3904,
+          "balance": "107 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Your chances of matching counts against it",
+          "flags": []
+        },
+        {
+          "persona": "B_man28_women_never",
+          "cbsa": "41860",
+          "rank": 1,
+          "score": 76.3,
+          "pool": 191371,
+          "pool_moe": 4493,
+          "n_unweighted": 4692,
+          "balance": "84 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "B_man28_women_never",
+          "cbsa": "14460",
+          "rank": 2,
+          "score": 76.2,
+          "pool": 213152,
+          "pool_moe": 4773,
+          "n_unweighted": 5158,
+          "balance": "89 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "B_man28_women_never",
+          "cbsa": "35620",
+          "rank": 3,
+          "score": 74.2,
+          "pool": 841132,
+          "pool_moe": 10170,
+          "n_unweighted": 16873,
+          "balance": "92 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "C_woman38_grad_men_100k",
+          "cbsa": "42660",
+          "rank": 1,
+          "score": 65.5,
+          "pool": 27462,
+          "pool_moe": 1884,
+          "n_unweighted": 692,
+          "balance": "114 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, the size of the pool, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "C_woman38_grad_men_100k",
+          "cbsa": "14460",
+          "rank": 2,
+          "score": 64.8,
+          "pool": 28926,
+          "pool_moe": 1998,
+          "n_unweighted": 665,
+          "balance": "93 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "C_woman38_grad_men_100k",
+          "cbsa": "35620",
+          "rank": 3,
+          "score": 63.0,
+          "pool": 106615,
+          "pool_moe": 4024,
+          "n_unweighted": 2178,
+          "balance": "96 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Your chances of matching counts against it",
+          "flags": []
+        },
+        {
+          "persona": "D_man41_women_50k",
+          "cbsa": "38900",
+          "rank": 1,
+          "score": 67.6,
+          "pool": 49863,
+          "pool_moe": 2340,
+          "n_unweighted": 1197,
+          "balance": "88 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "D_man41_women_50k",
+          "cbsa": "14460",
+          "rank": 2,
+          "score": 65.6,
+          "pool": 96612,
+          "pool_moe": 3299,
+          "n_unweighted": 2411,
+          "balance": "100 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Rent counts against it",
+          "flags": []
+        },
+        {
+          "persona": "D_man41_women_50k",
+          "cbsa": "41740",
+          "rank": 3,
+          "score": 63.9,
+          "pool": 60313,
+          "pool_moe": 2801,
+          "n_unweighted": 1304,
+          "balance": "84 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, your chances of matching",
+          "flags": []
+        },
+        {
+          "persona": "E_black_woman29_stress",
+          "cbsa": "35620",
+          "rank": 1,
+          "score": 70.0,
+          "pool": 17763,
+          "pool_moe": 1806,
+          "n_unweighted": 308,
+          "balance": "108 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out, your chances of matching",
+          "flags": []
+        },
+        {
+          "persona": "E_black_woman29_stress",
+          "cbsa": "12060",
+          "rank": 2,
+          "score": 49.7,
+          "pool": 8696,
+          "pool_moe": 1393,
+          "n_unweighted": 116,
+          "balance": "100 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching \u00b7 The size of the pool counts against it",
+          "flags": []
+        },
+        {
+          "persona": "E_black_woman29_stress",
+          "cbsa": "47900",
+          "rank": 3,
+          "score": 47.1,
+          "pool": 15012,
+          "pool_moe": 1644,
+          "n_unweighted": 241,
+          "balance": "107 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool \u00b7 Places to go out counts against it",
+          "flags": []
+        },
+        {
+          "persona": "race_asian_nh_men",
+          "cbsa": "41940",
+          "rank": 1,
+          "score": 75.1,
+          "pool": 33719,
+          "pool_moe": 1725,
+          "n_unweighted": 884,
+          "balance": "147 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, the size of the pool, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "race_asian_nh_men",
+          "cbsa": "35620",
+          "rank": 2,
+          "score": 66.7,
+          "pool": 76828,
+          "pool_moe": 2851,
+          "n_unweighted": 1846,
+          "balance": "108 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "race_asian_nh_men",
+          "cbsa": "31080",
+          "rank": 3,
+          "score": 62.1,
+          "pool": 68001,
+          "pool_moe": 2382,
+          "n_unweighted": 2129,
+          "balance": "113 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Your chances of matching counts against it",
+          "flags": []
+        },
+        {
+          "persona": "race_hispanic_women",
+          "cbsa": "35620",
+          "rank": 1,
+          "score": 73.3,
+          "pool": 259489,
+          "pool_moe": 5822,
+          "n_unweighted": 5134,
+          "balance": "90 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "race_hispanic_women",
+          "cbsa": "31080",
+          "rank": 2,
+          "score": 72.2,
+          "pool": 338044,
+          "pool_moe": 5541,
+          "n_unweighted": 9160,
+          "balance": "85 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Rent counts against it",
+          "flags": []
+        },
+        {
+          "persona": "race_hispanic_women",
+          "cbsa": "41860",
+          "rank": 3,
+          "score": 69.0,
+          "pool": 53996,
+          "pool_moe": 2466,
+          "n_unweighted": 1314,
+          "balance": "82 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "race_white_nh_grad_multi",
+          "cbsa": "31080",
+          "rank": 1,
+          "score": 63.9,
+          "pool": 33343,
+          "pool_moe": 2040,
+          "n_unweighted": 890,
+          "balance": "95 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Your chances of matching counts against it",
+          "flags": []
+        },
+        {
+          "persona": "race_white_nh_grad_multi",
+          "cbsa": "16980",
+          "rank": 2,
+          "score": 63.1,
+          "pool": 22754,
+          "pool_moe": 1732,
+          "n_unweighted": 579,
+          "balance": "92 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching \u00b7 Everyday prices counts against it",
+          "flags": []
+        },
+        {
+          "persona": "race_white_nh_grad_multi",
+          "cbsa": "41860",
+          "rank": 3,
+          "score": 62.9,
+          "pool": 21227,
+          "pool_moe": 1574,
+          "n_unweighted": 575,
+          "balance": "100 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "race_two_or_more_and_other",
+          "cbsa": "31080",
+          "rank": 1,
+          "score": 78.3,
+          "pool": 40363,
+          "pool_moe": 2355,
+          "n_unweighted": 965,
+          "balance": "118 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "race_two_or_more_and_other",
+          "cbsa": "41860",
+          "rank": 2,
+          "score": 71.8,
+          "pool": 21663,
+          "pool_moe": 1764,
+          "n_unweighted": 466,
+          "balance": "123 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, the size of the pool, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "race_two_or_more_and_other",
+          "cbsa": "35620",
+          "rank": 3,
+          "score": 68.6,
+          "pool": 51018,
+          "pool_moe": 2801,
+          "n_unweighted": 1107,
+          "balance": "112 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "broad_any",
+          "cbsa": "31080",
+          "rank": 1,
+          "score": 81.4,
+          "pool": 2468698,
+          "pool_moe": 13604,
+          "n_unweighted": 67239,
+          "balance": "102 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "broad_any",
+          "cbsa": "41860",
+          "rank": 2,
+          "score": 76.5,
+          "pool": 789018,
+          "pool_moe": 8055,
+          "n_unweighted": 19963,
+          "balance": "97 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "broad_any",
+          "cbsa": "35620",
+          "rank": 3,
+          "score": 76.0,
+          "pool": 3653520,
+          "pool_moe": 18480,
+          "n_unweighted": 77388,
+          "balance": "110 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "slider_all_match",
+          "cbsa": "14500",
+          "rank": 1,
+          "score": 82.6,
+          "pool": 15135,
+          "pool_moe": 1026,
+          "n_unweighted": 568,
+          "balance": "136 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, walkable neighbourhoods, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "slider_all_match",
+          "cbsa": "35380",
+          "rank": 2,
+          "score": 82.6,
+          "pool": 43989,
+          "pool_moe": 2362,
+          "n_unweighted": 810,
+          "balance": "90 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, places to go out, the weather",
+          "flags": []
+        },
+        {
+          "persona": "slider_all_match",
+          "cbsa": "31540",
+          "rank": 3,
+          "score": 82.2,
+          "pool": 30463,
+          "pool_moe": 2235,
+          "n_unweighted": 447,
+          "balance": "129 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, places to go out \u00b7 The weather counts against it",
+          "flags": []
+        },
+        {
+          "persona": "slider_alias_pool_vs_balance",
+          "cbsa": "14500",
+          "rank": 1,
+          "score": 82.6,
+          "pool": 15135,
+          "pool_moe": 1026,
+          "n_unweighted": 568,
+          "balance": "136 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, walkable neighbourhoods, places to go out",
+          "flags": []
+        },
+        {
+          "persona": "slider_alias_pool_vs_balance",
+          "cbsa": "35380",
+          "rank": 2,
+          "score": 82.6,
+          "pool": 43989,
+          "pool_moe": 2362,
+          "n_unweighted": 810,
+          "balance": "90 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, places to go out, the weather",
+          "flags": []
+        },
+        {
+          "persona": "slider_alias_pool_vs_balance",
+          "cbsa": "31540",
+          "rank": 3,
+          "score": 82.2,
+          "pool": 30463,
+          "pool_moe": 2235,
+          "n_unweighted": 447,
+          "balance": "129 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, places to go out \u00b7 The weather counts against it",
+          "flags": []
+        },
+        {
+          "persona": "self_edu_and_race",
+          "cbsa": "31080",
+          "rank": 1,
+          "score": 81.2,
+          "pool": 691040,
+          "pool_moe": 8073,
+          "n_unweighted": 17609,
+          "balance": "88 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "self_edu_and_race",
+          "cbsa": "35620",
+          "rank": 2,
+          "score": 80.0,
+          "pool": 944076,
+          "pool_moe": 10455,
+          "n_unweighted": 19268,
+          "balance": "93 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "self_edu_and_race",
+          "cbsa": "41860",
+          "rank": 3,
+          "score": 77.5,
+          "pool": 225562,
+          "pool_moe": 4793,
+          "n_unweighted": 5398,
+          "balance": "85 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "self_edu_only_hs",
+          "cbsa": "26420",
+          "rank": 1,
+          "score": 70.8,
+          "pool": 374306,
+          "pool_moe": 7598,
+          "n_unweighted": 5857,
+          "balance": "116 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, the weather",
+          "flags": []
+        },
+        {
+          "persona": "self_edu_only_hs",
+          "cbsa": "33100",
+          "rank": 2,
+          "score": 68.7,
+          "pool": 336632,
+          "pool_moe": 6696,
+          "n_unweighted": 6318,
+          "balance": "117 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "self_edu_only_hs",
+          "cbsa": "41700",
+          "rank": 3,
+          "score": 68.5,
+          "pool": 140409,
+          "pool_moe": 4491,
+          "n_unweighted": 2399,
+          "balance": "126 men per 100 women",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, everyday prices",
+          "flags": []
+        },
+        {
+          "persona": "importance_controls",
+          "cbsa": "35380",
+          "rank": 1,
+          "score": 77.6,
+          "pool": 56154,
+          "pool_moe": 2622,
+          "n_unweighted": 1040,
+          "balance": "89 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, the size of the pool, everyday prices",
+          "flags": []
+        },
+        {
+          "persona": "importance_controls",
+          "cbsa": "12940",
+          "rank": 2,
+          "score": 75.0,
+          "pool": 40062,
+          "pool_moe": 2574,
+          "n_unweighted": 574,
+          "balance": "95 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, rent, everyday prices",
+          "flags": []
+        },
+        {
+          "persona": "importance_controls",
+          "cbsa": "29180",
+          "rank": 3,
+          "score": 74.6,
+          "pool": 20193,
+          "pool_moe": 1733,
+          "n_unweighted": 313,
+          "balance": "102 men per 100 women",
+          "top_pillar": "match",
+          "explanation": "Biggest pluses: your chances of matching, rent, everyday prices",
+          "flags": []
+        },
+        {
+          "persona": "importance_lifestyle_alias",
+          "cbsa": "31080",
+          "rank": 1,
+          "score": 75.7,
+          "pool": 616561,
+          "pool_moe": 7680,
+          "n_unweighted": 15734,
+          "balance": "88 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, the weather, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "importance_lifestyle_alias",
+          "cbsa": "41860",
+          "rank": 2,
+          "score": 75.7,
+          "pool": 197477,
+          "pool_moe": 4516,
+          "n_unweighted": 4741,
+          "balance": "84 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, the weather",
+          "flags": []
+        },
+        {
+          "persona": "importance_lifestyle_alias",
+          "cbsa": "14460",
+          "rank": 3,
+          "score": 73.2,
+          "pool": 192951,
+          "pool_moe": 4575,
+          "n_unweighted": 4537,
+          "balance": "93 women per 100 men",
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "same_sex_pool",
+          "cbsa": "41860",
+          "rank": 1,
+          "score": 77.8,
+          "pool": 139487,
+          "pool_moe": 3795,
+          "n_unweighted": 3633,
+          "balance": null,
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "same_sex_pool",
+          "cbsa": "31080",
+          "rank": 2,
+          "score": 77.5,
+          "pool": 283863,
+          "pool_moe": 5488,
+          "n_unweighted": 7421,
+          "balance": null,
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, walkable neighbourhoods",
+          "flags": []
+        },
+        {
+          "persona": "same_sex_pool",
+          "cbsa": "42660",
+          "rank": 3,
+          "score": 73.1,
+          "pool": 96485,
+          "pool_moe": 3438,
+          "n_unweighted": 2251,
+          "balance": null,
+          "top_pillar": "pool",
+          "explanation": "Biggest pluses: the size of the pool, your chances of matching, places to go out",
+          "flags": []
+        }
+      ]
+    },
+    "weight_sensitivity": {
+      "kendall_tau": {
+        "pool+20%": 0.9201,
+        "pool-20%": 0.931,
+        "match+20%": 0.9322,
+        "match-20%": 0.9189,
+        "reach+20%": 0.948,
+        "reach-20%": 0.948,
+        "cost+20%": 0.9601,
+        "cost-20%": 0.9661,
+        "weather+20%": 0.9843,
+        "weather-20%": 0.9782,
+        "students+20%": 0.9915,
+        "students-20%": 0.9782
+      },
+      "target": 0.85,
+      "default_weights": {
+        "pool": 0.3,
+        "match": 0.25,
+        "reach": 0.2,
+        "cost": 0.15,
+        "weather": 0.06,
+        "students": 0.04
+      },
+      "note": "six pillars since m2.1.0. Read tau AGAINST the weight: students (0.04) and weather (0.06) clear the bar largely because \u00b120% of a small weight moves few ranks \u2014 that is arithmetic, not robustness, and is reported as such.",
+      "pass": true
+    },
+    "external_correlation": {
+      "n_metros": 193,
+      "correlations": {
+        "score_vs_alone_share": {
+          "n": 193,
+          "pearson": -0.029,
+          "spearman": -0.028
+        },
+        "score_vs_med_age_marry_state": {
+          "n": 193,
+          "pearson": 0.201,
+          "spearman": 0.207
+        },
+        "ratio_vs_alone_share": {
+          "n": 193,
+          "pearson": 0.292,
+          "spearman": 0.272
+        },
+        "ratio_vs_med_age_marry_state": {
+          "n": 193,
+          "pearson": 0.086,
+          "spearman": 0.109
+        }
+      },
+      "b12007_finding": "B12007 returns annotation jams for every CBSA in 2024 acs/acs5 \u2014 median age at first marriage is not published at metro level; state-level medians used through each metro's primary state",
+      "framing": "the index measures opportunity, not outcome; partnership outcomes reflect decades of sorting and migration, so weak correlation is expected and reported as measured (\u00a711)"
+    },
+    "pew_reproduction": {
+      "fitting_sample": "decay_h5",
+      "metros": 124,
+      "level_offset_ratio": 1.3769,
+      "median_abs_pts": {
+        "national_only": 3.33,
+        "raw_dial": 2.48,
+        "shrunk_dial": 2.48
+      },
+      "p90_abs_pts": {
+        "national_only": 9.65,
+        "raw_dial": 7.05,
+        "shrunk_dial": 7.11
+      },
+      "shrunk_beats_both": false,
+      "source": "results/phase3/kernel_report.json (leave-one-metro-out, level offset from Pew's US row only)"
+    },
+    "served_region_true_cv": {
+      "points": 23028,
+      "p50": 0.0482,
+      "p99": 0.098,
+      "max": 0.1177,
+      "points_above_20pct": 0,
+      "note": "true 81-replicate CV over the 480-shape battery where intervals display (n_gate >= 100); the removed CV tiers could not have fired (ADR 0002)"
+    }
+  },
+  "hard_failures": []
+}

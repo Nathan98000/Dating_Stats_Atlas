@@ -108,14 +108,33 @@ class Request:
 
 
 @dataclass
+class SameSexTerms:
+    """m3.2.0 (Phase 3b B3): the pairing terms fitted on same-sex couples,
+    served to a same-sex search for the components in `components` (at
+    dial 1); the others keep the opposite-sex term with the metro's dial.
+    `log_norm` is the normaliser of exactly that served composition over
+    the national single adults of the seeker's OWN sex."""
+    f_age: np.ndarray            # (2, K_ss, 105)
+    cohort_of_age: np.ndarray    # (53,)
+    f_edu: np.ndarray            # (2, 4, 4)
+    f_race: np.ndarray           # (2, 8, 8)
+    log_norm: np.ndarray         # (n_metros, 2, 53, 4, 8)
+    components: tuple[str, ...]
+
+
+@dataclass
 class Kernel:
-    """The shipped assortative kernel (pipeline/build/kernel.py). Log
-    multipliers per component in the reporting gauge, a per-metro dial
-    (power) per component, and the per-metro, per-seeker-type normaliser
-    that makes exp(log w + log_norm) average exactly 1 over the national
-    single adult population."""
-    f_age: np.ndarray        # (2, 105): seeker sex x (partner age - seeker age + gap_offset)
-    f_edu: np.ndarray        # (4, 4):   seeker edu x partner edu
+    """The shipped assortative kernel (pipeline/build/kernel.py, refined by
+    kernel_refine.py in m3.2.0). Log multipliers per component in the
+    reporting gauge, a per-metro dial (power) per component, and the
+    per-metro, per-seeker-type normaliser that makes exp(log w + log_norm)
+    average exactly 1 over the national single adult population. m3.2.0:
+    the age term is per seeker age cohort (K cohorts; a kernel_v1 artifact
+    loads as one cohort), the education matrix is per seeker sex (a
+    pooled matrix is stored twice), an optional race x education
+    interaction rides undialled, and same-sex terms may be present."""
+    f_age: np.ndarray        # (2, K, 105): seeker sex x cohort x (partner age - seeker age + gap_offset)
+    f_edu: np.ndarray        # (2, 4, 4):  seeker sex x seeker edu x partner edu
     f_race: np.ndarray       # (2, 8, 8): seeker sex x seeker race x partner race
     dials: np.ndarray        # (n_metros, 3): theta per (age, edu, race); 1 = national
     log_norm: np.ndarray     # (n_metros, 2, 53, 4, 8)
@@ -123,11 +142,14 @@ class Kernel:
     gap_offset: int = 52
     dial_components: tuple[str, ...] = ()
     meta: dict = field(default_factory=dict)
+    cohort_of_age: np.ndarray = field(default_factory=lambda: np.zeros(53, dtype=int))
+    f_int: np.ndarray | None = None      # (2, 8, 8, 4, 4): seeker sex x race_s x race_c x edu_s x edu_c
+    same_sex: SameSexTerms | None = None
 
 
 def seeker_weights(k: Kernel, self_sex: str, self_age: int,
-                   self_edu: str | None, self_race: str | None
-                   ) -> tuple[np.ndarray, np.ndarray]:
+                   self_edu: str | None, self_race: str | None,
+                   same_sex: bool = False) -> tuple[np.ndarray, np.ndarray]:
     """Per-metro kernel factors for one seeker: (age_vec, W) with
     age_vec[m, a_c] the age-gap multiplier by partner age and
     W[m, e_c, r_c] the education x race multiplier — the full weight over
@@ -139,14 +161,26 @@ def seeker_weights(k: Kernel, self_sex: str, self_age: int,
     level (times the per-level normaliser, so each mixed-in kernel has
     mean 1). Both disclosed -> a single level; both unset -> the mixture
     over all 32 (education, race) combinations. All four combinations go
-    through this one function."""
+    through this one function.
+
+    m3.2.0: the age term reads the seeker's cohort; the race x education
+    interaction (when the artifact carries one) multiplies in; a SAME-SEX
+    search takes each component the artifact lists from the same-sex fit
+    at dial 1 and the rest from the opposite-sex fit with the metro's
+    dial (the interaction rides only when both education and race stay
+    opposite-sex), normalised by the same-sex normaliser."""
     si = SEX_LEVELS.index(self_sex)
     ai = int(self_age) - 18
     assert 0 <= ai < 53, "seeker age outside the cube"
     theta = k.dials                                            # (M, 3)
     gaps = np.arange(53) - ai + k.gap_offset
-    fa = k.f_age[si][gaps]                                     # (53,)
-    age_vec = np.exp(theta[:, 0:1] * fa[None, :])              # (M, 53)
+    ss = k.same_sex if same_sex else None
+    if ss is not None and "age" in ss.components:
+        fa = ss.f_age[si, ss.cohort_of_age[ai]][gaps]
+        age_vec = np.repeat(np.exp(fa)[None, :], theta.shape[0], axis=0)
+    else:
+        fa = k.f_age[si, k.cohort_of_age[ai]][gaps]                # (53,)
+        age_vec = np.exp(theta[:, 0:1] * fa[None, :])              # (M, 53)
     P = k.avail[si, ai].astype(np.float64).copy()              # (4, 8)
     if self_edu is not None:
         keep = np.zeros(4); keep[EDU_LEVELS.index(self_edu)] = 1.0
@@ -163,10 +197,28 @@ def seeker_weights(k: Kernel, self_sex: str, self_age: int,
         if self_race is not None:
             P *= np.eye(8)[RACE_LEVELS.index(self_race)][None, :]
     P = P / P.sum()
-    mix = P[None, :, :] * np.exp(k.log_norm[:, si, ai].astype(np.float64))   # (M, 4, 8)
-    E = np.exp(theta[:, 1][:, None, None] * k.f_edu[None, :, :])             # (M, e_s, e_c)
-    R = np.exp(theta[:, 2][:, None, None] * k.f_race[si][None, :, :])        # (M, r_s, r_c)
-    W = np.einsum("mer,mef,mrg->mfg", mix, E, R)                             # (M, e_c, r_c)
+    ln = ss.log_norm if ss is not None else k.log_norm
+    mix = P[None, :, :] * np.exp(ln[:, si, ai].astype(np.float64))          # (M, 4, 8)
+    M = theta.shape[0]
+    if ss is not None and "edu" in ss.components:
+        E = np.repeat(np.exp(ss.f_edu[si])[None, :, :], M, axis=0)           # (M, e_s, e_c)
+    else:
+        E = np.exp(theta[:, 1][:, None, None] * k.f_edu[si][None, :, :])
+    if ss is not None and "race" in ss.components:
+        R = np.repeat(np.exp(ss.f_race[si])[None, :, :], M, axis=0)          # (M, r_s, r_c)
+    else:
+        R = np.exp(theta[:, 2][:, None, None] * k.f_race[si][None, :, :])
+    use_int = k.f_int is not None and not (
+        ss is not None and ("edu" in ss.components or "race" in ss.components))
+    if not use_int:
+        W = np.einsum("mer,mef,mrg->mfg", mix, E, R)                         # (M, e_c, r_c)
+    else:
+        # G[r_s, r_c, e_s, e_c] -> (e_s, r_s, e_c, r_c); the full
+        # (seeker level x partner cell) tensor is M x 4 x 8 x 4 x 8
+        G = np.exp(k.f_int[si]).transpose(2, 0, 3, 1)
+        T = (mix[:, :, :, None, None] * E[:, :, None, :, None]
+             * R[:, None, :, None, :] * G[None, :, :, :, :])
+        W = T.sum(axis=(1, 2))
     return age_vec, W
 
 
