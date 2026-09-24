@@ -164,6 +164,19 @@ education (which was well measured). The loader now asserts that the
 served sentence names exactly the kernel's `same_sex_components`
 (`loader.same_sex_note_names`), so the two cannot disagree again.
 
+## Amended, 24 September 2026: the latency budget is 100 ms at p95
+
+Nathan's decision after Phase 3c. The p95 budget on the 400-query
+battery (`api/tests/measure_latency.py`, `TARGET_P95_MS`) rises from
+60 ms to **100 ms**. m3.3.0 measured 58.27 ms in the ship chain and
+59.19 ms idle, against m3.2.0's 41.11 ms with the median unchanged at
+about 42 ms (PHASE3C.md §5), which left under 2 ms of headroom; whether
+the rise is the engine or the machine is not settled. Latency is still
+measured and reported with the load average in every phase, and a p95
+over 100 ms replaces 60 ms as the stop condition. The engine-level A/B
+of the m3.2.0 and m3.3.0 kernels under equal load stays open as a
+finding, not a gate.
+
 ## Consequences
 
 MODEL_VERSION m3.2.0; goldens regenerated; every number in PHASE3B.md;

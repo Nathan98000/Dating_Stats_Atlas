@@ -17,7 +17,7 @@ const figtree = Figtree({
 export const metadata: Metadata = {
   title: "Dating Stats Atlas",
   description:
-    "Where would you meet more people you'd actually click with? Counted from the Census Bureau's own survey, city by city.",
+    "Which city has the best dating scene for you? Counted from the Census Bureau's own survey, city by city.",
 };
 
 export default function RootLayout({

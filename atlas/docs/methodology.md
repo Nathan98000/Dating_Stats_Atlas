@@ -83,8 +83,7 @@ balance doesn't apply.
 ## What do the race and ethnicity boxes do?
 
 They select **who is counted as living in a city and matching your
-search — nothing more**. They say nothing about who dates or marries
-whom, and this site makes no claim about that.
+search — nothing more**.
 
 There are eight boxes — the Census Bureau's race and ethnicity
 categories, including "Two or more races" and "Another race" — and

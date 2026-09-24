@@ -22,6 +22,8 @@ from fastapi.testclient import TestClient  # noqa: E402
 from atlas.api import app as api  # noqa: E402
 
 N = int(sys.argv[2]) if len(sys.argv) > 2 else 400
+# p95 budget in ms; raised from 60 by Nathan's decision (ADR 0010, amended 24 Sep 2026)
+TARGET_P95_MS = 100
 rng = random.Random(7)
 EDU = [None, "some_college", "bachelors", "graduate"]
 INC = [None, 25000, 50000, 75000, 100000, 150000, 250000]
@@ -65,7 +67,7 @@ def main() -> None:
            "p95_ms": round(times[int(0.95 * N)], 2),
            "p99_ms": round(times[int(0.99 * N)], 2),
            "max_ms": round(times[-1], 2),
-           "target_p95_ms": 60}
+           "target_p95_ms": TARGET_P95_MS}
     print(json.dumps(out, indent=2))
     (Path(__file__).resolve().parents[2] / "results" / "phase2" /
      "latency.json").write_text(json.dumps(out, indent=2) + "\n")
