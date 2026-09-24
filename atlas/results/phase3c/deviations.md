@@ -8,3 +8,7 @@
 - A3: the provenance assertion (`assert_all_shippable`) traces published fields to adapter sources and cannot see a file read outside an adapter; the Pew table is read directly by `build.kernel`, `build.kernel_refine` and `build.validate`, so a specific hard check (`pew_never_shipped`) was added to `build.validate`, and the packet says so.
 - A3: TIGERweb (Census Bureau internal points for counties and places) was in `docs/sources.md` and the geography build but not in the packet's source table; added.
 - A3: `docs/sources.md`'s "last checked" line was moved to 24 September 2026 (m3.2.0) after the fetch-manifest comparison; its opening sentence now admits the Pew check as a second non-federal source.
+- B1: "any whose index changes" is read as the point index OR any replicate figure differing from the reference's (both are hashed per search); when nothing is touched the totals run over every search, which is what lets the identity control read exactly 1.0 rather than 0/0.
+- B1: two personas rank fewer than 12 metros and are skipped as before (E_black_woman29_stress, below_bar_nhpi_250k); 516 of 518 searches are scored.
+- B1: the pool's per-cell replicate sums are cached under `data/phase3c_cache/` (never committed) rather than `results/`, because they are 210 MB per sought pool; the reference record commits only per-search figures and hashes.
+- B1: the wobble path composes the kernel-weighted numerator in numpy from cached float32 cell sums instead of the suite's SQL join; checked on three personas to agree to 1e-8 relative.
