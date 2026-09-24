@@ -1,0 +1,10 @@
+# Phase 3c — deviations, one line each (appended as they arise)
+
+- A4: pandoc and LibreOffice, which made the 12 September DOCX and PDF (pandoc's reference styles in the DOCX; "LibreOffice 26.2.5.2 Writer" in the PDF's producer field), are not on this machine and Docker Desktop is paused; the DOCX was regenerated with pandoc 3.9 installed into the session scratchpad (not the project venv), and the PDF by Google Chrome headless from pandoc's HTML (the third route in `docs/decisions/counsel_packet/render.sh`; the Word route was not tried because it would raise a macOS automation prompt no one was present to answer).
+- A4: the memo filing instruction now says `0012-data-licensing-review.md`: 0001–0010 exist and 0011 is reserved by Part B of this brief for the stability gate.
+- A4: the checklist's example attachment filenames were re-dated from `_2026-09-12` to `_2026-09-24` to match the packet's new date (none had been saved; `attachments/` is empty).
+- A1: question 8's "we do not store visitors' search preferences" carried the same inaccuracy as the privacy paragraph, so it was revised too, although the brief names only the paragraph.
+- A1: the "What it is" sentence said the site ranks by how many people are competing; balance has been context-only since m3.0.0 (ADR 0009 §7), so the sentence now names chances of matching as the ranked quantity and balance as information only.
+- A3: the provenance assertion (`assert_all_shippable`) traces published fields to adapter sources and cannot see a file read outside an adapter; the Pew table is read directly by `build.kernel`, `build.kernel_refine` and `build.validate`, so a specific hard check (`pew_never_shipped`) was added to `build.validate`, and the packet says so.
+- A3: TIGERweb (Census Bureau internal points for counties and places) was in `docs/sources.md` and the geography build but not in the packet's source table; added.
+- A3: `docs/sources.md`'s "last checked" line was moved to 24 September 2026 (m3.2.0) after the fetch-manifest comparison; its opening sentence now admits the Pew check as a second non-federal source.

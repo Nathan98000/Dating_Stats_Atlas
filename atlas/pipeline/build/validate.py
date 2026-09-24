@@ -23,6 +23,11 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  is diagonal-dominant; every race group's
                                  own-group multiplier beats its
                                  off-diagonals, both sexes (ADR 0009)
+  hard  pew never shipped        the Pew table is a build-time reference
+                                 read outside any adapter (Phase 3c A3):
+                                 its licence is non-shippable, no feature
+                                 traces to it, and nothing in manifest.json
+                                 or kernel.json names it or its US rate
   hard  explanation invariants   no rendered string carries the §12.3
                                  banned vocabulary; the lead phrase is
                                  position-unique (the Phase 2a panel defect,
@@ -368,6 +373,52 @@ def check_kernel_face(build) -> dict:
     return out
 
 
+def check_pew_never_shipped(build_dir: Path) -> dict:
+    """Hard (Phase 3c A3). The Pew intermarriage table is a validation
+    reference read directly by build.kernel, build.kernel_refine and the
+    soft check below — outside any adapter — so the provenance assertion
+    that guards adapter-fed fields (contracts.provenance.assert_all_shippable)
+    cannot see it. This check guards the artifact itself: the licence
+    registry carries the source marked non-shippable, no feature in the
+    manifest traces to it, and no key or string value in manifest.json or
+    kernel.json names Pew, the table, or the level offset derived from its
+    US row. Any failure is a leak, not a finding to report."""
+    from atlas.pipeline.adapters.base import LICENSES
+    build_dir = Path(build_dir)
+    out: dict = {"licence_registered_non_shippable": False,
+                 "features_tracing_to_pew": [], "hits": {}}
+    lic = LICENSES.get("pew_intermarriage")
+    out["licence_registered_non_shippable"] = bool(lic is not None and not lic.shippable)
+    manifest = json.loads((build_dir / "manifest.json").read_text())
+    kernel = json.loads((build_dir / "kernel.json").read_text())
+    out["features_tracing_to_pew"] = sorted(
+        fid for fid, f in manifest.get("features_block", {}).items()
+        if (f.get("provenance") or {}).get("source") == "pew_intermarriage")
+    needles = ("pew", "intermarriage_2015", "level_offset")
+
+    def walk(node, path, hits):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if any(n in str(k).lower() for n in needles):
+                    hits.append(path + "/" + str(k))
+                walk(v, path + "/" + str(k), hits)
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                walk(v, f"{path}[{i}]", hits)
+        elif isinstance(node, str):
+            if any(n in node.lower() for n in needles):
+                hits.append(path + " (value)")
+
+    for name, doc in (("manifest.json", manifest), ("kernel.json", kernel)):
+        hits: list[str] = []
+        walk(doc, "", hits)
+        out["hits"][name] = hits
+    out["pass"] = bool(out["licence_registered_non_shippable"]
+                       and not out["features_tracing_to_pew"]
+                       and not any(out["hits"].values()))
+    return out
+
+
 def check_pew_reproduction() -> dict:
     """The Phase 3 out-of-sample Pew comparison as the kernel run recorded
     it: three models' corrected error distributions and whether the
@@ -567,6 +618,11 @@ def main(build_dir: str) -> int:
     report["hard"]["kernel_face_validity"] = check_kernel_face(build)
     if not report["hard"]["kernel_face_validity"]["pass"]:
         hard_fail.append("kernel_face_validity")
+
+    # ---- hard: the Pew reference never reaches the artifact (Phase 3c A3) --
+    report["hard"]["pew_never_shipped"] = check_pew_never_shipped(Path(build_dir))
+    if not report["hard"]["pew_never_shipped"]["pass"]:
+        hard_fail.append("pew_never_shipped")
 
     # ---- hard: adversarial artifacts ---------------------------------------
     quality = pd.read_csv(RESULTS / "phase1" / "metro_quality.csv",
