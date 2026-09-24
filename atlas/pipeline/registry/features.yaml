@@ -185,6 +185,15 @@ strings:
     search.
   match_how_link: "How this is measured"
   match_unit_line: "where 100 is the US average"
+  # m3.1.0 (Phase 3b, A3): the DISPLAY ceiling for chances of matching
+  # and the token appended above it. Presentational only: the feature is
+  # percentile-ranked, so no score, rank, standing or band reads the
+  # display (asserted in the engine tests); a figure above the ceiling
+  # renders as the ceiling plus the token and the band label carries
+  # the rest. The compare table shows no difference against a capped
+  # figure.
+  match_display_cap: "250"
+  match_display_cap_token: "+"
   # the two optional "about you" inputs (m3.0.0): labels, the one-line
   # note saying why they are asked and that they are optional, the
   # unset option and the four education levels

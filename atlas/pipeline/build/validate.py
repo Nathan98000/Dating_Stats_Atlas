@@ -389,58 +389,30 @@ def measure_served_region_cv() -> dict:
                     "could not have fired (ADR 0002)"}
 
 
-def main(build_dir: str) -> int:
-    from atlas.model.tests.golden.make_fixture import GOLDEN_VECTORS
-    build = engine.load_build(build_dir)
-    report: dict = {"build": build.manifest["data_version"],
-                    "model_version": engine.MODEL_VERSION,
-                    "generated_by": _git_stamp(),
-                    "hard": {}, "soft": {}}
-    hard_fail = []
-
-    # ---- hard: interval calibration ---------------------------------------
-    im = build.manifest["interval_model"]
-    ok = (im["used_by_api"] and im["validation"]["coverage"] >= 0.95
-          and im["validation"]["median_overstatement"] <= 0.25)
-    report["hard"]["interval_calibration"] = {
-        "pass": bool(ok), **im["validation"],
-        "mechanism": im["mechanism"], "copy_rule": im["copy_rule"]}
-    if not ok:
-        hard_fail.append("interval_calibration")
-
-    # ---- hard: suppression goldens (full-build responses are exercised in
-    # pytest against the fixture; here the same vectors run on THIS build and
-    # the suppression logic must be internally consistent) -------------------
-    con = open_pool()
-    persona_results = {}
-    golden_ok = True
-    for v in GOLDEN_VECTORS:
+def run_personas(build, vectors) -> dict:
+    """Every golden vector ranked on this build (the personas the hard
+    gates read)."""
+    out = {}
+    for v in vectors:
         body = {k: v[k] for k in ("self", "seeking", "weights",
                                   "pool_vs_match", "pool_vs_balance",
                                   "importance") if k in v}
-        res = engine.rank(build, engine.parse_request(body))
-        persona_results[v["name"]] = res
-        if res["shown_unranked"]:
-            golden_ok = False   # the middle tier cannot fire (ADR 0002)
-        for row in res["suppressed"]:
-            if row["reason"] not in ALLOWED_REASONS:
-                golden_ok = False
-        for row in res["ranked"]:
-            if not row["pool_moe"] > 0:
-                golden_ok = False
-    report["hard"]["suppression_reasons_and_intervals"] = {
-        "pass": golden_ok, "allowed_reasons": sorted(ALLOWED_REASONS)}
-    if not golden_ok:
-        hard_fail.append("suppression")
+        out[v["name"]] = engine.rank(build, engine.parse_request(body))
+    return out
 
-    # ---- hard: randomized cube-vs-SQL differential --------------------------
-    report["hard"]["cube_vs_sql_differential"] = check_differential(build, con)
-    if not report["hard"]["cube_vs_sql_differential"]["pass"]:
-        hard_fail.append("cube_vs_sql_differential")
 
-    # ---- hard: rank stability across replicates ----------------------------
+def rank_stability(build, con, vectors, persona_results: dict,
+                   pool_reps: dict | None = None) -> dict:
+    """The standing hard gate, one implementation: resample pool + match
+    across the 80 replicates for every persona; a persona passes when its
+    top-10 keeps >= 8 of 10 in >= 80% of the replicate draws. Returns the
+    per-persona record (share, the index's replicate sd at the median and
+    p90 — the root-cause metric — its p10-p90 spread and how bunched the
+    scores are at the top-10 boundary). `pool_reps` caches the pool's
+    replicate sums per persona (they do not depend on the kernel), so a
+    kernel sweep pays the SQL once."""
     stab = {}
-    for v in GOLDEN_VECTORS:
+    for v in vectors:
         res = persona_results[v["name"]]
         ranked_cbsas = [r["cbsa"] for r in res["ranked"]]
         if len(ranked_cbsas) < 12:
@@ -451,7 +423,12 @@ def main(build_dir: str) -> int:
         req = engine.parse_request(body)
         # replicate sums of the pool (every metro, for the national
         # reference) and of the kernel-weighted numerator
-        P_all = _replicate_sums(con, pw).set_index("cbsa")
+        if pool_reps is not None and v["name"] in pool_reps:
+            P_all = pool_reps[v["name"]]
+        else:
+            P_all = _replicate_sums(con, pw).set_index("cbsa")
+            if pool_reps is not None:
+                pool_reps[v["name"]] = P_all
         _kernel_weights_table(con, build, req)
         W_all = _weighted_sums_sql(con, pw, replicates=True).set_index("cbsa")
         P = P_all.reindex(ranked_cbsas).fillna(0.0)
@@ -485,6 +462,56 @@ def main(build_dir: str) -> int:
                                                       - np.percentile(point, 10)), 1),
             "score_gap_rank10_to_rank11": round(float(scores[9] - scores[10]), 2),
             "score_span_ranks_7_to_14": round(float(scores[6] - scores[13]), 2)}
+    return stab
+
+
+def main(build_dir: str) -> int:
+    from atlas.model.tests.golden.make_fixture import GOLDEN_VECTORS
+    build = engine.load_build(build_dir)
+    report: dict = {"build": build.manifest["data_version"],
+                    "model_version": engine.MODEL_VERSION,
+                    "generated_by": _git_stamp(),
+                    "hard": {}, "soft": {}}
+    hard_fail = []
+
+    # ---- hard: interval calibration ---------------------------------------
+    im = build.manifest["interval_model"]
+    ok = (im["used_by_api"] and im["validation"]["coverage"] >= 0.95
+          and im["validation"]["median_overstatement"] <= 0.25)
+    report["hard"]["interval_calibration"] = {
+        "pass": bool(ok), **im["validation"],
+        "mechanism": im["mechanism"], "copy_rule": im["copy_rule"]}
+    if not ok:
+        hard_fail.append("interval_calibration")
+
+    # ---- hard: suppression goldens (full-build responses are exercised in
+    # pytest against the fixture; here the same vectors run on THIS build and
+    # the suppression logic must be internally consistent) -------------------
+    con = open_pool()
+    persona_results = run_personas(build, GOLDEN_VECTORS)
+    golden_ok = True
+    for v in GOLDEN_VECTORS:
+        res = persona_results[v["name"]]
+        if res["shown_unranked"]:
+            golden_ok = False   # the middle tier cannot fire (ADR 0002)
+        for row in res["suppressed"]:
+            if row["reason"] not in ALLOWED_REASONS:
+                golden_ok = False
+        for row in res["ranked"]:
+            if not row["pool_moe"] > 0:
+                golden_ok = False
+    report["hard"]["suppression_reasons_and_intervals"] = {
+        "pass": golden_ok, "allowed_reasons": sorted(ALLOWED_REASONS)}
+    if not golden_ok:
+        hard_fail.append("suppression")
+
+    # ---- hard: randomized cube-vs-SQL differential --------------------------
+    report["hard"]["cube_vs_sql_differential"] = check_differential(build, con)
+    if not report["hard"]["cube_vs_sql_differential"]["pass"]:
+        hard_fail.append("cube_vs_sql_differential")
+
+    # ---- hard: rank stability across replicates ----------------------------
+    stab = rank_stability(build, con, GOLDEN_VECTORS, persona_results)
     shares = [s["share_replicates_with_>=8of10_overlap"]
               for s in stab.values() if "skipped" not in s]
     ok = all(s >= STABILITY_SHARE for s in shares)

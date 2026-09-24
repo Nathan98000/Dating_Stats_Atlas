@@ -1,7 +1,9 @@
 # ADR 0009 — Chances of matching: an assortative kernel replaces balance as the slider's second pole
 
 Date: 2026-09-23 (Phase 3, model m3.0.0, build 59fd352c5c2f)
-Status: accepted
+Status: accepted; amended 2026-09-23 (Phase 3b Part A, model m3.1.0, build
+ae1efbef9f0e — §2 fitting sample, §4 the Pew bar, §8 the display cap; the
+Phase 3 text stands where it is not marked as amended)
 
 ## 1. The served quantity, stated once
 
@@ -37,7 +39,29 @@ against the pinned dictionary, multi-partner households excluded and
 counted, both sides aggregated, 80 replicates carried) is reused as is;
 the grain becomes the national couple table (sex × age × edu4 × race8) ×
 (age × edu4 × race8), opposite-sex couples with both members 18–70, plus
-the same by metro. The fitting sample is **recent unions**: unions formed since 2019 (MARHYP ≥ 2019) plus all unmarried partners — 986,770 allocated couple-sides, Kish 535,834, 246,038 non-empty national cells. Every union weighted by exponential decay (half-lives 5, 10, 20 and 40 years) and the unweighted stock were fitted, tested and reported beside it (PHASE3.md); the recent sample supports a stable fit on the stated criterion (IPF converged, face validity, every education cell and every own-group race cell above 100 effective sides, no metro below 100 Kish sides), so the default shipped.
+the same by metro. The fitting sample in m3.0.0 was **recent unions**: unions formed since 2019 (MARHYP ≥ 2019) plus all unmarried partners — 986,770 allocated couple-sides, Kish 535,834, 246,038 non-empty national cells. Every union weighted by exponential decay (half-lives 5, 10, 20 and 40 years) and the unweighted stock were fitted, tested and reported beside it (PHASE3.md); the recent sample supported a stable fit on the stated criterion (IPF converged, face validity, every education cell and every own-group race cell above 100 effective sides, no metro below 100 Kish sides), so the default shipped.
+
+**Amended, m3.1.0 (Phase 3b A1).** The recent-only kernel failed the
+standing rank-stability gate on three of the eighteen personas (0.70–0.71
+against the 0.80 bar; PHASE3.md finding 2). Nathan's decision: the
+brief's own fallback applies — widen the window and decay by time — with
+the half-life chosen **by the rank-stability gate, shortest first**, never
+by the Pew sweep (which is confounded with Pew's period, §4). The
+fitting sample is now **every union weighted by exponential decay with a
+five-year half-life**, 0.5^((survey year − year last married) / 5),
+unmarried partners at weight 1: 1,385,259 allocated couple-sides, Kish
+974,834, no empty race cell (recent-only had two) and 19 race cells under
+30 effective sides (against 31). Five years was the first candidate
+tried and every persona reached the bar (minimum share 0.95; the three
+that failed sit at 0.95, 0.96 and 0.96), so ten and twenty years were
+not fitted (`results/phase3b/stability_sweep.json`). Recorded as
+measured: the index's replicate standard deviation — the root-cause
+metric — did not move (4.05 against 4.1 index points for the persona
+that failed worst; 2.01 against 2.0 at the slider's match end), because
+it is survey noise in the metro's own pool under a fixed kernel and no
+fitting sample can reduce it; the gate passes because the five-year
+kernel leaves the scores less bunched at the top-10 boundary. The stock
+still never ships.
 `MARHYP` (year last married) joined the extract for the clock; unmarried
 partners carry no formation year in PUMS and enter every sample whole.
 
@@ -90,7 +114,27 @@ offset was expected (Pew: married newlyweds 2011–2015; the fit: unions
 formed 2019–2024 including cohabiting partners) and measured at
 1.49 (the fitting sample's national out-group share 23.85% against Pew's published 16%); it is corrected by that one constant, taken from Pew's national
 row and never from the metro test set. Corrected median absolute errors:
-random pairing 19.7, national-only 3.38, raw per-metro dial 2.52, shrunk dial 2.63, the metro's own observed 2020–24 rate 2.47 (p90: 29.0 / 9.78 / 7.08 / 7.21 / 7.85). The shrunk kernel beats national-only materially (87 metros better, 37 worse, sign test p < 0.001) and beats the brief's crude national-multiplier baseline (3.94); against raw per-metro it is a statistical tie (raw ahead in 71 metros, shrunk in 53, median paired difference 0.02 points, p = 0.13), because Pew covers only the large, precisely-measured metros where the prior share is near zero. A strict reading of the bar's second clause is not met; the split-half test over all 387 metros, where shrinkage has work to do, has the shrunk dial beating raw for every component. Whether the tie clears the bar as written is Nathan's call; the serving change is one commit. The composition check behind the design was
+random pairing 19.7, national-only 3.38, raw per-metro dial 2.52, shrunk dial 2.63, the metro's own observed 2020–24 rate 2.47 (p90: 29.0 / 9.78 / 7.08 / 7.21 / 7.85). The shrunk kernel beats national-only materially (87 metros better, 37 worse, sign test p < 0.001) and beats the brief's crude national-multiplier baseline (3.94); against raw per-metro it is a statistical tie (raw ahead in 71 metros, shrunk in 53, median paired difference 0.02 points, p = 0.13), because Pew covers only the large, precisely-measured metros where the prior share is near zero. A strict reading of the bar's second clause is not met; the split-half test over all 387 metros, where shrinkage has work to do, has the shrunk dial beating raw for every component.
+
+**Amended, m3.1.0 (Phase 3b A2): the tie clears the bar — Nathan's
+decision, with its evidence.** (1) The shrunk kernel beats national-only
+decisively: 2.63 against 3.38 points at the median on the recent sample,
+87 metros better and 37 worse, sign test p < 0.001. (2) Pew publishes only
+the 124 large metros — those with 200 or more newlyweds in sample — where
+a dial's prior share is near zero (New York 0.4%, Los Angeles 0.7%,
+Chicago 0.8%) and shrinkage has nothing to do, so the raw and shrunk dials
+are the same dial there and can only tie. (3) Where shrinkage does have
+work, the site's own split-half leave-one-metro-out test across all 387
+metros has the shrunk dial beating raw in 246 metros for race, 237 for
+age and 256 for education. **Re-run on the shipped five-year sample**
+(`results/phase3b/pew_rerun_decay_h5.json`, the same leave-one-metro-out
+code path, 124 metros, level offset 1.38): corrected median absolute
+error 2.48 for the shrunk dial, 2.48 for the raw dial, 3.33 for
+national-only (p90 7.11 / 7.05 / 9.65); shrunk against national-only
+91–33, p < 0.001; shrunk against raw 54–70, median paired difference
+0.01 points, p = 0.18 — the same tie, beside the m3.0.0 figures above.
+The Pew number was not the criterion for the half-life (§2) and is
+reported for the record. The composition check behind the design was
 re-derived: the random-pairing expectation explains R² = 0.196 of Pew's variation, the availability-adjusted ratio spans 0.156–1.049 across metros, and one national multiplier on local composition misses Pew by a median 3.94 points (p90 9.58, max 20.3), off by more than 1.5× in 25% of metros.
 
 ## 5. The two optional inputs
@@ -130,6 +174,25 @@ set, and no copy calls it part of the score. The slider control is
 `pool_vs_match`; `pool_vs_balance` is accepted as a deprecated alias for
 exactly m3.0.0, as `size_vs_odds` was for m2.0.0.
 
+## 8. The display cap (amended, m3.1.0 — Phase 3b A3)
+
+Disclosed searches drive the index into the hundreds (a graduate Asian
+woman of 30 saw San Jose at 565 in m3.0.0; a Pacific Islander seeker
+2,652 in one metro), which is what an availability-relative multiplier
+does when a group is under 1% of the single population. The **display**
+is capped at a registry-owned ceiling of 250 and anything above it
+renders as `250+`, the band label carrying the rest. Scoring is
+untouched: the feature is percentile-ranked, so no score, rank, standing
+or band reads the display, and the engine test asserts rankings are
+bit-identical with the ceiling at 1 and at a million. One formatting
+helper (`scoring.match_display`) composes the string the API serves;
+the result rows, the city page and the compare table render that string
+and nothing else, and the compare table computes no difference against
+a capped figure (its cell shows the dash a missing figure gets). The
+ceiling and the `+` token are registry strings (`match_display_cap`,
+`match_display_cap_token`); Nathan's copy is unchanged and the
+information box gained nothing.
+
 ## Rejected
 
 - **Per-metro kernel fitting** — no sample: the median metro about 23 couples per marginal kernel cell and the smallest 3 (recent unions; 123 and 34 on the stock the brief counted).
@@ -143,7 +206,9 @@ exactly m3.0.0, as `size_vs_odds` was for m2.0.0.
 
 ## Consequences
 
-MODEL_VERSION m3.0.0; goldens regenerated (eighteen vectors, the four
+MODEL_VERSION m3.0.0, then m3.1.0 for the amendments (the five-year
+sample, the accepted tie, the display cap; goldens regenerated again and
+the before/after is in PHASE3B.md); goldens regenerated (eighteen vectors, the four
 disclosure combinations and the deprecated alias among them). The rank
 shift across the 193 under the stated default search, the correlation
 between the slider's poles (r = 0.34 for the default search, median 0.04 over a 153-seeker battery, none above 0.7) and the latency of the weighted

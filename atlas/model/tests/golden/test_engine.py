@@ -149,7 +149,17 @@ def test_seeker_weights_four_disclosure_combinations(build):
         assert res["counts"]["ranked"] > 0
         for r in res["ranked"]:
             assert r["match"]["available"] and np.isfinite(r["match"]["value"])
-            assert r["match"]["display"] == str(int(round(r["match"]["value"])))
+            # m3.1.0: the display is the index rounded to a whole number
+            # (from the unrounded index, so it can sit half a point from
+            # the two-decimal value) unless the registry ceiling caps it
+            # (test_match_display_cap_is_presentational)
+            if r["match"]["capped"]:
+                assert r["match"]["display"] == (
+                    build.manifest["strings"]["match_display_cap"]
+                    + build.manifest["strings"]["match_display_cap_token"])
+            else:
+                assert abs(int(r["match"]["display"].replace(",", ""))
+                           - r["match"]["value"]) <= 0.5 + 1e-9
             assert r["match"]["moe"] is not None and r["match"]["moe"] >= 0
         assert res["match_inputs"]["education"] == extra.get("education")
     # suppression is identical across the four: the gate is the unweighted n
@@ -180,6 +190,58 @@ def test_seeker_weights_four_disclosure_combinations(build):
         mt = match_index(build, req)
         ok = np.isfinite(mt["index"]) & (mt["den"] > 0)
         assert abs((mt["index"][ok] * mt["den"][ok]).sum() / mt["den"][ok].sum() - 100.0) < 1e-6
+
+
+def test_match_display_cap_is_presentational(build):
+    """m3.1.0 (Phase 3b A3): the display ceiling is registry-owned and
+    touches nothing but the display string. Rankings, scores, standings,
+    bands and the served value are bit-identical whether the ceiling is
+    1 (everything capped) or a million (nothing capped), and a capped
+    figure renders as the ceiling plus the registry token."""
+    from dataclasses import replace
+    from atlas.model.scoring import match_display
+    body = {"self": {"sex": "female", "age": 30, "education": "graduate",
+                     "race_ethnicity": "asian_nh"},
+            "seeking": {"age": [28, 40],
+                        "marital": ["never_married", "previously_married"]}}
+    req = engine.parse_request(body)
+    strings = build.manifest["strings"]
+    assert float(strings["match_display_cap"]) > 0 and strings["match_display_cap_token"]
+
+    def with_cap(cap: str):
+        m = json.loads(json.dumps(build.manifest))
+        m["strings"]["match_display_cap"] = cap
+        return replace(build, manifest=m)
+
+    shipped = engine.rank(build, req)
+    all_capped = engine.rank(with_cap("1"), req)
+    none_capped = engine.rank(with_cap("1000000"), req)
+    for a, b in ((shipped, all_capped), (shipped, none_capped)):
+        assert [r["cbsa"] for r in a["ranked"]] == [r["cbsa"] for r in b["ranked"]]
+        for ra, rb in zip(a["ranked"], b["ranked"]):
+            assert ra["score"] == rb["score"] and ra["rank"] == rb["rank"]
+            assert ra["match"]["value"] == rb["match"]["value"]
+            assert ra["match"].get("band") == rb["match"].get("band")
+            assert [s["standing"] for s in ra["stats"]] == [s["standing"] for s in rb["stats"]]
+        assert {r["cbsa"] for r in a["suppressed"]} == {r["cbsa"] for r in b["suppressed"]}
+    token = strings["match_display_cap_token"]
+    for r in all_capped["ranked"]:
+        assert r["match"]["capped"] and r["match"]["display"] == "1" + token
+        stat = next(s for s in r["stats"] if s["id"] == "match_propensity")
+        assert stat["display"] == r["match"]["display"]
+    for r in none_capped["ranked"]:
+        assert not r["match"]["capped"]
+        assert r["match"]["display"] == str(int(round(r["match"]["value"])))
+    # the shipped ceiling: capped exactly when the rounded figure exceeds it
+    cap = float(strings["match_display_cap"])
+    for r in shipped["ranked"]:
+        want = round(r["match"]["value"]) > cap
+        assert r["match"]["capped"] == want, (r["cbsa"], r["match"])
+        if want:
+            assert r["match"]["display"] == f"{int(cap):,}" + token
+    assert match_display(cap + 0.4, build) == (f"{int(cap):,}", False)
+    assert match_display(cap + 0.6, build) == (f"{int(cap):,}" + token, True)
+    assert match_display(9999.0, build)[1] is True
 
 
 def test_match_gates_on_unweighted_n(build):

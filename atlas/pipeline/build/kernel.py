@@ -782,12 +782,15 @@ def observed_outgroup(mc: MetroCouples) -> float:
 # ---------------------------------------------------------------------------
 
 def write_artifact(fg: dict, A: np.ndarray, metro_levels: list[str], dials: np.ndarray,
-                   dial_components: list[str], meta: dict) -> dict:
+                   dial_components: list[str], meta: dict, out_dir: Path = DATA) -> dict:
     """data/kernel.json (metadata + small tables) and data/kernel.npz (the
-    per-metro normalisers). cube.py copies both into the build."""
+    per-metro normalisers). cube.py copies both into the build. `out_dir`
+    other than data/ writes a CANDIDATE artifact (the Phase 3b half-life
+    sweep loads those into a build in memory without shipping them)."""
+    out_dir.mkdir(parents=True, exist_ok=True)
     log_norm = np.stack([log_norm_for(fg, A, dials[i]) for i in range(len(metro_levels))])
     log_norm = log_norm.reshape(len(metro_levels), N_SEX, N_AGE, N_EDU, N_RACE)
-    np.savez_compressed(KERNEL_NPZ,
+    np.savez_compressed(out_dir / KERNEL_NPZ.name,
                         f_age=fg["age"], f_edu=fg["edu"], f_race=fg["race"],
                         dials=dials, log_norm=log_norm.astype(np.float32),
                         avail_national=A, metro_levels=np.array(metro_levels))
@@ -810,7 +813,7 @@ def write_artifact(fg: dict, A: np.ndarray, metro_levels: list[str], dials: np.n
                "log_norm (metro x sex x age x edu x race, float32), avail_national",
         **meta,
     }
-    KERNEL_JSON.write_text(json.dumps(payload, indent=1) + "\n")
+    (out_dir / KERNEL_JSON.name).write_text(json.dumps(payload, indent=1) + "\n")
     return payload
 
 
@@ -967,11 +970,14 @@ def recent_supports_fit(S: dict, metro_levels: list[str]) -> dict:
     return out
 
 
-def ship_sample(sample: str) -> None:
-    """Refit the national kernel on `sample`, read its dials, write the
-    final artifact and record the decision in kernel_report.json — the
-    same code path as the end of `fit`, runnable on its own."""
-    report = json.loads((P3 / "kernel_report.json").read_text())
+def candidate_artifact(sample: str, out_dir: Path, report: dict | None = None,
+                       provisional: bool = False) -> dict:
+    """Refit the national kernel on `sample` (the bandwidth the Phase 3 run
+    cross-validated for it), read its shrunk dials from
+    results/phase3/dials_<sample>.csv and write the artifact to `out_dir`.
+    The half-life sweep writes candidates under results/phase3b/; shipping
+    writes data/. Returns the report entry it used."""
+    report = report if report is not None else json.loads((P3 / "kernel_report.json").read_text())
     con = open_pool()
     metro_levels = sorted(pd.read_csv(RESULTS / "metros.csv", dtype={"cbsa": str})["cbsa"])
     A, _ = load_singles(con)
@@ -980,9 +986,23 @@ def ship_sample(sample: str) -> None:
     C = table_to_dense(nat)
     fit = fit_national(C, A, bandwidth=tuple(report["samples"][sample]["bandwidth"]))
     fits = {sample: {"fit": fit, "fg": gauge(fit["f"], A, fit["N_s"])}}
-    report["sample_choice"] = sample_choice(report, list(report["samples"]), metro_levels,
-                                            forced=sample)
-    _ship(report, fits, metro_levels, A, sample, provisional=False)
+    _ship(report, fits, metro_levels, A, sample, provisional=provisional, out_dir=out_dir)
+    return report
+
+
+def ship_sample(sample: str, chosen_by: str | None = None) -> None:
+    """Refit the national kernel on `sample`, read its dials, write the
+    final artifact to data/ and record the decision in kernel_report.json
+    — the same code path as the end of `fit`, runnable on its own.
+    `chosen_by` records a selection rule other than the Phase 3 default
+    (Phase 3b: the rank-stability gate, shortest half-life first)."""
+    report = json.loads((P3 / "kernel_report.json").read_text())
+    metro_levels = sorted(pd.read_csv(RESULTS / "metros.csv", dtype={"cbsa": str})["cbsa"])
+    choice = sample_choice(report, list(report["samples"]), metro_levels, forced=sample)
+    if chosen_by:
+        choice["chosen_by"] = chosen_by
+    report["sample_choice"] = choice
+    candidate_artifact(sample, DATA, report=report)
     (P3 / "kernel_report.json").write_text(json.dumps(report, indent=1, default=_json) + "\n")
 
 
@@ -1020,7 +1040,7 @@ def sample_choice(report: dict, samples: list[str], metro_levels: list[str],
 
 
 def _ship(report: dict, fits: dict, metro_levels: list[str], A: np.ndarray, best: str,
-          provisional: bool) -> None:
+          provisional: bool, out_dir: Path = DATA) -> None:
     ship = report["samples"][best]
     earned = [k for k in COMPONENTS if ship["split_half_dial_test"][k]["earns_dial"]]
     dial_df = pd.read_csv(P3 / f"dials_{best}.csv", dtype={"cbsa": str}).set_index("cbsa").loc[metro_levels]
@@ -1036,13 +1056,106 @@ def _ship(report: dict, fits: dict, metro_levels: list[str], A: np.ndarray, best
             "dials_centre": {k: ship["dials"][k]["precision_weighted_mean_theta"] for k in COMPONENTS},
             "provisional": provisional,
             "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
-    write_artifact(fg, A, metro_levels, dials, earned, meta)
-    report["shipped"] = {"sample": best, "dial_components": earned, "provisional": provisional,
-                         "artifact": [str(KERNEL_JSON.relative_to(DATA.parent)),
-                                      str(KERNEL_NPZ.relative_to(DATA.parent))],
-                         "face_validity": ship["face_validity"]}
-    print(f"[{best}] artifact written ({'provisional' if provisional else 'final'}); "
+    write_artifact(fg, A, metro_levels, dials, earned, meta, out_dir=out_dir)
+    if out_dir == DATA:
+        report["shipped"] = {"sample": best, "dial_components": earned, "provisional": provisional,
+                             "artifact": [str(KERNEL_JSON.relative_to(DATA.parent)),
+                                          str(KERNEL_NPZ.relative_to(DATA.parent))],
+                             "face_validity": ship["face_validity"]}
+    print(f"[{best}] artifact written to {out_dir} ({'provisional' if provisional else 'final'}); "
           f"dials: {earned}", flush=True)
+
+
+def pew_comparison(lomo: list[dict], pew: pd.DataFrame, pew_nat: float, nat_ours: float,
+                   metro_levels: list[str], full: dict, out_csv: Path) -> tuple[dict, dict]:
+    """The out-of-sample Pew comparison for one sample's LOMO record: the
+    corrected and raw error distributions for the three models plus random
+    pairing and the observed rate, the paired win counts with a sign test
+    (the bar), and the brief's composition check re-derived. Writes the
+    per-metro table to `out_csv`."""
+    by = {r["cbsa"]: r for r in lomo}
+    # Pew comparison, out of sample
+    pw = pew.copy()
+    for col, key in (("national_only", "national_only"), ("raw_dial", "raw_dial"),
+                     ("shrunk_dial", "shrunk_dial"), ("random_pairing", "random_pairing"),
+                     ("observed_2020_24", "observed_fitting_sample")):
+        pw[col] = [by[c]["pew_pred"][key] if c in by else np.nan for c in pw["msa_code"]]
+        offset_ratio = nat_ours / pew_nat
+    pew_rec = {"metros_matched": int(pw["pew_total"].notna().sum()),
+               "pew_national": pew_nat, "our_national_fitting_sample": nat_ours,
+               "level_offset_ratio_ours_over_pew": round(offset_ratio, 4),
+               "correction": "predictions divided by the national ratio (Pew's US row vs "
+                             "our national fitting-sample share) — one constant from a "
+                             "row outside the metro test set; raw errors also reported",
+               "raw_errors": {}, "corrected_errors": {}}
+    for col in ("random_pairing", "national_only", "raw_dial", "shrunk_dial", "observed_2020_24"):
+        err = pw[col].to_numpy(float) - pw["pew_total"].to_numpy(float)
+        pew_rec["raw_errors"][col] = error_summary(err)
+        errc = pw[col].to_numpy(float) / offset_ratio - pw["pew_total"].to_numpy(float)
+        pew_rec["corrected_errors"][col] = error_summary(errc)
+    pw["corrected_national_only"] = pw["national_only"] / offset_ratio
+    pw["corrected_shrunk_dial"] = pw["shrunk_dial"] / offset_ratio
+    pw["corrected_raw_dial"] = pw["raw_dial"] / offset_ratio
+    pw.to_csv(out_csv, index=False)
+    # the bar, read model against model on the SAME metros: paired
+    # absolute errors, win counts and a two-sided sign test
+    from scipy.stats import binomtest
+    e = {m: (pw[f"corrected_{m}"] - pw["pew_total"]).abs().to_numpy(float) * 100
+         for m in ("national_only", "raw_dial", "shrunk_dial")}
+    okp = np.isfinite(e["shrunk_dial"]) & np.isfinite(e["raw_dial"]) & np.isfinite(e["national_only"])
+    def paired(a, b):
+        d = e[a][okp] - e[b][okp]
+        wins = int((d < 0).sum()); losses = int((d > 0).sum())
+        return {"a_better_metros": wins, "b_better_metros": losses,
+                "median_paired_diff_pts": round(float(np.median(d)), 3),
+                "mean_paired_diff_pts": round(float(d.mean()), 3),
+                "sign_test_p": round(float(binomtest(wins, wins + losses).pvalue), 4)
+                if wins + losses else None}
+    pew_rec["paired"] = {"shrunk_vs_national": paired("shrunk_dial", "national_only"),
+                         "shrunk_vs_raw": paired("shrunk_dial", "raw_dial"),
+                         "raw_vs_national": paired("raw_dial", "national_only")}
+    pew_rec["bar"] = {
+        "national_only_median_abs_pts": pew_rec["corrected_errors"]["national_only"]["median_abs_pts"],
+        "shrunk_beats_national_materially": bool(
+            pew_rec["corrected_errors"]["shrunk_dial"]["median_abs_pts"]
+            < 0.9 * pew_rec["corrected_errors"]["national_only"]["median_abs_pts"]),
+        "shrunk_median_below_raw_median": bool(
+            pew_rec["corrected_errors"]["shrunk_dial"]["median_abs_pts"]
+            < pew_rec["corrected_errors"]["raw_dial"]["median_abs_pts"]),
+        "shrunk_not_worse_than_raw_paired": bool(
+            pew_rec["paired"]["shrunk_vs_raw"]["sign_test_p"] is None
+            or pew_rec["paired"]["shrunk_vs_raw"]["sign_test_p"] > 0.05
+            or pew_rec["paired"]["shrunk_vs_raw"]["median_paired_diff_pts"] <= 0)}
+    # the brief's rough check, re-derived: composition R^2, ratio span,
+    # one national multiplier on local composition
+    ok = pw["pew_total"].notna() & pw["random_pairing"].notna()
+    x, y = pw.loc[ok, "random_pairing"].to_numpy(), pw.loc[ok, "pew_total"].to_numpy()
+    r2 = float(np.corrcoef(x, y)[0, 1] ** 2) if ok.sum() > 2 else np.nan
+    obs_all = np.array([by[c]["pew_pred"]["observed_fitting_sample"] for c in metro_levels])
+    rnd_all = np.array([by[c]["pew_pred"]["random_pairing"] for c in metro_levels])
+    with np.errstate(invalid="ignore", divide="ignore"):
+        ratio_all = obs_all / rnd_all
+    rho_nat = float(nat_ours / np.nansum(rnd_all * np.array([full[c].W for c in metro_levels]))
+                    * np.nansum([full[c].W for c in metro_levels]))
+    one_mult = pw["random_pairing"] * rho_nat / offset_ratio
+    err1 = (one_mult - pw["pew_total"]).to_numpy(float)
+    jackson = pw[pw["msa_code"] == "27140"]
+    comp_check = {
+        "r2_pew_on_random_pairing_expectation": round(r2, 3),
+        "availability_adjusted_ratio_observed_over_random": {
+            "min": round(float(np.nanmin(ratio_all)), 3), "max": round(float(np.nanmax(ratio_all)), 3),
+            "median": round(float(np.nanmedian(ratio_all)), 3)},
+        "one_national_multiplier": {"rho": round(rho_nat, 4),
+                                    **error_summary(err1),
+                                    "share_off_by_over_1_5x": round(float(np.nanmean(
+                                        np.maximum(one_mult / pw["pew_total"], pw["pew_total"] / one_mult) > 1.5)), 3)},
+        "jackson_ms": ({"pew": float(jackson["pew_total"].iloc[0]),
+                        "one_multiplier_predicted": round(float(one_mult[jackson.index[0]]), 4),
+                        "national_only_corrected": round(float(jackson["corrected_national_only"].iloc[0]), 4),
+                        "shrunk_corrected": round(float(jackson["corrected_shrunk_dial"].iloc[0]), 4),
+                        "observed_2020_24": round(float(jackson["observed_2020_24"].iloc[0]), 4)}
+                       if len(jackson) else None)}
+    return pew_rec, comp_check
 
 
 def main(argv: list[str]) -> None:
@@ -1220,88 +1333,9 @@ def main(argv: list[str]) -> None:
                         "rule": "earns a dial when the shrunk dial beats the national kernel on "
                                 "held-out couples in total AND in more than half the metros",
                         "earns_dial": bool(shr_ll > nat_ll and wins > len(lomo) / 2)}
-        # Pew comparison, out of sample
-        pw = pew.copy()
-        for col, key in (("national_only", "national_only"), ("raw_dial", "raw_dial"),
-                         ("shrunk_dial", "shrunk_dial"), ("random_pairing", "random_pairing"),
-                         ("observed_2020_24", "observed_fitting_sample")):
-            pw[col] = [by[c]["pew_pred"][key] if c in by else np.nan for c in pw["msa_code"]]
-        nat_ours = report["samples"][name]["national_outgroup_share"]
-        offset_ratio = nat_ours / pew_nat
-        pew_rec = {"metros_matched": int(pw["pew_total"].notna().sum()),
-                   "pew_national": pew_nat, "our_national_fitting_sample": nat_ours,
-                   "level_offset_ratio_ours_over_pew": round(offset_ratio, 4),
-                   "correction": "predictions divided by the national ratio (Pew's US row vs "
-                                 "our national fitting-sample share) — one constant from a "
-                                 "row outside the metro test set; raw errors also reported",
-                   "raw_errors": {}, "corrected_errors": {}}
-        for col in ("random_pairing", "national_only", "raw_dial", "shrunk_dial", "observed_2020_24"):
-            err = pw[col].to_numpy(float) - pw["pew_total"].to_numpy(float)
-            pew_rec["raw_errors"][col] = error_summary(err)
-            errc = pw[col].to_numpy(float) / offset_ratio - pw["pew_total"].to_numpy(float)
-            pew_rec["corrected_errors"][col] = error_summary(errc)
-        pw["corrected_national_only"] = pw["national_only"] / offset_ratio
-        pw["corrected_shrunk_dial"] = pw["shrunk_dial"] / offset_ratio
-        pw["corrected_raw_dial"] = pw["raw_dial"] / offset_ratio
-        pw.to_csv(P3 / f"pew_lomo_{name}.csv", index=False)
-        # the bar, read model against model on the SAME metros: paired
-        # absolute errors, win counts and a two-sided sign test
-        from scipy.stats import binomtest
-        e = {m: (pw[f"corrected_{m}"] - pw["pew_total"]).abs().to_numpy(float) * 100
-             for m in ("national_only", "raw_dial", "shrunk_dial")}
-        okp = np.isfinite(e["shrunk_dial"]) & np.isfinite(e["raw_dial"]) & np.isfinite(e["national_only"])
-        def paired(a, b):
-            d = e[a][okp] - e[b][okp]
-            wins = int((d < 0).sum()); losses = int((d > 0).sum())
-            return {"a_better_metros": wins, "b_better_metros": losses,
-                    "median_paired_diff_pts": round(float(np.median(d)), 3),
-                    "mean_paired_diff_pts": round(float(d.mean()), 3),
-                    "sign_test_p": round(float(binomtest(wins, wins + losses).pvalue), 4)
-                    if wins + losses else None}
-        pew_rec["paired"] = {"shrunk_vs_national": paired("shrunk_dial", "national_only"),
-                             "shrunk_vs_raw": paired("shrunk_dial", "raw_dial"),
-                             "raw_vs_national": paired("raw_dial", "national_only")}
-        pew_rec["bar"] = {
-            "national_only_median_abs_pts": pew_rec["corrected_errors"]["national_only"]["median_abs_pts"],
-            "shrunk_beats_national_materially": bool(
-                pew_rec["corrected_errors"]["shrunk_dial"]["median_abs_pts"]
-                < 0.9 * pew_rec["corrected_errors"]["national_only"]["median_abs_pts"]),
-            "shrunk_median_below_raw_median": bool(
-                pew_rec["corrected_errors"]["shrunk_dial"]["median_abs_pts"]
-                < pew_rec["corrected_errors"]["raw_dial"]["median_abs_pts"]),
-            "shrunk_not_worse_than_raw_paired": bool(
-                pew_rec["paired"]["shrunk_vs_raw"]["sign_test_p"] is None
-                or pew_rec["paired"]["shrunk_vs_raw"]["sign_test_p"] > 0.05
-                or pew_rec["paired"]["shrunk_vs_raw"]["median_paired_diff_pts"] <= 0)}
-        # the brief's rough check, re-derived: composition R^2, ratio span,
-        # one national multiplier on local composition
-        ok = pw["pew_total"].notna() & pw["random_pairing"].notna()
-        x, y = pw.loc[ok, "random_pairing"].to_numpy(), pw.loc[ok, "pew_total"].to_numpy()
-        r2 = float(np.corrcoef(x, y)[0, 1] ** 2) if ok.sum() > 2 else np.nan
-        obs_all = np.array([by[c]["pew_pred"]["observed_fitting_sample"] for c in metro_levels])
-        rnd_all = np.array([by[c]["pew_pred"]["random_pairing"] for c in metro_levels])
-        with np.errstate(invalid="ignore", divide="ignore"):
-            ratio_all = obs_all / rnd_all
-        rho_nat = float(nat_ours / np.nansum(rnd_all * np.array([full[c].W for c in metro_levels]))
-                        * np.nansum([full[c].W for c in metro_levels]))
-        one_mult = pw["random_pairing"] * rho_nat / offset_ratio
-        err1 = (one_mult - pw["pew_total"]).to_numpy(float)
-        jackson = pw[pw["msa_code"] == "27140"]
-        comp_check = {
-            "r2_pew_on_random_pairing_expectation": round(r2, 3),
-            "availability_adjusted_ratio_observed_over_random": {
-                "min": round(float(np.nanmin(ratio_all)), 3), "max": round(float(np.nanmax(ratio_all)), 3),
-                "median": round(float(np.nanmedian(ratio_all)), 3)},
-            "one_national_multiplier": {"rho": round(rho_nat, 4),
-                                        **error_summary(err1),
-                                        "share_off_by_over_1_5x": round(float(np.nanmean(
-                                            np.maximum(one_mult / pw["pew_total"], pw["pew_total"] / one_mult) > 1.5)), 3)},
-            "jackson_ms": ({"pew": float(jackson["pew_total"].iloc[0]),
-                            "one_multiplier_predicted": round(float(one_mult[jackson.index[0]]), 4),
-                            "national_only_corrected": round(float(jackson["corrected_national_only"].iloc[0]), 4),
-                            "shrunk_corrected": round(float(jackson["corrected_shrunk_dial"].iloc[0]), 4),
-                            "observed_2020_24": round(float(jackson["observed_2020_24"].iloc[0]), 4)}
-                           if len(jackson) else None)}
+        pew_rec, comp_check = pew_comparison(
+            lomo, pew, pew_nat, report["samples"][name]["national_outgroup_share"],
+            metro_levels, full, P3 / f"pew_lomo_{name}.csv")
         report["samples"][name].update({
             "dials": {k: {"tau": round(shr[k]["tau"], 4), "tau2": shr[k]["tau2"],
                           "precision_weighted_mean_theta": round(shr[k]["precision_weighted_mean"], 4),
@@ -1339,8 +1373,97 @@ def main(argv: list[str]) -> None:
                       "seconds": report["seconds_total"]}, indent=1, default=_json))
 
 
+def pew_rerun(sample: str, workers: int = 8) -> dict:
+    """Phase 3b A2: re-run the leave-one-metro-out Pew comparison (and the
+    split-half dial test that rides with it) for one sample from scratch
+    — the national refit, every metro's dials, the 387 LOMO refits — and
+    write the record under results/phase3b/ beside the Phase 3 figures
+    for the same sample, so the report can put the two side by side."""
+    P3B = RESULTS / "phase3b"
+    P3B.mkdir(parents=True, exist_ok=True)
+    t0 = time.time()
+    report = json.loads((P3 / "kernel_report.json").read_text())
+    con = open_pool()
+    con.execute("SET enable_progress_bar=false")
+    metro_levels = sorted(pd.read_csv(RESULTS / "metros.csv", dtype={"cbsa": str})["cbsa"])
+    A, A_metro = load_singles(con, metro_levels)
+    con.close()
+    nat = pd.read_parquet(DATA / f"couple_table_national_{sample}.parquet")
+    C = table_to_dense(nat)
+    fit = fit_national(C, A, bandwidth=tuple(report["samples"][sample]["bandwidth"]))
+    fg = gauge(fit["f"], A, fit["N_s"])
+    full, halves = load_metro_tables(sample)
+    marg = pd.read_parquet(DATA / f"couple_marginals_metro_{sample}.parquet")
+    marg["cbsa"] = marg["cbsa"].astype(str)
+    ne = effective_counts(marg)
+    n_eff = {c: {k: float(ne.loc[c, f"n_eff_{k}"]) for k in COMPONENTS} for c in ne.index}
+    theta_hat = np.ones((len(metro_levels), 3))
+    se2 = np.full((len(metro_levels), 3), np.inf)
+    for i, cbsa in enumerate(metro_levels):
+        mc = full.get(cbsa)
+        if mc is None or mc.W <= 0:
+            continue
+        dm = fit_dials(fg, mc, A_metro[i])
+        theta_hat[i] = dm["theta"]
+        se2[i] = dial_se2(dm, n_eff.get(cbsa, {k: np.nan for k in COMPONENTS}))
+    shr = {k: shrink(theta_hat[:, j], se2[:, j]) for j, k in enumerate(COMPONENTS)}
+    old_d = pd.read_csv(P3 / f"dials_{sample}.csv", dtype={"cbsa": str}).set_index("cbsa").loc[metro_levels]
+    dial_drift = {k: float(np.nanmax(np.abs(old_d[f"theta_tilde_{k}"].to_numpy(float)
+                                            - shr[k]["theta_tilde"]))) for k in COMPONENTS}
+    print(f"[{sample}] dials refitted: max |drift| vs Phase 3 {dial_drift}; LOMO x{len(metro_levels)} ...",
+          flush=True)
+    t1 = time.time()
+    lomo = run_lomo(C, A, A_metro, metro_levels, fit["raw_f"], fit["bandwidth"], full, halves,
+                    n_eff, theta_hat, se2, workers=workers)
+    split = {}
+    for k in COMPONENTS:
+        nat_ll = sum(r["split_half"][k]["national"] for r in lomo)
+        raw_ll = sum(r["split_half"][k]["raw"] for r in lomo)
+        shr_ll = sum(r["split_half"][k]["shrunk"] for r in lomo)
+        sides = sum(r["split_half"][k]["sides"] for r in lomo)
+        split[k] = {"gain_shrunk_minus_national_per_1000_weighted_sides": (shr_ll - nat_ll) / sides * 1000,
+                    "gain_raw_minus_national_per_1000_weighted_sides": (raw_ll - nat_ll) / sides * 1000,
+                    "metros_where_shrunk_beats_national": sum(
+                        1 for r in lomo if r["split_half"][k]["shrunk"] > r["split_half"][k]["national"]),
+                    "metros_where_shrunk_beats_raw": sum(
+                        1 for r in lomo if r["split_half"][k]["shrunk"] > r["split_half"][k]["raw"]),
+                    "metros": len(lomo),
+                    "earns_dial": bool(shr_ll > nat_ll and sum(
+                        1 for r in lomo if r["split_half"][k]["shrunk"] > r["split_half"][k]["national"])
+                        > len(lomo) / 2)}
+    nat_ours = report["samples"][sample]["national_outgroup_share"]
+    pew_rec, comp_check = pew_comparison(lomo, pew_table(metro_levels), pew_national(), nat_ours,
+                                         metro_levels, full, P3B / f"pew_lomo_{sample}.csv")
+    old = report["samples"][sample]["pew"]
+    out = {"sample": sample, "spec": report["samples"][sample]["spec"],
+           "national_outgroup_share": nat_ours,
+           "pew": pew_rec, "composition_check": comp_check, "split_half_dial_test": split,
+           "dials_tau": {k: round(shr[k]["tau"], 4) for k in COMPONENTS},
+           "dials_centre": {k: round(shr[k]["precision_weighted_mean"], 4) for k in COMPONENTS},
+           "dial_max_abs_drift_vs_phase3": dial_drift,
+           "phase3_record": {"corrected_errors": old["corrected_errors"], "paired": old["paired"]},
+           "reproduces_phase3": {
+               m: pew_rec["corrected_errors"][m]["median_abs_pts"] == old["corrected_errors"][m]["median_abs_pts"]
+               for m in ("national_only", "raw_dial", "shrunk_dial")},
+           "m3_0_0_recent": {"corrected_errors": report["samples"]["recent"]["pew"]["corrected_errors"],
+                             "paired": report["samples"]["recent"]["pew"]["paired"]},
+           "workers": workers, "lomo_seconds": round(time.time() - t1, 1),
+           "seconds": round(time.time() - t0, 1)}
+    (P3B / f"lomo_{sample}.json").write_text(json.dumps(lomo, indent=0, default=_json) + "\n")
+    (P3B / f"pew_rerun_{sample}.json").write_text(json.dumps(out, indent=1, default=_json) + "\n")
+    print(json.dumps({k: out[k] for k in ("reproduces_phase3", "dial_max_abs_drift_vs_phase3",
+                                          "lomo_seconds")}, indent=1)
+          + "\nPew corrected median abs: "
+          + ", ".join(f"{c}={pew_rec['corrected_errors'][c]['median_abs_pts']}"
+                      for c in ("national_only", "raw_dial", "shrunk_dial")), flush=True)
+    return out
+
+
 if __name__ == "__main__":
     if sys.argv[1:2] == ["ship"]:
-        ship_sample(sys.argv[2])
+        ship_sample(sys.argv[2], chosen_by=(sys.argv[3] if len(sys.argv) > 3 else None))
+    elif sys.argv[1:2] == ["pew"]:
+        pew_rerun(sys.argv[2], workers=int(sys.argv[sys.argv.index("--workers") + 1])
+                  if "--workers" in sys.argv else 8)
     else:
         main(sys.argv[1:])

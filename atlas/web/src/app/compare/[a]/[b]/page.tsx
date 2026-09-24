@@ -202,10 +202,13 @@ export default async function ComparePage({
                     )}
                   </td>
                 ))}
+                {/* m3.1.0 (Phase 3b A3): a capped figure ("250+") is not
+                    a number, so no difference is computed from it — the
+                    cell shows the same dash a missing figure gets */}
                 <DiffCell
                   id="match_propensity"
-                  a={rankA?.match?.available ? rankA.match.display ?? undefined : undefined}
-                  b={rankB?.match?.available ? rankB.match.display ?? undefined : undefined}
+                  a={rankA?.match?.available && !rankA.match.capped ? rankA.match.display ?? undefined : undefined}
+                  b={rankB?.match?.available && !rankB.match.capped ? rankB.match.display ?? undefined : undefined}
                   decimals={meta.features.match_propensity.display_decimals}
                   direction={meta.features.match_propensity.direction}
                 />

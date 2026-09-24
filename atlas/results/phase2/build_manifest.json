@@ -1,8 +1,8 @@
 {
-  "data_version": "59fd352c5c2f",
-  "model_version": "m3.0.0",
+  "data_version": "ae1efbef9f0e",
+  "model_version": "m3.1.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-23T17:17:16-0400",
+  "created_at": "2026-09-23T20:42:00-0400",
   "axes": [
     {
       "name": "metro",
@@ -604,13 +604,13 @@
     "version": "kernel_v1",
     "form": "w = exp(theta_age f_age(gap; sex_s) + theta_edu f_edu(edu_s, edu_c) + theta_race f_race(race_s, race_c; sex_s) + log_norm(metro, seeker))",
     "gauge": "each component: availability-weighted mean multiplier 1 on its own margin under random pairing; log_norm makes the full kernel average exactly 1 over the national single adult population per seeker type",
-    "fitting_sample": "recent",
+    "fitting_sample": "decay_h5",
     "fitting_sample_spec": {
-      "where": "(NOT married OR union_year >= 2019)",
-      "weight": "1.0"
+      "where": "TRUE",
+      "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 5.0) ELSE 1.0 END)"
     },
-    "couple_sides_weighted": 24196035.3,
-    "n_alloc": 986769.8,
+    "couple_sides_weighted": 33379883.7,
+    "n_alloc": 1385259.4,
     "bandwidth_years": [
       0.25,
       0.25
@@ -621,11 +621,11 @@
       "race"
     ],
     "dials_tau": {
-      "age": 0.065,
-      "edu": 0.0778,
-      "race": 0.1299
+      "age": 0.0674,
+      "edu": 0.0745,
+      "race": 0.1225
     },
-    "generated_at": "2026-09-23T17:16:02-0400"
+    "generated_at": "2026-09-23T20:41:09-0400"
   },
   "model_defaults": {
     "pillar_weights": {
@@ -730,6 +730,8 @@
     "match_how": "The chances-of-matching figure is built from real couples in the Census Bureau's household survey, using each partner's age, education and race or ethnicity. Across the whole country we measure how often each age gap, each education pairing and each racial or ethnic pairing actually occurs, compared with how often it would occur if single people paired at random. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age, education and background. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
     "match_how_link": "How this is measured",
     "match_unit_line": "where 100 is the US average",
+    "match_display_cap": "250",
+    "match_display_cap_token": "+",
     "self_edu_label": "My education",
     "self_race_label": "My race or ethnicity",
     "prefer_not_to_say": "Prefer not to say",
@@ -1726,8 +1728,8 @@
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
     "features.parquet": "4e65791d0c7bfa6160eeb87e6a037d733cd98f5a0e7efe8d4355b0104428342a",
-    "kernel.json": "2a18f8eaf7bc9dde8a63988b625aac1c59e0752bdb3f0c78e92df68ba590ad6c",
-    "kernel.npz": "240428730bdb861cafb890eb157b6d7ab29d2e3eb3a4e1f5f1a479902d4c4d0a",
+    "kernel.json": "04590607b4eb178d76725b5ba5e607b54e5e9058afdf291657bc950d067249a8",
+    "kernel.npz": "432e2ef7e6d8036b5d6da315c3276fab1bf36bf3fc8448c7aeff454f124d3ee9",
     "metros.json": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",
     "pairing_cells.parquet": "ea906b4b4b7fee95b39f7258782dd2535ac59e92b3d7bd7c245bbec9e451ec68",
     "pool_cube.npy": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",

@@ -397,14 +397,35 @@ def _row_flags(build: Build, i: int) -> list[str]:
     return f
 
 
+def match_display(value: float, build: Build) -> tuple[str, bool]:
+    """THE formatting helper for the chances-of-matching figure (m3.1.0,
+    Phase 3b A3): the registry's display spec, capped at the registry's
+    ceiling with its token appended — "250+" — wherever the figure
+    renders (result rows, the city page, the compare table, the stats
+    entry). Presentational only: the feature is percentile-ranked, so no
+    score, rank, standing or band ever reads the display (asserted in
+    test_match_display_cap_is_presentational). Returns (display, capped);
+    the compare table shows no difference against a capped figure."""
+    le = build.legend["match_propensity"]
+    strings = build.manifest["strings"]
+    cap = float(strings["match_display_cap"])
+    shown = format_value(value, le)
+    if float(shown.replace(",", "")) > cap:
+        return format_value(cap, le) + strings["match_display_cap_token"], True
+    return shown, False
+
+
 def _match_block(mt: dict, i: int, build: Build, standing: float | None) -> dict:
     """Chances of matching for one ranked metro: the index, its display
-    string, the (unrendered) margin and its within-query band."""
+    string (capped by match_display), the (unrendered) margin and its
+    within-query band."""
     le = build.legend["match_propensity"]
     v = float(mt["index"][i])
+    shown, capped = match_display(v, build) if np.isfinite(v) else (None, False)
     out = {"available": bool(np.isfinite(v)),
            "value": round(v, 2) if np.isfinite(v) else None,
-           "display": format_value(v, le) if np.isfinite(v) else None,
+           "display": shown,
+           "capped": capped,
            "moe": round(float(mt["moe"][i]), 2) if np.isfinite(mt["moe"][i]) else None,
            "unit_line": le["unit"]}
     band = _band_from_standing(build, "match_propensity", standing)
@@ -522,7 +543,9 @@ def rank(build: Build, req: Request) -> dict:
                 entry = {
                     "id": f["id"], "pillar": f["pillar"],
                     "value": round(float(raw[k, j]), 4),
-                    "display": format_value(float(raw[k, j]), le),
+                    "display": (match_display(float(raw[k, j]), build)[0]
+                                if f["id"] == "match_propensity"
+                                else format_value(float(raw[k, j]), le)),
                     "standing": round(float(standing[k, j]), 1),
                     "z": round(float(z[k, j]), 2),
                     "weight": round(float(w_eff[k, j]), 4),

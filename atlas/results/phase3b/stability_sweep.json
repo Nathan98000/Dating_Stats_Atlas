@@ -1,0 +1,356 @@
+{
+ "build": "59fd352c5c2f",
+ "shipped_kernel_sample": "recent",
+ "gate": "every persona >= 0.8 share of replicates with >= 8 of 10 top-10 overlap",
+ "order": [
+  "recent",
+  "decay_h5",
+  "decay_h10",
+  "decay_h20"
+ ],
+ "stop_at_first_pass": true,
+ "candidates": {
+  "recent": {
+   "kernel_source": "build",
+   "pass": false,
+   "personas_below_bar": [
+    "D_man41_women_50k",
+    "slider_alias_pool_vs_balance",
+    "slider_all_match"
+   ],
+   "min_share": 0.7,
+   "replicate_sd_median_across_personas": 2.86,
+   "replicate_sd_p90_across_personas": 4.57,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.73,
+     "match_index_replicate_sd_p90": 4.21,
+     "match_index_p10_p90_spread": 15.9,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 4.4
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.12,
+     "match_index_replicate_sd_p90": 3.34,
+     "match_index_p10_p90_spread": 25.7,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 6.1
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.51,
+     "match_index_replicate_sd_p90": 5.38,
+     "match_index_p10_p90_spread": 14.2,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 7.4
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.7125,
+     "match_index_replicate_sd_median": 4.1,
+     "match_index_replicate_sd_p90": 6.76,
+     "match_index_p10_p90_spread": 26.1,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 1.2
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.8,
+     "match_index_replicate_sd_p90": 4.59,
+     "match_index_p10_p90_spread": 18.1,
+     "score_gap_rank10_to_rank11": 4.6,
+     "score_span_ranks_7_to_14": 8.3
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 2.92,
+     "match_index_replicate_sd_p90": 4.67,
+     "match_index_p10_p90_spread": 10.9,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 5.3
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.12,
+     "match_index_replicate_sd_p90": 6.06,
+     "match_index_p10_p90_spread": 17.0,
+     "score_gap_rank10_to_rank11": 1.8,
+     "score_span_ranks_7_to_14": 10.9
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.54,
+     "match_index_replicate_sd_p90": 6.91,
+     "match_index_p10_p90_spread": 20.6,
+     "score_gap_rank10_to_rank11": 0.3,
+     "score_span_ranks_7_to_14": 9.4
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.76,
+     "match_index_replicate_sd_p90": 4.06,
+     "match_index_p10_p90_spread": 27.5,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 4.2
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.7,
+     "match_index_replicate_sd_median": 2.0,
+     "match_index_replicate_sd_p90": 3.1,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 2.0
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.7,
+     "match_index_replicate_sd_median": 2.0,
+     "match_index_replicate_sd_p90": 3.1,
+     "match_index_p10_p90_spread": 16.9,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 2.0
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.1,
+     "match_index_replicate_sd_p90": 15.56,
+     "match_index_p10_p90_spread": 87.5,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.88,
+     "match_index_replicate_sd_p90": 4.35,
+     "match_index_p10_p90_spread": 29.8,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 3.4
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.71,
+     "match_index_replicate_sd_p90": 3.97,
+     "match_index_p10_p90_spread": 17.4,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 4.4
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.84,
+     "match_index_replicate_sd_p90": 4.55,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 2.4,
+     "score_span_ranks_7_to_14": 6.4
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.42,
+     "match_index_replicate_sd_p90": 5.11,
+     "match_index_p10_p90_spread": 19.5,
+     "score_gap_rank10_to_rank11": 2.3,
+     "score_span_ranks_7_to_14": 6.1
+    }
+   },
+   "half_life_years": null,
+   "spec": {
+    "where": "(NOT married OR union_year >= 2019)",
+    "weight": "1.0"
+   },
+   "couple_sides_allocated": 986769.8,
+   "couple_sides_kish": 535833.5,
+   "couple_sides_weighted": 24196035.3,
+   "race_cells_empty": 2,
+   "race_cells_below_30_effective": 31,
+   "race_cells_floored": 2,
+   "gap_cells_below_30_effective": 76,
+   "national_outgroup_share": 0.2385,
+   "bandwidth_years": [
+    0.25,
+    0.25
+   ],
+   "dial_components_earned": [
+    "age",
+    "edu",
+    "race"
+   ],
+   "pew_corrected_median_abs_pts_shrunk": 2.63,
+   "seconds": 28.1
+  },
+  "decay_h5": {
+   "kernel_source": "results/phase3b/_candidates/decay_h5",
+   "pass": true,
+   "personas_below_bar": [],
+   "min_share": 0.95,
+   "replicate_sd_median_across_personas": 2.82,
+   "replicate_sd_p90_across_personas": 4.59,
+   "per_persona": {
+    "A_woman32_ba_men_75k": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.69,
+     "match_index_replicate_sd_p90": 4.18,
+     "match_index_p10_p90_spread": 14.4,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 4.1
+    },
+    "B_man28_women_never": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.1,
+     "match_index_replicate_sd_p90": 3.35,
+     "match_index_p10_p90_spread": 25.9,
+     "score_gap_rank10_to_rank11": 1.0,
+     "score_span_ranks_7_to_14": 6.3
+    },
+    "C_woman38_grad_men_100k": {
+     "share_replicates_with_>=8of10_overlap": 0.975,
+     "match_index_replicate_sd_median": 3.37,
+     "match_index_replicate_sd_p90": 5.35,
+     "match_index_p10_p90_spread": 12.5,
+     "score_gap_rank10_to_rank11": 1.5,
+     "score_span_ranks_7_to_14": 8.3
+    },
+    "D_man41_women_50k": {
+     "share_replicates_with_>=8of10_overlap": 0.95,
+     "match_index_replicate_sd_median": 4.05,
+     "match_index_replicate_sd_p90": 6.7,
+     "match_index_p10_p90_spread": 25.2,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 1.3
+    },
+    "E_black_woman29_stress": {
+     "skipped": "only 4 ranked"
+    },
+    "race_asian_nh_men": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.63,
+     "match_index_p10_p90_spread": 18.5,
+     "score_gap_rank10_to_rank11": 4.6,
+     "score_span_ranks_7_to_14": 8.3
+    },
+    "race_hispanic_women": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.93,
+     "match_index_replicate_sd_p90": 4.71,
+     "match_index_p10_p90_spread": 10.1,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 4.8
+    },
+    "race_white_nh_grad_multi": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 4.1,
+     "match_index_replicate_sd_p90": 5.95,
+     "match_index_p10_p90_spread": 16.5,
+     "score_gap_rank10_to_rank11": 0.4,
+     "score_span_ranks_7_to_14": 10.4
+    },
+    "below_bar_nhpi_250k": {
+     "skipped": "only 0 ranked"
+    },
+    "race_two_or_more_and_other": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 4.59,
+     "match_index_replicate_sd_p90": 7.08,
+     "match_index_p10_p90_spread": 21.0,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 10.1
+    },
+    "broad_any": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.75,
+     "match_index_replicate_sd_p90": 4.13,
+     "match_index_p10_p90_spread": 28.4,
+     "score_gap_rank10_to_rank11": 0.5,
+     "score_span_ranks_7_to_14": 4.9
+    },
+    "slider_all_match": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 2.01,
+     "match_index_replicate_sd_p90": 3.14,
+     "match_index_p10_p90_spread": 19.0,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 3.6
+    },
+    "slider_alias_pool_vs_balance": {
+     "share_replicates_with_>=8of10_overlap": 0.9625,
+     "match_index_replicate_sd_median": 2.01,
+     "match_index_replicate_sd_p90": 3.14,
+     "match_index_p10_p90_spread": 19.0,
+     "score_gap_rank10_to_rank11": 0.0,
+     "score_span_ranks_7_to_14": 3.6
+    },
+    "self_edu_and_race": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 7.64,
+     "match_index_replicate_sd_p90": 16.97,
+     "match_index_p10_p90_spread": 91.5,
+     "score_gap_rank10_to_rank11": 0.1,
+     "score_span_ranks_7_to_14": 3.8
+    },
+    "self_edu_only_hs": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.85,
+     "match_index_replicate_sd_p90": 4.39,
+     "match_index_p10_p90_spread": 29.5,
+     "score_gap_rank10_to_rank11": 0.7,
+     "score_span_ranks_7_to_14": 3.3
+    },
+    "importance_controls": {
+     "share_replicates_with_>=8of10_overlap": 0.9875,
+     "match_index_replicate_sd_median": 2.76,
+     "match_index_replicate_sd_p90": 4.05,
+     "match_index_p10_p90_spread": 17.7,
+     "score_gap_rank10_to_rank11": 0.2,
+     "score_span_ranks_7_to_14": 4.5
+    },
+    "importance_lifestyle_alias": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 2.79,
+     "match_index_replicate_sd_p90": 4.55,
+     "match_index_p10_p90_spread": 26.0,
+     "score_gap_rank10_to_rank11": 1.4,
+     "score_span_ranks_7_to_14": 6.8
+    },
+    "same_sex_pool": {
+     "share_replicates_with_>=8of10_overlap": 1.0,
+     "match_index_replicate_sd_median": 3.49,
+     "match_index_replicate_sd_p90": 5.18,
+     "match_index_p10_p90_spread": 19.6,
+     "score_gap_rank10_to_rank11": 1.8,
+     "score_span_ranks_7_to_14": 4.7
+    }
+   },
+   "half_life_years": 5.0,
+   "spec": {
+    "where": "TRUE",
+    "weight": "(CASE WHEN married THEN power(0.5, (svy_year - union_year) / 5.0) ELSE 1.0 END)"
+   },
+   "couple_sides_allocated": 1385259.4,
+   "couple_sides_kish": 974833.9,
+   "couple_sides_weighted": 33379883.7,
+   "race_cells_empty": 0,
+   "race_cells_below_30_effective": 19,
+   "race_cells_floored": 0,
+   "gap_cells_below_30_effective": 69,
+   "national_outgroup_share": 0.2203,
+   "bandwidth_years": [
+    0.25,
+    0.25
+   ],
+   "dial_components_earned": [
+    "age",
+    "edu",
+    "race"
+   ],
+   "pew_corrected_median_abs_pts_shrunk": 2.48,
+   "seconds": 75.0
+  }
+ },
+ "shipped": "decay_h5",
+ "rule": "the shortest half-life on which every persona reaches the bar ships; recent-only never ships (it failed in m3.0.0); the stock is never fitted here; a failure at 20 years is a stop condition, not a reason to go further"
+}
