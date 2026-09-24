@@ -15,9 +15,18 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  the same shapes also run the KERNEL-
                                  WEIGHTED sum both ways (the weighted
                                  path's mask-axis sibling)
-  hard  rank stability           resample pool+match across the 80
-                                 replicates; >=8-of-10 top-10 overlap in
-                                 >=80% of replicates, every persona
+  hard  rank stability           ADR 0011 (Phase 3c): the total WOBBLE of
+                                 the test searches (stability_gate.py —
+                                 personas, the effects grid, the same-sex
+                                 grid; mean rank move of the cities in
+                                 either top 10 over the 80 replicates) must
+                                 not exceed 1.10 x the fixed reference's
+                                 (m3.2.0, results/phase3c/
+                                 stability_reference.json) over the
+                                 searches the build touches
+  soft  rank stability (old)     the >= 8-of-10 top-10 overlap in >= 80% of
+                                 replicates per persona, reported beside
+                                 the new reading
   hard  kernel face validity     a 30-year-old's age weight peaks within
                                  three years of 30; the education matrix
                                  is diagonal-dominant; every race group's
@@ -68,6 +77,7 @@ from atlas.model.preferences import (ALLOWED_MARITAL, EDU_LEVELS, RACE_LEVELS,
                                      resolve_race_levels, seeker_weights)
 from atlas.model.scoring import match_index, score_vector
 from atlas.model.suppression import POLICY_STRINGS
+from atlas.pipeline.build import stability_gate as SG
 from atlas.pipeline.build.pool import open_pool
 from atlas.pipeline.fetch import DATA, RESULTS, api_get
 
@@ -597,16 +607,29 @@ def main(build_dir: str) -> int:
     if not report["hard"]["cube_vs_sql_differential"]["pass"]:
         hard_fail.append("cube_vs_sql_differential")
 
-    # ---- hard: rank stability across replicates ----------------------------
-    stab = rank_stability(build, con, GOLDEN_VECTORS, persona_results)
-    shares = [s["share_replicates_with_>=8of10_overlap"]
-              for s in stab.values() if "skipped" not in s]
-    ok = all(s >= STABILITY_SHARE for s in shares)
-    report["hard"]["rank_stability"] = {"pass": bool(ok), "per_persona": stab,
-                                        "gate": f">= {STABILITY_OVERLAP}/10 overlap "
-                                                f"in >= {STABILITY_SHARE:.0%} of replicates"}
-    if not ok:
+    # ---- hard: rank stability (ADR 0011: total wobble against the fixed
+    # reference over the searches this build touches; the old overlap
+    # share is reported beside it as a soft reading) -------------------------
+    gate = SG.gate_record(build, con, name=f"validate:{build.manifest['data_version']}")
+    ref = SG.load_reference()
+    gv = SG.verdict(gate, ref)
+    stab = {n: r for n, r in gate["searches"].items() if n.startswith("persona:")}
+    report["hard"]["rank_stability"] = {
+        "pass": bool(gv["pass"]),
+        **{k: gv[k] for k in ("reference_build", "searches_compared", "searches_touched", "basis",
+                               "wobble_candidate", "wobble_reference", "ratio", "tolerance",
+                               "ratio_over_all_searches", "searches_wobble_rose_more_than_25pct")},
+        "rule": gate["rule"], "totals": gate["totals"],
+        "reference_file": str(SG.REFERENCE.relative_to(RESULTS.parent)),
+        "per_search": gate["searches"]}
+    if not gv["pass"]:
         hard_fail.append("rank_stability")
+    report["soft"]["rank_stability_overlap_old_rule"] = {
+        "min_share_personas": gv["old_rule"]["min_share_personas"],
+        "would_pass_at_0_80": gv["old_rule"]["pass_at_0_80"],
+        "per_persona": {n[len("persona:"):]: r["overlap_share_old_rule"] for n, r in stab.items()
+                        if "skipped" not in r},
+        "rule": gv["old_rule"]["reading"]}
 
     # ---- hard: explanation invariants ---------------------------------------
     report["hard"]["explanation_invariants"] = check_explanations(
@@ -853,7 +876,9 @@ def main(build_dir: str) -> int:
                       "explanations": {k: v for k, v in
                                        report["hard"]["explanation_invariants"].items()
                                        if k != "problems"},
-                      "rank_stability": {k: v for k, v in list(stab.items())[:4]},
+                      "rank_stability": {k: report["hard"]["rank_stability"][k] for k in
+                                         ("pass", "ratio", "searches_touched", "basis")},
+                      "rank_stability_old_rule_min_share": gv["old_rule"]["min_share_personas"],
                       "weight_sensitivity": report["soft"]["weight_sensitivity"]["kendall_tau"],
                       "pew": report["soft"]["pew_reproduction"],
                       "kernel_face": report["hard"]["kernel_face_validity"]["pass"],
