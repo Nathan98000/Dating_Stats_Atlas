@@ -198,13 +198,17 @@ strings:
   # its information box, saying whose pairing patterns the figure is
   # built from. The API serves the first when the shipped kernel carries
   # same-sex terms (naming which components they cover) and the second
-  # when every component falls back to opposite-sex couples.
+  # when every component falls back to opposite-sex couples. m3.3.0
+  # (Phase 3c, B2): the sentence names age and education as measured on
+  # same-sex couples and race as borrowed; the loader asserts that the
+  # served sentence names exactly the kernel's same_sex_components, so
+  # the two cannot disagree (model/loader.py same_sex_note_names).
   match_same_sex_note: >-
-    For a same-sex search the age gaps come from same-sex couples in the
-    same survey; the education pairings and the racial and ethnic
+    For a same-sex search the age gaps and the education pairings come
+    from same-sex couples in the same survey; the racial and ethnic
     pairings are borrowed from opposite-sex couples, because the same-sex
-    couples in the survey do not support a dependable measure of them on
-    their own.
+    couples in the survey are too few to measure them dependably on their
+    own.
   match_same_sex_note_all_fallback: >-
     For a same-sex search the age gaps, the education pairings and the
     racial and ethnic pairings all come from opposite-sex couples, because

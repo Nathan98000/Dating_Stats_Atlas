@@ -120,6 +120,13 @@ class SameSexTerms:
     f_race: np.ndarray           # (2, 8, 8)
     log_norm: np.ndarray         # (n_metros, 2, 53, 4, 8)
     components: tuple[str, ...]
+    # m3.3.0 (Phase 3c B2): whether the opposite-sex race x education
+    # interaction rides on a same-sex search. m3.2.0's rule was "only when
+    # both education and race stay opposite-sex"; since education is now
+    # measured on same-sex couples the question is decided by held-out
+    # fit (ADR 0010, amended) and recorded in the artifact
+    # (same_sex.interaction_applies), which the loader reads.
+    interaction: bool = True
 
 
 @dataclass
@@ -167,8 +174,9 @@ def seeker_weights(k: Kernel, self_sex: str, self_age: int,
     interaction (when the artifact carries one) multiplies in; a SAME-SEX
     search takes each component the artifact lists from the same-sex fit
     at dial 1 and the rest from the opposite-sex fit with the metro's
-    dial (the interaction rides only when both education and race stay
-    opposite-sex), normalised by the same-sex normaliser."""
+    dial (the interaction rides when the artifact says it applies —
+    m3.3.0 decides that by held-out fit), normalised by the same-sex
+    normaliser."""
     si = SEX_LEVELS.index(self_sex)
     ai = int(self_age) - 18
     assert 0 <= ai < 53, "seeker age outside the cube"
@@ -208,8 +216,7 @@ def seeker_weights(k: Kernel, self_sex: str, self_age: int,
         R = np.repeat(np.exp(ss.f_race[si])[None, :, :], M, axis=0)          # (M, r_s, r_c)
     else:
         R = np.exp(theta[:, 2][:, None, None] * k.f_race[si][None, :, :])
-    use_int = k.f_int is not None and not (
-        ss is not None and ("edu" in ss.components or "race" in ss.components))
+    use_int = k.f_int is not None and (ss is None or bool(ss.interaction))
     if not use_int:
         W = np.einsum("mer,mef,mrg->mfg", mix, E, R)                         # (M, e_c, r_c)
     else:

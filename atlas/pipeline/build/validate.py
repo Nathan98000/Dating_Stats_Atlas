@@ -31,7 +31,11 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  three years of 30; the education matrix
                                  is diagonal-dominant; every race group's
                                  own-group multiplier beats its
-                                 off-diagonals, both sexes (ADR 0009)
+                                 off-diagonals, both sexes (ADR 0009); a
+                                 served SAME-SEX education matrix is held
+                                 instead to own level above 1 and above
+                                 every level two or more away (ADR 0010,
+                                 amended m3.3.0)
   hard  pew never shipped        the Pew table is a build-time reference
                                  read outside any adapter (Phase 3c A3):
                                  its licence is non-shippable, no feature
@@ -370,9 +374,21 @@ def check_kernel_face(build) -> dict:
                 rec[f"peak_age_at_30_{name}"] = peak
                 ok &= abs(peak - 30) <= 3
             if "edu" in ss.components:
-                d = [bool(ss.f_edu[si, e, e] == ss.f_edu[si, e].max()) for e in range(4)]
-                rec[f"edu_diagonal_dominant_{name}"] = d
-                ok &= all(d)
+                # ADR 0010 (amended, m3.3.0): diagonal dominance encodes an
+                # opposite-sex regularity the same-sex data contradict in
+                # one well-measured row; the same-sex matrix is held to
+                # (a) every own-level multiplier above 1 and (b) each
+                # own-level multiplier above every multiplier two or more
+                # levels away. Written after the fit was seen, to catch a
+                # broken fit, not to veto the pattern Nathan decided to serve.
+                own_above_1 = [bool(ss.f_edu[si, e, e] > 0.0) for e in range(4)]
+                far = [bool(all(ss.f_edu[si, e, e] > ss.f_edu[si, e, f]
+                                for f in range(4) if abs(f - e) >= 2)) for e in range(4)]
+                rec[f"edu_own_level_above_1_{name}"] = own_above_1
+                rec[f"edu_own_level_above_two_or_more_away_{name}"] = far
+                rec[f"edu_diagonal_dominant_{name}_soft"] = [
+                    bool(ss.f_edu[si, e, e] == ss.f_edu[si, e].max()) for e in range(4)]
+                ok &= all(own_above_1) and all(far)
             if "race" in ss.components:
                 rows = {RACE_LEVELS[r]: bool(ss.f_race[si, r, r] > np.delete(ss.f_race[si, r], r).max())
                         for r in range(8)}

@@ -61,6 +61,10 @@ from atlas.pipeline.fetch import DATA, RESULTS
 
 P3 = RESULTS / "phase3"
 P3B = RESULTS / "phase3b"
+# Phase 3c: `--dir results/phase3c` points every read and write of the fit
+# store (refine_fits.json, _form_fits.npz, dials_*.csv, lomo_*.json, the
+# same-sex records) at that directory; seed it with copies of the Phase 3b
+# records first (results/phase3c/_seed.sh).
 KERNEL_VERSION_V2 = "kernel_v2"
 N_INT = N_SEX * N_RACE * N_RACE * N_EDU * N_EDU
 INT_TOL = 1e-6
@@ -576,6 +580,18 @@ def face_validity(fg: dict, A: np.ndarray, form: Form, same_sex: bool = False) -
     f3 = {"age": fg["age"][:, c30, :], "edu": (fg["edu"] if not form.edu_by_sex else fg["edu"][0]),
           "race": fg["race"]}
     out = K.face_validity(f3, A if not same_sex else A[[1, 0]])
+    if same_sex:
+        # ADR 0010 (amended, m3.3.0): the same-sex education matrix is held
+        # to own level above 1 and above every level two or more away;
+        # diagonal dominance is kept as a soft reading
+        fe = fg["edu"] if not form.edu_by_sex else fg["edu"][0]
+        out["edu_diagonal_dominant_rows_soft"] = out.pop("edu_diagonal_dominant_rows")
+        out["edu_own_level_above_1"] = [bool(fe[e, e] > 0.0) for e in range(N_EDU)]
+        out["edu_own_level_above_two_or_more_away"] = [
+            bool(all(fe[e, e] > fe[e, f] for f in range(N_EDU) if abs(f - e) >= 2)) for e in range(N_EDU)]
+        out["edu_rule"] = "same-sex (ADR 0010 amended): own level > 1 and above every level >= 2 away"
+        out["edu_pass"] = all(out["edu_own_level_above_1"]) and all(out["edu_own_level_above_two_or_more_away"])
+        out["pass"] = out["age_pass"] and out["edu_pass"] and out["race_pass"]
     if form.edu_by_sex:
         rows = {SEX_LEVELS[s]: [bool(fg["edu"][s, e, e] == fg["edu"][s, e].max()) for e in range(N_EDU)]
                 for s in range(N_SEX)}
@@ -688,7 +704,15 @@ def forms_for(sample: str, partition_edges: tuple[int, ...]) -> dict[str, Form]:
     return {"baseline": Form(name="baseline"),
             "B1_age_cohorts": Form(age_edges=partition_edges, name="B1_age_cohorts"),
             "B2a_race_x_edu": Form(interaction=True, name="B2a_race_x_edu"),
-            "B2b_edu_by_sex": Form(edu_by_sex=True, name="B2b_edu_by_sex")}
+            "B2b_edu_by_sex": Form(edu_by_sex=True, name="B2b_edu_by_sex"),
+            # Phase 3c B3: the held-back refinements added to the shipped
+            # form (baseline + race x education), the cohorts as chosen in 3b
+            "C1_cohorts_plus_shipped": Form(age_edges=partition_edges, interaction=True,
+                                            name="C1_cohorts_plus_shipped"),
+            "C2_edu_by_sex_plus_shipped": Form(edu_by_sex=True, interaction=True,
+                                               name="C2_edu_by_sex_plus_shipped"),
+            "C3_both_plus_shipped": Form(age_edges=partition_edges, edu_by_sex=True, interaction=True,
+                                         name="C3_both_plus_shipped")}
 
 
 def fit_and_report(sample: str, form: Form, S: dict, A: np.ndarray, same_sex: bool = False) -> dict:
@@ -892,21 +916,30 @@ def cmd_check(sample: str) -> None:
     print("check passed: the Form machinery reproduces kernel.py on the baseline form")
 
 
-def cmd_fit(sample: str) -> None:
+def cmd_fit(sample: str, only: list[str] | None = None) -> None:
     """The full-sample fits of every form with their report tables, the
-    B1 partition choice first."""
+    B1 partition choice first. `only` (Phase 3c) fits the named forms on
+    the partition already chosen and appends them to the standing store
+    without refitting the rest."""
     P3B.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     common = load_common(sample)
     A = common["A"]
     S = load_sample(sample)
-    print(f"[{sample}] choosing the age partition by split-half held-out likelihood ...", flush=True)
-    part = choose_partition(sample, A, S["mean_weight"])
-    print(f"  chosen: {part['chosen']} {part['chosen_edges']}", flush=True)
-    forms = forms_for(sample, tuple(part["chosen_edges"]))
-    report = {"sample": sample, "mean_weight_per_side": S["mean_weight"],
-              "couple_sides_weighted": float(S["C"].sum()), "n_alloc": float(S["n_alloc"].sum()),
-              "partition": part, "forms": {}, "fits": {}}
+    if only:
+        report = json.loads((P3B / "refine_fits.json").read_text())
+        part = report["partition"]
+        print(f"[{sample}] partition as chosen: {part['chosen']} {part['chosen_edges']}", flush=True)
+        forms = {n: f for n, f in forms_for(sample, tuple(part["chosen_edges"])).items() if n in only}
+        assert forms, only
+    else:
+        print(f"[{sample}] choosing the age partition by split-half held-out likelihood ...", flush=True)
+        part = choose_partition(sample, A, S["mean_weight"])
+        print(f"  chosen: {part['chosen']} {part['chosen_edges']}", flush=True)
+        forms = forms_for(sample, tuple(part["chosen_edges"]))
+        report = {"sample": sample, "mean_weight_per_side": S["mean_weight"],
+                  "couple_sides_weighted": float(S["C"].sum()), "n_alloc": float(S["n_alloc"].sum()),
+                  "partition": part, "forms": {}, "fits": {}}
     fits = {}
     for name, form in forms.items():
         r = fit_and_report(sample, form, S, A)
@@ -933,15 +966,19 @@ def cmd_fit(sample: str) -> None:
             dd[f"prior_share_{k}"] = shr[k]["prior_share"]
         dd.to_csv(P3B / f"dials_{name}.csv", index=False)
     # persist the fits for the LOMO step (arrays in npz, records in json)
-    np.savez_compressed(P3B / "_form_fits.npz", **{
-        f"{name}__{k}": v for name, r in fits.items()
-        for k, v in {**{f"f_{c}": r["fit"]["f"][c] for c in r["fit"]["f"]},
-                     **{f"raw_{c}": r["fit"]["raw_f"][c] for c in r["fit"]["raw_f"]},
-                     **{f"fg_{c}": r["fg"][c] for c in r["fg"]},
-                     "theta_hat": dials[name]["theta_hat"], "se2": dials[name]["se2"],
-                     "N_s": r["fit"]["N_s"]}.items()})
-    report["fits"] = {name: {"bandwidth": r["fit"]["bandwidth"], "tau2": r["fit"]["tau2"]}
-                      for name, r in fits.items()}
+    arrays = {f"{name}__{k}": v for name, r in fits.items()
+              for k, v in {**{f"f_{c}": r["fit"]["f"][c] for c in r["fit"]["f"]},
+                           **{f"raw_{c}": r["fit"]["raw_f"][c] for c in r["fit"]["raw_f"]},
+                           **{f"fg_{c}": r["fg"][c] for c in r["fg"]},
+                           "theta_hat": dials[name]["theta_hat"], "se2": dials[name]["se2"],
+                           "N_s": r["fit"]["N_s"]}.items()}
+    if only and (P3B / "_form_fits.npz").exists():
+        prev = dict(np.load(P3B / "_form_fits.npz"))
+        prev = {k: v for k, v in prev.items() if k.split("__")[0] not in forms}
+        arrays = {**prev, **arrays}
+    np.savez_compressed(P3B / "_form_fits.npz", **arrays)
+    report.setdefault("fits", {}).update({name: {"bandwidth": r["fit"]["bandwidth"], "tau2": r["fit"]["tau2"]}
+                                          for name, r in fits.items()})
     report["seconds"] = round(time.time() - t0, 1)
     (P3B / "refine_fits.json").write_text(json.dumps(report, indent=1, default=_json) + "\n")
     print(f"fits -> results/phase3b/refine_fits.json ({report['seconds']}s)")
@@ -1030,6 +1067,14 @@ def summarise_lomo(sample: str, lomo: list[dict], forms: dict, common: dict, ful
                "dial_gain_shrunk_minus_national_per_1000_sides": (tot["shrunk"] - tot["national"]) / sides * 1000,
                "lomo_iterations_median": float(np.median([r["forms"][name]["iterations"] for r in lomo])),
                "ships": bool(name != base and tot["shrunk"] > btot["shrunk"])}
+        if "shipped" in forms and all("shipped" in r["forms"] for r in lomo):
+            # Phase 3c B3: the candidates are judged against the SHIPPED
+            # form (baseline + race x education), not the baseline
+            stot = sum(r["forms"]["shipped"]["shrunk"] for r in lomo)
+            rec["gain_vs_shipped_shrunk_per_1000_sides"] = (tot["shrunk"] - stot) / sides * 1000
+            rec["metros_where_better_than_shipped_shrunk"] = sum(
+                1 for r in lomo if r["forms"][name]["shrunk"] > r["forms"]["shipped"]["shrunk"])
+            rec["improves_on_shipped"] = bool(tot["shrunk"] > stot)
         # the Pew comparison for the record
         pew_rec, comp = K.pew_comparison(
             [{"cbsa": r["cbsa"], "pew_pred": r["forms"][name]["pew_pred"]} for r in lomo],
@@ -1115,12 +1160,13 @@ def cmd_combine(sample: str, only: list[str] | None = None, reason: str | None =
 
 
 def served_log_kernel(fg_os: dict, form_os: Form, theta: np.ndarray, fg_ss: dict | None, form_ss: Form | None,
-                      ss_components: tuple[str, ...]) -> np.ndarray:
+                      ss_components: tuple[str, ...], ss_interaction: bool | None = None) -> np.ndarray:
     """log w(s, c) for every seeker type under the served composition: a
     same-sex search takes the components in `ss_components` from the
     same-sex fit at dial 1 and the rest from the opposite-sex fit with
-    the metro's dial; the opposite-sex interaction rides only when both
-    education and race come from the opposite-sex fit."""
+    the metro's dial. Whether the opposite-sex interaction rides on a
+    same-sex search is `ss_interaction`; None means m3.2.0's rule (only
+    when both education and race come from the opposite-sex fit)."""
     d_os = design2(form_os)
     logK = np.zeros((N_S, N_C))
     for j, k in enumerate(COMPONENTS):
@@ -1128,7 +1174,9 @@ def served_log_kernel(fg_os: dict, form_os: Form, theta: np.ndarray, fg_ss: dict
             logK += design2(form_ss).gather_one(k, fg_ss[k])
         else:
             logK += float(theta[j]) * d_os.gather_one(k, fg_os[k])
-    if fg_os.get("int") is not None and "edu" not in ss_components and "race" not in ss_components:
+    if ss_interaction is None:
+        ss_interaction = "edu" not in ss_components and "race" not in ss_components
+    if fg_os.get("int") is not None and ss_interaction:
         logK += d_os.gather_one("int", fg_os["int"])
     return logK
 
@@ -1167,7 +1215,11 @@ def write_artifact_v2(out_dir: Path, form_os: Form, fg_os: dict, dials: np.ndarr
     if ss is not None and ss["components"]:
         comps = tuple(ss["components"])
         form_ss, fg_ss = ss["form"], ss["fg"]
-        ln_ss = np.stack([log_norm_served(served_log_kernel(fg_os, form_os, dials[i], fg_ss, form_ss, comps),
+        ss_int = ss.get("interaction")
+        if ss_int is None:
+            ss_int = "edu" not in comps and "race" not in comps
+        ss_int = bool(ss_int and fg_os.get("int") is not None)
+        ln_ss = np.stack([log_norm_served(served_log_kernel(fg_os, form_os, dials[i], fg_ss, form_ss, comps, ss_int),
                                           A, True) for i in range(n)]).reshape(n, N_SEX, N_AGE, N_EDU, N_RACE)
         arrays.update({"ss_f_age": fg_ss["age"],
                        "ss_f_edu": (fg_ss["edu"] if form_ss.edu_by_sex else np.stack([fg_ss["edu"], fg_ss["edu"]])),
@@ -1177,8 +1229,7 @@ def write_artifact_v2(out_dir: Path, form_os: Form, fg_os: dict, dials: np.ndarr
                           "fallback_components": [k for k in COMPONENTS if k not in comps],
                           "dials_on_same_sex_terms": "none (national terms at dial 1); the fallback "
                                                      "components keep the metro's dial",
-                          "interaction_applies": bool(fg_os.get("int") is not None
-                                                      and "edu" not in comps and "race" not in comps),
+                          "interaction_applies": ss_int,
                           **ss.get("record", {})}
     np.savez_compressed(out_dir / "kernel.npz", **arrays)
     payload = {
@@ -1232,19 +1283,23 @@ def cmd_candidate(sample: str, form_name: str, out_dir: Path) -> None:
     print(f"candidate {form_name} -> {out_dir}")
 
 
-def cmd_ship(sample: str, out_dir: Path | None = None) -> None:
-    """Write the m3.2.0 artifact from the shipped form's full fit, its
-    dials and the same-sex decision, to data/ (or a candidate directory)."""
+def cmd_ship(sample: str, out_dir: Path | None = None, form_name: str = "shipped",
+             extra_meta: dict | None = None) -> None:
+    """Write the artifact from a fitted form's full fit, its dials and the
+    same-sex decision (samesex_fit.json: the served components and, since
+    m3.3.0, whether the interaction applies), to data/ or a candidate
+    directory. `form_name` names the opposite-sex form ("shipped" for
+    m3.2.0; Phase 3c ships the B3 winner by name)."""
     rep = json.loads((P3B / "refine_fits.json").read_text())
     ho = json.loads((P3B / "refine_heldout.json").read_text())
-    fits, _ = _load_fits(["shipped"])
-    fr = rep["forms"]["shipped"]["form"]
+    fits, _ = _load_fits([form_name])
+    fr = rep["forms"][form_name]["form"]
     form_os = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
-                   interaction=fr["interaction"], name="shipped")
+                   interaction=fr["interaction"], name=form_name)
     common = load_common(sample)
-    dd = pd.read_csv(P3B / "dials_shipped.csv", dtype={"cbsa": str}).set_index("cbsa").loc[common["metro_levels"]]
+    dd = pd.read_csv(P3B / f"dials_{form_name}.csv", dtype={"cbsa": str}).set_index("cbsa").loc[common["metro_levels"]]
     # every component keeps its dial where the Phase 3 rule still earns it
-    earned = [k for k in COMPONENTS if ho["forms"]["shipped"]["dial_gain_shrunk_minus_national_per_1000_sides"] > 0]
+    earned = [k for k in COMPONENTS if ho["forms"][form_name]["dial_gain_shrunk_minus_national_per_1000_sides"] > 0]
     dials = np.ones((len(common["metro_levels"]), 3))
     for j, k in enumerate(COMPONENTS):
         if k in earned:
@@ -1257,24 +1312,30 @@ def cmd_ship(sample: str, out_dir: Path | None = None) -> None:
         comps = tuple(srep["heldout"]["served_from_same_sex_couples"])
         ss = {"components": comps, "form": Form(name="samesex"),
               "fg": {k[3:]: z[k] for k in z.files if k.startswith("fg_")},
+              "interaction": srep["heldout"].get("interaction_applies"),
               "record": {"support": srep["support"]["supported"],
                          "heldout_gain_per_1000_sides": srep["heldout"]["gain_per_1000_sides"],
-                         "couple_sides_weighted": srep["couple_sides_weighted"], "n_alloc": srep["n_alloc"]}}
+                         "couple_sides_weighted": srep["couple_sides_weighted"], "n_alloc": srep["n_alloc"],
+                         **({"interaction_decision": srep["heldout"]["interaction_decision"]}
+                            if "interaction_decision" in srep["heldout"] else {})}}
     meta = {"fitting_sample": sample, "fitting_sample_spec": json.loads((P3 / "kernel_report.json").read_text())
             ["samples"][sample]["spec"],
             "couple_sides_weighted": rep["couple_sides_weighted"], "n_alloc": rep["n_alloc"],
-            "bandwidth_years": rep["fits"]["shipped"]["bandwidth"],
-            "interaction_tau2": rep["fits"]["shipped"]["tau2"],
-            "refinements": rep["forms"]["shipped"].get("refinements"),
-            "dials_tau": {k: rep["forms"]["shipped"]["dials"][k]["tau"] for k in COMPONENTS},
-            "dials_centre": {k: rep["forms"]["shipped"]["dials"][k]["precision_weighted_mean_theta"]
+            "bandwidth_years": rep["fits"][form_name]["bandwidth"],
+            "interaction_tau2": rep["fits"][form_name]["tau2"],
+            "refinements": rep["forms"][form_name].get("refinements"),
+            "dials_tau": {k: rep["forms"][form_name]["dials"][k]["tau"] for k in COMPONENTS},
+            "dials_centre": {k: rep["forms"][form_name]["dials"][k]["precision_weighted_mean_theta"]
                              for k in COMPONENTS},
-            "provisional": False, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
+            "shipped_form_name": form_name,
+            "provisional": False, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+            **(extra_meta or {})}
     out = out_dir or DATA
-    write_artifact_v2(out, form_os, fits["shipped"]["fg"], dials, earned, common["A"],
+    write_artifact_v2(out, form_os, fits[form_name]["fg"], dials, earned, common["A"],
                       common["metro_levels"], ss, meta)
     print(f"artifact -> {out} (form {form_os.describe()}, dials {earned}, "
-          f"same-sex components {ss['components'] if ss else None})")
+          f"same-sex components {ss['components'] if ss else None}, "
+          f"same-sex interaction {ss['interaction'] if ss else None})")
 
 
 # ---------------------------------------------------------------------------
@@ -1357,8 +1418,10 @@ def _lomo_samesex_one(cbsa: str) -> dict:
     theta = np.array(_W["theta"][i], float)
     d_os, d_ss = design2(form_os), design2(form_ss)
 
-    def loglik(which: dict) -> float:
-        # log kernel per present seeker over cells, from whichever source each component takes
+    def loglik(which: dict, interaction: bool | None = None) -> float:
+        # log kernel per present seeker over cells, from whichever source
+        # each component takes; `interaction` None = m3.2.0's rule (rides
+        # only when education and race both stay opposite-sex)
         P = mc_ss.present
         logK = np.zeros((len(P), N_C))
         for j, k in enumerate(COMPONENTS):
@@ -1366,7 +1429,9 @@ def _lomo_samesex_one(cbsa: str) -> dict:
                 logK += d_ss.gather_one(k, fg_ss[k], P)
             else:
                 logK += theta[j] * d_os.gather_one(k, fg_os[k], P)
-        if fg_os.get("int") is not None and which["edu"] == "os" and which["race"] == "os":
+        if interaction is None:
+            interaction = which["edu"] == "os" and which["race"] == "os"
+        if fg_os.get("int") is not None and interaction:
             logK += d_os.gather_one("int", fg_os["int"], P)
         logW = logK
         logK = logW + log_avail(A_m, True, P)
@@ -1382,6 +1447,13 @@ def _lomo_samesex_one(cbsa: str) -> dict:
            "iterations": [fit_os["iterations"], fit_ss["iterations"]]}
     for k in COMPONENTS:
         rec[f"only_{k}"] = loglik({**fallback, k: "ss"})
+    # Phase 3c B2: what m3.2.0 serves (age same-sex, education and race
+    # opposite-sex, the interaction riding), and the education term added
+    # to it with the interaction off (m3.2.0's rule) and forced on
+    served = {"age": "ss", "edu": "os", "race": "os"}
+    rec["served_m3_2_0"] = loglik(served, interaction=True)
+    rec["age_edu_ss_no_interaction"] = loglik({**served, "edu": "ss"}, interaction=False)
+    rec["age_edu_ss_with_interaction"] = loglik({**served, "edu": "ss"}, interaction=True)
     return rec
 
 
@@ -1443,7 +1515,10 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
             lomo = list(ex.map(_lomo_samesex_one, metros, chunksize=2))
     lomo = [x for x in lomo if x["sides"] > 0]
     sides = sum(x["sides"] for x in lomo)
-    tot = {k: sum(x[k] for x in lomo) for k in ["fallback", "all_samesex"] + [f"only_{c}" for c in COMPONENTS]}
+    keys = ["fallback", "all_samesex"] + [f"only_{c}" for c in COMPONENTS]
+    keys += [k for k in ("served_m3_2_0", "age_edu_ss_no_interaction", "age_edu_ss_with_interaction")
+             if all(k in x for x in lomo)]
+    tot = {k: sum(x[k] for x in lomo) for k in keys}
     heldout = {"metros": len(lomo), "sides": sides, "totals": tot,
                "gain_per_1000_sides": {k: (v - tot["fallback"]) / sides * 1000 for k, v in tot.items()},
                "metros_better_than_fallback": {k: sum(1 for x in lomo if x[k] > x["fallback"])
@@ -1464,6 +1539,32 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
                                     "ships": bool(support["supported"][k] and improves and face[k])}
     heldout["served_from_same_sex_couples"] = [k for k in COMPONENTS if heldout["components"][k]["ships"]]
     heldout["fallback_components"] = [k for k in COMPONENTS if not heldout["components"][k]["ships"]]
+    if "served_m3_2_0" in tot:
+        # Phase 3c B2 (ADR 0010 amended): the education term's gain is
+        # re-measured against what m3.2.0 serves, and the interaction is
+        # decided by which composition predicts held-out same-sex couples
+        # better. Race stays borrowed (its support has not changed).
+        base = tot["served_m3_2_0"]
+        g_no = (tot["age_edu_ss_no_interaction"] - base) / sides * 1000
+        g_int = (tot["age_edu_ss_with_interaction"] - base) / sides * 1000
+        use_int = tot["age_edu_ss_with_interaction"] > tot["age_edu_ss_no_interaction"]
+        heldout["vs_m3_2_0_served"] = {
+            "baseline": "age from same-sex couples, education and race from opposite-sex couples, "
+                        "the interaction riding (what m3.2.0 serves)",
+            "gain_per_1000_sides": {"age_edu_ss_no_interaction": g_no, "age_edu_ss_with_interaction": g_int},
+            "metros_better_than_served": {
+                k: sum(1 for x in lomo if x[k] > x["served_m3_2_0"])
+                for k in ("age_edu_ss_no_interaction", "age_edu_ss_with_interaction")},
+            "education_term_improves_on_served": bool(max(g_no, g_int) > 0)}
+        heldout["interaction_decision"] = {
+            "rule": "serve whichever of {interaction off, interaction on} predicts held-out same-sex "
+                    "couples better, education and age from same-sex couples, race borrowed",
+            "interaction_applies": bool(use_int),
+            "margin_per_1000_sides": (tot["age_edu_ss_with_interaction"] - tot["age_edu_ss_no_interaction"])
+            / sides * 1000}
+        heldout["interaction_applies"] = bool(use_int)
+        heldout["stop_condition_education_no_longer_improves"] = not heldout["vs_m3_2_0_served"][
+            "education_term_improves_on_served"]
     report["heldout"] = heldout
     report["seconds"] = round(time.time() - t0, 1)
     (P3B / "lomo_samesex.json").write_text(json.dumps(lomo, indent=0, default=_json) + "\n")
@@ -1476,10 +1577,13 @@ if __name__ == "__main__":
     argv = sys.argv[1:]
     sample = argv[argv.index("--sample") + 1] if "--sample" in argv else "decay_h5"
     workers = int(argv[argv.index("--workers") + 1]) if "--workers" in argv else 8
+    if "--dir" in argv:
+        P3B = Path(argv[argv.index("--dir") + 1])
+        assert (P3B / "refine_fits.json").exists(), f"seed {P3B} with the Phase 3b records first"
     if argv[:1] == ["check"]:
         cmd_check(sample)
     elif argv[:1] == ["fit"]:
-        cmd_fit(sample)
+        cmd_fit(sample, argv[argv.index("--only") + 1].split(",") if "--only" in argv else None)
     elif argv[:1] == ["lomo"]:
         only = argv[argv.index("--only") + 1].split(",") if "--only" in argv else None
         cmd_lomo(sample, workers, only)
@@ -1492,6 +1596,7 @@ if __name__ == "__main__":
     elif argv[:1] == ["candidate"]:
         cmd_candidate(sample, argv[argv.index("--form") + 1], Path(argv[argv.index("--out") + 1]))
     elif argv[:1] == ["ship"]:
-        cmd_ship(sample, Path(argv[argv.index("--out") + 1]) if "--out" in argv else None)
+        cmd_ship(sample, Path(argv[argv.index("--out") + 1]) if "--out" in argv else None,
+                 argv[argv.index("--form") + 1] if "--form" in argv else "shipped")
     else:
         print(__doc__)

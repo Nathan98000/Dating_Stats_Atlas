@@ -59,10 +59,10 @@ Your own education and your race or ethnicity are optional inputs. They
 feed only this figure; leave either unset and the average for people of
 your age and sex is used instead.
 
-For a same-sex search the age gaps come from same-sex couples in the
-same survey; the education pairings and the racial and ethnic pairings
-are borrowed from opposite-sex couples, because the same-sex couples in
-the survey do not support a dependable measure of them on their own.
+For a same-sex search the age gaps and the education pairings come from
+same-sex couples in the same survey; the racial and ethnic pairings are
+borrowed from opposite-sex couples, because the same-sex couples in the
+survey are too few to measure them dependably on their own.
 
 ## What does balance compare?
 

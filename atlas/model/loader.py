@@ -135,6 +135,27 @@ def _cohorts(edges: np.ndarray) -> np.ndarray:
         else np.zeros(53, dtype=int)
 
 
+SAME_SEX_NOTE_PHRASES = {"age": "the age gaps", "edu": "the education pairings",
+                         "race": "the racial and ethnic pairings"}
+
+
+def same_sex_note_names(note: str) -> set[str]:
+    """m3.3.0 (Phase 3c B2): which components the registry's same-sex
+    sentence says come from same-sex couples. The sentence has two
+    clauses split by a semicolon — what comes from same-sex couples, then
+    what is borrowed from opposite-sex couples — and every component must
+    be named in exactly one of them."""
+    assert note.count(";") == 1, f"the same-sex note needs exactly one semicolon: {note!r}"
+    measured, borrowed = note.split(";")
+    named = set()
+    for comp, phrase in SAME_SEX_NOTE_PHRASES.items():
+        in_m, in_b = phrase in measured, phrase in borrowed
+        assert in_m != in_b, f"the same-sex note must name {phrase!r} in exactly one clause: {note!r}"
+        if in_m:
+            named.add(comp)
+    return named
+
+
 def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
     """kernel_v1 (m3.0.0/m3.1.0: one gap curve per sex, a pooled 4x4) and
     kernel_v2 (m3.2.0: a curve per sex x cohort, education per sex, the
@@ -198,8 +219,16 @@ def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
         assert ss_age.shape == (2, len(ss_edges) + 1, 105) and ss_edu.shape == (2, 4, 4) \
             and ss_race.shape == (2, 8, 8) and ss_ln.shape == (n, 2, 53, 4, 8)
         assert np.isfinite(ss_age).all() and np.isfinite(ss_edu).all() and np.isfinite(ss_race).all()
+        # m3.3.0: the artifact says whether the opposite-sex interaction
+        # rides on a same-sex search; an m3.2.0 artifact without the field
+        # gets that release's rule (only when education and race both
+        # stay opposite-sex)
+        ss_int = ss_meta.get("interaction_applies")
+        if ss_int is None:
+            ss_int = f_int is not None and "edu" not in ss_comps and "race" not in ss_comps
         same_sex = SameSexTerms(f_age=ss_age, cohort_of_age=_cohorts(ss_edges), f_edu=ss_edu,
-                                f_race=ss_race, log_norm=ss_ln, components=ss_comps)
+                                f_race=ss_race, log_norm=ss_ln, components=ss_comps,
+                                interaction=bool(ss_int and f_int is not None))
     return Kernel(f_age=f_age, f_edu=f_edu, f_race=f_race, dials=dials,
                   log_norm=log_norm, avail=avail, gap_offset=int(meta["gap_offset"]),
                   dial_components=comps, cohort_of_age=cohort_of_age, f_int=f_int,
@@ -401,6 +430,14 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         "build is missing kernel.json / kernel.npz (m3.0.0); run "
         "build.kernel before build.cube")
     kernel = _load_kernel(path, metro_levels)
+    # m3.3.0 (Phase 3c B2): the page's same-sex sentence and the kernel's
+    # same-sex composition cannot disagree — the build refuses to load
+    # when the sentence names components other than the served ones
+    if kernel.same_sex is not None and kernel.same_sex.components:
+        named = same_sex_note_names(manifest["strings"]["match_same_sex_note"])
+        assert named == set(kernel.same_sex.components), (
+            f"strings.match_same_sex_note names {sorted(named)} as measured on same-sex "
+            f"couples but the kernel serves {sorted(kernel.same_sex.components)}")
     reduced_pool = reduce_cube(pool)
     reduced_sumw2 = reduce_cube(sumw2)
 
