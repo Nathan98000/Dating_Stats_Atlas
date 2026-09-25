@@ -57,3 +57,23 @@ atlas/results/phase3c/snapshot_m3_2_0.json
 
 # Licence snapshots for counsel: third-party pages, kept locally (MANIFEST.md is committed)
 atlas/docs/decisions/counsel_packet/attachments/*.pdf
+
+# Nathan's Part A draft brief (a phase brief, kept locally like the others)
+atlas/KERNEL_SPEEDUP_PROMPT.md
+
+# Phase 3d working files (the 3c pattern): candidate artifacts, npz fit stores, chain scripts, run logs,
+# and the Phase 3c seed copies of the a1/a2 stores that stay byte-identical to their originals
+atlas/results/phase3d/_*
+atlas/results/phase3d/*_run.log
+atlas/results/phase3d/speedup/_*
+atlas/results/phase3d/speedup/*_run.log
+atlas/results/phase3d/speedup/a1/_*
+atlas/results/phase3d/speedup/a1/*_run.log
+atlas/results/phase3d/speedup/a2/_*
+atlas/results/phase3d/speedup/a2/*_run.log
+atlas/results/phase3d/snapshot_m3_3_0.json
+atlas/results/phase3d/speedup/a1/dials_B1_age_cohorts.csv
+atlas/results/phase3d/speedup/a1/dials_B2a_race_x_edu.csv
+atlas/results/phase3d/speedup/a1/dials_B2b_edu_by_sex.csv
+atlas/results/phase3d/speedup/a1/interaction_table_*.csv
+atlas/results/phase3d/speedup/a1/multipliers_*.json

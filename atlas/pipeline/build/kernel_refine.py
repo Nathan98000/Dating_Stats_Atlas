@@ -284,17 +284,165 @@ def interaction_prior(T_int: np.ndarray, M_int: np.ndarray, mean_weight: float) 
             "Q": Q}
 
 
+# ---------------------------------------------------------------------------
+# Phase 3d A1: the sweep keeps the model table between component updates
+# ---------------------------------------------------------------------------
+
+STOP_RULE = "couples"
+# Couple-weighted stopping (Phase 3d A1, item 2): a stage stops when the
+# share of fitted couple-sides that moved between cells over one pass —
+# sum |mu_after - mu_before| / sum N_s — falls below COUPLE_TOL, one side
+# in ten million. m3.3.0 stopped on the largest single-cell change, which
+# a near-empty cell held above 1e-6 for the whole 200-pass cap while the
+# table itself had stopped moving at pass 7 (results/phase3d/speedup/
+# a1_trajectories.json). The raw stage only seeds the smoothing and may
+# stop looser; the trajectories showed no need (7 passes at 1e-7 against
+# 6 at 1e-5) and the bandwidth choice is shown not to depend on it, so it
+# keeps the same tolerance. The interaction stage also waits for the
+# penalised objective's gain over the pass, per 1,000 couple-sides, to
+# fall below OBJECTIVE_TOL: the directions of the interaction the table
+# cannot see move under the ridge alone (A2's projection removes them).
+COUPLE_TOL = 1e-7
+RAW_COUPLE_TOL = 1e-7
+OBJECTIVE_TOL = 1e-6
+
+
+class Table:
+    """The model couple table mu (seekers x partner cells, rows summing to
+    N_s), kept between component updates and moved MULTIPLICATIVELY: a
+    component's change is a per-seeker factor over the partner axes it
+    keys on, applied on the (seeker, partner age, edu, race) view of the
+    table, after which the rows are re-normalised — instead of regathering
+    the four log-kernel blocks and exponentiating the whole 3,392 x 1,696
+    table at every step. Margins are reshape-sums over the seven-axis view
+    (seeker sex, age, edu, race; partner age, edu, race) instead of
+    bincounts over 5.75 million keys. log Z per seeker rides along so the
+    conditional log-likelihood is available at every pass."""
+
+    def __init__(self, d: Design2, logA: np.ndarray, N_s: np.ndarray) -> None:
+        b = d.base
+        self.d, self.logA, self.N_s = d, logA, N_s
+        self.sig, self.e_s, self.r_s = b.sig_s, b.e_s, b.r_s
+        self.gap53 = (np.arange(N_AGE)[None, :] - b.a_s[:, None]) + GAP0        # (S, 53)
+        self.row_age = d.row_age
+        sig3 = np.repeat(np.arange(N_SEX), N_AGE * N_AGE)
+        as3 = np.tile(np.repeat(np.arange(N_AGE), N_AGE), N_SEX)
+        ac3 = np.tile(np.arange(N_AGE), N_SEX * N_AGE)
+        self.key_age3 = (sig3 * d.K + d.cohort_of_age[as3]) * N_GAP + (ac3 - as3 + GAP0)
+        self.n_age = N_SEX * d.K * N_GAP
+        self.Ntot = float(N_s.sum())
+        self.mu = None
+        self.logZ = None
+        self.zok = None
+        self.seconds = {"rebuild": 0.0, "apply": 0.0, "margin": 0.0, "update": 0.0,
+                        "objective": 0.0, "move": 0.0}
+
+    def rebuild(self, f: dict) -> None:
+        t0 = time.perf_counter()
+        lm = self.d.gather(f) + self.logA
+        m = lm.max(axis=1, keepdims=True)
+        m[~np.isfinite(m)] = 0.0
+        mu = np.exp(lm - m)
+        Z = mu.sum(axis=1)
+        self.zok = Z > 0
+        self.logZ = np.where(self.zok, np.log(np.maximum(Z, 1e-300)) + m[:, 0], 0.0)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            scale = np.where(self.zok, self.N_s / np.maximum(Z, 1e-300), 0.0)
+        mu *= scale[:, None]
+        self.mu = mu
+        self.seconds["rebuild"] += time.perf_counter() - t0
+
+    def apply(self, comp: str, delta: np.ndarray) -> None:
+        """mu <- mu * exp(delta gathered), rows re-normalised to N_s."""
+        t0 = time.perf_counter()
+        mu4 = self.mu.reshape(N_S, N_AGE, N_EDU, N_RACE)
+        g = np.exp(delta)
+        if comp == "age":
+            G = np.take_along_axis(g.reshape(N_SEX * self.d.K, N_GAP)[self.row_age], self.gap53, axis=1)
+            mu4 *= G[:, :, None, None]
+        elif comp == "edu":
+            G = g[self.sig, self.e_s] if self.d.form.edu_by_sex else g[self.e_s]
+            mu4 *= G[:, None, :, None]
+        elif comp == "race":
+            mu4 *= g[self.sig, self.r_s][:, None, None, :]
+        elif comp == "int":
+            mu4 *= g[self.sig, self.r_s, :, self.e_s, :].transpose(0, 2, 1)[:, None, :, :]
+        else:
+            raise KeyError(comp)
+        Z = self.mu.sum(axis=1)
+        ok = self.zok & (Z > 0)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            self.logZ = np.where(ok, self.logZ + np.log(np.maximum(Z, 1e-300) / np.maximum(self.N_s, 1e-300)), self.logZ)
+            scale = np.where(ok, self.N_s / np.maximum(Z, 1e-300), 0.0)
+        self.mu *= scale[:, None]
+        self.seconds["apply"] += time.perf_counter() - t0
+
+    def margin(self, comp: str) -> np.ndarray:
+        t0 = time.perf_counter()
+        mu7 = self.mu.reshape(N_SEX, N_AGE, N_EDU, N_RACE, N_AGE, N_EDU, N_RACE)
+        if comp == "age":
+            out = np.bincount(self.key_age3, mu7.sum(axis=(2, 3, 5, 6)).ravel(), self.n_age)
+        elif comp == "edu":
+            out = (mu7.sum(axis=(1, 3, 4, 6)) if self.d.form.edu_by_sex else mu7.sum(axis=(0, 1, 3, 4, 6))).ravel()
+        elif comp == "race":
+            out = mu7.sum(axis=(1, 2, 4, 5)).ravel()
+        elif comp == "int":
+            out = mu7.sum(axis=(1, 4)).transpose(0, 2, 4, 1, 3).ravel()
+        else:
+            raise KeyError(comp)
+        self.seconds["margin"] += time.perf_counter() - t0
+        return out
+
+    def objective(self, f: dict, T: dict, lam: float) -> float:
+        """The penalised conditional log-likelihood in weight units, up to
+        the constant sum C log A: sum over every component of T . f, minus
+        sum_s N_s log Z_s, minus lam/2 sum g^2 (weight units, as the
+        Newton step's penalty)."""
+        t0 = time.perf_counter()
+        ll = 0.0
+        for k, v in f.items():
+            if v is None:
+                continue
+            ll += float(T[k] @ v.ravel())
+        if f.get("int") is not None and np.isfinite(lam):
+            ll -= 0.5 * lam * float((f["int"] ** 2).sum())
+        ll -= float((self.N_s * self.logZ)[self.zok].sum())
+        self.seconds["objective"] += time.perf_counter() - t0
+        return ll
+
+
+def _objective_of(f: dict, T: dict, logA: np.ndarray, N_s: np.ndarray, lam: float, d: Design2) -> float:
+    """The same objective from scratch (a fresh table), for the record."""
+    tab = Table(d, logA, N_s)
+    tab.rebuild(f)
+    return tab.objective(f, T, lam)
+
+
 def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False,
              bandwidth: list[float] | None = None, tau2: float | None = None,
              init: dict | None = None, tol: float = K.IPF_TOL, max_iter: int = K.IPF_MAX_ITER,
-             mean_weight: float | None = None, skip: tuple[str, ...] = ()) -> dict:
+             mean_weight: float | None = None, skip: tuple[str, ...] = (),
+             stop: str = STOP_RULE, ctol: float = COUPLE_TOL, raw_ctol: float = RAW_COUPLE_TOL,
+             otol: float = OBJECTIVE_TOL) -> dict:
     """The two-stage fit for any Form: raw IPF of the main effects to
     convergence, bandwidth per (sex, cohort) by leave-one-gap-out
     cross-validation (unless given), the age term smoothed once and the
     other main effects refitted around it; then, if the form carries the
     interaction, tau^2 by empirical Bayes at the separable fit (unless
     given) and penalised coordinate ascent over (edu, race, int) with the
-    age term fixed. `skip` holds a main effect at zero (sensitivity)."""
+    age term fixed. `skip` holds a main effect at zero (sensitivity).
+
+    Phase 3d A1: the sweep moves one model table in place (Table) instead
+    of regathering the log-kernel at every step, and stops on a rule
+    chosen by `stop`: "cell" is m3.3.0's (the largest single-cell change
+    below `tol`, the table returned as it stood before the pass's last
+    update), "couples" stops a stage when fewer than `ctol` of the fitted
+    couple-sides moved over a pass (`raw_ctol` for the raw stage, which
+    only seeds the smoothing; the interaction stage also waits for the
+    penalised objective's gain per pass, per 1,000 sides, to fall below
+    `otol`). Every pass's largest cell change, couple-weighted move and
+    objective are on the record."""
+    assert stop in ("cell", "couples"), stop
     d = design2(form)
     N_s = C.sum(axis=1)
     T = d.margins(C)
@@ -308,24 +456,38 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
     for k in skip:
         f[k] = np.zeros(d.shapes()[k])
     mains = [k for k in COMPONENTS if k not in skip]
+    tab = Table(d, logA, N_s)
+    per_1000 = 1000.0 / max(tab.Ntot, 1e-300)
+    profile = {"stages": {}, "table_seconds": tab.seconds}
 
-    def run_ipf(active: list[str], fixed_age: bool, with_int: bool, tau2_: float | None,
-                tol_: float, max_iter_: int) -> tuple[list[float], np.ndarray]:
-        history = []
-        mu = None
+    def run_ipf(stage: str, active: list[str], with_int: bool, tau2_: float | None,
+                tol_: float, max_iter_: int, ctol_: float) -> tuple[dict, np.ndarray]:
+        t_stage = time.perf_counter()
+        hist = {"cell_change": [], "couple_move": [], "objective": []}
+        lam = (mw / tau2_ if tau2_ > 0 else np.inf) if with_int else np.inf
+        tab.rebuild(f)
+        last = None                      # (component, its value before the pass's last update)
+        stopped_on = "cap"
         for _ in range(max_iter_):
             worst = 0.0
+            t0 = time.perf_counter()
+            mu_start = tab.mu.copy()
+            tab.seconds["move"] += time.perf_counter() - t0
             for comp in active:
-                mu = K._mu(d.gather(f), logA, N_s)
-                M = d.margins(mu)[comp]
+                M = tab.margin(comp)
+                t0 = time.perf_counter()
                 new, ch = K._raw_update(f[comp].ravel(), T[comp], M)
-                f[comp] = new.reshape(d.shapes()[comp])
+                new = new.reshape(d.shapes()[comp])
+                delta = new - f[comp]
+                last = (comp, f[comp])
+                f[comp] = new
+                tab.seconds["update"] += time.perf_counter() - t0
+                tab.apply(comp, delta)
                 worst = max(worst, ch)
             if with_int:
-                mu = K._mu(d.gather(f), logA, N_s)
-                M = d.margins(mu)["int"]
+                M = tab.margin("int")
+                t0 = time.perf_counter()
                 Ti = T["int"]
-                lam = mw / tau2_ if tau2_ > 0 else np.inf
                 g = f["int"].ravel().copy()
                 if np.isfinite(lam):
                     # one Newton step on  T g - M e^g - lam g^2 / 2  per cell
@@ -338,23 +500,49 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
                     ch = float(np.abs(step[(M > 0)]).max()) if (M > 0).any() else 0.0
                 else:
                     ch = 0.0
-                f["int"] = g.reshape(d.shapes()["int"])
+                new = g.reshape(d.shapes()["int"])
+                delta = new - f["int"]
+                last = ("int", f["int"])
+                f["int"] = new
+                tab.seconds["update"] += time.perf_counter() - t0
+                tab.apply("int", delta)
                 worst = max(worst, ch)
-            history.append(worst)
-            if worst < tol_:
+            hist["cell_change"].append(worst)
+            obj = tab.objective(f, T, lam)
+            gain = (obj - hist["objective"][-1]) * per_1000 if hist["objective"] else np.inf
+            hist["objective"].append(obj)
+            t0 = time.perf_counter()
+            move = float(np.abs(tab.mu - mu_start).sum()) / max(tab.Ntot, 1e-300)
+            tab.seconds["move"] += time.perf_counter() - t0
+            hist["couple_move"].append(move)
+            if stop == "couples":
+                if move < ctol_ and (not with_int or abs(gain) < otol):
+                    stopped_on = "tolerance"
+                    break
+            elif worst < tol_:
+                stopped_on = "tolerance"
                 break
-        if mu is None:
-            mu = K._mu(d.gather(f), logA, N_s)
-        return history, mu
+        if stop == "cell" and last is not None:
+            # m3.3.0 handed the next stage the table as it stood before the
+            # pass's last update; reproduced exactly under the old rule
+            mu = K._mu(d.gather({**f, last[0]: last[1]}), logA, N_s)
+        else:
+            mu = tab.mu.copy()
+        hist["stopped_on"] = stopped_on
+        hist["passes"] = len(hist["cell_change"])
+        profile["stages"][stage] = {"seconds": round(time.perf_counter() - t_stage, 3),
+                                    "passes": hist["passes"], "stopped_on": stopped_on}
+        return hist, mu
 
     # stage 1: raw IPF of the main effects (interaction at zero)
     f_int_saved = f.pop("int", None)
-    hist_raw, mu = run_ipf(mains, False, False, None, tol, max_iter)
+    hist_raw, mu = run_ipf("raw", mains, False, None, tol, max_iter, raw_ctol)
     raw_f = {k: v.copy() for k, v in f.items()}
     raw_M = d.margins(mu)
     # stage 2: bandwidth per (sex, cohort), smooth, refit around the fixed age term
     rows = N_SEX * d.K
     cv = None
+    t_sm = time.perf_counter()
     if "age" in mains:
         T_rows = T["age"].reshape(rows, N_GAP)
         M_rows = raw_M["age"].reshape(rows, N_GAP)
@@ -366,13 +554,15 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
             assert len(h) == rows, (len(h), rows)
         f_age_s, _ = _smooth_rows(f["age"].reshape(rows, N_GAP), T_rows, M_rows, h)
         f["age"] = f_age_s.reshape(N_SEX, d.K, N_GAP)
-        hist_sm, mu = run_ipf([k for k in mains if k != "age"], True, False, None, tol, max_iter)
+        profile["stages"]["smoothing"] = {"seconds": round(time.perf_counter() - t_sm, 3),
+                                          "bandwidth_cv": bandwidth is None}
+        hist_sm, mu = run_ipf("smoothed", [k for k in mains if k != "age"], False, None, tol, max_iter, ctol)
     else:
         h = None
-        hist_sm = []
+        hist_sm = {"cell_change": [], "couple_move": [], "objective": [], "passes": 0, "stopped_on": None}
     # stage 3: the interaction, penalised, with the age term fixed
     prior = None
-    hist_int: list[float] = []
+    hist_int = {"cell_change": [], "couple_move": [], "objective": [], "passes": 0, "stopped_on": None}
     if form.interaction:
         sep_M = d.margins(mu)
         if tau2 is None:
@@ -381,18 +571,34 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
         else:
             prior = {"tau2": tau2, "given": True}
         f["int"] = f_int_saved if f_int_saved is not None else np.zeros(d.shapes()["int"])
-        hist_int, mu = run_ipf([k for k in mains if k != "age"], True, True, tau2,
-                               tol, INT_MAX_ITER if max_iter >= K.IPF_MAX_ITER else max_iter)
-    history = hist_raw + hist_sm + hist_int
+        hist_int, mu = run_ipf("interaction", [k for k in mains if k != "age"], True, tau2,
+                               tol, INT_MAX_ITER if max_iter >= K.IPF_MAX_ITER else max_iter, ctol)
+    profile["seconds_total"] = round(sum(v["seconds"] for v in profile["stages"].values()), 3)
+    cell_hist = hist_raw["cell_change"] + hist_sm["cell_change"] + hist_int["cell_change"]
+    move_hist = hist_raw["couple_move"] + hist_sm["couple_move"] + hist_int["couple_move"]
+    last_hist = hist_int if form.interaction else hist_sm if "age" in mains else hist_raw
+    lam_final = (mw / tau2 if (form.interaction and tau2 and tau2 > 0) else np.inf)
+    if stop == "cell":
+        converged = bool(cell_hist and cell_hist[-1] < tol)
+    else:
+        converged = bool(last_hist["stopped_on"] == "tolerance")
     return {"f": f, "raw_f": raw_f, "mu": mu, "T": T, "M": d.margins(mu), "N_s": N_s,
             "bandwidth": (None if h is None else [float(x) for x in h]), "bandwidth_cv": cv,
             "tau2": tau2, "interaction_prior": prior,
-            "raw_iterations": len(hist_raw), "smoothed_iterations": len(hist_sm),
-            "interaction_iterations": len(hist_int),
-            "iterations": len(history),
-            "converged": bool(history and history[-1] < tol),
-            "final_change": history[-1] if history else 0.0, "form": form,
-            "same_sex": same_sex}
+            "raw_iterations": hist_raw["passes"], "smoothed_iterations": hist_sm["passes"],
+            "interaction_iterations": hist_int["passes"],
+            "iterations": len(cell_hist),
+            "converged": converged,
+            "final_change": cell_hist[-1] if cell_hist else 0.0,
+            "final_move": move_hist[-1] if move_hist else None,
+            "stop_rule": stop,
+            "tolerances": ({"tol": tol} if stop == "cell" else {"ctol": ctol, "raw_ctol": raw_ctol, "otol": otol}),
+            "history": {"raw": hist_raw, "smoothed": hist_sm, "interaction": hist_int},
+            "objective": (last_hist["objective"][-1] if last_hist["objective"] else None),
+            "objective_from_scratch": _objective_of(f, T, logA, N_s, lam_final, d),
+            "couple_sides": tab.Ntot,
+            "profile": profile,
+            "form": form, "same_sex": same_sex}
 
 
 # ---------------------------------------------------------------------------
@@ -727,7 +933,15 @@ def fit_and_report(sample: str, form: Form, S: dict, A: np.ndarray, same_sex: bo
     rec = {"form": form.describe(), "same_sex": same_sex,
            "ipf": {"raw_iterations": fit["raw_iterations"], "smoothed_iterations": fit["smoothed_iterations"],
                    "interaction_iterations": fit["interaction_iterations"], "converged": fit["converged"],
-                   "final_change": fit["final_change"]},
+                   "final_change": fit["final_change"],
+                   # Phase 3d A1: the rule the stages stopped on, the last
+                   # pass's couple-weighted move, the penalised objective
+                   # (weight units, up to the constant sum C log A) and
+                   # where the seconds went
+                   "stop_rule": fit["stop_rule"], "tolerances": fit["tolerances"],
+                   "stopped_on": {k: fit["history"][k]["stopped_on"] for k in ("raw", "smoothed", "interaction")},
+                   "final_move": fit["final_move"], "objective": fit["objective_from_scratch"],
+                   "couple_sides": fit["couple_sides"], "profile": fit["profile"]},
            "bandwidth_by_sex_cohort": {f"{SEX_LEVELS[i // d.K]}:{form.cohort_labels()[i % d.K]}": fit["bandwidth"][i]
                                        for i in range(N_SEX * d.K)},
            "face_validity": face_validity(fg, A, form, same_sex),
@@ -805,13 +1019,19 @@ def _lomo_forms_one(cbsa: str) -> dict:
     out = {"cbsa": cbsa, "forms": {}}
     for name, form in _W["forms"].items():
         F = _W["fits"][name]
+        # Phase 3d A1 (item 3): warm-started from the full fit's smoothed-
+        # stage terms (age smoothed, education and race refitted around it,
+        # the interaction) and stopped on the couple-weighted rule; the
+        # 25-sweep cap that every interaction form hit in Phase 3c is gone
         fit = fit_form(C_minus, A_minus, form, bandwidth=F["bandwidth"], tau2=F["tau2"],
-                       init={**F["raw_f"], **({"int": F["f"]["int"]} if form.interaction else {})},
-                       tol=1e-4, max_iter=25, mean_weight=_W["mean_weight"])
+                       init={**F["f"]}, max_iter=K.IPF_MAX_ITER, mean_weight=_W["mean_weight"])
         f_m = gauge_form(fit["f"], A_minus, fit["N_s"], form)
         shs = [K.shrink(_W["theta_hat"][name][others, k], _W["se2"][name][others, k]) for k in range(3)]
         rec = {"iterations": fit["iterations"], "national": 0.0, "shrunk": 0.0, "raw": 0.0, "sides": 0.0,
-               "national_all": 0.0}
+               "national_all": 0.0,
+               "stages": {k: {"passes": fit["history"][k]["passes"], "stopped_on": fit["history"][k]["stopped_on"]}
+                          for k in ("raw", "smoothed", "interaction")},
+               "seconds_refit": fit["profile"]["seconds_total"] if "seconds_total" in fit["profile"] else None}
         for fit_half, eval_half in ((h0, h1), (h1, h0)):
             if fit_half.W <= 0 or eval_half.W <= 0:
                 continue
@@ -845,9 +1065,15 @@ def _lomo_forms_one(cbsa: str) -> dict:
 def run_lomo_forms(state: dict, metro_levels: list[str], workers: int) -> list[dict]:
     import multiprocessing as mp
     ctx = mp.get_context("fork")
+    t0 = time.time()
+    out = []
     with ProcessPoolExecutor(max_workers=workers, mp_context=ctx,
                              initializer=_init_worker, initargs=(state,)) as ex:
-        return list(ex.map(_lomo_forms_one, metro_levels, chunksize=2))
+        for r in ex.map(_lomo_forms_one, metro_levels, chunksize=2):
+            out.append(r)
+            if len(out) % 40 == 0 or len(out) == len(metro_levels):
+                print(f"  lomo {len(out)}/{len(metro_levels)} metros ({time.time() - t0:.0f}s)", flush=True)
+    return out
 
 
 def full_dials(fg: dict, form: Form, full: dict, A_metro: np.ndarray, metro_levels: list[str],
@@ -895,14 +1121,16 @@ def cmd_check(sample: str) -> None:
     ref = K.fit_national(S["C"], A, bandwidth=tuple(bw))
     ref_g = K.gauge(ref["f"], A, ref["N_s"])
     t1 = time.time()
-    new = fit_form(S["C"], A, Form(), bandwidth=bw, mean_weight=S["mean_weight"])
+    # the check is of the Form machinery against kernel.py, so it runs
+    # under kernel.py's stopping rule (Phase 3d A1 keeps it as stop="cell")
+    new = fit_form(S["C"], A, Form(), bandwidth=bw, mean_weight=S["mean_weight"], stop="cell")
     new_g = gauge_form(new["f"], A, new["N_s"], Form())
     t2 = time.time()
     diffs = {"age": float(np.abs(ref_g["age"] - new_g["age"][:, 0, :]).max()),
              "edu": float(np.abs(ref_g["edu"] - new_g["edu"]).max()),
              "race": float(np.abs(ref_g["race"] - new_g["race"]).max()),
              "log_norm": float(np.abs(K.log_norm_for(ref_g, A) - log_norm_form(new_g, A, Form())).max())}
-    cv_new = fit_form(S["C"], A, Form(), mean_weight=S["mean_weight"])["bandwidth"]
+    cv_new = fit_form(S["C"], A, Form(), mean_weight=S["mean_weight"], stop="cell")["bandwidth"]
     full, halves = K.load_metro_tables(sample)
     cb = common["metro_levels"][100]
     d_ref = K.fit_dials(ref_g, full[cb], common["A_metro"][100])
@@ -931,6 +1159,12 @@ def cmd_fit(sample: str, only: list[str] | None = None) -> None:
         part = report["partition"]
         print(f"[{sample}] partition as chosen: {part['chosen']} {part['chosen_edges']}", flush=True)
         forms = {n: f for n, f in forms_for(sample, tuple(part["chosen_edges"])).items() if n in only}
+        if "shipped" in only and "shipped" in report["forms"]:
+            # Phase 3d: the m3.2.0 form refitted by name, so a re-scored
+            # held-out comparison reads every form from the same code
+            fr = report["forms"]["shipped"]["form"]
+            forms["shipped"] = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
+                                    interaction=fr["interaction"], name="shipped")
         assert forms, only
     else:
         print(f"[{sample}] choosing the age partition by split-half held-out likelihood ...", flush=True)
@@ -1403,17 +1637,18 @@ def _lomo_samesex_one(cbsa: str) -> dict:
         np.add.at(C_os, (mc_os.s, mc_os.c), -mc_os.w)
         C_os[C_os < 0] = 0.0
     F = _W["fit_os"]
+    # Phase 3d A1 (item 3): both refits warm-start from the smoothed-stage
+    # terms and stop on the couple-weighted rule (run_lomo_forms's treatment)
     fit_os = fit_form(C_os, A_minus, form_os, bandwidth=F["bandwidth"], tau2=F["tau2"],
-                      init={**F["raw_f"], **({"int": F["f"]["int"]} if form_os.interaction else {})},
-                      tol=1e-4, max_iter=25, mean_weight=_W["mean_weight_os"])
+                      init={**F["f"]}, max_iter=K.IPF_MAX_ITER, mean_weight=_W["mean_weight_os"])
     fg_os = gauge_form(fit_os["f"], A_minus, fit_os["N_s"], form_os)
     # same-sex kernel without the metro's same-sex couples
     C_ss = _W["C_ss"].copy()
     np.add.at(C_ss, (mc_ss.s, mc_ss.c), -mc_ss.w)
     C_ss[C_ss < 0] = 0.0
     G = _W["fit_ss"]
-    fit_ss = fit_form(C_ss, A_minus, form_ss, same_sex=True, bandwidth=G["bandwidth"], init=G["raw_f"],
-                      tol=1e-4, max_iter=25, mean_weight=_W["mean_weight_ss"])
+    fit_ss = fit_form(C_ss, A_minus, form_ss, same_sex=True, bandwidth=G["bandwidth"], init=G["f"],
+                      max_iter=K.IPF_MAX_ITER, mean_weight=_W["mean_weight_ss"])
     fg_ss = gauge_form(fit_ss["f"], A_minus, fit_ss["N_s"], form_ss, same_sex=True)
     theta = np.array(_W["theta"][i], float)
     d_os, d_ss = design2(form_os), design2(form_ss)
@@ -1444,7 +1679,12 @@ def _lomo_samesex_one(cbsa: str) -> dict:
     fallback = {k: "os" for k in COMPONENTS}
     rec = {"cbsa": cbsa, "sides": mc_ss.W, "fallback": loglik(fallback),
            "all_samesex": loglik({k: "ss" for k in COMPONENTS}),
-           "iterations": [fit_os["iterations"], fit_ss["iterations"]]}
+           "iterations": [fit_os["iterations"], fit_ss["iterations"]],
+           "stages": {"os": {k: {"passes": fit_os["history"][k]["passes"], "stopped_on": fit_os["history"][k]["stopped_on"]}
+                             for k in ("raw", "smoothed", "interaction")},
+                      "ss": {k: {"passes": fit_ss["history"][k]["passes"], "stopped_on": fit_ss["history"][k]["stopped_on"]}
+                             for k in ("raw", "smoothed")}},
+           "seconds_refit": [fit_os["profile"].get("seconds_total"), fit_ss["profile"].get("seconds_total")]}
     for k in COMPONENTS:
         rec[f"only_{k}"] = loglik({**fallback, k: "ss"})
     # Phase 3c B2: what m3.2.0 serves (age same-sex, education and race
@@ -1501,7 +1741,7 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
     state = {"A": A, "A_metro": common["A_metro"], "midx": {c: i for i, c in enumerate(common["metro_levels"])},
              "form_os": form_os, "form_ss": form_ss, "C_os": S_os["C"], "C_ss": S_ss["C"],
              "full_os": full_os, "full_ss": full_ss, "fit_os": fits[shipped_form_name],
-             "fit_ss": {"raw_f": r["fit"]["raw_f"], "bandwidth": r["fit"]["bandwidth"]},
+             "fit_ss": {"raw_f": r["fit"]["raw_f"], "f": r["fit"]["f"], "bandwidth": r["fit"]["bandwidth"]},
              "mean_weight_os": S_os["mean_weight"], "mean_weight_ss": S_ss["mean_weight"], "theta": theta}
     metros = [c for c in common["metro_levels"] if c in full_ss]
     if decide_only and (P3B / "lomo_samesex.json").exists():

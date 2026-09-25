@@ -1,0 +1,153 @@
+{
+ "rule": "stop='cell' (m3.3.0's: largest single-cell change below 1e-6, 200-pass caps)",
+ "reference": "results/phase3c/_form_fits.npz, dials_C1_cohorts_plus_shipped.csv, _samesex_fit.npz (m3.3.0)",
+ "fits": {
+  "C1_cohorts_plus_shipped": {
+   "seconds_fit": 26.6,
+   "iterations": {
+    "raw": 200,
+    "smoothed": 4,
+    "interaction": 200
+   },
+   "phase3c_record": {
+    "raw_iterations": 200,
+    "smoothed_iterations": 4,
+    "interaction_iterations": 200,
+    "converged": false,
+    "final_change": 0.0008866747510400938
+   },
+   "phase3c_seconds_fit_and_report": 153.5,
+   "bandwidth_equal": true,
+   "tau2": 0.031030452766297803,
+   "tau2_phase3c": 0.031030452766297865,
+   "tau2_abs_diff": 6.245004513516506e-17,
+   "final_change": 0.0008866747510411384,
+   "final_change_phase3c": 0.0008866747510400938,
+   "objective": -529704015.2126202,
+   "objective_from_scratch": -529704015.2126203,
+   "couple_sides": 33379883.735795714,
+   "max_abs_diff": {
+    "log_multipliers_smoothed": {
+     "age": 7.993605777301127e-14,
+     "edu": 1.3744561044859438e-12,
+     "race": 3.6637359812630166e-14,
+     "int": 1.9625967517811205e-13
+    },
+    "log_multipliers_raw": {
+     "age": 8.348877145181177e-14,
+     "edu": 1.4440670881299411e-12,
+     "race": 2.1094237467877974e-14
+    },
+    "log_multipliers_gauged": {
+     "race": 2.708944180085382e-14,
+     "edu": 1.5720758028692217e-13,
+     "age": 7.638334409421077e-14,
+     "int": 1.9625967517811205e-13
+    },
+    "dials_theta_hat_vs_store_npz": 6.313700673388212e-10,
+    "dials_se2_vs_store_npz": 7.876235471118709e-14,
+    "dials_theta_tilde_vs_csv": 6.25439589008181e-10,
+    "dials_theta_hat_vs_csv": 6.313700673388212e-10
+   },
+   "profile": {
+    "stages": {
+     "raw": {
+      "seconds": 12.728,
+      "passes": 200,
+      "stopped_on": "cap"
+     },
+     "smoothing": {
+      "seconds": 0.035,
+      "bandwidth_cv": true
+     },
+     "smoothed": {
+      "seconds": 0.438,
+      "passes": 4,
+      "stopped_on": "tolerance"
+     },
+     "interaction": {
+      "seconds": 12.687,
+      "passes": 200,
+      "stopped_on": "cap"
+     }
+    },
+    "table_seconds": {
+     "rebuild": 0.41147916694171727,
+     "apply": 11.999845897546038,
+     "margin": 9.56394292251207,
+     "update": 0.05026442161761224,
+     "objective": 0.014031872153282166,
+     "move": 3.3736220845021307
+    }
+   },
+   "seconds_dials": 93.7,
+   "max_abs_diff_overall": 6.313700673388212e-10,
+   "reproduces_to_1e-9": true
+  },
+  "samesex": {
+   "seconds_fit": 21.9,
+   "iterations": {
+    "raw": 200,
+    "smoothed": 200
+   },
+   "phase3c_record": {
+    "raw_iterations": 200,
+    "smoothed_iterations": 200,
+    "interaction_iterations": 0,
+    "converged": false,
+    "final_change": 1.0207775550726786e-06
+   },
+   "phase3c_seconds_fit_and_report": 113.3,
+   "bandwidth_equal": true,
+   "bandwidth": [
+    0.75,
+    0.25
+   ],
+   "final_change": 1.0207775564049448e-06,
+   "final_change_phase3c": 1.0207775550726786e-06,
+   "objective": -23912770.695543237,
+   "couple_sides": 1452508.3739627276,
+   "max_abs_diff": {
+    "log_multipliers_smoothed": {
+     "age": 1.234568003383174e-13,
+     "edu": 4.4196313275790544e-12,
+     "race": 1.744160371686121e-13
+    },
+    "log_multipliers_gauged": {
+     "race": 2.1316282072803006e-14,
+     "edu": 4.241051954068098e-14,
+     "age": 1.1901590823981678e-13
+    }
+   },
+   "profile": {
+    "stages": {
+     "raw": {
+      "seconds": 11.935,
+      "passes": 200,
+      "stopped_on": "cap"
+     },
+     "smoothing": {
+      "seconds": 0.002,
+      "bandwidth_cv": true
+     },
+     "smoothed": {
+      "seconds": 9.504,
+      "passes": 200,
+      "stopped_on": "cap"
+     }
+    },
+    "table_seconds": {
+     "rebuild": 0.2698210420785472,
+     "apply": 9.1674716550624,
+     "margin": 8.420975587214343,
+     "update": 0.02935019030701369,
+     "objective": 0.00902982719708234,
+     "move": 3.268648461555131
+    }
+   },
+   "max_abs_diff_overall": 4.4196313275790544e-12,
+   "reproduces_to_1e-9": true
+  }
+ },
+ "reproduces_to_1e-9": true
+}

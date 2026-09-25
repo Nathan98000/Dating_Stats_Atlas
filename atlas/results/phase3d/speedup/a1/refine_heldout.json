@@ -1,0 +1,407 @@
+{
+ "sample": "decay_h5",
+ "metros": 387,
+ "forms": {
+  "baseline": {
+   "heldout_loglik_shrunk": -369164005.1788075,
+   "heldout_loglik_national": -369440505.837057,
+   "heldout_loglik_raw": -369199309.1352133,
+   "heldout_sides": 33379883.735795718,
+   "gain_vs_baseline_shrunk_per_1000_sides": 0.0,
+   "gain_vs_baseline_national_per_1000_sides": 0.0,
+   "gain_all_couples_national_per_1000_sides": 0.0,
+   "metros_where_better_than_baseline_shrunk": 0,
+   "metros_where_better_than_baseline_national": 0,
+   "dial_gain_shrunk_minus_national_per_1000_sides": 8.28345180702308,
+   "lomo_iterations_median": 6.0,
+   "ships": false,
+   "gain_vs_shipped_shrunk_per_1000_sides": -14.10650885886071,
+   "metros_where_better_than_shipped_shrunk": 37,
+   "improves_on_shipped": false,
+   "pew": {
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 22.85,
+      "p90_abs_pts": 32.48,
+      "max_abs_pts": 38.04,
+      "mean_signed_pts": 22.34
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.33,
+      "p90_abs_pts": 9.65,
+      "max_abs_pts": 22.67,
+      "mean_signed_pts": -2.96
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.48,
+      "p90_abs_pts": 7.05,
+      "max_abs_pts": 12.73,
+      "mean_signed_pts": -1.59
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.48,
+      "p90_abs_pts": 7.11,
+      "max_abs_pts": 12.83,
+      "mean_signed_pts": -1.57
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.35,
+      "p90_abs_pts": 7.37,
+      "max_abs_pts": 12.09,
+      "mean_signed_pts": -0.94
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 91,
+      "b_better_metros": 33,
+      "median_paired_diff_pts": -0.71,
+      "mean_paired_diff_pts": -1.406,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 54,
+      "b_better_metros": 70,
+      "median_paired_diff_pts": 0.013,
+      "mean_paired_diff_pts": 0.034,
+      "sign_test_p": 0.1777
+     },
+     "raw_vs_national": {
+      "a_better_metros": 92,
+      "b_better_metros": 32,
+      "median_paired_diff_pts": -0.793,
+      "mean_paired_diff_pts": -1.439,
+      "sign_test_p": 0.0
+     }
+    },
+    "level_offset_ratio_ours_over_pew": 1.3769
+   }
+  },
+  "C1_cohorts_plus_shipped": {
+   "heldout_loglik_shrunk": -366366379.92330766,
+   "heldout_loglik_national": -366607388.01462674,
+   "heldout_loglik_raw": -366404710.3507028,
+   "heldout_sides": 33379883.735795718,
+   "gain_vs_baseline_shrunk_per_1000_sides": 83.81171359502787,
+   "gain_vs_baseline_national_per_1000_sides": 84.87500570267389,
+   "gain_all_couples_national_per_1000_sides": 84.87500570267389,
+   "metros_where_better_than_baseline_shrunk": 386,
+   "metros_where_better_than_baseline_national": 385,
+   "dial_gain_shrunk_minus_national_per_1000_sides": 7.2201596993770645,
+   "lomo_iterations_median": 210.0,
+   "ships": true,
+   "gain_vs_shipped_shrunk_per_1000_sides": 69.70520473616716,
+   "metros_where_better_than_shipped_shrunk": 386,
+   "improves_on_shipped": true,
+   "pew": {
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 22.85,
+      "p90_abs_pts": 32.48,
+      "max_abs_pts": 38.04,
+      "mean_signed_pts": 22.34
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.41,
+      "p90_abs_pts": 9.58,
+      "max_abs_pts": 22.58,
+      "mean_signed_pts": -3.11
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.49,
+      "p90_abs_pts": 6.97,
+      "max_abs_pts": 12.84,
+      "mean_signed_pts": -1.65
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.51,
+      "p90_abs_pts": 7.1,
+      "max_abs_pts": 12.93,
+      "mean_signed_pts": -1.64
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.35,
+      "p90_abs_pts": 7.37,
+      "max_abs_pts": 12.09,
+      "mean_signed_pts": -0.94
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.615,
+      "mean_paired_diff_pts": -1.281,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 56,
+      "b_better_metros": 68,
+      "median_paired_diff_pts": 0.013,
+      "mean_paired_diff_pts": 0.033,
+      "sign_test_p": 0.3232
+     },
+     "raw_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.598,
+      "mean_paired_diff_pts": -1.314,
+      "sign_test_p": 0.0
+     }
+    },
+    "level_offset_ratio_ours_over_pew": 1.3769
+   }
+  },
+  "C2_edu_by_sex_plus_shipped": {
+   "heldout_loglik_shrunk": -368693231.9100469,
+   "heldout_loglik_national": -368953283.5526197,
+   "heldout_loglik_raw": -368727979.19415224,
+   "heldout_sides": 33379883.735795718,
+   "gain_vs_baseline_shrunk_per_1000_sides": 14.1035023515009,
+   "gain_vs_baseline_national_per_1000_sides": 14.596284645378026,
+   "gain_all_couples_national_per_1000_sides": 14.596284645379813,
+   "metros_where_better_than_baseline_shrunk": 350,
+   "metros_where_better_than_baseline_national": 342,
+   "dial_gain_shrunk_minus_national_per_1000_sides": 7.7906695131459545,
+   "lomo_iterations_median": 208.0,
+   "ships": true,
+   "gain_vs_shipped_shrunk_per_1000_sides": -0.0030065073598106043,
+   "metros_where_better_than_shipped_shrunk": 196,
+   "improves_on_shipped": false,
+   "pew": {
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 22.85,
+      "p90_abs_pts": 32.48,
+      "max_abs_pts": 38.04,
+      "mean_signed_pts": 22.34
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.39,
+      "p90_abs_pts": 9.55,
+      "max_abs_pts": 22.63,
+      "mean_signed_pts": -3.1
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.47,
+      "p90_abs_pts": 6.97,
+      "max_abs_pts": 12.83,
+      "mean_signed_pts": -1.65
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.5,
+      "p90_abs_pts": 7.08,
+      "max_abs_pts": 12.92,
+      "mean_signed_pts": -1.64
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.35,
+      "p90_abs_pts": 7.37,
+      "max_abs_pts": 12.09,
+      "mean_signed_pts": -0.94
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.643,
+      "mean_paired_diff_pts": -1.282,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 56,
+      "b_better_metros": 68,
+      "median_paired_diff_pts": 0.015,
+      "mean_paired_diff_pts": 0.033,
+      "sign_test_p": 0.3232
+     },
+     "raw_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.615,
+      "mean_paired_diff_pts": -1.315,
+      "sign_test_p": 0.0
+     }
+    },
+    "level_offset_ratio_ours_over_pew": 1.3769
+   }
+  },
+  "C3_both_plus_shipped": {
+   "heldout_loglik_shrunk": -366366388.2580508,
+   "heldout_loglik_national": -366607238.2634593,
+   "heldout_loglik_raw": -366404779.74727345,
+   "heldout_sides": 33379883.735795718,
+   "gain_vs_baseline_shrunk_per_1000_sides": 83.81146390143374,
+   "gain_vs_baseline_national_per_1000_sides": 84.87949197256631,
+   "gain_all_couples_national_per_1000_sides": 84.87949197256631,
+   "metros_where_better_than_baseline_shrunk": 386,
+   "metros_where_better_than_baseline_national": 385,
+   "dial_gain_shrunk_minus_national_per_1000_sides": 7.215423735890494,
+   "lomo_iterations_median": 210.0,
+   "ships": true,
+   "gain_vs_shipped_shrunk_per_1000_sides": 69.70495504257302,
+   "metros_where_better_than_shipped_shrunk": 386,
+   "improves_on_shipped": true,
+   "pew": {
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 22.85,
+      "p90_abs_pts": 32.48,
+      "max_abs_pts": 38.04,
+      "mean_signed_pts": 22.34
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.41,
+      "p90_abs_pts": 9.58,
+      "max_abs_pts": 22.58,
+      "mean_signed_pts": -3.11
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.48,
+      "p90_abs_pts": 6.97,
+      "max_abs_pts": 12.84,
+      "mean_signed_pts": -1.65
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.51,
+      "p90_abs_pts": 7.1,
+      "max_abs_pts": 12.93,
+      "mean_signed_pts": -1.65
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.35,
+      "p90_abs_pts": 7.37,
+      "max_abs_pts": 12.09,
+      "mean_signed_pts": -0.94
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.617,
+      "mean_paired_diff_pts": -1.279,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 56,
+      "b_better_metros": 68,
+      "median_paired_diff_pts": 0.013,
+      "mean_paired_diff_pts": 0.033,
+      "sign_test_p": 0.3232
+     },
+     "raw_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.595,
+      "mean_paired_diff_pts": -1.312,
+      "sign_test_p": 0.0
+     }
+    },
+    "level_offset_ratio_ours_over_pew": 1.3769
+   }
+  },
+  "shipped": {
+   "heldout_loglik_shrunk": -368693131.55318075,
+   "heldout_loglik_national": -368953505.6366021,
+   "heldout_loglik_raw": -368727884.3705639,
+   "heldout_sides": 33379883.735795718,
+   "gain_vs_baseline_shrunk_per_1000_sides": 14.10650885886071,
+   "gain_vs_baseline_national_per_1000_sides": 14.589631417219241,
+   "gain_all_couples_national_per_1000_sides": 14.589631417219241,
+   "metros_where_better_than_baseline_shrunk": 350,
+   "metros_where_better_than_baseline_national": 340,
+   "dial_gain_shrunk_minus_national_per_1000_sides": 7.800329248664553,
+   "lomo_iterations_median": 208.0,
+   "ships": true,
+   "gain_vs_shipped_shrunk_per_1000_sides": 0.0,
+   "metros_where_better_than_shipped_shrunk": 0,
+   "improves_on_shipped": false,
+   "pew": {
+    "corrected_errors": {
+     "random_pairing": {
+      "n": 124,
+      "median_abs_pts": 22.85,
+      "p90_abs_pts": 32.48,
+      "max_abs_pts": 38.04,
+      "mean_signed_pts": 22.34
+     },
+     "national_only": {
+      "n": 124,
+      "median_abs_pts": 3.39,
+      "p90_abs_pts": 9.56,
+      "max_abs_pts": 22.63,
+      "mean_signed_pts": -3.1
+     },
+     "raw_dial": {
+      "n": 124,
+      "median_abs_pts": 2.48,
+      "p90_abs_pts": 6.97,
+      "max_abs_pts": 12.83,
+      "mean_signed_pts": -1.64
+     },
+     "shrunk_dial": {
+      "n": 124,
+      "median_abs_pts": 2.5,
+      "p90_abs_pts": 7.07,
+      "max_abs_pts": 12.91,
+      "mean_signed_pts": -1.64
+     },
+     "observed_2020_24": {
+      "n": 124,
+      "median_abs_pts": 2.35,
+      "p90_abs_pts": 7.37,
+      "max_abs_pts": 12.09,
+      "mean_signed_pts": -0.94
+     }
+    },
+    "paired": {
+     "shrunk_vs_national": {
+      "a_better_metros": 90,
+      "b_better_metros": 34,
+      "median_paired_diff_pts": -0.641,
+      "mean_paired_diff_pts": -1.284,
+      "sign_test_p": 0.0
+     },
+     "shrunk_vs_raw": {
+      "a_better_metros": 54,
+      "b_better_metros": 70,
+      "median_paired_diff_pts": 0.016,
+      "mean_paired_diff_pts": 0.033,
+      "sign_test_p": 0.1777
+     },
+     "raw_vs_national": {
+      "a_better_metros": 89,
+      "b_better_metros": 35,
+      "median_paired_diff_pts": -0.629,
+      "mean_paired_diff_pts": -1.318,
+      "sign_test_p": 0.0
+     }
+    },
+    "level_offset_ratio_ours_over_pew": 1.3769
+   }
+  }
+ },
+ "rule": "a refinement ships when its total split-half held-out log-likelihood under the shrunk-dial kernel exceeds the baseline form's (same metros, same halves, same shrinkage machinery); metro counts and the national-only (no-dial) comparison are reported beside it"
+}

@@ -34,8 +34,8 @@ sums, which do not depend on the kernel and are cached on disk
 
     python -m atlas.pipeline.build.stability_gate reference <build_dir>
         -> results/phase3c/stability_reference.json
-    python -m atlas.pipeline.build.stability_gate check <build_dir> --name <n> [--kernel <dir>] [--noise 1.5]
-        -> results/phase3c/gate_<n>.json (the record and the verdict)
+    python -m atlas.pipeline.build.stability_gate check <build_dir> --name <n> [--kernel <dir>] [--noise 1.5] [--out <json>]
+        -> results/phase3c/gate_<n>.json (the record and the verdict), or --out
     python -m atlas.pipeline.build.stability_gate controls <build_dir>
         -> results/phase3c/gate_controls.json (identity; enlarged noise x1.5)
 """
@@ -342,7 +342,7 @@ def load_reference(path: Path = REFERENCE) -> dict:
 
 
 def _write(path: Path, obj: dict) -> None:
-    P3C.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)) + "\n")
 
 
@@ -373,7 +373,8 @@ def main(argv: list[str]) -> int:
             ref = load_reference(Path(opt["--reference"])) if "--reference" in opt else load_reference()
             v = verdict(rec, ref)
             rec["verdict"] = v
-            _write(P3C / f"gate_{name}.json", rec)
+            # Phase 3d: --out puts the record under that phase's results
+            _write(Path(opt["--out"]) if "--out" in opt else P3C / f"gate_{name}.json", rec)
             print(json.dumps({k: v[k] for k in v if k != "touched"}, indent=1))
             return 0 if v["pass"] else 1
         elif cmd == "controls":

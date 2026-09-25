@@ -1,0 +1,197 @@
+{
+ "kernel": "atlas/results/phase3d/speedup/a1/_candidates/C1_cohorts_plus_shipped",
+ "goldens_model_version": "m3.3.0",
+ "engine_model_version": "m3.3.0",
+ "vectors": {
+  "A_woman32_ba_men_75k": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "B_man28_women_never": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "C_woman38_grad_men_100k": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "D_man41_women_50k": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "E_black_woman29_stress": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "race_asian_nh_men": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "race_hispanic_women": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "race_white_nh_grad_multi": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "below_bar_nhpi_250k": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true
+  },
+  "race_two_or_more_and_other": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "broad_any": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "slider_all_match": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "slider_alias_pool_vs_balance": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "self_edu_and_race": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "self_edu_only_hs": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "importance_controls": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "importance_lifestyle_alias": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  },
+  "same_sex_pool": {
+   "scores": true,
+   "score_displays": true,
+   "match_index": true,
+   "pools": true,
+   "suppressed": true,
+   "shown_unranked_cbsas": true,
+   "max_abs_score_diff": 0.0,
+   "max_abs_match_index_diff": 0.0
+  }
+ },
+ "unchanged": true,
+ "compared": [
+  "ranking",
+  "scores",
+  "score_displays",
+  "match_index",
+  "pools",
+  "suppressed",
+  "shown_unranked_cbsas"
+ ],
+ "max_abs_score_diff": 0.0,
+ "max_abs_match_index_diff": 0.0
+}
