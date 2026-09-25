@@ -222,6 +222,20 @@ brief made a flipped verdict a stop condition, so m3.4.0 was not built:
 which form the finished fit ships is Nathan's decision, recorded in an
 ADR when he makes it. PHASE3D.md §1 has every number.
 
+**Nathan's decision (ADR 0014, 25 September 2026): the finished fit
+ships C1.** Held-out differences this small are ties, and a tie goes to
+the simpler form: a difference under δ = 0.25 per 1,000 weighted
+couple-sides is a tie (about four times the largest margin finishing the
+fit moved, 17 times the C3 − C1 standard error, a twelfth of the
+smallest margin that has decided a served term), so C2 (+0.007) does not
+qualify, C1 and C3 are tied for first and C1 ships, being nested in C3.
+Every other verdict on the record — Phase 3b's, Phase 3c's, race ×
+education and the same-sex composition on the finished fit — comes out
+the same under the rule (`results/phase3d/tie_rule.json`), and the
+interaction keeps riding on same-sex searches by +2.90 ≥ δ, a margin of
+1.7 standard errors that Nathan has seen and keeps. The rule was
+committed before m3.4.0 was built.
+
 ## Consequences
 
 MODEL_VERSION m3.2.0; goldens regenerated; every number in PHASE3B.md;

@@ -38,6 +38,10 @@ and v2).
     python -m atlas.pipeline.build.kernel_refine lomo [--workers 8]
     python -m atlas.pipeline.build.kernel_refine samesex [--workers 8]
     python -m atlas.pipeline.build.kernel_refine ship
+
+Phase 3d R (ADR 0014): every held-out comparison goes through `beats` and
+`select_form` — a difference smaller than HELDOUT_TIE_MARGIN_PER_1000 per
+1,000 weighted couple-sides is a tie, and a tie goes to the simpler form.
 """
 from __future__ import annotations
 
@@ -314,6 +318,20 @@ OBJECTIVE_TOL = 1e-6
 # under 1% per pass, which is why m3.3.0's interaction stage stopped at
 # its 200-pass cap. Off reproduces the A1 fit to 1e-9.
 PROJECT_INTERACTION = True
+# Phase 3d R (ADR 0014): a held-out difference smaller than this, per 1,000
+# weighted couple-sides of the set scored, is a tie, and a tie goes to the
+# simpler form. Written after the A2 flip was seen (C3 over C1 by 0.007
+# where Phase 3c read C1 ahead by 0.001); its anchors are in the ADR and
+# results/phase3d/tie_rule.json: about four times the largest margin the
+# finished fit moved with the same forms and data (0.066), about 17 times
+# the paired, metro-clustered standard error of the C3 - C1 difference
+# (0.014), about a twelfth of the smallest margin that has decided a
+# served term (+2.90). It changes only by a new ADR, written before the
+# comparison it would decide is measured. Applies to held-out likelihood
+# comparisons of kernel forms (opposite- and same-sex), not to the ADR
+# 0011 stability gate nor to Part B's wobble-based selection (ADR 0013).
+HELDOUT_TIE_MARGIN_PER_1000 = 0.25
+HELDOUT_TIE_ADR = "0014"
 
 
 class Projection:
@@ -371,6 +389,131 @@ def projection(form: Form) -> Projection:
     if form not in _PROJECTIONS:
         _PROJECTIONS[form] = Projection(form)
     return _PROJECTIONS[form]
+
+
+# ---------------------------------------------------------------------------
+# ADR 0014: held-out comparisons — a margin, and the simpler form on a tie
+# ---------------------------------------------------------------------------
+
+def beats(gain_per_1000: float, margin: float = HELDOUT_TIE_MARGIN_PER_1000) -> bool:
+    """ADR 0014 §1-2. Form A beats form B on held-out fit only if A's total
+    held-out log-likelihood exceeds B's by at least `margin` per 1,000
+    weighted couple-sides of the set scored (`gain_per_1000` is that
+    difference, A minus B; the held-out measure is the usual one — leave
+    one metro out, shrunk dials). Anything less, in either direction, is
+    a tie. Wherever a rule requires a candidate to improve on a reference
+    it must beat it in this sense, and a yes/no choice (whether a term
+    ships, whether the interaction rides) takes the richer option only if
+    it beats the simpler one (§4): a tie keeps the simpler one."""
+    return bool(gain_per_1000 >= margin)
+
+
+def nested_in(a: Form, b: Form) -> bool:
+    """Whether form `a` is nested in form `b` — b only adds terms: every
+    cohort boundary of a is one of b's (a's cohorts are unions of b's),
+    the education matrix is per sex only if b's is, the interaction is
+    present only if b has it. A form is nested in itself."""
+    return bool(set(a.age_edges) <= set(b.age_edges) and a.edu_by_sex <= b.edu_by_sex
+                and a.interaction <= b.interaction)
+
+
+def free_parameters(form: Form) -> dict:
+    """The kernel's free parameters under a Form, as the fit estimates
+    them: each main effect's log-multiplier cells less one gauge per row
+    (the availability-weighted mean multiplier is 1 on every row's own
+    margin), and the interaction's 2,048 cells less the directions the fit
+    projects out after every Newton step (Projection.rank: the seeker-only
+    part and the education-pair and race-pair parts, which the main
+    effects carry). With the interaction present the per-sex education
+    matrix therefore adds no free direction to the kernel — it moves
+    twelve directions out from under the ridge — so C2 counts the same as
+    the shipped form and C3 the same as C1; nesting, which select_form
+    checks first, is what separates those pairs. Builds the projection
+    (an SVD): call it in the parent process, never in a forked worker."""
+    age = N_SEX * form.n_cohorts * (N_GAP - 1)
+    edu = (N_SEX if form.edu_by_sex else 1) * N_EDU * (N_EDU - 1)
+    race = N_SEX * N_RACE * (N_RACE - 1)
+    out = {"age": age, "edu": edu, "race": race,
+           "interaction_cells": N_INT if form.interaction else 0,
+           "interaction_projected_out": projection(form).rank if form.interaction else 0}
+    out["interaction"] = out["interaction_cells"] - out["interaction_projected_out"]
+    out["unpenalised"] = age + edu + race
+    out["total"] = out["unpenalised"] + out["interaction"]
+    return out
+
+
+def select_form(candidates: dict[str, dict], *, served: str | None = None,
+                margin: float = HELDOUT_TIE_MARGIN_PER_1000) -> dict:
+    """ADR 0014 §3 — choosing among candidates measured against one
+    reference. `candidates` maps each name, in the brief's table order, to
+    {"form": Form, "gain_per_1000": its held-out gain over the reference,
+    "qualifies": whether its other conditions hold (the gate, support, the
+    face check; default True), "gate_ratio": the ADR 0011 ratio or None}.
+    A candidate qualifies only if it also beats the reference (§2). Take
+    the largest gain among the qualifying candidates; every qualifying
+    candidate within `margin` of it is tied for first; of those the
+    simplest ships — a tied form in which another tied form is nested is
+    dropped, and if one form remains it ships; otherwise the fewest free
+    parameters; if that does not settle it, in order: the lower gate
+    ratio, the form already served (`served`), the earlier form in the
+    table. Returns the record: the winner, how it was settled, the
+    qualifying and tied sets and every candidate's reading."""
+    order = list(candidates)
+    forms = {n: c["form"] for n, c in candidates.items()}
+    reading = {}
+    for n, c in candidates.items():
+        r = {"gain_per_1000": float(c["gain_per_1000"]),
+             "beats_reference": beats(c["gain_per_1000"], margin),
+             "other_conditions": bool(c.get("qualifies", True)),
+             "gate_ratio": c.get("gate_ratio"),
+             "free_parameters": free_parameters(c["form"])["total"],
+             "tied_for_first": False, "tied_forms_nested_in_it": []}
+        r["qualifies"] = bool(r["beats_reference"] and r["other_conditions"])
+        reading[n] = r
+    qualifying = [n for n in order if reading[n]["qualifies"]]
+    out = {"adr": HELDOUT_TIE_ADR, "margin_per_1000": margin, "candidates": reading,
+           "qualifying": qualifying, "largest_gain": None, "tied_for_first": [],
+           "winner": None, "settled_by": None}
+    if not qualifying:
+        out["settled_by"] = "no candidate qualifies"
+        return out
+    largest = max(qualifying, key=lambda n: reading[n]["gain_per_1000"])
+    best = reading[largest]["gain_per_1000"]
+    tied = [n for n in qualifying if best - reading[n]["gain_per_1000"] < margin]
+    for n in tied:
+        reading[n]["tied_for_first"] = True
+    out["largest_gain"], out["tied_for_first"] = largest, tied
+    if len(tied) == 1:
+        out["winner"], out["settled_by"] = tied[0], "the largest gain beats every other qualifying candidate"
+        return out
+    # nesting first: a tied form in which another tied form is nested only adds terms
+    for n in tied:
+        reading[n]["tied_forms_nested_in_it"] = [
+            o for o in tied if o != n and nested_in(forms[o], forms[n]) and not nested_in(forms[n], forms[o])]
+    remaining = [n for n in tied if not reading[n]["tied_forms_nested_in_it"]]
+    if len(remaining) == 1:
+        out["winner"], out["settled_by"] = remaining[0], "nesting: the other tied forms only add terms to it"
+        return out
+    # then the fewest free parameters in the kernel
+    fewest = min(reading[n]["free_parameters"] for n in remaining)
+    remaining = [n for n in remaining if reading[n]["free_parameters"] == fewest]
+    if len(remaining) == 1:
+        out["winner"], out["settled_by"] = remaining[0], "fewer free parameters in the kernel"
+        return out
+    # then the lower ADR 0011 gate ratio
+    ratios = [reading[n]["gate_ratio"] for n in remaining]
+    if all(r is not None for r in ratios):
+        lowest = min(ratios)
+        remaining = [n for n in remaining if reading[n]["gate_ratio"] == lowest]
+        if len(remaining) == 1:
+            out["winner"], out["settled_by"] = remaining[0], "the lower ADR 0011 gate ratio"
+            return out
+    # then the form already served, then the earlier form in the table
+    if served in remaining:
+        out["winner"], out["settled_by"] = served, "the form already served"
+    else:
+        out["winner"], out["settled_by"] = remaining[0], "the earlier form in the brief's table"
+    return out
 
 
 class Table:
@@ -1384,8 +1527,10 @@ def summarise_lomo(sample: str, lomo: list[dict], forms: dict, common: dict, ful
     out = {"sample": sample, "metros": len(lomo), "forms": {}, "rule": (
         "a refinement ships when its total split-half held-out log-likelihood under the "
         "shrunk-dial kernel exceeds the baseline form's (same metros, same halves, same "
-        "shrinkage machinery); metro counts and the national-only (no-dial) comparison are "
-        "reported beside it")}
+        "shrinkage machinery) by at least the ADR 0014 margin per 1,000 weighted couple-sides "
+        "(anything less is a tie, and a tie goes to the simpler form); metro counts and the "
+        "national-only (no-dial) comparison are reported beside it"),
+        "heldout_tie_margin_per_1000_sides": HELDOUT_TIE_MARGIN_PER_1000, "tie_rule_adr": HELDOUT_TIE_ADR}
     sides = sum(r["forms"][base]["sides"] for r in lomo)
     for name in forms:
         tot = {k: sum(r["forms"][name][k] for r in lomo) for k in ("national", "shrunk", "raw", "national_all")}
@@ -1402,7 +1547,7 @@ def summarise_lomo(sample: str, lomo: list[dict], forms: dict, common: dict, ful
                "metros_where_better_than_baseline_national": wins_nat,
                "dial_gain_shrunk_minus_national_per_1000_sides": (tot["shrunk"] - tot["national"]) / sides * 1000,
                "lomo_iterations_median": float(np.median([r["forms"][name]["iterations"] for r in lomo])),
-               "ships": bool(name != base and tot["shrunk"] > btot["shrunk"])}
+               "ships": bool(name != base and beats((tot["shrunk"] - btot["shrunk"]) / sides * 1000))}
         if "shipped" in forms and all("shipped" in r["forms"] for r in lomo):
             # Phase 3c B3: the candidates are judged against the SHIPPED
             # form (baseline + race x education), not the baseline
@@ -1410,7 +1555,7 @@ def summarise_lomo(sample: str, lomo: list[dict], forms: dict, common: dict, ful
             rec["gain_vs_shipped_shrunk_per_1000_sides"] = (tot["shrunk"] - stot) / sides * 1000
             rec["metros_where_better_than_shipped_shrunk"] = sum(
                 1 for r in lomo if r["forms"][name]["shrunk"] > r["forms"]["shipped"]["shrunk"])
-            rec["improves_on_shipped"] = bool(tot["shrunk"] > stot)
+            rec["improves_on_shipped"] = beats(rec["gain_vs_shipped_shrunk_per_1000_sides"])
         # the Pew comparison for the record
         pew_rec, comp = K.pew_comparison(
             [{"cbsa": r["cbsa"], "pew_pred": r["forms"][name]["pew_pred"]} for r in lomo],
@@ -1447,11 +1592,13 @@ def cmd_combine(sample: str, only: list[str] | None = None, reason: str | None =
     for n, r in ho["forms"].items():
         if n == "baseline":
             continue
-        ships[n] = {"improves_heldout": bool(r["ships"]),
+        improves = beats(r["gain_vs_baseline_shrunk_per_1000_sides"])        # ADR 0014 §2
+        ships[n] = {"improves_heldout": improves,
                     "heldout_gain_per_1000_sides": r["gain_vs_baseline_shrunk_per_1000_sides"],
+                    "heldout_tie_margin_per_1000_sides": HELDOUT_TIE_MARGIN_PER_1000,
                     "rank_stability_pass": bool(st[n]["pass"]) if n in st else None,
                     "rank_stability_min_share": st[n]["min_share"] if n in st else None,
-                    "ships": bool(r["ships"] and n in st and st[n]["pass"])}
+                    "ships": bool(improves and n in st and st[n]["pass"])}
     if only is not None:
         # the combination of individually-passing refinements failed the
         # gate: ship the named subset and record why
@@ -1664,6 +1811,9 @@ def cmd_ship(sample: str, out_dir: Path | None = None, form_name: str = "shipped
             "dials_centre": {k: rep["forms"][form_name]["dials"][k]["precision_weighted_mean_theta"]
                              for k in COMPONENTS},
             "shipped_form_name": form_name,
+            # ADR 0014: the held-out tie rule the form choice was made under
+            "heldout_tie_rule_adr": HELDOUT_TIE_ADR,
+            "heldout_tie_margin_per_1000_sides": HELDOUT_TIE_MARGIN_PER_1000,
             "provisional": False, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
             **(extra_meta or {})}
     out = out_dir or DATA
@@ -1799,6 +1949,64 @@ def _lomo_samesex_one(cbsa: str) -> dict:
     return rec
 
 
+def samesex_decision(lomo: list[dict], support: dict, face: dict) -> dict:
+    """B3's decision from the same-sex leave-one-metro-out record, every
+    held-out comparison through ADR 0014's `beats`: a component is served
+    from same-sex couples when its sample supports it, its term beats the
+    opposite-sex fallback on held-out same-sex couples and it passes the
+    face check. Since Phase 3c B2 (ADR 0010 amended) the education term is
+    judged against what m3.2.0 serves — it ships if either composition
+    (interaction off or on) beats the served one — and the interaction
+    rides only if the composition with it beats the one without (§4: a
+    tie keeps the simpler composition, the interaction off). Race stays
+    borrowed (its support has not changed)."""
+    sides = sum(x["sides"] for x in lomo)
+    per_1000 = 1000.0 / sides
+    keys = ["fallback", "all_samesex"] + [f"only_{c}" for c in COMPONENTS]
+    keys += [k for k in ("served_m3_2_0", "age_edu_ss_no_interaction", "age_edu_ss_with_interaction")
+             if all(k in x for x in lomo)]
+    tot = {k: sum(x[k] for x in lomo) for k in keys}
+    heldout = {"metros": len(lomo), "sides": sides, "totals": tot,
+               "gain_per_1000_sides": {k: (v - tot["fallback"]) * per_1000 for k, v in tot.items()},
+               "metros_better_than_fallback": {k: sum(1 for x in lomo if x[k] > x["fallback"])
+                                               for k in tot if k != "fallback"},
+               "tie_rule": {"adr": HELDOUT_TIE_ADR, "margin_per_1000_sides": HELDOUT_TIE_MARGIN_PER_1000,
+                            "rule": "a component beats the fallback, and the richer composition beats the "
+                                    "simpler one, only by at least the margin; a tie keeps the simpler one"},
+               "components": {}}
+    for k in COMPONENTS:
+        improves = beats(heldout["gain_per_1000_sides"][f"only_{k}"])
+        heldout["components"][k] = {"supported": support["supported"][k], "improves_heldout": bool(improves),
+                                    "face_validity_pass": face[k],
+                                    "ships": bool(support["supported"][k] and improves and face[k])}
+    heldout["served_from_same_sex_couples"] = [k for k in COMPONENTS if heldout["components"][k]["ships"]]
+    heldout["fallback_components"] = [k for k in COMPONENTS if not heldout["components"][k]["ships"]]
+    if "served_m3_2_0" in tot:
+        base = tot["served_m3_2_0"]
+        g_no = (tot["age_edu_ss_no_interaction"] - base) * per_1000
+        g_int = (tot["age_edu_ss_with_interaction"] - base) * per_1000
+        margin_int = (tot["age_edu_ss_with_interaction"] - tot["age_edu_ss_no_interaction"]) * per_1000
+        use_int = beats(margin_int)
+        heldout["vs_m3_2_0_served"] = {
+            "baseline": "age from same-sex couples, education and race from opposite-sex couples, "
+                        "the interaction riding (what m3.2.0 serves)",
+            "gain_per_1000_sides": {"age_edu_ss_no_interaction": g_no, "age_edu_ss_with_interaction": g_int},
+            "metros_better_than_served": {
+                k: sum(1 for x in lomo if x[k] > x["served_m3_2_0"])
+                for k in ("age_edu_ss_no_interaction", "age_edu_ss_with_interaction")},
+            "education_term_improves_on_served": bool(beats(max(g_no, g_int)))}
+        heldout["interaction_decision"] = {
+            "rule": "serve the composition with the interaction only if it beats the one without on "
+                    "held-out same-sex couples by the ADR 0014 margin (education and age from same-sex "
+                    "couples, race borrowed); a tie keeps the interaction off",
+            "interaction_applies": bool(use_int),
+            "margin_per_1000_sides": margin_int}
+        heldout["interaction_applies"] = bool(use_int)
+        heldout["stop_condition_education_no_longer_improves"] = not heldout["vs_m3_2_0_served"][
+            "education_term_improves_on_served"]
+    return heldout
+
+
 def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", fit_only: bool = False,
                 decide_only: bool = False) -> None:
     """B3 end to end: the same-sex tables (built if missing), the national
@@ -1858,57 +2066,15 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
                                  initializer=_init_worker, initargs=(state,)) as ex:
             lomo = list(ex.map(_lomo_samesex_one, metros, chunksize=2))
     lomo = [x for x in lomo if x["sides"] > 0]
-    sides = sum(x["sides"] for x in lomo)
-    keys = ["fallback", "all_samesex"] + [f"only_{c}" for c in COMPONENTS]
-    keys += [k for k in ("served_m3_2_0", "age_edu_ss_no_interaction", "age_edu_ss_with_interaction")
-             if all(k in x for x in lomo)]
-    tot = {k: sum(x[k] for x in lomo) for k in keys}
-    heldout = {"metros": len(lomo), "sides": sides, "totals": tot,
-               "gain_per_1000_sides": {k: (v - tot["fallback"]) / sides * 1000 for k, v in tot.items()},
-               "metros_better_than_fallback": {k: sum(1 for x in lomo if x[k] > x["fallback"])
-                                               for k in tot if k != "fallback"},
-               "components": {}}
     # a component is served from same-sex couples when its sample supports
-    # it, it predicts held-out same-sex couples better than the fallback,
-    # AND its term passes the standing face-validity check (the battery's
-    # hard gate reads every served matrix; a same-sex education matrix
-    # that is not diagonal-dominant would fail the build)
+    # it, it beats the opposite-sex fallback on held-out same-sex couples
+    # (ADR 0014), AND its term passes the standing face-validity check (the
+    # battery's hard gate reads every served matrix; a same-sex education
+    # matrix that is not diagonal-dominant would fail the build)
     face = {"age": bool(r["record"]["face_validity"]["age_pass"]),
             "edu": bool(r["record"]["face_validity"]["edu_pass"]),
             "race": bool(r["record"]["face_validity"]["race_pass"])}
-    for k in COMPONENTS:
-        improves = tot[f"only_{k}"] > tot["fallback"]
-        heldout["components"][k] = {"supported": support["supported"][k], "improves_heldout": bool(improves),
-                                    "face_validity_pass": face[k],
-                                    "ships": bool(support["supported"][k] and improves and face[k])}
-    heldout["served_from_same_sex_couples"] = [k for k in COMPONENTS if heldout["components"][k]["ships"]]
-    heldout["fallback_components"] = [k for k in COMPONENTS if not heldout["components"][k]["ships"]]
-    if "served_m3_2_0" in tot:
-        # Phase 3c B2 (ADR 0010 amended): the education term's gain is
-        # re-measured against what m3.2.0 serves, and the interaction is
-        # decided by which composition predicts held-out same-sex couples
-        # better. Race stays borrowed (its support has not changed).
-        base = tot["served_m3_2_0"]
-        g_no = (tot["age_edu_ss_no_interaction"] - base) / sides * 1000
-        g_int = (tot["age_edu_ss_with_interaction"] - base) / sides * 1000
-        use_int = tot["age_edu_ss_with_interaction"] > tot["age_edu_ss_no_interaction"]
-        heldout["vs_m3_2_0_served"] = {
-            "baseline": "age from same-sex couples, education and race from opposite-sex couples, "
-                        "the interaction riding (what m3.2.0 serves)",
-            "gain_per_1000_sides": {"age_edu_ss_no_interaction": g_no, "age_edu_ss_with_interaction": g_int},
-            "metros_better_than_served": {
-                k: sum(1 for x in lomo if x[k] > x["served_m3_2_0"])
-                for k in ("age_edu_ss_no_interaction", "age_edu_ss_with_interaction")},
-            "education_term_improves_on_served": bool(max(g_no, g_int) > 0)}
-        heldout["interaction_decision"] = {
-            "rule": "serve whichever of {interaction off, interaction on} predicts held-out same-sex "
-                    "couples better, education and age from same-sex couples, race borrowed",
-            "interaction_applies": bool(use_int),
-            "margin_per_1000_sides": (tot["age_edu_ss_with_interaction"] - tot["age_edu_ss_no_interaction"])
-            / sides * 1000}
-        heldout["interaction_applies"] = bool(use_int)
-        heldout["stop_condition_education_no_longer_improves"] = not heldout["vs_m3_2_0_served"][
-            "education_term_improves_on_served"]
+    heldout = samesex_decision(lomo, support, face)
     report["heldout"] = heldout
     report["seconds"] = round(time.time() - t0, 1)
     (P3B / "lomo_samesex.json").write_text(json.dumps(lomo, indent=0, default=_json) + "\n")
