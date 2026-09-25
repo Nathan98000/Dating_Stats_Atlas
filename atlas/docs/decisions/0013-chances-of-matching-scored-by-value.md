@@ -108,3 +108,54 @@ transform and of N0's bit-identity, ADR 0009 §8 amended (its "the
 feature is percentile-ranked" reason), and PHASE3D.md's Part B. Whether
 to re-base the ADR 0011 reference after this change is Nathan's call,
 recorded in an ADR if he makes it.
+
+## Amended, 25 September 2026 (Phase 3d B2 and B3): measured on m3.4.0, V2 ships as m3.5.0
+
+The four candidates were measured on the m3.4.0 build (1ebeaa2dcad6)
+after the rule above was committed (4bab576; the measurement
+`results/phase3d/b2_candidates.json`, the per-search records
+`b2_gate_<rule>.json` and `b2_matchend_<rule>.json`):
+
+| Candidate | ADR 0011 gate | Match-end wobble, total | Gate-set wobble, total | Outlier condition (worst spread, searches below 40) | Steering τ, median, own slider / match end | Qualifies |
+|---|---|---|---|---|---|---|
+| N0, the percentile rank | pass 0.970 | 1,100.0 | 306.7 | pass (80.0; 0) | 0.508 / 0.834 | control |
+| V1, winsorized 1st/99th | pass 0.754 | 1,011.5 | 238.4 | fails (30.2; 30) | 0.413 / 0.753 | no |
+| V2, the Tukey fences | pass 0.775 | 1,025.2 | 245.1 | pass (41.8; 0) | 0.407 / 0.756 | **yes — ships** |
+| V3, the index clipped to [40, 250] | pass 0.719 | 999.8 | 227.4 | fails (23.5; 57) | 0.433 / 0.756 | no |
+
+Every value candidate passes the gate and wobbles less than N0 at the
+match end; the outlier condition decides. V3 and V1 have the lowest
+match-end totals but squeeze the middle 80% of ranked cities below 40
+points of match-score spread on searches whose ranked set holds a run of
+far-out cities (V3 on fifty-seven searches, the worst 23.5 points, women
+of 50 of two or more races; V1 on thirty, the worst 30.2, the American
+Indian or Alaska Native woman of 25). V2's fences follow each search's
+own quartiles and keep 41.8 points on its worst search (a man of 40 with
+high school or less, of two or more races). V2 is the one candidate that
+meets all three conditions; the tie clause was not needed. **V2 ships as
+m3.5.0**: `normalization.match_scoring: V2` in the registry, the build's
+manifest refreshed in place (the data files are unchanged, so the build
+keeps its id, 1ebeaa2dcad6), goldens regenerated; ten of ten hard gates,
+the ADR 0011 gate 0.775 against the m3.2.0 reference (total wobble 316.2
+→ 245.1, the median search 0.457 → 0.364; the old overlap reading 0.7375,
+the two match-end personas, would fail at the 0.80 bar and is reported
+as the soft reading it is); latency p95 35.3 ms at a one-minute load of
+2.46. Against m3.4.0 the served index is unchanged on every search (the
+index and replicate hashes match search for search), 342 of 516 test
+searches are steadier and 174 shakier (95 rose more than 25%, named in
+PHASE3D.md §3); the default search's ranking moves a median 3 places
+(Kendall τ 0.938; Washington DC replaces San Jose at 10th) and the
+same-sex reference search's 5 (τ 0.867). The match-end searches read
+2.90 → 3.37 places of wobble on the gate's own set — they are the
+shakiest on the site under either rule, and at their own slider position
+the match-end persona is where V2's reordering of the near-tied middle
+shows most.
+
+**The reference is not moved.** The new build's total wobble sits far
+below m3.2.0's (245.1 against 316.2, 0.775), and below every kernel
+build so far (m3.3.0 0.971, m3.4.0 0.970). Whether to re-base the ADR
+0011 reference on m3.5.0 is Nathan's call, recorded in an ADR if he
+makes it; until then every later change is read against m3.2.0 as the
+rule says, with 22.5% of headroom that value scoring, not the kernel,
+created.
+

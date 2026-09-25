@@ -24,8 +24,10 @@ normalization:
   # before the log (the floor is the cap's mirror in log space). A one-city
   # set or identical values score 50; a missing value stays missing. The
   # value cap is NOT the display cap (strings.match_display_cap), which
-  # stays presentational. N0 until the measured rule picks a winner.
-  match_scoring: N0
+  # stays presentational. V2 by the measured rule (Phase 3d B2, on
+  # m3.4.0: the one candidate that passes the gate, keeps the 40-point
+  # spread on every search and wobbles less than N0 at the match end).
+  match_scoring: V2
   match_value_floor: 40
   match_value_cap: 250
   match_fence_iqr: 1.5

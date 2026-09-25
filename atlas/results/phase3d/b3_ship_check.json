@@ -1,0 +1,608 @@
+{
+ "build_m3_4_0": "1ebeaa2dcad6",
+ "build_m3_5_0": "1ebeaa2dcad6",
+ "model_version": "m3.5.0",
+ "searches": {
+  "default": {
+   "metros": 193,
+   "same_metro_set": true,
+   "index_max_abs_diff": 0.0,
+   "moe_max_abs_diff": 0.0,
+   "displays_changed": 0,
+   "bands_changed": 0,
+   "ranks_changed": 158
+  },
+  "same_sex_man_31": {
+   "metros": 120,
+   "same_metro_set": true,
+   "index_max_abs_diff": 0.0,
+   "moe_max_abs_diff": 0.0,
+   "displays_changed": 0,
+   "bands_changed": 0,
+   "ranks_changed": 104
+  }
+ },
+ "manifest": {
+  "model_version": "m3.5.0",
+  "normalization": {
+   "winsor_percentiles": [
+    1.0,
+    99.0
+   ],
+   "extensive": "winsorize -> log10 -> min-max across the ranked set for this query",
+   "intensive": "percentile rank across the ranked set for this query",
+   "match_scoring": "V2",
+   "match_value_floor": 40.0,
+   "match_value_cap": 250.0,
+   "match_fence_iqr": 1.5
+  }
+ },
+ "gate": {
+  "built_ratio": 0.775033,
+  "b2_ratio": 0.775033,
+  "same_ratio": true,
+  "built_total": 245.072719,
+  "b2_total": 245.072719,
+  "same_total": true,
+  "built_pass": true,
+  "wobble_reference": 316.209462,
+  "searches_touched": 516,
+  "basis": "touched searches",
+  "rose_more_than_25pct_vs_reference": 91,
+  "totals": {
+   "searches_scored": 516,
+   "searches_skipped": 2,
+   "wobble_sum": 245.072719,
+   "wobble_median": 0.3645,
+   "wobble_max": 3.3699,
+   "old_rule_min_share_personas": 0.7375,
+   "old_rule_min_share_all": 0.7375,
+   "seconds": 50.4
+  },
+  "old_rule_min_share_personas": 0.7375,
+  "old_rule_would_pass_at_0_80": false,
+  "old_rule_personas_below_0_9": {
+   "slider_all_match": 0.7375,
+   "slider_alias_pool_vs_balance": 0.7375
+  }
+ },
+ "hard_gates": {
+  "interval_calibration": true,
+  "suppression_reasons_and_intervals": true,
+  "cube_vs_sql_differential": true,
+  "rank_stability": true,
+  "explanation_invariants": true,
+  "kernel_face_validity": true,
+  "pew_never_shipped": true,
+  "adversarial_artifacts": true,
+  "pleasant_days_sanity": true,
+  "crime_consistency": true
+ },
+ "hard_failures": [],
+ "weight_sensitivity_tau": {
+  "pool+20%": 0.9262,
+  "pool-20%": 0.9093,
+  "match+20%": 0.9359,
+  "match-20%": 0.9298,
+  "reach+20%": 0.9468,
+  "reach-20%": 0.9407,
+  "cost+20%": 0.9589,
+  "cost-20%": 0.9516,
+  "weather+20%": 0.9782,
+  "weather-20%": 0.971,
+  "students+20%": 0.9819,
+  "students-20%": 0.9843
+ },
+ "wobble_vs_m3_4_0": {
+  "searches": 516,
+  "total_m3_4_0": 306.703,
+  "total_m3_5_0": 245.073,
+  "steadier": 342,
+  "shakier": 174,
+  "unchanged": 0,
+  "rose_more_than_25pct": [
+   {
+    "search": "female:25:edu=hs_or_less:race=nh_asian",
+    "m3_4_0": 0.194773,
+    "m3_5_0": 0.8275
+   },
+   {
+    "search": "samesex:female:40:edu=graduate",
+    "m3_4_0": 0.310455,
+    "m3_5_0": 0.719091
+   },
+   {
+    "search": "male:30:edu=graduate:race=nh_nhpi",
+    "m3_4_0": 0.245455,
+    "m3_5_0": 0.635455
+   },
+   {
+    "search": "female:25:edu=some_college:race=nh_other",
+    "m3_4_0": 0.648636,
+    "m3_5_0": 1.038141
+   },
+   {
+    "search": "female:50:edu=graduate:race=nh_nhpi",
+    "m3_4_0": 0.989318,
+    "m3_5_0": 1.370852
+   },
+   {
+    "search": "female:40:edu=some_college",
+    "m3_4_0": 0.440455,
+    "m3_5_0": 0.798693
+   },
+   {
+    "search": "female:40:edu=hs_or_less:race=nh_nhpi",
+    "m3_4_0": 0.703333,
+    "m3_5_0": 1.052822
+   },
+   {
+    "search": "male:30:edu=some_college:race=hispanic",
+    "m3_4_0": 0.028182,
+    "m3_5_0": 0.3775
+   },
+   {
+    "search": "samesex:female:40:undisclosed",
+    "m3_4_0": 0.712955,
+    "m3_5_0": 1.058636
+   },
+   {
+    "search": "male:40:edu=graduate",
+    "m3_4_0": 0.166818,
+    "m3_5_0": 0.474545
+   },
+   {
+    "search": "female:35:edu=bachelors:race=nh_nhpi",
+    "m3_4_0": 0.735,
+    "m3_5_0": 1.042727
+   },
+   {
+    "search": "male:50:edu=bachelors:race=nh_aian",
+    "m3_4_0": 0.637216,
+    "m3_5_0": 0.933182
+   },
+   {
+    "search": "male:30:edu=graduate:race=nh_other",
+    "m3_4_0": 0.534091,
+    "m3_5_0": 0.825
+   },
+   {
+    "search": "male:50:edu=hs_or_less:race=nh_asian",
+    "m3_4_0": 0.221136,
+    "m3_5_0": 0.505909
+   },
+   {
+    "search": "male:25:race=nh_nhpi",
+    "m3_4_0": 0.152045,
+    "m3_5_0": 0.429091
+   },
+   {
+    "search": "female:50:edu=graduate:race=hispanic",
+    "m3_4_0": 0.258864,
+    "m3_5_0": 0.530455
+   },
+   {
+    "search": "samesex:male:50:edu=graduate",
+    "m3_4_0": 0.586591,
+    "m3_5_0": 0.852273
+   },
+   {
+    "search": "male:25:edu=graduate:race=nh_nhpi",
+    "m3_4_0": 0.072727,
+    "m3_5_0": 0.336136
+   },
+   {
+    "search": "female:30:undisclosed",
+    "m3_4_0": 0.478182,
+    "m3_5_0": 0.732614
+   },
+   {
+    "search": "female:35:edu=hs_or_less:race=nh_nhpi",
+    "m3_4_0": 0.636686,
+    "m3_5_0": 0.884773
+   },
+   {
+    "search": "male:50:edu=bachelors:race=nh_asian",
+    "m3_4_0": 0.1175,
+    "m3_5_0": 0.365
+   },
+   {
+    "search": "male:50:edu=hs_or_less:race=nh_nhpi",
+    "m3_4_0": 0.412045,
+    "m3_5_0": 0.657727
+   },
+   {
+    "search": "female:50:edu=hs_or_less",
+    "m3_4_0": 0.1125,
+    "m3_5_0": 0.353409
+   },
+   {
+    "search": "female:30:edu=graduate:race=nh_nhpi",
+    "m3_4_0": 0.366136,
+    "m3_5_0": 0.603864
+   },
+   {
+    "search": "samesex:male:50:undisclosed",
+    "m3_4_0": 0.325,
+    "m3_5_0": 0.5625
+   },
+   {
+    "search": "female:50:race=nh_asian",
+    "m3_4_0": 0.1775,
+    "m3_5_0": 0.410455
+   },
+   {
+    "search": "female:25:edu=some_college:race=nh_nhpi",
+    "m3_4_0": 0.2925,
+    "m3_5_0": 0.516591
+   },
+   {
+    "search": "persona:self_edu_only_hs",
+    "m3_4_0": 0.258864,
+    "m3_5_0": 0.479318
+   },
+   {
+    "search": "male:25:edu=hs_or_less:race=nh_asian",
+    "m3_4_0": 0.125682,
+    "m3_5_0": 0.344545
+   },
+   {
+    "search": "samesex:male:40:edu=some_college",
+    "m3_4_0": 0.344773,
+    "m3_5_0": 0.559015
+   },
+   {
+    "search": "female:35:edu=graduate:race=nh_black",
+    "m3_4_0": 0.309091,
+    "m3_5_0": 0.5175
+   },
+   {
+    "search": "female:30:race=nh_asian",
+    "m3_4_0": 0.132955,
+    "m3_5_0": 0.339773
+   },
+   {
+    "search": "male:35:edu=bachelors:race=nh_twoplus",
+    "m3_4_0": 0.115909,
+    "m3_5_0": 0.320455
+   },
+   {
+    "search": "male:40:race=nh_twoplus",
+    "m3_4_0": 0.433409,
+    "m3_5_0": 0.624318
+   },
+   {
+    "search": "female:35:edu=bachelors:race=nh_twoplus",
+    "m3_4_0": 0.230682,
+    "m3_5_0": 0.42
+   },
+   {
+    "search": "female:30:edu=bachelors:race=nh_black",
+    "m3_4_0": 0.214318,
+    "m3_5_0": 0.403182
+   },
+   {
+    "search": "female:40:edu=bachelors:race=nh_black",
+    "m3_4_0": 0.447727,
+    "m3_5_0": 0.633409
+   },
+   {
+    "search": "female:50:edu=graduate:race=nh_asian",
+    "m3_4_0": 0.204091,
+    "m3_5_0": 0.386364
+   },
+   {
+    "search": "male:50:race=nh_asian",
+    "m3_4_0": 0.1075,
+    "m3_5_0": 0.2875
+   },
+   {
+    "search": "male:40:edu=graduate:race=hispanic",
+    "m3_4_0": 0.266136,
+    "m3_5_0": 0.445
+   },
+   {
+    "search": "female:25:edu=hs_or_less",
+    "m3_4_0": 0.312273,
+    "m3_5_0": 0.491136
+   },
+   {
+    "search": "samesex:male:25:undisclosed",
+    "m3_4_0": 0.0,
+    "m3_5_0": 0.1725
+   },
+   {
+    "search": "male:30:edu=hs_or_less:race=nh_asian",
+    "m3_4_0": 0.211364,
+    "m3_5_0": 0.382955
+   },
+   {
+    "search": "male:40:edu=graduate:race=nh_nhpi",
+    "m3_4_0": 0.453409,
+    "m3_5_0": 0.611591
+   },
+   {
+    "search": "female:50:edu=hs_or_less:race=nh_asian",
+    "m3_4_0": 0.483182,
+    "m3_5_0": 0.639091
+   },
+   {
+    "search": "male:30:edu=graduate:race=nh_asian",
+    "m3_4_0": 0.190682,
+    "m3_5_0": 0.3425
+   },
+   {
+    "search": "female:25:race=nh_asian",
+    "m3_4_0": 0.050682,
+    "m3_5_0": 0.198864
+   },
+   {
+    "search": "male:30:edu=bachelors:race=nh_aian",
+    "m3_4_0": 0.435455,
+    "m3_5_0": 0.57392
+   },
+   {
+    "search": "female:40:edu=graduate:race=nh_black",
+    "m3_4_0": 0.253864,
+    "m3_5_0": 0.392273
+   },
+   {
+    "search": "samesex:male:35:edu=bachelors",
+    "m3_4_0": 0.16,
+    "m3_5_0": 0.2975
+   },
+   {
+    "search": "male:25:race=hispanic",
+    "m3_4_0": 0.201818,
+    "m3_5_0": 0.338636
+   },
+   {
+    "search": "male:50:edu=graduate:race=nh_asian",
+    "m3_4_0": 0.1175,
+    "m3_5_0": 0.253864
+   },
+   {
+    "search": "female:30:edu=bachelors",
+    "m3_4_0": 0.199091,
+    "m3_5_0": 0.332273
+   },
+   {
+    "search": "female:25:edu=bachelors:race=nh_other",
+    "m3_4_0": 0.52,
+    "m3_5_0": 0.652727
+   },
+   {
+    "search": "male:50:edu=bachelors:race=nh_black",
+    "m3_4_0": 0.194545,
+    "m3_5_0": 0.327045
+   },
+   {
+    "search": "male:35:edu=hs_or_less:race=nh_asian",
+    "m3_4_0": 0.265644,
+    "m3_5_0": 0.396136
+   },
+   {
+    "search": "male:30:edu=bachelors:race=hispanic",
+    "m3_4_0": 0.1725,
+    "m3_5_0": 0.300909
+   },
+   {
+    "search": "male:30:edu=some_college:race=nh_nhpi",
+    "m3_4_0": 0.2675,
+    "m3_5_0": 0.391591
+   },
+   {
+    "search": "female:25:edu=bachelors:race=nh_asian",
+    "m3_4_0": 0.005909,
+    "m3_5_0": 0.1275
+   },
+   {
+    "search": "samesex:male:30:undisclosed",
+    "m3_4_0": 0.0025,
+    "m3_5_0": 0.123864
+   },
+   {
+    "search": "male:50:edu=bachelors:race=nh_twoplus",
+    "m3_4_0": 0.357045,
+    "m3_5_0": 0.477727
+   },
+   {
+    "search": "samesex:female:40:edu=hs_or_less",
+    "m3_4_0": 0.261818,
+    "m3_5_0": 0.381136
+   },
+   {
+    "search": "female:25:edu=graduate:race=nh_black",
+    "m3_4_0": 0.151591,
+    "m3_5_0": 0.270682
+   },
+   {
+    "search": "male:30:edu=bachelors:race=nh_nhpi",
+    "m3_4_0": 0.2675,
+    "m3_5_0": 0.380909
+   },
+   {
+    "search": "persona:same_sex_pool",
+    "m3_4_0": 0.409924,
+    "m3_5_0": 0.522045
+   },
+   {
+    "search": "male:35:edu=graduate:race=nh_nhpi",
+    "m3_4_0": 0.329053,
+    "m3_5_0": 0.432955
+   },
+   {
+    "search": "male:35:edu=some_college:race=hispanic",
+    "m3_4_0": 0.219773,
+    "m3_5_0": 0.322045
+   },
+   {
+    "search": "samesex:male:40:undisclosed",
+    "m3_4_0": 0.367727,
+    "m3_5_0": 0.468864
+   },
+   {
+    "search": "samesex:male:35:undisclosed",
+    "m3_4_0": 0.092045,
+    "m3_5_0": 0.19
+   },
+   {
+    "search": "male:30:race=hispanic",
+    "m3_4_0": 0.077045,
+    "m3_5_0": 0.175
+   },
+   {
+    "search": "male:35:edu=bachelors:race=nh_black",
+    "m3_4_0": 0.335,
+    "m3_5_0": 0.430682
+   },
+   {
+    "search": "male:25:edu=some_college:race=hispanic",
+    "m3_4_0": 0.215909,
+    "m3_5_0": 0.310909
+   },
+   {
+    "search": "female:30:edu=hs_or_less:race=hispanic",
+    "m3_4_0": 0.144962,
+    "m3_5_0": 0.235
+   },
+   {
+    "search": "male:35:edu=some_college:race=nh_asian",
+    "m3_4_0": 0.204091,
+    "m3_5_0": 0.292955
+   },
+   {
+    "search": "male:25:edu=bachelors:race=nh_asian",
+    "m3_4_0": 0.067955,
+    "m3_5_0": 0.154773
+   },
+   {
+    "search": "male:35:undisclosed",
+    "m3_4_0": 0.147727,
+    "m3_5_0": 0.230682
+   },
+   {
+    "search": "samesex:female:30:edu=graduate",
+    "m3_4_0": 0.081136,
+    "m3_5_0": 0.162955
+   },
+   {
+    "search": "male:25:edu=graduate:race=hispanic",
+    "m3_4_0": 0.122273,
+    "m3_5_0": 0.2025
+   },
+   {
+    "search": "samesex:male:30:edu=some_college",
+    "m3_4_0": 0.1575,
+    "m3_5_0": 0.235
+   },
+   {
+    "search": "female:35:edu=graduate:race=hispanic",
+    "m3_4_0": 0.207273,
+    "m3_5_0": 0.283864
+   },
+   {
+    "search": "male:25:edu=graduate:race=nh_asian",
+    "m3_4_0": 0.053636,
+    "m3_5_0": 0.13
+   },
+   {
+    "search": "male:50:edu=bachelors",
+    "m3_4_0": 0.295455,
+    "m3_5_0": 0.370909
+   },
+   {
+    "search": "female:35:race=nh_asian",
+    "m3_4_0": 0.280455,
+    "m3_5_0": 0.355833
+   },
+   {
+    "search": "samesex:male:40:edu=bachelors",
+    "m3_4_0": 0.072955,
+    "m3_5_0": 0.1475
+   },
+   {
+    "search": "samesex:male:50:edu=hs_or_less",
+    "m3_4_0": 0.268636,
+    "m3_5_0": 0.3425
+   },
+   {
+    "search": "male:30:edu=bachelors",
+    "m3_4_0": 0.2175,
+    "m3_5_0": 0.29
+   },
+   {
+    "search": "female:50:edu=hs_or_less:race=hispanic",
+    "m3_4_0": 0.088864,
+    "m3_5_0": 0.155
+   },
+   {
+    "search": "samesex:male:25:edu=graduate",
+    "m3_4_0": 0.15,
+    "m3_5_0": 0.2075
+   },
+   {
+    "search": "female:30:race=hispanic",
+    "m3_4_0": 0.185,
+    "m3_5_0": 0.242045
+   },
+   {
+    "search": "male:40:race=hispanic",
+    "m3_4_0": 0.075909,
+    "m3_5_0": 0.131591
+   },
+   {
+    "search": "samesex:female:35:edu=bachelors",
+    "m3_4_0": 0.16,
+    "m3_5_0": 0.207727
+   },
+   {
+    "search": "female:30:race=nh_black",
+    "m3_4_0": 0.074091,
+    "m3_5_0": 0.12
+   },
+   {
+    "search": "male:35:race=hispanic",
+    "m3_4_0": 0.1125,
+    "m3_5_0": 0.1575
+   },
+   {
+    "search": "female:30:edu=graduate:race=nh_asian",
+    "m3_4_0": 0.061818,
+    "m3_5_0": 0.099318
+   },
+   {
+    "search": "female:35:race=nh_black",
+    "m3_4_0": 0.126364,
+    "m3_5_0": 0.16
+   }
+  ],
+  "rose_more_than_25pct_same_sex": 17,
+  "match_end_searches": {
+   "persona:slider_all_match": [
+    2.899479,
+    3.369885
+   ],
+   "persona:slider_alias_pool_vs_balance": [
+    2.899479,
+    3.369885
+   ]
+  },
+  "max_wobble_m3_5_0": 3.369885,
+  "max_wobble_search_m3_5_0": "persona:slider_all_match",
+  "median_wobble_m3_4_0": 0.4572,
+  "median_wobble_m3_5_0": 0.3645,
+  "index_hashes_unchanged": true
+ },
+ "latency": {
+  "n": 400,
+  "p50_ms": 26.82,
+  "p95_ms": 35.32,
+  "p99_ms": 41.52,
+  "max_ms": 44.43,
+  "target_p95_ms": 100
+ },
+ "pytest_line": "78 passed, 2 warnings in 2.36s",
+ "load_at_latency": "{ 2.46 2.46 2.65 }",
+ "all_as_measured": true
+}

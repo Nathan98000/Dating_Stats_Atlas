@@ -1,0 +1,915 @@
+{
+ "build": "1ebeaa2dcad6",
+ "model_version": "m3.4.0",
+ "kernel": "2026-09-25T07:37:47-0400",
+ "reference_build": "f20cb02c3af8",
+ "rules": {
+  "N0": {
+   "gate": {
+    "pass": true,
+    "ratio": 0.969937,
+    "basis": "touched searches",
+    "searches_touched": 516,
+    "wobble_candidate": 306.703099,
+    "wobble_reference": 316.209462,
+    "ratio_over_all_searches": 0.969937
+   },
+   "gate_old_rule_min_share_personas": 0.8,
+   "gate_set_wobble_total": 306.703099,
+   "gate_set_wobble_median": 0.4572,
+   "match_end_wobble_total": 1100.037352,
+   "match_end_wobble_median": 1.6276,
+   "match_end_wobble_max": 9.472,
+   "outlier_condition": {
+    "own_slider": {
+     "searches": 516,
+     "min_spread": 79.992,
+     "median_spread": 79.992,
+     "searches_below_min": 0,
+     "passes": true,
+     "worst": [
+      {
+       "search": "persona:B_man28_women_never",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:race_white_nh_grad_multi",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:broad_any",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:slider_all_match",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:slider_alias_pool_vs_balance",
+       "spread": 79.992
+      }
+     ]
+    },
+    "match_end": {
+     "searches": 516,
+     "min_spread": 79.992,
+     "median_spread": 79.992,
+     "searches_below_min": 0,
+     "passes": true,
+     "worst": [
+      {
+       "search": "persona:B_man28_women_never",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:race_white_nh_grad_multi",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:broad_any",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:slider_all_match",
+       "spread": 79.992
+      },
+      {
+       "search": "persona:slider_alias_pool_vs_balance",
+       "spread": 79.992
+      }
+     ]
+    },
+    "passes": true
+   },
+   "steering_tau": {
+    "own_slider": {
+     "searches": 516,
+     "tau_median": 0.5078,
+     "tau_p10": 0.36524999999999996,
+     "tau_p90": 0.6060000000000001,
+     "tau_min": 0.2723
+    },
+    "match_end": {
+     "searches": 516,
+     "tau_median": 0.8342,
+     "tau_p10": 0.82255,
+     "tau_p90": 0.8461,
+     "tau_min": 0.7442
+    }
+   },
+   "disclosed_searches": {
+    "grad_asian_woman_30": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "New York, NY",
+      "San Francisco, CA",
+      "Boston, MA",
+      "Seattle, WA"
+     ],
+     "top5_index": [
+      "147",
+      "156",
+      "250+",
+      "191",
+      "229"
+     ],
+     "match_end_top": "San Jose, CA",
+     "match_end_top5": [
+      "San Jose, CA",
+      "San Francisco, CA",
+      "Madison, WI",
+      "Boulder, CO",
+      "Seattle, WA"
+     ]
+    },
+    "grad_asian_man_34": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "New York, NY",
+      "San Francisco, CA",
+      "Boston, MA",
+      "Chicago, IL"
+     ],
+     "top5_index": [
+      "195",
+      "185",
+      "250+",
+      "188",
+      "114"
+     ],
+     "match_end_top": "San Jose, CA",
+     "match_end_top5": [
+      "San Jose, CA",
+      "San Francisco, CA",
+      "Des Moines, IA",
+      "Los Angeles, CA",
+      "Seattle, WA"
+     ]
+    },
+    "black_woman_30": {
+     "top": "New York, NY",
+     "top5": [
+      "New York, NY",
+      "New Orleans, LA",
+      "Miami, FL",
+      "Philadelphia, PA",
+      "Houston, TX"
+     ],
+     "top5_index": [
+      "113",
+      "226",
+      "130",
+      "147",
+      "123"
+     ],
+     "match_end_top": "New Orleans, LA",
+     "match_end_top5": [
+      "New Orleans, LA",
+      "Savannah, GA",
+      "Lafayette, LA",
+      "Virginia Beach, VA",
+      "Baton Rouge, LA"
+     ]
+    },
+    "nhpi_man_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "San Francisco, CA",
+      "Seattle, WA",
+      "Las Vegas, NV",
+      "Portland, OR"
+     ],
+     "top5_index": [
+      "149",
+      "174",
+      "250+",
+      "220",
+      "200"
+     ],
+     "match_end_top": "Las Vegas, NV",
+     "match_end_top5": [
+      "Las Vegas, NV",
+      "Honolulu, HI",
+      "Seattle, WA",
+      "Portland, OR",
+      "Fayetteville, AR"
+     ]
+    },
+    "nhpi_woman_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "San Francisco, CA",
+      "Seattle, WA",
+      "Portland, OR",
+      "Las Vegas, NV"
+     ],
+     "top5_index": [
+      "131",
+      "200",
+      "250",
+      "204",
+      "213"
+     ],
+     "match_end_top": "Davenport, IA",
+     "match_end_top5": [
+      "Davenport, IA",
+      "San Jose, CA",
+      "Honolulu, HI",
+      "Sacramento, CA",
+      "Salem, OR"
+     ]
+    }
+   },
+   "seconds": 99.7,
+   "lower_match_end_wobble_than_N0": false,
+   "qualifies": false
+  },
+  "V1": {
+   "gate": {
+    "pass": true,
+    "ratio": 0.753835,
+    "basis": "touched searches",
+    "searches_touched": 516,
+    "wobble_candidate": 238.369906,
+    "wobble_reference": 316.209462,
+    "ratio_over_all_searches": 0.753835
+   },
+   "gate_old_rule_min_share_personas": 0.8125,
+   "gate_set_wobble_total": 238.369906,
+   "gate_set_wobble_median": 0.36,
+   "match_end_wobble_total": 1011.520102,
+   "match_end_wobble_median": 1.3614,
+   "match_end_wobble_max": 9.6313,
+   "outlier_condition": {
+    "own_slider": {
+     "searches": 516,
+     "min_spread": 30.2,
+     "median_spread": 51.174,
+     "searches_below_min": 30,
+     "passes": false,
+     "worst": [
+      {
+       "search": "female:25:race=nh_aian",
+       "spread": 30.2
+      },
+      {
+       "search": "female:25:edu=some_college:race=nh_aian",
+       "spread": 32.462
+      },
+      {
+       "search": "female:50:edu=hs_or_less:race=nh_aian",
+       "spread": 34.702
+      },
+      {
+       "search": "male:25:race=nh_aian",
+       "spread": 35.22
+      },
+      {
+       "search": "male:25:edu=some_college:race=nh_aian",
+       "spread": 35.234
+      }
+     ]
+    },
+    "match_end": {
+     "searches": 516,
+     "min_spread": 30.2,
+     "median_spread": 51.174,
+     "searches_below_min": 30,
+     "passes": false,
+     "worst": [
+      {
+       "search": "female:25:race=nh_aian",
+       "spread": 30.2
+      },
+      {
+       "search": "female:25:edu=some_college:race=nh_aian",
+       "spread": 32.462
+      },
+      {
+       "search": "female:50:edu=hs_or_less:race=nh_aian",
+       "spread": 34.702
+      },
+      {
+       "search": "male:25:race=nh_aian",
+       "spread": 35.22
+      },
+      {
+       "search": "male:25:edu=some_college:race=nh_aian",
+       "spread": 35.234
+      }
+     ]
+    },
+    "passes": false
+   },
+   "steering_tau": {
+    "own_slider": {
+     "searches": 516,
+     "tau_median": 0.4128,
+     "tau_p10": 0.2012,
+     "tau_p90": 0.52565,
+     "tau_min": 0.0751
+    },
+    "match_end": {
+     "searches": 516,
+     "tau_median": 0.75275,
+     "tau_p10": 0.7017,
+     "tau_p90": 0.78555,
+     "tau_min": 0.6116
+    }
+   },
+   "disclosed_searches": {
+    "grad_asian_woman_30": {
+     "top": "San Francisco, CA",
+     "top5": [
+      "San Francisco, CA",
+      "Los Angeles, CA",
+      "New York, NY",
+      "Seattle, WA",
+      "Boston, MA"
+     ],
+     "top5_index": [
+      "250+",
+      "147",
+      "156",
+      "229",
+      "191"
+     ],
+     "match_end_top": "San Francisco, CA",
+     "match_end_top5": [
+      "San Francisco, CA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Madison, WI",
+      "Boston, MA"
+     ]
+    },
+    "grad_asian_man_34": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "New York, NY",
+      "San Francisco, CA",
+      "Seattle, WA",
+      "Boston, MA"
+     ],
+     "top5_index": [
+      "195",
+      "185",
+      "250+",
+      "243",
+      "188"
+     ],
+     "match_end_top": "San Francisco, CA",
+     "match_end_top5": [
+      "San Francisco, CA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Honolulu, HI",
+      "Los Angeles, CA"
+     ]
+    },
+    "black_woman_30": {
+     "top": "New York, NY",
+     "top5": [
+      "New York, NY",
+      "New Orleans, LA",
+      "Miami, FL",
+      "Philadelphia, PA",
+      "Houston, TX"
+     ],
+     "top5_index": [
+      "113",
+      "226",
+      "130",
+      "147",
+      "123"
+     ],
+     "match_end_top": "New Orleans, LA",
+     "match_end_top5": [
+      "New Orleans, LA",
+      "Memphis, TN",
+      "Savannah, GA",
+      "Montgomery, AL",
+      "Jackson, MS"
+     ]
+    },
+    "nhpi_man_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "Seattle, WA",
+      "San Francisco, CA",
+      "Las Vegas, NV",
+      "Sacramento, CA"
+     ],
+     "top5_index": [
+      "149",
+      "250+",
+      "174",
+      "220",
+      "250+"
+     ],
+     "match_end_top": "Honolulu, HI",
+     "match_end_top5": [
+      "Honolulu, HI",
+      "Fayetteville, AR",
+      "Salt Lake City, UT",
+      "Yakima, WA",
+      "Sacramento, CA"
+     ]
+    },
+    "nhpi_woman_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "San Francisco, CA",
+      "Seattle, WA",
+      "Portland, OR",
+      "Sacramento, CA"
+     ],
+     "top5_index": [
+      "131",
+      "200",
+      "250",
+      "204",
+      "250+"
+     ],
+     "match_end_top": "Davenport, IA",
+     "match_end_top5": [
+      "Davenport, IA",
+      "Honolulu, HI",
+      "Fayetteville, AR",
+      "Salem, OR",
+      "Sacramento, CA"
+     ]
+    }
+   },
+   "seconds": 199.2,
+   "lower_match_end_wobble_than_N0": true,
+   "qualifies": false
+  },
+  "V2": {
+   "gate": {
+    "pass": true,
+    "ratio": 0.775033,
+    "basis": "touched searches",
+    "searches_touched": 516,
+    "wobble_candidate": 245.072719,
+    "wobble_reference": 316.209462,
+    "ratio_over_all_searches": 0.775033
+   },
+   "gate_old_rule_min_share_personas": 0.7375,
+   "gate_set_wobble_total": 245.072719,
+   "gate_set_wobble_median": 0.3645,
+   "match_end_wobble_total": 1025.192148,
+   "match_end_wobble_median": 1.3957,
+   "match_end_wobble_max": 10.0912,
+   "outlier_condition": {
+    "own_slider": {
+     "searches": 516,
+     "min_spread": 41.823,
+     "median_spread": 52.7475,
+     "searches_below_min": 0,
+     "passes": true,
+     "worst": [
+      {
+       "search": "male:40:edu=hs_or_less:race=nh_twoplus",
+       "spread": 41.823
+      },
+      {
+       "search": "male:30:edu=bachelors:race=hispanic",
+       "spread": 42.854
+      },
+      {
+       "search": "male:30:edu=some_college",
+       "spread": 42.898
+      },
+      {
+       "search": "male:40:edu=graduate:race=nh_aian",
+       "spread": 43.364
+      },
+      {
+       "search": "samesex:female:25:edu=hs_or_less",
+       "spread": 43.528
+      }
+     ]
+    },
+    "match_end": {
+     "searches": 516,
+     "min_spread": 41.823,
+     "median_spread": 52.7475,
+     "searches_below_min": 0,
+     "passes": true,
+     "worst": [
+      {
+       "search": "male:40:edu=hs_or_less:race=nh_twoplus",
+       "spread": 41.823
+      },
+      {
+       "search": "male:30:edu=bachelors:race=hispanic",
+       "spread": 42.854
+      },
+      {
+       "search": "male:30:edu=some_college",
+       "spread": 42.898
+      },
+      {
+       "search": "male:40:edu=graduate:race=nh_aian",
+       "spread": 43.364
+      },
+      {
+       "search": "samesex:female:25:edu=hs_or_less",
+       "spread": 43.528
+      }
+     ]
+    },
+    "passes": true
+   },
+   "steering_tau": {
+    "own_slider": {
+     "searches": 516,
+     "tau_median": 0.4068,
+     "tau_p10": 0.2349,
+     "tau_p90": 0.527,
+     "tau_min": 0.0969
+    },
+    "match_end": {
+     "searches": 516,
+     "tau_median": 0.7556,
+     "tau_p10": 0.732,
+     "tau_p90": 0.77935,
+     "tau_min": 0.6184
+    }
+   },
+   "disclosed_searches": {
+    "grad_asian_woman_30": {
+     "top": "San Francisco, CA",
+     "top5": [
+      "San Francisco, CA",
+      "Los Angeles, CA",
+      "New York, NY",
+      "Seattle, WA",
+      "Boston, MA"
+     ],
+     "top5_index": [
+      "250+",
+      "147",
+      "156",
+      "229",
+      "191"
+     ],
+     "match_end_top": "San Francisco, CA",
+     "match_end_top5": [
+      "San Francisco, CA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Madison, WI",
+      "Boston, MA"
+     ]
+    },
+    "grad_asian_man_34": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "New York, NY",
+      "San Francisco, CA",
+      "Boston, MA",
+      "Seattle, WA"
+     ],
+     "top5_index": [
+      "195",
+      "185",
+      "250+",
+      "188",
+      "243"
+     ],
+     "match_end_top": "San Francisco, CA",
+     "match_end_top5": [
+      "San Francisco, CA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Honolulu, HI",
+      "Los Angeles, CA"
+     ]
+    },
+    "black_woman_30": {
+     "top": "New York, NY",
+     "top5": [
+      "New York, NY",
+      "New Orleans, LA",
+      "Miami, FL",
+      "Philadelphia, PA",
+      "Houston, TX"
+     ],
+     "top5_index": [
+      "113",
+      "226",
+      "130",
+      "147",
+      "123"
+     ],
+     "match_end_top": "New Orleans, LA",
+     "match_end_top5": [
+      "New Orleans, LA",
+      "Memphis, TN",
+      "Savannah, GA",
+      "Montgomery, AL",
+      "Jackson, MS"
+     ]
+    },
+    "nhpi_man_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "Seattle, WA",
+      "San Francisco, CA",
+      "Las Vegas, NV",
+      "Portland, OR"
+     ],
+     "top5_index": [
+      "149",
+      "250+",
+      "174",
+      "220",
+      "200"
+     ],
+     "match_end_top": "Seattle, WA",
+     "match_end_top5": [
+      "Seattle, WA",
+      "Spokane, WA",
+      "Sacramento, CA",
+      "Santa Rosa, CA",
+      "Honolulu, HI"
+     ]
+    },
+    "nhpi_woman_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "San Francisco, CA",
+      "Seattle, WA",
+      "Portland, OR",
+      "Sacramento, CA"
+     ],
+     "top5_index": [
+      "131",
+      "200",
+      "250",
+      "204",
+      "250+"
+     ],
+     "match_end_top": "Davenport, IA",
+     "match_end_top5": [
+      "Davenport, IA",
+      "Salem, OR",
+      "Sacramento, CA",
+      "Honolulu, HI",
+      "Fayetteville, AR"
+     ]
+    }
+   },
+   "seconds": 298.9,
+   "lower_match_end_wobble_than_N0": true,
+   "qualifies": true
+  },
+  "V3": {
+   "gate": {
+    "pass": true,
+    "ratio": 0.719012,
+    "basis": "touched searches",
+    "searches_touched": 516,
+    "wobble_candidate": 227.358356,
+    "wobble_reference": 316.209462,
+    "ratio_over_all_searches": 0.719012
+   },
+   "gate_old_rule_min_share_personas": 0.7375,
+   "gate_set_wobble_total": 227.358356,
+   "gate_set_wobble_median": 0.3243,
+   "match_end_wobble_total": 999.776846,
+   "match_end_wobble_median": 1.3046,
+   "match_end_wobble_max": 10.1316,
+   "outlier_condition": {
+    "own_slider": {
+     "searches": 516,
+     "min_spread": 23.464,
+     "median_spread": 52.4195,
+     "searches_below_min": 57,
+     "passes": false,
+     "worst": [
+      {
+       "search": "female:50:edu=some_college:race=nh_twoplus",
+       "spread": 23.464
+      },
+      {
+       "search": "female:50:edu=hs_or_less:race=nh_twoplus",
+       "spread": 23.642
+      },
+      {
+       "search": "female:50:race=nh_twoplus",
+       "spread": 24.51
+      },
+      {
+       "search": "female:25:race=nh_twoplus",
+       "spread": 26.29
+      },
+      {
+       "search": "female:35:race=nh_twoplus",
+       "spread": 26.32
+      }
+     ]
+    },
+    "match_end": {
+     "searches": 516,
+     "min_spread": 23.464,
+     "median_spread": 52.4195,
+     "searches_below_min": 57,
+     "passes": false,
+     "worst": [
+      {
+       "search": "female:50:edu=some_college:race=nh_twoplus",
+       "spread": 23.464
+      },
+      {
+       "search": "female:50:edu=hs_or_less:race=nh_twoplus",
+       "spread": 23.642
+      },
+      {
+       "search": "female:50:race=nh_twoplus",
+       "spread": 24.51
+      },
+      {
+       "search": "female:25:race=nh_twoplus",
+       "spread": 26.29
+      },
+      {
+       "search": "female:35:race=nh_twoplus",
+       "spread": 26.32
+      }
+     ]
+    },
+    "passes": false
+   },
+   "steering_tau": {
+    "own_slider": {
+     "searches": 516,
+     "tau_median": 0.43255,
+     "tau_p10": 0.182,
+     "tau_p90": 0.52855,
+     "tau_min": -0.0033
+    },
+    "match_end": {
+     "searches": 516,
+     "tau_median": 0.75625,
+     "tau_p10": 0.69045,
+     "tau_p90": 0.8039000000000001,
+     "tau_min": 0.5185
+    }
+   },
+   "disclosed_searches": {
+    "grad_asian_woman_30": {
+     "top": "San Francisco, CA",
+     "top5": [
+      "San Francisco, CA",
+      "Los Angeles, CA",
+      "New York, NY",
+      "Seattle, WA",
+      "Boston, MA"
+     ],
+     "top5_index": [
+      "250+",
+      "147",
+      "156",
+      "229",
+      "191"
+     ],
+     "match_end_top": "San Francisco, CA",
+     "match_end_top5": [
+      "San Francisco, CA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Madison, WI",
+      "Boston, MA"
+     ]
+    },
+    "grad_asian_man_34": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "San Francisco, CA",
+      "New York, NY",
+      "Seattle, WA",
+      "Boston, MA"
+     ],
+     "top5_index": [
+      "195",
+      "250+",
+      "185",
+      "243",
+      "188"
+     ],
+     "match_end_top": "San Francisco, CA",
+     "match_end_top5": [
+      "San Francisco, CA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Honolulu, HI",
+      "Los Angeles, CA"
+     ]
+    },
+    "black_woman_30": {
+     "top": "New Orleans, LA",
+     "top5": [
+      "New Orleans, LA",
+      "New York, NY",
+      "Atlanta, GA",
+      "Philadelphia, PA",
+      "Miami, FL"
+     ],
+     "top5_index": [
+      "226",
+      "113",
+      "232",
+      "147",
+      "130"
+     ],
+     "match_end_top": "New Orleans, LA",
+     "match_end_top5": [
+      "New Orleans, LA",
+      "Savannah, GA",
+      "Memphis, TN",
+      "Baton Rouge, LA",
+      "Mobile, AL"
+     ]
+    },
+    "nhpi_man_35": {
+     "top": "Los Angeles, CA",
+     "top5": [
+      "Los Angeles, CA",
+      "Seattle, WA",
+      "San Francisco, CA",
+      "Las Vegas, NV",
+      "Portland, OR"
+     ],
+     "top5_index": [
+      "149",
+      "250+",
+      "174",
+      "220",
+      "200"
+     ],
+     "match_end_top": "Santa Rosa, CA",
+     "match_end_top5": [
+      "Santa Rosa, CA",
+      "Seattle, WA",
+      "Spokane, WA",
+      "Sacramento, CA",
+      "Honolulu, HI"
+     ]
+    },
+    "nhpi_woman_35": {
+     "top": "San Francisco, CA",
+     "top5": [
+      "San Francisco, CA",
+      "Seattle, WA",
+      "Los Angeles, CA",
+      "Portland, OR",
+      "Las Vegas, NV"
+     ],
+     "top5_index": [
+      "200",
+      "250",
+      "131",
+      "204",
+      "213"
+     ],
+     "match_end_top": "Davenport, IA",
+     "match_end_top5": [
+      "Davenport, IA",
+      "San Jose, CA",
+      "Seattle, WA",
+      "Salem, OR",
+      "Sacramento, CA"
+     ]
+    }
+   },
+   "seconds": 397.1,
+   "lower_match_end_wobble_than_N0": true,
+   "qualifies": false
+  }
+ },
+ "outlier_min_spread": 40.0,
+ "match_end_set": {
+  "searches": 518,
+  "definition": "every ADR 0011 test search without explicit weights, pool_vs_match = 1.0"
+ },
+ "selection_rule": "qualifies if: gate pass; outlier condition on both sets; match-end total below N0's. Lowest match-end total ships; ties to the earlier candidate; none -> nothing ships.",
+ "qualifying": [
+  "V2"
+ ],
+ "ships": "V2",
+ "seconds": 397.1
+}

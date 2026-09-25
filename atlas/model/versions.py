@@ -5,6 +5,30 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.5.0 — Phase 3d, Part B (ADR 0013): CHANCES OF MATCHING is scored by
+its value, not its rank. The match feature's normalised value is
+x = ln(index / 100) clipped to the Tukey fences of the ranked set (1.5
+interquartile ranges beyond the quartiles, the registry's
+match_fence_iqr) and min-max scaled to 0-100 across the ranked set for
+this query (candidate V2), so near-ties get near-equal scores and a large
+real lead counts as large while no single outlier city can squeeze the
+field; a one-city set or identical values score 50, a missing value stays
+missing. Chosen by the rule committed before it was measured (B1,
+4bab576): of N0 (the percentile rank), V1 (winsorized at the 1st and 99th
+percentiles), V2 (the fences) and V3 (the index clipped to [40, 250]), V2
+is the one candidate that passes the ADR 0011 gate (0.775 against the
+m3.2.0 reference), keeps at least 40 points of match-score spread over
+the middle 80% of ranked cities on every test search (its worst 41.8;
+V1 30.2 and V3 23.5 fail) and wobbles less than N0 over the match-end
+set (1,025 against 1,100 places); V3 had the lowest match-end total
+(1,000) and V1 the next (1,012), both disqualified by the outlier
+condition. The served index, its display cap, suppression, bands and
+standing, the kernel and every other feature's percentile rank are
+unchanged; only the match feature's normalised value moves, so scores
+and rankings move for every search. The data files are unchanged, so
+the build keeps its id (1ebeaa2dcad6) with its manifest refreshed.
+Goldens regenerated; the before/after is in PHASE3D.md.
+
 m3.4.0 — Phase 3d (ADR 0010 amended; ADR 0014): the kernel fit reaches
 the optimum it states. After every Newton step on the race x education
 interaction the directions the penalised objective cannot see are taken
@@ -196,5 +220,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.4.0"
+MODEL_VERSION = "m3.5.0"
 SCHEMA_VERSION = "cube-v1"
