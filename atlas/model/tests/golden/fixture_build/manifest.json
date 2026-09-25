@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-ee4f08cf33e1",
-  "model_version": "m3.3.0",
+  "data_version": "fixture-1ebeaa2dcad6",
+  "model_version": "m3.4.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-24T13:47:05-0400",
+  "created_at": "2026-09-25T07:39:04-0400",
   "axes": [
     {
       "name": "metro",
@@ -279,10 +279,10 @@
     ],
     "dials_tau": {
       "age": 0.0638,
-      "edu": 0.0784,
-      "race": 0.1219
+      "edu": 0.0792,
+      "race": 0.124
     },
-    "generated_at": "2026-09-24T13:44:59-0400"
+    "generated_at": "2026-09-25T07:37:47-0400"
   },
   "model_defaults": {
     "pillar_weights": {
@@ -1384,5 +1384,5 @@
     ],
     "n_source_files_fetched": 2582
   },
-  "fixture_of": "ee4f08cf33e1"
+  "fixture_of": "1ebeaa2dcad6"
 }

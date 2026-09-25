@@ -5,6 +5,30 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.4.0 — Phase 3d (ADR 0010 amended; ADR 0014): the kernel fit reaches
+the optimum it states. After every Newton step on the race x education
+interaction the directions the penalised objective cannot see are taken
+out (kernel_refine.Projection: the seeker-only part dropped, the
+education-pair and race-pair parts moved into the main effects), so the
+interaction stage stops on tolerance at 18 passes instead of the 200-pass
+cap it hit in m3.2.0 and m3.3.0; the penalised objective rises 0.0097 per
+1,000 weighted couple-sides, the fit takes about a second instead of
+minutes, and the sweep keeps its table and stops on the couple-weighted
+move (Phase 3d A1, which reproduces m3.3.0 to 1e-9 under the old rule).
+The served form is unchanged in kind: C1 (seventeen seeker-age cohorts
+per sex on the shipped form, the pooled education matrix, the
+interaction) ships by ADR 0014, the held-out tie rule — on the finished
+fit C3 leads C1 by 0.007 per 1,000 sides and C2 reads +0.007, both under
+the 0.25 tie margin, so C2 does not qualify, C1 and C3 tie and the nested
+form ships; race x education (+14.07 over the baseline, gate 1.002) and
+the same-sex composition (education served, the interaction riding by
++2.90) hold. Against m3.3.0 the gauged education and race main effects
+move by up to 0.036 and 0.095 in log units and the dials by up to 0.027;
+the default search's index moves a median 0.02 points with the same top
+ten in the same order (Kendall tau 0.995), gate 0.970 against the m3.2.0
+reference. Scores move slightly for every search; goldens regenerated;
+the before/after is in PHASE3D.md.
+
 m3.3.0 — Phase 3c (ADR 0011; ADR 0010 amended): the rank-stability gate
 becomes total WOBBLE against the fixed m3.2.0 reference (the mean rank
 move of the cities in either top 10 over the 80 replicates, summed over
@@ -172,5 +196,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.3.0"
+MODEL_VERSION = "m3.4.0"
 SCHEMA_VERSION = "cube-v1"

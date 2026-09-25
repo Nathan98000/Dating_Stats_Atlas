@@ -130,64 +130,64 @@
  ],
  "dials": {
   "11460": [
-   1.106704,
-   0.965296,
-   0.89415
+   1.10672,
+   0.963591,
+   0.893428
   ],
   "12060": [
    1.013177,
-   1.009493,
-   1.051045
+   1.008304,
+   1.049709
   ],
   "12420": [
-   1.026237,
-   0.845259,
-   0.830692
+   1.026255,
+   0.841973,
+   0.830768
   ],
   "20580": [
-   0.979227,
-   0.93297,
-   0.927478
+   0.979254,
+   0.934492,
+   0.930791
   ],
   "26580": [
-   0.956494,
-   0.959678,
-   0.563393
+   0.95649,
+   0.962331,
+   0.559941
   ],
   "28660": [
-   0.923841,
-   0.931134,
-   0.78269
+   0.923842,
+   0.932982,
+   0.779968
   ],
   "33460": [
-   1.136362,
-   1.016959,
-   0.965902
+   1.136364,
+   1.016791,
+   0.964866
   ],
   "35620": [
-   1.027372,
-   0.884963,
-   1.013372
+   1.027378,
+   0.883494,
+   1.013997
   ],
   "38300": [
-   1.058395,
-   0.953251,
-   1.002942
+   1.058401,
+   0.953221,
+   1.004802
   ],
   "39340": [
-   1.088412,
-   1.023351,
-   0.92554
+   1.088403,
+   1.023704,
+   0.9246
   ],
   "41940": [
-   1.112984,
-   0.993127,
-   0.868215
+   1.112962,
+   0.993661,
+   0.863762
   ],
   "47900": [
-   1.01847,
-   0.951218,
-   0.943632
+   1.018488,
+   0.948061,
+   0.941469
   ]
  },
  "same_sex": {
@@ -207,20 +207,20 @@
   },
   "heldout_gain_per_1000_sides": {
    "fallback": 0.0,
-   "all_samesex": 263.14955991498266,
-   "only_age": 205.7170838837537,
-   "only_edu": 4.281642092422235,
-   "only_race": 42.57517777422532,
-   "served_m3_2_0": 205.7170838837537,
-   "age_edu_ss_no_interaction": 212.6990377188022,
-   "age_edu_ss_with_interaction": 221.61556785433453
+   "all_samesex": 263.3758811916935,
+   "only_age": 205.71524060708876,
+   "only_edu": 9.5371833310454,
+   "only_race": 43.51114812210842,
+   "served_m3_2_0": 205.71524060708876,
+   "age_edu_ss_no_interaction": 217.97380188632286,
+   "age_edu_ss_with_interaction": 220.87223992269395
   },
   "couple_sides_weighted": 1452508.3739627274,
   "n_alloc": 65010.57758343802,
   "interaction_decision": {
    "rule": "serve whichever of {interaction off, interaction on} predicts held-out same-sex couples better, education and age from same-sex couples, race borrowed",
    "interaction_applies": true,
-   "margin_per_1000_sides": 8.91653013553233
+   "margin_per_1000_sides": 2.898438036371091
   }
  },
  "npz": "kernel.npz: f_age (sex x cohort x gap), f_edu (sex x edu x edu), f_race, f_int (sex x race x race x edu x edu, when present), cohort_edges, dials, log_norm (metro x sex x age x edu x race, float32), avail_national; ss_* the same-sex terms and normalisers when present",
@@ -267,19 +267,21 @@
   0.25,
   0.25
  ],
- "interaction_tau2": 0.031030452766297865,
+ "interaction_tau2": 0.031030452744386046,
  "refinements": null,
  "dials_tau": {
   "age": 0.0638,
-  "edu": 0.0784,
-  "race": 0.1219
+  "edu": 0.0792,
+  "race": 0.124
  },
  "dials_centre": {
   "age": 0.999,
-  "edu": 0.9641,
-  "race": 0.9146
+  "edu": 0.9645,
+  "race": 0.9135
  },
  "shipped_form_name": "C1_cohorts_plus_shipped",
+ "heldout_tie_rule_adr": "0014",
+ "heldout_tie_margin_per_1000_sides": 0.25,
  "provisional": false,
- "generated_at": "2026-09-24T13:44:59-0400"
+ "generated_at": "2026-09-25T07:37:47-0400"
 }

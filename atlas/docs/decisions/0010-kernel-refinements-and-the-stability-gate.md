@@ -177,7 +177,7 @@ over 100 ms replaces 60 ms as the stop condition. The engine-level A/B
 of the m3.2.0 and m3.3.0 kernels under equal load stays open as a
 finding, not a gate.
 
-## Amended, Phase 3d (A2): the fit reaches the optimum it states — measured, not shipped
+## Amended, Phase 3d (A2): the fit reaches the optimum it states — shipped as m3.4.0 (build 1ebeaa2dcad6)
 
 The objective above — the ridge-penalised Poisson objective, exact IPF
 steps for the main effects and a Newton step per cell for g — was never
@@ -235,6 +235,26 @@ the same under the rule (`results/phase3d/tie_rule.json`), and the
 interaction keeps riding on same-sex searches by +2.90 ≥ δ, a margin of
 1.7 standard errors that Nathan has seen and keeps. The rule was
 committed before m3.4.0 was built.
+
+**Shipped as m3.4.0, build 1ebeaa2dcad6** (25 September 2026,
+`results/phase3d/_ship_m3_4_0.sh C1_cohorts_plus_shipped`): the
+artifact from the a2 store's C1 fit with the same-sex decision, its
+kernel record carrying δ and ADR 0014's number beside the form choice.
+Ten of ten hard gates pass (`validation_report_m3_4_0.json`); the ADR
+0011 gate reads **0.970** against the m3.2.0 reference (total wobble
+316.209 → 306.703 over all 516 searches, the old overlap reading 0.800).
+The build serves exactly what was measured in memory: the same ranks,
+indices and scores on the default search and the same-sex reference
+search, the same top ten, the same gate ratio (`a2_ship_check.json`).
+Latency p95 **36.25 ms** on the 400-query battery (p50 27.3, p99 42.6)
+at a one-minute load of 2.43, against the 100 ms budget and m3.3.0's
+58–59 ms; the engine-level A/B under equal load stays open, but a
+reading 23 ms under m3.3.0's on the same code path points at the
+machine, not the engine. Playwright and axe on the fixture in
+PHASE3D.md. `.claude/launch.json` points at 1ebeaa2dcad6; ee4f08cf33e1
+(m3.3.0) stays complete until Part B decides whether it becomes an
+intermediate build; f20cb02c3af8 (m3.2.0) stays complete as the gate's
+reference. Nothing is deployed.
 
 ## Consequences
 

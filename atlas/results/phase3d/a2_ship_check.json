@@ -1,0 +1,153 @@
+{
+ "built": "1ebeaa2dcad6",
+ "model_version": "m3.4.0",
+ "candidate": "ee4f08cf33e1 + candidate kernel C1_cohorts_plus_shipped (a2 store, in memory)",
+ "searches": {
+  "default": {
+   "metros": 193,
+   "same_metro_set": true,
+   "ranks_differing": [],
+   "top10_built": [
+    "New York, NY",
+    "Boston, MA",
+    "Philadelphia, PA",
+    "Chicago, IL",
+    "San Francisco, CA",
+    "Los Angeles, CA",
+    "New Orleans, LA",
+    "Seattle, WA",
+    "Atlanta, GA",
+    "San Jose, CA"
+   ],
+   "top10_candidate": [
+    "New York, NY",
+    "Boston, MA",
+    "Philadelphia, PA",
+    "Chicago, IL",
+    "San Francisco, CA",
+    "Los Angeles, CA",
+    "New Orleans, LA",
+    "Seattle, WA",
+    "Atlanta, GA",
+    "San Jose, CA"
+   ],
+   "top10_same": true,
+   "index_max_abs_diff": 0.0
+  },
+  "same_sex_man_31": {
+   "metros": 120,
+   "same_metro_set": true,
+   "ranks_differing": [],
+   "top10_built": [
+    "San Francisco, CA",
+    "Los Angeles, CA",
+    "Boston, MA",
+    "Seattle, WA",
+    "San Jose, CA",
+    "New York, NY",
+    "San Diego, CA",
+    "Portland, OR",
+    "Pittsburgh, PA",
+    "Denver, CO"
+   ],
+   "top10_candidate": [
+    "San Francisco, CA",
+    "Los Angeles, CA",
+    "Boston, MA",
+    "Seattle, WA",
+    "San Jose, CA",
+    "New York, NY",
+    "San Diego, CA",
+    "Portland, OR",
+    "Pittsburgh, PA",
+    "Denver, CO"
+   ],
+   "top10_same": true,
+   "index_max_abs_diff": 0.0
+  }
+ },
+ "gate": {
+  "built_ratio": 0.969937,
+  "in_memory_ratio": 0.969937,
+  "same_ratio": true,
+  "built_pass": true,
+  "wobble_candidate": 306.703099,
+  "wobble_reference": 316.209462,
+  "searches_touched": 516,
+  "basis": "touched searches",
+  "rose_more_than_25pct_vs_reference": 100,
+  "old_rule_min_share_personas": 0.8,
+  "old_rule_would_pass_at_0_80": true
+ },
+ "hard_gates": {
+  "interval_calibration": true,
+  "suppression_reasons_and_intervals": true,
+  "cube_vs_sql_differential": true,
+  "rank_stability": true,
+  "explanation_invariants": true,
+  "kernel_face_validity": true,
+  "pew_never_shipped": true,
+  "adversarial_artifacts": true,
+  "pleasant_days_sanity": true,
+  "crime_consistency": true
+ },
+ "hard_failures": [],
+ "wobble_vs_m3_3_0": {
+  "searches": 516,
+  "total_m3_3_0": 307.128,
+  "total_m3_4_0": 306.703,
+  "steadier": 248,
+  "shakier": 247,
+  "unchanged": 21,
+  "rose_more_than_25pct": [
+   {
+    "search": "male:40:edu=some_college:race=nh_aian",
+    "m3_3_0": 1.13892,
+    "m3_4_0": 1.710492
+   },
+   {
+    "search": "samesex:male:30:edu=hs_or_less",
+    "m3_3_0": 0.324091,
+    "m3_4_0": 0.468864
+   },
+   {
+    "search": "male:40:edu=bachelors",
+    "m3_3_0": 0.286818,
+    "m3_4_0": 0.372955
+   },
+   {
+    "search": "female:25:edu=bachelors:race=nh_white",
+    "m3_3_0": 0.286818,
+    "m3_4_0": 0.360682
+   },
+   {
+    "search": "male:30:edu=bachelors:race=hispanic",
+    "m3_3_0": 0.125,
+    "m3_4_0": 0.1725
+   }
+  ],
+  "match_end_searches": {
+   "persona:slider_all_match": [
+    2.878257,
+    2.899479
+   ],
+   "persona:slider_alias_pool_vs_balance": [
+    2.878257,
+    2.899479
+   ]
+  },
+  "max_wobble_m3_4_0": 2.899479,
+  "median_wobble_m3_3_0": 0.4597,
+  "median_wobble_m3_4_0": 0.4572
+ },
+ "latency": {
+  "n": 400,
+  "p50_ms": 27.3,
+  "p95_ms": 36.25,
+  "p99_ms": 42.56,
+  "max_ms": 49.83,
+  "target_p95_ms": 100
+ },
+ "pytest_line": "71 passed, 2 warnings in 2.42s",
+ "all_as_measured": true
+}
