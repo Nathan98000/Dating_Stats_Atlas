@@ -3,7 +3,9 @@
 Date: 2026-09-24 (Phase 3d, B1; committed before any candidate was measured —
 the commit order is the proof that the rule was not fitted to its results)
 Status: accepted (the choice among the candidates, or that none ships, is
-recorded in PHASE3D.md and in the amendment below once measured)
+recorded in PHASE3D.md and in the amendment below once measured); amended
+25 September 2026 after Phase 3d — the selection rule's match-end margin,
+committed after the measurement and saying so (the last section)
 
 ## The finding it answers
 
@@ -71,7 +73,7 @@ with `pool_vs_match` = 1.0. Wobble is ADR 0011's definition. This set is
 a diagnostic for this choice only; the gate's own test set does not
 change.
 
-## The selection rule
+## The selection rule (as drafted; amended after Phase 3d — the last section)
 
 A candidate qualifies if it meets all three conditions:
 
@@ -158,4 +160,106 @@ build so far (m3.3.0 0.971, m3.4.0 0.970). Whether to re-base the ADR
 makes it; until then every later change is read against m3.2.0 as the
 rule says, with 22.5% of headroom that value scoring, not the kernel,
 created.
+
+## Amended after Phase 3d: the match-end margin
+
+25 September 2026, Nathan's call after reading PHASE3D.md. It amends the
+selection rule above. The candidates, the outlier condition, the
+match-end set and the outcome are unchanged. Every number here is read
+from `results/phase3d/b2_selection_with_margin.json`, written by
+`results/phase3d/b2_selection_with_margin.py`, except the B3 readings
+Nathan cites, which are `b3_ship_check.json`'s. That script reads the
+stored B2 records (`b2_candidates.json`) through the same function the
+measurement calls and re-measures nothing.
+
+**The rule**, in Nathan's words:
+
+> **A difference in match-end wobble smaller than 5% of N0's total is no
+> difference.**
+>
+> 1. **Qualifies.** A candidate qualifies if it meets all three
+>    conditions:
+>    1. it passes the ADR 0011 gate (unchanged);
+>    2. it meets the outlier condition (unchanged);
+>    3. its total wobble over the match-end set is **at least 5% below
+>       N0's** on the same kernel.
+> 2. **Choosing.** Of the qualifying candidates, find the lowest
+>    match-end total. Every qualifying candidate within 5% of N0's total
+>    of that lowest one is tied for first. Of those, the one with the lower
+>    total wobble over the gate's own set ships. An exact tie goes to the
+>    earlier candidate in the table.
+> 3. **None qualifies.** If none qualifies, nothing ships.
+
+At exactly 5% the difference counts, as the first sentence says. A
+candidate exactly 5% below N0 qualifies, and a qualifying candidate
+exactly 5% of N0's total above the lowest is not tied with it.
+
+**When it was set, and what the record can show.** Nathan decided on
+the 5% margin before any Part B candidate was measured. The copy of
+`PHASE3D_RESUME_PROMPT.md` that reached the repo was missing the section
+that set it, because of an error in preparing the brief, not in the
+work. That copy named a margin, both in Nathan's decisions and in B1's
+place in the commit order ("Part B's rule, including its new margin"),
+but gave no rule for it, and its Part B section kept the drafted rule.
+ADR 0014, committed before any candidate was measured (2d2c063), also
+names the margin without a value: "That selection has its own margin, set
+in ADR 0013." So the margin was not in the B1 commit (4bab576), and B2 ran
+under the rule as drafted. **Because the margin is committed now, after
+the measurement, the commit order cannot prove that it came first.**
+Neither of the two earlier mentions names 5%, so they cannot prove it
+either. The record of Nathan's decision is the brief as he wrote it, not
+the repository.
+
+**Why 5%** (`anchors`):
+
+- **Ordinary movement is about 1% or less.** Changes that leave the
+  scoring alone moved wobble totals by that much:
+  - finishing the fit (m3.3.0 → m3.4.0) moved the gate-set total by
+    0.14% (307.13 → 306.70);
+  - it moved the two match-end searches by 0.7% (2.878 → 2.899);
+  - the C1 and C3 candidates' gate-set totals differ by 0.6% (306.70
+    against 308.50).
+
+  5% is 6.8 times the largest of these.
+- **Half the gate's line.** 5% is half the rise the ADR 0011 gate treats
+  as material (10%).
+- **A third of the problem.** 5% is about a third (0.32) of the
+  match-end rise Part B was meant to undo: 2.494 → 2.878 places from
+  m3.2.0 to m3.3.0, +15.4%.
+- **Visible benefit.** Below 5%, a change to how every search is scored
+  would move every ranking for a difference no visitor could see.
+
+**The outcome is unchanged.** The margin is 55.0 places of N0's
+match-end total of 1,100.0.
+
+| Candidate | Match-end total | Below N0 | At least 5% below | Gate | Outlier condition | Qualifies |
+|---|---|---|---|---|---|---|
+| N0, the control | 1,100.0 | — | — | pass | pass | never |
+| V1 | 1,011.5 | 8.0% | yes | pass | **fails** (30.2) | no |
+| V2 | 1,025.2 | **6.8%** | yes | pass | pass (41.8) | **yes** |
+| V3 | 999.8 | 9.1% | yes | pass | **fails** (23.5) | no |
+
+- V2 cuts the match-end total by 6.8% (1,100.0 → 1,025.2), past the
+  margin.
+- V1 and V3 clear the margin too but still fail the outlier condition.
+- One candidate qualifies, so there is no tie band. V2 ships.
+- The rule as drafted read the same records the same way: qualifying V2,
+  ships V2.
+
+**Nathan keeps V2.** He has read the B2 and B3 results, including:
+
+- the two match-end searches rising from 2.90 to 3.37 places;
+- the 95 searches whose wobble rose more than 25%;
+- V2's narrow pass of the outlier condition (41.8 points against 40).
+
+m3.5.0 stands as built, and nothing served changes.
+
+**Future re-runs.** The margin governs any future re-run of this
+selection:
+
+- `MATCH_END_MARGIN = 0.05` sits beside `OUTLIER_MIN_SPREAD` in
+  `pipeline/build/match_scoring_candidates.py`;
+- qualification and the winner are one pure function, `select`, which
+  `main` calls;
+- its unit tests are in `pipeline/tests/test_match_scoring_selection.py`.
 

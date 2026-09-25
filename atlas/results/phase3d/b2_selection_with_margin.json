@@ -1,0 +1,186 @@
+{
+ "source": {
+  "file": "results/phase3d/b2_candidates.json",
+  "sha256": "9b401b861d9d2ec81ebee8dbbc44c703a0a8267dba24c8fd368dc7169c2abb9c",
+  "build": "1ebeaa2dcad6",
+  "model_version": "m3.4.0",
+  "reference_build": "f20cb02c3af8",
+  "note": "the stored B2 records, read; no candidate re-measured"
+ },
+ "adr": "0013, amended after Phase 3d: the match-end margin",
+ "margin": {
+  "fraction": 0.05,
+  "places": 55.001868,
+  "of": "N0's total wobble over the match-end set",
+  "N0_match_end_total": 1100.037352
+ },
+ "candidates": {
+  "N0": {
+   "match_end_wobble_total": 1100.037352,
+   "gate_set_wobble_total": 306.703099,
+   "gate_pass": true,
+   "outlier_condition_passes": true,
+   "match_end_reduction_vs_N0_places": 0.0,
+   "match_end_reduction_vs_N0_fraction": 0.0,
+   "at_least_margin_below_N0": false,
+   "tied_for_first": false,
+   "qualifies": false,
+   "outlier_condition_worst_spread": 79.992,
+   "drafted_rule": {
+    "lower_match_end_wobble_than_N0": false,
+    "qualifies": false
+   }
+  },
+  "V1": {
+   "match_end_wobble_total": 1011.520102,
+   "gate_set_wobble_total": 238.369906,
+   "gate_pass": true,
+   "outlier_condition_passes": false,
+   "match_end_reduction_vs_N0_places": 88.51725,
+   "match_end_reduction_vs_N0_fraction": 0.080467,
+   "at_least_margin_below_N0": true,
+   "tied_for_first": false,
+   "qualifies": false,
+   "outlier_condition_worst_spread": 30.2,
+   "drafted_rule": {
+    "lower_match_end_wobble_than_N0": true,
+    "qualifies": false
+   }
+  },
+  "V2": {
+   "match_end_wobble_total": 1025.192148,
+   "gate_set_wobble_total": 245.072719,
+   "gate_pass": true,
+   "outlier_condition_passes": true,
+   "match_end_reduction_vs_N0_places": 74.845204,
+   "match_end_reduction_vs_N0_fraction": 0.068039,
+   "at_least_margin_below_N0": true,
+   "tied_for_first": true,
+   "qualifies": true,
+   "outlier_condition_worst_spread": 41.823,
+   "drafted_rule": {
+    "lower_match_end_wobble_than_N0": true,
+    "qualifies": true
+   }
+  },
+  "V3": {
+   "match_end_wobble_total": 999.776846,
+   "gate_set_wobble_total": 227.358356,
+   "gate_pass": true,
+   "outlier_condition_passes": false,
+   "match_end_reduction_vs_N0_places": 100.260506,
+   "match_end_reduction_vs_N0_fraction": 0.091143,
+   "at_least_margin_below_N0": true,
+   "tied_for_first": false,
+   "qualifies": false,
+   "outlier_condition_worst_spread": 23.464,
+   "drafted_rule": {
+    "lower_match_end_wobble_than_N0": true,
+    "qualifies": false
+   }
+  }
+ },
+ "amended_rule": {
+  "qualifying": [
+   "V2"
+  ],
+  "lowest_match_end": "V2",
+  "tie_band": {
+   "from": 1025.192148,
+   "below": 1080.1940156
+  },
+  "tied_for_first": [
+   "V2"
+  ],
+  "ships": "V2",
+  "settled_by": "one candidate qualifies"
+ },
+ "drafted_rule": {
+  "commit": "4bab576",
+  "rule": "qualifies if: gate pass; outlier condition on both sets; match-end total below N0's. Lowest match-end total ships; ties to the earlier candidate; none -> nothing ships.",
+  "qualifying": [
+   "V2"
+  ],
+  "ships": "V2",
+  "candidates": {
+   "N0": {
+    "lower_match_end_wobble_than_N0": false,
+    "qualifies": false
+   },
+   "V1": {
+    "lower_match_end_wobble_than_N0": true,
+    "qualifies": false
+   },
+   "V2": {
+    "lower_match_end_wobble_than_N0": true,
+    "qualifies": true
+   },
+   "V3": {
+    "lower_match_end_wobble_than_N0": true,
+    "qualifies": false
+   }
+  }
+ },
+ "same_outcome_as_drafted": true,
+ "anchors": {
+  "ordinary_movement": {
+   "finishing_the_fit_gate_set_total": {
+    "m3.3.0": 307.12777,
+    "m3.4.0": 306.703099,
+    "change_fraction": -0.001383,
+    "records": [
+     "results/phase3c/validation_report_m3_3_0.json",
+     "results/phase3d/validation_report_m3_4_0.json"
+    ]
+   },
+   "finishing_the_fit_match_end_searches": {
+    "searches": [
+     "persona:slider_all_match",
+     "persona:slider_alias_pool_vs_balance"
+    ],
+    "m3.3.0": 2.878257,
+    "m3.4.0": 2.899479,
+    "change_fraction": 0.007373,
+    "records": [
+     "results/phase3c/validation_report_m3_3_0.json",
+     "results/phase3d/validation_report_m3_4_0.json"
+    ]
+   },
+   "C1_against_C3_gate_set_total": {
+    "C1": 306.703099,
+    "C3": 308.502265,
+    "difference_fraction_of_C1": 0.005866,
+    "records": [
+     "results/phase3d/speedup/a2/gate_C1_cohorts_plus_shipped.json",
+     "results/phase3d/speedup/a2/gate_C3_both_plus_shipped.json"
+    ]
+   },
+   "margin_over_largest": 6.78
+  },
+  "gate_line": {
+   "tolerance": 0.1,
+   "margin_over_line": 0.5
+  },
+  "match_end_rise_part_b_answers": {
+   "searches": [
+    "persona:slider_all_match",
+    "persona:slider_alias_pool_vs_balance"
+   ],
+   "m3.2.0": 2.494012,
+   "m3.3.0": 2.878257,
+   "rise_fraction": 0.154067,
+   "margin_over_rise": 0.3245,
+   "records": [
+    "results/phase3c/stability_reference.json",
+    "results/phase3c/validation_report_m3_3_0.json"
+   ]
+  }
+ },
+ "expected": {
+  "qualifying": [
+   "V2"
+  ],
+  "ships": "V2"
+ },
+ "matches_expected": true
+}

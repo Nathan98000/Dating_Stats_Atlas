@@ -20,10 +20,19 @@ nothing on disk changes):
   positions and at the match end (reported, not gated);
 - the disclosed reference searches' top city and top five.
 
-Then the selection rule: a candidate qualifies if it passes the gate,
-meets the outlier condition and wobbles less than N0 over the match-end
-set; of those, the lowest match-end total ships, ties to the earlier
-candidate; none qualifying ships nothing.
+Then the selection rule, ADR 0013 as amended after Phase 3d (`select`, a
+pure function of the candidates' records, which main calls): a difference
+in match-end wobble smaller than MATCH_END_MARGIN (5%) of N0's total is no
+difference. A candidate qualifies if it passes the gate, meets the outlier
+condition and its match-end total is at least 5% of N0's total below
+N0's; of the qualifying, the lowest match-end total and every candidate
+within 5% of N0's total of it are tied for first, and of those the lower
+total wobble over the gate's own set ships, an exact tie to the earlier
+candidate in the table; none qualifying ships nothing. B2 ran (after
+4bab576) under the rule as drafted — below N0's total qualifies, the
+lowest ships — because the margin reached the repo only after the
+measurement; results/phase3d/b2_selection_with_margin.py reads the stored
+B2 records under this function, the drafted reading beside it.
 
     python -m atlas.pipeline.build.match_scoring_candidates <build_dir> [--rules N0,V1,V2,V3] [--out results/phase3d]
         -> <out>/b2_candidates.json, <out>/b2_gate_<rule>.json, <out>/b2_matchend_<rule>.json
@@ -45,6 +54,13 @@ from atlas.pipeline.fetch import RESULTS
 
 RULES = ("N0", "V1", "V2", "V3")
 OUTLIER_MIN_SPREAD = 40.0          # points of match-score spread, p10 to p90, half of what a percentile rank gives
+# ADR 0013, amended after Phase 3d: a difference in match-end wobble smaller
+# than this share of N0's match-end total is no difference — well above
+# what changes that leave the scoring alone moved (1% or less), half the
+# gate's 10% line, about a third of the match-end rise Part B answers.
+# Nathan set it before any candidate was measured; the brief that reached
+# the repo lacked it, so it is committed after B2, and the amendment says so.
+MATCH_END_MARGIN = 0.05
 WORST_N = 5
 DISCLOSED = ("grad_asian_woman_30", "grad_asian_man_34", "black_woman_30", "nhpi_man_35", "nhpi_woman_35")
 
@@ -102,6 +118,66 @@ def tops(build, rule: str) -> dict:
     return out
 
 
+def select(records: dict[str, dict], margin: float = MATCH_END_MARGIN) -> dict:
+    """ADR 0013's selection, as amended after Phase 3d — a pure function of
+    the candidates' records, which main calls after measuring and
+    results/phase3d/b2_selection_with_margin.py calls on the stored B2
+    records. `records` maps each rule measured to its record as main writes
+    it (gate.pass, outlier_condition.passes, match_end_wobble_total,
+    gate_set_wobble_total); N0, the control, must be among them or nothing
+    can qualify.
+
+    A difference in match-end wobble smaller than `margin` x N0's total is
+    no difference. A candidate qualifies if it passes the ADR 0011 gate,
+    meets the outlier condition and its match-end total is at least
+    `margin` x N0's total below N0's; N0 never qualifies. Of the qualifying
+    candidates the lowest match-end total is found, and it and every
+    qualifying candidate less than `margin` x N0's total above it are tied
+    for first (a difference of exactly the margin is a difference, as at
+    qualification); of those, the lower total wobble over the gate's own
+    set ships, an exact tie to the earlier candidate in ADR 0013's table
+    (RULES). None qualifying ships nothing."""
+    n0 = records.get("N0")
+    n0_total = float(n0["match_end_wobble_total"]) if n0 else None
+    margin_places = margin * n0_total if n0 else None
+    order = sorted(records, key=RULES.index)
+    reading = {}
+    for rule in order:
+        r = records[rule]
+        total = float(r["match_end_wobble_total"])
+        below = n0_total - total if n0 else None
+        c = {"match_end_wobble_total": total, "gate_set_wobble_total": float(r["gate_set_wobble_total"]),
+             "gate_pass": bool(r["gate"]["pass"]), "outlier_condition_passes": bool(r["outlier_condition"]["passes"]),
+             "match_end_reduction_vs_N0_places": below,
+             "match_end_reduction_vs_N0_fraction": below / n0_total if n0 else None,
+             "at_least_margin_below_N0": bool(n0 and below >= margin_places), "tied_for_first": False}
+        c["qualifies"] = bool(rule != "N0" and c["gate_pass"] and c["outlier_condition_passes"]
+                              and c["at_least_margin_below_N0"])
+        reading[rule] = c
+    qualifying = [rule for rule in order if reading[rule]["qualifies"]]
+    out = {"margin_fraction": margin, "margin_places": margin_places, "N0_match_end_total": n0_total,
+           "candidates": reading, "qualifying": qualifying, "lowest_match_end": None, "tie_band": None,
+           "tied_for_first": [], "ships": None, "settled_by": None}
+    if not qualifying:
+        out["settled_by"] = "no candidate qualifies: nothing ships"
+        return out
+    first = min(qualifying, key=lambda rule: reading[rule]["match_end_wobble_total"])    # exact ties in table order
+    lowest = reading[first]["match_end_wobble_total"]
+    tied = [rule for rule in qualifying
+            if rule == first or reading[rule]["match_end_wobble_total"] - lowest < margin_places]
+    for rule in tied:
+        reading[rule]["tied_for_first"] = True
+    fewest = min(reading[rule]["gate_set_wobble_total"] for rule in tied)
+    steadiest = [rule for rule in tied if reading[rule]["gate_set_wobble_total"] == fewest]
+    out.update(lowest_match_end=first, tied_for_first=tied, ships=steadiest[0],
+               tie_band={"from": lowest, "below": lowest + margin_places})
+    out["settled_by"] = ("one candidate qualifies" if len(qualifying) == 1
+                         else "the lowest match-end total: no other qualifying candidate within the margin" if len(tied) == 1
+                         else "the lower gate-set total among those tied for first" if len(steadiest) == 1
+                         else "an exact tie on the gate-set total: the earlier candidate in the table")
+    return out
+
+
 def main(argv: list[str]) -> int:
     from atlas.pipeline.build.pool import open_pool
     build_dir = argv[0]
@@ -120,8 +196,14 @@ def main(argv: list[str]) -> int:
            "reference_build": ref["build"], "rules": {}, "outlier_min_spread": OUTLIER_MIN_SPREAD,
            "match_end_set": {"searches": len(end_set),
                              "definition": "every ADR 0011 test search without explicit weights, pool_vs_match = 1.0"},
-           "selection_rule": "qualifies if: gate pass; outlier condition on both sets; match-end total below N0's. "
-                             "Lowest match-end total ships; ties to the earlier candidate; none -> nothing ships."}
+           "match_end_margin": MATCH_END_MARGIN,
+           "selection_rule": f"ADR 0013 as amended after Phase 3d: a difference in match-end wobble smaller than "
+                             f"{MATCH_END_MARGIN:.0%} of N0's total is no difference. Qualifies if: gate pass; outlier "
+                             f"condition on both sets; match-end total at least {MATCH_END_MARGIN:.0%} of N0's total "
+                             f"below N0's (N0 never qualifies). The lowest qualifying match-end total and every "
+                             f"qualifier within {MATCH_END_MARGIN:.0%} of N0's total of it tie for first; of those the "
+                             f"lower gate-set total ships; an exact tie to the earlier candidate in the table; "
+                             f"none -> nothing ships."}
     try:
         for rule in rules:
             b = with_rule(build, rule)
@@ -156,17 +238,13 @@ def main(argv: list[str]) -> int:
                                              r["steering_tau"]["match_end"]["tau_median"]]}), flush=True)
     finally:
         con.close()
-    n0 = out["rules"].get("N0")
+    sel = select(out["rules"])
     for rule, r in out["rules"].items():
-        r["lower_match_end_wobble_than_N0"] = (bool(r["match_end_wobble_total"] < n0["match_end_wobble_total"])
-                                               if n0 and rule != "N0" else False)
-        r["qualifies"] = bool(rule != "N0" and r["gate"]["pass"] and r["outlier_condition"]["passes"]
-                              and r["lower_match_end_wobble_than_N0"])
-    qual = [rule for rule in rules if out["rules"][rule]["qualifies"]]
-    winner = None
-    if qual:
-        best = min(out["rules"][r]["match_end_wobble_total"] for r in qual)
-        winner = next(r for r in rules if r in qual and out["rules"][r]["match_end_wobble_total"] == best)
+        c = sel["candidates"][rule]
+        r.update({k: c[k] for k in ("match_end_reduction_vs_N0_fraction", "at_least_margin_below_N0",
+                                    "tied_for_first", "qualifies")})
+    out["selection"] = {k: v for k, v in sel.items() if k != "candidates"}
+    qual, winner = sel["qualifying"], sel["ships"]
     out["qualifying"] = qual
     out["ships"] = winner
     out["seconds"] = round(time.time() - t0, 1)
