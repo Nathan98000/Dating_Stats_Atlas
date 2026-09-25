@@ -1,0 +1,135 @@
+{
+ "decisions": {
+  "race_x_education_phase3b": {
+   "rule": "ships if it improves total held-out likelihood over the baseline form and passes the rank-stability gate (Phase 3b; the gate read today is ADR 0011's against the m3.2.0 reference on the candidate as Phase 3b wrote it, baseline + interaction, no same-sex terms)",
+   "heldout_gain_vs_baseline_per_1000": 14.067745868897832,
+   "phase3b_heldout_gain_vs_baseline_per_1000": 14.133933017839418,
+   "metros_better_than_baseline": 348,
+   "improves_heldout": true,
+   "gate": {
+    "pass": true,
+    "ratio": 1.002206,
+    "searches_touched": 516,
+    "wobble_candidate": 316.907037,
+    "wobble_reference": 316.209462,
+    "ratio_over_all_searches": 1.002206,
+    "old_rule_min_share_personas": 0.7625,
+    "searches_wobble_rose_more_than_25pct": 27
+   },
+   "verdict_ships": true,
+   "phase3b_verdict_ships": true,
+   "matches": true
+  },
+  "cohorts_edu_by_sex_both_phase3c_B3": {
+   "rule": "of the candidates that improve held-out fit over the shipped form and pass the gate, the largest gain ships",
+   "candidates": {
+    "C1_cohorts_plus_shipped": {
+     "heldout_gain_vs_shipped_per_1000": 69.70737267580832,
+     "phase3c_heldout_gain_vs_shipped_per_1000": 69.7046007191192,
+     "metros_better_than_shipped": 386,
+     "improves_on_shipped": true,
+     "phase3c_improves_on_shipped": true,
+     "gate": {
+      "pass": true,
+      "ratio": 0.969937,
+      "searches_touched": 516,
+      "wobble_candidate": 306.703099,
+      "wobble_reference": 316.209462,
+      "ratio_over_all_searches": 0.969937,
+      "old_rule_min_share_personas": 0.8,
+      "searches_wobble_rose_more_than_25pct": 100
+     },
+     "qualifies": true
+    },
+    "C2_edu_by_sex_plus_shipped": {
+     "heldout_gain_vs_shipped_per_1000": 0.007049706353414798,
+     "phase3c_heldout_gain_vs_shipped_per_1000": -0.003328918677440546,
+     "metros_better_than_shipped": 209,
+     "improves_on_shipped": true,
+     "phase3c_improves_on_shipped": false,
+     "gate": {
+      "pass": true,
+      "ratio": 0.987489,
+      "searches_touched": 516,
+      "wobble_candidate": 312.253257,
+      "wobble_reference": 316.209462,
+      "ratio_over_all_searches": 0.987489,
+      "old_rule_min_share_personas": 0.8375,
+      "searches_wobble_rose_more_than_25pct": 18
+     },
+     "qualifies": true
+    },
+    "C3_both_plus_shipped": {
+     "heldout_gain_vs_shipped_per_1000": 69.71464420305732,
+     "phase3c_heldout_gain_vs_shipped_per_1000": 69.70412349298289,
+     "metros_better_than_shipped": 386,
+     "improves_on_shipped": true,
+     "phase3c_improves_on_shipped": true,
+     "gate": {
+      "pass": true,
+      "ratio": 0.975626,
+      "searches_touched": 516,
+      "wobble_candidate": 308.502265,
+      "wobble_reference": 316.209462,
+      "ratio_over_all_searches": 0.975626,
+      "old_rule_min_share_personas": 0.7875,
+      "searches_wobble_rose_more_than_25pct": 99
+     },
+     "qualifies": true
+    }
+   },
+   "qualifying": [
+    "C1_cohorts_plus_shipped",
+    "C2_edu_by_sex_plus_shipped",
+    "C3_both_plus_shipped"
+   ],
+   "ships": "C3_both_plus_shipped",
+   "phase3c_ships": "C1_cohorts_plus_shipped",
+   "phase3c_qualifying": [
+    "C1_cohorts_plus_shipped",
+    "C3_both_plus_shipped"
+   ],
+   "matches": false
+  },
+  "same_sex_education_and_interaction_phase3c_B2": {
+   "rule": "the education term ships if it improves held-out same-sex fit on what m3.2.0 serves (either interaction setting); the interaction rides if the composition with it predicts better",
+   "gain_per_1000_vs_served": {
+    "age_edu_ss_no_interaction": 12.258561279234103,
+    "age_edu_ss_with_interaction": 15.156999315605193
+   },
+   "phase3c_gain_per_1000_vs_served": {
+    "age_edu_ss_no_interaction": 6.981953835048494,
+    "age_edu_ss_with_interaction": 15.898483970580822
+   },
+   "metros_better_than_served": {
+    "age_edu_ss_no_interaction": 276,
+    "age_edu_ss_with_interaction": 301
+   },
+   "education_term_improves_on_served": true,
+   "interaction_applies": true,
+   "interaction_margin_per_1000": 2.898438036371091,
+   "phase3c_interaction_margin_per_1000": 8.91653013553233,
+   "served_from_same_sex_couples": [
+    "age",
+    "edu"
+   ],
+   "phase3c_served_from_same_sex_couples": [
+    "age",
+    "edu"
+   ],
+   "gate_shipped_form_with_same_sex_decision": {
+    "pass": true,
+    "ratio": 0.988445,
+    "searches_touched": 516,
+    "wobble_candidate": 312.5557,
+    "wobble_reference": 316.209462,
+    "ratio_over_all_searches": 0.988445,
+    "old_rule_min_share_personas": 0.7625,
+    "searches_wobble_rose_more_than_25pct": 15
+   },
+   "matches": true
+  }
+ },
+ "all_verdicts_match": false,
+ "stop_condition_verdict_flipped": true
+}

@@ -305,6 +305,72 @@ STOP_RULE = "couples"
 COUPLE_TOL = 1e-7
 RAW_COUPLE_TOL = 1e-7
 OBJECTIVE_TOL = 1e-6
+# Phase 3d A2: after each Newton step on the interaction, the parts of g
+# the penalised objective cannot see are taken out: the seeker-only part
+# (a per-seeker constant, dropped — the row normalisation absorbs it and
+# the ridge wants it at zero) and the education-pair and race-pair parts
+# (moved into the main effects, where an unpenalised optimum puts them).
+# Without the projection those directions decay under the ridge alone at
+# under 1% per pass, which is why m3.3.0's interaction stage stopped at
+# its 200-pass cap. Off reproduces the A1 fit to 1e-9.
+PROJECT_INTERACTION = True
+
+
+class Projection:
+    """The interaction's blind directions for a Form, built once: the 2,048
+    cells (sex, seeker race, partner race, seeker education, partner
+    education) against indicator columns for the seeker type (sex, seeker
+    race, seeker education: 64), the education pair as the form's
+    education main effect keys it (16 pooled, 32 per sex) and the race
+    pair per sex (128). An orthonormal basis of their span by SVD (the
+    columns overlap, so the rank is below the count) and the minimum-norm
+    coefficients that write the projection back onto the three blocks."""
+
+    def __init__(self, form: Form) -> None:
+        sig, rs, rc, es, ec = np.indices((N_SEX, N_RACE, N_RACE, N_EDU, N_EDU)).reshape(5, -1)
+        self.form = form
+        self.seek_key = (sig * N_RACE + rs) * N_EDU + es
+        n_seek = N_SEX * N_RACE * N_EDU
+        if form.edu_by_sex:
+            edu_key = (sig * N_EDU + es) * N_EDU + ec
+            n_edu = N_SEX * N_EDU * N_EDU
+        else:
+            edu_key = es * N_EDU + ec
+            n_edu = N_EDU * N_EDU
+        race_key = (sig * N_RACE + rs) * N_RACE + rc
+        n_race = N_SEX * N_RACE * N_RACE
+        n = len(sig)
+        X = np.zeros((n, n_seek + n_edu + n_race))
+        X[np.arange(n), self.seek_key] = 1.0
+        X[np.arange(n), n_seek + edu_key] = 1.0
+        X[np.arange(n), n_seek + n_edu + race_key] = 1.0
+        U, sv, Vt = np.linalg.svd(X, full_matrices=False)
+        keep = sv > 1e-10 * sv[0]
+        self.columns = int(X.shape[1])
+        self.rank = int(keep.sum())
+        self.Q = U[:, keep]                                          # orthonormal basis of the span
+        self.pinv = (Vt[keep].T / sv[keep]) @ U[:, keep].T           # minimum-norm coefficients
+        self.blocks = (n_seek, n_edu, n_race)
+        self.edu_shape = (N_SEX, N_EDU, N_EDU) if form.edu_by_sex else (N_EDU, N_EDU)
+
+    def split(self, g_flat: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        """(the residual g - Pg; the seeker-only, education-pair and race-
+        pair coefficients whose indicator sums equal Pg)."""
+        Pg = self.Q @ (self.Q.T @ g_flat)
+        beta = self.pinv @ Pg
+        n_seek, n_edu, n_race = self.blocks
+        return (g_flat - Pg, beta[:n_seek].reshape(N_SEX, N_RACE, N_EDU),
+                beta[n_seek:n_seek + n_edu].reshape(self.edu_shape),
+                beta[n_seek + n_edu:].reshape(N_SEX, N_RACE, N_RACE))
+
+
+_PROJECTIONS: dict[Form, Projection] = {}
+
+
+def projection(form: Form) -> Projection:
+    if form not in _PROJECTIONS:
+        _PROJECTIONS[form] = Projection(form)
+    return _PROJECTIONS[form]
 
 
 class Table:
@@ -423,7 +489,7 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
              init: dict | None = None, tol: float = K.IPF_TOL, max_iter: int = K.IPF_MAX_ITER,
              mean_weight: float | None = None, skip: tuple[str, ...] = (),
              stop: str = STOP_RULE, ctol: float = COUPLE_TOL, raw_ctol: float = RAW_COUPLE_TOL,
-             otol: float = OBJECTIVE_TOL) -> dict:
+             otol: float = OBJECTIVE_TOL, project: bool = PROJECT_INTERACTION) -> dict:
     """The two-stage fit for any Form: raw IPF of the main effects to
     convergence, bandwidth per (sex, cohort) by leave-one-gap-out
     cross-validation (unless given), the age term smoothed once and the
@@ -441,7 +507,10 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
     only seeds the smoothing; the interaction stage also waits for the
     penalised objective's gain per pass, per 1,000 sides, to fall below
     `otol`). Every pass's largest cell change, couple-weighted move and
-    objective are on the record."""
+    objective are on the record. Phase 3d A2: with `project` the
+    interaction's seeker-only part is dropped and its pair-shaped parts
+    are moved into the education and race main effects after every Newton
+    step (Projection); the cells the step forces to zero stay zero."""
     assert stop in ("cell", "couples"), stop
     d = design2(form)
     N_s = C.sum(axis=1)
@@ -459,6 +528,8 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
     tab = Table(d, logA, N_s)
     per_1000 = 1000.0 / max(tab.Ntot, 1e-300)
     profile = {"stages": {}, "table_seconds": tab.seconds}
+    proj = projection(form) if (project and form.interaction) else None
+    moved = {"edu": None, "race": None, "seeker_dropped_max_abs": 0.0, "passes": 0}
 
     def run_ipf(stage: str, active: list[str], with_int: bool, tau2_: float | None,
                 tol_: float, max_iter_: int, ctol_: float) -> tuple[dict, np.ndarray]:
@@ -507,6 +578,24 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
                 tab.seconds["update"] += time.perf_counter() - t0
                 tab.apply("int", delta)
                 worst = max(worst, ch)
+                if proj is not None and np.isfinite(lam):
+                    # A2: take the blind directions out of g. The table
+                    # does not move (the seeker-only part is a per-row
+                    # constant; the pair parts go into the main effects
+                    # exactly), only log Z carries the dropped constant.
+                    t0 = time.perf_counter()
+                    resid, b_seek, b_edu, b_race = proj.split(f["int"].ravel())
+                    resid[M <= 0] = 0.0
+                    f["int"] = resid.reshape(d.shapes()["int"])
+                    f["edu"] = f["edu"] + b_edu
+                    f["race"] = f["race"] + b_race
+                    row_const = b_seek[tab.sig, tab.r_s, tab.e_s]
+                    tab.logZ = np.where(tab.zok, tab.logZ - row_const, tab.logZ)
+                    moved["edu"] = b_edu if moved["edu"] is None else moved["edu"] + b_edu
+                    moved["race"] = b_race if moved["race"] is None else moved["race"] + b_race
+                    moved["seeker_dropped_max_abs"] = max(moved["seeker_dropped_max_abs"], float(np.abs(b_seek).max()))
+                    moved["passes"] += 1
+                    tab.seconds["update"] += time.perf_counter() - t0
             hist["cell_change"].append(worst)
             obj = tab.objective(f, T, lam)
             gain = (obj - hist["objective"][-1]) * per_1000 if hist["objective"] else np.inf
@@ -598,6 +687,12 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
             "objective_from_scratch": _objective_of(f, T, logA, N_s, lam_final, d),
             "couple_sides": tab.Ntot,
             "profile": profile,
+            "projection": (None if proj is None else {
+                "applied": True, "columns": proj.columns, "rank": proj.rank, "passes": moved["passes"],
+                "moved_to_edu_max_abs": float(np.abs(moved["edu"]).max()) if moved["edu"] is not None else 0.0,
+                "moved_to_race_max_abs": float(np.abs(moved["race"]).max()) if moved["race"] is not None else 0.0,
+                "seeker_only_dropped_max_abs": moved["seeker_dropped_max_abs"],
+                "residual_norm2": float((f["int"] ** 2).sum()) if f.get("int") is not None else 0.0}),
             "form": form, "same_sex": same_sex}
 
 
@@ -951,6 +1046,7 @@ def fit_and_report(sample: str, form: Form, S: dict, A: np.ndarray, same_sex: bo
         rec["cohort_sample"] = cohort_sample(S["nat"], form)
     if form.interaction:
         rec["interaction_prior"] = fit["interaction_prior"]
+        rec["interaction_projection"] = fit["projection"]
         g = fg["int"]
         Tn = fit["T"]["int"].reshape(g.shape) / S["mean_weight"]
         rows = []
@@ -1065,6 +1161,12 @@ def _lomo_forms_one(cbsa: str) -> dict:
 def run_lomo_forms(state: dict, metro_levels: list[str], workers: int) -> list[dict]:
     import multiprocessing as mp
     ctx = mp.get_context("fork")
+    # Phase 3d A2: the projections are built in the parent (an SVD) before
+    # forking, so the workers inherit them instead of calling LAPACK in a
+    # forked child, which macOS terminates abruptly
+    for form in state["forms"].values():
+        if form.interaction and PROJECT_INTERACTION:
+            projection(form)
     t0 = time.time()
     out = []
     with ProcessPoolExecutor(max_workers=workers, mp_context=ctx,
@@ -1750,6 +1852,8 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
         print(f"[samesex] LOMO x{len(metros)} with {workers} workers ...", flush=True)
         import multiprocessing as mp
         ctx = mp.get_context("fork")
+        if form_os.interaction and PROJECT_INTERACTION:
+            projection(form_os)          # built in the parent, as run_lomo_forms does
         with ProcessPoolExecutor(max_workers=workers, mp_context=ctx,
                                  initializer=_init_worker, initargs=(state,)) as ex:
             lomo = list(ex.map(_lomo_samesex_one, metros, chunksize=2))

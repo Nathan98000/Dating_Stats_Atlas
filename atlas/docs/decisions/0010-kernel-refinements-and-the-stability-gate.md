@@ -177,6 +177,51 @@ over 100 ms replaces 60 ms as the stop condition. The engine-level A/B
 of the m3.2.0 and m3.3.0 kernels under equal load stays open as a
 finding, not a gate.
 
+## Amended, Phase 3d (A2): the fit reaches the optimum it states — measured, not shipped
+
+The objective above — the ridge-penalised Poisson objective, exact IPF
+steps for the main effects and a Newton step per cell for g — was never
+reached by the m3.2.0 and m3.3.0 fits. The interaction has directions the
+likelihood cannot see: its seeker-only part (a per-seeker constant that
+the row normalisation absorbs) and its education-pair and race-pair parts
+(collinear with the main effects). Both carry zero data gradient at the
+main effects' optimum, so only the ridge moved them, at under 1% per
+pass, and every interaction stage stopped at its 200-pass cap short of
+the optimum (Phase 3b deviation 3, Phase 3c deviation B3). Phase 3d A2
+takes those directions out after every Newton step (`kernel_refine.
+Projection`: an orthonormal basis of the 208 indicator columns, rank
+188, built once per form): the seeker-only part is dropped, the pair
+parts are added to the education and race main effects, where an
+unpenalised optimum puts them, and the cells the step forces to zero
+stay zero. The table does not move under the projection; the penalty
+falls; the objective is monotone.
+
+Measured on the shipped form (`results/phase3d/speedup/a2_proofs.json`,
+`a2_rank_shift.py`, `a2/gate_C1_cohorts_plus_shipped.json`): with the
+projection off the code reproduces the Stage 1 fit to 8e-15; with it on
+the interaction stage stops on tolerance at 18 passes instead of the
+cap, the penalised objective is higher by 0.0097 per 1,000 weighted
+couple-sides, the gauged education and race main effects move by up to
+0.036 and 0.095 in log units and the dials by up to 0.027, while the
+interaction's residual keeps its size (log sd 0.154 against m3.3.0's
+0.155). Loaded into the m3.3.0 build in memory, the served index moves a
+median 0.02 points on the default search (largest 0.55; rank Kendall τ
+0.995, the same top ten) and the ADR 0011 gate reads 0.970 against the
+m3.2.0 reference.
+
+**Not shipped.** The decisions that shaped m3.3.0 were re-run on the
+finished fit (`a2_decisions.json`). Race × education still ships (+14.07
+per 1,000 sides over the baseline, gate 1.002) and the same-sex
+education term still ships with the interaction riding (+12.26 / +15.16
+on what m3.2.0 serves; the interaction by +2.90). But the cohort-form
+verdict flipped on the third decimal: C3 (the cohort age term with the
+sex-specific education matrix, +69.715) now leads C1 (+69.707) by 0.007,
+where Phase 3c read C1 ahead by 0.001, and the sex-specific matrix alone
+(C2) now improves on the shipped form by +0.007 where it read −0.003. The
+brief made a flipped verdict a stop condition, so m3.4.0 was not built:
+which form the finished fit ships is Nathan's decision, recorded in an
+ADR when he makes it. PHASE3D.md §1 has every number.
+
 ## Consequences
 
 MODEL_VERSION m3.2.0; goldens regenerated; every number in PHASE3B.md;

@@ -1,0 +1,280 @@
+{
+ "C1_cohorts_plus_shipped": {
+  "searches": 516,
+  "total_wobble_m3_3_0": 307.128,
+  "total_wobble_candidate": 306.703,
+  "ratio_vs_m3_3_0": 0.9986,
+  "steadier": 248,
+  "shakier": 247,
+  "unchanged": 21,
+  "rose_more_than_25pct": 5,
+  "rose_more_than_25pct_by_absolute_rise": [
+   {
+    "search": "male:40:edu=some_college:race=nh_aian",
+    "m3_3_0": 1.13892,
+    "candidate": 1.710492
+   },
+   {
+    "search": "samesex:male:30:edu=hs_or_less",
+    "m3_3_0": 0.324091,
+    "candidate": 0.468864
+   },
+   {
+    "search": "male:40:edu=bachelors",
+    "m3_3_0": 0.286818,
+    "candidate": 0.372955
+   },
+   {
+    "search": "female:25:edu=bachelors:race=nh_white",
+    "m3_3_0": 0.286818,
+    "candidate": 0.360682
+   },
+   {
+    "search": "male:30:edu=bachelors:race=hispanic",
+    "m3_3_0": 0.125,
+    "candidate": 0.1725
+   }
+  ],
+  "largest_rises_abs": [
+   {
+    "search": "male:40:edu=some_college:race=nh_aian",
+    "m3_3_0": 1.13892,
+    "candidate": 1.710492
+   },
+   {
+    "search": "samesex:male:30:edu=hs_or_less",
+    "m3_3_0": 0.324091,
+    "candidate": 0.468864
+   },
+   {
+    "search": "male:40:edu=bachelors",
+    "m3_3_0": 0.286818,
+    "candidate": 0.372955
+   },
+   {
+    "search": "female:25:edu=bachelors:race=nh_white",
+    "m3_3_0": 0.286818,
+    "candidate": 0.360682
+   },
+   {
+    "search": "male:30:edu=bachelors:race=hispanic",
+    "m3_3_0": 0.125,
+    "candidate": 0.1725
+   }
+  ],
+  "match_end_searches": {
+   "persona:slider_all_match": [
+    2.878257,
+    2.899479
+   ],
+   "persona:slider_alias_pool_vs_balance": [
+    2.878257,
+    2.899479
+   ],
+   "persona:importance_lifestyle_alias": [
+    0.277045,
+    0.276136
+   ]
+  },
+  "max_wobble_candidate": 2.899
+ },
+ "C3_both_plus_shipped": {
+  "searches": 516,
+  "total_wobble_m3_3_0": 307.128,
+  "total_wobble_candidate": 308.502,
+  "ratio_vs_m3_3_0": 1.0045,
+  "steadier": 229,
+  "shakier": 276,
+  "unchanged": 11,
+  "rose_more_than_25pct": 22,
+  "rose_more_than_25pct_by_absolute_rise": [
+   {
+    "search": "female:50:edu=bachelors:race=nh_aian",
+    "m3_3_0": 0.890644,
+    "candidate": 1.483674
+   },
+   {
+    "search": "samesex:male:30:edu=hs_or_less",
+    "m3_3_0": 0.324091,
+    "candidate": 0.666136
+   },
+   {
+    "search": "samesex:female:25:edu=graduate",
+    "m3_3_0": 0.457576,
+    "candidate": 0.66072
+   },
+   {
+    "search": "samesex:male:25:edu=hs_or_less",
+    "m3_3_0": 0.222955,
+    "candidate": 0.425
+   },
+   {
+    "search": "samesex:male:50:undisclosed",
+    "m3_3_0": 0.353636,
+    "candidate": 0.529091
+   },
+   {
+    "search": "samesex:male:25:edu=some_college",
+    "m3_3_0": 0.2175,
+    "candidate": 0.38
+   },
+   {
+    "search": "samesex:male:40:undisclosed",
+    "m3_3_0": 0.345,
+    "candidate": 0.494318
+   },
+   {
+    "search": "samesex:male:30:edu=some_college",
+    "m3_3_0": 0.17,
+    "candidate": 0.302955
+   },
+   {
+    "search": "male:30:edu=bachelors:race=nh_black",
+    "m3_3_0": 0.3975,
+    "candidate": 0.5275
+   },
+   {
+    "search": "samesex:male:35:undisclosed",
+    "m3_3_0": 0.087045,
+    "candidate": 0.2125
+   },
+   {
+    "search": "male:25:edu=hs_or_less:race=hispanic",
+    "m3_3_0": 0.265455,
+    "candidate": 0.375455
+   },
+   {
+    "search": "samesex:female:50:edu=graduate",
+    "m3_3_0": 0.365455,
+    "candidate": 0.467273
+   },
+   {
+    "search": "male:40:edu=bachelors",
+    "m3_3_0": 0.286818,
+    "candidate": 0.375
+   },
+   {
+    "search": "female:25:edu=bachelors:race=nh_white",
+    "m3_3_0": 0.286818,
+    "candidate": 0.370909
+   },
+   {
+    "search": "male:25:race=hispanic",
+    "m3_3_0": 0.196591,
+    "candidate": 0.271136
+   },
+   {
+    "search": "samesex:male:35:edu=bachelors",
+    "m3_3_0": 0.16,
+    "candidate": 0.23
+   },
+   {
+    "search": "male:25:edu=some_college:race=hispanic",
+    "m3_3_0": 0.212955,
+    "candidate": 0.2775
+   },
+   {
+    "search": "samesex:female:35:edu=bachelors",
+    "m3_3_0": 0.17,
+    "candidate": 0.2175
+   },
+   {
+    "search": "male:30:edu=bachelors:race=hispanic",
+    "m3_3_0": 0.125,
+    "candidate": 0.1575
+   },
+   {
+    "search": "samesex:male:30:undisclosed",
+    "m3_3_0": 0.0025,
+    "candidate": 0.025
+   },
+   {
+    "search": "male:30:race=hispanic",
+    "m3_3_0": 0.0675,
+    "candidate": 0.085
+   },
+   {
+    "search": "samesex:male:25:undisclosed",
+    "m3_3_0": 0.0025,
+    "candidate": 0.0125
+   }
+  ],
+  "largest_rises_abs": [
+   {
+    "search": "female:50:edu=bachelors:race=nh_aian",
+    "m3_3_0": 0.890644,
+    "candidate": 1.483674
+   },
+   {
+    "search": "samesex:male:30:edu=hs_or_less",
+    "m3_3_0": 0.324091,
+    "candidate": 0.666136
+   },
+   {
+    "search": "samesex:female:25:edu=graduate",
+    "m3_3_0": 0.457576,
+    "candidate": 0.66072
+   },
+   {
+    "search": "samesex:male:25:edu=hs_or_less",
+    "m3_3_0": 0.222955,
+    "candidate": 0.425
+   },
+   {
+    "search": "samesex:male:50:undisclosed",
+    "m3_3_0": 0.353636,
+    "candidate": 0.529091
+   },
+   {
+    "search": "samesex:male:25:edu=some_college",
+    "m3_3_0": 0.2175,
+    "candidate": 0.38
+   },
+   {
+    "search": "samesex:male:40:undisclosed",
+    "m3_3_0": 0.345,
+    "candidate": 0.494318
+   },
+   {
+    "search": "samesex:male:30:edu=some_college",
+    "m3_3_0": 0.17,
+    "candidate": 0.302955
+   },
+   {
+    "search": "male:30:edu=bachelors:race=nh_black",
+    "m3_3_0": 0.3975,
+    "candidate": 0.5275
+   },
+   {
+    "search": "samesex:male:35:undisclosed",
+    "m3_3_0": 0.087045,
+    "candidate": 0.2125
+   },
+   {
+    "search": "male:25:edu=hs_or_less:race=hispanic",
+    "m3_3_0": 0.265455,
+    "candidate": 0.375455
+   },
+   {
+    "search": "samesex:female:50:edu=graduate",
+    "m3_3_0": 0.365455,
+    "candidate": 0.467273
+   }
+  ],
+  "match_end_searches": {
+   "persona:slider_all_match": [
+    2.878257,
+    2.983956
+   ],
+   "persona:slider_alias_pool_vs_balance": [
+    2.878257,
+    2.983956
+   ],
+   "persona:importance_lifestyle_alias": [
+    0.277045,
+    0.235
+   ]
+  },
+  "max_wobble_candidate": 2.984
+ }
+}
