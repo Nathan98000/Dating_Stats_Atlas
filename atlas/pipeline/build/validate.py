@@ -21,9 +21,10 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  grid; mean rank move of the cities in
                                  either top 10 over the 80 replicates) must
                                  not exceed 1.10 x the fixed reference's
-                                 (m3.2.0, results/phase3c/
-                                 stability_reference.json) over the
-                                 searches the build touches
+                                 (stability_gate.REFERENCE: m3.5.0,
+                                 1ebeaa2dcad6, since ADR 0015; m3.2.0
+                                 before) over the searches the build
+                                 touches
   soft  rank stability (old)     the >= 8-of-10 top-10 overlap in >= 80% of
                                  replicates per persona, reported beside
                                  the new reading

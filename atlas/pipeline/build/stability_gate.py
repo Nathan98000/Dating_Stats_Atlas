@@ -21,10 +21,13 @@ The verdict: a change FAILS if its total wobble is more than 10% above the
 reference's total, both summed over the same searches — those the change
 touches, meaning any whose index (point or replicate) differs from the
 reference's; when nothing is touched the totals run over every search, so
-the reference against itself reads exactly 1.0. The reference is m3.2.0
-(f20cb02c3af8), fixed in results/phase3c/stability_reference.json and
-moved only by Nathan's decision in an ADR, so small rises cannot pile up
-release after release.
+the reference against itself reads exactly 1.0. The reference is a fixed
+build, moved only by Nathan's decision in an ADR, so small rises cannot
+pile up release after release. Since ADR 0015 it is m3.5.0 (1ebeaa2dcad6,
+chances of matching scored by value), its record REFERENCE, under
+results/phase3d; ADR 0011's first reference, m3.2.0 (f20cb02c3af8), keeps
+its record (REFERENCE_M3_2_0) and its controls under results/phase3c as
+history.
 
 The replicate machinery is the validation suite's (the same pool, the
 same replicate weights, the same score function); the kernel-weighted
@@ -32,12 +35,12 @@ numerator is composed in numpy from the masked pool's per-cell replicate
 sums, which do not depend on the kernel and are cached on disk
 (data/phase3c_cache/) so every kernel is read against bit-identical sums.
 
-    python -m atlas.pipeline.build.stability_gate reference <build_dir>
-        -> results/phase3c/stability_reference.json
-    python -m atlas.pipeline.build.stability_gate check <build_dir> --name <n> [--kernel <dir>] [--noise 1.5] [--out <json>]
+    python -m atlas.pipeline.build.stability_gate reference <build_dir> [--out <json>]
+        -> REFERENCE, or --out (never over an existing record)
+    python -m atlas.pipeline.build.stability_gate check <build_dir> --name <n> [--kernel <dir>] [--noise 1.5] [--reference <json>] [--out <json>]
         -> results/phase3c/gate_<n>.json (the record and the verdict), or --out
-    python -m atlas.pipeline.build.stability_gate controls <build_dir>
-        -> results/phase3c/gate_controls.json (identity; enlarged noise x1.5)
+    python -m atlas.pipeline.build.stability_gate controls <build_dir> --out <json>
+        -> the controls against REFERENCE, on its own build (identity; enlarged noise x1.5)
 """
 from __future__ import annotations
 
@@ -57,7 +60,10 @@ from atlas.model.tests.golden.make_fixture import GOLDEN_VECTORS
 from atlas.pipeline.fetch import DATA, RESULTS
 
 P3C = RESULTS / "phase3c"
-REFERENCE = P3C / "stability_reference.json"
+# ADR 0015: the reference is m3.5.0 (1ebeaa2dcad6). The m3.2.0 record it
+# replaced stays byte-identical as history, with Phase 3c's controls.
+REFERENCE = RESULTS / "phase3d" / "stability_reference_m3_5_0.json"
+REFERENCE_M3_2_0 = P3C / "stability_reference.json"
 CACHE = DATA / "phase3c_cache"
 TOLERANCE = 0.10          # a change fails above 1 + TOLERANCE times the reference
 RISE_FLAG = 0.25          # searches whose wobble rose more than this are named (findings)
@@ -363,6 +369,30 @@ def load_reference(path: Path = REFERENCE) -> dict:
     return json.loads(path.read_text())
 
 
+def controls(build, con, ref: dict, verbose: bool = True) -> dict:
+    """ADR 0011's two controls against the reference record `ref`, on the
+    reference's own build: read against itself it must read exactly 1.0
+    and pass; with every replicate's deviation from the published estimate
+    scaled by 1.5 it must fail."""
+    ident = gate_record(build, con, "control_identity", verbose=verbose)
+    ident["verdict"] = verdict(ident, ref)
+    noise = gate_record(build, con, "control_noise_x1.5", noise_scale=1.5, verbose=verbose)
+    noise["verdict"] = verdict(noise, ref)
+    out = {"reference_build": ref["build"],
+           "identity": {"ratio": ident["verdict"]["ratio"], "pass": ident["verdict"]["pass"],
+                        "searches_touched": ident["verdict"]["searches_touched"],
+                        "reads_exactly_1": bool(ident["verdict"]["ratio"] == 1.0),
+                        "control_passes": bool(ident["verdict"]["ratio"] == 1.0 and ident["verdict"]["pass"])},
+           "enlarged_noise": {"scale": 1.5, "ratio": noise["verdict"]["ratio"],
+                              "pass": noise["verdict"]["pass"],
+                              "searches_touched": noise["verdict"]["searches_touched"],
+                              "control_passes": bool(not noise["verdict"]["pass"])},
+           "records": {"identity": ident, "enlarged_noise": noise}}
+    out["both_controls_pass"] = bool(out["identity"]["control_passes"]
+                                     and out["enlarged_noise"]["control_passes"])
+    return out
+
+
 def _write(path: Path, obj: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)) + "\n")
@@ -385,9 +415,12 @@ def main(argv: list[str]) -> int:
     con.execute("SET enable_progress_bar=false")
     try:
         if cmd == "reference":
+            path = Path(opt["--out"]) if "--out" in opt else REFERENCE
+            assert not path.exists(), (f"{path} exists: a reference record is written once, and the reference "
+                                       f"moves only by an ADR (ADR 0011)")
             rec = gate_record(build, con, "reference", verbose=True)
             rec["role"] = ("THE REFERENCE (ADR 0011): moved only by Nathan's decision recorded in an ADR")
-            _write(REFERENCE, rec)
+            _write(path, rec)
             print(json.dumps(rec["totals"], indent=1))
         elif cmd == "check":
             name = opt.get("--name", "candidate")
@@ -400,24 +433,10 @@ def main(argv: list[str]) -> int:
             print(json.dumps({k: v[k] for k in v if k != "touched"}, indent=1))
             return 0 if v["pass"] else 1
         elif cmd == "controls":
-            ref = load_reference()
-            ident = gate_record(build, con, "control_identity", verbose=True)
-            ident["verdict"] = verdict(ident, ref)
-            noise = gate_record(build, con, "control_noise_x1.5", noise_scale=1.5, verbose=True)
-            noise["verdict"] = verdict(noise, ref)
-            out = {"reference_build": ref["build"],
-                   "identity": {"ratio": ident["verdict"]["ratio"], "pass": ident["verdict"]["pass"],
-                                "searches_touched": ident["verdict"]["searches_touched"],
-                                "reads_exactly_1": bool(ident["verdict"]["ratio"] == 1.0),
-                                "control_passes": bool(ident["verdict"]["ratio"] == 1.0 and ident["verdict"]["pass"])},
-                   "enlarged_noise": {"scale": 1.5, "ratio": noise["verdict"]["ratio"],
-                                      "pass": noise["verdict"]["pass"],
-                                      "searches_touched": noise["verdict"]["searches_touched"],
-                                      "control_passes": bool(not noise["verdict"]["pass"])},
-                   "records": {"identity": ident, "enlarged_noise": noise}}
-            out["both_controls_pass"] = bool(out["identity"]["control_passes"]
-                                             and out["enlarged_noise"]["control_passes"])
-            _write(P3C / "gate_controls.json", out)
+            # Phase 3c's controls (results/phase3c/gate_controls.json) are history
+            assert "--out" in opt, "controls: pass --out <json> (ADR 0015)"
+            out = controls(build, con, load_reference())
+            _write(Path(opt["--out"]), out)
             print(json.dumps({k: v for k, v in out.items() if k != "records"}, indent=1))
             return 0 if out["both_controls_pass"] else 1
         else:

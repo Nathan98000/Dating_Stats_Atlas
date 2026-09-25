@@ -3,7 +3,9 @@
 Date: 2026-09-24 (Phase 3c, B1; committed before any held-back refinement
 was run through it — the commit order is the proof that the rule was not
 fitted to its results)
-Status: accepted
+Status: accepted; the reference is now m3.5.0 (1ebeaa2dcad6), moved by
+ADR 0015, and the rule is otherwise unchanged. The text below, which
+names m3.2.0 as the reference, stands as history.
 
 ## The old rule and what it selected between
 

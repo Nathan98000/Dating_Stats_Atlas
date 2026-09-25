@@ -13,8 +13,12 @@ terms and the national singles (results/phase3/_avail_national.npy, the
 same array the fits used) — and the rebuilt kernel is checked against the
 record before it is read.
 
-    python -m atlas.pipeline.build.phase3c_past_readings <reference_build_dir>
+    python -m atlas.pipeline.build.phase3c_past_readings <m3.2.0 build dir>
         -> results/phase3c/past_readings.json, _candidates/m3_0_0_rebuilt/
+
+The readings are against m3.2.0's record (stability_gate.REFERENCE_M3_2_0),
+the reference when they were taken; ADR 0015 moved the gate's reference
+to m3.5.0.
 """
 from __future__ import annotations
 
@@ -62,8 +66,8 @@ def rebuild_m3_0_0(out_dir: Path, metro_levels: list[str]) -> dict:
 
 def main(ref_dir: str) -> None:
     build = engine.load_build(ref_dir, allow_model_mismatch=True)
-    ref = SG.load_reference()
-    assert ref["build"] == build.manifest["data_version"], "run this on the reference build"
+    ref = SG.load_reference(SG.REFERENCE_M3_2_0)
+    assert ref["build"] == build.manifest["data_version"], "run this on the m3.2.0 build"
     con = open_pool()
     con.execute("SET enable_progress_bar=false")
     out = {"reference_build": ref["build"], "kernels": {}, "readings": {}}

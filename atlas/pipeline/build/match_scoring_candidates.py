@@ -5,9 +5,10 @@ tuned to its results.
 For each of N0, V1, V2 and V3 (the build's manifest switched in memory,
 nothing on disk changes):
 
-- the ADR 0011 gate's verdict and ratio against the m3.2.0 reference (a
-  scoring-only change touches no index, so the totals run over every
-  search, as the rule says);
+- the ADR 0011 gate's verdict and ratio against its reference (m3.2.0
+  when B2 ran; m3.5.0 since ADR 0015); a scoring-only change touches no
+  index, so against a reference on the same kernel the totals run over
+  every search, as the rule says;
 - total wobble over the gate's own set and over the MATCH-END set (every
   ADR 0011 test search without explicit weights, re-sent with
   pool_vs_match = 1.0);

@@ -584,6 +584,78 @@ the value scale and swap under replicate noise. That is the trade the
 rule accepted in advance: the outlier condition bounds how far the field
 can be squeezed, and V2 is the candidate that stayed inside it.
 
+## After the phase: Nathan's calls
+
+Three calls, made on 25 September after Nathan read this report. The
+numbers are read from `b2_selection_with_margin.json`,
+`gate_controls_m3_5_0.json` and `validation_report_m3_5_0_adr0015.json`,
+or from `b3_ship_check.json` where they repeat §3. Nothing served changed:
+there is no version bump, the goldens are byte-identical, and the launch
+config stays at 1ebeaa2dcad6.
+
+**V2 stays.** Nathan read the B2 and B3 results and keeps V2. They
+include:
+
+- the two match-end searches rising from 2.90 to 3.37 places;
+- the 95 searches whose wobble rose more than 25%;
+- V2's narrow pass of the outlier condition (41.8 points against 40).
+
+It is on the record because in B2 the rule chose V2, and these costs were
+named after it as findings. Keeping V2 with the costs in view is Nathan's
+own decision, recorded in ADR 0013's amendment.
+
+**The match-end margin, and its timing (ADR 0013 amended, e43d175).**
+
+- **The rule.** A difference in match-end wobble smaller than 5% of N0's
+  total is no difference. A candidate qualifies only if it is at least
+  5% below N0. Qualifiers within 5% of N0's total of the lowest are tied,
+  and of those the lower gate-set total ships.
+- **The timing.** Nathan set the margin before any candidate was
+  measured, but the brief that reached the repo lacked the section that
+  set it. So B1 (4bab576) committed the rule without it, and B2 ran under
+  the rule as drafted. The amendment says that, committed after the
+  measurement, the commit order cannot prove the margin came first.
+- **The outcome.** The stored B2 records were read under the margin, with
+  nothing re-measured:
+  - the margin is 55.0 places of N0's 1,100.0;
+  - V2 cuts the match-end total by 6.8% (1,100.0 → 1,025.2) and
+    qualifies;
+  - V1 (8.0%) and V3 (9.1%) clear the margin but still fail the outlier
+    condition;
+  - one candidate qualifies, so there is no tie band. V2 ships, as under
+    the drafted rule.
+- **Future re-runs.** The margin governs any future re-run of the
+  selection (`MATCH_END_MARGIN`, `select`).
+
+**The stability reference moves to m3.5.0 (ADR 0015).**
+
+- **Why.** Against m3.2.0, m3.5.0 reads 0.775 (245.1 against 316.2), so
+  the gate's 10% line sat 41.9% above today's site. Against m3.5.0 it
+  sits 10% above.
+- **The new record.** It is m3.5.0's own reading, search for search the
+  same as B2's V2 record and the ship's validation record.
+- **The controls.** The reference against itself reads exactly 1.0, with
+  nothing touched, and passes. The enlarged-noise control (×1.5) reads
+  1.496 and fails.
+- **The past builds, for the record.** Each would now fail: m3.2.0 reads
+  1.290, m3.3.0 1.253 and m3.4.0 1.251. m3.4.0 is the percentile rank on
+  the same kernel, so going back to percentile scoring would now fail the
+  gate.
+- **Validation.** `build.validate` on 1ebeaa2dcad6 passes ten of ten hard
+  gates, and the ADR 0011 gate reads 1.0.
+- **The old reference build.** f20cb02c3af8 is retired to its manifest,
+  metros and kernel record, keeping kernel.npz. Nothing reads its
+  directory, and its data files are byte-identical to 1ebeaa2dcad6's.
+
+**Open items for the next phase** (named, not investigated):
+
+- why searches whose ranked set holds a run of cities at or beyond the
+  fences got shakier under V2 — Asian, Pacific Islander and Hispanic
+  seekers are 49 of the 95 risers (§3);
+- V2's narrow pass of the outlier condition (41.8 points against 40);
+- the two match-end searches at 3.37 places, still the wobbliest on the
+  site.
+
 ## Gate check
 
 - **R (ADR 0014)**: the tie rule was committed (2d2c063) before the ship
@@ -672,3 +744,14 @@ can be squeezed, and V2 is the candidate that stayed inside it.
 - B2: the match-end set holds every one of the 518 ADR 0011 test searches (516 scored), because no test search sends explicit `weights` (the personas that move weights use the importance controls, which the rule does not exclude); the definition is applied as written.
 - B3: the data files are unchanged by a scoring change, and the build id is the data's hash, so `cube.build` refreshed 1ebeaa2dcad6's manifest in place (model_version m3.5.0, match_scoring V2) rather than writing a new directory: m3.5.0 IS build 1ebeaa2dcad6, and the m3.4.0 build survives as its records (`snapshot_m3_4_0.json`, `validation_report_m3_4_0.json`, `latency_m3_4_0.json`, `rank_shift_m3_3_0_to_m3_4_0.*`) rather than as a directory to retire; `.claude/launch.json` already pointed at it.
 - B3 (retirement): ee4f08cf33e1 (m3.3.0), now the intermediate build, is retired to its manifest, metros and kernel record as the brief says, and its kernel.npz (9.8 MB) is kept beside them — Phase 3c's B1 deviation records the cost of dropping it (the m3.0.0 kernel had to be rebuilt from kernel.json for the past readings), and the standing engine-level A/B of the m3.3.0 and m3.4.0 kernels needs it loadable; the 330 MB of cubes, byte-identical to 1ebeaa2dcad6's, go. f20cb02c3af8 (m3.2.0) stays complete as the gate's reference.
+- M (after the phase, ADR 0013 amended): the brief's "Why 5%" gives the match-end rise Part B was meant to undo as "2.49 → 2.88, +16%", computed from the rounded values; the records give 2.494012 → 2.878257 places (the two match-end searches, m3.2.0 → m3.3.0), +15.4%, and the amendment states that figure — 5% is 0.32 of it, still about a third (`b2_selection_with_margin.json`, `anchors`).
+- M: at exactly 5% the difference counts, at both steps — a candidate exactly 5% below N0 qualifies (the brief's test), and a qualifying candidate exactly 5% of N0's total above the lowest is not tied with it — read from the rule's first sentence ("smaller than 5% … is no difference"); the tie band's boundary is pinned by a test beside the five the brief lists, and the amendment says it in one sentence.
+- M: beside the statement the brief requires (committed after the measurement, so the commit order cannot prove the margin came first), the amendment records that the brief as it reached the repo named a margin without a rule and kept the drafted rule in its Part B section, and that ADR 0014 (2d2c063, before any candidate was measured) says Part B's selection "has its own margin, set in ADR 0013" — and that neither names 5%, so neither proves it came first either.
+- M: `b2_selection_with_margin.json` also carries the anchors for 5% (finishing the fit on the gate-set total and on the two match-end searches, C1 against C3, the gate's line, the match-end rise), read from the stored gate records, so every number in the amendment is read from that one file; the ADR's status line and the selection rule's heading are marked as amended, the pattern ADRs 0009 and 0010 use.
+- M: `select` breaks an exact tie by ADR 0013's table order (`RULES`) whatever order the candidates were measured in; the drafted `main` used the `--rules` order, the same by default. `main` now writes `at_least_margin_below_N0` (with the reduction against N0 and the tie flag) where it wrote `lower_match_end_wobble_than_N0`; `b2_candidates.json` is the drafted run's record and is not rewritten.
+- R1 (after the phase, ADR 0015): the new reference record is written by the same `reference` command in the Phase 3c format, and also carries the per-search diagnostics B1 added to every gate record (the match-score spread, the steering τ, the scoring rule) and a top-level `match_scoring` (V2); nothing the verdict reads is new.
+- R1: `stability_gate reference` now refuses to write over an existing record, and `controls` requires `--out` (it wrote the Phase 3c file unconditionally); the controls moved into one function, `controls`, which the command and `gate_controls_m3_5_0.py` both call.
+- R1: two scripts beyond `stability_gate.py` and `validate.py` assumed m3.2.0 was the reference. `phase3c_past_readings.py` now reads the m3.2.0 record by name (`REFERENCE_M3_2_0`) rather than the current reference; it cannot re-run in any case, since m3.1.0's kernel.npz (ae1efbef9f0e) was retired in Phase 3c. `match_scoring_candidates.py`'s docstring now says its gate reads against the current reference (m3.2.0 when B2 ran).
+- R2: the past builds are read from their stored per-search records (m3.2.0's Phase 3c reference record, m3.3.0's and m3.4.0's validation reports) through `stability_gate.verdict`, not re-measured — m3.3.0's build is retired and m3.4.0's scoring is no longer the build's, and every record was written by the same gate code on the same cached cell sums; `gate_controls_m3_5_0.json` also records the headroom and that the new record matches B2's V2 record and the ship's validation record search for search.
+- R2: `build.validate` rewrote `results/phase2/validation_report.json` (copied to `validation_report_m3_5_0_adr0015.json`); it differs from the ship's report only in the git stamp and the rank-stability reading (reference, basis, ratio, risers, the gate's seconds). Its soft external-correlation check re-read the Census API, as every run does, which moved `fetch_manifest.json`'s timestamp for 2024/acs/acs5.
+- R4: f20cb02c3af8's five data files (the count, pool and sumw2 cubes, features.parquet, pairing_cells.parquet; 330 MB, each byte-identical to 1ebeaa2dcad6's by sha256) were moved to the macOS Trash (`~/.Trash/Dating_Stats_Atlas_f20cb02c3af8_retired/`) rather than deleted, so emptying it is Nathan's. The directory's timestamp was restored so the ship chains' newest-directory lookup (`ls -td`) cannot pick it. That lookup already picks ee4f08cf33e1, retired in B3 (its directory at 07:56, after 1ebeaa2dcad6's 07:39, which the in-place manifest refreshes do not touch). It is left as found; the next chain should pass its build directory explicitly.

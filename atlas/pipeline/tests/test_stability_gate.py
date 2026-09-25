@@ -102,3 +102,18 @@ def test_gate_rule_follows_the_manifest():
     m["normalization"] = {**(m.get("normalization") or {}), "match_scoring": "V2", "winsor_percentiles": [1, 99],
                           "match_value_floor": 40.0, "match_value_cap": 250.0, "match_fence_iqr": 1.5}
     assert SG.score_rule(replace(build, manifest=m)) == "V2"
+
+
+def test_the_reference_is_m3_5_0_through_one_constant():
+    """ADR 0015: the reference moved to m3.5.0 (1ebeaa2dcad6); m3.2.0's
+    record stays under results/phase3c as history, and build.validate
+    reads the reference only through stability_gate's constant."""
+    import inspect
+    from atlas.pipeline.build import validate
+    assert SG.REFERENCE.name == "stability_reference_m3_5_0.json" and SG.REFERENCE.parent.name == "phase3d"
+    assert SG.REFERENCE_M3_2_0.name == "stability_reference.json" and SG.REFERENCE_M3_2_0.parent.name == "phase3c"
+    src = inspect.getsource(validate)
+    assert "stability_reference" not in src and "SG.load_reference()" in src and "SG.REFERENCE." in src
+    ref = SG.load_reference()
+    assert (ref["build"], ref["model_version"], ref["match_scoring"]) == ("1ebeaa2dcad6", "m3.5.0", "V2")
+    assert SG.load_reference(SG.REFERENCE_M3_2_0)["build"] == "f20cb02c3af8"
