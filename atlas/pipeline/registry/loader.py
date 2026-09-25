@@ -96,6 +96,9 @@ class Registry:
     city_description: dict
     winsor_percentiles: tuple[float, float]
     missing_data_policy: str
+    # Phase 3d (ADR 0013): the whole normalization block, carried to the
+    # manifest so the engine reads how chances of matching is scored
+    normalization: dict = field(default_factory=dict)
     # Phase 2f: the stat pages' source lines (9.2) and the What-we-measure
     # composition (8.5), both registry judgments rather than code
     sources: dict[str, dict] = field(default_factory=dict)
@@ -118,6 +121,31 @@ def _assert_display_clean(owner: str, *texts) -> None:
         m = BANNED_DISPLAY_TERMS.search(str(t or ""))
         assert not m, (f"{owner}: display field contains banned term "
                        f"{m.group(0)!r} (§12.3/ADR 0004): {t!r}")
+
+
+MATCH_SCORING_RULES = ("N0", "V1", "V2", "V3")
+
+
+def _normalization_block(raw: dict) -> dict:
+    """ADR 0013: the match-scoring rule and its parameters, checked once —
+    a named rule, a positive fence, a value floor that is the value cap's
+    mirror in log space around 100 (40 and 250), and the winsor bounds."""
+    import math
+    block = dict(raw)
+    rule = str(block.get("match_scoring", "N0"))
+    assert rule in MATCH_SCORING_RULES, f"normalization.match_scoring {rule!r} is not one of {MATCH_SCORING_RULES}"
+    block["match_scoring"] = rule
+    floor, cap = float(block["match_value_floor"]), float(block["match_value_cap"])
+    assert 0 < floor < 100 < cap, (floor, cap)
+    assert abs(math.log(floor / 100.0) + math.log(cap / 100.0)) < 1e-9, (
+        "match_value_floor must mirror match_value_cap in log space around 100")
+    block["match_value_floor"], block["match_value_cap"] = floor, cap
+    block["match_fence_iqr"] = float(block["match_fence_iqr"])
+    assert block["match_fence_iqr"] > 0
+    lo, hi = block["winsor_percentiles"]
+    assert 0 <= lo < hi <= 100, (lo, hi)
+    block["winsor_percentiles"] = [float(lo), float(hi)]
+    return block
 
 
 def load_registry(path: Path = REGISTRY_PATH) -> Registry:
@@ -342,6 +370,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         stat_pages=stat_pages, crime=dict(crime), strings=strings,
         city_description=desc,
         winsor_percentiles=tuple(raw["normalization"]["winsor_percentiles"]),
+        normalization=_normalization_block(raw["normalization"]),
         missing_data_policy=raw["missing_data_policy"].strip(),
         sources=sources, measure_page=measure_page)
 

@@ -14,6 +14,21 @@ normalization:
   winsor_percentiles: [1, 99]      # extensive quantities, per query
   extensive: "winsorize -> log10 -> min-max across the ranked set for this query"
   intensive: "percentile rank across the ranked set for this query"
+  # Phase 3d (ADR 0013): how CHANCES OF MATCHING enters the score. N0 is
+  # the percentile rank every intensive feature takes; V1, V2 and V3 score
+  # the value — x = ln(index / 100), min-max scaled to 0-100 across the
+  # ranked set for this query — after one layer of outlier handling: V1
+  # winsorizes x at winsor_percentiles (as pool size is), V2 clips x to the
+  # Tukey fences (match_fence_iqr interquartile ranges beyond the
+  # quartiles), V3 clips the index to [match_value_floor, match_value_cap]
+  # before the log (the floor is the cap's mirror in log space). A one-city
+  # set or identical values score 50; a missing value stays missing. The
+  # value cap is NOT the display cap (strings.match_display_cap), which
+  # stays presentational. N0 until the measured rule picks a winner.
+  match_scoring: N0
+  match_value_floor: 40
+  match_value_cap: 250
+  match_fence_iqr: 1.5
 
 # Six pillars since m2.1.0 (Phase 2d item 4): the old lifestyle pillar
 # split into weather and students so each gets its own importance control.

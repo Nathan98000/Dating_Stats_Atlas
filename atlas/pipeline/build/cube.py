@@ -292,6 +292,10 @@ def build(out_root=None) -> str:
             "size_vs_odds": reg.size_vs_odds,
             "importance_levels": reg.importance_levels,
         },
+        # Phase 3d (ADR 0013): how chances of matching enters the score
+        # (the rule and its parameters); a build without the block is
+        # read as N0, the percentile rank
+        "normalization": reg.normalization,
         "standing_bands": reg.standing_bands,
         "race_groups": list(reg.race_groups),
         "city_cards": list(reg.city_cards),

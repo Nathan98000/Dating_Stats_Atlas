@@ -52,7 +52,7 @@ import numpy as np
 
 from atlas import model as engine
 from atlas.model.preferences import EDU_LEVELS, RACE_LEVELS, SEX_LEVELS, seeker_weights
-from atlas.model.scoring import score_vector
+from atlas.model.scoring import match_scoring_spec, score_vector
 from atlas.model.tests.golden.make_fixture import GOLDEN_VECTORS
 from atlas.pipeline.fetch import DATA, RESULTS
 
@@ -187,6 +187,12 @@ def wobble_of(order: np.ndarray, top: int = TOP) -> tuple[float, bool]:
     return float(np.mean(moves)), hit
 
 
+def score_rule(build) -> str:
+    """The match-scoring rule this build's manifest names (ADR 0013); the
+    gate scores through scoring.score_vector, so it is the engine's."""
+    return match_scoring_spec(build)[0]
+
+
 def _hash(a: np.ndarray, decimals: int) -> str:
     return hashlib.sha256(np.ascontiguousarray(np.round(a, decimals)).tobytes()).hexdigest()[:24]
 
@@ -237,7 +243,22 @@ def search_record(build, req, res: dict, S0: np.ndarray, S: np.ndarray,
     with np.errstate(invalid="ignore", divide="ignore"):
         rel = np.nanmax(np.abs(match0 - served) / np.abs(served))
     by_cbsa = np.argsort(np.array(ranked))
+    # Phase 3d (ADR 0013) diagnostics, never in the verdict: the spread of
+    # the match feature's normalised value over the middle 80% of ranked
+    # cities (the outlier condition reads it) and how much matching
+    # steers this ranking, Kendall's tau between the score and the index
+    from scipy.stats import kendalltau
+    zm = np.array([next((s["z"] for s in r["stats"] if s["id"] == "match_propensity"), np.nan)
+                   for r in res["ranked"]], float)
+    scores = np.array([r["score"] for r in res["ranked"]], float)
+    okz = ~np.isnan(zm)
+    oks = ~np.isnan(served)
+    spread = float(np.percentile(zm[okz], 90) - np.percentile(zm[okz], 10)) if okz.sum() >= 2 else None
+    tau = float(kendalltau(scores[oks], served[oks]).statistic) if oks.sum() >= 2 else None
     return {"n_ranked": n, "same_sex": bool(same_sex),
+            "match_score_spread_p10_p90": (round(spread, 3) if spread is not None else None),
+            "steering_tau": (round(tau, 4) if tau is not None and np.isfinite(tau) else None),
+            "match_scoring": score_rule(build),
             "wobble": round(float(wobbles.mean()), 6),
             "wobble_p90_over_replicates": round(float(np.percentile(wobbles, 90)), 4),
             "overlap_share_old_rule": hits / N_REP,
@@ -266,6 +287,7 @@ def gate_record(build, con, name: str, noise_scale: float = 1.0,
     ss = build.kernel.same_sex
     out = {"name": name, "build": build.manifest["data_version"],
            "model_version": engine.MODEL_VERSION, "noise_scale": noise_scale,
+           "match_scoring": score_rule(build),
            "kernel": {"version": km.get("version"), "fitting_sample": km.get("fitting_sample"),
                       "age_cohorts": km.get("age_cohorts"), "edu_by_sex": km.get("edu_by_sex"),
                       "interaction": km.get("interaction"),

@@ -193,6 +193,17 @@ ceiling and the `+` token are registry strings (`match_display_cap`,
 `match_display_cap_token`); Nathan's copy is unchanged and the
 information box gained nothing.
 
+**Amended, Phase 3d (ADR 0013).** The reason above — "the feature is
+percentile-ranked, so no score, rank, standing or band reads the display"
+— stops being the reason once the match feature is scored by its value
+rather than its rank (ADR 0013). What still holds, and what the engine
+test still asserts, is that the display cap is presentational: scoring
+reads the served index through the registry's own `normalization`
+block (a value cap of its own when the fixed-cap candidate is in force,
+`match_value_cap`, never `match_display_cap`), the standing and the band
+keep reading the display percentile, and rankings are bit-identical with
+the display ceiling at 1 and at a million.
+
 ## Rejected
 
 - **Per-metro kernel fitting** — no sample: the median metro about 23 couples per marginal kernel cell and the smallest 3 (recent unions; 123 and 34 on the stock the brief counted).

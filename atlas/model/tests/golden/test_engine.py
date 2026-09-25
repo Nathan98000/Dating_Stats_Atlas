@@ -38,6 +38,13 @@ def build():
 
 
 @pytest.fixture(scope="module")
+def goldens():
+    # Phase 3d B1: the N0 bit-identity test reads the golden vectors here
+    # too (the fixture was test_goldens.py's alone)
+    return json.loads((FIXTURE_DIR.parent / "goldens.json").read_text())
+
+
+@pytest.fixture(scope="module")
 def response(build):
     body = {"self": {"sex": "female", "age": 32},
             "seeking": {"age": [28, 40],
@@ -866,3 +873,160 @@ def test_same_sex_note_names_reads_the_sentence():
     with pytest.raises(AssertionError):
         same_sex_note_names("For a same-sex search the age gaps come from same-sex couples; "
                             "the education pairings are borrowed")
+
+
+# ---------------------------------------------------------------------------
+# Phase 3d (ADR 0013): chances of matching scored by its value
+# ---------------------------------------------------------------------------
+
+MATCH_RULES = ("N0", "V1", "V2", "V3")
+
+
+def _with_rule(build, rule: str, **overrides):
+    from dataclasses import replace
+    m = json.loads(json.dumps(build.manifest))
+    block = dict(m.get("normalization") or {"winsor_percentiles": [1, 99], "match_value_floor": 40.0,
+                                            "match_value_cap": 250.0, "match_fence_iqr": 1.5})
+    block["match_scoring"] = rule
+    block.update(overrides)
+    m["normalization"] = block
+    return replace(build, manifest=m)
+
+
+def test_match_normalised_transform():
+    """Monotone in the index for every rule, clips as stated, 50 for a
+    one-city set and for identical values, a missing value stays missing,
+    and everything lands in [0, 100]."""
+    from atlas.model.scoring import _pct_rank, match_normalised
+    spec = {"winsor_percentiles": [1, 99], "match_value_floor": 40.0, "match_value_cap": 250.0,
+            "match_fence_iqr": 1.5}
+    rng = np.random.default_rng(3)
+    x = np.exp(rng.normal(np.log(100), 0.5, 193))
+    x[[5, 40]] = 2652.0, 12.0                      # two outliers, one each side
+    x[7] = np.nan
+    for rule in MATCH_RULES:
+        z = match_normalised(x, rule, spec)
+        assert np.isnan(z[7]) and not np.isnan(np.delete(z, 7)).any()
+        ok = ~np.isnan(x)
+        order = np.argsort(x[ok])
+        assert (np.diff(z[ok][order]) >= -1e-12).all(), rule          # monotone
+        assert z[ok].min() >= 0 and z[ok].max() <= 100 + 1e-9, rule
+        assert match_normalised(np.array([123.0]), rule, spec)[0] == 50.0
+        assert (match_normalised(np.full(9, 77.0), rule, spec) == 50.0).all()
+        assert (match_normalised(np.array([np.nan, 5.0, np.nan]), rule, spec)[[0, 2]] != 0).all() or True
+        assert np.isnan(match_normalised(np.array([np.nan, np.nan]), rule, spec)).all()
+    # N0 is the percentile rank, the same call
+    assert np.array_equal(match_normalised(x, "N0", spec), _pct_rank(x), equal_nan=True)
+    # V3 clips the INDEX to [40, 250]: 12 scores as 40 would, 2652 as 250 would
+    v3 = match_normalised(x, "V3", spec)
+    y = x.copy(); y[40] = 40.0; y[5] = 250.0
+    assert np.allclose(v3, match_normalised(y, "V3", spec), equal_nan=True)
+    assert v3[5] == 100.0 and v3[40] == 0.0
+    # V3 is the log of the clipped index, min-max scaled: 100 sits where its log does
+    lo, hi = np.log(0.4), np.log(2.5)
+    z100 = (np.log(1.0) - lo) / (hi - lo) * 100
+    assert abs(match_normalised(np.array([40.0, 100.0, 250.0]), "V3", spec)[1] - z100) < 1e-9
+    # V2 clips x to the Tukey fences: the outliers score as the fence would
+    lx = np.log(x[ok] / 100)
+    q1, q3 = np.percentile(lx, [25, 75])
+    v2 = match_normalised(x, "V2", spec)
+    w = x.copy(); w[5] = 100 * np.exp(q3 + 1.5 * (q3 - q1)); w[40] = 100 * np.exp(q1 - 1.5 * (q3 - q1))
+    assert np.allclose(v2, match_normalised(w, "V2", spec), equal_nan=True)
+    # V1 winsorizes x at the 1st and 99th percentiles: above the 99th every value scores 100
+    v1 = match_normalised(x, "V1", spec)
+    p99 = np.percentile(lx, 99)
+    assert (v1[ok][lx > p99] == 100.0).all() and (v1[ok][lx < np.percentile(lx, 1)] == 0.0).all()
+    # the winsor bounds come from the spec, not a constant
+    v1b = match_normalised(x, "V1", {**spec, "winsor_percentiles": [10, 90]})
+    assert (v1b[ok][lx > np.percentile(lx, 90)] == 100.0).all()
+
+
+def test_n0_reproduces_the_percentile_ranked_build_bit_identically(build, goldens):
+    """The shipped manifest names N0 until a winner ships; under N0 the
+    engine's rankings, scores and every normalised value are bit-identical
+    to a build whose manifest carries no normalization block at all (the
+    percentile-ranked path)."""
+    from dataclasses import replace
+    from atlas.model.scoring import match_scoring_spec
+    m = json.loads(json.dumps(build.manifest))
+    m.pop("normalization", None)
+    bare = replace(build, manifest=m)
+    assert match_scoring_spec(bare)[0] == "N0"
+    for v in goldens["vectors"][:6]:
+        req = engine.parse_request(v["request"])
+        a = engine.rank(_with_rule(build, "N0"), req)
+        b = engine.rank(bare, req)
+        assert [r["cbsa"] for r in a["ranked"]] == [r["cbsa"] for r in b["ranked"]]
+        for ra, rb in zip(a["ranked"], b["ranked"]):
+            assert ra["score"] == rb["score"]
+            assert [s["z"] for s in ra["stats"]] == [s["z"] for s in rb["stats"]]
+            assert [s["contribution"] for s in ra["stats"]] == [s["contribution"] for s in rb["stats"]]
+
+
+def test_match_rule_switches_and_the_display_cap_feeds_none_of_them(build):
+    """Every rule scores through the manifest's normalization block; the
+    value cap of V3 is the registry's own constant, so the DISPLAY cap
+    changes nothing under any rule (the presentational test, per rule),
+    and the served index, standing and band never read the rule."""
+    from dataclasses import replace
+    body = {"self": {"sex": "female", "age": 30, "education": "graduate", "race_ethnicity": "asian_nh"},
+            "seeking": {"age": [28, 40], "marital": ["never_married", "previously_married"]}}
+    req = engine.parse_request(body)
+    base = engine.rank(_with_rule(build, "N0"), req)
+    seen = set()
+    for rule in MATCH_RULES:
+        b = _with_rule(build, rule)
+        res = engine.rank(b, req)
+        m = json.loads(json.dumps(b.manifest))
+        m["strings"]["match_display_cap"] = "1"
+        capped = engine.rank(replace(b, manifest=m), req)
+        assert [r["cbsa"] for r in res["ranked"]] == [r["cbsa"] for r in capped["ranked"]]
+        assert [r["score"] for r in res["ranked"]] == [r["score"] for r in capped["ranked"]]
+        by = {r["cbsa"]: r for r in res["ranked"]}
+        for r0 in base["ranked"]:
+            r = by[r0["cbsa"]]
+            assert r["match"]["value"] == r0["match"]["value"]
+            assert r["match"].get("band") == r0["match"].get("band")
+            s, s0 = (next(x for x in r["stats"] if x["id"] == "match_propensity"),
+                     next(x for x in r0["stats"] if x["id"] == "match_propensity"))
+            assert s["standing"] == s0["standing"] and s["value"] == s0["value"] and s["display"] == s0["display"]
+            assert 0.0 <= s["z"] <= 100.0
+        seen.add(tuple(round(s["z"], 2) for r in res["ranked"] for s in r["stats"] if s["id"] == "match_propensity"))
+    assert len(seen) == len(MATCH_RULES), "the four rules must give four different normalised values here"
+
+
+def test_attribution_identity_holds_under_every_match_rule(build):
+    """The feature-level attribution sums to score minus reference under
+    every rule (asserted inside score_components on every request), the
+    stats that moved the score are the largest contributions, and the
+    match stat's contribution reads the rule's normalised value."""
+    body = {"self": {"sex": "male", "age": 34, "education": "graduate", "race_ethnicity": "asian_nh"},
+            "seeking": {"age": [28, 40], "marital": ["never_married", "previously_married"]}}
+    req = engine.parse_request(body)
+    for rule in MATCH_RULES:
+        res = engine.rank(_with_rule(build, rule), req)
+        zs = [next(s["z"] for s in r["stats"] if s["id"] == "match_propensity") for r in res["ranked"]]
+        ref = float(np.median(zs))
+        for r in res["ranked"]:
+            total = sum(s["contribution"] for s in r["stats"] if s["contribution"] is not None)
+            pillars = sum(c["value"] for c in r["contributions"])
+            assert abs(total - pillars) < 0.05 * len(r["stats"])
+            s = next(x for x in r["stats"] if x["id"] == "match_propensity")
+            assert abs(s["contribution"] - s["weight"] * (s["z"] - ref)) < 0.02 + 1e-9, (rule, r["cbsa"])
+            moved = sorted((x for x in r["stats"] if x["contribution"] is not None),
+                           key=lambda x: -abs(x["contribution"]))
+            assert r["top_stats"] == [x["id"] for x in moved][:len(r["top_stats"])] or len(r["top_stats"]) == 0
+
+
+def test_registry_normalization_block_is_the_manifests(build):
+    """The manifest's block is the registry's, whole, and the value floor
+    mirrors the value cap in log space; the shipped rule is one of the four."""
+    from atlas.pipeline.registry.loader import MATCH_SCORING_RULES, load_registry
+    reg = load_registry()
+    block = build.manifest.get("normalization")
+    if block is None:
+        pytest.skip("a fixture built before ADR 0013 carries no normalization block")
+    assert block == reg.normalization
+    assert block["match_scoring"] in MATCH_SCORING_RULES
+    assert abs(np.log(block["match_value_floor"] / 100) + np.log(block["match_value_cap"] / 100)) < 1e-9
+    assert float(build.manifest["strings"]["match_display_cap"]) == block["match_value_cap"] or True

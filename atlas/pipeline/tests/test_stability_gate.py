@@ -74,3 +74,31 @@ def test_test_searches_are_unique_and_cover_the_three_sets():
     assert len(grid) == 2 * 5 * (1 + 4 + 8 + 32)
     ss = dict(s)["samesex:female:30:edu=bachelors"]
     assert ss["seeking"]["sex"] == "female" and ss["seeking"]["age"] == [28, 40]
+
+
+def test_gate_scores_through_the_engines_function():
+    """ADR 0013: the gate must pick the match-scoring rule up from the same
+    function the engine uses — no copy. score_vector is scoring's own
+    object, it reads the rule from the build's manifest, and the gate's
+    record names that rule."""
+    from atlas.model import scoring
+    assert SG.score_vector is scoring.score_vector
+    assert SG.score_rule.__module__ == SG.__name__
+    import inspect
+    src = inspect.getsource(SG)
+    assert "_pct_rank(" not in src and "match_normalised(" not in src, "the gate keeps no copy of the normalisation"
+    assert "score_rule(build)" in inspect.getsource(SG.gate_record)
+
+
+def test_gate_rule_follows_the_manifest():
+    from dataclasses import replace
+    from pathlib import Path
+    from atlas import model as engine
+    from atlas.model.tests.golden.make_fixture import FIXTURE
+    import json
+    build = engine.load_build(FIXTURE, allow_model_mismatch=True)
+    assert SG.score_rule(build) == (build.manifest.get("normalization") or {}).get("match_scoring", "N0")
+    m = json.loads(json.dumps(build.manifest))
+    m["normalization"] = {**(m.get("normalization") or {}), "match_scoring": "V2", "winsor_percentiles": [1, 99],
+                          "match_value_floor": 40.0, "match_value_cap": 250.0, "match_fence_iqr": 1.5}
+    assert SG.score_rule(replace(build, manifest=m)) == "V2"

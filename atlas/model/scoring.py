@@ -33,6 +33,10 @@ Normalisation (§7.2), per request, across the RANKED SET FOR THIS QUERY:
   extensive (pool):       winsorize 1/99 -> log10 -> min-max -> [0,100]
   intensive (everything): percentile rank -> [0,100], direction from the
                           registry (via the manifest features_block)
+  chances of matching:    the manifest's normalization.match_scoring rule
+                          (ADR 0013, match_normalised): N0 the percentile
+                          rank above; V1/V2/V3 the value, ln(index / 100)
+                          min-max scaled after outlier handling
 
 Attribution stays feature-level (ADR 0003) with the reference defined once
 as the feature-level median over the query's ranked set; the sum identity
@@ -152,6 +156,57 @@ def _pct_rank(x: np.ndarray) -> np.ndarray:
     return out
 
 
+MATCH_SCORING_DEFAULT = "N0"
+
+
+def match_scoring_spec(build: Build) -> tuple[str, dict]:
+    """ADR 0013: the rule the build's manifest names for scoring chances
+    of matching and its parameters; a build without the block (m3.4.0 and
+    earlier) is N0, the percentile rank."""
+    block = build.manifest.get("normalization") or {}
+    return str(block.get("match_scoring", MATCH_SCORING_DEFAULT)), block
+
+
+def match_normalised(match: np.ndarray, rule: str, spec: dict) -> np.ndarray:
+    """The match feature's normalised value in [0, 100] (ADR 0013).
+
+    N0: the average-rank percentile every intensive feature takes (the
+    same call, so it reproduces the percentile-ranked build bit for bit).
+    V1, V2, V3: x = ln(index / 100), so 2x and 1/2x the national average
+    sit equally far from it; then one layer of outlier handling — V1
+    winsorizes x at the registry's winsor_percentiles of the ranked set,
+    V2 clips x to [Q1 - k IQR, Q3 + k IQR] of the ranked set (k =
+    match_fence_iqr), V3 clips the INDEX to [match_value_floor,
+    match_value_cap] before the log — and min-max scaling to 0-100 across
+    the ranked set. A one-city set or identical values score 50; a
+    missing value stays missing. Monotone in the index for every rule."""
+    if rule == "N0":
+        return _pct_rank(match)
+    out = np.full(match.shape, np.nan)
+    ok = ~np.isnan(match)
+    v = match[ok].astype(np.float64)
+    if len(v) == 0:
+        return out
+    if len(v) == 1:
+        out[ok] = 50.0
+        return out
+    if rule == "V3":
+        v = np.clip(v, float(spec["match_value_floor"]), float(spec["match_value_cap"]))
+    x = np.log(np.maximum(v, 1e-300) / 100.0)
+    if rule == "V1":
+        lo, hi = np.percentile(x, list(spec["winsor_percentiles"]))
+        x = np.clip(x, lo, hi)
+    elif rule == "V2":
+        q1, q3 = np.percentile(x, [25.0, 75.0])
+        k = float(spec["match_fence_iqr"])
+        x = np.clip(x, q1 - k * (q3 - q1), q3 + k * (q3 - q1))
+    elif rule != "V3":
+        raise ValueError(f"unknown match scoring rule {rule!r}")
+    span = x.max() - x.min()
+    out[ok] = 50.0 if span <= 0 else (x - x.min()) / span * 100.0
+    return out
+
+
 def _pct_rank_interp(base: np.ndarray, moved: np.ndarray) -> np.ndarray:
     """Percentile of `moved` values within the fixed `base` distribution."""
     base = base[~np.isnan(base)]
@@ -192,13 +247,14 @@ def score_components(build: Build, ridx: np.ndarray, est: np.ndarray,
     n, F = len(ridx), len(feats)
     z = np.full((n, F), np.nan)
     raw = np.full((n, F), np.nan)
+    rule, spec = match_scoring_spec(build)
     for j, f in enumerate(feats):
         if f["id"] == "pool_size":
             raw[:, j] = est
             z[:, j] = _winsor_log_minmax(est)
         elif f["id"] == "match_propensity":
             raw[:, j] = match
-            z[:, j] = _pct_rank(match)
+            z[:, j] = match_normalised(match, rule, spec)
         else:
             raw[:, j] = build.static[f["id"]][ridx]
             z[:, j] = _pct_rank(raw[:, j] * f["direction"])
@@ -402,9 +458,10 @@ def match_display(value: float, build: Build) -> tuple[str, bool]:
     Phase 3b A3): the registry's display spec, capped at the registry's
     ceiling with its token appended — "250+" — wherever the figure
     renders (result rows, the city page, the compare table, the stats
-    entry). Presentational only: the feature is percentile-ranked, so no
-    score, rank, standing or band ever reads the display (asserted in
-    test_match_display_cap_is_presentational). Returns (display, capped);
+    entry). Presentational only: no score, rank, standing or band ever
+    reads the display (asserted in test_match_display_cap_is_presentational;
+    since ADR 0013 the score reads the served index through the registry's
+    normalization block, never this ceiling). Returns (display, capped);
     the compare table shows no difference against a capped figure."""
     le = build.legend["match_propensity"]
     strings = build.manifest["strings"]
