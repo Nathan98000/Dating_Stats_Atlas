@@ -1,0 +1,3899 @@
+{
+ "source": "results/phase2d/pleasant_days_ghcn.csv (the table build.features reads)",
+ "metros": 387,
+ "with_station": 387,
+ "by_country": {
+  "US": 386,
+  "CA": 1
+ },
+ "by_network": {
+  "W": 212,
+  "C": 174,
+  "0": 1
+ },
+ "outside_us": [
+  {
+   "cbsa": "19820",
+   "metro": "Detroit-Warren-Dearborn, MI",
+   "station": "CA006139520",
+   "country": "CA",
+   "network": "0",
+   "station_km": 14.94,
+   "station_rank": 2,
+   "years_used": 27
+  }
+ ],
+ "verdict": "1 served metro(s) on a station outside the US: rematch in Stage 3b",
+ "stations": [
+  {
+   "cbsa": "10180",
+   "metro": "Abilene, TX",
+   "station": "USW00013962",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.19,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "10420",
+   "metro": "Akron, OH",
+   "station": "USW00014895",
+   "country": "US",
+   "network": "W",
+   "station_km": 19.21,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "10500",
+   "metro": "Albany, GA",
+   "station": "USC00090140",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.56,
+   "station_rank": 1,
+   "years_used": 26
+  },
+  {
+   "cbsa": "10540",
+   "metro": "Albany, OR",
+   "station": "USC00351862",
+   "country": "US",
+   "network": "C",
+   "station_km": 7.42,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "10580",
+   "metro": "Albany-Schenectady-Troy, NY",
+   "station": "USW00014735",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.06,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "10740",
+   "metro": "Albuquerque, NM",
+   "station": "USW00023050",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.55,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "10780",
+   "metro": "Alexandria, LA",
+   "station": "USC00160098",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.14,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "10900",
+   "metro": "Allentown-Bethlehem-Easton, PA-NJ",
+   "station": "USW00014737",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.75,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "11020",
+   "metro": "Altoona, PA",
+   "station": "USC00360140",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.73,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "11100",
+   "metro": "Amarillo, TX",
+   "station": "USW00023047",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.6,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "11180",
+   "metro": "Ames, IA",
+   "station": "USC00130203",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.46,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "11200",
+   "metro": "Amherst Town-Northampton, MA",
+   "station": "USC00190120",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.53,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "11260",
+   "metro": "Anchorage, AK",
+   "station": "USC00502656",
+   "country": "US",
+   "network": "C",
+   "station_km": 15.96,
+   "station_rank": 1,
+   "years_used": 28
+  },
+  {
+   "cbsa": "11460",
+   "metro": "Ann Arbor, MI",
+   "station": "USC00200230",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.05,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "11500",
+   "metro": "Anniston-Oxford, AL",
+   "station": "USW00013871",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.83,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "11540",
+   "metro": "Appleton, WI",
+   "station": "USC00470265",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.95,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "11700",
+   "metro": "Asheville, NC",
+   "station": "USW00013872",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.73,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12020",
+   "metro": "Athens-Clarke County, GA",
+   "station": "USW00013873",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.11,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12060",
+   "metro": "Atlanta-Sandy Springs-Roswell, GA",
+   "station": "USW00013874",
+   "country": "US",
+   "network": "W",
+   "station_km": 14.92,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12100",
+   "metro": "Atlantic City-Hammonton, NJ",
+   "station": "USW00013724",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.36,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12220",
+   "metro": "Auburn-Opelika, AL",
+   "station": "USC00014502",
+   "country": "US",
+   "network": "C",
+   "station_km": 33.76,
+   "station_rank": 1,
+   "years_used": 25
+  },
+  {
+   "cbsa": "12260",
+   "metro": "Augusta-Richmond County, GA-SC",
+   "station": "USW00003820",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.79,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12420",
+   "metro": "Austin-Round Rock-San Marcos, TX",
+   "station": "USW00013958",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.54,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12540",
+   "metro": "Bakersfield-Delano, CA",
+   "station": "USW00023155",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.15,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12580",
+   "metro": "Baltimore-Columbia-Towson, MD",
+   "station": "USW00093721",
+   "country": "US",
+   "network": "W",
+   "station_km": 15.46,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12620",
+   "metro": "Bangor, ME",
+   "station": "USW00014606",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.25,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "12700",
+   "metro": "Barnstable Town, MA",
+   "station": "USC00192451",
+   "country": "US",
+   "network": "C",
+   "station_km": 28.47,
+   "station_rank": 1,
+   "years_used": 25
+  },
+  {
+   "cbsa": "12940",
+   "metro": "Baton Rouge, LA",
+   "station": "USC00165620",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.06,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "12980",
+   "metro": "Battle Creek, MI",
+   "station": "USC00203661",
+   "country": "US",
+   "network": "C",
+   "station_km": 38.41,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13020",
+   "metro": "Bay City, MI",
+   "station": "USW00014845",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.01,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13140",
+   "metro": "Beaumont-Port Arthur, TX",
+   "station": "USC00410613",
+   "country": "US",
+   "network": "C",
+   "station_km": 14.31,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13220",
+   "metro": "Beckley, WV",
+   "station": "USC00460580",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.02,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "13380",
+   "metro": "Bellingham, WA",
+   "station": "USC00450587",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.19,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13460",
+   "metro": "Bend, OR",
+   "station": "USW00024230",
+   "country": "US",
+   "network": "W",
+   "station_km": 25.85,
+   "station_rank": 2,
+   "years_used": 26
+  },
+  {
+   "cbsa": "13740",
+   "metro": "Billings, MT",
+   "station": "USW00024033",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.13,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13780",
+   "metro": "Binghamton, NY",
+   "station": "USW00004725",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.58,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13820",
+   "metro": "Birmingham, AL",
+   "station": "USW00013876",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.44,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13900",
+   "metro": "Bismarck, ND",
+   "station": "USW00024011",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.05,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "13980",
+   "metro": "Blacksburg-Christiansburg-Radford, VA",
+   "station": "USC00440766",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.23,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "14010",
+   "metro": "Bloomington, IL",
+   "station": "USC00116200",
+   "country": "US",
+   "network": "C",
+   "station_km": 8.34,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "14020",
+   "metro": "Bloomington, IN",
+   "station": "USC00120784",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.17,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "14260",
+   "metro": "Boise City, ID",
+   "station": "USW00024131",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.54,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "14460",
+   "metro": "Boston-Cambridge-Newton, MA-NH",
+   "station": "USW00014739",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.11,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "14500",
+   "metro": "Boulder, CO",
+   "station": "USC00050848",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.76,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "14540",
+   "metro": "Bowling Green, KY",
+   "station": "USW00093808",
+   "country": "US",
+   "network": "W",
+   "station_km": 1.6,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "14580",
+   "metro": "Bozeman, MT",
+   "station": "USC00241044",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.57,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "14740",
+   "metro": "Bremerton-Silverdale-Port Orchard, WA",
+   "station": "USW00024233",
+   "country": "US",
+   "network": "W",
+   "station_km": 32.05,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "14860",
+   "metro": "Bridgeport-Stamford-Danbury, CT",
+   "station": "USW00094702",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.33,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "15180",
+   "metro": "Brownsville-Harlingen, TX",
+   "station": "USW00012919",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.22,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "15260",
+   "metro": "Brunswick-St. Simons, GA",
+   "station": "USW00013878",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.5,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "15380",
+   "metro": "Buffalo-Cheektowaga, NY",
+   "station": "USW00014733",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.82,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "15500",
+   "metro": "Burlington, NC",
+   "station": "USC00317202",
+   "country": "US",
+   "network": "C",
+   "station_km": 39.38,
+   "station_rank": 3,
+   "years_used": 29
+  },
+  {
+   "cbsa": "15540",
+   "metro": "Burlington-South Burlington, VT",
+   "station": "USW00014742",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.59,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "15940",
+   "metro": "Canton-Massillon, OH",
+   "station": "USW00014895",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.85,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "15980",
+   "metro": "Cape Coral-Fort Myers, FL",
+   "station": "USW00012835",
+   "country": "US",
+   "network": "W",
+   "station_km": 14.99,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16020",
+   "metro": "Cape Girardeau, MO-IL",
+   "station": "USW00003935",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.49,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "16180",
+   "metro": "Carson City, NV",
+   "station": "USC00265191",
+   "country": "US",
+   "network": "C",
+   "station_km": 22.19,
+   "station_rank": 3,
+   "years_used": 27
+  },
+  {
+   "cbsa": "16220",
+   "metro": "Casper, WY",
+   "station": "USW00024089",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.87,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16300",
+   "metro": "Cedar Rapids, IA",
+   "station": "USW00014990",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.78,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16540",
+   "metro": "Chambersburg, PA",
+   "station": "USC00361354",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.61,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "16580",
+   "metro": "Champaign-Urbana, IL",
+   "station": "USC00118740",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.42,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16620",
+   "metro": "Charleston, WV",
+   "station": "USW00013866",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.96,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16700",
+   "metro": "Charleston-North Charleston, SC",
+   "station": "USW00013782",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.46,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16740",
+   "metro": "Charlotte-Concord-Gastonia, NC-SC",
+   "station": "USW00013881",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.31,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16820",
+   "metro": "Charlottesville, VA",
+   "station": "USC00441593",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.3,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "16860",
+   "metro": "Chattanooga, TN-GA",
+   "station": "USW00013882",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.67,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16940",
+   "metro": "Cheyenne, WY",
+   "station": "USW00024018",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.69,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "16980",
+   "metro": "Chicago-Naperville-Elgin, IL-IN",
+   "station": "USC00111577",
+   "country": "US",
+   "network": "C",
+   "station_km": 13.48,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "17020",
+   "metro": "Chico, CA",
+   "station": "USC00046685",
+   "country": "US",
+   "network": "C",
+   "station_km": 16.55,
+   "station_rank": 1,
+   "years_used": 25
+  },
+  {
+   "cbsa": "17140",
+   "metro": "Cincinnati, OH-KY-IN",
+   "station": "USW00093812",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.62,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "17300",
+   "metro": "Clarksville, TN-KY",
+   "station": "USC00401790",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.32,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "17410",
+   "metro": "Cleveland, OH",
+   "station": "USW00014820",
+   "country": "US",
+   "network": "W",
+   "station_km": 16.7,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "17420",
+   "metro": "Cleveland, TN",
+   "station": "USC00401808",
+   "country": "US",
+   "network": "C",
+   "station_km": 8.44,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "17660",
+   "metro": "Coeur d'Alene, ID",
+   "station": "USC00108062",
+   "country": "US",
+   "network": "C",
+   "station_km": 45.96,
+   "station_rank": 4,
+   "years_used": 25
+  },
+  {
+   "cbsa": "17780",
+   "metro": "College Station-Bryan, TX",
+   "station": "USW00003904",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.42,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "17820",
+   "metro": "Colorado Springs, CO",
+   "station": "USW00093037",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.97,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "17860",
+   "metro": "Columbia, MO",
+   "station": "USW00003945",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.43,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "17900",
+   "metro": "Columbia, SC",
+   "station": "USC00381944",
+   "country": "US",
+   "network": "C",
+   "station_km": 12.86,
+   "station_rank": 1,
+   "years_used": 27
+  },
+  {
+   "cbsa": "17980",
+   "metro": "Columbus, GA-AL",
+   "station": "USW00093842",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.42,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "18020",
+   "metro": "Columbus, IN",
+   "station": "USC00121747",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.58,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "18140",
+   "metro": "Columbus, OH",
+   "station": "USW00014821",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.23,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "18580",
+   "metro": "Corpus Christi, TX",
+   "station": "USW00012924",
+   "country": "US",
+   "network": "W",
+   "station_km": 33.42,
+   "station_rank": 4,
+   "years_used": 30
+  },
+  {
+   "cbsa": "18700",
+   "metro": "Corvallis, OR",
+   "station": "USC00351862",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.99,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "18880",
+   "metro": "Crestview-Fort Walton Beach-Destin, FL",
+   "station": "USW00013884",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.58,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "19100",
+   "metro": "Dallas-Fort Worth-Arlington, TX",
+   "station": "USW00013960",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.18,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "19140",
+   "metro": "Dalton, GA",
+   "station": "USW00013882",
+   "country": "US",
+   "network": "W",
+   "station_km": 33.33,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "19300",
+   "metro": "Daphne-Fairhope-Foley, AL",
+   "station": "USC00012813",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.41,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "19340",
+   "metro": "Davenport-Moline-Rock Island, IA-IL",
+   "station": "USC00117391",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.4,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "19430",
+   "metro": "Dayton-Kettering-Beavercreek, OH",
+   "station": "USC00332067",
+   "country": "US",
+   "network": "C",
+   "station_km": 0.87,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "19460",
+   "metro": "Decatur, AL",
+   "station": "USC00010655",
+   "country": "US",
+   "network": "C",
+   "station_km": 16.27,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "19500",
+   "metro": "Decatur, IL",
+   "station": "USC00112193",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.34,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "19660",
+   "metro": "Deltona-Daytona Beach-Ormond Beach, FL",
+   "station": "USC00087982",
+   "country": "US",
+   "network": "C",
+   "station_km": 11.98,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "19740",
+   "metro": "Denver-Aurora-Centennial, CO",
+   "station": "USW00023062",
+   "country": "US",
+   "network": "W",
+   "station_km": 1.01,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "19780",
+   "metro": "Des Moines-West Des Moines, IA",
+   "station": "USW00014933",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.59,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "19820",
+   "metro": "Detroit-Warren-Dearborn, MI",
+   "station": "CA006139520",
+   "country": "CA",
+   "network": "0",
+   "station_km": 14.94,
+   "station_rank": 2,
+   "years_used": 27
+  },
+  {
+   "cbsa": "20020",
+   "metro": "Dothan, AL",
+   "station": "USW00013839",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.97,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "20100",
+   "metro": "Dover, DE",
+   "station": "USC00072730",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.08,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "20220",
+   "metro": "Dubuque, IA",
+   "station": "USC00132364",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.78,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "20260",
+   "metro": "Duluth, MN-WI",
+   "station": "USW00014913",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.02,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "20500",
+   "metro": "Durham-Chapel Hill, NC",
+   "station": "USW00013722",
+   "country": "US",
+   "network": "W",
+   "station_km": 14.15,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "20580",
+   "metro": "Eagle Pass, TX",
+   "station": "USW00022010",
+   "country": "US",
+   "network": "W",
+   "station_km": 87.12,
+   "station_rank": 4,
+   "years_used": 30
+  },
+  {
+   "cbsa": "20740",
+   "metro": "Eau Claire, WI",
+   "station": "USW00014991",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.4,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "20940",
+   "metro": "El Centro, CA",
+   "station": "USC00044223",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.98,
+   "station_rank": 2,
+   "years_used": 26
+  },
+  {
+   "cbsa": "21060",
+   "metro": "Elizabethtown, KY",
+   "station": "USC00156988",
+   "country": "US",
+   "network": "C",
+   "station_km": 48.43,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "21140",
+   "metro": "Elkhart-Goshen, IN",
+   "station": "USC00123418",
+   "country": "US",
+   "network": "C",
+   "station_km": 16.47,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "21300",
+   "metro": "Elmira, NY",
+   "station": "USC00302610",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.27,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "21340",
+   "metro": "El Paso, TX",
+   "station": "USW00023044",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.43,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "21420",
+   "metro": "Enid, OK",
+   "station": "USC00342912",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.48,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "21500",
+   "metro": "Erie, PA",
+   "station": "USW00014860",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.83,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "21660",
+   "metro": "Eugene-Springfield, OR",
+   "station": "USW00024221",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.46,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "21780",
+   "metro": "Evansville, IN",
+   "station": "USW00093817",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.17,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "21820",
+   "metro": "Fairbanks-College, AK",
+   "station": "USC00502107",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.61,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "22020",
+   "metro": "Fargo, ND-MN",
+   "station": "USW00014914",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.74,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "22140",
+   "metro": "Farmington, NM",
+   "station": "USC00293142",
+   "country": "US",
+   "network": "C",
+   "station_km": 13.46,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "22180",
+   "metro": "Fayetteville, NC",
+   "station": "USC00313017",
+   "country": "US",
+   "network": "C",
+   "station_km": 10.69,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "22220",
+   "metro": "Fayetteville-Springdale-Rogers, AR",
+   "station": "USW00093993",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.8,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "22380",
+   "metro": "Flagstaff, AZ",
+   "station": "USW00003103",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.28,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "22420",
+   "metro": "Flint, MI",
+   "station": "USW00014826",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.95,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "22500",
+   "metro": "Florence, SC",
+   "station": "USW00013744",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.74,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "22520",
+   "metro": "Florence-Muscle Shoals, AL",
+   "station": "USW00013896",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.13,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "22540",
+   "metro": "Fond du Lac, WI",
+   "station": "USC00472839",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.78,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "22660",
+   "metro": "Fort Collins-Loveland, CO",
+   "station": "USC00053005",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.58,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "22900",
+   "metro": "Fort Smith, AR-OK",
+   "station": "USW00013964",
+   "country": "US",
+   "network": "W",
+   "station_km": 1.85,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "23060",
+   "metro": "Fort Wayne, IN",
+   "station": "USW00014827",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.93,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "23420",
+   "metro": "Fresno, CA",
+   "station": "USW00093193",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.76,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "23460",
+   "metro": "Gadsden, AL",
+   "station": "USC00017207",
+   "country": "US",
+   "network": "C",
+   "station_km": 31.58,
+   "station_rank": 1,
+   "years_used": 28
+  },
+  {
+   "cbsa": "23540",
+   "metro": "Gainesville, FL",
+   "station": "USW00012816",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.92,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "23580",
+   "metro": "Gainesville, GA",
+   "station": "USC00093621",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.07,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "23900",
+   "metro": "Gettysburg, PA",
+   "station": "USC00360656",
+   "country": "US",
+   "network": "C",
+   "station_km": 11.71,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24020",
+   "metro": "Glens Falls, NY",
+   "station": "USW00014750",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.16,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24140",
+   "metro": "Goldsboro, NC",
+   "station": "USC00317994",
+   "country": "US",
+   "network": "C",
+   "station_km": 35.42,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "24220",
+   "metro": "Grand Forks, ND-MN",
+   "station": "USC00323621",
+   "country": "US",
+   "network": "C",
+   "station_km": 0.79,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "24260",
+   "metro": "Grand Island, NE",
+   "station": "USW00014935",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.87,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24300",
+   "metro": "Grand Junction, CO",
+   "station": "USW00023066",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.54,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24340",
+   "metro": "Grand Rapids-Wyoming-Kentwood, MI",
+   "station": "USW00094860",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.7,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24420",
+   "metro": "Grants Pass, OR",
+   "station": "USC00353445",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.28,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "24500",
+   "metro": "Great Falls, MT",
+   "station": "USW00024143",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.02,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24540",
+   "metro": "Greeley, CO",
+   "station": "USC00053553",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.46,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24580",
+   "metro": "Green Bay, WI",
+   "station": "USW00014898",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.2,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24660",
+   "metro": "Greensboro-High Point, NC",
+   "station": "USW00013723",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.74,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24780",
+   "metro": "Greenville, NC",
+   "station": "USC00313638",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.77,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "24860",
+   "metro": "Greenville-Anderson-Greer, SC",
+   "station": "USW00003870",
+   "country": "US",
+   "network": "W",
+   "station_km": 14.06,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "25060",
+   "metro": "Gulfport-Biloxi, MS",
+   "station": "USC00220792",
+   "country": "US",
+   "network": "C",
+   "station_km": 7.17,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "25180",
+   "metro": "Hagerstown-Martinsburg, MD-WV",
+   "station": "USC00181790",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.19,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "25220",
+   "metro": "Hammond, LA",
+   "station": "USW00012916",
+   "country": "US",
+   "network": "W",
+   "station_km": 59.05,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "25260",
+   "metro": "Hanford-Corcoran, CA",
+   "station": "USC00043747",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.11,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "25420",
+   "metro": "Harrisburg-Carlisle, PA",
+   "station": "USW00014711",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.04,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "25500",
+   "metro": "Harrisonburg, VA",
+   "station": "USC00442208",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.78,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "25540",
+   "metro": "Hartford-West Hartford-East Hartford, CT",
+   "station": "USW00014752",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.24,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "25620",
+   "metro": "Hattiesburg, MS",
+   "station": "USC00220585",
+   "country": "US",
+   "network": "C",
+   "station_km": 38.71,
+   "station_rank": 1,
+   "years_used": 26
+  },
+  {
+   "cbsa": "25740",
+   "metro": "Helena, MT",
+   "station": "USW00024144",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.47,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "25860",
+   "metro": "Hickory-Lenoir-Morganton, NC",
+   "station": "USW00003810",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.66,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "25940",
+   "metro": "Hilton Head Island-Bluffton-Port Royal, SC",
+   "station": "USW00093831",
+   "country": "US",
+   "network": "W",
+   "station_km": 14.58,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "25980",
+   "metro": "Hinesville, GA",
+   "station": "USC00093538",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.8,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "26140",
+   "metro": "Homosassa Springs, FL",
+   "station": "USC00084289",
+   "country": "US",
+   "network": "C",
+   "station_km": 28.05,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "26300",
+   "metro": "Hot Springs, AR",
+   "station": "USC00033466",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.6,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "26380",
+   "metro": "Houma-Bayou Cane-Thibodaux, LA",
+   "station": "USC00163433",
+   "country": "US",
+   "network": "C",
+   "station_km": 30.73,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "26420",
+   "metro": "Houston-Pasadena-The Woodlands, TX",
+   "station": "USW00012918",
+   "country": "US",
+   "network": "W",
+   "station_km": 18.66,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "26580",
+   "metro": "Huntington-Ashland, WV-KY-OH",
+   "station": "USW00003860",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.64,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "26620",
+   "metro": "Huntsville, AL",
+   "station": "USW00003856",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.3,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "26820",
+   "metro": "Idaho Falls, ID",
+   "station": "USC00104456",
+   "country": "US",
+   "network": "C",
+   "station_km": 25.81,
+   "station_rank": 2,
+   "years_used": 29
+  },
+  {
+   "cbsa": "26900",
+   "metro": "Indianapolis-Carmel-Greenwood, IN",
+   "station": "USW00093819",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.22,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "26980",
+   "metro": "Iowa City, IA",
+   "station": "USW00014937",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.13,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "27060",
+   "metro": "Ithaca, NY",
+   "station": "USC00304174",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.46,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "27100",
+   "metro": "Jackson, MI",
+   "station": "USW00014833",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.8,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "27140",
+   "metro": "Jackson, MS",
+   "station": "USW00003940",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.7,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "27180",
+   "metro": "Jackson, TN",
+   "station": "USC00404561",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.19,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "27260",
+   "metro": "Jacksonville, FL",
+   "station": "USW00093837",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.42,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "27340",
+   "metro": "Jacksonville, NC",
+   "station": "USW00093727",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.81,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "27500",
+   "metro": "Janesville-Beloit, WI",
+   "station": "USC00470045",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.7,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "27620",
+   "metro": "Jefferson City, MO",
+   "station": "USC00234271",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.03,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "27740",
+   "metro": "Johnson City, TN",
+   "station": "USC00402806",
+   "country": "US",
+   "network": "C",
+   "station_km": 11.92,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "27780",
+   "metro": "Johnstown, PA",
+   "station": "USC00362470",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.0,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "27860",
+   "metro": "Jonesboro, AR",
+   "station": "USC00035563",
+   "country": "US",
+   "network": "C",
+   "station_km": 29.1,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "27900",
+   "metro": "Joplin, MO-KS",
+   "station": "USW00013987",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.58,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "27980",
+   "metro": "Kahului-Wailuku, HI",
+   "station": "USW00022516",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.85,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "28020",
+   "metro": "Kalamazoo-Portage, MI",
+   "station": "USC00208184",
+   "country": "US",
+   "network": "C",
+   "station_km": 36.21,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "28100",
+   "metro": "Kankakee, IL",
+   "station": "USC00125174",
+   "country": "US",
+   "network": "C",
+   "station_km": 41.49,
+   "station_rank": 2,
+   "years_used": 29
+  },
+  {
+   "cbsa": "28140",
+   "metro": "Kansas City, MO-KS",
+   "station": "USW00013988",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.37,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "28420",
+   "metro": "Kennewick-Richland, WA",
+   "station": "USC00454154",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.95,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "28450",
+   "metro": "Kenosha, WI",
+   "station": "USC00474174",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.05,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "28660",
+   "metro": "Killeen-Temple, TX",
+   "station": "USC00413485",
+   "country": "US",
+   "network": "C",
+   "station_km": 37.81,
+   "station_rank": 4,
+   "years_used": 25
+  },
+  {
+   "cbsa": "28700",
+   "metro": "Kingsport-Bristol, TN-VA",
+   "station": "USC00404858",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.42,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "28740",
+   "metro": "Kingston, NY",
+   "station": "USC00305426",
+   "country": "US",
+   "network": "C",
+   "station_km": 21.58,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "28880",
+   "metro": "Kiryas Joel-Poughkeepsie-Newburgh, NY",
+   "station": "USC00309292",
+   "country": "US",
+   "network": "C",
+   "station_km": 18.13,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "28940",
+   "metro": "Knoxville, TN",
+   "station": "USC00404946",
+   "country": "US",
+   "network": "C",
+   "station_km": 8.08,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "29020",
+   "metro": "Kokomo, IN",
+   "station": "USC00124662",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.17,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "29100",
+   "metro": "La Crosse-Onalaska, WI-MN",
+   "station": "USW00014920",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.44,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29180",
+   "metro": "Lafayette, LA",
+   "station": "USW00013976",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.91,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29200",
+   "metro": "Lafayette-West Lafayette, IN",
+   "station": "USW00014835",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.31,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "29340",
+   "metro": "Lake Charles, LA",
+   "station": "USW00003937",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.21,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29420",
+   "metro": "Lake Havasu City-Kingman, AZ",
+   "station": "USW00023179",
+   "country": "US",
+   "network": "W",
+   "station_km": 40.97,
+   "station_rank": 3,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29460",
+   "metro": "Lakeland-Winter Haven, FL",
+   "station": "USC00087205",
+   "country": "US",
+   "network": "C",
+   "station_km": 18.51,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "29540",
+   "metro": "Lancaster, PA",
+   "station": "USC00364763",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.45,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "29620",
+   "metro": "Lansing-East Lansing, MI",
+   "station": "USW00014836",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.56,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29700",
+   "metro": "Laredo, TX",
+   "station": "USC00415060",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.6,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29740",
+   "metro": "Las Cruces, NM",
+   "station": "USC00298535",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.67,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29820",
+   "metro": "Las Vegas-Henderson-North Las Vegas, NV",
+   "station": "USW00023169",
+   "country": "US",
+   "network": "W",
+   "station_km": 20.49,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "29940",
+   "metro": "Lawrence, KS",
+   "station": "USC00141612",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.75,
+   "station_rank": 1,
+   "years_used": 26
+  },
+  {
+   "cbsa": "30020",
+   "metro": "Lawton, OK",
+   "station": "USW00093986",
+   "country": "US",
+   "network": "W",
+   "station_km": 63.94,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "30140",
+   "metro": "Lebanon, PA",
+   "station": "USC00364896",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.33,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "30300",
+   "metro": "Lewiston, ID-WA",
+   "station": "USW00024149",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.67,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "30340",
+   "metro": "Lewiston-Auburn, ME",
+   "station": "USC00173046",
+   "country": "US",
+   "network": "C",
+   "station_km": 33.88,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "30460",
+   "metro": "Lexington-Fayette, KY",
+   "station": "USW00093820",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.43,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "30500",
+   "metro": "Lexington Park, MD",
+   "station": "USW00013721",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.09,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "30620",
+   "metro": "Lima, OH",
+   "station": "USC00334551",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.3,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "30700",
+   "metro": "Lincoln, NE",
+   "station": "USW00014939",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.63,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "30780",
+   "metro": "Little Rock-North Little Rock-Conway, AR",
+   "station": "USW00013963",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.02,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "30860",
+   "metro": "Logan, UT-ID",
+   "station": "USC00425182",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.19,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "30980",
+   "metro": "Longview, TX",
+   "station": "USW00003951",
+   "country": "US",
+   "network": "W",
+   "station_km": 21.61,
+   "station_rank": 1,
+   "years_used": 26
+  },
+  {
+   "cbsa": "31020",
+   "metro": "Longview-Kelso, WA",
+   "station": "USC00454769",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.42,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "31080",
+   "metro": "Los Angeles-Long Beach-Anaheim, CA",
+   "station": "USC00049152",
+   "country": "US",
+   "network": "C",
+   "station_km": 6.32,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31140",
+   "metro": "Louisville/Jefferson County, KY-IN",
+   "station": "USW00093821",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.32,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31180",
+   "metro": "Lubbock, TX",
+   "station": "USW00023042",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.38,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31340",
+   "metro": "Lynchburg, VA",
+   "station": "USW00013733",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.69,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31420",
+   "metro": "Macon-Bibb County, GA",
+   "station": "USW00003813",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.89,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31540",
+   "metro": "Madison, WI",
+   "station": "USC00470273",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.2,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "31700",
+   "metro": "Manchester-Nashua, NH",
+   "station": "USC00274234",
+   "country": "US",
+   "network": "C",
+   "station_km": 22.57,
+   "station_rank": 3,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31740",
+   "metro": "Manhattan, KS",
+   "station": "USC00144972",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.33,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31860",
+   "metro": "Mankato, MN",
+   "station": "USC00218692",
+   "country": "US",
+   "network": "C",
+   "station_km": 37.56,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "31900",
+   "metro": "Mansfield, OH",
+   "station": "USW00014891",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.12,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "32580",
+   "metro": "McAllen-Edinburg-Mission, TX",
+   "station": "USW00012959",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.09,
+   "station_rank": 1,
+   "years_used": 27
+  },
+  {
+   "cbsa": "32780",
+   "metro": "Medford, OR",
+   "station": "USW00024225",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.8,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "32820",
+   "metro": "Memphis, TN-MS-AR",
+   "station": "USW00013893",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.09,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "32900",
+   "metro": "Merced, CA",
+   "station": "USC00049073",
+   "country": "US",
+   "network": "C",
+   "station_km": 39.33,
+   "station_rank": 2,
+   "years_used": 25
+  },
+  {
+   "cbsa": "33100",
+   "metro": "Miami-Fort Lauderdale-West Palm Beach, FL",
+   "station": "USC00083909",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.65,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "33140",
+   "metro": "Michigan City-La Porte, IN",
+   "station": "USC00124837",
+   "country": "US",
+   "network": "C",
+   "station_km": 15.7,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "33220",
+   "metro": "Midland, MI",
+   "station": "USC00205434",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.05,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33260",
+   "metro": "Midland, TX",
+   "station": "USW00023023",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.49,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33340",
+   "metro": "Milwaukee-Waukesha, WI",
+   "station": "USC00475474",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.19,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "33460",
+   "metro": "Minneapolis-St. Paul-Bloomington, MN-WI",
+   "station": "USC00214884",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.39,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "33500",
+   "metro": "Minot, ND",
+   "station": "USW00024013",
+   "country": "US",
+   "network": "W",
+   "station_km": 1.87,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "33540",
+   "metro": "Missoula, MT",
+   "station": "USW00024153",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.29,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33660",
+   "metro": "Mobile, AL",
+   "station": "USW00013894",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.7,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33700",
+   "metro": "Modesto, CA",
+   "station": "USW00023258",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.43,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33740",
+   "metro": "Monroe, LA",
+   "station": "USW00013942",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.44,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33780",
+   "metro": "Monroe, MI",
+   "station": "USW00094847",
+   "country": "US",
+   "network": "W",
+   "station_km": 37.32,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "33860",
+   "metro": "Montgomery, AL",
+   "station": "USW00013895",
+   "country": "US",
+   "network": "W",
+   "station_km": 14.04,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "34060",
+   "metro": "Morgantown, WV",
+   "station": "USW00013736",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.63,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "34100",
+   "metro": "Morristown, TN",
+   "station": "USC00406271",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.92,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "34580",
+   "metro": "Mount Vernon-Anacortes, WA",
+   "station": "USC00450587",
+   "country": "US",
+   "network": "C",
+   "station_km": 36.51,
+   "station_rank": 4,
+   "years_used": 30
+  },
+  {
+   "cbsa": "34620",
+   "metro": "Muncie, IN",
+   "station": "USW00094895",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.96,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "34740",
+   "metro": "Muskegon-Norton Shores, MI",
+   "station": "USW00014840",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.38,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "34820",
+   "metro": "Myrtle Beach-Conway-North Myrtle Beach, SC",
+   "station": "USC00315116",
+   "country": "US",
+   "network": "C",
+   "station_km": 45.8,
+   "station_rank": 4,
+   "years_used": 27
+  },
+  {
+   "cbsa": "34900",
+   "metro": "Napa, CA",
+   "station": "USC00046074",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.83,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "34940",
+   "metro": "Naples-Marco Island, FL",
+   "station": "USC00086078",
+   "country": "US",
+   "network": "C",
+   "station_km": 11.21,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "34980",
+   "metro": "Nashville-Davidson--Murfreesboro--Franklin, TN",
+   "station": "USC00406806",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.55,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "35300",
+   "metro": "New Haven, CT",
+   "station": "USW00094702",
+   "country": "US",
+   "network": "W",
+   "station_km": 23.46,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "35380",
+   "metro": "New Orleans-Metairie, LA",
+   "station": "USW00053917",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.09,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "35620",
+   "metro": "New York-Newark-Jersey City, NY-NJ",
+   "station": "USW00094728",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.17,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "35660",
+   "metro": "Niles, MI",
+   "station": "USW00014848",
+   "country": "US",
+   "network": "W",
+   "station_km": 15.26,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "35840",
+   "metro": "North Port-Bradenton-Sarasota, FL",
+   "station": "USC00080945",
+   "country": "US",
+   "network": "C",
+   "station_km": 12.6,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "35980",
+   "metro": "Norwich-New London-Willimantic, CT",
+   "station": "USC00375270",
+   "country": "US",
+   "network": "C",
+   "station_km": 45.28,
+   "station_rank": 3,
+   "years_used": 30
+  },
+  {
+   "cbsa": "36100",
+   "metro": "Ocala, FL",
+   "station": "USC00086414",
+   "country": "US",
+   "network": "C",
+   "station_km": 7.27,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "36220",
+   "metro": "Odessa, TX",
+   "station": "USW00023023",
+   "country": "US",
+   "network": "W",
+   "station_km": 16.31,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "36260",
+   "metro": "Ogden, UT",
+   "station": "USC00420928",
+   "country": "US",
+   "network": "C",
+   "station_km": 33.49,
+   "station_rank": 4,
+   "years_used": 28
+  },
+  {
+   "cbsa": "36420",
+   "metro": "Oklahoma City, OK",
+   "station": "USW00013967",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.76,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "36500",
+   "metro": "Olympia-Lacey-Tumwater, WA",
+   "station": "USW00024227",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.49,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "36540",
+   "metro": "Omaha, NE-IA",
+   "station": "USW00014942",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.97,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "36740",
+   "metro": "Orlando-Kissimmee-Sanford, FL",
+   "station": "USW00012815",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.0,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "36780",
+   "metro": "Oshkosh-Neenah, WI",
+   "station": "USC00476330",
+   "country": "US",
+   "network": "C",
+   "station_km": 0.46,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "36980",
+   "metro": "Owensboro, KY",
+   "station": "USC00120852",
+   "country": "US",
+   "network": "C",
+   "station_km": 33.32,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "37100",
+   "metro": "Oxnard-Thousand Oaks-Ventura, CA",
+   "station": "USC00047902",
+   "country": "US",
+   "network": "C",
+   "station_km": 50.02,
+   "station_rank": 3,
+   "years_used": 25
+  },
+  {
+   "cbsa": "37140",
+   "metro": "Paducah, KY-IL",
+   "station": "USW00003816",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.31,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "37340",
+   "metro": "Palm Bay-Melbourne-Titusville, FL",
+   "station": "USC00085612",
+   "country": "US",
+   "network": "C",
+   "station_km": 17.72,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "37460",
+   "metro": "Panama City-Panama City Beach, FL",
+   "station": "USC00086842",
+   "country": "US",
+   "network": "C",
+   "station_km": 12.58,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "37620",
+   "metro": "Parkersburg-Vienna, WV",
+   "station": "USW00013867",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.5,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "37860",
+   "metro": "Pensacola-Ferry Pass-Brent, FL",
+   "station": "USW00013899",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.94,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "37900",
+   "metro": "Peoria, IL",
+   "station": "USW00014842",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.93,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "37980",
+   "metro": "Philadelphia-Camden-Wilmington, PA-NJ-DE-MD",
+   "station": "USW00013739",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.1,
+   "station_rank": 3,
+   "years_used": 30
+  },
+  {
+   "cbsa": "38060",
+   "metro": "Phoenix-Mesa-Chandler, AZ",
+   "station": "USW00023183",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.95,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "38240",
+   "metro": "Pinehurst-Southern Pines, NC",
+   "station": "USC00314464",
+   "country": "US",
+   "network": "C",
+   "station_km": 18.87,
+   "station_rank": 1,
+   "years_used": 28
+  },
+  {
+   "cbsa": "38300",
+   "metro": "Pittsburgh, PA",
+   "station": "USC00362574",
+   "country": "US",
+   "network": "C",
+   "station_km": 11.98,
+   "station_rank": 2,
+   "years_used": 27
+  },
+  {
+   "cbsa": "38340",
+   "metro": "Pittsfield, MA",
+   "station": "USC00065445",
+   "country": "US",
+   "network": "C",
+   "station_km": 53.4,
+   "station_rank": 3,
+   "years_used": 28
+  },
+  {
+   "cbsa": "38540",
+   "metro": "Pocatello, ID",
+   "station": "USW00024156",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.47,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "38860",
+   "metro": "Portland-South Portland, ME",
+   "station": "USW00014764",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.65,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "38900",
+   "metro": "Portland-Vancouver-Hillsboro, OR-WA",
+   "station": "USC00356749",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.72,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "38940",
+   "metro": "Port St. Lucie, FL",
+   "station": "USC00083207",
+   "country": "US",
+   "network": "C",
+   "station_km": 18.32,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39150",
+   "metro": "Prescott Valley-Prescott, AZ",
+   "station": "USC00026796",
+   "country": "US",
+   "network": "C",
+   "station_km": 10.84,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "39300",
+   "metro": "Providence-Warwick, RI-MA",
+   "station": "USW00014765",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.24,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39340",
+   "metro": "Provo-Orem-Lehi, UT",
+   "station": "USC00427064",
+   "country": "US",
+   "network": "C",
+   "station_km": 0.49,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39380",
+   "metro": "Pueblo, CO",
+   "station": "USC00056765",
+   "country": "US",
+   "network": "C",
+   "station_km": 9.15,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39460",
+   "metro": "Punta Gorda, FL",
+   "station": "USC00087397",
+   "country": "US",
+   "network": "C",
+   "station_km": 7.28,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39540",
+   "metro": "Racine-Mount Pleasant, WI",
+   "station": "USC00476922",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.44,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "39580",
+   "metro": "Raleigh-Cary, NC",
+   "station": "USC00317079",
+   "country": "US",
+   "network": "C",
+   "station_km": 7.01,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "39660",
+   "metro": "Rapid City, SD",
+   "station": "USW00024090",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.36,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39740",
+   "metro": "Reading, PA",
+   "station": "USC00363632",
+   "country": "US",
+   "network": "C",
+   "station_km": 24.26,
+   "station_rank": 2,
+   "years_used": 28
+  },
+  {
+   "cbsa": "39820",
+   "metro": "Redding, CA",
+   "station": "USW00024257",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.49,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "39900",
+   "metro": "Reno, NV",
+   "station": "USW00023185",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.37,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40060",
+   "metro": "Richmond, VA",
+   "station": "USW00013740",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.64,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40140",
+   "metro": "Riverside-San Bernardino-Ontario, CA",
+   "station": "USC00040192",
+   "country": "US",
+   "network": "C",
+   "station_km": 42.27,
+   "station_rank": 3,
+   "years_used": 27
+  },
+  {
+   "cbsa": "40220",
+   "metro": "Roanoke, VA",
+   "station": "USW00013741",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.52,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40340",
+   "metro": "Rochester, MN",
+   "station": "USW00014925",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.32,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40380",
+   "metro": "Rochester, NY",
+   "station": "USW00014768",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.54,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40420",
+   "metro": "Rockford, IL",
+   "station": "USW00094822",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.74,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40580",
+   "metro": "Rocky Mount, NC",
+   "station": "USC00319476",
+   "country": "US",
+   "network": "C",
+   "station_km": 32.97,
+   "station_rank": 2,
+   "years_used": 29
+  },
+  {
+   "cbsa": "40660",
+   "metro": "Rome, GA",
+   "station": "USC00091732",
+   "country": "US",
+   "network": "C",
+   "station_km": 23.46,
+   "station_rank": 2,
+   "years_used": 25
+  },
+  {
+   "cbsa": "40900",
+   "metro": "Sacramento-Roseville-Folsom, CA",
+   "station": "USW00023271",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.55,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "40980",
+   "metro": "Saginaw, MI",
+   "station": "USW00014845",
+   "country": "US",
+   "network": "W",
+   "station_km": 15.98,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41060",
+   "metro": "St. Cloud, MN",
+   "station": "USW00014926",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.49,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41100",
+   "metro": "St. George, UT",
+   "station": "USC00424968",
+   "country": "US",
+   "network": "C",
+   "station_km": 30.57,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "41140",
+   "metro": "St. Joseph, MO-KS",
+   "station": "USC00148250",
+   "country": "US",
+   "network": "C",
+   "station_km": 24.0,
+   "station_rank": 1,
+   "years_used": 28
+  },
+  {
+   "cbsa": "41180",
+   "metro": "St. Louis, MO-IL",
+   "station": "USW00013994",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.13,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41420",
+   "metro": "Salem, OR",
+   "station": "USW00024232",
+   "country": "US",
+   "network": "W",
+   "station_km": 2.72,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41500",
+   "metro": "Salinas, CA",
+   "station": "USW00023233",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.68,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41540",
+   "metro": "Salisbury, MD",
+   "station": "USW00093720",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.45,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41620",
+   "metro": "Salt Lake City-Murray, UT",
+   "station": "USW00024127",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.22,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41660",
+   "metro": "San Angelo, TX",
+   "station": "USW00023034",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.71,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41700",
+   "metro": "San Antonio-New Braunfels, TX",
+   "station": "USW00012921",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.17,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41740",
+   "metro": "San Diego-Chula Vista-Carlsbad, CA",
+   "station": "USW00023188",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.23,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41780",
+   "metro": "Sandusky, OH",
+   "station": "USW00014846",
+   "country": "US",
+   "network": "W",
+   "station_km": 0.68,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "41860",
+   "metro": "San Francisco-Oakland-Fremont, CA",
+   "station": "USW00023272",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.34,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "41940",
+   "metro": "San Jose-Sunnyvale-Santa Clara, CA",
+   "station": "USC00045933",
+   "country": "US",
+   "network": "C",
+   "station_km": 16.75,
+   "station_rank": 2,
+   "years_used": 29
+  },
+  {
+   "cbsa": "42020",
+   "metro": "San Luis Obispo-Paso Robles, CA",
+   "station": "USC00047851",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.42,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "42100",
+   "metro": "Santa Cruz-Watsonville, CA",
+   "station": "USC00040673",
+   "country": "US",
+   "network": "C",
+   "station_km": 13.19,
+   "station_rank": 1,
+   "years_used": 28
+  },
+  {
+   "cbsa": "42140",
+   "metro": "Santa Fe, NM",
+   "station": "USC00298085",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.77,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "42200",
+   "metro": "Santa Maria-Santa Barbara, CA",
+   "station": "USW00023273",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.39,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "42220",
+   "metro": "Santa Rosa-Petaluma, CA",
+   "station": "USC00043578",
+   "country": "US",
+   "network": "C",
+   "station_km": 13.91,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "42340",
+   "metro": "Savannah, GA",
+   "station": "USW00003822",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.25,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "42540",
+   "metro": "Scranton--Wilkes-Barre, PA",
+   "station": "USW00014777",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.17,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "42660",
+   "metro": "Seattle-Tacoma-Bellevue, WA",
+   "station": "USW00094290",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.44,
+   "station_rank": 1,
+   "years_used": 28
+  },
+  {
+   "cbsa": "42680",
+   "metro": "Sebastian-Vero Beach-West Vero Corridor, FL",
+   "station": "USW00012843",
+   "country": "US",
+   "network": "W",
+   "station_km": 15.34,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "42700",
+   "metro": "Sebring, FL",
+   "station": "USC00080236",
+   "country": "US",
+   "network": "C",
+   "station_km": 33.72,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "43100",
+   "metro": "Sheboygan, WI",
+   "station": "USC00476678",
+   "country": "US",
+   "network": "C",
+   "station_km": 19.3,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "43300",
+   "metro": "Sherman-Denison, TX",
+   "station": "USC00418274",
+   "country": "US",
+   "network": "C",
+   "station_km": 8.45,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "43340",
+   "metro": "Shreveport-Bossier City, LA",
+   "station": "USW00013957",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.95,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "43420",
+   "metro": "Sierra Vista-Douglas, AZ",
+   "station": "USC00028619",
+   "country": "US",
+   "network": "C",
+   "station_km": 28.41,
+   "station_rank": 2,
+   "years_used": 26
+  },
+  {
+   "cbsa": "43580",
+   "metro": "Sioux City, IA-NE-SD",
+   "station": "USW00014943",
+   "country": "US",
+   "network": "W",
+   "station_km": 11.56,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "43620",
+   "metro": "Sioux Falls, SD-MN",
+   "station": "USW00014944",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.24,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "43640",
+   "metro": "Slidell-Mandeville-Covington, LA",
+   "station": "USC00168539",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.95,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "43780",
+   "metro": "South Bend-Mishawaka, IN-MI",
+   "station": "USW00014848",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.21,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "43900",
+   "metro": "Spartanburg, SC",
+   "station": "USC00388188",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.35,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "44060",
+   "metro": "Spokane-Spokane Valley, WA",
+   "station": "USW00024157",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.7,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "44100",
+   "metro": "Springfield, IL",
+   "station": "USW00093822",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.9,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "44140",
+   "metro": "Springfield, MA",
+   "station": "USW00014740",
+   "country": "US",
+   "network": "W",
+   "station_km": 23.0,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "44180",
+   "metro": "Springfield, MO",
+   "station": "USW00013995",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.56,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "44220",
+   "metro": "Springfield, OH",
+   "station": "USC00337935",
+   "country": "US",
+   "network": "C",
+   "station_km": 5.09,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "44300",
+   "metro": "State College, PA",
+   "station": "USC00368449",
+   "country": "US",
+   "network": "C",
+   "station_km": 0.91,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "44420",
+   "metro": "Staunton-Stuarts Draft, VA",
+   "station": "USC00448062",
+   "country": "US",
+   "network": "C",
+   "station_km": 3.6,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "44700",
+   "metro": "Stockton-Lodi, CA",
+   "station": "USW00023237",
+   "country": "US",
+   "network": "W",
+   "station_km": 12.02,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "44940",
+   "metro": "Sumter, SC",
+   "station": "USC00388440",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.45,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "45060",
+   "metro": "Syracuse, NY",
+   "station": "USW00014771",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.4,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45220",
+   "metro": "Tallahassee, FL",
+   "station": "USW00093805",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.63,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45300",
+   "metro": "Tampa-St. Petersburg-Clearwater, FL",
+   "station": "USW00012842",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.44,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45460",
+   "metro": "Terre Haute, IN",
+   "station": "USC00116610",
+   "country": "US",
+   "network": "C",
+   "station_km": 30.3,
+   "station_rank": 3,
+   "years_used": 29
+  },
+  {
+   "cbsa": "45500",
+   "metro": "Texarkana, TX-AR",
+   "station": "USC00418942",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.57,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45780",
+   "metro": "Toledo, OH",
+   "station": "USW00094830",
+   "country": "US",
+   "network": "W",
+   "station_km": 20.46,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45820",
+   "metro": "Topeka, KS",
+   "station": "USW00013996",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.37,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45900",
+   "metro": "Traverse City, MI",
+   "station": "USW00014850",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.27,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "45940",
+   "metro": "Trenton-Princeton, NJ",
+   "station": "USC00283951",
+   "country": "US",
+   "network": "C",
+   "station_km": 17.57,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "46060",
+   "metro": "Tucson, AZ",
+   "station": "USW00023160",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.4,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "46140",
+   "metro": "Tulsa, OK",
+   "station": "USW00013968",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.15,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "46220",
+   "metro": "Tuscaloosa, AL",
+   "station": "USW00093806",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.49,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "46300",
+   "metro": "Twin Falls, ID",
+   "station": "USC00104670",
+   "country": "US",
+   "network": "C",
+   "station_km": 19.32,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "46340",
+   "metro": "Tyler, TX",
+   "station": "USC00419207",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.87,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "46520",
+   "metro": "Urban Honolulu, HI",
+   "station": "USW00022521",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.5,
+   "station_rank": 2,
+   "years_used": 30
+  },
+  {
+   "cbsa": "46540",
+   "metro": "Utica-Rome, NY",
+   "station": "USC00300785",
+   "country": "US",
+   "network": "C",
+   "station_km": 22.13,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "46660",
+   "metro": "Valdosta, GA",
+   "station": "USW00093845",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.21,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "46700",
+   "metro": "Vallejo, CA",
+   "station": "USC00045378",
+   "country": "US",
+   "network": "C",
+   "station_km": 16.64,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "47020",
+   "metro": "Victoria, TX",
+   "station": "USW00012912",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.64,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "47220",
+   "metro": "Vineland, NJ",
+   "station": "USW00013735",
+   "country": "US",
+   "network": "W",
+   "station_km": 13.0,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "47260",
+   "metro": "Virginia Beach-Chesapeake-Norfolk, VA-NC",
+   "station": "USW00013769",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.2,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "47300",
+   "metro": "Visalia, CA",
+   "station": "USC00044890",
+   "country": "US",
+   "network": "C",
+   "station_km": 27.54,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "47380",
+   "metro": "Waco, TX",
+   "station": "USW00013959",
+   "country": "US",
+   "network": "W",
+   "station_km": 7.58,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "47460",
+   "metro": "Walla Walla, WA",
+   "station": "USW00024160",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.99,
+   "station_rank": 0,
+   "years_used": 26
+  },
+  {
+   "cbsa": "47580",
+   "metro": "Warner Robins, GA",
+   "station": "USW00003813",
+   "country": "US",
+   "network": "W",
+   "station_km": 10.09,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "47900",
+   "metro": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+   "station": "USC00186350",
+   "country": "US",
+   "network": "C",
+   "station_km": 4.15,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "47930",
+   "metro": "Waterbury-Shelton, CT",
+   "station": "USC00060973",
+   "country": "US",
+   "network": "C",
+   "station_km": 33.26,
+   "station_rank": 2,
+   "years_used": 26
+  },
+  {
+   "cbsa": "47940",
+   "metro": "Waterloo-Cedar Falls, IA",
+   "station": "USW00094910",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.0,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48060",
+   "metro": "Watertown-Fort Drum, NY",
+   "station": "USC00309000",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.8,
+   "station_rank": 0,
+   "years_used": 29
+  },
+  {
+   "cbsa": "48140",
+   "metro": "Wausau, WI",
+   "station": "USW00014897",
+   "country": "US",
+   "network": "W",
+   "station_km": 4.16,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48260",
+   "metro": "Weirton-Steubenville, WV-OH",
+   "station": "USC00365902",
+   "country": "US",
+   "network": "C",
+   "station_km": 30.23,
+   "station_rank": 3,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48300",
+   "metro": "Wenatchee-East Wenatchee, WA",
+   "station": "USC00459074",
+   "country": "US",
+   "network": "C",
+   "station_km": 1.65,
+   "station_rank": 0,
+   "years_used": 25
+  },
+  {
+   "cbsa": "48540",
+   "metro": "Wheeling, WV-OH",
+   "station": "USC00467018",
+   "country": "US",
+   "network": "C",
+   "station_km": 8.13,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48620",
+   "metro": "Wichita, KS",
+   "station": "USW00003928",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.2,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48660",
+   "metro": "Wichita Falls, TX",
+   "station": "USW00013966",
+   "country": "US",
+   "network": "W",
+   "station_km": 8.55,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48680",
+   "metro": "Wildwood-The Villages, FL",
+   "station": "USC00085076",
+   "country": "US",
+   "network": "C",
+   "station_km": 22.96,
+   "station_rank": 1,
+   "years_used": 29
+  },
+  {
+   "cbsa": "48700",
+   "metro": "Williamsport, PA",
+   "station": "USW00014778",
+   "country": "US",
+   "network": "W",
+   "station_km": 9.53,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "48900",
+   "metro": "Wilmington, NC",
+   "station": "USW00013748",
+   "country": "US",
+   "network": "W",
+   "station_km": 6.52,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "49020",
+   "metro": "Winchester, VA-WV",
+   "station": "USC00449181",
+   "country": "US",
+   "network": "C",
+   "station_km": 2.65,
+   "station_rank": 0,
+   "years_used": 27
+  },
+  {
+   "cbsa": "49180",
+   "metro": "Winston-Salem, NC",
+   "station": "USC00319675",
+   "country": "US",
+   "network": "C",
+   "station_km": 25.99,
+   "station_rank": 1,
+   "years_used": 30
+  },
+  {
+   "cbsa": "49340",
+   "metro": "Worcester, MA",
+   "station": "USW00094746",
+   "country": "US",
+   "network": "W",
+   "station_km": 5.38,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "49420",
+   "metro": "Yakima, WA",
+   "station": "USW00024243",
+   "country": "US",
+   "network": "W",
+   "station_km": 3.2,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "49620",
+   "metro": "York-Hanover, PA",
+   "station": "USC00185934",
+   "country": "US",
+   "network": "C",
+   "station_km": 23.37,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "49660",
+   "metro": "Youngstown-Warren, OH",
+   "station": "USW00014852",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.46,
+   "station_rank": 0,
+   "years_used": 30
+  },
+  {
+   "cbsa": "49700",
+   "metro": "Yuba City, CA",
+   "station": "USC00043573",
+   "country": "US",
+   "network": "C",
+   "station_km": 39.71,
+   "station_rank": 0,
+   "years_used": 28
+  },
+  {
+   "cbsa": "49740",
+   "metro": "Yuma, AZ",
+   "station": "USW00003145",
+   "country": "US",
+   "network": "W",
+   "station_km": 17.56,
+   "station_rank": 0,
+   "years_used": 25
+  }
+ ]
+}

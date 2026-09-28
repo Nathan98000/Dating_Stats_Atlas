@@ -20,6 +20,13 @@ class LicenseTerms:
     shippable: bool               # may derived values enter the serving artifact?
     attribution: str | None = None
     notes: str | None = None
+    # Phase 4 (ADR 0012, Nathan's decisions): each source's verdict, typed.
+    # `citations` are the exact strings the site shows, one per product and
+    # vintage; `notice` is a notice the source's terms put beside them (the
+    # Census Data API's); `conditions` are what the build commits to.
+    citations: tuple[str, ...] = ()
+    notice: str | None = None
+    conditions: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -50,10 +57,24 @@ class Report:
 
 def assert_all_shippable(provenances: dict[str, Provenance],
                          licenses: dict[str, LicenseTerms]) -> None:
-    """No artifact field may trace to a non-shippable source."""
+    """No artifact field may trace to a non-shippable source, and (ADR 0012)
+    every source a served field traces to carries its exact citation."""
     bad = [k for k, p in provenances.items()
            if not licenses[p.source].shippable]
     assert not bad, f"artifact fields trace to non-shippable sources: {bad}"
+    uncited = sorted({p.source for p in provenances.values()
+                      if not licenses[p.source].citations})
+    assert not uncited, f"served fields trace to sources with no citation: {uncited}"
+
+
+def assert_credited_shippable(sources: list[str],
+                              licenses: dict[str, LicenseTerms]) -> None:
+    """The sources every served figure passes through without being a
+    feature's own (the metro geography and its weights) are held to the
+    same bar: shippable, and cited."""
+    bad = [s for s in sources
+           if s not in licenses or not licenses[s].shippable or not licenses[s].citations]
+    assert not bad, f"credited sources not shippable or not cited: {bad}"
 
 
 def assert_manifest_matches_requests(manifest_vars: dict[str, list[str]],

@@ -36,24 +36,98 @@ class Adapter(Protocol):
 
 
 # ---- License registry. `shippable` is the load-bearing bit (§4.6). --------
+# Phase 4 (ADR 0012, Nathan's decisions): every source also carries its
+# exact citation string(s), the notice its terms put beside them, and the
+# conditions the build commits to. build.cube refuses a served feature
+# that traces to a source that is not shippable or has no citation, and
+# the "Sources and credits" section renders these strings as they are.
 
-PUBLIC_DOMAIN_CENSUS = LicenseTerms(
+CENSUS_API_NOTICE = ("This product uses the Census Bureau Data API but is not "
+                     "endorsed or certified by the Census Bureau.")
+_CENSUS_TERMS = "https://www.census.gov/data/developers/about/terms-of-service.html"
+_CENSUS_CONDITIONS = (
+    "cite with the Census Bureau Data API notice (the census adapter calls the API)",
+    "a figure the site computes is an estimate by Dating Stats Atlas, never "
+    "\"Census data\"",
+    "no Census Bureau logo or seal, and nothing implying endorsement",
+)
+_FEDERAL_CONDITIONS = ("no agency logo or seal, and nothing implying endorsement",)
+
+
+def _census(*products: str) -> tuple[str, ...]:
+    return tuple(f"Source: U.S. Census Bureau, {p}; estimates by Dating Stats Atlas."
+                 for p in products)
+
+
+CENSUS_ACS = LicenseTerms(
     name="US public domain (17 USC 105); Census API terms",
-    url="https://www.census.gov/data/developers/about/terms-of-service.html",
+    url=_CENSUS_TERMS,
     shippable=True,
     attribution="Source: U.S. Census Bureau",
+    citations=_census(
+        "American Community Survey 2020–2024 5-year Public Use Microdata Sample",
+        "American Community Survey 2020–2024 5-year detailed tables"),
+    notice=CENSUS_API_NOTICE,
+    conditions=_CENSUS_CONDITIONS,
+)
+CENSUS_DHC = LicenseTerms(
+    name="US public domain (17 USC 105); Census API terms",
+    url=_CENSUS_TERMS,
+    shippable=True,
+    attribution="Source: U.S. Census Bureau",
+    citations=_census("2020 Census Demographic and Housing Characteristics File"),
+    notice=CENSUS_API_NOTICE,
+    conditions=_CENSUS_CONDITIONS,
+)
+CENSUS_GEO = LicenseTerms(
+    name="US public domain (17 USC 105); Census API terms",
+    url=_CENSUS_TERMS,
+    shippable=True,
+    attribution="Source: U.S. Census Bureau",
+    citations=_census(
+        "2020 Census tract relationship files",
+        "TIGERweb and the 2023 cartographic boundary files"),
+    notice=CENSUS_API_NOTICE,
+    conditions=_CENSUS_CONDITIONS,
+)
+CENSUS_CBP = LicenseTerms(
+    name="US public domain (17 USC 105); Census API terms",
+    url=_CENSUS_TERMS,
+    shippable=True,
+    attribution="Source: U.S. Census Bureau",
+    citations=_census("County Business Patterns 2023"),
+    notice=CENSUS_API_NOTICE,
+    conditions=_CENSUS_CONDITIONS,
+)
+OMB_DELINEATION = LicenseTerms(
+    name="US public domain (17 USC 105); OMB",
+    url="https://www.whitehouse.gov/wp-content/uploads/2023/07/OMB-Bulletin-23-01.pdf",
+    shippable=True,
+    citations=("Metropolitan areas as delineated in U.S. Office of Management and "
+               "Budget Bulletin No. 23-01 (July 21, 2023).",),
+    notes="Read through the census_geo adapter (the Census Bureau publishes the "
+          "delineation file); credited as OMB's.",
+    conditions=_FEDERAL_CONDITIONS,
 )
 PUBLIC_DOMAIN_BLS = LicenseTerms(
     name="US public domain (17 USC 105); BLS copyright statement",
     url="https://www.bls.gov/opub/copyright-information.htm",
     shippable=True,
     attribution="Source: U.S. Bureau of Labor Statistics",
+    citations=("Source: U.S. Bureau of Labor Statistics, Quarterly Census of "
+               "Employment and Wages, 2023.",),
+    notes="A check only (beside County Business Patterns); no served figure "
+          "traces to it, so the site does not show this citation.",
+    conditions=_FEDERAL_CONDITIONS,
 )
 PUBLIC_DOMAIN_BEA = LicenseTerms(
     name="US public domain (17 USC 105); BEA terms",
     url="https://www.bea.gov/",
     shippable=True,
     attribution="Source: U.S. Bureau of Economic Analysis",
+    citations=("Source: U.S. Bureau of Economic Analysis, Regional Price Parities "
+               "by Metropolitan Area, 2024.",),
+    conditions=_FEDERAL_CONDITIONS,
 )
 EPA_SLD_CC0 = LicenseTerms(
     name="CC0 / US public domain (EPA Smart Location Database)",
@@ -62,30 +136,51 @@ EPA_SLD_CC0 = LicenseTerms(
     attribution="Source: U.S. EPA Smart Location Database v3.0",
     notes="Street-network measures only; transit measures excluded (§12.1: "
           "GTFS snapshot from the deepest pandemic service cuts).",
+    citations=("Source: U.S. Environmental Protection Agency, Smart Location "
+               "Database v3.0 (June 2021).",),
+    conditions=_FEDERAL_CONDITIONS,
 )
 PUBLIC_DOMAIN_NOAA = LicenseTerms(
     name="US public domain (17 USC 105); NOAA/NCEI open data",
     url="https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals",
     shippable=True,
     attribution="Source: NOAA NCEI U.S. Climate Normals 1991-2020",
+    citations=("Source: NOAA National Centers for Environmental Information, U.S. "
+               "Climate Normals 1991–2020.",),
+    notes="Superseded by GHCN-Daily (Phase 2d); no served figure traces to it.",
+    conditions=_FEDERAL_CONDITIONS,
 )
 PUBLIC_DOMAIN_GHCN = LicenseTerms(
     name="US public domain (17 USC 105); NOAA/NCEI open data",
     url="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
     shippable=True,
     attribution="Source: NOAA GHCN-Daily, 1991–2020 observations",
+    citations=("Source: NOAA National Centers for Environmental Information, Global "
+               "Historical Climatology Network – Daily (GHCN-Daily), 1991–2020.",),
+    conditions=_FEDERAL_CONDITIONS + (
+        "US weather stations only: the adapter keeps US stations alone "
+        "(ghcn_daily.US_STATION_PREFIX), and a test holds every served metro's "
+        "station to it",),
 )
 PUBLIC_DOMAIN_IPEDS = LicenseTerms(
     name="US public domain (17 USC 105); NCES IPEDS",
     url="https://nces.ed.gov/ipeds/",
     shippable=True,
     attribution="Source: NCES IPEDS",
+    citations=("Source: U.S. Department of Education, National Center for Education "
+               "Statistics, Integrated Postsecondary Education Data System (IPEDS), "
+               "2023–24.",),
+    conditions=_FEDERAL_CONDITIONS,
 )
 PUBLIC_DOMAIN_HUD = LicenseTerms(
     name="US public domain (17 USC 105); HUD open data",
     url="https://www.huduser.gov/portal/datasets/50per.html",
     shippable=True,
     attribution="Source: U.S. Department of Housing and Urban Development",
+    citations=("Source: U.S. Department of Housing and Urban Development, FY2027 "
+               "50th Percentile Rent Estimates.",),
+    conditions=_FEDERAL_CONDITIONS + (
+        "read from HUD's bulk files, not an API: cite HUD only",),
 )
 FBI_CDE_CONTEXT_ONLY = LicenseTerms(
     name="US public domain; FBI Crime Data Explorer",
@@ -93,6 +188,11 @@ FBI_CDE_CONTEXT_ONLY = LicenseTerms(
     shippable=True,
     notes="Never scored (D01): metro-page context only, with the FBI's own "
           "Caution Against Ranking attached. default_weight is pinned to 0.",
+    citations=("Source: Federal Bureau of Investigation, Crime Data Explorer, 2025.",),
+    conditions=_FEDERAL_CONDITIONS + (
+        "context only, never scored",
+        "the crime caveat stays with the figures: a note on the data's quality, "
+        "not an attribution",),
 )
 
 # Phase 3c (A3): the one non-federal, non-Commons source the build reads.
@@ -111,6 +211,8 @@ PEW_INTERMARRIAGE_REFERENCE = LicenseTerms(
     url="https://www.pewresearch.org/about/terms-and-conditions/",
     shippable=False,
     attribution="Pew Research Center",
+    conditions=("build-time only", "never published", "never compared in public",
+                "replaced as the intermarriage check by the Census PUMS one (ADR 0016)"),
     notes="atlas/data/private/pew/pew_intermarriage_2015.csv (gitignored; the "
           "build machine only), accessed 2026-09-16: the 2011-2015 newlywed "
           "intermarriage rates for 124 metros and the nation. Build-time only: "
@@ -119,10 +221,11 @@ PEW_INTERMARRIAGE_REFERENCE = LicenseTerms(
 )
 
 LICENSES: dict[str, LicenseTerms] = {
-    "census_acs": PUBLIC_DOMAIN_CENSUS,
-    "census_dhc": PUBLIC_DOMAIN_CENSUS,
-    "census_geo": PUBLIC_DOMAIN_CENSUS,
-    "census_cbp": PUBLIC_DOMAIN_CENSUS,
+    "census_acs": CENSUS_ACS,
+    "census_dhc": CENSUS_DHC,
+    "census_geo": CENSUS_GEO,
+    "census_cbp": CENSUS_CBP,
+    "omb_delineation": OMB_DELINEATION,
     "bls_qcew": PUBLIC_DOMAIN_BLS,
     "bea_rpp": PUBLIC_DOMAIN_BEA,
     "epa_sld": EPA_SLD_CC0,
@@ -133,3 +236,8 @@ LICENSES: dict[str, LicenseTerms] = {
     "fbi_cde": FBI_CDE_CONTEXT_ONLY,
     "pew_intermarriage": PEW_INTERMARRIAGE_REFERENCE,
 }
+
+# Every served figure passes through the metro geography, which the build
+# makes from these; they are credited beside the features' own sources
+# and held to the same bar (contracts.provenance.assert_credited_shippable).
+GEOGRAPHY_SOURCES = ("omb_delineation", "census_geo", "census_dhc")

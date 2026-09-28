@@ -12,7 +12,10 @@ this list: `source_id`, `vintage` and a `LicenseTerms` record per source, with
 `shippable` as the load-bearing field. Every feature in
 `atlas/pipeline/registry/features.yaml` carries a `provenance` block naming its
 source, dataset, table, variables, geography and vintage. This page is the human
-copy — the one to hand to counsel or link from the methodology page.
+copy. Since Phase 4 each `LicenseTerms` also carries the exact citation strings
+the site shows, the notice a source's terms require beside them (the Census Bureau
+Data API's), and the conditions the build commits to — ADR 0012 records them,
+source by source, as Nathan's decisions.
 
 Last checked against the build: 24 September 2026 (model m3.2.0, build f20cb02c3af8).
 
@@ -156,11 +159,19 @@ Commons `imageinfo` / `extmetadata` fields.
 - [Wikipedia REST API](https://en.wikipedia.org/api/rest_v1/) · [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page)
 - Licences accepted: public domain, CC0, CC-BY, CC-BY-SA. Nothing NC or ND, and
   nothing whose licence or attribution field could not be read.
-- 365 of 387 metros shipped a photograph; the rest fall back to the map card.
+- The photo rules are ADR 0012's: no photograph whose subject is an identifiable
+  person, none of a recent US sculpture or mural, and none in which a government
+  or agency logo, emblem or seal is prominent. Phase 4 reviewed every photograph
+  on contact sheets and removed 16 (`results/phase4/photo_review.json`); a
+  removed photograph falls back to no photo, and the pipeline refuses its file
+  on any re-run.
+- 350 of 387 metros ship a photograph; the rest fall back to the map card. Five
+  of the six stat pages carry one.
 - Per-image manifest — source page, direct file, author, licence, deed link,
-  retrieval date and SHA-256 — at `results/phase2e/city_images.csv`.
-- These are the site's first shipped third-party assets and are the one item in
-  this list that needs counsel's read before launch.
+  retrieval date and SHA-256 — at `results/phase2e/city_images.csv`; each
+  photograph's credit record (title, author, source link, licence, licence-version
+  link, and whether the layout crops it) at `results/phase4/photo_credits.json`.
+  The credits live in one "Sources and credits" section on the About us page.
 
 ## Used as a check only — does not reach the site
 
@@ -221,4 +232,8 @@ has been fetched, and none reaches the site.
 | [Foursquare OS Places](https://opensource.foursquare.com/os-places/) | Venue counts, merged with the above | Deferred; Apache 2.0, NOTICE must be preserved |
 | [Cooperative Election Study](https://cces.gov.harvard.edu/data) | The religion estimate (Phase 4) | Not started; CC0 |
 | [2020 US Religion Census](https://www.usreligioncensus.org/) (ASARB) | Religious adherence by county | Not started; terms need a read before use |
-| [PRRI American Values Atlas](https://ava.prri.org/) | County-level religious composition | Not started; terms need a read before use |
+| [PRRI American Values Atlas](https://ava.prri.org/) | County-level religious composition | Not used, and not to be used without written permission (ADR 0012) |
+| [Zillow Research](https://www.zillow.com/research/data/) | Home values | Not used, and not to be used without written permission (ADR 0012) |
+| [Redfin Data Center](https://www.redfin.com/news/data-center/) | Home values and sales | Not used, and not to be used without written permission (ADR 0012) |
+| [Opportunity Insights](https://opportunityinsights.org/data/) | Mobility and social-capital measures | Not used, and not to be used without written permission (ADR 0012) |
+| [FHFA House Price Index](https://www.fhfa.gov/data/hpi) | Home values | The substitute for home values (ADR 0012), when a home-value stat is built; not yet fetched |

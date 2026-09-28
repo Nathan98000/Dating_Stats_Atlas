@@ -1,0 +1,38 @@
+{
+ "non_photo_files": [
+  {
+   "file": "web/public/file.svg",
+   "referenced_by_a_page": false,
+   "what": "create-next-app scaffold icon (a document glyph)",
+   "agency_logo_emblem_or_seal": false
+  },
+  {
+   "file": "web/public/globe.svg",
+   "referenced_by_a_page": false,
+   "what": "create-next-app scaffold icon (a globe glyph)",
+   "agency_logo_emblem_or_seal": false
+  },
+  {
+   "file": "web/public/next.svg",
+   "referenced_by_a_page": false,
+   "what": "the Next.js wordmark, create-next-app scaffolding",
+   "agency_logo_emblem_or_seal": false
+  },
+  {
+   "file": "web/public/vercel.svg",
+   "referenced_by_a_page": false,
+   "what": "the Vercel logo, create-next-app scaffolding",
+   "agency_logo_emblem_or_seal": false
+  },
+  {
+   "file": "web/public/window.svg",
+   "referenced_by_a_page": false,
+   "what": "create-next-app scaffold icon (a window glyph)",
+   "agency_logo_emblem_or_seal": false
+  }
+ ],
+ "pages_checked": 29,
+ "pages_naming_a_logo_seal_or_emblem": [],
+ "photographs": "reviewed one by one (results/phase4/photo_review.json); the three in which a government emblem was prominent were removed",
+ "verdict": "no agency logo, emblem or seal in web/public or on any page"
+}

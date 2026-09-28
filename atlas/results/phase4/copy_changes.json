@@ -1,0 +1,57 @@
+{
+ "changes": [
+  {
+   "stage": "3",
+   "where": "docs/methodology.md, \"In a minute\" (About us page)",
+   "old": "**In a minute:** Every count on this site comes from the Census Bureau's American Community Survey from 2020 through 2024.",
+   "new": "**In a minute:** Every count on this site is our estimate from the Census Bureau's American Community Survey from 2020 through 2024.",
+   "why": "presented our counts as coming from the Census Bureau; they are our estimates from its survey (ADR 0012)"
+  },
+  {
+   "stage": "3",
+   "where": "registry features.pool_size.definition (What we measure, info tips)",
+   "old": "The number of people in each city who match your whole search, counted from the Census Bureau's household survey.",
+   "new": "The number of people in each city who match your whole search, estimated from the Census Bureau's household survey.",
+   "why": "\"counted from\" presented a weighted, allocated estimate as a count from the Census survey (ADR 0012)"
+  },
+  {
+   "stage": "3",
+   "where": "web/src/app/layout.tsx, the site's meta description",
+   "old": "\"Which city has the best dating scene for you? Counted from the Census Bureau's own survey, city by city.\"",
+   "new": "\"Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.\"",
+   "why": "\"Counted from\" presented our estimates as counts from the Census survey (ADR 0012)"
+  }
+ ],
+ "census_data_reviewed_and_kept": [
+  {
+   "where": "registry strings.home_subtitle",
+   "text": "Find out how many people match your search in each city based on Census data.",
+   "why": "names the source data; the figure is not called Census data"
+  },
+  {
+   "where": "registry strings.slider_info",
+   "text": "... based on historical Census marriage data.",
+   "why": "names the source data; rewritten in Stage 5 for the rename"
+  },
+  {
+   "where": "registry strings.match_info",
+   "text": "... the pattern of who actually forms couples in Census data ...",
+   "why": "names the source data; rewritten in Stage 5"
+  },
+  {
+   "where": "registry strings.match_how / docs/methodology.md",
+   "text": "The chances-of-matching figure is built from real couples in the Census Bureau's household survey ...",
+   "why": "says what the figure is built from; rewritten in Stage 5 for the rename"
+  },
+  {
+   "where": "docs/methodology.md, where the data comes from",
+   "text": "... weighted the way the Census Bureau weighs them.",
+   "why": "describes the weighting, not a figure"
+  },
+  {
+   "where": "docs/methodology.md, the source table",
+   "text": "Places to go out | Census Bureau business data",
+   "why": "names the source of the stat"
+  }
+ ]
+}

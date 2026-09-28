@@ -38,6 +38,7 @@ import re
 
 from atlas.pipeline.build.city_images import (THUMB_WIDTH, clear_licence,
                                               download, imageinfo)
+from atlas.pipeline.build.photo_review import CROPPED, title_of
 from atlas.pipeline.fetch import RESULTS
 
 # in preference order; the first to clear the PD/CC0 gate ships
@@ -93,6 +94,9 @@ def main() -> None:
         "license": rec["license"],
         "license_url": rec.get("license_url"),
         "source_url": rec["source_url"],
+        # Phase 4 (ADR 0012): the credit's title, and the band crop
+        "title": title_of(rec["source_url"]),
+        "cropped": CROPPED["hero"],
     }
     out = WEB / "src" / "data" / "hero.json"
     out.write_text(json.dumps(hero_json, indent=1, ensure_ascii=False) + "\n")

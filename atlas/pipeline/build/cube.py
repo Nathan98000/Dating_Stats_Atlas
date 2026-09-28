@@ -51,11 +51,16 @@ from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 from atlas.pipeline.adapters.census import DhcTractGqAdapter
 from atlas.pipeline.build.pool import open_pool
 from atlas.pipeline.contracts.provenance import (assert_all_shippable,
+                                                 assert_credited_shippable,
                                                  assert_manifest_matches_requests)
-from atlas.pipeline.adapters.base import LICENSES
+from atlas.pipeline.adapters.base import GEOGRAPHY_SOURCES, LICENSES
 from atlas.pipeline.contracts.provenance import Provenance
 from atlas.pipeline.fetch import DATA, RESULTS
 from atlas.pipeline.registry.loader import load_registry
+
+# the statuses whose values reach the artifact (retired and deferred
+# features carry no served value)
+SERVED_STATUSES = ("active", "context_only")
 
 P1 = RESULTS / "phase1"
 P2 = RESULTS / "phase2"
@@ -314,16 +319,23 @@ def build(out_root=None) -> str:
             for k, p in reg.pillars.items()
         },
         # Attribution stays pluggable in ONE place (adapters/base.py
-        # LICENSES); the counsel memo may change the wording, and it flows
+        # LICENSES); a wording change is made there, and it flows
         # base.py -> manifest -> /v1/meta -> render without touching a
-        # component.
+        # component. Phase 4 (ADR 0012): each source carries its exact
+        # citations, the notice its terms require and its conditions, and
+        # the geography sources every figure passes through are credited
+        # beside the features' own.
         "licenses": {
             src: {"name": LICENSES[src].name, "url": LICENSES[src].url,
                   "shippable": LICENSES[src].shippable,
                   "attribution": LICENSES[src].attribution,
-                  "notes": LICENSES[src].notes}
+                  "notes": LICENSES[src].notes,
+                  "citations": list(LICENSES[src].citations),
+                  "notice": LICENSES[src].notice,
+                  "conditions": list(LICENSES[src].conditions)}
             for src in sorted({f.provenance["source"]
-                               for f in reg.features.values()})
+                               for f in reg.features.values()}
+                              | set(GEOGRAPHY_SOURCES))
         },
         "features_block": {
             f.id: {"pillar": f.pillar, "kind": f.kind, "direction": f.direction,
@@ -359,7 +371,9 @@ def build(out_root=None) -> str:
     }
     # Provenance cannot drift from the query: the manifest's recorded DHC
     # variable list must equal what the adapter actually requests, and every
-    # scored feature must trace to a shippable source.
+    # served feature — scored or shown as context — must trace to a
+    # shippable source that carries its citation (ADR 0012), as must the
+    # geography every figure passes through.
     assert_manifest_matches_requests(
         {"dhc": manifest["sources"]["dhc_variables"]},
         {"dhc": DhcTractGqAdapter().requested_variables})
@@ -367,8 +381,9 @@ def build(out_root=None) -> str:
                                     ("source", "dataset", "table", "geography",
                                      "vintage", "transform_id", "tier")},
                                "variables": tuple(f.provenance["variables"])})
-             for f in reg.features.values() if f.status == "active"}
-    assert_all_shippable(provs, LICENSES | {"census_acs": LICENSES["census_acs"]})
+             for f in reg.features.values() if f.status in SERVED_STATUSES}
+    assert_all_shippable(provs, LICENSES)
+    assert_credited_shippable(list(GEOGRAPHY_SOURCES), LICENSES)
     (tmp / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 
     out_dir = (out_root or BUILDS) / data_version

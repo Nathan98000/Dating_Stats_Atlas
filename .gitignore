@@ -89,3 +89,7 @@ atlas/docs/decisions/counsel_packet/private/
 *answer*counsel*
 *counsel*memo*
 *memo*counsel*
+
+# Phase 4 working files (the 3c/3d pattern): photo contact sheets (third-party images), chain scripts, run logs
+atlas/results/phase4/_*
+atlas/results/phase4/*_run.log

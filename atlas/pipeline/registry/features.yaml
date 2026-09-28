@@ -432,7 +432,7 @@ features:
     mover_phrase: "the size of the pool"
     definition: >-
       The number of people in each city who match your whole search,
-      counted from the Census Bureau's household survey.
+      estimated from the Census Bureau's household survey.
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
                  table: pool_cube, variables: [PWGTP, a_eff],
                  geography: cbsa, vintage: "2020-2024",

@@ -39,6 +39,7 @@ from pathlib import Path
 import pandas as pd
 import requests
 
+from atlas.pipeline.build.photo_review import CROPPED, refused_files, title_of
 from atlas.pipeline.fetch import DATA, RESULTS
 
 WEB = RESULTS.parents[0] / "web"
@@ -49,6 +50,9 @@ UA = {"User-Agent": "DatingStatsAtlas/0.1 (research build; contact via repo)"}
 SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
 API = "https://en.wikipedia.org/w/api.php"
 THUMB_WIDTH = 1600
+
+# Phase 4 (ADR 0012): files the photo review removed are refused on sight
+REVIEW_REFUSED = refused_files()
 
 # licences Nathan cleared: PD, CC0, CC-BY, CC-BY-SA — nothing NC or ND,
 # nothing unreadable
@@ -199,6 +203,10 @@ def source_one(candidates: list[str]) -> tuple[dict | None, str]:
         if not name:
             last_reason = "no_lead_image"
             continue
+        if f"File:{name}" in REVIEW_REFUSED:
+            # Phase 4 (ADR 0012): the photo review removed this file
+            last_reason = REVIEW_REFUSED[f"File:{name}"]
+            continue
         ii = imageinfo(name)
         if not ii:
             last_reason = "no_imageinfo"
@@ -265,6 +273,10 @@ def main() -> None:
             "license": rec["license"],
             "license_url": rec["license_url"],
             "source_url": rec["source_url"],
+            # Phase 4 (ADR 0012): the credit's title, and whether the
+            # layout crops it (city photographs scale, never crop)
+            "title": title_of(rec["source_url"]),
+            "cropped": CROPPED["city"],
         }
         if (n + 1) % 50 == 0:
             print(f"  {n + 1}/{len(cm)} metros")
@@ -304,6 +316,8 @@ def main() -> None:
             "author": rec["author"], "license": rec["license"],
             "license_url": rec["license_url"],
             "source_url": rec["source_url"],
+            "title": title_of(rec["source_url"]),
+            "cropped": CROPPED["stat"],
         }
     pd.DataFrame(stat_rows).to_csv(P2E / "stat_images.csv", index=False)
     (WEB / "src" / "data" / "stat-images.json").write_text(

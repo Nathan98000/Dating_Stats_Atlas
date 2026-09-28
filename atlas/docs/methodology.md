@@ -1,7 +1,7 @@
 # How the numbers are made
 
-**In a minute:** Every count on this site comes from the Census Bureau's
-American Community Survey from 2020 through 2024. You select what you're
+**In a minute:** Every count on this site is our estimate from the Census
+Bureau's American Community Survey from 2020 through 2024. You select what you're
 looking for; we count how many matching people live in each of 387 US
 metro areas, and rank the 193 with at least 250,000 people and enough
 survey sample to answer. We use additional information from
