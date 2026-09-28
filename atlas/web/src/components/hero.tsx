@@ -5,9 +5,8 @@ import { Attribution } from "./attribution";
 
 /** The home hero (HomeV3, real since Phase 2f item 4.1): a photograph
  * sourced through the Phase 2e image pipeline with its licence gate,
- * shipped at web/public/hero.jpg and recorded row-for-row in the
- * committed manifest (results/phase2f/hero_image.csv -> src/data/
- * hero.json). The hero is a cropped band, and a crop of a CC-BY-SA
+ * shipped at web/public/hero.jpg and recorded in the committed
+ * src/data/hero.json. The hero is a cropped band, and a crop of a CC-BY-SA
  * image is an adaptation that drags ShareAlike onto the page — so the
  * band crop (object-cover) is allowed ONLY for public-domain/CC0; any
  * attributed licence would render uncropped instead. Attribution

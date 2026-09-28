@@ -18,21 +18,23 @@ candidates reviewed are listed in PHASE2G.md with their licences.
 Outputs:
   web/public/hero.jpg            gitignored like every shipped photo;
                                  this script re-materialises it
-  results/phase2g/hero_image.csv the committed manifest row
-  web/src/data/hero.json         the render-side record; its sha256 is
-                                 what lets the page attach attribution
-                                 ONLY while the file on disk is this
-                                 exact file (Nathan's drop-in override
-                                 renders, but never wears this credit)
+  web/src/data/hero.json         the committed record, and the one the
+                                 site reads; its sha256 is what lets
+                                 the page attach attribution ONLY while
+                                 the file on disk is this exact file
+                                 (Nathan's drop-in override renders,
+                                 but never wears this credit)
+
+The Phase 2g manifest row (results/phase2g/hero_image.csv) was written
+beside hero.json from the same record and read by nothing; Phase 4
+Stage 0 deleted it, and this script no longer writes it.
 
     python -m atlas.pipeline.build.hero_image
 """
 from __future__ import annotations
 
-import csv
 import json
 import re
-import time
 
 from atlas.pipeline.build.city_images import (THUMB_WIDTH, clear_licence,
                                               download, imageinfo)
@@ -48,7 +50,6 @@ HERO_ALT = ("A couple walking a city path holding hands, photographed "
             "from the shoulders down")
 STRICT_PD = re.compile(r"^(public domain|pd\b|cc0)", re.IGNORECASE)
 
-P2G = RESULTS / "phase2g"
 WEB = RESULTS.parents[0] / "web"
 
 
@@ -84,27 +85,6 @@ def main() -> None:
     sha = download(rec["image_url"], dest)
     assert sha, f"download failed: {rec['image_url']}"
 
-    retrieved = time.strftime("%Y-%m-%d")
-    P2G.mkdir(parents=True, exist_ok=True)
-    row = {
-        "subject": "couple holding hands (Phase 2g item 2.1)",
-        "page_title": "",
-        "file_title": rec["file_title"],
-        "source_url": rec["source_url"],
-        "image_url": rec["image_url"],
-        "author": rec.get("author") or "",
-        "license": rec["license"],
-        "license_url": rec.get("license_url") or "",
-        "retrieved": retrieved,
-        "sha256": sha,
-        "file": "hero.jpg",
-        "alt": HERO_ALT,
-    }
-    with (P2G / "hero_image.csv").open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(row))
-        w.writeheader()
-        w.writerow(row)
-
     hero_json = {
         "file": "hero.jpg",
         "sha256": sha,
@@ -117,7 +97,7 @@ def main() -> None:
     out = WEB / "src" / "data" / "hero.json"
     out.write_text(json.dumps(hero_json, indent=1, ensure_ascii=False) + "\n")
     print(f"hero: {rec['file_title']} ({rec['license']}) -> {dest}")
-    print(f"manifest: {P2G / 'hero_image.csv'}; render record: {out}")
+    print(f"render record: {out}")
 
 
 if __name__ == "__main__":
