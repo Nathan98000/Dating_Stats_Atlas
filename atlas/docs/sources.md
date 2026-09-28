@@ -49,6 +49,7 @@ beneath them.
 
 - Files: `https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/csv_p{ST}.zip` and `csv_h{ST}.zip`
 - Dictionary: [PUMS_Data_Dictionary_2020-2024.csv](https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2020-2024.csv)
+- The intermarriage check (ADR 0016) also reads the newlyweds' record keys — "married in the past 12 months" (MARHM = 1), which the extract does not carry — from the Census Bureau's PUMS API (`api.census.gov/data/2024/acs/acs5/pums`) and joins them to the extract.
 - Licence basis: US public domain (17 USC 105); [Census API terms of service](https://www.census.gov/data/developers/about/terms-of-service.html)
 
 ### ACS 5-year detailed tables, 2020–2024
@@ -184,7 +185,7 @@ Licence basis: US public domain (17 USC 105); [BLS copyright statement](https://
 
 | Source | Publisher | Why it is here | Link |
 |---|---|---|---|
-| "Intermarriage across the U.S. by metro area" — the share of newlyweds married to someone of a different race or ethnicity, 2011–2015, for the nation and the 124 metros with 200 or more newlyweds in sample | Pew Research Center | **Build-time only: never published, and never compared in public** (ADR 0012, Nathan's decision). It was the out-of-sample check on the matching model (ADR 0009 §4) until Phase 4; never used to choose a kernel, never scored, never shipped — `build.validate` fails (hard) if any derived value reaches the artifact | [pewresearch.org (feature, 18 May 2017)](https://www.pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area/) |
+| "Intermarriage across the U.S. by metro area" — the share of newlyweds married to someone of a different race or ethnicity, 2011–2015, for the nation and the 124 metros with 200 or more newlyweds in sample | Pew Research Center | **Build-time only: never published, and never compared in public** (ADR 0012, Nathan's decision). It was the out-of-sample check on the matching model (ADR 0009 §4) until Phase 4, when the Census PUMS newlywed rate replaced it (ADR 0016); never used to choose a kernel, never scored, never shipped — `build.validate` fails (hard) if any derived value reaches the artifact | [pewresearch.org (feature, 18 May 2017)](https://www.pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area/) |
 
 Obtained on 16 September 2026 from the feature's data endpoint. The one copy is
 kept on the build machine, in the gitignored `atlas/data/private/pew/`; in Phase 4

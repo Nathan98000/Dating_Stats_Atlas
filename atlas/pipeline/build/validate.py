@@ -56,10 +56,12 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  vs baseline (target >= 0.85)
   soft  external correlation     score/ratio vs B09021 living-alone share
                                  and B12007 (state fallback, finding)
-  soft  pew reproduction         the Phase 3 out-of-sample Pew comparison
-                                 (results/phase3/kernel_report.json): the
-                                 shrunk kernel must beat national-only and
-                                 raw per-metro; reported as measured
+  soft  intermarriage (PUMS)     the out-of-sample intermarriage check
+                                 (ADR 0016; results/phase4/intermarriage_
+                                 check.json): the served form's held-out
+                                 out-group predictions against the Census
+                                 PUMS newlywed rate, the reading Pew's table
+                                 gave until Phase 4; reported as measured
   soft  served-region true CV    the ADR 0002 evidence, recomputed from the
                                  480-shape battery when the file is present
 """
@@ -100,7 +102,6 @@ ALLOWED_REASONS = {"n_below_100", "empty_pool"}
 BANNED = re.compile(r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
                     re.IGNORECASE)
 PEW_CSV = PEW_TABLE      # private, build machine only (ADR 0012; pew_guard)
-KERNEL_REPORT = RESULTS / "phase3" / "kernel_report.json"
 CUBE_TO_SPEC = {v: k for k, v in engine.SPEC_RACE.items()}
 
 
@@ -447,42 +448,33 @@ def check_pew_never_shipped(build_dir: Path) -> dict:
     return out
 
 
-def check_pew_reproduction() -> dict:
-    """The Phase 3 out-of-sample Pew comparison as the kernel run recorded
-    it: three models' corrected error distributions and whether the
-    shrunk kernel beat national-only AND raw per-metro (the item 11 bar).
-    Soft here — reported as measured; the kernel run is where it gates."""
-    # m3.2.0 (Phase 3b): the shipped FORM's own leave-one-metro-out record
-    # when the refinement run wrote one; else the Phase 3 sample record
-    refine = RESULTS / "phase3b" / "refine_heldout.json"
-    if refine.exists() and "shipped" in json.loads(refine.read_text()).get("forms", {}):
-        rec = json.loads(refine.read_text())
-        pew = rec["forms"]["shipped"]["pew"]
-        ship = f"{rec['sample']} (shipped form, results/phase3b/refine_heldout.json)"
-        source = "results/phase3b/refine_heldout.json (leave-one-metro-out on the shipped form)"
-        metros = 124
-    else:
-        if not KERNEL_REPORT.exists():
-            return {"skipped": "results/phase3/kernel_report.json not on this machine"}
-        rep = json.loads(KERNEL_REPORT.read_text())
-        ship = rep["shipped"]["sample"]
-        pew = rep["samples"][ship]["pew"]
-        metros = pew["metros_matched"]
-        source = ("results/phase3/kernel_report.json (leave-one-metro-out, "
-                  "level offset from Pew's US row only)")
-    ce = pew["corrected_errors"]
-    return {"fitting_sample": ship, "metros": metros,
-            "level_offset_ratio": pew["level_offset_ratio_ours_over_pew"],
+def check_intermarriage() -> dict:
+    """The out-of-sample intermarriage check (ADR 0016) as its run recorded
+    it: the served opposite-sex form's leave-one-metro-out out-group
+    predictions against the Census PUMS newlywed intermarriage rate
+    (2020-2024, Pew's category scheme, metros with at least 200 newlyweds
+    in sample), the national-ratio correction, the corrected error
+    distributions and the paired counts. It replaced the Pew reading in
+    Phase 4. Soft: reported as measured."""
+    path = RESULTS / "phase4" / "intermarriage_check.json"
+    if not path.exists():
+        return {"skipped": "results/phase4/intermarriage_check.json not on this machine"}
+    rec = json.loads(path.read_text())
+    c = rec["comparison"]
+    ce = c["corrected_errors"]
+    return {"reference": rec["reference"], "predictions": rec["predictions"],
+            "metros": c["metros_matched"],
+            "national_ratio_ours_over_reference": c["level_offset_ratio_ours_over_reference"],
             "median_abs_pts": {m: ce[m]["median_abs_pts"] for m in
                                ("national_only", "raw_dial", "shrunk_dial")},
             "p90_abs_pts": {m: ce[m]["p90_abs_pts"] for m in
                             ("national_only", "raw_dial", "shrunk_dial")},
+            "paired_shrunk_vs_national": c["paired"]["shrunk_vs_national"],
+            "paired_shrunk_vs_raw": c["paired"]["shrunk_vs_raw"],
             "shrunk_beats_both": bool(
                 ce["shrunk_dial"]["median_abs_pts"] < ce["national_only"]["median_abs_pts"]
                 and ce["shrunk_dial"]["median_abs_pts"] < ce["raw_dial"]["median_abs_pts"]),
-            "tie_accepted": "ADR 0009 §4 (amended, m3.1.0): the tie against the raw per-metro "
-                            "dial clears the bar on Nathan's decision",
-            "source": source}
+            "source": "results/phase4/intermarriage_check.json"}
 
 
 def measure_served_region_cv() -> dict:
@@ -879,8 +871,8 @@ def main(build_dir: str) -> int:
                    "weak correlation is expected and reported as measured "
                    "(§11)"}
 
-    # ---- soft: the Phase 3 Pew reproduction, as recorded -------------------
-    report["soft"]["pew_reproduction"] = check_pew_reproduction()
+    # ---- soft: the intermarriage check (ADR 0016), as recorded -------------
+    report["soft"]["intermarriage_pums"] = check_intermarriage()
 
     # ---- soft: ADR 0002 evidence -------------------------------------------
     report["soft"]["served_region_true_cv"] = measure_served_region_cv()
@@ -898,7 +890,7 @@ def main(build_dir: str) -> int:
                                          ("pass", "ratio", "searches_touched", "basis")},
                       "rank_stability_old_rule_min_share": gv["old_rule"]["min_share_personas"],
                       "weight_sensitivity": report["soft"]["weight_sensitivity"]["kendall_tau"],
-                      "pew": report["soft"]["pew_reproduction"],
+                      "intermarriage": report["soft"]["intermarriage_pums"],
                       "kernel_face": report["hard"]["kernel_face_validity"]["pass"],
                       "external": corr}, indent=2))
     return 1 if hard_fail else 0

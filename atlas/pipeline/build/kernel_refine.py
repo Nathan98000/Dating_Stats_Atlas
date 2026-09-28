@@ -24,8 +24,8 @@ The kernel keeps its form,
            + log_norm(metro, seeker) )
 
 with the same IPF-with-availability-offset estimation, the same smoothing,
-gauge, dials, shrinkage, split-half test and Pew comparison as kernel.py
-(whose data loading, metro tables, shrinkage and Pew code are reused as
+gauge, dials, shrinkage, split-half test and intermarriage comparison as
+kernel.py (whose data loading, metro tables, shrinkage and comparison code are reused as
 they are). The two-way term is estimated by penalised coordinate ascent:
 the main effects take exact IPF steps, the interaction takes a Newton step
 on the ridge-penalised Poisson objective per cell, in weight units with
@@ -1244,7 +1244,7 @@ def _lomo_forms_one(cbsa: str) -> dict:
     dials jointly on each household half, shrink them with the other
     metros' full-sample (mu, tau^2) for that form, and score the other
     half — the split-half held-out log-likelihood the Part B rule reads —
-    plus the Pew out-group predictions for the record."""
+    plus the out-group predictions the intermarriage check reads (ADR 0016)."""
     i = _W["midx"][cbsa]
     mc = _W["full"][cbsa]
     h0, h1 = _W["halves"][cbsa]
@@ -1284,7 +1284,7 @@ def _lomo_forms_one(cbsa: str) -> dict:
             rec["raw"] += loglik_at(dh["theta"], f_m, eval_half, A_m, form)
             rec["sides"] += eval_half.W
         rec["national_all"] = loglik_at(np.ones(3), f_m, mc, A_m, form)
-        # the shipped-dial kernel's Pew prediction (all couples' dials, shrunk)
+        # the shipped-dial kernel's out-group prediction (all couples' dials, shrunk)
         d_all = fit_dials(f_m, mc, A_m, form)
         se2 = K.dial_se2(d_all, n_eff)
         tilde = np.ones(3)
@@ -1292,7 +1292,7 @@ def _lomo_forms_one(cbsa: str) -> dict:
             tilde[k], _ = K.shrink_one(d_all["theta"][k], se2[k], shs[k])
         pi = K.formation_propensity(fit["N_s"], A_minus)
         pn = predict_outgroup(f_m, np.ones(3), A_m, pi, form)
-        rec["pew_pred"] = {"national_only": pn["predicted"], "random_pairing": pn["random_pairing"],
+        rec["outgroup_pred"] = {"national_only": pn["predicted"], "random_pairing": pn["random_pairing"],
                            "raw_dial": predict_outgroup(f_m, d_all["theta"], A_m, pi, form)["predicted"],
                            "shrunk_dial": predict_outgroup(f_m, tilde, A_m, pi, form)["predicted"],
                            "observed_fitting_sample": K.observed_outgroup(mc)}
@@ -1556,18 +1556,23 @@ def summarise_lomo(sample: str, lomo: list[dict], forms: dict, common: dict, ful
             rec["metros_where_better_than_shipped_shrunk"] = sum(
                 1 for r in lomo if r["forms"][name]["shrunk"] > r["forms"]["shipped"]["shrunk"])
             rec["improves_on_shipped"] = beats(rec["gain_vs_shipped_shrunk_per_1000_sides"])
-        # the Pew comparison for the record
-        pew_rec, comp = K.pew_comparison(
-            [{"cbsa": r["cbsa"], "pew_pred": r["forms"][name]["pew_pred"]} for r in lomo],
-            K.pew_table(common["metro_levels"]), K.pew_national(),
+        # the intermarriage check for the record (ADR 0016: the Census PUMS
+        # newlywed rate; Pew's table until Phase 4)
+        ref_rec, comp = K.outgroup_comparison(
+            # stores written before Phase 4 name the same predictions pew_pred
+            [{"cbsa": r["cbsa"], "outgroup_pred": r["forms"][name].get("outgroup_pred",
+                                                                     r["forms"][name].get("pew_pred"))}
+             for r in lomo],
+            K.outgroup_reference(common["metro_levels"]), K.outgroup_reference_national(),
             json.loads((P3 / "kernel_report.json").read_text())["samples"][sample]["national_outgroup_share"],
-            common["metro_levels"], full, P3B / f"pew_lomo_{name}.csv")
-        rec["pew"] = {"corrected_errors": pew_rec["corrected_errors"], "paired": pew_rec["paired"],
-                      "level_offset_ratio_ours_over_pew": pew_rec["level_offset_ratio_ours_over_pew"]}
+            common["metro_levels"], full, P3B / f"outgroup_lomo_{name}.csv")
+        rec["intermarriage"] = {"corrected_errors": ref_rec["corrected_errors"], "paired": ref_rec["paired"],
+                                "level_offset_ratio_ours_over_reference":
+                                    ref_rec["level_offset_ratio_ours_over_reference"]}
         out["forms"][name] = rec
         print(f"  [{name}] held-out gain vs baseline (shrunk) {rec['gain_vs_baseline_shrunk_per_1000_sides']:+.3f} "
               f"per 1,000 sides, better in {wins}/{len(lomo)} metros; ships={rec['ships']}; "
-              f"Pew shrunk {pew_rec['corrected_errors']['shrunk_dial']['median_abs_pts']}", flush=True)
+              f"intermarriage shrunk {ref_rec['corrected_errors']['shrunk_dial']['median_abs_pts']}", flush=True)
     (P3B / "refine_heldout.json").write_text(json.dumps(out, indent=1, default=_json) + "\n")
     return out
 
@@ -1581,7 +1586,7 @@ def cmd_combine(sample: str, only: list[str] | None = None, reason: str | None =
     whose held-out test says it ships (refine_heldout.json); fitted on the
     full sample with its dials and appended to the fit record as
     'shipped' (a LOMO run with --only shipped then puts its held-out
-    figure and Pew comparison on the record)."""
+    figure and intermarriage comparison on the record)."""
     rep = json.loads((P3B / "refine_fits.json").read_text())
     ho = json.loads((P3B / "refine_heldout.json").read_text())
     # the Part B rule: improves total held-out likelihood AND does not

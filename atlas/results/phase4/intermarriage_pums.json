@@ -1,0 +1,31 @@
+{
+ "definition": "share of people married in the past 12 months (ACS MARHM = 1) whose spouse is of a different race or ethnicity, Pew's scheme (Hispanic of any race; non-Hispanic white, black, Asian incl. Pacific Islander, American Indian, multiracial, some other race); spouse = the household reference person's spouse link (RELSHIPP 20 with 21/23), households only; weights PWGTP x a_eff with 80 replicates; MOE = 1.645 x replicate SE",
+ "source": "ACS 2020-2024 5-year PUMS: the Phase 1 extract (pool.duckdb contrib) joined to the MARHM = 1 keys from the Census PUMS API (2024/acs/acs5/pums)",
+ "join": {
+  "api_newlyweds": 199869,
+  "in_extract": 180551,
+  "field_mismatch": 0
+ },
+ "coverage": {
+  "linked_share_of_newlyweds": 0.8003,
+  "same_sex_share_of_linked": 0.0388,
+  "note": "PUMS links only the reference person's spouse; newlywed couples living in someone else's household are not observed"
+ },
+ "national_metro_universe": {
+  "n_records": 148548,
+  "n_alloc": 131311.8,
+  "rate": 0.23804,
+  "moe90": 0.00379,
+  "rate_race8": 0.23813
+ },
+ "floor_newlyweds_in_sample": 200.0,
+ "metros_with_rate": 387,
+ "metros_meeting_floor": 124,
+ "rate_p10_p50_p90_meeting_floor": [
+  0.1432,
+  0.2192,
+  0.3227
+ ],
+ "moe90_median_meeting_floor": 0.0521,
+ "seconds": 1.9
+}

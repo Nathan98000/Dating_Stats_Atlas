@@ -101,22 +101,23 @@ def test_the_private_table_is_ignored_and_its_header_is_the_one_guarded():
     assert G.has_pew_header(G.PEW_TABLE.read_text())
 
 
-def test_pew_comparison_writes_no_pew_values(tmp_path):
-    """The comparison reads Pew's values in memory; what it writes to the
-    per-metro table and the record carries our predictions only. Synthetic
-    inputs: none of these numbers is Pew's."""
+def test_the_kernel_reads_no_pew_and_its_comparison_writes_no_pew_values(tmp_path):
+    """Since Phase 4 the kernel's out-of-sample comparison reads the Census
+    PUMS reference (ADR 0016): no Pew reader is left in it, and what it
+    writes carries no Pew column. Synthetic inputs: none of these numbers
+    is Pew's or the Census's."""
     from atlas.pipeline.build import kernel as K
+    assert not hasattr(K, "pew_table") and not hasattr(K, "pew_national")
     codes = [f"{10000 + i}" for i in range(12)] + ["27140"]
     rng = np.random.default_rng(0)
-    pew = pd.DataFrame({"msa_code": codes, "metro_name": [f"M{c}" for c in codes],
-                        "pew_total": rng.uniform(0.05, 0.4, len(codes))})
-    lomo = [{"cbsa": c, "pew_pred": {k: float(rng.uniform(0.05, 0.4)) for k in (
+    ref = pd.DataFrame({"msa_code": codes, "metro_name": [f"M{c}" for c in codes],
+                        "ref_rate": rng.uniform(0.05, 0.4, len(codes))})
+    lomo = [{"cbsa": c, "outgroup_pred": {k: float(rng.uniform(0.05, 0.4)) for k in (
         "national_only", "raw_dial", "shrunk_dial", "random_pairing",
         "observed_fitting_sample")}} for c in codes]
     full = {c: SimpleNamespace(W=float(rng.uniform(1, 5))) for c in codes}
-    out_csv = tmp_path / "pew_lomo_test.csv"
-    rec, comp = K.pew_comparison(lomo, pew, 0.16, 0.24, codes, full, out_csv)
-    assert G.tracked_file_findings("pew_lomo_test.csv", out_csv.read_bytes()) == {}
-    assert "pew_total" not in pd.read_csv(out_csv).columns
-    assert "pew" not in comp["jackson_ms"]
+    out_csv = tmp_path / "outgroup_lomo_test.csv"
+    rec, comp = K.outgroup_comparison(lomo, ref, 0.2, 0.24, codes, full, out_csv)
+    assert G.tracked_file_findings("outgroup_lomo_test.csv", out_csv.read_bytes()) == {}
+    assert rec["metros_matched"] == len(codes)
     assert G.json_pew_value_paths({"rec": rec, "comp": comp}) == []

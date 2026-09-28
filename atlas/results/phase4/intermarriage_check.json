@@ -1,0 +1,148 @@
+{
+ "reference": "Census PUMS newlywed intermarriage rate (ADR 0016; results/phase4/intermarriage_pums_metro.csv), metros with at least 200 newlyweds in sample",
+ "predictions": "C1_cohorts_plus_shipped's leave-one-metro-out record on decay_h5 (Phase 3d A2, the finished fit): each metro left out, its out-group share predicted from the national kernel refitted without it and its own composition",
+ "comparison": {
+  "metros_matched": 124,
+  "reference_national": 0.23804,
+  "our_national_fitting_sample": 0.2203,
+  "level_offset_ratio_ours_over_reference": 0.9255,
+  "correction": "predictions divided by the national ratio (the reference's national rate vs our national fitting-sample share) \u2014 one constant from a national row, not fitted on the metros; raw errors also reported",
+  "raw_errors": {
+   "random_pairing": {
+    "n": 124,
+    "median_abs_pts": 31.12,
+    "p90_abs_pts": 44.48,
+    "max_abs_pts": 49.34,
+    "mean_signed_pts": 30.49
+   },
+   "national_only": {
+    "n": 124,
+    "median_abs_pts": 4.62,
+    "p90_abs_pts": 11.76,
+    "max_abs_pts": 23.92,
+    "mean_signed_pts": -4.62
+   },
+   "raw_dial": {
+    "n": 124,
+    "median_abs_pts": 2.5,
+    "p90_abs_pts": 7.6,
+    "max_abs_pts": 13.59,
+    "mean_signed_pts": -2.53
+   },
+   "shrunk_dial": {
+    "n": 124,
+    "median_abs_pts": 2.46,
+    "p90_abs_pts": 7.53,
+    "max_abs_pts": 13.52,
+    "mean_signed_pts": -2.53
+   },
+   "observed_2020_24": {
+    "n": 124,
+    "median_abs_pts": 2.2,
+    "p90_abs_pts": 6.52,
+    "max_abs_pts": 12.22,
+    "mean_signed_pts": -1.44
+   }
+  },
+  "corrected_errors": {
+   "random_pairing": {
+    "n": 124,
+    "median_abs_pts": 35.66,
+    "p90_abs_pts": 49.2,
+    "max_abs_pts": 55.06,
+    "mean_signed_pts": 34.82
+   },
+   "national_only": {
+    "n": 124,
+    "median_abs_pts": 3.75,
+    "p90_abs_pts": 10.15,
+    "max_abs_pts": 21.77,
+    "mean_signed_pts": -3.12
+   },
+   "raw_dial": {
+    "n": 124,
+    "median_abs_pts": 1.91,
+    "p90_abs_pts": 6.84,
+    "max_abs_pts": 12.06,
+    "mean_signed_pts": -0.86
+   },
+   "shrunk_dial": {
+    "n": 124,
+    "median_abs_pts": 1.92,
+    "p90_abs_pts": 6.74,
+    "max_abs_pts": 11.98,
+    "mean_signed_pts": -0.87
+   },
+   "observed_2020_24": {
+    "n": 124,
+    "median_abs_pts": 1.98,
+    "p90_abs_pts": 5.66,
+    "max_abs_pts": 12.33,
+    "mean_signed_pts": 0.32
+   }
+  },
+  "paired": {
+   "shrunk_vs_national": {
+    "a_better_metros": 95,
+    "b_better_metros": 29,
+    "median_paired_diff_pts": -1.02,
+    "mean_paired_diff_pts": -1.851,
+    "sign_test_p": 0.0
+   },
+   "shrunk_vs_raw": {
+    "a_better_metros": 69,
+    "b_better_metros": 55,
+    "median_paired_diff_pts": -0.018,
+    "mean_paired_diff_pts": 0.001,
+    "sign_test_p": 0.2429
+   },
+   "raw_vs_national": {
+    "a_better_metros": 93,
+    "b_better_metros": 31,
+    "median_paired_diff_pts": -0.9,
+    "mean_paired_diff_pts": -1.852,
+    "sign_test_p": 0.0
+   }
+  },
+  "bar": {
+   "national_only_median_abs_pts": 3.75,
+   "shrunk_beats_national_materially": true,
+   "shrunk_median_below_raw_median": false,
+   "shrunk_not_worse_than_raw_paired": true
+  }
+ },
+ "composition_check": {
+  "r2_reference_on_random_pairing_expectation": 0.275,
+  "availability_adjusted_ratio_observed_over_random": {
+   "min": 0.139,
+   "max": 1.01,
+   "median": 0.449
+  },
+  "one_national_multiplier": {
+   "rho": 0.3889,
+   "n": 124,
+   "median_abs_pts": 4.12,
+   "p90_abs_pts": 11.36,
+   "max_abs_pts": 19.12,
+   "mean_signed_pts": -0.66,
+   "share_off_by_over_1_5x": 0.161
+  },
+  "jackson_ms": {
+   "reference": 0.0805,
+   "one_multiplier_predicted": 0.2375,
+   "national_only_corrected": 0.1531,
+   "shrunk_corrected": 0.1163,
+   "observed_2020_24": 0.1066
+  }
+ },
+ "overlap_with_the_fit": {
+  "sample": "decay_h5",
+  "newlywed_share_of_fitting_weight_national": 0.081,
+  "newlywed_share_of_fitting_weight_by_metro_p10_p50_p90": [
+   0.0608,
+   0.0806,
+   0.1022
+  ],
+  "what": "the newlywed couples' share of the kernel's decay-weighted fitting weight: the part of each metro's own couples -- on which its dials are fitted -- that the reference also counts"
+ }
+}

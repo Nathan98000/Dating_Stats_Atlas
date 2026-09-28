@@ -63,7 +63,10 @@ def sample_facts(report: dict, sample: str) -> dict:
             "bandwidth_years": s["bandwidth"],
             "dial_components_earned": [k for k in K.COMPONENTS
                                        if s["split_half_dial_test"][k]["earns_dial"]],
-            "pew_corrected_median_abs_pts_shrunk": s["pew"]["corrected_errors"]["shrunk_dial"]["median_abs_pts"]}
+            # the Phase 3 records carry the Pew reading; a re-run carries the
+            # intermarriage check that replaced it (ADR 0016)
+            "pew_corrected_median_abs_pts_shrunk" if "pew" in s else "intermarriage_corrected_median_abs_pts_shrunk":
+                (s.get("pew") or s["intermarriage"])["corrected_errors"]["shrunk_dial"]["median_abs_pts"]}
 
 
 def main(argv: list[str]) -> None:

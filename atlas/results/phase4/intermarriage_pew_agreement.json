@@ -1,0 +1,13 @@
+{
+ "what": "agreement between the PUMS newlywed intermarriage rates (2020-2024) and Pew's metro table (2011-2015), read once from the private copy; the correlation and median absolute difference only, never the values (ADR 0016)",
+ "all_matched_metros": {
+  "metros": 124,
+  "pearson_r": 0.722,
+  "median_abs_difference_pts": 6.65
+ },
+ "matched_and_meeting_floor": {
+  "metros": 107,
+  "pearson_r": 0.729,
+  "median_abs_difference_pts": 6.65
+ }
+}
