@@ -11,9 +11,9 @@ import {
 import { effectiveSearchParams } from "@/lib/server-prefs";
 import { SiteHeader } from "@/components/chrome";
 import { LocatorMap } from "@/components/locator-map";
-import { BalanceTally } from "@/components/tally";
-import { MatchFigure } from "@/components/match";
 import { CityArt } from "@/components/city-art";
+import { CityVariantPart } from "@/components/city-variant";
+import { sliceVariants } from "@/lib/variants";
 import { CityNarrowCard, CityWideners } from "@/components/city-cards";
 import { CompareLauncher } from "@/components/compare-launcher";
 import { CrimeCards } from "@/components/crime-cards";
@@ -25,7 +25,10 @@ export const dynamic = "force-dynamic";
 /** The v3 city page (MetroV3): name, the one-line description (from the
  * build, never hand-written), locator map, the for-your-search card —
  * ranked, or the approved hard-to-answer card with one-click wideners —
- * then the stat cards with their standing bands, and the compare CTA. */
+ * then the stat cards with their standing bands, and the compare CTA.
+ * m4.0.0 (ADR 0018): what an "about you" variant changes (the ranked
+ * card, a left-out city's balance) is selected in the browser from this
+ * city's slice of the response (components/city-variant). */
 export default async function CityPage({
   params,
   searchParams,
@@ -47,10 +50,10 @@ export default async function CityPage({
 
   const ranked = response.ranked.find((r) => r.cbsa === metro.cbsa);
   const suppressed = response.suppressed.find((r) => r.cbsa === metro.cbsa);
+  const slice = sliceVariants(response, [metro.cbsa]);
   const qs = toSearchParams(prefs).toString();
   const policy = meta.policy_strings;
   const cards: Card[] = (ranked ?? suppressed)?.cards ?? [];
-  const balance = (ranked ?? suppressed)?.balance;
   const crime = (ranked ?? suppressed)?.crime;
   const city = metro.display_name_full.split(",")[0];
 
@@ -92,39 +95,14 @@ export default async function CityPage({
 
         {/* for-your-search: the ranked card, or the approved narrow card */}
         {ranked ? (
-          <section
-            className="flex flex-col gap-4 rounded-xl border border-rule bg-surface px-7 py-6"
-            data-testid="ranked-card"
-          >
-            <h2 className="font-display text-[21px] font-semibold">
-              Where {city} lands for your search
-            </h2>
-            <div className="flex flex-wrap items-center gap-x-12 gap-y-4">
-              <div className="flex items-baseline gap-2">
-                <span className="font-display text-[44px] font-semibold leading-none">
-                  {ranked.rank}
-                </span>
-                <span className="text-sm text-ink-2">
-                  of {response.counts.ranked.toLocaleString("en-US")} cities
-                  for {describeSearch(prefs).toLowerCase()}
-                </span>
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-display text-[30px] font-semibold leading-none">
-                  {ranked.pool.toLocaleString("en-US")}
-                </span>
-                <span className="text-sm text-ink-2">
-                  {meta.features.pool_size.unit}
-                </span>
-              </div>
-              <div className="min-w-[220px]">
-                <BalanceTally balance={ranked.balance} compact />
-              </div>
-              {/* m3.0.0: chances of matching beside pool and balance */}
-              <MatchFigure match={ranked.match} meta={meta} id={`match-${metro.cbsa}`} />
-            </div>
-            <p className="max-w-[72ch] text-sm text-ink-2">{ranked.summary_line}</p>
-          </section>
+          <CityVariantPart
+            part="ranked"
+            slice={slice}
+            cbsa={metro.cbsa}
+            city={city}
+            searchWords={describeSearch(prefs).toLowerCase()}
+            meta={meta}
+          />
         ) : suppressed ? (
           <CityNarrowCard
             city={city}
@@ -142,16 +120,15 @@ export default async function CityPage({
           </section>
         )}
 
-        {balance && !ranked && balance.available && (
-          <section className="flex flex-col gap-2 rounded-xl border border-rule bg-surface px-7 py-6" data-testid="balance-survives">
-            <h2 className="text-[15px] font-semibold">
-              {meta.features.pool_balance.display_name} in {city}
-            </h2>
-            <BalanceTally balance={balance} />
-            <p className="max-w-[64ch] text-[12.5px] text-ink-3">
-              {policy.balance_caption}
-            </p>
-          </section>
+        {suppressed && (
+          <CityVariantPart
+            part="balance"
+            slice={slice}
+            cbsa={metro.cbsa}
+            city={city}
+            searchWords={describeSearch(prefs).toLowerCase()}
+            meta={meta}
+          />
         )}
 
         <section className="flex flex-col gap-4">

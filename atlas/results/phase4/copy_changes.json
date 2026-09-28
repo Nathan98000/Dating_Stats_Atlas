@@ -20,6 +20,209 @@
    "old": "\"Which city has the best dating scene for you? Counted from the Census Bureau's own survey, city by city.\"",
    "new": "\"Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.\"",
    "why": "\"Counted from\" presented our estimates as counts from the Census survey (ADR 0012)"
+  },
+  {
+   "stage": "5",
+   "where": "registry pillars.match.display_name (panel, What we measure)",
+   "old": "\"Chances of matching\"",
+   "new": "\"Compatibility\"",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1)"
+  },
+  {
+   "stage": "5",
+   "where": "registry size_vs_odds.label_high (the slider's pole)",
+   "old": "\"Chances of matching\"",
+   "new": "\"Compatibility\"",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1)"
+  },
+  {
+   "stage": "5",
+   "where": "registry features.match_propensity.display_name (rows, city page, compare table)",
+   "old": "\"Chances of matching\"",
+   "new": "\"Compatibility\"",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1)"
+  },
+  {
+   "stage": "5",
+   "where": "registry features.match_propensity.mover_phrase (the rows' movers line)",
+   "old": "\"your chances of matching\"",
+   "new": "\"the compatibility figure\"",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); the bare word could read as ordinary English here, so \"the compatibility figure\""
+  },
+  {
+   "stage": "5",
+   "where": "registry pillars.match.definition and features.match_propensity.definition (What we measure card, info tips)",
+   "old": "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education and background, where 100 is the US average",
+   "new": "How closely the people who match your search resemble the people who actually pair with someone like you, on age and education (and on background, if you include yours), where 100 is the US average",
+   "why": "race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.slider_info (the slider's information box)",
+   "old": "slider_info: >- Leaning towards size favors larger cities with the most possible matches. Leaning towards chances of matching favors cities where the people who match your search line up more closely with you on age, education, and background, based on historical Census marriage data.",
+   "new": "slider_info: >- Leaning towards size favors larger cities with the most possible matches. Leaning towards compatibility favors cities where the people who match your search line up more closely with you on age and education, and on background if you include yours, based on historical Census marriage data.",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.match_info (the figure's information box)",
+   "old": "match_info: >- This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps, the education pairings and the racial and ethnic pairings that occur. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+   "new": "match_info: >- This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps and the education pairings that occur, and the racial and ethnic pairings too if you include your race or ethnicity. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+   "why": "race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.match_how and docs/methodology.md, the figure's section (About us)",
+   "old": "The chances-of-matching figure is built from real couples in the Census Bureau's household survey, using each partner's age, education and race or ethnicity. Across the whole country we measure how often each age gap, each education pairing and each racial or ethnic pairing actually occurs, compared with how often it would occur if single people paired at random. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age, education and background. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
+   "new": "The compatibility figure is built from real couples in the Census Bureau's household survey, using each partner's age and education, and their race or ethnicity only if you include yours. Across the whole country we measure how often each age gap and each education pairing actually occurs, compared with how often it would occur if single people paired at random; if you include your race or ethnicity, the racial and ethnic pairings are measured the same way. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age and education, and background if you include it. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.match_same_sex_note (a same-sex figure's information box) and docs/methodology.md",
+   "old": "match_same_sex_note: >- For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are borrowed from opposite-sex couples, because the same-sex couples in the survey are too few to measure them dependably on their own.",
+   "new": "match_same_sex_note: >- For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are not used, even if you include your race or ethnicity.",
+   "why": "same-sex searches use no race pairing (ADR 0018 §3)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.about_you_note (the panel's \"about you\" note)",
+   "old": "about_you_note: >- Optional: your education and your race or ethnicity feed only the chances-of-matching figure. Leave either unset and the average for people of your age and sex is used instead.",
+   "new": "about_you_note: >- Your sex, education and race or ethnicity stay in this browser and are never sent to us. Education is optional and feeds only the compatibility figure; leave it unset and the average for people of your age and sex is used instead.",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.self_race_switch_label (the panel's race switch; new)",
+   "old": null,
+   "new": "Include my race or ethnicity",
+   "why": "the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.self_race_switch_note (the panel's race switch; new)",
+   "old": null,
+   "new": "Off unless you turn it on. Your answer stays in this browser and is never sent to us.",
+   "why": "the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.self_race_same_sex_note (the panel's race switch; new)",
+   "old": null,
+   "new": "Not used in a same-sex search.",
+   "why": "the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2); same-sex searches use no race pairing (ADR 0018 §3)"
+  },
+  {
+   "stage": "5",
+   "where": "docs/methodology.md, the figure's heading and definition (About us)",
+   "old": "What are the chances of matching? / **Chances of matching** is how closely the people who match your search resemble the people who actually pair with someone like you, on age, education and background, where 100 is the US average.",
+   "new": "Compatibility / **Compatibility** is how closely the people who match your search resemble the people who actually pair with someone like you, on age and education (and on background, if you include yours), where 100 is the US average.",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "docs/methodology.md, the \"about you\" paragraph (About us)",
+   "old": "Your own education and your race or ethnicity are optional inputs. They feed only this figure; leave either unset and the average for people of your age and sex is used instead.",
+   "new": "Your own sex, education and race or ethnicity stay in your browser and are never sent to us: the site works out the figure for every possible answer, and your browser shows the one that fits you. Your education is optional; leave it unset and the average for people of your age and sex is used instead. Your race or ethnicity is used only if you switch it on, and then only for this figure; with it off, the figure uses no racial or ethnic pairing at all.",
+   "why": "the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "docs/methodology.md, the race and ethnicity boxes section (About us; new paragraph)",
+   "old": "(none)",
+   "new": "These boxes are about the people you're looking for. Your own race or ethnicity is a separate setting: it is off unless you switch it on, stays in your browser, and affects only the compatibility figure.",
+   "why": "the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
+  },
+  {
+   "stage": "5",
+   "where": "docs/methodology.md, how the score works (About us)",
+   "old": "The slider divides the people-side weight between pool size and chances of matching; ...",
+   "new": "The slider divides the people-side weight between pool size and compatibility; ...",
+   "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.self_race_choose (the race select's empty option; new)",
+   "old": null,
+   "new": "Choose one",
+   "why": "the race switch (ADR 0018 §2): switched on, the select starts with no group chosen"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.about_title (About us; new)",
+   "old": null,
+   "new": "About us",
+   "why": "the page \"How it works\" becomes About us (decision 7)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.about_measure_link (About us; new)",
+   "old": null,
+   "new": "What we measure",
+   "why": "What we measure leaves the nav and is linked prominently from About us (decision 7)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.about_crime_link (About us; new)",
+   "old": null,
+   "new": "About crime data",
+   "why": "About crime data stays reachable from About us"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.about_privacy_link (About us; new)",
+   "old": null,
+   "new": "Privacy",
+   "why": "the privacy page is linked from About us, not the nav (decision 9)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.credits_heading (About us; new)",
+   "old": null,
+   "new": "Sources and credits",
+   "why": "one section for every source and photograph credit (decision 8)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.credits_data_heading (About us; new)",
+   "old": null,
+   "new": "Data",
+   "why": "Sources and credits: the data citations (decision 8)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.credits_photos_heading (About us; new)",
+   "old": null,
+   "new": "Photographs",
+   "why": "Sources and credits: the photograph credits (decision 8)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.credits_photos_more (About us; new)",
+   "old": null,
+   "new": "Photographs on the city and stat pages ({n})",
+   "why": "the collapsible list of city and stat page photographs (decision 8)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.credits_source (About us; new)",
+   "old": null,
+   "new": "source",
+   "why": "a photograph credit's link to its source file (the word the removed credit lines used)"
+  },
+  {
+   "stage": "5",
+   "where": "registry strings.credits_cropped (About us; new)",
+   "old": null,
+   "new": "cropped",
+   "why": "marks a photograph shown cropped (decision 8)"
+  },
+  {
+   "stage": "5",
+   "where": "web/src/lib/nav.ts, the nav",
+   "old": "Browse cities · Compare cities · What we measure · How it works",
+   "new": "Browse cities · Compare cities · About us",
+   "why": "Nathan's decision 7: What we measure leaves the nav (its page stays); How it works becomes About us"
   }
  ],
  "census_data_reviewed_and_kept": [

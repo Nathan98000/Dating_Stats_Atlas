@@ -3,10 +3,11 @@ import { expect, test } from "@playwright/test";
 /** Phase 2d's new surfaces: the crime block (gate 4), the static stat
  * pages agreeing with the city pages cell for cell (gate 5), the compare
  * landing with its pickers and default-profile label (item 8), and the
- * restructured How it works with every item-10 disclosure (gate 6). */
+ * restructured How it works — About us since m4.0.0 — with every item-10
+ * disclosure (gate 6). */
 
 const CITY_URL =
-  "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously";
+  "/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously";
 
 test("crime is two cards in the stats grid, detail in the popover — never scored", async ({ page }) => {
   // Phase 2e item 2: rate + five-band position on the face, coverage and
@@ -46,7 +47,7 @@ test("crime is two cards in the stats grid, detail in the popover — never scor
 test("compare-page crime: two plain numbers and one banner, detail one click away", async ({ page }) => {
   // Phase 2e item 11
   await page.goto(
-    "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously");
+    "/compare/provo-utah/austin-texas?sex=male&self_age=30&age=28-40&marital=never,previously");
   const block = page.getByTestId("compare-crime");
   await expect(block).toBeVisible();
   const banner = page.getByTestId("crime-compare-banner");
@@ -126,13 +127,17 @@ test("the compare landing picks two cities and goes", async ({ page }) => {
   await expect(page.getByTestId("default-profile-note")).toContainText(
     /default search/);
   await page.getByRole("link", { name: "Make it your search" }).click();
-  await expect(page).toHaveURL(/self_sex=female/);
+  await expect(page).toHaveURL(/sex=male/);
 });
 
-test("How it works is Nathan's rewrite, corrections in, deleted sections gone", async ({ page }) => {
+test("About us carries Nathan's rewrite, corrections in, deleted sections gone", async ({ page }) => {
   // Phase 2g item 5: the page is his draft with the two corrections —
-  // 387 counted / 193 ranked on two conditions, and rent credited to HUD
+  // 387 counted / 193 ranked on two conditions, and rent credited to HUD.
+  // m4.0.0 (Nathan's decision 7): "How it works" is About us, and the old
+  // address redirects there permanently
   await page.goto("/how-it-works");
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.locator("h1")).toHaveText("About us");
   const article = page.locator("article.prose-method");
   await expect(article).toBeVisible();
   expect(await article.locator("table").count()).toBeGreaterThanOrEqual(1);

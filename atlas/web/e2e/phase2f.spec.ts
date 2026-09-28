@@ -9,9 +9,9 @@ import { expect, test } from "@playwright/test";
  * script), and the reworked stat pages (gate 8). */
 
 const CITY_URL =
-  "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously";
+  "/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously";
 const DEFAULTISH =
-  "?self_sex=female&self_age=30&age=28-40&marital=never,previously";
+  "?sex=male&self_age=30&age=28-40&marital=never,previously";
 
 const RGB = {
   good_strong: "rgb(27, 94, 75)",
@@ -105,8 +105,8 @@ test("preferences follow the visitor; explicit parameters always win (item 2)", 
     .getByRole("radio", { name: "A lot" }).click();
   await expect(page).toHaveURL(/ic=a/);
   // the nav carries the query to every destination and back
-  await page.getByRole("link", { name: "What we measure" }).click();
-  await expect(page).toHaveURL(/what-we-measure\?.*ic=a/);
+  await page.getByRole("link", { name: "About us" }).click();
+  await expect(page).toHaveURL(/about\?.*ic=a/);
   await page.getByRole("link", { name: "Compare cities" }).click();
   await expect(page).toHaveURL(/compare\?.*ic=a/);
   await page.getByRole("link", { name: "Browse cities" }).click();
@@ -129,8 +129,8 @@ test("preferences follow the visitor; explicit parameters always win (item 2)", 
 test("a reproduction link is never overridden by a conflicting cookie (item 2 / gate 3)", async ({ page, context }) => {
   const res = await page.request.post("/api/rank", {
     data: {
-      self: { sex: "male", age: 33 },
-      seeking: { age: [26, 38], marital: ["never_married"] },
+      self: { age: 33 },
+      seeking: { sex: "female", age: [26, 38], marital: ["never_married"] },
     },
   });
   expect(res.ok()).toBe(true);
@@ -138,7 +138,7 @@ test("a reproduction link is never overridden by a conflicting cookie (item 2 / 
   await context.addCookies([{
     name: "dsa_prefs",
     value: encodeURIComponent(
-      "self_sex=female&self_age=30&age=28-40&marital=never,previously&ic=a"),
+      "sex=male&self_age=30&age=28-40&marital=never,previously&ic=a"),
     url: "http://127.0.0.1:3100",
   }]);
   await page.goto(body.permalink);
@@ -196,7 +196,7 @@ test("either side missing gives an em dash (gate 5)", async ({ page }) => {
   // under the stress search both cities' pools suppress: rank, score and
   // pool differences must dash rather than invent a subtraction
   await page.goto(
-    "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh");
+    "/compare/provo-utah/austin-texas?sex=male&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh");
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();
   for (const id of ["rank", "score", "pool"]) {
@@ -229,7 +229,7 @@ test("stat pages: source line, header row, no band labels (items 9.2/9.4/9.5)", 
 
 test("the excluded-cities line and the compare landing speak the new copy", async ({ page }) => {
   await page.goto(
-    "/?self_sex=female&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
+    "/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
   await expect(page.getByTestId("excluded-note")).toContainText(
     /make a reliable estimate/);

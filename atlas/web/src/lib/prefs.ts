@@ -1,12 +1,16 @@
 /** URL state (§10.1): every preference lives in the query string. This
- * module maps searchParams <-> a typed pref state <-> the m2.0.0 request
- * body. It never computes a ranking number — that is the API's job. */
+ * module maps searchParams <-> a typed pref state <-> the request body. It
+ * never computes a ranking number — that is the API's job. m4.0.0 (ADR
+ * 0018): the visitor's own sex, education and race are NOT preferences —
+ * they live in this browser (lib/about-you) and never enter the query
+ * string, the cookie or a request; the sought sex is always explicit. */
 import type { RankBody } from "./permalink";
 
 export const PILLARS = ["pool", "match", "reach", "cost", "weather",
   "students"] as const;
-/** m3.0.0: the seeker's own optional attributes (ADR 0009) — cube level
- * names for education, spec ids for race; labels live in the registry */
+/** m3.0.0: the seeker's own education levels (ADR 0009) — cube level
+ * names; labels live in the registry. Since m4.0.0 they are chosen in the
+ * browser and never sent (lib/about-you). */
 export const SELF_EDU_LEVELS = ["hs_or_less", "some_college", "bachelors",
   "graduate"] as const;
 export type SelfEdu = (typeof SELF_EDU_LEVELS)[number];
@@ -18,9 +22,8 @@ export const IMPORTANCE_PILLARS = ["cost", "reach", "students", "weather"] as co
 export type ImportancePillar = (typeof IMPORTANCE_PILLARS)[number];
 
 export interface Prefs {
-  selfSex: "male" | "female";
   selfAge: number;
-  seekSex?: "male" | "female"; // absent = opposite of selfSex
+  seekSex: "male" | "female";
   ageMin: number;
   ageMax: number;
   marital: string[]; // never_married / previously_married
@@ -28,20 +31,18 @@ export interface Prefs {
   incomeMin?: number;
   race?: string[]; // spec ids of ticked groups (all eight equal since
   // m2.2.0/ADR 0006); absent = all — zero and all-eight mean everyone
-  /** m3.0.0: optional "about you" inputs; absent = not disclosed, and
-   * the API falls back to the population-average marginal */
-  selfEdu?: SelfEdu;
-  selfRace?: string;
   poolVsMatch?: number; // 0..1 (the URL param stays "s")
   importance: Record<ImportancePillar, Level>;
   sort: "best_first" | "worst_first";
 }
 
 /** The stated default profile: a woman of 30 seeking men 28–40, never
- * married or divorced/widowed, everything mattering "some". */
+ * married or divorced/widowed, everything mattering "some" (m4.0.0: "a
+ * woman" is the default "about you" — the opposite of the sought sex —
+ * held in the browser, not here). */
 export const DEFAULT_PREFS: Prefs = {
-  selfSex: "female",
   selfAge: 30,
+  seekSex: "male",
   ageMin: 28,
   ageMax: 40,
   marital: ["never_married", "previously_married"],
@@ -69,10 +70,10 @@ export type SearchParams = Record<string, string | string[] | undefined>;
 
 /** The preference dialect's parameter names — the ONE list behind
  * isDefaultSearch, the nav links' carried query (Phase 2f item 2) and
- * the cookie fallback. */
-export const PREF_KEYS = ["self_sex", "self_age", "self_edu", "self_race",
-  "sex", "age", "marital", "edu", "inc", "race", "s", "ic", "ir", "ist", "iw",
-  "il", "sort"] as const;
+ * the cookie fallback. m4.0.0: self_sex, self_edu and self_race left it
+ * (the "about you" details never travel); own age stays. */
+export const PREF_KEYS = ["self_age", "sex", "age", "marital", "edu", "inc",
+  "race", "s", "ic", "ir", "ist", "iw", "il", "sort"] as const;
 
 /** Phase 2f item 2 (ADR 0007): preferences persist in a cookie so the
  * search follows the visitor across the site. The query string stays the
@@ -81,7 +82,9 @@ export const PREF_KEYS = ["self_sex", "self_age", "self_edu", "self_race",
  * shared link, a permalink or a reproduction route is never overridden
  * by whatever the visitor last searched. */
 export const PREFS_COOKIE = "dsa_prefs";
-export const PREFS_COOKIE_MAX_AGE = 180 * 24 * 60 * 60; // ~180 days
+/** m4.0.0 (ADR 0018): the cookie keeps the other search settings for up
+ * to 30 days (the privacy page says so) */
+export const PREFS_COOKIE_MAX_AGE = 30 * 24 * 60 * 60;
 
 export function one(sp: SearchParams, k: string): string | undefined {
   const v = sp[k];
@@ -130,16 +133,11 @@ export function parsePrefs(sp: SearchParams): Prefs {
     marital: [...DEFAULT_PREFS.marital],
     importance: { ...DEFAULT_PREFS.importance },
   };
-  const selfSex = one(sp, "self_sex");
-  if (selfSex === "male" || selfSex === "female") p.selfSex = selfSex;
+  // m4.0.0: self_sex / self_edu / self_race are never read here — an old
+  // link that carries them has them moved into the browser's storage by
+  // the page (lib/about-you migrateLegacy), not sent anywhere
   const selfAge = parseInt(one(sp, "self_age") ?? "", 10);
   if (Number.isFinite(selfAge)) p.selfAge = Math.min(70, Math.max(18, selfAge));
-  const selfEdu = one(sp, "self_edu");
-  if ((SELF_EDU_LEVELS as readonly string[]).includes(selfEdu ?? "")) {
-    p.selfEdu = selfEdu as SelfEdu;
-  }
-  const selfRace = one(sp, "self_race");
-  if ((RACE_IDS as readonly string[]).includes(selfRace ?? "")) p.selfRace = selfRace;
   const seekSex = one(sp, "sex");
   if (seekSex === "male" || seekSex === "female") p.seekSex = seekSex;
   const age = (one(sp, "age") ?? "").match(/^(\d+)-(\d+)$/);
@@ -183,11 +181,8 @@ export function parsePrefs(sp: SearchParams): Prefs {
 
 export function toSearchParams(p: Prefs): URLSearchParams {
   const sp = new URLSearchParams();
-  sp.set("self_sex", p.selfSex);
   sp.set("self_age", String(p.selfAge));
-  if (p.selfEdu) sp.set("self_edu", p.selfEdu);
-  if (p.selfRace) sp.set("self_race", p.selfRace);
-  if (p.seekSex) sp.set("sex", p.seekSex);
+  sp.set("sex", p.seekSex);
   sp.set("age", `${p.ageMin}-${p.ageMax}`);
   sp.set("marital", p.marital.map((m) => MARITAL_LONG[m]).join(","));
   if (p.educationMin) sp.set("edu", p.educationMin);
@@ -205,16 +200,14 @@ export function toSearchParams(p: Prefs): URLSearchParams {
 
 export function toRankBody(p: Prefs): RankBody {
   const body: RankBody = {
-    self: { sex: p.selfSex, age: p.selfAge },
+    self: { age: p.selfAge },
     seeking: {
+      sex: p.seekSex,
       age: [p.ageMin, p.ageMax],
       marital: [...p.marital],
     },
     sort: p.sort,
   };
-  if (p.selfEdu) body.self.education = p.selfEdu;
-  if (p.selfRace) body.self.race_ethnicity = p.selfRace;
-  if (p.seekSex) body.seeking.sex = p.seekSex;
   if (p.educationMin) body.seeking.education_min = p.educationMin;
   if (p.incomeMin !== undefined) body.seeking.income_min = p.incomeMin;
   if (p.race?.length) body.seeking.race_ethnicity = [...p.race];
@@ -240,24 +233,18 @@ export function bodyToPrefs(body: RankBody): Prefs {
       imp.students = v as Level;
     }
   }
+  // m4.0.0: a token's own sex, education or race (tokens made before
+  // m4.0.0 carry them) is never read — an old token without an explicit
+  // sought sex reruns with the default one
   const p: Prefs = {
-    selfSex: body.self.sex === "male" ? "male" : "female",
     selfAge: body.self.age,
+    seekSex: body.seeking.sex === "female" ? "female" : "male",
     ageMin: body.seeking.age[0],
     ageMax: body.seeking.age[1],
     marital: [...body.seeking.marital],
     importance: imp,
     sort: (body.sort as Prefs["sort"]) ?? "best_first",
   };
-  if ((SELF_EDU_LEVELS as readonly string[]).includes(body.self.education ?? "")) {
-    p.selfEdu = body.self.education as SelfEdu;
-  }
-  if ((RACE_IDS as readonly string[]).includes(body.self.race_ethnicity ?? "")) {
-    p.selfRace = body.self.race_ethnicity;
-  }
-  if (body.seeking.sex === "male" || body.seeking.sex === "female") {
-    p.seekSex = body.seeking.sex;
-  }
   if (body.seeking.education_min === "bachelors"
       || body.seeking.education_min === "graduate") {
     p.educationMin = body.seeking.education_min;
@@ -288,8 +275,7 @@ const EDU_WORDS: Record<string, string> = {
 /** Plain-words restatement of the search (chips, headings, and the
  * narrow-state body's {search} slot — NarrowV3's own grammar). */
 export function describeSearch(p: Prefs): string {
-  const seek = p.seekSex ?? (p.selfSex === "female" ? "male" : "female");
-  const noun = seek === "male" ? "Men" : "Women";
+  const noun = p.seekSex === "male" ? "Men" : "Women";
   let s = `${noun} ${p.ageMin}–${p.ageMax}, `
     + p.marital.map((m) => MARITAL_WORDS[m]).join(" or ");
   if (p.educationMin) s += `, with ${EDU_WORDS[p.educationMin]}`;
@@ -299,11 +285,12 @@ export function describeSearch(p: Prefs): string {
   return s;
 }
 
-export function searchChips(p: Prefs): { label: string; active: boolean }[] {
-  const seek = p.seekSex ?? (p.selfSex === "female" ? "male" : "female");
+/** `selfSex` is the visitor's own sex as this browser holds it (m4.0.0:
+ * never part of the prefs). */
+export function searchChips(p: Prefs, selfSex: "male" | "female"): { label: string; active: boolean }[] {
   const chips = [
-    { label: `${p.selfSex === "female" ? "Woman" : "Man"}, ${p.selfAge}`, active: false },
-    { label: `${seek === "male" ? "Men" : "Women"} ${p.ageMin}–${p.ageMax}`, active: false },
+    { label: `${selfSex === "female" ? "Woman" : "Man"}, ${p.selfAge}`, active: false },
+    { label: `${p.seekSex === "male" ? "Men" : "Women"} ${p.ageMin}–${p.ageMax}`, active: false },
     { label: p.marital.length === 2 ? "Single"
         : p.marital[0] === "never_married" ? "Never married" : "Divorced or widowed",
       active: p.marital.length === 1 },

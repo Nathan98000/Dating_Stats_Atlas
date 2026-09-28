@@ -21,10 +21,10 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  grid; mean rank move of the cities in
                                  either top 10 over the 80 replicates) must
                                  not exceed 1.10 x the fixed reference's
-                                 (stability_gate.REFERENCE: m3.5.0,
-                                 1ebeaa2dcad6, since ADR 0015; m3.2.0
-                                 before) over the searches the build
-                                 touches
+                                 (stability_gate.REFERENCE: m4.0.0,
+                                 5b780e4f2444, since ADR 0018; m3.5.0
+                                 from ADR 0015, m3.2.0 before) over the
+                                 searches the build touches
   soft  rank stability (old)     the >= 8-of-10 top-10 overlap in >= 80% of
                                  replicates per persona, reported beside
                                  the new reading
@@ -46,6 +46,16 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
                                  banned vocabulary; the lead phrase is
                                  position-unique (the Phase 2a panel defect,
                                  found by hand, checked by machine since)
+  hard  variant invariants       m4.0.0 (ADR 0018): every "about you" variant
+                                 of every persona's search — the engine
+                                 asserts each one's exact attribution sum;
+                                 the selected rows carry no banned word,
+                                 no repeated lead phrase, movers among
+                                 their own stats and pillar sums that add
+                                 up; the persona's own variant and a
+                                 spread of others equal rank() exactly;
+                                 50 variants a search, a same-sex search's
+                                 race variants one
   hard  adversarial artifacts    college/military/prison metros in any
                                  top-10 must not be there for a
                                  GQ-traceable reason
@@ -340,6 +350,83 @@ def check_explanations(build, persona_results) -> dict:
             "problems": problems[:20]}
 
 
+def check_variants(build, vectors) -> dict:
+    """m4.0.0 (ADR 0018): what the site serves is every "about you" variant
+    of a search, and the browser selects one. For each persona's search
+    (its request without the seeker's own sex, education and race),
+    model.variants.rank_variants computes all of them — score_from asserts
+    on every one that the feature-level attribution sums exactly to score
+    minus reference — and each variant's selected rows are checked here;
+    the persona's own variant and a fixed spread of others must equal
+    rank() for that seeker exactly (all but the unrendered margin)."""
+    from atlas.model.variants import EDU_KEYS, RACE_KEYS, rank_variants, select_variant
+    spec = {v: k for k, v in engine.SPEC_RACE.items()}
+    spread = [("male", None, None), ("female", "graduate", None), ("male", "hs_or_less", "hispanic"),
+              ("female", None, "asian_nh"), ("female", "bachelors", "black_nh")]
+    problems: list[dict] = []
+    n_sel = n_rows = n_equal = 0
+    per_search = {}
+    for v in vectors:
+        me = v["self"]
+        sought = v["seeking"].get("sex") or ("male" if me["sex"] == "female" else "female")
+        body = {k: v[k] for k in ("weights", "pool_vs_match", "pool_vs_balance", "importance") if k in v}
+        body["self"] = {"age": me["age"]}
+        body["seeking"] = {**v["seeking"], "sex": sought}
+        resp = rank_variants(build, engine.parse_request(body))
+        V = resp["variants"]
+        want_n = 50 if build.kernel.same_sex_race_free is not None else 90
+        if len(V["list"]) != want_n:
+            problems.append({"where": v["name"], "defect": f"{len(V['list'])} variants, not {want_n}"})
+        for sex in engine.SEX_LEVELS:
+            if sex == sought and build.kernel.same_sex_race_free is not None:
+                ids = {V["index"][sex][ek][rk] for ek in EDU_KEYS for rk in RACE_KEYS}
+                if len(ids) != len(EDU_KEYS):
+                    problems.append({"where": v["name"], "defect": "same-sex race variants not one"})
+            for ek in EDU_KEYS:
+                for rk in RACE_KEYS:
+                    sel = select_variant(resp, sex, None if ek == "none" else ek,
+                                         None if rk == "off" else rk)
+                    n_sel += 1
+                    ranks = [r["rank"] for r in sel["ranked"]]
+                    if ranks != list(range(1, len(ranks) + 1)):
+                        problems.append({"where": f"{v['name']}:{sex}|{ek}|{rk}", "defect": "ranks out of order"})
+                    for r in sel["ranked"]:
+                        n_rows += 1
+                        where = f"{v['name']}:{sex}|{ek}|{rk}:{r['cbsa']}"
+                        for text in (r["summary_line"], r["balance"].get("display", "")):
+                            if BANNED.search(text):
+                                problems.append({"where": where, "text": text})
+                        if r["summary_line"].count("Biggest pluses:") > 1:
+                            problems.append({"where": where, "defect": "lead phrase repeated"})
+                        ids = {s["id"] for s in r["stats"]}
+                        if not set(r["top_stats"]) <= ids:
+                            problems.append({"where": where, "defect": "a mover outside the row's stats"})
+                        for c in r["contributions"]:
+                            parts = [s["contribution"] for s in r["stats"]
+                                     if s.get("pillar") == c["pillar"] and s.get("contribution") is not None]
+                            if abs(sum(parts) - c["value"]) > 0.005 * (len(parts) + 1) + 1e-9:
+                                problems.append({"where": where, "defect": f"pillar {c['pillar']} sum"})
+        for sex, edu, race in [(me["sex"], me.get("education"), me.get("race_ethnicity"))] + spread:
+            full = {**body, "self": {"age": me["age"], "sex": sex,
+                                     **({"education": edu} if edu else {}),
+                                     **({"race_ethnicity": race} if race else {})}}
+            want = engine.rank(build, engine.parse_request(full))
+            for row in want["ranked"]:
+                row["match"].pop("moe", None)
+            got = select_variant(resp, sex, edu, race)
+            same = all(json.dumps(want[k], sort_keys=True) == json.dumps(got[k], sort_keys=True)
+                       for k in ("counts", "weights", "balance_applies", "balance_words",
+                                 "match_inputs", "ranked", "suppressed"))
+            n_equal += int(same)
+            if not same:
+                problems.append({"where": v["name"], "defect": f"variant {sex}|{edu}|{race} differs from rank()"})
+        per_search[v["name"]] = {"variant": f"{me['sex']}|{me.get('education') or 'none'}|"
+                                            f"{(me.get('race_ethnicity') if me.get('race_ethnicity') and (me['sex'] != sought or build.kernel.same_sex_race_free is None) else None) or 'off'}",
+                                 "variants": len(V["list"])}
+    return {"pass": not problems, "selections_checked": n_sel, "rows_checked": n_rows,
+            "variants_equal_to_rank": n_equal, "per_search": per_search, "problems": problems[:20]}
+
+
 def check_kernel_face(build) -> dict:
     """The three face-validity checks on the SHIPPED kernel (ADR 0009):
     a 30-year-old's age weight peaks within three years of 30, the
@@ -398,6 +485,41 @@ def check_kernel_face(build) -> dict:
                 rec[f"race_diagonal_max_{name}"] = rows
                 ok &= all(rows.values())
         out["same_sex_terms"] = rec
+    # m4.0.0 (kernel_v3, ADR 0018): the race-off form faces the opposite-sex
+    # checks on the terms it has (age, education) and carries no race axis;
+    # the same-sex form with no race faces the same-sex checks (ADR 0010 as
+    # amended) on its age and education terms
+    for label, t, edu_rule in (("race_off", k.race_free, "opposite_sex"),
+                               ("same_sex_race_free", k.same_sex_race_free, "same_sex")):
+        if t is None:
+            continue
+        rec = {"edu_rule": edu_rule}
+        for si, name in enumerate(SEX_LEVELS):
+            gaps = np.arange(53) - (30 - 18) + k.gap_offset
+            peak = int(np.argmax(t.f_age[si, t.cohort_of_age[30 - 18]][gaps])) + 18
+            rec[f"peak_age_at_30_{name}"] = peak
+            ok &= abs(peak - 30) <= 3
+            if edu_rule == "opposite_sex":
+                d = [bool(t.f_edu[si, e, e] == t.f_edu[si, e].max()) for e in range(4)]
+                rec[f"edu_rows_diagonal_dominant_{name}"] = d
+                ok &= all(d)
+            else:
+                own_above_1 = [bool(t.f_edu[si, e, e] > 0.0) for e in range(4)]
+                far = [bool(all(t.f_edu[si, e, e] > t.f_edu[si, e, f]
+                                for f in range(4) if abs(f - e) >= 2)) for e in range(4)]
+                rec[f"edu_own_level_above_1_{name}"] = own_above_1
+                rec[f"edu_own_level_above_two_or_more_away_{name}"] = far
+                ok &= all(own_above_1) and all(far)
+        # no race axis: no race dial, and the weights a seeker gets are the
+        # same over every partner race (checked on one seeker per sex)
+        rec["race_dial_is_one"] = bool(np.allclose(t.dials[:, 2], 1.0))
+        flat = []
+        for sex in SEX_LEVELS:
+            _, W = seeker_weights(k, sex, 30, None, None, same_sex=(label == "same_sex_race_free"))
+            flat.append(bool(np.all(W == W[:, :, :1])))
+        rec["weights_equal_across_partner_race"] = all(flat)
+        ok &= rec["race_dial_is_one"] and rec["weights_equal_across_partner_race"]
+        out[label] = rec
     out["pass"] = bool(ok)
     return out
 
@@ -646,6 +768,11 @@ def main(build_dir: str) -> int:
         build, persona_results)
     if not report["hard"]["explanation_invariants"]["pass"]:
         hard_fail.append("explanation_invariants")
+
+    # ---- hard: variant invariants (m4.0.0, ADR 0018) -----------------------
+    report["hard"]["variant_invariants"] = check_variants(build, GOLDEN_VECTORS)
+    if not report["hard"]["variant_invariants"]["pass"]:
+        hard_fail.append("variant_invariants")
 
     # ---- hard: kernel face validity (ADR 0009) ------------------------------
     report["hard"]["kernel_face_validity"] = check_kernel_face(build)

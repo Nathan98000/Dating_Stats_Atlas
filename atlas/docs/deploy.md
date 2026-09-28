@@ -32,7 +32,7 @@ address and no public IPs**.
 5. `fly deploy -a atlas-web --config atlas/web/fly.toml`. The web app finds
    the API at `http://atlas-api.flycast:8000` (set in its `[env]`).
 6. Smoke: `fly ssh console -a atlas-web -C "curl -s http://atlas-api.flycast:8000/v1/health"`,
-   then the site’s own `/how-it-works` (it renders only if `/v1/meta`
+   then the site’s own `/about` (it renders only if `/v1/meta`
    answers).
 
 **Rollback / new build:** put the new `<data_version>` directory on the
@@ -71,7 +71,7 @@ CORS. If neither is acceptable, use Topology A.
 - [ ] `data_version` + `model_version` in `/v1/health` match the artifact
       you shipped
 - [ ] no public IPs on `atlas-api` (`fly ips list -a atlas-api`)
-- [ ] the citations render on `/how-it-works` (they flow from
+- [ ] the citations render in About us, Sources and credits (`/about`; they flow from
       `adapters/base.py` LICENSES through the manifest — a wording change
       is made there, and the build regenerated)
 
@@ -86,6 +86,12 @@ Phase 4 did everything in the repository; these are Nathan's own.
 - [ ] **Fly.io's data processing agreement**, and confirming that Fly's
       edge does not log query strings (search settings travel in the
       query).
+- [ ] **Look inside both images before the first deploy**: `fly deploy`
+      uploads the build context (the repository root) to a remote builder.
+      Since Phase 4 a deny-by-default `.dockerignore` keeps the data, the
+      results, private folders and key files out of it, and the API image
+      copies only `atlas/api` and `atlas/model`; build both images locally
+      once and list their files to confirm.
 - [ ] **A trademark clearance search** on the name.
 - [ ] **HUD's terms**: save the dated snapshot of HUD's terms page to
       `docs/decisions/counsel_packet/attachments/`, as the other sources'

@@ -1,0 +1,28 @@
+{
+ "build": "6172181a114f",
+ "model_version": "m3.6.0",
+ "searches": {
+  "default": {
+   "bytes": 1026309,
+   "gzip6_bytes": 100050,
+   "gzip9_bytes": 95891,
+   "ranked_rows": 193,
+   "in_process_ms_mean_of_5": 40.6
+  },
+  "same_sex_reference": {
+   "bytes": 883655,
+   "gzip6_bytes": 77064,
+   "gzip9_bytes": 74070,
+   "ranked_rows": 120,
+   "in_process_ms_mean_of_5": 34.3
+  },
+  "disclosed_grad_asian_woman_30": {
+   "bytes": 1025677,
+   "gzip6_bytes": 100392,
+   "gzip9_bytes": 96355,
+   "ranked_rows": 193,
+   "in_process_ms_mean_of_5": 38.4
+  }
+ },
+ "generated": "2026-09-28T17:34:18"
+}

@@ -4,6 +4,7 @@ import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
 import { IMPORTANCE_PILLARS, SELF_EDU_LEVELS, type Level, type Prefs,
   type SelfEdu } from "@/lib/prefs";
+import type { AboutYou } from "@/lib/about-you";
 import { InfoTip } from "./info-tip";
 
 const EDU_OPTIONS: { value: "" | "bachelors" | "graduate"; label: string }[] = [
@@ -31,21 +32,33 @@ function Field({ label, htmlFor, children }: {
 }
 
 /** The HomeV3 panel: the whole scoring model plus the whole search, with
- * no hidden defaults. Sends choices, never weights (item 5). */
+ * no hidden defaults. Sends choices, never weights (item 5). m4.0.0 (ADR
+ * 0018): "I'm a", "My education" and the race switch are the visitor's
+ * own details — kept in this browser by the page and never sent; the
+ * race switch is off unless the visitor turns it on. */
 export function SearchPanel({
   prefs,
   meta,
   onChange,
   sameSexNote,
+  about,
+  selfSex,
+  onSelfSex,
+  onSeekSex,
+  onAbout,
 }: {
   prefs: Prefs;
   meta: Meta;
   onChange: (next: Prefs) => void;
   sameSexNote: boolean;
+  about: AboutYou;
+  selfSex: "male" | "female";
+  onSelfSex: (sex: "male" | "female") => void;
+  onSeekSex: (sex: "male" | "female") => void;
+  onAbout: (next: AboutYou) => void;
 }) {
   const uid = useId();
   const set = (patch: Partial<Prefs>) => onChange({ ...prefs, ...patch });
-  const seekSexEffective = prefs.seekSex ?? (prefs.selfSex === "female" ? "male" : "female");
   const s = prefs.poolVsMatch ?? 0.4545;
   const policy = meta.policy_strings;
   // m3.0.0 (ADR 0009): the pole labels and every string of the two
@@ -61,17 +74,20 @@ export function SearchPanel({
     <div className="flex flex-col gap-6 rounded-xl border border-rule bg-surface p-6">
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_96px] gap-3">
-          <Field label="I'm a" htmlFor={`${uid}-you`}>
-            <select
-              id={`${uid}-you`}
-              className="ctl"
-              value={prefs.selfSex}
-              onChange={(e) => set({ selfSex: e.target.value as Prefs["selfSex"] })}
-            >
-              <option value="female">Woman</option>
-              <option value="male">Man</option>
-            </select>
-          </Field>
+          <div data-variant="">
+            <Field label="I'm a" htmlFor={`${uid}-you`}>
+              <select
+                id={`${uid}-you`}
+                className="ctl"
+                data-testid="self-sex"
+                value={selfSex}
+                onChange={(e) => onSelfSex(e.target.value as "male" | "female")}
+              >
+                <option value="female">Woman</option>
+                <option value="male">Man</option>
+              </select>
+            </Field>
+          </div>
           <Field label="My age" htmlFor={`${uid}-myage`}>
             <MyAgeField
               id={`${uid}-myage`}
@@ -82,11 +98,12 @@ export function SearchPanel({
           </Field>
         </div>
 
-        {/* m3.0.0: two OPTIONAL inputs about the visitor. Neither is ever
-            required to see a ranking; unset means the population-average
-            marginal for the visitor's sex and age, and the registry note
-            says so. Labels, levels and the note all come from /v1/meta. */}
-        <div className="flex flex-col gap-2" data-testid="about-you">
+        {/* m3.0.0: OPTIONAL inputs about the visitor; since m4.0.0 (ADR
+            0018) kept in this browser and never sent. Education unset means
+            the average for the visitor's sex and age; race is used only
+            with the switch on, and never on a same-sex search. Labels,
+            levels and notes all come from /v1/meta. */}
+        <div className="flex flex-col gap-2" data-testid="about-you" data-variant="">
           {/* stacked, not side by side: the registry's option wording
               ("Prefer not to say", "High school or less") does not fit a
               half-width select in the 360px panel */}
@@ -96,9 +113,9 @@ export function SearchPanel({
                 id={`${uid}-selfedu`}
                 className="ctl"
                 data-testid="self-edu"
-                value={prefs.selfEdu ?? ""}
+                value={about.edu ?? ""}
                 onChange={(e) =>
-                  set({ selfEdu: (e.target.value || undefined) as SelfEdu | undefined })
+                  onAbout({ ...about, edu: (e.target.value || undefined) as SelfEdu | undefined })
                 }
               >
                 <option value="">{policy.prefer_not_to_say}</option>
@@ -107,20 +124,45 @@ export function SearchPanel({
                 ))}
               </select>
             </Field>
-            <Field label={policy.self_race_label} htmlFor={`${uid}-selfrace`}>
-              <select
-                id={`${uid}-selfrace`}
-                className="ctl"
-                data-testid="self-race"
-                value={prefs.selfRace ?? ""}
-                onChange={(e) => set({ selfRace: e.target.value || undefined })}
-              >
-                <option value="">{policy.prefer_not_to_say}</option>
-                {raceGroups.map((g) => (
-                  <option key={g.id} value={g.id}>{g.label}</option>
-                ))}
-              </select>
-            </Field>
+            <div className="flex flex-col gap-1.5" data-testid="race-switch-block">
+              <label className="flex cursor-pointer items-center gap-2.5 text-[13px] font-semibold text-ink-2">
+                <input
+                  type="checkbox"
+                  role="switch"
+                  className="check"
+                  data-testid="self-race-switch"
+                  checked={Boolean(about.raceOn)}
+                  aria-describedby={`${uid}-racenote`}
+                  onChange={(e) =>
+                    onAbout(e.target.checked
+                      ? { ...about, raceOn: true }
+                      : { ...about, raceOn: undefined, race: undefined })
+                  }
+                />
+                {policy.self_race_switch_label}
+              </label>
+              <p id={`${uid}-racenote`} className="text-[12px] leading-snug text-ink-3" data-testid="self-race-note">
+                {sameSexNote && about.raceOn
+                  ? policy.self_race_same_sex_note
+                  : policy.self_race_switch_note}
+              </p>
+              {about.raceOn ? (
+                <Field label={policy.self_race_label} htmlFor={`${uid}-selfrace`}>
+                  <select
+                    id={`${uid}-selfrace`}
+                    className="ctl"
+                    data-testid="self-race"
+                    value={about.race ?? ""}
+                    onChange={(e) => onAbout({ ...about, race: e.target.value || undefined })}
+                  >
+                    <option value="">{policy.self_race_choose}</option>
+                    {raceGroups.map((g) => (
+                      <option key={g.id} value={g.id}>{g.label}</option>
+                    ))}
+                  </select>
+                </Field>
+              ) : null}
+            </div>
           </div>
           <p className="text-[12px] leading-snug text-ink-3" data-testid="about-you-note">
             {policy.about_you_note}
@@ -131,8 +173,9 @@ export function SearchPanel({
           <select
             id={`${uid}-seek`}
             className="ctl"
-            value={seekSexEffective}
-            onChange={(e) => set({ seekSex: e.target.value as Prefs["seekSex"] })}
+            data-testid="seek-sex"
+            value={prefs.seekSex}
+            onChange={(e) => onSeekSex(e.target.value as "male" | "female")}
           >
             <option value="male">Men</option>
             <option value="female">Women</option>

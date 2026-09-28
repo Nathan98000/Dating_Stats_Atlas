@@ -82,7 +82,7 @@ test("the slider explanation opens on hover, focus and tap, closes on Escape and
   await btn.hover();
   await expect(note).toBeVisible();
   await expect(note).toContainText(/size favors larger cities/);
-  await expect(note).toContainText(/chances of matching favors cities where the people who match your search line up more closely/);
+  await expect(note).toContainText(/compatibility favors cities where the people who match your search line up more closely/);
   await page.mouse.move(10, 10);
   await expect(note).toHaveCount(0);
 

@@ -57,7 +57,7 @@ export function ResultRow({
             </span>
             <BalanceTally balance={row.balance} compact />
           </div>
-          {/* m3.0.0 (ADR 0009): chances of matching — the scored figure,
+          {/* m3.0.0 (ADR 0009): the compatibility figure — the scored figure,
               the API's display string, the registry information box */}
           <MatchFigure match={row.match} meta={meta} id={`match-${row.cbsa}`} compact />
         </div>

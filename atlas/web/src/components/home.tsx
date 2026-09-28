@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { Meta, RankResponse } from "@/lib/types";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { Meta, VariantResponse } from "@/lib/types";
 import {
   PREFS_COOKIE,
   PREFS_COOKIE_MAX_AGE,
@@ -10,15 +10,28 @@ import {
   toSearchParams,
   type Prefs,
 } from "@/lib/prefs";
+import {
+  effectiveSex,
+  migrateLegacy,
+  opposite,
+  releasePending,
+  writeAboutYou,
+  type AboutYou,
+} from "@/lib/about-you";
+import { selectVariant } from "@/lib/variants";
 import { SearchPanel } from "./panel";
 import { ResultRow } from "./row";
 import { NarrowState } from "./narrow";
 
 /** The home page's client shell (HomeV3): hero, the full panel, results.
- * The first response arrives server-rendered; every change re-asks the API
- * through the same-origin proxy and rewrites the query string. Nothing is
- * recomputed here. A sticky search-summary bar with Change search appears
- * once the panel scrolls out of view (StatesV3/NarrowV3's chips row). */
+ * The first response arrives server-rendered; every change of the search
+ * re-asks the API through the same-origin proxy and rewrites the query
+ * string. m4.0.0 (ADR 0018): the visitor's own sex, education and race
+ * live in this browser (lib/about-you) and are never sent — the response
+ * carries every variant, and changing one of them only selects another
+ * (lib/variants), with no request at all. Nothing is recomputed here. A
+ * sticky search-summary bar with Change search appears once the panel
+ * scrolls out of view (StatesV3/NarrowV3's chips row). */
 export function Home({
   meta,
   initialPrefs,
@@ -26,10 +39,14 @@ export function Home({
 }: {
   meta: Meta;
   initialPrefs: Prefs;
-  initialResponse: RankResponse;
+  initialResponse: VariantResponse;
 }) {
   const [prefs, setPrefs] = useState<Prefs>(initialPrefs);
-  const [response, setResponse] = useState<RankResponse>(initialResponse);
+  const [response, setResponse] = useState<VariantResponse>(initialResponse);
+  // the server renders the default variant; the stored one is read after
+  // hydration, before the pending veil lifts (the pre-paint script)
+  const [about, setAbout] = useState<AboutYou>({});
+  const [ready, setReady] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [chipsVisible, setChipsVisible] = useState(false);
@@ -64,13 +81,14 @@ export function Home({
   }, []);
 
   const onChange = useCallback(
-    (next: Prefs) => {
+    (next: Prefs, now = false) => {
       setPrefs(next);
       const qs = toSearchParams(next).toString();
       window.history.replaceState(null, "", `${window.location.pathname}?${qs}`);
       // Phase 2f item 2 (ADR 0007): the search follows the visitor. The
       // query string stays the shareable form; the cookie is only the
-      // fallback for a bare URL, and explicit parameters always win.
+      // fallback for a bare URL, and explicit parameters always win. It
+      // holds no "about you" detail (m4.0.0).
       try {
         document.cookie = `${PREFS_COOKIE}=${encodeURIComponent(qs)}; ` +
           `path=/; max-age=${PREFS_COOKIE_MAX_AGE}; samesite=lax`;
@@ -78,10 +96,55 @@ export function Home({
         /* a blocked cookie jar never blocks the search itself */
       }
       if (timer.current) clearTimeout(timer.current);
-      timer.current = setTimeout(() => refetch(next), 180);
+      if (now) refetch(next);
+      else timer.current = setTimeout(() => refetch(next), 180);
     },
     [refetch],
   );
+
+  // m4.0.0: the details this browser holds (old links' and cookies' moved
+  // in first); an old link that named no sought sex meant the opposite of
+  // its self_sex, and the search follows it
+  useLayoutEffect(() => {
+    const { about: stored, soughtSex } = migrateLegacy(PREFS_COOKIE, PREFS_COOKIE_MAX_AGE);
+    setAbout(stored);
+    if (soughtSex && soughtSex !== initialPrefs.seekSex) {
+      onChange({ ...initialPrefs, seekSex: soughtSex }, true);
+    } else {
+      setReady(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // the veil lifts once the stored variant has rendered (and, for an old
+  // link that changed the search, once its response has arrived)
+  useLayoutEffect(() => {
+    if (ready) releasePending();
+  }, [ready]);
+  useEffect(() => {
+    if (!ready && !pending && response.variants.sought_sex === prefs.seekSex) setReady(true);
+  }, [ready, pending, response, prefs.seekSex]);
+
+  const saveAbout = useCallback((next: AboutYou) => {
+    writeAboutYou(next);
+    setAbout(next);
+  }, []);
+  /** Own sex: stored in this browser. A search that was opposite-sex stays
+   * opposite-sex (the sought sex follows, as it did when it defaulted to
+   * the opposite of the visitor's); a same-sex search keeps its sought
+   * sex. */
+  const onSelfSex = useCallback((sex: "male" | "female") => {
+    const was = effectiveSex(about, prefs.seekSex);
+    saveAbout({ ...about, sex });
+    if (was !== prefs.seekSex && sex === prefs.seekSex) {
+      onChange({ ...prefs, seekSex: opposite(sex) });
+    }
+  }, [about, prefs, onChange, saveAbout]);
+  /** Sought sex: part of the search. The own sex the panel was showing is
+   * kept (stored) so the visitor's "I'm a" never flips under them. */
+  const onSeekSex = useCallback((seekSex: "male" | "female") => {
+    if (!about.sex) saveAbout({ ...about, sex: effectiveSex(about, prefs.seekSex) });
+    onChange({ ...prefs, seekSex });
+  }, [about, prefs, onChange, saveAbout]);
 
   useEffect(() => {
     const el = panelRef.current;
@@ -99,9 +162,12 @@ export function Home({
 
   const policy = meta.policy_strings;
   const qs = toSearchParams(prefs).toString();
-  const excluded = response.counts.suppressed;
-  const allOut = response.counts.ranked === 0;
-  const sameSex = (prefs.seekSex ?? (prefs.selfSex === "female" ? "male" : "female")) === prefs.selfSex;
+  const selected = useMemo(() => selectVariant(response, about), [response, about]);
+  const excluded = selected.counts.suppressed;
+  const allOut = selected.counts.ranked === 0;
+  // the panel reflects the search as set (the list, the response it has)
+  const selfSex = effectiveSex(about, prefs.seekSex);
+  const sameSex = selfSex === prefs.seekSex;
 
   return (
     <>
@@ -112,7 +178,7 @@ export function Home({
       >
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3">
           <span className="text-[13px] font-bold text-ink-2">Your search</span>
-          {searchChips(prefs).map((c) => (
+          {searchChips(prefs, selfSex).map((c) => (
             <span
               key={c.label}
               className={`flex min-h-[36px] items-center rounded-full border px-3.5 py-2 text-[13px] ${c.active ? "border-tint-border bg-tint font-semibold text-accent-hover" : "border-rule bg-paper"}`}
@@ -150,7 +216,17 @@ export function Home({
           data-testid="search-panel"
           className="lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:touch-pan-y lg:self-start lg:overflow-y-auto"
         >
-          <SearchPanel prefs={prefs} meta={meta} onChange={onChange} sameSexNote={sameSex} />
+          <SearchPanel
+            prefs={prefs}
+            meta={meta}
+            onChange={onChange}
+            sameSexNote={sameSex}
+            about={about}
+            selfSex={selfSex}
+            onSelfSex={onSelfSex}
+            onSeekSex={onSeekSex}
+            onAbout={saveAbout}
+          />
         </div>
 
         <main id="main" className="min-w-0" aria-busy={pending}>
@@ -169,7 +245,7 @@ export function Home({
                   <h2 className="font-display text-2xl font-semibold" data-testid="list-heading">
                     {excluded > 0
                       ? policy.list_heading_count.replace(
-                          "{n}", response.counts.ranked.toLocaleString("en-US"))
+                          "{n}", selected.counts.ranked.toLocaleString("en-US"))
                       : policy.list_heading}
                   </h2>
                   {excluded > 0 && (
@@ -198,18 +274,19 @@ export function Home({
               <ol
                 aria-label="Cities"
                 data-testid="ranked-list"
+                data-variant=""
                 className={pending ? "opacity-60 transition-opacity" : "transition-opacity"}
               >
-                {response.ranked.map((row) => (
+                {selected.ranked.map((row) => (
                   <ResultRow key={row.cbsa} row={row} meta={meta} queryString={qs} />
                 ))}
               </ol>
 
-              <p className="mx-auto max-w-[70ch] pt-8 text-center text-[13px] leading-relaxed text-ink-3">
-                {response.balance_applies
+              <p className="mx-auto max-w-[70ch] pt-8 text-center text-[13px] leading-relaxed text-ink-3" data-variant="">
+                {selected.balance_applies
                   ? policy.balance_caption
                   : policy.balance_same_sex}{" "}
-                <a href="/how-it-works" className="font-semibold text-accent hover:text-accent-hover">
+                <a href="/about" className="font-semibold text-accent hover:text-accent-hover">
                   How it works
                 </a>
               </p>

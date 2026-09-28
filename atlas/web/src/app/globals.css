@@ -271,3 +271,10 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
   vertical-align: top;
 }
 .prose-method tr:last-child td { border-bottom: none; }
+
+/* m4.0.0 (ADR 0018): while the browser's stored "about you" variant is
+   pending (set before the first paint by lib/about-you's script), the
+   parts a variant changes keep their space but stay unseen */
+html[data-about-you="pending"] [data-variant] {
+  visibility: hidden;
+}

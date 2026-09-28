@@ -10,7 +10,7 @@ import { expect, test } from "@playwright/test";
  * the What we measure page. */
 
 const CITY_URL =
-  "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously";
+  "/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously";
 
 test("stat pages sort both ways without renumbering, strip renders", async ({ page }) => {
   await page.goto("/stats/rent_1br");
@@ -64,17 +64,24 @@ test("no mapping library reaches the browser bundle", async () => {
   expect(offenders).toEqual([]);
 });
 
-test("a photographed city renders its attribution; others fall back to artwork", async ({ page }) => {
+test("a photographed city shows its photo, credited in About us; others fall back to artwork", async ({ page }) => {
   await page.goto(CITY_URL);
   const photo = page.getByTestId("city-photo");
   const art = page.getByTestId("city-art");
   if (await photo.count()) {
-    // gate 4: attribution with a licence-deed link and a source link,
-    // and real alt text (never "photo of X")
-    const caption = photo.locator("figcaption");
-    await expect(caption.getByRole("link", { name: "source" })).toBeVisible();
+    // m4.0.0 (Nathan's decision 8): no credit line under the photo — its
+    // credit, with a licence-deed link and a source link, is in About us,
+    // Sources and credits; real alt text (never "photo of X")
+    await expect(photo.locator("figcaption")).toHaveCount(0);
+    const file = ((await photo.locator("img").getAttribute("src")) ?? "").split("/").pop()!;
     const alt = await photo.locator("img").getAttribute("alt");
     expect(alt ?? "").not.toMatch(/^photo of/i);
+    await page.goto("/about");
+    const credit = page.locator(`[data-credit="${file}"]`);
+    await expect(credit).toHaveCount(1);
+    // the city and stat photographs sit in the collapsible list
+    await page.getByTestId("credits-photos-more").locator("summary").click();
+    await expect(credit.getByRole("link", { name: "source" })).toHaveAttribute("href", /^https:\/\//);
   } else {
     await expect(art).toBeVisible();
     await expect(art).toHaveAttribute("aria-hidden", "true");
@@ -134,8 +141,11 @@ test("My age accepts typed input, validates on blur", async ({ page }) => {
 });
 
 test("What we measure lists every statistic, grouped, with crime's own line", async ({ page }) => {
+  // m4.0.0 (Nathan's decision 7): out of the nav, linked prominently from
+  // About us
   await page.goto("/");
-  await page.getByRole("link", { name: "What we measure" }).click();
+  await page.getByRole("link", { name: "About us" }).click();
+  await page.getByTestId("about-measure-link").click();
   await expect(page).toHaveURL(/what-we-measure/);
   for (const group of ["The people", "Cost of living", "Social life",
                        "Student life", "Weather"]) {

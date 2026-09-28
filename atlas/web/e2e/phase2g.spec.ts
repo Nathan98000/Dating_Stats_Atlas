@@ -7,7 +7,7 @@ import { expect, test } from "@playwright/test";
  * crime explainer (gate 8). */
 
 const BELOW_BAR =
-  "/?self_sex=female&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh";
+  "/?sex=male&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh";
 
 test("the old rent path redirects; the new id is everywhere (gate 5)", async ({ page }) => {
   const res = await page.goto("/stats/median_gross_rent");
@@ -16,7 +16,7 @@ test("the old rent path redirects; the new id is everywhere (gate 5)", async ({ 
   // the unit line's "with utilities" wording is intact — HUD's gross
   // rent includes tenant-paid utilities, so the sentence stays true
   await page.goto(
-    "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously");
+    "/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously");
   await expect(page.locator('[data-card="rent_1br"]')).toContainText(
     "median 1-bedroom monthly rent, with utilities");
 });
@@ -33,7 +33,7 @@ test("the all-excluded body reads as a sentence at 1280 and 375 (gate 7)", async
     // the note box is gone; the nav still routes to the explainer
     await expect(narrow).not.toContainText(/The narrower the search/);
     await expect(
-      page.getByRole("link", { name: "How it works" })).toBeVisible();
+      page.getByRole("link", { name: "About us" })).toBeVisible();
   }
 });
 

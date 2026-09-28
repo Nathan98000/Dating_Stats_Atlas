@@ -130,6 +130,20 @@ class SameSexTerms:
 
 
 @dataclass
+class RaceFreeTerms:
+    """m4.0.0 (Phase 4, ADR 0018): a kernel form with no race component and
+    no interaction — the race-off default (opposite-sex, per-metro dials)
+    and the same-sex form (national, dial 1). The normaliser does not
+    depend on the seeker's race, so it is stored without that axis."""
+    f_age: np.ndarray            # (2, K, 105)
+    cohort_of_age: np.ndarray    # (53,)
+    f_edu: np.ndarray            # (2, 4, 4)
+    dials: np.ndarray            # (n_metros, 3): (age, edu, race=1)
+    log_norm: np.ndarray         # (n_metros, 2, 53, 4)
+    dial_components: tuple[str, ...] = ()
+
+
+@dataclass
 class Kernel:
     """The shipped assortative kernel (pipeline/build/kernel.py, refined by
     kernel_refine.py in m3.2.0). Log multipliers per component in the
@@ -152,11 +166,69 @@ class Kernel:
     cohort_of_age: np.ndarray = field(default_factory=lambda: np.zeros(53, dtype=int))
     f_int: np.ndarray | None = None      # (2, 8, 8, 4, 4): seeker sex x race_s x race_c x edu_s x edu_c
     same_sex: SameSexTerms | None = None
+    # m4.0.0 (kernel_v3, ADR 0018): the race-off form and the same-sex form
+    # with no race; the fields above are then C1 exactly as m3.5.0 served it
+    race_free: RaceFreeTerms | None = None
+    same_sex_race_free: RaceFreeTerms | None = None
+
+
+def _cached(cache: dict | None, key: tuple, make):
+    """m4.0.0: a per-request store for the parts of a seeker's weights that
+    no "about you" detail changes (the age curve, the education and race
+    matrices, the full seeker-level x partner-cell tensor). The value is
+    the same array whether it is made here or taken from the store, so a
+    variant computed with the store is bit for bit the variant computed
+    alone."""
+    if cache is None:
+        return make()
+    if key not in cache:
+        cache[key] = make()
+    return cache[key]
+
+
+def _no_race_weights(t: RaceFreeTerms, avail: np.ndarray, gap_offset: int, si: int, ai: int,
+                     self_edu: str | None, cache: dict | None = None) -> tuple[np.ndarray, np.ndarray]:
+    """m4.0.0: (age_vec, W) for a form with no race term. Education not
+    given is the mixture over the seeker's own education (national singles
+    of their sex and age at each level, times the per-level normaliser);
+    there is no race term to mix over, so a partner's race never enters —
+    W is the same across partner races."""
+    theta = t.dials
+
+    def _age() -> np.ndarray:
+        gaps = np.arange(53) - ai + gap_offset
+        fa = t.f_age[si, t.cohort_of_age[ai]][gaps]
+        return np.exp(theta[:, 0:1] * fa[None, :])                      # (M, 53)
+    age_vec = _cached(cache, ("no_race_age", id(t), si, ai), _age)
+    P = avail[si, ai].astype(np.float64).sum(axis=1)                    # (4,) all races
+    if self_edu is not None:
+        keep = np.zeros(4); keep[EDU_LEVELS.index(self_edu)] = 1.0
+        P = P * keep
+    if P.sum() <= 0:
+        P = np.eye(4)[EDU_LEVELS.index(self_edu)] if self_edu is not None else np.ones(4)
+    P = P / P.sum()
+    mix = P[None, :] * np.exp(t.log_norm[:, si, ai].astype(np.float64))    # (M, 4)
+    E = _cached(cache, ("no_race_E", id(t), si),
+                lambda: np.exp(theta[:, 1][:, None, None] * t.f_edu[si][None, :, :]))  # (M, e_s, e_c)
+    W_e = np.einsum("me,mef->mf", mix, E)                               # (M, e_c)
+    return age_vec, np.repeat(W_e[:, :, None], 8, axis=2)               # (M, e_c, r_c)
+
+
+def _mixture_contract(mix: np.ndarray, P: np.ndarray, T: np.ndarray) -> np.ndarray:
+    """W[m, e_c, r_c] = sum over the seeker's own levels (e_s, r_s) of
+    mix[m, e_s, r_s] * T[m, e_s, r_s, e_c, r_c], summed in one fixed order
+    (row-major over the levels the seeker's mixture reaches, P > 0; the
+    rest are exact zeros). m4.0.0: the tensor is shared by every variant
+    of a request, so each variant costs only its own few levels."""
+    W = np.zeros((T.shape[0],) + T.shape[3:])
+    for e, r in zip(*np.nonzero(P)):
+        W += mix[:, e, r, None, None] * T[:, e, r]
+    return W
 
 
 def seeker_weights(k: Kernel, self_sex: str, self_age: int,
                    self_edu: str | None, self_race: str | None,
-                   same_sex: bool = False) -> tuple[np.ndarray, np.ndarray]:
+                   same_sex: bool = False, cache: dict | None = None) -> tuple[np.ndarray, np.ndarray]:
     """Per-metro kernel factors for one seeker: (age_vec, W) with
     age_vec[m, a_c] the age-gap multiplier by partner age and
     W[m, e_c, r_c] the education x race multiplier — the full weight over
@@ -176,19 +248,38 @@ def seeker_weights(k: Kernel, self_sex: str, self_age: int,
     at dial 1 and the rest from the opposite-sex fit with the metro's
     dial (the interaction rides when the artifact says it applies —
     m3.3.0 decides that by held-out fit), normalised by the same-sex
-    normaliser."""
+    normaliser.
+
+    m4.0.0 (kernel_v3, ADR 0018): a same-sex search takes the same-sex age
+    and education terms and nothing else; a seeker who has not switched
+    race on (self_race None) gets the race-free form — no race pairing, no
+    interaction, no mixture over races; only a seeker with race switched on
+    (self_race given) reads C1, exactly as m3.5.0 serves it. `cache` is a
+    per-request store (see _cached) that lets every "about you" variant of
+    one search share the parts none of them changes; the interaction
+    tensor is contracted with the seeker's mixture level by level
+    (_mixture_contract), the same arithmetic with or without the store."""
     si = SEX_LEVELS.index(self_sex)
     ai = int(self_age) - 18
     assert 0 <= ai < 53, "seeker age outside the cube"
+    if k.race_free is not None:
+        if same_sex:
+            return _no_race_weights(k.same_sex_race_free, k.avail, k.gap_offset, si, ai, self_edu,
+                                    cache)
+        if self_race is None:
+            return _no_race_weights(k.race_free, k.avail, k.gap_offset, si, ai, self_edu, cache)
+        same_sex = False                     # race on: C1 as served
     theta = k.dials                                            # (M, 3)
-    gaps = np.arange(53) - ai + k.gap_offset
     ss = k.same_sex if same_sex else None
-    if ss is not None and "age" in ss.components:
-        fa = ss.f_age[si, ss.cohort_of_age[ai]][gaps]
-        age_vec = np.repeat(np.exp(fa)[None, :], theta.shape[0], axis=0)
-    else:
+
+    def _age() -> np.ndarray:
+        gaps = np.arange(53) - ai + k.gap_offset
+        if ss is not None and "age" in ss.components:
+            fa = ss.f_age[si, ss.cohort_of_age[ai]][gaps]
+            return np.repeat(np.exp(fa)[None, :], theta.shape[0], axis=0)
         fa = k.f_age[si, k.cohort_of_age[ai]][gaps]                # (53,)
-        age_vec = np.exp(theta[:, 0:1] * fa[None, :])              # (M, 53)
+        return np.exp(theta[:, 0:1] * fa[None, :])                 # (M, 53)
+    age_vec = _cached(cache, ("c1_age", si, ai, ss is not None), _age)
     P = k.avail[si, ai].astype(np.float64).copy()              # (4, 8)
     if self_edu is not None:
         keep = np.zeros(4); keep[EDU_LEVELS.index(self_edu)] = 1.0
@@ -208,24 +299,30 @@ def seeker_weights(k: Kernel, self_sex: str, self_age: int,
     ln = ss.log_norm if ss is not None else k.log_norm
     mix = P[None, :, :] * np.exp(ln[:, si, ai].astype(np.float64))          # (M, 4, 8)
     M = theta.shape[0]
-    if ss is not None and "edu" in ss.components:
-        E = np.repeat(np.exp(ss.f_edu[si])[None, :, :], M, axis=0)           # (M, e_s, e_c)
-    else:
-        E = np.exp(theta[:, 1][:, None, None] * k.f_edu[si][None, :, :])
-    if ss is not None and "race" in ss.components:
-        R = np.repeat(np.exp(ss.f_race[si])[None, :, :], M, axis=0)          # (M, r_s, r_c)
-    else:
-        R = np.exp(theta[:, 2][:, None, None] * k.f_race[si][None, :, :])
+
+    def _E() -> np.ndarray:
+        if ss is not None and "edu" in ss.components:
+            return np.repeat(np.exp(ss.f_edu[si])[None, :, :], M, axis=0)    # (M, e_s, e_c)
+        return np.exp(theta[:, 1][:, None, None] * k.f_edu[si][None, :, :])
+
+    def _R() -> np.ndarray:
+        if ss is not None and "race" in ss.components:
+            return np.repeat(np.exp(ss.f_race[si])[None, :, :], M, axis=0)   # (M, r_s, r_c)
+        return np.exp(theta[:, 2][:, None, None] * k.f_race[si][None, :, :])
+    E = _cached(cache, ("c1_E", si, ss is not None), _E)
+    R = _cached(cache, ("c1_R", si, ss is not None), _R)
     use_int = k.f_int is not None and (ss is None or bool(ss.interaction))
     if not use_int:
         W = np.einsum("mer,mef,mrg->mfg", mix, E, R)                         # (M, e_c, r_c)
     else:
         # G[r_s, r_c, e_s, e_c] -> (e_s, r_s, e_c, r_c); the full
-        # (seeker level x partner cell) tensor is M x 4 x 8 x 4 x 8
-        G = np.exp(k.f_int[si]).transpose(2, 0, 3, 1)
-        T = (mix[:, :, :, None, None] * E[:, :, None, :, None]
-             * R[:, None, :, None, :] * G[None, :, :, :, :])
-        W = T.sum(axis=(1, 2))
+        # (seeker level x partner cell) tensor is M x 4 x 8 x 4 x 8, made
+        # once per request and contracted with the seeker's own mixture
+        def _T() -> np.ndarray:
+            G = np.exp(k.f_int[si]).transpose(2, 0, 3, 1)
+            return E[:, :, None, :, None] * R[:, None, :, None, :] * G[None, :, :, :, :]
+        T = _cached(cache, ("c1_T", si, ss is not None), _T)
+        W = _mixture_contract(mix, P, T)
     return age_vec, W
 
 
@@ -300,10 +397,15 @@ def balance_masks(req: Request) -> tuple[np.ndarray, np.ndarray]:
     carry only sex, seeking.age and the marital selection — race, education
     and income never touch balance, deliberately, so the figure means what
     its name says and stays put as filters move."""
-    seek = req.seeking
+    return balance_masks_for(req.seeking, req.self_sex)
+
+
+def balance_masks_for(seek: PoolSpec, self_sex: str) -> tuple[np.ndarray, np.ndarray]:
+    """balance_masks for a given own sex (m4.0.0: the server computes the
+    balance for both, and the browser shows the one that applies)."""
     sought = mask_vector(seek.sex, seek.age_min, seek.age_max,
                          seek.marital_levels, None, None, None)
-    seeker = mask_vector(req.self_sex, seek.age_min, seek.age_max,
+    seeker = mask_vector(self_sex, seek.age_min, seek.age_max,
                          seek.marital_levels, None, None, None)
     return sought, seeker
 
@@ -326,6 +428,11 @@ def parse_request(body: dict) -> Request:
     input."""
     self_ = body["self"]
     seeking = body["seeking"]
+    # m4.0.0 (ADR 0018): the API sends no own sex (the server computes every
+    # variant), so the sought sex is always explicit there; the model's
+    # single-variant path still takes a full seeker
+    if seeking.get("sex") is None and self_.get("sex") is None:
+        raise ValueError("seeking.sex is required")
     sex = seeking.get("sex") or SEX_LEVELS[1 - SEX_LEVELS.index(self_["sex"])]
     age = seeking["age"]
     marital = seeking.get("marital")
@@ -354,7 +461,7 @@ def parse_request(body: dict) -> Request:
         if self_race not in SPEC_RACE:
             raise ValueError(f"self.race_ethnicity must be one of {list(SPEC_RACE)}")
         self_race = SPEC_RACE[self_race]
-    return Request(self_sex=self_["sex"], self_age=int(self_["age"]),
+    return Request(self_sex=self_.get("sex"), self_age=int(self_["age"]),
                    seeking=spec, weights=dict(body.get("weights") or {}),
                    pinned_data_version=body.get("data_version"),
                    pinned_model_version=body.get("model_version"),

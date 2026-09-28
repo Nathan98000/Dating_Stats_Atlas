@@ -97,7 +97,7 @@ class Registry:
     winsor_percentiles: tuple[float, float]
     missing_data_policy: str
     # Phase 3d (ADR 0013): the whole normalization block, carried to the
-    # manifest so the engine reads how chances of matching is scored
+    # manifest so the engine reads how the compatibility figure is scored
     normalization: dict = field(default_factory=dict)
     # Phase 2f: the stat pages' source lines (9.2) and the What-we-measure
     # composition (8.5), both registry judgments rather than code
@@ -303,8 +303,15 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
                      "prefer_not_to_say", "about_you_note", "edu_hs_or_less",
                      "edu_some_college", "edu_bachelors", "edu_graduate"):
         assert strings.get(need_key), f"strings.{need_key} is required (m3.0.0)"
-    assert "matching" in strings["slider_info"] and "balance favors" not in strings["slider_info"], (
-        "slider_info must describe the chances-of-matching pole (ADR 0009)")
+    assert "compatibility" in strings["slider_info"] and "balance favors" not in strings["slider_info"], (
+        "slider_info must describe the compatibility pole (ADR 0009, renamed by ADR 0018)")
+    # m4.0.0 (ADR 0018): the race switch's label and notices
+    for need_key in ("self_race_switch_label", "self_race_switch_note", "self_race_same_sex_note",
+                     "self_race_choose", "about_title", "about_measure_link", "about_crime_link",
+                     "about_privacy_link", "credits_heading", "credits_data_heading",
+                     "credits_photos_heading", "credits_photos_more", "credits_source",
+                     "credits_cropped"):
+        assert strings.get(need_key), f"strings.{need_key} is required (m4.0.0)"
     # m3.1.0 (Phase 3b, A3): the match figure's display ceiling and its
     # token are registry-owned; the ceiling is a positive number
     for need_key in ("match_display_cap", "match_display_cap_token"):

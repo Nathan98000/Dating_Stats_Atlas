@@ -3,7 +3,8 @@ import type { MatchBlock, Meta } from "@/lib/types";
 import { toneText } from "@/lib/tones";
 import { InfoTip } from "./info-tip";
 
-/** Chances of matching (m3.0.0, ADR 0009): the index the API computed
+/** The compatibility figure (m3.0.0, ADR 0009; "chances of matching"
+ * until m4.0.0, ADR 0018): the index the API computed
  * (100 = the US average for this search), its unit line, its band label
  * and the information box — Nathan's text from the registry, with the
  * link to the plain-words account of how it is measured. Never renders
@@ -31,7 +32,7 @@ export function MatchFigure({
           {policy.match_info}{" "}
           {match.note ? <span data-testid="match-same-sex-note">{match.note}{" "}</span> : null}
           <Link
-            href="/how-it-works#chances-of-matching"
+            href="/about#compatibility"
             className="font-semibold text-accent underline underline-offset-2 hover:text-accent-hover"
           >
             {policy.match_how_link}

@@ -4,7 +4,7 @@
  * licensing posture (rendered site, not a data feed) holds. */
 import "server-only";
 import { cache } from "react";
-import type { Meta, RankResponse } from "./types";
+import type { Meta, VariantResponse } from "./types";
 import type { RankBody } from "./permalink";
 
 export const API_BASE = process.env.ATLAS_API_URL ?? "http://127.0.0.1:8000";
@@ -19,7 +19,9 @@ export class RankError extends Error {
   }
 }
 
-export async function apiRank(body: RankBody): Promise<RankResponse> {
+/** m4.0.0 (ADR 0018): the response carries every "about you" variant;
+ * lib/variants selects one. */
+export async function apiRank(body: RankBody): Promise<VariantResponse> {
   const res = await fetch(`${API_BASE}/v1/rank`, {
     method: "POST",
     headers: { "content-type": "application/json" },

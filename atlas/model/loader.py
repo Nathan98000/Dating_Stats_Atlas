@@ -40,7 +40,7 @@ import pandas as pd
 from atlas.model.intervals import IntervalModel
 from atlas.model.preferences import (EDU_LEVELS, INC_LEVELS, KERNEL_COMPONENTS,
                                      MARITAL_LEVELS, N_FLAT, RACE_LEVELS,
-                                     SEX_LEVELS, Kernel, SameSexTerms)
+                                     SEX_LEVELS, Kernel, RaceFreeTerms, SameSexTerms)
 from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
 STATIC_FEATURES = ["rent_1br", "rpp_goods", "rpp_services_other",
@@ -102,6 +102,9 @@ class Build:
     kernel: Kernel | None = None
     reduced_pool: np.ndarray | None = None    # (3 marital sets, 7 floors, n, 2, 53, 4, 8) float32
     reduced_sumw2: np.ndarray | None = None
+    # m4.0.0: blocks no request changes (a metro's cards and crime block, an
+    # explanation's words), made on first use and kept for the process
+    memo: dict = field(default_factory=dict, repr=False)
 
 
 # marital selections the reduced cubes are keyed on, in the order the
@@ -163,8 +166,9 @@ def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
     one in-memory representation."""
     meta = json.loads((path / "kernel.json").read_text())
     z = np.load(path / "kernel.npz", allow_pickle=False)
-    assert meta["version"] in ("kernel_v1", "kernel_v2"), meta["version"]
-    v2 = meta["version"] == "kernel_v2"
+    assert meta["version"] in ("kernel_v1", "kernel_v2", "kernel_v3"), meta["version"]
+    v3 = meta["version"] == "kernel_v3"
+    v2 = meta["version"] in ("kernel_v2", "kernel_v3")
     assert list(z["metro_levels"]) == metro_levels, (
         "kernel.npz metro order disagrees with the build's metros")
     assert meta["sex_levels"] == SEX_LEVELS and meta["edu_levels"] == EDU_LEVELS \
@@ -202,7 +206,38 @@ def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
             assert np.allclose(dials[:, j], 1.0), (
                 f"component {c} earned no dial but carries non-unit dials")
     same_sex = None
-    if "ss_f_age" in z.files:
+    race_free = ss_rf = None
+    if v3:
+        # m4.0.0 (ADR 0018): the race-off form and the same-sex form with no
+        # race; the arrays above are C1 as m3.5.0 served it
+        rf_edges = np.asarray(z["rf_cohort_edges"], dtype=int)
+        rf_age = np.asarray(z["rf_f_age"], dtype=np.float64)
+        rf_edu = np.asarray(z["rf_f_edu"], dtype=np.float64)
+        rf_dials = np.asarray(z["rf_dials"], dtype=np.float64)
+        rf_ln = np.asarray(z["rf_log_norm"], dtype=np.float32)
+        assert rf_age.shape == (2, len(rf_edges) + 1, 105) and rf_edu.shape == (2, 4, 4)
+        assert rf_dials.shape == (n, 3) and np.allclose(rf_dials[:, 2], 1.0), "the race-off form has no race dial"
+        assert rf_ln.shape == (n, 2, 53, 4)
+        assert np.isfinite(rf_age).all() and np.isfinite(rf_edu).all() and np.isfinite(rf_dials).all()
+        rf_comps = tuple(meta["race_off"]["dial_components"])
+        assert "race" not in rf_comps
+        for j, c in enumerate(KERNEL_COMPONENTS):
+            if c not in rf_comps:
+                assert np.allclose(rf_dials[:, j], 1.0), f"race-off component {c} earned no dial"
+        race_free = RaceFreeTerms(f_age=rf_age, cohort_of_age=_cohorts(rf_edges), f_edu=rf_edu,
+                                  dials=rf_dials, log_norm=rf_ln, dial_components=rf_comps)
+        ss_edges = np.asarray(z["ss_cohort_edges"], dtype=int)
+        ss_age = np.asarray(z["ss_f_age"], dtype=np.float64)
+        ss_edu = np.asarray(z["ss_f_edu"], dtype=np.float64)
+        ss_ln = np.asarray(z["ss_log_norm"], dtype=np.float32)
+        assert ss_age.shape == (2, len(ss_edges) + 1, 105) and ss_edu.shape == (2, 4, 4)
+        assert ss_ln.shape == (2, 53, 4)
+        assert np.isfinite(ss_age).all() and np.isfinite(ss_edu).all()
+        ss_meta = meta["same_sex"]
+        assert ss_meta["race"] == "none" and not ss_meta["interaction_applies"]
+        ss_rf = RaceFreeTerms(f_age=ss_age, cohort_of_age=_cohorts(ss_edges), f_edu=ss_edu,
+                              dials=np.ones((n, 3)), log_norm=np.broadcast_to(ss_ln, (n, 2, 53, 4)))
+    elif "ss_f_age" in z.files:
         ss_meta = meta.get("same_sex") or {}
         ss_comps = tuple(ss_meta.get("components_from_same_sex_couples", []))
         assert ss_comps and set(ss_comps) <= set(KERNEL_COMPONENTS), ss_comps
@@ -232,12 +267,13 @@ def _load_kernel(path: Path, metro_levels: list[str]) -> Kernel:
     return Kernel(f_age=f_age, f_edu=f_edu, f_race=f_race, dials=dials,
                   log_norm=log_norm, avail=avail, gap_offset=int(meta["gap_offset"]),
                   dial_components=comps, cohort_of_age=cohort_of_age, f_int=f_int,
-                  same_sex=same_sex,
+                  same_sex=same_sex, race_free=race_free, same_sex_race_free=ss_rf,
                   meta={k: meta.get(k) for k in ("version", "fitting_sample",
                                                   "fitting_sample_spec", "bandwidth_years",
                                                   "dials_tau", "generated_at", "gauge",
                                                   "form", "age_cohorts", "edu_by_sex",
-                                                  "interaction", "refinements", "same_sex")
+                                                  "interaction", "refinements", "same_sex",
+                                                  "race_on", "race_off")
                         if v2 or k in ("version", "fitting_sample", "fitting_sample_spec",
                                        "bandwidth_years", "dials_tau", "generated_at",
                                        "gauge", "form")})
@@ -438,6 +474,18 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         assert named == set(kernel.same_sex.components), (
             f"strings.match_same_sex_note names {sorted(named)} as measured on same-sex "
             f"couples but the kernel serves {sorted(kernel.same_sex.components)}")
+    # m4.0.0 (kernel_v3, ADR 0018): a same-sex search reads age and
+    # education from same-sex couples and uses no race; the sentence's first
+    # clause names exactly those, its second says the racial and ethnic
+    # pairings are not used
+    if kernel.same_sex_race_free is not None:
+        note = manifest["strings"]["match_same_sex_note"]
+        comps = set((kernel.meta.get("same_sex") or {}).get("components_from_same_sex_couples", []))
+        assert same_sex_note_names(note) == comps == {"age", "edu"}, (
+            f"strings.match_same_sex_note must name the age gaps and the education pairings as "
+            f"measured on same-sex couples (the kernel serves {sorted(comps)}): {note!r}")
+        assert "not used" in note.split(";")[1], (
+            f"strings.match_same_sex_note must say the racial and ethnic pairings are not used: {note!r}")
     reduced_pool = reduce_cube(pool)
     reduced_sumw2 = reduce_cube(sumw2)
 

@@ -19,85 +19,30 @@ sys.path.insert(0, str(WEB.parents[1]))
 from atlas import model as engine  # noqa: E402
 from atlas.api.app import RankRequest  # noqa: E402
 
+# m4.0.0 (ADR 0018): a request carries the own age and an explicit sought
+# sex; the visitor's own sex, education and race never travel, so no
+# token encodes them (the cases before m4.0.0 differed by them only where
+# they are now the same request, and are listed once)
 BODIES = [
-    {"self": {"sex": "female", "age": 30},
-     "seeking": {"age": [28, 40],
-                 "marital": ["never_married", "previously_married"]}},
-    {"self": {"sex": "female", "age": 32},
-     "seeking": {"age": [30, 40], "marital": ["never_married"],
-                 "education_min": "bachelors", "income_min": 75000}},
-    {"self": {"sex": "male", "age": 29},
-     "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"],
-                 "education_min": "graduate"}},
-    # m2.1.0 named controls (ADR 0005): four of them, plus the one-version
-    # lifestyle alias still accepted at the transport; the slider is
-    # pool_vs_match since m3.0.0 (ADR 0009)
-    {"self": {"sex": "female", "age": 34},
-     "seeking": {"age": [30, 44],
-                 "marital": ["never_married", "previously_married"]},
-     "pool_vs_match": 0.7,
-     "importance": {"cost": "a_lot", "reach": "not_much",
-                    "students": "a_lot", "weather": "not_much"}},
-    {"self": {"sex": "female", "age": 34},
-     "seeking": {"age": [30, 44], "marital": ["never_married"]},
-     "pool_vs_match": 1.0,
-     "importance": {"weather": "some"}},
-    # m3.0.0: the optional seeker attributes ride in self, and the
-    # deprecated pool_vs_balance name encodes as the canonical control
-    {"self": {"sex": "female", "age": 31, "education": "bachelors",
-              "race_ethnicity": "black_nh"},
-     "seeking": {"age": [28, 40],
-                 "marital": ["never_married", "previously_married"]}},
-    {"self": {"sex": "male", "age": 44, "education": "hs_or_less"},
-     "seeking": {"age": [35, 50], "marital": ["previously_married"]},
-     "pool_vs_match": 0.25},
-    {"self": {"sex": "female", "age": 27, "race_ethnicity": "hispanic"},
-     "seeking": {"age": [25, 35], "marital": ["never_married"]},
-     "pool_vs_balance": 0.6},
-    {"self": {"sex": "male", "age": 36},
-     "seeking": {"age": [30, 42], "marital": ["never_married"]},
-     "importance": {"lifestyle": "a_lot"}},
-    {"self": {"sex": "female", "age": 29},
-     "seeking": {"age": [28, 38],
-                 "marital": ["never_married", "previously_married"],
-                 "race_ethnicity": ["black_nh"]}},
-    {"self": {"sex": "male", "age": 45},
-     "seeking": {"age": [40, 55],
-                 "marital": ["never_married", "previously_married"],
-                 "race_ethnicity": ["white_nh", "asian_nh"],
-                 "income_min": 250000}},
-    # m2.2.0 (ADR 0006): the formerly always-counted pair as an ordinary
-    # selection, and an explicit all-eight list (the API accepts it as
-    # no-filter; the frontend round-trips it to no filter)
-    {"self": {"sex": "female", "age": 31},
-     "seeking": {"age": [26, 40], "marital": ["never_married"],
-                 "race_ethnicity": ["two_or_more_nh", "other_nh"]}},
-    {"self": {"sex": "female", "age": 31},
-     "seeking": {"age": [26, 40], "marital": ["never_married"],
-                 "race_ethnicity": ["hispanic", "white_nh", "black_nh",
-                                    "asian_nh", "aian_nh", "nhpi_nh",
-                                    "two_or_more_nh", "other_nh"]}},
-    # float-typed fields: integral floats are the dialect trap (Python
-    # renders 1.0, JSON.stringify renders 1)
-    {"self": {"sex": "female", "age": 30},
-     "seeking": {"age": [28, 40], "marital": ["never_married"]},
-     "pool_vs_match": 0.0},
-    {"self": {"sex": "female", "age": 30},
-     "seeking": {"age": [28, 40], "marital": ["never_married"]},
-     "pool_vs_match": 1.0},
-    {"self": {"sex": "female", "age": 30},
-     "seeking": {"age": [28, 40], "marital": ["never_married"]},
-     "pool_vs_match": 0.35},
-    {"self": {"sex": "female", "age": 30},
-     "seeking": {"age": [28, 40], "marital": ["never_married"]},
-     "pool_vs_match": 0.4545},
-    {"self": {"sex": "male", "age": 33},
-     "seeking": {"age": [26, 38], "marital": ["never_married"]},
-     "weights": {"pool": 0.5, "match": 0.5}},
-    {"self": {"sex": "male", "age": 33},
-     "seeking": {"age": [26, 38], "marital": ["never_married"]},
-     "weights": {"pool": 0.3, "match": 0.25, "reach": 0.2, "cost": 0.15,
-                 "weather": 0.06, "students": 0.04}},
+    {"self": {"age": 30}, "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married", "previously_married"]}},
+    {"self": {"age": 32}, "seeking": {"sex": "male", "age": [30, 40], "marital": ["never_married"], "education_min": "bachelors", "income_min": 75000}},
+    {"self": {"age": 29}, "seeking": {"sex": "male", "age": [27, 38], "marital": ["never_married"], "education_min": "graduate"}},
+    {"self": {"age": 34}, "seeking": {"sex": "male", "age": [30, 44], "marital": ["never_married", "previously_married"]}, "pool_vs_match": 0.7, "importance": {"cost": "a_lot", "reach": "not_much", "students": "a_lot", "weather": "not_much"}},
+    {"self": {"age": 34}, "seeking": {"sex": "male", "age": [30, 44], "marital": ["never_married"]}, "pool_vs_match": 1.0, "importance": {"weather": "some"}},
+    {"self": {"age": 31}, "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married", "previously_married"]}},
+    {"self": {"age": 44}, "seeking": {"sex": "female", "age": [35, 50], "marital": ["previously_married"]}, "pool_vs_match": 0.25},
+    {"self": {"age": 27}, "seeking": {"sex": "male", "age": [25, 35], "marital": ["never_married"]}, "pool_vs_balance": 0.6},
+    {"self": {"age": 36}, "seeking": {"sex": "female", "age": [30, 42], "marital": ["never_married"]}, "importance": {"lifestyle": "a_lot"}},
+    {"self": {"age": 29}, "seeking": {"sex": "male", "age": [28, 38], "marital": ["never_married", "previously_married"], "race_ethnicity": ["black_nh"]}},
+    {"self": {"age": 45}, "seeking": {"sex": "female", "age": [40, 55], "marital": ["never_married", "previously_married"], "race_ethnicity": ["white_nh", "asian_nh"], "income_min": 250000}},
+    {"self": {"age": 31}, "seeking": {"sex": "male", "age": [26, 40], "marital": ["never_married"], "race_ethnicity": ["two_or_more_nh", "other_nh"]}},
+    {"self": {"age": 31}, "seeking": {"sex": "male", "age": [26, 40], "marital": ["never_married"], "race_ethnicity": ["hispanic", "white_nh", "black_nh", "asian_nh", "aian_nh", "nhpi_nh", "two_or_more_nh", "other_nh"]}},
+    {"self": {"age": 30}, "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"]}, "pool_vs_match": 0.0},
+    {"self": {"age": 30}, "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"]}, "pool_vs_match": 1.0},
+    {"self": {"age": 30}, "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"]}, "pool_vs_match": 0.35},
+    {"self": {"age": 30}, "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"]}, "pool_vs_match": 0.4545},
+    {"self": {"age": 33}, "seeking": {"sex": "female", "age": [26, 38], "marital": ["never_married"]}, "weights": {"pool": 0.5, "match": 0.5}},
+    {"self": {"age": 33}, "seeking": {"sex": "female", "age": [26, 38], "marital": ["never_married"]}, "weights": {"pool": 0.3, "match": 0.25, "reach": 0.2, "cost": 0.15, "weather": 0.06, "students": 0.04}},
 ]
 
 DV, MV = "2c8d7285c720", engine.MODEL_VERSION

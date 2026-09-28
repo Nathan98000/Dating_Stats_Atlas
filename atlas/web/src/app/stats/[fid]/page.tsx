@@ -2,13 +2,13 @@ import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/chrome";
-import { Attribution } from "@/components/attribution";
 import { StatList, type StatRow } from "@/components/stat-list";
 import statPages from "@/data/stat-pages.json";
 import statImages from "@/data/stat-images.json";
 
 /** One page per static statistic (item 9, extended by Phase 2e): a
- * cleared full-width photograph with its recorded attribution, a
+ * cleared full-width photograph (its credit in About us, Sources and
+ * credits, since m4.0.0), a
  * distribution strip of all ranked cities along the stat's range, and
  * the list itself with a both-ways sort that never renumbers. Served
  * entirely from build-time JSON — no API call, and the numbers are the
@@ -69,9 +69,6 @@ export default async function StatPage({
             alt={img.alt ?? ""}
             className="max-h-[380px] w-full rounded-xl bg-surface object-contain"
           />
-          <figcaption className="pt-1.5">
-            <Attribution image={img} />
-          </figcaption>
         </figure>
       )}
       <main id="main" className="mx-auto flex max-w-3xl flex-col gap-6 px-6 pb-16 pt-8 sm:px-12">

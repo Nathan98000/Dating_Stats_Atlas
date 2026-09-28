@@ -14,10 +14,12 @@ from atlas.model.preferences import (ALLOWED_MARITAL,
                                      balance_masks, mask_vector,
                                      parse_request, permalink, slider_weights)
 from atlas.model.scoring import rank
+from atlas.model.variants import rank_variants, select_variant
 from atlas.model.versions import MODEL_VERSION, SCHEMA_VERSION
 
 __all__ = [
     "Build", "load_build", "mask_vector", "balance_masks", "rank",
+    "rank_variants", "select_variant",
     "parse_request", "permalink", "slider_weights", "Request",
     "MODEL_VERSION", "SCHEMA_VERSION", "N_FLAT", "PILLARS",
     "IMPORTANCE_PILLARS",

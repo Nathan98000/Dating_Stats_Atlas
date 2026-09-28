@@ -104,16 +104,19 @@ def test_gate_rule_follows_the_manifest():
     assert SG.score_rule(replace(build, manifest=m)) == "V2"
 
 
-def test_the_reference_is_m3_5_0_through_one_constant():
-    """ADR 0015: the reference moved to m3.5.0 (1ebeaa2dcad6); m3.2.0's
-    record stays under results/phase3c as history, and build.validate
-    reads the reference only through stability_gate's constant."""
+def test_the_reference_is_m4_0_0_through_one_constant():
+    """ADR 0018: the reference moved to m4.0.0 (5b780e4f2444); m3.5.0's
+    record (ADR 0015) stays under results/phase3d and m3.2.0's under
+    results/phase3c as history, and build.validate reads the reference
+    only through stability_gate's constant."""
     import inspect
     from atlas.pipeline.build import validate
-    assert SG.REFERENCE.name == "stability_reference_m3_5_0.json" and SG.REFERENCE.parent.name == "phase3d"
+    assert SG.REFERENCE.name == "stability_reference_m4_0_0.json" and SG.REFERENCE.parent.name == "phase4"
+    assert SG.REFERENCE_M3_5_0.name == "stability_reference_m3_5_0.json" and SG.REFERENCE_M3_5_0.parent.name == "phase3d"
     assert SG.REFERENCE_M3_2_0.name == "stability_reference.json" and SG.REFERENCE_M3_2_0.parent.name == "phase3c"
     src = inspect.getsource(validate)
     assert "stability_reference" not in src and "SG.load_reference()" in src and "SG.REFERENCE." in src
     ref = SG.load_reference()
-    assert (ref["build"], ref["model_version"], ref["match_scoring"]) == ("1ebeaa2dcad6", "m3.5.0", "V2")
+    assert (ref["build"], ref["model_version"], ref["match_scoring"]) == ("5b780e4f2444", "m4.0.0", "V2")
+    assert SG.load_reference(SG.REFERENCE_M3_5_0)["build"] == "1ebeaa2dcad6"
     assert SG.load_reference(SG.REFERENCE_M3_2_0)["build"] == "f20cb02c3af8"

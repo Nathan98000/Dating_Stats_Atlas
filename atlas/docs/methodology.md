@@ -1,4 +1,4 @@
-# How the numbers are made
+## How the numbers are made
 
 **In a minute:** Every count on this site is our estimate from the Census
 Bureau's American Community Survey from 2020 through 2024. You select what you're
@@ -35,34 +35,41 @@ never married or previously married, and any education, income, race or
 ethnicity filters you set. That count is the **dating pool**, and it is
 the biggest part of the score.
 
-## What are the chances of matching?
+## Compatibility
 
+<a id="compatibility"></a>
 <a id="chances-of-matching"></a>
 
-**Chances of matching** is how closely the people who match your search
-resemble the people who actually pair with someone like you, on age,
-education and background, where 100 is the US average.
+**Compatibility** is how closely the people who match your search
+resemble the people who actually pair with someone like you, on age and
+education (and on background, if you include yours), where 100 is the
+US average.
 
-The chances-of-matching figure is built from real couples in the Census
-Bureau's household survey, using each partner's age, education and race
-or ethnicity. Across the whole country we measure how often each age
-gap, each education pairing and each racial or ethnic pairing actually
-occurs, compared with how often it would occur if single people paired
-at random. That pattern, adjusted a little for each city's own couples,
-is then applied to the single people who match your search in each
-city, so the figure says how closely they resemble the people who
-typically pair with someone of your sex, age, education and background.
-It is an aggregate pattern from recent unions, not a prediction about
-any one person, and 100 is the US average for your search.
+The compatibility figure is built from real couples in the Census
+Bureau's household survey, using each partner's age and education, and
+their race or ethnicity only if you include yours. Across the whole
+country we measure how often each age gap and each education pairing
+actually occurs, compared with how often it would occur if single people
+paired at random; if you include your race or ethnicity, the racial and
+ethnic pairings are measured the same way. That pattern, adjusted a
+little for each city's own couples, is then applied to the single people
+who match your search in each city, so the figure says how closely they
+resemble the people who typically pair with someone of your sex, age and
+education, and background if you include it. It is an aggregate pattern
+from recent unions, not a prediction about any one person, and 100 is
+the US average for your search.
 
-Your own education and your race or ethnicity are optional inputs. They
-feed only this figure; leave either unset and the average for people of
-your age and sex is used instead.
+Your own sex, education and race or ethnicity stay in your browser and
+are never sent to us: the site works out the figure for every possible
+answer, and your browser shows the one that fits you. Your education is
+optional; leave it unset and the average for people of your age and sex
+is used instead. Your race or ethnicity is used only if you switch it
+on, and then only for this figure; with it off, the figure uses no
+racial or ethnic pairing at all.
 
 For a same-sex search the age gaps and the education pairings come from
 same-sex couples in the same survey; the racial and ethnic pairings are
-borrowed from opposite-sex couples, because the same-sex couples in the
-survey are too few to measure them dependably on their own.
+not used, even if you include your race or ethnicity.
 
 ## What does balance compare?
 
@@ -91,10 +98,14 @@ categories, including "Two or more races" and "Another race" — and
 Tick two groups and the count is the sum of those two groups. Unticking
 every box means the same as ticking all eight: no filter at all.
 
+These boxes are about the people you're looking for. Your own race or
+ethnicity is a separate setting: it is off unless you switch it on,
+stays in your browser, and affects only the compatibility figure.
+
 ## How does the score work?
 
 You set what matters. The slider divides the people-side weight between
-pool size and chances of matching; four controls — cost of living, social
+pool size and compatibility; four controls — cost of living, social
 life, student life, weather — set how much each place stat counts. "Not much"
 makes a thing count a little, not zero, so nothing you deprioritise can
 silently vanish. Each city's stats are compared across the cities that

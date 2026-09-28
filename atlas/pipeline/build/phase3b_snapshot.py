@@ -23,8 +23,11 @@ from atlas.pipeline.fetch import RESULTS
 
 P3B = Path(os.environ["SNAPSHOT_DIR"]) if os.environ.get("SNAPSHOT_DIR") else RESULTS / "phase3b"
 # Phase 3c: the reference searches whose full rank shift is reported
-# beside the default search's (the brief: the same-sex reference search)
-RANK_SHIFT_REFERENCE = ("same_sex_man_31",)
+# beside the default search's (the brief: the same-sex reference search).
+# Phase 4 (m4.0.0, ADR 0018) adds the searches whose seeker gives a race —
+# the race-switched-on variants, C1 as m3.5.0 served it
+RANK_SHIFT_REFERENCE = ("same_sex_man_31", "grad_asian_woman_30", "black_woman_30",
+                        "nhpi_man_35", "nhpi_woman_35", "grad_asian_man_34")
 DEFAULT = {"self": {"sex": "female", "age": 30},
            "seeking": {"age": [28, 40],
                        "marital": ["never_married", "previously_married"]}}

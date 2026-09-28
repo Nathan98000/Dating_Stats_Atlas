@@ -10,7 +10,7 @@
     {
       "name": "api",
       "runtimeExecutable": "env",
-      "runtimeArgs": ["BUILD_DIR=/Users/nathann/Downloads/Projects/Dating_Stats_Atlas/atlas/data/builds/6172181a114f", ".venv/bin/python", "-m", "uvicorn", "atlas.api.app:app", "--host", "127.0.0.1", "--port", "8000", "--log-level", "warning"],
+      "runtimeArgs": ["BUILD_DIR=/Users/nathann/Downloads/Projects/Dating_Stats_Atlas/atlas/data/builds/5b780e4f2444", ".venv/bin/python", "-m", "uvicorn", "atlas.api.app:app", "--host", "127.0.0.1", "--port", "8000", "--log-level", "warning"],
       "port": 8000
     }
   ]

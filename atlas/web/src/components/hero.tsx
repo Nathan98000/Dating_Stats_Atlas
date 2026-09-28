@@ -1,7 +1,6 @@
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
-import { Attribution } from "./attribution";
 
 /** The home hero (HomeV3, real since Phase 2f item 4.1): a photograph
  * sourced through the Phase 2e image pipeline with its licence gate,
@@ -9,13 +8,14 @@ import { Attribution } from "./attribution";
  * src/data/hero.json. The hero is a cropped band, and a crop of a CC-BY-SA
  * image is an adaptation that drags ShareAlike onto the page — so the
  * band crop (object-cover) is allowed ONLY for public-domain/CC0; any
- * attributed licence would render uncropped instead. Attribution
- * renders beneath the band, exactly as the stat pages do.
+ * attributed licence would render uncropped instead. Its credit lives
+ * with every other one in About us, Sources and credits (m4.0.0,
+ * Nathan's decision 8), marked "cropped".
  *
  * Nathan's override stays: drop a different file at public/hero.jpg and
- * it renders — but the manifest's attribution only renders while the
+ * it renders — but the manifest's alt text only applies while the
  * file on disk IS the manifest's file (SHA-256 match), so a swapped
- * image can never wear the sourced image's credit. No file, no photo:
+ * image can never wear the sourced image's description. No file, no photo:
  * the labelled placeholder ships. Headline and subhead arrive from the
  * registry (items 4.2/4.3) — no user-facing string lives here. */
 
@@ -78,11 +78,6 @@ export function Hero({ policy }: { policy: Record<string, string> }) {
                 : "max-h-[380px] w-full bg-surface object-contain"
             }
           />
-          {hero.matches && hero.manifest && (
-            <figcaption className="px-6 pt-1.5 text-right sm:px-12">
-              <Attribution image={hero.manifest} />
-            </figcaption>
-          )}
         </figure>
       ) : (
         <div

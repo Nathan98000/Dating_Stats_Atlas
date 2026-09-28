@@ -57,9 +57,11 @@ describe("permalink round-trip against the Python model", () => {
       if (slider !== undefined) {
         expect(rebuilt.pool_vs_match).toEqual(slider);
       }
-      // the seeker's optional attributes survive the round trip
-      expect(rebuilt.self.education).toEqual(body.self.education);
-      expect(rebuilt.self.race_ethnicity).toEqual(body.self.race_ethnicity);
+      // m4.0.0 (ADR 0018): no "about you" detail is ever encoded, and none
+      // is rebuilt — the token and the rebuilt body carry the own age only
+      expect(body.self).toEqual({ age: body.self.age });
+      expect(rebuilt.self).toEqual({ age: body.self.age });
+      expect(rebuilt.seeking.sex).toEqual(body.seeking.sex);
       // importance compares RESOLVED: a partial m2.1.0 body defaults its
       // missing controls to "some", and the one-version lifestyle alias
       // lands on both split pillars — the semantics survive, the spelling

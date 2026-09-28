@@ -1,5 +1,6 @@
-"""API tests against the pinned fixture build — the m3.0.0 contract
-(ADR 0009 over ADR 0005/0004)."""
+"""API tests against the pinned fixture build — the m4.0.0 contract
+(ADR 0018 over ADR 0009/0005/0004): the visitor's own sex, education and
+race never reach the server, and the response carries every variant."""
 import json
 import os
 from pathlib import Path
@@ -17,9 +18,21 @@ from fastapi.testclient import TestClient  # noqa: E402
 
 from atlas.api import app as api  # noqa: E402
 
-BODY = {"self": {"sex": "female", "age": 30},
-        "seeking": {"age": [28, 40],
+BODY = {"self": {"age": 30},
+        "seeking": {"sex": "male", "age": [28, 40],
                     "marital": ["never_married", "previously_married"]}}
+
+
+def request_of(golden: dict) -> tuple[dict, tuple]:
+    """A golden vector (a full seeker, the model's reference path) as the
+    m4.0.0 request plus the variant it names: the own sex, education and
+    race move out of the request; the sought sex is explicit."""
+    body = json.loads(json.dumps(golden))
+    me = body["self"]
+    sex = me.pop("sex")
+    variant = (sex, me.pop("education", None), me.pop("race_ethnicity", None))
+    body["seeking"].setdefault("sex", "male" if sex == "female" else "female")
+    return body, variant
 
 
 @pytest.fixture(scope="module")
@@ -46,11 +59,11 @@ def test_meta_carries_the_v3_vocabulary(client):
     assert m["features"]["pool_balance"]["status"] == "context_only"
     assert m["features"]["pool_balance"]["weight_in_pillar"] == 0
     assert "balance" not in m["pillars"]
-    assert m["pillars"]["match"]["display_name"] == "Chances of matching"
+    assert m["pillars"]["match"]["display_name"] == "Compatibility"
     assert m["features"]["match_propensity"]["pillar"] == "match"
     assert len(m["features"]["match_propensity"]["band_labels"]) == 5
     assert m["controls"]["slider_labels"] == {"low": "Dating pool size",
-                                              "high": "Chances of matching"}
+                                              "high": "Compatibility"}
     assert m["controls"]["slider_control"] == "pool_vs_match"
     assert m["controls"]["self_education_levels"] == api.engine.EDU_LEVELS
     assert m["measure_page"][0] == {"heading": "people", "pillars": ["pool", "match"],
@@ -60,10 +73,14 @@ def test_meta_carries_the_v3_vocabulary(client):
               "edu_hs_or_less", "edu_graduate",
               # m3.1.0 / m3.2.0: the display cap and the same-sex sentence
               "match_display_cap", "match_display_cap_token",
-              "match_same_sex_note", "match_same_sex_note_all_fallback"):
+              "match_same_sex_note", "match_same_sex_note_all_fallback",
+              # m4.0.0 (ADR 0018): the race switch
+              "self_race_switch_label", "self_race_switch_note",
+              "self_race_same_sex_note"):
         assert m["policy_strings"].get(k), k
-    assert "matching" in m["policy_strings"]["slider_info"]
-    assert m["kernel"]["version"] in ("kernel_v1", "kernel_v2")
+    assert "compatibility" in m["policy_strings"]["slider_info"]
+    assert m["features"]["match_propensity"]["display_name"] == "Compatibility"
+    assert m["kernel"]["version"] == "kernel_v3"
     assert m["features"]["rent_1br"]["display_name"] == "Rent"
     assert len(m["features"]["rent_1br"]["band_labels"]) == 5
     assert m["features"]["rent_1br"]["band_direction"] == "good_low"
@@ -111,30 +128,119 @@ def test_meta_carries_the_v3_vocabulary(client):
 
 
 def test_rank_matches_goldens_through_http(client):
+    """Every golden vector, sent without its seeker's own sex, education
+    and race, returns a response whose variant for that seeker reproduces
+    the golden: the same cities in the same order, the same scores,
+    figures, balance and summary lines, the same suppression."""
     goldens = json.loads(GOLDENS.read_text())
-    for v in goldens["vectors"][:5]:
-        r = client.post("/v1/rank", json=v["request"])
+    for v in goldens["vectors"]:
+        body, (sex, edu, race) = request_of(v["request"])
+        r = client.post("/v1/rank", json=body)
         assert r.status_code == 200, r.text
-        body = r.json()
-        assert [x["cbsa"] for x in body["ranked"]] == v["expect"]["ranked_cbsas"]
-        assert {x["cbsa"]: x["reason"] for x in body["suppressed"]} == \
-            v["expect"]["suppressed"]
-        assert body["shown_unranked"] == []
-        assert sum(body["counts"]["suppressed_by_reason"].values()) == \
-            body["counts"]["suppressed"]
-        for row in body["ranked"]:
-            assert {"display_name", "slug", "score_display", "balance",
-                    "match", "summary_line", "cards"} <= set(row)
-            assert row["match"]["available"] and row["match"]["display"]
+        resp = r.json()
+        got = api.engine.select_variant(resp, sex, edu, race)
+        e = v["expect"]
+        assert [x["cbsa"] for x in got["ranked"]] == e["ranked_cbsas"], v["name"]
+        assert {x["cbsa"]: x["score"] for x in got["ranked"]} == e["scores"]
+        assert {x["cbsa"]: x["score_display"] for x in got["ranked"]} == e["score_displays"]
+        assert {x["cbsa"]: x["match"]["value"] for x in got["ranked"]} == e["match_index"]
+        assert {x["cbsa"]: (x["balance"]["per_100"] if x["balance"]["available"] else None)
+                for x in got["ranked"]} == e["balance_per_100"]
+        assert {x["cbsa"]: x["summary_line"] for x in got["ranked"][:3]} == e["summary_lines"]
+        assert {x["cbsa"]: x["reason"] for x in got["suppressed"]} == e["suppressed"]
+        assert resp["shown_unranked"] == []
+        assert sum(resp["counts"]["suppressed_by_reason"].values()) == \
+            resp["counts"]["suppressed"]
+        for row in resp["ranked"]:
+            # the served rows carry what no variant changes; the rest is in
+            # `variants`
+            assert {"display_name", "slug", "pool", "cards", "crime", "stats"} <= set(row)
+            assert not {"rank", "score", "score_display", "balance",
+                        "summary_line", "top_stats"} & set(row)
+            assert set(row["match"]) == {"available", "unit_line"}
             assert "cross_group_pairing_rate" not in row
             assert "ratio" not in row and "rivals" not in row
+        for row in got["ranked"]:
+            assert row["match"]["available"] and row["match"]["display"]
+
+
+def test_every_variant_equals_the_single_seeker_ranking(client):
+    """ADR 0018: the response's variants are exactly what rank() gives each
+    seeker — for every own sex, education and race, on an opposite-sex and
+    a same-sex search (the margin is computed there and never rendered, and
+    the variants leave it out)."""
+    from atlas.model.variants import EDU_KEYS, RACE_KEYS
+    for body in (BODY, {"self": {"age": 31},
+                        "seeking": {"sex": "male", "age": [27, 38],
+                                    "marital": ["never_married"]}}):
+        resp = client.post("/v1/rank", json=body).json()
+        assert len(resp["variants"]["list"]) == 50
+        for sex in ("male", "female"):
+            for ek in EDU_KEYS:
+                for rk in RACE_KEYS:
+                    edu = None if ek == "none" else ek
+                    race = None if rk == "off" else rk
+                    me = {"sex": sex, "age": body["self"]["age"]}
+                    if edu:
+                        me["education"] = edu
+                    if race:
+                        me["race_ethnicity"] = race
+                    want = api.engine.rank(api.BUILD, api.engine.parse_request({**body, "self": me}))
+                    for row in want["ranked"]:
+                        row["match"].pop("moe")
+                    got = api.engine.select_variant(resp, sex, edu, race)
+                    for k in ("counts", "weights", "balance_applies", "balance_words",
+                              "match_inputs", "ranked", "suppressed"):
+                        assert got[k] == want[k], (sex, ek, rk, k)
+
+
+def test_about_you_never_accepted(client):
+    """ADR 0018: the visitor's own sex, education and race are refused
+    with a 422 wherever they appear in self, alone or together, and the
+    sought sex is required."""
+    for extra in ({"sex": "female"}, {"education": "bachelors"},
+                  {"race_ethnicity": "black_nh"},
+                  {"sex": "male", "education": "graduate", "race_ethnicity": "asian_nh"}):
+        r = client.post("/v1/rank", json={**BODY, "self": {"age": 30, **extra}})
+        assert r.status_code == 422, extra
+        assert "stay in their browser" in r.text
+    no_sought = client.post("/v1/rank", json={
+        "self": {"age": 30}, "seeking": {"age": [28, 40], "marital": ["never_married"]}})
+    assert no_sought.status_code == 422
+
+
+def test_permalink_carries_no_about_you(client):
+    """The permalink token encodes the own age and the partner filters —
+    nothing about the visitor's sex, education or race."""
+    import base64
+    resp = client.post("/v1/rank", json=BODY).json()
+    tok = resp["permalink"].rsplit("/", 1)[1]
+    core = json.loads(base64.urlsafe_b64decode(tok + "=" * (-len(tok) % 4)))
+    assert core["self"] == {"age": 30}
+    assert core["seeking"]["sex"] == "male"
+
+
+def test_referrer_policy_on_every_response(client):
+    """ADR 0018: every response of the API says Referrer-Policy:
+    no-referrer — success, validation error, version clash and not found."""
+    for r in (client.get("/v1/health"), client.get("/v1/meta"),
+              client.post("/v1/rank", json=BODY),
+              client.post("/v1/rank", json={**BODY, "self": {"age": 30, "sex": "male"}}),
+              client.post("/v1/rank", json={"data_version": "not-a-build", **BODY}),
+              client.get("/v1/nowhere")):
+        assert r.headers.get("referrer-policy") == "no-referrer", (r.request.url, r.status_code)
 
 
 def test_sort_reverses_without_changing_ranks(client):
     """Gate 3: worst_first reverses the same ranked array — same cities,
-    same scores, same ranks, never widened."""
-    best = client.post("/v1/rank", json={**BODY, "sort": "best_first"}).json()
-    worst = client.post("/v1/rank", json={**BODY, "sort": "worst_first"}).json()
+    same scores, same ranks, never widened (m4.0.0: the selected variant
+    is reversed; the served rows are the same)."""
+    best_r = client.post("/v1/rank", json={**BODY, "sort": "best_first"}).json()
+    worst_r = client.post("/v1/rank", json={**BODY, "sort": "worst_first"}).json()
+    assert worst_r["sort"] == "worst_first"
+    assert best_r["ranked"] == worst_r["ranked"] and best_r["variants"] == worst_r["variants"]
+    best = api.engine.select_variant(best_r)
+    worst = api.engine.select_variant(worst_r)
     a = [(r["cbsa"], r["rank"], r["score"]) for r in best["ranked"]]
     b = [(r["cbsa"], r["rank"], r["score"]) for r in worst["ranked"]]
     assert b == list(reversed(a))
@@ -145,8 +251,8 @@ def test_sort_reverses_without_changing_ranks(client):
 
 def test_marital_restricted_to_two_values(client):
     r = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 32},
-        "seeking": {"age": [30, 40], "marital": ["currently_married"]}})
+        "self": {"age": 32},
+        "seeking": {"sex": "male", "age": [30, 40], "marital": ["currently_married"]}})
     assert r.status_code == 422
 
 
@@ -154,24 +260,24 @@ def test_eight_race_groups_selectable_and_equal(client):
     """m2.2.0 (ADR 0006): the two formerly always-counted groups are
     ordinary checkboxes; empty and all-eight both mean no filter."""
     r = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 32},
-        "seeking": {"age": [30, 40], "marital": ["never_married"],
+        "self": {"age": 32},
+        "seeking": {"sex": "male", "age": [30, 40], "marital": ["never_married"],
                     "race_ethnicity": ["two_or_more_nh"]}})
     assert r.status_code == 200
     r2 = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 32},
-        "seeking": {"age": [30, 40], "marital": ["never_married"],
+        "self": {"age": 32},
+        "seeking": {"sex": "male", "age": [30, 40], "marital": ["never_married"],
                     "race_ethnicity": ["other_nh", "two_or_more_nh"]}})
     assert r2.status_code == 200
     rall = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 30},
-        "seeking": {"age": [28, 40], "marital": ["never_married"]}})
+        "self": {"age": 30},
+        "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"]}})
     for body in (
-        {"self": {"sex": "female", "age": 30},
-         "seeking": {"age": [28, 40], "marital": ["never_married"],
+        {"self": {"age": 30},
+         "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"],
                      "race_ethnicity": []}},
-        {"self": {"sex": "female", "age": 30},
-         "seeking": {"age": [28, 40], "marital": ["never_married"],
+        {"self": {"age": 30},
+         "seeking": {"sex": "male", "age": [28, 40], "marital": ["never_married"],
                      "race_ethnicity": list(api.SELECTABLE_RACES)}},
     ):
         resp = client.post("/v1/rank", json=body)
@@ -181,32 +287,13 @@ def test_eight_race_groups_selectable_and_equal(client):
         assert got == want, "empty and all-eight are the unfiltered universe"
 
 
-def test_seeker_attributes_optional_and_alias(client):
-    """m3.0.0: self.education and self.race_ethnicity are optional, every
-    combination answers with a match figure on every ranked row; the
-    deprecated pool_vs_balance name is accepted for exactly this version
-    and a stray weights.balance key fails loudly."""
-    for extra in ({}, {"education": "bachelors"}, {"race_ethnicity": "black_nh"},
-                  {"education": "graduate", "race_ethnicity": "asian_nh"}):
-        r = client.post("/v1/rank", json={
-            "self": {"sex": "female", "age": 30, **extra},
-            "seeking": {"age": [28, 40], "marital": ["never_married"]}})
-        assert r.status_code == 200, r.text
-        body = r.json()
-        assert body["match_inputs"]["education"] == extra.get("education")
-        for row in body["ranked"]:
-            assert row["match"]["available"]
-            assert row["match"]["unit_line"]
-        for row in body["suppressed"]:
-            assert "match" not in row
-    bad = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 30, "education": "phd"},
-        "seeking": {"age": [28, 40], "marital": ["never_married"]}})
-    assert bad.status_code == 422
+def test_slider_alias_and_stray_weight(client):
+    """The deprecated pool_vs_balance name still maps to the slider (same
+    weights, same permalink); naming both is a 422, and a stray
+    weights.balance key fails loudly."""
     new = client.post("/v1/rank", json={**BODY, "pool_vs_match": 0.8}).json()
     old = client.post("/v1/rank", json={**BODY, "pool_vs_balance": 0.8}).json()
     assert new["weights"] == old["weights"] and new["permalink"] == old["permalink"]
-    assert "pool_vs_match" in old["permalink"] or True  # token is base64; equality above is the check
     both = client.post("/v1/rank", json={**BODY, "pool_vs_match": 0.8,
                                          "pool_vs_balance": 0.2})
     assert both.status_code == 422
@@ -264,8 +351,8 @@ def test_crime_block_served_never_scored(client):
 
 def test_income_floor_validation(client):
     r = client.post("/v1/rank", json={
-        "self": {"sex": "female", "age": 32},
-        "seeking": {"age": [30, 40], "marital": ["never_married"],
+        "self": {"age": 32},
+        "seeking": {"sex": "male", "age": [30, 40], "marital": ["never_married"],
                     "income_min": 60000}})
     assert r.status_code == 422
 

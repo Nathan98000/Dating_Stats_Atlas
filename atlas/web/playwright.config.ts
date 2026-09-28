@@ -34,7 +34,7 @@ export default defineConfig({
     },
     {
       command: "npm run build && npx next start -p 3100",
-      url: "http://127.0.0.1:3100/how-it-works",
+      url: "http://127.0.0.1:3100/about",
       env: {
         ATLAS_API_URL: "http://127.0.0.1:8600",
         NEXT_DIST_DIR: ".next-e2e",

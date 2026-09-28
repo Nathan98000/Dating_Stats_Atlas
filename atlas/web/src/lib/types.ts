@@ -53,9 +53,11 @@ export interface Card {
   missing?: boolean;
 }
 
-/** m3.0.0 (ADR 0009): chances of matching for a ranked row — the index
- * (100 = the US average for this search), its display string, the
- * unrendered margin and its within-query band. Computed by the API. */
+/** m3.0.0 (ADR 0009): the compatibility figure for a ranked row (named
+ * "chances of matching" until m4.0.0, ADR 0018) — the index (100 = the US
+ * average for this search), its display string, the unrendered margin
+ * (single-seeker path only) and its within-query band. Computed by the
+ * API. */
 export interface MatchBlock {
   available: boolean;
   value?: number | null;
@@ -138,11 +140,85 @@ export interface RankResponse {
   few_metros_notice: boolean;
   balance_applies: boolean;
   balance_words: { sought: string; seeker: string };
-  match_inputs: { education: string | null; race_ethnicity: string | null;
-                  national_rate: number | null };
+  match_inputs: MatchInputs;
   ranked: RankedRow[];
   shown_unranked: RankedRow[];
   suppressed: SuppressedRow[];
+}
+
+export interface MatchInputs {
+  education: string | null;
+  race_ethnicity: string | null;
+  national_rate: number | null;
+  same_sex: boolean;
+  same_sex_components: string[];
+}
+
+/** m4.0.0 (ADR 0018): what /v1/rank returns. The visitor's own sex,
+ * education and race never reach the server, so the response carries
+ * every variant those details could select; lib/variants selects one and
+ * hands the components a RankResponse. `ranked` rows lack the parts a
+ * variant changes; `variants.columns[field][variant][position]` holds
+ * them, each variant's rows in its own rank order. */
+export type BaseRow = Omit<RankedRow, "rank" | "score" | "score_display" |
+  "balance" | "match" | "top_stats" | "summary_line"> & {
+  match: { available: boolean; unit_line: string };
+};
+export type BaseSuppressedRow = Omit<SuppressedRow, "balance">;
+
+export interface VariantColumns {
+  order: number[][];
+  rank: number[][];
+  score: number[][];
+  score_display: string[][];
+  value: (number | null)[][];
+  display: (string | null)[][];
+  capped: number[][];
+  band: (number | null)[][];
+  standing: (number | null)[][];
+  z: (number | null)[][];
+  contribution: (number | null)[][];
+  explain: number[][];
+}
+
+export interface VariantInfo {
+  key: string;
+  sex: "male" | "female";
+  education: string | null;
+  race_ethnicity: string | null;
+  match_inputs: MatchInputs;
+}
+
+export interface Variants {
+  default: number;
+  sought_sex: "male" | "female";
+  /** index[own sex][education or "none"][race or "off"] -> list position */
+  index: Record<string, Record<string, Record<string, number>>>;
+  same_sex_note: string;
+  match_bands: { key: string; label: string; tone: Tone }[];
+  explain: { top_stats: string[]; summary_line: string }[];
+  by_sex: Record<"male" | "female", {
+    balance_applies: boolean;
+    balance_words: { sought: string; seeker: string };
+    ranked: BalanceBlock[];
+    suppressed: BalanceBlock[];
+  }>;
+  list: VariantInfo[];
+  columns: VariantColumns;
+}
+
+export interface VariantResponse {
+  data_version: string;
+  model_version: string;
+  permalink: string;
+  sort: "best_first" | "worst_first";
+  counts: RankResponse["counts"];
+  weights: Record<string, number>;
+  few_metros_notice: boolean;
+  ranked: BaseRow[];
+  shown_unranked: RankedRow[];
+  suppressed: BaseSuppressedRow[];
+  variants: Variants;
 }
 
 export interface FeatureLegend {
@@ -206,7 +282,10 @@ export interface Meta {
   }[];
   licenses: Record<
     string,
-    { name: string; url: string; attribution: string | null; notes: string | null }
+    { name: string; url: string; attribution: string | null; notes: string | null;
+      /** ADR 0012: the citations the licence asks for, its notice (the
+       * Census Bureau Data API's), and the conditions the build keeps */
+      citations?: string[]; notice?: string | null; conditions?: string[] }
   >;
   controls: {
     income_band_edges: number[];

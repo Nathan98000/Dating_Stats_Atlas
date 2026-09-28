@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
 import "./globals.css";
+import { PRE_PAINT_SCRIPT } from "@/lib/about-you";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -25,6 +26,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${fraunces.variable} ${figtree.variable}`}>
+      <head>
+        {/* m4.0.0 (ADR 0018): before the first paint, hide what a stored
+            "about you" variant would change until the page has selected
+            it (lib/about-you) — never a list that reorders under you */}
+        <script dangerouslySetInnerHTML={{ __html: PRE_PAINT_SCRIPT }} />
+      </head>
       <body className="min-h-screen">
         <a
           href="#main"

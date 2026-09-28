@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-6172181a114f",
-  "model_version": "m3.6.0",
+  "data_version": "fixture-5b780e4f2444",
+  "model_version": "m4.0.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-28T17:08:03-0400",
+  "created_at": "2026-09-28T18:44:19-0400",
   "axes": [
     {
       "name": "metro",
@@ -226,8 +226,8 @@
     "match_gate": "chances of matching gates on the UNWEIGHTED n of the same masked pool (ADR 0009): the kernel can neither rescue nor condemn a cell"
   },
   "kernel": {
-    "version": "kernel_v2",
-    "form": "w = exp(theta_age f_age(gap; sex_s, cohort(age_s)) + theta_edu f_edu(edu_s, edu_c; sex_s) + theta_race f_race(race_s, race_c; sex_s) + g(race_s, race_c, edu_s, edu_c; sex_s) + log_norm(metro, seeker)); a same-sex search takes the listed components from the same-sex fit at dial 1",
+    "version": "kernel_v3",
+    "form": "three forms (ADR 0018). Race on (the seeker's race given): w = exp(theta_age f_age(gap; sex_s, cohort) + theta_edu f_edu + theta_race f_race + g(race x edu) + log_norm), C1 as m3.5.0 serves it. Race off: w = exp(theta_age rf_f_age(gap; sex_s, cohort) + theta_edu rf_f_edu + rf_log_norm), no race term, no interaction. Same-sex: w = exp(ss_f_age(gap; sex_s) + ss_f_edu + ss_log_norm), no race term, no interaction, no dial",
     "gauge": "each main effect: availability-weighted mean multiplier 1 on its own margin under random pairing (age per sex x cohort); the interaction is centred by its zero-mean prior; log_norm makes the full kernel average exactly 1 over the national single adult population of the sought sex per seeker type",
     "fitting_sample": "decay_h5",
     "fitting_sample_spec": {
@@ -278,11 +278,11 @@
       "race"
     ],
     "dials_tau": {
-      "age": 0.0638,
-      "edu": 0.0792,
-      "race": 0.124
+      "age": 0.0637,
+      "edu": 0.0883,
+      "race": 0.0
     },
-    "generated_at": "2026-09-25T07:37:47-0400"
+    "generated_at": "2026-09-28T18:12:36-0400"
   },
   "model_defaults": {
     "pillar_weights": {
@@ -297,7 +297,7 @@
       "pool_plus_balance_mass": 0.55,
       "default_s": 0.4545,
       "label_low": "Dating pool size",
-      "label_high": "Chances of matching"
+      "label_high": "Compatibility"
     },
     "importance_levels": {
       "not_much": 0.4,
@@ -394,19 +394,33 @@
   "strings": {
     "home_title": "Which city has the best dating scene for you?",
     "home_subtitle": "Select who you're looking for and what matters to you. Find out how many people match your search in each city based on Census data.",
-    "slider_info": "Leaning towards size favors larger cities with the most possible matches. Leaning towards chances of matching favors cities where the people who match your search line up more closely with you on age, education, and background, based on historical Census marriage data.",
-    "match_info": "This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps, the education pairings and the racial and ethnic pairings that occur. A higher number means the people here are more like the people who typically pair with someone in your situation.",
-    "match_how": "The chances-of-matching figure is built from real couples in the Census Bureau's household survey, using each partner's age, education and race or ethnicity. Across the whole country we measure how often each age gap, each education pairing and each racial or ethnic pairing actually occurs, compared with how often it would occur if single people paired at random. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age, education and background. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
+    "slider_info": "Leaning towards size favors larger cities with the most possible matches. Leaning towards compatibility favors cities where the people who match your search line up more closely with you on age and education, and on background if you include yours, based on historical Census marriage data.",
+    "match_info": "This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps and the education pairings that occur, and the racial and ethnic pairings too if you include your race or ethnicity. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+    "match_how": "The compatibility figure is built from real couples in the Census Bureau's household survey, using each partner's age and education, and their race or ethnicity only if you include yours. Across the whole country we measure how often each age gap and each education pairing actually occurs, compared with how often it would occur if single people paired at random; if you include your race or ethnicity, the racial and ethnic pairings are measured the same way. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age and education, and background if you include it. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
     "match_how_link": "How this is measured",
     "match_unit_line": "where 100 is the US average",
     "match_display_cap": "250",
     "match_display_cap_token": "+",
-    "match_same_sex_note": "For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are borrowed from opposite-sex couples, because the same-sex couples in the survey are too few to measure them dependably on their own.",
+    "match_same_sex_note": "For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are not used, even if you include your race or ethnicity.",
     "match_same_sex_note_all_fallback": "For a same-sex search the age gaps, the education pairings and the racial and ethnic pairings all come from opposite-sex couples, because same-sex couples in the survey are too few to measure them on their own.",
     "self_edu_label": "My education",
     "self_race_label": "My race or ethnicity",
     "prefer_not_to_say": "Prefer not to say",
-    "about_you_note": "Optional: your education and your race or ethnicity feed only the chances-of-matching figure. Leave either unset and the average for people of your age and sex is used instead.",
+    "about_you_note": "Your sex, education and race or ethnicity stay in this browser and are never sent to us. Education is optional and feeds only the compatibility figure; leave it unset and the average for people of your age and sex is used instead.",
+    "self_race_switch_label": "Include my race or ethnicity",
+    "self_race_switch_note": "Off unless you turn it on. Your answer stays in this browser and is never sent to us.",
+    "self_race_same_sex_note": "Not used in a same-sex search.",
+    "self_race_choose": "Choose one",
+    "about_title": "About us",
+    "about_measure_link": "What we measure",
+    "about_crime_link": "About crime data",
+    "about_privacy_link": "Privacy",
+    "credits_heading": "Sources and credits",
+    "credits_data_heading": "Data",
+    "credits_photos_heading": "Photographs",
+    "credits_photos_more": "Photographs on the city and stat pages ({n})",
+    "credits_source": "source",
+    "credits_cropped": "cropped",
     "edu_hs_or_less": "High school or less",
     "edu_some_college": "Some college",
     "edu_bachelors": "College degree",
@@ -523,8 +537,8 @@
       "control_subtitle": null
     },
     "match": {
-      "display_name": "Chances of matching",
-      "definition": "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education and background, where 100 is the US average",
+      "display_name": "Compatibility",
+      "definition": "How closely the people who match your search resemble the people who actually pair with someone like you, on age and education (and on background, if you include yours), where 100 is the US average",
       "default_weight": 0.25,
       "control_subtitle": null
     },
@@ -798,11 +812,11 @@
       "direction": 1,
       "weight_in_pillar": 1.0,
       "status": "active",
-      "display_name": "Chances of matching",
+      "display_name": "Compatibility",
       "unit": "where 100 is the US average",
       "unit_short": "(US = 100)",
       "unit_template": null,
-      "mover_phrase": "your chances of matching",
+      "mover_phrase": "the compatibility figure",
       "stat_page_name": null,
       "band_direction": "good_high",
       "band_labels": [
@@ -820,7 +834,7 @@
         "good_strong"
       ],
       "band_edges": null,
-      "definition": "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education and background, where 100 is the US average",
+      "definition": "How closely the people who match your search resemble the people who actually pair with someone like you, on age and education (and on background, if you include yours), where 100 is the US average",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1508,5 +1522,5 @@
     ],
     "n_source_files_fetched": 2582
   },
-  "fixture_of": "6172181a114f"
+  "fixture_of": "5b780e4f2444"
 }

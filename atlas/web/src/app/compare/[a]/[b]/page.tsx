@@ -14,9 +14,11 @@ import {
 } from "@/lib/prefs";
 import { effectiveSearchParams } from "@/lib/server-prefs";
 import { SiteHeader } from "@/components/chrome";
-import { BalanceTally } from "@/components/tally";
+import { CompareVariantRows } from "@/components/compare-variant";
+import { DiffCell, Row } from "@/components/compare-cells";
 import { toneText } from "@/lib/tones";
-import type { Card, RankedRow, SuppressedRow } from "@/lib/types";
+import { sliceVariants } from "@/lib/variants";
+import type { BaseRow, BaseSuppressedRow, Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -50,22 +52,18 @@ export default async function ComparePage({
   const mB = meta.metros.find((m) => m.slug === b);
   if (!mA || !mB) notFound();
 
-  const find = (cbsa: string): RankedRow | SuppressedRow | undefined =>
+  const find = (cbsa: string): BaseRow | BaseSuppressedRow | undefined =>
     response.ranked.find((r) => r.cbsa === cbsa) ??
     response.suppressed.find((r) => r.cbsa === cbsa);
   const rowA = find(mA.cbsa);
   const rowB = find(mB.cbsa);
-  const isRanked = (r: RankedRow | SuppressedRow | undefined): r is RankedRow =>
-    Boolean(r && "rank" in r);
+  const slice = sliceVariants(response, [mA.cbsa, mB.cbsa]);
   const qs = toSearchParams(prefs).toString();
   const policy = meta.policy_strings;
-  const cardOf = (r: RankedRow | SuppressedRow | undefined, id: string): Card | undefined =>
+  const cardOf = (r: BaseRow | BaseSuppressedRow | undefined, id: string): Card | undefined =>
     r?.cards.find((c) => c.id === id);
   const cityA = mA.display_name_full.split(",")[0];
   const cityB = mB.display_name_full.split(",")[0];
-
-  const rankA = isRanked(rowA) ? rowA : undefined;
-  const rankB = isRanked(rowB) ? rowB : undefined;
 
   return (
     <>
@@ -115,118 +113,15 @@ export default async function ComparePage({
               </tr>
             </thead>
             <tbody>
-              {/* item 6.1: the gap in places — smaller spot is better,
-                  so the colour reads through direction −1 */}
-              <Row label="Spot in your results">
-                {[rowA, rowB].map((r, i) => (
-                  <td key={i} className="px-5 py-3.5">
-                    {isRanked(r) ? (
-                      <span className="font-display text-[21px] font-semibold">{r.rank}</span>
-                    ) : (
-                      <span className="text-[13px] leading-snug text-ink-2">
-                        {r ? policy[r.reason] : "Not covered"}
-                      </span>
-                    )}
-                  </td>
-                ))}
-                <DiffCell
-                  id="rank"
-                  a={rankA && rankB ? String(rankA.rank) : undefined}
-                  b={rankA && rankB ? String(rankB.rank) : undefined}
-                  decimals={0}
-                  direction={-1}
-                />
-              </Row>
-              <Row label="Score out of 100">
-                {[rowA, rowB].map((r, i) => (
-                  <td key={i} className="px-5 py-3.5">
-                    {isRanked(r) ? (
-                      <span className="font-display text-[21px] font-semibold">{r.score_display}</span>
-                    ) : (
-                      <span className="text-ink-3">—</span>
-                    )}
-                  </td>
-                ))}
-                <DiffCell
-                  id="score"
-                  a={rankA && rankB ? rankA.score_display : undefined}
-                  b={rankA && rankB ? rankB.score_display : undefined}
-                  decimals={0}
-                  direction={1}
-                />
-              </Row>
-              <Row label="People who match">
-                {[rowA, rowB].map((r, i) => (
-                  <td key={i} className="px-5 py-3.5">
-                    {isRanked(r) ? (
-                      <span className="font-display text-[21px] font-semibold">
-                        {r.pool.toLocaleString("en-US")}
-                      </span>
-                    ) : (
-                      <span className="text-[13px] leading-snug text-ink-2">
-                        {r ? policy[r.reason] : "—"}
-                      </span>
-                    )}
-                  </td>
-                ))}
-                <DiffCell
-                  id="pool"
-                  a={rankA && rankB ? rankA.pool.toLocaleString("en-US") : undefined}
-                  b={rankA && rankB ? rankB.pool.toLocaleString("en-US") : undefined}
-                  decimals={0}
-                  direction={meta.features.pool_size.direction}
-                />
-              </Row>
-              {/* m3.0.0 (ADR 0009): chances of matching, a ranked row's
-                  index with its band; the difference reads through the
-                  registry direction like every scored stat */}
-              <Row label={meta.features.match_propensity.display_name}>
-                {[rankA, rankB].map((r, i) => (
-                  <td key={i} className="px-5 py-3.5">
-                    {r?.match?.available && r.match.display != null ? (
-                      <div className="flex flex-col">
-                        <span className="font-display text-[21px] font-semibold">
-                          {r.match.display}
-                        </span>
-                        <span className="text-[12px] text-ink-3">
-                          {r.match.unit_line ?? meta.features.match_propensity.unit}
-                        </span>
-                        {r.match.band && (
-                          <span className={`text-[12px] font-semibold ${toneText(r.match.band.tone)}`}>
-                            {r.match.band.label}
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      <span className="text-ink-3">—</span>
-                    )}
-                  </td>
-                ))}
-                {/* m3.1.0 (Phase 3b A3): a capped figure ("250+") is not
-                    a number, so no difference is computed from it — the
-                    cell shows the same dash a missing figure gets */}
-                <DiffCell
-                  id="match_propensity"
-                  a={rankA?.match?.available && !rankA.match.capped ? rankA.match.display ?? undefined : undefined}
-                  b={rankB?.match?.available && !rankB.match.capped ? rankB.match.display ?? undefined : undefined}
-                  decimals={meta.features.match_propensity.display_decimals}
-                  direction={meta.features.match_propensity.direction}
-                />
-              </Row>
-              <Row label={meta.features.pool_balance.display_name}>
-                {[rowA, rowB].map((r, i) => (
-                  <td key={i} className="px-5 py-3.5">
-                    {r ? <BalanceTally balance={r.balance} compact /> : "—"}
-                  </td>
-                ))}
-                <DiffCell
-                  id="balance"
-                  a={rowA?.balance.available ? String(rowA.balance.per_100) : undefined}
-                  b={rowB?.balance.available ? String(rowB.balance.per_100) : undefined}
-                  decimals={0}
-                  direction={meta.features.pool_balance.direction}
-                />
-              </Row>
+              {/* item 6.1 and the people rows: spot, score, the
+                  compatibility figure and balance — what an "about you"
+                  variant changes, selected in the browser (m4.0.0) */}
+              <CompareVariantRows
+                slice={slice}
+                cbsaA={mA.cbsa}
+                cbsaB={mB.cbsa}
+                meta={meta}
+              />
               {meta.city_cards.map((id) => {
                 const le = meta.features[id];
                 const cA = cardOf(rowA, id);
@@ -340,17 +235,6 @@ export default async function ComparePage({
   );
 }
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <tr className="border-b border-rule last:border-b-0">
-      <th scope="row" className="px-5 py-3.5 text-left align-top text-[13px] font-semibold text-ink-2">
-        {label}
-      </th>
-      {children}
-    </tr>
-  );
-}
-
 /** The grey rules (item 6.3): population is a fact, not a virtue; a
  * pillar set to Not much is "you told us this matters least" (it still
  * carries weight 0.4); no direction means no judgement. Everyday prices
@@ -366,54 +250,5 @@ function greyRule(id: string, pillar: string | undefined, direction: number,
     imp &&
     (IMPORTANCE_PILLARS as readonly string[]).includes(imp) &&
     prefs.importance[imp as ImportancePillar] === "not_much",
-  );
-}
-
-/** A displayed value back to the number it shows: commas stripped,
- * format_pop's "1.3 million" expanded. This is what makes the gate-5
- * equality hold by construction. */
-function parseDisplayed(s: string): number {
-  const flat = s.replace(/,/g, "");
-  const n = parseFloat(flat);
-  return /million/.test(flat) ? n * 1_000_000 : n;
-}
-
-function DiffCell({
-  id,
-  a,
-  b,
-  decimals,
-  direction,
-  grey = false,
-  dollar = false,
-}: {
-  id: string;
-  a?: string;
-  b?: string;
-  decimals: number;
-  direction: number;
-  grey?: boolean;
-  dollar?: boolean;
-}) {
-  if (a === undefined || b === undefined) {
-    return (
-      <td className="px-5 py-3.5 text-ink-3" data-diff-for={id}>
-        —
-      </td>
-    );
-  }
-  const d = parseDisplayed(a) - parseDisplayed(b);
-  const sign = d > 0 ? "+" : d < 0 ? "−" : "";
-  const body = `${sign}${dollar ? "$" : ""}${Math.abs(d).toLocaleString("en-US", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  })}`;
-  const tone = grey || !direction || d === 0
-    ? "text-ink-3"
-    : d * direction > 0 ? "text-good" : "text-poor";
-  return (
-    <td className={`px-5 py-3.5 text-[14px] font-semibold ${tone}`} data-diff-for={id}>
-      {body}
-    </td>
   );
 }

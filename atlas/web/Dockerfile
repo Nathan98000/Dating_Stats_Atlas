@@ -5,7 +5,8 @@ FROM node:22-slim AS build
 WORKDIR /repo/atlas/web
 COPY atlas/web/package.json atlas/web/package-lock.json ./
 RUN npm ci
-COPY atlas/docs/ /repo/atlas/docs/
+# the three pages' texts only (the build context holds nothing else of docs/)
+COPY atlas/docs/methodology.md atlas/docs/crime.md atlas/docs/privacy.md /repo/atlas/docs/
 COPY atlas/web/ ./
 RUN npm run build
 

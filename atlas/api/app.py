@@ -41,6 +41,20 @@ removal — both noted here as the contract docs):
     balance block stays on every row, displayed and unscored. /v1/meta
     gains controls.slider_labels and controls.self_education_levels (the
     registry's pole labels and the four levels) and a kernel summary.
+  - m4.0.0 (ADR 0018, Nathan's decisions): the visitor's own sex,
+    education and race never reach the server. `self` carries the own
+    age only — self.sex, self.education and self.race_ethnicity are a 422
+    — and seeking.sex is required. The response carries every variant
+    those three details could select (model.variants): `ranked` holds the
+    rows in the default variant's order without the parts a variant
+    changes, `suppressed` the rows without balance, and `variants` the
+    per-variant columns, the balance for both own sexes, the explanation
+    table and the index the browser selects with. The response no longer
+    carries balance_applies, balance_words or match_inputs at the top
+    (they are per variant), `ranked` is not reversed for worst_first (the
+    selector orders by the variant's rank and reverses), the permalink
+    token encodes no "about you" detail, and every response says
+    Referrer-Policy: no-referrer.
 """
 from __future__ import annotations
 
@@ -49,7 +63,8 @@ import os
 from pathlib import Path
 from typing import Literal, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from atlas import model as engine
@@ -86,15 +101,38 @@ _METROS_META = json.loads((BUILD.path / "metros.json").read_text())
 app = FastAPI(title="Dating Stats Atlas ranking", docs_url=None, redoc_url=None)
 
 
+@app.middleware("http")
+async def no_referrer(request: Request, call_next):
+    """m4.0.0 (ADR 0018): no response of this site's sends a referrer
+    onward — every response of the API says so, errors included."""
+    response = await call_next(request)
+    response.headers["Referrer-Policy"] = "no-referrer"
+    return response
+
+
+# m4.0.0 (ADR 0018): the "about you" details stay in the visitor's browser
+ABOUT_YOU_FIELDS = ("sex", "education", "race_ethnicity")
+
+
 class SelfSpec(BaseModel):
-    sex: Literal["male", "female"]
+    model_config = ConfigDict(extra="forbid")
     age: int = Field(ge=18, le=70)
-    education: Optional[Literal[tuple(engine.EDU_LEVELS)]] = None  # type: ignore[valid-type]
-    race_ethnicity: Optional[Literal[tuple(engine.SPEC_RACE)]] = None  # type: ignore[valid-type]
+
+    @model_validator(mode="before")
+    @classmethod
+    def _no_about_you(cls, data):
+        if isinstance(data, dict):
+            sent = [f"self.{k}" for k in ABOUT_YOU_FIELDS if k in data]
+            if sent:
+                raise ValueError(
+                    f"{', '.join(sent)}: the visitor's own sex, education and race stay in "
+                    "their browser and are never sent (ADR 0018); send self.age only — the "
+                    "response carries every variant")
+        return data
 
 
 class SeekingSpec(BaseModel):
-    sex: Optional[Literal["male", "female"]] = None
+    sex: Literal["male", "female"]
     age: tuple[int, int]
     education_min: Optional[Literal["some_college", "bachelors", "graduate"]] = None
     income_min: Optional[int] = None
@@ -276,14 +314,15 @@ def rank(req: RankRequest) -> dict:
     sort = body.pop("sort", "best_first")
     try:
         parsed = engine.parse_request(body)
-        result = engine.rank(BUILD, parsed)
+        result = engine.rank_variants(BUILD, parsed)
     except (ValueError, AssertionError) as e:
         raise HTTPException(status_code=422, detail=str(e)) from e
-    if sort == "worst_first":
-        # a reversal of the same ranked array: same cities, same scores,
-        # same ranks — never widened to fill the bottom (ADR 0004)
-        result["ranked"] = list(reversed(result["ranked"]))
+    # worst_first is a reversal of the same ranked array — same cities,
+    # same scores, same ranks, never widened to fill the bottom (ADR 0004);
+    # since m4.0.0 the browser's selector reverses the variant it selects
     result["sort"] = sort
-    return {"data_version": dv, "model_version": engine.MODEL_VERSION,
-            "permalink": engine.permalink(dv, engine.MODEL_VERSION, body),
-            **result}
+    # every value is already a plain JSON type: skip the encoder's walk
+    # over the ~1.5 MB of variants
+    return JSONResponse({"data_version": dv, "model_version": engine.MODEL_VERSION,
+                         "permalink": engine.permalink(dv, engine.MODEL_VERSION, body),
+                         **result})

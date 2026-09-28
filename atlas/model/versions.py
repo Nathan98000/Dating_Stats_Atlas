@@ -5,6 +5,30 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.0.0 — Phase 4, Stage 5 (ADR 0018, Nathan's decisions 1-5): the
+figure is renamed COMPATIBILITY (internal names unchanged); race is off by
+default — a visitor who has not switched it on gets the RACE-FREE form
+(the cohort age term and the education matrix, refitted with no race
+component and no interaction, its own per-metro dials), not C1 with a
+population-average mixture over races; a visitor who switches race on
+gets C1 exactly as m3.5.0 served it; a same-sex search uses the same-sex
+age and education terms and nothing else (refitted with no race, no
+interaction, no dial), even with race on — superseding the Phase 3c/3d
+call that the interaction rides. The kernel artifact is kernel_v3 and
+carries all three forms. The visitor's own sex, education and race never
+reach the server: /v1/rank takes the own age and an explicit sought sex,
+refuses the three with a 422, and returns every variant (model.variants,
+50 per search), which the browser selects from without computing a
+ranking number; every variant equals rank() for that seeker (asserted).
+The request path shares the parts no variant changes (the seeker weights'
+tensor, the balance sums, each metro's cards and crime block), contracts
+the interaction tensor level by level and computes average ranks in
+numpy — the same served numbers on the m3.6.0 build, checked over 181
+searches — and the compatibility figure's technical stats entry carries
+the figure at its match block's precision (two decimals). Goldens
+regenerated; the rank shift from m3.6.0, the stability gate's reading
+against m3.5.0 and the reference move are in PHASE4.md.
+
 m3.6.0 — Phase 4, Stage 3b (ADR 0012, Nathan's decision): US weather
 stations only. The GHCN-Daily adapter keeps US stations alone (a GHCN
 id's country code, ghcn_daily.US_STATION_PREFIX); its network filter
@@ -237,5 +261,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.6.0"
+MODEL_VERSION = "m4.0.0"
 SCHEMA_VERSION = "cube-v1"

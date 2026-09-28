@@ -1,0 +1,29 @@
+{
+ "build": "5b780e4f2444",
+ "model_version": "m4.0.0",
+ "load_average_before": [
+  1.57,
+  1.67,
+  1.75
+ ],
+ "searches": {
+  "default": {
+   "n": 100,
+   "p50_ms": 59.14,
+   "p95_ms": 61.07,
+   "max_ms": 70.89
+  },
+  "same_sex_reference": {
+   "n": 100,
+   "p50_ms": 49.97,
+   "p95_ms": 50.67,
+   "max_ms": 60.58
+  }
+ },
+ "load_average_after": [
+  1.55,
+  1.66,
+  1.75
+ ],
+ "note": "the site's default search and the same-sex reference search alone, 100 requests each through the ASGI stack (TestClient, the latency harness's path), after five warm-up requests"
+}

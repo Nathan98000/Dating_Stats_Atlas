@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { Attribution } from "./attribution";
 import cityImages from "@/data/city-images.json";
 
 /** Every city page gets a face. Since Phase 2e item 4 that face is a
@@ -9,8 +8,9 @@ import cityImages from "@/data/city-images.json";
  * domain, CC0, CC-BY, CC-BY-SA ship; NC/ND or unreadable terms refuse),
  * recorded row-by-row in the committed manifest, displayed UNMODIFIED —
  * scaled to fit, never cropped, recoloured or composited, because an
- * adapted CC-BY-SA image would drag its licence onto the adaptation —
- * with the manifest's attribution rendered beneath. Alt text describes
+ * adapted CC-BY-SA image would drag its licence onto the adaptation.
+ * Its credit lives with every other one in About us, Sources and credits
+ * (m4.0.0, Nathan's decision 8). Alt text describes
  * the view (from the file's own description); the generative fallback
  * stays aria-hidden with the heading carrying the city's name. A photo
  * ships ONLY through the manifest: an unlisted file has no recorded
@@ -52,9 +52,6 @@ export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
           alt={img.alt ?? ""}
           className="max-h-[380px] w-full rounded-xl border border-rule bg-surface object-contain"
         />
-        <figcaption className="pt-1.5">
-          <Attribution image={img} />
-        </figcaption>
       </figure>
     );
   }

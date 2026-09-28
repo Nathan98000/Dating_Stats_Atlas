@@ -23,11 +23,17 @@ touches, meaning any whose index (point or replicate) differs from the
 reference's; when nothing is touched the totals run over every search, so
 the reference against itself reads exactly 1.0. The reference is a fixed
 build, moved only by Nathan's decision in an ADR, so small rises cannot
-pile up release after release. Since ADR 0015 it is m3.5.0 (1ebeaa2dcad6,
-chances of matching scored by value), its record REFERENCE, under
-results/phase3d; ADR 0011's first reference, m3.2.0 (f20cb02c3af8), keeps
-its record (REFERENCE_M3_2_0) and its controls under results/phase3c as
-history.
+pile up release after release. Since ADR 0018 it is m4.0.0 (5b780e4f2444:
+the race-free default, same-sex searches without race, race on as C1),
+its record REFERENCE, under results/phase4; m3.5.0 (1ebeaa2dcad6), the
+reference from ADR 0015, keeps its record (REFERENCE_M3_5_0) and its
+controls under results/phase3d, and ADR 0011's first reference, m3.2.0
+(f20cb02c3af8), its record (REFERENCE_M3_2_0) and controls under
+results/phase3c — both history.
+
+m4.0.0 (ADR 0018): each search's record names the "about you" variant its
+seeker selects (own sex | education or none | race or off); a search that
+gives the seeker's race is a race-switched-on variant.
 
 The replicate machinery is the validation suite's (the same pool, the
 same replicate weights, the same score function); the kernel-weighted
@@ -55,14 +61,16 @@ import numpy as np
 
 from atlas import model as engine
 from atlas.model.preferences import EDU_LEVELS, RACE_LEVELS, SEX_LEVELS, seeker_weights
-from atlas.model.scoring import match_scoring_spec, score_vector
+from atlas.model.scoring import match_scoring_spec, race_used, same_sex_components, score_vector
 from atlas.model.tests.golden.make_fixture import GOLDEN_VECTORS
 from atlas.pipeline.fetch import DATA, RESULTS
 
 P3C = RESULTS / "phase3c"
-# ADR 0015: the reference is m3.5.0 (1ebeaa2dcad6). The m3.2.0 record it
-# replaced stays byte-identical as history, with Phase 3c's controls.
-REFERENCE = RESULTS / "phase3d" / "stability_reference_m3_5_0.json"
+# ADR 0018: the reference is m4.0.0 (5b780e4f2444). The records it replaced
+# stay byte-identical as history with their controls: m3.5.0 (ADR 0015,
+# results/phase3d) and m3.2.0 (ADR 0011, results/phase3c).
+REFERENCE = RESULTS / "phase4" / "stability_reference_m4_0_0.json"
+REFERENCE_M3_5_0 = RESULTS / "phase3d" / "stability_reference_m3_5_0.json"
 REFERENCE_M3_2_0 = P3C / "stability_reference.json"
 CACHE = DATA / "phase3c_cache"
 TOLERANCE = 0.10          # a change fails above 1 + TOLERANCE times the reference
@@ -193,6 +201,15 @@ def wobble_of(order: np.ndarray, top: int = TOP) -> tuple[float, bool]:
     return float(np.mean(moves)), hit
 
 
+def variant_name(build, req, same_sex: bool) -> str:
+    """The m4.0.0 variant a search's seeker selects (model.variants keys:
+    own sex | education or "none" | race or "off")."""
+    from atlas.model.variants import variant_key
+    spec = {v: k for k, v in engine.SPEC_RACE.items()}
+    race = spec[req.self_race] if req.self_race and race_used(build, same_sex) else "off"
+    return variant_key(req.self_sex, req.self_edu or "none", race)
+
+
 def score_rule(build) -> str:
     """The match-scoring rule this build's manifest names (ADR 0013); the
     gate scores through scoring.score_vector, so it is the engine's."""
@@ -262,6 +279,10 @@ def search_record(build, req, res: dict, S0: np.ndarray, S: np.ndarray,
     spread = float(np.percentile(zm[okz], 90) - np.percentile(zm[okz], 10)) if okz.sum() >= 2 else None
     tau = float(kendalltau(scores[oks], served[oks]).statistic) if oks.sum() >= 2 else None
     return {"n_ranked": n, "same_sex": bool(same_sex),
+            # m4.0.0 (ADR 0018): the "about you" variant this search is
+            # (own sex | education or none | race or off, the race a
+            # same-sex search does not use shown as off)
+            "variant": variant_name(build, req, same_sex),
             "match_score_spread_p10_p90": (round(spread, 3) if spread is not None else None),
             "steering_tau": (round(tau, 4) if tau is not None and np.isfinite(tau) else None),
             "match_scoring": score_rule(build),
@@ -297,8 +318,10 @@ def gate_record(build, con, name: str, noise_scale: float = 1.0,
            "kernel": {"version": km.get("version"), "fitting_sample": km.get("fitting_sample"),
                       "age_cohorts": km.get("age_cohorts"), "edu_by_sex": km.get("edu_by_sex"),
                       "interaction": km.get("interaction"),
-                      "same_sex_components": list(ss.components) if ss else [],
-                      "same_sex_interaction": (bool(getattr(ss, "interaction", False)) if ss else None)},
+                      "same_sex_components": same_sex_components(build),
+                      "same_sex_interaction": (bool(getattr(ss, "interaction", False)) if ss else
+                                               (False if build.kernel.same_sex_race_free is not None
+                                                else None))},
            "rule": {"wobble": "mean rank move of the cities in the top 10 of either the published "
                               "or the replicate ranking, averaged over the 80 replicates",
                     "verdict": f"fail if total wobble over the touched searches exceeds "

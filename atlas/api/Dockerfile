@@ -7,7 +7,12 @@ WORKDIR /app
 COPY requirements.lock ./
 RUN pip install --no-cache-dir -r requirements.lock
 
-COPY atlas/ ./atlas/
+# only the API and the model: never the data, results or private files
+# that live under atlas/ on a working machine (and .dockerignore keeps them
+# out of the build context itself)
+COPY atlas/__init__.py ./atlas/__init__.py
+COPY atlas/api/ ./atlas/api/
+COPY atlas/model/ ./atlas/model/
 
 # The build artifact is NOT baked into the image: mount it (volume) or sync
 # it at boot, then point BUILD_DIR at it. A new build is a new mount + a

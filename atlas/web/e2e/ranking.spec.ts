@@ -12,15 +12,14 @@ test("first results are server-rendered, with the hero", async ({ page }) => {
   });
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  // Phase 2f item 4.1: the sourced photograph with its attribution when
-  // the (gitignored, re-fetchable) file is present; the labelled
-  // placeholder otherwise — never a photo without its manifest credit
+  // Phase 2f item 4.1: the sourced photograph when the (gitignored,
+  // re-fetchable) file is present; the labelled placeholder otherwise.
+  // m4.0.0 (Nathan's decision 8): its credit is in About us, Sources and
+  // credits, not under the band
   const photo = page.getByTestId("hero-photo");
   if (await photo.count()) {
     await expect(photo.locator("img")).toBeVisible();
-    await expect(
-      photo.locator("figcaption").getByRole("link", { name: "source" }),
-    ).toBeVisible();
+    await expect(photo.locator("figcaption")).toHaveCount(0);
   } else {
     await expect(page.getByTestId("hero-placeholder")).toBeVisible();
   }
@@ -79,7 +78,7 @@ test("the city count appears only when something is excluded", async ({ page }) 
   await expect(page.getByTestId("list-heading")).toHaveText("Cities for you");
   await expect(page.getByTestId("excluded-note")).toHaveCount(0);
   // narrow it until cities drop out: count appears with the approved sentence
-  await page.goto("/?self_sex=female&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
+  await page.goto("/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
   const heading = await page.getByTestId("list-heading").textContent();
   expect(heading).toMatch(/^\d+ cities for you$/);

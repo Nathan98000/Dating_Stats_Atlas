@@ -49,7 +49,9 @@ function canonical(value: Json, parentKey: string | null,
 }
 
 export interface RankBody {
-  self: { sex: string; age: number; education?: string; race_ethnicity?: string };
+  /** m4.0.0 (ADR 0018): the own age only; a token made before m4.0.0 may
+   * carry sex, education or race, which nothing reads */
+  self: { age: number; sex?: string; education?: string; race_ethnicity?: string };
   seeking: {
     sex?: string;
     age: [number, number];

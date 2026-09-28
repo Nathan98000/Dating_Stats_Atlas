@@ -1,9 +1,12 @@
 """Measure /v1/rank latency against a real build (not the fixture).
 
-    python atlas/tests/measure_latency.py <build_dir> [n_requests]
+    python atlas/api/tests/measure_latency.py <build_dir> [n_requests] [out.json]
 
-Reports p50/p95/p99 over a mix of golden vectors and randomized queries,
-single process, through the ASGI stack (TestClient), after a warmup.
+Reports p50/p95/p99 over randomized queries, single process, through the
+ASGI stack (TestClient), after a warmup, with the machine's load average
+before and after. m4.0.0 (ADR 0018): a request carries the own age only
+and an explicit sought sex, and every response carries all the "about
+you" variants.
 """
 from __future__ import annotations
 
@@ -36,10 +39,10 @@ SPEC_RACES = [None, None, None, "hispanic", "white_nh", "black_nh", "asian_nh"]
 
 
 def random_request() -> dict:
-    sex = rng.choice(["male", "female"])
+    sex = rng.choice(["male", "female"])      # the sought sex, explicit
     age = rng.randint(22, 60)
     lo = rng.randint(18, 55)
-    seeking = {"age": [lo, min(70, lo + rng.randint(4, 20))],
+    seeking = {"sex": sex, "age": [lo, min(70, lo + rng.randint(4, 20))],
                "marital": rng.choice(MARITAL_LISTS)}
     if (e := rng.choice(EDU)):
         seeking["education_min"] = e
@@ -47,11 +50,12 @@ def random_request() -> dict:
         seeking["income_min"] = i
     if (r := rng.choice(SPEC_RACES)):
         seeking["race_ethnicity"] = [r]
-    return {"self": {"sex": sex, "age": age}, "seeking": seeking}
+    return {"self": {"age": age}, "seeking": seeking}
 
 
 def main() -> None:
     client = TestClient(api.app)
+    load_before = os.getloadavg()
     reqs = [random_request() for _ in range(N)]
     for r in reqs[:20]:  # warmup
         client.post("/v1/rank", json=r)
@@ -67,10 +71,14 @@ def main() -> None:
            "p95_ms": round(times[int(0.95 * N)], 2),
            "p99_ms": round(times[int(0.99 * N)], 2),
            "max_ms": round(times[-1], 2),
-           "target_p95_ms": TARGET_P95_MS}
+           "target_p95_ms": TARGET_P95_MS,
+           "load_average_before": [round(x, 2) for x in load_before],
+           "load_average_after": [round(x, 2) for x in os.getloadavg()],
+           "build": os.environ["BUILD_DIR"]}
     print(json.dumps(out, indent=2))
-    (Path(__file__).resolve().parents[2] / "results" / "phase2" /
-     "latency.json").write_text(json.dumps(out, indent=2) + "\n")
+    dest = (Path(sys.argv[3]) if len(sys.argv) > 3 else
+            Path(__file__).resolve().parents[2] / "results" / "phase2" / "latency.json")
+    dest.write_text(json.dumps(out, indent=2) + "\n")
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
  * surviving suppression, and the banned-vocabulary sweep (gate 2). */
 
 const BELOW_BAR =
-  "/?self_sex=female&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh";
+  "/?sex=male&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh";
 
 test("the narrow state leads with the shape of the problem, never a count", async ({ page }) => {
   await page.goto(BELOW_BAR);
@@ -25,7 +25,7 @@ test("the narrow state leads with the shape of the problem, never a count", asyn
   // the body reads as a sentence: the capitalised search phrase leads
   expect(text).toMatch(/Men \d+–\d+.* is a very small group in any city/);
   // the screen still offers a route to the explainer (the header nav)
-  await expect(page.getByRole("link", { name: "How it works" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "About us" })).toBeVisible();
   // the wideners restate the loosened query and apply it in one click.
   // On the 12-metro fixture one loosening may still be too narrow — the
   // guarantee is the state changed honestly, not that any search recovers.
@@ -39,7 +39,7 @@ test("the narrow state leads with the shape of the problem, never a count", asyn
 });
 
 test("the city page: description, cards with bands, ranked card", async ({ page }) => {
-  await page.goto("/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously");
+  await page.goto("/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously");
   await expect(page.locator("h1")).toHaveText("Provo, Utah");
   // the one-line description arrives from the build (gate 4)
   await expect(page.getByTestId("city-description")).toContainText(/college town|city of about/);
@@ -84,23 +84,24 @@ const BANNED_PAGE_PATTERNS: [RegExp, string][] = [
 
 for (const [name, url] of [
   ["home", "/"],
-  ["results, narrowed", "/?self_sex=female&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000"],
+  ["results, narrowed", "/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000"],
   ["narrow state", BELOW_BAR],
-  ["city page", "/city/provo-utah?self_sex=female&self_age=30&age=28-40&marital=never,previously"],
-  ["compare", "/compare/provo-utah/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously"],
+  ["city page", "/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously"],
+  ["compare", "/compare/provo-utah/austin-texas?sex=male&self_age=30&age=28-40&marital=never,previously"],
   ["compare landing", "/compare"],
   ["stat page", "/stats/rent_1br"],
   ["stat page, population", "/stats/who_lives_here"],
   ["crime explainer", "/about-crime-data"],
   ["what we measure", "/what-we-measure"],
-  ["how it works", "/how-it-works"],
+  ["about us", "/about"],
+  ["privacy", "/privacy"],
 ] as const) {
   test(`no banned string renders: ${name}`, async ({ page }) => {
     await page.goto(url);
     await page.waitForLoadState("networkidle");
     const text = (await page.locator("body").innerText()) ?? "";
     for (const [re, what] of BANNED_PAGE_PATTERNS) {
-      // the how-it-works page may speak about precision, but still never
+      // About us may speak about precision, but still never
       // in the banned vocabulary, with a code, or with a version id
       expect(text, `${name} must not render ${what}`).not.toMatch(re);
     }

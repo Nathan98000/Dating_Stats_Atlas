@@ -1,0 +1,1022 @@
+{
+ "from": {
+  "tag": "m3_5_0",
+  "build": "1ebeaa2dcad6",
+  "model_version": "m3.5.0",
+  "kernel_sample": "decay_h5"
+ },
+ "to": {
+  "tag": "m4_0_0",
+  "build": "5b780e4f2444",
+  "model_version": "m4.0.0",
+  "kernel_sample": "decay_h5"
+ },
+ "default_search": {
+  "self": {
+   "sex": "female",
+   "age": 30
+  },
+  "seeking": {
+   "age": [
+    28,
+    40
+   ],
+   "marital": [
+    "never_married",
+    "previously_married"
+   ]
+  }
+ },
+ "rank_shift": {
+  "metros_compared": 193,
+  "ranks_changed": 185,
+  "kendall_tau": 0.812,
+  "median_abs_move": 9.0,
+  "p90_abs_move": 29.80000000000001,
+  "max_abs_move": 83,
+  "biggest_moves": [
+   {
+    "metro": "Jackson, MS",
+    "cbsa": "27140",
+    "rank_before": 86,
+    "rank_after": 169,
+    "move": -83
+   },
+   {
+    "metro": "Montgomery, AL",
+    "cbsa": "33860",
+    "rank_before": 91,
+    "rank_after": 173,
+    "move": -82
+   },
+   {
+    "metro": "Memphis, TN",
+    "cbsa": "32820",
+    "rank_before": 35,
+    "rank_after": 104,
+    "move": -69
+   },
+   {
+    "metro": "Columbus, GA",
+    "cbsa": "17980",
+    "rank_before": 119,
+    "rank_after": 182,
+    "move": -63
+   },
+   {
+    "metro": "Augusta, GA",
+    "cbsa": "12260",
+    "rank_before": 122,
+    "rank_after": 179,
+    "move": -57
+   },
+   {
+    "metro": "Mobile, AL",
+    "cbsa": "33660",
+    "rank_before": 100,
+    "rank_after": 156,
+    "move": -56
+   },
+   {
+    "metro": "Honolulu, HI",
+    "cbsa": "46520",
+    "rank_before": 102,
+    "rank_after": 49,
+    "move": 53
+   },
+   {
+    "metro": "Birmingham, AL",
+    "cbsa": "13820",
+    "rank_before": 70,
+    "rank_after": 123,
+    "move": -53
+   },
+   {
+    "metro": "Shreveport, LA",
+    "cbsa": "43340",
+    "rank_before": 124,
+    "rank_after": 177,
+    "move": -53
+   },
+   {
+    "metro": "Tuscaloosa, AL",
+    "cbsa": "46220",
+    "rank_before": 110,
+    "rank_after": 160,
+    "move": -50
+   }
+  ],
+  "top10_before": [
+   "New York, NY",
+   "Boston, MA",
+   "Philadelphia, PA",
+   "Chicago, IL",
+   "San Francisco, CA",
+   "Los Angeles, CA",
+   "New Orleans, LA",
+   "Atlanta, GA",
+   "Seattle, WA",
+   "Washington, DC"
+  ],
+  "top10_after": [
+   "San Francisco, CA",
+   "Boston, MA",
+   "New York, NY",
+   "Los Angeles, CA",
+   "San Jose, CA",
+   "Seattle, WA",
+   "Chicago, IL",
+   "San Diego, CA",
+   "Austin, TX",
+   "Philadelphia, PA"
+  ]
+ },
+ "index_shift": {
+  "median_abs_change_pts": 1.87,
+  "p90_abs_change_pts": 7.16,
+  "max_abs_change_pts": 17.4,
+  "range_before": [
+   85.3,
+   111.5
+  ],
+  "range_after": [
+   83.2,
+   122.9
+  ],
+  "p10_p50_p90_before": [
+   90.4,
+   97.0,
+   106.3
+  ],
+  "p10_p50_p90_after": [
+   89.8,
+   96.1,
+   104.1
+  ],
+  "moe_median_before": 4.12,
+  "moe_median_after": 3.97,
+  "kendall_tau_index": 0.594
+ },
+ "reference": {
+  "grad_asian_woman_30": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 629.61,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 6,
+    "score": 70.9
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 629.61,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 6,
+    "score": 70.9
+   },
+   "range_before": [
+    13.3,
+    629.6
+   ],
+   "range_after": [
+    13.3,
+    629.6
+   ],
+   "metros_above_250_before": 2,
+   "metros_above_250_after": 2,
+   "moe_median_before": 12.55,
+   "moe_median_after": 12.55,
+   "rank_shift": {
+    "metros_compared": 193,
+    "ranks_changed": 10,
+    "kendall_tau": 0.999,
+    "median_abs_move": 0.0,
+    "p90_abs_move": 0.0,
+    "max_abs_move": 1,
+    "biggest_moves": [
+     {
+      "metro": "Detroit, MI",
+      "cbsa": "19820",
+      "rank_before": 36,
+      "rank_after": 35,
+      "move": 1
+     },
+     {
+      "metro": "Buffalo, NY",
+      "cbsa": "15380",
+      "rank_before": 35,
+      "rank_after": 36,
+      "move": -1
+     },
+     {
+      "metro": "Omaha, NE",
+      "cbsa": "36540",
+      "rank_before": 41,
+      "rank_after": 40,
+      "move": 1
+     },
+     {
+      "metro": "Kansas City, MO",
+      "cbsa": "28140",
+      "rank_before": 40,
+      "rank_after": 41,
+      "move": -1
+     },
+     {
+      "metro": "Fresno, CA",
+      "cbsa": "23420",
+      "rank_before": 62,
+      "rank_after": 61,
+      "move": 1
+     },
+     {
+      "metro": "Durham, NC",
+      "cbsa": "20500",
+      "rank_before": 61,
+      "rank_after": 62,
+      "move": -1
+     },
+     {
+      "metro": "Louisville, KY",
+      "cbsa": "31140",
+      "rank_before": 72,
+      "rank_after": 71,
+      "move": 1
+     },
+     {
+      "metro": "Harrisburg, PA",
+      "cbsa": "25420",
+      "rank_before": 71,
+      "rank_after": 72,
+      "move": -1
+     },
+     {
+      "metro": "Lakeland, FL",
+      "cbsa": "29460",
+      "rank_before": 164,
+      "rank_after": 163,
+      "move": 1
+     },
+     {
+      "metro": "Lynchburg, VA",
+      "cbsa": "31340",
+      "rank_before": 163,
+      "rank_after": 164,
+      "move": -1
+     }
+    ],
+    "top10_before": [
+     "San Francisco, CA",
+     "Los Angeles, CA",
+     "New York, NY",
+     "Seattle, WA",
+     "Boston, MA",
+     "San Jose, CA",
+     "Chicago, IL",
+     "San Diego, CA",
+     "Houston, TX",
+     "Philadelphia, PA"
+    ],
+    "top10_after": [
+     "San Francisco, CA",
+     "Los Angeles, CA",
+     "New York, NY",
+     "Seattle, WA",
+     "Boston, MA",
+     "San Jose, CA",
+     "Chicago, IL",
+     "San Diego, CA",
+     "Houston, TX",
+     "Philadelphia, PA"
+    ],
+    "index_median_abs_change_pts": 0.0,
+    "index_max_abs_change_pts": 0.0
+   }
+  },
+  "black_woman_30": {
+   "top_before": {
+    "metro": "Montgomery, AL",
+    "cbsa": "33860",
+    "index": 317.14,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 75,
+    "score": 47.4
+   },
+   "top_after": {
+    "metro": "Montgomery, AL",
+    "cbsa": "33860",
+    "index": 317.14,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 75,
+    "score": 47.4
+   },
+   "range_before": [
+    16.6,
+    317.1
+   ],
+   "range_after": [
+    16.6,
+    317.1
+   ],
+   "metros_above_250_before": 7,
+   "metros_above_250_after": 7,
+   "moe_median_before": 11.95,
+   "moe_median_after": 11.95,
+   "rank_shift": {
+    "metros_compared": 193,
+    "ranks_changed": 4,
+    "kendall_tau": 1.0,
+    "median_abs_move": 0.0,
+    "p90_abs_move": 0.0,
+    "max_abs_move": 1,
+    "biggest_moves": [
+     {
+      "metro": "Detroit, MI",
+      "cbsa": "19820",
+      "rank_before": 25,
+      "rank_after": 24,
+      "move": 1
+     },
+     {
+      "metro": "San Antonio, TX",
+      "cbsa": "41700",
+      "rank_before": 24,
+      "rank_after": 25,
+      "move": -1
+     },
+     {
+      "metro": "Springfield, MA",
+      "cbsa": "44140",
+      "rank_before": 145,
+      "rank_after": 144,
+      "move": 1
+     },
+     {
+      "metro": "Scranton, PA",
+      "cbsa": "42540",
+      "rank_before": 144,
+      "rank_after": 145,
+      "move": -1
+     },
+     {
+      "metro": "New York, NY",
+      "cbsa": "35620",
+      "rank_before": 1,
+      "rank_after": 1,
+      "move": 0
+     },
+     {
+      "metro": "New Orleans, LA",
+      "cbsa": "35380",
+      "rank_before": 2,
+      "rank_after": 2,
+      "move": 0
+     },
+     {
+      "metro": "Miami, FL",
+      "cbsa": "33100",
+      "rank_before": 3,
+      "rank_after": 3,
+      "move": 0
+     },
+     {
+      "metro": "Philadelphia, PA",
+      "cbsa": "37980",
+      "rank_before": 4,
+      "rank_after": 4,
+      "move": 0
+     },
+     {
+      "metro": "Houston, TX",
+      "cbsa": "26420",
+      "rank_before": 5,
+      "rank_after": 5,
+      "move": 0
+     },
+     {
+      "metro": "Chicago, IL",
+      "cbsa": "16980",
+      "rank_before": 6,
+      "rank_after": 6,
+      "move": 0
+     }
+    ],
+    "top10_before": [
+     "New York, NY",
+     "New Orleans, LA",
+     "Miami, FL",
+     "Philadelphia, PA",
+     "Houston, TX",
+     "Chicago, IL",
+     "Los Angeles, CA",
+     "Atlanta, GA",
+     "San Francisco, CA",
+     "Dallas, TX"
+    ],
+    "top10_after": [
+     "New York, NY",
+     "New Orleans, LA",
+     "Miami, FL",
+     "Philadelphia, PA",
+     "Houston, TX",
+     "Chicago, IL",
+     "Los Angeles, CA",
+     "Atlanta, GA",
+     "San Francisco, CA",
+     "Dallas, TX"
+    ],
+    "index_median_abs_change_pts": 0.0,
+    "index_max_abs_change_pts": 0.0
+   }
+  },
+  "grad_woman_30": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 189.51,
+    "display": "190",
+    "band": "Far above most cities",
+    "rank": 6,
+    "score": 70.9
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 196.39,
+    "display": "196",
+    "band": "Far above most cities",
+    "rank": 5,
+    "score": 70.9
+   },
+   "range_before": [
+    42.5,
+    189.5
+   ],
+   "range_after": [
+    43.3,
+    196.4
+   ],
+   "metros_above_250_before": 0,
+   "metros_above_250_after": 0,
+   "moe_median_before": 6.69,
+   "moe_median_after": 6.9
+  },
+  "nhpi_man_35": {
+   "top_before": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 2496.45,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 35,
+    "score": 54.3
+   },
+   "top_after": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 2496.45,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 35,
+    "score": 54.3
+   },
+   "range_before": [
+    13.6,
+    2496.4
+   ],
+   "range_after": [
+    13.6,
+    2496.4
+   ],
+   "metros_above_250_before": 11,
+   "metros_above_250_after": 11,
+   "moe_median_before": 10.32,
+   "moe_median_after": 10.32,
+   "rank_shift": {
+    "metros_compared": 193,
+    "ranks_changed": 12,
+    "kendall_tau": 0.999,
+    "median_abs_move": 0.0,
+    "p90_abs_move": 0.0,
+    "max_abs_move": 4,
+    "biggest_moves": [
+     {
+      "metro": "Detroit, MI",
+      "cbsa": "19820",
+      "rank_before": 84,
+      "rank_after": 80,
+      "move": 4
+     },
+     {
+      "metro": "Indianapolis, IN",
+      "cbsa": "26900",
+      "rank_before": 73,
+      "rank_after": 75,
+      "move": -2
+     },
+     {
+      "metro": "Tulsa, OK",
+      "cbsa": "46140",
+      "rank_before": 31,
+      "rank_after": 30,
+      "move": 1
+     },
+     {
+      "metro": "El Paso, TX",
+      "cbsa": "21340",
+      "rank_before": 30,
+      "rank_after": 31,
+      "move": -1
+     },
+     {
+      "metro": "Vallejo, CA",
+      "cbsa": "46700",
+      "rank_before": 57,
+      "rank_after": 56,
+      "move": 1
+     },
+     {
+      "metro": "Rochester, NY",
+      "cbsa": "40380",
+      "rank_before": 56,
+      "rank_after": 57,
+      "move": -1
+     },
+     {
+      "metro": "Wilmington, NC",
+      "cbsa": "48900",
+      "rank_before": 74,
+      "rank_after": 73,
+      "move": 1
+     },
+     {
+      "metro": "Boise City, ID",
+      "cbsa": "14260",
+      "rank_before": 75,
+      "rank_after": 74,
+      "move": 1
+     },
+     {
+      "metro": "Syracuse, NY",
+      "cbsa": "45060",
+      "rank_before": 80,
+      "rank_after": 81,
+      "move": -1
+     },
+     {
+      "metro": "Santa Maria, CA",
+      "cbsa": "42200",
+      "rank_before": 81,
+      "rank_after": 82,
+      "move": -1
+     }
+    ],
+    "top10_before": [
+     "Los Angeles, CA",
+     "Seattle, WA",
+     "San Francisco, CA",
+     "Las Vegas, NV",
+     "Portland, OR",
+     "Sacramento, CA",
+     "San Diego, CA",
+     "New York, NY",
+     "San Jose, CA",
+     "Phoenix, AZ"
+    ],
+    "top10_after": [
+     "Los Angeles, CA",
+     "Seattle, WA",
+     "San Francisco, CA",
+     "Las Vegas, NV",
+     "Portland, OR",
+     "Sacramento, CA",
+     "San Diego, CA",
+     "New York, NY",
+     "San Jose, CA",
+     "Phoenix, AZ"
+    ],
+    "index_median_abs_change_pts": 0.0,
+    "index_max_abs_change_pts": 0.0
+   }
+  },
+  "nhpi_woman_35": {
+   "top_before": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 1010.41,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 33,
+    "score": 54.8
+   },
+   "top_after": {
+    "metro": "Fayetteville, AR",
+    "cbsa": "22220",
+    "index": 1010.41,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 33,
+    "score": 54.8
+   },
+   "range_before": [
+    19.3,
+    1010.4
+   ],
+   "range_after": [
+    19.3,
+    1010.4
+   ],
+   "metros_above_250_before": 7,
+   "metros_above_250_after": 7,
+   "moe_median_before": 6.82,
+   "moe_median_after": 6.82,
+   "rank_shift": {
+    "metros_compared": 193,
+    "ranks_changed": 14,
+    "kendall_tau": 0.999,
+    "median_abs_move": 0.0,
+    "p90_abs_move": 0.0,
+    "max_abs_move": 5,
+    "biggest_moves": [
+     {
+      "metro": "Detroit, MI",
+      "cbsa": "19820",
+      "rank_before": 70,
+      "rank_after": 65,
+      "move": 5
+     },
+     {
+      "metro": "Providence, RI",
+      "cbsa": "39300",
+      "rank_before": 42,
+      "rank_after": 41,
+      "move": 1
+     },
+     {
+      "metro": "Pittsburgh, PA",
+      "cbsa": "38300",
+      "rank_before": 41,
+      "rank_after": 42,
+      "move": -1
+     },
+     {
+      "metro": "Wichita, KS",
+      "cbsa": "48620",
+      "rank_before": 65,
+      "rank_after": 66,
+      "move": -1
+     },
+     {
+      "metro": "Bakersfield, CA",
+      "cbsa": "12540",
+      "rank_before": 66,
+      "rank_after": 67,
+      "move": -1
+     },
+     {
+      "metro": "Syracuse, NY",
+      "cbsa": "45060",
+      "rank_before": 67,
+      "rank_after": 68,
+      "move": -1
+     },
+     {
+      "metro": "Omaha, NE",
+      "cbsa": "36540",
+      "rank_before": 68,
+      "rank_after": 69,
+      "move": -1
+     },
+     {
+      "metro": "Bremerton, WA",
+      "cbsa": "14740",
+      "rank_before": 69,
+      "rank_after": 70,
+      "move": -1
+     },
+     {
+      "metro": "Bridgeport, CT",
+      "cbsa": "14860",
+      "rank_before": 88,
+      "rank_after": 87,
+      "move": 1
+     },
+     {
+      "metro": "Hartford, CT",
+      "cbsa": "25540",
+      "rank_before": 87,
+      "rank_after": 88,
+      "move": -1
+     }
+    ],
+    "top10_before": [
+     "Los Angeles, CA",
+     "San Francisco, CA",
+     "Seattle, WA",
+     "Portland, OR",
+     "Sacramento, CA",
+     "Las Vegas, NV",
+     "San Jose, CA",
+     "San Diego, CA",
+     "New York, NY",
+     "New Orleans, LA"
+    ],
+    "top10_after": [
+     "Los Angeles, CA",
+     "San Francisco, CA",
+     "Seattle, WA",
+     "Portland, OR",
+     "Sacramento, CA",
+     "Las Vegas, NV",
+     "San Jose, CA",
+     "San Diego, CA",
+     "New York, NY",
+     "New Orleans, LA"
+    ],
+    "index_median_abs_change_pts": 0.0,
+    "index_max_abs_change_pts": 0.0
+   }
+  },
+  "grad_asian_man_34": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 582.16,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 8,
+    "score": 68.7
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 582.16,
+    "display": "250+",
+    "band": "Far above most cities",
+    "rank": 8,
+    "score": 68.7
+   },
+   "range_before": [
+    10.2,
+    582.2
+   ],
+   "range_after": [
+    10.2,
+    582.2
+   ],
+   "metros_above_250_before": 2,
+   "metros_above_250_after": 2,
+   "moe_median_before": 13.97,
+   "moe_median_after": 13.97,
+   "rank_shift": {
+    "metros_compared": 193,
+    "ranks_changed": 5,
+    "kendall_tau": 1.0,
+    "median_abs_move": 0.0,
+    "p90_abs_move": 0.0,
+    "max_abs_move": 2,
+    "biggest_moves": [
+     {
+      "metro": "Detroit, MI",
+      "cbsa": "19820",
+      "rank_before": 41,
+      "rank_after": 39,
+      "move": 2
+     },
+     {
+      "metro": "Oklahoma City, OK",
+      "cbsa": "36420",
+      "rank_before": 39,
+      "rank_after": 40,
+      "move": -1
+     },
+     {
+      "metro": "Virginia Beach, VA",
+      "cbsa": "47260",
+      "rank_before": 40,
+      "rank_after": 41,
+      "move": -1
+     },
+     {
+      "metro": "Lakeland, FL",
+      "cbsa": "29460",
+      "rank_before": 173,
+      "rank_after": 172,
+      "move": 1
+     },
+     {
+      "metro": "Shreveport, LA",
+      "cbsa": "43340",
+      "rank_before": 172,
+      "rank_after": 173,
+      "move": -1
+     },
+     {
+      "metro": "Los Angeles, CA",
+      "cbsa": "31080",
+      "rank_before": 1,
+      "rank_after": 1,
+      "move": 0
+     },
+     {
+      "metro": "New York, NY",
+      "cbsa": "35620",
+      "rank_before": 2,
+      "rank_after": 2,
+      "move": 0
+     },
+     {
+      "metro": "San Francisco, CA",
+      "cbsa": "41860",
+      "rank_before": 3,
+      "rank_after": 3,
+      "move": 0
+     },
+     {
+      "metro": "Boston, MA",
+      "cbsa": "14460",
+      "rank_before": 4,
+      "rank_after": 4,
+      "move": 0
+     },
+     {
+      "metro": "Seattle, WA",
+      "cbsa": "42660",
+      "rank_before": 5,
+      "rank_after": 5,
+      "move": 0
+     }
+    ],
+    "top10_before": [
+     "Los Angeles, CA",
+     "New York, NY",
+     "San Francisco, CA",
+     "Boston, MA",
+     "Seattle, WA",
+     "Chicago, IL",
+     "San Diego, CA",
+     "San Jose, CA",
+     "Houston, TX",
+     "Philadelphia, PA"
+    ],
+    "top10_after": [
+     "Los Angeles, CA",
+     "New York, NY",
+     "San Francisco, CA",
+     "Boston, MA",
+     "Seattle, WA",
+     "Chicago, IL",
+     "San Diego, CA",
+     "San Jose, CA",
+     "Houston, TX",
+     "Philadelphia, PA"
+    ],
+    "index_median_abs_change_pts": 0.0,
+    "index_max_abs_change_pts": 0.0
+   }
+  },
+  "same_sex_man_31": {
+   "top_before": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 115.52,
+    "display": "116",
+    "band": "Far above most cities",
+    "rank": 3,
+    "score": 72.4
+   },
+   "top_after": {
+    "metro": "San Jose, CA",
+    "cbsa": "41940",
+    "index": 107.05,
+    "display": "107",
+    "band": "Far above most cities",
+    "rank": 1,
+    "score": 72.4
+   },
+   "range_before": [
+    88.9,
+    115.5
+   ],
+   "range_after": [
+    93.2,
+    107.0
+   ],
+   "metros_above_250_before": 0,
+   "metros_above_250_after": 0,
+   "moe_median_before": 3.33,
+   "moe_median_after": 3.03,
+   "rank_shift": {
+    "metros_compared": 120,
+    "ranks_changed": 115,
+    "kendall_tau": 0.76,
+    "median_abs_move": 7.0,
+    "p90_abs_move": 24.0,
+    "max_abs_move": 47,
+    "biggest_moves": [
+     {
+      "metro": "Tallahassee, FL",
+      "cbsa": "45220",
+      "rank_before": 95,
+      "rank_after": 48,
+      "move": 47
+     },
+     {
+      "metro": "Columbia, SC",
+      "cbsa": "17900",
+      "rank_before": 96,
+      "rank_after": 49,
+      "move": 47
+     },
+     {
+      "metro": "Jackson, MS",
+      "cbsa": "27140",
+      "rank_before": 118,
+      "rank_after": 74,
+      "move": 44
+     },
+     {
+      "metro": "Atlanta, GA",
+      "cbsa": "12060",
+      "rank_before": 68,
+      "rank_after": 33,
+      "move": 35
+     },
+     {
+      "metro": "Boise City, ID",
+      "cbsa": "14260",
+      "rank_before": 72,
+      "rank_after": 104,
+      "move": -32
+     },
+     {
+      "metro": "Fort Collins, CO",
+      "cbsa": "22660",
+      "rank_before": 54,
+      "rank_after": 85,
+      "move": -31
+     },
+     {
+      "metro": "Trenton, NJ",
+      "cbsa": "45940",
+      "rank_before": 71,
+      "rank_after": 42,
+      "move": 29
+     },
+     {
+      "metro": "Baltimore, MD",
+      "cbsa": "12580",
+      "rank_before": 66,
+      "rank_after": 40,
+      "move": 26
+     },
+     {
+      "metro": "Las Vegas, NV",
+      "cbsa": "29820",
+      "rank_before": 44,
+      "rank_after": 69,
+      "move": -25
+     },
+     {
+      "metro": "Santa Rosa, CA",
+      "cbsa": "42220",
+      "rank_before": 74,
+      "rank_after": 99,
+      "move": -25
+     }
+    ],
+    "top10_before": [
+     "San Francisco, CA",
+     "Los Angeles, CA",
+     "San Jose, CA",
+     "New York, NY",
+     "Boston, MA",
+     "Seattle, WA",
+     "San Diego, CA",
+     "Portland, OR",
+     "Chicago, IL",
+     "Pittsburgh, PA"
+    ],
+    "top10_after": [
+     "San Jose, CA",
+     "New York, NY",
+     "Boston, MA",
+     "Los Angeles, CA",
+     "San Francisco, CA",
+     "Seattle, WA",
+     "New Orleans, LA",
+     "Washington, DC",
+     "Philadelphia, PA",
+     "San Diego, CA"
+    ],
+    "index_median_abs_change_pts": 1.92,
+    "index_max_abs_change_pts": 9.64
+   }
+  }
+ }
+}

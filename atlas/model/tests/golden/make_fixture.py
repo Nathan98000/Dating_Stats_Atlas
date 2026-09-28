@@ -173,8 +173,14 @@ def make_fixture(build_dir: Path) -> None:
     kj = json.loads((Path(build_dir) / "kernel.json").read_text())
     kj["dials"] = {c: kj["dials"][c] for c in chosen}
     # every array as shipped; the per-metro ones (dials, the normalisers,
-    # the same-sex normalisers) sliced to the fixture's metros
-    per_metro = {"dials", "log_norm", "ss_log_norm"}
+    # the same-sex normalisers before kernel_v3) sliced to the fixture's
+    # metros. m4.0.0 (kernel_v3): the race-off form's dials and normalisers
+    # are per metro too; its same-sex normaliser is national
+    per_metro = {"dials", "log_norm", "rf_dials", "rf_log_norm"}
+    if "ss_log_norm" in kz.files and kz["ss_log_norm"].ndim == 5:
+        per_metro.add("ss_log_norm")
+    if "race_off" in kj:
+        kj["race_off"]["dials"] = {c: kj["race_off"]["dials"][c] for c in chosen}
     np.savez_compressed(FIXTURE / "kernel.npz",
                         **{k: (kz[k][idx] if k in per_metro else kz[k])
                            for k in kz.files if k != "metro_levels"},

@@ -1,0 +1,25 @@
+# Both images build from the repository root (atlas/api/Dockerfile,
+# atlas/web/Dockerfile), and `fly deploy` uploads the build context to a
+# remote builder — so the context is deny-by-default: nothing leaves this
+# machine but what the two Dockerfiles copy. Never the data, the results,
+# private files, key files or the decision records' packets (Phase 4).
+*
+!requirements.lock
+!atlas/__init__.py
+!atlas/api/
+!atlas/model/
+!atlas/docs/methodology.md
+!atlas/docs/crime.md
+!atlas/docs/privacy.md
+!atlas/web/
+atlas/model/tests/
+atlas/api/tests/
+atlas/web/node_modules/
+atlas/web/.next*/
+atlas/web/content/
+atlas/web/test-results/
+atlas/web/playwright-report/
+atlas/web/e2e/
+atlas/web/tests/
+**/__pycache__/
+**/.DS_Store

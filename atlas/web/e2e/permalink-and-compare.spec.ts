@@ -8,8 +8,8 @@ import { expect, test } from "@playwright/test";
 test("the API's permalink resolves even though no page shows one", async ({ page }) => {
   const res = await page.request.post("/api/rank", {
     data: {
-      self: { sex: "female", age: 30 },
-      seeking: { age: [28, 40], marital: ["never_married", "previously_married"] },
+      self: { age: 30 },
+      seeking: { sex: "male", age: [28, 40], marital: ["never_married", "previously_married"] },
     },
   });
   expect(res.ok()).toBe(true);
@@ -23,8 +23,8 @@ test("the API's permalink resolves even though no page shows one", async ({ page
 test("a stale pin refuses plainly, with no version id in the copy", async ({ page }) => {
   const res = await page.request.post("/api/rank", {
     data: {
-      self: { sex: "female", age: 30 },
-      seeking: { age: [28, 40], marital: ["never_married"] },
+      self: { age: 30 },
+      seeking: { sex: "male", age: [28, 40], marital: ["never_married"] },
     },
   });
   const { permalink } = await res.json();
@@ -42,7 +42,7 @@ test("a stale pin refuses plainly, with no version id in the copy", async ({ pag
 
 test("the compare page shows two cities from one response", async ({ page }) => {
   await page.goto(
-    "/compare/austin-texas/pittsburgh-pennsylvania?self_sex=female&self_age=30&age=28-40&marital=never,previously",
+    "/compare/austin-texas/pittsburgh-pennsylvania?sex=male&self_age=30&age=28-40&marital=never,previously",
   );
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();

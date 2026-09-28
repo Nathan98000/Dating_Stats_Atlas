@@ -1,0 +1,21 @@
+{
+ "build": "5b780e4f2444",
+ "model_version": "m4.0.0",
+ "searches": {
+  "default": {
+   "bytes": 1527926,
+   "gzip6_bytes": 229408,
+   "gzip9_bytes": 224278,
+   "ranked_rows": 193,
+   "in_process_ms_mean_of_5": 82.5
+  },
+  "same_sex_reference": {
+   "bytes": 1177499,
+   "gzip6_bytes": 161428,
+   "gzip9_bytes": 157781,
+   "ranked_rows": 120,
+   "in_process_ms_mean_of_5": 62.0
+  }
+ },
+ "generated": "2026-09-28T18:57:27"
+}

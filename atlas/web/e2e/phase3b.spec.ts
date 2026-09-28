@@ -1,16 +1,18 @@
 import { expect, test } from "@playwright/test";
+import { seedAboutYou } from "./helpers";
 
-/** Phase 3b (m3.1.0, ADR 0009 amended): the chances-of-matching DISPLAY is
+/** Phase 3b (m3.1.0, ADR 0009 amended): the compatibility figure's DISPLAY is
  * capped at the registry ceiling and renders as "250+" wherever the figure
  * appears — result rows, the city page, the compare table — from the
  * API's one formatting helper; the compare table computes no difference
  * against a capped figure. The fixture's San Jose runs to 400 for a
- * graduate Asian woman of 30, so it is the capped case. */
+ * graduate Asian woman of 30 with race switched on (m4.0.0: her details
+ * are in the browser, never the URL), so it is the capped case. */
 
-const DISCLOSED_QS =
-  "self_sex=female&self_age=30&age=28-40&marital=never,previously&self_edu=graduate&self_race=asian_nh";
+const DISCLOSED_QS = "sex=male&self_age=30&age=28-40&marital=never,previously";
 
 test("a figure above the ceiling renders as 250+ on the result row, the city page and the compare table", async ({ page }) => {
+  await seedAboutYou(page, { sex: "female", edu: "graduate", raceOn: true, race: "asian_nh" });
   await page.goto(`/?${DISCLOSED_QS}`);
   const rows = page.getByTestId("ranked-list").locator("li");
   await expect(rows.first()).toBeVisible();
@@ -38,25 +40,39 @@ test("a figure above the ceiling renders as 250+ on the result row, the city pag
   await expect(table.locator('[data-diff-for="pool"]')).not.toHaveText("—");
 });
 
-test("an uncapped search computes the chances-of-matching difference as before", async ({ page }) => {
+test("an uncapped search computes the compatibility difference as before", async ({ page }) => {
   await page.goto(
-    "/compare/san-jose-california/austin-texas?self_sex=female&self_age=30&age=28-40&marital=never,previously");
+    "/compare/san-jose-california/austin-texas?sex=male&self_age=30&age=28-40&marital=never,previously");
   const table = page.getByTestId("compare-table");
   await expect(table).not.toContainText("250+");
   await expect(table.locator('[data-diff-for="match_propensity"]')).toHaveText(/^[+−]\d+$|^0$/);
 });
 
 test("a same-sex search says in the information box whose pairing patterns the figure is built from", async ({ page }) => {
-  await page.goto("/?self_sex=male&self_age=31&sex=male&age=27-38&marital=never");
+  // a man of 31 seeking men: his own sex is in the browser
+  await seedAboutYou(page, { sex: "male" });
+  await page.goto("/?self_age=31&sex=male&age=27-38&marital=never");
   const first = page.getByTestId("ranked-list").locator("li").first();
   await expect(first).toBeVisible();
   await first.getByTestId("match-info").focus();
   const note = first.getByTestId("match-info-note");
   await expect(note).toBeVisible();
   await expect(note.getByTestId("match-same-sex-note")).toContainText(/For a same-sex search/);
-  await expect(note.getByTestId("match-same-sex-note")).toContainText(/opposite-sex couples/);
+  // m4.0.0 (ADR 0018): no racial or ethnic pairing on a same-sex search
+  await expect(note.getByTestId("match-same-sex-note")).toContainText(
+    /the racial and ethnic pairings are not used, even if you include your race or ethnicity/);
+  // switching race on changes nothing, and the switch says so
+  const figs = async () => JSON.stringify(await page.getByTestId("ranked-list").locator("li")
+    .evaluateAll((els) => els.map((e) => `${e.getAttribute("data-cbsa")}:${
+      e.querySelector('[data-testid="match-figure"] .font-display')?.textContent}:${
+      e.querySelector('[data-testid="score"]')?.textContent}`)));
+  const before = await figs();
+  await page.getByTestId("self-race-switch").check();
+  await page.getByTestId("self-race").selectOption("hispanic");
+  await expect(page.getByTestId("self-race-note")).toHaveText("Not used in a same-sex search.");
+  expect(await figs()).toBe(before);
   // an opposite-sex search carries no such sentence
-  await page.goto("/?self_sex=male&self_age=31&age=27-38&marital=never");
+  await page.goto("/?self_age=31&sex=female&age=27-38&marital=never");
   const row = page.getByTestId("ranked-list").locator("li").first();
   await expect(row).toBeVisible();
   await row.getByTestId("match-info").focus();
