@@ -59,15 +59,15 @@
   {
    "stage": "5",
    "where": "registry strings.slider_info (the slider's information box)",
-   "old": "slider_info: >- Leaning towards size favors larger cities with the most possible matches. Leaning towards chances of matching favors cities where the people who match your search line up more closely with you on age, education, and background, based on historical Census marriage data.",
-   "new": "slider_info: >- Leaning towards size favors larger cities with the most possible matches. Leaning towards compatibility favors cities where the people who match your search line up more closely with you on age and education, and on background if you include yours, based on historical Census marriage data.",
+   "old": "Leaning towards size favors larger cities with the most possible matches. Leaning towards chances of matching favors cities where the people who match your search line up more closely with you on age, education, and background, based on historical Census marriage data.",
+   "new": "Leaning towards size favors larger cities with the most possible matches. Leaning towards compatibility favors cities where the people who match your search line up more closely with you on age and education, and on background if you include yours, based on historical Census marriage data.",
    "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
   },
   {
    "stage": "5",
    "where": "registry strings.match_info (the figure's information box)",
-   "old": "match_info: >- This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps, the education pairings and the racial and ethnic pairings that occur. A higher number means the people here are more like the people who typically pair with someone in your situation.",
-   "new": "match_info: >- This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps and the education pairings that occur, and the racial and ethnic pairings too if you include your race or ethnicity. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+   "old": "This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps, the education pairings and the racial and ethnic pairings that occur. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+   "new": "This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps and the education pairings that occur, and the racial and ethnic pairings too if you include your race or ethnicity. A higher number means the people here are more like the people who typically pair with someone in your situation.",
    "why": "race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
   },
   {
@@ -80,15 +80,15 @@
   {
    "stage": "5",
    "where": "registry strings.match_same_sex_note (a same-sex figure's information box) and docs/methodology.md",
-   "old": "match_same_sex_note: >- For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are borrowed from opposite-sex couples, because the same-sex couples in the survey are too few to measure them dependably on their own.",
-   "new": "match_same_sex_note: >- For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are not used, even if you include your race or ethnicity.",
+   "old": "For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are borrowed from opposite-sex couples, because the same-sex couples in the survey are too few to measure them dependably on their own.",
+   "new": "For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are not used, even if you include your race or ethnicity.",
    "why": "same-sex searches use no race pairing (ADR 0018 §3)"
   },
   {
    "stage": "5",
    "where": "registry strings.about_you_note (the panel's \"about you\" note)",
-   "old": "about_you_note: >- Optional: your education and your race or ethnicity feed only the chances-of-matching figure. Leave either unset and the average for people of your age and sex is used instead.",
-   "new": "about_you_note: >- Your sex, education and race or ethnicity stay in this browser and are never sent to us. Education is optional and feeds only the compatibility figure; leave it unset and the average for people of your age and sex is used instead.",
+   "old": "Optional: your education and your race or ethnicity feed only the chances-of-matching figure. Leave either unset and the average for people of your age and sex is used instead.",
+   "new": "Your sex, education and race or ethnicity stay in this browser and are never sent to us. Education is optional and feeds only the compatibility figure; leave it unset and the average for people of your age and sex is used instead.",
    "why": "the rename to Compatibility (ADR 0018 §1, Nathan's decision 1); the \"about you\" details stay in the browser (ADR 0018 §4); race is off by default and used only if the visitor switches it on (ADR 0018 §2)"
   },
   {

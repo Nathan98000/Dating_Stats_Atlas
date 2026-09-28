@@ -1,0 +1,782 @@
+{
+ "generated": "2026-09-28T19:02:32",
+ "head": "f4dca8365bcfcb573e92d2f61569529a564e998e",
+ "refs": [
+  "refs/heads/main f4dca8365bcfcb573e92d2f61569529a564e998e"
+ ],
+ "criteria": {
+  "table_header": "a line whose SHA-256 is the table's column-header line's",
+  "pew_column": "a CSV/TSV/parquet header field naming Pew, or a numeric JSON leaf keyed pew / pew_total",
+  "pairs": ">= 10 metros carrying Pew's own value for that metro (total or a group rate, as a percent or a share) in one column, one JSON key path, one array, or within 60 characters after the metro's name or code in text, AND more than the same count reaches in every one of 200 shuffles of Pew's values across its metros (seed 2026)",
+  "metros_in_table": 126
+ },
+ "blobs_reachable_scanned": 1407,
+ "store_blobs_unreachable_scanned": 1,
+ "violations": [],
+ "below_limit": [
+  {
+   "blob": "5fbc3ac96dec3434fe9b3d729da410d2d9af67aa",
+   "paths": [
+    "atlas/results/phase1/calibration_hh_income_B19001.csv"
+   ],
+   "pairs": 28,
+   "where": "column 'bucket'",
+   "chance": {
+    "permutations": 200,
+    "median": 29,
+    "max": 29
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "79441db2a4b946b3b0465f588b8b81dbc608092d",
+   "paths": [
+    "atlas/results/phase3d/speedup/a2/lomo_samesex.json"
+   ],
+   "pairs": 23,
+   "where": "key path []/iterations[]",
+   "chance": {
+    "permutations": 200,
+    "median": 22,
+    "max": 30
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "c80a85179553212989f2c82613ba374861c89eb6",
+   "paths": [
+    "atlas/results/phase4/kernel/lomo_samesex.json"
+   ],
+   "pairs": 21,
+   "where": "key path []/iterations[]",
+   "chance": {
+    "permutations": 200,
+    "median": 23,
+    "max": 29
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "f0b6b410a7ebb3d7d494caea972bf88c6806cdb4",
+   "paths": [
+    "atlas/results/phase2d/crime_metro.csv"
+   ],
+   "pairs": 16,
+   "where": "column 'agencies_full_year'",
+   "chance": {
+    "permutations": 200,
+    "median": 18,
+    "max": 30
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "1d9dc94114d0f7ede12796913bd998377788044c",
+   "paths": [
+    "atlas/results/phase3d/speedup/a2/lomo_forms.json"
+   ],
+   "pairs": 15,
+   "where": "key path []/forms/C1_cohorts_plus_shipped/stages/raw/passes",
+   "chance": {
+    "permutations": 200,
+    "median": 15,
+    "max": 19
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "9870c7531b29e3aaa18397ad359fa4b101a884e1",
+   "paths": [
+    "atlas/results/phase4/kernel/lomo_forms.json"
+   ],
+   "pairs": 15,
+   "where": "key path []/forms/C1_cohorts_plus_shipped/stages/raw/passes",
+   "chance": {
+    "permutations": 200,
+    "median": 15,
+    "max": 19
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "b99e0d2375ba32dc8580232e289b7c84b493997f",
+   "paths": [
+    "atlas/results/phase3d/speedup/a1/lomo_samesex.json"
+   ],
+   "pairs": 15,
+   "where": "key path []/stages/os/raw/passes",
+   "chance": {
+    "permutations": 200,
+    "median": 15,
+    "max": 17
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "babd76236b30284c4a109cf07b0db0d9f5854996",
+   "paths": [
+    "atlas/results/phase3d/speedup/a1/lomo_forms.json"
+   ],
+   "pairs": 15,
+   "where": "key path []/forms/shipped/stages/raw/passes",
+   "chance": {
+    "permutations": 200,
+    "median": 15,
+    "max": 18
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "2fa58b707b2e5deb4603873d31cea3591bf99ad5",
+   "paths": [
+    "atlas/results/metros.csv"
+   ],
+   "pairs": 12,
+   "where": "column 'n_pumas'",
+   "chance": {
+    "permutations": 200,
+    "median": 9,
+    "max": 15
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "8a703423121f72760b2ebb8c9abf320f69ee40c0",
+   "paths": [
+    "atlas/results/phase3b/lomo_samesex.json"
+   ],
+   "pairs": 11,
+   "where": "key path []/iterations[]",
+   "chance": {
+    "permutations": 200,
+    "median": 13,
+    "max": 19
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "e617c20779733b9ee086ceb88d770ac10461eecd",
+   "paths": [
+    "atlas/results/phase3c/lomo_samesex.json"
+   ],
+   "pairs": 11,
+   "where": "key path []/iterations[]",
+   "chance": {
+    "permutations": 200,
+    "median": 13,
+    "max": 19
+   },
+   "above_chance": false
+  },
+  {
+   "blob": "3bc142f3648707b9dd8233c28e0f8df24a60940d",
+   "paths": [
+    "atlas/results/phase3b/lomo_forms.json"
+   ],
+   "pairs": 9,
+   "where": "key path []/forms/B1_age_cohorts/iterations"
+  },
+  {
+   "blob": "6d14fc849cec1f7c567dfcababb3ac27e9aae5d6",
+   "paths": [
+    "atlas/results/phase3c/lomo_forms.json"
+   ],
+   "pairs": 9,
+   "where": "key path []/forms/B1_age_cohorts/iterations"
+  },
+  {
+   "blob": "a0abb90a383091334632ca82f6d53d53be4f7535",
+   "paths": [
+    "atlas/results/phase1/calibration_earnings_B20001.csv"
+   ],
+   "pairs": 9,
+   "where": "column 'bucket'"
+  },
+  {
+   "blob": "5b8a1b8bacc234e7aad1c99f81605781bff15194",
+   "paths": [
+    "atlas/results/phase4/rank_shift_m3_6_0_to_m4_0_0.csv"
+   ],
+   "pairs": 6,
+   "where": "column 'move'"
+  },
+  {
+   "blob": "721aa994b07325863cfc990ee12917717d7dc382",
+   "paths": [
+    "atlas/results/phase4/rank_shift_m3_5_0_to_m4_0_0.csv"
+   ],
+   "pairs": 6,
+   "where": "column 'move'"
+  },
+  {
+   "blob": "343d482ceef5fbb25d58d378261c04262810ccec",
+   "paths": [
+    "atlas/results/phase3d/snapshot_m3_4_0.json"
+   ],
+   "pairs": 5,
+   "where": "key path /reference/grad_asian_man_34/rows[]/rank"
+  },
+  {
+   "blob": "6ab091184ca8034f3806470e3fc8eb6274e2a18c",
+   "paths": [
+    "atlas/results/phase2d/pleasant_days_ghcn.csv"
+   ],
+   "pairs": 5,
+   "where": "column 'years_used'"
+  },
+  {
+   "blob": "8cebb8613a3a5d94d088a3d667e54fbda6c751fa",
+   "paths": [
+    "atlas/results/phase3d/snapshot_m3_4_0_candidate_C1.json"
+   ],
+   "pairs": 5,
+   "where": "key path /reference/grad_asian_man_34/rows[]/rank"
+  },
+  {
+   "blob": "a3219e07b60d95a6240c582b32ccb9f9f33c0903",
+   "paths": [
+    "atlas/results/phase2d/pleasant_days_ghcn.csv"
+   ],
+   "pairs": 5,
+   "where": "column 'years_used'"
+  },
+  {
+   "blob": "b9b5a3311abcce4d1a6914e74c49357a119bf93c",
+   "paths": [
+    "atlas/results/phase4/station_audit.json"
+   ],
+   "pairs": 5,
+   "where": "key path /stations[]/years_used"
+  },
+  {
+   "blob": "caaaa1db116391b4a52c468c3408effc56e76ea0",
+   "paths": [
+    "atlas/results/phase2f/m2_3_1_snapshot.json"
+   ],
+   "pairs": 5,
+   "where": "key path /personas/B_man28_women_never/ranked[]/rank"
+  },
+  {
+   "blob": "cb13dc56bd369406a4fd4c8d380e4489aca2d12e",
+   "paths": [
+    "atlas/results/phase3b/snapshot_m3_2_0.json"
+   ],
+   "pairs": 5,
+   "where": "key path /reference/nhpi_woman_35/rows[]/rank"
+  },
+  {
+   "blob": "ccfa79ca9739c70b413a7d2ae06353617f365d0f",
+   "paths": [
+    "atlas/results/phase4/station_audit_before_3b.json"
+   ],
+   "pairs": 5,
+   "where": "key path /stations[]/years_used"
+  },
+  {
+   "blob": "e902e3cf28ae1057bde793132531dd18ca46aee3",
+   "paths": [
+    "atlas/results/phase2e/m2_3_0_snapshot.json"
+   ],
+   "pairs": 5,
+   "where": "key path /personas/B_man28_women_never/ranked[]/rank"
+  },
+  {
+   "blob": "f072fd0a85b1204f671b4920201a207243556624",
+   "paths": [
+    "atlas/results/phase3d/snapshot_m3_4_0_candidate_C3.json"
+   ],
+   "pairs": 5,
+   "where": "key path /reference/nhpi_woman_35/rows[]/rank"
+  },
+  {
+   "blob": "0213924b7dde59e53206a033ce41abc3de32626b",
+   "paths": [
+    "atlas/results/phase3b/rank_shift_m3_0_0_to_m3_1_0.csv"
+   ],
+   "pairs": 4,
+   "where": "column 'rank_m3_1_0'"
+  },
+  {
+   "blob": "0cb65008ca14157d068af3a1929e1f37a94ac340",
+   "paths": [
+    "atlas/results/phase4/snapshot_m3_6_0.json"
+   ],
+   "pairs": 4,
+   "where": "key path /reference/grad_asian_man_34/rows[]/rank"
+  },
+  {
+   "blob": "13603f3cf9b08813f16a6f56eb648a549419a908",
+   "paths": [
+    "atlas/results/phase3d/snapshot_m3_5_0.json"
+   ],
+   "pairs": 4,
+   "where": "key path /reference/grad_asian_man_34/rows[]/rank"
+  },
+  {
+   "blob": "2a5fd62a4917789480102d8415e4ca7a6ab99693",
+   "paths": [
+    "atlas/results/phase1/calibration_education_age_B15001.csv"
+   ],
+   "pairs": 4,
+   "where": "column 'gap'"
+  },
+  {
+   "blob": "41806739dbd7f934b3ba547ff02a03fc22d33a27",
+   "paths": [
+    "atlas/PHASE3.md"
+   ],
+   "pairs": 4,
+   "where": "prose"
+  },
+  {
+   "blob": "72acc9f340339025b765e628f30f0e175d9f5acd",
+   "paths": [
+    "atlas/results/phase3b/snapshot_m3_1_0.json"
+   ],
+   "pairs": 4,
+   "where": "key path /reference/same_sex_man_31/rows[]/rank"
+  },
+  {
+   "blob": "84cd4e2445752b1d60e330f8ab09397c4706582a",
+   "paths": [
+    "atlas/results/phase3c/snapshot_m3_3_0.json"
+   ],
+   "pairs": 4,
+   "where": "key path /reference/nhpi_man_35/rows[]/rank"
+  },
+  {
+   "blob": "9fd2ea00edf2b52c1712c233af358e66745aa2a4",
+   "paths": [
+    "atlas/results/phase4/snapshot_m4_0_0.json"
+   ],
+   "pairs": 4,
+   "where": "key path /reference/grad_asian_man_34/rows[]/rank"
+  },
+  {
+   "blob": "b2506a08e0bf9929779a52a8b843c8b55b9b0555",
+   "paths": [
+    "atlas/results/phase3b/rank_shift_m3_1_0_to_m3_2_0.csv"
+   ],
+   "pairs": 4,
+   "where": "column 'rank_m3_1_0'"
+  },
+  {
+   "blob": "e891a3209c45debc6cfbfde371d401c2bb964146",
+   "paths": [
+    "atlas/PHASE3.md"
+   ],
+   "pairs": 4,
+   "where": "prose"
+  },
+  {
+   "blob": "e92ed4eeed0df18d41d7ba03fa5ed97c5a3a9c80",
+   "paths": [
+    "atlas/results/phase2d/m2_1_0_snapshot.json"
+   ],
+   "pairs": 4,
+   "where": "key path /personas/C_woman38_grad_men_100k/ranked[]/rank"
+  },
+  {
+   "blob": "3825a30230d4da0e06ff3c16db1aa92e74550e37",
+   "paths": [
+    "atlas/results/phase1/calibration_sex_age_B01001.csv"
+   ],
+   "pairs": 3,
+   "where": "column 'pub_moe'"
+  },
+  {
+   "blob": "67fae3b71e4e28caa53b0a6fc2ab0609621192a6",
+   "paths": [
+    "atlas/PHASE3B.md"
+   ],
+   "pairs": 3,
+   "where": "prose"
+  },
+  {
+   "blob": "69b445d05f7b78cae966a6f93c71dfa6acf6cd64",
+   "paths": [
+    "atlas/PHASE3B.md"
+   ],
+   "pairs": 3,
+   "where": "prose"
+  },
+  {
+   "blob": "727ca4d47f356e2a0e00cca135b483927c05b3a7",
+   "paths": [
+    "atlas/results/phase2d/m2_0_0_snapshot.json"
+   ],
+   "pairs": 3,
+   "where": "key path /personas/B_man28_women_never/ranked[]/rank"
+  },
+  {
+   "blob": "7eaf3b0c2eb2ac2cffee9e613796ac5aa8a61339",
+   "paths": [
+    "atlas/results/phase3/lomo_recent.json"
+   ],
+   "pairs": 3,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "c153dfc4746b212118189756401fc0239b3ba2da",
+   "paths": [
+    "atlas/results/phase2c/m1_2_0_rankings.json"
+   ],
+   "pairs": 3,
+   "where": "key path /personas/race_asian_nh_men/ranked[]/rank"
+  },
+  {
+   "blob": "ca8b1c91f3a773be50ca64c228fe37140ebc8553",
+   "paths": [
+    "atlas/PHASE3B.md"
+   ],
+   "pairs": 3,
+   "where": "prose"
+  },
+  {
+   "blob": "eb1535980251a84c50dba94d2e31037f96073c58",
+   "paths": [
+    "atlas/results/phase3b/snapshot_m3_0_0.json"
+   ],
+   "pairs": 3,
+   "where": "key path /reference/nhpi_man_35/rows[]/rank"
+  },
+  {
+   "blob": "0a55a201c69ef6bef4396b3cac9ef78b0e168705",
+   "paths": [
+    "atlas/results/phase2e/ranking_shift_rent_1br.json"
+   ],
+   "pairs": 2,
+   "where": "key path /personas/C_woman38_grad_men_100k/biggest_moves[]/before"
+  },
+  {
+   "blob": "0b8eb3b0c648bc4de2fa10b4ef17b716a80a716f",
+   "paths": [
+    "atlas/results/phase3d/rank_shift_m3_3_0_to_m3_4_0_candidate_C1.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_4_0_candidate_C1'"
+  },
+  {
+   "blob": "1d5894cc2db8c865910c8b1406bc20676e57f474",
+   "paths": [
+    "atlas/results/phase4/rank_shift_m3_5_0_to_m3_6_0.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_6_0'"
+  },
+  {
+   "blob": "23dd2f80fa17473b279390af524cf44a66231fff",
+   "paths": [
+    "atlas/results/phase3c/rank_shift_m3_2_0_to_m3_3_0.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_3_0'"
+  },
+  {
+   "blob": "38d65a97733157f5f457845aafe32249ba661d48",
+   "paths": [
+    "atlas/results/phase3b/rank_shift_m3_0_0_to_m3_2_0.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_2_0'"
+  },
+  {
+   "blob": "52ed8a4e54c244429c704b22e104926512d06ba4",
+   "paths": [
+    "atlas/results/phase3/lomo_decay_h10.json"
+   ],
+   "pairs": 2,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "7489702a8340693370e3c7219b4b606713dcbfa8",
+   "paths": [
+    "atlas/results/phase3/lomo_decay_h40.json"
+   ],
+   "pairs": 2,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "8a1d0e87625a99d81efc8f83b9da9b85b34f6f6c",
+   "paths": [
+    "atlas/results/phase3d/rank_shift_m3_3_0_to_m3_4_0.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_4_0'"
+  },
+  {
+   "blob": "918af75464edca654519b340fbd5dca6d630181c",
+   "paths": [
+    "atlas/results/phase3b/lomo_decay_h5.json"
+   ],
+   "pairs": 2,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "97cd45ecf4a29f9637576243fe98058fb68e72ac",
+   "paths": [
+    "atlas/web/tests/variant_cases.json"
+   ],
+   "pairs": 2,
+   "where": "key path /cases[]/selections[]/expected/ranked[]/stats[]/weight"
+  },
+  {
+   "blob": "b18b87499495e8c21d4436b6cfae5e7268f32854",
+   "paths": [
+    "atlas/results/phase3/lomo_stock.json"
+   ],
+   "pairs": 2,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "c0e070b99cb16d048f82e79ccba90a0a7ece4f83",
+   "paths": [
+    "atlas/results/phase3d/rank_shift_m3_4_0_to_m3_5_0.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_4_0'"
+  },
+  {
+   "blob": "c9dd223d356d2dfca901ed6ecb8254cd122e7176",
+   "paths": [
+    "atlas/results/phase3/lomo_decay_h5.json"
+   ],
+   "pairs": 2,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "e4c72effba6454f6be29d559b6ea2d302bbbe8e1",
+   "paths": [
+    "atlas/results/phase3/rank_shift_default.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_0_0'"
+  },
+  {
+   "blob": "f5d09424d6709c1464ea3db3850eeb465054e77f",
+   "paths": [
+    "atlas/results/phase3d/rank_shift_m3_3_0_to_m3_4_0_candidate_C3.csv"
+   ],
+   "pairs": 2,
+   "where": "column 'rank_m3_4_0_candidate_C3'"
+  },
+  {
+   "blob": "fddd3735c1b8d664200c2352b35f898c05636014",
+   "paths": [
+    "atlas/results/phase3/lomo_decay_h20.json"
+   ],
+   "pairs": 2,
+   "where": "key path []/iterations"
+  },
+  {
+   "blob": "059458b9d6435c45382406eded24c3adc4404c25",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "1a5c28de22ae3c208ab3ca402907be9820116ae6",
+   "paths": [
+    "atlas/results/metros.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'n_pumas'"
+  },
+  {
+   "blob": "2879bb79303551e88135a53e85c306881f4bb24f",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "48e1d2aab8e42815f90ede3c5b968a257a05919c",
+   "paths": [
+    "atlas/results/phase3c/rank_shift_m3_2_0_to_m3_3_0.json"
+   ],
+   "pairs": 1,
+   "where": "key path /reference/same_sex_man_31/rank_shift/biggest_moves[]/move"
+  },
+  {
+   "blob": "556dbe8f273a307b817d631b22cb1e69f4f1d131",
+   "paths": [
+    "atlas/FINDINGS.md"
+   ],
+   "pairs": 1,
+   "where": "prose"
+  },
+  {
+   "blob": "62a90d74a8854bbf1dcf21f1e21ece074fe910f6",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "63a8cba69e6d3ccca192d47dcd3e997a4e7e16ff",
+   "paths": [
+    "atlas/results/phase3/default_ranking_m2_4_0.json"
+   ],
+   "pairs": 1,
+   "where": "key path /ranked[]/rank"
+  },
+  {
+   "blob": "65b84130b63f7124ec4c9170abfd8a13778c35dc",
+   "paths": [
+    "atlas/results/phase4/kernel/dials_C1_race_zeroed.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'theta_tilde_race'"
+  },
+  {
+   "blob": "7b026cba0c19f19f2008ce3ac6c780cf678b812b",
+   "paths": [
+    "atlas/results/phase2g/rent_swap_report.json"
+   ],
+   "pairs": 1,
+   "where": "key path /overall_rank/biggest_moves[]/move"
+  },
+  {
+   "blob": "7f8080316ed8979f08da497aecd65413798a1922",
+   "paths": [
+    "atlas/results/phase3d/rank_shift_m3_3_0_to_m3_4_0.json"
+   ],
+   "pairs": 1,
+   "where": "key path /rank_shift/biggest_moves[]/move"
+  },
+  {
+   "blob": "81d4a867b3c7a02ea7e56f9832a50846e57b7d8d",
+   "paths": [
+    "atlas/results/phase4/rank_shift_m3_5_0_to_m3_6_0.json"
+   ],
+   "pairs": 1,
+   "where": "key path /reference/same_sex_man_31/rank_shift/biggest_moves[]/rank_before"
+  },
+  {
+   "blob": "8cc46c7460b07b156c9b6c4ee24978eda16c3331",
+   "paths": [
+    "atlas/results/phase4/kernel/dials_D0_race_free.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'theta_tilde_race'"
+  },
+  {
+   "blob": "90b3a6e752d7f7bb56aef89c3c7074f0494f6224",
+   "paths": [
+    "atlas/results/phase3d/rank_shift_m3_3_0_to_m3_4_0_candidate_C1.json"
+   ],
+   "pairs": 1,
+   "where": "key path /rank_shift/biggest_moves[]/move"
+  },
+  {
+   "blob": "96aabbc19121a67fdd26b73bf2b2acaca26dc35e",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "acd7a5e7ef533b58582753b5f7e08e6bdc205cf8",
+   "paths": [
+    "atlas/results/calibration_sex_age.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'gap'"
+  },
+  {
+   "blob": "ad83d4fd28f0c309be6879aaaae6dad93a335d38",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "b7dc9632eeb3968a7ab2d81fbe7b31dbe9c309bb",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "b9b295dfd067ea8fd90301e5e815903a47bf1471",
+   "paths": [
+    "atlas/results/phase1/calibration_race_B02001_B03003.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'gap'"
+  },
+  {
+   "blob": "c1be5947f090c0f73981f2c0774e030b7a53b73b",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/pairing_cells.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'num_r69'"
+  },
+  {
+   "blob": "ce4d8c7357b191ae3fac0c7503b8f61b82c26c86",
+   "paths": [
+    "atlas/results/phase2d/ranking_shift_m2_0_0_to_m2_1_0.json"
+   ],
+   "pairs": 1,
+   "where": "key path /personas/same_sex_pool/biggest_moves[]/move"
+  },
+  {
+   "blob": "d1e85154146f93ff890ed1a57d9139b4d50c2242",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "d36441e8bb3ceefd6904bac6f691a6cd7e3a71d3",
+   "paths": [
+    "atlas/results/calibration_rent.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'moe'"
+  },
+  {
+   "blob": "dab6bf8dd9fc0ac848f789c30ff6a9580e30121e",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/pairing_cells.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'num_r69'"
+  },
+  {
+   "blob": "dfbd4aefb850f4de14f7e5865408ad5571bbed70",
+   "paths": [
+    "atlas/results/bridge_summary.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'n_pumas'"
+  },
+  {
+   "blob": "ea27684bf93e903e612a4bf4cbfdb53da110ad77",
+   "paths": [
+    "atlas/model/tests/golden/fixture_build/features.parquet"
+   ],
+   "pairs": 1,
+   "where": "column 'n_counties'"
+  },
+  {
+   "blob": "ebb6c2b6388bfedc6b6ac14ad7db703f9db119fa",
+   "paths": [
+    "atlas/results/phase1/puma_straddle.csv"
+   ],
+   "pairs": 1,
+   "where": "column 'n_targets'"
+  }
+ ],
+ "verdict": "clean",
+ "seconds": 26.7
+}
