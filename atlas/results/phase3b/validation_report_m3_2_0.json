@@ -2,7 +2,7 @@
   "build": "f20cb02c3af8",
   "model_version": "m3.2.0",
   "generated_by": {
-    "git_sha": "228d4a52529e0795734a6e03bb4a93b58396df44",
+    "git_sha": "c2649d187cb7b17d7be5dcac6bf2d3ae4215e5d1",
     "git_dirty": true,
     "generated_at": "2026-09-24T00:37:13-0400",
     "engine_model_version": "m3.2.0"

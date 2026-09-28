@@ -51,7 +51,7 @@ the site had (correlation with Pew 0.80 against 0.67 for national-only
 and 0.44 for random pairing); shrinkage neither helps nor hurts on the
 metros Pew can see. Whether a tie with raw per-metro clears the bar as
 written is Nathan's call. The serving change is isolated in one commit
-(`1452a18`), so reverting the pole while keeping the measurement is a
+(`301871e`), so reverting the pole while keeping the measurement is a
 single revert.
 
 **Finding 2 — the match index is noisier than balance was, and the

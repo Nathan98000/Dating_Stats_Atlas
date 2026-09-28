@@ -114,7 +114,7 @@ recorded in an ADR if he makes it.
 ## Amended, 25 September 2026 (Phase 3d B2 and B3): measured on m3.4.0, V2 ships as m3.5.0
 
 The four candidates were measured on the m3.4.0 build (1ebeaa2dcad6)
-after the rule above was committed (4bab576; the measurement
+after the rule above was committed (3e21195; the measurement
 `results/phase3d/b2_candidates.json`, the per-search records
 `b2_gate_<rule>.json` and `b2_matchend_<rule>.json`):
 
@@ -201,9 +201,9 @@ that set it, because of an error in preparing the brief, not in the
 work. That copy named a margin, both in Nathan's decisions and in B1's
 place in the commit order ("Part B's rule, including its new margin"),
 but gave no rule for it, and its Part B section kept the drafted rule.
-ADR 0014, committed before any candidate was measured (2d2c063), also
+ADR 0014, committed before any candidate was measured (f38dc40), also
 names the margin without a value: "That selection has its own margin, set
-in ADR 0013." So the margin was not in the B1 commit (4bab576), and B2 ran
+in ADR 0013." So the margin was not in the B1 commit (3e21195), and B2 ran
 under the rule as drafted. **Because the margin is committed now, after
 the measurement, the commit order cannot prove that it came first.**
 Neither of the two earlier mentions names 5%, so they cannot prove it

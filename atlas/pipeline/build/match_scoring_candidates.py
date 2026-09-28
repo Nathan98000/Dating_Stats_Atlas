@@ -30,7 +30,7 @@ N0's; of the qualifying, the lowest match-end total and every candidate
 within 5% of N0's total of it are tied for first, and of those the lower
 total wobble over the gate's own set ships, an exact tie to the earlier
 candidate in the table; none qualifying ships nothing. B2 ran (after
-4bab576) under the rule as drafted — below N0's total qualifies, the
+3e21195) under the rule as drafted — below N0's total qualifies, the
 lowest ships — because the margin reached the repo only after the
 measurement; results/phase3d/b2_selection_with_margin.py reads the stored
 B2 records under this function, the drafted reading beside it.

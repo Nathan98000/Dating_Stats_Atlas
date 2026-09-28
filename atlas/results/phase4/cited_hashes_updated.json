@@ -1,0 +1,177 @@
+{
+ "files": {
+  "atlas/PHASE3.md": [
+   {
+    "old": "1452a18",
+    "new": "301871e"
+   }
+  ],
+  "atlas/PHASE3B.md": [
+   {
+    "old": "228d4a5",
+    "new": "c2649d1"
+   }
+  ],
+  "atlas/PHASE3C.md": [
+   {
+    "old": "374f8d6",
+    "new": "f119085"
+   },
+   {
+    "old": "3057615",
+    "new": "cf40279"
+   },
+   {
+    "old": "374f8d6",
+    "new": "f119085"
+   },
+   {
+    "old": "c8a2960",
+    "new": "e68d49a"
+   }
+  ],
+  "atlas/PHASE3D.md": [
+   {
+    "old": "2d2c063",
+    "new": "f38dc40"
+   },
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   },
+   {
+    "old": "e43d175",
+    "new": "15d1d50"
+   },
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   },
+   {
+    "old": "2d2c063",
+    "new": "f38dc40"
+   },
+   {
+    "old": "ba6f438",
+    "new": "df56487"
+   },
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   },
+   {
+    "old": "2d2c063",
+    "new": "f38dc40"
+   },
+   {
+    "old": "efd93d7",
+    "new": "56f66fe",
+    "note": "efd93d7 was an amended draft of the Phase 3d A1 commit and never on main; the citation now names A1 as it is on main (98725a2 before the rewrite)"
+   }
+  ],
+  "atlas/docs/decisions/0013-chances-of-matching-scored-by-value.md": [
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   },
+   {
+    "old": "2d2c063",
+    "new": "f38dc40"
+   },
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   }
+  ],
+  "atlas/model/versions.py": [
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   }
+  ],
+  "atlas/pipeline/build/match_scoring_candidates.py": [
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   }
+  ],
+  "atlas/results/phase2/validation_report.json": [
+   {
+    "old": "e43d1754680d5d6b661aead924616bbfe3f41930",
+    "new": "15d1d50d991fc04be8fa6ccbd28641a53a697b24"
+   }
+  ],
+  "atlas/results/phase3b/validation_report_m3_1_0.json": [
+   {
+    "old": "629c4b09ef1a6b4498745c8348c94734eb47c102",
+    "new": "382ca01d568b1691dd2ce4b02cd337d6c90b138f"
+   }
+  ],
+  "atlas/results/phase3b/validation_report_m3_2_0.json": [
+   {
+    "old": "228d4a52529e0795734a6e03bb4a93b58396df44",
+    "new": "c2649d187cb7b17d7be5dcac6bf2d3ae4215e5d1"
+   }
+  ],
+  "atlas/results/phase3b/validation_report_m3_2_0_first.json": [
+   {
+    "old": "228d4a52529e0795734a6e03bb4a93b58396df44",
+    "new": "c2649d187cb7b17d7be5dcac6bf2d3ae4215e5d1"
+   }
+  ],
+  "atlas/results/phase3c/validation_report_m3_3_0.json": [
+   {
+    "old": "9c93e0e3debd0c7859b8ee0d001c1292d97ed2b9",
+    "new": "db689a0a81c7521b71f5b7ba4182ad978a3df5af"
+   }
+  ],
+  "atlas/results/phase3d/b2_selection_with_margin.json": [
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   }
+  ],
+  "atlas/results/phase3d/b2_selection_with_margin.py": [
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   },
+   {
+    "old": "4bab576",
+    "new": "3e21195"
+   }
+  ],
+  "atlas/results/phase3d/deviations.md": [
+   {
+    "old": "2d2c063",
+    "new": "f38dc40"
+   }
+  ],
+  "atlas/results/phase3d/speedup/timing_old_code.json": [
+   {
+    "old": "9eacbb2",
+    "new": "f53e89e"
+   }
+  ],
+  "atlas/results/phase3d/validation_report_m3_4_0.json": [
+   {
+    "old": "2d2c06304c5ccd0c316969bbe108c082508f72bb",
+    "new": "f38dc40ae219a8be9f0bce214236623d374a0d90"
+   }
+  ],
+  "atlas/results/phase3d/validation_report_m3_5_0.json": [
+   {
+    "old": "4bab57675f5e8b48521c76caad52d047f4123226",
+    "new": "3e21195e034f2f1276e1cae4df70ee78f6e7d9bb"
+   }
+  ],
+  "atlas/results/phase3d/validation_report_m3_5_0_adr0015.json": [
+   {
+    "old": "e43d1754680d5d6b661aead924616bbfe3f41930",
+    "new": "15d1d50d991fc04be8fa6ccbd28641a53a697b24"
+   }
+  ]
+ },
+ "citations": 33,
+ "source": "results/phase4/commit_map.txt (filter-repo's commit-map)"
+}

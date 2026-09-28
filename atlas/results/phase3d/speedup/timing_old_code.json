@@ -1,5 +1,5 @@
 {
- "code": "git HEAD 9eacbb2 (m3.3.0 kernel_refine.fit_form)",
+ "code": "git HEAD f53e89e (m3.3.0 kernel_refine.fit_form)",
  "sample": "decay_h5",
  "fits": {
   "C1_cohorts_plus_shipped": {

@@ -1,7 +1,7 @@
 # Phase 3b — Part A settles Phase 3 (m3.1.0); Part B sharpens the kernel (m3.2.0)
 
 Part A: build **ae1efbef9f0e**, model **m3.1.0** (ADR 0009 amended §2, §4,
-§8), committed as 228d4a5. Part B: build **f20cb02c3af8**, model
+§8), committed as c2649d1. Part B: build **f20cb02c3af8**, model
 **m3.2.0** (ADR 0010). Suites at close: **50 pytest, 52 vitest, 78
 Playwright**. Validation battery on each build: **nine of nine hard
 gates pass**, rank stability among them (finding 2 of PHASE3.md, settled

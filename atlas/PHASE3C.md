@@ -40,7 +40,7 @@ pools. A change fails if its total wobble over the searches it touches
 reference's total over the same searches; when nothing is touched the
 totals run over every search. The reference is m3.2.0 (`f20cb02c3af8`),
 fixed in `stability_reference.json` and moved only by an ADR. The rule,
-the controls and the ADR were committed (374f8d6) before any held-back
+the controls and the ADR were committed (f119085) before any held-back
 refinement was run through the gate.
 
 **The two controls** (`gate_controls.json`):
@@ -274,9 +274,9 @@ Nothing is deployed.
 1. **The counsel packet** describes the matching score and its two uses
    of race, what visitors may disclose, the URL and the cookie, and lists
    the Pew table; its PDF and DOCX are regenerated, the checklist is
-   updated, nothing is sent, and Part A is its own commit (3057615). ✓
+   updated, nothing is sent, and Part A is its own commit (cf40279). ✓
 2. **The new stability gate, ADR 0011 and both controls were committed
-   (374f8d6) before any held-back refinement went through the gate**;
+   (f119085) before any held-back refinement went through the gate**;
    the identity control reads 1.0 and the enlarged-noise control fails
    (§1). ✓
 3. **Same-sex searches serve the measured education term**: the amended
@@ -299,7 +299,7 @@ Nothing is deployed.
    strings, the crime caution — the diff touches none of them). **No
    sentence of his was made inaccurate by this phase.** One standing
    item, not caused here and left as it is: the methodology page's race
-   boxes paragraph (m2.0.0, commit c8a2960) says the boxes "say nothing
+   boxes paragraph (m2.0.0, commit e68d49a) says the boxes "say nothing
    about who dates or marries whom, and this site makes no claim about
    that"; since m3.0.0 the chances-of-matching figure is built from
    observed pairing patterns by race, so the second clause reads wider

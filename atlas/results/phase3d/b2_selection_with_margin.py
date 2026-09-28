@@ -2,7 +2,7 @@
 applied to the stored B2 records — no candidate is re-measured.
 
 Reads results/phase3d/b2_candidates.json (match_scoring_candidates on
-m3.4.0, run after 4bab576 under the rule as drafted) and passes its
+m3.4.0, run after 3e21195 under the rule as drafted) and passes its
 per-candidate records through match_scoring_candidates.select, the
 function main calls, with MATCH_END_MARGIN. Writes the margin as a
 fraction and in places of N0's match-end total, each candidate's
@@ -86,7 +86,7 @@ def main() -> int:
     raw = SRC.read_bytes()
     b2 = json.loads(raw)
     sel = MSC.select(b2["rules"])
-    drafted = {"commit": "4bab576", "rule": b2["selection_rule"], "qualifying": b2["qualifying"], "ships": b2["ships"],
+    drafted = {"commit": "3e21195", "rule": b2["selection_rule"], "qualifying": b2["qualifying"], "ships": b2["ships"],
                "candidates": {rule: {"lower_match_end_wobble_than_N0": r["lower_match_end_wobble_than_N0"],
                                      "qualifies": r["qualifies"]} for rule, r in b2["rules"].items()}}
     out = {"source": {"file": rel(SRC), "sha256": hashlib.sha256(raw).hexdigest(), "build": b2["build"],

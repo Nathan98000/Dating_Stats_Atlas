@@ -14,7 +14,7 @@ this query (candidate V2), so near-ties get near-equal scores and a large
 real lead counts as large while no single outlier city can squeeze the
 field; a one-city set or identical values score 50, a missing value stays
 missing. Chosen by the rule committed before it was measured (B1,
-4bab576): of N0 (the percentile rank), V1 (winsorized at the 1st and 99th
+3e21195): of N0 (the percentile rank), V1 (winsorized at the 1st and 99th
 percentiles), V2 (the fences) and V3 (the index clipped to [40, 250]), V2
 is the one candidate that passes the ADR 0011 gate (0.775 against the
 m3.2.0 reference), keeps at least 40 points of match-score spread over

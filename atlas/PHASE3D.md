@@ -45,7 +45,7 @@ and whether to re-base is your call. Nothing is deployed.
 
 ## 1. The speed-up (Part A)
 
-### A1 — the same fit, computed differently (commit efd93d7)
+### A1 — the same fit, computed differently (commit 56f66fe)
 
 **What changed.** The sweep keeps one model table between component
 updates and moves it in place — a component's change is a per-seeker
@@ -244,7 +244,7 @@ full battery and Part B runs on it.
 Everything in this subsection is read from `tie_rule.json`, written by
 `tie_rule.py` from the stored records of Phase 3b, Phase 3c and the A2
 re-run, with no refit. The rule was written after the flip was seen and
-committed (2d2c063) before m3.4.0 was built.
+committed (f38dc40) before m3.4.0 was built.
 
 **The rule.** A held-out difference smaller than **δ = 0.25 per 1,000
 weighted couple-sides** is a tie, and a tie goes to the simpler form. A
@@ -376,7 +376,7 @@ steering τ, on the record and never in the verdict), the unit tests of
 the transform and of N0's bit-identity, the assertion that the gate
 scores through the engine's function, ADR 0013, the ADR 0009 §8 amendment
 and the measurement script — was applied from the drafts exactly as
-written and committed (4bab576) before `match_scoring_candidates` ran;
+written and committed (3e21195) before `match_scoring_candidates` ran;
 the one mechanical change is a test fixture (deviations). Under N0
 goldens.json is byte-identical to the m3.4.0 goldens. ADR 0014's δ does
 not apply here: Part B's selection keeps its own rule and its own tie
@@ -604,7 +604,7 @@ It is on the record because in B2 the rule chose V2, and these costs were
 named after it as findings. Keeping V2 with the costs in view is Nathan's
 own decision, recorded in ADR 0013's amendment.
 
-**The match-end margin, and its timing (ADR 0013 amended, e43d175).**
+**The match-end margin, and its timing (ADR 0013 amended, 15d1d50).**
 
 - **The rule.** A difference in match-end wobble smaller than 5% of N0's
   total is no difference. A candidate qualifies only if it is at least
@@ -612,7 +612,7 @@ own decision, recorded in ADR 0013's amendment.
   and of those the lower gate-set total ships.
 - **The timing.** Nathan set the margin before any candidate was
   measured, but the brief that reached the repo lacked the section that
-  set it. So B1 (4bab576) committed the rule without it, and B2 ran under
+  set it. So B1 (3e21195) committed the rule without it, and B2 ran under
   the rule as drafted. The amendment says that, committed after the
   measurement, the commit order cannot prove the margin came first.
 - **The outcome.** The stored B2 records were read under the margin, with
@@ -658,8 +658,8 @@ own decision, recorded in ADR 0013's amendment.
 
 ## Gate check
 
-- **R (ADR 0014)**: the tie rule was committed (2d2c063) before the ship
-  (ba6f438); every held-out decision on the record re-run through the
+- **R (ADR 0014)**: the tie rule was committed (f38dc40) before the ship
+  (df56487); every held-out decision on the record re-run through the
   shared functions came out as expected — race × education ships (+14.07,
   gate pass), the same-sex education term ships (+12.26 / +15.16) and the
   interaction rides (+2.90), C2 does not qualify (+0.007 < δ), C1 and C3
@@ -684,7 +684,7 @@ own decision, recorded in ADR 0013's amendment.
    same ranks, indices, scores and gate ratio as the in-memory candidate
    (§3, `a2_ship_check.json`). ✓
 3. **A3**: skipped, with the profile's reason. ✓
-4. **B1 was committed (4bab576) before any candidate was measured**; the
+4. **B1 was committed (3e21195) before any candidate was measured**; the
    measurement started after that commit (`b2_candidates_run.log`). N0
    reproduces the Part A build bit-identically: goldens.json is
    byte-identical after the registry gained the block, and the test
@@ -746,7 +746,7 @@ own decision, recorded in ADR 0013's amendment.
 - B3 (retirement): ee4f08cf33e1 (m3.3.0), now the intermediate build, is retired to its manifest, metros and kernel record as the brief says, and its kernel.npz (9.8 MB) is kept beside them — Phase 3c's B1 deviation records the cost of dropping it (the m3.0.0 kernel had to be rebuilt from kernel.json for the past readings), and the standing engine-level A/B of the m3.3.0 and m3.4.0 kernels needs it loadable; the 330 MB of cubes, byte-identical to 1ebeaa2dcad6's, go. f20cb02c3af8 (m3.2.0) stays complete as the gate's reference.
 - M (after the phase, ADR 0013 amended): the brief's "Why 5%" gives the match-end rise Part B was meant to undo as "2.49 → 2.88, +16%", computed from the rounded values; the records give 2.494012 → 2.878257 places (the two match-end searches, m3.2.0 → m3.3.0), +15.4%, and the amendment states that figure — 5% is 0.32 of it, still about a third (`b2_selection_with_margin.json`, `anchors`).
 - M: at exactly 5% the difference counts, at both steps — a candidate exactly 5% below N0 qualifies (the brief's test), and a qualifying candidate exactly 5% of N0's total above the lowest is not tied with it — read from the rule's first sentence ("smaller than 5% … is no difference"); the tie band's boundary is pinned by a test beside the five the brief lists, and the amendment says it in one sentence.
-- M: beside the statement the brief requires (committed after the measurement, so the commit order cannot prove the margin came first), the amendment records that the brief as it reached the repo named a margin without a rule and kept the drafted rule in its Part B section, and that ADR 0014 (2d2c063, before any candidate was measured) says Part B's selection "has its own margin, set in ADR 0013" — and that neither names 5%, so neither proves it came first either.
+- M: beside the statement the brief requires (committed after the measurement, so the commit order cannot prove the margin came first), the amendment records that the brief as it reached the repo named a margin without a rule and kept the drafted rule in its Part B section, and that ADR 0014 (f38dc40, before any candidate was measured) says Part B's selection "has its own margin, set in ADR 0013" — and that neither names 5%, so neither proves it came first either.
 - M: `b2_selection_with_margin.json` also carries the anchors for 5% (finishing the fit on the gate-set total and on the two match-end searches, C1 against C3, the gate's line, the match-end rise), read from the stored gate records, so every number in the amendment is read from that one file; the ADR's status line and the selection rule's heading are marked as amended, the pattern ADRs 0009 and 0010 use.
 - M: `select` breaks an exact tie by ADR 0013's table order (`RULES`) whatever order the candidates were measured in; the drafted `main` used the `--rules` order, the same by default. `main` now writes `at_least_margin_below_N0` (with the reduction against N0 and the tie flag) where it wrote `lower_match_end_wobble_than_N0`; `b2_candidates.json` is the drafted run's record and is not rewritten.
 - R1 (after the phase, ADR 0015): the new reference record is written by the same `reference` command in the Phase 3c format, and also carries the per-search diagnostics B1 added to every gate record (the match-score spread, the steering τ, the scoring rule) and a top-level `match_scoring` (V2); nothing the verdict reads is new.

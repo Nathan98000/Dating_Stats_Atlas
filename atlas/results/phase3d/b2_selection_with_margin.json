@@ -96,7 +96,7 @@
   "settled_by": "one candidate qualifies"
  },
  "drafted_rule": {
-  "commit": "4bab576",
+  "commit": "3e21195",
   "rule": "qualifies if: gate pass; outlier condition on both sets; match-end total below N0's. Lowest match-end total ships; ties to the earlier candidate; none -> nothing ships.",
   "qualifying": [
    "V2"

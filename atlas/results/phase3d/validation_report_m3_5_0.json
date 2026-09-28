@@ -2,7 +2,7 @@
   "build": "1ebeaa2dcad6",
   "model_version": "m3.5.0",
   "generated_by": {
-    "git_sha": "4bab57675f5e8b48521c76caad52d047f4123226",
+    "git_sha": "3e21195e034f2f1276e1cae4df70ee78f6e7d9bb",
     "git_dirty": true,
     "generated_at": "2026-09-25T07:51:56-0400",
     "engine_model_version": "m3.5.0"
