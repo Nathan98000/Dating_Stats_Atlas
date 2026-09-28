@@ -92,3 +92,13 @@ def test_an_uncited_geography_source_fails_the_build():
     uncited = LicenseTerms(name="n", url="u", shippable=True)
     with pytest.raises(AssertionError, match="not shippable or not cited"):
         assert_credited_shippable(["census_geo"], LICENSES | {"census_geo": uncited})
+
+
+def test_every_served_metro_takes_its_weather_from_a_us_station():
+    """ADR 0012: US weather stations only (the table build.features reads)."""
+    import pandas as pd
+    from atlas.pipeline.adapters.ghcn_daily import US_STATION_PREFIX
+    from atlas.pipeline.fetch import RESULTS
+    st = pd.read_csv(RESULTS / "phase2d" / "pleasant_days_ghcn.csv", dtype={"cbsa": str})
+    outside = st[st["station"].notna() & ~st["station"].astype(str).str.startswith(US_STATION_PREFIX)]
+    assert outside.empty, outside[["cbsa", "station"]].to_dict("records")

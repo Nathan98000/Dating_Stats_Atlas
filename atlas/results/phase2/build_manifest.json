@@ -1,8 +1,8 @@
 {
-  "data_version": "1ebeaa2dcad6",
-  "model_version": "m3.5.0",
+  "data_version": "6172181a114f",
+  "model_version": "m3.6.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-25T07:51:50-0400",
+  "created_at": "2026-09-28T17:08:03-0400",
   "axes": [
     {
       "name": "metro",
@@ -934,56 +934,168 @@
       "url": "https://www.bea.gov/",
       "shippable": true,
       "attribution": "Source: U.S. Bureau of Economic Analysis",
-      "notes": null
+      "notes": null,
+      "citations": [
+        "Source: U.S. Bureau of Economic Analysis, Regional Price Parities by Metropolitan Area, 2024."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement"
+      ]
     },
     "census_acs": {
       "name": "US public domain (17 USC 105); Census API terms",
       "url": "https://www.census.gov/data/developers/about/terms-of-service.html",
       "shippable": true,
       "attribution": "Source: U.S. Census Bureau",
-      "notes": null
+      "notes": null,
+      "citations": [
+        "Source: U.S. Census Bureau, American Community Survey 2020\u20132024 5-year Public Use Microdata Sample; estimates by Dating Stats Atlas.",
+        "Source: U.S. Census Bureau, American Community Survey 2020\u20132024 5-year detailed tables; estimates by Dating Stats Atlas."
+      ],
+      "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
+      "conditions": [
+        "cite with the Census Bureau Data API notice (the census adapter calls the API)",
+        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "no Census Bureau logo or seal, and nothing implying endorsement"
+      ]
     },
     "census_cbp": {
       "name": "US public domain (17 USC 105); Census API terms",
       "url": "https://www.census.gov/data/developers/about/terms-of-service.html",
       "shippable": true,
       "attribution": "Source: U.S. Census Bureau",
-      "notes": null
+      "notes": null,
+      "citations": [
+        "Source: U.S. Census Bureau, County Business Patterns 2023; estimates by Dating Stats Atlas."
+      ],
+      "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
+      "conditions": [
+        "cite with the Census Bureau Data API notice (the census adapter calls the API)",
+        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "no Census Bureau logo or seal, and nothing implying endorsement"
+      ]
+    },
+    "census_dhc": {
+      "name": "US public domain (17 USC 105); Census API terms",
+      "url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+      "shippable": true,
+      "attribution": "Source: U.S. Census Bureau",
+      "notes": null,
+      "citations": [
+        "Source: U.S. Census Bureau, 2020 Census Demographic and Housing Characteristics File; estimates by Dating Stats Atlas."
+      ],
+      "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
+      "conditions": [
+        "cite with the Census Bureau Data API notice (the census adapter calls the API)",
+        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "no Census Bureau logo or seal, and nothing implying endorsement"
+      ]
+    },
+    "census_geo": {
+      "name": "US public domain (17 USC 105); Census API terms",
+      "url": "https://www.census.gov/data/developers/about/terms-of-service.html",
+      "shippable": true,
+      "attribution": "Source: U.S. Census Bureau",
+      "notes": null,
+      "citations": [
+        "Source: U.S. Census Bureau, 2020 Census tract relationship files; estimates by Dating Stats Atlas.",
+        "Source: U.S. Census Bureau, TIGERweb and the 2023 cartographic boundary files; estimates by Dating Stats Atlas."
+      ],
+      "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
+      "conditions": [
+        "cite with the Census Bureau Data API notice (the census adapter calls the API)",
+        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "no Census Bureau logo or seal, and nothing implying endorsement"
+      ]
     },
     "epa_sld": {
       "name": "CC0 / US public domain (EPA Smart Location Database)",
       "url": "https://www.epa.gov/smartgrowth/smart-location-mapping",
       "shippable": true,
       "attribution": "Source: U.S. EPA Smart Location Database v3.0",
-      "notes": "Street-network measures only; transit measures excluded (\u00a712.1: GTFS snapshot from the deepest pandemic service cuts)."
+      "notes": "Street-network measures only; transit measures excluded (\u00a712.1: GTFS snapshot from the deepest pandemic service cuts).",
+      "citations": [
+        "Source: U.S. Environmental Protection Agency, Smart Location Database v3.0 (June 2021)."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement"
+      ]
     },
     "fbi_cde": {
       "name": "US public domain; FBI Crime Data Explorer",
       "url": "https://cde.ucr.cjis.gov",
       "shippable": true,
       "attribution": null,
-      "notes": "Never scored (D01): metro-page context only, with the FBI's own Caution Against Ranking attached. default_weight is pinned to 0."
+      "notes": "Never scored (D01): metro-page context only, with the FBI's own Caution Against Ranking attached. default_weight is pinned to 0.",
+      "citations": [
+        "Source: Federal Bureau of Investigation, Crime Data Explorer, 2025."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement",
+        "context only, never scored",
+        "the crime caveat stays with the figures: a note on the data's quality, not an attribution"
+      ]
     },
     "ghcn_daily": {
       "name": "US public domain (17 USC 105); NOAA/NCEI open data",
       "url": "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily",
       "shippable": true,
       "attribution": "Source: NOAA GHCN-Daily, 1991\u20132020 observations",
-      "notes": null
+      "notes": null,
+      "citations": [
+        "Source: NOAA National Centers for Environmental Information, Global Historical Climatology Network \u2013 Daily (GHCN-Daily), 1991\u20132020."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement",
+        "US weather stations only: the adapter keeps US stations alone (ghcn_daily.US_STATION_PREFIX), and a test holds every served metro's station to it"
+      ]
     },
     "hud_fmr50": {
       "name": "US public domain (17 USC 105); HUD open data",
       "url": "https://www.huduser.gov/portal/datasets/50per.html",
       "shippable": true,
       "attribution": "Source: U.S. Department of Housing and Urban Development",
-      "notes": null
+      "notes": null,
+      "citations": [
+        "Source: U.S. Department of Housing and Urban Development, FY2027 50th Percentile Rent Estimates."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement",
+        "read from HUD's bulk files, not an API: cite HUD only"
+      ]
     },
     "ipeds": {
       "name": "US public domain (17 USC 105); NCES IPEDS",
       "url": "https://nces.ed.gov/ipeds/",
       "shippable": true,
       "attribution": "Source: NCES IPEDS",
-      "notes": null
+      "notes": null,
+      "citations": [
+        "Source: U.S. Department of Education, National Center for Education Statistics, Integrated Postsecondary Education Data System (IPEDS), 2023\u201324."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement"
+      ]
+    },
+    "omb_delineation": {
+      "name": "US public domain (17 USC 105); OMB",
+      "url": "https://www.whitehouse.gov/wp-content/uploads/2023/07/OMB-Bulletin-23-01.pdf",
+      "shippable": true,
+      "attribution": null,
+      "notes": "Read through the census_geo adapter (the Census Bureau publishes the delineation file); credited as OMB's.",
+      "citations": [
+        "Metropolitan areas as delineated in U.S. Office of Management and Budget Bulletin No. 23-01 (July 21, 2023)."
+      ],
+      "notice": null,
+      "conditions": [
+        "no agency logo or seal, and nothing implying endorsement"
+      ]
     }
   },
   "features_block": {
@@ -1003,7 +1115,7 @@
       "band_labels": null,
       "band_tones": null,
       "band_edges": null,
-      "definition": "The number of people in each city who match your whole search, counted from the Census Bureau's household survey.",
+      "definition": "The number of people in each city who match your whole search, estimated from the Census Bureau's household survey.",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1773,7 +1885,7 @@
   },
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
-    "features.parquet": "4e65791d0c7bfa6160eeb87e6a037d733cd98f5a0e7efe8d4355b0104428342a",
+    "features.parquet": "2e187387c73db613ec169514317889a3b4eaee2b754f114753b31bbb3478b8ec",
     "kernel.json": "aefdc5c3f92d66754574315d24a44e812a762e7fe68858db35d10f3f9636e612",
     "kernel.npz": "88355efd5499d6493d5a2cf5519bbfc3eb16c1a42f7c6cea469bc65eaa201265",
     "metros.json": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",

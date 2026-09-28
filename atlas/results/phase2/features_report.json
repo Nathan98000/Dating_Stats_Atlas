@@ -170,7 +170,7 @@
     "metros_without_station": [],
     "median_station_km": 8.487587599909023,
     "p95_station_km": 37.07709229018462,
-    "fallback_rank_gt0": 95,
+    "fallback_rank_gt0": 94,
     "definition": {
       "tmax_f": [
         55,

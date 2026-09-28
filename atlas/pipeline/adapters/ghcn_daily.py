@@ -53,6 +53,11 @@ MAX_CANDIDATES = 24
 # days). COOP ('C'), WBAN/airport ('W') and CRN ('R') stations measure
 # where people live.
 ALLOWED_NETWORKS = ("C", "W", "R")
+# Phase 4 (ADR 0012, Nathan's decision): US weather stations only. A GHCN
+# id's first two characters are its country code; the filter above only
+# ever looked at US ids, so a station across a border could win — the
+# first audit found Detroit matched to Windsor, Ontario (CA006139520).
+US_STATION_PREFIX = "US"
 
 
 class GhcnDailyAdapter:
@@ -80,7 +85,7 @@ class GhcnDailyAdapter:
             if len(parts) != 6 or parts[3] not in ("TMAX", "TMIN", "PRCP"):
                 continue
             sid = parts[0]
-            if sid.startswith("US") and sid[2] not in ALLOWED_NETWORKS:
+            if not sid.startswith(US_STATION_PREFIX) or sid[2] not in ALLOWED_NETWORKS:
                 continue
             rows.append({"sid": sid, "lat": float(parts[1]),
                          "lon": float(parts[2]), "elem": parts[3],

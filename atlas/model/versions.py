@@ -5,6 +5,23 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m3.6.0 — Phase 4, Stage 3b (ADR 0012, Nathan's decision): US weather
+stations only. The GHCN-Daily adapter keeps US stations alone (a GHCN
+id's country code, ghcn_daily.US_STATION_PREFIX); its network filter
+had only ever looked at US ids, and the Phase 4 audit found one served
+metro on a station across the border: Detroit (19820), matched to
+Windsor, Ontario (CA006139520, 14.9 km). It is rematched by the same
+rule to the nearest qualifying US station, Detroit Metro Airport
+(USW00094847, 25.3 km), and its nice days a year move 115.6 -> 120.7.
+No other metro's station or value changes (two record a lower candidate
+rank, their nearer non-US candidates gone); static_features.csv differs
+in that one cell. The weather feature is scored by percentile rank
+across each search's ranked set, so the change can move other cities'
+weather percentiles, scores and ranks slightly. The kernel, the scoring
+rules, suppression, bands and every other feature are unchanged. The
+data changes, so the build id changes. Goldens regenerated; the rank
+shift from m3.5.0 is in PHASE4.md.
+
 m3.5.0 — Phase 3d, Part B (ADR 0013): CHANCES OF MATCHING is scored by
 its value, not its rank. The match feature's normalised value is
 x = ln(index / 100) clipped to the Tukey fences of the ranked set (1.5
@@ -220,5 +237,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m3.5.0"
+MODEL_VERSION = "m3.6.0"
 SCHEMA_VERSION = "cube-v1"
