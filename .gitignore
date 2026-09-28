@@ -82,3 +82,10 @@ atlas/results/phase3d/speedup/a1/multipliers_*.json
 atlas/results/phase3d/speedup/a2/dials_B1_age_cohorts.csv
 atlas/results/phase3d/speedup/a2/dials_B2b_edu_by_sex.csv
 atlas/results/phase3d/speedup/a2/multipliers_samesex_samesex.json
+
+# Phase 4: the answers to the counsel packet stay private — never committed
+atlas/docs/decisions/counsel_packet/private/
+*counsel*answer*
+*answer*counsel*
+*counsel*memo*
+*memo*counsel*

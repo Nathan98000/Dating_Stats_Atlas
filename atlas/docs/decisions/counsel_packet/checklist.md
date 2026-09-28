@@ -71,17 +71,17 @@ rather than an open hourly meter; a written **engagement letter**; **who** does 
 partner or a junior associate); and that they've run a **conflict check**. If the first quote
 surprises you, ask two more firms — the spread in this specialty is wide.
 
-## 3. When the memo arrives
+## 3. The answers
 
-Two jobs, and the first is what makes the money worth spending:
+**Received** (September 2026).
 
-1. Encode each verdict into the typed licence field on the corresponding data adapter
-   (`shippable`, attribution string, conditions), so the build enforces it. Proposal §6.1 and
-   §4.6 — a human rule gets broken in month nine, an assertion does not.
-2. File the memo as `atlas/docs/decisions/0012-data-licensing-review.md` — the next free
-   number when this was written (0002 is the suppression gate, 0011 the stability gate); take
-   the next free one if more have landed by then — in the same shape as ADR 0001: the
-   question, the finding, the primary record, and what it commits the build to.
-
-If counsel's answer on question 2 or question 9 changes the product design, that lands in
-the next phase brief rather than in a disclaimer.
+- **Kept private.** The answers live outside the repository and are never
+  committed. The gitignore refuses `docs/decisions/counsel_packet/private/`
+  and any file whose name contains "counsel" together with "answer" or
+  "memo".
+- **ADR 0012** (`docs/decisions/0012-data-licensing-what-the-build-commits-to.md`)
+  records Nathan's decisions, source by source.
+- **The build enforces them.** Phase 4 Stage 3 encodes each source's verdict
+  in the typed licence registry (`pipeline/adapters/base.py`, `LicenseTerms`:
+  `shippable`, the exact citation string and the conditions), and the build
+  fails if a served feature traces to an unshippable source.

@@ -1,5 +1,5 @@
 # Fly.io config for the site — COMMITTED, NOT DEPLOYED (docs/deploy.md; no
-# public URL until the counsel review returns). The web app is the only
+# public URL until its "Before launch" list is done). The web app is the only
 # public surface; it reaches the API over Fly private networking.
 app = "atlas-web"
 primary_region = "iad"

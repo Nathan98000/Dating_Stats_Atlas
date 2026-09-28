@@ -1,9 +1,10 @@
 # Deploy runbook — configuration committed, NOTHING DEPLOYED
 
-**Do not deploy.** The licensing review in `docs/decisions/counsel_packet`
-has not returned, and no public URL exists until it does. This runbook
-exists so that when it returns, the deploy is a checklist, not a design
-session.
+**Do not deploy.** The answers to the counsel packet have returned and are
+kept private (never committed); ADR 0012 records Nathan's decisions and the
+build encodes them. What still stays with Nathan is the "Before launch" list
+below, and no public URL exists until it is done. This runbook exists so
+that the deploy is a checklist, not a design session.
 
 ## The invariant everything else serves (D04)
 
@@ -52,7 +53,7 @@ private network, so this topology needs one of:
   Vercel env vars and the token attached in `src/lib/api.ts`.
 
 Either way the API still has no public *unauthenticated* surface and no
-CORS. If neither is acceptable to counsel, use Topology A.
+CORS. If neither is acceptable, use Topology A.
 
 ## Environment variables
 
@@ -63,13 +64,37 @@ CORS. If neither is acceptable to counsel, use Topology A.
 
 ## Pre-deploy checklist
 
-- [ ] counsel review returned and archived in `docs/decisions/`
+- [ ] every item under "Before launch" (below) done
 - [ ] `pytest atlas -q` green; `build.validate <build>` exit 0 on the exact
       artifact being shipped
 - [ ] `npm test && npx playwright test` green (CI runs both)
 - [ ] `data_version` + `model_version` in `/v1/health` match the artifact
       you shipped
 - [ ] no public IPs on `atlas-api` (`fly ips list -a atlas-api`)
-- [ ] attribution strings render on `/how-it-works` (they flow from
-      `adapters/base.py` LICENSES through the manifest — if counsel changed
-      wording, it changed there and the build was regenerated)
+- [ ] the citations render on `/how-it-works` (they flow from
+      `adapters/base.py` LICENSES through the manifest — a wording change
+      is made there, and the build regenerated)
+
+## Before launch — what stays with Nathan
+
+Phase 4 did everything in the repository; these are Nathan's own.
+
+- [ ] **Approve the copy**: the privacy policy text and every new or
+      changed sentence, listed old → new in `PHASE4.md` ("Copy for
+      Nathan's approval").
+- [ ] **Terms of use** for the site.
+- [ ] **Fly.io's data processing agreement**, and confirming that Fly's
+      edge does not log query strings (search settings travel in the
+      query).
+- [ ] **A trademark clearance search** on the name.
+- [ ] **HUD's terms**: save the dated snapshot of HUD's terms page to
+      `docs/decisions/counsel_packet/attachments/`, as the other sources'
+      are.
+- [ ] **Optional: an email to ASARB** (the 2020 US Religion Census)
+      confirming commercial use, before that source is ever started.
+- [ ] **Foursquare's Places Portal terms**, when venues are un-deferred
+      (ADR 0012).
+- [ ] **The force-push and the GitHub purge from Phase 4 Stage 1**: re-add
+      `origin`, force-push every branch and tag, ask GitHub Support to purge
+      cached views of the old commits, and check for forks — the exact
+      commands are in `PHASE4.md` §1.
