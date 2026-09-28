@@ -95,3 +95,6 @@ atlas/results/phase4/_*
 atlas/results/phase4/*_run.log
 # Phase 4 seed copy, byte-identical to the committed Phase 3d record
 atlas/results/phase4/snapshot_m3_5_0.json
+# Phase 4 Stage 5a fit store (the 3c/3d pattern): npz fit stores, chain scripts, run logs
+atlas/results/phase4/kernel/_*
+atlas/results/phase4/kernel/*_run.log

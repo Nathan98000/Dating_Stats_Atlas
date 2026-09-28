@@ -36,8 +36,18 @@ and v2).
     python -m atlas.pipeline.build.kernel_refine check
     python -m atlas.pipeline.build.kernel_refine fit  [--sample decay_h5]
     python -m atlas.pipeline.build.kernel_refine lomo [--workers 8]
-    python -m atlas.pipeline.build.kernel_refine samesex [--workers 8]
+    python -m atlas.pipeline.build.kernel_refine samesex [--workers 8] [--race-free] [--form <name>]
     python -m atlas.pipeline.build.kernel_refine ship
+    python -m atlas.pipeline.build.kernel_refine ship_v3 --served <build_dir> [--out <dir>]
+
+Phase 4 (m4.0.0, ADR 0018): `lomo --only C1_cohorts_plus_shipped,
+D0_race_free,C1_race_zeroed` fits the race-free form (D0: the cohort age
+term and the education matrix, refitted with no race component and no
+interaction) beside C1 and C1 with its race terms set to zero;
+`samesex --race-free` refits the same-sex terms with no race; `ship_v3`
+writes the kernel_v3 artifact — C1 copied from the served build byte for
+byte (race on), D0 with its dials (race off), the same-sex form (no race,
+no interaction, no dial) — which loader.py reads beside v1 and v2.
 
 Phase 3d R (ADR 0014): every held-out comparison goes through `beats` and
 `select_form` — a difference smaller than HELDOUT_TIE_MARGIN_PER_1000 per
@@ -84,11 +94,29 @@ class Form:
     """The kernel's form: cohort boundaries for the age term (lower bounds
     of every cohort after the first, so () is one cohort for all ages),
     whether the education matrix is per seeker sex, and whether the race x
-    education two-way term is present."""
+    education two-way term is present.
+
+    Phase 4 (ADR 0018): `race` False is the race-free form — no race
+    component at all and no interaction, refitted by the same machinery
+    with the race term held at zero and no race dial. `zero_race` is the
+    comparison ADR 0018 asks for, never served: the form fitted as it is,
+    then its race term and interaction set to zero (what a race-free
+    kernel would be without the refit)."""
     age_edges: tuple[int, ...] = ()
     edu_by_sex: bool = False
     interaction: bool = False
     name: str = "baseline"
+    race: bool = True
+    zero_race: bool = False
+
+    def __post_init__(self) -> None:
+        assert self.race or not self.interaction, "a race-free form carries no interaction"
+        assert not (self.zero_race and not self.race), "zero_race zeroes a fitted race term"
+
+    @property
+    def has_race(self) -> bool:
+        """Whether the served kernel of this form carries a race term."""
+        return self.race and not self.zero_race
 
     @property
     def n_cohorts(self) -> int:
@@ -104,9 +132,20 @@ class Form:
         return [f"{a}-{b}" for a, b in zip(lo, hi)]
 
     def describe(self) -> dict:
-        return {"name": self.name, "age_edges": list(self.age_edges),
-                "age_cohorts": self.cohort_labels(), "edu_by_sex": self.edu_by_sex,
-                "interaction": self.interaction}
+        out = {"name": self.name, "age_edges": list(self.age_edges),
+               "age_cohorts": self.cohort_labels(), "edu_by_sex": self.edu_by_sex,
+               "interaction": self.interaction}
+        if not self.race or self.zero_race:
+            out.update({"race": self.race, "zero_race": self.zero_race})
+        return out
+
+
+def form_from_record(fr: dict, name: str) -> Form:
+    """A Form from its describe() record (race and zero_race default to the
+    forms fitted before Phase 4)."""
+    return Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
+                interaction=fr["interaction"], name=name, race=fr.get("race", True),
+                zero_race=fr.get("zero_race", False))
 
 
 # candidate partitions for B1, chosen by split-half held-out likelihood
@@ -665,6 +704,8 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
         f["int"] = np.zeros(d.shapes()["int"])
     if not form.interaction:
         f.pop("int", None)
+    if not form.race:
+        skip = tuple(skip) + ("race",)       # Phase 4: the race-free form
     for k in skip:
         f[k] = np.zeros(d.shapes()[k])
     mains = [k for k in COMPONENTS if k not in skip]
@@ -806,6 +847,11 @@ def fit_form(C: np.ndarray, A: np.ndarray, form: Form, *, same_sex: bool = False
         hist_int, mu = run_ipf("interaction", [k for k in mains if k != "age"], True, tau2,
                                tol, INT_MAX_ITER if max_iter >= K.IPF_MAX_ITER else max_iter, ctol)
     profile["seconds_total"] = round(sum(v["seconds"] for v in profile["stages"].values()), 3)
+    if form.zero_race:
+        # Phase 4 (ADR 0018): the comparison form, never served — fitted as
+        # it is, then its race term and interaction set to zero
+        f["race"] = np.zeros(d.shapes()["race"])
+        f.pop("int", None)
     cell_hist = hist_raw["cell_change"] + hist_sm["cell_change"] + hist_int["cell_change"]
     move_hist = hist_raw["couple_move"] + hist_sm["couple_move"] + hist_int["couple_move"]
     last_hist = hist_int if form.interaction else hist_sm if "age" in mains else hist_raw
@@ -963,7 +1009,7 @@ def fit_dials(f: dict, mc: MetroCouples, A_m: np.ndarray, form: Form, comps=COMP
               max_iter: int = 40, same_sex: bool = False) -> dict:
     terms = _dial_terms(f, mc, A_m, form, same_sex)
     theta = np.ones(3)
-    free = np.array([k in comps for k in COMPONENTS])
+    free = np.array([k in comps and (k != "race" or form.has_race) for k in COMPONENTS])
     ll, g, H = dial_loglik_grad_hess(theta, terms)
     for _ in range(max_iter):
         Hf = H[np.ix_(free, free)]
@@ -1042,6 +1088,14 @@ def face_validity(fg: dict, A: np.ndarray, form: Form, same_sex: bool = False) -
         out["edu_diagonal_dominant_rows_by_sex"] = rows
         out["edu_pass"] = all(all(v) for v in rows.values())
         out["pass"] = out["age_pass"] and out["edu_pass"] and out["race_pass"]
+    if not form.has_race:
+        # Phase 4 (ADR 0018): no race term to check; the race checks read a
+        # zero term and are dropped, the form is held to age and education
+        for key in [k for k in out if k.startswith("race")]:
+            out.pop(key)
+        out["race_pass"] = None
+        out["race_rule"] = "no race term (race-free form)"
+        out["pass"] = out["age_pass"] and out["edu_pass"]
     return out
 
 
@@ -1156,7 +1210,14 @@ def forms_for(sample: str, partition_edges: tuple[int, ...]) -> dict[str, Form]:
             "C2_edu_by_sex_plus_shipped": Form(edu_by_sex=True, interaction=True,
                                                name="C2_edu_by_sex_plus_shipped"),
             "C3_both_plus_shipped": Form(age_edges=partition_edges, edu_by_sex=True, interaction=True,
-                                         name="C3_both_plus_shipped")}
+                                         name="C3_both_plus_shipped"),
+            # Phase 4 (ADR 0018): the race-free default form — the cohort
+            # age term and the education matrix, no race component, no
+            # interaction, refitted — and, for the record only, C1 with its
+            # race term and interaction zeroed after the fit
+            "D0_race_free": Form(age_edges=partition_edges, race=False, name="D0_race_free"),
+            "C1_race_zeroed": Form(age_edges=partition_edges, interaction=True, zero_race=True,
+                                   name="C1_race_zeroed")}
 
 
 def fit_and_report(sample: str, form: Form, S: dict, A: np.ndarray, same_sex: bool = False) -> dict:
@@ -1187,7 +1248,7 @@ def fit_and_report(sample: str, form: Form, S: dict, A: np.ndarray, same_sex: bo
            "seconds": round(time.time() - t0, 1)}
     if form.age_edges:
         rec["cohort_sample"] = cohort_sample(S["nat"], form)
-    if form.interaction:
+    if form.interaction and not form.zero_race:
         rec["interaction_prior"] = fit["interaction_prior"]
         rec["interaction_projection"] = fit["projection"]
         g = fg["int"]
@@ -1408,8 +1469,7 @@ def cmd_fit(sample: str, only: list[str] | None = None) -> None:
             # Phase 3d: the m3.2.0 form refitted by name, so a re-scored
             # held-out comparison reads every form from the same code
             fr = report["forms"]["shipped"]["form"]
-            forms["shipped"] = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
-                                    interaction=fr["interaction"], name="shipped")
+            forms["shipped"] = form_from_record(fr, "shipped")
         assert forms, only
     else:
         print(f"[{sample}] choosing the age partition by split-half held-out likelihood ...", flush=True)
@@ -1487,8 +1547,7 @@ def cmd_lomo(sample: str, workers: int, only: list[str] | None = None) -> None:
     forms = forms_for(sample, tuple(rep["partition"]["chosen_edges"]))
     if "shipped" in rep["forms"]:
         fr = rep["forms"]["shipped"]["form"]
-        forms["shipped"] = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
-                                interaction=fr["interaction"], name="shipped")
+        forms["shipped"] = form_from_record(fr, "shipped")
     if only:
         forms = {n: f for n, f in forms.items() if n in only}
     assert forms, f"no form to run: {only}"
@@ -1514,9 +1573,7 @@ def cmd_lomo(sample: str, workers: int, only: list[str] | None = None) -> None:
     path.write_text(json.dumps(lomo, indent=0, default=_json) + "\n")
     all_forms = {**forms_for(sample, tuple(rep["partition"]["chosen_edges"]))}
     if "shipped" in rep["forms"]:
-        all_forms["shipped"] = Form(age_edges=tuple(rep["forms"]["shipped"]["form"]["age_edges"]),
-                                    edu_by_sex=rep["forms"]["shipped"]["form"]["edu_by_sex"],
-                                    interaction=rep["forms"]["shipped"]["form"]["interaction"], name="shipped")
+        all_forms["shipped"] = form_from_record(rep["forms"]["shipped"]["form"], "shipped")
     present = {n: f for n, f in all_forms.items() if all(n in r["forms"] for r in lomo)}
     summarise_lomo(sample, lomo, present, common, full)
     print(f"LOMO done ({time.time() - t0:.0f}s)")
@@ -1757,8 +1814,7 @@ def cmd_candidate(sample: str, form_name: str, out_dir: Path) -> None:
     rep = json.loads((P3B / "refine_fits.json").read_text())
     fits, _ = _load_fits([form_name])
     fr = rep["forms"][form_name]["form"]
-    form = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
-                interaction=fr["interaction"], name=form_name)
+    form = form_from_record(fr, form_name)
     common = load_common(sample)
     dd = pd.read_csv(P3B / f"dials_{form_name}.csv", dtype={"cbsa": str}).set_index("cbsa").loc[common["metro_levels"]]
     dials = np.stack([dd[f"theta_tilde_{k}"].to_numpy(float) for k in COMPONENTS], axis=1)
@@ -1782,8 +1838,7 @@ def cmd_ship(sample: str, out_dir: Path | None = None, form_name: str = "shipped
     ho = json.loads((P3B / "refine_heldout.json").read_text())
     fits, _ = _load_fits([form_name])
     fr = rep["forms"][form_name]["form"]
-    form_os = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
-                   interaction=fr["interaction"], name=form_name)
+    form_os = form_from_record(fr, form_name)
     common = load_common(sample)
     dd = pd.read_csv(P3B / f"dials_{form_name}.csv", dtype={"cbsa": str}).set_index("cbsa").loc[common["metro_levels"]]
     # every component keeps its dial where the Phase 3 rule still earns it
@@ -1827,6 +1882,144 @@ def cmd_ship(sample: str, out_dir: Path | None = None, form_name: str = "shipped
     print(f"artifact -> {out} (form {form_os.describe()}, dials {earned}, "
           f"same-sex components {ss['components'] if ss else None}, "
           f"same-sex interaction {ss['interaction'] if ss else None})")
+
+
+# ---------------------------------------------------------------------------
+# Phase 4 (ADR 0018): kernel_v3 — three forms in one artifact
+# ---------------------------------------------------------------------------
+
+KERNEL_VERSION_V3 = "kernel_v3"
+
+
+def _race_invariant(ln_flat: np.ndarray, n_metros: int | None = None) -> np.ndarray:
+    """A race-free kernel's normaliser does not depend on the seeker's
+    race: reshape per seeker type and keep one race slice, asserting the
+    others equal it."""
+    shape = (N_SEX, N_AGE, N_EDU, N_RACE) if n_metros is None else (n_metros, N_SEX, N_AGE, N_EDU, N_RACE)
+    ln = ln_flat.reshape(shape)
+    assert np.allclose(ln, ln[..., :1], atol=1e-9), "a race-free normaliser varies with the seeker's race"
+    return ln[..., 0]
+
+
+def write_artifact_v3(out_dir: Path, served_kernel: Path, form_rf: Form, fg_rf: dict, dials_rf: np.ndarray,
+                      earned_rf: list[str], form_ss: Form, fg_ss: dict, A: np.ndarray,
+                      metro_levels: list[str], meta: dict) -> dict:
+    """kernel.json + kernel.npz, version kernel_v3 (m4.0.0, ADR 0018):
+
+      race on   C1 exactly as m3.5.0 serves it — its arrays copied from the
+                served artifact (`served_kernel`), byte for byte: f_age,
+                f_edu, f_race, f_int, cohort_edges, dials, log_norm;
+      race off  the race-free form (rf_*): the cohort age term and the
+                education matrix, refitted with no race component and no
+                interaction, its own dials (no race dial) and normalisers
+                (metro x sex x age x education — a seeker's race does not
+                enter);
+      same-sex  the same-sex age and education terms (ss_*), refitted with
+                no race component, no interaction and no dial, so the
+                normaliser is national (sex x age x education)."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    served = np.load(served_kernel / "kernel.npz", allow_pickle=False)
+    served_meta = json.loads((served_kernel / "kernel.json").read_text())
+    assert served_meta["version"] == KERNEL_VERSION_V2, served_meta["version"]
+    assert list(served["metro_levels"]) == metro_levels, "served kernel metro order differs"
+    # the store recomputes the national availability with a different
+    # summation order (relative differences ~1e-16); the new forms'
+    # normalisers are computed on the SERVED array, the one the artifact
+    # carries and seeker_weights reads, so each form averages exactly 1
+    A_served = np.asarray(served["avail_national"], dtype=np.float64)
+    assert np.allclose(A_served, A, rtol=1e-12, atol=0), \
+        "the served kernel's national availability differs from this build's beyond summation noise"
+    assert not form_rf.has_race and not form_ss.has_race
+    n = len(metro_levels)
+    ln_rf = np.stack([_race_invariant(log_norm_served(served_log_kernel(fg_rf, form_rf, dials_rf[i], None, None, ()),
+                                                      A_served, False))
+                      for i in range(n)])                                             # (n, 2, 53, 4)
+    logK_ss = design2(form_ss).gather({k: v for k, v in fg_ss.items() if k != "int"})
+    ln_ss = _race_invariant(log_norm_served(logK_ss, A_served, True))                 # (2, 53, 4)
+    arrays = {k: np.asarray(served[k]) for k in served.files
+              if not k.startswith("ss_")}                         # C1 as served
+    arrays.update({
+        "rf_f_age": fg_rf["age"], "rf_f_edu": (fg_rf["edu"] if form_rf.edu_by_sex
+                                               else np.stack([fg_rf["edu"], fg_rf["edu"]])),
+        "rf_cohort_edges": np.array(form_rf.age_edges, int), "rf_dials": dials_rf,
+        "rf_log_norm": ln_rf.astype(np.float32),
+        "ss_f_age": fg_ss["age"], "ss_f_edu": (fg_ss["edu"] if form_ss.edu_by_sex
+                                               else np.stack([fg_ss["edu"], fg_ss["edu"]])),
+        "ss_cohort_edges": np.array(form_ss.age_edges, int),
+        "ss_log_norm": ln_ss.astype(np.float32)})
+    np.savez_compressed(out_dir / "kernel.npz", **arrays)
+    payload = {
+        "version": KERNEL_VERSION_V3,
+        "form": "three forms (ADR 0018). Race on (the seeker's race given): w = exp(theta_age f_age(gap; "
+                "sex_s, cohort) + theta_edu f_edu + theta_race f_race + g(race x edu) + log_norm), C1 as "
+                "m3.5.0 serves it. Race off: w = exp(theta_age rf_f_age(gap; sex_s, cohort) + theta_edu "
+                "rf_f_edu + rf_log_norm), no race term, no interaction. Same-sex: w = exp(ss_f_age(gap; "
+                "sex_s) + ss_f_edu + ss_log_norm), no race term, no interaction, no dial",
+        "gauge": served_meta["gauge"],
+        "sex_levels": SEX_LEVELS, "age_levels": list(range(18, 71)),
+        "edu_levels": EDU_LEVELS, "race_levels": RACE_LEVELS,
+        "gap_offset": GAP0, "floor_log": FLOOR,
+        # race on: C1, as served
+        "age_cohort_edges": served_meta["age_cohort_edges"], "age_cohorts": served_meta["age_cohorts"],
+        "edu_by_sex": served_meta["edu_by_sex"], "interaction": served_meta["interaction"],
+        "dial_components": served_meta["dial_components"], "components": list(COMPONENTS),
+        "dials": served_meta["dials"],
+        "race_on": {"form": served_meta.get("shipped_form_name"), "as_served_by": served_meta.get("generated_at"),
+                    "copied_from": str(served_kernel.name)},
+        "race_off": {"form": form_rf.describe(), "dial_components": earned_rf,
+                     "dials": {c: [round(float(x), 6) for x in dials_rf[i]] for i, c in enumerate(metro_levels)}},
+        "same_sex": {"components_from_same_sex_couples": ["age", "edu"], "fallback_components": [],
+                     "race": "none", "interaction_applies": False,
+                     "dials_on_same_sex_terms": "none (national terms at dial 1)",
+                     "form": form_ss.describe()},
+        "npz": "kernel.npz: C1 (race on) as served — f_age, f_edu, f_race, f_int, cohort_edges, dials, "
+               "log_norm (metro x sex x age x edu x race); race off — rf_f_age, rf_f_edu, rf_cohort_edges, "
+               "rf_dials, rf_log_norm (metro x sex x age x edu); same-sex — ss_f_age, ss_f_edu, "
+               "ss_cohort_edges, ss_log_norm (sex x age x edu); avail_national, metro_levels",
+        **meta,
+    }
+    (out_dir / "kernel.json").write_text(json.dumps(payload, indent=1, default=_json) + "\n")
+    return payload
+
+
+def cmd_ship_v3(sample: str, served_build: Path, out_dir: Path | None = None) -> None:
+    """The m4.0.0 artifact from this store: C1 from the served build, the
+    race-free form's full fit and shrunk dials (the dials it earns by the
+    Phase 3 rule), and the race-free same-sex refit (samesex --race-free)."""
+    rep = json.loads((P3B / "refine_fits.json").read_text())
+    ho = json.loads((P3B / "refine_heldout.json").read_text())
+    name = "D0_race_free"
+    fits, _ = _load_fits([name])
+    form_rf = form_from_record(rep["forms"][name]["form"], name)
+    common = load_common(sample)
+    dd = pd.read_csv(P3B / f"dials_{name}.csv", dtype={"cbsa": str}).set_index("cbsa").loc[common["metro_levels"]]
+    earned = [k for k in COMPONENTS if k != "race"
+              and ho["forms"][name]["dial_gain_shrunk_minus_national_per_1000_sides"] > 0]
+    dials = np.ones((len(common["metro_levels"]), 3))
+    for j, k in enumerate(COMPONENTS):
+        if k in earned:
+            dials[:, j] = dd[f"theta_tilde_{k}"].to_numpy(float)
+    srep = json.loads((P3B / "samesex_fit.json").read_text())
+    assert "race_free_fit" in srep, "run samesex --race-free first"
+    z = np.load(P3B / "_samesex_fit.npz")
+    fg_ss = {k[6:]: z[k] for k in z.files if k.startswith("rf_fg_")}
+    form_ss = Form(name="samesex_race_free", race=False)
+    meta = {"fitting_sample": sample, "fitting_sample_spec": json.loads((P3 / "kernel_report.json").read_text())
+            ["samples"][sample]["spec"],
+            "couple_sides_weighted": rep["couple_sides_weighted"], "n_alloc": rep["n_alloc"],
+            "bandwidth_years": rep["fits"][name]["bandwidth"],
+            "dials_tau": {k: rep["forms"][name]["dials"][k]["tau"] for k in COMPONENTS},
+            "dials_centre": {k: rep["forms"][name]["dials"][k]["precision_weighted_mean_theta"]
+                             for k in COMPONENTS},
+            "same_sex_bandwidth_years": srep["race_free_fit"].get("bandwidth_by_sex_cohort"),
+            "heldout_tie_rule_adr": HELDOUT_TIE_ADR,
+            "heldout_tie_margin_per_1000_sides": HELDOUT_TIE_MARGIN_PER_1000,
+            "provisional": False, "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
+    out = out_dir or DATA
+    write_artifact_v3(out, served_build, form_rf, fits[name]["fg"], dials, earned, form_ss, fg_ss,
+                      common["A"], common["metro_levels"], meta)
+    print(f"artifact v3 -> {out} (race off {form_rf.describe()['name']}, dials {earned}; race on C1 as "
+          f"served by {served_build.name}; same-sex age + edu, no race)")
 
 
 # ---------------------------------------------------------------------------
@@ -1907,18 +2100,30 @@ def _lomo_samesex_one(cbsa: str) -> dict:
     fit_ss = fit_form(C_ss, A_minus, form_ss, same_sex=True, bandwidth=G["bandwidth"], init=G["f"],
                       max_iter=K.IPF_MAX_ITER, mean_weight=_W["mean_weight_ss"])
     fg_ss = gauge_form(fit_ss["f"], A_minus, fit_ss["N_s"], form_ss, same_sex=True)
+    # Phase 4 (ADR 0018): the race-free same-sex refit, without the metro
+    fg_rf = None
+    if _W.get("fit_ss_rf") is not None:
+        G2, form_rf = _W["fit_ss_rf"], _W["form_ss_rf"]
+        fit_rf = fit_form(C_ss, A_minus, form_rf, same_sex=True, bandwidth=G2["bandwidth"], init=G2["f"],
+                          max_iter=K.IPF_MAX_ITER, mean_weight=_W["mean_weight_ss"])
+        fg_rf = gauge_form(fit_rf["f"], A_minus, fit_rf["N_s"], form_rf, same_sex=True)
     theta = np.array(_W["theta"][i], float)
     d_os, d_ss = design2(form_os), design2(form_ss)
 
-    def loglik(which: dict, interaction: bool | None = None) -> float:
+    def loglik(which: dict, interaction: bool | None = None, ss_terms: dict | None = None) -> float:
         # log kernel per present seeker over cells, from whichever source
-        # each component takes; `interaction` None = m3.2.0's rule (rides
-        # only when education and race both stay opposite-sex)
+        # each component takes ("ss", "os", or since Phase 4 "none": left
+        # out); `interaction` None = m3.2.0's rule (rides only when
+        # education and race both stay opposite-sex); `ss_terms` swaps in
+        # another same-sex fit (the race-free refit)
         P = mc_ss.present
+        src = fg_ss if ss_terms is None else ss_terms
         logK = np.zeros((len(P), N_C))
         for j, k in enumerate(COMPONENTS):
+            if which[k] == "none":
+                continue
             if which[k] == "ss":
-                logK += d_ss.gather_one(k, fg_ss[k], P)
+                logK += d_ss.gather_one(k, src[k], P)
             else:
                 logK += theta[j] * d_os.gather_one(k, fg_os[k], P)
         if interaction is None:
@@ -1951,6 +2156,13 @@ def _lomo_samesex_one(cbsa: str) -> dict:
     rec["served_m3_2_0"] = loglik(served, interaction=True)
     rec["age_edu_ss_no_interaction"] = loglik({**served, "edu": "ss"}, interaction=False)
     rec["age_edu_ss_with_interaction"] = loglik({**served, "edu": "ss"}, interaction=True)
+    # Phase 4 (ADR 0018): no race at all on a same-sex search — the
+    # race-free same-sex refit, and for the record the joint fit's age and
+    # education terms with race dropped (what the refit replaces)
+    no_race = {"age": "ss", "edu": "ss", "race": "none"}
+    rec["age_edu_ss_joint_race_dropped"] = loglik(no_race, interaction=False)
+    if fg_rf is not None:
+        rec["age_edu_ss_race_free_refit"] = loglik(no_race, interaction=False, ss_terms=fg_rf)
     return rec
 
 
@@ -2012,8 +2224,32 @@ def samesex_decision(lomo: list[dict], support: dict, face: dict) -> dict:
     return heldout
 
 
+def samesex_race_free_reading(lomo: list[dict]) -> dict:
+    """Phase 4 (ADR 0018): what taking race out of same-sex searches costs
+    on held-out same-sex couples, and why the race-free terms are refitted
+    rather than read off the joint fit — every comparison per 1,000
+    weighted same-sex couple-sides, through ADR 0014's margin."""
+    sides = sum(x["sides"] for x in lomo)
+    per_1000 = 1000.0 / sides
+    tot = {k: sum(x[k] for x in lomo) for k in ("age_edu_ss_with_interaction",
+                                                   "age_edu_ss_joint_race_dropped",
+                                                   "age_edu_ss_race_free_refit")}
+    served = "age_edu_ss_with_interaction"
+    refit, dropped = "age_edu_ss_race_free_refit", "age_edu_ss_joint_race_dropped"
+    return {"metros": len(lomo), "sides": sides,
+            "served_m3_5_0": "age and education from same-sex couples, race borrowed from "
+                             "opposite-sex couples with the metro's dial, the interaction riding",
+            "refit_vs_served_per_1000_sides": (tot[refit] - tot[served]) * per_1000,
+            "refit_vs_joint_race_dropped_per_1000_sides": (tot[refit] - tot[dropped]) * per_1000,
+            "metros_refit_better_than_served": sum(1 for x in lomo if x[refit] > x[served]),
+            "metros_refit_better_than_joint_race_dropped": sum(1 for x in lomo if x[refit] > x[dropped]),
+            "refit_beats_joint_race_dropped": bool(beats((tot[refit] - tot[dropped]) * per_1000)),
+            "joint_race_dropped_beats_refit": bool(beats((tot[dropped] - tot[refit]) * per_1000)),
+            "tie_rule": {"adr": HELDOUT_TIE_ADR, "margin_per_1000_sides": HELDOUT_TIE_MARGIN_PER_1000}}
+
+
 def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", fit_only: bool = False,
-                decide_only: bool = False) -> None:
+                decide_only: bool = False, race_free: bool = False) -> None:
     """B3 end to end: the same-sex tables (built if missing), the national
     same-sex fit and its report tables, the effective sample per cell and
     the support rule, then the leave-one-metro-out test of each component
@@ -2032,8 +2268,17 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
     r = fit_and_report(sample, form_ss, S_ss, A, same_sex=True)
     report = {"sample": sample, "support": support, "fit": r["record"],
               "couple_sides_weighted": float(S_ss["C"].sum()), "n_alloc": float(S_ss["n_alloc"].sum())}
+    rf = None
+    if race_free:
+        # Phase 4 (ADR 0018): the same-sex form with no race component,
+        # refitted on the same-sex couples by the same machinery
+        form_ss_rf = Form(name="samesex_race_free", race=False)
+        rf = fit_and_report(sample, form_ss_rf, S_ss, A, same_sex=True)
+        report["race_free_fit"] = rf["record"]
     np.savez_compressed(P3B / "_samesex_fit.npz", **{f"fg_{k}": v for k, v in r["fg"].items()},
-                        **{f"f_{k}": v for k, v in r["fit"]["f"].items()})
+                        **{f"f_{k}": v for k, v in r["fit"]["f"].items()},
+                        **({f"rf_fg_{k}": v for k, v in rf["fg"].items()} if rf else {}),
+                        **({f"rf_f_{k}": v for k, v in rf["fit"]["f"].items()} if rf else {}))
     (P3B / "samesex_fit.json").write_text(json.dumps(report, indent=1, default=_json) + "\n")
     print(f"[samesex] support {support['supported']}; fit face {r['record']['face_validity']['pass']}", flush=True)
     if fit_only:
@@ -2041,8 +2286,7 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
     rep = json.loads((P3B / "refine_fits.json").read_text())
     fits, _ = _load_fits([shipped_form_name])
     fr = rep["forms"][shipped_form_name]["form"]
-    form_os = Form(age_edges=tuple(fr["age_edges"]), edu_by_sex=fr["edu_by_sex"],
-                   interaction=fr["interaction"], name=shipped_form_name)
+    form_os = form_from_record(fr, shipped_form_name)
     report["fallback_form"] = form_os.describe()
     # LOMO: the metro's dials for the fallback components come from the
     # shipped form's full-sample shrunk dials
@@ -2057,6 +2301,8 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
              "form_os": form_os, "form_ss": form_ss, "C_os": S_os["C"], "C_ss": S_ss["C"],
              "full_os": full_os, "full_ss": full_ss, "fit_os": fits[shipped_form_name],
              "fit_ss": {"raw_f": r["fit"]["raw_f"], "f": r["fit"]["f"], "bandwidth": r["fit"]["bandwidth"]},
+             "fit_ss_rf": ({"f": rf["fit"]["f"], "bandwidth": rf["fit"]["bandwidth"]} if rf else None),
+             "form_ss_rf": (Form(name="samesex_race_free", race=False) if rf else None),
              "mean_weight_os": S_os["mean_weight"], "mean_weight_ss": S_ss["mean_weight"], "theta": theta}
     metros = [c for c in common["metro_levels"] if c in full_ss]
     if decide_only and (P3B / "lomo_samesex.json").exists():
@@ -2080,6 +2326,8 @@ def cmd_samesex(sample: str, workers: int, shipped_form_name: str = "shipped", f
             "edu": bool(r["record"]["face_validity"]["edu_pass"]),
             "race": bool(r["record"]["face_validity"]["race_pass"])}
     heldout = samesex_decision(lomo, support, face)
+    if rf is not None:
+        heldout["race_free"] = samesex_race_free_reading(lomo)
     report["heldout"] = heldout
     report["seconds"] = round(time.time() - t0, 1)
     (P3B / "lomo_samesex.json").write_text(json.dumps(lomo, indent=0, default=_json) + "\n")
@@ -2104,12 +2352,16 @@ if __name__ == "__main__":
         cmd_lomo(sample, workers, only)
     elif argv[:1] == ["samesex"]:
         cmd_samesex(sample, workers, argv[argv.index("--form") + 1] if "--form" in argv else "shipped",
-                    fit_only="--fit-only" in argv, decide_only="--decide-only" in argv)
+                    fit_only="--fit-only" in argv, decide_only="--decide-only" in argv,
+                    race_free="--race-free" in argv)
     elif argv[:1] == ["combine"]:
         cmd_combine(sample, argv[argv.index("--only") + 1].split(",") if "--only" in argv else None,
                     argv[argv.index("--reason") + 1] if "--reason" in argv else None)
     elif argv[:1] == ["candidate"]:
         cmd_candidate(sample, argv[argv.index("--form") + 1], Path(argv[argv.index("--out") + 1]))
+    elif argv[:1] == ["ship_v3"]:
+        cmd_ship_v3(sample, Path(argv[argv.index("--served") + 1]),
+                    Path(argv[argv.index("--out") + 1]) if "--out" in argv else None)
     elif argv[:1] == ["ship"]:
         cmd_ship(sample, Path(argv[argv.index("--out") + 1]) if "--out" in argv else None,
                  argv[argv.index("--form") + 1] if "--form" in argv else "shipped")

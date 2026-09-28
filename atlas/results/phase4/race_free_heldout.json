@@ -1,0 +1,116 @@
+{
+ "metros": 387,
+ "rule": {
+  "adr": "0014",
+  "margin_per_1000_sides": 0.25
+ },
+ "forms": {
+  "race_free": "D0_race_free",
+  "c1": "C1_cohorts_plus_shipped",
+  "c1_race_zeroed": "C1_race_zeroed"
+ },
+ "leaving_race_out_costs": {
+  "a": "D0_race_free",
+  "b": "C1_cohorts_plus_shipped",
+  "heldout_sides": 33379883.735795718,
+  "shrunk": {
+   "gain_a_minus_b_per_1000_sides": -407.05,
+   "metros_where_a_better": 0,
+   "a_beats_b": false,
+   "b_beats_a": true
+  },
+  "national": {
+   "gain_a_minus_b_per_1000_sides": -402.259,
+   "metros_where_a_better": 3,
+   "a_beats_b": false,
+   "b_beats_a": true
+  },
+  "raw": {
+   "gain_a_minus_b_per_1000_sides": -406.607,
+   "metros_where_a_better": 2,
+   "a_beats_b": false,
+   "b_beats_a": true
+  }
+ },
+ "refit_against_zeroed": {
+  "a": "D0_race_free",
+  "b": "C1_race_zeroed",
+  "heldout_sides": 33379883.735795718,
+  "shrunk": {
+   "gain_a_minus_b_per_1000_sides": 2.22,
+   "metros_where_a_better": 266,
+   "a_beats_b": true,
+   "b_beats_a": false
+  },
+  "national": {
+   "gain_a_minus_b_per_1000_sides": 3.578,
+   "metros_where_a_better": 223,
+   "a_beats_b": true,
+   "b_beats_a": false
+  },
+  "raw": {
+   "gain_a_minus_b_per_1000_sides": 2.21,
+   "metros_where_a_better": 259,
+   "a_beats_b": true,
+   "b_beats_a": false
+  }
+ },
+ "zeroed_against_c1": {
+  "a": "C1_race_zeroed",
+  "b": "C1_cohorts_plus_shipped",
+  "heldout_sides": 33379883.735795718,
+  "shrunk": {
+   "gain_a_minus_b_per_1000_sides": -409.27,
+   "metros_where_a_better": 0,
+   "a_beats_b": false,
+   "b_beats_a": true
+  },
+  "national": {
+   "gain_a_minus_b_per_1000_sides": -405.837,
+   "metros_where_a_better": 3,
+   "a_beats_b": false,
+   "b_beats_a": true
+  },
+  "raw": {
+   "gain_a_minus_b_per_1000_sides": -408.817,
+   "metros_where_a_better": 2,
+   "a_beats_b": false,
+   "b_beats_a": true
+  }
+ },
+ "intermarriage_median_abs_error_pts": {
+  "race_free": {
+   "national_only": 34.76,
+   "shrunk_dial": 34.87,
+   "random_pairing": 35.66
+  },
+  "c1": {
+   "national_only": 3.75,
+   "shrunk_dial": 1.92,
+   "random_pairing": 35.66
+  },
+  "c1_race_zeroed": {
+   "national_only": 34.95,
+   "shrunk_dial": 34.9,
+   "random_pairing": 35.66
+  }
+ },
+ "dial_tau": {
+  "race_free": {
+   "age": 0.0637,
+   "edu": 0.0883,
+   "race": 0.0
+  },
+  "c1": {
+   "age": 0.0638,
+   "edu": 0.0792,
+   "race": 0.124
+  },
+  "c1_race_zeroed": {
+   "age": 0.0635,
+   "edu": 0.0971,
+   "race": 0.0
+  }
+ },
+ "note": "ADR 0018 \u00a72 (Nathan's decision): the race-free form is the default whatever these readings say; they are recorded, not applied. The intermarriage check measures who marries across racial and ethnic groups, which a form without a race component cannot predict beyond its education and age structure; its error is recorded, not a gate on this form."
+}
