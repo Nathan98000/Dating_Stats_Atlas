@@ -65,7 +65,7 @@ import numpy as np
 import pandas as pd
 
 from atlas.model.preferences import EDU_LEVELS, RACE_LEVELS, SEX_LEVELS
-from atlas.pipeline.build import pairing
+from atlas.pipeline.build import pairing, pew_guard
 from atlas.pipeline.build.pool import open_pool
 from atlas.pipeline.fetch import DATA, RESULTS
 
@@ -929,7 +929,8 @@ def run_lomo(C: np.ndarray, A: np.ndarray, A_metro: np.ndarray, metro_levels: li
 
 
 def pew_table(metro_levels: list[str]) -> pd.DataFrame:
-    pew = pd.read_csv(RESULTS / "reference" / "pew_intermarriage_2015.csv",
+    # the private copy on the build machine only (ADR 0012; pew_guard)
+    pew = pd.read_csv(pew_guard.require_pew_table(),
                       comment="#", dtype={"msa_code": str})
     pew = pew[pew["msa_code"] != "1"].copy()
     pew["pew_total"] = pd.to_numeric(pew["total"], errors="coerce") / 100.0
@@ -937,7 +938,7 @@ def pew_table(metro_levels: list[str]) -> pd.DataFrame:
 
 
 def pew_national() -> float:
-    pew = pd.read_csv(RESULTS / "reference" / "pew_intermarriage_2015.csv",
+    pew = pd.read_csv(pew_guard.require_pew_table(),
                       comment="#", dtype={"msa_code": str})
     return float(pew.loc[pew["msa_code"] == "1", "total"].iloc[0]) / 100.0
 
@@ -1072,7 +1073,10 @@ def pew_comparison(lomo: list[dict], pew: pd.DataFrame, pew_nat: float, nat_ours
     corrected and raw error distributions for the three models plus random
     pairing and the observed rate, the paired win counts with a sign test
     (the bar), and the brief's composition check re-derived. Writes the
-    per-metro table to `out_csv`."""
+    per-metro table to `out_csv` -- our predictions only: Pew's values are
+    build-time only and never reach a tracked file (ADR 0012), so the
+    table drops the `pew_total` column and the Jackson record its Pew
+    value."""
     by = {r["cbsa"]: r for r in lomo}
     # Pew comparison, out of sample
     pw = pew.copy()
@@ -1096,7 +1100,7 @@ def pew_comparison(lomo: list[dict], pew: pd.DataFrame, pew_nat: float, nat_ours
     pw["corrected_national_only"] = pw["national_only"] / offset_ratio
     pw["corrected_shrunk_dial"] = pw["shrunk_dial"] / offset_ratio
     pw["corrected_raw_dial"] = pw["raw_dial"] / offset_ratio
-    pw.to_csv(out_csv, index=False)
+    pw.drop(columns=["pew_total"]).to_csv(out_csv, index=False)
     # the bar, read model against model on the SAME metros: paired
     # absolute errors, win counts and a two-sided sign test
     from scipy.stats import binomtest
@@ -1149,8 +1153,7 @@ def pew_comparison(lomo: list[dict], pew: pd.DataFrame, pew_nat: float, nat_ours
                                     **error_summary(err1),
                                     "share_off_by_over_1_5x": round(float(np.nanmean(
                                         np.maximum(one_mult / pw["pew_total"], pw["pew_total"] / one_mult) > 1.5)), 3)},
-        "jackson_ms": ({"pew": float(jackson["pew_total"].iloc[0]),
-                        "one_multiplier_predicted": round(float(one_mult[jackson.index[0]]), 4),
+        "jackson_ms": ({"one_multiplier_predicted": round(float(one_mult[jackson.index[0]]), 4),
                         "national_only_corrected": round(float(jackson["corrected_national_only"].iloc[0]), 4),
                         "shrunk_corrected": round(float(jackson["corrected_shrunk_dial"].iloc[0]), 4),
                         "observed_2020_24": round(float(jackson["observed_2020_24"].iloc[0]), 4)}

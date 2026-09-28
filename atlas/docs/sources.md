@@ -3,8 +3,9 @@
 Every number the site serves comes from one of the sources below. Each one is a
 public dataset from a federal statistical agency, with two exceptions: the city
 and stat-page photographs, which come from Wikimedia Commons under licences
-recorded per image, and one Pew Research Center table that the build reads as a
-check and never serves (listed under "Used as a check only").
+recorded per image, and one Pew Research Center table used at build time only,
+never published and never compared in public (listed under "Used as a check
+only").
 
 The adapters in `atlas/pipeline/adapters/` carry the machine-readable version of
 this list: `source_id`, `vintage` and a `LicenseTerms` record per source, with
@@ -172,15 +173,14 @@ Licence basis: US public domain (17 USC 105); [BLS copyright statement](https://
 
 | Source | Publisher | Why it is here | Link |
 |---|---|---|---|
-| "Intermarriage across the U.S. by metro area" — the share of newlyweds married to someone of a different race or ethnicity, 2011–2015, for the nation and the 124 metros with 200 or more newlyweds in sample | Pew Research Center | Out-of-sample check on the chances-of-matching model (ADR 0009 §4): each metro is left out in turn, its intermarriage rate is predicted from the fitted pairing pattern and its own composition, and the predictions are compared with Pew's. Reported as measured by `build.validate` (soft); never used to choose a kernel, never scored, never shipped — `build.validate` fails (hard) if any derived value reaches the artifact | [pewresearch.org (feature, 18 May 2017)](https://www.pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area/) |
+| "Intermarriage across the U.S. by metro area" — the share of newlyweds married to someone of a different race or ethnicity, 2011–2015, for the nation and the 124 metros with 200 or more newlyweds in sample | Pew Research Center | **Build-time only: never published, and never compared in public** (ADR 0012, Nathan's decision). It was the out-of-sample check on the matching model (ADR 0009 §4) until Phase 4; never used to choose a kernel, never scored, never shipped — `build.validate` fails (hard) if any derived value reaches the artifact | [pewresearch.org (feature, 18 May 2017)](https://www.pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area/) |
 
-Saved as `results/reference/pew_intermarriage_2015.csv` on 16 September 2026 from the
-feature's data endpoint (`https://www.pewresearch.org/wp-json/prc-api/v2/interactive?slug=intermarriage-map`),
-with the source, date and Pew's copyright in the file header. Read outside any
-adapter (by `build.kernel`, `build.kernel_refine` and `build.validate`); registered in
-`adapters/base.py` as `pew_intermarriage`, non-shippable. © Pew Research Center, used
-as a factual reference with attribution; its terms page is among the counsel packet's
-attachments.
+Obtained on 16 September 2026 from the feature's data endpoint. The one copy is
+kept on the build machine, in the gitignored `atlas/data/private/pew/`; in Phase 4
+the table, and every per-metro value copied from it, left the repository and its
+history (`results/phase4/pew_history_scan.json`). Read outside any adapter (by
+`build.kernel` and `build.kernel_refine`); registered in `adapters/base.py` as
+`pew_intermarriage`, non-shippable. © Pew Research Center.
 
 ## Superseded
 

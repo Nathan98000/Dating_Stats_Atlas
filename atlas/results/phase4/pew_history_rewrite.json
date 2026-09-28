@@ -1,0 +1,149 @@
+{
+ "blobs_checked": 1215,
+ "commits_mapped": 75,
+ "commits_new": 75,
+ "commits_old": 75,
+ "pass": true,
+ "problems": [],
+ "redactions": {
+  "Honolulu, PHASE3.md": 1,
+  "Jackson MS restated, PHASE3.md and ADR 0009": 4,
+  "Jackson MS, ADR 0009": 3,
+  "Jackson MS, PHASE3.md": 1,
+  "Jackson MS, PHASE3B.md": 2,
+  "Palm Bay, El Paso, Ogden, Fayetteville NC, Miami, PHASE3.md": 5,
+  "Santa Maria-Santa Barbara, PHASE3.md": 1
+ },
+ "refs": [
+  "refs/heads/main"
+ ],
+ "remote_origin": [],
+ "table_versions_removed": 1,
+ "transformed_paths": {
+  "atlas/PHASE3.md": {
+   "versions": 1,
+   "what": "per-metro figures redacted"
+  },
+  "atlas/PHASE3B.md": {
+   "versions": 2,
+   "what": "per-metro figures redacted"
+  },
+  "atlas/docs/decisions/0009-chances-of-matching-kernel.md": {
+   "versions": 3,
+   "what": "per-metro figures redacted"
+  },
+  "atlas/results/phase3/kernel_report.json": {
+   "versions": 2,
+   "what": "jackson_ms pew value removed"
+  },
+  "atlas/results/phase3/pew_lomo_decay_h10.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3/pew_lomo_decay_h20.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3/pew_lomo_decay_h40.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3/pew_lomo_decay_h5.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3/pew_lomo_recent.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3/pew_lomo_stock.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_lomo_B1_age_cohorts.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_lomo_B2a_race_x_edu.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_lomo_B2b_edu_by_sex.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_lomo_baseline.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_lomo_decay_h5.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_lomo_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3b/pew_rerun_decay_h5.json": {
+   "versions": 1,
+   "what": "jackson_ms pew value removed"
+  },
+  "atlas/results/phase3c/pew_lomo_C1_cohorts_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3c/pew_lomo_C2_edu_by_sex_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3c/pew_lomo_C3_both_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a1/pew_lomo_C1_cohorts_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a1/pew_lomo_C2_edu_by_sex_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a1/pew_lomo_C3_both_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a1/pew_lomo_baseline.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a1/pew_lomo_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a2/pew_lomo_B2a_race_x_edu.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a2/pew_lomo_C1_cohorts_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a2/pew_lomo_C2_edu_by_sex_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a2/pew_lomo_C3_both_plus_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a2/pew_lomo_baseline.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  },
+  "atlas/results/phase3d/speedup/a2/pew_lomo_shipped.csv": {
+   "versions": 1,
+   "what": "Pew columns stripped"
+  }
+ },
+ "unchanged_commits": 20
+}

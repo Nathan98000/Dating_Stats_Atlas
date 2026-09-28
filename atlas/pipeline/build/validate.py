@@ -83,6 +83,7 @@ from atlas.model.preferences import (ALLOWED_MARITAL, EDU_LEVELS, RACE_LEVELS,
 from atlas.model.scoring import match_index, score_vector
 from atlas.model.suppression import POLICY_STRINGS
 from atlas.pipeline.build import stability_gate as SG
+from atlas.pipeline.build.pew_guard import PEW_TABLE
 from atlas.pipeline.build.pool import open_pool
 from atlas.pipeline.fetch import DATA, RESULTS, api_get
 
@@ -98,7 +99,7 @@ DIFF_REL_TOL = 1e-3        # float32 cube accumulation vs float64 SQL
 ALLOWED_REASONS = {"n_below_100", "empty_pool"}
 BANNED = re.compile(r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
                     re.IGNORECASE)
-PEW_CSV = RESULTS / "reference" / "pew_intermarriage_2015.csv"
+PEW_CSV = PEW_TABLE      # private, build machine only (ADR 0012; pew_guard)
 KERNEL_REPORT = RESULTS / "phase3" / "kernel_report.json"
 CUBE_TO_SPEC = {v: k for k, v in engine.SPEC_RACE.items()}
 
