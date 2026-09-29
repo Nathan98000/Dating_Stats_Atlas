@@ -64,8 +64,9 @@ export function CityVariantPart({
           <div className="min-w-[220px]">
             <BalanceTally balance={ranked.balance} compact />
           </div>
-          {/* the compatibility figure beside pool and balance */}
-          <MatchFigure match={ranked.match} meta={meta} id={`match-${cbsa}`} />
+          {/* the compatibility figure beside pool and balance (no box or
+              band since Phase 4b) */}
+          <MatchFigure match={ranked.match} meta={meta} />
         </div>
         <p className="max-w-[72ch] text-sm text-ink-2">{ranked.summary_line}</p>
       </section>

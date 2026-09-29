@@ -24,8 +24,8 @@ type Sex = "male" | "female";
 export interface AboutYou {
   sex?: Sex;
   edu?: (typeof EDU)[number];
-  /** the race switch: off unless the visitor turns it on */
-  raceOn?: boolean;
+  /** Phase 4b (ADR 0018 amended): a stored race means race is on — the
+   * select's default, "Prefer not to say", stores none */
   race?: string;
 }
 
@@ -34,7 +34,7 @@ export interface AboutYou {
  * variant changes stay hidden until the client has selected the stored
  * variant — a blank for a moment rather than a list that reorders under
  * the visitor. The timeout un-hides them if scripts never arrive. */
-export const PRE_PAINT_SCRIPT = `(function(){try{var d=document.documentElement,s=localStorage.getItem(${JSON.stringify(ABOUT_YOU_KEY)}),a=s?JSON.parse(s):null,u=new URLSearchParams(location.search);if((a&&(a.sex||a.edu||a.raceOn))||${JSON.stringify(LEGACY_ABOUT_YOU_PARAMS)}.some(function(k){return u.has(k)})||/(?:^|;\\s*)dsa_prefs=[^;]*self_/.test(document.cookie)){d.setAttribute(${JSON.stringify(PENDING_ATTR)},"pending");setTimeout(function(){d.removeAttribute(${JSON.stringify(PENDING_ATTR)})},4000)}}catch(e){}})();`;
+export const PRE_PAINT_SCRIPT = `(function(){try{var d=document.documentElement,s=localStorage.getItem(${JSON.stringify(ABOUT_YOU_KEY)}),a=s?JSON.parse(s):null,u=new URLSearchParams(location.search);if((a&&(a.sex||a.edu||a.race))||${JSON.stringify(LEGACY_ABOUT_YOU_PARAMS)}.some(function(k){return u.has(k)})||/(?:^|;\\s*)dsa_prefs=[^;]*self_/.test(document.cookie)){d.setAttribute(${JSON.stringify(PENDING_ATTR)},"pending");setTimeout(function(){d.removeAttribute(${JSON.stringify(PENDING_ATTR)})},4000)}}catch(e){}})();`;
 
 export function opposite(sex: Sex): Sex {
   return sex === "male" ? "female" : "male";
@@ -45,28 +45,36 @@ export function effectiveSex(a: AboutYou, sought: Sex): Sex {
   return a.sex ?? opposite(sought);
 }
 
-/** The race the figure uses: only with the switch on and a group chosen. */
+/** The race the figure uses: the group the visitor chose, if any. */
 export function raceUsed(a: AboutYou): string | undefined {
-  return a.raceOn && a.race ? a.race : undefined;
+  return a.race;
 }
 
+/** m4.0.0 stored the race switch beside the race ({raceOn, race}); the
+ * race counted only with the switch on. Such an object reads as the same
+ * choice without the switch: its race if the switch was on, none if it
+ * was off or on with no group chosen. */
 export function parseAboutYou(raw: unknown): AboutYou {
   const out: AboutYou = {};
   if (!raw || typeof raw !== "object") return out;
   const r = raw as Record<string, unknown>;
   if (r.sex === "male" || r.sex === "female") out.sex = r.sex;
   if ((EDU as readonly unknown[]).includes(r.edu)) out.edu = r.edu as AboutYou["edu"];
-  if (r.raceOn === true) {
-    out.raceOn = true;
-    if ((RACES as readonly unknown[]).includes(r.race)) out.race = r.race as string;
-  }
+  const switchedOff = "raceOn" in r && r.raceOn !== true;
+  if (!switchedOff && (RACES as readonly unknown[]).includes(r.race)) out.race = r.race as string;
   return out;
 }
 
+/** Reads the stored details; an m4.0.0 object ({raceOn, race}) is
+ * migrated on read — rewritten in the current shape, without the switch. */
 export function readAboutYou(): AboutYou {
   try {
     const s = window.localStorage.getItem(ABOUT_YOU_KEY);
-    return s ? parseAboutYou(JSON.parse(s)) : {};
+    if (!s) return {};
+    const raw = JSON.parse(s);
+    const about = parseAboutYou(raw);
+    if (raw && typeof raw === "object" && "raceOn" in raw) writeAboutYou(about);
+    return about;
   } catch {
     return {};
   }
@@ -97,8 +105,7 @@ function legacyInto(a: AboutYou, get: (k: string) => string | null): {
     next.edu = edu as AboutYou["edu"];
   }
   const race = get("self_race");
-  if (!next.raceOn && (RACES as readonly (string | null)[]).includes(race)) {
-    next.raceOn = true;
+  if (!next.race && (RACES as readonly (string | null)[]).includes(race)) {
     next.race = race as string;
   }
   return { about: next, sex: legacySex };

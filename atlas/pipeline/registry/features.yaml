@@ -170,27 +170,23 @@ strings:
   home_subtitle: >-
     Select who you're looking for and what matters to you. Find out how
     many people match your search in each city based on Census data.
-  # m3.0.0 (ADR 0009): Nathan's wording, verbatim
+  # Nathan's wording, verbatim (m3.0.0, ADR 0009; rewritten by Nathan in
+  # Phase 4b). The side panel's "What matters more to you?" box, the one
+  # explanation of the compatibility figure since Phase 4b (the figure
+  # carries no box of its own); on a same-sex search the box also shows
+  # the served same-sex sentence (match_same_sex_note below).
   slider_info: >-
     Leaning towards size favors larger cities with the most possible
-    matches. Leaning towards compatibility favors cities where the people
-    who match your search line up more closely with you on age and
-    education, and on background if you include yours, based on
-    historical Census marriage data.
-  # the compatibility figure's information box (Nathan's, rewritten in
-  # m4.0.0 for the rename and race off by default, ADR 0018) and the
-  # plain-words account of the kernel it links to (registry-owned; also
-  # the methodology page's section). The account names all three inputs
+    matches. Leaning towards compatibility favors cities with people who
+    match your search more closely on age, education, and background,
+    based on historical Census couples data.
+  # the plain-words account of the kernel (registry-owned; also the
+  # methodology page's section, rewritten in m4.0.0 for the rename and
+  # race off by default, ADR 0018). The account names all three inputs
   # in one sentence and register — what it is built from, what it
   # measures, and that it is an aggregate pattern rather than a statement
-  # about an individual.
-  match_info: >-
-    This compares the people who match your search against the pattern of
-    who actually forms couples in Census data: the age gaps and the
-    education pairings that occur, and the racial and ethnic pairings too
-    if you include your race or ethnicity. A higher number means the people
-    here are more like the people who typically pair with someone in your
-    situation.
+  # about an individual. The figure's own information box and its link
+  # here (match_info, match_how_link) left in Phase 4b.
   match_how: >-
     The compatibility figure is built from real couples in the Census
     Bureau's household survey, using each partner's age and education, and
@@ -205,20 +201,20 @@ strings:
     your sex, age and education, and background if you include it. It is an
     aggregate pattern from recent unions, not a prediction about any one
     person, and 100 is the US average for your search.
-  match_how_link: "How this is measured"
   match_unit_line: "where 100 is the US average"
   # m3.1.0 (Phase 3b, A3): the DISPLAY ceiling for the compatibility figure
   # and the token appended above it. Presentational only: the feature is
   # percentile-ranked, so no score, rank, standing or band reads the
   # display (asserted in the engine tests); a figure above the ceiling
-  # renders as the ceiling plus the token and the band label carries
-  # the rest. The compare table shows no difference against a capped
-  # figure.
+  # renders as the ceiling plus the token (the API still serves its band;
+  # since Phase 4b no band words render beside the figure). The compare
+  # table shows no difference against a capped figure.
   match_display_cap: "250"
   match_display_cap_token: "+"
   # m3.2.0 (Phase 3b, B3): the one sentence a same-sex search carries in
   # its information box, saying whose pairing patterns the figure is
-  # built from. The API serves the first when the shipped kernel carries
+  # built from (since Phase 4b the side panel's slider box, slider_info
+  # above; served as match.note / variants.same_sex_note). The API serves the first when the shipped kernel carries
   # same-sex terms (naming which components they cover) and the second
   # when every component falls back to opposite-sex couples. m3.3.0
   # (Phase 3c, B2): the sentence names age and education as measured on
@@ -236,26 +232,24 @@ strings:
     racial and ethnic pairings all come from opposite-sex couples, because
     same-sex couples in the survey are too few to measure them on their
     own.
-  # the two optional "about you" inputs (m3.0.0): labels, the one-line
-  # note saying why they are asked and that they are optional, the
-  # unset option and the four education levels
+  # the two optional "about you" inputs (m3.0.0): labels, the unset
+  # option and the four education levels. Phase 4b (Nathan's changes 1
+  # and 2, ADR 0018 amended): race is one select whose first option,
+  # prefer_not_to_say, is the default and means race is not used; the
+  # panel carries no note beside the inputs (the Privacy page says where
+  # the details go), so the m4.0.0 note, the race switch's label and
+  # notices and the select's empty option are gone
   self_edu_label: "My education"
   self_race_label: "My race or ethnicity"
   prefer_not_to_say: "Prefer not to say"
-  about_you_note: >-
-    Your sex, education and race or ethnicity stay in this browser and are
-    never sent to us. Education is optional and feeds only the
-    compatibility figure; leave it unset and the average for people of
-    your age and sex is used instead.
-  # m4.0.0 (ADR 0018): the race switch — off by default; its notice is
-  # the brief's draft wording; on a same-sex search it says race is not
-  # used
-  self_race_switch_label: "Include my race or ethnicity"
-  self_race_switch_note: >-
-    Off unless you turn it on. Your answer stays in this browser and is
-    never sent to us.
-  self_race_same_sex_note: "Not used in a same-sex search."
-  self_race_choose: "Choose one"
+  # Phase 4b (Nathan's change 3): the side panel's two sections — the
+  # visitor's own details, then the people they are looking for (the
+  # headings are drafts for Nathan's approval)
+  panel_about_you_heading: "About you"
+  panel_looking_for_heading: "Who you're looking for"
+  # Phase 4b (Nathan's change 7): the label the overall score carries on
+  # every result row and in the compare table
+  overall_score_label: "Overall score"
   # m4.0.0 (Nathan's decisions 7-9): the About us page — its title, the
   # links near the top (What we measure prominently), and the labels of
   # the one Sources and credits section every source and photograph

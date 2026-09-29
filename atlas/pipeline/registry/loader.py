@@ -296,22 +296,33 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             f"strings.{gone} was deleted in Phase 2f (items 8.1/9.1) — "
             f"the pages open straight into their content now")
     # m3.0.0 (ADR 0009): every new user-facing string of the phase lives
-    # here — the information box, the kernel account, the two optional
-    # inputs' labels and note, the four education levels
-    for need_key in ("match_info", "match_how", "match_how_link",
-                     "match_unit_line", "self_edu_label", "self_race_label",
-                     "prefer_not_to_say", "about_you_note", "edu_hs_or_less",
+    # here — the kernel account, the two optional inputs' labels, the four
+    # education levels
+    for need_key in ("match_how", "match_unit_line", "self_edu_label", "self_race_label",
+                     "prefer_not_to_say", "edu_hs_or_less",
                      "edu_some_college", "edu_bachelors", "edu_graduate"):
         assert strings.get(need_key), f"strings.{need_key} is required (m3.0.0)"
     assert "compatibility" in strings["slider_info"] and "balance favors" not in strings["slider_info"], (
         "slider_info must describe the compatibility pole (ADR 0009, renamed by ADR 0018)")
-    # m4.0.0 (ADR 0018): the race switch's label and notices
-    for need_key in ("self_race_switch_label", "self_race_switch_note", "self_race_same_sex_note",
-                     "self_race_choose", "about_title", "about_measure_link", "about_crime_link",
+    # m4.0.0 (ADR 0018): About us and its Sources and credits section
+    for need_key in ("about_title", "about_measure_link", "about_crime_link",
                      "about_privacy_link", "credits_heading", "credits_data_heading",
                      "credits_photos_heading", "credits_photos_more", "credits_source",
                      "credits_cropped"):
         assert strings.get(need_key), f"strings.{need_key} is required (m4.0.0)"
+    # Phase 4b (ADR 0018 amended, Nathan's changes): the panel's two
+    # section headings and the overall score's label; race is one select
+    # defaulting to prefer_not_to_say, the panel carries no inline note,
+    # and the compatibility figure has no information box of its own — so
+    # the switch's strings, the "about you" note and the figure's box and
+    # link are GONE rather than orphaned
+    for need_key in ("panel_about_you_heading", "panel_looking_for_heading",
+                     "overall_score_label"):
+        assert strings.get(need_key), f"strings.{need_key} is required (Phase 4b)"
+    for gone in ("self_race_switch_label", "self_race_switch_note", "self_race_same_sex_note",
+                 "self_race_choose", "about_you_note", "match_info", "match_how_link"):
+        assert gone not in strings, (
+            f"strings.{gone} was removed in Phase 4b (ADR 0018 amended)")
     # m3.1.0 (Phase 3b, A3): the match figure's display ceiling and its
     # token are registry-owned; the ceiling is a positive number
     for need_key in ("match_display_cap", "match_display_cap_token"):

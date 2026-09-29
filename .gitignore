@@ -98,3 +98,7 @@ atlas/results/phase4/snapshot_m3_5_0.json
 # Phase 4 Stage 5a fit store (the 3c/3d pattern): npz fit stores, chain scripts, run logs
 atlas/results/phase4/kernel/_*
 atlas/results/phase4/kernel/*_run.log
+
+# Phase 4b working files (the Phase 4 pattern): chain scripts, run logs
+atlas/results/phase4b/_*
+atlas/results/phase4b/*_run.log

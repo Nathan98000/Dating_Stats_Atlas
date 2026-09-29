@@ -1,11 +1,12 @@
 # ADR 0018 — Compatibility; race off by default; same-sex searches without race; "about you" in the browser
 
 Date: 2026-09-28 (Phase 4, Stage 5)
-Status: accepted. Every decision below is **Nathan's decision** (decisions
-1–5 of the Phase 4 brief). The measured parts — the race-free form's
-held-out cost, the payload and latency of the variant design, the rank
-shift, the stability gate's reading and the reference move — are recorded
-in the "At the ship" section when m4.0.0 ships.
+Status: accepted; amended 2026-09-29 (Phase 4b, below). Every decision
+below is **Nathan's decision** (decisions 1–5 of the Phase 4 brief; the
+Phase 4b changes after his review of the home page). The measured parts —
+the race-free form's held-out cost, the payload and latency of the variant
+design, the rank shift, the stability gate's reading and the reference
+move — are recorded in the "At the ship" section when m4.0.0 ships.
 
 ## 1. The figure is renamed "Compatibility"
 
@@ -143,3 +144,41 @@ and passes; with every replicate's deviation scaled by 1.5 it reads
 and its validation report search for search. Every other hard gate passes
 (`validation_report_m4_0_0.json`: eleven of eleven, the new variant gate
 among them).
+
+## Amended in Phase 4b (2026-09-29): the panel and the figure
+
+Nathan reviewed the home page after m4.0.0 and changed how the panel asks
+for the visitor's details and how the figure is presented. Nothing the
+API computes changes: every served number, every variant and the goldens
+are as m4.0.0 ships them (build 5b780e4f2444, its manifest refreshed in
+place for the registry strings). These are **Nathan's decisions**.
+
+- **The opt-in is the race select's default.** The race switch and the
+  select it revealed become one select, "My race or ethnicity", whose
+  first option, selected by default, is "Prefer not to say": race is not
+  used. Choosing one of the eight groups turns race on — still an active
+  choice by the visitor, as §2 requires — and there is no separate
+  switch. The browser keeps a race only when one is chosen, so a stored
+  race means race is on; a detail stored by m4.0.0 (`{raceOn, race}`)
+  reads as the same choice, and is rewritten without the switch when it
+  is read. On a same-sex search the select is disabled and keeps its
+  value (§3: the figure uses no race there).
+- **No inline notes about where the details go.** The panel carries no
+  note beside the visitor's details — the "about you" note and the
+  switch's notices leave the panel and the registry — because the Privacy
+  page explains it. §4 is unchanged: the details never leave the browser.
+- **The same-sex note sits in the side panel's information box.** The box
+  beside "What matters more to you?" carries Nathan's text and, on a
+  same-sex search only, the served same-sex sentence (the rows'
+  `match.note`, `strings.match_same_sex_note`); the loader still holds
+  that sentence to the kernel's same-sex components.
+- **The compatibility figure shows no information box and no band
+  words** — on the result rows, the city page and the compare table. The
+  number against 100 says where a city stands, and the panel's box is the
+  one explanation. The API still sends the band; every other figure keeps
+  its band words.
+
+Beside these, the panel is split into two labelled sections, "About you"
+and "Who you're looking for", and the overall score carries the label
+"Overall score" on every result row and in the compare table. The strings
+added, changed and removed are listed in `PHASE4B.md`.

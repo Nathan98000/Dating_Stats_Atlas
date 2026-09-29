@@ -1,0 +1,147 @@
+{
+ "phase": "4b",
+ "note": "Every string added, changed, removed, moved or reused in Phase 4b, old -> new. Registry strings reach the page through /v1/meta; the one string typed in code (the compare row label) now comes from the registry.",
+ "changes": [
+  {
+   "change": "change 2",
+   "kind": "removed",
+   "where": "registry strings.about_you_note",
+   "old": "Your sex, education and race or ethnicity stay in this browser and are never sent to us. Education is optional and feeds only the compatibility figure; leave it unset and the average for people of your age and sex is used instead.",
+   "new": "(removed)",
+   "why": "change 2: no note beside the visitor's details; the Privacy page explains where they go (ADR 0018 amended)"
+  },
+  {
+   "change": "change 5",
+   "kind": "removed",
+   "where": "registry strings.match_how_link",
+   "old": "How this is measured",
+   "new": "(removed)",
+   "why": "change 5: used only by the figure's information box (its link to About us)"
+  },
+  {
+   "change": "change 5",
+   "kind": "removed",
+   "where": "registry strings.match_info",
+   "old": "This compares the people who match your search against the pattern of who actually forms couples in Census data: the age gaps and the education pairings that occur, and the racial and ethnic pairings too if you include your race or ethnicity. A higher number means the people here are more like the people who typically pair with someone in your situation.",
+   "new": "(removed)",
+   "why": "change 5: the compatibility figure has no information box; the side panel's slider box is the explanation"
+  },
+  {
+   "change": "change 1",
+   "kind": "removed",
+   "where": "registry strings.self_race_choose",
+   "old": "Choose one",
+   "new": "(removed)",
+   "why": "change 1: the select's first option is \"Prefer not to say\" (strings.prefer_not_to_say), not an empty choice"
+  },
+  {
+   "change": "change 1",
+   "kind": "removed",
+   "where": "registry strings.self_race_same_sex_note",
+   "old": "Not used in a same-sex search.",
+   "new": "(removed)",
+   "why": "change 1: on a same-sex search the select is disabled and keeps its value; the explanation is the same-sex sentence in the slider's box (change 4)"
+  },
+  {
+   "change": "change 1",
+   "kind": "removed",
+   "where": "registry strings.self_race_switch_label",
+   "old": "Include my race or ethnicity",
+   "new": "(removed)",
+   "why": "change 1: race is one select, \"Prefer not to say\" by default; no switch (ADR 0018 amended)"
+  },
+  {
+   "change": "change 1",
+   "kind": "removed",
+   "where": "registry strings.self_race_switch_note",
+   "old": "Off unless you turn it on. Your answer stays in this browser and is never sent to us.",
+   "new": "(removed)",
+   "why": "change 1: no note beside the race select about how the answer is used (ADR 0018 amended)"
+  },
+  {
+   "change": "change 4",
+   "kind": "changed",
+   "where": "registry strings.slider_info (the \"What matters more to you?\" information box)",
+   "old": "Leaning towards size favors larger cities with the most possible matches. Leaning towards compatibility favors cities where the people who match your search line up more closely with you on age and education, and on background if you include yours, based on historical Census marriage data.",
+   "new": "Leaning towards size favors larger cities with the most possible matches. Leaning towards compatibility favors cities with people who match your search more closely on age, education, and background, based on historical Census couples data.",
+   "why": "change 4: Nathan's text, verbatim; on a same-sex search the box also shows the served same-sex sentence"
+  },
+  {
+   "change": "change 3",
+   "kind": "added",
+   "where": "registry strings.panel_about_you_heading (the panel's first section heading; draft for Nathan's approval)",
+   "old": "(new)",
+   "new": "About you",
+   "why": "change 3: the visitor's own details in one labelled section"
+  },
+  {
+   "change": "change 3",
+   "kind": "added",
+   "where": "registry strings.panel_looking_for_heading (the panel's second section heading; draft for Nathan's approval)",
+   "old": "(new)",
+   "new": "Who you're looking for",
+   "why": "change 3: the search in one labelled section"
+  },
+  {
+   "change": "change 7",
+   "kind": "added",
+   "where": "registry strings.overall_score_label (each result row, above the score and its \"out of 100\")",
+   "old": "(new)",
+   "new": "Overall score",
+   "why": "change 7: the overall score is labelled on every row"
+  },
+  {
+   "change": "change 7",
+   "kind": "changed",
+   "where": "the compare table's score row label (typed in web/src/components/compare-variant.tsx; now strings.overall_score_label)",
+   "old": "Score out of 100",
+   "new": "Overall score",
+   "why": "change 7: the same label as the rows"
+  },
+  {
+   "change": "change 6",
+   "kind": "no longer shown",
+   "where": "registry features.match_propensity.band_labels, under the compatibility figure (result rows, city page, compare table)",
+   "old": "Far below most cities / Below most cities / About average / Above most cities / Far above most cities",
+   "new": "(not shown with the figure; the registry keeps them and the API still sends the band)",
+   "why": "change 6: the number against 100 already says where a city stands; other figures keep their band words"
+  },
+  {
+   "change": "change 4",
+   "kind": "moved",
+   "where": "registry strings.match_same_sex_note (served as match.note / variants.same_sex_note)",
+   "old": "in the compatibility figure's information box, on a same-sex search",
+   "new": "in the side panel's slider information box, on a same-sex search only; wording unchanged: For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are not used, even if you include your race or ethnicity.",
+   "why": "change 4/5: the figure has no box of its own"
+  },
+  {
+   "change": "change 1",
+   "kind": "reused",
+   "where": "registry strings.prefer_not_to_say and strings.self_race_label",
+   "old": "\"Prefer not to say\": the education select's unset option; \"My race or ethnicity\": the label of the select the switch revealed",
+   "new": "\"Prefer not to say\" is also the race select's first option and default (race not used); \"My race or ethnicity\" labels the one race select. Wording unchanged.",
+   "why": "change 1"
+  }
+ ],
+ "draft_headings_for_approval": [
+  "About you",
+  "Who you're looking for"
+ ],
+ "docs_that_no_longer_fit": [
+  {
+   "where": "docs/privacy.md, \"About you\" (the Privacy page)",
+   "text": "Your race or ethnicity is used only if you switch it on.",
+   "why": "there is no switch now: race is used only if a group is chosen in \"My race or ethnicity\" (the default, \"Prefer not to say\", uses none); listed, not rewritten"
+  },
+  {
+   "where": "docs/methodology.md, the compatibility section (About us)",
+   "text": "Your race or ethnicity is used only if you switch it on, and then only for this figure; with it off, the figure uses no racial or ethnic pairing at all.",
+   "why": "names the removed switch (\"switch it on\", \"with it off\"); the behaviour it describes still holds; listed, not rewritten"
+  },
+  {
+   "where": "docs/methodology.md, \"What do the race and ethnicity boxes do?\" (About us)",
+   "text": "Your own race or ethnicity is a separate setting: it is off unless you switch it on, stays in your browser, and affects only the compatibility figure.",
+   "why": "names the removed switch; the rest holds; listed, not rewritten"
+  }
+ ]
+}

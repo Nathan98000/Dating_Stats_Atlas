@@ -1,0 +1,99 @@
+{
+ "pytest": {
+  "tests": 122,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 122
+ },
+ "vitest": {
+  "tests": 91,
+  "passed": 91,
+  "failed": 0,
+  "files": {
+   "about-you.test.ts": 7,
+   "permalink.test.ts": 20,
+   "search.test.ts": 21,
+   "tones.test.ts": 11,
+   "variants.test.ts": 32
+  }
+ },
+ "e2e": {
+  "tests": 102,
+  "passed": 102,
+  "failed": 0,
+  "flaky": 0,
+  "unexpected": 0,
+  "by_file": {
+   "a11y.spec.ts": 12,
+   "panel.spec.ts": 4,
+   "permalink-and-compare.spec.ts": 3,
+   "phase2d-pages.spec.ts": 7,
+   "phase2e.spec.ts": 8,
+   "phase2f.spec.ts": 11,
+   "phase2g.spec.ts": 3,
+   "phase3.spec.ts": 6,
+   "phase3b.spec.ts": 3,
+   "phase4b.spec.ts": 8,
+   "privacy.spec.ts": 14,
+   "ranking.spec.ts": 8,
+   "states-and-city.spec.ts": 15
+  }
+ },
+ "axe": {
+  "runs": 12,
+  "clean": 12,
+  "rule": "zero serious or critical violations, WCAG 2.0/2.1 A and AA tags",
+  "pages": [
+   "home",
+   "results narrowed",
+   "city page",
+   "narrow search",
+   "compare",
+   "compare landing",
+   "stat page",
+   "what we measure",
+   "about us",
+   "privacy",
+   "about crime data",
+   "a same-sex search with the race select set aside and the slider's box open"
+  ]
+ },
+ "banned_vocabulary_pages": {
+  "page_shapes": 12,
+  "clean": 12,
+  "pages": [
+   "home",
+   "results, narrowed",
+   "narrow state",
+   "city page",
+   "compare",
+   "compare landing",
+   "stat page",
+   "stat page, population",
+   "crime explainer",
+   "what we measure",
+   "about us",
+   "privacy"
+  ]
+ },
+ "phase4b_spec": [
+  "the panel has two labelled sections: About you, then Who you're looking for",
+  "race is one select, Prefer not to say by default; a group selects its variant with no request",
+  "none of the removed notes appears anywhere on the home page",
+  "the slider's box reads the registry string exactly, with the same-sex sentence only on a same-sex search",
+  "the compatibility figure has no information box and no band words: home rows, the city card, compare",
+  "every home row and the compare table label the overall score",
+  "a visitor's m4.0.0 details ({raceOn, race}) migrate: the same choice, stored without the switch",
+  "axe: a same-sex search with the race select set aside and the slider's box open"
+ ],
+ "phase4b_unit": [
+  "a stored race means race is on; none means Prefer not to say",
+  "drops values the site does not offer",
+  "an m4.0.0 object reads as the same choice without the switch",
+  "every m4.0.0 shape selects the race m4.0.0 used",
+  "migrates a stored m4.0.0 object on read, rewriting it without the switch",
+  "leaves a current object as it is",
+  "Prefer not to say removes the race from storage"
+ ]
+}

@@ -31,15 +31,41 @@ function Field({ label, htmlFor, children }: {
   );
 }
 
+/** A panel section (Phase 4b, Nathan's change 3): a fieldset whose legend
+ * is a real heading, so a screen reader meets the same two groups — and
+ * can jump between them by heading — that the eye sees. A divided
+ * section opens with a rule; it sits on a wrapper, since a fieldset's
+ * own border would run through its legend. */
+function Section({ heading, testid, divided = false, children }: {
+  heading: string; testid: string; divided?: boolean; children: React.ReactNode;
+}) {
+  return (
+    <div className={divided ? "border-t border-rule pt-6" : undefined}>
+      <fieldset className="min-w-0" data-testid={testid}>
+        <legend className="mb-4 p-0">
+          <h2 className="font-display text-[19px] font-semibold leading-tight text-ink">
+            {heading}
+          </h2>
+        </legend>
+        <div className="flex flex-col gap-4">{children}</div>
+      </fieldset>
+    </div>
+  );
+}
+
 /** The HomeV3 panel: the whole scoring model plus the whole search, with
  * no hidden defaults. Sends choices, never weights (item 5). m4.0.0 (ADR
- * 0018): "I'm a", "My education" and the race switch are the visitor's
- * own details — kept in this browser by the page and never sent; the
- * race switch is off unless the visitor turns it on. */
+ * 0018): "I'm a", "My education" and "My race or ethnicity" are the
+ * visitor's own details — kept in this browser by the page and never
+ * sent. Phase 4b (ADR 0018 amended): two sections, "About you" and "Who
+ * you're looking for", then the weighting; race is one select whose
+ * default, "Prefer not to say", means race is not used; no note sits
+ * beside the details (the Privacy page explains where they go). */
 export function SearchPanel({
   prefs,
   meta,
   onChange,
+  sameSex,
   sameSexNote,
   about,
   selfSex,
@@ -50,7 +76,10 @@ export function SearchPanel({
   prefs: Prefs;
   meta: Meta;
   onChange: (next: Prefs) => void;
-  sameSexNote: boolean;
+  sameSex: boolean;
+  /** the served same-sex sentence (the rows' match.note), shown in the
+   * slider's box on a same-sex search only */
+  sameSexNote: string;
   about: AboutYou;
   selfSex: "male" | "female";
   onSelfSex: (sex: "male" | "female") => void;
@@ -72,7 +101,7 @@ export function SearchPanel({
 
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-rule bg-surface p-6">
-      <div className="flex flex-col gap-4">
+      <Section heading={policy.panel_about_you_heading} testid="about-you-section">
         <div className="grid grid-cols-[1fr_96px] gap-3">
           <div data-variant="">
             <Field label="I'm a" htmlFor={`${uid}-you`}>
@@ -101,74 +130,49 @@ export function SearchPanel({
         {/* m3.0.0: OPTIONAL inputs about the visitor; since m4.0.0 (ADR
             0018) kept in this browser and never sent. Education unset means
             the average for the visitor's sex and age; race is used only
-            with the switch on, and never on a same-sex search. Labels,
-            levels and notes all come from /v1/meta. */}
-        <div className="flex flex-col gap-2" data-testid="about-you" data-variant="">
-          {/* stacked, not side by side: the registry's option wording
-              ("Prefer not to say", "High school or less") does not fit a
-              half-width select in the 360px panel */}
-          <div className="flex flex-col gap-3">
-            <Field label={policy.self_edu_label} htmlFor={`${uid}-selfedu`}>
-              <select
-                id={`${uid}-selfedu`}
-                className="ctl"
-                data-testid="self-edu"
-                value={about.edu ?? ""}
-                onChange={(e) =>
-                  onAbout({ ...about, edu: (e.target.value || undefined) as SelfEdu | undefined })
-                }
-              >
-                <option value="">{policy.prefer_not_to_say}</option>
-                {SELF_EDU_LEVELS.map((lv) => (
-                  <option key={lv} value={lv}>{policy[`edu_${lv}`]}</option>
-                ))}
-              </select>
-            </Field>
-            <div className="flex flex-col gap-1.5" data-testid="race-switch-block">
-              <label className="flex cursor-pointer items-center gap-2.5 text-[13px] font-semibold text-ink-2">
-                <input
-                  type="checkbox"
-                  role="switch"
-                  className="check"
-                  data-testid="self-race-switch"
-                  checked={Boolean(about.raceOn)}
-                  aria-describedby={`${uid}-racenote`}
-                  onChange={(e) =>
-                    onAbout(e.target.checked
-                      ? { ...about, raceOn: true }
-                      : { ...about, raceOn: undefined, race: undefined })
-                  }
-                />
-                {policy.self_race_switch_label}
-              </label>
-              <p id={`${uid}-racenote`} className="text-[12px] leading-snug text-ink-3" data-testid="self-race-note">
-                {sameSexNote && about.raceOn
-                  ? policy.self_race_same_sex_note
-                  : policy.self_race_switch_note}
-              </p>
-              {about.raceOn ? (
-                <Field label={policy.self_race_label} htmlFor={`${uid}-selfrace`}>
-                  <select
-                    id={`${uid}-selfrace`}
-                    className="ctl"
-                    data-testid="self-race"
-                    value={about.race ?? ""}
-                    onChange={(e) => onAbout({ ...about, race: e.target.value || undefined })}
-                  >
-                    <option value="">{policy.self_race_choose}</option>
-                    {raceGroups.map((g) => (
-                      <option key={g.id} value={g.id}>{g.label}</option>
-                    ))}
-                  </select>
-                </Field>
-              ) : null}
-            </div>
-          </div>
-          <p className="text-[12px] leading-snug text-ink-3" data-testid="about-you-note">
-            {policy.about_you_note}
-          </p>
+            when a group is chosen, and never on a same-sex search (there
+            the select keeps its value, set aside). Stacked, not side by
+            side: the registry's option wording ("Prefer not to say", "High
+            school or less") does not fit a half-width select in the 360px
+            panel. Labels and levels come from /v1/meta. */}
+        <div data-variant="">
+          <Field label={policy.self_edu_label} htmlFor={`${uid}-selfedu`}>
+            <select
+              id={`${uid}-selfedu`}
+              className="ctl"
+              data-testid="self-edu"
+              value={about.edu ?? ""}
+              onChange={(e) =>
+                onAbout({ ...about, edu: (e.target.value || undefined) as SelfEdu | undefined })
+              }
+            >
+              <option value="">{policy.prefer_not_to_say}</option>
+              {SELF_EDU_LEVELS.map((lv) => (
+                <option key={lv} value={lv}>{policy[`edu_${lv}`]}</option>
+              ))}
+            </select>
+          </Field>
         </div>
+        <div data-variant="">
+          <Field label={policy.self_race_label} htmlFor={`${uid}-selfrace`}>
+            <select
+              id={`${uid}-selfrace`}
+              className="ctl"
+              data-testid="self-race"
+              value={about.race ?? ""}
+              disabled={sameSex}
+              onChange={(e) => onAbout({ ...about, race: e.target.value || undefined })}
+            >
+              <option value="">{policy.prefer_not_to_say}</option>
+              {raceGroups.map((g) => (
+                <option key={g.id} value={g.id}>{g.label}</option>
+              ))}
+            </select>
+          </Field>
+        </div>
+      </Section>
 
+      <Section heading={policy.panel_looking_for_heading} testid="looking-for-section" divided>
         <Field label="I'm looking for" htmlFor={`${uid}-seek`}>
           <select
             id={`${uid}-seek`}
@@ -298,7 +302,7 @@ export function SearchPanel({
             })}
           </div>
         </fieldset>
-      </div>
+      </Section>
 
       {/* Phase 2f item 4.5: the slider sits WITH the other weighting
           control — one bordered group, the slider immediately above
@@ -310,12 +314,23 @@ export function SearchPanel({
             <label htmlFor={`${uid}-svo`} className="text-sm font-semibold">
               What matters more to you?
             </label>
+            {/* Phase 4b: the one explanation of the compatibility figure
+                (the figure has no box of its own); a same-sex search adds
+                the served sentence saying whose pairing patterns it uses */}
             <InfoTip
               id={`${uid}-svo-info`}
               label="What the slider changes"
               testid="slider-info"
             >
               {meta.policy_strings.slider_info}
+              {sameSex && sameSexNote ? (
+                <>
+                  {" "}
+                  <span className="mt-2 block" data-testid="slider-same-sex-note">
+                    {sameSexNote}
+                  </span>
+                </>
+              ) : null}
             </InfoTip>
           </div>
           <input
@@ -334,7 +349,7 @@ export function SearchPanel({
             <span>{poles.low}</span>
             <span>{poles.high}</span>
           </div>
-          {sameSexNote && (
+          {sameSex && (
             <p className="text-[12.5px] leading-relaxed text-ink-3">
               {meta.policy_strings.balance_same_sex}
             </p>

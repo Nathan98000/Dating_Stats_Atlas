@@ -6,13 +6,13 @@ import { seedAboutYou } from "./helpers";
  * appears — result rows, the city page, the compare table — from the
  * API's one formatting helper; the compare table computes no difference
  * against a capped figure. The fixture's San Jose runs to 400 for a
- * graduate Asian woman of 30 with race switched on (m4.0.0: her details
- * are in the browser, never the URL), so it is the capped case. */
+ * graduate Asian woman of 30 who gives her race (m4.0.0: her details are
+ * in the browser, never the URL), so it is the capped case. */
 
 const DISCLOSED_QS = "sex=male&self_age=30&age=28-40&marital=never,previously";
 
 test("a figure above the ceiling renders as 250+ on the result row, the city page and the compare table", async ({ page }) => {
-  await seedAboutYou(page, { sex: "female", edu: "graduate", raceOn: true, race: "asian_nh" });
+  await seedAboutYou(page, { sex: "female", edu: "graduate", race: "asian_nh" });
   await page.goto(`/?${DISCLOSED_QS}`);
   const rows = page.getByTestId("ranked-list").locator("li");
   await expect(rows.first()).toBeVisible();
@@ -20,7 +20,8 @@ test("a figure above the ceiling renders as 250+ on the result row, the city pag
   const fig = sanJose.getByTestId("match-figure");
   await expect(fig).toContainText("250+");
   await expect(fig).not.toContainText(/\b[3-9]\d\d\b/);
-  await expect(fig.getByTestId("match-band")).toContainText("Far above most cities");
+  // Phase 4b: the band ("Far above most cities") is still served, never shown
+  await expect(fig).not.toContainText(/most cities|About average/);
   // an uncapped row keeps its plain figure
   const nyc = rows.filter({ hasText: "New York" }).first();
   await expect(nyc.getByTestId("match-figure")).not.toContainText("+");
@@ -48,34 +49,47 @@ test("an uncapped search computes the compatibility difference as before", async
   await expect(table.locator('[data-diff-for="match_propensity"]')).toHaveText(/^[+−]\d+$|^0$/);
 });
 
-test("a same-sex search says in the information box whose pairing patterns the figure is built from", async ({ page }) => {
-  // a man of 31 seeking men: his own sex is in the browser
-  await seedAboutYou(page, { sex: "male" });
+test("a same-sex search says in the slider's information box whose pairing patterns the figure is built from", async ({ page, browser }) => {
+  // a man of 31 seeking men: his own sex (and a race he gave on an
+  // earlier search) are in the browser
+  await seedAboutYou(page, { sex: "male", race: "hispanic" });
   await page.goto("/?self_age=31&sex=male&age=27-38&marital=never");
   const first = page.getByTestId("ranked-list").locator("li").first();
   await expect(first).toBeVisible();
-  await first.getByTestId("match-info").focus();
-  const note = first.getByTestId("match-info-note");
+  // Phase 4b (ADR 0018 amended): the note sits in the side panel's box,
+  // not beside the figure
+  await expect(first.getByTestId("match-figure")).not.toContainText(/For a same-sex search/);
+  await page.getByTestId("slider-info").focus();
+  const note = page.getByTestId("slider-info-note");
   await expect(note).toBeVisible();
-  await expect(note.getByTestId("match-same-sex-note")).toContainText(/For a same-sex search/);
+  const ss = note.getByTestId("slider-same-sex-note");
+  await expect(ss).toContainText(/For a same-sex search/);
   // m4.0.0 (ADR 0018): no racial or ethnic pairing on a same-sex search
-  await expect(note.getByTestId("match-same-sex-note")).toContainText(
+  await expect(ss).toContainText(
     /the racial and ethnic pairings are not used, even if you include your race or ethnicity/);
-  // switching race on changes nothing, and the switch says so
-  const figs = async () => JSON.stringify(await page.getByTestId("ranked-list").locator("li")
+  // the race select is set aside but keeps its value, and the figures are
+  // the ones with no race at all
+  const race = page.getByTestId("self-race");
+  await expect(race).toBeDisabled();
+  await expect(race).toHaveValue("hispanic");
+  const figs = async (p: typeof page) => JSON.stringify(await p.getByTestId("ranked-list").locator("li")
     .evaluateAll((els) => els.map((e) => `${e.getAttribute("data-cbsa")}:${
       e.querySelector('[data-testid="match-figure"] .font-display')?.textContent}:${
       e.querySelector('[data-testid="score"]')?.textContent}`)));
-  const before = await figs();
-  await page.getByTestId("self-race-switch").check();
-  await page.getByTestId("self-race").selectOption("hispanic");
-  await expect(page.getByTestId("self-race-note")).toHaveText("Not used in a same-sex search.");
-  expect(await figs()).toBe(before);
-  // an opposite-sex search carries no such sentence
+  const withRace = await figs(page);
+  const other = await browser.newContext();
+  const without = await other.newPage();
+  await seedAboutYou(without, { sex: "male" });
+  await without.goto("/?self_age=31&sex=male&age=27-38&marital=never");
+  await expect(without.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  await expect.poll(() => figs(without)).toBe(withRace);
+  await other.close();
+  // an opposite-sex search carries no such sentence, and the race is back
   await page.goto("/?self_age=31&sex=female&age=27-38&marital=never");
-  const row = page.getByTestId("ranked-list").locator("li").first();
-  await expect(row).toBeVisible();
-  await row.getByTestId("match-info").focus();
-  await expect(row.getByTestId("match-info-note")).toBeVisible();
-  await expect(row.getByTestId("match-same-sex-note")).toHaveCount(0);
+  await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  await expect(page.getByTestId("self-race")).toBeEnabled();
+  await expect(page.getByTestId("self-race")).toHaveValue("hispanic");
+  await page.getByTestId("slider-info").focus();
+  await expect(page.getByTestId("slider-info-note")).toBeVisible();
+  await expect(page.getByTestId("slider-same-sex-note")).toHaveCount(0);
 });

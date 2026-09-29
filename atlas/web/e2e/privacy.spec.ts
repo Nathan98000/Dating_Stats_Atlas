@@ -74,11 +74,11 @@ test("no request, cookie, link or permalink carries an about-you detail across a
   await page.goto("/");
   const rows = page.getByTestId("ranked-list").locator("li");
   await expect(rows.first()).toBeVisible();
-  // the details: a man with a graduate degree, race switched on
+  // the details: a man with a graduate degree who gives his race (Phase
+  // 4b: one select, "Prefer not to say" until he chooses)
   await page.getByTestId("self-sex").selectOption("male");
   await expect(page.getByTestId("seek-sex")).toHaveValue("female");
   await page.getByTestId("self-edu").selectOption("graduate");
-  await page.getByTestId("self-race-switch").check();
   await page.getByTestId("self-race").selectOption("black_nh");
   // and a partner filter, so the page re-asks the API
   await page.getByRole("radiogroup", { name: "Cost of living importance" })
@@ -111,7 +111,7 @@ test("no request, cookie, link or permalink carries an about-you detail across a
   await theirs.waitForLoadState("networkidle");
   // the recipient sees their own figures: no details of the sender's
   await expect(theirs.getByTestId("self-edu")).toHaveValue("");
-  await expect(theirs.getByTestId("self-race-switch")).not.toBeChecked();
+  await expect(theirs.getByTestId("self-race")).toHaveValue("");
   expect(await theirRows.evaluateAll((els) => els.map((e) => e.textContent))).not.toEqual(mine);
   await collectLinks(theirs);
 
@@ -145,7 +145,7 @@ test("no request, cookie, link or permalink carries an about-you detail across a
   // the details live in this browser only
   const stored = await page.evaluate(() => window.localStorage.getItem("dsa_about_you"));
   expect(JSON.parse(stored ?? "{}")).toEqual(
-    { sex: "male", edu: "graduate", raceOn: true, race: "black_nh" });
+    { sex: "male", edu: "graduate", race: "black_nh" });
   await other.close();
 });
 
@@ -203,7 +203,7 @@ test("a returning visitor's stored details never show the list in another order 
   const defaultOrder = (await rows.evaluateAll((els) => els.map((e) => e.getAttribute("data-cbsa")))).join(",");
   // now as a returning visitor whose details select another order
   await page.evaluate(() => window.localStorage.setItem("dsa_about_you",
-    JSON.stringify({ sex: "female", edu: "graduate", raceOn: true, race: "asian_nh" })));
+    JSON.stringify({ sex: "female", edu: "graduate", race: "asian_nh" })));
   await page.reload();
   await expect(rows.first()).toBeVisible();
   await page.waitForTimeout(400);

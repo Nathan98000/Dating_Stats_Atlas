@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import type { Meta, RankedRow, SuppressedRow, VariantResponse } from "@/lib/types";
 import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
-import { toneText } from "@/lib/tones";
 import { BalanceTally } from "./tally";
 import { DiffCell, Row } from "./compare-cells";
 
@@ -61,7 +60,8 @@ export function CompareVariantRows({
           direction={-1}
         />
       </Row>
-      <Row label="Score out of 100">
+      {/* Phase 4b (Nathan's change 7): "Overall score", as on the rows */}
+      <Row label={policy.overall_score_label}>
         {[rowA, rowB].map((r, i) => (
           <td key={i} className="px-5 py-3.5" data-variant="">
             {isRanked(r) ? (
@@ -102,9 +102,9 @@ export function CompareVariantRows({
           direction={meta.features.pool_size.direction}
         />
       </Row>
-      {/* m3.0.0 (ADR 0009): the compatibility figure of a ranked row with
-          its band; the difference reads through the registry direction
-          like every scored stat */}
+      {/* m3.0.0 (ADR 0009): the compatibility figure of a ranked row —
+          no band words since Phase 4b (ADR 0018 amended); the difference
+          reads through the registry direction like every scored stat */}
       <Row label={meta.features.match_propensity.display_name}>
         {[rankA, rankB].map((r, i) => (
           <td key={i} className="px-5 py-3.5" data-variant="">
@@ -116,11 +116,6 @@ export function CompareVariantRows({
                 <span className="text-[12px] text-ink-3">
                   {r.match.unit_line ?? meta.features.match_propensity.unit}
                 </span>
-                {r.match.band && (
-                  <span className={`text-[12px] font-semibold ${toneText(r.match.band.tone)}`}>
-                    {r.match.band.label}
-                  </span>
-                )}
               </div>
             ) : (
               <span className="text-ink-3">—</span>

@@ -220,7 +220,8 @@ export function Home({
             prefs={prefs}
             meta={meta}
             onChange={onChange}
-            sameSexNote={sameSex}
+            sameSex={sameSex}
+            sameSexNote={response.variants.same_sex_note}
             about={about}
             selfSex={selfSex}
             onSelfSex={onSelfSex}

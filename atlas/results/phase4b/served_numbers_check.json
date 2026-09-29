@@ -1,0 +1,60 @@
+{
+ "build": "5b780e4f2444",
+ "model_version": "m4.0.0",
+ "goldens_json": {
+  "sha256_before": "76f8d408475ce1076e24f63e61804aebe12929e1a8f1580919f76ccc2c89c735",
+  "sha256_after": "76f8d408475ce1076e24f63e61804aebe12929e1a8f1580919f76ccc2c89c735",
+  "identical": true
+ },
+ "build_data_files_match_manifest_hashes": true,
+ "build_data_files": {
+  "count_cube.npy": {
+   "manifest": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
+   "on_disk": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad"
+  },
+  "features.parquet": {
+   "manifest": "2e187387c73db613ec169514317889a3b4eaee2b754f114753b31bbb3478b8ec",
+   "on_disk": "2e187387c73db613ec169514317889a3b4eaee2b754f114753b31bbb3478b8ec"
+  },
+  "kernel.json": {
+   "manifest": "e4f1186188e585364a03ce2db2eda98a7ff1684b369db8268c0bf9a96a0b9dfd",
+   "on_disk": "e4f1186188e585364a03ce2db2eda98a7ff1684b369db8268c0bf9a96a0b9dfd"
+  },
+  "kernel.npz": {
+   "manifest": "af3fd7d0050c514095cf49e65c10d647beb1faced131c6d91401fe35607f3777",
+   "on_disk": "af3fd7d0050c514095cf49e65c10d647beb1faced131c6d91401fe35607f3777"
+  },
+  "metros.json": {
+   "manifest": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",
+   "on_disk": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579"
+  },
+  "pairing_cells.parquet": {
+   "manifest": "ea906b4b4b7fee95b39f7258782dd2535ac59e92b3d7bd7c245bbec9e451ec68",
+   "on_disk": "ea906b4b4b7fee95b39f7258782dd2535ac59e92b3d7bd7c245bbec9e451ec68"
+  },
+  "pool_cube.npy": {
+   "manifest": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",
+   "on_disk": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a"
+  },
+  "sumw2_cube.npy": {
+   "manifest": "5637faa542a5a7d5c85e2b64fe98d3cbaaa215c8c7c1a30c0446eb23a7add9b0",
+   "on_disk": "5637faa542a5a7d5c85e2b64fe98d3cbaaa215c8c7c1a30c0446eb23a7add9b0"
+  }
+ },
+ "manifest_keys_changed": [
+  "created_at",
+  "strings"
+ ],
+ "snapshot": {
+  "m4_0_0_record": "results/phase4/snapshot_m4_0_0.json",
+  "sha256_record": "71176899d66c1984a42238f9c0e718c65d2be78885b2ca3068a9c4110757854a",
+  "retaken_after_phase4b": "results/phase4b/_snapshot_m4_0_0_phase4b.json (gitignored: byte-identical to the record)",
+  "sha256_retaken": "71176899d66c1984a42238f9c0e718c65d2be78885b2ca3068a9c4110757854a",
+  "identical": true
+ },
+ "variant_cases_responses_identical": {
+  "default": true,
+  "same_sex": true,
+  "narrow_worst_first": true
+ }
+}

@@ -45,7 +45,7 @@ describe("variant selection against the Python model", () => {
     const resp = ss.response as unknown as VariantResponse;
     const off = selectVariant(resp, { sex: "male" });
     for (const race of ["asian_nh", "hispanic", "black_nh"]) {
-      expect(selectVariant(resp, { sex: "male", raceOn: true, race })).toEqual(off);
+      expect(selectVariant(resp, { sex: "male", race })).toEqual(off);
     }
   });
 });

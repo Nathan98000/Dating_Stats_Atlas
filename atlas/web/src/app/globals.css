@@ -93,6 +93,14 @@ select.ctl {
   background-position: right 12px center;
 }
 
+/* Phase 4b: a select the search can't use (own race on a same-sex
+   search) keeps its value but reads as set aside */
+select.ctl:disabled {
+  color: var(--ink-3);
+  background-color: var(--paper);
+  cursor: not-allowed;
+}
+
 input.ctl {
   width: 100%;
   min-height: 44px;

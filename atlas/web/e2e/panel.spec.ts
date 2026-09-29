@@ -78,11 +78,12 @@ test("the slider explanation opens on hover, focus and tap, closes on Escape and
   await expect(btn).toHaveAttribute("aria-expanded", "false");
   await expect(note).toHaveCount(0);
 
-  // hover — the Phase 3 slider copy, verbatim (ADR 0009)
+  // hover — Nathan's slider copy (ADR 0009; rewritten in Phase 4b, and
+  // held to the registry string exactly in phase4b.spec.ts)
   await btn.hover();
   await expect(note).toBeVisible();
   await expect(note).toContainText(/size favors larger cities/);
-  await expect(note).toContainText(/compatibility favors cities where the people who match your search line up more closely/);
+  await expect(note).toContainText(/compatibility favors cities with people who match your search more closely/);
   await page.mouse.move(10, 10);
   await expect(note).toHaveCount(0);
 

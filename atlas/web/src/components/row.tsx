@@ -6,7 +6,9 @@ import { MatchFigure } from "./match";
 /** A v3 result row: rank numeral, city, the pool figure large with its
  * plain caption, the movers line, the balance tally, and the score out of
  * 100 with its meter (filled to score/100 — the number is the signal, the
- * meter is the texture). No margin, no CV, no code, no permalink. */
+ * meter is the texture), labelled "Overall score" since Phase 4b (the
+ * registry's overall_score_label). No margin, no CV, no code, no
+ * permalink. */
 export function ResultRow({
   row,
   meta,
@@ -57,13 +59,16 @@ export function ResultRow({
             </span>
             <BalanceTally balance={row.balance} compact />
           </div>
-          {/* m3.0.0 (ADR 0009): the compatibility figure — the scored figure,
-              the API's display string, the registry information box */}
-          <MatchFigure match={row.match} meta={meta} id={`match-${row.cbsa}`} compact />
+          {/* m3.0.0 (ADR 0009): the compatibility figure — the scored figure
+              and the API's display string (no box or band since Phase 4b) */}
+          <MatchFigure match={row.match} meta={meta} compact />
         </div>
       </div>
 
       <div className="flex flex-col items-end gap-1.5 max-sm:col-start-2 max-sm:items-start">
+        <span className="text-[13px] font-semibold text-ink-2" data-testid="score-label">
+          {meta.policy_strings.overall_score_label}
+        </span>
         <div className="flex items-baseline gap-1.5">
           <span
             className="font-display text-[40px] font-semibold leading-none"

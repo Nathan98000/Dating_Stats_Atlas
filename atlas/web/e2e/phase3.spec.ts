@@ -2,11 +2,12 @@ import { expect, test } from "@playwright/test";
 
 /** Phase 3 (m3.0.0, ADR 0009), renamed in m4.0.0 (ADR 0018): the slider's
  * second pole is compatibility; the "about you" inputs, kept in the
- * browser and never sent; the match figure with its
- * information box on rows, the city page and the compare table; balance
- * still displayed everywhere it was and scored nowhere; the plain-words
- * account on About us, reachable from the information box. Every
- * string comes from the registry through /v1/meta. */
+ * browser and never sent (since Phase 4b race is one select, "Prefer not
+ * to say" by default); the match figure on rows, the city page and the
+ * compare table (since Phase 4b with no information box and no band
+ * words); balance still displayed everywhere it was and scored nowhere;
+ * the plain-words account on About us. Every string comes from the
+ * registry through /v1/meta. */
 
 const DEFAULT_QS = "sex=male&self_age=30&age=28-40&marital=never,previously";
 
@@ -28,17 +29,20 @@ test("the details about you stay in the browser: no request, URL or cookie carri
   });
   await page.goto("/");
   const edu = page.getByTestId("self-edu");
-  const sw = page.getByTestId("self-race-switch");
+  const race = page.getByTestId("self-race");
   await expect(edu).toHaveValue("");
-  // race is off by default, with its notice; no race select until it is on
-  await expect(sw).not.toBeChecked();
-  await expect(page.getByTestId("self-race-note")).toHaveText(
-    "Off unless you turn it on. Your answer stays in this browser and is never sent to us.");
-  await expect(page.getByTestId("self-race")).toHaveCount(0);
-  await expect(page.getByTestId("about-you-note")).toContainText(/stay in this browser and are\s+never sent to us/);
+  // Phase 4b: race is one select, "Prefer not to say" by default — no
+  // switch and no note beside it
+  await expect(race).toHaveValue("");
+  await expect(race).toBeEnabled();
+  await expect(page.getByTestId("self-race-switch")).toHaveCount(0);
+  await expect(page.getByTestId("self-race-note")).toHaveCount(0);
+  await expect(page.getByTestId("about-you-note")).toHaveCount(0);
   // the "unset" option and the four levels are registry strings
   await expect(edu.locator("option").first()).toHaveText("Prefer not to say");
   await expect(edu.locator("option")).toHaveCount(5);
+  await expect(race.locator("option").first()).toHaveText("Prefer not to say");
+  await expect(race.locator("option")).toHaveCount(9);
   const rows = page.getByTestId("ranked-list").locator("li");
   await expect(rows.first()).toBeVisible();
   const figures = async () => JSON.stringify(await rows.evaluateAll((els) =>
@@ -47,10 +51,6 @@ test("the details about you stay in the browser: no request, URL or cookie carri
   // disclose education and race: the figures change at once, with no
   // request at all — the response already held every variant
   await edu.selectOption("graduate");
-  await sw.check();
-  const race = page.getByTestId("self-race");
-  await expect(race.locator("option")).toHaveCount(9);
-  await expect(race.locator("option").first()).toHaveText("Choose one");
   await race.selectOption("asian_nh");
   await expect.poll(figures, { timeout: 10_000 }).not.toBe(before);
   expect(rankCalls).toEqual([]);
@@ -61,20 +61,21 @@ test("the details about you stay in the browser: no request, URL or cookie carri
     expect(decodeURIComponent(c.value)).not.toMatch(/self_(sex|edu|race)|graduate|asian_nh/);
   }
   const stored = await page.evaluate(() => window.localStorage.getItem("dsa_about_you"));
-  expect(JSON.parse(stored ?? "{}")).toMatchObject({ edu: "graduate", raceOn: true, race: "asian_nh" });
+  expect(JSON.parse(stored ?? "{}")).toEqual({ edu: "graduate", race: "asian_nh" });
   // a reload keeps them and shows the same figures
   const disclosed = await figures();
   await page.reload();
   await expect(rows.first()).toBeVisible();
   await expect.poll(figures).toBe(disclosed);
   await expect(page.getByTestId("self-edu")).toHaveValue("graduate");
-  // switching race off removes it from the browser too
-  await page.getByTestId("self-race-switch").uncheck();
+  await expect(page.getByTestId("self-race")).toHaveValue("asian_nh");
+  // "Prefer not to say" removes the race from the browser too
+  await page.getByTestId("self-race").selectOption("");
   const after = await page.evaluate(() => window.localStorage.getItem("dsa_about_you"));
   expect(JSON.parse(after ?? "{}")).toEqual({ edu: "graduate" });
 });
 
-test("every ranked row shows the compatibility figure with its band and information box, and balance beside it", async ({ page }) => {
+test("every ranked row shows the compatibility figure — no band words, no information box — and balance beside it", async ({ page }) => {
   await page.goto(`/?${DEFAULT_QS}`);
   const first = page.getByTestId("ranked-list").locator("li").first();
   await expect(first).toBeVisible();
@@ -82,20 +83,15 @@ test("every ranked row shows the compatibility figure with its band and informat
   await expect(fig).toContainText("Compatibility");
   await expect(fig).toContainText(/\d+/);
   await expect(fig).toContainText("where 100 is the US average");
-  await expect(fig.getByTestId("match-band")).toContainText(
+  // Phase 4b (ADR 0018 amended): the number against 100 says it
+  await expect(fig).not.toContainText(
     /Far below most cities|Below most cities|About average|Above most cities|Far above most cities/);
+  await expect(fig.getByTestId("match-band")).toHaveCount(0);
+  await expect(fig.getByRole("button")).toHaveCount(0);
+  await expect(first.getByTestId("match-info")).toHaveCount(0);
   // balance still renders, in the API's words
   await expect(first.getByTestId("balance-tally")).toContainText("Dating pool balance");
   await expect(first.getByTestId("balance-tally")).toContainText(/per 100/);
-  // the information box: Nathan's text and the link to the account
-  const btn = first.getByTestId("match-info");
-  await btn.focus();
-  const note = first.getByTestId("match-info-note");
-  await expect(note).toBeVisible();
-  await expect(note).toContainText(/pattern of who actually forms couples in Census data/);
-  await expect(note).toContainText(/the age gaps and the education pairings that occur/);
-  await expect(note.getByRole("link", { name: "How this is measured" })).toHaveAttribute(
-    "href", /\/about#compatibility/);
 });
 
 test("the city page and the compare table carry the figure; balance keeps its tally", async ({ page }) => {

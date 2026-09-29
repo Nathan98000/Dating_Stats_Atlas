@@ -68,17 +68,27 @@ def test_meta_carries_the_v3_vocabulary(client):
     assert m["controls"]["self_education_levels"] == api.engine.EDU_LEVELS
     assert m["measure_page"][0] == {"heading": "people", "pillars": ["pool", "match"],
                                     "features": ["pool_balance"]}
-    for k in ("match_info", "match_how", "match_how_link", "self_edu_label",
-              "self_race_label", "prefer_not_to_say", "about_you_note",
+    for k in ("match_how", "self_edu_label",
+              "self_race_label", "prefer_not_to_say",
               "edu_hs_or_less", "edu_graduate",
               # m3.1.0 / m3.2.0: the display cap and the same-sex sentence
               "match_display_cap", "match_display_cap_token",
               "match_same_sex_note", "match_same_sex_note_all_fallback",
-              # m4.0.0 (ADR 0018): the race switch
-              "self_race_switch_label", "self_race_switch_note",
-              "self_race_same_sex_note"):
+              # Phase 4b: the panel's two section headings and the overall
+              # score's label
+              "panel_about_you_heading", "panel_looking_for_heading",
+              "overall_score_label"):
         assert m["policy_strings"].get(k), k
-    assert "compatibility" in m["policy_strings"]["slider_info"]
+    # Phase 4b (ADR 0018 amended): the race switch's strings, the "about
+    # you" note and the compatibility figure's own box and link are gone
+    for gone in ("self_race_switch_label", "self_race_switch_note", "self_race_same_sex_note",
+                 "self_race_choose", "about_you_note", "match_info", "match_how_link"):
+        assert gone not in m["policy_strings"], gone
+    # Nathan's slider text, verbatim (Phase 4b)
+    assert m["policy_strings"]["slider_info"] == (
+        "Leaning towards size favors larger cities with the most possible matches. Leaning "
+        "towards compatibility favors cities with people who match your search more closely "
+        "on age, education, and background, based on historical Census couples data.")
     assert m["features"]["match_propensity"]["display_name"] == "Compatibility"
     assert m["kernel"]["version"] == "kernel_v3"
     assert m["features"]["rent_1br"]["display_name"] == "Rent"

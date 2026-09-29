@@ -37,18 +37,19 @@ SEARCHES = {
                            "pool_vs_match": 0.9, "sort": "worst_first"},
 }
 # the browser's details (lib/about-you AboutYou): sex absent = the
-# opposite of the sought sex; race counts only with the switch on
+# opposite of the sought sex; since Phase 4b a race present means race is
+# on (the select's default, "Prefer not to say", stores none)
 ABOUT = [
     {},
     {"sex": "male"},
     {"sex": "female"},
     {"edu": "graduate"},
     {"sex": "male", "edu": "hs_or_less"},
-    {"raceOn": True},
-    {"raceOn": True, "race": "asian_nh"},
-    {"sex": "male", "edu": "bachelors", "raceOn": True, "race": "hispanic"},
-    {"sex": "female", "edu": "some_college", "raceOn": True, "race": "black_nh"},
+    {"race": "asian_nh"},
+    {"sex": "male", "edu": "bachelors", "race": "hispanic"},
+    {"sex": "female", "edu": "some_college", "race": "black_nh"},
     {"race": "white_nh"},
+    {"sex": "female", "edu": "graduate", "race": "nhpi_nh"},
 ]
 
 
@@ -61,8 +62,7 @@ def main() -> None:
         resp = r.json()
         sels = []
         for a in ABOUT:
-            race = a.get("race") if a.get("raceOn") and a.get("race") else None
-            got = api.engine.select_variant(resp, a.get("sex"), a.get("edu"), race)
+            got = api.engine.select_variant(resp, a.get("sex"), a.get("edu"), a.get("race"))
             sels.append({"about": a, "expected": json.loads(json.dumps(got))})
         cases.append({"name": name, "response": resp, "selections": sels})
     out = WEB / "tests" / "variant_cases.json"
