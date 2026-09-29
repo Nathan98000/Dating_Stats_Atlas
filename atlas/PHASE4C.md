@@ -150,11 +150,11 @@ One line each; `results/phase4c/deviations.md` is identical.
 - The About us sentence saying balance doesn't apply stayed, as the brief's Records section asks, until Nathan decided (§3); he removed it after the report (§6), and the "no 'doesn't apply' anywhere" test now reads About us too, beside `/v1/meta`, the rank response and the home, city and compare pages.
 - The shared web test cases are regenerated: `variant_cases.json` (the response's shape and, in each case, the same-sex selections' balance) and `permalink_cases.json` (only the model version in each link).
 - The m4.1.0 persona snapshot (`results/phase4c/snapshot_m4_1_0.json`) is committed as the ship record; it equals m4.0.0's but for its version line.
-- Noticed, not changed: `pipeline/build/score_snapshot._exact_scores`, a Phase 2d instrument that `split_equivalence.py` and `race_change_report.py` use, still passes the balance ratio where `score_vector` now takes the compatibility figure; it feeds no served number and runs only by hand, but its "exact scores" have been wrong since m3.0.0.
+- Noticed, then retired on Nathan's call after the report (§6): `pipeline/build/score_snapshot._exact_scores`, a Phase 2d instrument that `split_equivalence.py` and `race_change_report.py` used, passed the balance ratio where `score_vector` now takes the compatibility figure; it fed no served number and ran only by hand, but its "exact scores" had been wrong since m3.0.0.
 
 ## 6. Nathan's calls after the report (2026-09-29)
 
-Nathan answered §3:
+Nathan answered §3, then made one more call:
 
 1. **The "i" button's name is approved.** "Why race or ethnicity isn't
    used here" (`strings.self_race_same_sex_tip_label`) is no longer a
@@ -167,15 +167,25 @@ Nathan answered §3:
    rewritten; the paragraph before it reads true for both kinds of search.
    ADR 0004's amendment records it, and the Phase 4c test that no "doesn't
    apply" is served or shown now reads About us too.
-
-He also asked for the pros and cons of fixing or retiring the stale
-`score_snapshot._exact_scores` (§5, noticed); that choice is his, and
-nothing about it has changed.
+4. **The stale helper is retired.** Nathan weighed fixing or retiring
+   `score_snapshot._exact_scores` (§5) and chose to retire it:
+   `pipeline/build/score_snapshot.py` and the two Phase 2d and 2e scripts
+   that imported it, `split_equivalence.py` and `race_change_report.py`,
+   are deleted. Their original checks cannot be re-run under today's
+   engine (the m2-era builds they compared no longer load), and the
+   release snapshot (`phase3b_snapshot.py`), the ADR 0011 gate and this
+   phase's `served_numbers_check.py` do the same work. What they produced
+   stays: `results/phase2d/split_equivalence.json` and its m2.0.0 and
+   m2.1.0 snapshots, `results/phase2e/race_change_report.json` and its
+   m2.3.0 snapshot, and the reports and ADRs that cite them. The code is
+   in git history at `62117f4`; the two docstrings that named the scripts
+   say so.
 
 After these calls (`test_counts.json`, regenerated): pytest 123 and
-vitest 92 pass; Playwright passes 110 of 110 with none flaky, the About
-us sweep included; `cube.build` finds build 5b780e4f2444 unchanged (the
-registry change is a comment), so every served number is as §4 records.
-The copy record (`copy_changes.json`) marks the button's name approved,
-the retirement confirmed and the sentence removed.
+vitest 92 pass, and Playwright passes 110 of 110 with none flaky, the
+About us sweep included (the retirement changed no web file, so only
+pytest ran again after it). `cube.build` finds build 5b780e4f2444
+unchanged (the registry change is a comment), so every served number is
+as §4 records. The copy record (`copy_changes.json`) marks the button's
+name approved, the retirement confirmed and the sentence removed.
 

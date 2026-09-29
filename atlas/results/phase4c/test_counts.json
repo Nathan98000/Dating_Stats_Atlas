@@ -103,5 +103,5 @@
   "api/tests/test_api.py::test_balance_is_the_searchs_and_a_same_sex_visitor_sees_it",
   "model/tests/golden/test_engine.py::test_same_sex_balance_is_the_opposite_sex_figure (replaces test_same_sex_balance_is_not_applicable)"
  ],
- "rerun": "after Nathan's calls on the report (PHASE4C.md §6): the About us sentence removed, the sweep extended to About us"
+ "rerun": "after Nathan's calls on the report (PHASE4C.md §6): the About us sentence removed and the sweep extended to About us (all three suites re-run), then the stale score_snapshot helper and its two scripts retired (pytest re-run; no web file changed)"
 }

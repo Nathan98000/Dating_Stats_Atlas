@@ -4,7 +4,9 @@ scored by the m2.4.0 engine's outputs, which are pinned in that build's
 goldens? — no: recomputed here from the OLD build loaded cross-version,
 scoring the old pillar set through the old mechanics is not possible in
 the new engine, so the old ranking comes from the old build's default
-response snapshot written by score_snapshot.py in Phase 2g), the
+response snapshot written by score_snapshot.py in Phase 2g — a script
+retired after Phase 4c on Nathan's call, kept in git history at 62117f4),
+the
 correlation between the slider's two poles across the ranked set, and
 the index distribution the bands cut.
 

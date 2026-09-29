@@ -1,7 +1,11 @@
 """Compare two score snapshots (Phase 2d): the report's before/after
 instrument. Item 4's split is asserted exact separately
 (split_equivalence); this measures what actually moves rankings — the
-pleasant-days recomputation — so the two effects read apart.
+pleasant-days recomputation — so the two effects read apart. The
+snapshots it reads came from score_snapshot.py; that script and
+split_equivalence.py were retired after Phase 4c on Nathan's call (their
+results stay under results/phase2d and results/phase2e; the code is in git
+history at 62117f4).
 
 Usage: python -m atlas.pipeline.build.snapshot_diff <before.json> <after.json> <out.json>
 """
