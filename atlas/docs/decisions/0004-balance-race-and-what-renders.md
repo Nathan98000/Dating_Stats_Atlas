@@ -169,3 +169,8 @@ of the 100-effective-respondent bar the row says so (`balance_unavailable`).
   reference. The golden fixture's same-sex vector gains its balance figures, so
   MODEL_VERSION moves to m4.1.0 (the `versions.py` convention); the build keeps its
   id, 5b780e4f2444, with its manifest refreshed.
+- **After the report** (Nathan's calls, 2026-09-29): he confirmed the retirement of
+  `balance_same_sex`, and About us loses its sentence "In a same-sex search everyone
+  is on both sides of the comparison, so balance doesn't apply." — removed, not
+  rewritten, on his decision. The paragraph before it already reads true for both
+  kinds of search.

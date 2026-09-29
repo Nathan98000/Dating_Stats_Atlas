@@ -206,7 +206,8 @@ build, 5b780e4f2444, its manifest refreshed.
   the select's description (`aria-describedby`), so a screen reader
   announces it. A touch screen has no hover: there an information button
   beside the label opens the same text (its name,
-  `strings.self_race_same_sex_tip_label`, is a draft for Nathan's approval).
+  `strings.self_race_same_sex_tip_label`, "Why race or ethnicity isn't used
+  here", was drafted in Phase 4c and approved by Nathan after the report).
   An opposite-sex search shows the plain field, with no tip. This supersedes
   the Phase 4b line that the select is disabled on a same-sex search.
 - **Balance no longer depends on own sex.** Balance is the single people of

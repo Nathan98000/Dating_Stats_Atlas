@@ -84,9 +84,6 @@ whole number, and only where both sides of the comparison have enough
 survey sample to be dependable. It is shown for information and is not
 part of the score.
 
-In a same-sex search everyone is on both sides of the comparison, so
-balance doesn't apply.
-
 ## What do the race and ethnicity boxes do?
 
 They select **who is counted as living in a city and matching your

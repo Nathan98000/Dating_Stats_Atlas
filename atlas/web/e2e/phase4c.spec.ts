@@ -329,7 +329,7 @@ test("a same-sex search shows balance, the opposite-sex figure for the same peop
   await ctx.close();
 });
 
-test("no \"doesn't apply\" (and no banned word) is served or shown: /v1/meta, the rank response, home, city and compare", async ({ page, request }) => {
+test("no \"doesn't apply\" (and no banned word) is served or shown: /v1/meta, the rank response, home, city, compare and About us", async ({ page, request }) => {
   const ps = (await fetchMeta(request)).policy_strings;
   expect(ps.balance_same_sex).toBeUndefined();
   for (const [k, text] of Object.entries(ps)) expect(text, k).not.toMatch(DOESNT_APPLY);
@@ -338,13 +338,13 @@ test("no \"doesn't apply\" (and no banned word) is served or shown: /v1/meta, th
   expect(raw).not.toMatch(DOESNT_APPLY);
   expect(raw).not.toContain("balance_applies");
   // the pages, markup (and the data serialised into it) and screen, for a
-  // same-sex visitor — on the home page with the race field's tip open; the
-  // About us page's own sentence is Nathan's to decide (PHASE4C.md §3) and
-  // is not checked here
+  // same-sex visitor — on the home page with the race field's tip open —
+  // and About us, whose "balance doesn't apply" sentence Nathan removed
+  // after the report (PHASE4C.md §6)
   await seedAboutYou(page, { sex: "male" });
   for (const path of [`/?${SAME_SEX_QS}`, `/city/new-york-new-york?${SAME_SEX_QS}`,
     `/city/huntington-west-virginia?${SAME_SEX_QS}`,
-    `/compare/new-york-new-york/austin-texas?${SAME_SEX_QS}`, `/?${DEFAULT_QS}`]) {
+    `/compare/new-york-new-york/austin-texas?${SAME_SEX_QS}`, `/?${DEFAULT_QS}`, "/about"]) {
     await page.goto(path);
     await page.waitForLoadState("networkidle");
     if (path === `/?${SAME_SEX_QS}`) {

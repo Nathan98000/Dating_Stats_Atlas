@@ -1,6 +1,6 @@
 {
  "phase": "4c",
- "note": "Every string added, retired, reused or listed in Phase 4c, old -> new. Registry strings reach the page through /v1/meta (policy_strings: the versioned policy strings merged with the registry's).",
+ "note": "Every string added, retired, reused or removed in Phase 4c, old -> new, with Nathan's calls after the report (PHASE4C.md §6). Registry strings reach the page through /v1/meta (policy_strings: the versioned policy strings merged with the registry's); About us is docs/methodology.md.",
  "changes": [
   {
    "change": "change 1",
@@ -12,15 +12,15 @@
   },
   {
    "change": "change 1",
-   "kind": "added (draft)",
+   "kind": "added (drafted; approved by Nathan after the report)",
    "where": "registry strings.self_race_same_sex_tip_label",
    "old": "(none)",
    "new": "Why race or ethnicity isn't used here",
-   "why": "change 1: the accessible name of the information button a touch screen shows beside the label (InfoTip needs one, and no user-facing string lives in code); a draft for Nathan's approval — the brief named only the tip"
+   "why": "change 1: the accessible name of the information button a touch screen shows beside the label (InfoTip needs one, and no user-facing string lives in code); the brief named only the tip, so it was drafted, and Nathan approved it after the report"
   },
   {
    "change": "change 2",
-   "kind": "retired",
+   "kind": "retired (confirmed by Nathan after the report)",
    "where": "policy_strings.balance_same_sex (model/suppression.py, served through /v1/meta)",
    "old": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
    "new": "(removed)",
@@ -43,12 +43,12 @@
    "why": "change 2: the tally's caption and its screen-reader sentence"
   },
   {
-   "change": "none",
-   "kind": "listed for Nathan, not changed",
+   "change": "Nathan's call after the report",
+   "kind": "removed (Nathan's decision after the report)",
    "where": "About us (docs/methodology.md), \"What does balance compare?\"",
    "old": "In a same-sex search everyone is on both sides of the comparison, so balance doesn't apply.",
-   "new": "(unchanged: Nathan's decision)",
-   "why": "no longer true: a same-sex search shows balance, the sought sex per 100 of the other sex (ADR 0004 amended). The paragraph before it (\"all single men per 100 single women (or the mirror, if you're looking for women)\") and the registry definition of pool_balance still read true"
+   "new": "(removed)",
+   "why": "no longer true: a same-sex search shows balance, the sought sex per 100 of the other sex (ADR 0004 amended). Listed in PHASE4C.md §3 and not rewritten; Nathan then chose to remove it. The paragraph before it (\"all single men per 100 single women (or the mirror, if you're looking for women)\") and the registry definition of pool_balance still read true"
   }
  ]
 }

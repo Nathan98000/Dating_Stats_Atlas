@@ -83,7 +83,8 @@
    "same-sex left-out city",
    "same-sex compare",
    "the default search (phase4c)"
-  ]
+  ],
+  "note": "the Phase 4c sweep also reads About us, which the list above already holds"
  },
  "phase4c_spec": [
   "on a same-sex search own race stays selectable: operable, muted within AA, the registry's tip on hover and keyboard focus",
@@ -91,7 +92,7 @@
   "a race chosen on a same-sex search changes no number, is stored, and applies once the search is opposite-sex",
   "an opposite-sex search: the race field looks as it always has, with no box",
   "a same-sex search shows balance, the opposite-sex figure for the same people: home rows, the city card, a left-out city and compare",
-  "no \"doesn't apply\" (and no banned word) is served or shown: /v1/meta, the rank response, home, city and compare",
+  "no \"doesn't apply\" (and no banned word) is served or shown: /v1/meta, the rank response, home, city, compare and About us",
   "axe: a same-sex search with the race tip open from the keyboard",
   "axe: a same-sex search on a touch screen with the information button's box open"
  ],
@@ -101,5 +102,6 @@
  "phase4c_pytest": [
   "api/tests/test_api.py::test_balance_is_the_searchs_and_a_same_sex_visitor_sees_it",
   "model/tests/golden/test_engine.py::test_same_sex_balance_is_the_opposite_sex_figure (replaces test_same_sex_balance_is_not_applicable)"
- ]
+ ],
+ "rerun": "after Nathan's calls on the report (PHASE4C.md §6): the About us sentence removed, the sweep extended to About us"
 }

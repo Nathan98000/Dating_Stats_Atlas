@@ -247,7 +247,8 @@ strings:
   # search is opposite-sex again — but is set aside, and this box says why:
   # on hover and on keyboard focus, and behind an information button on a
   # touch screen (no hover there). The tip is Nathan's wording, verbatim;
-  # the button's accessible name is a draft for his approval.
+  # the button's accessible name, drafted in Phase 4c, is approved by him
+  # (after the Phase 4c report).
   self_race_same_sex_tip: >-
     This information is not used to calculate compatibility for same-sex
     couples because not enough data is available to make a reliable
