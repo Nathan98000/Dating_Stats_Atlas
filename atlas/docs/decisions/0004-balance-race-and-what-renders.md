@@ -4,9 +4,16 @@
 `m2.0.0`. Amends §5.3, §7.3, §10.4, D02 and D08; supersedes the v3 boards' own
 "like for like" balance panel (StatesV3) and caption (HomeV3), which described an
 intermediate definition the brief replaced. Second breaking contract change after
-ADR 0003.
+ADR 0003. **Amended 2026-09-29 (Phase 4c, Nathan's decision), implemented in
+`m4.1.0`:** balance's second count is the other sex — the opposite of the sought
+sex — not the seeker's own, and a same-sex search shows it (the last section).
 
 ## 1. Dating pool balance is the plain sex ratio
+
+*[AMENDED in m4.1.0 (Phase 4c, the last section): the second count is the other
+sex — the opposite of the sought sex — whoever is searching, and the same-sex
+finding below no longer holds. Balance left the score in m3.0.0 (ADR 0009). The
+text below stands as the m2.0.0 record.]*
 
     balance = count(sought sex, seeking.age range, marital selection)
             / count(seeker sex,  same age range,   same marital selection)
@@ -121,3 +128,44 @@ Phase 3's premise changed with this record: the assortative kernel was scoped to
 replace the crude rival window, and rivals no longer exist in the model. The
 couples linkage still has uses; the decision on Phase 3's shape is Nathan's and is
 raised, not resolved, in PHASE2C.md.
+
+## Amended in Phase 4c (2026-09-29): the sought sex per 100 of the other sex, on every search
+
+This amendment is **Nathan's decision** (the Phase 4c brief). Dating pool balance
+is now
+
+    balance = count(sought sex,     seeking.age range, marital selection)
+            / count(the other sex,  same age range,    same marital selection)
+
+where the other sex is the opposite of the sought sex, **whoever is searching**. It
+is still shown per 100, still counts single people before any race, education or
+income filter, and is still gated on its own two counts: where either falls short
+of the 100-effective-respondent bar the row says so (`balance_unavailable`).
+
+- **An opposite-sex search is unchanged.** There the other sex is the visitor's
+  own, so the figure is the one §1 defined: every opposite-sex balance block, over
+  all 518 ADR 0011 test searches and every "about you" variant, is byte-identical
+  to m4.0.0's (`results/phase4c/served_numbers_check.json`).
+- **A same-sex search shows the figure an opposite-sex search for the same people
+  shows.** A man seeking men 27–38 sees "N men per 100 women" — on the real build,
+  124 in San Francisco, 113 in New York. m4.0.0 took the second count from the
+  seeker's own sex, so a same-sex search counted the same people twice (a ratio of
+  1 by construction) and was served "not applicable" with the note
+  `balance_same_sex`. §1's same-sex finding was about a **scored** pillar — a
+  constant pillar handed the top-10 boundary to replicate noise — and balance has
+  been displayed and not scored since m3.0.0 (ADR 0009); under the new definition
+  the two sides are never the same people, so "100 men per 100 men" cannot arise.
+  Same-sex visitors can ignore the figure; it shows the gender balance of the
+  singles in the ages they picked.
+- **Balance no longer depends on the visitor**, so `/v1/rank` sends it once per
+  search (`variants.balance`) instead of once per own sex (`variants.by_sex`, ADR
+  0018 §4), and the response is smaller for it; `balance_applies` is gone (balance
+  applies to every search), and the policy string `balance_same_sex` ("…so balance
+  doesn’t apply…") is retired, with every display of it: the note under the
+  panel's slider, the home page footnote's same-sex alternative (the footnote is
+  always `balance_caption`) and the tally's note.
+- **Nothing scored reads it.** Every score and rank is identical for every test
+  search, same-sex included, and the ADR 0011 gate reads 1.0 against the m4.0.0
+  reference. The golden fixture's same-sex vector gains its balance figures, so
+  MODEL_VERSION moves to m4.1.0 (the `versions.py` convention); the build keeps its
+  id, 5b780e4f2444, with its manifest refreshed.

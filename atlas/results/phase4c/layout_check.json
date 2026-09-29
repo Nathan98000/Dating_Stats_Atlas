@@ -1,0 +1,98 @@
+{
+ "build": "5b780e4f2444",
+ "model_version": "m4.1.0",
+ "searches": 518,
+ "before_total": {
+  "bytes": 784265961,
+  "gzip6": 117699953,
+  "gzip9": 115086761
+ },
+ "columns_shipped": {
+  "larger_than_before": {
+   "bytes": 0,
+   "gzip6": 0,
+   "gzip9": 0
+  },
+  "ratio_to_before": {
+   "bytes": {
+    "min": 0.9466,
+    "max": 0.9794
+   },
+   "gzip6": {
+    "min": 0.9891,
+    "max": 0.9984
+   },
+   "gzip9": {
+    "min": 0.9887,
+    "max": 0.9985
+   }
+  },
+  "total": {
+   "bytes": 767896296,
+   "gzip6": 117492994,
+   "gzip9": 114874166
+  }
+ },
+ "rows_not_shipped": {
+  "larger_than_before": {
+   "bytes": 0,
+   "gzip6": 518,
+   "gzip9": 518
+  },
+  "ratio_to_before": {
+   "bytes": {
+    "min": 0.9498,
+    "max": 0.9807
+   },
+   "gzip6": {
+    "min": 1.0035,
+    "max": 1.0104
+   },
+   "gzip9": {
+    "min": 1.0044,
+    "max": 1.0111
+   }
+  },
+  "total": {
+   "bytes": 768875993,
+   "gzip6": 118229670,
+   "gzip9": 115719568
+  }
+ },
+ "default_search": {
+  "before": {
+   "bytes": 1527926,
+   "gzip6": 229408,
+   "gzip9": 224278
+  },
+  "columns": {
+   "bytes": 1496326,
+   "gzip6": 229011,
+   "gzip9": 223892
+  },
+  "rows": {
+   "bytes": 1498217,
+   "gzip6": 230253,
+   "gzip9": 225257
+  }
+ },
+ "same_sex_reference_search": {
+  "before": {
+   "bytes": 1177499,
+   "gzip6": 161428,
+   "gzip9": 157781
+  },
+  "columns": {
+   "bytes": 1145900,
+   "gzip6": 160965,
+   "gzip9": 157327
+  },
+  "rows": {
+   "bytes": 1147792,
+   "gzip6": 162351,
+   "gzip9": 158820
+  }
+ },
+ "seconds": 152.4,
+ "generated": "2026-09-29T12:56:27"
+}

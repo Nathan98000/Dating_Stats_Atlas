@@ -60,7 +60,10 @@ function Section({ heading, testid, divided = false, children }: {
  * sent. Phase 4b (ADR 0018 amended): two sections, "About you" and "Who
  * you're looking for", then the weighting; race is one select whose
  * default, "Prefer not to say", means race is not used; no note sits
- * beside the details (the Privacy page explains where they go). */
+ * beside the details (the Privacy page explains where they go). Phase 4c
+ * (ADR 0018 amended): on a same-sex search the race select stays operable,
+ * muted, with the registry's tip on hover and keyboard focus; no balance
+ * note under the slider (ADR 0004 amended). */
 export function SearchPanel({
   prefs,
   meta,
@@ -130,11 +133,12 @@ export function SearchPanel({
         {/* m3.0.0: OPTIONAL inputs about the visitor; since m4.0.0 (ADR
             0018) kept in this browser and never sent. Education unset means
             the average for the visitor's sex and age; race is used only
-            when a group is chosen, and never on a same-sex search (there
-            the select keeps its value, set aside). Stacked, not side by
-            side: the registry's option wording ("Prefer not to say", "High
-            school or less") does not fit a half-width select in the 360px
-            panel. Labels and levels come from /v1/meta. */}
+            when a group is chosen, and never on a same-sex search (Phase
+            4c: there the select stays operable, muted and explained —
+            SelfRaceField). Stacked, not side by side: the registry's option
+            wording ("Prefer not to say", "High school or less") does not
+            fit a half-width select in the 360px panel. Labels and levels
+            come from /v1/meta. */}
         <div data-variant="">
           <Field label={policy.self_edu_label} htmlFor={`${uid}-selfedu`}>
             <select
@@ -154,21 +158,17 @@ export function SearchPanel({
           </Field>
         </div>
         <div data-variant="">
-          <Field label={policy.self_race_label} htmlFor={`${uid}-selfrace`}>
-            <select
-              id={`${uid}-selfrace`}
-              className="ctl"
-              data-testid="self-race"
-              value={about.race ?? ""}
-              disabled={sameSex}
-              onChange={(e) => onAbout({ ...about, race: e.target.value || undefined })}
-            >
-              <option value="">{policy.prefer_not_to_say}</option>
-              {raceGroups.map((g) => (
-                <option key={g.id} value={g.id}>{g.label}</option>
-              ))}
-            </select>
-          </Field>
+          <SelfRaceField
+            id={`${uid}-selfrace`}
+            label={policy.self_race_label}
+            value={about.race ?? ""}
+            sameSex={sameSex}
+            tip={policy.self_race_same_sex_tip}
+            tipLabel={policy.self_race_same_sex_tip_label}
+            preferNotToSay={policy.prefer_not_to_say}
+            groups={raceGroups}
+            onPick={(race) => onAbout({ ...about, race })}
+          />
         </div>
       </Section>
 
@@ -349,11 +349,8 @@ export function SearchPanel({
             <span>{poles.low}</span>
             <span>{poles.high}</span>
           </div>
-          {sameSex && (
-            <p className="text-[12.5px] leading-relaxed text-ink-3">
-              {meta.policy_strings.balance_same_sex}
-            </p>
-          )}
+          {/* Phase 4c (ADR 0004 amended): no note under the slider — a
+              same-sex search shows balance like any other search */}
         </div>
 
         {/* Item 4 (2d): FOUR controls, labels and subtitles from the
@@ -378,6 +375,135 @@ export function SearchPanel({
       </div>
     </div>
   );
+}
+
+/** "My race or ethnicity" (Phase 4c, Nathan's change 1; ADR 0018
+ * amended). A same-sex search uses no race (ADR 0018 §3), yet the select
+ * stays operable — never disabled or aria-disabled: a choice is stored as
+ * usual, changes nothing on this search, and applies as soon as the search
+ * is opposite-sex again. There the field is muted (grey text on paper, a
+ * dashed border; every colour holds WCAG AA) and the registry's tip says
+ * why: it shows while the pointer is over the field or the select has
+ * keyboard focus, Escape dismisses it, and it is always the select's
+ * description (aria-describedby), so a screen reader announces it. A touch
+ * screen has no hover: there an information button beside the label opens
+ * the same text (InfoTip; the CSS shows it only under (hover: none)). An
+ * opposite-sex search gets the plain field, no tip. */
+function SelfRaceField({
+  id,
+  label,
+  value,
+  sameSex,
+  tip,
+  tipLabel,
+  preferNotToSay,
+  groups,
+  onPick,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  sameSex: boolean;
+  tip: string;
+  tipLabel: string;
+  preferNotToSay: string;
+  groups: { id: string; label: string }[];
+  onPick: (race: string | undefined) => void;
+}) {
+  const [hover, setHover] = useState(false);
+  const [focus, setFocus] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const open = sameSex && (hover || focus) && !dismissed;
+  const tipId = `${id}-tip`;
+  return (
+    <div
+      className="relative flex flex-col gap-1.5"
+      data-testid="self-race-field"
+      data-muted={sameSex ? "" : undefined}
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "touch") setHover(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType !== "touch") {
+          setHover(false);
+          setDismissed(false);
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && open) {
+          e.stopPropagation();
+          setDismissed(true);
+        }
+      }}
+    >
+      <div className="flex items-center gap-2">
+        <label
+          htmlFor={id}
+          className={`text-[13px] font-semibold ${sameSex ? "text-ink-3" : "text-ink-2"}`}
+        >
+          {label}
+        </label>
+        {sameSex && (
+          <span className="touch-only">
+            <InfoTip id={`${id}-touch-tip`} label={tipLabel} testid="self-race-tip-button">
+              {tip}
+            </InfoTip>
+          </span>
+        )}
+      </div>
+      <select
+        id={id}
+        className={sameSex ? "ctl ctl-muted" : "ctl"}
+        data-testid="self-race"
+        value={value}
+        aria-describedby={sameSex ? tipId : undefined}
+        onFocus={(e) => {
+          // keyboard focus only: a click already hovers, and a tap on a
+          // touch screen has the information button
+          setFocus(keyboardFocus(e.currentTarget));
+          setDismissed(false);
+        }}
+        onBlur={() => {
+          setFocus(false);
+          setDismissed(false);
+        }}
+        onChange={(e) => onPick(e.target.value || undefined)}
+      >
+        <option value="">{preferNotToSay}</option>
+        {groups.map((g) => (
+          <option key={g.id} value={g.id}>{g.label}</option>
+        ))}
+      </select>
+      {sameSex && (
+        // always in the page as the select's description; seen only while
+        // open. The padding bridges the gap, so the pointer can move from
+        // the field onto the box without it closing.
+        <span
+          className={open ? "absolute left-0 top-full z-40 pt-2" : "hidden"}
+          data-testid="self-race-tip-bridge"
+        >
+          <span
+            id={tipId}
+            role="tooltip"
+            data-testid="self-race-tip"
+            className="block w-[290px] rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-[12.5px] font-normal leading-relaxed text-ink-2"
+          >
+            {tip}
+          </span>
+        </span>
+      )}
+    </div>
+  );
+}
+
+/** Whether an element's focus came from the keyboard (:focus-visible); a
+ * browser without the selector counts every focus. */
+function keyboardFocus(el: HTMLElement): boolean {
+  try {
+    return el.matches(":focus-visible");
+  } catch {
+    return true;
+  }
 }
 
 /** Item 8: a real editable number field — click in, type 34, tab away.

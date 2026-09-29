@@ -17,10 +17,12 @@ The response sends what no variant changes once:
   ranked      rows in the DEFAULT variant's order (own sex opposite the
               sought sex, education not given, race off), each without
               the parts a variant changes: rank, score, score_display,
-              balance, top_stats and summary_line are absent; the match
-              block keeps `available` and `unit_line`; the compatibility
-              figure's stats entry keeps id, pillar and weight; the match
-              pillar's contribution has value null
+              top_stats and summary_line are absent; the match block keeps
+              `available` and `unit_line`; the compatibility figure's stats
+              entry keeps id, pillar and weight; the match pillar's
+              contribution has value null. The balance block travels in
+              variants.balance, column-wise (like values together
+              compress well)
   suppressed  rows without their balance
   variants    default          the default variant's position in `list`
               sought_sex       the search's sought sex
@@ -31,9 +33,14 @@ The response sends what no variant changes once:
                                figure's within-search standing
               explain          the distinct {top_stats, summary_line}
                                pairs the variants' rows point at
-              by_sex[sex]      balance_applies, balance_words, and the
-                               balance block of every ranked row (`ranked`,
-                               aligned to the rows) and suppressed row
+              balance          balance_words (sought sex, other sex: the
+                               key "seeker" names the other sex, the
+                               seeker's own on an opposite-sex search)
+                               and the balance block of every ranked row
+                               (`ranked`, aligned to the rows) and
+                               suppressed row — once: since m4.1.0 (ADR
+                               0004 amended) balance does not depend on
+                               the visitor
               list             per variant: key, sex, education,
                                race_ethnicity, match_inputs
               columns          field by field, per variant, the rows in
@@ -42,6 +49,11 @@ The response sends what no variant changes once:
                                score_display, value, display, band,
                                standing, z, contribution, explain; capped
                                lists the positions whose display is capped
+
+m4.0.0 sent the balance per own sex (variants.by_sex: balance_applies,
+balance_words and every row's block, once for each sex); m4.1.0 sends it
+once (variants.balance), and balance_applies is gone — balance applies to
+every search.
 
 The compatibility figure's margin (moe) is computed and returned by
 rank() and never rendered (ADR 0004); the variant rows leave it out.
@@ -55,17 +67,18 @@ import numpy as np
 from atlas.model.explain import TOP_STATS_MAX, TOP_STATS_MIN_POINTS, summary_line
 from atlas.model.loader import Build
 from atlas.model.preferences import EDU_LEVELS, SEX_LEVELS, SPEC_RACE, Request, seeker_weights
-from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _balance_block,
-                                 _match_from, _match_parts, _pct_rank, balance_parts,
-                                 feature_reference, match_inputs, match_normalised,
-                                 match_scoring_spec, race_used, ranked_row, same_sex_note,
-                                 score_components,
-                                 score_from, search_frame, sex_word, suppressed_row)
+from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _match_from, _match_parts,
+                                 _pct_rank, balance_parts, feature_reference, match_inputs,
+                                 match_normalised, match_scoring_spec, race_used, ranked_row,
+                                 same_sex_note, score_components, score_from, search_frame,
+                                 suppressed_row)
 
 EDU_KEYS = ["none", *EDU_LEVELS]
 RACE_KEYS = ["off", *SPEC_RACE]
-# the fields of a ranked row that a variant sets (the selector's list)
-VARIANT_ROW_FIELDS = ("rank", "score", "score_display", "balance", "top_stats", "summary_line")
+# the fields of a ranked row that a variant sets (the selector's list);
+# since m4.1.0 balance is not one of them (ADR 0004 amended) — it travels
+# once, column-wise, in variants.balance
+VARIANT_ROW_FIELDS = ("rank", "score", "score_display", "top_stats", "summary_line")
 # the per-variant columns, field by field (variants.columns[name][variant]
 # [position in that variant's rank order]) — field-major, so like values
 # sit together and compress well
@@ -183,8 +196,9 @@ def _explain_entry(code: tuple[int, ...], feats: list[dict], legend: dict) -> di
 
 
 def _strip_row(row: dict) -> dict:
-    """A default-variant row without the parts a variant changes."""
-    out = {k: v for k, v in row.items() if k not in VARIANT_ROW_FIELDS}
+    """A default-variant row without the parts a variant changes, and
+    without its balance (sent once, in variants.balance)."""
+    out = {k: v for k, v in row.items() if k not in VARIANT_ROW_FIELDS and k != "balance"}
     out["match"] = {"available": row["match"]["available"], "unit_line": row["match"]["unit_line"]}
     stats = list(row["stats"])
     m = stats[MATCH_COLUMN]
@@ -205,8 +219,8 @@ def rank_variants(build: Build, req: Request) -> dict:
     variants, index = variant_list(build, sought)
     d = variants.index(default_variant(sought))
     universe, ranked, suppressed, ridx = fr["universe"], fr["ranked"], fr["suppressed"], fr["ridx"]
-    bal_memo: dict = {}
-    bals = {sex: balance_parts(build, req, fr, sex, bal_memo) for sex in SEX_LEVELS}
+    # m4.1.0: one balance for the search, whoever is searching
+    bal = balance_parts(build, req, fr)
 
     # the compatibility figure for every variant: the search's side once,
     # each distinct age curve's sums once, each variant's own mixture
@@ -224,9 +238,6 @@ def rank_variants(build: Build, req: Request) -> dict:
             hit = sums_by_curve[id(age_vec)] = (age_vec, _age_sums(parts, age_vec))
         mts.append(_match_from(parts, hit[1], W))
 
-    by_sex = {sex: {"balance_applies": sex != sought,
-                    "balance_words": {"sought": sex_word(sought), "seeker": sex_word(sex)},
-                    "ranked": [], "suppressed": []} for sex in SEX_LEVELS}
     listed = []
     for v, (sex, ek, rk) in enumerate(variants):
         same = sex == sought
@@ -251,7 +262,11 @@ def rank_variants(build: Build, req: Request) -> dict:
                         "match_bands": [{"key": bands["keys"][b], "label": le["band_labels"][b],
                                          "tone": le["band_tones"][b]}
                                         for b in range(len(bands["keys"]))],
-                        "explain": [], "by_sex": by_sex, "list": listed,
+                        "explain": [],
+                        "balance": {"balance_words": {"sought": bal["sought_word"],
+                                                      "seeker": bal["seeker_word"]},
+                                    "ranked": [], "suppressed": []},
+                        "list": listed,
                         "columns": {name: [] for name in COLUMNS}}}
 
     if len(ridx):
@@ -267,12 +282,10 @@ def rank_variants(build: Build, req: Request) -> dict:
         base = np.argsort(-sc_d["score"], kind="stable")          # positions in ridx
         dsex = variants[d][0]
         for pos, k in enumerate(base):
-            row = ranked_row(build, fr, bals[dsex], mt_d, sc_d, standing_d, int(ridx[k]), int(k), pos,
+            row = ranked_row(build, fr, bal, mt_d, sc_d, standing_d, int(ridx[k]), int(k), pos,
                              dsex == sought)
+            out["variants"]["balance"]["ranked"].append(row["balance"])
             out["ranked"].append(_strip_row(row))
-        for sex in SEX_LEVELS:
-            by_sex[sex]["ranked"] = [_balance_block(build, int(ridx[k]), bals[sex], sex_word(sought),
-                                                    sex_word(sex)) for k in base]
 
         others = np.array([j for j in range(len(feats)) if j != jm])
         assert 2 * (len(feats) + 1) <= EXPLAIN_BASE
@@ -353,12 +366,9 @@ def rank_variants(build: Build, req: Request) -> dict:
             cols["explain"].append([slots[i] for i in np.asarray(inverse).reshape(-1).tolist()])
 
     for i in np.where(suppressed)[0]:
-        row = suppressed_row(build, fr, bals[variants[d][0]], int(i))
-        row.pop("balance")
+        row = suppressed_row(build, fr, bal, int(i))
+        out["variants"]["balance"]["suppressed"].append(row.pop("balance"))
         out["suppressed"].append(row)
-        for sex in SEX_LEVELS:
-            by_sex[sex]["suppressed"].append(_balance_block(build, int(i), bals[sex], sex_word(sought),
-                                                            sex_word(sex)))
     return out
 
 
@@ -376,7 +386,7 @@ def select_variant(resp: dict, sex: str | None = None, education: str | None = N
     v = V["list"][vi]
     col = {name: V["columns"][name][vi] for name in COLUMNS} if resp["ranked"] else {}
     same = sex == sought
-    bs = V["by_sex"][sex]
+    bal = V["balance"]          # the search's, whoever is searching (m4.1.0)
     rows = []
     for p, b in enumerate(col.get("order", [])):
         base = resp["ranked"][b]
@@ -384,7 +394,7 @@ def select_variant(resp: dict, sex: str | None = None, education: str | None = N
         row["rank"] = col["rank"][p]
         row["score"] = col["score"][p]
         row["score_display"] = col["score_display"][p]
-        row["balance"] = bs["ranked"][b]
+        row["balance"] = bal["ranked"][b]
         match = {"available": base["match"]["available"], "value": col["value"][p],
                  "display": col["display"][p], "capped": p in col["capped"],
                  "unit_line": base["match"]["unit_line"]}
@@ -414,8 +424,8 @@ def select_variant(resp: dict, sex: str | None = None, education: str | None = N
     if resp.get("sort") == "worst_first":
         rows.reverse()
     out = {k: val for k, val in resp.items() if k not in ("ranked", "suppressed", "variants")}
-    out.update({"balance_applies": bs["balance_applies"], "balance_words": bs["balance_words"],
+    out.update({"balance_words": bal["balance_words"],
                 "match_inputs": v["match_inputs"], "ranked": rows,
-                "suppressed": [{**row, "balance": bs["suppressed"][j]}
+                "suppressed": [{**row, "balance": bal["suppressed"][j]}
                                for j, row in enumerate(resp["suppressed"])]})
     return out

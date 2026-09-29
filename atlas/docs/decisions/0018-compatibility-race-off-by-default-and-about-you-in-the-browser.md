@@ -1,9 +1,10 @@
 # ADR 0018 — Compatibility; race off by default; same-sex searches without race; "about you" in the browser
 
 Date: 2026-09-28 (Phase 4, Stage 5)
-Status: accepted; amended 2026-09-29 (Phase 4b, below). Every decision
-below is **Nathan's decision** (decisions 1–5 of the Phase 4 brief; the
-Phase 4b changes after his review of the home page). The measured parts —
+Status: accepted; amended 2026-09-29 (Phase 4b, below) and again
+2026-09-29 (Phase 4c, below). Every decision below is **Nathan's
+decision** (decisions 1–5 of the Phase 4 brief; the Phase 4b and Phase 4c
+changes after his reviews). The measured parts —
 the race-free form's held-out cost, the payload and latency of the variant
 design, the rank shift, the stability gate's reading and the reference
 move — are recorded in the "At the ship" section when m4.0.0 ships.
@@ -162,7 +163,8 @@ place for the registry strings). These are **Nathan's decisions**.
   race means race is on; a detail stored by m4.0.0 (`{raceOn, race}`)
   reads as the same choice, and is rewritten without the switch when it
   is read. On a same-sex search the select is disabled and keeps its
-  value (§3: the figure uses no race there).
+  value (§3: the figure uses no race there). *[Superseded in Phase 4c,
+  below: the select stays operable there, muted and explained.]*
 - **No inline notes about where the details go.** The panel carries no
   note beside the visitor's details — the "about you" note and the
   switch's notices leave the panel and the registry — because the Privacy
@@ -182,3 +184,35 @@ Beside these, the panel is split into two labelled sections, "About you"
 and "Who you're looking for", and the overall score carries the label
 "Overall score" on every result row and in the compare table. The strings
 added, changed and removed are listed in `PHASE4B.md`.
+
+## Amended in Phase 4c (2026-09-29): same-sex searches
+
+Nathan made two changes for same-sex searches. These are **Nathan's
+decisions**. Every score and rank is unchanged; the served balance moves on
+same-sex searches only (ADR 0004 amended), so the model is m4.1.0 on the same
+build, 5b780e4f2444, its manifest refreshed.
+
+- **Own race is selectable on a same-sex search, and explained on hover.**
+  The race select stays operable there — neither disabled nor
+  aria-disabled. A choice is stored as usual (in the browser only, §4),
+  changes nothing on the same-sex search (§3: the figure uses no race
+  there, so every race selects the same variant), and applies as soon as the
+  search is opposite-sex again. The field is muted — grey text on the paper
+  background, a dashed border, every colour at WCAG AA — and the registry's
+  tip, `strings.self_race_same_sex_tip` (Nathan's wording: "This information
+  is not used to calculate compatibility for same-sex couples because not
+  enough data is available to make a reliable estimate."), shows while the
+  pointer is over the field or the select has keyboard focus. It is always
+  the select's description (`aria-describedby`), so a screen reader
+  announces it. A touch screen has no hover: there an information button
+  beside the label opens the same text (its name,
+  `strings.self_race_same_sex_tip_label`, is a draft for Nathan's approval).
+  An opposite-sex search shows the plain field, with no tip. This supersedes
+  the Phase 4b line that the select is disabled on a same-sex search.
+- **Balance no longer depends on own sex.** Balance is the single people of
+  the sought sex per 100 single people of the other sex (ADR 0004 amended),
+  so §4's variants carry one balance per search (`variants.balance`) instead
+  of one per own sex (`variants.by_sex`), and `balance_applies` is gone. Own
+  sex still selects the compatibility figure and the ranking it feeds; the
+  details still never leave the browser, and the response is smaller than
+  m4.0.0's for every test search.

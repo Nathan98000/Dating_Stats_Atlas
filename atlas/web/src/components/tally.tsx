@@ -3,8 +3,11 @@ import { FemaleMark, MaleMark } from "./chrome";
 
 /** Dating pool balance as two tally rows (the v3 boards): one 7×16px bar
  * per 10, a partial bar for the remainder, ♂/♀ marks, captioned in the
- * API's words. The seeker row is always ten bars (the "per 100"
- * baseline). Never renders a number the API didn't send. */
+ * API's words. The second row — the other sex, the seeker's own on an
+ * opposite-sex search (m4.1.0, ADR 0004 amended; the API's seeker_word) —
+ * is always ten bars (the "per 100" baseline). Never renders a number the
+ * API didn't send; a row without one shows the API's note (the sample
+ * gate's — a same-sex search has balance like any other). */
 export function BalanceTally({
   balance,
   compact = false,

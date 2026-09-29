@@ -1,0 +1,54 @@
+{
+ "phase": "4c",
+ "note": "Every string added, retired, reused or listed in Phase 4c, old -> new. Registry strings reach the page through /v1/meta (policy_strings: the versioned policy strings merged with the registry's).",
+ "changes": [
+  {
+   "change": "change 1",
+   "kind": "added",
+   "where": "registry strings.self_race_same_sex_tip",
+   "old": "(none)",
+   "new": "This information is not used to calculate compatibility for same-sex couples because not enough data is available to make a reliable estimate.",
+   "why": "change 1: the race field's explanation on a same-sex search — shown on hover and on keyboard focus, always the select's description (aria-describedby), and behind the touch screen's information button; Nathan's wording, verbatim"
+  },
+  {
+   "change": "change 1",
+   "kind": "added (draft)",
+   "where": "registry strings.self_race_same_sex_tip_label",
+   "old": "(none)",
+   "new": "Why race or ethnicity isn't used here",
+   "why": "change 1: the accessible name of the information button a touch screen shows beside the label (InfoTip needs one, and no user-facing string lives in code); a draft for Nathan's approval — the brief named only the tip"
+  },
+  {
+   "change": "change 2",
+   "kind": "retired",
+   "where": "policy_strings.balance_same_sex (model/suppression.py, served through /v1/meta)",
+   "old": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
+   "new": "(removed)",
+   "why": "change 2: balance applies to every search (ADR 0004 amended). It was shown under the panel's slider, as the home page footnote on a same-sex search, and as the tally's note on every row, the city card and compare; all three displays are gone. It lived only in POLICY_STRINGS, not in the registry file, and the registry loader now refuses it"
+  },
+  {
+   "change": "change 2",
+   "kind": "reused, wording unchanged",
+   "where": "policy_strings.balance_caption",
+   "old": "the home page footnote on an opposite-sex search",
+   "new": "the home page footnote on every search: \"Balance compares all single men with all single women in the ages you picked — before any other filter. Counts come from the Census Bureau’s survey of 3.5 million households a year.\"",
+   "why": "change 2: still accurate for a same-sex search"
+  },
+  {
+   "change": "change 2",
+   "kind": "reused, wording unchanged",
+   "where": "policy_strings.balance_row_caption",
+   "old": "\"{ratio} {sought} per 100 {seekers}\", opposite-sex searches only",
+   "new": "the same template on a same-sex search too, {seekers} naming the other sex: a man seeking men 27–38 sees \"124 men per 100 women\" (San Francisco, real build)",
+   "why": "change 2: the tally's caption and its screen-reader sentence"
+  },
+  {
+   "change": "none",
+   "kind": "listed for Nathan, not changed",
+   "where": "About us (docs/methodology.md), \"What does balance compare?\"",
+   "old": "In a same-sex search everyone is on both sides of the comparison, so balance doesn't apply.",
+   "new": "(unchanged: Nathan's decision)",
+   "why": "no longer true: a same-sex search shows balance, the sought sex per 100 of the other sex (ADR 0004 amended). The paragraph before it (\"all single men per 100 single women (or the mirror, if you're looking for women)\") and the registry definition of pool_balance still read true"
+  }
+ ]
+}

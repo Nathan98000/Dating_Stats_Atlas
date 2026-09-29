@@ -195,14 +195,16 @@ def _spec_to_sql(seeking: dict, self_: dict) -> tuple[str, str]:
         cubes = resolve_race_levels(list(seeking["race_ethnicity"]))
         if cubes is not None:
             w += " AND race8 IN (" + ",".join(f"'{c}'" for c in cubes) + ")"
-    # balance (ADR 0004): the plain sex ratio over the SEEKING window
+    # balance (ADR 0004): the plain sex ratio over the SEEKING window; since
+    # m4.1.0 (ADR 0004 amended) its second side is the opposite of the
+    # sought sex, whoever is searching — the mirror follows the model
     b_sex_sought = sexcode
-    b_sex_seeker = 1 if self_["sex"] == "male" else 2
+    b_sex_other = 2 if sexcode == 1 else 1
     bw_sought = (f"sex = {b_sex_sought} AND agep BETWEEN {lo} AND {hi} "
                  f"AND msp IN ({msp})")
-    bw_seeker = (f"sex = {b_sex_seeker} AND agep BETWEEN {lo} AND {hi} "
-                 f"AND msp IN ({msp})")
-    return w, bw_sought, bw_seeker
+    bw_other = (f"sex = {b_sex_other} AND agep BETWEEN {lo} AND {hi} "
+                f"AND msp IN ({msp})")
+    return w, bw_sought, bw_other
 
 
 def _random_body(rng: np.random.Generator) -> dict:
@@ -250,9 +252,9 @@ def check_differential(build, con) -> dict:
         n_alloc = (build.count_flat @ mask).astype(np.float64)
         pw, bws, bwk = _spec_to_sql(body["seeking"], body["self"])
         from atlas.model.preferences import balance_masks
-        m_sought, m_seeker = balance_masks(req)
+        m_sought, m_other = balance_masks(req)
         cube_bs = (build.pool_flat @ m_sought).astype(np.float64)
-        cube_bk = (build.pool_flat @ m_seeker).astype(np.float64)
+        cube_bk = (build.pool_flat @ m_other).astype(np.float64)
         rels = []
         # m3.0.0: the kernel-weighted numerator and its denominator through
         # the reduced cubes vs the same sums by SQL over contrib joined to
@@ -415,7 +417,7 @@ def check_variants(build, vectors) -> dict:
                 row["match"].pop("moe", None)
             got = select_variant(resp, sex, edu, race)
             same = all(json.dumps(want[k], sort_keys=True) == json.dumps(got[k], sort_keys=True)
-                       for k in ("counts", "weights", "balance_applies", "balance_words",
+                       for k in ("counts", "weights", "balance_words",
                                  "match_inputs", "ranked", "suppressed"))
             n_equal += int(same)
             if not same:

@@ -242,6 +242,17 @@ strings:
   self_edu_label: "My education"
   self_race_label: "My race or ethnicity"
   prefer_not_to_say: "Prefer not to say"
+  # Phase 4c (Nathan's change 1, ADR 0018 amended): on a same-sex search
+  # the race select stays operable — a choice is kept and applies once the
+  # search is opposite-sex again — but is set aside, and this box says why:
+  # on hover and on keyboard focus, and behind an information button on a
+  # touch screen (no hover there). The tip is Nathan's wording, verbatim;
+  # the button's accessible name is a draft for his approval.
+  self_race_same_sex_tip: >-
+    This information is not used to calculate compatibility for same-sex
+    couples because not enough data is available to make a reliable
+    estimate.
+  self_race_same_sex_tip_label: "Why race or ethnicity isn't used here"
   # Phase 4b (Nathan's change 3): the side panel's two sections — the
   # visitor's own details, then the people they are looking for (the
   # headings are drafts for Nathan's approval)
@@ -471,6 +482,11 @@ features:
   # NOWHERE: status context_only, weight 0, out of the pillar set. Its
   # computation is unchanged (scoring.rank, gated separately). The
   # definition below is the sentence its pillar card carried before.
+  # m4.1.0 (ADR 0004 amended, Nathan's decision): the second count is the
+  # OTHER sex (the opposite of the sought sex), not the seeker's own — the
+  # same figure on an opposite-sex search, and on a same-sex search the
+  # figure an opposite-sex search for the same people shows (m4.0.0 served
+  # none there). The definition below reads true for both.
   - id: pool_balance
     pillar: context
     kind: intensive

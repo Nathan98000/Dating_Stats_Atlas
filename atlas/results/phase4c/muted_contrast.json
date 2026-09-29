@@ -1,0 +1,21 @@
+{
+ "tokens": {
+  "ink": "#201B1D",
+  "ink-2": "#5A5257",
+  "ink-3": "#756B70",
+  "paper": "#FDF7F3",
+  "surface": "#FFFFFF",
+  "rule": "#EBDFD8"
+ },
+ "muted": {
+  "text ink-3 on its paper fill (4.5 needed)": 4.83,
+  "label ink-3 on the white panel (4.5 needed)": 5.13,
+  "dashed border ink-3 against the white panel (3 needed)": 5.13,
+  "dashed border ink-3 against its paper fill (3 needed)": 4.83
+ },
+ "plain": {
+  "text ink on the white fill": 16.99,
+  "label ink-2 on the white panel": 7.56,
+  "border rule against the white panel (noticed, not changed)": 1.31
+ }
+}

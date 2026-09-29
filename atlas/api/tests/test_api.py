@@ -84,6 +84,17 @@ def test_meta_carries_the_v3_vocabulary(client):
     for gone in ("self_race_switch_label", "self_race_switch_note", "self_race_same_sex_note",
                  "self_race_choose", "about_you_note", "match_info", "match_how_link"):
         assert gone not in m["policy_strings"], gone
+    # Phase 4c (ADR 0018 amended): the race field's explanation on a
+    # same-sex search, Nathan's wording verbatim, and its touch button's
+    # name; balance applies to every search (ADR 0004 amended), so the
+    # "doesn't apply" note is retired and no served string says it
+    assert m["policy_strings"]["self_race_same_sex_tip"] == (
+        "This information is not used to calculate compatibility for same-sex couples "
+        "because not enough data is available to make a reliable estimate.")
+    assert m["policy_strings"].get("self_race_same_sex_tip_label")
+    assert "balance_same_sex" not in m["policy_strings"]
+    for k, text in {**m["policy_strings"], **m["technical_strings"]}.items():
+        assert "doesn’t apply" not in text and "doesn't apply" not in text, k
     # Nathan's slider text, verbatim (Phase 4b)
     assert m["policy_strings"]["slider_info"] == (
         "Leaning towards size favors larger cities with the most possible matches. Leaning "
@@ -161,6 +172,13 @@ def test_rank_matches_goldens_through_http(client):
         assert resp["shown_unranked"] == []
         assert sum(resp["counts"]["suppressed_by_reason"].values()) == \
             resp["counts"]["suppressed"]
+        # m4.1.0 (ADR 0004 amended): balance is the search's, sent once
+        # (variants.balance, aligned to the rows), never per own sex
+        bal = resp["variants"]["balance"]
+        assert "by_sex" not in resp["variants"] and "balance_applies" not in resp
+        assert set(bal["balance_words"]) == {"sought", "seeker"}
+        assert len(bal["ranked"]) == len(resp["ranked"])
+        assert len(bal["suppressed"]) == len(resp["suppressed"])
         for row in resp["ranked"]:
             # the served rows carry what no variant changes; the rest is in
             # `variants`
@@ -199,9 +217,36 @@ def test_every_variant_equals_the_single_seeker_ranking(client):
                     for row in want["ranked"]:
                         row["match"].pop("moe")
                     got = api.engine.select_variant(resp, sex, edu, race)
-                    for k in ("counts", "weights", "balance_applies", "balance_words",
+                    for k in ("counts", "weights", "balance_words",
                               "match_inputs", "ranked", "suppressed"):
                         assert got[k] == want[k], (sex, ek, rk, k)
+                    assert "balance_applies" not in got and "balance_applies" not in want
+
+
+def test_balance_is_the_searchs_and_a_same_sex_visitor_sees_it(client):
+    """m4.1.0 (ADR 0004 amended, Nathan's decision): balance is the single
+    people of the sought sex per 100 of the other sex, so every own sex
+    sees the same blocks — a man seeking men 27-38 sees the "N men per 100
+    women" a woman seeking the same men sees — and the response carries
+    them once."""
+    body = {"self": {"age": 31}, "seeking": {"sex": "male", "age": [27, 38],
+                                             "marital": ["never_married"],
+                                             "education_min": "bachelors"}}
+    resp = client.post("/v1/rank", json=body).json()
+    same = api.engine.select_variant(resp, "male")
+    other = api.engine.select_variant(resp, "female")
+    assert same["balance_words"] == other["balance_words"] == {"sought": "men", "seeker": "women"}
+    by = lambda sel: {r["cbsa"]: r["balance"] for r in sel["ranked"] + sel["suppressed"]}  # noqa: E731
+    assert by(same) == by(other)
+    shown = [b for b in by(same).values() if b["available"]]
+    assert shown, "the fixture's same-sex search shows balance"
+    for b in shown:
+        assert b["display"] == f"{b['per_100']} men per 100 women"
+    # the single-seeker reference agrees, row for row
+    me = lambda sex: {**body, "self": {"sex": sex, "age": 31}}  # noqa: E731
+    r_same = api.engine.rank(api.BUILD, api.engine.parse_request(me("male")))
+    r_other = api.engine.rank(api.BUILD, api.engine.parse_request(me("female")))
+    assert by(r_same) == by(r_other) == by(same)
 
 
 def test_about_you_never_accepted(client):

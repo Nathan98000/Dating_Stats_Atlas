@@ -40,6 +40,29 @@ describe("variant selection against the Python model", () => {
     expect(narrow.response.sort).toBe("worst_first");
   });
 
+  it("balance is the search's: every own sex selects the same blocks, sent once (m4.1.0)", () => {
+    for (const c of cases.cases) {
+      const resp = c.response as unknown as VariantResponse;
+      expect(resp.variants).not.toHaveProperty("by_sex");
+      expect(resp.variants.balance.ranked).toHaveLength(resp.ranked.length);
+      expect(resp.variants.balance.suppressed).toHaveLength(resp.suppressed.length);
+      const shown = (about: AboutYou) => {
+        const sel = selectVariant(resp, about);
+        expect(sel).not.toHaveProperty("balance_applies");
+        return { words: sel.balance_words, rows: Object.fromEntries(
+          [...sel.ranked, ...sel.suppressed].map((r) => [r.cbsa, r.balance])) };
+      };
+      // a same-sex visitor sees exactly what an opposite-sex visitor sees
+      expect(shown({ sex: "male" })).toEqual(shown({ sex: "female" }));
+    }
+    // a man seeking men sees "N men per 100 women"
+    const ss = cases.cases.find((c) => c.name === "same_sex")!;
+    const sel = selectVariant(ss.response as unknown as VariantResponse, { sex: "male" });
+    const shownBlocks = sel.ranked.map((r) => r.balance).filter((b) => b.available);
+    expect(shownBlocks.length).toBeGreaterThan(0);
+    for (const b of shownBlocks) expect(b.display).toBe(`${b.per_100} men per 100 women`);
+  });
+
   it("on a same-sex search the visitor's race selects the race-off variant", () => {
     const ss = cases.cases.find((c) => c.name === "same_sex")!;
     const resp = ss.response as unknown as VariantResponse;

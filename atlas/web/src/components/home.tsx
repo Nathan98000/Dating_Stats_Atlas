@@ -283,10 +283,11 @@ export function Home({
                 ))}
               </ol>
 
-              <p className="mx-auto max-w-[70ch] pt-8 text-center text-[13px] leading-relaxed text-ink-3" data-variant="">
-                {selected.balance_applies
-                  ? policy.balance_caption
-                  : policy.balance_same_sex}{" "}
+              {/* Phase 4c (ADR 0004 amended): balance applies to every
+                  search, same-sex included, so the footnote is always the
+                  caption — and, the same for every visitor, needs no veil */}
+              <p className="mx-auto max-w-[70ch] pt-8 text-center text-[13px] leading-relaxed text-ink-3" data-testid="balance-footnote">
+                {policy.balance_caption}{" "}
                 <a href="/about" className="font-semibold text-accent hover:text-accent-hover">
                   How it works
                 </a>

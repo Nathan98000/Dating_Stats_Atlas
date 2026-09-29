@@ -93,12 +93,23 @@ select.ctl {
   background-position: right 12px center;
 }
 
-/* Phase 4b: a select the search can't use (own race on a same-sex
-   search) keeps its value but reads as set aside */
-select.ctl:disabled {
+/* Phase 4c (Nathan's change 1): own race on a same-sex search stays
+   operable — a choice is kept and applies once the search is opposite-sex
+   again — but reads as set aside: grey text on the paper background and a
+   dashed border. Operable, so every colour holds WCAG AA: ink-3 text
+   4.8:1 on paper (4.5 needed); the ink-3 border 5.1:1 against the white
+   panel and 4.8:1 against its own fill (3 needed). It replaces Phase 4b's
+   disabled style: no select is disabled now. */
+select.ctl.ctl-muted {
   color: var(--ink-3);
   background-color: var(--paper);
-  cursor: not-allowed;
+  border: 1px dashed var(--ink-3);
+}
+
+/* Phase 4c: an affordance for screens without hover (touch) — hidden
+   wherever a pointer can hover, where the field's own box does the job */
+@media (hover: hover) {
+  .touch-only { display: none; }
 }
 
 input.ctl {

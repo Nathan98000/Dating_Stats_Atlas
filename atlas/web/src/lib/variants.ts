@@ -33,7 +33,7 @@ export function selectVariant(resp: VariantResponse, about: AboutYou): RankRespo
   const sex = effectiveSex(about, V.sought_sex);
   const vi = variantIndex(resp, about);
   const same = sex === V.sought_sex;
-  const bs = V.by_sex[sex];
+  const bal = V.balance; // the search's, whoever is searching (m4.1.0)
   const c = V.columns;
   const rows: RankedRow[] = [];
   if (resp.ranked.length) {
@@ -77,7 +77,7 @@ export function selectVariant(resp: VariantResponse, about: AboutYou): RankRespo
         rank: c.rank[vi][p],
         score: c.score[vi][p],
         score_display: c.score_display[vi][p],
-        balance: bs.ranked[b],
+        balance: bal.ranked[b],
         match,
         stats,
         contributions: base.contributions.map((x) =>
@@ -97,19 +97,18 @@ export function selectVariant(resp: VariantResponse, about: AboutYou): RankRespo
     weights: resp.weights,
     few_metros_notice: resp.few_metros_notice,
     shown_unranked: resp.shown_unranked,
-    balance_applies: bs.balance_applies,
-    balance_words: bs.balance_words,
+    balance_words: bal.balance_words,
     match_inputs: V.list[vi].match_inputs,
     ranked: rows,
-    suppressed: resp.suppressed.map((r, j) => ({ ...r, balance: bs.suppressed[j] })),
+    suppressed: resp.suppressed.map((r, j) => ({ ...r, balance: bal.suppressed[j] })),
   };
 }
 
 /** A page that shows a few cities (the city page, the compare page) needs
  * only their rows: the same response cut down to them — every variant's
  * values for those cities, their ranks as served (in the whole list),
- * their balance for both own sexes. Data plumbing on the server; the
- * browser selects from the slice exactly as from the whole. */
+ * their balance. Data plumbing on the server; the browser selects from
+ * the slice exactly as from the whole. */
 export function sliceVariants(resp: VariantResponse, cbsas: string[]): VariantResponse {
   const want = new Set(cbsas);
   const keep = resp.ranked.flatMap((r, i) => (want.has(r.cbsa) ? [i] : []));
@@ -145,15 +144,15 @@ export function sliceVariants(resp: VariantResponse, cbsas: string[]): VariantRe
     }
   }
   const supKeep = resp.suppressed.flatMap((r, j) => (want.has(r.cbsa) ? [j] : []));
-  const bySex = Object.fromEntries(Object.entries(V.by_sex).map(([sex, v]) => [sex, {
-    ...v,
-    ranked: keep.map((b) => v.ranked[b]),
-    suppressed: supKeep.map((j) => v.suppressed[j]),
-  }])) as typeof V.by_sex;
+  const balance = {
+    ...V.balance,
+    ranked: keep.map((b) => V.balance.ranked[b]),
+    suppressed: supKeep.map((j) => V.balance.suppressed[j]),
+  };
   return {
     ...resp,
     ranked: keep.map((b) => resp.ranked[b]),
     suppressed: supKeep.map((j) => resp.suppressed[j]),
-    variants: { ...V, explain, by_sex: bySex, columns: cols },
+    variants: { ...V, explain, balance, columns: cols },
   };
 }

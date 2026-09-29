@@ -98,9 +98,9 @@ POLICY_STRINGS = {
     "balance_row_caption": "{ratio} {sought} per 100 {seekers}",
     "balance_unavailable": "Not enough survey sample here to compare the "
                            "two sides.",
-    "balance_same_sex": "In a same-sex search everyone is on both sides of "
-                        "the comparison, so balance doesn’t apply — "
-                        "the other measures carry its weight.",
+    # balance_same_sex ("…so balance doesn’t apply…") was RETIRED in m4.1.0
+    # (Phase 4c, ADR 0004 amended): a same-sex search shows the balance an
+    # opposite-sex search for the same people shows
 
     # the m2.0.0 race-panel one-liner is GONE (m2.2.0/ADR 0006): the
     # panel stopped rendering it in Phase 2d, and its always-counted

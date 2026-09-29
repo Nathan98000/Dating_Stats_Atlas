@@ -55,6 +55,16 @@ removal — both noted here as the contract docs):
     selector orders by the variant's rank and reverses), the permalink
     token encodes no "about you" detail, and every response says
     Referrer-Policy: no-referrer.
+  - m4.1.0 (ADR 0004 amended, Nathan's decision): balance is the single
+    people of the sought sex per 100 single people of the other sex, so it
+    no longer depends on the visitor's own sex and applies to every search,
+    same-sex included. The response sends it once: variants.balance holds
+    balance_words and the block of every ranked and suppressed row
+    (aligned to them), replacing variants.by_sex (one copy per own sex);
+    balance_applies is gone, and /v1/meta no longer carries
+    policy_strings.balance_same_sex. It gains
+    strings.self_race_same_sex_tip and self_race_same_sex_tip_label (the
+    race field's explanation on a same-sex search).
 """
 from __future__ import annotations
 

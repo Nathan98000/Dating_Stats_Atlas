@@ -1,0 +1,298 @@
+{
+ "build": "5b780e4f2444",
+ "model_version": [
+  "m4.0.0",
+  "m4.1.0"
+ ],
+ "code": [
+  "f9073a2f47dd89d0f26774b3f19e776faf1a2cf2",
+  "f9073a2f47dd89d0f26774b3f19e776faf1a2cf2+working-tree"
+ ],
+ "test_searches": {
+  "total": 518,
+  "same_sex": 51,
+  "opposite_sex": 467,
+  "source": "stability_gate.test_searches (ADR 0011: personas, effects grid, same-sex grid)"
+ },
+ "api_rank_response": {
+  "everything_but_balance_identical": 518,
+  "opposite_sex_balance_byte_identical": 518,
+  "same_sex_balance_equals_the_opposite_sex_balance": 518,
+  "same_sex_balance_before_not_applicable": 518,
+  "same_sex_notes_before": [
+   "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight."
+  ],
+  "same_sex_rows_after": 99974,
+  "same_sex_rows_after_available": 99771,
+  "responses_larger_after": [],
+  "gzip6_ratio_after_over_before": {
+   "min": 0.9891,
+   "max": 0.9984
+  },
+  "total_bytes": [
+   784265961,
+   767896296
+  ],
+  "total_gzip6_bytes": [
+   117699953,
+   117492994
+  ],
+  "default_search": {
+   "bytes": [
+    1527926,
+    1496326
+   ],
+   "gzip6": [
+    229408,
+    229011
+   ],
+   "gzip9": [
+    224278,
+    223892
+   ],
+   "ranked": 193
+  },
+  "same_sex_reference_search": {
+   "bytes": [
+    1177499,
+    1145900
+   ],
+   "gzip6": [
+    161428,
+    160965
+   ],
+   "gzip9": [
+    157781,
+    157327
+   ],
+   "ranked": 120
+  }
+ },
+ "single_seeker_rank": {
+  "rankings_checked": 1036,
+  "everything_but_balance_identical": 1036,
+  "opposite_sex_balance_byte_identical": 518,
+  "same_sex_balance_equals_the_opposite_sex_balance": 518
+ },
+ "example_man_seeking_men_27_38": {
+  "search": "persona:same_sex_pool",
+  "before": [
+   {
+    "cbsa": "41860",
+    "city": "San Francisco, CA",
+    "male": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
+    "female": "124 men per 100 women"
+   },
+   {
+    "cbsa": "31080",
+    "city": "Los Angeles, CA",
+    "male": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
+    "female": "119 men per 100 women"
+   },
+   {
+    "cbsa": "41940",
+    "city": "San Jose, CA",
+    "male": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
+    "female": "155 men per 100 women"
+   },
+   {
+    "cbsa": "35620",
+    "city": "New York, NY",
+    "male": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
+    "female": "113 men per 100 women"
+   },
+   {
+    "cbsa": "42660",
+    "city": "Seattle, WA",
+    "male": "In a same-sex search everyone is on both sides of the comparison, so balance doesn’t apply — the other measures carry its weight.",
+    "female": "139 men per 100 women"
+   }
+  ],
+  "after": [
+   {
+    "cbsa": "41860",
+    "city": "San Francisco, CA",
+    "male": "124 men per 100 women",
+    "female": "124 men per 100 women"
+   },
+   {
+    "cbsa": "31080",
+    "city": "Los Angeles, CA",
+    "male": "119 men per 100 women",
+    "female": "119 men per 100 women"
+   },
+   {
+    "cbsa": "41940",
+    "city": "San Jose, CA",
+    "male": "155 men per 100 women",
+    "female": "155 men per 100 women"
+   },
+   {
+    "cbsa": "35620",
+    "city": "New York, NY",
+    "male": "113 men per 100 women",
+    "female": "113 men per 100 women"
+   },
+   {
+    "cbsa": "42660",
+    "city": "Seattle, WA",
+    "male": "139 men per 100 women",
+    "female": "139 men per 100 women"
+   }
+  ]
+ },
+ "manifest": {
+  "build": "5b780e4f2444",
+  "data_version": [
+   "5b780e4f2444",
+   "5b780e4f2444"
+  ],
+  "keys_changed": [
+   "created_at",
+   "model_version",
+   "strings"
+  ],
+  "model_version": [
+   "m4.0.0",
+   "m4.1.0"
+  ],
+  "strings_added": {
+   "self_race_same_sex_tip": "This information is not used to calculate compatibility for same-sex couples because not enough data is available to make a reliable estimate.",
+   "self_race_same_sex_tip_label": "Why race or ethnicity isn't used here"
+  },
+  "strings_removed": [],
+  "strings_changed": [],
+  "file_sha256_unchanged": true,
+  "data_files_match_manifest": true,
+  "data_files": 8
+ },
+ "goldens": {
+  "file": "atlas/model/tests/golden/goldens.json",
+  "sha256_before": "76f8d408475ce1076e24f63e61804aebe12929e1a8f1580919f76ccc2c89c735",
+  "sha256_after": "f26bf83eb74be481a357a78e805c0b6ebead23fc9755cd912e0c4bfeea48ae03",
+  "model_version": [
+   "m4.0.0",
+   "m4.1.0"
+  ],
+  "vectors_moved": [
+   "same_sex_pool"
+  ],
+  "fields_moved": [
+   "balance_per_100",
+   "suppressed_balance_available"
+  ],
+  "other_paths": [
+   "/model_version"
+  ],
+  "same_sex_pool_after": {
+   "balance_per_100": {
+    "41940": 155,
+    "35620": 113,
+    "47900": 111,
+    "38300": 126,
+    "12420": 133,
+    "11460": 127,
+    "12060": 108,
+    "33460": 128,
+    "39340": 150
+   },
+   "suppressed_balance_available": {
+    "26580": true,
+    "28660": true
+   }
+  }
+ },
+ "snapshot": {
+  "m4_0_0_record": "results/phase4/snapshot_m4_0_0.json",
+  "m4_1_0_record": "results/phase4c/snapshot_m4_1_0.json",
+  "paths_that_differ": [
+   "/model_version"
+  ],
+  "identical_but_the_model_version": true
+ },
+ "variant_cases": {
+  "file": "atlas/web/tests/variant_cases.json",
+  "model_version": [
+   "m4.0.0",
+   "m4.1.0"
+  ],
+  "cases": {
+   "default": {
+    "response_everything_but_balance_identical": true,
+    "response_bytes": [
+     106100,
+     104210
+    ],
+    "selections": 10,
+    "selections_everything_but_balance_identical": 10,
+    "selections_balance_identical": 7,
+    "selections_balance_moved": [
+     {
+      "sex": "male"
+     },
+     {
+      "sex": "male",
+      "edu": "hs_or_less"
+     },
+     {
+      "sex": "male",
+      "edu": "bachelors",
+      "race": "hispanic"
+     }
+    ]
+   },
+   "same_sex": {
+    "response_everything_but_balance_identical": true,
+    "response_bytes": [
+     95962,
+     94073
+    ],
+    "selections": 10,
+    "selections_everything_but_balance_identical": 10,
+    "selections_balance_identical": 7,
+    "selections_balance_moved": [
+     {
+      "sex": "male"
+     },
+     {
+      "sex": "male",
+      "edu": "hs_or_less"
+     },
+     {
+      "sex": "male",
+      "edu": "bachelors",
+      "race": "hispanic"
+     }
+    ]
+   },
+   "narrow_worst_first": {
+    "response_everything_but_balance_identical": true,
+    "response_bytes": [
+     63131,
+     61238
+    ],
+    "selections": 10,
+    "selections_everything_but_balance_identical": 10,
+    "selections_balance_identical": 7,
+    "selections_balance_moved": [
+     {
+      "sex": "female"
+     },
+     {
+      "sex": "female",
+      "edu": "some_college",
+      "race": "black_nh"
+     },
+     {
+      "sex": "female",
+      "edu": "graduate",
+      "race": "nhpi_nh"
+     }
+    ]
+   }
+  }
+ },
+ "failures": [],
+ "pass": true,
+ "generated": "2026-09-29T12:51:34"
+}

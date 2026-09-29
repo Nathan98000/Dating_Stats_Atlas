@@ -24,6 +24,12 @@ tick. Zero ticked or all eight ticked means no filter at all (the same
 universe either way). Race enters the pool and nothing else:
 balance_masks stays race-blind on purpose.
 
+m4.1.0 (ADR 0004 amended, Nathan's decision): the second balance mask is
+the OTHER sex — the opposite of the sought sex — not the visitor's own.
+On an opposite-sex search that is the visitor's sex, so nothing moves; a
+same-sex search gets the figure an opposite-sex search for the same
+people gets, and balance no longer depends on the visitor at all.
+
 D05 slider semantics survive as pool_vs_match (m3.0.0, ADR 0009): one
 scalar dividing the people-mass between pool (0 = size) and match (1 =
 chances of matching); pool_vs_balance is accepted as a deprecated alias
@@ -392,22 +398,26 @@ def pool_mask(spec: PoolSpec) -> np.ndarray:
 
 
 def balance_masks(req: Request) -> tuple[np.ndarray, np.ndarray]:
-    """(sought mask, seeker mask) for dating pool balance (ADR 0004): the
-    plain sex ratio of single adults in the SEEKING age range. Both masks
-    carry only sex, seeking.age and the marital selection — race, education
-    and income never touch balance, deliberately, so the figure means what
-    its name says and stays put as filters move."""
-    return balance_masks_for(req.seeking, req.self_sex)
+    """(sought mask, other-sex mask) for dating pool balance (ADR 0004):
+    the plain sex ratio of single adults in the SEEKING age range. Both
+    masks carry only sex, seeking.age and the marital selection — race,
+    education and income never touch balance, deliberately, so the figure
+    means what its name says and stays put as filters move."""
+    return balance_masks_for(req.seeking)
 
 
-def balance_masks_for(seek: PoolSpec, self_sex: str) -> tuple[np.ndarray, np.ndarray]:
-    """balance_masks for a given own sex (m4.0.0: the server computes the
-    balance for both, and the browser shows the one that applies)."""
+def balance_masks_for(seek: PoolSpec) -> tuple[np.ndarray, np.ndarray]:
+    """balance_masks for a search. m4.1.0 (ADR 0004 amended): the second
+    mask is the opposite of the sought sex, whoever is searching — the
+    visitor's own sex on an opposite-sex search, the other sex on a
+    same-sex one (m4.0.0 built it from the visitor's own sex, which made a
+    same-sex search's two sides the same people)."""
+    other = SEX_LEVELS[1 - SEX_LEVELS.index(seek.sex)]
     sought = mask_vector(seek.sex, seek.age_min, seek.age_max,
                          seek.marital_levels, None, None, None)
-    seeker = mask_vector(self_sex, seek.age_min, seek.age_max,
-                         seek.marital_levels, None, None, None)
-    return sought, seeker
+    rest = mask_vector(other, seek.age_min, seek.age_max,
+                       seek.marital_levels, None, None, None)
+    return sought, rest
 
 
 def resolve_race_levels(selected: list[str] | None) -> tuple[str, ...] | None:

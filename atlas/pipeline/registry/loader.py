@@ -323,6 +323,14 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
                  "self_race_choose", "about_you_note", "match_info", "match_how_link"):
         assert gone not in strings, (
             f"strings.{gone} was removed in Phase 4b (ADR 0018 amended)")
+    # Phase 4c (Nathan's changes, ADR 0018 and ADR 0004 amended): the race
+    # field's explanation on a same-sex search and its touch button's name;
+    # balance applies to every search, so the retired "doesn't apply" note
+    # (a policy string until m4.1.0) may not come back through the registry
+    for need_key in ("self_race_same_sex_tip", "self_race_same_sex_tip_label"):
+        assert strings.get(need_key), f"strings.{need_key} is required (Phase 4c)"
+    assert "balance_same_sex" not in strings, (
+        "strings.balance_same_sex: balance applies to every search since m4.1.0 (ADR 0004 amended)")
     # m3.1.0 (Phase 3b, A3): the match figure's display ceiling and its
     # token are registry-owned; the ceiling is a positive number
     for need_key in ("match_display_cap", "match_display_cap_token"):

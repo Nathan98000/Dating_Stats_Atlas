@@ -68,9 +68,11 @@ test("a same-sex search says in the slider's information box whose pairing patte
   await expect(ss).toContainText(
     /the racial and ethnic pairings are not used, even if you include your race or ethnicity/);
   // the race select is set aside but keeps its value, and the figures are
-  // the ones with no race at all
+  // the ones with no race at all (Phase 4c: set aside means muted, still
+  // operable)
   const race = page.getByTestId("self-race");
-  await expect(race).toBeDisabled();
+  await expect(race).toBeEnabled();
+  await expect(race).toHaveClass(/\bctl-muted\b/);
   await expect(race).toHaveValue("hispanic");
   const figs = async (p: typeof page) => JSON.stringify(await p.getByTestId("ranked-list").locator("li")
     .evaluateAll((els) => els.map((e) => `${e.getAttribute("data-cbsa")}:${

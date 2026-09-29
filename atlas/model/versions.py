@@ -5,6 +5,25 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.1.0 — Phase 4c (ADR 0004 amended, Nathan's decision): dating pool
+balance is the single people of the sought sex per 100 single people of
+the OTHER sex — the opposite of the sought sex — in the search's age range
+and marital selection, before any other filter. On an opposite-sex search
+the other sex is the visitor's own, so the figure is unchanged, block for
+block; a same-sex search, which m4.0.0 served as not applicable (both
+sides the visitor's own sex: the same people), shows the figure an
+opposite-sex search for the same people shows. Balance is displayed and
+not scored (since m3.0.0), so no score, rank, compatibility figure,
+suppression or band moves — checked over every ADR 0011 test search and
+every variant (PHASE4C.md). Balance no longer depends on the visitor, so
+/v1/rank sends it once (variants.balance) instead of once per own sex
+(variants.by_sex), and the response is smaller for it; balance_applies
+and the policy string balance_same_sex are retired. The
+data files are unchanged, so the build keeps its id (5b780e4f2444) with
+its manifest refreshed (the version and two registry strings). Goldens
+regenerated: only the same-sex vector's balance moves, beside the version
+line.
+
 m4.0.0 — Phase 4, Stage 5 (ADR 0018, Nathan's decisions 1-5): the
 figure is renamed COMPATIBILITY (internal names unchanged); race is off by
 default — a visitor who has not switched it on gets the RACE-FREE form
@@ -261,5 +280,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m4.0.0"
+MODEL_VERSION = "m4.1.0"
 SCHEMA_VERSION = "cube-v1"

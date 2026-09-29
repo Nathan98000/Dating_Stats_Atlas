@@ -151,12 +151,12 @@ test("none of the removed notes appears anywhere on the home page", async ({ pag
   await page.getByTestId("self-edu").selectOption("graduate");
   await page.getByTestId("self-race").selectOption("asian_nh");
   await check("details given");
-  // a same-sex search (a woman looking for women), race set aside, the
-  // slider's box open
+  // a same-sex search (a woman looking for women), race muted but still
+  // operable (Phase 4c), the slider's box open
   const answer = page.waitForResponse((r) => r.url().endsWith("/api/rank"));
   await page.getByTestId("seek-sex").selectOption("female");
   await answer;
-  await expect(page.getByTestId("self-race")).toBeDisabled();
+  await expect(page.getByTestId("self-race")).toBeEnabled();
   await page.getByTestId("slider-info").click();
   await expect(page.getByTestId("slider-same-sex-note")).toBeVisible();
   await check("a same-sex search, the box open");
@@ -311,11 +311,12 @@ test("a visitor's m4.0.0 details ({raceOn, race}) migrate: the same choice, stor
   await other.close();
 });
 
-test("axe: a same-sex search with the race select set aside and the slider's box open", async ({ page }) => {
+test("axe: a same-sex search with the race select muted and the slider's box open", async ({ page }) => {
   await seedAboutYou(page, { sex: "male", race: "hispanic" });
   await page.goto("/?self_age=31&sex=male&age=27-38&marital=never");
   await expect(rowsOf(page).first()).toBeVisible();
-  await expect(page.getByTestId("self-race")).toBeDisabled();
+  // Phase 4c: muted but operable (it was disabled in Phase 4b)
+  await expect(page.getByTestId("self-race")).toBeEnabled();
   await page.getByTestId("slider-info").focus();
   await expect(page.getByTestId("slider-same-sex-note")).toBeVisible();
   await page.waitForLoadState("networkidle");

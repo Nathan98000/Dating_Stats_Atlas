@@ -29,6 +29,13 @@ age-by-sex slices, so they clear the n-gate almost everywhere even when
 the filtered pool does not): the city page and the narrow-search state can
 still show balance when the pool has nothing to say.
 
+m4.1.0 (ADR 0004 amended, Nathan's decision): the second count is the
+OTHER sex — the opposite of the sought sex — rather than the seeker's own.
+An opposite-sex search's figure is unchanged; a same-sex search shows the
+figure an opposite-sex search for the same people shows, where m4.0.0
+served it as not applicable. Balance no longer depends on who is
+searching, so a search has one balance, whatever the visitor's details.
+
 Normalisation (§7.2), per request, across the RANKED SET FOR THIS QUERY:
   extensive (pool):       winsorize 1/99 -> log10 -> min-max -> [0,100]
   intensive (everything): percentile rank -> [0,100], direction from the
@@ -342,21 +349,18 @@ def score_vector(build: Build, ridx: np.ndarray, est: np.ndarray,
     return score_components(build, ridx, est, match, weights)["score"]
 
 
-def _balance_block(build: Build, i: int, bal: dict, sought_word: str,
-                   seeker_word: str) -> dict:
+def _balance_block(build: Build, i: int, bal: dict) -> dict:
     """The one balance quantity, served per metro with its own gate
     (ADR 0004): value (ratio), per-100 integer, composed display strings.
-    Never a bare number without its gate having passed — and never the
-    degenerate "100 per 100" of a same-sex search, where both sides are
-    the same people and the quantity does not exist."""
-    if bal["same_sex"]:
-        return {"available": False,
-                "note": POLICY_STRINGS["balance_same_sex"]}
+    Never a bare number without its gate having passed. m4.1.0: the same
+    block on every search, same-sex included (the two sides are the sought
+    sex and the other sex, never the same people)."""
     if not bal["ok"][i]:
         return {"available": False,
                 "note": POLICY_STRINGS["balance_unavailable"]}
     ratio = float(bal["ratio"][i])
     per_100 = int(round(ratio * 100))
+    sought_word, seeker_word = bal["sought_word"], bal["seeker_word"]
     return {
         "available": True,
         "value": round(ratio, 4),
@@ -636,39 +640,35 @@ def _balance_sums(build: Build, mask: np.ndarray) -> tuple[np.ndarray, np.ndarra
             (build.sumw2_flat @ mask).astype(np.float64))
 
 
-def balance_parts(build: Build, req: Request, fr: dict, self_sex: str,
-                  memo: dict | None = None) -> dict:
-    """Dating pool balance for one own sex, gated separately per quantity
-    (ADR 0004). For a same-sex search the two counts are the same count and
-    the ratio is 1 by construction — the quantity does not exist, so it is
-    served as not-applicable (the check that caught this: rank stability
-    collapsed to 0.05 on the same-sex persona because a constant pillar
-    left the top-10 boundary to noise). m4.0.0: the server computes it for
-    both own sexes; the browser shows the one that applies."""
-    m_sought, m_seeker = balance_masks_for(req.seeking, self_sex)
-    # `memo` (m4.0.0, one per request) keeps each mask's sums: the sought
-    # side is shared by both own sexes, and a same-sex seeker's mask is
-    # the sought mask itself
-    memo = {} if memo is None else memo
-    for sex, mask in ((req.seeking.sex, m_sought), (self_sex, m_seeker)):
-        if sex not in memo:
-            memo[sex] = _balance_sums(build, mask)
-    b_sought, b_sought_n, b_sought_w2 = memo[req.seeking.sex]
-    b_seeker, b_seeker_n, b_seeker_w2 = memo[self_sex]
+def balance_parts(build: Build, req: Request, fr: dict) -> dict:
+    """Dating pool balance for one search, gated separately per quantity
+    (ADR 0004): the single people of the sought sex per 100 single people
+    of the other sex, in the search's age range and marital selection.
+    m4.1.0 (ADR 0004 amended, Nathan's decision): the other sex is the
+    opposite of the sought sex, whoever is searching, so a search has one
+    balance and a same-sex search shows it too. m4.0.0 took the second
+    count from the seeker's own sex, which on a same-sex search counted
+    the same people twice (a ratio of 1 by construction), and served it as
+    not applicable — the rule ADR 0004 made when balance was a scored
+    pillar (a constant pillar left the top-10 boundary to noise); balance
+    has been out of the score since m3.0.0."""
+    m_sought, m_other = balance_masks_for(req.seeking)
+    b_sought, b_sought_n, b_sought_w2 = _balance_sums(build, m_sought)
+    b_other, b_other_n, b_other_w2 = _balance_sums(build, m_other)
     with np.errstate(divide="ignore", invalid="ignore"):
         k_sought = np.where(b_sought_w2 > 0, b_sought ** 2 / b_sought_w2, 0.0)
-        k_seeker = np.where(b_seeker_w2 > 0, b_seeker ** 2 / b_seeker_w2, 0.0)
-    same_sex = req.seeking.sex == self_sex
+        k_other = np.where(b_other_w2 > 0, b_other ** 2 / b_other_w2, 0.0)
     bal_ok = ((np.minimum(b_sought_n, k_sought) >= N_GATE_MIN)
-              & (np.minimum(b_seeker_n, k_seeker) >= N_GATE_MIN)
-              & (b_seeker > 0)
-              & (not same_sex))
+              & (np.minimum(b_other_n, k_other) >= N_GATE_MIN)
+              & (b_other > 0))
     with np.errstate(divide="ignore", invalid="ignore"):
-        bal_ratio = np.where(bal_ok, b_sought / np.maximum(b_seeker, 1e-9),
+        bal_ratio = np.where(bal_ok, b_sought / np.maximum(b_other, 1e-9),
                              np.nan)
+    other = SEX_LEVELS[1 - SEX_LEVELS.index(req.seeking.sex)]
+    # "seeker_word" keeps its served name (on an opposite-sex search the
+    # other sex is the seeker's), so an opposite-sex block is unchanged
     bal = {"ratio": bal_ratio, "ok": bal_ok, "standing": None,
-           "same_sex": same_sex, "sought_word": sex_word(req.seeking.sex),
-           "seeker_word": sex_word(self_sex)}
+           "sought_word": sex_word(req.seeking.sex), "seeker_word": sex_word(other)}
     ridx, ranked = fr["ridx"], fr["ranked"]
     if len(ridx):
         # standing of a metro's balance among the query's ranked set
@@ -763,7 +763,7 @@ def ranked_row(build: Build, fr: dict, bal: dict, mt: dict, sc: dict,
         "cv": round(float(rse[i]), 3),
         "n_unweighted": round(float(n_gate[i])),
         "tier": "measured",
-        "balance": _balance_block(build, i, bal, bal["sought_word"], bal["seeker_word"]),
+        "balance": _balance_block(build, i, bal),
         "match": _match_block(mt, i, build, float(standing[k, jm]), same_sex),
         "allocation_purity": round(float(build.purity[i]), 3),
         "flags": _row_flags(build, i),
@@ -791,7 +791,7 @@ def suppressed_row(build: Build, fr: dict, bal: dict, i: int) -> dict:
         "flags": _row_flags(build, i),
         # balance usually survives the pool's suppression — that is the
         # point of gating it separately (ADR 0004)
-        "balance": _balance_block(build, i, bal, bal["sought_word"], bal["seeker_word"]),
+        "balance": _balance_block(build, i, bal),
         "cards": _card_stats(build, i),
         "crime": _crime_block(build, i),
     }
@@ -809,7 +809,7 @@ def rank(build: Build, req: Request) -> dict:
     fr = search_frame(build, req)
     mt = match_index(build, req)
     same_sex = req.seeking.sex == req.self_sex
-    bal = balance_parts(build, req, fr, req.self_sex)
+    bal = balance_parts(build, req, fr)
     universe, ranked, suppressed, ridx = fr["universe"], fr["ranked"], fr["suppressed"], fr["ridx"]
     out = {"counts": {"universe": int(universe.sum()),
                       "ranked": int(ranked.sum()),
@@ -818,7 +818,9 @@ def rank(build: Build, req: Request) -> dict:
                       "suppressed_by_reason": fr["reasons"]},
            "weights": fr["weights"],
            "few_metros_notice": bool(ranked.sum() < 40),
-           "balance_applies": not same_sex,
+           # m4.1.0: balance applies to every search, so balance_applies is
+           # gone; "seeker" names the other sex (the seeker's own on an
+           # opposite-sex search)
            "balance_words": {"sought": bal["sought_word"], "seeker": bal["seeker_word"]},
            # the race the figure used: none on a kernel_v3 same-sex search
            "match_inputs": match_inputs(build, req.self_edu,

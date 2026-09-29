@@ -138,7 +138,10 @@ export interface RankResponse {
   };
   weights: Record<string, number>;
   few_metros_notice: boolean;
-  balance_applies: boolean;
+  /** the balance's words: the sought sex and the other sex (the key
+   * "seeker" names the other sex — the seeker's own on an opposite-sex
+   * search). m4.1.0: balance applies to every search, so there is no
+   * balance_applies */
   balance_words: { sought: string; seeker: string };
   match_inputs: MatchInputs;
   ranked: RankedRow[];
@@ -159,7 +162,9 @@ export interface MatchInputs {
  * every variant those details could select; lib/variants selects one and
  * hands the components a RankResponse. `ranked` rows lack the parts a
  * variant changes; `variants.columns[field][variant][position]` holds
- * them, each variant's rows in its own rank order. */
+ * them, each variant's rows in its own rank order. The rows' balance
+ * travels in `variants.balance`, once (m4.1.0, ADR 0004 amended: it is
+ * the search's, whoever is searching). */
 export type BaseRow = Omit<RankedRow, "rank" | "score" | "score_display" |
   "balance" | "match" | "top_stats" | "summary_line"> & {
   match: { available: boolean; unit_line: string };
@@ -197,12 +202,14 @@ export interface Variants {
   same_sex_note: string;
   match_bands: { key: string; label: string; tone: Tone }[];
   explain: { top_stats: string[]; summary_line: string }[];
-  by_sex: Record<"male" | "female", {
-    balance_applies: boolean;
-    balance_words: { sought: string; seeker: string };
+  /** m4.1.0: the search's balance, once — its words and the block of
+   * every ranked and suppressed row, aligned to them (m4.0.0 sent a copy
+   * per own sex, `by_sex`) */
+  balance: {
+    balance_words: RankResponse["balance_words"];
     ranked: BalanceBlock[];
     suppressed: BalanceBlock[];
-  }>;
+  };
   list: VariantInfo[];
   columns: VariantColumns;
 }

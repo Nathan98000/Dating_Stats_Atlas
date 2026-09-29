@@ -28,6 +28,7 @@ from atlas.model.suppression import (POLICY_STRINGS, TECHNICAL_STRINGS,
 from atlas.model.versions import MODEL_VERSION
 
 FIXTURE_DIR = Path(__file__).resolve().parent / "fixture_build"
+GOLDENS = Path(__file__).resolve().parent / "goldens.json"
 BANNED = re.compile(r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
                     re.IGNORECASE)
 
@@ -446,6 +447,14 @@ def test_balance_masks_are_the_plain_sex_ratio():
     # identical windows, opposite sexes: the two masks are disjoint and
     # their union is symmetric in sex
     assert float(sought @ seeker) == 0.0
+    # m4.1.0 (ADR 0004 amended): the second mask is the opposite of the
+    # SOUGHT sex, whoever is searching — a same-sex search's masks are the
+    # opposite-sex search's for the same people, never the same slice twice
+    same = engine.parse_request({**body, "self": {"sex": "male", "age": 32},
+                                 "seeking": {**body["seeking"], "sex": "male"}})
+    s2, k2 = balance_masks(same)
+    assert np.array_equal(s2, sought) and np.array_equal(k2, seeker)
+    assert float(s2 @ k2) == 0.0
 
 
 def test_balance_ignores_filters_end_to_end(build):
@@ -559,21 +568,36 @@ def test_balance_gate_is_separate(build):
         "a suppressed row must not leak a pool figure")
 
 
-def test_same_sex_balance_is_not_applicable(build):
-    """The plain sex ratio does not exist for a same-sex search — both
-    sides are the same people, the ratio is 1 by construction, and serving
-    it would hand a quarter of the model to a constant (found when rank
-    stability collapsed to 0.05 on this shape). Served not-applicable with
-    a plain note; the pillar's weight redistributes pro-rata."""
+def test_same_sex_balance_is_the_opposite_sex_figure(build):
+    """m4.1.0 (ADR 0004 amended, Nathan's decision): balance is the single
+    people of the sought sex per 100 of the OTHER sex, so a same-sex search
+    shows exactly the blocks an opposite-sex search for the same people
+    shows — a man seeking men 27-38 sees "N men per 100 women" — gated the
+    same way. m4.0.0 served it not applicable here (the second side was the
+    seeker's own sex: the same people). Balance feeds no score, so the
+    same-sex seeker's ranking is what it was."""
     body = {"self": {"sex": "male", "age": 31},
             "seeking": {"sex": "male", "age": [27, 38],
                         "marital": ["never_married"],
                         "education_min": "bachelors"}}
     res = engine.rank(build, engine.parse_request(body))
-    assert res["balance_applies"] is False
-    for r in res["ranked"] + res["suppressed"]:
-        assert r["balance"]["available"] is False
-        assert "doesn’t apply" in r["balance"]["note"]
+    opp = engine.rank(build, engine.parse_request({**body, "self": {"sex": "female", "age": 31}}))
+    assert "balance_applies" not in res
+    assert res["balance_words"] == opp["balance_words"] == {"sought": "men", "seeker": "women"}
+    by = lambda out: {r["cbsa"]: r["balance"] for r in out["ranked"] + out["suppressed"]}  # noqa: E731
+    assert by(res) == by(opp)
+    assert any(b["available"] for b in by(res).values())
+    for b in by(res).values():
+        if b["available"]:
+            assert b["display"] == f"{b['per_100']} men per 100 women"
+        else:
+            assert b["note"] == POLICY_STRINGS["balance_unavailable"]
+    assert "balance_same_sex" not in POLICY_STRINGS
+    assert not any("doesn’t apply" in t or "doesn't apply" in t for t in POLICY_STRINGS.values())
+    # the goldens pin the same-sex seeker's ranking; it is m4.0.0's
+    g = next(v for v in json.loads(GOLDENS.read_text())["vectors"] if v["name"] == "same_sex_pool")
+    assert [r["cbsa"] for r in res["ranked"]] == g["expect"]["ranked_cbsas"]
+    assert {r["cbsa"]: r["score"] for r in res["ranked"]} == g["expect"]["scores"]
     row = res["ranked"][0]
     # ADR 0009: balance is no longer a stat at all; the weights still sum
     # to one over the scored set, and the match figure is served
