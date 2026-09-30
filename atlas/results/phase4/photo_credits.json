@@ -1,33 +1,33 @@
 {
- "photos_in_use": 356,
+ "photos_in_use": 372,
  "by_licence": {
-  "CC BY 2.0": 38,
+  "CC BY 2.0": 42,
   "CC BY 2.5": 1,
-  "CC BY 3.0": 15,
+  "CC BY 3.0": 17,
   "CC BY 3.0 us": 1,
-  "CC BY 4.0": 62,
+  "CC BY 4.0": 63,
   "CC BY-SA 1.0": 1,
   "CC BY-SA 2.0": 16,
   "CC BY-SA 2.5": 4,
-  "CC BY-SA 3.0": 65,
-  "CC BY-SA 4.0": 96,
+  "CC BY-SA 3.0": 67,
+  "CC BY-SA 4.0": 104,
   "CC0": 23,
-  "Public domain": 34
+  "Public domain": 33
  },
  "cropped": [
   "hero"
  ],
  "cc_before_4_0": {
-  "count": 141,
+  "count": 149,
   "by_licence": {
-   "CC BY 2.0": 38,
+   "CC BY 2.0": 42,
    "CC BY 2.5": 1,
-   "CC BY 3.0": 15,
+   "CC BY 3.0": 17,
    "CC BY 3.0 us": 1,
    "CC BY-SA 1.0": 1,
    "CC BY-SA 2.0": 16,
    "CC BY-SA 2.5": 4,
-   "CC BY-SA 3.0": 65
+   "CC BY-SA 3.0": 67
   },
   "photos": [
    {
@@ -67,6 +67,16 @@
    },
    {
     "page": "city",
+    "key": "barnstable-town-massachusetts",
+    "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
+    "key": "bend-oregon",
+    "license": "CC BY 2.0"
+   },
+   {
+    "page": "city",
     "key": "bloomington-indiana",
     "license": "CC BY-SA 3.0"
    },
@@ -74,6 +84,11 @@
     "page": "city",
     "key": "boston-massachusetts",
     "license": "CC BY 2.5"
+   },
+   {
+    "page": "city",
+    "key": "boulder-colorado",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -93,6 +108,11 @@
    {
     "page": "city",
     "key": "brunswick-georgia",
+    "license": "CC BY 2.0"
+   },
+   {
+    "page": "city",
+    "key": "canton-ohio",
     "license": "CC BY 2.0"
    },
    {
@@ -212,6 +232,11 @@
    },
    {
     "page": "city",
+    "key": "fort-collins-colorado",
+    "license": "CC BY 3.0"
+   },
+   {
+    "page": "city",
     "key": "gadsden-alabama",
     "license": "CC BY-SA 2.0"
    },
@@ -238,6 +263,11 @@
    {
     "page": "city",
     "key": "greeley-colorado",
+    "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
+    "key": "gulfport-mississippi",
     "license": "CC BY-SA 3.0"
    },
    {
@@ -353,6 +383,11 @@
    {
     "page": "city",
     "key": "la-crosse-wisconsin",
+    "license": "CC BY 3.0"
+   },
+   {
+    "page": "city",
+    "key": "lakeland-florida",
     "license": "CC BY 3.0"
    },
    {
@@ -654,6 +689,11 @@
     "page": "city",
     "key": "st-joseph-missouri",
     "license": "CC BY-SA 2.5"
+   },
+   {
+    "page": "city",
+    "key": "st-louis-missouri",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -990,6 +1030,16 @@
   },
   {
    "page": "city",
+   "key": "barnstable-town-massachusetts",
+   "title": "Barnstable County Courthouse, Barnstable MA",
+   "author": "John Phelan",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Barnstable_County_Courthouse,_Barnstable_MA.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "baton-rouge-louisiana",
    "title": "Downtown Baton Rouge, Louisiana from Tiger Stadium (LSU)",
    "author": "Spatms",
@@ -1046,6 +1096,16 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bellingham,_Washington_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
+   "key": "bend-oregon",
+   "title": "20210803 03 Bend, Oregon",
+   "author": "David Wilson",
+   "source_url": "https://commons.wikimedia.org/wiki/File:20210803_03_Bend,_Oregon.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
    "cropped": false
   },
   {
@@ -1140,6 +1200,16 @@
   },
   {
    "page": "city",
+   "key": "boulder-colorado",
+   "title": "Pearl Street Mall",
+   "author": "Lee Coursey",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pearl_Street_Mall.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "bowling-green-kentucky",
    "title": "Fountain Square Park, Bowling Green, Kentucky",
    "author": "OPMaster (talk)",
@@ -1230,6 +1300,16 @@
   },
   {
    "page": "city",
+   "key": "canton-ohio",
+   "title": "Pro Football Hall of Fame (23945852607)",
+   "author": "Erik Drost",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pro_Football_Hall_of_Fame_(23945852607).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "cape-coral-florida",
    "title": "Cape Coral, Florida",
    "author": "David Wilson",
@@ -1300,6 +1380,16 @@
   },
   {
    "page": "city",
+   "key": "charleston-west-virginia",
+   "title": "The West Virginia State Capitol building - Image03",
+   "author": "Daniel G Rego",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_West_Virginia_State_Capitol_building_-_Image03.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "charlotte-north-carolina",
    "title": "Uptown Charlotte 2018 taking by DJI Phantom 4 pro",
    "author": "Precisionviews",
@@ -1364,6 +1454,16 @@
    "title": "Downtown Cincinnati viewed from Devou Park (cropped)",
    "author": "EEJCC",
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_viewed_from_Devou_Park_(cropped).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
+   "key": "clarksville-tennessee",
+   "title": "Downtown Clarksville TN",
+   "author": "GatewayPolitics",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Clarksville_TN.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": false
@@ -1830,6 +1930,16 @@
   },
   {
    "page": "city",
+   "key": "fort-collins-colorado",
+   "title": "Downtown Fort Collins Colorado",
+   "author": "Citycommunications at English Wikipedia",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fort_Collins_Colorado.jpg",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "fort-smith-arkansas",
    "title": "Fort Smith, AR 002",
    "author": "Brandonrush",
@@ -2020,6 +2130,16 @@
   },
   {
    "page": "city",
+   "key": "gulfport-mississippi",
+   "title": "FightingSeabee NavalConstructionBattalionCenter Gulfport,MS",
+   "author": "Woodlot",
+   "source_url": "https://commons.wikimedia.org/wiki/File:FightingSeabee_NavalConstructionBattalionCenter_Gulfport,MS.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "hagerstown-maryland",
    "title": "Downtown Hagerstown on Franklin Street",
    "author": "Charlotte Jackson",
@@ -2110,6 +2230,16 @@
   },
   {
    "page": "city",
+   "key": "hilton-head-island-south-carolina",
+   "title": "Hilton Head Island Lighthouse June 2026",
+   "author": "Locust member",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hilton_Head_Island_Lighthouse_June_2026.png",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "hinesville-georgia",
    "title": "Hinesville city hall",
    "author": "Michael Rivera",
@@ -2174,6 +2304,16 @@
    "title": "Huntington, West Virginia (2023)",
    "author": "WeaponizingArchitecture",
    "source_url": "https://commons.wikimedia.org/wiki/File:Huntington,_West_Virginia_(2023).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
+   "key": "huntsville-alabama",
+   "title": "Huntsville Art Museum - front façade and stairs 2023",
+   "author": "American Diabetio",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Huntsville_Art_Museum_-_front_fa%C3%A7ade_and_stairs_2023.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": false
@@ -2476,6 +2616,16 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:London_Bridge,_Lake_Havasu_City_-_2011_(Aerial_Photo).jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": false
+  },
+  {
+   "page": "city",
+   "key": "lakeland-florida",
+   "title": "Lakeland city hall lakeland florida",
+   "author": "Connor J. Williams",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lakeland_city_hall_lakeland_florida.jpg",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
    "cropped": false
   },
   {
@@ -3470,6 +3620,16 @@
   },
   {
    "page": "city",
+   "key": "salinas-california",
+   "title": "Monterey County Courthouse 2018 Salinas CA (1)",
+   "author": "Sgerbic",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Monterey_County_Courthouse_2018_Salinas_CA_(1).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "salisbury-maryland",
    "title": "Salisbury MD Main Street",
    "author": "Eric Fischer",
@@ -3591,11 +3751,11 @@
   {
    "page": "city",
    "key": "savannah-georgia",
-   "title": "Tarangire-Natpark800600",
-   "author": "ProfessorX",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Tarangire-Natpark800600.jpg",
-   "license": "Public domain",
-   "license_url": null,
+   "title": "The Fountain at Forsyth",
+   "author": "Derrick Gaines",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Fountain_at_Forsyth.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": false
   },
   {
@@ -3700,6 +3860,16 @@
   },
   {
    "page": "city",
+   "key": "spartanburg-south-carolina",
+   "title": "Love Where You Live mural in downtown Spartanburg",
+   "author": "PegasusRacer28",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Love_Where_You_Live_mural_in_downtown_Spartanburg.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
    "key": "spokane-washington",
    "title": "Spokane, Washington skyline (cropped)",
    "author": "Quintin Soloviev",
@@ -3776,6 +3946,16 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Buchanan_County_Courthouse_St_Joseph_Missouri.jpg",
    "license": "CC BY-SA 2.5",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+   "cropped": false
+  },
+  {
+   "page": "city",
+   "key": "st-louis-missouri",
+   "title": "Runner Fountain and Old Courthouse and Arch (5618845531)",
+   "author": "Jefferson National Expansion Memorial, NPS from St. Louis, MO, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Runner_Fountain_and_Old_Courthouse_and_Arch_(5618845531).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
    "cropped": false
   },
   {
@@ -4016,6 +4196,16 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Visalia_Tranist_Center_2011_(cropped).jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": false
+  },
+  {
+   "page": "city",
+   "key": "waco-texas",
+   "title": "Waco June 2016 13 (Waco Suspension Bridge)",
+   "author": "Michael Barera",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Waco_June_2016_13_(Waco_Suspension_Bridge).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": false
   },
   {
@@ -4284,6 +4474,16 @@
    "title": "Oxford High Street Facing West, Oxford, UK - Diliff",
    "author": "Diliff",
    "source_url": "https://commons.wikimedia.org/wiki/File:Oxford_High_Street_Facing_West,_Oxford,_UK_-_Diliff.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "stat",
+   "key": "venues_per_100k",
+   "title": "1 times square night 2013",
+   "author": "chensiyuan",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1_times_square_night_2013.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": false

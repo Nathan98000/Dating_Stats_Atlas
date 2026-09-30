@@ -517,6 +517,57 @@ Phase 4 did everything in the repository; these are Nathan's own.
       cached views of the old commits, and check for forks — the exact
       commands are in `PHASE4.md` §1.
 
+## After the phase: Nathan's calls (2026-09-29)
+
+These are **Nathan's decisions**, made after Phases 4b and 4c; ADR 0012 is
+amended for the photographs.
+
+**The copy (§6).** Nathan approved all the copy, for now: every change in
+§6, the privacy text, and PHASE4B.md §2. Three sentences still name the race
+switch Phase 4b removed — Privacy's "Your race or ethnicity is used only if
+you switch it on." and two on About us (under Compatibility, and under the
+race and ethnicity boxes) — and are flagged for rewording before launch.
+
+**The photo review (§2).** Nathan said to keep every photograph except
+Waco's and Savannah's, and to find replacements for those two; asked
+whether that meant all fifteen other removals, he answered: restore all 15.
+
+- **Fifteen removals are restored as they were:** C026 Barnstable, C033
+  Bend, C053 Canton, C116 Fort Collins, C136 Gulfport, C146 Hilton Head
+  Island, C154 Huntsville, C185 Lakeland, C309 Spartanburg, C318 St. Louis,
+  and the five other close calls, C043 Boulder, C061 Charleston WV, C069
+  Clarksville, C285 Salinas and S06 (places to go out). For them he sets
+  aside the subject rule — three show recognisable people, eight recent
+  sculptures and two murals — and, for Hilton Head Island (the America 250
+  emblem on its lighthouse) and Lakeland (the city's logo sign), the line
+  that no agency logo, emblem or seal appears on any page. Each file came
+  back from the Trash matching its recorded sha256, and each render entry
+  is rebuilt from its manifest row as `city_images` composes one.
+- **Waco's collage stays removed, and Waco gets a replacement:**
+  `File:Waco_June_2016_13_(Waco_Suspension_Bridge).jpg`, the Waco
+  Suspension Bridge seen down its deck to the twin-arched tower (CC BY-SA
+  4.0, Michael Barera).
+- **Savannah's photograph (Tarangire National Park, Tanzania) is
+  replaced:** `File:The_Fountain_at_Forsyth.jpg`, the Forsyth Park fountain
+  of 1858 (CC BY-SA 4.0, Derrick Gaines). Its Commons description is only in
+  Italian, so its alt text is the review's own, a draft for Nathan's
+  approval: "The Forsyth Park fountain in Savannah, Georgia."
+- Both replacements were chosen from three candidates per city that meet
+  every rule of ADR 0012 (licence, subject, no logo), preferring 4.0
+  licences. The review names them (`photo_review.json`, `replaced`), and the
+  pipeline sources exactly those files on any re-run while refusing the
+  files they replace (`city_images.source_file`, `photo_review.pinned_files`).
+  Wikimedia now serves standard thumbnail sizes, so the two new renditions
+  are 1,920 px wide where the others are 1,600; they are still Wikimedia's
+  own, unmodified.
+- **The 141 photographs under Creative Commons licences before 4.0 stay,**
+  credited in the one central list; with the restorations they are 149.
+
+The site shows 372 photographs — 365 city photographs (every city that had
+one before the review has one again), 6 stat-page photographs and the hero
+— all credited in About us (`photo_credits.json`).
+`pipeline/tests/test_photo_review.py` holds the render data to the review.
+
 ## Gate check
 
 | The brief's gate | Reading | |

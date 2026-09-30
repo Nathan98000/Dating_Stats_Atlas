@@ -30,7 +30,9 @@ they can be read in one place.
 - **No agency logos or seals**, and nothing implying endorsement. No
   agency logo, emblem or seal appears in `web/public` or on any page
   (Stage 3 confirms it); no sentence says or suggests that an agency
-  endorses, certifies or produced the site's figures.
+  endorses, certifies or produced the site's figures. *[Amended after
+  Phase 4c: two restored photographs show one, by Nathan's decision — the
+  last section.]*
 - **Modelled figures are ours.** A figure the site computes — the pool
   counts, the balance, the compatibility figure ("chances of matching"
   until Stage 5), every rate per 100,000 — is never called "Census
@@ -140,7 +142,8 @@ The city photographs, the stat-page photographs and the home-page hero.
 - **Subjects:** no photograph whose subject is an identifiable person,
   and no photograph of a recent US sculpture or mural. A removed
   photograph falls back to no photo — the existing "no file, no photo"
-  rule.
+  rule. *[After Phase 4c Nathan kept fifteen of the photographs this rule
+  removed — the last section.]*
 - **The record, per photograph in use:** title, author, source link,
   licence and licence-version link, and whether the layout crops it. A
   crop is an adaptation, and is credited as "cropped".
@@ -151,7 +154,7 @@ The city photographs, the stat-page photographs and the home-page hero.
 - **Credits** live in the one "Sources and credits" section, in a
   collapsible list. The photographs under CC 2.0 and 3.0 licences are
   listed in PHASE4.md for Nathan to confirm that the central credit
-  suits them.
+  suits them. *[Confirmed after Phase 4c — the last section.]*
 
 ### Pew Research Center
 
@@ -204,3 +207,29 @@ The Cooperative Election Study and the 2020 US Religion Census stay
   stat-page photographs go (Stage 5).
 - Adding a source means adding its registry entry, with its citation and
   conditions, before any feature can trace to it.
+
+## Amended after Phase 4c (2026-09-29): the photo review, decided
+
+These are **Nathan's decisions** on the photographs Stage 3 removed
+pending his confirmation, and on its one finding (the record:
+`results/phase4/photo_review.json`; PHASE4.md, "After the phase").
+
+- **Fifteen of the sixteen removals are restored**, as they were. For them
+  he sets aside the subject rule — three show recognisable people, eight
+  recent sculptures and two murals — and, for Hilton Head Island (the
+  America 250 emblem on its lighthouse) and Lakeland (the city's logo sign),
+  the line under "Across every source" that no agency logo, emblem or seal
+  appears on any page. The rules stand for every other photograph and for
+  new ones: the two replacements below meet them.
+- **Waco's collage stays removed, and Waco and Savannah take
+  replacements.** Savannah's photograph showed Tarangire National Park,
+  Tanzania, because the lookup landed on the article "Savanna". Each
+  replacement is a Commons file the review names (`replaced`) — the Waco
+  Suspension Bridge and the Forsyth Park fountain, both CC BY-SA 4.0 — which
+  the pipeline sources through the same licence rule on any re-run, while
+  refusing the files they replace. The fountain's Commons description is
+  only in Italian, so the review gives its English alt text.
+- **The photographs under Creative Commons licences before 4.0 stay** in
+  the one central credit list, the question the Wikimedia section left
+  open; with the restorations they are 149 of the 372 photographs shown.
+

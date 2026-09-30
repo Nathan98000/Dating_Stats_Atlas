@@ -182,3 +182,10 @@ One line each; `results/phase4b/deviations.md` is identical.
 - The served strings live in the build's manifest, so `cube.build` refreshed build 5b780e4f2444's manifest in place (data identical, id kept) and `make_fixture` rebuilt the test fixture from it; goldens.json came out byte-identical, so MODEL_VERSION stays m4.0.0 — `versions.py` asks for a bump only when a golden moves, and a display-only patch bump like m2.3.1's would rewrite goldens.json's version line, which the brief holds byte-identical.
 - The new e2e tests read the registry strings from the test API (`/v1/meta` on port 8600) and name the exact variant a page must show by running the browser's own selector over that API's response — requests made by the test, never by a page.
 - The Phase 2d and Phase 3 screenshot scripts (`web/scripts/shoot_phase2d.mjs`, `shoot_phase3.mjs`) still name the figure's removed information box; they record those phases' screenshots and are not tests, so they are left as they are.
+
+## After the phase (2026-09-29)
+
+Nathan approved the copy in §2 for now, including the two section headings
+and his slider sentence as written. The three sentences that still name the
+removed switch are flagged for rewording before launch (PHASE4.md, "After
+the phase").

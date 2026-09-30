@@ -79,9 +79,12 @@ CORS. If neither is acceptable, use Topology A.
 
 Phase 4 did everything in the repository; these are Nathan's own.
 
-- [ ] **Approve the copy**: the privacy policy text and every new or
+- [x] **Approve the copy**: the privacy policy text and every new or
       changed sentence, listed old → new in `PHASE4.md` ("Copy for
-      Nathan's approval").
+      Nathan's approval"). Approved for now on 2026-09-29, with PHASE4B.md
+      and PHASE4C.md's copy; three sentences that still name the removed
+      race switch (Privacy, and twice on About us) are flagged for rewording
+      before launch (`PHASE4.md`, "After the phase").
 - [ ] **Terms of use** for the site.
 - [ ] **Fly.io's data processing agreement**, and confirming that Fly's
       edge does not log query strings (search settings travel in the
@@ -100,7 +103,11 @@ Phase 4 did everything in the repository; these are Nathan's own.
       confirming commercial use, before that source is ever started.
 - [ ] **Foursquare's Places Portal terms**, when venues are un-deferred
       (ADR 0012).
-- [ ] **The force-push and the GitHub purge from Phase 4 Stage 1**: re-add
+- [x] **The force-push and the GitHub purge from Phase 4 Stage 1**: re-add
       `origin`, force-push every branch and tag, ask GitHub Support to purge
       cached views of the old commits, and check for forks — the exact
-      commands are in `PHASE4.md` §1.
+      commands are in `PHASE4.md` §1. Done 2026-09-29 another way: GitHub
+      Support's form had no fitting category, so Nathan deleted the
+      repository and recreated it clean; the old commits no longer resolve,
+      and the new repository has no forks (whether the old one had any
+      before it was deleted is not recorded).

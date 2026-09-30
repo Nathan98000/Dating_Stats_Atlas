@@ -39,7 +39,8 @@ from pathlib import Path
 import pandas as pd
 import requests
 
-from atlas.pipeline.build.photo_review import CROPPED, refused_files, title_of
+from atlas.pipeline.build.photo_review import (CROPPED, pinned_alts, pinned_files, refused_files,
+                                               title_of)
 from atlas.pipeline.fetch import DATA, RESULTS
 
 WEB = RESULTS.parents[0] / "web"
@@ -53,6 +54,10 @@ THUMB_WIDTH = 1600
 
 # Phase 4 (ADR 0012): files the photo review removed are refused on sight
 REVIEW_REFUSED = refused_files()
+# after Phase 4c (Nathan's calls): pages whose photograph the review
+# replaced take exactly the Commons file it names
+REVIEW_PINNED = pinned_files()
+REVIEW_ALTS = pinned_alts()
 
 # licences Nathan cleared: PD, CC0, CC-BY, CC-BY-SA — nothing NC or ND,
 # nothing unreadable
@@ -215,21 +220,41 @@ def source_one(candidates: list[str]) -> tuple[dict | None, str]:
         if not cleared:
             last_reason = reason
             continue
-        # Wikimedia refuses UPSCALES: a 1600px thumb of a smaller original
-        # 404s, so small originals ship at their own size (still their
-        # rendition, still unmodified)
-        use_thumb = (ii.get("width") or 0) > THUMB_WIDTH
-        return {
-            "page_title": resolved,
-            "file_title": f"File:{name}",
-            "source_url": ii.get("descriptionurl"),
-            "image_url": (ii.get("thumburl") if use_thumb else None)
-                         or ii.get("url"),
-            "mime": ii.get("mime"),
-            "commons_sha1": ii.get("sha1"),
-            **cleared,
-        }, ""
+        return _record(resolved, name, ii, cleared), ""
     return None, last_reason
+
+
+def _record(page_title: str | None, name: str, ii: dict, cleared: dict) -> dict:
+    # Wikimedia refuses UPSCALES: a 1600px thumb of a smaller original
+    # 404s, so small originals ship at their own size (still their
+    # rendition, still unmodified)
+    use_thumb = (ii.get("width") or 0) > THUMB_WIDTH
+    return {
+        "page_title": page_title,
+        "file_title": f"File:{name}",
+        "source_url": ii.get("descriptionurl"),
+        "image_url": (ii.get("thumburl") if use_thumb else None)
+                     or ii.get("url"),
+        "mime": ii.get("mime"),
+        "commons_sha1": ii.get("sha1"),
+        **cleared,
+    }
+
+
+def source_file(file_title: str) -> tuple[dict | None, str]:
+    """One named Commons file (the photo review's replacements), cleared
+    exactly as source_one clears an article's lead image; no article, so
+    no page title."""
+    name = file_title.split("File:", 1)[-1]
+    if file_title in REVIEW_REFUSED:
+        return None, REVIEW_REFUSED[file_title]
+    ii = imageinfo(name)
+    if not ii:
+        return None, "no_imageinfo"
+    cleared, reason = clear_licence(ii)
+    if not cleared:
+        return None, reason
+    return _record(None, name, ii, cleared), ""
 
 
 def main() -> None:
@@ -241,7 +266,8 @@ def main() -> None:
     for n, (_, m) in enumerate(cm.iterrows()):
         city = m["display_name_full"].split(",")[0].strip()
         state = m["state_full"]
-        rec, reason = source_one([f"{city}, {state}", city])
+        pin = REVIEW_PINNED.get(("city", m["slug"]))
+        rec, reason = source_file(pin) if pin else source_one([f"{city}, {state}", city])
         if not rec:
             reasons[reason] = reasons.get(reason, 0) + 1
             rows.append({"cbsa": m["cbsa"], "slug": m["slug"],
@@ -256,7 +282,8 @@ def main() -> None:
             rows.append({"cbsa": m["cbsa"], "slug": m["slug"],
                          "status": "download_failed"})
             continue
-        alt = rec["description"][:160].rstrip() if rec["description"] else ""
+        alt = REVIEW_ALTS.get(("city", m["slug"])) or (
+            rec["description"][:160].rstrip() if rec["description"] else "")
         rows.append({"cbsa": m["cbsa"], "slug": m["slug"], "status": "ok",
                      "page_title": rec["page_title"],
                      "file_title": rec["file_title"],
@@ -289,7 +316,8 @@ def main() -> None:
     # ---- stat-page images (item 6) --------------------------------------
     stat_rows, stat_render = [], {}
     for fid, cands in STAT_SUBJECTS.items():
-        rec, reason = source_one(cands)
+        pin = REVIEW_PINNED.get(("stat", fid))
+        rec, reason = source_file(pin) if pin else source_one(cands)
         if not rec:
             stat_rows.append({"stat": fid, "status": reason})
             continue

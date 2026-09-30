@@ -21,12 +21,29 @@ the hero crops a band) -- beside the author, source link, licence and
 licence-version link it already carried, and results/phase4/
 photo_credits.json lists them all.
 
+After Phase 4c (Nathan's calls, 2026-09-29: "keep all photos except the
+Waco, Texas and Savannah ones; find replacements for them"):
+
+  * the review's `restored` list holds the fifteen removals he kept: each
+    goes back as it was — its file returns from the Trash (or is fetched
+    again from the recorded rendition), checked against the manifest's
+    sha256; its manifest row reads "ok" again; its render entry is rebuilt
+    by the city_images functions from the recorded row;
+  * the `replaced` list names, per page, the Commons file that replaces a
+    photograph (Waco's collage stays refused; Savannah's Tarangire
+    photograph was the wrong place): the old file leaves for the Trash, the
+    named file is cleared and fetched through city_images (the same licence
+    rule, Wikimedia's own rendition), and city_images.main() sources that
+    named file on any re-run (pinned_files).
+
     python -m atlas.pipeline.build.photo_review
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
+import time
 import urllib.parse
 from pathlib import Path
 
@@ -47,11 +64,33 @@ CROPPED = {"city": False, "stat": False, "hero": True}
 
 def refused_files() -> dict[str, str]:
     """Commons file title -> refusal reason, for every photograph the
-    review removed (city_images.source_one reads this on a re-run)."""
+    review removed or replaced (city_images.source_one reads this on a
+    re-run)."""
     if not REVIEW.exists():
         return {}
     rev = json.loads(REVIEW.read_text())
-    return {r["file_title"]: f"refused_review:{r['category']}" for r in rev["removed"]}
+    out = {r["file_title"]: f"refused_review:{r['category']}" for r in rev["removed"]}
+    for r in rev.get("replaced", []):
+        out[r["was"]] = f"replaced_review:{r['category']}"
+    return out
+
+
+def pinned_files() -> dict[tuple[str, str], str]:
+    """(page, key) -> the Commons file the review names in place of a
+    replaced photograph; city_images sources exactly that file."""
+    if not REVIEW.exists():
+        return {}
+    rev = json.loads(REVIEW.read_text())
+    return {(r["page"], r["key"]): r["file_title"] for r in rev.get("replaced", [])}
+
+
+def pinned_alts() -> dict[tuple[str, str], str]:
+    """(page, key) -> the alt text the review gives a replacement whose
+    Commons description cannot serve (Savannah's is only in Italian)."""
+    if not REVIEW.exists():
+        return {}
+    rev = json.loads(REVIEW.read_text())
+    return {(r["page"], r["key"]): r["alt"] for r in rev.get("replaced", []) if r.get("alt")}
 
 
 def title_of(source_url: str) -> str:
@@ -80,6 +119,103 @@ def _to_trash(src: Path, sub: str) -> str | None:
     return str(dest)
 
 
+def _sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _none(v):
+    """A manifest cell as a render value: pandas reads a blank as NaN."""
+    return None if v is None or (isinstance(v, float) and v != v) else v
+
+
+def _surface(r: dict, city: dict, stat: dict, city_csv: pd.DataFrame, stat_csv: pd.DataFrame):
+    """(render dict, manifest, row selector, folder, trash subfolder,
+    cropped) for a review entry's page."""
+    if r["page"] == "city":
+        return (city, city_csv, city_csv["slug"] == r["key"], WEB / "public" / "cities",
+                "cities", CROPPED["city"])
+    return (stat, stat_csv, stat_csv["stat"] == r["key"], WEB / "public" / "stats",
+            "stats", CROPPED["stat"])
+
+
+def _alt(file_title: str) -> str | None:
+    """The alt text city_images gives a file: its Commons description, to
+    160 characters (from the cached imageinfo)."""
+    from atlas.pipeline.build import city_images as CI
+    ii = CI.imageinfo(file_title.split("File:", 1)[-1]) or {}
+    cleared, _ = CI.clear_licence(ii) if ii else (None, "")
+    desc = (cleared or {}).get("description") or ""
+    return desc[:160].rstrip() or None
+
+
+def _restore(r: dict, city: dict, stat: dict, city_csv: pd.DataFrame,
+             stat_csv: pd.DataFrame) -> dict:
+    """A removal Nathan kept (after Phase 4c): the recorded file back —
+    from the Trash when it is there, else Wikimedia's recorded rendition,
+    either way matching the manifest's sha256 — the row "ok" again, and
+    the render entry rebuilt from the row as city_images composes it."""
+    render, csv, sel, folder, sub, cropped = _surface(r, city, stat, city_csv, stat_csv)
+    row = csv.loc[sel].iloc[0].to_dict()
+    assert row["file_title"] == r["file_title"], f"{r['key']}: the manifest row names another file"
+    dest = folder / row["file"]
+    trashed = TRASH / sub / row["file"]
+    if dest.exists() and _sha(dest) == row["sha256"]:
+        how = "in place"
+    elif trashed.exists() and _sha(trashed) == row["sha256"]:
+        shutil.move(str(trashed), str(dest))
+        how = "from the Trash"
+    else:
+        from atlas.pipeline.build import city_images as CI
+        CI.download(row["image_url"], dest)
+        how = "fetched again"
+    assert dest.exists() and _sha(dest) == row["sha256"], f"{dest.name}: not the recorded file"
+    csv.loc[sel, "status"] = "ok"
+    render[r["key"]] = {"file": row["file"], "alt": _alt(row["file_title"]),
+                        "author": _none(row["author"]), "license": row["license"],
+                        "license_url": _none(row["license_url"]),
+                        "source_url": row["source_url"],
+                        "title": title_of(row["source_url"]), "cropped": cropped}
+    return {"key": r["key"], "file": how}
+
+
+def _replace(r: dict, city: dict, stat: dict, city_csv: pd.DataFrame,
+             stat_csv: pd.DataFrame, retrieved: str) -> dict:
+    """The Commons file the review names in place of a photograph: the old
+    file to the Trash, the named one cleared and fetched as city_images
+    sources any photograph (Wikimedia's own rendition), its manifest row
+    and render entry rewritten. Re-running changes nothing once applied."""
+    from atlas.pipeline.build import city_images as CI
+    render, csv, sel, folder, sub, cropped = _surface(r, city, stat, city_csv, stat_csv)
+    row = csv.loc[sel].iloc[0].to_dict()
+    if (row.get("file_title") == r["file_title"] and row.get("status") == "ok"
+            and (folder / str(row["file"])).exists()
+            and _sha(folder / str(row["file"])) == row["sha256"]):
+        how = "in place"
+    else:
+        rec, reason = CI.source_file(r["file_title"])
+        assert rec, f"{r['key']}: {r['file_title']} does not clear the licence rule: {reason}"
+        _to_trash(folder / str(_none(row.get("file")) or f"{r['key']}.jpg"), "replaced")
+        ext = {"image/png": ".png", "image/webp": ".webp"}.get(rec["mime"], ".jpg")
+        dest = folder / f"{r['key']}{ext}"
+        sha = CI.download(rec["image_url"], dest)
+        assert sha, f"{r['key']}: the download of {r['file_title']} failed"
+        for k, v in {"status": "ok", "page_title": None, "file_title": rec["file_title"],
+                     "source_url": rec["source_url"], "image_url": rec["image_url"],
+                     "author": rec["author"], "license": rec["license"],
+                     "license_url": rec["license_url"], "retrieved": retrieved,
+                     "sha256": sha, "file": dest.name}.items():
+            csv[k] = csv[k].astype(object)
+            csv.loc[sel, k] = v
+        row = csv.loc[sel].iloc[0].to_dict()
+        how = "replaced"
+    render[r["key"]] = {"file": row["file"], "alt": r.get("alt") or _alt(row["file_title"]),
+                        "author": _none(row["author"]), "license": row["license"],
+                        "license_url": _none(row["license_url"]),
+                        "source_url": row["source_url"],
+                        "title": title_of(row["source_url"]), "cropped": cropped}
+    return {"key": r["key"], "file": how, "file_title": row["file_title"]}
+
+
 def apply() -> dict:
     rev = _read(REVIEW)
     city_path = WEB / "src" / "data" / "city-images.json"
@@ -89,7 +225,12 @@ def apply() -> dict:
     city_csv = pd.read_csv(P2E / "city_images.csv", dtype={"cbsa": str})
     stat_csv = pd.read_csv(P2E / "stat_images.csv")
     moved = []
+    # a replaced photograph's page takes the named file, so a removal on
+    # the same page (Waco's collage) no longer touches it
+    replaced_pages = {(r["page"], r["key"]) for r in rev.get("replaced", [])}
     for r in rev["removed"]:
+        if (r["page"], r["key"]) in replaced_pages:
+            continue
         status = f"refused_review:{r['category']}"
         if r["page"] == "city":
             entry = city.pop(r["key"], None)
@@ -103,6 +244,12 @@ def apply() -> dict:
             moved.append(_to_trash(WEB / "public" / "stats" / f, "stats"))
     for s in rev.get("stray_files", []):
         moved.append(_to_trash(RESULTS.parents[0] / s["file"], "stray"))
+    # after Phase 4c (Nathan's calls): the removals he kept, then the
+    # replacements the review names
+    restored = [_restore(r, city, stat, city_csv, stat_csv) for r in rev.get("restored", [])]
+    retrieved = time.strftime("%Y-%m-%d")
+    replaced = [_replace(r, city, stat, city_csv, stat_csv, retrieved)
+                for r in rev.get("replaced", [])]
     for page, render in (("city", city), ("stat", stat)):
         for v in render.values():
             v["title"] = title_of(v["source_url"])
@@ -115,6 +262,7 @@ def apply() -> dict:
     city_csv.to_csv(P2E / "city_images.csv", index=False)
     stat_csv.to_csv(P2E / "stat_images.csv", index=False)
     return {"removed": len(rev["removed"]), "moved_to_trash": [m for m in moved if m],
+            "restored": restored, "replaced": replaced,
             "city_photos": len(city), "stat_photos": len(stat)}
 
 

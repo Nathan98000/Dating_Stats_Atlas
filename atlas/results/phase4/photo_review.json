@@ -12,50 +12,306 @@
   "mural": "a recent US mural is a subject of the photograph, not incidental (ADR 0012)",
   "emblem": "a government or agency logo, emblem or seal is prominent in the photograph (ADR 0012: no agency logo, emblem or seal on any page)"
  },
+ "nathans_calls_after_phase4c": {
+  "date": "2026-09-29",
+  "said": "Keep all photos except the waco texas and savannah ones. Find replacements for them.",
+  "confirmed": "restore all fifteen other removals (asked, and answered: restore all 15); the 141 photographs under CC licences before 4.0 stay, credited in the one central list",
+  "applied": "photo_review.apply(): the restored list goes back as it was (files from the Trash, checked against the manifest's sha256); the replaced list takes the Commons files it names"
+ },
  "removed": [
-  {"tag": "C026", "page": "city", "key": "barnstable-town-massachusetts", "file_title": "File:Barnstable_County_Courthouse,_Barnstable_MA.jpg", "category": "sculpture", "borderline": false, "why": "the Mercy Otis Warren statue (dedicated 2001) stands large in the left foreground"},
-  {"tag": "C033", "page": "city", "key": "bend-oregon", "file_title": "File:20210803_03_Bend,_Oregon.jpg", "category": "sculpture", "borderline": false, "why": "a modern cast sculpture of a seated man dominates the right foreground"},
-  {"tag": "C053", "page": "city", "key": "canton-ohio", "file_title": "File:Pro_Football_Hall_of_Fame_(23945852607).jpg", "category": "sculpture", "borderline": false, "why": "the Hall of Fame's sculpted relief of football players is the photograph's centrepiece"},
-  {"tag": "C116", "page": "city", "key": "fort-collins-colorado", "file_title": "File:Downtown_Fort_Collins_Colorado.jpg", "category": "person", "borderline": false, "why": "two cyclists, faces visible, are the photograph's subject"},
-  {"tag": "C136", "page": "city", "key": "gulfport-mississippi", "file_title": "File:FightingSeabee_NavalConstructionBattalionCenter_Gulfport,MS.jpg", "category": "sculpture", "borderline": false, "why": "the Fighting Seabee statue fills the frame: a recent sculpture of a military emblem at a Navy gate"},
-  {"tag": "C146", "page": "city", "key": "hilton-head-island-south-carolina", "file_title": "File:Hilton_Head_Island_Lighthouse_June_2026.png", "category": "emblem", "borderline": false, "why": "the America 250 emblem of the U.S. Semiquincentennial Commission is painted large on the lighthouse, the photograph's subject"},
-  {"tag": "C154", "page": "city", "key": "huntsville-alabama", "file_title": "File:Huntsville_Art_Museum_-_front_façade_and_stairs_2023.jpg", "category": "sculpture", "borderline": false, "why": "a contemporary sculpture stands at the centre of the museum steps, with banners reproducing artworks behind it"},
-  {"tag": "C185", "page": "city", "key": "lakeland-florida", "file_title": "File:Lakeland_city_hall_lakeland_florida.jpg", "category": "emblem", "borderline": false, "why": "the City of Lakeland's logo sign is prominent and legible in the foreground"},
-  {"tag": "C309", "page": "city", "key": "spartanburg-south-carolina", "file_title": "File:Love_Where_You_Live_mural_in_downtown_Spartanburg.jpg", "category": "mural", "borderline": false, "why": "the photograph is the \"Love Where You Live\" wall mural"},
-  {"tag": "C318", "page": "city", "key": "st-louis-missouri", "file_title": "File:Runner_Fountain_and_Old_Courthouse_and_Arch_(5618845531).jpg", "category": "sculpture", "borderline": false, "why": "The Runner (William Zorach, 1965) stands at the centre of the foreground"},
-  {"tag": "C043", "page": "city", "key": "boulder-colorado", "file_title": "File:Pearl_Street_Mall.jpg", "category": "person", "borderline": true, "why": "a street performer with two young women is the focal point; faces small but visible"},
-  {"tag": "C061", "page": "city", "key": "charleston-west-virginia", "file_title": "File:The_West_Virginia_State_Capitol_building_-_Image03.jpg", "category": "sculpture", "borderline": true, "why": "the Lincoln bronze (1974) stands on the photograph's central axis before the Capitol"},
-  {"tag": "C069", "page": "city", "key": "clarksville-tennessee", "file_title": "File:Downtown_Clarksville_TN.jpg", "category": "mural", "borderline": true, "why": "a painted wall mural fills about a tenth of the frame beside the street scene"},
-  {"tag": "C285", "page": "city", "key": "salinas-california", "file_title": "File:Monterey_County_Courthouse_2018_Salinas_CA_(1).jpg", "category": "sculpture", "borderline": true, "why": "a carved column with figure reliefs dominates the foreground (the courthouse's 1930s art programme, possibly still in copyright)"},
-  {"tag": "C343", "page": "city", "key": "waco-texas", "file_title": "File:WacoCity.jpg", "category": "sculpture", "borderline": true, "why": "one of the collage's ten panels is entirely a bronze horseman statue that looks modern"},
-  {"tag": "S06", "page": "stat", "key": "venues_per_100k", "file_title": "File:1_times_square_night_2013.jpg", "category": "person", "borderline": true, "why": "a man and a child, faces clear, stand large in the right foreground of the square"}
+  {
+   "tag": "C343",
+   "page": "city",
+   "key": "waco-texas",
+   "file_title": "File:WacoCity.jpg",
+   "category": "sculpture",
+   "borderline": true,
+   "why": "one of the collage's ten panels is entirely a bronze horseman statue that looks modern"
+  }
+ ],
+ "restored": [
+  {
+   "tag": "C026",
+   "page": "city",
+   "key": "barnstable-town-massachusetts",
+   "file_title": "File:Barnstable_County_Courthouse,_Barnstable_MA.jpg",
+   "category": "sculpture",
+   "borderline": false,
+   "why": "the Mercy Otis Warren statue (dedicated 2001) stands large in the left foreground",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C033",
+   "page": "city",
+   "key": "bend-oregon",
+   "file_title": "File:20210803_03_Bend,_Oregon.jpg",
+   "category": "sculpture",
+   "borderline": false,
+   "why": "a modern cast sculpture of a seated man dominates the right foreground",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C053",
+   "page": "city",
+   "key": "canton-ohio",
+   "file_title": "File:Pro_Football_Hall_of_Fame_(23945852607).jpg",
+   "category": "sculpture",
+   "borderline": false,
+   "why": "the Hall of Fame's sculpted relief of football players is the photograph's centrepiece",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C116",
+   "page": "city",
+   "key": "fort-collins-colorado",
+   "file_title": "File:Downtown_Fort_Collins_Colorado.jpg",
+   "category": "person",
+   "borderline": false,
+   "why": "two cyclists, faces visible, are the photograph's subject",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C136",
+   "page": "city",
+   "key": "gulfport-mississippi",
+   "file_title": "File:FightingSeabee_NavalConstructionBattalionCenter_Gulfport,MS.jpg",
+   "category": "sculpture",
+   "borderline": false,
+   "why": "the Fighting Seabee statue fills the frame: a recent sculpture of a military emblem at a Navy gate",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C146",
+   "page": "city",
+   "key": "hilton-head-island-south-carolina",
+   "file_title": "File:Hilton_Head_Island_Lighthouse_June_2026.png",
+   "category": "emblem",
+   "borderline": false,
+   "why": "the America 250 emblem of the U.S. Semiquincentennial Commission is painted large on the lighthouse, the photograph's subject",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C154",
+   "page": "city",
+   "key": "huntsville-alabama",
+   "file_title": "File:Huntsville_Art_Museum_-_front_façade_and_stairs_2023.jpg",
+   "category": "sculpture",
+   "borderline": false,
+   "why": "a contemporary sculpture stands at the centre of the museum steps, with banners reproducing artworks behind it",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C185",
+   "page": "city",
+   "key": "lakeland-florida",
+   "file_title": "File:Lakeland_city_hall_lakeland_florida.jpg",
+   "category": "emblem",
+   "borderline": false,
+   "why": "the City of Lakeland's logo sign is prominent and legible in the foreground",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C309",
+   "page": "city",
+   "key": "spartanburg-south-carolina",
+   "file_title": "File:Love_Where_You_Live_mural_in_downtown_Spartanburg.jpg",
+   "category": "mural",
+   "borderline": false,
+   "why": "the photograph is the \"Love Where You Live\" wall mural",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C318",
+   "page": "city",
+   "key": "st-louis-missouri",
+   "file_title": "File:Runner_Fountain_and_Old_Courthouse_and_Arch_(5618845531).jpg",
+   "category": "sculpture",
+   "borderline": false,
+   "why": "The Runner (William Zorach, 1965) stands at the centre of the foreground",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C043",
+   "page": "city",
+   "key": "boulder-colorado",
+   "file_title": "File:Pearl_Street_Mall.jpg",
+   "category": "person",
+   "borderline": true,
+   "why": "a street performer with two young women is the focal point; faces small but visible",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C061",
+   "page": "city",
+   "key": "charleston-west-virginia",
+   "file_title": "File:The_West_Virginia_State_Capitol_building_-_Image03.jpg",
+   "category": "sculpture",
+   "borderline": true,
+   "why": "the Lincoln bronze (1974) stands on the photograph's central axis before the Capitol",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C069",
+   "page": "city",
+   "key": "clarksville-tennessee",
+   "file_title": "File:Downtown_Clarksville_TN.jpg",
+   "category": "mural",
+   "borderline": true,
+   "why": "a painted wall mural fills about a tenth of the frame beside the street scene",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "C285",
+   "page": "city",
+   "key": "salinas-california",
+   "file_title": "File:Monterey_County_Courthouse_2018_Salinas_CA_(1).jpg",
+   "category": "sculpture",
+   "borderline": true,
+   "why": "a carved column with figure reliefs dominates the foreground (the courthouse's 1930s art programme, possibly still in copyright)",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  },
+  {
+   "tag": "S06",
+   "page": "stat",
+   "key": "venues_per_100k",
+   "file_title": "File:1_times_square_night_2013.jpg",
+   "category": "person",
+   "borderline": true,
+   "why": "a man and a child, faces clear, stand large in the right foreground of the square",
+   "decision": "restored: Nathan kept it on the site after Phase 4c (2026-09-29), setting the rule aside for this photograph"
+  }
+ ],
+ "replaced": [
+  {
+   "tag": "C343",
+   "page": "city",
+   "key": "waco-texas",
+   "category": "sculpture",
+   "was": "File:WacoCity.jpg",
+   "file_title": "File:Waco_June_2016_13_(Waco_Suspension_Bridge).jpg",
+   "why": "Nathan kept Waco's removal and asked for a replacement (after Phase 4c); the collage stays refused",
+   "checked": "the Waco Suspension Bridge (1870) seen down its deck to the twin-arched tower, June 2016; no identifiable person (a few tiny figures at the far end), no sculpture or mural, no logo, emblem or seal; a single photograph; CC BY-SA 4.0, Michael Barera"
+  },
+  {
+   "tag": "C298",
+   "page": "city",
+   "key": "savannah-georgia",
+   "category": "wrong_subject",
+   "was": "File:Tarangire-Natpark800600.jpg",
+   "file_title": "File:The_Fountain_at_Forsyth.jpg",
+   "why": "Nathan asked for a replacement (after Phase 4c): the wrong subject: the pipeline resolved the article \"Savanna\" and ships Tarangire National Park, Tanzania, for Savannah, Georgia",
+   "checked": "the Forsyth Park fountain (1858, cast by Janes, Beebe & Co. to a catalogue design; nineteenth-century, as C044's 1881 fountain, kept with a note) framed by oaks, 2018; no identifiable person (one tiny figure far off), no recent sculpture or mural, no logo, emblem or seal (a small pedestrian-zone sign); a single photograph; CC BY-SA 4.0, Derrick Gaines",
+   "alt": "The Forsyth Park fountain in Savannah, Georgia.",
+   "alt_why": "Commons describes the file only in Italian (\"Fontana storica all'interno del parco di Forsyth in Savana, Georgia.\"), which a screen reader on this English site would misread; an English alt text in its place, a draft for Nathan's approval"
+  }
  ],
  "kept_with_note": [
-  {"tag": "C044", "key": "bowling-green-kentucky", "why": "the fountain (1881) and its period statues are nineteenth-century"},
-  {"tag": "C105", "key": "eugene-oregon", "why": "a stadium: the fans are seen from behind and the players are small"},
-  {"tag": "C145", "key": "hickory-north-carolina", "why": "the painted facade is a commercial sign, and the obelisk is an old monument"},
-  {"tag": "C164", "key": "janesville-wisconsin", "why": "the sculptures on the bridge are small and distant; the plaza is the subject"},
-  {"tag": "C171", "key": "kankakee-illinois", "why": "the courthouse statue is old and small"},
-  {"tag": "C183", "key": "lafayette-louisiana", "why": "a mural on one tower is a narrow strip within the skyline"},
-  {"tag": "C187", "key": "lansing-michigan", "why": "the statue is the Austin Blair monument (1898)"},
-  {"tag": "C216", "key": "midland-michigan", "why": "the facade murals are part of the 1926 courthouse"},
-  {"tag": "C254", "key": "pensacola-florida", "why": "the collage panel shows the Blue Angels' aircraft on display, not an artwork"},
-  {"tag": "C268", "key": "racine-wisconsin", "why": "the column is a nineteenth-century monument"},
-  {"tag": "C272", "key": "redding-california", "why": "the Sundial Bridge is a working bridge photographed from a public place, not a sculpture"},
-  {"tag": "C277", "key": "rochester-minnesota", "why": "the colourful facade is a theatre marquee, and the people are small"},
-  {"tag": "C281", "key": "rome-georgia", "why": "the monument is nineteenth-century stone"},
-  {"tag": "C308", "key": "south-bend-indiana", "why": "an abstract sculpture is small and to one side of a river and skyline view"},
-  {"tag": "C327", "key": "texarkana-texas", "why": "a small seal plaque beside the door is incidental"},
-  {"tag": "C337", "key": "valdosta-georgia", "why": "the column holds up a drive-through canopy"},
-  {"tag": "C345", "key": "warner-robins-georgia", "why": "the seal on a memorial stone is small; City Hall is the subject"},
-  {"tag": "C349", "key": "watertown-new-york", "why": "the obelisk is an old monument"},
-  {"tag": "S02", "key": "pleasant_days", "why": "a nineteenth-century painting, public domain"},
-  {"tag": "H01", "key": "hero", "why": "the couple is framed from the shoulders down; no face is in frame"}
+  {
+   "tag": "C044",
+   "key": "bowling-green-kentucky",
+   "why": "the fountain (1881) and its period statues are nineteenth-century"
+  },
+  {
+   "tag": "C105",
+   "key": "eugene-oregon",
+   "why": "a stadium: the fans are seen from behind and the players are small"
+  },
+  {
+   "tag": "C145",
+   "key": "hickory-north-carolina",
+   "why": "the painted facade is a commercial sign, and the obelisk is an old monument"
+  },
+  {
+   "tag": "C164",
+   "key": "janesville-wisconsin",
+   "why": "the sculptures on the bridge are small and distant; the plaza is the subject"
+  },
+  {
+   "tag": "C171",
+   "key": "kankakee-illinois",
+   "why": "the courthouse statue is old and small"
+  },
+  {
+   "tag": "C183",
+   "key": "lafayette-louisiana",
+   "why": "a mural on one tower is a narrow strip within the skyline"
+  },
+  {
+   "tag": "C187",
+   "key": "lansing-michigan",
+   "why": "the statue is the Austin Blair monument (1898)"
+  },
+  {
+   "tag": "C216",
+   "key": "midland-michigan",
+   "why": "the facade murals are part of the 1926 courthouse"
+  },
+  {
+   "tag": "C254",
+   "key": "pensacola-florida",
+   "why": "the collage panel shows the Blue Angels' aircraft on display, not an artwork"
+  },
+  {
+   "tag": "C268",
+   "key": "racine-wisconsin",
+   "why": "the column is a nineteenth-century monument"
+  },
+  {
+   "tag": "C272",
+   "key": "redding-california",
+   "why": "the Sundial Bridge is a working bridge photographed from a public place, not a sculpture"
+  },
+  {
+   "tag": "C277",
+   "key": "rochester-minnesota",
+   "why": "the colourful facade is a theatre marquee, and the people are small"
+  },
+  {
+   "tag": "C281",
+   "key": "rome-georgia",
+   "why": "the monument is nineteenth-century stone"
+  },
+  {
+   "tag": "C308",
+   "key": "south-bend-indiana",
+   "why": "an abstract sculpture is small and to one side of a river and skyline view"
+  },
+  {
+   "tag": "C327",
+   "key": "texarkana-texas",
+   "why": "a small seal plaque beside the door is incidental"
+  },
+  {
+   "tag": "C337",
+   "key": "valdosta-georgia",
+   "why": "the column holds up a drive-through canopy"
+  },
+  {
+   "tag": "C345",
+   "key": "warner-robins-georgia",
+   "why": "the seal on a memorial stone is small; City Hall is the subject"
+  },
+  {
+   "tag": "C349",
+   "key": "watertown-new-york",
+   "why": "the obelisk is an old monument"
+  },
+  {
+   "tag": "S02",
+   "key": "pleasant_days",
+   "why": "a nineteenth-century painting, public domain"
+  },
+  {
+   "tag": "H01",
+   "key": "hero",
+   "why": "the couple is framed from the shoulders down; no face is in frame"
+  }
  ],
- "findings_not_acted_on": [
-  {"tag": "C298", "key": "savannah-georgia", "what": "the wrong subject: the pipeline resolved the article \"Savanna\" and ships Tarangire National Park, Tanzania, for Savannah, Georgia (public domain). Outside this phase's photo rules, so it stays; for Nathan to decide."}
- ],
+ "findings_not_acted_on": [],
  "stray_files": [
-  {"file": "web/public/cities/winston-north-carolina.jpg", "what": "on disk with no manifest row, so it never renders; it carries no recorded licence and was moved to the Trash with the removed photographs"}
+  {
+   "file": "web/public/cities/winston-north-carolina.jpg",
+   "what": "on disk with no manifest row, so it never renders; it carries no recorded licence and was moved to the Trash with the removed photographs"
+  }
  ]
 }
