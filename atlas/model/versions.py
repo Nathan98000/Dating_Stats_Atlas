@@ -24,6 +24,20 @@ its manifest refreshed (the version and two registry strings). Goldens
 regenerated: only the same-sex vector's balance moves, beside the version
 line.
 
+m4.1.0, build 2dbd9ebfa7ff — Phase 4d (ADR 0019, Nathan's decision):
+political lean, each metro's 2024 presidential vote, is shown as context
+and never scored, filtered, weighted or asked. features.parquet gains
+three vote columns (political_dem_votes, political_rep_votes,
+political_votes), so the build takes a new id; its cubes, kernel, pairing
+cells and metros are byte-identical to 5b780e4f2444's, and no scored
+input, weight, suppression rule or interval changes. No golden moves —
+the eighteen vectors are identical and only goldens.json's fixture_of line
+names the new build — so MODEL_VERSION stays m4.1.0: a bump is for a moved
+golden. Every /v1/rank response over the 518 ADR 0011 test searches is
+byte for byte the same but for the build id (results/phase4d/
+served_numbers_check.json); the figure is served apart, by GET
+/v1/political_lean (model.context).
+
 m4.0.0 — Phase 4, Stage 5 (ADR 0018, Nathan's decisions 1-5): the
 figure is renamed COMPATIBILITY (internal names unchanged); race is off by
 default — a visitor who has not switched it on gets the RACE-FREE form

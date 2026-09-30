@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apiMeta, apiRank } from "@/lib/api";
+import { apiMeta, apiPoliticalLean, apiRank } from "@/lib/api";
 import {
   describeSearch,
   parsePrefs,
@@ -17,6 +17,7 @@ import { sliceVariants } from "@/lib/variants";
 import { CityNarrowCard, CityWideners } from "@/components/city-cards";
 import { CompareLauncher } from "@/components/compare-launcher";
 import { CrimeCards } from "@/components/crime-cards";
+import { PoliticalLeanCard } from "@/components/political-lean";
 import { toneSeg, toneText } from "@/lib/tones";
 import type { Card } from "@/lib/types";
 
@@ -41,9 +42,10 @@ export default async function CityPage({
   // visitor's own last search (Phase 2f item 2 / ADR 0007)
   const { sp } = await effectiveSearchParams(await searchParams);
   const prefs = parsePrefs(sp);
-  const [meta, response] = await Promise.all([
+  const [meta, response, lean] = await Promise.all([
     apiMeta(),
     apiRank(toRankBody(prefs)),
+    apiPoliticalLean(),
   ]);
   const metro = meta.metros.find((m) => m.slug === slug);
   if (!metro) notFound();
@@ -143,6 +145,11 @@ export default async function CityPage({
             {cards.map((c) => (
               <StatCard key={c.id} card={c} meta={meta} />
             ))}
+            {/* Phase 4d (ADR 0019): political lean, context only, beside
+                who lives here — shown with the metro's other cards */}
+            {cards.length > 0 && lean.metros[metro.cbsa] && (
+              <PoliticalLeanCard block={lean.metros[metro.cbsa]} meta={meta} />
+            )}
             {/* item 2 (2e): crime as two cards in the SAME grid — rate,
                 band, ⓘ; the FBI's caution lives in the popover */}
             {crime && <CrimeCards crime={crime} meta={meta} />}

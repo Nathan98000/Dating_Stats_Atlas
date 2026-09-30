@@ -37,6 +37,7 @@ Last checked against the build: 24 September 2026 (model m3.2.0, build f20cb02c3
 | GHCN-Daily station observations, 1991–2020 | NOAA / NCEI | "Nice days a year" — counted from daily TMAX, TMIN and PRCP records | [ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily) |
 | IPEDS, 2023–24 collection | NCES, US Department of Education | "Students" — college students per 1,000 adults | [nces.ed.gov/ipeds/use-the-data](https://nces.ed.gov/ipeds/use-the-data) |
 | Crime Data Explorer (summarized agency data) | FBI | Reported violent and property offence rates, and the reporting-coverage share. Shown as context on city and compare pages; **never scored** | [cde.ucr.cjis.gov](https://cde.ucr.cjis.gov/) |
+| County Presidential Election Returns 2000–2024 | MIT Election Data and Science Lab (Harvard Dataverse) | "Political lean" — each metro's 2024 presidential vote, Democratic, Republican and everyone else. Shown as context on city, compare and stat pages; **never scored, filtered, weighted or asked** (ADR 0019) | [doi.org/10.7910/DVN/VOQCHQ](https://doi.org/10.7910/DVN/VOQCHQ) |
 | City and stat-page photographs | Wikipedia / Wikimedia Commons contributors | One lead photograph per city page and per stat page, displayed unmodified with per-image attribution | [commons.wikimedia.org](https://commons.wikimedia.org/) |
 
 ## The same sources in detail
@@ -152,6 +153,24 @@ best-covered (372 of 387 metros clear the coverage floor). Displayed with the
 FBI's own [Caution Against Ranking](https://ucr.fbi.gov/cautionagainstranking.pdf)
 attached, and pinned to a zero weight in the registry so it cannot enter a score.
 
+### MIT Election Data and Science Lab, County Presidential Election Returns 2000–2024
+Version 20 (released 25 February 2026), `countypres_2000-2024.csv`: county
+returns by candidate and, for some states and years, by voting mode. The
+build keeps 2024 (shown) and 2020 (validation and the record only) and adds
+them up to metros in `pipeline/build/political_lean.py`: TOTAL rows where a
+county has them, the sum of its modes otherwise; rows that are no vote for
+anyone (TOTAL VOTES CAST, UNDERVOTES, OVERVOTES, SPOILED) dropped; votes
+summed over a metro's counties and divided once. Connecticut reports by its
+former counties and Alaska by house district, so their seven metros are
+"Not available" (ADR 0019).
+
+- Obtained by hand: the dataset sits behind a Dataverse guestbook, so the
+  file is pinned by SHA-256 (`adapters/medsl_president.py`), not fetched
+- Licence: CC0 1.0 (read from the dataset page, 30 September 2026); the
+  Terms tab asks for the data citation the page shows, which Sources and
+  credits carries
+- Validation: `results/phase4d/validation.json`
+
 ### City and stat-page photographs
 The lead image of each metro's English Wikipedia article, resolved through the
 REST summary and MediaWiki APIs, with licence, author and links read from the
@@ -182,6 +201,11 @@ Commons `imageinfo` / `extmetadata` fields.
 
 Read from `https://data.bls.gov/cew/data/api/2023/a/industry/{naics}.csv`.
 Licence basis: US public domain (17 USC 105); [BLS copyright statement](https://www.bls.gov/opub/copyright-information.htm).
+
+| Source | Publisher | Why it is here | Link |
+|---|---|---|---|
+| U.S. President 1976–2024 (state-level returns) | MIT Election Data and Science Lab (Harvard Dataverse) | The state totals the county returns are checked against (Phase 4d); CC0 1.0 | [doi.org/10.7910/DVN/42MVDX](https://doi.org/10.7910/DVN/42MVDX) |
+| State legislative district (2024) to tract relationship file, Alaska | Census Bureau | Whether Alaska's metros are whole house districts (they are not, so they show "Not available") | [rel2020/cd-sld](https://www2.census.gov/geo/docs/maps-data/data/rel2020/cd-sld/) |
 
 | Source | Publisher | Why it is here | Link |
 |---|---|---|---|

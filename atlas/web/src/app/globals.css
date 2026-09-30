@@ -29,6 +29,16 @@
      test pins the backgrounds each tone actually uses. */
   --good-strong: #1B5E4B;
   --poor-strong: #8A2B18;
+  /* Phase 4d (ADR 0019): political lean's bar — the conventional blue for
+     Democratic and red for Republican, muted to sit with the palette and
+     kept apart from the sex colours (--male), the tones (--poor) and the
+     accent, with a neutral grey for everyone else between them. Every
+     segment also carries its party's name in text, so colour is never the
+     only cue; each measures at least 4.5:1 on white and paper (the grey
+     3:1, a graphic's bar), pinned by the contrast test. */
+  --dem: #33609E;
+  --rep: #A63A3A;
+  --lean-other: #8A8085;
   color-scheme: light;
 }
 
@@ -49,6 +59,9 @@
   --color-poor: var(--poor);
   --color-good-strong: var(--good-strong);
   --color-poor-strong: var(--poor-strong);
+  --color-dem: var(--dem);
+  --color-rep: var(--rep);
+  --color-lean-other: var(--lean-other);
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-figtree), "Helvetica Neue", Arial, sans-serif;
   --radius-ctl: 8px;

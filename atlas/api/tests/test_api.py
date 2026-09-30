@@ -3,6 +3,7 @@
 race never reach the server, and the response carries every variant."""
 import json
 import os
+import re
 from pathlib import Path
 
 import pytest
@@ -402,6 +403,56 @@ def test_crime_block_served_never_scored(client):
             assert blk["note"]
         for s in row.get("stats", []):
             assert "crime" not in s["id"]
+
+
+def _property_names(schema) -> set[str]:
+    """Every property name anywhere in a JSON schema."""
+    out: set[str] = set()
+    if isinstance(schema, dict):
+        out |= set((schema.get("properties") or {}))
+        for v in schema.values():
+            out |= _property_names(v)
+    elif isinstance(schema, list):
+        for v in schema:
+            out |= _property_names(v)
+    return out
+
+
+def test_political_lean_is_served_apart_and_never_scored_or_asked(client):
+    """Phase 4d (ADR 0019, Nathan's decision): political lean has its own
+    read-only endpoint. /v1/rank neither carries it nor accepts it: no
+    request field names it, the weights and the scored stats never do, and
+    a stray field is refused (top level, weights, importance) or dropped
+    (seeking) — the response byte for byte the same."""
+    lean = client.get("/v1/political_lean")
+    assert lean.status_code == 200
+    body = lean.json()
+    assert body["year"] == "2024" and len(body["metros"]) == 12
+    assert all(b["available"] for b in body["metros"].values())
+    named = {n for n in _property_names(api.RankRequest.model_json_schema())
+             if re.search(r"politic|lean|party|vote|democrat|republican", n, re.I)}
+    assert not named, named
+    r = client.post("/v1/rank", json=BODY)
+    assert r.status_code == 200 and b"politic" not in r.content.lower()
+    out = r.json()
+    assert set(out["weights"]) == {"pool", "match", "reach", "cost", "weather", "students"}
+    for row in out["ranked"] + out["suppressed"]:
+        assert "political_lean" not in row
+        assert all(s["id"] != "political_lean" for s in row.get("stats", []))
+    assert client.post("/v1/rank", json={**BODY, "political_lean": "x"}).status_code == 422
+    assert client.post("/v1/rank", json={**BODY, "weights": {"pool": 1.0, "political_lean": 1.0}}
+                       ).status_code == 422
+    assert client.post("/v1/rank", json={**BODY, "importance": {"political_lean": "a_lot"}}
+                       ).status_code == 422
+    stray = json.loads(json.dumps(BODY))
+    stray["seeking"]["political_lean"] = "Democratic"
+    r2 = client.post("/v1/rank", json=stray)
+    assert r2.status_code == 200 and r2.content == r.content
+    m = client.get("/v1/meta").json()
+    assert m["features"]["political_lean"]["status"] == "context_only"
+    assert m["features"]["political_lean"]["weight_in_pillar"] == 0
+    assert "political_lean" in m["stat_pages"] and "political_lean" not in m["city_cards"]
+    assert m["measure_page"][-1]["features"] == ["who_lives_here", "political_lean"]
 
 
 def test_income_floor_validation(client):

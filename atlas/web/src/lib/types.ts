@@ -31,6 +31,29 @@ export interface CrimeBlock {
             unit_line: string; band?: Band }[];
 }
 
+/** Phase 4d (ADR 0019): political lean, as GET /v1/political_lean serves
+ * it — context only, never scored or asked. Every string and number is
+ * the API's: the text ("56% Democratic · 42% Republican"), the bar's
+ * spoken label, and each segment's label, display and width (a share in
+ * percent), always Democratic, everyone else, Republican. */
+export interface PoliticalLeanSegment {
+  key: "dem" | "other" | "rep";
+  label: string;
+  display: string;
+  width: number;
+}
+
+export type PoliticalLeanBlock =
+  | { available: true; text: string; bar_label: string;
+      segments: PoliticalLeanSegment[]; share: { dem: number; rep: number } }
+  | { available: false; note: string };
+
+export interface PoliticalLeanResponse {
+  data_version: string;
+  year: string;
+  metros: Record<string, PoliticalLeanBlock>;
+}
+
 export interface Stat {
   id: string;
   pillar?: string;

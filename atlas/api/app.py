@@ -65,6 +65,14 @@ removal — both noted here as the contract docs):
     policy_strings.balance_same_sex. It gains
     strings.self_race_same_sex_tip and self_race_same_sex_tip_label (the
     race field's explanation on a same-sex search).
+  - Phase 4d (ADR 0019, Nathan's decision): GET /v1/political_lean serves
+    each metro's 2024 presidential vote as the city and compare pages show
+    it (model.context: the shares, the text, the bar), keyed by CBSA. It
+    takes no input. Political lean is context only: /v1/rank neither
+    carries it nor accepts it — no request field names it, and its
+    response is byte for byte what the build gave before the feature, the
+    build id apart. /v1/meta gains the feature's registry entry, its words
+    and its stat page.
 """
 from __future__ import annotations
 
@@ -78,6 +86,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from atlas import model as engine
+from atlas.model.context import political_lean_all
 from atlas.model.preferences import (ALLOWED_MARITAL, DEPRECATED_SLIDER_ALIAS,
                                      SELECTABLE_RACES, SLIDER_CONTROL)
 from atlas.model.suppression import (FEW_METROS_NOTICE, GQ_SHARE_FLAG_BAR,
@@ -309,6 +318,20 @@ def meta() -> dict:
                     "ranked_set": bool(BUILD.ranked_set[i])}
                    for i, c in enumerate(BUILD.metro_levels)],
     }
+
+
+@app.get("/v1/political_lean")
+def political_lean() -> dict:
+    """Phase 4d (ADR 0019): how each metro area voted in the 2024
+    presidential election — context only, never scored or asked. No
+    input; every figure and word composed by the engine from the build and
+    the registry (the caption and labels also reach the pages through
+    /v1/meta)."""
+    if "political_lean" not in BUILD.legend:
+        raise HTTPException(404, "this build carries no political lean")
+    return {"data_version": BUILD.manifest["data_version"],
+            "year": BUILD.legend["political_lean"]["provenance"]["vintage"],
+            "metros": political_lean_all(BUILD)}
 
 
 @app.post("/v1/rank")

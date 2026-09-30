@@ -22,6 +22,7 @@ sys.path.insert(0, str(REPO))
 
 import numpy as np  # noqa: E402
 
+from atlas.model.context import political_lean_block  # noqa: E402
 from atlas.model.explain import format_pop, format_value  # noqa: E402
 from atlas.model.loader import load_build  # noqa: E402
 from atlas.model.scoring import _band_of  # noqa: E402
@@ -41,6 +42,41 @@ def default_build() -> Path:
     return newest
 
 
+def political_lean_page(build, m: dict, le: dict) -> dict:
+    """Phase 4d (ADR 0019): political lean's page. The ranked cities come by
+    NAME, never by either party's share unless the visitor sorts so, each
+    with the two main shares its city card shows — the engine's own block
+    (model.context), so the page's numbers are the card's by construction.
+    No position numbers and no distribution strip: either would line the
+    cities up by one party. The shares ride along only for the visitor's
+    sort; a city whose metro the returns cannot cover is left off, counted
+    in the page's usual note."""
+    s = m["strings"]
+    rows = []
+    for i in np.where(build.ranked_set)[0]:
+        b = political_lean_block(build, int(i))
+        if not b["available"]:
+            continue
+        seg = {x["key"]: x for x in b["segments"]}
+        rows.append({"slug": build.slugs[i], "name": build.display_names[i],
+                     "dem": seg["dem"]["display"], "rep": seg["rep"]["display"],
+                     "dem_share": b["share"]["dem"], "rep_share": b["share"]["rep"]})
+    rows.sort(key=lambda r: r["name"].casefold())
+    src = m["sources_display"][le["provenance"]["source"]]
+    return {
+        "kind": "political_lean",
+        "title": le.get("stat_page_name") or le["display_name"],
+        "unit": le["unit"],
+        "definition": le["definition"],
+        "source": {"name": src["name"], "url": src["url"]},
+        "rows": rows,
+        "missing_in_ranked_set": int(build.ranked_set.sum()) - len(rows),
+        "columns": {"dem": s["political_lean_dem"], "rep": s["political_lean_rep"]},
+        "sort": {"label": s["political_lean_sort_label"], "name": s["political_lean_sort_name"],
+                 "dem": s["political_lean_sort_dem"], "rep": s["political_lean_sort_rep"]},
+    }
+
+
 def main() -> None:
     build_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else default_build()
     build = load_build(build_dir)
@@ -48,6 +84,9 @@ def main() -> None:
     pages: dict[str, dict] = {}
     for fid in m["stat_pages"]:
         le = build.legend[fid]
+        if fid == "political_lean":
+            pages[fid] = political_lean_page(build, m, le)
+            continue
         vals = build.static[fid]
         rows = []
         for i in np.where(build.ranked_set)[0]:

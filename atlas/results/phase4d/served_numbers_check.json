@@ -1,0 +1,143 @@
+{
+ "build": [
+  "5b780e4f2444",
+  "2dbd9ebfa7ff"
+ ],
+ "model_version": [
+  "m4.1.0",
+  "m4.1.0"
+ ],
+ "code": [
+  "7b7c597a73806ed26b341a4018738e6200f01721",
+  "7b7c597a73806ed26b341a4018738e6200f01721+working-tree"
+ ],
+ "test_searches": {
+  "total": 518,
+  "source": "stability_gate.test_searches (ADR 0011: personas, effects grid, same-sex grid)"
+ },
+ "api_rank_response": {
+  "identical_but_the_build_id": 518,
+  "same_bytes": 518,
+  "total_bytes": [
+   769295932,
+   769295932
+  ],
+  "total_gzip6_bytes": [
+   117537150,
+   117538541
+  ]
+ },
+ "single_seeker_rank": {
+  "rankings_checked": 1036,
+  "identical": 1036
+ },
+ "meta_keys_changed": [
+  "features",
+  "licenses",
+  "measure_page",
+  "policy_strings",
+  "sources",
+  "stat_pages"
+ ],
+ "political_lean_endpoint": [
+  {
+   "status": 404
+  },
+  {
+   "status": 200,
+   "metros": 387,
+   "available": 380
+  }
+ ],
+ "manifest": {
+  "build": [
+   "5b780e4f2444",
+   "2dbd9ebfa7ff"
+  ],
+  "model_version": [
+   "m4.1.0",
+   "m4.1.0"
+  ],
+  "keys_changed": [
+   "data_version",
+   "features_block",
+   "file_sha256",
+   "licenses",
+   "measure_page",
+   "sources",
+   "sources_display",
+   "stat_pages",
+   "strings"
+  ],
+  "data_files_changed": [
+   "features.parquet"
+  ],
+  "data_files_match_manifest": true,
+  "strings_added": [
+   "political_lean_bar_label",
+   "political_lean_dem",
+   "political_lean_missing",
+   "political_lean_other",
+   "political_lean_rep",
+   "political_lean_sort_dem",
+   "political_lean_sort_label",
+   "political_lean_sort_name",
+   "political_lean_sort_rep",
+   "political_lean_text"
+  ],
+  "strings_removed": [],
+  "strings_changed": [],
+  "features_added": [
+   "political_lean"
+  ],
+  "features_changed": [],
+  "stat_pages": [
+   [
+    "rent_1br",
+    "everyday_prices",
+    "venues_per_100k",
+    "resident_walkability_index",
+    "pleasant_days",
+    "students_per_1k_adults",
+    "who_lives_here"
+   ],
+   [
+    "rent_1br",
+    "everyday_prices",
+    "venues_per_100k",
+    "resident_walkability_index",
+    "pleasant_days",
+    "students_per_1k_adults",
+    "who_lives_here",
+    "political_lean"
+   ]
+  ],
+  "licenses_added": [
+   "medsl_president"
+  ]
+ },
+ "goldens": {
+  "file": "atlas/model/tests/golden/goldens.json",
+  "vectors_identical": true,
+  "byte_identical": false,
+  "paths_that_differ": [
+   "/fixture_of"
+  ],
+  "model_version": [
+   "m4.1.0",
+   "m4.1.0"
+  ],
+  "fixture_of": [
+   "5b780e4f2444",
+   "2dbd9ebfa7ff"
+  ]
+ },
+ "variant_cases": {
+  "file": "atlas/web/tests/variant_cases.json",
+  "byte_identical": false,
+  "identical_but_the_build_id": true
+ },
+ "failures": [],
+ "pass": true,
+ "generated": "2026-09-30T18:45:09"
+}

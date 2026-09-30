@@ -114,6 +114,20 @@ def build(out_root=None) -> str:
     assert len(crime) > 300, (
         f"crime table has {len(crime)} metros for {reg.crime['year']}; "
         f"run build.crime first")
+    # Phase 4d (ADR 0019): political lean, context only — each metro's 2024
+    # presidential votes (Democratic, Republican, every vote for a
+    # candidate) summed over its counties by build.political_lean, NaN
+    # where the returns cannot cover the metro exactly ("Not available");
+    # the engine divides. The year is the feature's registry vintage.
+    lean_year = str(reg.features["political_lean"].provenance["vintage"])
+    lean = pd.read_csv(RESULTS / "phase4d" / "political_lean_metro.csv",
+                       dtype={"cbsa": str, "year": str})
+    lean = (lean[lean["year"] == lean_year]
+            .rename(columns={"dem": "political_dem_votes", "rep": "political_rep_votes",
+                             "valid": "political_votes"})
+            [["cbsa", "political_dem_votes", "political_rep_votes", "political_votes"]])
+    assert len(lean) == len(metros), (
+        f"political lean has {len(lean)} metros for {lean_year}; run build.political_lean")
     pairing_m = pd.read_csv(P2 / "pairing_metro.csv", dtype={"cbsa": str})
     pairing_cells = DATA / "pairing_cells.parquet"
     assert pairing_cells.exists(), "run build.pairing before build.cube"
@@ -178,7 +192,8 @@ def build(out_root=None) -> str:
              .merge(city_meta, on="cbsa", how="left")
              .merge(crime, on="cbsa", how="left")
              .merge(ioff.rename(columns={"offset": "interval_offset"}),
-                    on="cbsa", how="left"))
+                    on="cbsa", how="left")
+             .merge(lean, on="cbsa", how="left"))
     feats = feats.set_index("cbsa").loc[metro_levels].reset_index()
     assert feats["interval_offset"].notna().all(), "metro missing interval offset"
     assert feats["description"].notna().all(), "metro missing city description"

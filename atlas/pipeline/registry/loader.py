@@ -27,6 +27,17 @@ PROV_KEYS = {"source", "dataset", "table", "variables", "geography",
 BANNED_DISPLAY_TERMS = re.compile(
     r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b",
     re.IGNORECASE)
+# Phase 4d (ADR 0019): political lean speaks in the parties' names and the
+# numbers only — no word that judges a place by its vote, no colour word
+# standing in for a party
+POLITICAL_EVALUATIVE_TERMS = re.compile(
+    r"\b(red|blue|liberal|conservative|progressive|left|right|friendly|"
+    r"haven|woke|maga)\b", re.IGNORECASE)
+POLITICAL_STRINGS = ("political_lean_dem", "political_lean_rep",
+                     "political_lean_other", "political_lean_text",
+                     "political_lean_bar_label", "political_lean_missing",
+                     "political_lean_sort_label", "political_lean_sort_name",
+                     "political_lean_sort_dem", "political_lean_sort_rep")
 STATUSES = ("active", "deferred", "context_only", "retired")
 N_BANDS = 5
 # tones are DERIVED from direction, one rule for every feature. Phase 2f
@@ -223,11 +234,21 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert abs(w - 1.0) < 1e-9, f"pillar {p} feature weights sum to {w}"
 
     for fid in ("violent_crime_rate", "property_crime_rate", "crime_coverage",
-                "everyday_prices", "who_lives_here", "pool_balance"):
+                "everyday_prices", "who_lives_here", "pool_balance",
+                "political_lean"):
         spec = feats[fid]
         assert spec.weight_in_pillar == 0 and spec.status == "context_only", (
             f"{fid} must stay unscored" + (" (D01)" if "crime" in fid else
-                                            " (ADR 0009)" if fid == "pool_balance" else ""))
+                                            " (ADR 0009)" if fid == "pool_balance" else
+                                            " (ADR 0019)" if fid == "political_lean" else ""))
+    # Phase 4d (ADR 0019): political lean is context, never scored or
+    # asked — no pillar, no band words, no band direction (the numbers
+    # only), a static figure from the build
+    pl = feats["political_lean"]
+    assert pl.pillar == "context" and pl.computed == "static", (
+        "political_lean is a static context figure (ADR 0019)")
+    assert pl.band_labels is None and pl.band_direction is None and pl.band_edges is None, (
+        "political_lean carries no band words and no band direction (ADR 0019)")
     # m3.0.0 (ADR 0009): the slider's second pole is the match pillar,
     # carried entirely by match_propensity; balance is display-only
     assert "match" in pillars and "balance" not in pillars, (
@@ -333,6 +354,21 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         "strings.balance_same_sex: balance applies to every search since m4.1.0 (ADR 0004 amended)")
     # before launch: About us links the terms of use (docs/terms.md)
     assert strings.get("about_terms_link"), "strings.about_terms_link is required (the terms of use)"
+    # Phase 4d (ADR 0019): political lean's words, all registry-owned; the
+    # parties' names and the numbers only, and Democratic always before
+    # Republican (the everyone-else share between them on the bar)
+    for need_key in POLITICAL_STRINGS:
+        assert strings.get(need_key), f"strings.{need_key} is required (Phase 4d, ADR 0019)"
+    for text in ([strings[k] for k in POLITICAL_STRINGS]
+                 + [pl.display_name, pl.unit, pl.definition]):
+        m = POLITICAL_EVALUATIVE_TERMS.search(text)
+        assert not m, (f"political lean's wording must be the parties' names and the numbers "
+                       f"only (ADR 0019); {m.group(0)!r} in {text!r}")
+    t, b = strings["political_lean_text"], strings["political_lean_bar_label"]
+    assert t.index("{dem}") < t.index("{rep}") and "{other" not in t, (
+        "political_lean_text names the Democratic share, then the Republican (ADR 0019)")
+    assert b.index("{dem_label}") < b.index("{other_label}") < b.index("{rep_label}"), (
+        "political_lean_bar_label reads Democratic, everyone else, Republican (ADR 0019)")
     # m3.1.0 (Phase 3b, A3): the match figure's display ceiling and its
     # token are registry-owned; the ceiling is a positive number
     for need_key in ("match_display_cap", "match_display_cap_token"):

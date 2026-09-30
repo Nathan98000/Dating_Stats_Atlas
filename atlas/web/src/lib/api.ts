@@ -4,7 +4,7 @@
  * licensing posture (rendered site, not a data feed) holds. */
 import "server-only";
 import { cache } from "react";
-import type { Meta, VariantResponse } from "./types";
+import type { Meta, PoliticalLeanResponse, VariantResponse } from "./types";
 import type { RankBody } from "./permalink";
 
 export const API_BASE = process.env.ATLAS_API_URL ?? "http://127.0.0.1:8000";
@@ -46,5 +46,18 @@ export async function apiRank(body: RankBody): Promise<VariantResponse> {
 export const apiMeta = cache(async (): Promise<Meta> => {
   const res = await fetch(`${API_BASE}/v1/meta`, { cache: "no-store" });
   if (!res.ok) throw new RankError(res.status, "meta unavailable");
+  return res.json();
+});
+
+/** Phase 4d (ADR 0019): every metro's 2024 presidential vote, as the city
+ * and compare pages show it. Fetched here, server-side, apart from the
+ * rank response — political lean is never part of a search. Changes only
+ * with the build. An API from before the feature answers 404, and the
+ * pages then show no political lean rather than fail (web and API can be
+ * a release apart for a moment); any other failure is an error. */
+export const apiPoliticalLean = cache(async (): Promise<PoliticalLeanResponse> => {
+  const res = await fetch(`${API_BASE}/v1/political_lean`, { cache: "no-store" });
+  if (res.status === 404) return { data_version: "", year: "", metros: {} };
+  if (!res.ok) throw new RankError(res.status, "political lean unavailable");
   return res.json();
 });

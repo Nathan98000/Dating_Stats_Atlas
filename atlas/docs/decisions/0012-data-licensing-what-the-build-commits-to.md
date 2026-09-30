@@ -128,6 +128,23 @@ compare pages, never scored.
   data's quality, not an attribution, so it does not move to the credits
   section.
 
+### MIT Election Data and Science Lab *[added in Phase 4d — the last section]*
+
+Used: *County Presidential Election Returns 2000–2024* (Harvard Dataverse,
+doi:10.7910/DVN/VOQCHQ, V20), for political lean, the 2024 figure, as
+context on city, compare and stat pages, never scored (ADR 0019). Its
+state-level returns (*U.S. President 1976–2024*, doi:10.7910/DVN/42MVDX)
+serve as a check only.
+
+- **Licence:** CC0 1.0, read from the dataset page on 30 September 2026.
+- **Citation**, the data citation the dataset page shows, which its Terms
+  tab asks for, with the house full stop: "MIT Election Data and Science
+  Lab, 2018, "County Presidential Election Returns 2000-2024",
+  https://doi.org/10.7910/DVN/VOQCHQ, Harvard Dataverse, V20,
+  UNF:6:xvsJJxrfXMIvzAuDYlfvVw== [fileUNF]."
+- **Context only**: never scored, never a filter, never a weight, never
+  asked of the visitor (ADR 0019).
+
 ### U.S. Bureau of Labor Statistics
 
 Used as a check only (QCEW beside County Business Patterns); no served
@@ -238,3 +255,32 @@ pending his confirmation, and on its one finding (the record:
   open; with the restorations and Waco's replacement they are 150 of the
   372 photographs shown.
 
+
+## Amended in Phase 4d (2026-09-30): the election returns
+
+A new source, for political lean (ADR 0019, Nathan's decision: context,
+never scored or asked). What the build commits to:
+
+- **The county returns.** MIT Election Data and Science Lab, *County
+  Presidential Election Returns 2000–2024*, Harvard Dataverse,
+  doi:10.7910/DVN/VOQCHQ, version 20, CC0 1.0. The licence was read from
+  the dataset page on 30 September 2026. Its Terms tab adds the Dataverse
+  community norm that credit is given by the data citation the page shows.
+  The registry entry `medsl_president` (shippable) carries that citation,
+  with the house full stop, and it appears only in Sources and credits.
+  The stat page's source line names the lab and links the dataset, as
+  every stat page's line does.
+- **Obtained by hand.** The dataset sits behind a guestbook (a name, an
+  email, an institution, a position, then "Accept" on its terms), which
+  the pipeline never fills in. Nathan downloaded it himself.
+  `adapters/medsl_president.py` pins that copy by its SHA-256, checked
+  against the MD5 Dataverse publishes, and its fetch-manifest entry says
+  how it was obtained.
+- **A check only, never shown.** The lab's state-level returns (*U.S.
+  President 1976–2024*, doi:10.7910/DVN/42MVDX, CC0 1.0, no guestbook) and
+  the Census Bureau's 2024 Alaska district-to-tract relationship file are
+  read to check the county sums and to decide Alaska's metros. No served
+  figure traces to either, so neither is cited on the site (the QCEW
+  precedent).
+- **No logo, and nothing implying endorsement** by MIT or the lab, as for
+  every source.

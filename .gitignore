@@ -106,3 +106,7 @@ atlas/results/phase4b/*_run.log
 # Phase 4c working files (the Phase 4 pattern): before/after records, chain scripts, run logs
 atlas/results/phase4c/_*
 atlas/results/phase4c/*_run.log
+
+# Phase 4d working files (the Phase 4 pattern): before/after records, run logs
+atlas/results/phase4d/_*
+atlas/results/phase4d/*_run.log

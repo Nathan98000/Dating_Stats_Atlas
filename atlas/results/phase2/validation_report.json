@@ -1,10 +1,10 @@
 {
-  "build": "5b780e4f2444",
+  "build": "2dbd9ebfa7ff",
   "model_version": "m4.1.0",
   "generated_by": {
-    "git_sha": "f9073a2f47dd89d0f26774b3f19e776faf1a2cf2",
+    "git_sha": "7b7c597a73806ed26b341a4018738e6200f01721",
     "git_dirty": true,
-    "generated_at": "2026-09-29T12:47:59-0400",
+    "generated_at": "2026-09-30T18:45:20-0400",
     "engine_model_version": "m4.1.0"
   },
   "hard": {
@@ -61,7 +61,7 @@
         "wobble_max": 3.6096,
         "old_rule_min_share_personas": 0.6125,
         "old_rule_min_share_all": 0.6125,
-        "seconds": 42.5
+        "seconds": 42.7
       },
       "reference_file": "results/phase4/stability_reference_m4_0_0.json",
       "per_search": {

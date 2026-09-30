@@ -120,9 +120,11 @@ city_cards: [rent_1br, everyday_prices, venues_per_100k,
 # served from a build-time JSON over the 193-city ranked set. Never
 # matches or balance (both depend on the visitor's search) and never
 # crime (the FBI's caution — it gets an explainer page instead).
+# Phase 4d (ADR 0019): political lean's page lists the cities by name,
+# never by either party's share, unless the visitor sorts it so.
 stat_pages: [rent_1br, everyday_prices, venues_per_100k,
              resident_walkability_index, pleasant_days,
-             students_per_1k_adults, who_lives_here]
+             students_per_1k_adults, who_lives_here, political_lean]
 
 # Crime context (Phase 2d item 5; D01: never scored). year is the served
 # reference year, chosen from the pull's own coverage-by-year table:
@@ -350,6 +352,27 @@ strings:
     favors {b}. Grey means we don't judge it: population is just a fact,
     and a measure you set to "Not much" still counts toward the score —
     it just matters least to you.
+  # Phase 4d (ADR 0019, Nathan's decision): political lean's words — the
+  # parties' names and the numbers, nothing evaluative (the loader refuses
+  # such words here), Democratic always before Republican. The API
+  # composes the figure's text from these (political_lean_text: "56%
+  # Democratic · 42% Republican"; the bar's spoken label); "Not available"
+  # is the brief's, for a metro the returns cannot cover exactly; the
+  # other words are drafts for Nathan's approval. The space before the
+  # middle dot is a no-break space, so a narrow card breaks the line after
+  # the dot, never before it.
+  political_lean_dem: "Democratic"
+  political_lean_rep: "Republican"
+  political_lean_other: "Everyone else"
+  political_lean_text: "{dem} {dem_label}\u00a0· {rep} {rep_label}"
+  political_lean_bar_label: "{dem_label} {dem}, {other_label} {other}, {rep_label} {rep}"
+  political_lean_missing: "Not available"
+  # the stat page's sort control: by name first (its default), then either
+  # party's share, highest first
+  political_lean_sort_label: "Sort by"
+  political_lean_sort_name: "Name"
+  political_lean_sort_dem: "Democratic share"
+  political_lean_sort_rep: "Republican share"
 
 # Phase 2f item 9.2: the stat pages' source lines — one display name and
 # link per source_id, joined through each feature's provenance.source
@@ -381,6 +404,11 @@ sources:
   fbi_cde:
     name: "FBI Crime Data Explorer, 2025"
     url: "https://cde.ucr.cjis.gov/"
+  # Phase 4d: the stat page's source line; the citation itself is in
+  # Sources and credits only (adapters/base.py, ADR 0012 amended)
+  medsl_president:
+    name: "MIT Election Data and Science Lab, County Presidential Election Returns 2000–2024"
+    url: "https://doi.org/10.7910/DVN/VOQCHQ"
 
 # Phase 2f item 8.5: the What-we-measure page's composition — group ->
 # ordered ids, so the page composes nothing. Cost of living shows Rent
@@ -398,7 +426,9 @@ measure_page:
   - {heading: reach, features: [venues_per_100k, resident_walkability_index]}
   - {heading: students, features: [students_per_1k_adults]}
   - {heading: weather, features: [pleasant_days]}
-  - {heading: context, features: [who_lives_here], crime: true}
+  # Phase 4d (ADR 0019): political lean joins the context group, after who
+  # lives here and before the crime card
+  - {heading: context, features: [who_lives_here, political_lean], crime: true}
 
 # The one-line city description (ADR 0004): composed at build from data the
 # artifact already holds — never hand-written, never a model call in this
@@ -857,6 +887,43 @@ features:
                  variables: [B01003_001E],
                  geography: cbsa, vintage: "2020-2024",
                  transform_id: pop_bridge_v1, tier: measured}
+
+  # Phase 4d (ADR 0019, Nathan's decision): how the metro area voted in the
+  # 2024 presidential election, as CONTEXT ONLY — never scored, never a
+  # filter, never a weight or importance control, never feeding the
+  # compatibility figure, never asked of the visitor (crime's and who lives
+  # here's status). The Democratic, Republican and everyone-else shares of
+  # every vote cast for a presidential candidate, from the MIT Election Data
+  # and Science Lab's county returns summed over the metro's counties and
+  # divided once (build/political_lean.py); a metro the returns cannot cover
+  # exactly (Connecticut's five, Anchorage, Fairbanks) is "Not available".
+  # No band words — the numbers only — and no band direction: `direction`
+  # is the schema's and nothing reads it for this feature (no band, no
+  # difference in compare, no default order by value). The definition is
+  # a draft for Nathan's approval; the unit is the brief's caption.
+  # Refreshed after each presidential election; next in 2028.
+  - id: political_lean
+    pillar: context
+    kind: intensive
+    direction: 1
+    weight_in_pillar: 0.0
+    computed: static
+    status: context_only
+    display_name: "Political lean"
+    unit: "2024 presidential vote, whole metro area"
+    unit_short: "%"
+    display_scale: 100
+    display_decimals: 0
+    definition: >-
+      How the metro area voted in the 2024 presidential election. It
+      describes everyone who voted there, not the people who match your
+      search.
+    provenance: {source: medsl_president,
+                 dataset: "MIT Election Data and Science Lab, County Presidential Election Returns 2000-2024 (V20)",
+                 table: countypres_2000-2024.csv,
+                 variables: [candidatevotes, party, mode],
+                 geography: "county -> cbsa", vintage: "2024",
+                 transform_id: political_lean_v1, tier: measured}
 
   # Retired from serving in m2.0.0 (ADR 0004): race and ethnicity select
   # who lives in a city and matches the search — the site says nothing

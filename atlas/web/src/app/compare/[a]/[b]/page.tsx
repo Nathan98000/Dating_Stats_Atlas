@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apiMeta, apiRank } from "@/lib/api";
+import { apiMeta, apiPoliticalLean, apiRank } from "@/lib/api";
 import {
   describeSearch,
   IMPORTANCE_PILLARS,
@@ -16,6 +16,7 @@ import { effectiveSearchParams } from "@/lib/server-prefs";
 import { SiteHeader } from "@/components/chrome";
 import { CompareVariantRows } from "@/components/compare-variant";
 import { DiffCell, Row } from "@/components/compare-cells";
+import { PoliticalLeanCell } from "@/components/political-lean";
 import { toneText } from "@/lib/tones";
 import { sliceVariants } from "@/lib/variants";
 import type { BaseRow, BaseSuppressedRow, Card } from "@/lib/types";
@@ -44,9 +45,10 @@ export default async function ComparePage({
   // visitor's own last search (Phase 2f item 2 / ADR 0007)
   const { sp, fromCookie } = await effectiveSearchParams(await searchParams);
   const prefs = parsePrefs(sp);
-  const [meta, response] = await Promise.all([
+  const [meta, response, lean] = await Promise.all([
     apiMeta(),
     apiRank(toRankBody(prefs)),
+    apiPoliticalLean(),
   ]);
   const mA = meta.metros.find((m) => m.slug === a);
   const mB = meta.metros.find((m) => m.slug === b);
@@ -162,6 +164,17 @@ export default async function ComparePage({
                   </Row>
                 );
               })}
+              {/* Phase 4d (ADR 0019): political lean, context only — both
+                  cities' shares as their city cards say them. No
+                  difference: one would put one party's share against the
+                  other city's, so the cell stays empty */}
+              {meta.features.political_lean && Object.keys(lean.metros).length > 0 && (
+                <Row label={meta.features.political_lean.display_name}>
+                  <PoliticalLeanCell block={lean.metros[mA.cbsa]} />
+                  <PoliticalLeanCell block={lean.metros[mB.cbsa]} />
+                  <td className="px-5 py-3.5" data-no-diff="political_lean" />
+                </Row>
+              )}
             </tbody>
           </table>
         </div>

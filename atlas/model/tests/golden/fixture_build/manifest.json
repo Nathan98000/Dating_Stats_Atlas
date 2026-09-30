@@ -1,8 +1,8 @@
 {
-  "data_version": "fixture-5b780e4f2444",
+  "data_version": "fixture-2dbd9ebfa7ff",
   "model_version": "m4.1.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-30T15:37:44-0400",
+  "created_at": "2026-09-30T18:42:14-0400",
   "axes": [
     {
       "name": "metro",
@@ -382,7 +382,8 @@
     "resident_walkability_index",
     "pleasant_days",
     "students_per_1k_adults",
-    "who_lives_here"
+    "who_lives_here",
+    "political_lean"
   ],
   "crime": {
     "year": 2025,
@@ -447,7 +448,17 @@
     "stat_strip_label": "How the figures spread across every ranked city",
     "compare_default_note": "These figures use the stated default search \u2014 {search}. Change anything on the home page and they become yours.",
     "compare_page_subtitle": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
-    "compare_diff_legend": "Green means the difference favors {a} for your search; red means it favors {b}. Grey means we don't judge it: population is just a fact, and a measure you set to \"Not much\" still counts toward the score \u2014 it just matters least to you."
+    "compare_diff_legend": "Green means the difference favors {a} for your search; red means it favors {b}. Grey means we don't judge it: population is just a fact, and a measure you set to \"Not much\" still counts toward the score \u2014 it just matters least to you.",
+    "political_lean_dem": "Democratic",
+    "political_lean_rep": "Republican",
+    "political_lean_other": "Everyone else",
+    "political_lean_text": "{dem} {dem_label}\u00a0\u00b7 {rep} {rep_label}",
+    "political_lean_bar_label": "{dem_label} {dem}, {other_label} {other}, {rep_label} {rep}",
+    "political_lean_missing": "Not available",
+    "political_lean_sort_label": "Sort by",
+    "political_lean_sort_name": "Name",
+    "political_lean_sort_dem": "Democratic share",
+    "political_lean_sort_rep": "Republican share"
   },
   "measure_page": [
     {
@@ -489,7 +500,8 @@
     {
       "heading": "context",
       "features": [
-        "who_lives_here"
+        "who_lives_here",
+        "political_lean"
       ],
       "crime": true
     }
@@ -526,6 +538,10 @@
     "fbi_cde": {
       "name": "FBI Crime Data Explorer, 2025",
       "url": "https://cde.ucr.cjis.gov/"
+    },
+    "medsl_president": {
+      "name": "MIT Election Data and Science Lab, County Presidential Election Returns 2000\u20132024",
+      "url": "https://doi.org/10.7910/DVN/VOQCHQ"
     }
   },
   "pillars": {
@@ -719,6 +735,23 @@
       "notice": null,
       "conditions": [
         "no agency logo or seal, and nothing implying endorsement"
+      ]
+    },
+    "medsl_president": {
+      "name": "CC0 1.0 (Harvard Dataverse, doi:10.7910/DVN/VOQCHQ)",
+      "url": "https://doi.org/10.7910/DVN/VOQCHQ",
+      "shippable": true,
+      "attribution": "MIT Election Data and Science Lab",
+      "notes": "countypres_2000-2024.csv (V20, released 2026-02-25), downloaded by hand through the dataset's guestbook (name, email, institution, position) on 2026-09-30 and pinned by its sha256.",
+      "citations": [
+        "MIT Election Data and Science Lab, 2018, \"County Presidential Election Returns 2000-2024\", https://doi.org/10.7910/DVN/VOQCHQ, Harvard Dataverse, V20, UNF:6:xvsJJxrfXMIvzAuDYlfvVw== [fileUNF]."
+      ],
+      "notice": null,
+      "conditions": [
+        "cite with the data citation shown on the dataset page (the Dataverse community norms the Terms tab names)",
+        "context only: never scored, never a filter, never a weight or importance control, never feeding the compatibility figure, never asked of the visitor",
+        "no MIT or lab logo, and nothing implying endorsement",
+        "obtained through the dataset's guestbook by hand, never by the pipeline"
       ]
     },
     "omb_delineation": {
@@ -1330,6 +1363,41 @@
         "tier": "measured"
       }
     },
+    "political_lean": {
+      "pillar": "context",
+      "kind": "intensive",
+      "direction": 1,
+      "weight_in_pillar": 0.0,
+      "status": "context_only",
+      "display_name": "Political lean",
+      "unit": "2024 presidential vote, whole metro area",
+      "unit_short": "%",
+      "unit_template": null,
+      "mover_phrase": null,
+      "stat_page_name": null,
+      "band_direction": null,
+      "band_labels": null,
+      "band_tones": null,
+      "band_edges": null,
+      "definition": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+      "display_scale": 100.0,
+      "display_decimals": 0,
+      "retired_reason": null,
+      "provenance": {
+        "source": "medsl_president",
+        "dataset": "MIT Election Data and Science Lab, County Presidential Election Returns 2000-2024 (V20)",
+        "table": "countypres_2000-2024.csv",
+        "variables": [
+          "candidatevotes",
+          "party",
+          "mode"
+        ],
+        "geography": "county -> cbsa",
+        "vintage": "2024",
+        "transform_id": "political_lean_v1",
+        "tier": "measured"
+      }
+    },
     "cross_group_pairing_rate": {
       "pillar": "context",
       "kind": "intensive",
@@ -1519,7 +1587,7 @@
       "P18_060N",
       "P1_001N"
     ],
-    "n_source_files_fetched": 2582
+    "n_source_files_fetched": 2587
   },
-  "fixture_of": "5b780e4f2444"
+  "fixture_of": "2dbd9ebfa7ff"
 }

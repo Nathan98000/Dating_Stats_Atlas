@@ -3,6 +3,7 @@ import path from "path";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/chrome";
 import { StatList, type StatRow } from "@/components/stat-list";
+import { LeanList, type LeanRow } from "@/components/lean-list";
 import statPages from "@/data/stat-pages.json";
 import statImages from "@/data/stat-images.json";
 
@@ -14,7 +15,9 @@ import statImages from "@/data/stat-images.json";
  * entirely from build-time JSON — no API call, and the numbers are the
  * city pages' numbers by construction. Matches and balance never get a
  * page (they depend on the visitor's search); crime has an explainer
- * instead. */
+ * instead. Political lean's page (Phase 4d, ADR 0019) lists the cities by
+ * name with no strip and no position numbers — either would line them up
+ * by one party — and lets the visitor sort by either party's share. */
 
 interface StatImage {
   file: string;
@@ -25,13 +28,29 @@ interface StatImage {
   source_url: string;
 }
 
+interface ValuePage {
+  kind?: undefined;
+  title: string; unit: string; definition: string;
+  col_name: string;
+  source: { name: string; url: string };
+  rows: StatRow[]; missing_in_ranked_set: number;
+  default_is_low_first: boolean;
+  strip: { ticks: number[]; axis: [string, string] };
+}
+
+/** Phase 4d (ADR 0019): political lean's page — the cities by name, the two
+ * main shares on each row, no strip and no position numbers */
+interface LeanPage {
+  kind: "political_lean";
+  title: string; unit: string; definition: string;
+  source: { name: string; url: string };
+  rows: LeanRow[]; missing_in_ranked_set: number;
+  columns: { dem: string; rep: string };
+  sort: { label: string; name: string; dem: string; rep: string };
+}
+
 const DATA = statPages as unknown as {
-  pages: Record<string, { title: string; unit: string; definition: string;
-                          col_name: string;
-                          source: { name: string; url: string };
-                          rows: StatRow[]; missing_in_ranked_set: number;
-                          default_is_low_first: boolean;
-                          strip: { ticks: number[]; axis: [string, string] } }>;
+  pages: Record<string, ValuePage | LeanPage>;
   order: string[];
   strings: { missing: string; sort_low: string; sort_high: string;
              strip_label: string; col_city: string; source_prefix: string };
@@ -93,49 +112,70 @@ export default async function StatPage({
           </p>
         </div>
 
-        {/* item 6: the distribution strip — every ranked city as a tick
-            along the stat's own range, axis labelled at the ends */}
-        <div data-testid="stat-strip">
-          <div
-            role="img"
-            aria-label={DATA.strings.strip_label}
-            className="relative h-8 overflow-hidden rounded-md border border-rule bg-surface"
-          >
-            {page.strip.ticks.map((t, i) => (
-              <span
-                key={i}
-                className="absolute bottom-1 top-1 w-px bg-accent opacity-40"
-                style={{ left: `calc(${t}% * 0.99 + 0.5%)` }}
-              />
-            ))}
-          </div>
-          <div className="flex justify-between pt-1 text-[12px] text-ink-3">
-            <span>
-              {isDollar ? "$" : ""}
-              {page.strip.axis[0]}
-            </span>
-            <span>
-              {isDollar ? "$" : ""}
-              {page.strip.axis[1]}
-            </span>
-          </div>
-        </div>
-
-        <StatList
-          rows={page.rows}
-          isDollar={isDollar}
-          ariaLabel={`Cities by ${page.title.toLowerCase()}`}
-          colName={page.col_name}
-          defaultIsLowFirst={page.default_is_low_first}
-          strings={DATA.strings}
-        />
+        {page.kind === "political_lean" ? (
+          <LeanList
+            rows={page.rows}
+            ariaLabel={`Cities by ${page.title.toLowerCase()}`}
+            unit={page.unit}
+            colCity={DATA.strings.col_city}
+            columns={page.columns}
+            sort={page.sort}
+          />
+        ) : (
+          <ValueSections page={page} isDollar={isDollar} />
+        )}
         {page.missing_in_ranked_set > 0 && (
-          <p className="text-[13px] text-ink-3">
+          <p className="text-[13px] text-ink-3" data-testid="stat-missing">
             {DATA.strings.missing.replace(
               "{n}", page.missing_in_ranked_set.toLocaleString("en-US"))}
           </p>
         )}
       </main>
+    </>
+  );
+}
+
+/** Every other stat page: the distribution strip, then the list numbered in
+ * the registry direction's order with its both-ways sort. */
+function ValueSections({ page, isDollar }: { page: ValuePage; isDollar: boolean }) {
+  return (
+    <>
+      {/* item 6: the distribution strip — every ranked city as a tick
+          along the stat's own range, axis labelled at the ends */}
+      <div data-testid="stat-strip">
+        <div
+          role="img"
+          aria-label={DATA.strings.strip_label}
+          className="relative h-8 overflow-hidden rounded-md border border-rule bg-surface"
+        >
+          {page.strip.ticks.map((t, i) => (
+            <span
+              key={i}
+              className="absolute bottom-1 top-1 w-px bg-accent opacity-40"
+              style={{ left: `calc(${t}% * 0.99 + 0.5%)` }}
+            />
+          ))}
+        </div>
+        <div className="flex justify-between pt-1 text-[12px] text-ink-3">
+          <span>
+            {isDollar ? "$" : ""}
+            {page.strip.axis[0]}
+          </span>
+          <span>
+            {isDollar ? "$" : ""}
+            {page.strip.axis[1]}
+          </span>
+        </div>
+      </div>
+
+      <StatList
+        rows={page.rows}
+        isDollar={isDollar}
+        ariaLabel={`Cities by ${page.title.toLowerCase()}`}
+        colName={page.col_name}
+        defaultIsLowFirst={page.default_is_low_first}
+        strings={DATA.strings}
+      />
     </>
   );
 }

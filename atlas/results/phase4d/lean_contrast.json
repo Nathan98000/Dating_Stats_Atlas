@@ -1,0 +1,25 @@
+{
+ "rule": "WCAG 2.1 AA: text 4.5:1; a graphic's part 3:1 (1.4.11). The key names every segment in ink-2 text, so colour is never the only cue (1.4.1).",
+ "tokens": {
+  "--dem": {
+   "hex": "#33609E",
+   "needs": 4.5,
+   "surface (cards)": 6.35,
+   "paper (page)": 5.98
+  },
+  "--rep": {
+   "hex": "#A63A3A",
+   "needs": 4.5,
+   "surface (cards)": 6.39,
+   "paper (page)": 6.01
+  },
+  "--lean-other": {
+   "hex": "#8A8085",
+   "needs": 3.0,
+   "surface (cards)": 3.81,
+   "paper (page)": 3.59
+  }
+ },
+ "key_text_ink_2_on_surface": 7.56,
+ "pass": true
+}

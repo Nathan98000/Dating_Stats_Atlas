@@ -55,6 +55,12 @@ CARD_ONLY_FEATURES = {"everyday_prices": "everyday_prices",
 # asserted at registry load and again in the engine tests
 CRIME_FEATURES = ("violent_crime_rate", "property_crime_rate",
                   "crime_coverage")
+# political lean (Phase 4d, ADR 0019): each metro's 2024 presidential votes
+# — Democratic, Republican, every vote for a candidate — NaN where the
+# returns cannot cover the metro exactly; context only, never scored, read
+# by nothing a ranking reads (model/context.py composes the figure)
+POLITICAL_COLUMNS = {"dem": "political_dem_votes", "rep": "political_rep_votes",
+                     "votes": "political_votes"}
 LEGEND_DISPLAY_KEYS = ("display_name", "unit", "definition")
 
 
@@ -89,6 +95,7 @@ class Build:
     gq_flag: np.ndarray             # bool (n_metros,) — dorm/barracks share
     static: dict = field(default_factory=dict)            # feature -> array
     crime: dict = field(default_factory=dict)             # crime feature -> array
+    political: dict = field(default_factory=dict)         # dem/rep/votes -> array (ADR 0019)
     standing_all: dict = field(default_factory=dict)      # feature -> pct/387
     static_direction: dict = field(default_factory=dict)  # feature -> +-1
     static_weight: dict = field(default_factory=dict)     # feature -> w in pillar
@@ -427,6 +434,17 @@ def load_build(path: str | Path, verify_hashes: bool = True,
     if not old_artifact:
         for f in CRIME_FEATURES:
             assert f in fb, f"feature {f} missing from manifest features_block"
+    # Phase 4d (ADR 0019): a build whose registry names political lean
+    # carries its votes, and the feature is context only — weight 0, never
+    # scored; an older artifact simply has none
+    political = {}
+    if "political_lean" in fb:
+        assert fb["political_lean"].get("status") == "context_only" and \
+            float(fb["political_lean"]["weight_in_pillar"]) == 0.0, (
+            "political_lean is context, never scored (ADR 0019)")
+        for k, col in POLITICAL_COLUMNS.items():
+            assert col in feats.columns, f"features.parquet missing {col} (Phase 4d)"
+            political[k] = feats[col].to_numpy(dtype=np.float64)
     for fid, entry in fb.items():
         missing = [k for k in LEGEND_DISPLAY_KEYS if not entry.get(k)]
         assert not missing, (
@@ -502,6 +520,7 @@ def load_build(path: str | Path, verify_hashes: bool = True,
         gq_flag=feats["gq_flag"].to_numpy(dtype=bool),
         static=static,
         crime=crime,
+        political=political,
         standing_all=standing_all,
         static_direction={f: int(fb[f]["direction"]) for f in STATIC_FEATURES},
         static_weight={f: float(fb[f]["weight_in_pillar"]) for f in STATIC_FEATURES},
