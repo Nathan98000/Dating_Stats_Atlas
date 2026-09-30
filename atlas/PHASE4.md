@@ -545,6 +545,17 @@ already used ("only if you include yours").
 `e2e/phase4b.spec.ts` holds both pages to it: no switch in their text, and
 the "used only if you include it" sentence on each.
 
+**Nice days' caption (2026-09-30).** Nathan pointed out that the line under
+every nice-days figure, "mild and dry enough to be outside", reads as a
+description of the city (on the stat page: "Seattle, WA 170 mild and dry
+enough to be outside") when it is the bar a day has to clear. The
+registry's unit for `pleasant_days` now names the days: "days that are
+mild and dry enough to be outside", so a city card reads "170 days that are
+mild and dry enough to be outside". Build 5b780e4f2444's manifest is
+refreshed in place (data identical), the fixture, the stat pages and the
+variant cases are regenerated with only that line changed, and goldens.json
+is byte-identical. For Nathan's approval.
+
 **The pre-rewrite backup (§1).** Nathan has deleted it (recorded
 2026-09-30): neither
 `~/Downloads/Projects/Dating_Stats_Atlas_backup_2026-09-28_pre_phase4_rewrite.git`
