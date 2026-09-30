@@ -544,24 +544,28 @@ whether that meant all fifteen other removals, he answered: restore all 15.
   back from the Trash matching its recorded sha256, and each render entry
   is rebuilt from its manifest row as `city_images` composes one.
 - **Waco's collage stays removed, and Waco gets a replacement:**
-  `File:Waco_June_2016_13_(Waco_Suspension_Bridge).jpg`, the Waco
-  Suspension Bridge seen down its deck to the twin-arched tower (CC BY-SA
-  4.0, Michael Barera).
+  `File:Obligatory_waco_suspension_bridge_photo.jpg`, the Waco Suspension
+  Bridge's twin-arched tower head-on under a blue sky (CC BY-SA 2.0,
+  Steve). Nathan chose it from the three candidates, over the bridge-deck
+  view first put in (CC BY-SA 4.0). Its Commons description is the
+  photographer's caption ("Obligatory waco suspension bridge photo"), so its
+  alt text is the review's own, a draft for Nathan's approval: "The Waco
+  Suspension Bridge in Waco, Texas."
 - **Savannah's photograph (Tarangire National Park, Tanzania) is
   replaced:** `File:The_Fountain_at_Forsyth.jpg`, the Forsyth Park fountain
   of 1858 (CC BY-SA 4.0, Derrick Gaines). Its Commons description is only in
   Italian, so its alt text is the review's own, a draft for Nathan's
   approval: "The Forsyth Park fountain in Savannah, Georgia."
-- Both replacements were chosen from three candidates per city that meet
-  every rule of ADR 0012 (licence, subject, no logo), preferring 4.0
-  licences. The review names them (`photo_review.json`, `replaced`), and the
+- Both replacements come from three candidates per city that meet every
+  rule of ADR 0012 (licence, subject, no logo). The review names them (`photo_review.json`, `replaced`), and the
   pipeline sources exactly those files on any re-run while refusing the
   files they replace (`city_images.source_file`, `photo_review.pinned_files`).
   Wikimedia now serves standard thumbnail sizes, so the two new renditions
   are 1,920 px wide where the others are 1,600; they are still Wikimedia's
   own, unmodified.
 - **The 141 photographs under Creative Commons licences before 4.0 stay,**
-  credited in the one central list; with the restorations they are 149.
+  credited in the one central list; with the restorations and Waco's
+  photograph they are 150.
 
 The site shows 372 photographs — 365 city photographs (every city that had
 one before the review has one again), 6 stat-page photographs and the hero

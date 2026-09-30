@@ -225,11 +225,14 @@ pending his confirmation, and on its one finding (the record:
   replacements.** Savannah's photograph showed Tarangire National Park,
   Tanzania, because the lookup landed on the article "Savanna". Each
   replacement is a Commons file the review names (`replaced`) — the Waco
-  Suspension Bridge and the Forsyth Park fountain, both CC BY-SA 4.0 — which
-  the pipeline sources through the same licence rule on any re-run, while
-  refusing the files they replace. The fountain's Commons description is
-  only in Italian, so the review gives its English alt text.
+  Suspension Bridge's tower (CC BY-SA 2.0, Nathan's pick of three) and the
+  Forsyth Park fountain (CC BY-SA 4.0) — which the pipeline sources through
+  the same licence rule on any re-run, while refusing the files they
+  replace. Neither Commons description can serve as alt text (the
+  fountain's is only in Italian, the bridge's is the photographer's
+  caption), so the review gives both an English one.
 - **The photographs under Creative Commons licences before 4.0 stay** in
   the one central credit list, the question the Wikimedia section left
-  open; with the restorations they are 149 of the 372 photographs shown.
+  open; with the restorations and Waco's replacement they are 150 of the
+  372 photographs shown.
 
