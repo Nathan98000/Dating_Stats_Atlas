@@ -163,7 +163,9 @@ def metro_totals(units: pd.DataFrame, delin: pd.DataFrame, site: set[str],
                    "units": [], "dem": np.nan, "rep": np.nan, "other": np.nan,
                    "valid": np.nan, "available": False, "reason": None}
             if any(c.startswith("02") for c in counties):
-                verdict = alaska.get(cbsa)
+                # the district check reads the 2024 districts; 2020's returns
+                # are on the districts drawn after 2010, never checked here
+                verdict = alaska.get(cbsa) if year == SERVED_YEAR else None
                 if verdict and verdict.get("clean"):
                     dist = u[(u["state_po"] == ALASKA) & u["unit"].isin(verdict["districts"])]
                     row.update(units=sorted(dist["unit"]), available=True,
@@ -332,33 +334,48 @@ def whole(x: float) -> str:
 
 
 def gap_effect(metros: pd.DataFrame, states: pd.DataFrame, delin: pd.DataFrame,
-               year: str = SERVED_YEAR) -> list[dict]:
-    """For each metro in a state outside the tolerance: its three shares as
-    whole percentages, and the same if every vote of the state's gap (the
-    state file's count minus the county sums, per party and for the rest)
-    belonged to this one metro — the most the gap could move what a metro
-    shows."""
+               units: pd.DataFrame, year: str = SERVED_YEAR) -> list[dict]:
+    """For each metro in a state outside the tolerance, what it would show
+    (the three shares as whole percentages) under two readings of the
+    state's gap — the state file's count minus the county sums, per party
+    and for the rest: spread over the state like the counted votes (the
+    metro takes its share of the state's counted votes), and all of it in
+    this one metro (the most the gap could move one metro's figure). Only a
+    reading of the record: the site would show neither."""
     bad = states[(states["year"] == year) & ~states["within_tolerance"]].set_index("state_po")
     if bad.empty:
         return []
+    u = units[(units["year"] == year) & (units["state_po"] != ALASKA)].set_index("unit")
+    state_valid = units[units["year"] == year].groupby("state_po")["valid"].sum()
     m = metros[(metros["year"] == year) & metros["available"]]
     out = []
     for _, r in m.iterrows():
-        counties = delin.loc[delin["cbsa"] == r["cbsa"], "county5"]
+        counties = list(delin.loc[delin["cbsa"] == r["cbsa"], "county5"])
         pos = sorted({STATE_FIPS_PO[c[:2]] for c in counties} & set(bad.index))
         if not pos:
             continue
         dem, rep, valid = r["dem"], r["rep"], r["valid"]
-        gd = sum(-bad.loc[p, "dem_diff"] for p in pos)
-        gr = sum(-bad.loc[p, "rep_diff"] for p in pos)
-        gv = sum(-bad.loc[p, "valid_diff"] for p in pos)
-        shown = [whole(dem / valid), whole(rep / valid), whole((valid - dem - rep) / valid)]
-        d2, r2, v2 = dem + gd, rep + gr, valid + gv
-        worst = [whole(d2 / v2), whole(r2 / v2), whole((v2 - d2 - r2) / v2)]
+
+        def shares(d, rp, v):
+            return [whole(d / v), whole(rp / v), whole((v - d - rp) / v)]
+
+        spread, alone = [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]
+        for p in pos:
+            gap = [-bad.loc[p, "dem_diff"], -bad.loc[p, "rep_diff"], -bad.loc[p, "valid_diff"]]
+            here = sum(float(u.loc[c, "valid"]) for c in counties
+                       if STATE_FIPS_PO[c[:2]] == p and c in u.index)
+            f = here / float(state_valid[p])
+            spread = [s + g * f for s, g in zip(spread, gap)]
+            alone = [s + g for s, g in zip(alone, gap)]
+        shown = shares(dem, rep, valid)
+        spread_pct = shares(dem + spread[0], rep + spread[1], valid + spread[2])
+        alone_pct = shares(dem + alone[0], rep + alone[1], valid + alone[2])
         out.append({"cbsa": r["cbsa"], "states_outside_tolerance": pos,
                     "shown_dem_rep_other_pct": shown,
-                    "if_the_whole_gap_were_here_pct": worst,
-                    "shown_figure_would_change": shown != worst})
+                    "gap_spread_like_the_counted_votes_pct": spread_pct,
+                    "gap_all_in_this_metro_pct": alone_pct,
+                    "changes_if_spread": shown != spread_pct,
+                    "changes_if_all_here": shown != alone_pct})
     return out
 
 
@@ -515,7 +532,7 @@ def run(build_dir: Path) -> dict:
         "alaska": alaska,
         "kansas_city_units": kansas_city_units(units)[["year", "county_fips", "dem", "rep", "valid"]]
             .to_dict("records"),
-        "state_gap_effect_2024": gap_effect(metros, states, delin),
+        "state_gap_effect_2024": gap_effect(metros, states, delin, units),
         "swing_check": swing_check(metros, units, delin),
         "metros": listing,
         "state_totals": [{k: _num(v) for k, v in r.items()} for r in states.to_dict("records")],
