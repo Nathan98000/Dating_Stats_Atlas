@@ -85,10 +85,10 @@ Phase 4 did everything in the repository; these are Nathan's own.
       and PHASE4C.md's copy; three sentences that still name the removed
       race switch (Privacy, and twice on About us) are flagged for rewording
       before launch (`PHASE4.md`, "After the phase").
-- [ ] **Terms of use** for the site. Drafted 2026-09-29 in `docs/terms.md`
-      (the `/terms` page, linked from About us) for Nathan's approval, with
-      four blanks to fill: the operator's name, a contact email, the state
-      whose law applies, and the date it goes live.
+- [x] **Terms of use** for the site. Written 2026-09-29 in `docs/terms.md`
+      (the `/terms` page, linked from About us) and approved by Nathan for
+      now: run by Nathan Nguyen, contact dating.stats.atlas@gmail.com,
+      New York law, dated October 1, 2026, the planned launch.
 - [ ] **Fly.io's data processing agreement**, and confirming that Fly's
       edge does not log query strings (search settings travel in the
       query).

@@ -5,13 +5,13 @@ data, for your general interest. Enjoy it and share it, but don't treat a
 figure as a fact about a person, and never use the site to judge or single
 anyone out.
 
-Last updated: **[the date the site goes live]**
+Last updated: October 1, 2026
 
 ## Who runs the site
 
-Dating Stats Atlas is run by **[the operator's name]**. Questions about
-these terms go to **[a contact email address]**. By using the site you
-agree to these terms; if you don't agree, please don't use it.
+Dating Stats Atlas is run by Nathan Nguyen. Questions about these terms
+go to dating.stats.atlas@gmail.com. By using the site you agree to these
+terms; if you don't agree, please don't use it.
 
 ## What the site is
 
@@ -91,5 +91,5 @@ you accept the new terms.
 
 ## The law that applies
 
-These terms are governed by the laws of **[the state]**, United States,
-without regard to its conflict-of-law rules.
+These terms are governed by the laws of the State of New York, United
+States, without regard to its conflict-of-law rules.

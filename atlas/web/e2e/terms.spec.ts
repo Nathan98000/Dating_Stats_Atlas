@@ -4,7 +4,7 @@ import path from "path";
 import { expect, test } from "@playwright/test";
 import { fetchMeta } from "./helpers";
 
-/** The terms of use (before launch; a draft for Nathan's approval):
+/** The terms of use (written before launch; approved by Nathan for now):
  * docs/terms.md rendered at /terms exactly as the privacy page renders
  * docs/privacy.md, linked from About us beside Privacy with the registry's
  * label. The page holds to what every page holds to: no request to another

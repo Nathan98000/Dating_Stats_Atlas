@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/chrome";
 
 export const dynamic = "force-dynamic";
 
-/** The terms of use (a draft for Nathan's approval, before launch):
+/** The terms of use (written before launch; approved by Nathan for now):
  * docs/terms.md rendered verbatim (synced at build), the same pattern as
  * the privacy page. Linked from About us; not in the nav. */
 export default async function TermsPage() {
