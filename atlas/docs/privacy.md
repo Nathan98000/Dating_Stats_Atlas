@@ -16,7 +16,7 @@ Your own sex, your education and your race or ethnicity stay in your
 browser. They are never sent to us: not in a web address, a request, a
 cookie or any other way. Our server works out the figures for every
 possible answer, and your browser shows the ones that fit you. Your race
-or ethnicity is used only if you switch it on.
+or ethnicity is used only if you include it.
 
 Your browser keeps these details so the site remembers them next time.
 You can remove them at any time by clearing this site's data in your

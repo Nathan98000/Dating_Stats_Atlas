@@ -30,6 +30,8 @@ const REMOVED_STRINGS: [string, string][] = [
 ];
 const REMOVED_TESTIDS = ["self-race-switch", "self-race-note", "race-switch-block",
   "about-you-note", "match-info", "match-band", "match-same-sex-note"];
+// the switch's wording, which Privacy and About us kept until 2026-09-30
+const SWITCH_WORDING = /\bswitch(ed|es|ing)?\b|\bturn(ed|s|ing)? (it|race|them) (on|off)\b|\boff unless\b|\bwith it off\b/i;
 
 const rowsOf = (page: Page) => page.getByTestId("ranked-list").locator("li");
 
@@ -160,6 +162,15 @@ test("none of the removed notes appears anywhere on the home page", async ({ pag
   await page.getByTestId("slider-info").click();
   await expect(page.getByTestId("slider-same-sex-note")).toBeVisible();
   await check("a same-sex search, the box open");
+});
+
+test("About us and Privacy name no switch: race or ethnicity is used only if you include it", async ({ page }) => {
+  for (const path of ["/about", "/privacy"]) {
+    await page.goto(path);
+    const text = await page.locator("body").innerText();
+    expect(text, `${path}: the removed switch`).not.toMatch(SWITCH_WORDING);
+    expect(text, `${path}: when race is used`).toMatch(/race or ethnicity is used only if you include it/);
+  }
 });
 
 test("the slider's box reads the registry string exactly, with the same-sex sentence only on a same-sex search", async ({ page, request }) => {

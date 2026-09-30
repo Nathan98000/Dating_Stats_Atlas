@@ -82,9 +82,10 @@ Phase 4 did everything in the repository; these are Nathan's own.
 - [x] **Approve the copy**: the privacy policy text and every new or
       changed sentence, listed old → new in `PHASE4.md` ("Copy for
       Nathan's approval"). Approved for now on 2026-09-29, with PHASE4B.md
-      and PHASE4C.md's copy; three sentences that still name the removed
-      race switch (Privacy, and twice on About us) are flagged for rewording
-      before launch (`PHASE4.md`, "After the phase").
+      and PHASE4C.md's copy. The three sentences that still named the
+      removed race switch (Privacy, and twice on About us) were reworded on
+      2026-09-30 at Nathan's request, to "used only if you include it"
+      (`PHASE4.md`, "After the phase").
 - [x] **Terms of use** for the site. Written 2026-09-29 in `docs/terms.md`
       (the `/terms` page, linked from About us) and approved by Nathan for
       now: run by Nathan Nguyen, contact dating.stats.atlas@gmail.com,

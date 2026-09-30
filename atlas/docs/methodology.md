@@ -63,8 +63,8 @@ Your own sex, education and race or ethnicity stay in your browser and
 are never sent to us: the site works out the figure for every possible
 answer, and your browser shows the one that fits you. Your education is
 optional; leave it unset and the average for people of your age and sex
-is used instead. Your race or ethnicity is used only if you switch it
-on, and then only for this figure; with it off, the figure uses no
+is used instead. Your race or ethnicity is used only if you include
+it, and then only for this figure; without it, the figure uses no
 racial or ethnic pairing at all.
 
 For a same-sex search the age gaps and the education pairings come from
@@ -96,7 +96,7 @@ Tick two groups and the count is the sum of those two groups. Unticking
 every box means the same as ticking all eight: no filter at all.
 
 These boxes are about the people you're looking for. Your own race or
-ethnicity is a separate setting: it is off unless you switch it on,
+ethnicity is a separate setting: it is used only if you include it,
 stays in your browser, and affects only the compatibility figure.
 
 ## How does the score work?

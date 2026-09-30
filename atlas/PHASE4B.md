@@ -188,4 +188,5 @@ One line each; `results/phase4b/deviations.md` is identical.
 Nathan approved the copy in §2 for now, including the two section headings
 and his slider sentence as written. The three sentences that still name the
 removed switch are flagged for rewording before launch (PHASE4.md, "After
-the phase").
+the phase"). On 2026-09-30, at Nathan's request, they were reworded to
+"used only if you include it" (PHASE4.md, "After the phase").

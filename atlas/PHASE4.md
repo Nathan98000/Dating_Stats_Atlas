@@ -528,6 +528,23 @@ switch Phase 4b removed — Privacy's "Your race or ethnicity is used only if
 you switch it on." and two on About us (under Compatibility, and under the
 race and ethnicity boxes) — and are flagged for rewording before launch.
 
+**The three switch sentences, reworded (2026-09-30).** At Nathan's request
+they now describe the select as it works: a race or ethnicity is used only
+when one is chosen instead of "Prefer not to say", the wording About us
+already used ("only if you include yours").
+
+- Privacy, "About you": "Your race or ethnicity is used only if you include
+  it."
+- About us, "Compatibility": "Your race or ethnicity is used only if you
+  include it, and then only for this figure; without it, the figure uses no
+  racial or ethnic pairing at all."
+- About us, "What do the race and ethnicity boxes do?": "Your own race or
+  ethnicity is a separate setting: it is used only if you include it, stays
+  in your browser, and affects only the compatibility figure."
+
+`e2e/phase4b.spec.ts` holds both pages to it: no switch in their text, and
+the "used only if you include it" sentence on each.
+
 **The pre-rewrite backup (§1).** Nathan has deleted it (recorded
 2026-09-30): neither
 `~/Downloads/Projects/Dating_Stats_Atlas_backup_2026-09-28_pre_phase4_rewrite.git`
