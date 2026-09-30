@@ -34,3 +34,11 @@ Saved 30 September 2026 at 14:08 US Eastern, the same way: each page printed to 
 | File | Pages | Source pages (in order) | Note | SHA-256 |
 |---|---|---|---|---|
 | `hud-terms_2026-09-30.pdf` | 10 | https://www.huduser.gov/portal/datasets/50per.html<br>https://www.huduser.gov/portal/dataset/api-terms-of-service.html<br>https://www.huduser.gov/portal/about/disclaimer.html | The 50th Percentile Rent Estimates page (the FY2027 county file the site uses), which states no terms; then HUD User's API Terms of Service, the only terms page HUD User publishes and the source of its "not endorsed or certified by HUD User" notice, which covers the API (the site uses the bulk files and calls no HUD API, ADR 0012); then HUD User's site-wide Disclaimer of Liability and Endorsement, linked from the dataset page's footer. | `b86ef3a4874f33d9…` |
+
+## Signed agreements
+
+Kept here beside the snapshots, and out of git like them.
+
+| File | Pages | What it is | Note | SHA-256 |
+|---|---|---|---|---|
+| `fly-dpa_2026-09-30.pdf` | 28 | Fly.io's Data Processing Addendum to its Terms of Service, with the Standard Contractual Clauses as Annex 2. Fly.io pre-signed it (14 January 2022) and sent it to Nathan through Dropbox Sign; Nathan signed it on 30 September 2026 at 17:54 UTC, Company Legal Name "Nathan Nguyen", title Owner. | Annex I (pages 23–24) carries Nathan's answers on the frequency of the transfer (continuous) and on sensitive data (none intended; the safeguards listed). The Name line on page 11, and the contact person on page 23, read "Customer": the signer's name as Fly.io entered it in Dropbox Sign. The last page is Dropbox Sign's signing record. Nathan's copy, `Fly io DPA.pdf`, is byte-identical. | `c882a8a06c622f8c…` |

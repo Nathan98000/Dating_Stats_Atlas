@@ -528,6 +528,12 @@ switch Phase 4b removed — Privacy's "Your race or ethnicity is used only if
 you switch it on." and two on About us (under Compatibility, and under the
 race and ethnicity boxes) — and are flagged for rewording before launch.
 
+**The pre-rewrite backup (§1).** Nathan has deleted it (recorded
+2026-09-30): neither
+`~/Downloads/Projects/Dating_Stats_Atlas_backup_2026-09-28_pre_phase4_rewrite.git`
+nor a copy in the Trash exists. With the backup gone, Pew is only in
+`atlas/data/private/pew/` (gitignored).
+
 **The photo review (§2).** Nathan said to keep every photograph except
 Waco's and Savannah's, and to find replacements for those two; asked
 whether that meant all fifteen other removals, he answered: restore all 15.

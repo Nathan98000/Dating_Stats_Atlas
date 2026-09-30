@@ -8,6 +8,8 @@ which records the method) is written. Three things remain, and they're all mecha
 **Done 24 September 2026** — all 17 are in `attachments/`, three of them marked `NONE-FOUND`
 (BEA, IPEDS, PRRI); `attachments/MANIFEST.md` lists the pages in each file and how each was saved.
 HUD User, missing from this list, was added on 30 September 2026 (`hud-terms_2026-09-30.pdf`).
+The signed Fly.io data processing agreement is kept there too (`fly-dpa_2026-09-30.pdf`, signed
+30 September 2026); it is not a licence page, so leave it out of the zip if counsel doesn't need it.
 The PDFs stay out of git (third-party pages; the repository is public).
 
 A legal opinion is only good for the terms the lawyer actually read, and terms change. So the

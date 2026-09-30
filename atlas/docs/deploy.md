@@ -89,16 +89,22 @@ Phase 4 did everything in the repository; these are Nathan's own.
       (the `/terms` page, linked from About us) and approved by Nathan for
       now: run by Nathan Nguyen, contact dating.stats.atlas@gmail.com,
       New York law, dated October 1, 2026, the planned launch.
-- [ ] **Fly.io's data processing agreement**, and confirming that Fly's
-      edge does not log query strings (search settings travel in the
-      query).
+- [x] **Fly.io's data processing agreement.** Signed by Nathan on
+      2026-09-30 through Dropbox Sign (Fly.io pre-signs it); the signed
+      copy is `docs/decisions/counsel_packet/attachments/fly-dpa_2026-09-30.pdf`
+      (out of git), listed in the attachments' `MANIFEST.md`.
+- [ ] **Confirming that Fly's edge does not log query strings** (search
+      settings travel in the query). Nathan asked Fly.io support on
+      2026-09-30; the answer is pending. When it comes, check the Privacy
+      page's "Our host" paragraph against it.
 - [ ] **Look inside both images before the first deploy**: `fly deploy`
       uploads the build context (the repository root) to a remote builder.
       Since Phase 4 a deny-by-default `.dockerignore` keeps the data, the
       results, private folders and key files out of it, and the API image
       copies only `atlas/api` and `atlas/model`; build both images locally
       once and list their files to confirm.
-- [ ] **A trademark clearance search** on the name.
+- [x] **A trademark clearance search** on the name. Done by Nathan: no
+      trademark for "Dating Stats Atlas" (recorded 2026-09-30).
 - [x] **HUD's terms**: save the dated snapshot of HUD's terms page to
       `docs/decisions/counsel_packet/attachments/`, as the other sources'
       are. Saved 2026-09-30 as `hud-terms_2026-09-30.pdf` (the rent
