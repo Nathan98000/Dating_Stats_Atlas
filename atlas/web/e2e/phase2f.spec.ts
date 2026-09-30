@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { fetchMeta } from "./helpers";
 
 /** Phase 2f's surfaces: the four tones rendering by band × direction
  * (gate 2), preferences following the visitor with explicit parameters
@@ -225,6 +226,25 @@ test("stat pages: source line, header row, no band labels (items 9.2/9.4/9.5)", 
   // nice days carries its 1991–2020 through the source line (item 9.2)
   await page.goto("/stats/pleasant_days");
   await expect(page.getByTestId("stat-source")).toContainText("1991–2020");
+});
+
+test("a unit line every row shares is said once, under the column name; population's stays on each row", async ({ page, request }) => {
+  // Nathan, 2026-09-30: nice days' line beside every figure read as a
+  // long string of text next to a number
+  const unit = (await fetchMeta(request)).features.pleasant_days.unit;
+  await page.goto("/stats/pleasant_days");
+  await expect(page.getByTestId("stat-list-unit")).toHaveText(unit);
+  const rows = page.getByTestId("stat-list").locator("li");
+  expect(await rows.count()).toBeGreaterThan(5);
+  for (const row of [rows.first(), rows.last()]) {
+    // the row shows its number alone, and still reads its unit aloud
+    await expect(row.getByText(unit, { exact: true })).toHaveClass(/sr-only/);
+  }
+  // population's line names each city's own adults, so it stays on the row
+  await page.goto("/stats/who_lives_here");
+  await expect(page.getByTestId("stat-list-unit")).toHaveCount(0);
+  await expect(page.getByTestId("stat-list").locator("li").first()
+    .getByText(/of whom .+ are adults/)).toBeVisible();
 });
 
 test("the excluded-cities line and the compare landing speak the new copy", async ({ page }) => {

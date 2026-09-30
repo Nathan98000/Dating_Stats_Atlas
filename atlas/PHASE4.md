@@ -556,6 +556,14 @@ refreshed in place (data identical), the fixture, the stat pages and the
 variant cases are regenerated with only that line changed, and goldens.json
 is byte-identical. For Nathan's approval.
 
+Nathan then asked that the stat page not show a long line of text beside
+every number. On every stat page a unit line that all rows share is now
+said once, under the column name, and each row shows its number alone
+(screen readers still hear the line with each row); population's line,
+which names each city's own adults, stays on the row
+(`components/stat-list.tsx`; `e2e/phase2f.spec.ts`). Phones, which hid the
+line on every row, now show it under the column name.
+
 **The pre-rewrite backup (§1).** Nathan has deleted it (recorded
 2026-09-30): neither
 `~/Downloads/Projects/Dating_Stats_Atlas_backup_2026-09-28_pre_phase4_rewrite.git`

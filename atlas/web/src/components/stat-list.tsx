@@ -15,7 +15,15 @@ import { useState } from "react";
  * carries the unit in words — converting to a <table> would announce
  * the position twice and re-plumb the sort toggle's semantics for no
  * gain. Toggle labels and headers arrive from the registry via the
- * build JSON. */
+ * build JSON.
+ *
+ * A unit line that is the same on every row (all but population's) is
+ * said once, under the column name, and each row shows its number alone
+ * (Nathan, 2026-09-30: nice days' line beside every figure read as a
+ * long string of text next to a number). Each row still carries it for
+ * screen readers, so a row reads "position: city — value unit" as
+ * before. A line that changes from row to row (population's adults)
+ * stays on the row. */
 
 export interface StatRow {
   slug: string;
@@ -43,6 +51,10 @@ export function StatList({
   const [reversed, setReversed] = useState(false);
   const shown = reversed ? [...rows].reverse() : rows;
   const lowFirstShown = defaultIsLowFirst !== reversed;
+  const sharedUnit =
+    rows.length > 0 && rows[0].unit_line && rows.every((r) => r.unit_line === rows[0].unit_line)
+      ? rows[0].unit_line
+      : null;
 
   return (
     <>
@@ -82,7 +94,17 @@ export function StatList({
         >
           <span />
           <span>{strings.col_city}</span>
-          <span className="text-right">{colName}</span>
+          <span className="text-right">
+            <span className="block">{colName}</span>
+            {sharedUnit && (
+              <span
+                data-testid="stat-list-unit"
+                className="ml-auto mt-0.5 block max-w-[24ch] text-[12px] font-normal normal-case leading-snug tracking-normal sm:max-w-none"
+              >
+                {sharedUnit}
+              </span>
+            )}
+          </span>
         </div>
         <ol aria-label={ariaLabel} data-testid="stat-list">
         {shown.map((r) => (
@@ -109,9 +131,13 @@ export function StatList({
                 {isDollar ? "$" : ""}
                 {r.display}
               </span>
-              <span className="ml-1.5 hidden text-[12px] text-ink-3 sm:inline">
-                {r.unit_line}
-              </span>
+              {sharedUnit ? (
+                <span className="sr-only"> {r.unit_line}</span>
+              ) : (
+                <span className="ml-1.5 hidden text-[12px] text-ink-3 sm:inline">
+                  {r.unit_line}
+                </span>
+              )}
             </span>
           </li>
         ))}
