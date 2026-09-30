@@ -230,7 +230,7 @@ pending his confirmation, and on its one finding (the record:
   the same licence rule on any re-run, while refusing the files they
   replace. Neither Commons description can serve as alt text (the
   fountain's is only in Italian, the bridge's is the photographer's
-  caption), so the review gives both an English one.
+  caption), so the review gives both an English one, approved by Nathan.
 - **The photographs under Creative Commons licences before 4.0 stay** in
   the one central credit list, the question the Wikimedia section left
   open; with the restorations and Waco's replacement they are 150 of the

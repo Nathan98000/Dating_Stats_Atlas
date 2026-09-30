@@ -549,13 +549,13 @@ whether that meant all fifteen other removals, he answered: restore all 15.
   Steve). Nathan chose it from the three candidates, over the bridge-deck
   view first put in (CC BY-SA 4.0). Its Commons description is the
   photographer's caption ("Obligatory waco suspension bridge photo"), so its
-  alt text is the review's own, a draft for Nathan's approval: "The Waco
-  Suspension Bridge in Waco, Texas."
+  alt text is the review's own, approved by Nathan: "The Waco Suspension
+  Bridge in Waco, Texas."
 - **Savannah's photograph (Tarangire National Park, Tanzania) is
   replaced:** `File:The_Fountain_at_Forsyth.jpg`, the Forsyth Park fountain
   of 1858 (CC BY-SA 4.0, Derrick Gaines). Its Commons description is only in
-  Italian, so its alt text is the review's own, a draft for Nathan's
-  approval: "The Forsyth Park fountain in Savannah, Georgia."
+  Italian, so its alt text is the review's own, approved by Nathan: "The
+  Forsyth Park fountain in Savannah, Georgia."
 - Both replacements come from three candidates per city that meet every
   rule of ADR 0012 (licence, subject, no logo). The review names them (`photo_review.json`, `replaced`), and the
   pipeline sources exactly those files on any re-run while refusing the
