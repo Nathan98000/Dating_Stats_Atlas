@@ -13,6 +13,29 @@
       "path": "data/raw/6f28d620813150e6/MARPP.zip",
       "sha256": "5dbf2e6ac2af222cc9abc205586c9b480344d89392752eb689c3ec823a34c83e"
     },
+    "https://dataverse.harvard.edu/api/access/datafile/11723285": {
+      "bytes": 2604,
+      "evicted": false,
+      "fetched_at": "2026-09-30T18:10:19-0400",
+      "obtained": "downloaded by hand through the dataset's guestbook (Nathan, 2026-09-30), checked against the pinned sha256 and Dataverse's md5",
+      "path": "data/raw/c73bb60a4446087c/County Presidential Returns 2000-2024.md",
+      "sha256": "12447fa5e7a7a823bc4416f34a6c624313cc703b745fcbfb2fe64902d2b37c70"
+    },
+    "https://dataverse.harvard.edu/api/access/datafile/13573089?format=original": {
+      "bytes": 10222208,
+      "evicted": false,
+      "fetched_at": "2026-09-30T18:10:19-0400",
+      "obtained": "downloaded by hand through the dataset's guestbook (Nathan, 2026-09-30), checked against the pinned sha256 and Dataverse's md5",
+      "path": "data/raw/b8c777c1a00e3ec0/countypres_2000-2024.csv",
+      "sha256": "9299583148f5f8264baf50b5d929c260699c46d915909b13ea3c3850918946f8"
+    },
+    "https://dataverse.harvard.edu/api/access/datafile/13887042": {
+      "bytes": 514108,
+      "evicted": false,
+      "fetched_at": "2026-09-30T18:04:13-0400",
+      "path": "data/raw/4483f57ce4771715/13887042",
+      "sha256": "9936410a6dd4ecc8be7fe202c6dff5b5f8fee59d88f35ab542ed12879941dcb7"
+    },
     "https://nces.ed.gov/ipeds/datacenter/data/EF2023A_DIST.zip": {
       "bytes": 221386,
       "evicted": false,
@@ -17344,6 +17367,20 @@
       "fetched_at": "2026-09-11T13:38:49-0400",
       "path": "data/raw/3379e3381d965de1/2020_Census_Tract_to_2020_PUMA.txt",
       "sha256": "5262f460b2c8dbe86b00549e916317b1791fdc595c9af72ab18f6f6a67040531"
+    },
+    "https://www2.census.gov/geo/docs/maps-data/data/rel2020/cd-sld/tab20_sldl202420_county20_st02.txt": {
+      "bytes": 12329,
+      "evicted": false,
+      "fetched_at": "2026-09-30T18:04:13-0400",
+      "path": "data/raw/cf044c3397194b8f/tab20_sldl202420_county20_st02.txt",
+      "sha256": "698999943bb2021c0c083a58683c2b5683b98e6f152a89dbeac2750aa21d3632"
+    },
+    "https://www2.census.gov/geo/docs/maps-data/data/rel2020/cd-sld/tab20_sldl202420_tract20_st02.txt": {
+      "bytes": 46507,
+      "evicted": false,
+      "fetched_at": "2026-09-30T18:04:14-0400",
+      "path": "data/raw/d713c9b3464e12b2/tab20_sldl202420_tract20_st02.txt",
+      "sha256": "0f85a433c20db6b1208d2dc5491a73e66bb2b456e0f3e257c65f0d56ebd802b4"
     },
     "https://www2.census.gov/geo/docs/maps-data/data/rel2020/tract/tab20_tract20_tract10_natl.txt": {
       "bytes": 18686287,

@@ -195,6 +195,48 @@ FBI_CDE_CONTEXT_ONLY = LicenseTerms(
         "not an attribution",),
 )
 
+# Phase 4d (Nathan's decision): each metro's 2024 presidential vote, shown
+# as context — never scored, never a filter, never a weight, never asked of
+# the visitor. Licence read from the dataset page on 30 September 2026:
+# CC0 1.0, whose Terms tab asks for "the data citation shown on the dataset
+# page"; the citation below is that string as the page shows it, with the
+# house full stop at the end. The file sits behind the dataset's guestbook,
+# so it is pinned by hand (adapters/medsl_president.py), never fetched.
+MEDSL_PRESIDENT_CC0 = LicenseTerms(
+    name="CC0 1.0 (Harvard Dataverse, doi:10.7910/DVN/VOQCHQ)",
+    url="https://doi.org/10.7910/DVN/VOQCHQ",
+    shippable=True,
+    attribution="MIT Election Data and Science Lab",
+    citations=('MIT Election Data and Science Lab, 2018, "County Presidential Election '
+               'Returns 2000-2024", https://doi.org/10.7910/DVN/VOQCHQ, Harvard Dataverse, '
+               'V20, UNF:6:xvsJJxrfXMIvzAuDYlfvVw== [fileUNF].',),
+    notes="countypres_2000-2024.csv (V20, released 2026-02-25), downloaded by hand "
+          "through the dataset's guestbook (name, email, institution, position) "
+          "on 2026-09-30 and pinned by its sha256.",
+    conditions=(
+        "cite with the data citation shown on the dataset page (the Dataverse "
+        "community norms the Terms tab names)",
+        "context only: never scored, never a filter, never a weight or importance "
+        "control, never feeding the compatibility figure, never asked of the visitor",
+        "no MIT or lab logo, and nothing implying endorsement",
+        "obtained through the dataset's guestbook by hand, never by the pipeline",),
+)
+# The lab's state-level returns: a check only (each state's summed county
+# totals against the lab's own state totals). No served figure traces to
+# it, so the site does not show its citation (the QCEW precedent).
+MEDSL_PRESIDENT_STATE_CC0 = LicenseTerms(
+    name="CC0 1.0 (Harvard Dataverse, doi:10.7910/DVN/42MVDX)",
+    url="https://doi.org/10.7910/DVN/42MVDX",
+    shippable=True,
+    attribution="MIT Election Data and Science Lab",
+    citations=('MIT Election Data and Science Lab, 2017, "U.S. President 1976–2024", '
+               'https://doi.org/10.7910/DVN/42MVDX, Harvard Dataverse, V10, '
+               'UNF:6:xpBppxfswpr+u9xZe7/u7w== [fileUNF].',),
+    notes="A check only (the state totals beside the county file); no served figure "
+          "traces to it, so the site does not show this citation.",
+    conditions=("a check only, never served",),
+)
+
 # Phase 3c (A3): the one non-federal, non-Commons source the build reads.
 # A validation reference only, read OUTSIDE any adapter by build.kernel
 # and build.kernel_refine; marked non-shippable so that assert_all_shippable
@@ -234,6 +276,8 @@ LICENSES: dict[str, LicenseTerms] = {
     "ipeds": PUBLIC_DOMAIN_IPEDS,
     "hud_fmr50": PUBLIC_DOMAIN_HUD,
     "fbi_cde": FBI_CDE_CONTEXT_ONLY,
+    "medsl_president": MEDSL_PRESIDENT_CC0,
+    "medsl_president_state": MEDSL_PRESIDENT_STATE_CC0,
     "pew_intermarriage": PEW_INTERMARRIAGE_REFERENCE,
 }
 
