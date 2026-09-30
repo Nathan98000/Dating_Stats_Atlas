@@ -71,6 +71,8 @@ files — no HUD API is called.
   Development, FY2027 50th Percentile Rent Estimates." No API notice.
 - A dated snapshot of HUD's terms page joins the counsel-packet
   attachments before launch (`docs/deploy.md`, "Before launch").
+  *[Saved 30 September 2026: `hud-terms_2026-09-30.pdf`, listed in the
+  attachments' `MANIFEST.md`.]*
 
 ### NOAA National Centers for Environmental Information
 

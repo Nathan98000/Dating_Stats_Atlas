@@ -25,4 +25,12 @@ in the order listed. Exceptions are noted per file.
 | `opportunity-insights_2026-09-24.pdf` | 22 | https://opportunityinsights.org/data/<br>https://opportunityinsights.org/contact/reprints/ | Data library followed by the Reprint Policy; individual datasets link their own licence files from the data page. | `e2183fa16730a133…` |
 | `pew-terms_2026-09-24.pdf` | 14 | https://www.pewresearch.org/about/terms-and-conditions/<br>https://www.pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area/ | Terms of Use followed by the intermarriage feature page (redirects to /social-trends/feature/...). | `e3ca88f48ae266f5…` |
 
-Missing from the checklist and not saved: HUD User (the rent figures, and the disclaimer question 1 names).
+Missing from the checklist on 24 September: HUD User (the rent figures, and the disclaimer question 1 names). It was saved on 30 September (below).
+
+## Added 30 September 2026
+
+Saved 30 September 2026 at 14:08 US Eastern, the same way: each page printed to PDF (US Letter) by headless Chromium with print headers and footers on. The pages were printed one at a time and joined in the order listed, so each part's footer counts its own pages.
+
+| File | Pages | Source pages (in order) | Note | SHA-256 |
+|---|---|---|---|---|
+| `hud-terms_2026-09-30.pdf` | 10 | https://www.huduser.gov/portal/datasets/50per.html<br>https://www.huduser.gov/portal/dataset/api-terms-of-service.html<br>https://www.huduser.gov/portal/about/disclaimer.html | The 50th Percentile Rent Estimates page (the FY2027 county file the site uses), which states no terms; then HUD User's API Terms of Service, the only terms page HUD User publishes and the source of its "not endorsed or certified by HUD User" notice, which covers the API (the site uses the bulk files and calls no HUD API, ADR 0012); then HUD User's site-wide Disclaimer of Liability and Endorsement, linked from the dataset page's footer. | `b86ef3a4874f33d9…` |

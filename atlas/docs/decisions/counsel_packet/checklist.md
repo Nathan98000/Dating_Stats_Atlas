@@ -7,6 +7,7 @@ which records the method) is written. Three things remain, and they're all mecha
 
 **Done 24 September 2026** — all 17 are in `attachments/`, three of them marked `NONE-FOUND`
 (BEA, IPEDS, PRRI); `attachments/MANIFEST.md` lists the pages in each file and how each was saved.
+HUD User, missing from this list, was added on 30 September 2026 (`hud-terms_2026-09-30.pdf`).
 The PDFs stay out of git (third-party pages; the repository is public).
 
 A legal opinion is only good for the terms the lawyer actually read, and terms change. So the
@@ -35,6 +36,7 @@ into `attachments/` using the filename below.
 | Zillow Research | zillow.com/research/data + Zillow terms of use | `zillow-terms_2026-09-24.pdf` |
 | Redfin Data Center | redfin.com/news/data-center | `redfin-terms_2026-09-24.pdf` |
 | Opportunity Insights | opportunityinsights.org/data | `opportunity-insights_2026-09-24.pdf` |
+| HUD User (the rent figures; added 30 September) | https://www.huduser.gov/portal/datasets/50per.html, then HUD User's API terms and its site disclaimer | `hud-terms_2026-09-30.pdf` |
 | Pew Research Center terms (the intermarriage table, Part B Group 3) | pewresearch.org → "Terms & Conditions" in the site footer, plus the feature page itself (pewresearch.org/social-trends/interactives/intermarriage-across-the-u-s-by-metro-area) | `pew-terms_2026-09-24.pdf` |
 
 Two links are verified live as of today: the Census API terms and the BLS copyright page.

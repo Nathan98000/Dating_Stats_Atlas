@@ -99,9 +99,11 @@ Phase 4 did everything in the repository; these are Nathan's own.
       copies only `atlas/api` and `atlas/model`; build both images locally
       once and list their files to confirm.
 - [ ] **A trademark clearance search** on the name.
-- [ ] **HUD's terms**: save the dated snapshot of HUD's terms page to
+- [x] **HUD's terms**: save the dated snapshot of HUD's terms page to
       `docs/decisions/counsel_packet/attachments/`, as the other sources'
-      are.
+      are. Saved 2026-09-30 as `hud-terms_2026-09-30.pdf` (the rent
+      dataset page, HUD User's API terms and its site disclaimer), listed
+      in the attachments' `MANIFEST.md`.
 - [ ] **Optional: an email to ASARB** (the 2020 US Religion Census)
       confirming commercial use, before that source is ever started.
 - [ ] **Foursquare's Places Portal terms**, when venues are un-deferred
