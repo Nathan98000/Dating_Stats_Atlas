@@ -84,6 +84,15 @@ export default async function AboutPage() {
           >
             {policy.about_privacy_link}
           </Link>
+          {/* before launch: the terms of use (docs/terms.md), a draft for
+              Nathan's approval, linked beside Privacy */}
+          <Link
+            href="/terms"
+            className="inline-flex min-h-[46px] items-center rounded-lg border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
+            data-testid="about-terms-link"
+          >
+            {policy.about_terms_link}
+          </Link>
         </nav>
         <article
           className="prose-method mt-8"

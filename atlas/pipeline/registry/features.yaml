@@ -270,6 +270,9 @@ strings:
   about_measure_link: "What we measure"
   about_crime_link: "About crime data"
   about_privacy_link: "Privacy"
+  # before launch: the link to the terms of use (docs/terms.md), beside
+  # Privacy on About us — a draft for Nathan's approval
+  about_terms_link: "Terms of use"
   credits_heading: "Sources and credits"
   credits_data_heading: "Data"
   credits_photos_heading: "Photographs"

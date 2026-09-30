@@ -331,6 +331,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert strings.get(need_key), f"strings.{need_key} is required (Phase 4c)"
     assert "balance_same_sex" not in strings, (
         "strings.balance_same_sex: balance applies to every search since m4.1.0 (ADR 0004 amended)")
+    # before launch: About us links the terms of use (docs/terms.md)
+    assert strings.get("about_terms_link"), "strings.about_terms_link is required (the terms of use)"
     # m3.1.0 (Phase 3b, A3): the match figure's display ceiling and its
     # token are registry-owned; the ceiling is a positive number
     for need_key in ("match_display_cap", "match_display_cap_token"):
