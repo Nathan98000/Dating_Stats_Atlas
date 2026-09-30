@@ -109,8 +109,8 @@ mirror, if you're looking for women)") still reads true, and so does the
 registry's definition of balance. The Privacy page says nothing about
 balance, and nothing on it is made untrue by this phase. The three
 Phase 4b sentences that name the old race switch are still waiting for
-you (PHASE4B.md §2). (Reworded on 2026-09-30; PHASE4.md, "After the
-phase".)
+you (PHASE4B.md §2). (Reworded and approved on 2026-09-30; PHASE4.md,
+"After the phase".)
 
 ## 4. Gate check and test counts
 

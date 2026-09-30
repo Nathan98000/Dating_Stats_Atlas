@@ -543,7 +543,8 @@ already used ("only if you include yours").
   in your browser, and affects only the compatibility figure."
 
 `e2e/phase4b.spec.ts` holds both pages to it: no switch in their text, and
-the "used only if you include it" sentence on each.
+the "used only if you include it" sentence on each. Nathan approved the
+three sentences as written (2026-09-30).
 
 **Nice days' caption (2026-09-30).** Nathan pointed out that the line under
 every nice-days figure, "mild and dry enough to be outside", reads as a
@@ -554,7 +555,7 @@ mild and dry enough to be outside", so a city card reads "170 days that are
 mild and dry enough to be outside". Build 5b780e4f2444's manifest is
 refreshed in place (data identical), the fixture, the stat pages and the
 variant cases are regenerated with only that line changed, and goldens.json
-is byte-identical. For Nathan's approval.
+is byte-identical. Nathan approved the caption (2026-09-30).
 
 Nathan then asked that the stat page not show a long line of text beside
 every number. On every stat page a unit line that all rows share is now

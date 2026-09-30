@@ -774,6 +774,7 @@ features:
     # city's figure, read as a description of that city rather than the
     # bar a day has to clear. Naming the days makes the line say what is
     # counted: "336 days that are mild and dry enough to be outside".
+    # Approved by Nathan the same day.
     unit: "days that are mild and dry enough to be outside"
     unit_short: ""
     display_decimals: 0

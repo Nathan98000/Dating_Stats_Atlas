@@ -88,8 +88,9 @@ Phase 4 did everything in the repository; these are Nathan's own.
       Nathan's approval"). Approved for now on 2026-09-29, with PHASE4B.md
       and PHASE4C.md's copy. The three sentences that still named the
       removed race switch (Privacy, and twice on About us) were reworded on
-      2026-09-30 at Nathan's request, to "used only if you include it"
-      (`PHASE4.md`, "After the phase").
+      2026-09-30 at Nathan's request, to "used only if you include it",
+      and approved by him; so was nice days' new caption, "days that are
+      mild and dry enough to be outside" (`PHASE4.md`, "After the phase").
 - [x] **Terms of use** for the site. Written 2026-09-29 in `docs/terms.md`
       (the `/terms` page, linked from About us) and approved by Nathan for
       now: run by Nathan Nguyen, contact dating.stats.atlas@gmail.com,
@@ -114,7 +115,8 @@ Phase 4 did everything in the repository; these are Nathan's own.
       (`results/launch/image_check.json`, "run_together"). The
       Privacy page's "Our host" paragraph still holds: it says Fly.io
       keeps technical logs such as IP addresses and page addresses, under
-      its own privacy policy.
+      its own privacy policy. Nathan decided it needs no added sentence
+      (2026-09-30).
 - [x] **Look inside both images before the first deploy**: `fly deploy`
       uploads the build context (the repository root) to a remote builder.
       Since Phase 4 a deny-by-default `.dockerignore` keeps the data, the
