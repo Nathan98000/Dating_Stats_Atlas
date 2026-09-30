@@ -29,8 +29,12 @@ address and no public IPs**.
 4. `fly deploy -a atlas-api --config atlas/api/fly.toml` (from repo root,
    `--dockerfile atlas/api/Dockerfile`). Allocate **no** public IPs:
    `fly ips allocate-v6 --private -a atlas-api` only.
-5. `fly deploy -a atlas-web --config atlas/web/fly.toml`. The web app finds
-   the API at `http://atlas-api.flycast:8000` (set in its `[env]`).
+5. `fly deploy -a atlas-web --config atlas/web/fly.toml` (from repo root,
+   `--dockerfile atlas/web/Dockerfile`). The web app finds the API at
+   `http://atlas-api.flycast:8000` (set in its `[env]`). Run both deploys
+   from the repository root: flyctl uploads the directory it runs in and
+   applies the `.dockerignore` there (`results/launch/image_check.json`
+   lists what that sends).
 6. Smoke: `fly ssh console -a atlas-web -C "curl -s http://atlas-api.flycast:8000/v1/health"`,
    then the site’s own `/about` (it renders only if `/v1/meta`
    answers).
@@ -94,16 +98,40 @@ Phase 4 did everything in the repository; these are Nathan's own.
       2026-09-30 through Dropbox Sign (Fly.io pre-signs it); the signed
       copy is `docs/decisions/counsel_packet/attachments/fly-dpa_2026-09-30.pdf`
       (out of git), listed in the attachments' `MANIFEST.md`.
-- [ ] **Confirming that Fly's edge does not log query strings** (search
-      settings travel in the query). Nathan asked Fly.io support on
-      2026-09-30; the answer is pending. When it comes, check the Privacy
-      page's "Our host" paragraph against it.
-- [ ] **Look inside both images before the first deploy**: `fly deploy`
+- [x] **Confirming that Fly's edge does not log query strings** (search
+      settings travel in the query). Fly.io support answered Nathan on
+      2026-09-30: a request is logged in detail only when the client sends
+      a special debugging header, and then the query string's values are
+      redacted (`foo=<redacted>`); when something fails between Fly's proxy
+      and a machine, the request's path, without its query, goes to a
+      system log; no log holds request headers or cookies. Those logs are
+      kept by size, about two to three weeks at present, seen by Fly's
+      engineering and support staff, and can't be turned off. `fly logs`
+      is separate: it carries what the two apps print. The web server logs
+      no requests, and the API's access lines read `POST /v1/rank` from
+      the web app's private address (the search travels in the request
+      body), so neither holds a search or a visitor's address
+      (`results/launch/image_check.json`, "run_together"). The
+      Privacy page's "Our host" paragraph still holds: it says Fly.io
+      keeps technical logs such as IP addresses and page addresses, under
+      its own privacy policy.
+- [x] **Look inside both images before the first deploy**: `fly deploy`
       uploads the build context (the repository root) to a remote builder.
       Since Phase 4 a deny-by-default `.dockerignore` keeps the data, the
       results, private folders and key files out of it, and the API image
       copies only `atlas/api` and `atlas/model`; build both images locally
-      once and list their files to confirm.
+      once and list their files to confirm. Done 2026-09-30
+      (`results/launch/image_check.py`, `image_check.json`: clean). The
+      upload is 477 files, 365 of them the city photographs; the API image
+      adds only its 15 files, each byte-identical to the repository's; the
+      web image holds the built site, its packages, the four pages' texts
+      (identical to `docs/`) and the public images. No data, results,
+      pipeline, decision records, git, private folder, key file, secret,
+      API key value, personal detail or anything of Pew's table in any of
+      them. Run together on a private network with the test build, the two
+      images answer every page, and neither app's log holds a search or a
+      visitor's address. Built here for linux/arm64; Fly builds
+      linux/amd64, which changes compiled packages, not which files go in.
 - [x] **A trademark clearance search** on the name. Done by Nathan: no
       trademark for "Dating Stats Atlas" (recorded 2026-09-30).
 - [x] **HUD's terms**: save the dated snapshot of HUD's terms page to

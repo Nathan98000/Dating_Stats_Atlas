@@ -1,0 +1,310 @@
+{
+ "generated": "2026-09-30T19:15:31Z",
+ "head": "a5992163edf4",
+ "working_tree_changes": [
+  " M atlas/docs/deploy.md",
+  "?? atlas/results/launch/"
+ ],
+ "docker": {
+  "client": "29.6.2",
+  "server": "29.6.2"
+ },
+ "how": {
+  "api": "docker build -f atlas/api/Dockerfile -t dsa-check/atlas-api:launch .",
+  "web": "docker build -f atlas/web/Dockerfile -t dsa-check/atlas-web:launch .",
+  "context": "printf 'FROM scratch\\nCOPY . /\\n' | docker build -f - --output type=local,dest=<dir> ."
+ },
+ "context": {
+  "files": 477,
+  "bytes": 266957974,
+  "by_area": {
+   "atlas/__init__.py": 1,
+   "atlas/api": 4,
+   "atlas/docs": 4,
+   "atlas/model": 9,
+   "atlas/web": 93,
+   "atlas/web/public/cities (photographs)": 365,
+   "requirements.lock": 1
+  },
+  "bytes_by_area": {
+   "atlas/__init__.py": 0,
+   "atlas/api": 18706,
+   "atlas/docs": 13698,
+   "atlas/model": 154660,
+   "atlas/web": 5890074,
+   "atlas/web/public/cities (photographs)": 260880225,
+   "requirements.lock": 611
+  },
+  "outside_allowed": [],
+  "excluded_but_present": [],
+  "never": [],
+  "key_files": [],
+  "key_file_names_cleared": [
+   {
+    "file": "atlas/web/.npmrc",
+    "why": "npm settings only, no credentials"
+   }
+  ],
+  "not_in_git": {
+   "atlas/web": 2,
+   "atlas/web/public/cities": 365,
+   "atlas/web/public": 1,
+   "atlas/web/public/stats": 6
+  },
+  "not_in_git_examples": {
+   "atlas/web": "atlas/web/next-env.d.ts",
+   "atlas/web/public/cities": "atlas/web/public/cities/abilene-texas.jpg",
+   "atlas/web/public": "atlas/web/public/hero.jpg",
+   "atlas/web/public/stats": "atlas/web/public/stats/everyday_prices.jpg"
+  },
+  "secrets": [],
+  "key_values": [],
+  "personal": [],
+  "pew": []
+ },
+ "api": {
+  "image": "dsa-check/atlas-api:launch",
+  "id": "sha256:068863087849f6057b7660b9836a4827e762d71883bd0efdcb7a698042f3b56c",
+  "inspect_size_bytes": 212841748,
+  "platform": "linux/arm64",
+  "config": {
+   "env": [
+    "LANG=C.UTF-8",
+    "PYTHON_VERSION=3.12.14",
+    "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+    "BUILD_DIR=/data/build"
+   ],
+   "cmd": [
+    "python",
+    "-m",
+    "uvicorn",
+    "atlas.api.app:app",
+    "--host",
+    "0.0.0.0",
+    "--port",
+    "8000"
+   ],
+   "workdir": "/app",
+   "exposed_ports": [
+    "8000/tcp"
+   ],
+   "user": "root"
+  },
+  "app_files": [
+   {
+    "path": "atlas/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "path": "atlas/api/Dockerfile",
+    "bytes": 959,
+    "sha256": "39c10b22b5d0fef01a1d687139436a0c79bac58b8924db917a16564350bdbb88"
+   },
+   {
+    "path": "atlas/api/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "path": "atlas/api/app.py",
+    "bytes": 16725,
+    "sha256": "bdc795a3d0ca18dad1b21bb41b457146c195c509f10ff0752b07892b4f2aa3d6"
+   },
+   {
+    "path": "atlas/api/fly.toml",
+    "bytes": 1022,
+    "sha256": "22af658b5e1a631bc33fd238bf52ffc3161c4afc8366767e5b0d54d5c09d5ed3"
+   },
+   {
+    "path": "atlas/model/__init__.py",
+    "bytes": 1498,
+    "sha256": "0bf668d8e43d89a31af5b5ee7480eff933d0192110e8bdc8e026e9b109c387fe"
+   },
+   {
+    "path": "atlas/model/explain.py",
+    "bytes": 4750,
+    "sha256": "27452f5833d5d503395b2b31fecb3553df6cf4968e3796e6a124e577200db766"
+   },
+   {
+    "path": "atlas/model/intervals.py",
+    "bytes": 3233,
+    "sha256": "35b25d48cf0365f9e91f5ebe698da50f2fde2e923b83e3321482dd7ec4c975f0"
+   },
+   {
+    "path": "atlas/model/loader.py",
+    "bytes": 27841,
+    "sha256": "4ea326159db7eaa10ae7d399d0a456642efe59cbed1f9224e7e782f3017f31ae"
+   },
+   {
+    "path": "atlas/model/preferences.py",
+    "bytes": 30094,
+    "sha256": "a0b23bedb959785387627db952c55dd44f2a4f48da0c9ad0ec2d2944bdf320ad"
+   },
+   {
+    "path": "atlas/model/scoring.py",
+    "bytes": 39810,
+    "sha256": "7d5e823a6e870a4d8e3f529cea9224ba56758b30d5358d8f7ff2ebb016146d3a"
+   },
+   {
+    "path": "atlas/model/suppression.py",
+    "bytes": 7312,
+    "sha256": "ab9b0b106194f769bf5f48c29c455c0e12b3e439cee1fe1e29a2ca0e59c2b70e"
+   },
+   {
+    "path": "atlas/model/variants.py",
+    "bytes": 22015,
+    "sha256": "b6809849cbf49d73b86389b1c61359b6b1c06626425cd2c6beffbfcbbedb5c0f"
+   },
+   {
+    "path": "atlas/model/versions.py",
+    "bytes": 18107,
+    "sha256": "17c9bb916c261939c0f801ddb767ccc678a53f9d6ba8699744c013cfd49a71d1"
+   },
+   {
+    "path": "requirements.lock",
+    "bytes": 611,
+    "sha256": "14d79a4560fa2b7005551587d1a941b981889b7430b2e73009e2f4539f872d81"
+   }
+  ],
+  "unexpected": [],
+  "not_identical": [],
+  "not_in_git": [],
+  "tests_present": [],
+  "outside_app": [],
+  "atlas_in_site_packages": [],
+  "secrets": [],
+  "key_values": [],
+  "personal": [],
+  "pew": [],
+  "tracked_files_left_out": []
+ },
+ "web": {
+  "secrets": [],
+  "key_values": [],
+  "personal": [],
+  "pew": [],
+  "app_files_read": 785,
+  "image": "dsa-check/atlas-web:launch",
+  "id": "sha256:c7ceacd69815852d16e4b3dc866a5dee4b53150c65168d1387c8ae3b05f5631d",
+  "inspect_size_bytes": 475493697,
+  "platform": "linux/arm64",
+  "config": {
+   "env": [
+    "NODE_VERSION=22.23.3",
+    "YARN_VERSION=1.22.22",
+    "NODE_ENV=production"
+   ],
+   "cmd": [
+    "./node_modules/.bin/next",
+    "start",
+    "-p",
+    "3000"
+   ],
+   "workdir": "/app",
+   "exposed_ports": [
+    "3000/tcp"
+   ],
+   "user": "root"
+  },
+  "app_top": {
+   ".next": {
+    "files": 403,
+    "bytes": 13067797
+   },
+   "content": {
+    "files": 4,
+    "bytes": 13698
+   },
+   "node_modules": {
+    "files": 19044,
+    "bytes": 448770670
+   },
+   "package.json": {
+    "files": 1,
+    "bytes": 1082
+   },
+   "public": {
+    "files": 377,
+    "bytes": 265561373
+   }
+  },
+  "outside_app": [],
+  "content": {
+   "files": [
+    "crime.md",
+    "methodology.md",
+    "privacy.md",
+    "terms.md"
+   ],
+   "identical_to_docs": {
+    "methodology.md": true,
+    "crime.md": true,
+    "privacy.md": true,
+    "terms.md": true
+   }
+  },
+  "public": {
+   "files": 377,
+   "by_extension": {
+    ".jpg": 361,
+    ".png": 9,
+    ".webp": 2,
+    ".svg": 5
+   },
+   "identical_to_local": true
+  },
+  "next_cache_bytes": 154173,
+  "node_modules": {
+   "packages_top_level": 350,
+   "dev_dependencies_present": [
+    "@axe-core/playwright",
+    "@eslint/eslintrc",
+    "@playwright/test",
+    "@tailwindcss/postcss",
+    "@types/node",
+    "@types/react",
+    "@types/react-dom",
+    "d3-geo",
+    "eslint",
+    "eslint-config-next",
+    "shapefile",
+    "tailwindcss",
+    "typescript",
+    "vite",
+    "vitest"
+   ]
+  }
+ },
+ "run_together": {
+  "pages": {
+   "/about": 200,
+   "/privacy": 200,
+   "/terms": 200,
+   "/?sex=female&self_age=33&age=29-41&marital=never&edu=bachelors": 200,
+   "/city/new-york-new-york?sex=female&self_age=33&age=29-41&marital=never&edu=bachelors": 200,
+   "/compare/new-york-new-york/austin-texas?sex=female&self_age=33&age=29-41&marital=never&edu=bachelors": 200
+  },
+  "privacy_sections_shown": true,
+  "api_requests": [
+   [
+    "GET /v1/meta",
+    5
+   ],
+   [
+    "POST /v1/rank",
+    3
+   ]
+  ],
+  "api_requests_from_web_only": true,
+  "web_log_lines": 6,
+  "leaks": []
+ },
+ "keys_checked": {
+  "CENSUS_API_KEY": "checked",
+  "FBI_CDE_API_KEY": "checked"
+ },
+ "files_scanned": 1277,
+ "problems": {},
+ "verdict": "clean"
+}
