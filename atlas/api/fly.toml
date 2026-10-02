@@ -7,7 +7,7 @@
 # (<app>.flycast / .internal) from the web app in the same organization.
 # fly.io machines run the process; the API itself still has no CORS and no
 # public documentation surface.
-app = "atlas-api"
+app = "dating-stats-atlas-api"
 primary_region = "iad"
 
 [build]

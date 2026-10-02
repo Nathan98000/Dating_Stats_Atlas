@@ -19,6 +19,6 @@ COPY --from=build /repo/atlas/web/node_modules ./node_modules
 COPY --from=build /repo/atlas/web/package.json ./
 COPY --from=build /repo/atlas/web/content ./content
 COPY --from=build /repo/atlas/web/public ./public
-# ATLAS_API_URL points at the API's PRIVATE address (http://atlas-api.flycast:8000)
+# ATLAS_API_URL points at the API's PRIVATE address (http://dating-stats-atlas-api.flycast:8000)
 EXPOSE 3000
 CMD ["./node_modules/.bin/next", "start", "-p", "3000"]

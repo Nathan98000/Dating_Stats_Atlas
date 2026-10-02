@@ -19,23 +19,31 @@ feed.
 ## Topology A — everything on Fly.io (preferred)
 
 Two apps in one Fly organization; the API gets a **flycast (private-only)
-address and no public IPs**.
+address and no public IPs**. The names are Nathan's choice (2026-10-02):
+the site is `dating-stats-atlas` (https://dating-stats-atlas.fly.dev) and
+the API `dating-stats-atlas-api`. Fly's app names are shared by every Fly
+user, and the first-drafted `atlas-web` and `atlas-api` belong to someone
+else.
 
-1. `fly apps create atlas-api && fly apps create atlas-web`
-2. API artifact volume: `fly volumes create atlas_builds -a atlas-api --size 3`
+1. `fly apps create dating-stats-atlas-api && fly apps create dating-stats-atlas`
+2. API artifact volume: `fly volumes create atlas_builds -a dating-stats-atlas-api --size 3`
 3. Ship the build directory (`atlas/data/builds/<data_version>`) to the
    volume: `fly ssh sftp` or a release command pulling from R2 (the §8.3
    artifact store) — the image never bakes data in.
-4. `fly deploy -a atlas-api --config atlas/api/fly.toml` (from repo root,
-   `--dockerfile atlas/api/Dockerfile`). Allocate **no** public IPs:
-   `fly ips allocate-v6 --private -a atlas-api` only.
-5. `fly deploy -a atlas-web --config atlas/web/fly.toml` (from repo root,
-   `--dockerfile atlas/web/Dockerfile`). The web app finds the API at
-   `http://atlas-api.flycast:8000` (set in its `[env]`). Run both deploys
-   from the repository root: flyctl uploads the directory it runs in and
-   applies the `.dockerignore` there (`results/launch/image_check.json`
-   lists what that sends).
-6. Smoke: `fly ssh console -a atlas-web -C "curl -s http://atlas-api.flycast:8000/v1/health"`,
+4. `fly deploy -a dating-stats-atlas-api --config atlas/api/fly.toml --no-public-ips --ha=false`
+   (from repo root, `--dockerfile atlas/api/Dockerfile`). Without
+   `--no-public-ips` a first deploy allocates public addresses. Allocate
+   only the private one: `fly ips allocate-v6 --private -a dating-stats-atlas-api`.
+   `--ha=false` keeps one machine on the one volume (a first deploy
+   otherwise starts two).
+5. `fly deploy -a dating-stats-atlas --config atlas/web/fly.toml` (from repo
+   root, `--dockerfile atlas/web/Dockerfile`; a first deploy starts two
+   machines unless `--ha=false`). The web app finds the API at
+   `http://dating-stats-atlas-api.flycast:8000` (set in its `[env]`). Run
+   both deploys from the repository root: flyctl uploads the directory it
+   runs in and applies the `.dockerignore` there
+   (`results/launch/image_check.json` lists what that sends).
+6. Smoke: `fly ssh console -a dating-stats-atlas -C "curl -s http://dating-stats-atlas-api.flycast:8000/v1/health"`,
    then the site’s own `/about` (it renders only if `/v1/meta`
    answers).
 
@@ -74,7 +82,7 @@ CORS. If neither is acceptable, use Topology A.
 - [ ] `npm test && npx playwright test` green (CI runs both)
 - [ ] `data_version` + `model_version` in `/v1/health` match the artifact
       you shipped
-- [ ] no public IPs on `atlas-api` (`fly ips list -a atlas-api`)
+- [ ] no public IPs on `dating-stats-atlas-api` (`fly ips list -a dating-stats-atlas-api`)
 - [ ] the citations render in About us, Sources and credits (`/about`; they flow from
       `adapters/base.py` LICENSES through the manifest — a wording change
       is made there, and the build regenerated)
