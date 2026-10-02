@@ -845,6 +845,33 @@ def test_crime_is_context_never_scored(build, response):
         "floor — if this fails, the coverage table itself is the finding")
 
 
+def test_every_metro_has_its_profile_and_a_row_carries_the_same(build, response):
+    """The city page's profile — the stat cards and the crime block — is the
+    metro's whatever the search, so every metro has one: the ranked set's
+    and the ones below its population floor, which no search returns (the
+    fixture's Eagle Pass). A ranked or suppressed row carries the very same
+    blocks."""
+    from atlas.model.scoring import metro_profile
+    below = [i for i in range(len(build.metro_levels)) if not build.ranked_set[i]]
+    assert below, "the fixture should hold a metro below the ranked set's floor"
+    bands = tuple(build.manifest["standing_bands"]["keys"])
+    for i, cbsa in enumerate(build.metro_levels):
+        p = metro_profile(build, i)
+        assert set(p) == {"cards", "crime"}
+        assert [c["id"] for c in p["cards"]] == build.manifest["city_cards"], cbsa
+        for c in p["cards"]:
+            assert c.get("missing") or (c["display"] and c["band"]["key"] in bands), (cbsa, c)
+        assert p["crime"]["caution"] and ("stats" in p["crime"]) == p["crime"]["available"]
+    in_response = 0
+    for row in response["ranked"] + response["suppressed"]:
+        p = metro_profile(build, build.metro_levels.index(row["cbsa"]))
+        assert row["cards"] == p["cards"] and row["crime"] == p["crime"], row["cbsa"]
+        in_response += 1
+    assert in_response == int(build.ranked_set.sum())
+    assert all(build.metro_levels[i] not in {r["cbsa"] for r in response["ranked"] + response["suppressed"]}
+               for i in below)
+
+
 def test_missing_feature_policy_renormalizes(build):
     """Missing never becomes zero — the pillar's internal weights
     renormalize, and a fully-missing pillar's weight redistributes."""

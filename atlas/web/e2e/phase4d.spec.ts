@@ -63,8 +63,8 @@ test("a metro across state lines shows its summed shares; the card goes wherever
   if (!hunt.available) throw new Error("fixture metro without a figure");
   await page.goto(`/city/huntington-west-virginia${QS}`);
   await expect(page.locator('[data-card="political_lean"]').getByTestId("lean-text")).toHaveText(hunt.text);
-  // a metro below the ranking floor has no stat cards on its page, and so
-  // no political lean card either
+  // a metro below the ranking floor shows its stat cards too (its profile,
+  // POST /v1/profile), and so its political lean card with them
   await page.goto(`/city/eagle-pass-texas${QS}`);
   await expect(page.locator('[data-card="political_lean"]'))
     .toHaveCount(await page.locator('[data-card="who_lives_here"]').count());

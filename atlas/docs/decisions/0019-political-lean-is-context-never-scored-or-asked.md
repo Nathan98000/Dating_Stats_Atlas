@@ -4,7 +4,9 @@ Date: 2026-09-30 (Phase 4d)
 Status: accepted. The decision and the neutrality rules are **Nathan's**
 (the Phase 4d brief). The acceptance of the state-totals gaps is **Nathan's
 call** after the phase halted on them, on 30 September 2026. The copy
-marked as a draft waits for his approval (PHASE4D.md §6).
+marked as a draft waits for his approval (PHASE4D.md §6). Amended
+2026-10-02, after the phase: every metro's city page shows its stat cards,
+so the card shows on all 387 (the last section).
 
 ## Context
 
@@ -123,7 +125,8 @@ halt in PHASE4D.md.
   shares as text ("56% Democratic · 42% Republican"), the caption "2024
   presidential vote, whole metro area", the split bar and its key. It
   shows with the metro's other stat cards, which the page shows for the
-  ranked set.
+  ranked set. *[Amended after Phase 4d: the page shows them for every
+  metro now, so the card shows on all 387 — the last section.]*
 - **Compare:** one row with both cities' shares.
 - **What we measure:** an entry in the context group, with the definition.
 - **A stat page** (`/stats/political_lean`), as above.
@@ -152,3 +155,41 @@ lean.
 - The Connecticut and Alaska metros stay Not available unless a source
   that reports them exactly is added, which would need its own licence
   entry and an amendment here.
+
+## Amended after Phase 4d (2026-10-02): every city page shows its profile
+
+The card was to show "with the metro's other stat cards", and the city
+page showed those for the 193 ranked-set metros only. It read a metro's
+stat cards and crime from the /v1/rank response, which covers the ranked
+set and nothing else, so the 194 metros below its population floor showed
+no stat cards under the sentence "its profile is below". Compare said "Not
+enough reliable data available." for each of their seven figures, which
+was not so: every one of them has all seven. The gap dates from the site's
+first metro pages (Phase 2b); PHASE4D.md flagged it.
+
+Nathan approved the fix on 2 October 2026 and left its decisions to
+judgment ("proceed with decisions that fit your best judgment"). What
+shipped:
+
+- **Every metro has its profile.** `POST /v1/profile` serves one metro's
+  stat cards and crime block for any of the 387 (`scoring.metro_profile`):
+  the very blocks a ranked or suppressed row carries, which no request
+  changes, banded among all 387 metros as before. The city page and
+  compare read it for every city; /v1/rank is untouched.
+- **The metro travels in the body**, as a search does, and the body may
+  name nothing else (any other field is refused). The API's access lines
+  read `POST /v1/profile`, so no log says which city a page showed.
+- **Political lean follows its rule.** It still shows with the metro's
+  other stat cards, which every city page now has: 193 of the 194 metros
+  below the floor show a figure, and Fairbanks shows "Not available". The
+  compare row already showed every metro.
+- **No new words.** The floor sentence stays as it is, now true. Each card
+  keeps its stat-page link, though the stat pages list the ranked cities
+  and so leave these cities off.
+
+Nothing ranked moved. On build 2dbd9ebfa7ff, all 518 ADR 0011 test
+searches return /v1/rank responses of the same bytes before and after the
+change, and all 1,036 single-seeker rankings are identical; /v1/meta is
+unchanged; for the 193 ranked-set metros the profile equals the search
+row's blocks (`results/city_profile/served_numbers_check.json`). The
+build, its manifest and MODEL_VERSION are unchanged.

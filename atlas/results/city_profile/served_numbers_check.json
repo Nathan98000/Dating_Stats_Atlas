@@ -1,0 +1,81 @@
+{
+ "build": [
+  "2dbd9ebfa7ff",
+  "2dbd9ebfa7ff"
+ ],
+ "model_version": [
+  "m4.1.0",
+  "m4.1.0"
+ ],
+ "code": [
+  "7ae51ff3d50eececb75abc9babdd2f9f32afc1b3",
+  "7ae51ff3d50eececb75abc9babdd2f9f32afc1b3+working-tree"
+ ],
+ "test_searches": {
+  "total": 518,
+  "source": "stability_gate.test_searches (ADR 0011: personas, effects grid, same-sex grid)"
+ },
+ "api_rank_response": {
+  "same_digest_build_id_masked": 518,
+  "same_bytes": 518,
+  "same_gzip6_bytes": 518,
+  "total_bytes": [
+   769295932,
+   769295932
+  ]
+ },
+ "single_seeker_rank": {
+  "rankings_checked": 1036,
+  "identical": 1036
+ },
+ "meta_keys_changed": [],
+ "political_lean_endpoint": [
+  {
+   "status": 200,
+   "metros": 387,
+   "available": 380
+  },
+  {
+   "status": 200,
+   "metros": 387,
+   "available": 380
+  }
+ ],
+ "profile_endpoint": {
+  "build": "2dbd9ebfa7ff",
+  "search_held_to": {
+   "self": {
+    "age": 30
+   },
+   "seeking": {
+    "sex": "male",
+    "age": [
+     28,
+     40
+    ],
+    "marital": [
+     "never_married",
+     "previously_married"
+    ]
+   }
+  },
+  "counts": {
+   "metros": 387,
+   "ranked_set": 193,
+   "below_floor": 194,
+   "below_floor_crime_figure": 187,
+   "below_floor_political_lean": 193,
+   "rows_agreeing": 193
+  },
+  "response_bytes": {
+   "min": 2084,
+   "median": 2609,
+   "max": 2672
+  },
+  "unknown_metro": "404",
+  "body_beyond_the_metro": "422"
+ },
+ "failures": [],
+ "pass": true,
+ "generated": "2026-10-02T11:31:43"
+}

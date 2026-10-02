@@ -518,6 +518,16 @@ def _card_stats_made(build: Build, i: int) -> list[dict]:
     return out
 
 
+def metro_profile(build: Build, i: int) -> dict:
+    """Metro i's profile, as its city page shows it under "What {city} is
+    like": the stat cards and the crime block. Both are request-independent
+    and banded among all of the build's metros, so every metro has a
+    profile — the ranked set's and the ones below its population floor,
+    which no search returns. These are the same memoized blocks a ranked or
+    suppressed row carries (POST /v1/profile)."""
+    return {"cards": _card_stats(build, i), "crime": _crime_block(build, i)}
+
+
 def _row_flags(build: Build, i: int) -> list[str]:
     f = []
     if build.purity[i] < PURITY_FLAG_BAR:

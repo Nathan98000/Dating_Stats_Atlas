@@ -76,6 +76,18 @@ export interface Card {
   missing?: boolean;
 }
 
+/** A metro's profile, as POST /v1/profile serves it: the stat cards
+ * and the crime block "What {city} is like" shows — the very blocks a
+ * ranked or suppressed row carries, which no search changes — for every
+ * metro of the build, the ones below the ranked set's population floor
+ * included (no search returns those). */
+export interface ProfileResponse {
+  data_version: string;
+  cbsa: string;
+  cards: Card[];
+  crime: CrimeBlock;
+}
+
 /** m3.0.0 (ADR 0009): the compatibility figure for a ranked row (named
  * "chances of matching" until m4.0.0, ADR 0018) — the index (100 = the US
  * average for this search), its display string, the unrendered margin

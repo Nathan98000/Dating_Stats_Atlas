@@ -455,6 +455,41 @@ def test_political_lean_is_served_apart_and_never_scored_or_asked(client):
     assert m["measure_page"][-1]["features"] == ["who_lives_here", "political_lean"]
 
 
+def test_every_metro_has_a_profile_the_rank_rows_agree_with(client):
+    """POST /v1/profile: every metro of the build — the ranked set's and the
+    one below its population floor (Eagle Pass), which no search returns —
+    has its stat cards and crime block; a ranked or suppressed row carries
+    the same blocks; /v1/rank's response is byte for byte the same before
+    and after a profile is read. The body names the metro and nothing else,
+    so no search detail reaches it and no access line names the city."""
+    m = client.get("/v1/meta").json()
+    below = [x["cbsa"] for x in m["metros"] if not x["ranked_set"]]
+    assert below == ["20580"]
+    before = client.post("/v1/rank", json=BODY)
+    assert before.status_code == 200
+    rows = {r["cbsa"]: r for r in before.json()["ranked"] + before.json()["suppressed"]}
+    assert set(rows) == {x["cbsa"] for x in m["metros"] if x["ranked_set"]}
+    for x in m["metros"]:
+        r = client.post("/v1/profile", json={"cbsa": x["cbsa"]})
+        assert r.status_code == 200, x["cbsa"]
+        assert r.headers.get("referrer-policy") == "no-referrer"
+        p = r.json()
+        assert set(p) == {"data_version", "cbsa", "cards", "crime"}
+        assert p["cbsa"] == x["cbsa"] and p["data_version"] == m["data_version"]
+        assert [c["id"] for c in p["cards"]] == m["city_cards"]
+        assert all(c.get("display") and c.get("band") for c in p["cards"]), x["cbsa"]
+        assert p["crime"]["caution"] and p["crime"]["compare_banner"]
+        if x["cbsa"] in rows:
+            assert p["cards"] == rows[x["cbsa"]]["cards"]
+            assert p["crime"] == rows[x["cbsa"]]["crime"]
+    assert client.post("/v1/rank", json=BODY).content == before.content
+    assert client.post("/v1/profile", json={"cbsa": "99999"}).status_code == 404
+    assert client.post("/v1/profile", json={"cbsa": "20580", "self": {"age": 30}}).status_code == 422
+    assert client.post("/v1/profile", json={}).status_code == 422
+    assert client.get("/v1/profile").status_code == 405
+    assert client.get("/v1/profile/20580").status_code == 404
+
+
 def test_income_floor_validation(client):
     r = client.post("/v1/rank", json={
         "self": {"age": 32},

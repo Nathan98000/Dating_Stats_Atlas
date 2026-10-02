@@ -243,3 +243,39 @@ One line each; `results/phase4d/deviations.md` is identical.
 - The first full Playwright run failed one test: its sweep read the stat page's whole text and matched "left" in the note every stat page shares ("left off this list", approved copy); the sweep now reads political lean's own words.
 - The web pages skip the figure when the API answers 404 (an API from before the feature), so a dev stack still serving 5b780e4f2444 keeps working.
 - vitest compiles JSX with React's automatic runtime (vitest.config.ts) so the unit tests can render the card; tsconfig keeps JSX as it is for Next.
+
+## 10. After the report: the city pages below the floor (2 October 2026)
+
+§9 flagged it: the city page showed its stat cards, and so political
+lean's card, for the 193 ranked-set metros only, reading them from the
+/v1/rank response, which covers nothing else. The other 194 pages said
+"its profile is below" over an empty grid, and compare said "Not enough
+reliable data available." for each of their seven figures, though every
+one of them has all seven.
+
+Nathan approved the fix and left its decisions to judgment ("proceed with
+decisions that fit your best judgment"). `POST /v1/profile` now serves any
+metro's stat cards and crime block, the blocks a search row carries, which
+no search changes. The metro travels in the body, so no access line names
+a city. The city page and compare read it for every city. The floor
+sentence stands as it is, now true, and the cards keep their stat-page
+links. ADR 0019's amendment records it.
+
+- **Coverage.** All 387 metros. Of the 194 below the floor, 187 show crime
+  figures and 193 political lean (Fairbanks is Not available).
+- **Nothing ranked moved** (`results/city_profile/served_numbers_check.json`).
+  All 518 test searches' /v1/rank responses have the same bytes before and
+  after, all 1,036 single-seeker rankings are identical, /v1/meta is
+  unchanged, and the 193 ranked-set metros' profiles equal their search
+  rows' blocks. The build stays 2dbd9ebfa7ff and MODEL_VERSION m4.1.0.
+- **Tests** (`results/city_profile/test_counts.json`): pytest 150 (149
+  passed; the Pew table's check skipped, since the worktree that ran it
+  has no `atlas/data`), vitest 103, Playwright 130 of 130 with 20 axe runs,
+  all clean. The new spec, `e2e/city-profile.spec.ts`, holds Eagle Pass,
+  the fixture's metro below the floor, to the API's figures on its city
+  page and in compare.
+- **The check.** Phase 4d's `served_numbers_check.py record` gave the
+  before and after records. Its `compare` reads a build change into its
+  pass rule and writes this phase's result file, so
+  `results/city_profile/served_numbers_check.py` compares the two, holding
+  every response to the same bytes.

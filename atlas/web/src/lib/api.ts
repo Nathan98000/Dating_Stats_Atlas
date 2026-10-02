@@ -4,7 +4,7 @@
  * licensing posture (rendered site, not a data feed) holds. */
 import "server-only";
 import { cache } from "react";
-import type { Meta, PoliticalLeanResponse, VariantResponse } from "./types";
+import type { Meta, PoliticalLeanResponse, ProfileResponse, VariantResponse } from "./types";
 import type { RankBody } from "./permalink";
 
 export const API_BASE = process.env.ATLAS_API_URL ?? "http://127.0.0.1:8000";
@@ -59,5 +59,25 @@ export const apiPoliticalLean = cache(async (): Promise<PoliticalLeanResponse> =
   const res = await fetch(`${API_BASE}/v1/political_lean`, { cache: "no-store" });
   if (res.status === 404) return { data_version: "", year: "", metros: {} };
   if (!res.ok) throw new RankError(res.status, "political lean unavailable");
+  return res.json();
+});
+
+/** One metro's profile — its stat cards and crime block — for ANY metro of
+ * the build, the 194 below the ranked set's population floor included,
+ * which no search returns. Request-independent, fetched server-side apart
+ * from the rank response (which stays as it was). The metro travels in the
+ * body, as a search does, so no access line says which city a page showed.
+ * An API from before the endpoint answers 404, and the pages then fall
+ * back to the rank row's copy of the same blocks (the old behaviour); any
+ * other failure is an error. */
+export const apiProfile = cache(async (cbsa: string): Promise<ProfileResponse | null> => {
+  const res = await fetch(`${API_BASE}/v1/profile`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ cbsa }),
+    cache: "no-store",
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new RankError(res.status, "profile unavailable");
   return res.json();
 });

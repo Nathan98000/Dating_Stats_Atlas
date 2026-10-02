@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apiMeta, apiPoliticalLean, apiRank } from "@/lib/api";
+import { apiMeta, apiPoliticalLean, apiProfile, apiRank } from "@/lib/api";
 import {
   describeSearch,
   IMPORTANCE_PILLARS,
@@ -53,16 +53,20 @@ export default async function ComparePage({
   const mA = meta.metros.find((m) => m.slug === a);
   const mB = meta.metros.find((m) => m.slug === b);
   if (!mA || !mB) notFound();
+  const [profileA, profileB] = await Promise.all([apiProfile(mA.cbsa), apiProfile(mB.cbsa)]);
 
   const find = (cbsa: string): BaseRow | BaseSuppressedRow | undefined =>
     response.ranked.find((r) => r.cbsa === cbsa) ??
     response.suppressed.find((r) => r.cbsa === cbsa);
-  const rowA = find(mA.cbsa);
-  const rowB = find(mB.cbsa);
+  // each city's stat cards and crime are its profile, which no search
+  // changes and every metro has, below the ranked set's floor included; an
+  // API from before /v1/profile leaves the search row's copy
+  const profA = profileA ?? find(mA.cbsa);
+  const profB = profileB ?? find(mB.cbsa);
   const slice = sliceVariants(response, [mA.cbsa, mB.cbsa]);
   const qs = toSearchParams(prefs).toString();
   const policy = meta.policy_strings;
-  const cardOf = (r: BaseRow | BaseSuppressedRow | undefined, id: string): Card | undefined =>
+  const cardOf = (r: { cards: Card[] } | undefined, id: string): Card | undefined =>
     r?.cards.find((c) => c.id === id);
   const cityA = mA.display_name_full.split(",")[0];
   const cityB = mB.display_name_full.split(",")[0];
@@ -126,8 +130,8 @@ export default async function ComparePage({
               />
               {meta.city_cards.map((id) => {
                 const le = meta.features[id];
-                const cA = cardOf(rowA, id);
-                const cB = cardOf(rowB, id);
+                const cA = cardOf(profA, id);
+                const cB = cardOf(profB, id);
                 const grey = greyRule(id, le.pillar, le.direction, prefs);
                 return (
                   <Row key={id} label={le.display_name}>
@@ -196,7 +200,7 @@ export default async function ComparePage({
             className="max-w-[76ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13px] leading-relaxed text-accent-hover"
             data-testid="crime-compare-banner"
           >
-            {(rowA?.crime ?? rowB?.crime)?.compare_banner}{" "}
+            {(profA?.crime ?? profB?.crime)?.compare_banner}{" "}
             <Link href="/about-crime-data" className="font-semibold underline underline-offset-2">
               {policy.crime_see_more}
             </Link>
@@ -224,7 +228,7 @@ export default async function ComparePage({
                       {meta.features[fid].unit}
                     </span>
                   </th>
-                  {[rowA, rowB].map((r, i) => {
+                  {[profA, profB].map((r, i) => {
                     const s = r?.crime?.stats?.find((x) => x.id === fid);
                     return (
                       <td key={i} className="py-2.5 pr-4 align-top">

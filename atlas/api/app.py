@@ -73,6 +73,17 @@ removal — both noted here as the contract docs):
     response is byte for byte what the build gave before the feature, the
     build id apart. /v1/meta gains the feature's registry entry, its words
     and its stat page.
+  - After Phase 4d (ADR 0019 amended, 2026-10-02): POST /v1/profile serves
+    one metro's stat cards and crime block — the blocks a ranked or
+    suppressed row carries, which no request changes
+    (scoring.metro_profile) — for every metro of the build, so the metros
+    below the ranked set's population floor, which no search returns, get
+    their profile on the city and compare pages. Its body names the metro
+    and nothing else ({"cbsa": ...}; any other field is a 422, an unknown
+    CBSA a 404). It is a POST so the metro travels in the body, as a
+    search does: the API's access lines never say which city a page
+    showed. /v1/rank is untouched: its response is byte for byte what it
+    was.
 """
 from __future__ import annotations
 
@@ -89,6 +100,7 @@ from atlas import model as engine
 from atlas.model.context import political_lean_all
 from atlas.model.preferences import (ALLOWED_MARITAL, DEPRECATED_SLIDER_ALIAS,
                                      SELECTABLE_RACES, SLIDER_CONTROL)
+from atlas.model.scoring import metro_profile
 from atlas.model.suppression import (FEW_METROS_NOTICE, GQ_SHARE_FLAG_BAR,
                                      N_GATE_MIN, POLICY_STRINGS,
                                      PURITY_FLAG_BAR, TECHNICAL_STRINGS)
@@ -117,6 +129,7 @@ def _resolve_build_dir() -> Path:
 
 BUILD = engine.load_build(_resolve_build_dir())
 _METROS_META = json.loads((BUILD.path / "metros.json").read_text())
+_METRO_INDEX = {c: i for i, c in enumerate(BUILD.metro_levels)}
 app = FastAPI(title="Dating Stats Atlas ranking", docs_url=None, redoc_url=None)
 
 
@@ -332,6 +345,26 @@ def political_lean() -> dict:
     return {"data_version": BUILD.manifest["data_version"],
             "year": BUILD.legend["political_lean"]["provenance"]["vintage"],
             "metros": political_lean_all(BUILD)}
+
+
+class ProfileRequest(BaseModel):
+    # the metro and nothing else: no search detail can reach a profile
+    model_config = ConfigDict(extra="forbid")
+    cbsa: str
+
+
+@app.post("/v1/profile")
+def profile(req: ProfileRequest) -> dict:
+    """A metro's profile, as its city page shows it: the stat cards and the
+    crime block, for any metro of the build — the ranked set's and the ones
+    below its population floor, which no search returns. No input but the
+    metro, sent in the body so no access line names it; the blocks are the
+    ones a rank row carries, made once per metro (scoring.metro_profile)."""
+    i = _METRO_INDEX.get(req.cbsa)
+    if i is None:
+        raise HTTPException(404, f"no metro {req.cbsa!r} in this build")
+    return {"data_version": BUILD.manifest["data_version"], "cbsa": req.cbsa,
+            **metro_profile(BUILD, i)}
 
 
 @app.post("/v1/rank")

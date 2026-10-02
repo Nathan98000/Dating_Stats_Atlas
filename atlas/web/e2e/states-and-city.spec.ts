@@ -87,6 +87,7 @@ for (const [name, url] of [
   ["results, narrowed", "/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000"],
   ["narrow state", BELOW_BAR],
   ["city page", "/city/provo-utah?sex=male&self_age=30&age=28-40&marital=never,previously"],
+  ["city page below the ranking floor", "/city/eagle-pass-texas?sex=male&self_age=30&age=28-40&marital=never,previously"],
   ["compare", "/compare/provo-utah/austin-texas?sex=male&self_age=30&age=28-40&marital=never,previously"],
   ["compare landing", "/compare"],
   ["stat page", "/stats/rent_1br"],

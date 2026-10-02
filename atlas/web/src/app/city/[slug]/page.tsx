@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apiMeta, apiPoliticalLean, apiRank } from "@/lib/api";
+import { apiMeta, apiPoliticalLean, apiProfile, apiRank } from "@/lib/api";
 import {
   describeSearch,
   parsePrefs,
@@ -29,7 +29,10 @@ export const dynamic = "force-dynamic";
  * then the stat cards with their standing bands, and the compare CTA.
  * m4.0.0 (ADR 0018): what an "about you" variant changes (the ranked
  * card, a left-out city's balance) is selected in the browser from this
- * city's slice of the response (components/city-variant). */
+ * city's slice of the response (components/city-variant). The stat cards
+ * and crime are the metro's profile (POST /v1/profile), which no search
+ * changes and every metro has — the 194 below the ranked set's population
+ * floor included, which no search returns. */
 export default async function CityPage({
   params,
   searchParams,
@@ -49,14 +52,17 @@ export default async function CityPage({
   ]);
   const metro = meta.metros.find((m) => m.slug === slug);
   if (!metro) notFound();
+  const profile = await apiProfile(metro.cbsa);
 
   const ranked = response.ranked.find((r) => r.cbsa === metro.cbsa);
   const suppressed = response.suppressed.find((r) => r.cbsa === metro.cbsa);
   const slice = sliceVariants(response, [metro.cbsa]);
   const qs = toSearchParams(prefs).toString();
   const policy = meta.policy_strings;
-  const cards: Card[] = (ranked ?? suppressed)?.cards ?? [];
-  const crime = (ranked ?? suppressed)?.crime;
+  // an API from before /v1/profile: the search row's copy of the same
+  // blocks, so a metro below the floor shows none (the old behaviour)
+  const cards: Card[] = profile?.cards ?? (ranked ?? suppressed)?.cards ?? [];
+  const crime = profile?.crime ?? (ranked ?? suppressed)?.crime;
   const city = metro.display_name_full.split(",")[0];
 
   return (

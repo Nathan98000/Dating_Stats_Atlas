@@ -1,0 +1,55 @@
+{
+ "pytest": {
+  "tests": 150,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1,
+  "passed": 149,
+  "skipped_why": "test_pew_reference.py's private-table check: the worktree the run used has no atlas/data (Pew's table lives only in the main checkout's gitignored atlas/data/private/pew); the check reads no code this change touches"
+ },
+ "vitest": {
+  "tests": 103,
+  "passed": 103,
+  "failed": 0,
+  "files": {
+   "about-you.test.ts": 7,
+   "permalink.test.ts": 20,
+   "political-lean.test.ts": 11,
+   "search.test.ts": 21,
+   "tones.test.ts": 11,
+   "variants.test.ts": 33
+  }
+ },
+ "e2e": {
+  "tests": 130,
+  "passed": 130,
+  "failed": 0,
+  "axe_runs": 20,
+  "by_file": {
+   "a11y.spec.ts": 12,
+   "city-profile.spec.ts": 4,
+   "panel.spec.ts": 4,
+   "permalink-and-compare.spec.ts": 3,
+   "phase2d-pages.spec.ts": 7,
+   "phase2e.spec.ts": 8,
+   "phase2f.spec.ts": 12,
+   "phase2g.spec.ts": 3,
+   "phase3.spec.ts": 6,
+   "phase3b.spec.ts": 3,
+   "phase4b.spec.ts": 9,
+   "phase4c.spec.ts": 8,
+   "phase4d.spec.ts": 9,
+   "privacy.spec.ts": 14,
+   "ranking.spec.ts": 8,
+   "states-and-city.spec.ts": 16,
+   "terms.spec.ts": 4
+  }
+ },
+ "before_city_profile": {
+  "pytest": 148,
+  "vitest": 103,
+  "e2e": 125,
+  "axe_runs": 18
+ },
+ "note": "counted from the runs on the final code (pytest's summary line, vitest's summary, the Playwright list log); axe runs report zero serious or critical findings"
+}
