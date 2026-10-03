@@ -2,7 +2,7 @@
   "data_version": "2dbd9ebfa7ff",
   "model_version": "m4.1.1",
   "schema_version": "cube-v1",
-  "created_at": "2026-09-30T18:42:14-0400",
+  "created_at": "2026-10-03T16:32:30-0400",
   "axes": [
     {
       "name": "metro",
@@ -1157,6 +1157,7 @@
       "unit_template": null,
       "mover_phrase": "the size of the pool",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1191,6 +1192,7 @@
       "unit_template": null,
       "mover_phrase": "the balance",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1225,6 +1227,7 @@
       "unit_template": null,
       "mover_phrase": "the compatibility figure",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "good_high",
       "band_labels": [
         "Far below most cities",
@@ -1278,6 +1281,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1312,6 +1316,7 @@
       "unit_template": null,
       "mover_phrase": "rent",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "good_low",
       "band_labels": [
         "Far cheaper than most cities",
@@ -1357,6 +1362,7 @@
       "unit_template": null,
       "mover_phrase": "everyday prices",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1390,6 +1396,7 @@
       "unit_template": null,
       "mover_phrase": "everyday prices",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1423,6 +1430,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "good_low",
       "band_labels": [
         "Far below the US average",
@@ -1474,6 +1482,7 @@
       "unit_template": null,
       "mover_phrase": "places to go out",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "good_high",
       "band_labels": [
         "Far fewer than most cities",
@@ -1524,6 +1533,7 @@
       "unit_template": null,
       "mover_phrase": "walkable neighbourhoods",
       "stat_page_name": "walkability",
+      "stat_page_note": "The EPA's index scores each neighborhood on how connected its streets are, how close it is to public transit, and how mixed its homes, shops and workplaces are. A city's figure averages those scores over where its residents live.",
       "band_direction": "good_high",
       "band_labels": [
         "Among the least walkable",
@@ -1572,6 +1582,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1603,6 +1614,7 @@
       "unit_template": null,
       "mover_phrase": "the weather",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "good_high",
       "band_labels": [
         "Far fewer than most cities",
@@ -1650,6 +1662,7 @@
       "unit_template": null,
       "mover_phrase": "the student crowd",
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "neutral",
       "band_labels": [
         "Far fewer than most cities",
@@ -1700,6 +1713,7 @@
       "unit_template": "people, of whom {adults} are adults",
       "mover_phrase": null,
       "stat_page_name": "population",
+      "stat_page_note": null,
       "band_direction": "neutral",
       "band_labels": [
         "One of the smaller cities",
@@ -1750,6 +1764,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1785,6 +1800,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,
@@ -1825,6 +1841,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "neutral",
       "band_labels": [
         "Far lower than most cities",
@@ -1870,6 +1887,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": "neutral",
       "band_labels": [
         "Far lower than most cities",
@@ -1915,6 +1933,7 @@
       "unit_template": null,
       "mover_phrase": null,
       "stat_page_name": null,
+      "stat_page_note": null,
       "band_direction": null,
       "band_labels": null,
       "band_tones": null,

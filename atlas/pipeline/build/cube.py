@@ -360,6 +360,7 @@ def build(out_root=None) -> str:
                    "unit_template": f.unit_template,
                    "mover_phrase": f.mover_phrase,
                    "stat_page_name": f.stat_page_name,
+                   "stat_page_note": f.stat_page_note,
                    "band_direction": f.band_direction,
                    "band_labels": list(f.band_labels) if f.band_labels else None,
                    "band_tones": list(f.band_tones) if f.band_tones else None,

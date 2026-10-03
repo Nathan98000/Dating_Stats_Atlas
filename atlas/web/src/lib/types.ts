@@ -275,6 +275,7 @@ export interface FeatureLegend {
   unit_template?: string | null;
   mover_phrase?: string | null;
   stat_page_name?: string | null;
+  stat_page_note?: string | null;
   band_direction?: "good_low" | "good_high" | "neutral" | null;
   band_labels?: string[] | null;
   band_tones?: string[] | null;

@@ -1,0 +1,24 @@
+{
+ "build": [
+  "2dbd9ebfa7ff",
+  "2dbd9ebfa7ff"
+ ],
+ "model_version": [
+  "m4.1.1",
+  "m4.1.1"
+ ],
+ "test_searches": 518,
+ "rank_response_identical": 518,
+ "single_seeker_rank_identical": {
+  "identical": 1036,
+  "of": 1036
+ },
+ "default_variant_order_identical": 518,
+ "profiles_identical": {
+  "identical": 387,
+  "of": 387
+ },
+ "political_lean_identical": true,
+ "generated": "2026-10-03T16:37:54",
+ "pass": true
+}

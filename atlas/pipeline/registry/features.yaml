@@ -763,6 +763,18 @@ features:
                   "Among the most walkable"]
     definition: >-
       A walkability index of where the city's residents live, from 1 to 20.
+    # Phase 4e item 1 (DRAFT for Nathan's approval): one sentence after the
+    # definition, on this stat page only — the definition above stays as it
+    # is everywhere else. Checked against what the build uses: NatWalkInd
+    # ranks each 2010 block group on intersection density (D3B), distance
+    # to the nearest transit stop (D4A), the jobs-and-households mix
+    # (D2A_EPHHM) and the mix of eight job types (D2B_E8MIXA); the city's
+    # figure is the TotPop-weighted mean over its block groups.
+    stat_page_note: >-
+      The EPA's index scores each neighborhood on how connected its streets
+      are, how close it is to public transit, and how mixed its homes, shops
+      and workplaces are. A city's figure averages those scores over where
+      its residents live.
     provenance: {source: epa_sld, dataset: "EPA Smart Location Database v3.0",
                  table: "SmartLocationDatabase MapServer",
                  variables: [NatWalkInd, D3B, TotPop, GEOID10],

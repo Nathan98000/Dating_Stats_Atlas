@@ -68,6 +68,7 @@ class FeatureSpec:
     unit_template: str | None = None
     mover_phrase: str | None = None
     stat_page_name: str | None = None   # "See all cities by {this}"
+    stat_page_note: str | None = None   # Phase 4e: a sentence on its stat page only
     band_direction: str | None = None
     band_labels: tuple[str, ...] | None = None
     band_tones: tuple[str, ...] | None = None     # derived from direction
@@ -176,6 +177,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             unit_template=f.get("unit_template"),
             mover_phrase=f.get("mover_phrase"),
             stat_page_name=f.get("stat_page_name"),
+            stat_page_note=(str(f["stat_page_note"]).strip()
+                            if f.get("stat_page_note") else None),
             band_direction=f.get("band_direction"),
             band_labels=tuple(f["band_labels"]) if "band_labels" in f else None,
             band_tones=(BAND_DIRECTION_TONES[f["band_direction"]]
@@ -198,7 +201,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             _assert_display_clean(spec.id, spec.display_name, spec.unit,
                                   spec.unit_short, spec.unit_template,
                                   spec.mover_phrase, spec.definition,
-                                  spec.stat_page_name,
+                                  spec.stat_page_name, spec.stat_page_note,
                                   *(spec.band_labels or ()))
         if spec.status == "retired":
             assert spec.weight_in_pillar == 0 and spec.retired_reason, (

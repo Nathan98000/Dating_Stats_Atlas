@@ -144,6 +144,9 @@ def main() -> None:
             "title": le.get("stat_page_name") or le["display_name"],
             "unit": le.get("unit", ""),
             "definition": le["definition"],
+            # Phase 4e item 1: a sentence after the definition on this page
+            # only (walkability's); absent for every other statistic
+            **({"note": le["stat_page_note"]} if le.get("stat_page_note") else {}),
             # the header row's value-column label is the statistic's own
             # display name (item 9.5)
             "col_name": le["display_name"],

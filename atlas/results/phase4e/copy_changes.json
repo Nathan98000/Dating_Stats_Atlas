@@ -1,0 +1,22 @@
+{
+ "phase": "4e",
+ "note": "Every user-facing string Phase 4e adds or changes. Registry strings reach the pages through /v1/meta or the stat pages' build JSON. Drafts await Nathan's approval (PHASE4E.md).",
+ "changes": [
+  {
+   "change": "walkability, explained (item 1)",
+   "kind": "added (the brief's draft, checked against the build and kept as written; awaiting Nathan's approval)",
+   "where": "registry features.resident_walkability_index.stat_page_note -> /stats/resident_walkability_index only, after the definition",
+   "old": "(none)",
+   "new": "The EPA's index scores each neighborhood on how connected its streets are, how close it is to public transit, and how mixed its homes, shops and workplaces are. A city's figure averages those scores over where its residents live.",
+   "why": "Nathan asked for the index to be explained on its stat page; the definition used everywhere else stays as it is"
+  },
+  {
+   "change": "nav (item 5)",
+   "kind": "changed (Nathan's wording)",
+   "where": "web/src/lib/nav.ts NAV_DESTINATIONS (the header on every page)",
+   "old": "Browse cities · Compare cities · About us",
+   "new": "Home · Compare cities · About us",
+   "why": "Nathan's request"
+  }
+ ]
+}

@@ -110,7 +110,7 @@ test("preferences follow the visitor; explicit parameters always win (item 2)", 
   await expect(page).toHaveURL(/about\?.*ic=a/);
   await page.getByRole("link", { name: "Compare cities" }).click();
   await expect(page).toHaveURL(/compare\?.*ic=a/);
-  await page.getByRole("link", { name: "Browse cities" }).click();
+  await page.getByRole("link", { name: "Home", exact: true }).click();
   await expect(page).toHaveURL(/\/\?.*ic=a/);
   await expect(
     page.getByRole("radiogroup", { name: "Cost of living importance" })

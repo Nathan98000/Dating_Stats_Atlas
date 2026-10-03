@@ -31,6 +31,8 @@ interface StatImage {
 interface ValuePage {
   kind?: undefined;
   title: string; unit: string; definition: string;
+  /** Phase 4e: a sentence after the definition, on this page only */
+  note?: string;
   col_name: string;
   source: { name: string; url: string };
   rows: StatRow[]; missing_in_ranked_set: number;
@@ -98,6 +100,11 @@ export default async function StatPage({
           <p className="max-w-[64ch] text-[15px] leading-relaxed text-ink-2">
             {page.definition}
           </p>
+          {page.kind !== "political_lean" && page.note && (
+            <p className="max-w-[64ch] text-[15px] leading-relaxed text-ink-2" data-testid="stat-page-note">
+              {page.note}
+            </p>
+          )}
           {/* item 9.2: the live source line — name, vintage and link
               from the registry's sources block via the build JSON */}
           <p className="max-w-[64ch] text-[12.5px] text-ink-3" data-testid="stat-source">
