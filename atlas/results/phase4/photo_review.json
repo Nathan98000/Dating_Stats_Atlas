@@ -315,5 +315,106 @@
    "file": "web/public/cities/winston-north-carolina.jpg",
    "what": "on disk with no manifest row, so it never renders; it carries no recorded licence and was moved to the Trash with the removed photographs"
   }
- ]
+ ],
+ "phase4e_stat_pages": {
+  "date": "2026-10-03",
+  "brief": "Phase 4e items 3-4 (Nathan): who_lives_here had no photo (its last candidate, the article Crowd's lead image, failed the licence check: KOGL Type 1); political_lean never had one. Subjects tried in the brief's order through city_images.STAT_SUBJECTS; every pick passes the licence rule and this review's rules. All picks and alternates await Nathan's choice (PHASE4E.md).",
+  "subjects": {
+   "who_lives_here": [
+    "Row house",
+    "Suburb",
+    "Neighbourhood"
+   ],
+   "political_lean": [
+    "Ballot box",
+    "Polling place",
+    "Voting booth"
+   ]
+  },
+  "refused": [
+   {
+    "page": "stat",
+    "key": "political_lean",
+    "file_title": "File:Виборчі_урни_в_Україні.jpg",
+    "category": "emblem",
+    "why": "the article Ballot box's lead image (CC BY-SA 4.0, Tohaomg): four ballot boxes, each carrying Ukraine's state coat of arms, the national flag behind them — a government emblem prominent on every box"
+   }
+  ],
+  "licence_refused": [
+   {
+    "page": "stat",
+    "key": "political_lean",
+    "article": "Polling place / Voting booth (both resolve to Polling station)",
+    "file_title": "File:PollingStation_UK_2005.jpg",
+    "reason": "attribution_unreadable:CC BY-SA 2.0"
+   }
+  ],
+  "pinned": [
+   {
+    "page": "stat",
+    "key": "political_lean",
+    "file_title": "File:Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671).jpg",
+    "why": "none of the brief's three subjects yields a photograph that passes (above), so a Commons file is named instead, found by searching Commons for US polling places and reviewed by eye",
+    "checked": "an empty polling place in a church hall, Grand Rapids, Minnesota, Election Day 2023: two tabletop voting booths with a US flag and the word VOTE, folding chairs; no person; no sculpture or mural; no government or agency logo, emblem or seal (the booth maker's small name only); no party symbol, candidate, campaign sign or slogan; CC BY 2.0, Lorie Shaull",
+    "alt": "Two voting booths on a table in an empty polling place in Grand Rapids, Minnesota.",
+    "alt_why": "the Commons description is the photographer's attribution request (\"Please attribute to Lorie Shaull if used elsewhere. Election Day 2023, Minnesota\"), which does not describe the view for a screen reader; DRAFT for Nathan's approval"
+   }
+  ],
+  "checked": [
+   {
+    "page": "stat",
+    "key": "who_lives_here",
+    "file_title": "File:Place_Vosges_Paris_Mai_2006_011.jpg",
+    "checked": "the article Row house (resolves to Terraced house), its lead image: the terraced houses of the Place des Vosges, Paris — a residential street, parked cars, a few café customers small at the far left (incidental, not the subject); no sculpture or mural; no logo, emblem or seal; public domain, Gryffindor"
+   }
+  ],
+  "alternates": {
+   "who_lives_here": [
+    {
+     "file_title": "File:Chelsea1217.JPG",
+     "source": "the article Neighbourhood's lead image (the brief's third subject)",
+     "license": "CC BY-SA 3.0",
+     "author": "GK tramrunner229",
+     "checked": "brownstone stoops on West 22nd Street, Chelsea, New York, under street trees; a few walkers small in the distance (incidental); no sculpture, mural, logo or emblem; 1,024 px wide (smaller than the others)"
+    },
+    {
+     "file_title": "File:Harlem,_New_York_brownstones.jpg",
+     "source": "the article Brownstone's lead image (outside the brief's list)",
+     "license": "CC BY 4.0",
+     "author": "Paul Lowry",
+     "checked": "a row of Harlem brownstones and their stoops along a sidewalk; one walker tiny in the distance; no sculpture, mural, logo or emblem"
+    }
+   ],
+   "political_lean": [
+    {
+     "file_title": "File:Voting booths on Primary Election Day, Aug. 11, 2026, at Shamrock Town Hall near McGregor in Aitkin County.jpg",
+     "source": "Commons search",
+     "license": "CC BY 4.0",
+     "author": "Lorie Shaull",
+     "checked": "three lit voting booths against a plywood wall, Shamrock Town Hall, Minnesota; no person, no sign, no symbol of any kind"
+    },
+    {
+     "file_title": "File:Vote Here - Election Polling Place (50565230221).jpg",
+     "source": "Commons search",
+     "license": "CC BY 2.0",
+     "author": "Tony Webster",
+     "checked": "a 'Vote Here' sandwich board with a US flag outside Woodbury City Hall, Minnesota; parked cars blurred behind; no person, no party symbol, no logo, emblem or seal"
+    }
+   ]
+  },
+  "also_cleared_not_listed": [
+   "File:Hempstead,_Manhasset,_and_Little_Neck_bays.jpg (the article Suburb's lead image: an aerial view of Long Island's North Shore — too distant to read as a neighbourhood)",
+   "File:Tribeca,_New_York_(51521771723).jpg (Townhouse)",
+   "File:Voting booth in Grand Rapids, Minnesota (53318561809).jpg (the pick's polling place, one booth, black and white)",
+   "File:Pile of \"I Voted\" stickers.jpg and the Aitkin library roll of stickers (all red: on the lean page red is the Republican colour, so not neutral)"
+  ],
+  "refused_on_review_not_listed": [
+   "File:Booths (3002212217).jpg (voters at the booths are the subject)",
+   "File:Election Day08 Wyo2.JPG (a voter's face in the centre)",
+   "File:Voting booth - Ohio primary election - March 15, 2016 (25784960616).jpg (the Cuyahoga County Board of Elections logo, prominent)",
+   "File:Ballot Drop Box (31409335423).jpg (the Boulder County Clerk's box and logo, prominent)",
+   "File:Ballot_paper_Latvia-Riga_2022.jpg (party lists and candidates' names)",
+   "File:Luxembourg_Referendum_2015_Postal_vote_-_ballot_and_other_documents.jpg (government ballot seal; a voter's address window)"
+  ]
+ }
 }

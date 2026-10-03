@@ -1,7 +1,7 @@
 {
- "photos_in_use": 372,
+ "photos_in_use": 374,
  "by_licence": {
-  "CC BY 2.0": 42,
+  "CC BY 2.0": 43,
   "CC BY 2.5": 1,
   "CC BY 3.0": 17,
   "CC BY 3.0 us": 1,
@@ -12,15 +12,15 @@
   "CC BY-SA 3.0": 67,
   "CC BY-SA 4.0": 103,
   "CC0": 23,
-  "Public domain": 33
+  "Public domain": 34
  },
  "cropped": [
   "hero"
  ],
  "cc_before_4_0": {
-  "count": 150,
+  "count": 151,
   "by_licence": {
-   "CC BY 2.0": 42,
+   "CC BY 2.0": 43,
    "CC BY 2.5": 1,
    "CC BY 3.0": 17,
    "CC BY 3.0 us": 1,
@@ -774,6 +774,11 @@
     "page": "city",
     "key": "yuma-arizona",
     "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "stat",
+    "key": "political_lean",
+    "license": "CC BY 2.0"
    },
    {
     "page": "stat",
@@ -4455,6 +4460,16 @@
   },
   {
    "page": "stat",
+   "key": "political_lean",
+   "title": "Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671)",
+   "author": "Lorie Shaull from St Paul, United States",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Voting_booths_inside_Combined_Polling_Place_Zion_Lutheran_Church_in_Grand_Rapids,_Minnesota_on_Election_Day_(53317086671).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": false
+  },
+  {
+   "page": "stat",
    "key": "rent_1br",
    "title": "2019.07.10 metro California-housing Blog-post related",
    "author": "TheSanFranRacer",
@@ -4491,6 +4506,16 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:1_times_square_night_2013.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": false
+  },
+  {
+   "page": "stat",
+   "key": "who_lives_here",
+   "title": "Place Vosges Paris Mai 2006 011",
+   "author": "Gryffindor",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Place_Vosges_Paris_Mai_2006_011.jpg",
+   "license": "Public domain",
+   "license_url": null,
    "cropped": false
   },
   {

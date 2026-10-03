@@ -72,6 +72,9 @@ def refused_files() -> dict[str, str]:
     out = {r["file_title"]: f"refused_review:{r['category']}" for r in rev["removed"]}
     for r in rev.get("replaced", []):
         out[r["was"]] = f"replaced_review:{r['category']}"
+    # Phase 4e: candidates the review refused before they ever shipped
+    for r in rev.get("phase4e_stat_pages", {}).get("refused", []):
+        out[r["file_title"]] = f"refused_review:{r['category']}"
     return out
 
 
@@ -81,7 +84,9 @@ def pinned_files() -> dict[tuple[str, str], str]:
     if not REVIEW.exists():
         return {}
     rev = json.loads(REVIEW.read_text())
-    return {(r["page"], r["key"]): r["file_title"] for r in rev.get("replaced", [])}
+    # Phase 4e: a stat page none of whose subjects passes takes a named file
+    named = rev.get("replaced", []) + rev.get("phase4e_stat_pages", {}).get("pinned", [])
+    return {(r["page"], r["key"]): r["file_title"] for r in named}
 
 
 def pinned_alts() -> dict[tuple[str, str], str]:
@@ -90,7 +95,8 @@ def pinned_alts() -> dict[tuple[str, str], str]:
     if not REVIEW.exists():
         return {}
     rev = json.loads(REVIEW.read_text())
-    return {(r["page"], r["key"]): r["alt"] for r in rev.get("replaced", []) if r.get("alt")}
+    named = rev.get("replaced", []) + rev.get("phase4e_stat_pages", {}).get("pinned", [])
+    return {(r["page"], r["key"]): r["alt"] for r in named if r.get("alt")}
 
 
 def title_of(source_url: str) -> str:

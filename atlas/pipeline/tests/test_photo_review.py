@@ -90,3 +90,35 @@ def test_the_credits_list_covers_every_photograph_shown(state):
     listed = {(p["page"], p["key"]) for p in cr["photos"]}
     assert {("city", k) for k in state["city"]} <= listed
     assert {("stat", k) for k in state["stat"]} <= listed
+
+
+def test_phase4e_stat_photos_are_the_reviewed_picks(state):
+    """Phase 4e items 3-4: who lives here takes the first of its subjects
+    whose lead image passes; political lean, none of whose subjects passes,
+    takes the file the review names — and the refused candidate stays
+    refused on any re-run."""
+    p4e = state["rev"]["phase4e_stat_pages"]
+    from atlas.pipeline.build.city_images import STAT_SUBJECTS
+    assert STAT_SUBJECTS["who_lives_here"] == p4e["subjects"]["who_lives_here"]
+    assert STAT_SUBJECTS["political_lean"] == p4e["subjects"]["political_lean"]
+    assert "Crowd" not in STAT_SUBJECTS["who_lives_here"]
+    refused = PR.refused_files()
+    for r in p4e["refused"]:
+        assert refused[r["file_title"]] == f"refused_review:{r['category']}"
+    pinned = PR.pinned_files()
+    alts = PR.pinned_alts()
+    for r in p4e["pinned"]:
+        assert pinned[(r["page"], r["key"])] == r["file_title"]
+        assert state["stat"][r["key"]]["alt"] == alts[(r["page"], r["key"])] == r["alt"]
+    shown = {k: _file_of(v["source_url"]).replace(" ", "_") for k, v in state["stat"].items()}
+    assert shown["who_lives_here"] == p4e["checked"][0]["file_title"]
+    assert shown["political_lean"] == p4e["pinned"][0]["file_title"].replace(" ", "_")
+    for key in ("who_lives_here", "political_lean"):
+        row = state["stat_csv"][state["stat_csv"]["stat"] == key].iloc[0]
+        assert row["status"] == "ok" and row["file"] == state["stat"][key]["file"]
+        assert state["stat"][key]["cropped"] is False
+        assert re.match(r"^(public domain|cc0|cc by(-sa)? \d)", state["stat"][key]["license"], re.I)
+        assert ("stat", key) in {(p["page"], p["key"]) for p in state["credits"]["photos"]}
+    # no alternate ships: each page renders exactly its pick
+    for key, alts_ in p4e["alternates"].items():
+        assert not {a["file_title"].replace(" ", "_") for a in alts_} & {shown[key]}

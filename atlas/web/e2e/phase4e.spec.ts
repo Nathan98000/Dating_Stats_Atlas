@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { fetchMeta } from "./helpers";
 import statPages from "../src/data/stat-pages.json";
+import statImages from "../src/data/stat-images.json";
 
 /** Phase 4e (Nathan's five changes): the walkability page's note, the nav's
  * "Home", the two new stat-page photos and the new nice-day definition.
@@ -52,3 +53,32 @@ test("the nav reads Home, Compare cities, About us", async ({ page }) => {
   await page.getByRole("link", { name: "Home", exact: true }).click();
   await expect(page).toHaveURL(/127\.0\.0\.1:3100\/\?/);
 });
+
+type Img = { file: string; alt: string | null; author: string | null; title: string; cropped: boolean };
+const IMAGES = statImages as unknown as Record<string, Img>;
+
+for (const fid of ["who_lives_here", "political_lean"]) {
+  test(`${fid}'s new photo renders on its stat page, credited only in Sources and credits`, async ({ page }) => {
+    const img = IMAGES[fid];
+    expect(img, fid).toBeTruthy();
+    expect(img.cropped).toBe(false);       // the stat page scales, never crops
+    await page.goto(`/stats/${fid}`);
+    const shown = page.locator(`img[src="/stats/${img.file}"]`);
+    await expect(shown).toBeVisible();
+    await expect(shown).toHaveAttribute("alt", img.alt!);
+    expect(await shown.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
+    // no credit on the page itself: no caption, no author, no Commons title
+    await expect(page.locator("figure figcaption")).toHaveCount(0);
+    const body = await page.locator("body").innerText();
+    expect(body).not.toContain(img.author!);
+    expect(body).not.toContain(img.title);
+    // the credit is in About us, Sources and credits, once
+    await page.goto("/about");
+    const credit = page.locator(`[data-credit="${img.file}"]`);
+    await expect(credit).toHaveCount(1);
+    await page.getByTestId("credits-photos-more").locator("summary").click();
+    await expect(credit).toContainText(img.author!);
+    await expect(credit).not.toContainText("cropped");
+    await expect(credit.getByRole("link", { name: "source" })).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\//);
+  });
+}

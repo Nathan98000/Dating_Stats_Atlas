@@ -19,6 +19,16 @@
 "source_url": "https://commons.wikimedia.org/wiki/File:Thomas_Cole%27s_%22The_Picnic%22,_Brooklyn_Museum_IMG_3787.JPG",
 "title": "Thomas Cole's \"The Picnic\", Brooklyn Museum IMG 3787"
 },
+"political_lean": {
+"alt": "Two voting booths on a table in an empty polling place in Grand Rapids, Minnesota.",
+"author": "Lorie Shaull from St Paul, United States",
+"cropped": false,
+"file": "political_lean.jpg",
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Voting_booths_inside_Combined_Polling_Place_Zion_Lutheran_Church_in_Grand_Rapids,_Minnesota_on_Election_Day_(53317086671).jpg",
+"title": "Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671)"
+},
 "rent_1br": {
 "alt": "Apartment complex in California",
 "author": "TheSanFranRacer",
@@ -58,5 +68,15 @@
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:1_times_square_night_2013.jpg",
 "title": "1 times square night 2013"
+},
+"who_lives_here": {
+"alt": "Place des Vosges in Paris, eastern side.",
+"author": "Gryffindor",
+"cropped": false,
+"file": "who_lives_here.jpg",
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Place_Vosges_Paris_Mai_2006_011.jpg",
+"title": "Place Vosges Paris Mai 2006 011"
 }
 }

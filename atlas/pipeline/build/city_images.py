@@ -73,7 +73,13 @@ STAT_SUBJECTS = {
     "resident_walkability_index": ["Sidewalk", "Pedestrian"],
     "pleasant_days": ["Picnic", "Park"],
     "students_per_1k_adults": ["College town", "Campus"],
-    "who_lives_here": ["Crowd", "Pedestrian zone"],
+    # Phase 4e (Nathan): a residential neighbourhood, not a crowd — a crowd
+    # risks an identifiable person as the subject ("Crowd"'s candidate also
+    # failed the licence check, KOGL Type 1)
+    "who_lives_here": ["Row house", "Suburb", "Neighbourhood"],
+    # Phase 4e (Nathan): a neutral voting image — no party symbols,
+    # candidates, campaign signs or slogans (the review checks each pick)
+    "political_lean": ["Ballot box", "Polling place", "Voting booth"],
 }
 
 
@@ -257,6 +263,72 @@ def source_file(file_title: str) -> tuple[dict | None, str]:
     return _record(None, name, ii, cleared), ""
 
 
+def source_stat(fid: str, cands: list[str], retrieved: str) -> tuple[dict, dict | None]:
+    """One stat page's photograph: (manifest row, render entry or None).
+    A page the review pins takes its named file; otherwise the subjects'
+    articles are tried in order, each lead image through the licence rule
+    and past the files the review refused."""
+    pin = REVIEW_PINNED.get(("stat", fid))
+    rec, reason = source_file(pin) if pin else source_one(cands)
+    if not rec:
+        return {"stat": fid, "status": reason}, None
+    ext = {"image/png": ".png", "image/webp": ".webp"}.get(rec["mime"], ".jpg")
+    dest = WEB / "public" / "stats" / f"{fid}{ext}"
+    sha = download(rec["image_url"], dest)
+    if not sha:
+        return {"stat": fid, "status": "download_failed"}, None
+    row = {"stat": fid, "status": "ok", "page_title": rec["page_title"],
+           "file_title": rec["file_title"], "source_url": rec["source_url"],
+           "image_url": rec["image_url"], "author": rec["author"],
+           "license": rec["license"], "license_url": rec["license_url"],
+           "retrieved": retrieved, "sha256": sha, "file": dest.name}
+    entry = {
+        "file": dest.name,
+        # Phase 4e: a review alt text (photo_review.json) wins over the
+        # Commons description, as it does for the city photographs
+        "alt": REVIEW_ALTS.get(("stat", fid)) or (
+            rec["description"][:160].rstrip() if rec["description"] else None),
+        "author": rec["author"], "license": rec["license"],
+        "license_url": rec["license_url"],
+        "source_url": rec["source_url"],
+        "title": title_of(rec["source_url"]),
+        "cropped": CROPPED["stat"],
+    }
+    return row, entry
+
+
+def stats_only(fids: list[str]) -> None:
+    """Phase 4e: re-source the named stat pages only — their manifest rows
+    and render entries are rewritten, every other row and entry (the 387
+    city photographs, the other stat pages) is left exactly as committed.
+    A page new to STAT_SUBJECTS gains a row."""
+    retrieved = time.strftime("%Y-%m-%d")
+    csv_path = P2E / "stat_images.csv"
+    json_path = WEB / "src" / "data" / "stat-images.json"
+    rows = pd.read_csv(csv_path, dtype=str, keep_default_na=False).to_dict("records")
+    render = json.loads(json_path.read_text())
+    for fid in fids:
+        row, entry = source_stat(fid, STAT_SUBJECTS[fid], retrieved)
+        old = next((r for r in rows if r["stat"] == fid), None)
+        if old is not None and old.get("status") == "ok" and old.get("file") \
+                and old["file"] != row.get("file"):
+            stale = WEB / "public" / "stats" / old["file"]
+            if stale.exists():
+                stale.unlink()
+        cols = list(rows[0])
+        full = {c: row.get(c, "") if row.get(c) is not None else "" for c in cols}
+        if old is None:
+            rows.append(full)
+        else:
+            rows[rows.index(old)] = full
+        render.pop(fid, None)
+        if entry:
+            render[fid] = entry
+        print(f"{fid}: {row['status']} {row.get('file_title', '')}")
+    pd.DataFrame(rows).to_csv(csv_path, index=False)
+    json_path.write_text(json.dumps(render, indent=0, ensure_ascii=False, sort_keys=True) + "\n")
+
+
 def main() -> None:
     P2E.mkdir(parents=True, exist_ok=True)
     cm = pd.read_csv(RESULTS / "phase2c" / "city_meta.csv", dtype={"cbsa": str})
@@ -316,37 +388,10 @@ def main() -> None:
     # ---- stat-page images (item 6) --------------------------------------
     stat_rows, stat_render = [], {}
     for fid, cands in STAT_SUBJECTS.items():
-        pin = REVIEW_PINNED.get(("stat", fid))
-        rec, reason = source_file(pin) if pin else source_one(cands)
-        if not rec:
-            stat_rows.append({"stat": fid, "status": reason})
-            continue
-        ext = {"image/png": ".png", "image/webp": ".webp"}.get(
-            rec["mime"], ".jpg")
-        dest = WEB / "public" / "stats" / f"{fid}{ext}"
-        sha = download(rec["image_url"], dest)
-        if not sha:
-            stat_rows.append({"stat": fid, "status": "download_failed"})
-            continue
-        stat_rows.append({"stat": fid, "status": "ok",
-                          "page_title": rec["page_title"],
-                          "file_title": rec["file_title"],
-                          "source_url": rec["source_url"],
-                          "image_url": rec["image_url"],
-                          "author": rec["author"], "license": rec["license"],
-                          "license_url": rec["license_url"],
-                          "retrieved": retrieved, "sha256": sha,
-                          "file": dest.name})
-        stat_render[fid] = {
-            "file": dest.name,
-            "alt": (rec["description"][:160].rstrip()
-                    if rec["description"] else None),
-            "author": rec["author"], "license": rec["license"],
-            "license_url": rec["license_url"],
-            "source_url": rec["source_url"],
-            "title": title_of(rec["source_url"]),
-            "cropped": CROPPED["stat"],
-        }
+        row, entry = source_stat(fid, cands, retrieved)
+        stat_rows.append(row)
+        if entry:
+            stat_render[fid] = entry
     pd.DataFrame(stat_rows).to_csv(P2E / "stat_images.csv", index=False)
     (WEB / "src" / "data" / "stat-images.json").write_text(
         json.dumps(stat_render, indent=0, ensure_ascii=False, sort_keys=True) + "\n")
@@ -363,4 +408,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if sys.argv[1:2] == ["--stats"]:
+        stats_only(sys.argv[2:])
+    else:
+        main()

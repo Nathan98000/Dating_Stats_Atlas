@@ -17,6 +17,30 @@
    "old": "Browse cities · Compare cities · About us",
    "new": "Home · Compare cities · About us",
    "why": "Nathan's request"
+  },
+  {
+   "change": "who lives here photo (items 3-4)",
+   "kind": "added (the Commons file's own description, as every stat photo's alt; with the photo pick, awaiting Nathan's choice)",
+   "where": "web/src/data/stat-images.json who_lives_here.alt -> /stats/who_lives_here (the photo's alt text)",
+   "old": "(no photo)",
+   "new": "Place des Vosges in Paris, eastern side.",
+   "why": "the screen-reader text for the new photo"
+  },
+  {
+   "change": "political lean photo (items 3-4)",
+   "kind": "added (DRAFT review alt text: the Commons description is an attribution request; awaiting Nathan's approval)",
+   "where": "results/phase4/photo_review.json phase4e_stat_pages.pinned[0].alt -> web/src/data/stat-images.json political_lean.alt -> /stats/political_lean",
+   "old": "(no photo)",
+   "new": "Two voting booths on a table in an empty polling place in Grand Rapids, Minnesota.",
+   "why": "the screen-reader text for the new photo"
+  },
+  {
+   "change": "photo credits (items 3-4)",
+   "kind": "added (composed from Commons metadata, as every credit is)",
+   "where": "About us, Sources and credits (the collapsible photo list)",
+   "old": "(none)",
+   "new": "Place Vosges Paris Mai 2006 011 · Gryffindor · Public domain · source  |  Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671) · Lorie Shaull from St Paul, United States · CC BY 2.0 · source",
+   "why": "the two photos' credits, in Sources and credits only (neither is cropped)"
   }
  ]
 }
