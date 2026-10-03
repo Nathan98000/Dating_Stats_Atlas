@@ -358,9 +358,10 @@ strings:
   # composes the figure's text from these (political_lean_text: "56%
   # Democratic · 42% Republican"; the bar's spoken label); "Not available"
   # is the brief's, for a metro the returns cannot cover exactly; the
-  # other words are drafts for Nathan's approval. The space before the
-  # middle dot is a no-break space, so a narrow card breaks the line after
-  # the dot, never before it.
+  # other words, drafted in Phase 4d, are approved by Nathan (2026-10-03,
+  # after the Phase 4d report). The space before the middle dot is a
+  # no-break space, so a narrow card breaks the line after the dot, never
+  # before it.
   political_lean_dem: "Democratic"
   political_lean_rep: "Republican"
   political_lean_other: "Everyone else"
@@ -899,8 +900,9 @@ features:
   # exactly (Connecticut's five, Anchorage, Fairbanks) is "Not available".
   # No band words — the numbers only — and no band direction: `direction`
   # is the schema's and nothing reads it for this feature (no band, no
-  # difference in compare, no default order by value). The definition is
-  # a draft for Nathan's approval; the unit is the brief's caption.
+  # difference in compare, no default order by value). The definition, the
+  # brief's draft, is approved by Nathan (2026-10-03); the unit is the
+  # brief's caption.
   # Refreshed after each presidential election; next in 2028.
   - id: political_lean
     pillar: context

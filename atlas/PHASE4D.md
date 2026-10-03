@@ -279,3 +279,12 @@ links. ADR 0019's amendment records it.
   pass rule and writes this phase's result file, so
   `results/city_profile/served_numbers_check.py` compares the two, holding
   every response to the same bytes.
+
+## 11. The copy approved (3 October 2026)
+
+Nathan approved §6's copy as it stands: the definition, the shares' form
+("47% Democratic · 52% Republican"), the key and the stat page's column
+names, the bar's spoken label, the sort control and the stat page's
+source line. Nothing served changes. `copy_changes.json`, ADR 0019's
+status and the registry's comments say so (comments only, so the build is
+unchanged).

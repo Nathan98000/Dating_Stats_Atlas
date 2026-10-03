@@ -4,7 +4,8 @@ Date: 2026-09-30 (Phase 4d)
 Status: accepted. The decision and the neutrality rules are **Nathan's**
 (the Phase 4d brief). The acceptance of the state-totals gaps is **Nathan's
 call** after the phase halted on them, on 30 September 2026. The copy
-marked as a draft waits for his approval (PHASE4D.md §6). Amended
+marked as a draft is approved by Nathan, on 3 October 2026 (PHASE4D.md
+§6 and §11). Amended
 2026-10-02, after the phase: every metro's city page shows its stat cards,
 so the card shows on all 387 (the last section).
 

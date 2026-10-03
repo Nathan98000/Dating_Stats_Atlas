@@ -1,10 +1,10 @@
 {
  "phase": "4d",
- "note": "Every user-facing string added in Phase 4d (none retired, none reworded). Registry strings reach the pages through /v1/meta; the figure's composed text through /v1/political_lean (model/context.py).",
+ "note": "Every user-facing string added in Phase 4d (none retired, none reworded). Registry strings reach the pages through /v1/meta; the figure's composed text through /v1/political_lean (model/context.py). Nathan approved every drafted string as it stands on 2026-10-03 (PHASE4D.md §11).",
  "changes": [
   {
    "change": "political lean",
-   "kind": "added (the brief's; for Nathan's approval)",
+   "kind": "added (the brief's; approved by Nathan on 2026-10-03)",
    "where": "registry features.political_lean.display_name",
    "old": "(none)",
    "new": "Political lean",
@@ -12,7 +12,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (the brief's draft; for Nathan's approval)",
+   "kind": "added (the brief's draft; approved by Nathan on 2026-10-03)",
    "where": "registry features.political_lean.definition",
    "old": "(none)",
    "new": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
@@ -20,7 +20,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (the brief's; for Nathan's approval)",
+   "kind": "added (the brief's; approved by Nathan on 2026-10-03)",
    "where": "registry features.political_lean.unit",
    "old": "(none)",
    "new": "2024 presidential vote, whole metro area",
@@ -28,7 +28,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (draft; for Nathan's approval)",
+   "kind": "added (draft; approved by Nathan on 2026-10-03)",
    "where": "registry strings.political_lean_dem / _rep / _other",
    "old": "(none)",
    "new": "Democratic / Republican / Everyone else",
@@ -36,7 +36,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (draft; for Nathan's approval)",
+   "kind": "added (draft; approved by Nathan on 2026-10-03)",
    "where": "registry strings.political_lean_text",
    "old": "(none)",
    "new": "{dem} {dem_label} · {rep} {rep_label}  (\"56% Democratic · 42% Republican\")",
@@ -44,7 +44,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (draft; for Nathan's approval)",
+   "kind": "added (draft; approved by Nathan on 2026-10-03)",
    "where": "registry strings.political_lean_bar_label",
    "old": "(none)",
    "new": "{dem_label} {dem}, {other_label} {other}, {rep_label} {rep}  (\"Democratic 56%, Everyone else 2%, Republican 42%\")",
@@ -60,7 +60,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (draft; for Nathan's approval)",
+   "kind": "added (draft; approved by Nathan on 2026-10-03)",
    "where": "registry strings.political_lean_sort_label / _sort_name / _sort_dem / _sort_rep",
    "old": "(none)",
    "new": "Sort by: Name / Democratic share / Republican share",
@@ -68,7 +68,7 @@
   },
   {
    "change": "political lean",
-   "kind": "added (draft; for Nathan's approval)",
+   "kind": "added (draft; approved by Nathan on 2026-10-03)",
    "where": "registry sources.medsl_president.name",
    "old": "(none)",
    "new": "MIT Election Data and Science Lab, County Presidential Election Returns 2000–2024",

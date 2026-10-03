@@ -159,16 +159,17 @@ Phase 4 did everything in the repository; these are Nathan's own.
 
 Open for Topology C (2026-10-03):
 
-- [ ] **Approve Phase 4d's political-lean wording** (PHASE4D.md §6): the
+- [x] **Approve Phase 4d's political-lean wording** (PHASE4D.md §6): the
       definition, the shares text, the bar's labels and its spoken label,
-      the sort control and the stat page's source line. Nathan holds the
-      opening until he has reviewed it.
-- [ ] **The Privacy page's "Our host" paragraph** still names Fly.io. A
-      draft for Oracle, for Nathan's approval: "The site runs on a server
-      we rent from Oracle Cloud. The server keeps no record of your visits
-      — not your IP address, and not the pages you look at. Oracle's
-      network carries traffic to and from it, and like any network it sees
-      IP addresses, under Oracle's own privacy policy."
+      the sort control and the stat page's source line. Approved by Nathan
+      on 2026-10-03 (PHASE4D.md §11).
+- [x] **The Privacy page's "Our host" paragraph** named Fly.io. Nathan
+      approved the Oracle paragraph on 2026-10-03, and `docs/privacy.md`
+      carries it: "The site runs on a server we rent from Oracle Cloud. The
+      server keeps no record of your visits — not your IP address, and not
+      the pages you look at. Oracle's network carries traffic to and from
+      it, and like any network it sees IP addresses, under Oracle's own
+      privacy policy." (`results/launch/copy_changes.json`)
 - [ ] **Claim `dating-stats-atlas.duckdns.org`** at duckdns.org (signing
       in with an existing GitHub or Google login) and point it at
       132.145.205.110.
@@ -210,7 +211,9 @@ Open for Topology C (2026-10-03):
       Privacy page's "Our host" paragraph still holds: it says Fly.io
       keeps technical logs such as IP addresses and page addresses, under
       its own privacy policy. Nathan decided it needs no added sentence
-      (2026-09-30).
+      (2026-09-30). *[Since 2026-10-03 the host is Oracle Cloud (Topology
+      C), and the paragraph says so; see the item at the top of this
+      list.]*
 - [x] **Look inside both images before the first deploy**: `fly deploy`
       uploads the build context (the repository root) to a remote builder.
       Since Phase 4 a deny-by-default `.dockerignore` keeps the data, the

@@ -1,0 +1,14 @@
+{
+ "scope": "launch",
+ "note": "User-facing copy changed for the launch, after the phase reports. The Privacy page is docs/privacy.md, synced into the site at build (web/scripts/sync_content.mjs).",
+ "changes": [
+  {
+   "change": "the host",
+   "kind": "reworded (Claude's draft; approved by Nathan on 2026-10-03)",
+   "where": "docs/privacy.md, \"Our host\" (the /privacy page)",
+   "old": "The site runs on Fly.io. Like any web host, Fly.io handles the requests your browser sends and keeps standard technical logs, such as IP addresses and the addresses of the pages requested, under its own privacy policy.",
+   "new": "The site runs on a server we rent from Oracle Cloud. The server keeps no record of your visits — not your IP address, and not the pages you look at. Oracle's network carries traffic to and from it, and like any network it sees IP addresses, under Oracle's own privacy policy.",
+   "why": "Nathan moved the site to one Oracle Cloud Always Free VM so that it costs nothing to run (docs/deploy.md, Topology C). No access log is configured there; Caddy's default log was tested on the VM and records no visitor address, even for failed TLS connections; Next.js logs no requests; the API's access lines show only the web container's address."
+  }
+ ]
+}

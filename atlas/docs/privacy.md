@@ -31,10 +31,10 @@ come back. You can delete it at any time in your browser's settings.
 
 ## Our host
 
-The site runs on Fly.io. Like any web host, Fly.io handles the requests
-your browser sends and keeps standard technical logs, such as IP
-addresses and the addresses of the pages requested, under its own
-privacy policy.
+The site runs on a server we rent from Oracle Cloud. The server keeps no
+record of your visits — not your IP address, and not the pages you look
+at. Oracle's network carries traffic to and from it, and like any network
+it sees IP addresses, under Oracle's own privacy policy.
 
 ## No tracking
 
