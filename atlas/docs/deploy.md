@@ -170,9 +170,10 @@ Open for Topology C (2026-10-03):
       the pages you look at. Oracle's network carries traffic to and from
       it, and like any network it sees IP addresses, under Oracle's own
       privacy policy." (`results/launch/copy_changes.json`)
-- [ ] **Claim `dating-stats-atlas.duckdns.org`** at duckdns.org (signing
+- [x] **Claim `dating-stats-atlas.duckdns.org`** at duckdns.org (signing
       in with an existing GitHub or Google login) and point it at
-      132.145.205.110.
+      132.145.205.110. Done by Nathan on 2026-10-03; Cloudflare's and
+      Google's resolvers both answer 132.145.205.110.
 - [ ] **Optional: Oracle's data-processing terms.** Find the data
       processing agreement within the Oracle Cloud terms Nathan accepted at
       sign-up, and save a dated copy to the counsel packet's attachments,
