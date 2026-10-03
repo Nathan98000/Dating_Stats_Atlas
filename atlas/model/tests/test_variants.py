@@ -11,9 +11,12 @@ import numpy as np
 import pytest
 
 from atlas import model as engine
-from atlas.model.explain import TOP_STATS_MAX, summary_line, top_stats
+from atlas.model.explain import (TOP_STATS_MAX, mover_units, pick_movers, summary_line,
+                                 unit_contributions)
+from atlas.model.scoring import scored_features
 from atlas.model.variants import (EDU_KEYS, RACE_KEYS, _explain_codes, _explain_entry,
-                                  _explain_key, _explain_of_key, _round_list, default_variant,
+                                  _explain_key, _explain_of_key, _round_list, _unit_sums,
+                                  default_variant,
                                   rank_variants, select_variant, variant_list)
 
 FIXTURE_DIR = Path(__file__).resolve().parent / "golden" / "fixture_build"
@@ -63,25 +66,29 @@ def test_round_list_is_pythons_round():
         assert _round_list(x, nd) == [round(float(v), nd) for v in x]
 
 
-def test_movers_encoding_is_top_stats(build):
-    """The vectorised movers (explain codes) name the rows' top stats in
-    the order explain.top_stats does, and the summary line built from a
-    code is the line built from the row's own stats."""
+def test_movers_encoding_is_explains_rule(build):
+    """The vectorised movers (explain codes) pick the items explain.movers
+    picks, in its order — the price pair added as one item, an item whose
+    sign contradicts its card left out — and the code's entry is the line
+    and top_stats built from the row's own stats (m4.1.1)."""
     rng = np.random.default_rng(11)
-    feats = [{"id": fid} for fid in build.legend if build.legend[fid].get("mover_phrase")][:9]
-    F = len(feats)
-    C = np.round(rng.normal(0, 3, (500, F)), 2)
-    C[rng.random((500, F)) < 0.1] = np.nan
-    C[:, 3] = np.where(rng.random(500) < 0.3, C[:, 1], C[:, 3])  # ties
-    codes = _explain_codes(C)
-    keys = _explain_key(codes)
-    for i in range(500):
-        stats = [{"id": feats[j]["id"], "contribution": (None if np.isnan(C[i, j]) else float(C[i, j]))}
-                 for j in range(F)]
-        want = [s["id"] for s in top_stats(stats)]
-        entry = _explain_entry(_explain_of_key(int(keys[i]), TOP_STATS_MAX), feats, build.legend)
-        assert entry["top_stats"] == want
-        assert entry["summary_line"] == summary_line({"stats": stats}, build.legend)
+    ids = [f["id"] for f in scored_features(build)]
+    units = mover_units(ids, build.legend)
+    assert len(units) == len(ids) - 1, "goods and services prices are one item"
+    F, U = len(ids), len(units)
+    C = np.round(rng.normal(0, 3, (600, F)), 2)
+    C[rng.random((600, F)) < 0.1] = np.nan
+    C[:, 3] = np.where(rng.random(600) < 0.3, C[:, 1], C[:, 3])  # ties
+    S = rng.integers(-1, 2, (600, U)).astype(float)
+    keys = _explain_key(_explain_codes(_unit_sums(C, units), S))
+    for i in range(600):
+        contribs = [None if np.isnan(C[i, j]) else float(C[i, j]) for j in range(F)]
+        uc = unit_contributions(contribs, units)
+        moved = [{"phrase": units[u]["phrase"], "ids": units[u]["ids"], "contribution": uc[u]}
+                 for u in pick_movers(uc, [int(x) for x in S[i]])]
+        entry = _explain_entry(_explain_of_key(int(keys[i]), TOP_STATS_MAX), units)
+        assert entry["top_stats"] == [fid for m in moved for fid in m["ids"]]
+        assert entry["summary_line"] == summary_line(moved)
 
 
 def test_no_about_you_detail_in_the_request_shape(build):

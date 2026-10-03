@@ -1,0 +1,87 @@
+{
+ "build": [
+  "2dbd9ebfa7ff",
+  "2dbd9ebfa7ff"
+ ],
+ "model_version": [
+  "m4.1.0",
+  "m4.1.1"
+ ],
+ "test_searches": {
+  "total": 518,
+  "source": "stability_gate.test_searches (ADR 0011: personas, effects grid, same-sex grid)"
+ },
+ "response_without_explanations": {
+  "identical": 518,
+  "of": 518
+ },
+ "single_seeker_rank_without_explanations": {
+  "identical": 1036,
+  "of": 1036
+ },
+ "default_variant_lines": {
+  "rows": 98415,
+  "changed": 13022,
+  "repeating_a_phrase": {
+   "m4.1.0": 11,
+   "m4.1.1": 0
+  },
+  "naming_a_stat_against_its_card": {
+   "m4.1.0": 182,
+   "m4.1.1": 0
+  }
+ },
+ "examples": [
+  {
+   "search": "persona:A_woman32_ba_men_75k",
+   "cbsa": "12420",
+   "before": "Biggest pluses: the size of the pool, everyday prices · Walkable neighbourhoods counts against it",
+   "after": "Biggest pluses: the size of the pool, everyday prices, the compatibility figure"
+  },
+  {
+   "search": "persona:A_woman32_ba_men_75k",
+   "cbsa": "15380",
+   "before": "Biggest pluses: the compatibility figure, rent · The size of the pool counts against it",
+   "after": "Biggest pluses: the compatibility figure, places to go out · The size of the pool counts against it"
+  },
+  {
+   "search": "persona:A_woman32_ba_men_75k",
+   "cbsa": "39580",
+   "before": "Biggest pluses: the compatibility figure, everyday prices · Walkable neighbourhoods counts against it",
+   "after": "Biggest pluses: the compatibility figure, everyday prices, the weather"
+  },
+  {
+   "search": "persona:A_woman32_ba_men_75k",
+   "cbsa": "26900",
+   "before": "Walkable neighbourhoods counts against it",
+   "after": "Biggest pluses: the student crowd · The compatibility figure counts against it"
+  },
+  {
+   "search": "persona:C_woman38_grad_men_100k",
+   "cbsa": "12420",
+   "before": "Biggest pluses: the size of the pool, the compatibility figure · Walkable neighbourhoods counts against it",
+   "after": "Biggest pluses: the size of the pool, everyday prices, the compatibility figure"
+  },
+  {
+   "search": "persona:C_woman38_grad_men_100k",
+   "cbsa": "26420",
+   "before": "Biggest pluses: the size of the pool, rent · Places to go out counts against it",
+   "after": "Biggest pluses: the size of the pool, the compatibility figure · Places to go out counts against it"
+  },
+  {
+   "search": "persona:C_woman38_grad_men_100k",
+   "cbsa": "19100",
+   "before": "Biggest pluses: the size of the pool · Walkable neighbourhoods counts against it",
+   "after": "Biggest pluses: the size of the pool · Places to go out counts against it"
+  },
+  {
+   "search": "persona:C_woman38_grad_men_100k",
+   "cbsa": "47260",
+   "before": "Biggest pluses: rent · The compatibility figure counts against it",
+   "after": "Biggest pluses: everyday prices · The compatibility figure counts against it"
+  }
+ ],
+ "failures": [],
+ "pass": true,
+ "generated": "2026-10-03T15:50:41"
+}

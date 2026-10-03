@@ -5,6 +5,24 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.1.1 — the movers line (Nathan's report, 2026-10-03, after the launch):
+two errors on the live site. (1) The two BEA price levels, goods and
+services, share the mover phrase "everyday prices", so a row could read
+"Biggest pluses: ..., everyday prices, everyday prices", or name everyday
+prices as a plus and the minus at once. They are now one item, their
+contributions added, before the top three are picked (explain.mover_units).
+(2) Austin read "Walkable neighbourhoods counts against it" beside a card
+saying "More walkable than most": the score measures a stat against the
+middle of the cities ranked for the search, the card against every city,
+and in narrower searches the ranked cities are mostly big, walkable metros.
+The line now never names a stat as a minus where the city's card says
+better than most, nor as a plus where it says worse than most
+(explain.mover_sides, pick_movers). No score, rank, figure, band or
+suppression moves; only which items a line names, and top_stats with it.
+The data files are unchanged, so the build keeps its id (2dbd9ebfa7ff)
+with its manifest refreshed (the version alone). Goldens regenerated: the
+summary lines that moved, beside the version line.
+
 m4.1.0 — Phase 4c (ADR 0004 amended, Nathan's decision): dating pool
 balance is the single people of the sought sex per 100 single people of
 the OTHER sex — the opposite of the sought sex — in the search's age range
@@ -294,5 +312,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m4.1.0"
+MODEL_VERSION = "m4.1.1"
 SCHEMA_VERSION = "cube-v1"

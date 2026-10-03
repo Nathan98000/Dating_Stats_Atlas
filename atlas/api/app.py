@@ -84,6 +84,13 @@ removal — both noted here as the contract docs):
     search does: the API's access lines never say which city a page
     showed. /v1/rank is untouched: its response is byte for byte what it
     was.
+  - m4.1.1 (Nathan's report after the launch): a row's summary_line and
+    top_stats follow explain.movers. The two price levels are one item,
+    "everyday prices", their contributions added, and an item is never
+    named against its city's card (a minus where the card says better than
+    most, or a plus where it says worse). top_stats lists the named items'
+    stats, so an everyday-prices item contributes both of its ids. No
+    score, rank, figure, band or suppression changes.
 """
 from __future__ import annotations
 

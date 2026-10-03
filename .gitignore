@@ -114,3 +114,7 @@ atlas/results/phase4d/*_run.log
 # City profile working files (the Phase 4 pattern): before/after records, run logs
 atlas/results/city_profile/_*
 atlas/results/city_profile/*_run.log
+
+# Movers-line fix working files (the Phase 4 pattern): before/after records, run logs
+atlas/results/movers_fix/_*
+atlas/results/movers_fix/*_run.log

@@ -57,7 +57,7 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import format_value, summary_line, top_stats
+from atlas.model.explain import format_value, movers, summary_line
 from atlas.model.loader import Build, reduced_key
 from atlas.model.preferences import (INCOME_FLOORS, PILLARS, SEX_LEVELS, Request,
                                      axis_vectors, balance_masks_for, pool_mask,
@@ -784,8 +784,11 @@ def ranked_row(build: Build, fr: dict, bal: dict, mt: dict, sc: dict,
             {"pillar": p, "value": round(v, 2)}
             for p, v in pillar_contrib.items()],
     }
-    row["top_stats"] = [s["id"] for s in top_stats(row["stats"])]
-    row["summary_line"] = summary_line(row, build.legend)
+    # m4.1.1: the movers line's items (the two price levels one item, and
+    # none named against the city's card); top_stats lists their stats
+    mv = movers(row, build.legend, build.manifest["standing_bands"]["keys"])
+    row["top_stats"] = [fid for m in mv for fid in m["ids"]]
+    row["summary_line"] = summary_line(mv)
     return row
 
 

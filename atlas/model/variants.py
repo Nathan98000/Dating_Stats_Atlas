@@ -64,10 +64,11 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import TOP_STATS_MAX, TOP_STATS_MIN_POINTS, summary_line
+from atlas.model.explain import (TOP_STATS_MAX, TOP_STATS_MIN_POINTS, mover_sides, mover_units,
+                                 summary_line)
 from atlas.model.loader import Build
 from atlas.model.preferences import EDU_LEVELS, SEX_LEVELS, SPEC_RACE, Request, seeker_weights
-from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _match_from, _match_parts,
+from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _card_stats, _match_from, _match_parts,
                                  _pct_rank, balance_parts, feature_reference, match_inputs,
                                  match_normalised, match_scoring_spec, race_used, ranked_row,
                                  same_sex_note, score_components, score_from, search_frame,
@@ -149,23 +150,38 @@ def _round_list(x: np.ndarray, nd: int) -> list[float]:
     return out
 
 
-def _explain_codes(C: np.ndarray) -> np.ndarray:
-    """The movers of every row from its rounded contributions C (n, F; NaN
-    where a feature is missing): explain.top_stats' rule — |contribution|
-    at least TOP_STATS_MIN_POINTS, largest first, ties in feature order,
-    at most TOP_STATS_MAX — as codes (feature + 1) * 2 + (1 if a plus),
-    0 where there are fewer movers."""
-    absC = np.abs(C)
-    eligible = absC >= TOP_STATS_MIN_POINTS              # NaN -> False
+def _unit_sums(C: np.ndarray, units: list[dict]) -> np.ndarray:
+    """explain.unit_contributions for every row at once: each item's stats'
+    rounded contributions C (n, F; NaN where missing) added in the stats'
+    order — the same float additions — NaN where all of them are missing."""
+    out = np.full((C.shape[0], len(units)), np.nan)
+    for u, unit in enumerate(units):
+        acc = np.full(C.shape[0], np.nan)
+        for j in unit["cols"]:
+            col = C[:, j]
+            acc = np.where(np.isnan(acc), col, np.where(np.isnan(col), acc, acc + col))
+        out[:, u] = acc
+    return out
+
+
+def _explain_codes(Cu: np.ndarray, S: np.ndarray) -> np.ndarray:
+    """The movers of every row from its items' contributions Cu (n, U; NaN
+    where an item's stats are all missing) and its cards' sides S (n, U):
+    explain.pick_movers' rule — an item whose sign contradicts its card is
+    left out; then |contribution| at least TOP_STATS_MIN_POINTS, largest
+    first, ties in item order, at most TOP_STATS_MAX — as codes
+    (item + 1) * 2 + (1 if a plus), 0 where there are fewer movers."""
+    absC = np.abs(Cu)
+    eligible = (absC >= TOP_STATS_MIN_POINTS) & ~(Cu * S < 0)    # NaN -> False
     key = np.where(eligible, -absC, np.inf)
     order = np.argsort(key, axis=1, kind="stable")[:, :TOP_STATS_MAX]
-    rows = np.arange(C.shape[0])[:, None]
+    rows = np.arange(Cu.shape[0])[:, None]
     ok = eligible[rows, order]
-    plus = C[rows, order] > 0
+    plus = Cu[rows, order] > 0
     return np.where(ok, (order + 1) * 2 + plus, 0)
 
 
-EXPLAIN_BASE = 64      # codes (feature + 1) * 2 + sign stay below this
+EXPLAIN_BASE = 64      # codes (item + 1) * 2 + sign stay below this
 
 
 def _explain_key(codes: np.ndarray) -> np.ndarray:
@@ -184,15 +200,16 @@ def _explain_of_key(key: int, width: int) -> tuple[int, ...]:
     return tuple(reversed(digits))
 
 
-def _explain_entry(code: tuple[int, ...], feats: list[dict], legend: dict) -> dict:
+def _explain_entry(code: tuple[int, ...], units: list[dict]) -> dict:
     """top_stats and summary_line for one movers code, through the same
-    functions rank() uses: the movers go in with their order and signs
+    function rank() uses: the movers go in with their order and signs
     (summary_line reads nothing else — pluses in order, the first minus)."""
-    stats = []
+    moved = []
     for p, c in enumerate(x for x in code if x):
-        j, is_plus = c // 2 - 1, bool(c % 2)
-        stats.append({"id": feats[j]["id"], "contribution": (1.0 if is_plus else -1.0) * (TOP_STATS_MAX - p)})
-    return {"top_stats": [s["id"] for s in stats], "summary_line": summary_line({"stats": stats}, legend)}
+        u, is_plus = c // 2 - 1, bool(c % 2)
+        moved.append({"phrase": units[u]["phrase"], "ids": units[u]["ids"],
+                      "contribution": (1.0 if is_plus else -1.0) * (TOP_STATS_MAX - p)})
+    return {"top_stats": [fid for m in moved for fid in m["ids"]], "summary_line": summary_line(moved)}
 
 
 def _strip_row(row: dict) -> dict:
@@ -288,17 +305,26 @@ def rank_variants(build: Build, req: Request) -> dict:
             out["ranked"].append(_strip_row(row))
 
         others = np.array([j for j in range(len(feats)) if j != jm])
-        assert 2 * (len(feats) + 1) <= EXPLAIN_BASE
         C0 = np.full(contrib0.shape, np.nan)
         avail0 = ~np.isnan(z0)
         for j in others:
             C0[:, j] = np.where(avail0[:, j], _round_list(contrib0[:, j], 2), np.nan)
+        # m4.1.1: the movers line's items (explain.mover_units) and each
+        # ranked metro's cards' sides (no request changes them), by position
+        # in ridx like C0
+        units = mover_units([f["id"] for f in feats], build.legend)
+        assert 2 * (len(units) + 1) <= EXPLAIN_BASE
+        side_memo = build.memo.setdefault(("mover_sides", tuple(u["phrase"] for u in units)), {})
+        for i in ridx.tolist():
+            if i not in side_memo:
+                side_memo[i] = mover_sides(units, build.legend, _card_stats(build, i), bands["keys"])
+        S0 = np.array([side_memo[i] for i in ridx.tolist()], dtype=float).reshape(len(ridx), len(units))
         rule, spec = match_scoring_spec(build)
         ref0 = sc_d["ref"]
         display = _display_fn(build)
         edges = bands["edges"]
         explain_ix: dict[int, int] = {}
-        explain_memo = build.memo.setdefault(("explain", tuple(f["id"] for f in feats)), {})
+        explain_memo = build.memo.setdefault(("explain_units", tuple(u["phrase"] for u in units)), {})
         n = len(ridx)
         base_pos = np.empty(n, dtype=int)
         base_pos[base] = np.arange(n)
@@ -349,17 +375,16 @@ def rank_variants(build: Build, req: Request) -> dict:
                 cols[name].append(vals)
             cols["capped"].append(capped)
             # the explanation: the rounded contributions, this variant's
-            # figure in its column, through top_stats' rule
+            # figure in its column, through explain.pick_movers' rule
             C = C0[order].copy()
             C[:, jm] = [np.nan if c is None else c for c in per["contribution"]]
-            keys = _explain_key(_explain_codes(C))
+            keys = _explain_key(_explain_codes(_unit_sums(C, units), S0[order]))
             uniq, inverse = np.unique(keys, return_inverse=True)
             slots = []
             for key in uniq.tolist():
                 if key not in explain_ix:
                     if key not in explain_memo:
-                        explain_memo[key] = _explain_entry(_explain_of_key(key, TOP_STATS_MAX), feats,
-                                                           build.legend)
+                        explain_memo[key] = _explain_entry(_explain_of_key(key, TOP_STATS_MAX), units)
                     explain_ix[key] = len(out["variants"]["explain"])
                     out["variants"]["explain"].append(explain_memo[key])
                 slots.append(explain_ix[key])

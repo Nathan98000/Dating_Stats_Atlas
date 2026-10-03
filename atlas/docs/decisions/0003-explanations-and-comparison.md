@@ -2,7 +2,8 @@
 
 **Status:** decided 2026-09-16 by Nathan. Retires **D10**, amends **§9**'s explanation
 design and the §9 metric-record contract Phase 2a pinned, and replaces the user-facing
-terminology of the `balance` pillar. Implemented in Phase 2b.
+terminology of the `balance` pillar. Implemented in Phase 2b. Amended 2026-10-03
+(m4.1.1, after Nathan's report from the live site): decision 2's list, the last section.
 
 ## Context
 
@@ -31,6 +32,8 @@ choose.
    absolute contribution, each with its value in real units and what it did to the score. This
    list depends on the weight vector, so it changes as the size-versus-odds slider moves —
    which is the point: it answers "why this city, for the way *I* weighted things."
+   *[Amended in m4.1.1: the two price levels are one item, and no stat is named against its
+   city's card — the last section.]*
 
 3. **Every stat is available for every city** — on the metro page, and by expanding a result
    row: display name, value in real units, standing across the ranked set, weight under the
@@ -82,3 +85,30 @@ every rendered string reads from the registry. Terminology then becomes a data c
   renormalize over a set of two and report numbers that disagree with the ranking page for the
   same preferences.
 - The proposal's §5.3 mock row, §9 comparator rule, and D10 are superseded by this record.
+
+## Amended in m4.1.1 (2026-10-03): everyday prices is one item, and no stat is named against its card
+
+Nathan found two errors on the live site, both in decision 2's list as the movers line names it.
+
+- **A phrase named twice.** Goods prices and services prices are two scored stats, and both
+  carry the mover phrase "everyday prices", the card that shows them together. A row could read
+  "Biggest pluses: ..., everyday prices, everyday prices", or name everyday prices as a plus and
+  as the minus at once. They are now one item: their contributions are added before the top
+  three are picked, and the sum's sign names it once (`explain.mover_units`).
+- **A minus its card contradicted.** Austin read "Walkable neighbourhoods counts against it"
+  while its card said "More walkable than most". Each was right on its own terms. The score
+  measures a stat against the middle of the cities ranked for the search (decision 1's
+  reference); the card measures it against every city of the build. In a narrower search the
+  ranked cities are mostly big, walkable metros, and a city walkable by the national yardstick
+  can sit below their middle. The line now never names a stat as a minus where the city's card
+  says better than most (its two upper bands, read in the score's direction), nor as a plus
+  where the card says worse than most; the next item takes its place
+  (`explain.mover_sides`, `pick_movers`). The price pair answers to the everyday-prices card.
+
+The reference, the attribution's exactness and every score are unchanged; only which items a
+line names, and `top_stats` with them, which now lists both price ids for the everyday-prices
+item. Over the 518 ADR 0011 test searches on build 2dbd9ebfa7ff, every /v1/rank response is
+identical to m4.1.0's but for its explanations, and so are all 1,036 single-seeker rankings.
+13,022 of the default variants' 98,415 lines change: those repeating a phrase fall from 11 to
+0, and those naming a stat against its card from 182 to 0
+(`results/movers_fix/served_numbers_check.json`).

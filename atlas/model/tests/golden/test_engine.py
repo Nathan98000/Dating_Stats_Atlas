@@ -15,7 +15,7 @@ import numpy as np
 import pytest
 
 from atlas import model as engine
-from atlas.model.explain import summary_line
+from atlas.model.explain import mover_sides, mover_units, movers, summary_line
 from atlas.model.intervals import IntervalModel
 from atlas.model.loader import reduce_cube, reduced_key
 from atlas.model.preferences import (ALLOWED_MARITAL, INCOME_FLOORS,
@@ -734,19 +734,93 @@ def test_no_banned_terminology_anywhere(build, response):
 def test_summary_line_lead_is_position_unique(build, response):
     for r in response["ranked"]:
         assert r["summary_line"].count(POLICY_STRINGS["pluses_lead"]) <= 1
-    row = dict(response["ranked"][0])
-    row["stats"] = [
+    row = {"stats": [
         {"id": "pool_size", "pillar": "pool", "value": 84200.0,
          "contribution": 12.0},
         {"id": "rent_1br", "pillar": "cost", "value": 1830.0,
          "contribution": 11.0},
         {"id": "pleasant_days", "pillar": "weather", "value": 90.0,
          "contribution": -6.0},
-    ]
-    out = summary_line(row, build.legend)
+    ], "cards": []}
+    out = summary_line(movers(row, build.legend, build.manifest["standing_bands"]["keys"]))
     assert out.count("Biggest pluses:") == 1
     assert out.endswith("counts against it")
     assert not BANNED.search(out)
+
+
+def _line(build, stats, cards=()):
+    """The movers line for hand-made stats and cards."""
+    row = {"stats": [{"id": fid, "contribution": c} for fid, c in stats],
+           "cards": [{"id": cid, "band": {"key": key}} for cid, key in cards]}
+    return summary_line(movers(row, build.legend, build.manifest["standing_bands"]["keys"]))
+
+
+def test_the_two_price_levels_are_one_item(build):
+    """m4.1.1: goods and services prices share "everyday prices" (the card
+    that shows them both), so the line names it once, with their
+    contributions added — never twice, never as a plus and the minus."""
+    assert _line(build, [("pool_size", 9.0), ("rpp_goods", 2.0), ("rpp_services_other", 1.5)]) == \
+        "Biggest pluses: the size of the pool, everyday prices"
+    # opposite signs: the sum decides, and a sum under the floor names nothing
+    assert _line(build, [("pool_size", 9.0), ("rpp_goods", 2.0), ("rpp_services_other", -1.4)]) == \
+        "Biggest pluses: the size of the pool, everyday prices"
+    assert _line(build, [("pool_size", 9.0), ("rpp_goods", 1.0), ("rpp_services_other", -0.8)]) == \
+        "Biggest pluses: the size of the pool"
+    # the pair's sum can outrank a single stat it would have lost to apart
+    assert _line(build, [("rent_1br", -1.2), ("rpp_goods", -0.7), ("rpp_services_other", -0.7)]) == \
+        "Everyday prices counts against it"
+
+
+def test_no_item_is_named_against_its_card(build):
+    """m4.1.1: the line never calls a stat a minus where the city's card
+    says better than most, nor a plus where it says worse than most — the
+    score measures a stat against the middle of the cities ranked for the
+    search, the card against every city (Austin: walkable "more than most",
+    yet below that middle in some searches)."""
+    walk = [("pool_size", 9.0), ("resident_walkability_index", -3.0)]
+    assert _line(build, walk, [("resident_walkability_index", "high")]) == \
+        "Biggest pluses: the size of the pool"
+    assert _line(build, walk, [("resident_walkability_index", "mid")]) == \
+        "Biggest pluses: the size of the pool · Walkable neighbourhoods counts against it"
+    assert _line(build, walk, [("resident_walkability_index", "lowest")]).endswith(
+        "Walkable neighbourhoods counts against it")
+    # rent reads the other way: a high band is pricier, the unfavourable side
+    assert _line(build, [("rent_1br", 2.0)], [("rent_1br", "high")]) == \
+        "Close to the middle of the pack on everything you weighted"
+    assert _line(build, [("rent_1br", -2.0)], [("rent_1br", "high")]) == "Rent counts against it"
+    assert _line(build, [("rent_1br", 2.0)], [("rent_1br", "lowest")]) == "Biggest pluses: rent"
+    # the price pair answers to the everyday prices card
+    pair = [("rpp_goods", 1.5), ("rpp_services_other", 1.0)]
+    assert _line(build, pair, [("everyday_prices", "highest")]) == \
+        "Close to the middle of the pack on everything you weighted"
+    assert _line(build, pair, [("everyday_prices", "low")]) == "Biggest pluses: everyday prices"
+    # a vetoed item leaves its place to the next one
+    assert _line(build, [("pool_size", 9.0), ("resident_walkability_index", -3.0), ("rent_1br", 2.5),
+                         ("pleasant_days", 1.0), ("students_per_1k_adults", 0.8)],
+                 [("resident_walkability_index", "highest")]) == \
+        "Biggest pluses: the size of the pool, rent, the weather"
+
+
+def test_served_lines_repeat_nothing_and_never_contradict_a_card(build):
+    """Over searches that move the price pair and walkability most: no
+    served line names a phrase twice, and none names a stat against the
+    side its card puts the city on."""
+    keys = build.manifest["standing_bands"]["keys"]
+    for imp in ({"cost": "a_lot", "reach": "a_lot", "students": "not_much", "weather": "not_much"},
+                {"cost": "a_lot", "reach": "some", "students": "some", "weather": "some"},
+                {"cost": "not_much", "reach": "a_lot", "students": "some", "weather": "a_lot"}):
+        body = {"self": {"sex": "female", "age": 32},
+                "seeking": {"age": [28, 40], "marital": ["never_married", "previously_married"]},
+                "pool_vs_match": 0.2, "importance": imp}
+        for r in engine.rank(build, engine.parse_request(body))["ranked"]:
+            named = [m["phrase"] for m in movers(r, build.legend, keys)]
+            assert len(named) == len(set(named)), r["summary_line"]
+            units = mover_units([s["id"] for s in r["stats"]], build.legend)
+            sides = dict(zip((u["phrase"] for u in units),
+                             mover_sides(units, build.legend, r["cards"], keys)))
+            for m in movers(r, build.legend, keys):
+                assert m["contribution"] * sides[m["phrase"]] >= 0, (r["cbsa"], m, r["summary_line"])
+            assert r["top_stats"] == [fid for m in movers(r, build.legend, keys) for fid in m["ids"]]
 
 
 def test_cards_carry_bands_from_the_build(build, response):
@@ -1047,8 +1121,9 @@ def test_match_rule_switches_and_the_display_cap_feeds_none_of_them(build):
 def test_attribution_identity_holds_under_every_match_rule(build):
     """The feature-level attribution sums to score minus reference under
     every rule (asserted inside score_components on every request), the
-    stats that moved the score are the largest contributions, and the
-    match stat's contribution reads the rule's normalised value."""
+    stats that moved the score are the movers line's items (the largest
+    contributions, m4.1.1's rule), and the match stat's contribution reads
+    the rule's normalised value."""
     body = {"self": {"sex": "male", "age": 34, "education": "graduate", "race_ethnicity": "asian_nh"},
             "seeking": {"age": [28, 40], "marital": ["never_married", "previously_married"]}}
     req = engine.parse_request(body)
@@ -1062,9 +1137,9 @@ def test_attribution_identity_holds_under_every_match_rule(build):
             assert abs(total - pillars) < 0.05 * len(r["stats"])
             s = next(x for x in r["stats"] if x["id"] == "match_propensity")
             assert abs(s["contribution"] - s["weight"] * (s["z"] - ref)) < 0.02 + 1e-9, (rule, r["cbsa"])
-            moved = sorted((x for x in r["stats"] if x["contribution"] is not None),
-                           key=lambda x: -abs(x["contribution"]))
-            assert r["top_stats"] == [x["id"] for x in moved][:len(r["top_stats"])] or len(r["top_stats"]) == 0
+            # the stats that moved the score: the movers line's items, largest first
+            keys = build.manifest["standing_bands"]["keys"]
+            assert r["top_stats"] == [fid for m in movers(r, build.legend, keys) for fid in m["ids"]]
 
 
 def test_registry_normalization_block_is_the_manifests(build):
