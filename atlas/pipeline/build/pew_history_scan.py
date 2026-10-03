@@ -305,7 +305,9 @@ def inspect(det: Detector, path: str, data: bytes) -> dict:
         import pandas as pd
         df = pd.read_parquet(io.BytesIO(data))
         rec.update(G.tracked_file_findings(path, data))
-        rows = df.astype(str).values.tolist()
+        # pandas 3's astype(str) keeps a missing cell missing (a float NaN):
+        # it reads as an empty cell, every other cell as astype(str) writes it
+        rows = df.astype(str).fillna("").values.tolist()
         rec["pairs"] = det.count(det.table_obs([str(c) for c in df.columns], rows))
         return rec
     if ext in {"docx", "pdf"}:

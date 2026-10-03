@@ -7,8 +7,10 @@ Phase 4 (ADR 0012): the table is build-time only, never published and never
 compared in public. It lives only in the gitignored private folder on the
 build machine, so every test here that needs it skips where it is absent,
 and no tracked file may carry its header line or a Pew column."""
+import io
 import json
 import subprocess
+from decimal import Decimal
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -18,6 +20,7 @@ import pytest
 
 from atlas.pipeline.adapters.base import LICENSES
 from atlas.pipeline.build import pew_guard as G
+from atlas.pipeline.build import pew_history_scan as S
 from atlas.pipeline.build.validate import check_pew_never_shipped
 
 FIXTURE = Path(__file__).resolve().parents[1].parent / "model" / "tests" / "golden" / "fixture_build"
@@ -80,6 +83,27 @@ def test_no_tracked_file_carries_a_pew_column_or_the_table_header():
 ])
 def test_the_tracked_file_check_sees_a_pew_column(path, text):
     assert G.tracked_file_findings(path, text.encode())
+
+
+def test_the_history_scan_reads_a_parquet_with_missing_cells():
+    """A missing parquet cell reads as an empty one (pandas 3's astype(str)
+    keeps it a float NaN, which crashed the scan); every other cell reads as
+    astype(str) writes it, a float32 12.3 as "12.3". The row whose metro is
+    missing names no metro. Synthetic metros and values: none is Pew's."""
+    det = S.Detector([
+        {"code": "99901", "name": "Testville, ZZ", "variants": {"Testville"},
+         "values": frozenset({Decimal("12.3")})},
+        {"code": "99902", "name": "Otherton, ZZ", "variants": {"Otherton"},
+         "values": frozenset({Decimal("40")})},
+    ])
+    df = pd.DataFrame({"msa_code": ["99901", None, "99902"],
+                       "rate": np.array([12.3, 40, np.nan], dtype="float32"),
+                       "n": pd.array([None, 7, 1], dtype="Int64"),
+                       "spans": [[1, 2], None, [3]]})
+    buf = io.BytesIO()
+    df.to_parquet(buf)
+    assert S.inspect(det, "x.parquet", buf.getvalue()) == {
+        "pairs": {"pairs": 1, "where": "column 'rate'"}}
 
 
 def test_the_tracked_file_check_passes_our_own_names():
