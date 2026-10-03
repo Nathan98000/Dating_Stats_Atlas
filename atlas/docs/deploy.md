@@ -1,16 +1,14 @@
-# Deploy runbook — the site runs privately; NOT YET OPEN to the public
+# Deploy runbook — the site is LIVE at https://dating-stats-atlas.duckdns.org
 
-**Do not open the site yet.** The answers to the counsel packet have
-returned and are kept private (never committed); ADR 0012 records Nathan's
-decisions and the build encodes them. What still stays with Nathan is the
-"Before launch" list below, and no public URL exists until it is done.
-This runbook exists so that the deploy is a checklist, not a design
-session.
+The answers to the counsel packet have returned and are kept private (never
+committed); ADR 0012 records Nathan's decisions and the build encodes them.
+This runbook exists so that a deploy is a checklist, not a design session.
 
 **Where it stands (2026-10-03).** Nathan chose Topology C, one Oracle Cloud
 Always Free VM, so that the site costs nothing to run (Fly.io's always-on
-setup would have been about $17.50 a month). The VM runs the site, reachable
-only over SSH. It opens once the "Before launch" list's last items are done.
+setup would have been about $17.50 a month). With the "Before launch" list
+done, Nathan said to launch on 3 October 2026, and the site opened that day
+at https://dating-stats-atlas.duckdns.org (Topology C's launch record).
 
 ## The invariant everything else serves (D04)
 
@@ -92,8 +90,8 @@ internet and terminates HTTPS.
 - **Network.** VCN `dating-stats-atlas-vcn` (10.0.0.0/16), an internet
   gateway, and the public subnet `dating-stats-atlas-subnet`
   (10.0.0.0/24) with its own security list `dating-stats-atlas-sl`: SSH
-  (22) and ICMP path-MTU in. Ports 80 and 443 are added only when the site
-  opens. Docker's published ports pass through its own FORWARD rules,
+  (22) and ICMP path-MTU in, and, since the launch, TCP 80 and 443. Docker's
+  published ports pass through its own FORWARD rules,
   ahead of the image's iptables REJECT, so the VM's iptables need no
   change.
 - **VM.** `dating-stats-atlas`: VM.Standard.A1.Flex, 1 OCPU and 6 GB
@@ -132,6 +130,29 @@ Deploy, from the repository root on Nathan's Mac:
 **New build:** rsync the new build over `/srv/atlas/build` and restart the
 api service; the manifest still refuses a model mismatch. **New code:**
 steps 1, 2 and 4 again.
+
+**Launch record (2026-10-03, on Nathan's word "launch").** The security
+list gained TCP 80 and 443, beside SSH and ICMP path-MTU. Caddy started
+under the "public" profile and obtained its certificate through the HTTP-01
+challenge: Let's Encrypt (YE2) for `dating-stats-atlas.duckdns.org`, valid
+to 1 January 2027 and renewed by Caddy. The VM then served commit
+fa90cf3's code: the images were built from 5a0fec1, and fa90cf3 changed
+only this runbook. Checked from Nathan's Mac:
+
+- http redirects to https (308), and HTTP/2 is served with
+  `Referrer-Policy: no-referrer`;
+- every page tried answered 200, in 0.1–1.0 s: home, a search, About us,
+  Privacy, Terms, What we measure, compare's landing, the Fairbanks and
+  Pittsburgh city pages, a compare of two cities below the floor, and two
+  stat pages;
+- a browser search through the site's own `/api/rank` answered 200 with 193
+  ranked cities, build 2dbd9ebfa7ff, m4.1.0;
+- the API stays private: port 8000 is closed from outside, and `/v1/health`
+  and `/v1/meta` through the site answer 404;
+- the logs hold no visitor's address after that traffic. Caddy's only
+  outside addresses are Let's Encrypt's five validation servers answering
+  the challenge; the web log holds none, and the API's access lines show
+  only the web container (172.18.0.3).
 
 ## Environment variables
 
