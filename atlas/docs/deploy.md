@@ -1,10 +1,16 @@
-# Deploy runbook — configuration committed, NOTHING DEPLOYED
+# Deploy runbook — the site runs privately; NOT YET OPEN to the public
 
-**Do not deploy.** The answers to the counsel packet have returned and are
-kept private (never committed); ADR 0012 records Nathan's decisions and the
-build encodes them. What still stays with Nathan is the "Before launch" list
-below, and no public URL exists until it is done. This runbook exists so
-that the deploy is a checklist, not a design session.
+**Do not open the site yet.** The answers to the counsel packet have
+returned and are kept private (never committed); ADR 0012 records Nathan's
+decisions and the build encodes them. What still stays with Nathan is the
+"Before launch" list below, and no public URL exists until it is done.
+This runbook exists so that the deploy is a checklist, not a design
+session.
+
+**Where it stands (2026-10-03).** Nathan chose Topology C, one Oracle Cloud
+Always Free VM, so that the site costs nothing to run (Fly.io's always-on
+setup would have been about $17.50 a month). The VM runs the site, reachable
+only over SSH. It opens once the "Before launch" list's last items are done.
 
 ## The invariant everything else serves (D04)
 
@@ -67,6 +73,66 @@ private network, so this topology needs one of:
 Either way the API still has no public *unauthenticated* surface and no
 CORS. If neither is acceptable, use Topology A.
 
+## Topology C — one Oracle Cloud Always Free VM (chosen 2026-10-03)
+
+Nathan's choice, so that the site costs nothing to run: Oracle's Always
+Free tier, which never charges unless the account is upgraded, holds one
+Arm VM, and the whole site runs on it with Docker Compose
+(`atlas/deploy/oracle/`). The two images are the ones Topology A would
+ship: the same Dockerfiles and the same deny-by-default `.dockerignore`,
+built on the VM. D04 holds by construction. The API publishes no port at
+all, so only the web container reaches it, over the compose network. The
+web app publishes to the VM's loopback only. Caddy alone faces the
+internet and terminates HTTPS.
+
+- **Account and region.** Nathan's Oracle Cloud account, home region
+  `us-ashburn-1` (Always Free compute exists only in the home region). The
+  CLI signs in with `oci session authenticate --profile-name DEFAULT`, a
+  browser login that is Nathan's own; its sessions last an hour.
+- **Network.** VCN `dating-stats-atlas-vcn` (10.0.0.0/16), an internet
+  gateway, and the public subnet `dating-stats-atlas-subnet`
+  (10.0.0.0/24) with its own security list `dating-stats-atlas-sl`: SSH
+  (22) and ICMP path-MTU in. Ports 80 and 443 are added only when the site
+  opens. Docker's published ports pass through its own FORWARD rules,
+  ahead of the image's iptables REJECT, so the VM's iptables need no
+  change.
+- **VM.** `dating-stats-atlas`: VM.Standard.A1.Flex, 1 OCPU and 6 GB
+  (inside the free 2 OCPU and 12 GB), Ubuntu 24.04 aarch64, a 50 GB boot
+  volume, public IP 132.145.205.110, in US-ASHBURN-AD-3 (AD-1 and AD-2 had
+  no free capacity). The SSH key is `~/.ssh/dating_stats_atlas_oracle` on
+  Nathan's Mac (`ssh dsa-oracle`). Oracle stops an Always Free A1 VM that
+  sits idle for a week (its CPU, network and memory all under 20%); the
+  site's roughly 2 GB in use keeps memory above that line.
+- **Upkeep.** Docker, Compose and buildx come from Ubuntu's packages.
+  Unattended security upgrades run, with an automatic reboot at 04:30 UTC
+  when one needs it, and every service restarts unless stopped.
+- **Address.** `dating-stats-atlas.duckdns.org`. DuckDNS is on the Public
+  Suffix List, so Let's Encrypt treats the name as its own. Caddy obtains
+  and renews the certificate.
+- **Logs.** No access log is configured anywhere. Caddy's default log
+  records no visitor address, even for failed or malformed TLS
+  connections (tested on the VM on 2026-10-03). Next.js logs no requests,
+  and the API's access lines show only the web container's address. Each
+  service's log is capped at 2 × 5 MB.
+
+Deploy, from the repository root on Nathan's Mac:
+
+1. The code: `git archive --format=tar <commit> | ssh dsa-oracle 'tar -x -C /srv/atlas/src'`.
+2. The photographs, which git does not hold (from the main checkout):
+   `rsync -a atlas/web/public/cities atlas/web/public/stats atlas/web/public/hero.jpg dsa-oracle:/srv/atlas/src/atlas/web/public/`.
+3. The build, mounted read-only as the API's `BUILD_DIR`:
+   `rsync -a atlas/data/builds/<data_version>/ dsa-oracle:/srv/atlas/build/`.
+4. On the VM: `cd /srv/atlas/src && docker compose -f atlas/deploy/oracle/compose.yaml up -d --build api web`.
+5. Check before the site is open: `ssh -N -L 3300:127.0.0.1:3000 dsa-oracle`,
+   then browse http://localhost:3300.
+6. Open the site, once: add ingress for TCP 80 and 443 to
+   `dating-stats-atlas-sl`, point the DuckDNS name at the IP, then
+   `docker compose -f atlas/deploy/oracle/compose.yaml --profile public up -d caddy`.
+
+**New build:** rsync the new build over `/srv/atlas/build` and restart the
+api service; the manifest still refuses a model mismatch. **New code:**
+steps 1, 2 and 4 again.
+
 ## Environment variables
 
 | var | where | meaning |
@@ -90,6 +156,26 @@ CORS. If neither is acceptable, use Topology A.
 ## Before launch — what stays with Nathan
 
 Phase 4 did everything in the repository; these are Nathan's own.
+
+Open for Topology C (2026-10-03):
+
+- [ ] **Approve Phase 4d's political-lean wording** (PHASE4D.md §6): the
+      definition, the shares text, the bar's labels and its spoken label,
+      the sort control and the stat page's source line. Nathan holds the
+      opening until he has reviewed it.
+- [ ] **The Privacy page's "Our host" paragraph** still names Fly.io. A
+      draft for Oracle, for Nathan's approval: "The site runs on a server
+      we rent from Oracle Cloud. The server keeps no record of your visits
+      — not your IP address, and not the pages you look at. Oracle's
+      network carries traffic to and from it, and like any network it sees
+      IP addresses, under Oracle's own privacy policy."
+- [ ] **Claim `dating-stats-atlas.duckdns.org`** at duckdns.org (signing
+      in with an existing GitHub or Google login) and point it at
+      132.145.205.110.
+- [ ] **Optional: Oracle's data-processing terms.** Find the data
+      processing agreement within the Oracle Cloud terms Nathan accepted at
+      sign-up, and save a dated copy to the counsel packet's attachments,
+      as Fly's was.
 
 - [x] **Approve the copy**: the privacy policy text and every new or
       changed sentence, listed old → new in `PHASE4.md` ("Copy for

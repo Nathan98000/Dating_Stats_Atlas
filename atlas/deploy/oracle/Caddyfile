@@ -1,0 +1,7 @@
+# The Oracle VM's one public surface (compose.yaml, docs/deploy.md Topology
+# C): HTTPS for the site's address, with a certificate Caddy obtains and
+# renews itself, and every request passed to the web app over the private
+# network. No access log is configured, so no visit is recorded.
+{$SITE_ADDRESS} {
+	reverse_proxy web:3000
+}

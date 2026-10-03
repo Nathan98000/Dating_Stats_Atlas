@@ -1,0 +1,66 @@
+# One Oracle Cloud Always Free VM (docs/deploy.md, Topology C): the two
+# images built from the repository root exactly as `fly deploy` would build
+# them (the same Dockerfiles, the same deny-by-default .dockerignore), on one
+# private network.
+#
+# D04 holds by construction: the API publishes no port at all, so only the
+# web container reaches it, over this network. The web app publishes to the
+# VM's loopback only, for checks over SSH before the site opens. Caddy alone
+# faces the internet and terminates HTTPS; it runs only under the "public"
+# profile, started when the site opens. No access log is configured
+# anywhere, and every service's own log is size-capped.
+#
+#   docker compose -f atlas/deploy/oracle/compose.yaml up -d --build api web
+#   docker compose -f atlas/deploy/oracle/compose.yaml --profile public up -d caddy
+name: dating-stats-atlas
+
+x-logging: &capped
+  driver: local
+  options:
+    max-size: "5m"
+    max-file: "2"
+
+services:
+  api:
+    build:
+      context: ../../..
+      dockerfile: atlas/api/Dockerfile
+    # the ONE build to serve, read-only (the image's BUILD_DIR=/data/build)
+    volumes:
+      - /srv/atlas/build:/data/build:ro
+    restart: unless-stopped
+    logging: *capped
+
+  web:
+    build:
+      context: ../../..
+      dockerfile: atlas/web/Dockerfile
+    environment:
+      ATLAS_API_URL: http://api:8000
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - api
+    restart: unless-stopped
+    logging: *capped
+
+  caddy:
+    image: caddy:2
+    profiles: ["public"]
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-dating-stats-atlas.duckdns.org}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+    logging: *capped
+
+volumes:
+  caddy_data:
+  caddy_config:
