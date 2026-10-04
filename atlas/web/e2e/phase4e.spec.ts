@@ -82,3 +82,21 @@ for (const fid of ["who_lives_here", "political_lean"]) {
     await expect(credit.getByRole("link", { name: "source" })).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\//);
   });
 }
+
+test("nice days carries the new definition, and its unit line stays", async ({ page, request }) => {
+  const meta = await fetchMeta(request);
+  const f = meta.features.pleasant_days;
+  expect(f.definition).toBe(
+    "Days a year that average between 55 and 75°F, stay below 85°F and above 45°F, and have no more than a light shower and no snow");
+  expect(f.unit).toBe("days that are mild and dry enough to be outside");
+  await page.goto("/stats/pleasant_days");
+  await expect(page.getByText(f.definition, { exact: true })).toBeVisible();
+  await page.goto("/what-we-measure");
+  await expect(page.getByText(f.definition)).toBeVisible();
+  // the old thresholds are stated nowhere on these pages
+  for (const path of ["/stats/pleasant_days", "/what-we-measure", "/about"]) {
+    await page.goto(path);
+    const body = await page.locator("body").innerText();
+    expect(body, path).not.toMatch(/55 and 85|below 40°F|dip below/);
+  }
+});

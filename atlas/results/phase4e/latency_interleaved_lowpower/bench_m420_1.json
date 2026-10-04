@@ -1,0 +1,19 @@
+{
+  "n": 300,
+  "p50_ms": 60.16,
+  "p95_ms": 100.97,
+  "p99_ms": 111.29,
+  "max_ms": 112.79,
+  "target_p95_ms": 100,
+  "load_average_before": [
+    4.4,
+    5.14,
+    3.31
+  ],
+  "load_average_after": [
+    4.25,
+    5.07,
+    3.32
+  ],
+  "build": "/Users/nathann/Downloads/Projects/Dating_Stats_Atlas/atlas/data/builds/63c4e5fa51bf"
+}

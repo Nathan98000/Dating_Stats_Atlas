@@ -41,6 +41,14 @@
    "old": "(none)",
    "new": "Place Vosges Paris Mai 2006 011 · Gryffindor · Public domain · source  |  Voting booths inside Combined Polling Place Zion Lutheran Church in Grand Rapids, Minnesota on Election Day (53317086671) · Lorie Shaull from St Paul, United States · CC BY 2.0 · source",
    "why": "the two photos' credits, in Sources and credits only (neither is cropped)"
+  },
+  {
+   "change": "a new definition of a nice day (item 2)",
+   "kind": "changed (the brief's DRAFT, as written; awaiting Nathan's approval)",
+   "where": "registry features.pleasant_days.definition -> the stat page's subheading (/stats/pleasant_days), What we measure, the city card's and compare row's info",
+   "old": "Days a year that reach between 55 and 85°F, don't dip below 40°F, and see no more than a light shower",
+   "new": "Days a year that average between 55 and 75°F, stay below 85°F and above 45°F, and have no more than a light shower and no snow",
+   "why": "Nathan's new rule; the unit line (\"days that are mild and dry enough to be outside\") stays. No About us, Privacy, Terms or methodology sentence states the thresholds (searched: docs/methodology.md names only the source and years), so nothing else on the site changes"
   }
  ]
 }

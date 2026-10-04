@@ -9,9 +9,18 @@ Francisco's normal highs sit in the high-50s-to-60s band all year, so it
 served 365. Computed on real days, a cold snap, a heat wave or a rainy day
 fails the test on the day it happens.
 
-Definition (registry-owned, all three thresholds): a pleasant day has
-TMAX in [tmax_f], TMIN >= tmin_floor_f, and PRCP <= prcp_max_in — a 68°F
-day with an inch of rain is not a nice day. Per station: count pleasant
+Definition (registry-owned, every threshold; Phase 4e, Nathan's rule,
+m4.2.0): a nice day meets ALL of — the day's average temperature, taken as
+(TMAX + TMIN) / 2 because GHCN's TAVG is often missing, between
+tavg_f[0] and tavg_f[1] inclusive; TMAX below tmax_below_f; TMIN above
+tmin_above_f; PRCP at most prcp_max_in (no more than a light shower); SNOW
+at most snow_max_in (none measurable); SNWD below snwd_max_in (no deep
+snow cover). Many stations do not report snow: a day with no SNOW or SNWD
+value counts as snow-free (with the low above 45°F, snow is effectively
+impossible), and which days had snow data is counted, not assumed. Station
+eligibility and the completeness policy are unchanged — a valid day needs
+TMAX, TMIN and PRCP. (m2.1.0-m4.1.1: TMAX in [55, 85], TMIN >= 40, PRCP
+<= 0.1.) Per station: count pleasant
 days per calendar year over 1991-2020, scale each year by 365/valid-days
 (a missing reading is unknown, not un-nice), require MIN_DAYS_PER_YEAR
 valid days for a year to count and MIN_YEARS qualifying years for the
@@ -40,7 +49,7 @@ INV_URL = "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt"
 DAILY_URL = ("https://www.ncei.noaa.gov/access/services/data/v1"
              "?dataset=daily-summaries&stations={sid}"
              "&startDate=1991-01-01&endDate=2020-12-31"
-             "&dataTypes=TMAX,TMIN,PRCP&format=csv&units=standard")
+             "&dataTypes=TMAX,TMIN,PRCP,SNOW,SNWD&format=csv&units=standard")
 
 YEARS = (1991, 2020)
 MIN_DAYS_PER_YEAR = 330      # a year with fewer valid days is not counted
@@ -60,17 +69,44 @@ ALLOWED_NETWORKS = ("C", "W", "R")
 US_STATION_PREFIX = "US"
 
 
+# plausible ranges for the snow fields (inches): a reading outside them is
+# a data error and is treated as no reading (snow-free), and counted
+SNOW_RANGE = (0.0, 100.0)
+SNWD_RANGE = (0.0, 500.0)
+
+
+def nice_day_parts(tmax: pd.Series, tmin: pd.Series, prcp: pd.Series,
+                   snow: pd.Series, snwd: pd.Series, rule: dict) -> dict[str, pd.Series]:
+    """The nice-day rule, criterion by criterion, on daily values in GHCN's
+    standard units (°F, inches). Each part is True where the day passes it;
+    `nice` is all of them. Missing SNOW or SNWD passes its part (snow-free);
+    a missing temperature or rain reading fails (the day is then not valid,
+    which the caller decides). The average is (TMAX + TMIN) / 2."""
+    lo, hi = rule["tavg_f"]
+    tavg = (tmax + tmin) / 2.0
+    parts = {
+        "tavg": tavg.between(lo, hi),                       # inclusive
+        "tmax": tmax < rule["tmax_below_f"],
+        "tmin": tmin > rule["tmin_above_f"],
+        "prcp": prcp <= rule["prcp_max_in"],
+        "snow": snow.isna() | (snow <= rule["snow_max_in"]),
+        "snwd": snwd.isna() | (snwd < rule["snwd_max_in"]),
+    }
+    parts["temp"] = parts["tavg"] & parts["tmax"] & parts["tmin"]
+    parts["snow_free"] = parts["snow"] & parts["snwd"]
+    parts["nice"] = parts["temp"] & parts["prcp"] & parts["snow_free"]
+    return parts
+
+
 class GhcnDailyAdapter:
     source_id = "ghcn_daily"
     vintage = "GHCN-Daily, observations 1991-2020"
     license = LICENSES["ghcn_daily"]
-    requested_variables = ["TMAX", "TMIN", "PRCP"]
+    requested_variables = ["TMAX", "TMIN", "PRCP", "SNOW", "SNWD"]
 
     def __init__(self) -> None:
-        pd_def = load_registry().pleasant_day
-        self.tmax_lo, self.tmax_hi = pd_def["tmax_f"]
-        self.tmin_floor = pd_def["tmin_floor_f"]
-        self.prcp_max = pd_def["prcp_max_in"]
+        self.rule = dict(load_registry().pleasant_day)
+        self.prcp_max = self.rule["prcp_max_in"]
 
     def fetch(self) -> RawBundle:
         return RawBundle(self.source_id, [fetch(INV_URL)])
@@ -111,27 +147,47 @@ class GhcnDailyAdapter:
         tmax = pd.to_numeric(df["TMAX"], errors="coerce")
         tmin = pd.to_numeric(df["TMIN"], errors="coerce")
         prcp = pd.to_numeric(df["PRCP"], errors="coerce")
+        # the snow fields: absent columns (a station that never reports
+        # snow) and blank cells are no reading; so is an implausible one
+        snow_raw = pd.to_numeric(df.get("SNOW", pd.Series(index=df.index, dtype=float)),
+                                 errors="coerce")
+        snwd_raw = pd.to_numeric(df.get("SNWD", pd.Series(index=df.index, dtype=float)),
+                                 errors="coerce")
+        snow = snow_raw.where(snow_raw.between(*SNOW_RANGE))
+        snwd = snwd_raw.where(snwd_raw.between(*SNWD_RANGE))
         valid = (d.notna() & tmax.notna() & tmin.notna() & prcp.notna()
                  & tmax.between(-40, 135) & tmin.between(-60, 110)
                  & (tmin <= tmax) & prcp.between(0, 30))
         year = d.dt.year
-        mild = (valid & tmax.between(self.tmax_lo, self.tmax_hi)
-                & (tmin >= self.tmin_floor))
-        pleasant = mild & (prcp <= self.prcp_max)
-        per_year = pd.DataFrame({"year": year, "valid": valid, "mild": mild,
-                                 "pleasant": pleasant}).groupby("year").sum()
+        parts = nice_day_parts(tmax, tmin, prcp, snow, snwd, self.rule)
+        pleasant = valid & parts["nice"]
+        # counterfactuals for the validation suite and the report: the rule
+        # without its rain term, and without its two snow terms
+        mild = valid & parts["temp"] & parts["snow_free"]
+        no_snow_rule = valid & parts["temp"] & parts["prcp"]
+        has_snow_data = snow.notna() | snwd.notna()
+        per_year = pd.DataFrame({
+            "year": year, "valid": valid, "mild": mild, "pleasant": pleasant,
+            "no_snow_rule": no_snow_rule,
+            "counted_with_snow_data": pleasant & has_snow_data,
+            "excluded_by_snow": no_snow_rule & ~parts["snow_free"],
+            "snow_data": valid & has_snow_data,
+            "snow_implausible": valid & ((snow_raw.notna() & snow.isna())
+                                         | (snwd_raw.notna() & snwd.isna())),
+        }).groupby("year").sum()
         per_year = per_year[(per_year.index >= YEARS[0])
                             & (per_year.index <= YEARS[1])]
         qual = per_year[per_year["valid"] >= MIN_DAYS_PER_YEAR]
         if len(qual) < MIN_YEARS:
             return None
         rate = (qual["pleasant"] / qual["valid"] * 365.0).mean()
-        # the temperature-only counterfactual: the validation suite asserts
+        # the rain-free counterfactual: the validation suite asserts
         # the rain term only ever REMOVES days, and removes most where wet
         # days are mild ones — that mechanism check replaced a "wettest
         # metro near the bottom" guess the data disproved (drizzle-belt
         # wet days are mostly cold days already excluded by temperature)
         rate_no_rain = (qual["mild"] / qual["valid"] * 365.0).mean()
+        rate_no_snow_rule = (qual["no_snow_rule"] / qual["valid"] * 365.0).mean()
         # sanity quantities over the same qualifying years. Both wetness
         # measures ship because they disagree in an instructive way: the
         # most INCHES fall on the warm Gulf coast in bursts that leave
@@ -149,6 +205,15 @@ class GhcnDailyAdapter:
         winter_tmin = float(tmin[winter].mean()) if winter.any() else np.nan
         return {"pleasant_days": float(rate),
                 "pleasant_days_no_rain": float(rate_no_rain),
+                "pleasant_days_no_snow_rule": float(rate_no_snow_rule),
+                # raw day counts over the qualifying years (the report's
+                # snow-data figures; never served)
+                "valid_days": int(qual["valid"].sum()),
+                "days_counted": int(qual["pleasant"].sum()),
+                "days_counted_with_snow_data": int(qual["counted_with_snow_data"].sum()),
+                "days_excluded_by_snow": int(qual["excluded_by_snow"].sum()),
+                "valid_days_with_snow_data": int(qual["snow_data"].sum()),
+                "snow_readings_implausible": int(qual["snow_implausible"].sum()),
                 "years_used": int(len(qual)),
                 "annual_precip_in": precip_annual,
                 "rainy_days": rainy_days,
@@ -183,6 +248,12 @@ class GhcnDailyAdapter:
                     break
             out.append(d or {"cbsa": a["cbsa"], "pleasant_days": None,
                              "pleasant_days_no_rain": None,
+                             "pleasant_days_no_snow_rule": None,
+                             "valid_days": 0, "days_counted": 0,
+                             "days_counted_with_snow_data": 0,
+                             "days_excluded_by_snow": 0,
+                             "valid_days_with_snow_data": 0,
+                             "snow_readings_implausible": 0,
                              "station": None, "station_km": None,
                              "station_rank": None, "anchor": a["anchor"],
                              "years_used": 0, "annual_precip_in": None,
@@ -199,7 +270,7 @@ class GhcnDailyAdapter:
 
     def provenance(self) -> Provenance:
         return Provenance("ghcn_daily", "NOAA GHCN-Daily",
-                          "daily-summaries access CSVs (TMAX, TMIN, PRCP)",
+                          "daily-summaries access CSVs (TMAX, TMIN, PRCP, SNOW, SNWD)",
                           tuple(self.requested_variables),
                           "station -> cbsa (nearest central-county internal point)",
-                          "1991-2020", "lifestyle_pleasant_days_v2", "measured")
+                          "1991-2020", "lifestyle_pleasant_days_v3", "measured")

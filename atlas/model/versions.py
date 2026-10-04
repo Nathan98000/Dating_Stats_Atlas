@@ -5,6 +5,18 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.2.0 — Phase 4e (Nathan's rule, 2026-10-03): a new definition of a nice
+day. A day counts when it meets all six of: an average temperature,
+(TMAX + TMIN) / 2, between 55 and 75°F inclusive; a high below 85°F; a low
+above 45°F; at most 0.1 in of rain; no measurable snowfall (SNOW = 0); and
+snow on the ground under 1 in (SNWD). A day with no snow reading counts as
+snow-free. Every threshold lives in the registry's pleasant_day block
+(transform lifestyle_pleasant_days_v3); station eligibility and the
+completeness policy are unchanged. pleasant_days is the weather pillar's
+only feature, so the weather pillar, scores and ranks move; the build takes
+a new id (features.parquet changes). Goldens regenerated; the measured
+effect is in results/phase4e/ and atlas/PHASE4E.md.
+
 m4.1.1 — the movers line (Nathan's report, 2026-10-03, after the launch):
 two errors on the live site. (1) The two BEA price levels, goods and
 services, share the mover phrase "everyday prices", so a row could read
@@ -312,5 +324,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m4.1.1"
+MODEL_VERSION = "m4.2.0"
 SCHEMA_VERSION = "cube-v1"

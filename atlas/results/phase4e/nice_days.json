@@ -1,0 +1,605 @@
+{
+ "before": {
+  "build": "2dbd9ebfa7ff",
+  "model_version": "m4.1.1",
+  "rule": "a high between 55 and 85°F, a low of at least 40°F, at most 0.1 in of rain"
+ },
+ "after": {
+  "build": "63c4e5fa51bf",
+  "model_version": "m4.2.0",
+  "rule": {
+   "tavg_f": [
+    55.0,
+    75.0
+   ],
+   "prcp_max_in": 0.1,
+   "snow_max_in": 0.0,
+   "snwd_max_in": 1.0,
+   "tmax_below_f": 85.0,
+   "tmin_above_f": 45.0
+  }
+ },
+ "distribution": {
+  "all_metros": {
+   "before": {
+    "n": 387,
+    "min": 33.6,
+    "p10": 92.6,
+    "p25": 105.4,
+    "median": 115.2,
+    "p75": 130.5,
+    "p90": 153.8,
+    "max": 336.2,
+    "mean": 122.0
+   },
+   "after": {
+    "n": 387,
+    "min": 9.6,
+    "p10": 55.0,
+    "p25": 69.7,
+    "median": 78.9,
+    "p75": 90.0,
+    "p90": 107.0,
+    "max": 303.9,
+    "mean": 82.5
+   }
+  },
+  "ranked_set": {
+   "before": {
+    "n": 193,
+    "min": 55.0,
+    "p10": 100.0,
+    "p25": 109.9,
+    "median": 118.3,
+    "p75": 141.6,
+    "p90": 164.7,
+    "max": 336.2,
+    "mean": 130.5
+   },
+   "after": {
+    "n": 193,
+    "min": 15.9,
+    "p10": 63.4,
+    "p25": 71.5,
+    "median": 81.1,
+    "p75": 95.8,
+    "p90": 117.0,
+    "max": 303.9,
+    "mean": 89.2
+   }
+  },
+  "change_all_metros": {
+   "n": 387,
+   "min": -105.0,
+   "p10": -49.1,
+   "p25": -43.2,
+   "median": -38.1,
+   "p75": -32.9,
+   "p90": -30.3,
+   "max": -24.0,
+   "mean": -39.5
+  },
+  "metros_up": 0,
+  "metros_down": 387
+ },
+ "biggest_drops": [
+  {
+   "metro": "Honolulu, HI",
+   "cbsa": "46520",
+   "ranked": true,
+   "before": 182.3,
+   "after": 77.3,
+   "change": -105.0
+  },
+  {
+   "metro": "Charleston, SC",
+   "cbsa": "16700",
+   "ranked": true,
+   "before": 215.5,
+   "after": 134.5,
+   "change": -81.0
+  },
+  {
+   "metro": "Vallejo, CA",
+   "cbsa": "46700",
+   "ranked": true,
+   "before": 188.3,
+   "after": 108.4,
+   "change": -80.0
+  },
+  {
+   "metro": "Santa Maria, CA",
+   "cbsa": "42200",
+   "ranked": true,
+   "before": 269.1,
+   "after": 191.2,
+   "change": -77.8
+  },
+  {
+   "metro": "Santa Rosa, CA",
+   "cbsa": "42220",
+   "ranked": true,
+   "before": 152.5,
+   "after": 75.6,
+   "change": -76.8
+  },
+  {
+   "metro": "San Luis Obispo, CA",
+   "cbsa": "42020",
+   "ranked": true,
+   "before": 266.2,
+   "after": 191.6,
+   "change": -74.6
+  },
+  {
+   "metro": "Salinas, CA",
+   "cbsa": "41500",
+   "ranked": true,
+   "before": 279.8,
+   "after": 206.4,
+   "change": -73.4
+  },
+  {
+   "metro": "Kahului, HI",
+   "cbsa": "27980",
+   "ranked": false,
+   "before": 171.7,
+   "after": 101.8,
+   "change": -69.9
+  },
+  {
+   "metro": "Napa, CA",
+   "cbsa": "34900",
+   "ranked": false,
+   "before": 207.5,
+   "after": 140.3,
+   "change": -67.1
+  },
+  {
+   "metro": "San Jose, CA",
+   "cbsa": "41940",
+   "ranked": true,
+   "before": 212.1,
+   "after": 146.3,
+   "change": -65.9
+  }
+ ],
+ "biggest_rises": [
+  {
+   "metro": "Carson City, NV",
+   "cbsa": "16180",
+   "ranked": false,
+   "before": 33.6,
+   "after": 9.6,
+   "change": -24.0
+  },
+  {
+   "metro": "Utica, NY",
+   "cbsa": "46540",
+   "ranked": true,
+   "before": 105.3,
+   "after": 80.1,
+   "change": -25.2
+  },
+  {
+   "metro": "Los Angeles, CA",
+   "cbsa": "31080",
+   "ranked": true,
+   "before": 319.5,
+   "after": 292.4,
+   "change": -27.1
+  },
+  {
+   "metro": "Waterloo, IA",
+   "cbsa": "47940",
+   "ranked": false,
+   "before": 101.3,
+   "after": 74.0,
+   "change": -27.3
+  },
+  {
+   "metro": "Mankato, MN",
+   "cbsa": "31860",
+   "ranked": false,
+   "before": 105.7,
+   "after": 78.3,
+   "change": -27.4
+  },
+  {
+   "metro": "Ames, IA",
+   "cbsa": "11180",
+   "ranked": false,
+   "before": 103.2,
+   "after": 75.7,
+   "change": -27.6
+  },
+  {
+   "metro": "Burlington, VT",
+   "cbsa": "15540",
+   "ranked": false,
+   "before": 106.2,
+   "after": 78.4,
+   "change": -27.7
+  },
+  {
+   "metro": "Duluth, MN",
+   "cbsa": "20260",
+   "ranked": true,
+   "before": 101.2,
+   "after": 73.4,
+   "change": -27.8
+  },
+  {
+   "metro": "Grand Forks, ND",
+   "cbsa": "24220",
+   "ranked": false,
+   "before": 101.6,
+   "after": 73.8,
+   "change": -27.8
+  },
+  {
+   "metro": "Rochester, MN",
+   "cbsa": "40340",
+   "ranked": false,
+   "before": 114.6,
+   "after": 86.7,
+   "change": -27.9
+  }
+ ],
+ "top10_new_rule_ranked": [
+  {
+   "metro": "San Diego, CA",
+   "cbsa": "41740",
+   "ranked": true,
+   "before": 336.2,
+   "after": 303.9,
+   "change": -32.3
+  },
+  {
+   "metro": "Los Angeles, CA",
+   "cbsa": "31080",
+   "ranked": true,
+   "before": 319.5,
+   "after": 292.4,
+   "change": -27.1
+  },
+  {
+   "metro": "Oxnard, CA",
+   "cbsa": "37100",
+   "ranked": true,
+   "before": 324.3,
+   "after": 275.2,
+   "change": -49.1
+  },
+  {
+   "metro": "San Francisco, CA",
+   "cbsa": "41860",
+   "ranked": true,
+   "before": 302.0,
+   "after": 239.8,
+   "change": -62.2
+  },
+  {
+   "metro": "Riverside, CA",
+   "cbsa": "40140",
+   "ranked": true,
+   "before": 256.4,
+   "after": 210.4,
+   "change": -46.0
+  },
+  {
+   "metro": "Salinas, CA",
+   "cbsa": "41500",
+   "ranked": true,
+   "before": 279.8,
+   "after": 206.4,
+   "change": -73.4
+  },
+  {
+   "metro": "San Luis Obispo, CA",
+   "cbsa": "42020",
+   "ranked": true,
+   "before": 266.2,
+   "after": 191.6,
+   "change": -74.6
+  },
+  {
+   "metro": "Santa Maria, CA",
+   "cbsa": "42200",
+   "ranked": true,
+   "before": 269.1,
+   "after": 191.2,
+   "change": -77.8
+  },
+  {
+   "metro": "San Jose, CA",
+   "cbsa": "41940",
+   "ranked": true,
+   "before": 212.1,
+   "after": 146.3,
+   "change": -65.9
+  },
+  {
+   "metro": "Charleston, SC",
+   "cbsa": "16700",
+   "ranked": true,
+   "before": 215.5,
+   "after": 134.5,
+   "change": -81.0
+  }
+ ],
+ "bottom10_new_rule_ranked": [
+  {
+   "metro": "Bend, OR",
+   "cbsa": "13460",
+   "ranked": true,
+   "before": 55.0,
+   "after": 15.9,
+   "change": -39.1
+  },
+  {
+   "metro": "Ogden, UT",
+   "cbsa": "36260",
+   "ranked": true,
+   "before": 74.1,
+   "after": 34.2,
+   "change": -39.9
+  },
+  {
+   "metro": "Greeley, CO",
+   "cbsa": "24540",
+   "ranked": true,
+   "before": 66.6,
+   "after": 34.3,
+   "change": -32.2
+  },
+  {
+   "metro": "Reno, NV",
+   "cbsa": "39900",
+   "ranked": true,
+   "before": 81.5,
+   "after": 37.0,
+   "change": -44.5
+  },
+  {
+   "metro": "Provo, UT",
+   "cbsa": "39340",
+   "ranked": true,
+   "before": 79.8,
+   "after": 40.2,
+   "change": -39.6
+  },
+  {
+   "metro": "Yakima, WA",
+   "cbsa": "49420",
+   "ranked": true,
+   "before": 87.5,
+   "after": 41.6,
+   "change": -45.9
+  },
+  {
+   "metro": "Anchorage, AK",
+   "cbsa": "11260",
+   "ranked": true,
+   "before": 90.6,
+   "after": 44.4,
+   "change": -46.2
+  },
+  {
+   "metro": "Denver, CO",
+   "cbsa": "19740",
+   "ranked": true,
+   "before": 81.6,
+   "after": 45.7,
+   "change": -35.9
+  },
+  {
+   "metro": "Boulder, CO",
+   "cbsa": "14500",
+   "ranked": true,
+   "before": 96.7,
+   "after": 52.3,
+   "change": -44.4
+  },
+  {
+   "metro": "Lubbock, TX",
+   "cbsa": "31180",
+   "ranked": true,
+   "before": 91.6,
+   "after": 52.7,
+   "change": -38.9
+  }
+ ],
+ "top10_new_rule_all": [
+  {
+   "metro": "San Diego, CA",
+   "cbsa": "41740",
+   "ranked": true,
+   "before": 336.2,
+   "after": 303.9,
+   "change": -32.3
+  },
+  {
+   "metro": "Los Angeles, CA",
+   "cbsa": "31080",
+   "ranked": true,
+   "before": 319.5,
+   "after": 292.4,
+   "change": -27.1
+  },
+  {
+   "metro": "Oxnard, CA",
+   "cbsa": "37100",
+   "ranked": true,
+   "before": 324.3,
+   "after": 275.2,
+   "change": -49.1
+  },
+  {
+   "metro": "San Francisco, CA",
+   "cbsa": "41860",
+   "ranked": true,
+   "before": 302.0,
+   "after": 239.8,
+   "change": -62.2
+  },
+  {
+   "metro": "Riverside, CA",
+   "cbsa": "40140",
+   "ranked": true,
+   "before": 256.4,
+   "after": 210.4,
+   "change": -46.0
+  },
+  {
+   "metro": "Salinas, CA",
+   "cbsa": "41500",
+   "ranked": true,
+   "before": 279.8,
+   "after": 206.4,
+   "change": -73.4
+  },
+  {
+   "metro": "San Luis Obispo, CA",
+   "cbsa": "42020",
+   "ranked": true,
+   "before": 266.2,
+   "after": 191.6,
+   "change": -74.6
+  },
+  {
+   "metro": "Santa Maria, CA",
+   "cbsa": "42200",
+   "ranked": true,
+   "before": 269.1,
+   "after": 191.2,
+   "change": -77.8
+  },
+  {
+   "metro": "San Jose, CA",
+   "cbsa": "41940",
+   "ranked": true,
+   "before": 212.1,
+   "after": 146.3,
+   "change": -65.9
+  },
+  {
+   "metro": "Napa, CA",
+   "cbsa": "34900",
+   "ranked": false,
+   "before": 207.5,
+   "after": 140.3,
+   "change": -67.1
+  }
+ ],
+ "bottom10_new_rule_all": [
+  {
+   "metro": "Carson City, NV",
+   "cbsa": "16180",
+   "ranked": false,
+   "before": 33.6,
+   "after": 9.6,
+   "change": -24.0
+  },
+  {
+   "metro": "Bend, OR",
+   "cbsa": "13460",
+   "ranked": true,
+   "before": 55.0,
+   "after": 15.9,
+   "change": -39.1
+  },
+  {
+   "metro": "Casper, WY",
+   "cbsa": "16220",
+   "ranked": false,
+   "before": 57.9,
+   "after": 26.5,
+   "change": -31.4
+  },
+  {
+   "metro": "Pocatello, ID",
+   "cbsa": "38540",
+   "ranked": false,
+   "before": 63.2,
+   "after": 29.5,
+   "change": -33.7
+  },
+  {
+   "metro": "Pueblo, CO",
+   "cbsa": "39380",
+   "ranked": false,
+   "before": 62.8,
+   "after": 29.5,
+   "change": -33.3
+  },
+  {
+   "metro": "Missoula, MT",
+   "cbsa": "33540",
+   "ranked": false,
+   "before": 70.3,
+   "after": 31.7,
+   "change": -38.6
+  },
+  {
+   "metro": "Logan, UT",
+   "cbsa": "30860",
+   "ranked": false,
+   "before": 71.5,
+   "after": 31.7,
+   "change": -39.8
+  },
+  {
+   "metro": "Idaho Falls, ID",
+   "cbsa": "26820",
+   "ranked": false,
+   "before": 74.0,
+   "after": 34.1,
+   "change": -39.9
+  },
+  {
+   "metro": "Ogden, UT",
+   "cbsa": "36260",
+   "ranked": true,
+   "before": 74.1,
+   "after": 34.2,
+   "change": -39.9
+  },
+  {
+   "metro": "Greeley, CO",
+   "cbsa": "24540",
+   "ranked": true,
+   "before": 66.6,
+   "after": 34.3,
+   "change": -32.2
+  }
+ ],
+ "rank_order_spearman_all": 0.923,
+ "no_qualifying_station": {
+  "before": [],
+  "after": [],
+  "unchanged": true
+ },
+ "station_changes": [],
+ "noaa_revisions": {
+  "what": "the m4.1.1 rule re-run on the re-fetched station files, against the values served; separates NOAA's revisions to the 1991-2020 record since the 2026-09-17 download from the rule change",
+  "metros_moved_more_than_0_05_days": 0,
+  "max_abs_days": 0.0,
+  "median_abs_days": 0.0
+ },
+ "snow": {
+  "days_counted": 918196,
+  "days_counted_with_snow_data": 712139,
+  "days_excluded_by_snow": 27,
+  "valid_days": 4067746,
+  "valid_days_with_snow_data": 3275655,
+  "snow_readings_implausible": 0,
+  "stations_with_no_snow_data": 0,
+  "metros_losing_a_day_or_more_to_snow": 0,
+  "max_days_a_year_removed_by_snow": [
+   "16300",
+   0.07
+  ]
+ },
+ "generated": "2026-10-03T23:12:25"
+}

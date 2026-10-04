@@ -11,6 +11,7 @@ import pandas as pd
 
 from atlas.pipeline.adapters.ghcn_daily import GhcnDailyAdapter
 from atlas.pipeline.fetch import RESULTS
+from atlas.pipeline.registry.loader import load_registry
 
 P2D = RESULTS / "phase2d"
 
@@ -40,6 +41,26 @@ def build() -> None:
             (cmp["pleasant_days"] - cmp["normals_value"]).abs().median()),
         "at_365_normals": int((cmp["normals_value"] >= 364.5).sum()),
         "at_365_ghcn": int((cmp["pleasant_days"] >= 364.5).sum()),
+        # Phase 4e (the snow terms): over the metros' chosen stations and
+        # their qualifying years, how many counted days had a snow reading,
+        # and how many days the two snow terms excluded (days passing every
+        # other criterion); a missing SNOW/SNWD reading counts as snow-free
+        "definition": load_registry().pleasant_day,
+        "snow": {
+            "days_counted": int(nd["days_counted"].sum()),
+            "days_counted_with_snow_data": int(nd["days_counted_with_snow_data"].sum()),
+            "days_excluded_by_snow": int(nd["days_excluded_by_snow"].sum()),
+            "valid_days": int(nd["valid_days"].sum()),
+            "valid_days_with_snow_data": int(nd["valid_days_with_snow_data"].sum()),
+            "snow_readings_implausible": int(nd["snow_readings_implausible"].sum()),
+            "stations_with_no_snow_data": int((nd["station"].notna()
+                                               & (nd["valid_days_with_snow_data"] == 0)).sum()),
+            "metros_losing_a_day_or_more_to_snow": int(
+                ((nd["pleasant_days_no_snow_rule"] - nd["pleasant_days"]) >= 1).sum()),
+            "max_days_a_year_removed_by_snow": [
+                nd.loc[(nd["pleasant_days_no_snow_rule"] - nd["pleasant_days"]).idxmax(), "cbsa"],
+                round(float((nd["pleasant_days_no_snow_rule"] - nd["pleasant_days"]).max()), 2)],
+        },
     }
     (P2D / "pleasant_days_report.json").write_text(
         json.dumps(summary, indent=2) + "\n")

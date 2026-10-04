@@ -1,8 +1,8 @@
 {
-  "data_version": "2dbd9ebfa7ff",
-  "model_version": "m4.1.1",
+  "data_version": "63c4e5fa51bf",
+  "model_version": "m4.2.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-10-03T16:32:30-0400",
+  "created_at": "2026-10-03T23:04:32-0400",
   "axes": [
     {
       "name": "metro",
@@ -1631,7 +1631,7 @@
         "good_strong"
       ],
       "band_edges": null,
-      "definition": "Days a year that reach between 55 and 85\u00b0F, don't dip below 40\u00b0F, and see no more than a light shower",
+      "definition": "Days a year that average between 55 and 75\u00b0F, stay below 85\u00b0F and above 45\u00b0F, and have no more than a light shower and no snow",
       "display_scale": 1.0,
       "display_decimals": 0,
       "retired_reason": null,
@@ -1642,11 +1642,13 @@
         "variables": [
           "TMAX",
           "TMIN",
-          "PRCP"
+          "PRCP",
+          "SNOW",
+          "SNWD"
         ],
         "geography": "station -> cbsa",
         "vintage": "1991-2020",
-        "transform_id": "lifestyle_pleasant_days_v2",
+        "transform_id": "lifestyle_pleasant_days_v3",
         "tier": "measured"
       }
     },
@@ -1981,11 +1983,11 @@
       "P18_060N",
       "P1_001N"
     ],
-    "n_source_files_fetched": 2587
+    "n_source_files_fetched": 3584
   },
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
-    "features.parquet": "c77a34374a7d642d8d4aa1d2ea0deba4e66e94ed17cc6c16dfe0690a3908e64f",
+    "features.parquet": "22d7f2602a7506c73258e982b480cdf61ad79d123b48fba22a79de550cddc4b3",
     "kernel.json": "e4f1186188e585364a03ce2db2eda98a7ff1684b369db8268c0bf9a96a0b9dfd",
     "kernel.npz": "af3fd7d0050c514095cf49e65c10d647beb1faced131c6d91401fe35607f3777",
     "metros.json": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",

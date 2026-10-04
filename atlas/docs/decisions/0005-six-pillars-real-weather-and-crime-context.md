@@ -57,6 +57,20 @@ station. San Francisco: 365 → **302**. No metro reaches 365. The whole
 feature moved (median absolute change 44 days), the weather pillar with
 it, and the goldens are regenerated under the bump.
 
+**Amended in Phase 4e (m4.2.0, Nathan's rule, 2026-10-03).** A nice day
+now meets all six of: an average temperature, (TMAX + TMIN) / 2, between
+55 and 75°F inclusive (GHCN's TAVG is often missing; "between 55°F and
+75°F" is read as the average because separate high and low limits would
+otherwise be redundant — recorded for Nathan to confirm); a high below
+85°F; a low above 45°F; at most 0.1 in of rain; no measurable snowfall
+(SNOW = 0); and snow on the ground under 1 in (SNWD). The station files
+now carry SNOW and SNWD; a day with no snow reading counts as snow-free
+(with the low above 45°F, snow is effectively impossible). Station
+eligibility (the TMAX, TMIN and PRCP inventories, US stations only) and
+the completeness rules above are unchanged. All six thresholds live in
+the registry's `pleasant_day` block; transform `lifestyle_pleasant_days_v3`.
+The measured effect is in `results/phase4e/` and `atlas/PHASE4E.md`.
+
 Three findings from building it, each mechanically guarded now:
 
 - **SNOTEL stations are excluded from matching.** Nine metros first

@@ -160,6 +160,23 @@ def _normalization_block(raw: dict) -> dict:
     return block
 
 
+PLEASANT_DAY_KEYS = {"tavg_f", "tmax_below_f", "tmin_above_f", "prcp_max_in",
+                     "snow_max_in", "snwd_max_in"}
+
+
+def _pleasant_day_block(block: dict) -> dict:
+    """Phase 4e: the nice-day rule's six thresholds, all present and
+    coherent (the average's range sits inside the high and low limits'
+    reach, so no criterion is impossible)."""
+    assert set(block) == PLEASANT_DAY_KEYS, (
+        f"pleasant_day must carry exactly {sorted(PLEASANT_DAY_KEYS)}, got {sorted(block)}")
+    lo, hi = (float(x) for x in block["tavg_f"])
+    assert lo <= hi, block["tavg_f"]
+    assert block["tmin_above_f"] < block["tmax_below_f"], block
+    assert block["prcp_max_in"] >= 0 and block["snow_max_in"] >= 0 and block["snwd_max_in"] > 0
+    return {"tavg_f": [lo, hi], **{k: float(block[k]) for k in sorted(PLEASANT_DAY_KEYS - {"tavg_f"})}}
+
+
 def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     raw = yaml.safe_load(path.read_text())
     feats = {}
@@ -431,7 +448,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     return Registry(
         version=int(raw["version"]), pillars=pillars, features=feats,
         naics_venues={str(k): str(v) for k, v in raw["naics_venues"].items()},
-        pleasant_day=raw["pleasant_day"], size_vs_odds=raw["size_vs_odds"],
+        pleasant_day=_pleasant_day_block(raw["pleasant_day"]), size_vs_odds=raw["size_vs_odds"],
         importance_levels=levels, standing_bands=bands,
         race_groups=race_groups, city_cards=cards,
         stat_pages=stat_pages, crime=dict(crime), strings=strings,

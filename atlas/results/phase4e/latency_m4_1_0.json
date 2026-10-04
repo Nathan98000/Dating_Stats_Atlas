@@ -1,0 +1,19 @@
+{
+  "n": 400,
+  "p50_ms": 55.65,
+  "p95_ms": 94.72,
+  "p99_ms": 103.63,
+  "max_ms": 121.67,
+  "target_p95_ms": 100,
+  "load_average_before": [
+    1.86,
+    1.76,
+    1.67
+  ],
+  "load_average_after": [
+    1.9,
+    1.77,
+    1.67
+  ],
+  "build": "/private/tmp/claude-501/-Users-nathann-Downloads-Projects-Dating-Stats-Atlas/6a37b0fd-a1c3-4c01-a7ca-21303769f482/scratchpad/build_m410/2dbd9ebfa7ff"
+}

@@ -1,0 +1,355 @@
+{
+ "build": [
+  "2dbd9ebfa7ff",
+  "63c4e5fa51bf"
+ ],
+ "model_version": [
+  "m4.1.1",
+  "m4.2.0"
+ ],
+ "test_searches": 518,
+ "rank_response_identical": 0,
+ "single_seeker_rank_identical": {
+  "identical": 0,
+  "of": 1036
+ },
+ "default_variant_order_identical": 2,
+ "profiles_identical": {
+  "identical": 0,
+  "of": 387
+ },
+ "political_lean_identical": false,
+ "generated": "2026-10-03T23:15:40",
+ "rank_shift": {
+  "default": {
+   "body": {
+    "self": {
+     "age": 30
+    },
+    "seeking": {
+     "sex": "male",
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married",
+      "previously_married"
+     ]
+    },
+    "sort": "best_first"
+   },
+   "metros_compared": 193,
+   "only_before": [],
+   "only_after": [],
+   "ranks_changed": 148,
+   "kendall_tau": 0.968,
+   "median_abs_move": 1,
+   "p90_abs_move": 5,
+   "max_abs_move": 21,
+   "score_change": {
+    "median_abs": 0.3,
+    "max_abs": 3.5
+   },
+   "top10_before": [
+    "San Francisco, CA",
+    "Boston, MA",
+    "New York, NY",
+    "Los Angeles, CA",
+    "San Jose, CA",
+    "Seattle, WA",
+    "Chicago, IL",
+    "San Diego, CA",
+    "Austin, TX",
+    "Philadelphia, PA"
+   ],
+   "top10_after": [
+    "San Francisco, CA",
+    "Boston, MA",
+    "New York, NY",
+    "Los Angeles, CA",
+    "San Jose, CA",
+    "Seattle, WA",
+    "Chicago, IL",
+    "San Diego, CA",
+    "Austin, TX",
+    "Philadelphia, PA"
+   ],
+   "biggest_moves": [
+    {
+     "metro": "Eugene, OR",
+     "cbsa": "21660",
+     "rank_before": 73,
+     "rank_after": 94,
+     "move": -21,
+     "score_before": 45.4,
+     "score_after": 43.2
+    },
+    {
+     "metro": "Santa Rosa, CA",
+     "cbsa": "42220",
+     "rank_before": 109,
+     "rank_after": 124,
+     "move": -15,
+     "score_before": 40.5,
+     "score_after": 37.4
+    },
+    {
+     "metro": "Olympia, WA",
+     "cbsa": "36500",
+     "rank_before": 143,
+     "rank_after": 156,
+     "move": -13,
+     "score_before": 34.4,
+     "score_after": 32.3
+    },
+    {
+     "metro": "Tucson, AZ",
+     "cbsa": "46060",
+     "rank_before": 63,
+     "rank_after": 75,
+     "move": -12,
+     "score_before": 47.8,
+     "score_after": 45.2
+    },
+    {
+     "metro": "Honolulu, HI",
+     "cbsa": "46520",
+     "rank_before": 49,
+     "rank_after": 60,
+     "move": -11,
+     "score_before": 51.8,
+     "score_after": 48.3
+    },
+    {
+     "metro": "Santa Cruz, CA",
+     "cbsa": "42100",
+     "rank_before": 115,
+     "rank_after": 126,
+     "move": -11,
+     "score_before": 39.7,
+     "score_after": 37.3
+    },
+    {
+     "metro": "El Paso, TX",
+     "cbsa": "21340",
+     "rank_before": 39,
+     "rank_after": 48,
+     "move": -9,
+     "score_before": 53.7,
+     "score_after": 51.9
+    },
+    {
+     "metro": "Akron, OH",
+     "cbsa": "10420",
+     "rank_before": 77,
+     "rank_after": 69,
+     "move": 8,
+     "score_before": 45.1,
+     "score_after": 45.6
+    },
+    {
+     "metro": "Duluth, MN",
+     "cbsa": "20260",
+     "rank_before": 90,
+     "rank_after": 82,
+     "move": 8,
+     "score_before": 43.4,
+     "score_after": 44.4
+    },
+    {
+     "metro": "Des Moines, IA",
+     "cbsa": "19780",
+     "rank_before": 56,
+     "rank_after": 49,
+     "move": 7,
+     "score_before": 50.9,
+     "score_after": 51.5
+    },
+    {
+     "metro": "Utica, NY",
+     "cbsa": "46540",
+     "rank_before": 124,
+     "rank_after": 117,
+     "move": 7,
+     "score_before": 37.4,
+     "score_after": 39.2
+    },
+    {
+     "metro": "Green Bay, WI",
+     "cbsa": "24580",
+     "rank_before": 152,
+     "rank_after": 145,
+     "move": 7,
+     "score_before": 32.6,
+     "score_after": 33.9
+    }
+   ]
+  },
+  "same_sex_reference": {
+   "body": {
+    "self": {
+     "age": 31
+    },
+    "seeking": {
+     "sex": "male",
+     "age": [
+      27,
+      38
+     ],
+     "marital": [
+      "never_married"
+     ],
+     "education_min": "bachelors"
+    },
+    "sort": "best_first"
+   },
+   "metros_compared": 120,
+   "only_before": [],
+   "only_after": [],
+   "ranks_changed": 71,
+   "kendall_tau": 0.968,
+   "median_abs_move": 1.0,
+   "p90_abs_move": 3,
+   "max_abs_move": 13,
+   "score_change": {
+    "median_abs": 0.3,
+    "max_abs": 3.5
+   },
+   "top10_before": [
+    "San Francisco, CA",
+    "Los Angeles, CA",
+    "San Jose, CA",
+    "New York, NY",
+    "Seattle, WA",
+    "New Orleans, LA",
+    "Boston, MA",
+    "Portland, OR",
+    "San Diego, CA",
+    "Chicago, IL"
+   ],
+   "top10_after": [
+    "San Francisco, CA",
+    "Los Angeles, CA",
+    "San Jose, CA",
+    "New York, NY",
+    "Seattle, WA",
+    "New Orleans, LA",
+    "Boston, MA",
+    "Portland, OR",
+    "San Diego, CA",
+    "Chicago, IL"
+   ],
+   "biggest_moves": [
+    {
+     "metro": "Honolulu, HI",
+     "cbsa": "46520",
+     "rank_before": 41,
+     "rank_after": 54,
+     "move": -13,
+     "score_before": 50.6,
+     "score_after": 47.1
+    },
+    {
+     "metro": "Santa Rosa, CA",
+     "cbsa": "42220",
+     "rank_before": 62,
+     "rank_after": 75,
+     "move": -13,
+     "score_before": 46.0,
+     "score_after": 42.9
+    },
+    {
+     "metro": "El Paso, TX",
+     "cbsa": "21340",
+     "rank_before": 54,
+     "rank_after": 65,
+     "move": -11,
+     "score_before": 47.6,
+     "score_after": 45.9
+    },
+    {
+     "metro": "Tucson, AZ",
+     "cbsa": "46060",
+     "rank_before": 37,
+     "rank_after": 47,
+     "move": -10,
+     "score_before": 51.5,
+     "score_after": 48.7
+    },
+    {
+     "metro": "Grand Rapids, MI",
+     "cbsa": "24340",
+     "rank_before": 65,
+     "rank_after": 56,
+     "move": 9,
+     "score_before": 45.4,
+     "score_after": 46.5
+    },
+    {
+     "metro": "Indianapolis, IN",
+     "cbsa": "26900",
+     "rank_before": 64,
+     "rank_after": 57,
+     "move": 7,
+     "score_before": 45.7,
+     "score_after": 46.3
+    },
+    {
+     "metro": "Syracuse, NY",
+     "cbsa": "45060",
+     "rank_before": 69,
+     "rank_after": 62,
+     "move": 7,
+     "score_before": 45.0,
+     "score_after": 46.0
+    },
+    {
+     "metro": "Albuquerque, NM",
+     "cbsa": "10740",
+     "rank_before": 30,
+     "rank_after": 35,
+     "move": -5,
+     "score_before": 52.8,
+     "score_after": 52.0
+    },
+    {
+     "metro": "Toledo, OH",
+     "cbsa": "45780",
+     "rank_before": 53,
+     "rank_after": 48,
+     "move": 5,
+     "score_before": 47.7,
+     "score_after": 48.7
+    },
+    {
+     "metro": "Bridgeport, CT",
+     "cbsa": "14860",
+     "rank_before": 45,
+     "rank_after": 41,
+     "move": 4,
+     "score_before": 49.9,
+     "score_after": 50.4
+    },
+    {
+     "metro": "Ann Arbor, MI",
+     "cbsa": "11460",
+     "rank_before": 46,
+     "rank_after": 42,
+     "move": 4,
+     "score_before": 49.6,
+     "score_after": 50.3
+    },
+    {
+     "metro": "Oxnard, CA",
+     "cbsa": "37100",
+     "rank_before": 60,
+     "rank_after": 64,
+     "move": -4,
+     "score_before": 46.0,
+     "score_after": 45.9
+    }
+   ]
+  }
+ }
+}

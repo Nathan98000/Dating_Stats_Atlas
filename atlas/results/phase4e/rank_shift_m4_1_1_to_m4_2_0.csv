@@ -1,0 +1,314 @@
+search,metro,cbsa,rank_before,rank_after,move,score_before,score_after
+default,"San Francisco, CA",41860,1,1,0,77.5,77.5
+default,"Boston, MA",14460,2,2,0,76.0,76.5
+default,"New York, NY",35620,3,3,0,75.5,75.4
+default,"Los Angeles, CA",31080,4,4,0,73.6,73.6
+default,"San Jose, CA",41940,5,5,0,70.9,71.0
+default,"Seattle, WA",42660,6,6,0,70.6,70.7
+default,"Chicago, IL",16980,7,7,0,69.1,69.2
+default,"San Diego, CA",41740,8,8,0,67.5,67.5
+default,"Austin, TX",12420,9,9,0,67.2,67.3
+default,"Philadelphia, PA",37980,10,10,0,67.1,67.2
+default,"Denver, CO",19740,11,11,0,65.3,65.3
+default,"Washington, DC",47900,12,12,0,64.4,64.1
+default,"Portland, OR",38900,13,13,0,64.0,64.1
+default,"Pittsburgh, PA",38300,14,14,0,63.6,63.7
+default,"Houston, TX",26420,15,15,0,63.2,63.3
+default,"Dallas, TX",19100,16,16,0,62.2,62.2
+default,"Milwaukee, WI",33340,18,17,1,60.1,60.3
+default,"Madison, WI",31540,21,18,3,59.6,60.2
+default,"Miami, FL",33100,17,19,-2,60.6,60.1
+default,"Phoenix, AZ",38060,20,20,0,59.7,59.9
+default,"New Orleans, LA",35380,19,21,-2,59.8,59.8
+default,"Atlanta, GA",12060,22,22,0,59.1,59.2
+default,"Providence, RI",39300,23,23,0,58.9,59.1
+default,"Buffalo, NY",15380,25,24,1,57.5,58.3
+default,"Tampa, FL",45300,24,25,-1,57.7,58.0
+default,"Orlando, FL",36740,26,26,0,57.2,57.5
+default,"Cleveland, OH",17410,28,27,1,56.7,57.4
+default,"Raleigh, NC",39580,27,28,-1,56.9,56.8
+default,"Minneapolis, MN",33460,32,29,3,55.9,56.6
+default,"Columbus, OH",18140,33,30,3,55.7,56.3
+default,"Sacramento, CA",40900,29,31,-2,56.3,56.1
+default,"San Antonio, TX",41700,31,32,-1,55.9,55.9
+default,"St. Louis, MO",41180,30,33,-3,56.0,55.9
+default,"Rochester, NY",40380,35,34,1,54.6,55.1
+default,"Detroit, MI",19820,38,35,3,54.2,54.8
+default,"Boulder, CO",14500,34,36,-2,54.6,54.4
+default,"Las Vegas, NV",29820,37,37,0,54.5,54.1
+default,"Baltimore, MD",12580,36,38,-2,54.5,54.1
+default,"Hartford, CT",25540,40,39,1,53.5,53.9
+default,"Bridgeport, CT",14860,43,40,3,53.1,53.5
+default,"Riverside, CA",40140,44,41,3,53.0,53.1
+default,"Ann Arbor, MI",11460,46,42,4,52.2,53.0
+default,"Albany, NY",10580,47,43,4,52.2,53.0
+default,"Indianapolis, IN",26900,45,44,1,52.3,52.9
+default,"Charlotte, NC",16740,41,45,-4,53.3,52.9
+default,"Kansas City, MO",28140,42,46,-4,53.2,52.8
+default,"Virginia Beach, VA",47260,48,47,1,52.0,52.0
+default,"El Paso, TX",21340,39,48,-9,53.7,51.9
+default,"Des Moines, IA",19780,56,49,7,50.9,51.5
+default,"Cincinnati, OH",17140,51,50,1,51.3,51.5
+default,"Omaha, NE",36540,54,51,3,51.1,51.4
+default,"Fort Collins, CO",22660,52,52,0,51.3,51.2
+default,"New Haven, CT",35300,55,53,2,50.9,51.2
+default,"Salt Lake City, UT",41620,53,54,-1,51.2,51.2
+default,"Nashville, TN",34980,50,55,-5,51.5,51.1
+default,"Fargo, ND",22020,58,56,2,50.1,51.1
+default,"Erie, PA",21500,59,57,2,49.5,50.3
+default,"Oklahoma City, OK",36420,57,58,-1,50.3,50.0
+default,"Toledo, OH",45780,62,59,3,47.9,48.8
+default,"Honolulu, HI",46520,49,60,-11,51.8,48.3
+default,"Syracuse, NY",45060,64,61,3,47.1,48.1
+default,"Santa Maria, CA",42200,61,62,-1,48.1,48.1
+default,"Durham, NC",20500,60,63,-3,48.5,47.8
+default,"Gainesville, FL",23540,65,64,1,47.0,47.0
+default,"Charleston, SC",16700,66,65,1,46.6,46.6
+default,"Louisville, KY",31140,67,66,1,46.4,46.1
+default,"Atlantic City, NJ",12100,69,67,2,45.8,45.7
+default,"North Port, FL",35840,74,68,6,45.4,45.7
+default,"Akron, OH",10420,77,69,8,45.1,45.6
+default,"Jacksonville, FL",27260,71,70,1,45.4,45.5
+default,"Richmond, VA",40060,70,71,-1,45.7,45.4
+default,"Albuquerque, NM",10740,68,72,-4,46.3,45.4
+default,"Wilmington, NC",48900,72,73,-1,45.4,45.3
+default,"San Luis Obispo, CA",42020,75,74,1,45.3,45.3
+default,"Tucson, AZ",46060,63,75,-12,47.8,45.2
+default,"Worcester, MA",49340,80,76,4,44.5,45.2
+default,"Oxnard, CA",37100,76,77,-1,45.2,45.2
+default,"Palm Bay, FL",37340,78,78,0,44.9,44.9
+default,"Lexington, KY",30460,79,79,0,44.6,44.9
+default,"Allentown, PA",10900,84,80,4,44.2,44.6
+default,"Lincoln, NE",30700,81,81,0,44.4,44.5
+default,"Duluth, MN",20260,90,82,8,43.4,44.4
+default,"Trenton, NJ",45940,82,83,-1,44.2,44.4
+default,"Dayton, OH",19430,85,84,1,43.9,44.4
+default,"Portland, ME",38860,89,85,4,43.5,44.2
+default,"Colorado Springs, CO",17820,86,86,0,43.8,44.0
+default,"Grand Rapids, MI",24340,93,87,6,42.7,43.8
+default,"Spokane, WA",44060,83,88,-5,44.2,43.7
+default,"Greenville, SC",24860,87,89,-2,43.8,43.6
+default,"Davenport, IA",19340,92,90,2,43.0,43.6
+default,"Sioux Falls, SD",43620,91,91,0,43.2,43.5
+default,"Boise City, ID",14260,88,92,-4,43.5,43.3
+default,"Cedar Rapids, IA",16300,99,93,6,42.2,43.2
+default,"Eugene, OR",21660,73,94,-21,45.4,43.2
+default,"College Station, TX",17780,94,95,-1,42.7,42.9
+default,"Deltona, FL",19660,96,96,0,42.5,42.6
+default,"Corpus Christi, TX",18580,95,97,-2,42.6,42.6
+default,"Savannah, GA",42340,97,98,-1,42.3,42.3
+default,"Fresno, CA",23420,98,99,-1,42.3,41.8
+default,"Greensboro, NC",24660,100,100,0,41.8,41.7
+default,"Wichita, KS",48620,103,101,2,41.4,41.6
+default,"Kiryas Joel, NY",28880,102,102,0,41.4,41.5
+default,"Baton Rouge, LA",12940,101,103,-2,41.8,41.4
+default,"Peoria, IL",37900,110,104,6,40.4,41.0
+default,"Reno, NV",39900,106,105,1,40.9,40.9
+default,"Harrisburg, PA",25420,107,106,1,40.8,40.8
+default,"Springfield, MO",44180,112,107,5,40.2,40.5
+default,"Memphis, TN",32820,104,108,-4,41.2,40.5
+default,"Columbia, SC",17900,105,109,-4,41.0,40.5
+default,"Scranton, PA",42540,114,110,4,39.8,40.3
+default,"Tulsa, OK",46140,111,111,0,40.3,40.2
+default,"Tallahassee, FL",45220,108,112,-4,40.6,40.0
+default,"Asheville, NC",11700,113,113,0,39.9,40.0
+default,"Cape Coral, FL",15980,118,114,4,39.2,39.9
+default,"Lansing, MI",29620,121,115,6,38.7,39.6
+default,"Fayetteville, AR",22220,116,116,0,39.4,39.3
+default,"Utica, NY",46540,124,117,7,37.4,39.2
+default,"Gulfport, MS",25060,117,118,-1,39.2,39.1
+default,"Little Rock, AR",30780,119,119,0,39.0,38.8
+default,"Amarillo, TX",11100,122,120,2,38.3,38.3
+default,"Kennewick, WA",28420,120,121,-1,38.8,38.0
+default,"Birmingham, AL",13820,123,122,1,38.3,37.7
+default,"McAllen, TX",32580,128,123,5,36.7,37.6
+default,"Santa Rosa, CA",42220,109,124,-15,40.5,37.4
+default,"Kalamazoo, MI",28020,130,125,5,36.5,37.4
+default,"Santa Cruz, CA",42100,115,126,-11,39.7,37.3
+default,"Lafayette, LA",29180,125,127,-2,37.0,37.0
+default,"Lubbock, TX",31180,127,128,-1,36.9,36.8
+default,"Huntsville, AL",26620,126,129,-3,36.9,36.7
+default,"Slidell, LA",43640,133,130,3,36.3,36.3
+default,"Bend, OR",13460,134,131,3,36.2,36.2
+default,"Modesto, CA",33700,132,132,0,36.3,35.9
+default,"Bakersfield, CA",12540,129,133,-4,36.5,35.9
+default,"Salem, OR",41420,131,134,-3,36.5,35.8
+default,"Myrtle Beach, SC",34820,135,135,0,36.0,35.7
+default,"Manchester, NH",31700,138,136,2,35.3,35.6
+default,"Knoxville, TN",28940,137,137,0,35.6,35.5
+default,"Vallejo, CA",46700,136,138,-2,35.7,35.1
+default,"Springfield, MA",44140,140,139,1,34.6,35.1
+default,"Ogden, UT",36260,139,140,-1,35.1,35.1
+default,"Salinas, CA",41500,141,141,0,34.5,34.5
+default,"Canton, OH",15940,146,142,4,33.9,34.4
+default,"Merced, CA",32900,142,143,-1,34.4,34.2
+default,"Anchorage, AK",11260,144,144,0,34.2,34.1
+default,"Green Bay, WI",24580,152,145,7,32.6,33.9
+default,"Brownsville, TX",15180,147,146,1,33.3,33.6
+default,"South Bend, IN",43780,153,147,6,32.5,33.4
+default,"Fort Wayne, IN",23060,149,148,1,32.6,33.4
+default,"Bremerton, WA",14740,148,149,-1,33.2,33.3
+default,"Waterbury, CT",47930,154,150,4,32.5,32.8
+default,"Stockton, CA",44700,145,151,-6,34.0,32.8
+default,"Laredo, TX",29700,151,152,-1,32.6,32.7
+default,"Mobile, AL",33660,156,153,3,32.3,32.5
+default,"Pensacola, FL",37860,155,154,1,32.4,32.4
+default,"Lancaster, PA",29540,150,155,-5,32.6,32.4
+default,"Olympia, WA",36500,143,156,-13,34.4,32.3
+default,"Provo, UT",39340,158,157,1,31.9,31.9
+default,"Greeley, CO",24540,159,158,1,31.8,31.8
+default,"Waco, TX",47380,157,159,-2,32.0,31.8
+default,"Norwich, CT",35980,163,160,3,30.9,31.7
+default,"Rockford, IL",40420,166,161,5,30.5,31.5
+default,"Tuscaloosa, AL",46220,160,162,-2,31.6,31.5
+default,"Youngstown, OH",49660,164,163,1,30.7,31.4
+default,"Winston-Salem, NC",49180,161,164,-3,31.1,30.9
+default,"Chattanooga, TN",16860,162,165,-3,31.1,30.7
+default,"Lakeland, FL",29460,168,166,2,30.1,30.5
+default,"Beaumont, TX",13140,165,167,-2,30.5,30.5
+default,"Reading, PA",39740,171,168,3,29.5,29.9
+default,"Roanoke, VA",40220,167,169,-2,30.2,29.9
+default,"Jackson, MS",27140,169,170,-1,29.7,29.4
+default,"Killeen, TX",28660,170,171,-1,29.5,29.2
+default,"Evansville, IN",21780,174,172,2,28.7,28.9
+default,"Naples, FL",34940,176,173,3,28.2,28.9
+default,"Crestview, FL",18880,172,174,-2,28.9,28.7
+default,"Montgomery, AL",33860,173,175,-2,28.9,28.4
+default,"Lynchburg, VA",31340,175,176,-1,28.6,28.4
+default,"Flint, MI",22420,178,177,1,27.4,28.3
+default,"York, PA",49620,181,178,3,27.1,27.4
+default,"Shreveport, LA",43340,177,179,-2,27.5,27.2
+default,"Port St. Lucie, FL",38940,180,180,0,27.1,27.1
+default,"Augusta, GA",12260,179,181,-2,27.4,27.1
+default,"Columbus, GA",17980,182,182,0,26.7,26.6
+default,"Hickory, NC",25860,184,183,1,25.7,25.8
+default,"Fayetteville, NC",22180,183,184,-1,26.6,25.6
+default,"Yakima, WA",49420,185,185,0,25.4,25.4
+default,"Huntington, WV",26580,187,186,1,24.1,24.2
+default,"Kingsport, TN",28700,186,187,-1,24.2,23.9
+default,"Longview, TX",30980,189,188,1,22.5,22.6
+default,"Clarksville, TN",17300,190,189,1,21.7,21.7
+default,"Visalia, CA",47300,188,190,-2,23.7,20.8
+default,"Spartanburg, SC",43900,191,191,0,19.6,19.5
+default,"Hagerstown, MD",25180,192,192,0,18.6,18.6
+default,"Ocala, FL",36100,193,193,0,18.1,18.3
+same_sex_reference,"San Francisco, CA",41860,1,1,0,78.1,78.1
+same_sex_reference,"Los Angeles, CA",31080,2,2,0,77.3,77.3
+same_sex_reference,"San Jose, CA",41940,3,3,0,72.3,72.3
+same_sex_reference,"New York, NY",35620,4,4,0,71.9,71.9
+same_sex_reference,"Seattle, WA",42660,5,5,0,69.7,69.8
+same_sex_reference,"New Orleans, LA",35380,6,6,0,69.0,69.0
+same_sex_reference,"Boston, MA",14460,7,7,0,67.8,68.3
+same_sex_reference,"Portland, OR",38900,8,8,0,66.4,66.5
+same_sex_reference,"San Diego, CA",41740,9,9,0,64.8,64.8
+same_sex_reference,"Chicago, IL",16980,10,10,0,64.6,64.5
+same_sex_reference,"Houston, TX",26420,11,11,0,63.0,63.1
+same_sex_reference,"Austin, TX",12420,13,12,1,62.1,62.2
+same_sex_reference,"Pittsburgh, PA",38300,12,13,-1,62.1,62.1
+same_sex_reference,"Philadelphia, PA",37980,14,14,0,61.1,61.3
+same_sex_reference,"Denver, CO",19740,15,15,0,60.8,60.8
+same_sex_reference,"Washington, DC",47900,16,16,0,59.9,59.8
+same_sex_reference,"Miami, FL",33100,17,17,0,59.2,58.7
+same_sex_reference,"Dallas, TX",19100,18,18,0,57.9,58.0
+same_sex_reference,"Sacramento, CA",40900,19,19,0,56.6,56.3
+same_sex_reference,"Phoenix, AZ",38060,21,20,1,55.7,56.1
+same_sex_reference,"St. Louis, MO",41180,20,21,-1,56.1,56.1
+same_sex_reference,"Minneapolis, MN",33460,23,22,1,55.1,56.0
+same_sex_reference,"Des Moines, IA",19780,22,23,-1,55.2,55.9
+same_sex_reference,"Buffalo, NY",15380,25,24,1,54.9,55.5
+same_sex_reference,"Salt Lake City, UT",41620,24,25,-1,55.1,55.1
+same_sex_reference,"Atlanta, GA",12060,26,26,0,53.7,53.8
+same_sex_reference,"Providence, RI",39300,27,27,0,53.6,53.8
+same_sex_reference,"Rochester, NY",40380,29,28,1,53.3,53.7
+same_sex_reference,"Raleigh, NC",39580,28,29,-1,53.5,53.4
+same_sex_reference,"Cleveland, OH",17410,31,30,1,52.6,53.3
+same_sex_reference,"Madison, WI",31540,33,31,2,52.2,52.8
+same_sex_reference,"Columbus, OH",18140,34,32,2,52.0,52.8
+same_sex_reference,"Milwaukee, WI",33340,32,33,-1,52.4,52.7
+same_sex_reference,"Tampa, FL",45300,35,34,1,51.9,52.2
+same_sex_reference,"Albuquerque, NM",10740,30,35,-5,52.8,52.0
+same_sex_reference,"San Antonio, TX",41700,36,36,0,51.6,51.7
+same_sex_reference,"Hartford, CT",25540,40,37,3,51.2,51.6
+same_sex_reference,"Riverside, CA",40140,39,38,1,51.4,51.5
+same_sex_reference,"Fresno, CA",23420,38,39,-1,51.4,51.1
+same_sex_reference,"Omaha, NE",36540,42,40,2,50.3,50.6
+same_sex_reference,"Bridgeport, CT",14860,45,41,4,49.9,50.4
+same_sex_reference,"Ann Arbor, MI",11460,46,42,4,49.6,50.3
+same_sex_reference,"Baltimore, MD",12580,43,43,0,50.1,49.8
+same_sex_reference,"Spokane, WA",44060,44,44,0,50.0,49.5
+same_sex_reference,"Cincinnati, OH",17140,47,45,2,49.2,49.5
+same_sex_reference,"Kansas City, MO",28140,48,46,2,49.0,48.8
+same_sex_reference,"Tucson, AZ",46060,37,47,-10,51.5,48.7
+same_sex_reference,"Toledo, OH",45780,53,48,5,47.7,48.7
+same_sex_reference,"Detroit, MI",19820,52,49,3,48.1,48.5
+same_sex_reference,"Las Vegas, NV",29820,49,50,-1,48.5,48.2
+same_sex_reference,"Columbia, SC",17900,51,51,0,48.2,47.8
+same_sex_reference,"Durham, NC",20500,50,52,-2,48.3,47.6
+same_sex_reference,"Boulder, CO",14500,55,53,2,47.4,47.2
+same_sex_reference,"Honolulu, HI",46520,41,54,-13,50.6,47.1
+same_sex_reference,"Charlotte, NC",16740,56,55,1,47.3,46.7
+same_sex_reference,"Grand Rapids, MI",24340,65,56,9,45.4,46.5
+same_sex_reference,"Indianapolis, IN",26900,64,57,7,45.7,46.3
+same_sex_reference,"Orlando, FL",36740,61,58,3,46.0,46.3
+same_sex_reference,"Oklahoma City, OK",36420,58,59,-1,46.4,46.3
+same_sex_reference,"Nashville, TN",34980,57,60,-3,46.6,46.1
+same_sex_reference,"Greenville, SC",24860,59,61,-2,46.2,46.0
+same_sex_reference,"Syracuse, NY",45060,69,62,7,45.0,46.0
+same_sex_reference,"Virginia Beach, VA",47260,63,63,0,45.9,46.0
+same_sex_reference,"Oxnard, CA",37100,60,64,-4,46.0,45.9
+same_sex_reference,"El Paso, TX",21340,54,65,-11,47.6,45.9
+same_sex_reference,"Trenton, NJ",45940,66,66,0,45.3,45.5
+same_sex_reference,"Lexington, KY",30460,68,67,1,45.1,45.3
+same_sex_reference,"Albany, NY",10580,70,68,2,44.5,45.3
+same_sex_reference,"Richmond, VA",40060,67,69,-2,45.2,45.1
+same_sex_reference,"Allentown, PA",10900,71,70,1,44.5,45.0
+same_sex_reference,"Portland, ME",38860,72,71,1,44.1,44.8
+same_sex_reference,"Reno, NV",39900,73,72,1,43.6,43.5
+same_sex_reference,"Palm Bay, FL",37340,74,73,1,43.5,43.4
+same_sex_reference,"Dayton, OH",19430,76,74,2,42.7,43.1
+same_sex_reference,"Santa Rosa, CA",42220,62,75,-13,46.0,42.9
+same_sex_reference,"Harrisburg, PA",25420,75,76,-1,43.1,42.9
+same_sex_reference,"North Port, FL",35840,77,77,0,42.4,42.7
+same_sex_reference,"New Haven, CT",35300,78,78,0,41.7,42.1
+same_sex_reference,"Louisville, KY",31140,79,79,0,41.2,40.9
+same_sex_reference,"Deltona, FL",19660,82,80,2,40.4,40.5
+same_sex_reference,"Santa Maria, CA",42200,80,81,-1,40.5,40.4
+same_sex_reference,"Knoxville, TN",28940,81,82,-1,40.4,40.4
+same_sex_reference,"Fort Collins, CO",22660,83,83,0,40.3,40.2
+same_sex_reference,"Akron, OH",10420,84,84,0,39.7,40.1
+same_sex_reference,"Worcester, MA",49340,87,85,2,39.1,39.7
+same_sex_reference,"Fayetteville, AR",22220,85,86,-1,39.6,39.6
+same_sex_reference,"Birmingham, AL",13820,86,87,-1,39.5,39.1
+same_sex_reference,"Salinas, CA",41500,88,88,0,38.8,38.8
+same_sex_reference,"Jacksonville, FL",27260,89,89,0,38.5,38.6
+same_sex_reference,"Tulsa, OK",46140,90,90,0,38.5,38.5
+same_sex_reference,"Atlantic City, NJ",12100,91,91,0,38.2,38.0
+same_sex_reference,"Jackson, MS",27140,92,92,0,37.6,37.4
+same_sex_reference,"Colorado Springs, CO",17820,93,93,0,36.4,36.6
+same_sex_reference,"Cape Coral, FL",15980,95,94,1,35.6,36.4
+same_sex_reference,"Greensboro, NC",24660,94,95,-1,36.3,36.2
+same_sex_reference,"McAllen, TX",32580,98,96,2,35.0,35.8
+same_sex_reference,"College Station, TX",17780,96,97,-1,35.4,35.6
+same_sex_reference,"Boise City, ID",14260,97,98,-1,35.4,35.2
+same_sex_reference,"Winston-Salem, NC",49180,99,99,0,34.6,34.4
+same_sex_reference,"Bakersfield, CA",12540,100,100,0,34.3,33.6
+same_sex_reference,"Chattanooga, TN",16860,102,101,1,33.7,33.4
+same_sex_reference,"Wichita, KS",48620,103,102,1,33.2,33.3
+same_sex_reference,"Kiryas Joel, NY",28880,105,103,2,33.1,33.2
+same_sex_reference,"Memphis, TN",32820,101,104,-3,33.7,33.0
+same_sex_reference,"Baton Rouge, LA",12940,104,105,-1,33.2,32.9
+same_sex_reference,"Tallahassee, FL",45220,106,106,0,32.8,32.4
+same_sex_reference,"Little Rock, AR",30780,107,107,0,32.5,32.3
+same_sex_reference,"Springfield, MA",44140,108,108,0,31.4,32.3
+same_sex_reference,"Lansing, MI",29620,109,109,0,30.7,31.8
+same_sex_reference,"Charleston, SC",16700,110,110,0,30.2,30.2
+same_sex_reference,"Ogden, UT",36260,111,111,0,30.1,30.1
+same_sex_reference,"Gainesville, FL",23540,112,112,0,28.4,28.5
+same_sex_reference,"Scranton, PA",42540,114,113,1,27.7,28.3
+same_sex_reference,"Huntsville, AL",26620,113,114,-1,28.3,28.2
+same_sex_reference,"Manchester, NH",31700,115,115,0,26.4,26.6
+same_sex_reference,"Fayetteville, NC",22180,116,116,0,26.3,25.2
+same_sex_reference,"Lakeland, FL",29460,118,117,1,23.0,23.5
+same_sex_reference,"Stockton, CA",44700,117,118,-1,23.9,22.8
+same_sex_reference,"Provo, UT",39340,119,119,0,21.1,21.1
+same_sex_reference,"Waterbury, CT",47930,120,120,0,20.2,20.8

@@ -3,11 +3,36 @@
   "metros_without_station": [],
   "median_station_km": 8.487587599909023,
   "p95_station_km": 37.07709229018462,
-  "fallback_rank_gt0": 95,
-  "max": 336.22295081967206,
-  "min": 33.61773373390079,
-  "median": 115.178771794038,
-  "median_abs_change_vs_normals": 44.4576082344619,
-  "at_365_normals": 3,
-  "at_365_ghcn": 0
+  "fallback_rank_gt0": 94,
+  "max": 303.88114754098365,
+  "min": 9.640897445409374,
+  "median": 78.86976320582878,
+  "median_abs_change_vs_normals": 38.13798181183607,
+  "at_365_normals": 0,
+  "at_365_ghcn": 0,
+  "definition": {
+    "tavg_f": [
+      55.0,
+      75.0
+    ],
+    "prcp_max_in": 0.1,
+    "snow_max_in": 0.0,
+    "snwd_max_in": 1.0,
+    "tmax_below_f": 85.0,
+    "tmin_above_f": 45.0
+  },
+  "snow": {
+    "days_counted": 918196,
+    "days_counted_with_snow_data": 712139,
+    "days_excluded_by_snow": 27,
+    "valid_days": 4067746,
+    "valid_days_with_snow_data": 3275655,
+    "snow_readings_implausible": 0,
+    "stations_with_no_snow_data": 0,
+    "metros_losing_a_day_or_more_to_snow": 0,
+    "max_days_a_year_removed_by_snow": [
+      "16300",
+      0.07
+    ]
+  }
 }

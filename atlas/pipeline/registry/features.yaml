@@ -474,10 +474,21 @@ naics_venues:                       # the reach venue selection (CBP + QCEW)
 # San Francisco served 365. Precipitation joined the definition: a mild
 # day with real rain is not a nice day. All three thresholds live here
 # where they can be argued with.
+#
+# Phase 4e (Nathan's rule, m4.2.0): a day counts when it meets ALL six.
+# "Between 55°F and 75°F" is read as the day's AVERAGE, (TMAX + TMIN) / 2
+# — GHCN's TAVG is often missing — because separate high and low limits
+# would otherwise be redundant (a reading recorded for Nathan to confirm).
+# A day with no SNOW or SNWD reading counts as snow-free: with the low
+# above 45°F, snow is effectively impossible. m2.1.0-m4.1.1 read: a high
+# between 55 and 85°F, a low of at least 40°F, at most 0.1 in of rain.
 pleasant_day:
-  tmax_f: [55, 85]
-  tmin_floor_f: 40
-  prcp_max_in: 0.1
+  tavg_f: [55, 75]       # average temperature, inclusive at both ends
+  tmax_below_f: 85       # the high is below 85°F (strict)
+  tmin_above_f: 45       # the low is above 45°F (strict)
+  prcp_max_in: 0.1       # rain at most 0.1 in: today's "light shower" cutoff
+  snow_max_in: 0         # snowfall at most 0: none measurable (SNOW = 0)
+  snwd_max_in: 1         # snow on the ground under 1 in (strict)
 
 missing_data_policy: >
   A metro missing a static feature keeps its other features; the pillar's
@@ -826,20 +837,20 @@ features:
     band_labels: ["Far fewer than most cities", "Fewer than most cities",
                   "About average", "More than most cities",
                   "Far more than most cities"]
-    # Phase 2g item 3: Nathan wrote "average between 55 and 85°F"; the
-    # rule is on the day's HIGH (tmax_f below), so "average" would
-    # describe a different statistic — "reach" ships instead, flagged in
-    # PHASE2G.md for his confirmation. The 30-year clause moved to the
-    # stat page's source line (NOAA GHCN-Daily, 1991–2020).
+    # Phase 2g item 3 had "reach between 55 and 85°F" (the rule was on the
+    # day's high). Phase 4e (Nathan's new rule, the brief's DRAFT wording
+    # for his approval): "average" is now the rule's own word — the day's
+    # mean of its high and low. The 30-year clause stays on the stat
+    # page's source line (NOAA GHCN-Daily, 1991–2020).
     definition: >-
-      Days a year that reach between 55 and 85°F, don't dip below 40°F,
-      and see no more than a light shower
+      Days a year that average between 55 and 75°F, stay below 85°F and
+      above 45°F, and have no more than a light shower and no snow
     provenance: {source: ghcn_daily,
                  dataset: "NOAA GHCN-Daily",
                  table: "daily-summaries access CSVs, 1991-2020",
-                 variables: [TMAX, TMIN, PRCP],
+                 variables: [TMAX, TMIN, PRCP, SNOW, SNWD],
                  geography: "station -> cbsa", vintage: "1991-2020",
-                 transform_id: lifestyle_pleasant_days_v2, tier: measured}
+                 transform_id: lifestyle_pleasant_days_v3, tier: measured}
 
   # Direction is a documented judgment: student presence proxies a younger
   # social infrastructure. Band tones are neutral in every band — a heavy
