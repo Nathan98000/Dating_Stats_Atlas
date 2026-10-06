@@ -346,11 +346,17 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     assert "compatibility" in strings["slider_info"] and "balance favors" not in strings["slider_info"], (
         "slider_info must describe the compatibility pole (ADR 0009, renamed by ADR 0018)")
     # m4.0.0 (ADR 0018): About us and its Sources and credits section
-    for need_key in ("about_title", "about_measure_link", "about_crime_link",
-                     "about_privacy_link", "credits_heading", "credits_data_heading",
-                     "credits_photos_heading", "credits_photos_more", "credits_source",
-                     "credits_cropped"):
+    for need_key in ("about_title", "about_privacy_link", "credits_heading",
+                     "credits_data_heading", "credits_data_more", "credits_photos_heading",
+                     "credits_photos_more", "credits_source", "credits_cropped"):
         assert strings.get(need_key), f"strings.{need_key} is required (m4.0.0)"
+    # after Phase 4e (Nathan, 2026-10-06): About us lost its What we measure
+    # and About crime data buttons — the account links both in its own words
+    for gone in ("about_measure_link", "about_crime_link"):
+        assert gone not in strings, (
+            f"strings.{gone} was retired after Phase 4e (About us links it in its copy)")
+    for need_key in ("credits_data_more", "credits_photos_more"):
+        assert "{n}" in strings[need_key], f"strings.{need_key} carries its count, {{n}}"
     # Phase 4b (ADR 0018 amended, Nathan's changes): the panel's two
     # section headings and the overall score's label; race is one select
     # defaulting to prefer_not_to_say, the panel carries no inline note,

@@ -1,0 +1,118 @@
+{
+ "change_set": "About us changes after Phase 4e (Nathan, 2026-10-06)",
+ "note": "Every user-facing string changed. The account is Nathan's copy word for word (checked mechanically against his message); markdown adds only the bold labels and the links he named. The walkability row links the site's own walkability page (/stats/resident_walkability_index) where his message gave its localhost address.",
+ "changes": [
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"How are the numbers made?\" (was \"How the numbers are made\")",
+   "old": "## How the numbers are made\n**In a minute:** Every count on this site is our estimate from the Census Bureau's American Community Survey from 2020 through 2024. You select what you're looking for; we count how many matching people live in each of 387 US metro areas, and rank the 193 with at least 250,000 people and enough survey sample to answer. We use additional information from nationally-recognized datasets and weigh it all together to find your best city match.",
+   "new": "## How are the numbers made?\n**Summary:** Every count on this site is our estimate from the Census Bureau's American Community Survey from 2020 through 2024. You select what you're looking for; we count how many matching people live in each of 387 US metro areas, and rank the 193 with at least 250,000 people and a large enough sample to make a reliable estimate. We use additional information from nationally-recognized datasets and weigh it all together to find your best city match.",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"Where does the data come from?\" (was \"Where does the data come from?\")",
+   "old": "## Where does the data come from?\n- **People counts** — the American Community Survey, about 3.5 million households a year, 2020–2024 combined, weighted the way the Census Bureau weighs them. Metro areas follow the government's own definitions: \"San Francisco\" means the whole metro area, not the city limits. - **Place stats** — each from a nationally-recognized source, updated when that source publishes: | Stat | Source | | --- | --- | | Rent | HUD 50th percentile rent estimates, FY2027 | | Everyday prices | Bureau of Economic Analysis price levels | | Places to go out | Census Bureau business data | | Getting around on foot | EPA's national walkability index | | Nice days a year | NOAA daily weather-station records, 1991–2020 | | Students | Federal education data (IPEDS) | | Reported crime | FBI Crime Data Explorer — shown, never scored |",
+   "new": "## Where does the data come from?\n- **How many people:** Data comes from the Census Bureau's American Community Survey, which includes about 3.5 million households a year, from 2020–2024. Metro areas follow Census definitions: \"San Francisco\" means the whole metro area, not just the city limits. - **City stats:** Data come from nationally-recognized sources, updated when that source publishes: | Stat | Source | | --- | --- | | Rent | [HUD 50th percentile rent estimates, FY2027](https://www.huduser.gov/portal/datasets/50per.html) | | Everyday prices | [Bureau of Economic Analysis price levels](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) | | Places to go out | [Census Bureau business data](https://www.census.gov/programs-surveys/cbp.html) | | Getting around on foot | [EPA's national walkability index](/stats/resident_walkability_index) | | Nice days a year | [NOAA daily weather-station records, 1991–2020](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily) | | Students | [Federal education data (IPEDS)](https://nces.ed.gov/ipeds/use-the-data) | | Political lean | [MIT Election Data and Science Lab data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ) | | [Reported crime](/about-crime-data) | [FBI Crime Data Explorer](https://cde.ucr.cjis.gov/) |",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"How is count of matches calculated?\" (was \"What does a \"match\" count?\")",
+   "old": "## What does a \"match\" count?\nEveryone in a metro area who fits your whole search — sex, age range, never married or previously married, and any education, income, race or ethnicity filters you set. That count is the **dating pool**, and it is the biggest part of the score.",
+   "new": "## How is count of matches calculated?\nEveryone in a metro area who fits your search: sex, age range, never married or previously married, and any education, income, race or ethnicity filters you set. This count is the **dating pool**, which by default makes up the biggest part of your overall score.",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"How is compatibility calculated?\" (was \"Compatibility\")",
+   "old": "## Compatibility\n**Compatibility** is how closely the people who match your search resemble the people who actually pair with someone like you, on age and education (and on background, if you include yours), where 100 is the US average. The compatibility figure is built from real couples in the Census Bureau's household survey, using each partner's age and education, and their race or ethnicity only if you include yours. Across the whole country we measure how often each age gap and each education pairing actually occurs, compared with how often it would occur if single people paired at random; if you include your race or ethnicity, the racial and ethnic pairings are measured the same way. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age and education, and background if you include it. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search. Your own sex, education and race or ethnicity stay in your browser and are never sent to us: the site works out the figure for every possible answer, and your browser shows the one that fits you. Your education is optional; leave it unset and the average for people of your age and sex is used instead. Your race or ethnicity is used only if you include it, and then only for this figure; without it, the figure uses no racial or ethnic pairing at all. For a same-sex search the age gaps and the education pairings come from same-sex couples in the same survey; the racial and ethnic pairings are not used, even if you include your race or ethnicity.",
+   "new": "## How is compatibility calculated?\n**Compatibility** is how closely the people who match your search resemble the people who actually pair with someone like you, on age, education, and background, where 100 is the US average. The compatibility score is built from real couples in the Census Bureau's household survey. Across the whole country we measure how often each age gap, education pairing, and racial/ethnic pairing actually occurs. This pattern is then applied to the single people who match your search in each city, so the score says how closely they resemble the people who typically pair with someone of your sex, age, education, and background. For a same-sex search, the age gaps and the education pairings come from same-sex couples in the same survey. Racial and ethnic pairings aren't used, since data on this is too sparse for reliable estimates across cities.",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"How does the score work?\" (was \"How does the score work?\")",
+   "old": "## How does the score work?\nYou set what matters. The slider divides the people-side weight between pool size and compatibility; four controls — cost of living, social life, student life, weather — set how much each place stat counts. \"Not much\" makes a thing count a little, not zero, so nothing you deprioritise can silently vanish. Each city's stats are compared across the cities that can answer your search, weighted your way, and summed to a score out of 100. There are no hidden weights: the controls on the home page are the whole model.",
+   "new": "## How does the score work?\nYou set what matters. The slider balances between pool size and compatibility. Four controls (cost of living, social life, student life, weather) set how much each stat counts. Each stat is compared across cities, weighted your way, and summed to a score out of 100.",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"Which cities are included?\" (was \"Why do some searches leave cities out?\")",
+   "old": "## Why do some searches leave cities out?\nBecause the data is a survey. A very specific search can turn up only a handful of matching responses in a smaller city, and below about a hundred matching respondents a count stops being dependable — so we leave that city out of your results and say how many were left out. **Too few matches in the survey is not the same as too few people in the country**: it usually means the search is narrow, not that nobody fits.",
+   "new": "## Which cities are included?\nThe narrower your search, the harder it becomes to make reliable estimates about the number of matches you can find in a given city, especially for less populated cities. When estimates become too noisy, we leave cities out of the rankings and report how many were excluded. To see the full range of cities, try expanding your search to include more people.",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "rewritten (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md section \"Every measure, every city\" (was \"Every measure, every city\")",
+   "old": "## Every measure, every city\nThe full list of what this site measures — each statistic in plain words, with a preference-free list of every ranked city — lives on one page: [What we measure](/what-we-measure).",
+   "new": "## Every measure, every city\nThe full list of what this site measures in plain English, with links to city rankings, lives on one page: [What we measure](/what-we-measure).",
+   "why": "Nathan's new copy above Sources and credits (2026-10-06)"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/methodology.md section \"What does balance compare?\"",
+   "old": "## What does balance compare?\n**Dating pool balance** is a simpler number: all single men per 100 single women (or the mirror, if you're looking for women) in the age range you picked — never-married, divorced or widowed people, counted across the whole metro, **before any education, income, race or ethnicity filter**. It deliberately ignores your other filters so it means what it sounds like: the shape of the whole singles scene at that age, which doesn't move as you refine your search. It's shown per 100, rounded to a whole number, and only where both sides of the comparison have enough survey sample to be dependable. It is shown for information and is not part of the score.",
+   "new": "(none)",
+   "why": "Nathan's new copy leaves the section out"
+  },
+  {
+   "change": "About us account (item 5)",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/methodology.md section \"What do the race and ethnicity boxes do?\"",
+   "old": "## What do the race and ethnicity boxes do?\nThey select **who is counted as living in a city and matching your search — nothing more**. There are eight boxes — the Census Bureau's race and ethnicity categories, including \"Two or more races\" and \"Another race\" — and **the boxes you tick are exactly who gets counted, with nothing added**. Tick two groups and the count is the sum of those two groups. Unticking every box means the same as ticking all eight: no filter at all. These boxes are about the people you're looking for. Your own race or ethnicity is a separate setting: it is used only if you include it, stays in your browser, and affects only the compatibility figure.",
+   "new": "(none)",
+   "why": "Nathan's new copy leaves the section out"
+  },
+  {
+   "change": "top of About us (items 1-2)",
+   "kind": "removed (Nathan's request)",
+   "where": "web/src/app/about/page.tsx buttons; registry strings.about_measure_link, strings.about_crime_link (retired; the loader refuses them)",
+   "old": "What we measure · About crime data · Privacy · Terms of use",
+   "new": "Privacy · Terms of use",
+   "why": "the account links both itself: What we measure in its last section, About crime data from the Reported crime row"
+  },
+  {
+   "change": "data sources collapsed (item 3)",
+   "kind": "added (DRAFT label for Nathan's approval)",
+   "where": "registry strings.credits_data_more -> About us, Sources and credits, the Data list's summary",
+   "old": "(the citations listed open)",
+   "new": "Data sources ({n})",
+   "why": "the citations collapse like the photographs; the Census API notice stays in view beside them (ADR 0012)"
+  },
+  {
+   "change": "home page photograph's credit in the collapsed list (item 4)",
+   "kind": "changed (DRAFT for Nathan's approval)",
+   "where": "registry strings.credits_photos_more -> the photographs' list summary",
+   "old": "Photographs on the city and stat pages ({n})",
+   "new": "Photographs on the home, city and stat pages ({n})",
+   "why": "the list now holds the home page photograph too"
+  },
+  {
+   "change": "the home page photograph (item 4)",
+   "kind": "changed (DRAFT alt text for Nathan's approval)",
+   "where": "pipeline/build/hero_image.HERO_ALT -> web/src/data/hero.json alt -> the home page photograph",
+   "old": "A couple walking a city path holding hands, photographed from the shoulders down",
+   "new": "A couple holding hands as they walk along a tree-lined sidewalk, seen from behind",
+   "why": "Nathan's new photograph (File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg, CC0); its Commons description is only the photographer's name and date"
+  },
+  {
+   "change": "the home page photograph's credit (item 4)",
+   "kind": "changed (composed from Commons metadata, as every credit is)",
+   "where": "About us, Sources and credits, the photographs' list (first)",
+   "old": "Adult couple holding hands · Alice Donovan Rouse (@alicekat) · CC0 · source · cropped",
+   "new": "Crew 2016-01-10 (Unsplash xCmvrpzctaQ) · Crew crew · CC0 · source · cropped",
+   "why": "the new photograph; the home page crops it into a band, so the credit says \"cropped\""
+  }
+ ]
+}

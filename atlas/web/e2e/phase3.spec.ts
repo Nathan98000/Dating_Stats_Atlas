@@ -118,16 +118,21 @@ test("What we measure lists compatibility as a people measure and balance as a s
   expect(text).toMatch(/Number of single men per 100 single women/);
 });
 
-test("About us gives the one account of the figure, race only if you include yours, and balance outside the score", async ({ page }) => {
+test("About us gives the one account of the figure, in Nathan's words", async ({ page }) => {
+  // Nathan's About us copy (after Phase 4e, 2026-10-06): the figure's
+  // account, the same-sex paragraph, and the slider between pool size and
+  // compatibility; the old "chances of matching" never comes back, and the
+  // figure's anchors survive for old links
   await page.goto("/about");
   const article = page.locator("article.prose-method");
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
-  expect(text).toMatch(/each age gap and each education pairing/);
-  expect(text).toMatch(/only if you include yours/);
-  expect(text).toMatch(/aggregate pattern from recent unions, not a prediction about any one person/);
+  expect(text).toMatch(/how often each age gap, education pairing, and racial\/ethnic pairing actually occurs/);
+  expect(text).toMatch(/where 100 is the US average/);
+  expect(text).toMatch(/Racial and ethnic pairings aren't used/);
   expect(text).toMatch(/between pool size and compatibility/);
-  expect(text).toMatch(/not part of the score/);
   expect(text).not.toMatch(/chances of matching/i);
   expect(text).not.toMatch(/carry its weight/);
   await expect(page.locator("#compatibility")).toHaveCount(1);
+  await expect(page.locator("#chances-of-matching")).toHaveCount(1);
 });
+

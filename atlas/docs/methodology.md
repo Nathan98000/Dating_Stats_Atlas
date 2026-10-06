@@ -1,126 +1,77 @@
-## How the numbers are made
+## How are the numbers made?
 
-**In a minute:** Every count on this site is our estimate from the Census
-Bureau's American Community Survey from 2020 through 2024. You select what you're
-looking for; we count how many matching people live in each of 387 US
-metro areas, and rank the 193 with at least 250,000 people and enough
-survey sample to answer. We use additional information from
-nationally-recognized datasets and weigh it all together to find your
+**Summary:** Every count on this site is our estimate from the Census
+Bureau's American Community Survey from 2020 through 2024. You select what
+you're looking for; we count how many matching people live in each of 387
+US metro areas, and rank the 193 with at least 250,000 people and a large
+enough sample to make a reliable estimate. We use additional information
+from nationally-recognized datasets and weigh it all together to find your
 best city match.
 
 ## Where does the data come from?
 
-- **People counts** — the American Community Survey, about 3.5 million
-  households a year, 2020–2024 combined, weighted the way the Census
-  Bureau weighs them. Metro areas follow the government's own
-  definitions: "San Francisco" means the whole metro area, not the city
-  limits.
-- **Place stats** — each from a nationally-recognized source, updated
+- **How many people:** Data comes from the Census Bureau's American
+  Community Survey, which includes about 3.5 million households a year,
+  from 2020–2024. Metro areas follow Census definitions: "San Francisco"
+  means the whole metro area, not just the city limits.
+- **City stats:** Data come from nationally-recognized sources, updated
   when that source publishes:
 
 | Stat | Source |
 | --- | --- |
-| Rent | HUD 50th percentile rent estimates, FY2027 |
-| Everyday prices | Bureau of Economic Analysis price levels |
-| Places to go out | Census Bureau business data |
-| Getting around on foot | EPA's national walkability index |
-| Nice days a year | NOAA daily weather-station records, 1991–2020 |
-| Students | Federal education data (IPEDS) |
-| Reported crime | FBI Crime Data Explorer — shown, never scored |
+| Rent | [HUD 50th percentile rent estimates, FY2027](https://www.huduser.gov/portal/datasets/50per.html) |
+| Everyday prices | [Bureau of Economic Analysis price levels](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) |
+| Places to go out | [Census Bureau business data](https://www.census.gov/programs-surveys/cbp.html) |
+| Getting around on foot | [EPA's national walkability index](/stats/resident_walkability_index) |
+| Nice days a year | [NOAA daily weather-station records, 1991–2020](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily) |
+| Students | [Federal education data (IPEDS)](https://nces.ed.gov/ipeds/use-the-data) |
+| Political lean | [MIT Election Data and Science Lab data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ) |
+| [Reported crime](/about-crime-data) | [FBI Crime Data Explorer](https://cde.ucr.cjis.gov/) |
 
-## What does a "match" count?
+## How is count of matches calculated?
 
-Everyone in a metro area who fits your whole search — sex, age range,
-never married or previously married, and any education, income, race or
-ethnicity filters you set. That count is the **dating pool**, and it is
-the biggest part of the score.
+Everyone in a metro area who fits your search: sex, age range, never
+married or previously married, and any education, income, race or
+ethnicity filters you set. This count is the **dating pool**, which by
+default makes up the biggest part of your overall score.
 
-## Compatibility
+## How is compatibility calculated?
 
 <a id="compatibility"></a>
 <a id="chances-of-matching"></a>
 
-**Compatibility** is how closely the people who match your search
-resemble the people who actually pair with someone like you, on age and
-education (and on background, if you include yours), where 100 is the
-US average.
+**Compatibility** is how closely the people who match your search resemble
+the people who actually pair with someone like you, on age, education, and
+background, where 100 is the US average.
 
-The compatibility figure is built from real couples in the Census
-Bureau's household survey, using each partner's age and education, and
-their race or ethnicity only if you include yours. Across the whole
-country we measure how often each age gap and each education pairing
-actually occurs, compared with how often it would occur if single people
-paired at random; if you include your race or ethnicity, the racial and
-ethnic pairings are measured the same way. That pattern, adjusted a
-little for each city's own couples, is then applied to the single people
-who match your search in each city, so the figure says how closely they
-resemble the people who typically pair with someone of your sex, age and
-education, and background if you include it. It is an aggregate pattern
-from recent unions, not a prediction about any one person, and 100 is
-the US average for your search.
+The compatibility score is built from real couples in the Census Bureau's
+household survey. Across the whole country we measure how often each age
+gap, education pairing, and racial/ethnic pairing actually occurs. This
+pattern is then applied to the single people who match your search in each
+city, so the score says how closely they resemble the people who typically
+pair with someone of your sex, age, education, and background.
 
-Your own sex, education and race or ethnicity stay in your browser and
-are never sent to us: the site works out the figure for every possible
-answer, and your browser shows the one that fits you. Your education is
-optional; leave it unset and the average for people of your age and sex
-is used instead. Your race or ethnicity is used only if you include
-it, and then only for this figure; without it, the figure uses no
-racial or ethnic pairing at all.
-
-For a same-sex search the age gaps and the education pairings come from
-same-sex couples in the same survey; the racial and ethnic pairings are
-not used, even if you include your race or ethnicity.
-
-## What does balance compare?
-
-**Dating pool balance** is a simpler number: all single men per 100
-single women (or the mirror, if you're looking for women) in the age
-range you picked — never-married, divorced or widowed people, counted
-across the whole metro, **before any education, income, race or ethnicity
-filter**. It deliberately ignores your other filters so it means what it
-sounds like: the shape of the whole singles scene at that age, which
-doesn't move as you refine your search. It's shown per 100, rounded to a
-whole number, and only where both sides of the comparison have enough
-survey sample to be dependable. It is shown for information and is not
-part of the score.
-
-## What do the race and ethnicity boxes do?
-
-They select **who is counted as living in a city and matching your
-search — nothing more**.
-
-There are eight boxes — the Census Bureau's race and ethnicity
-categories, including "Two or more races" and "Another race" — and
-**the boxes you tick are exactly who gets counted, with nothing added**.
-Tick two groups and the count is the sum of those two groups. Unticking
-every box means the same as ticking all eight: no filter at all.
-
-These boxes are about the people you're looking for. Your own race or
-ethnicity is a separate setting: it is used only if you include it,
-stays in your browser, and affects only the compatibility figure.
+For a same-sex search, the age gaps and the education pairings come from
+same-sex couples in the same survey. Racial and ethnic pairings aren't
+used, since data on this is too sparse for reliable estimates across
+cities.
 
 ## How does the score work?
 
-You set what matters. The slider divides the people-side weight between
-pool size and compatibility; four controls — cost of living, social
-life, student life, weather — set how much each place stat counts. "Not much"
-makes a thing count a little, not zero, so nothing you deprioritise can
-silently vanish. Each city's stats are compared across the cities that
-can answer your search, weighted your way, and summed to a score out
-of 100. There are no hidden weights: the controls on the home page are
-the whole model.
+You set what matters. The slider balances between pool size and
+compatibility. Four controls (cost of living, social life, student life,
+weather) set how much each stat counts. Each stat is compared across
+cities, weighted your way, and summed to a score out of 100.
 
-## Why do some searches leave cities out?
+## Which cities are included?
 
-Because the data is a survey. A very specific search can turn up only a
-handful of matching responses in a smaller city, and below about a
-hundred matching respondents a count stops being dependable — so we
-leave that city out of your results and say how many were left out.
-**Too few matches in the survey is not the same as too few people in the
-country**: it usually means the search is narrow, not that nobody fits.
+The narrower your search, the harder it becomes to make reliable estimates
+about the number of matches you can find in a given city, especially for
+less populated cities. When estimates become too noisy, we leave cities
+out of the rankings and report how many were excluded. To see the full
+range of cities, try expanding your search to include more people.
 
 ## Every measure, every city
 
-The full list of what this site measures — each statistic in plain
-words, with a preference-free list of every ranked city — lives on one
-page: [What we measure](/what-we-measure).
+The full list of what this site measures in plain English, with links to
+city rankings, lives on one page: [What we measure](/what-we-measure).

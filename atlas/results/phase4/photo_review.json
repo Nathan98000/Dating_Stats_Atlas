@@ -416,5 +416,17 @@
    "File:Ballot_paper_Latvia-Riga_2022.jpg (party lists and candidates' names)",
    "File:Luxembourg_Referendum_2015_Postal_vote_-_ballot_and_other_documents.jpg (government ballot seal; a voter's address window)"
   ]
+ },
+ "after_phase4e_hero": {
+  "date": "2026-10-06",
+  "why": "Nathan replaced the home page photograph with his pick: the lead image of the Wikipedia article \"Holding hands\" (https://en.wikipedia.org/wiki/Holding_hands#/media/File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg)",
+  "was": "File:Adult_couple_holding_hands.jpg",
+  "file_title": "File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg",
+  "license": "CC0 (Unsplash, 'Crew'): clears the hero's strict public-domain/CC0 gate, which the band crop requires",
+  "checked": "two people holding hands as they walk along a tree-lined sidewalk, seen from behind at waist height; no face in frame, so no identifiable person; no sculpture or mural; no logo, emblem or seal; blurred street and cars behind",
+  "alt": "A couple holding hands as they walk along a tree-lined sidewalk, seen from behind",
+  "alt_why": "the Commons description is only the photographer's name and date (\"Crew 2016-01-10\"); DRAFT for Nathan's approval",
+  "cropped": "yes: the home page shows a centred band (object-cover), which keeps the clasped hands in frame on desktop and phone; the credit says \"cropped\"",
+  "previous_file": "the m2.x-m4.2.0 hero (File:Adult_couple_holding_hands.jpg, CC0) stays second in hero_image.HERO_FILE_CANDIDATES; its file was overwritten in web/public (gitignored, re-fetchable; sha256 29623f68... in git history)"
  }
 }

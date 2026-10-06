@@ -31,13 +31,19 @@ function shipped(dir: string, img: PhotoCredit | undefined): img is PhotoCredit 
 }
 
 /** About us (m4.0.0, Nathan's decisions 7-9; "How it works" until then):
- * What we measure linked prominently near the top, the plain-language
- * account of how the numbers are made (docs/methodology.md, synced at
- * build), and the ONE place every source and photograph credit lives —
- * Sources and credits: the data citations and notices from the typed
- * licence registry through the manifest, and each photograph's credit
- * from the committed image manifests. The privacy page and About crime
- * data are linked from here. Every label comes from the registry. */
+ * the privacy page and the terms of use linked near the top, the
+ * plain-language account of how the numbers are made (docs/methodology.md,
+ * synced at build), and the ONE place every source and photograph credit
+ * lives — Sources and credits: the data citations and notices from the
+ * typed licence registry through the manifest, and each photograph's
+ * credit from the committed image manifests. After Phase 4e (Nathan,
+ * 2026-10-06): What we measure and About crime data are no longer buttons
+ * here — the account links them in its own words (its last section, and
+ * the Reported crime row of its sources table); the data citations
+ * collapse like the photographs, and the home page photograph's credit
+ * sits in the photographs' list with the rest. The Census API notice stays
+ * in view beside the collapsed citations (ADR 0012: it appears with the
+ * citations). Every label comes from the registry. */
 export default async function AboutPage() {
   const meta = await apiMeta();
   const policy = meta.policy_strings;
@@ -54,7 +60,8 @@ export default async function AboutPage() {
     .filter((img) => shipped("stats", img));
   const cities = Object.values(cityImages as unknown as Record<string, PhotoCredit>)
     .filter((img) => shipped("cities", img));
-  const more = [...stats, ...cities];
+  // the home page photograph leads the one list of photograph credits
+  const photos = [...(heroShown ? [heroShown] : []), ...stats, ...cities];
 
   return (
     <>
@@ -64,19 +71,6 @@ export default async function AboutPage() {
           {policy.about_title}
         </h1>
         <nav className="mt-5 flex flex-wrap gap-3" data-testid="about-links" aria-label={policy.about_title}>
-          <Link
-            href="/what-we-measure"
-            className="inline-flex min-h-[46px] items-center rounded-lg bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
-            data-testid="about-measure-link"
-          >
-            {policy.about_measure_link}
-          </Link>
-          <Link
-            href="/about-crime-data"
-            className="inline-flex min-h-[46px] items-center rounded-lg border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
-          >
-            {policy.about_crime_link}
-          </Link>
           <Link
             href="/privacy"
             className="inline-flex min-h-[46px] items-center rounded-lg border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
@@ -105,27 +99,31 @@ export default async function AboutPage() {
         >
           <h2 className="font-display text-[26px] font-semibold">{policy.credits_heading}</h2>
           <h3 className="mt-5 text-[17px] font-semibold">{policy.credits_data_heading}</h3>
-          <ul className="mt-2 flex flex-col gap-2" data-testid="credits-data">
-            {citations.map((c) => (
-              <li key={c} className="text-sm leading-relaxed text-ink-2">{c}</li>
-            ))}
-          </ul>
+          {citations.length > 0 && (
+            <details className="mt-2" data-testid="credits-data-more">
+              <summary className="cursor-pointer text-sm font-semibold text-accent hover:text-accent-hover">
+                {policy.credits_data_more.replace("{n}", citations.length.toLocaleString("en-US"))}
+              </summary>
+              <ul className="mt-3 flex flex-col gap-2" data-testid="credits-data">
+                {citations.map((c) => (
+                  <li key={c} className="text-sm leading-relaxed text-ink-2">{c}</li>
+                ))}
+              </ul>
+            </details>
+          )}
           {notices.map((n) => (
             <p key={n} className="mt-3 text-sm leading-relaxed text-ink-2" data-testid="credits-notice">
               {n}
             </p>
           ))}
           <h3 className="mt-7 text-[17px] font-semibold">{policy.credits_photos_heading}</h3>
-          <ul className="mt-2 flex flex-col gap-2" data-testid="credits-photos">
-            {heroShown && <Credit img={heroShown} policy={policy} />}
-          </ul>
-          {more.length > 0 && (
-            <details className="mt-3" data-testid="credits-photos-more">
+          {photos.length > 0 && (
+            <details className="mt-2" data-testid="credits-photos-more">
               <summary className="cursor-pointer text-sm font-semibold text-accent hover:text-accent-hover">
-                {policy.credits_photos_more.replace("{n}", more.length.toLocaleString("en-US"))}
+                {policy.credits_photos_more.replace("{n}", photos.length.toLocaleString("en-US"))}
               </summary>
-              <ul className="mt-3 flex flex-col gap-2">
-                {more.map((img) => (
+              <ul className="mt-3 flex flex-col gap-2" data-testid="credits-photos">
+                {photos.map((img) => (
                   <Credit key={img.file} img={img} policy={policy} />
                 ))}
               </ul>

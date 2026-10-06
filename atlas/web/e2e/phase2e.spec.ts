@@ -141,11 +141,13 @@ test("My age accepts typed input, validates on blur", async ({ page }) => {
 });
 
 test("What we measure lists every statistic, grouped, with crime's own line", async ({ page }) => {
-  // m4.0.0 (Nathan's decision 7): out of the nav, linked prominently from
-  // About us
+  // m4.0.0 (Nathan's decision 7): out of the nav, linked from About us —
+  // since Nathan's About us changes after Phase 4e, from the account's own
+  // last section rather than a button at the top
   await page.goto("/");
   await page.getByRole("link", { name: "About us" }).click();
-  await page.getByTestId("about-measure-link").click();
+  await page.locator("article.prose-method")
+    .getByRole("link", { name: "What we measure", exact: true }).click();
   await expect(page).toHaveURL(/what-we-measure/);
   for (const group of ["The people", "Cost of living", "Social life",
                        "Student life", "Weather"]) {

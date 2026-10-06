@@ -130,11 +130,12 @@ test("the compare landing picks two cities and goes", async ({ page }) => {
   await expect(page).toHaveURL(/sex=male/);
 });
 
-test("About us carries Nathan's rewrite, corrections in, deleted sections gone", async ({ page }) => {
-  // Phase 2g item 5: the page is his draft with the two corrections —
-  // 387 counted / 193 ranked on two conditions, and rent credited to HUD.
-  // m4.0.0 (Nathan's decision 7): "How it works" is About us, and the old
-  // address redirects there permanently
+test("About us carries Nathan's account, corrections in, deleted sections gone", async ({ page }) => {
+  // Phase 2g item 5, rewritten by Nathan after Phase 4e (2026-10-06): the
+  // account keeps 387 counted / 193 ranked on two conditions and rent
+  // credited to HUD; its sources table names political lean and links each
+  // source. m4.0.0 (Nathan's decision 7): "How it works" is About us, and
+  // the old address redirects there permanently
   await page.goto("/how-it-works");
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator("h1")).toHaveText("About us");
@@ -145,29 +146,29 @@ test("About us carries Nathan's rewrite, corrections in, deleted sections gone",
   // assertions read the prose, not the wrapping
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
   for (const [what, re] of [
-    ["correction A: 387 counted, 193 ranked, two conditions",
-     /387 US metro areas, and rank the 193 with at least 250,000 people and enough survey sample/],
-    ["correction B: rent credited to HUD",
-     /HUD 50th percentile rent estimates, FY2027/],
+    ["387 counted, 193 ranked, two conditions",
+     /387 US metro areas, and rank the 193 with at least 250,000 people and a large enough sample to make a reliable estimate/],
+    ["rent credited to HUD", /HUD 50th percentile rent estimates, FY2027/],
     ["the typo fix", /nationally-recognized/],
-    ["what a match counts", /whole search/i],
-    ["what balance compares", /single men per 100/i],
+    ["what a match counts", /fits your search: sex, age range/i],
     ["the same-sex paragraph", /same-sex search/i],
-    ["race selects who is counted", /nothing more/i],
-    ["why cities are left out", /leave that city out|left out/i],
+    ["why cities are left out", /leave cities out of the rankings and report how many were excluded/],
+    ["political lean's source", /MIT Election Data and Science Lab data/],
   ] as const) {
     expect(text, `must carry: ${what}`).toMatch(re);
   }
-  // the three deleted sections are GONE (confirmed removals, ADR 0008):
-  // margins of error, crime-never-ranked, reproducibility — and the old
-  // intro's "available on request" tail went with the margins story
+  // sections deleted over the account's life stay gone (ADR 0008 and
+  // Nathan's 2026-10-06 copy): margins of error, crime-never-ranked,
+  // reproducibility, "available on request" — and the balance and race-box
+  // sections, which his copy leaves out
   expect(text).not.toMatch(/margins? of error/i);
   expect(text).not.toMatch(/available on request/i);
   expect(text).not.toMatch(/reproduced/i);
   expect(text).not.toMatch(/Why is crime shown/);
-  // the crime story lives in the table's own note and the crime page
-  expect(text).toMatch(/shown, never scored/);
+  expect(text).not.toMatch(/What does balance compare/);
+  expect(text).not.toMatch(/What do the race and ethnicity boxes do/);
   await expect(
     article.getByRole("link", { name: /What we measure/ })).toBeVisible();
   expect(text).not.toMatch(/always (counted|included)/i);
 });
+

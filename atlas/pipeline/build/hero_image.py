@@ -41,14 +41,22 @@ from atlas.pipeline.build.city_images import (THUMB_WIDTH, clear_licence,
 from atlas.pipeline.build.photo_review import CROPPED, title_of
 from atlas.pipeline.fetch import RESULTS
 
-# in preference order; the first to clear the PD/CC0 gate ships
+# in preference order; the first to clear the PD/CC0 gate ships. After
+# Phase 4e (Nathan, 2026-10-06): his pick, the lead image of the article
+# "Holding hands" — two people holding hands on a sidewalk, seen from
+# behind at waist height (CC0, Unsplash's "Crew"); reviewed: no face in
+# frame, no logo, emblem, sculpture or mural (photo_review.json). The
+# m2.x-m4.2.0 hero (faces out of frame too) stays first in line after it.
 HERO_FILE_CANDIDATES = [
+    "Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg",  # CC0; Nathan's pick
     "Adult couple holding hands.jpg",       # CC0; faces out of frame
     "Senior-3336451 1920.jpg",              # CC0; from behind
     "Couple walking into St Johns College Oxford.jpg",  # PD; from behind
 ]
-HERO_ALT = ("A couple walking a city path holding hands, photographed "
-            "from the shoulders down")
+# DRAFT for Nathan's approval (the Commons description is only the
+# photographer's name and date)
+HERO_ALT = ("A couple holding hands as they walk along a tree-lined "
+            "sidewalk, seen from behind")
 STRICT_PD = re.compile(r"^(public domain|pd\b|cc0)", re.IGNORECASE)
 
 WEB = RESULTS.parents[0] / "web"
