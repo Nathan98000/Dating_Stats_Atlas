@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { fetchMeta } from "./helpers";
+import { fetchMeta, photoOnDisk } from "./helpers";
 import heroImage from "../src/data/hero.json";
+import statImages from "../src/data/stat-images.json";
+import cityImages from "../src/data/city-images.json";
 
 /** Nathan's About us changes (after Phase 4e, 2026-10-06): no What we
  * measure or About crime data button at the top — the account links both
@@ -102,17 +104,39 @@ test("the data sources are collapsed, the Census API notice folded in with them"
 
 test("the home page photograph is credited inside the collapsed photographs' list, cropped", async ({ page, request }) => {
   const ps = (await fetchMeta(request)).policy_strings;
+  // the credits the page owes: every photograph whose file is on disk, the
+  // home page's first, then the stat pages' and the cities' (the files are
+  // gitignored, so a fresh checkout — CI's — owes none)
+  type Img = { file: string };
+  const files = [
+    ...(photoOnDisk(heroImage.file) ? [heroImage.file] : []),
+    ...Object.values(statImages as unknown as Record<string, Img>)
+      .filter((i) => photoOnDisk(`stats/${i.file}`)).map((i) => i.file),
+    ...Object.values(cityImages as unknown as Record<string, Img>)
+      .filter((i) => photoOnDisk(`cities/${i.file}`)).map((i) => i.file),
+  ];
   await page.goto("/about");
+  await expect(page.getByTestId("sources-and-credits")).toBeVisible();
   const more = page.getByTestId("credits-photos-more");
+  if (files.length === 0) {
+    // nothing on disk to credit: no list, and no credit anywhere
+    await expect(more).toHaveCount(0);
+    await expect(page.locator("[data-credit]")).toHaveCount(0);
+    return;
+  }
   await expect(more).not.toHaveAttribute("open", /.*/);
-  const hero = more.locator(`[data-credit="${heroImage.file}"]`);
-  await expect(hero).toHaveCount(1);
-  await expect(hero).toBeHidden();
-  const n = await more.locator("li[data-credit]").count();
   await expect(more.locator("summary")).toHaveText(
-    ps.credits_photos_more.replace("{n}", n.toLocaleString("en-US")));
-  // no credit sits outside the collapsed list
-  await expect(page.locator("[data-credit]")).toHaveCount(n);
+    ps.credits_photos_more.replace("{n}", files.length.toLocaleString("en-US")));
+  // every credit sits inside the collapsed list, in that order
+  await expect(page.locator("[data-credit]")).toHaveCount(files.length);
+  expect(await more.locator("li[data-credit]").evaluateAll(
+    (lis) => lis.map((li) => li.getAttribute("data-credit")))).toEqual(files);
+  const hero = more.locator(`[data-credit="${heroImage.file}"]`);
+  if (!photoOnDisk(heroImage.file)) {
+    await expect(hero).toHaveCount(0);
+    return;
+  }
+  await expect(hero).toBeHidden();
   await more.locator("summary").click();
   await expect(hero).toBeVisible();
   await expect(hero).toContainText(heroImage.title);
@@ -121,6 +145,7 @@ test("the home page photograph is credited inside the collapsed photographs' lis
   await expect(hero.getByRole("link", { name: ps.credits_source }))
     .toHaveAttribute("href", heroImage.source_url);
 });
+
 
 test("the home page shows the new photograph with its alt text", async ({ page }) => {
   await page.goto("/");

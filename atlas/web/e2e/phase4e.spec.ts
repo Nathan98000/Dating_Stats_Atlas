@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { fetchMeta } from "./helpers";
+import { fetchMeta, photoOnDisk } from "./helpers";
 import statPages from "../src/data/stat-pages.json";
 import statImages from "../src/data/stat-images.json";
 
@@ -64,6 +64,16 @@ for (const fid of ["who_lives_here", "political_lean"]) {
     expect(img.cropped).toBe(false);       // the stat page scales, never crops
     await page.goto(`/stats/${fid}`);
     const shown = page.locator(`img[src="/stats/${img.file}"]`);
+    if (!photoOnDisk(`stats/${img.file}`)) {
+      // a checkout without the (gitignored) file, CI's: no file, no photo,
+      // and no credit for it
+      await expect(page.locator("h1")).toBeVisible();
+      await expect(shown).toHaveCount(0);
+      await page.goto("/about");
+      await expect(page.getByTestId("sources-and-credits")).toBeVisible();
+      await expect(page.locator(`[data-credit="${img.file}"]`)).toHaveCount(0);
+      return;
+    }
     await expect(shown).toBeVisible();
     await expect(shown).toHaveAttribute("alt", img.alt!);
     expect(await shown.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);

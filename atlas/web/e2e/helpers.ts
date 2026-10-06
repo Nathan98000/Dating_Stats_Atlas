@@ -1,5 +1,16 @@
+import { existsSync } from "fs";
+import path from "path";
 import type { APIRequestContext, BrowserContext, Page } from "@playwright/test";
 import type { Meta } from "../src/lib/types";
+
+/** The photographs are gitignored and re-fetchable, so a fresh checkout —
+ * CI's — has none, and a page shows a photograph, and About us credits it,
+ * only while its file is on disk ("no file, no photo"). A test that checks
+ * a photograph reads the same disk the server reads (public/, relative to
+ * the web app) and checks whichever case it finds. */
+export function photoOnDisk(rel: string): boolean {
+  return existsSync(path.resolve(__dirname, "..", "public", rel));
+}
 
 /** m4.0.0 (ADR 0018): the visitor's own sex, education and race live in
  * the browser (localStorage, lib/about-you), never in a URL — a test that
