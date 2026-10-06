@@ -28,7 +28,7 @@ best city match.
 | Political lean | [MIT Election Data and Science Lab data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ) |
 | [Reported crime](/about-crime-data) | [FBI Crime Data Explorer](https://cde.ucr.cjis.gov/) |
 
-## How is count of matches calculated?
+## How is the count of matches calculated?
 
 Everyone in a metro area who fits your search: sex, age range, never
 married or previously married, and any education, income, race or

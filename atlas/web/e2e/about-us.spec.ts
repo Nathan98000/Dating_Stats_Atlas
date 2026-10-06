@@ -12,7 +12,7 @@ import heroImage from "../src/data/hero.json";
 const HEADINGS = [
   "How are the numbers made?",
   "Where does the data come from?",
-  "How is count of matches calculated?",
+  "How is the count of matches calculated?",
   "How is compatibility calculated?",
   "How does the score work?",
   "Which cities are included?",
@@ -74,7 +74,7 @@ test("Reported crime in the sources table opens About crime data", async ({ page
   await expect(page).toHaveURL(/\/about-crime-data$/);
 });
 
-test("the data sources are collapsed, with the Census API notice in view beside them", async ({ page, request }) => {
+test("the data sources are collapsed, the Census API notice folded in with them", async ({ page, request }) => {
   const meta = await fetchMeta(request);
   const ps = meta.policy_strings;
   const citations = [...new Set(Object.values(meta.licenses).flatMap((l) => l.citations ?? []))];
@@ -86,13 +86,18 @@ test("the data sources are collapsed, with the Census API notice in view beside 
     ps.credits_data_more.replace("{n}", citations.length.toLocaleString("en-US")));
   const list = page.getByTestId("credits-data");
   await expect(list).toBeHidden();
-  // ADR 0012: the Census API notice appears with the citations — in view
-  await expect(page.getByTestId("credits-notice").first()).toBeVisible();
-  await expect(page.getByTestId("credits-notice").first())
-    .toHaveText(/This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau\./);
+  // Nathan (2026-10-06): the Census API notice folds into the collapsed
+  // list — ADR 0012: it appears with the citations
+  const notice = page.getByTestId("credits-notice");
+  await expect(notice).toHaveCount(1);
+  expect(await more.locator('[data-testid="credits-notice"]').count()).toBe(1);
+  await expect(notice).toBeHidden();
   await more.locator("summary").click();
   await expect(list).toBeVisible();
   await expect(list.locator("li")).toHaveText(citations);
+  await expect(notice).toBeVisible();
+  await expect(notice).toHaveText(
+    "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.");
 });
 
 test("the home page photograph is credited inside the collapsed photographs' list, cropped", async ({ page, request }) => {

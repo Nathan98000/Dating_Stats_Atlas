@@ -271,7 +271,8 @@ strings:
   # buttons are gone (the account links both in its own words), so their
   # labels are retired; the data citations collapse like the photographs,
   # and the home page photograph's credit moved into the photographs' list
-  # (its label names the home page now — DRAFTS for Nathan's approval).
+  # (its label names the home page now). Both labels approved by Nathan
+  # on 2026-10-06.
   about_title: "About us"
   about_privacy_link: "Privacy"
   # before launch: the link to the terms of use (docs/terms.md), beside

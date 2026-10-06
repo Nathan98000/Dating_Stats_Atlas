@@ -425,7 +425,7 @@
   "license": "CC0 (Unsplash, 'Crew'): clears the hero's strict public-domain/CC0 gate, which the band crop requires",
   "checked": "two people holding hands as they walk along a tree-lined sidewalk, seen from behind at waist height; no face in frame, so no identifiable person; no sculpture or mural; no logo, emblem or seal; blurred street and cars behind",
   "alt": "A couple holding hands as they walk along a tree-lined sidewalk, seen from behind",
-  "alt_why": "the Commons description is only the photographer's name and date (\"Crew 2016-01-10\"); DRAFT for Nathan's approval",
+  "alt_why": "the Commons description is only the photographer's name and date (\"Crew 2016-01-10\"); approved by Nathan on 2026-10-06",
   "cropped": "yes: the home page shows a centred band (object-cover), which keeps the clasped hands in frame on desktop and phone; the credit says \"cropped\"",
   "previous_file": "the m2.x-m4.2.0 hero (File:Adult_couple_holding_hands.jpg, CC0) stays second in hero_image.HERO_FILE_CANDIDATES; its file was overwritten in web/public (gitignored, re-fetchable; sha256 29623f68... in git history)"
  }

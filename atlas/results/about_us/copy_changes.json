@@ -1,6 +1,6 @@
 {
  "change_set": "About us changes after Phase 4e (Nathan, 2026-10-06)",
- "note": "Every user-facing string changed. The account is Nathan's copy word for word (checked mechanically against his message); markdown adds only the bold labels and the links he named. The walkability row links the site's own walkability page (/stats/resident_walkability_index) where his message gave its localhost address.",
+ "note": "Every user-facing string changed. The account is Nathan's copy word for word (checked mechanically against his message); markdown adds only the bold labels and the links he named. The walkability row links the site's own walkability page (/stats/resident_walkability_index) where his message gave its localhost address. Nathan's calls on 2026-10-06: the Census notice folds into the collapsed list; the race and explanation wording stays as he wrote it; \"the\" added to \"How is the count of matches calculated?\"; the three drafts approved.",
  "changes": [
   {
    "change": "About us account (item 5)",
@@ -20,10 +20,10 @@
   },
   {
    "change": "About us account (item 5)",
-   "kind": "rewritten (Nathan's copy, verbatim)",
-   "where": "docs/methodology.md section \"How is count of matches calculated?\" (was \"What does a \"match\" count?\")",
+   "kind": "rewritten (Nathan's copy, verbatim; \"the\" added to the heading at his request, 2026-10-06)",
+   "where": "docs/methodology.md section \"How is the count of matches calculated?\" (was \"What does a \"match\" count?\")",
    "old": "## What does a \"match\" count?\nEveryone in a metro area who fits your whole search — sex, age range, never married or previously married, and any education, income, race or ethnicity filters you set. That count is the **dating pool**, and it is the biggest part of the score.",
-   "new": "## How is count of matches calculated?\nEveryone in a metro area who fits your search: sex, age range, never married or previously married, and any education, income, race or ethnicity filters you set. This count is the **dating pool**, which by default makes up the biggest part of your overall score.",
+   "new": "## How is the count of matches calculated?\nEveryone in a metro area who fits your search: sex, age range, never married or previously married, and any education, income, race or ethnicity filters you set. This count is the **dating pool**, which by default makes up the biggest part of your overall score.",
    "why": "Nathan's new copy above Sources and credits (2026-10-06)"
   },
   {
@@ -84,15 +84,15 @@
   },
   {
    "change": "data sources collapsed (item 3)",
-   "kind": "added (DRAFT label for Nathan's approval)",
+   "kind": "added (approved by Nathan on 2026-10-06)",
    "where": "registry strings.credits_data_more -> About us, Sources and credits, the Data list's summary",
    "old": "(the citations listed open)",
    "new": "Data sources ({n})",
-   "why": "the citations collapse like the photographs; the Census API notice stays in view beside them (ADR 0012)"
+   "why": "the citations collapse like the photographs; the Census API notice folds into the same collapsed list, with the citations it belongs to (Nathan, 2026-10-06; ADR 0012)"
   },
   {
    "change": "home page photograph's credit in the collapsed list (item 4)",
-   "kind": "changed (DRAFT for Nathan's approval)",
+   "kind": "changed (approved by Nathan on 2026-10-06)",
    "where": "registry strings.credits_photos_more -> the photographs' list summary",
    "old": "Photographs on the city and stat pages ({n})",
    "new": "Photographs on the home, city and stat pages ({n})",
@@ -100,7 +100,7 @@
   },
   {
    "change": "the home page photograph (item 4)",
-   "kind": "changed (DRAFT alt text for Nathan's approval)",
+   "kind": "changed (alt text approved by Nathan on 2026-10-06)",
    "where": "pipeline/build/hero_image.HERO_ALT -> web/src/data/hero.json alt -> the home page photograph",
    "old": "A couple walking a city path holding hands, photographed from the shoulders down",
    "new": "A couple holding hands as they walk along a tree-lined sidewalk, seen from behind",

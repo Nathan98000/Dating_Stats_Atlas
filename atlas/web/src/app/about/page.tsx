@@ -41,9 +41,10 @@ function shipped(dir: string, img: PhotoCredit | undefined): img is PhotoCredit 
  * here — the account links them in its own words (its last section, and
  * the Reported crime row of its sources table); the data citations
  * collapse like the photographs, and the home page photograph's credit
- * sits in the photographs' list with the rest. The Census API notice stays
- * in view beside the collapsed citations (ADR 0012: it appears with the
- * citations). Every label comes from the registry. */
+ * sits in the photographs' list with the rest. The Census API notice
+ * folds into the collapsed list with the citations it belongs to (Nathan,
+ * 2026-10-06; ADR 0012: it appears with the citations). Every label comes
+ * from the registry. */
 export default async function AboutPage() {
   const meta = await apiMeta();
   const policy = meta.policy_strings;
@@ -109,13 +110,13 @@ export default async function AboutPage() {
                   <li key={c} className="text-sm leading-relaxed text-ink-2">{c}</li>
                 ))}
               </ul>
+              {notices.map((n) => (
+                <p key={n} className="mt-3 text-sm leading-relaxed text-ink-2" data-testid="credits-notice">
+                  {n}
+                </p>
+              ))}
             </details>
           )}
-          {notices.map((n) => (
-            <p key={n} className="mt-3 text-sm leading-relaxed text-ink-2" data-testid="credits-notice">
-              {n}
-            </p>
-          ))}
           <h3 className="mt-7 text-[17px] font-semibold">{policy.credits_photos_heading}</h3>
           {photos.length > 0 && (
             <details className="mt-2" data-testid="credits-photos-more">

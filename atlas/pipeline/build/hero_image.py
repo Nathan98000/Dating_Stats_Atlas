@@ -53,7 +53,7 @@ HERO_FILE_CANDIDATES = [
     "Senior-3336451 1920.jpg",              # CC0; from behind
     "Couple walking into St Johns College Oxford.jpg",  # PD; from behind
 ]
-# DRAFT for Nathan's approval (the Commons description is only the
+# approved by Nathan on 2026-10-06 (the Commons description is only the
 # photographer's name and date)
 HERO_ALT = ("A couple holding hands as they walk along a tree-lined "
             "sidewalk, seen from behind")
