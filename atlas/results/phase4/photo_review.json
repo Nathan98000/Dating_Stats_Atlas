@@ -428,5 +428,32 @@
   "alt_why": "the Commons description is only the photographer's name and date (\"Crew 2016-01-10\"); approved by Nathan on 2026-10-06",
   "cropped": "yes: the home page shows a centred band (object-cover), which keeps the clasped hands in frame on desktop and phone; the credit says \"cropped\"",
   "previous_file": "the m2.x-m4.2.0 hero (File:Adult_couple_holding_hands.jpg, CC0) stays second in hero_image.HERO_FILE_CANDIDATES; its file was overwritten in web/public (gitignored, re-fetchable; sha256 29623f68... in git history)"
- }
+ },
+ "external_files": [
+  {
+   "date": "2026-10-07",
+   "page": "stat",
+   "key": "everyday_prices",
+   "why": "Nathan's pick (2026-10-07): https://www.needpix.com/photo/885923/grocery-store-supermarket-vegetable-shop-tomato-fruit-store-market-groceries — it replaces File:Stop&Shop.jpg (CC BY-SA 4.0, NYC Guru) on the everyday prices page. Not on Wikimedia Commons, so the review pins its exact bytes here instead of the Commons API.",
+   "was": "File:Stop&Shop.jpg",
+   "title": "Grocery Store Supermarket Vegetable",
+   "author": "TeroVesalainen (Pixabay)",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source_url": "https://www.needpix.com/photo/885923/grocery-store-supermarket-vegetable-shop-tomato-fruit-store-market-groceries",
+   "image_url": "https://storage.needpix.com/rsynced_images/grocery-store-2119702_1280.jpg",
+   "fallback_image_url": "https://web.archive.org/web/20190821182037im_/https://cdn.pixabay.com/photo/2017/03/05/20/08/grocery-store-2119702_1280.jpg",
+   "sha256": "8afb16bc698c88c06b9c4a69a9cec5960e6b74b63e6d43e4110e6a4b4e4c676a",
+   "licence_evidence": [
+    "needpix re-hosts the photo from Pixabay: 'Author TeroVesalainen (pixabay.com)', 'You can freely use this image ✓ For commercial use ✓ No attribution required' (read 2026-10-07)",
+    "Pixabay photo #2119702 (pixabay.com/photos/grocery-store-supermarket-vegetable-2119702/, now 404) was uploaded on March 6, 2017 (created March 5, 2017; Sony ILCE-5000), per the Wayback Machine's copy of its page, 2019-08-21 (web.archive.org/web/20190821182037/...)",
+    "Pixabay released every image uploaded before 9 January 2019 under CC0; a CC0 dedication cannot be withdrawn, and Wikimedia Commons accepts pre-2019 Pixabay uploads as CC0 on the same evidence",
+    "the bytes are Pixabay's own: needpix's file and Pixabay's 2019 file (as the Wayback Machine kept it) are byte-identical (the sha256 above), with the same camera metadata; Pixabay's CDN now serves a re-encode (1280x745, no metadata), which is not used"
+   ],
+   "checked": "a supermarket produce stand: tomatoes and cucumbers in crates under price tags, fruit and vegetables behind; no person; no sculpture or mural; no government or agency logo, emblem or seal (a producer's small 'N' on the crates); a Finnish store (prices in euros, Finnish labels); 1280 x 744",
+   "alt": "Tomatoes and cucumbers in crates on a supermarket produce stand, with more fruit and vegetables behind",
+   "alt_why": "Pixabay's title is only its tags; DRAFT for Nathan's approval",
+   "cropped": "no: stat pages scale their photograph (object-contain)"
+  }
+ ]
 }

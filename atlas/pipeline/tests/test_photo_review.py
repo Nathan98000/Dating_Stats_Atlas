@@ -122,3 +122,29 @@ def test_phase4e_stat_photos_are_the_reviewed_picks(state):
     # no alternate ships: each page renders exactly its pick
     for key, alts_ in p4e["alternates"].items():
         assert not {a["file_title"].replace(" ", "_") for a in alts_} & {shown[key]}
+
+
+def test_a_photograph_from_outside_commons_is_pinned_by_hash(state):
+    """2026-10-07 (Nathan's pick): the everyday prices photograph comes from
+    Pixabay by way of needpix, not Commons. The review records its credit,
+    its alt text, its exact bytes and the evidence for its licence; the page
+    renders exactly that record, and the licence is on the cleared list."""
+    from atlas.pipeline.build import city_images as CI
+    ext = PR.external_files()
+    rec = ext[("stat", "everyday_prices")]
+    assert CI.REVIEW_EXTERNAL[("stat", "everyday_prices")] == rec
+    entry = state["stat"]["everyday_prices"]
+    for k in ("author", "license", "license_url", "source_url", "title", "alt"):
+        assert entry[k] == rec[k], k
+    assert entry["cropped"] is False
+    row = state["stat_csv"][state["stat_csv"]["stat"] == "everyday_prices"].iloc[0]
+    assert row["status"] == "ok" and row["sha256"] == rec["sha256"] and row["file"] == entry["file"]
+    # CC0 (Pixabay's licence for every upload before 9 January 2019), and
+    # the record names the evidence: the upload date and the byte match
+    assert re.match(r"^(public domain|cc0)", rec["license"], re.I)
+    evidence = " ".join(rec["licence_evidence"])
+    assert "March 6, 2017" in evidence and "9 January 2019" in evidence and "byte-identical" in evidence
+    assert len(rec["sha256"]) == 64
+    # the photograph it replaces renders nowhere, and no Commons pin competes
+    assert rec["was"] not in {_file_of(v["source_url"]) for v in state["stat"].values()}
+    assert ("stat", "everyday_prices") not in PR.pinned_files()

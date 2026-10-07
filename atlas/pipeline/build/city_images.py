@@ -39,7 +39,8 @@ from pathlib import Path
 import pandas as pd
 import requests
 
-from atlas.pipeline.build.photo_review import (CROPPED, pinned_alts, pinned_files, refused_files,
+from atlas.pipeline.build.photo_review import (CROPPED, external_files, pinned_alts,
+                                               pinned_files, refused_files,
                                                title_of)
 from atlas.pipeline.fetch import DATA, RESULTS
 
@@ -58,6 +59,8 @@ REVIEW_REFUSED = refused_files()
 # replaced take exactly the Commons file it names
 REVIEW_PINNED = pinned_files()
 REVIEW_ALTS = pinned_alts()
+# 2026-10-07 (Nathan's pick): photographs from outside Commons, pinned by hash
+REVIEW_EXTERNAL = external_files()
 
 # licences Nathan cleared: PD, CC0, CC-BY, CC-BY-SA — nothing NC or ND,
 # nothing unreadable
@@ -268,6 +271,9 @@ def source_stat(fid: str, cands: list[str], retrieved: str) -> tuple[dict, dict 
     A page the review pins takes its named file; otherwise the subjects'
     articles are tried in order, each lead image through the licence rule
     and past the files the review refused."""
+    ext = REVIEW_EXTERNAL.get(("stat", fid))
+    if ext:
+        return source_external(fid, ext, retrieved)
     pin = REVIEW_PINNED.get(("stat", fid))
     rec, reason = source_file(pin) if pin else source_one(cands)
     if not rec:
@@ -294,6 +300,41 @@ def source_stat(fid: str, cands: list[str], retrieved: str) -> tuple[dict, dict 
         "title": title_of(rec["source_url"]),
         "cropped": CROPPED["stat"],
     }
+    return row, entry
+
+
+def source_external(fid: str, ext: dict, retrieved: str) -> tuple[dict, dict | None]:
+    """A stat page's photograph from outside Commons, as the review records
+    it: the file on disk must be exactly the recorded bytes (sha256) — a
+    file already there under the page's name is replaced unless it is —
+    fetched from the record's image link, or its archived copy."""
+    suffix = "." + ext["image_url"].rsplit(".", 1)[-1].split("?")[0].lower()
+    suffix = {".jpeg": ".jpg"}.get(suffix, suffix)
+    dest = WEB / "public" / "stats" / f"{fid}{suffix}"
+    if not (dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest() == ext["sha256"]):
+        for url in (ext["image_url"], ext.get("fallback_image_url")):
+            if not url:
+                continue
+            try:
+                r = requests.get(url, headers=UA, timeout=120)
+                r.raise_for_status()
+            except Exception:  # noqa: PERF203
+                continue
+            if hashlib.sha256(r.content).hexdigest() == ext["sha256"]:
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes(r.content)
+                break
+        else:
+            return {"stat": fid, "status": "external_file_unavailable"}, None
+    row = {"stat": fid, "status": "ok", "page_title": None, "file_title": None,
+           "source_url": ext["source_url"], "image_url": ext["image_url"],
+           "author": ext["author"], "license": ext["license"],
+           "license_url": ext["license_url"], "retrieved": retrieved,
+           "sha256": ext["sha256"], "file": dest.name}
+    entry = {"file": dest.name, "alt": ext["alt"], "author": ext["author"],
+             "license": ext["license"], "license_url": ext["license_url"],
+             "source_url": ext["source_url"], "title": ext["title"],
+             "cropped": CROPPED["stat"]}
     return row, entry
 
 

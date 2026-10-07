@@ -99,6 +99,18 @@ def pinned_alts() -> dict[tuple[str, str], str]:
     return {(r["page"], r["key"]): r["alt"] for r in named if r.get("alt")}
 
 
+def external_files() -> dict[tuple[str, str], dict]:
+    """(page, key) -> a photograph the review takes from outside Wikimedia
+    Commons (Nathan's everyday prices pick, 2026-10-07): its credit, its
+    alt text and its exact bytes (sha256), with the evidence for its
+    licence beside them in the review record. city_images sources it from
+    the record, never from the Commons API."""
+    if not REVIEW.exists():
+        return {}
+    rev = json.loads(REVIEW.read_text())
+    return {(r["page"], r["key"]): r for r in rev.get("external_files", [])}
+
+
 def title_of(source_url: str) -> str:
     """The Commons file title, as a credit's title: the file name from the
     description page, without "File:" and the extension."""
@@ -256,9 +268,12 @@ def apply() -> dict:
     retrieved = time.strftime("%Y-%m-%d")
     replaced = [_replace(r, city, stat, city_csv, stat_csv, retrieved)
                 for r in rev.get("replaced", [])]
+    external = external_files()
     for page, render in (("city", city), ("stat", stat)):
-        for v in render.values():
-            v["title"] = title_of(v["source_url"])
+        for key, v in render.items():
+            # a photograph from outside Commons keeps its recorded title
+            if (page, key) not in external:
+                v["title"] = title_of(v["source_url"])
             v["cropped"] = CROPPED[page]
     hero["title"] = title_of(hero["source_url"])
     hero["cropped"] = CROPPED["hero"]

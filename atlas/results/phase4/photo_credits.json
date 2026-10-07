@@ -10,8 +10,8 @@
   "CC BY-SA 2.0": 17,
   "CC BY-SA 2.5": 4,
   "CC BY-SA 3.0": 67,
-  "CC BY-SA 4.0": 103,
-  "CC0": 23,
+  "CC BY-SA 4.0": 102,
+  "CC0": 24,
   "Public domain": 34
  },
  "cropped": [
@@ -4441,11 +4441,11 @@
   {
    "page": "stat",
    "key": "everyday_prices",
-   "title": "Stop&Shop",
-   "author": "NYC Guru",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Stop%26Shop.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "title": "Grocery Store Supermarket Vegetable",
+   "author": "TeroVesalainen (Pixabay)",
+   "source_url": "https://www.needpix.com/photo/885923/grocery-store-supermarket-vegetable-shop-tomato-fruit-store-market-groceries",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
    "cropped": false
   },
   {

@@ -1,12 +1,13 @@
 import { expect, test } from "@playwright/test";
-import { fetchMeta } from "./helpers";
+import { fetchMeta, photoOnDisk } from "./helpers";
+import statImages from "../src/data/stat-images.json";
 
 /** Nathan's copy changes of 2026-10-07: the compatibility sentence on What
  * we measure, the crime explainer's sections, and the Privacy and Terms
  * pages in his words (each page renders its docs/*.md; the registry
- * sentence is read back through /v1/meta). The About page's own changes —
- * its name, the political lean source, the overall score's heading — are
- * in about-us.spec.ts. */
+ * sentence is read back through /v1/meta), and the everyday prices page's
+ * new photograph. The About page's own changes — its name, the political
+ * lean source, the overall score's heading — are in about-us.spec.ts. */
 
 const COMPATIBILITY =
   "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education, and background, where 100 is the US average";
@@ -56,4 +57,32 @@ test("the terms carry the new date and Nathan's 2026-10-07 summary", async ({ pa
   expect(text).toMatch(/don't treat a figure as a fact about an individual/);
   expect(text).toMatch(/Estimates, not recommendations/);
   expect(text).toMatch(/Questions about these terms go to dating\.stats\.atlas@gmail\.com\./);
+});
+
+test("everyday prices shows Nathan's grocery photograph, credited in Sources and credits", async ({ page }) => {
+  const img = (statImages as unknown as Record<string, { file: string; alt: string; author: string;
+    license: string; source_url: string; title: string; cropped: boolean }>).everyday_prices;
+  expect(img.source_url).toBe(
+    "https://www.needpix.com/photo/885923/grocery-store-supermarket-vegetable-shop-tomato-fruit-store-market-groceries");
+  expect(img.license).toBe("CC0");
+  expect(img.cropped).toBe(false);
+  await page.goto("/stats/everyday_prices");
+  const shown = page.locator(`img[src="/stats/${img.file}"]`);
+  if (!photoOnDisk(`stats/${img.file}`)) {
+    // a checkout without the (gitignored) file, CI's: no file, no photo
+    await expect(page.locator("h1")).toBeVisible();
+    await expect(shown).toHaveCount(0);
+    return;
+  }
+  await expect(shown).toBeVisible();
+  await expect(shown).toHaveAttribute("alt", img.alt);
+  expect(await page.locator("body").innerText()).not.toContain(img.author);
+  await page.goto("/about");
+  await page.getByTestId("credits-photos-more").locator("summary").click();
+  const credit = page.locator(`[data-credit="${img.file}"]`);
+  await expect(credit).toHaveCount(1);
+  await expect(credit).toContainText(img.title);
+  await expect(credit).toContainText(img.author);
+  await expect(credit).toContainText("CC0");
+  await expect(credit.getByRole("link", { name: "source" })).toHaveAttribute("href", img.source_url);
 });
