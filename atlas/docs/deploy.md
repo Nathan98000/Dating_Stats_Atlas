@@ -4,11 +4,13 @@ The answers to the counsel packet have returned and are kept private (never
 committed); ADR 0012 records Nathan's decisions and the build encodes them.
 This runbook exists so that a deploy is a checklist, not a design session.
 
-**Where it stands (2026-10-03).** Nathan chose Topology C, one Oracle Cloud
+**Where it stands (2026-10-03; updated 2026-10-07).** Nathan chose Topology C, one Oracle Cloud
 Always Free VM, so that the site costs nothing to run (Fly.io's always-on
 setup would have been about $17.50 a month). With the "Before launch" list
 done, Nathan said to launch on 3 October 2026, and the site opened that day
-at https://dating-stats-atlas.duckdns.org (Topology C's launch record).
+at https://dating-stats-atlas.duckdns.org (Topology C's launch record). Since
+7 October 2026 it serves model m4.2.0 on build 63c4e5fa51bf (the deploy
+record below).
 
 ## The invariant everything else serves (D04)
 
@@ -131,6 +133,21 @@ Deploy, from the repository root on Nathan's Mac:
 api service; the manifest still refuses a model mismatch. **New code:**
 steps 1, 2 and 4 again.
 
+**Updating the live site with little downtime and a way back** (how the
+2026-10-07 release went out): tag the running images first
+(`docker tag dating-stats-atlas-api:latest dating-stats-atlas-api:<old model>`,
+the same for web); upload the code and photographs (steps 1-2); stage the
+new build beside the live one (`cp -a /srv/atlas/build
+/srv/atlas/build_<new id>.tmp` on the VM, then `rsync -a --checksum
+atlas/data/builds/<new id>/` into it from the Mac, so only the files that
+differ cross the network; check every file's sha256; rename it to
+`build_<new id>`); build the images with `docker compose ... build api web`
+while the old containers keep serving; then, once CI is green, swap the
+folders (`mv build build_<old id> && mv build_<new id> build`) and
+`docker compose ... up -d api web`. The running containers keep the old
+folder they mounted until they are recreated. To roll back: swap the folders
+back, retag the old images as `latest`, and `up -d api web` again.
+
 **Launch record (2026-10-03, on Nathan's word "launch").** The security
 list gained TCP 80 and 443, beside SSH and ICMP path-MTU. Caddy started
 under the "public" profile and obtained its certificate through the HTTP-01
@@ -153,6 +170,25 @@ only this runbook. Checked from Nathan's Mac:
   outside addresses are Let's Encrypt's five validation servers answering
   the challenge; the web log holds none, and the API's access lines show
   only the web container (172.18.0.3).
+
+**Deploy record (2026-10-07, on Nathan's word "merge, push, and deploy
+everything").** main = origin/main = 67b604c (CI run 37667125083 green):
+Phase 4e (m4.2.0, the new nice-day rule, build 63c4e5fa51bf), the About
+page's account and photograph changes, and Nathan's copy changes of
+2026-10-07 ("About the site", the crime explainer, new Privacy and Terms).
+Steps as above; only features.parquet and manifest.json crossed the
+network (the other seven build files are byte-identical), images built in
+2.5 minutes, and the API answered health on the new build 11 seconds after
+the containers were recreated. Checked from the Mac: every page 200 (home,
+About the site, Privacy, Terms, About crime data, What we measure, five
+stat pages, two city pages, compare), http redirects to https, HTTP/2 with
+`Referrer-Policy: no-referrer`; a search through `/api/rank` answers 193
+ranked cities on 63c4e5fa51bf/m4.2.0; the four new photographs are served
+byte for byte; each copy change is on its page and each removed sentence is
+gone; port 8000 is closed and `/v1/health` through the site answers 404;
+the logs hold no error and no visitor address; memory 26% used. Rollback
+kept on the VM: images `dating-stats-atlas-{api,web}:m4.1.1` and the old
+build at `/srv/atlas/build_2dbd9ebfa7ff`.
 
 ## Environment variables
 
