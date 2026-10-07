@@ -138,7 +138,8 @@ test("About us carries Nathan's account, corrections in, deleted sections gone",
   // the old address redirects there permanently
   await page.goto("/how-it-works");
   await expect(page).toHaveURL(/\/about$/);
-  await expect(page.locator("h1")).toHaveText("About us");
+  // renamed by Nathan on 2026-10-07 (was "About us")
+  await expect(page.locator("h1")).toHaveText("About the site");
   const article = page.locator("article.prose-method");
   await expect(article).toBeVisible();
   expect(await article.locator("table").count()).toBeGreaterThanOrEqual(1);
@@ -153,7 +154,8 @@ test("About us carries Nathan's account, corrections in, deleted sections gone",
     ["what a match counts", /fits your search: sex, age range/i],
     ["the same-sex paragraph", /same-sex search/i],
     ["why cities are left out", /leave cities out of the rankings and report how many were excluded/],
-    ["political lean's source", /MIT Election Data and Science Lab data/],
+    // Nathan, 2026-10-07: the source is named without a trailing "data"
+    ["political lean's source", /MIT Election Data and Science Lab(?! data)/],
   ] as const) {
     expect(text, `must carry: ${what}`).toMatch(re);
   }

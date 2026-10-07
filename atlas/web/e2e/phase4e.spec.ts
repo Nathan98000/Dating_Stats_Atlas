@@ -42,14 +42,15 @@ test("the walkability note sits under the definition on its stat page, and nowhe
   }
 });
 
-test("the nav reads Home, Compare cities, About us", async ({ page }) => {
+test("the nav reads Home, Compare cities, About the site", async ({ page }) => {
   await page.goto(`/${QS}`);
   const header = page.locator("header").first();
-  // the brand link first, then the three destinations in order
+  // the brand link first, then the three destinations in order (the
+  // About page renamed "About the site" by Nathan on 2026-10-07)
   await expect(header.getByRole("link")).toHaveText(
-    ["Dating Stats Atlas", "Home", "Compare cities", "About us"]);
+    ["Dating Stats Atlas", "Home", "Compare cities", "About the site"]);
   await expect(page.getByRole("link", { name: "Browse cities" })).toHaveCount(0);
-  await page.getByRole("link", { name: "About us", exact: true }).click();
+  await page.getByRole("link", { name: "About the site", exact: true }).click();
   await page.getByRole("link", { name: "Home", exact: true }).click();
   await expect(page).toHaveURL(/127\.0\.0\.1:3100\/\?/);
 });

@@ -106,7 +106,7 @@ test("preferences follow the visitor; explicit parameters always win (item 2)", 
     .getByRole("radio", { name: "A lot" }).click();
   await expect(page).toHaveURL(/ic=a/);
   // the nav carries the query to every destination and back
-  await page.getByRole("link", { name: "About us" }).click();
+  await page.getByRole("link", { name: "About the site" }).click();
   await expect(page).toHaveURL(/about\?.*ic=a/);
   await page.getByRole("link", { name: "Compare cities" }).click();
   await expect(page).toHaveURL(/compare\?.*ic=a/);

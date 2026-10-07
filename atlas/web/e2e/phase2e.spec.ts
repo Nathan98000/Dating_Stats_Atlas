@@ -145,7 +145,7 @@ test("What we measure lists every statistic, grouped, with crime's own line", as
   // since Nathan's About us changes after Phase 4e, from the account's own
   // last section rather than a button at the top
   await page.goto("/");
-  await page.getByRole("link", { name: "About us" }).click();
+  await page.getByRole("link", { name: "About the site" }).click();
   await page.locator("article.prose-method")
     .getByRole("link", { name: "What we measure", exact: true }).click();
   await expect(page).toHaveURL(/what-we-measure/);

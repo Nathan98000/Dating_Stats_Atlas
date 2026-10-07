@@ -1,0 +1,174 @@
+{
+ "change_set": "Nathan's copy changes of 2026-10-07 (About the site, What we measure, About crime data, Terms of use, Privacy)",
+ "note": "Every page is Nathan's text word for word (checked mechanically against his message); markdown keeps each page's title, headings, bullets and existing links. The everyday prices photograph is recorded in photo_review.json, not here.",
+ "changes": [
+  {
+   "change": "About page (1)",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md, the sources table's Political lean row",
+   "old": "MIT Election Data and Science Lab data",
+   "new": "MIT Election Data and Science Lab",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "About page (2)",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/methodology.md, a section heading",
+   "old": "How does the score work?",
+   "new": "How is the overall score calculated?",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "About page (3)",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "registry strings.about_title (the page heading) and web/src/lib/nav.ts (the nav link on every page)",
+   "old": "About us",
+   "new": "About the site",
+   "why": "Nathan's request: the page's name"
+  },
+  {
+   "change": "What we measure (1)",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "registry pillars.match.definition and features.match_propensity.definition (kept identical) -> What we measure, the compatibility card",
+   "old": "How closely the people who match your search resemble the people who actually pair with someone like you, on age and education (and on background, if you include yours), where 100 is the US average",
+   "new": "How closely the people who match your search resemble the people who actually pair with someone like you, on age, education, and background, where 100 is the US average",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "About crime data",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/crime.md, section \"What \"coverage\" means\"",
+   "old": "It is optional for police agencies to report to the FBI. Some agencies report every month, some report a few months, and some don't report at all. Coverage is the share of a metro's people living in areas whose agencies reported a full year. These shares are based on the reported crimes only in the population those agencies cover, not the whole metro, so cities where many agencies don't report to the FBI will not have rates that appear artificially low. When coverage becomes too sparse, no figure is shown at all on this site.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "About crime data",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/crime.md, section \"Why cities aren't compared on crime\"",
+   "old": "Crime figures collected by different cities may have different reporting habits and cover different shares of their people, making cross-city comparisons potentially misleading. This is why the FBI cautions against using their data to rank or compare cities. The crime figures on city pages are provided as context, but not used in the calculations of any of this site's scores.",
+   "new": "Crime figures collected by different cities may have different reporting habits and cover different shares of their people, making cross-city comparisons potentially misleading. It is optional for police agencies to report to the FBI. Some agencies report every month, some report a few months, and some don't report at all. This is why the FBI cautions against using their data to rank or compare cities. The crime figures on city pages are provided as context, but not used in the calculations of any of this site's scores. The numbers on this site are based on the crimes in geographic regions covered by reporting agencies, not whole metros, so cities where many agencies don't report to the FBI will not have rates that appear artificially low. When coverage becomes too sparse, no figure is shown at all on this site.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "About crime data",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/crime.md, section \"Where it comes from\"",
+   "old": "FBI Crime Data Explorer, agency-level submissions, aggregated to metro areas using the government's county definitions. The reference year is shown with the figures.",
+   "new": "FBI Crime Data Explorer, agency-level submissions, aggregated to metro areas using the government's county definitions.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Privacy",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/privacy.md, section \"(top)\"",
+   "old": "**In short:** you don't sign up, we don't track you, and what you tell us about yourself stays in your browser.",
+   "new": "There is no account needed to use this site, we don't track you, and what you select stays in your browser.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Privacy",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/privacy.md, section \"Your search\"",
+   "old": "The people you're looking for — their sex, ages, marital status, education, income and race or ethnicity — and your own age travel to our server so it can build the page you asked for. We use them for that and nothing else, and we don't save them on our servers.",
+   "new": "The people you're looking for (e.g. sex, age, marital status, education, income, and race or ethnicity) and your own age travel to our server so it can provide the information on matches that you're interested in. We use them for that and nothing else, and we don't save those searches on our servers. Your own browser will keep details about you so the site remembers them for the next time you visit. You can remove them at any time by clearing this site's data in your browser's settings.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Privacy",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/privacy.md, section \"About you\"",
+   "old": "Your own sex, your education and your race or ethnicity stay in your browser. They are never sent to us: not in a web address, a request, a cookie or any other way. Our server works out the figures for every possible answer, and your browser shows the ones that fit you. Your race or ethnicity is used only if you include it. Your browser keeps these details so the site remembers them next time. You can remove them at any time by clearing this site's data in your browser's settings.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Privacy",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/privacy.md, section \"The cookie\"",
+   "old": "One cookie, called dsa_prefs, remembers the rest of your search — the people you're looking for and your age, never your own sex, education or race — for up to 30 days, so the site can show your search again when you come back. You can delete it at any time in your browser's settings.",
+   "new": "One cookie, called dsa_prefs, remembers the rest of your search, the people you're looking for and your age, for up to 30 days, so the site can show your search again when you come back. You can delete it at any time in your browser's settings.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Privacy",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/privacy.md, section \"Our host\"",
+   "old": "The site runs on a server we rent from Oracle Cloud. The server keeps no record of your visits — not your IP address, and not the pages you look at. Oracle's network carries traffic to and from it, and like any network it sees IP addresses, under Oracle's own privacy policy.",
+   "new": "The site runs on a server we rent from Oracle Cloud. The server keeps no record of your visits, not your IP address, and not the pages you look at. Oracle's network carries traffic to and from it, and like any network it sees IP addresses, under Oracle's own privacy policy.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Privacy",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/privacy.md, section \"Race and sex\"",
+   "old": "The race and sex details on this site are used only to work out the figures on the page you asked for. They never feed advertising, listings, referrals, or any housing, credit or job use.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/terms.md, section \"(top)\"",
+   "old": "**In short:** Dating Stats Atlas shows estimates made from public survey data, for your general interest. Enjoy it and share it, but don't treat a figure as a fact about a person, and never use the site to judge or single anyone out. Last updated: October 1, 2026",
+   "new": "**In short:** Dating Stats Atlas shows estimates made from public survey data for your general interest. Enjoy it and share it, but don't treat a figure as a fact about an individual, and never use the site to judge or single anyone out. Last updated: October 7, 2026",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/terms.md, section \"Who runs the site\"",
+   "old": "Dating Stats Atlas is run by Nathan Nguyen. Questions about these terms go to dating.stats.atlas@gmail.com. By using the site you agree to these terms; if you don't agree, please don't use it.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/terms.md, section \"Estimates, not facts about people\"",
+   "old": "- Every figure is an estimate. The counts come from the Census Bureau's household survey, which samples households, so every figure carries some uncertainty. Where the sample is too thin to trust, the site leaves the city out rather than show a number; About us explains how the figures are made. - The compatibility figure describes a pattern across many real couples. It says nothing about any one person. - The figures are Dating Stats Atlas's own estimates from Census Bureau and other public data. No government agency made, checked or endorses them. - We work to keep the figures accurate, but we can't promise they are complete, current or right for your situation, and none of them is advice. Check anything that matters to you, such as where to live, against other sources.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/terms.md, section \"Content and credits\"",
+   "old": "The site's text, design, code and figures belong to Dating Stats Atlas. Its data come from public sources and its photographs from Wikimedia Commons; both are credited in [About us, Sources and credits](/about#sources-and-credits), and each photograph may be reused under the licence listed there. Links to other websites are there for convenience; we don't control those sites and aren't responsible for them.",
+   "new": "The site's text, design, code and figures belong to Dating Stats Atlas. Its data and photos come from public sources; both are credited in the [About page, Sources and credits](/about#sources-and-credits), and each photograph may be reused under the licence listed there. Links to other websites are there for convenience; we don't control those sites and aren't responsible for them.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/terms.md, section \"No warranty\"",
+   "old": "The site is provided as it is and as available, without warranties of any kind. To the fullest extent the law allows, we aren't liable for any loss or damage that comes from using the site or relying on its figures. Some places don't allow these limits, so they may not all apply to you.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "docs/terms.md, section \"Changes\"",
+   "old": "We may change the site or these terms at any time. When we change these terms we'll update the date at the top; using the site after that means you accept the new terms.",
+   "new": "We may change the site or these terms at any time. When we change these terms we'll update the date at the top; using the site after that means you accept the new terms. Questions about these terms go to dating.stats.atlas@gmail.com. By using the site you agree to these terms. If you don't agree, please don't use it.",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "removed (not in Nathan's copy)",
+   "where": "docs/terms.md, section \"The law that applies\"",
+   "old": "These terms are governed by the laws of the State of New York, United States, without regard to its conflict-of-law rules.",
+   "new": "(none)",
+   "why": "Nathan's request (2026-10-07)"
+  },
+  {
+   "change": "Terms of use",
+   "kind": "added (Nathan's copy, verbatim)",
+   "where": "docs/terms.md, section \"Estimates, not recommendations\"",
+   "old": "(none)",
+   "new": "- The counts come from the Census Bureau's household survey, which samples households, so every figure carries some uncertainty. Where the sample is too thin to trust, the site leaves the city out rather than show a number; the about page explains how the numbers are made. - The numbers are Dating Stats Atlas's own estimates from Census Bureau and other public data. No government agency made, checked or endorses them. - We work to keep the figures accurate, but we can't promise they are complete, current or right for your situation, and none of them is advice.",
+   "why": "Nathan's request (2026-10-07)"
+  }
+ ]
+}

@@ -27,13 +27,14 @@ test("the terms of use render docs/terms.md, every section of it", async ({ page
   const article = page.locator("article.prose-method");
   await expect(article.locator("h1")).toHaveText("Terms of use");
   const headings = [...TERMS_MD.matchAll(/^## (.+)$/gm)].map((m) => m[1].trim());
-  expect(headings.length).toBeGreaterThanOrEqual(8);
+  // Nathan's 2026-10-07 terms: seven sections
+  expect(headings.length).toBeGreaterThanOrEqual(7);
   await expect(article.locator("h2")).toHaveText(headings);
-  // its links lead to the privacy page and the credits on About us
+  // its links lead to the privacy page and the credits on the About page
   await article.getByRole("link", { name: "Privacy", exact: true }).click();
   await expect(page).toHaveURL(/\/privacy$/);
   await page.goBack();
-  await article.getByRole("link", { name: "About us, Sources and credits" }).click();
+  await article.getByRole("link", { name: "About page, Sources and credits" }).click();
   await expect(page).toHaveURL(/\/about#sources-and-credits$/);
   await expect(page.getByTestId("sources-and-credits")).toBeVisible();
 });

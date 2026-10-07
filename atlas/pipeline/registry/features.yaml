@@ -49,14 +49,17 @@ pillars:                            # default weights, sum to 1
   # m3.0.0 (ADR 0009): the slider's second pole. Balance stops being a
   # pillar and stays as a displayed statistic (pool_balance below, weight
   # 0). The definition is Nathan's, verbatim — also the What-we-measure
-  # card body and the stat's subheading.
+  # card body and the stat's subheading. Reworded by Nathan on 2026-10-07:
+  # "on age, education, and background" (was "on age and education (and on
+  # background, if you include yours)"); the stat's own definition below
+  # stays identical.
   match:
     default_weight: 0.25
     display_name: "Compatibility"
     definition: >-
       How closely the people who match your search resemble the people who
-      actually pair with someone like you, on age and education (and on
-      background, if you include yours), where 100 is the US average
+      actually pair with someone like you, on age, education, and
+      background, where 100 is the US average
   reach:
     default_weight: 0.20
     display_name: "Social life"
@@ -273,7 +276,8 @@ strings:
   # and the home page photograph's credit moved into the photographs' list
   # (its label names the home page now). Both labels approved by Nathan
   # on 2026-10-06.
-  about_title: "About us"
+  # renamed by Nathan on 2026-10-07 (was "About us"); the nav reads the same
+  about_title: "About the site"
   about_privacy_link: "Privacy"
   # before launch: the link to the terms of use (docs/terms.md), beside
   # Privacy on About us — approved by Nathan (for now) with the terms
@@ -589,8 +593,8 @@ features:
                   "Far above most cities"]
     definition: >-
       How closely the people who match your search resemble the people who
-      actually pair with someone like you, on age and education (and on
-      background, if you include yours), where 100 is the US average
+      actually pair with someone like you, on age, education, and
+      background, where 100 is the US average
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year PUMS",
                  table: "pool_cube x kernel (person+household couple links, RELSHIPP 20<->21/22)",
                  variables: [PWGTP, a_eff, AGEP, SCHL, RAC1P, HISP, MARHYP, SERIALNO, RELSHIPP],

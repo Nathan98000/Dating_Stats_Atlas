@@ -170,11 +170,12 @@ test("About us and Privacy name no switch: race or ethnicity is used only if you
     const text = await page.locator("body").innerText();
     expect(text, `${path}: the removed switch`).not.toMatch(SWITCH_WORDING);
   }
-  // Nathan's About us copy (after Phase 4e, 2026-10-06) no longer carries
-  // the sentence; the Privacy page still says when race is used
+  // Nathan's About us copy (after Phase 4e, 2026-10-06) and his Privacy
+  // copy (2026-10-07) no longer carry the sentence; the Privacy page says
+  // the details about you stay in your browser
   await page.goto("/privacy");
-  expect(await page.locator("body").innerText(), "/privacy: when race is used")
-    .toMatch(/race or ethnicity is used only if you include it/);
+  expect(await page.locator("body").innerText(), "/privacy: details about you")
+    .toMatch(/Your own browser will keep details about you/);
 });
 
 test("the slider's box reads the registry string exactly, with the same-sex sentence only on a same-sex search", async ({ page, request }) => {

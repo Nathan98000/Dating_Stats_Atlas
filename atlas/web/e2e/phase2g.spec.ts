@@ -33,7 +33,7 @@ test("the all-excluded body reads as a sentence at 1280 and 375 (gate 7)", async
     // the note box is gone; the nav still routes to the explainer
     await expect(narrow).not.toContainText(/The narrower the search/);
     await expect(
-      page.getByRole("link", { name: "About us" })).toBeVisible();
+      page.getByRole("link", { name: "About the site" })).toBeVisible();
   }
 });
 
@@ -46,7 +46,11 @@ test("the crime explainer is Nathan's rewrite (gate 8)", async ({ page }) => {
   expect(text).toMatch(/Raw crime figures can be misleading/);
   expect(text).toMatch(/It is optional for police agencies to report/);
   expect(text).toMatch(/provided as context, but not used in the calculations/);
-  expect(text).toMatch(/The reference year is shown with the figures/);
+  // Nathan, 2026-10-07: the coverage section folded into "Why cities
+  // aren't compared on crime", and the reference-year sentence is gone
+  expect(text).toMatch(/When coverage becomes too sparse, no figure is shown at all on this site/);
+  expect(text).not.toMatch(/The reference year is shown with the figures/);
+  await expect(article.getByRole("heading", { name: /What .coverage. means/ })).toHaveCount(0);
   // the two figure bullets keep their bold lead-ins
   expect(await article.locator("li strong").count()).toBeGreaterThanOrEqual(2);
 });

@@ -16,7 +16,7 @@ const HEADINGS = [
   "Where does the data come from?",
   "How is the count of matches calculated?",
   "How is compatibility calculated?",
-  "How does the score work?",
+  "How is the overall score calculated?",
   "Which cities are included?",
   "Every measure, every city",
 ];
@@ -29,7 +29,7 @@ const SOURCES: [string, string | null, string, string][] = [
   ["Getting around on foot", null, "EPA's national walkability index", "/stats/resident_walkability_index"],
   ["Nice days a year", null, "NOAA daily weather-station records, 1991–2020", "https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily"],
   ["Students", null, "Federal education data (IPEDS)", "https://nces.ed.gov/ipeds/use-the-data"],
-  ["Political lean", null, "MIT Election Data and Science Lab data", "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ"],
+  ["Political lean", null, "MIT Election Data and Science Lab", "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ"],
   ["Reported crime", "/about-crime-data", "FBI Crime Data Explorer", "https://cde.ucr.cjis.gov/"],
 ];
 
@@ -51,6 +51,8 @@ test("the top of About us links only Privacy and the terms of use", async ({ pag
 
 test("the account is Nathan's copy: its sections in order, the sources table linked as he wrote it", async ({ page }) => {
   await page.goto("/about");
+  // renamed by Nathan on 2026-10-07 (was "About us")
+  await expect(page.locator("h1")).toHaveText("About the site");
   const article = page.locator("article.prose-method");
   await expect(article.getByRole("heading", { level: 2 })).toHaveText(HEADINGS);
   const rows = article.locator("table tbody tr");

@@ -170,7 +170,7 @@ only this runbook. Checked from Nathan's Mac:
 - [ ] `data_version` + `model_version` in `/v1/health` match the artifact
       you shipped
 - [ ] no public IPs on `dating-stats-atlas-api` (`fly ips list -a dating-stats-atlas-api`)
-- [ ] the citations render in About us, Sources and credits (`/about`; they flow from
+- [ ] the citations render in About the site, Sources and credits (`/about`; they flow from
       `adapters/base.py` LICENSES through the manifest — a wording change
       is made there, and the build regenerated)
 

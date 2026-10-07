@@ -25,7 +25,7 @@ best city match.
 | Getting around on foot | [EPA's national walkability index](/stats/resident_walkability_index) |
 | Nice days a year | [NOAA daily weather-station records, 1991–2020](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily) |
 | Students | [Federal education data (IPEDS)](https://nces.ed.gov/ipeds/use-the-data) |
-| Political lean | [MIT Election Data and Science Lab data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ) |
+| Political lean | [MIT Election Data and Science Lab](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOQCHQ) |
 | [Reported crime](/about-crime-data) | [FBI Crime Data Explorer](https://cde.ucr.cjis.gov/) |
 
 ## How is the count of matches calculated?
@@ -56,7 +56,7 @@ same-sex couples in the same survey. Racial and ethnic pairings aren't
 used, since data on this is too sparse for reliable estimates across
 cities.
 
-## How does the score work?
+## How is the overall score calculated?
 
 You set what matters. The slider balances between pool size and
 compatibility. Four controls (cost of living, social life, student life,

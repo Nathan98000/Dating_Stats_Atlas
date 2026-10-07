@@ -191,7 +191,7 @@ Commons `imageinfo` / `extmetadata` fields.
   retrieval date and SHA-256 — at `results/phase2e/city_images.csv`; each
   photograph's credit record (title, author, source link, licence, licence-version
   link, and whether the layout crops it) at `results/phase4/photo_credits.json`.
-  The credits live in one "Sources and credits" section on the About us page.
+  The credits live in one "Sources and credits" section on the About page ("About the site" since 2026-10-07; "About us" before).
 
 ## Used as a check only — does not reach the site
 
