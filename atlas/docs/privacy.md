@@ -1,7 +1,7 @@
 # Privacy
 
-There is no account needed to use this site, we don't track you, and what
-you select stays in your browser.
+There is no account needed to use this site, we don't track you, and we
+don't save your searches.
 
 ## Your search
 

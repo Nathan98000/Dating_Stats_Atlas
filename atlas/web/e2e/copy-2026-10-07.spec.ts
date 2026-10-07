@@ -44,7 +44,10 @@ test("Privacy is Nathan's 2026-10-07 copy, in its four sections", async ({ page 
   await expect(article.getByRole("heading", { level: 2 })).toHaveText(
     ["Your search", "The cookie", "Our host", "No tracking"]);
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
-  expect(text).toMatch(/There is no account needed to use this site, we don't track you, and what you select stays in your browser\./);
+  // rephrased at Nathan's request (2026-10-07): the search does travel to
+  // the server, so the summary says what is true of it — it is not saved
+  expect(text).toMatch(/There is no account needed to use this site, we don't track you, and we don't save your searches\./);
+  expect(text).not.toMatch(/what you select stays in your browser/);
   expect(text).toMatch(/One cookie, called dsa_prefs,/);
   expect(text).toMatch(/The server keeps no record of your visits, not your IP address, and not the pages you look at\./);
 });

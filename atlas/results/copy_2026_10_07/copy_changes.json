@@ -1,6 +1,6 @@
 {
  "change_set": "Nathan's copy changes of 2026-10-07 (About the site, What we measure, About crime data, Terms of use, Privacy)",
- "note": "Every page is Nathan's text word for word (checked mechanically against his message); markdown keeps each page's title, headings, bullets and existing links. The everyday prices photograph is recorded in photo_review.json, not here.",
+ "note": "Every page is Nathan's text word for word (checked mechanically against his message); markdown keeps each page's title, headings, bullets and existing links. The everyday prices photograph is recorded in photo_review.json, not here. Nathan's calls on 2026-10-07: the four parts the new terms drop (who runs the site, no warranty, the law that applies, and the 'Estimates, not facts about people' section's compatibility sentence, with that section) approved; the privacy summary's last clause rephrased at his request; the grocery photograph's alt text approved.",
  "changes": [
   {
    "change": "About page (1)",
@@ -60,10 +60,10 @@
   },
   {
    "change": "Privacy",
-   "kind": "changed (Nathan's copy, verbatim)",
+   "kind": "changed (Nathan's copy, its last clause rephrased at his request on 2026-10-07: \"what you select stays in your browser\" read as if the search never left the browser, while the next section says it travels to the server)",
    "where": "docs/privacy.md, section \"(top)\"",
    "old": "**In short:** you don't sign up, we don't track you, and what you tell us about yourself stays in your browser.",
-   "new": "There is no account needed to use this site, we don't track you, and what you select stays in your browser.",
+   "new": "There is no account needed to use this site, we don't track you, and we don't save your searches.",
    "why": "Nathan's request (2026-10-07)"
   },
   {
@@ -116,7 +116,7 @@
   },
   {
    "change": "Terms of use",
-   "kind": "removed (not in Nathan's copy)",
+   "kind": "removed (not in Nathan's copy; the removal approved by Nathan on 2026-10-07)",
    "where": "docs/terms.md, section \"Who runs the site\"",
    "old": "Dating Stats Atlas is run by Nathan Nguyen. Questions about these terms go to dating.stats.atlas@gmail.com. By using the site you agree to these terms; if you don't agree, please don't use it.",
    "new": "(none)",
@@ -124,7 +124,7 @@
   },
   {
    "change": "Terms of use",
-   "kind": "removed (not in Nathan's copy)",
+   "kind": "removed (not in Nathan's copy; the removal approved by Nathan on 2026-10-07)",
    "where": "docs/terms.md, section \"Estimates, not facts about people\"",
    "old": "- Every figure is an estimate. The counts come from the Census Bureau's household survey, which samples households, so every figure carries some uncertainty. Where the sample is too thin to trust, the site leaves the city out rather than show a number; About us explains how the figures are made. - The compatibility figure describes a pattern across many real couples. It says nothing about any one person. - The figures are Dating Stats Atlas's own estimates from Census Bureau and other public data. No government agency made, checked or endorses them. - We work to keep the figures accurate, but we can't promise they are complete, current or right for your situation, and none of them is advice. Check anything that matters to you, such as where to live, against other sources.",
    "new": "(none)",
@@ -140,7 +140,7 @@
   },
   {
    "change": "Terms of use",
-   "kind": "removed (not in Nathan's copy)",
+   "kind": "removed (not in Nathan's copy; the removal approved by Nathan on 2026-10-07)",
    "where": "docs/terms.md, section \"No warranty\"",
    "old": "The site is provided as it is and as available, without warranties of any kind. To the fullest extent the law allows, we aren't liable for any loss or damage that comes from using the site or relying on its figures. Some places don't allow these limits, so they may not all apply to you.",
    "new": "(none)",
@@ -156,7 +156,7 @@
   },
   {
    "change": "Terms of use",
-   "kind": "removed (not in Nathan's copy)",
+   "kind": "removed (not in Nathan's copy; the removal approved by Nathan on 2026-10-07)",
    "where": "docs/terms.md, section \"The law that applies\"",
    "old": "These terms are governed by the laws of the State of New York, United States, without regard to its conflict-of-law rules.",
    "new": "(none)",
