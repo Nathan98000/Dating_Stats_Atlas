@@ -1,0 +1,612 @@
+{
+ "san-francisco-california": {
+  "current": {
+   "title": "Zeppelin-ride-020100925-195 (5029394846)",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Zeppelin-ride-020100925-195_(5029394846).jpg",
+   "why_it_qualifies": "CC BY 2.0, not PD/CC0; an aerial taken from a zeppelin ride over the Bay (Alcatraz), not street level"
+  },
+  "candidates": [
+   {
+    "title": "Italian shops and restaurants on Green Street, North Beach, San Francisco, 2011",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Italian_shops_and_restaurants_on_Green_Street,_North_Beach,_San_Francisco,_2011.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Italian_shops_and_restaurants_on_Green_Street%2C_North_Beach%2C_San_Francisco%2C_2011.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "DimiTalen",
+    "width": 3008,
+    "height": 2000,
+    "why": "Green Street in North Beach: Victorian flats, Italian restaurant signs (Gino and Carlo, Sotto Mare), steep hill; daylight, street level; a few pedestrians, small and distant. Strongest pick.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-francisco-california_1.jpg"
+   },
+   {
+    "title": "Powell Street. San Francisco. (50994627183)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Powell_Street._San_Francisco._(50994627183).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Powell_Street._San_Francisco._%2850994627183%29.jpg",
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Bernard Spragg. NZ from Christchurch, New Zealand",
+    "width": 5472,
+    "height": 3648,
+    "why": "Powell Street cable car at the Market Street turnaround, Union Square district; daylight, many small pedestrians, none close. Heavily processed (HDR) look; a cinema poster with a painted face on the left kiosk is incidental.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-francisco-california_2.jpg"
+   },
+   {
+    "title": "San Francisco - July 2025 - Sarah Stierch",
+    "source_url": "https://commons.wikimedia.org/wiki/File:San_Francisco_-_July_2025_-_Sarah_Stierch.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/San_Francisco_-_July_2025_-_Sarah_Stierch.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Missvain",
+    "width": 4032,
+    "height": 3024,
+    "why": "Jefferson Street, Fisherman's Wharf (EAT CRAB sign); daylight, street level; pedestrians mid-distance, faces not resolvable at card size. Touristy rather than a neighbourhood people live in.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-francisco-california_3.jpg"
+   }
+  ]
+ },
+ "boston-massachusetts": {
+  "current": {
+   "title": "ISH WC Boston4",
+   "license": "CC BY 2.5",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ISH_WC_Boston4.jpg",
+   "why_it_qualifies": "CC BY 2.5, not PD/CC0 (the scene itself, Beacon Hill, is street level)"
+  },
+  "candidates": [
+   {
+    "title": "Acorn Street, Boston, United States (Unsplash)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Acorn_Street,_Boston,_United_States_(Unsplash).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Acorn_Street%2C_Boston%2C_United_States_%28Unsplash%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Michael Browning michaelwb",
+    "width": 5398,
+    "height": 3599,
+    "why": "Acorn Street, Beacon Hill: cobbles, brick row houses, gas lamp; no people. Strongest pick, though overcast and a tight frame (narrow street).",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/boston-massachusetts_1.jpg"
+   },
+   {
+    "title": "Looking south down Charles Street from Pinckney Street, Beacon Hill, Boston, 2007",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Looking_south_down_Charles_Street_from_Pinckney_Street,_Beacon_Hill,_Boston,_2007.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Looking_south_down_Charles_Street_from_Pinckney_Street%2C_Beacon_Hill%2C_Boston%2C_2007.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "DimiTalen",
+    "width": 3008,
+    "height": 2000,
+    "why": "Charles Street from Pinckney Street, Beacon Hill; brick apartment blocks, trees, daylight. One woman crossing at the right edge, face visible at small size: review, or crop risk on a cover-cropped card.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/boston-massachusetts_2.jpg"
+   },
+   {
+    "title": "North End, Boston, United States (Unsplash)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:North_End,_Boston,_United_States_(Unsplash).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/North_End%2C_Boston%2C_United_States_%28Unsplash%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Akhil Dakinedi a_kill_",
+    "width": 6000,
+    "height": 4000,
+    "why": "North End side street: brick tenements, fire escapes, a green bay-window building; no people; flat overcast light.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/boston-massachusetts_3.jpg"
+   }
+  ]
+ },
+ "new-york-new-york": {
+  "current": {
+   "title": "View of Empire State Building from Rockefeller Center New York City dllu (cropped)",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_(cropped).jpg",
+   "why_it_qualifies": "CC BY-SA 4.0, not PD/CC0; a landmark view of the Empire State Building from the Top of the Rock observation deck"
+  },
+  "candidates": [
+   {
+    "title": "Broadway, New York, United States (Unsplash)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Broadway,_New_York,_United_States_(Unsplash).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Broadway%2C_New_York%2C_United_States_%28Unsplash%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Jason Briscoe jbriscoe",
+    "width": 5472,
+    "height": 3648,
+    "why": "Broadway in SoHo looking north (Woolworth-era towers in the haze): cast-iron facades, taxis, sunlight; pedestrians small and distant. Strongest pick.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/new-york-new-york_1.jpg"
+   },
+   {
+    "title": "City of bricks (Unsplash)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:City_of_bricks_(Unsplash).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/City_of_bricks_%28Unsplash%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Daryan Shamkhali daryan",
+    "width": 4896,
+    "height": 3264,
+    "why": "Madison Avenue crossing (per the Commons description): brick blocks, yellow cabs, a crosswalk; a few small pedestrians, none close.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/new-york-new-york_2.jpg"
+   },
+   {
+    "title": "A bar in Greenwich Village, May 2023",
+    "source_url": "https://commons.wikimedia.org/wiki/File:A_bar_in_Greenwich_Village,_May_2023.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/A_bar_in_Greenwich_Village%2C_May_2023.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Benoît Prieur",
+    "width": 3802,
+    "height": 2381,
+    "why": "Barrow Street at Bleecker Street (per the street signs), Greenwich Village: low brick corner building, cafe seating; one pedestrian small, face covered by a phone. Busy signage and a construction notice.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/new-york-new-york_3.jpg"
+   }
+  ]
+ },
+ "los-angeles-california": {
+  "current": {
+   "title": "Hollywood sign (8485145044)",
+   "license": "CC BY-SA 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hollywood_sign_(8485145044).jpg",
+   "why_it_qualifies": "CC BY-SA 2.0, not PD/CC0; a landmark shot (the Hollywood sign)"
+  },
+  "candidates": [
+   {
+    "title": "Venice, Los Angeles (July 2022)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Venice,_Los_Angeles_(July_2022).JPG",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Venice%2C_Los_Angeles_%28July_2022%29.JPG",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Benoît Prieur",
+    "width": 4032,
+    "height": 3024,
+    "why": "The VENICE sign over Windward Avenue at Pacific Avenue, Venice: white arcaded buildings, palms, blue sky, street level; people small. A painted mural on one facade is incidental, not the subject.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/los-angeles-california_1.jpg"
+   },
+   {
+    "title": "Hollywood Boulevard July 2022 (1)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hollywood_Boulevard_July_2022_(1).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Hollywood_Boulevard_July_2022_%281%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Andrek02",
+    "width": 4624,
+    "height": 3468,
+    "why": "Hollywood Boulevard looking west, palms and mid-rise buildings, street level, people small. A street banner with a theatre-show portrait and a mural wall are incidental; overcast evening-ish light.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/los-angeles-california_2.jpg"
+   },
+   {
+    "title": "Washington Boulevard (Venice, Los Angeles) during the evening-July 2022",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Washington_Boulevard_(Venice,_Los_Angeles)_during_the_evening-July_2022.JPG",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Washington_Boulevard_%28Venice%2C_Los_Angeles%29_during_the_evening-July_2022.JPG",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Benoît Prieur",
+    "width": 5048,
+    "height": 3152,
+    "why": "Washington Boulevard (per Commons; the banners are Venice/Marina del Rey) lined with tall palms, daylight, street level; a cyclist small in the distance.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/los-angeles-california_3.jpg"
+   }
+  ]
+ },
+ "san-jose-california": {
+  "current": {
+   "title": "Valencia Hotel, Santana Row (cropped)",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Valencia_Hotel,_Santana_Row_(cropped).jpg",
+   "why_it_qualifies": "CC BY 2.0, not PD/CC0 (Santana Row hotel facade)"
+  },
+  "candidates": [
+   {
+    "title": "San Pedro Square in San Jose",
+    "source_url": "https://commons.wikimedia.org/wiki/File:San_Pedro_Square_in_San_Jose.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/San_Pedro_Square_in_San_Jose.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Siddharth Patil",
+    "width": 6000,
+    "height": 4000,
+    "why": "The San Pedro Square arch over St. John Street, downtown San Jose; trees, street level, daylight; no close people. The arch's two pedestals carry small portrait plaques (historic figures, not seals).",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-jose-california_1.jpg"
+   },
+   {
+    "title": "California downton San Jose light rail tracks and pedestrians",
+    "source_url": "https://commons.wikimedia.org/wiki/File:California_downton_San_Jose_light_rail_tracks_and_pedestrians.JPG",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/California_downton_San_Jose_light_rail_tracks_and_pedestrians.JPG",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Tomwsulcer",
+    "width": 2592,
+    "height": 1944,
+    "why": "First Street light-rail transit mall downtown: trees, a historic brick block, street lamps; a few pedestrians at mid-distance, faces not resolvable at card size. 2592 px wide.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-jose-california_2.jpg"
+   },
+   {
+    "title": "Emory Street, Rose Garden, San Jose Aug 2019 1",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Emory_Street,_Rose_Garden,_San_Jose_Aug_2019_1.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Emory_Street%2C_Rose_Garden%2C_San_Jose_Aug_2019_1.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Thomson200",
+    "width": 3456,
+    "height": 2304,
+    "why": "Emory Street in the Rose Garden neighbourhood: houses, lawns, parked cars, blue sky; no people. Residential and calm, but generic (could be many California suburbs).",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-jose-california_3.jpg"
+   }
+  ]
+ },
+ "seattle-washington": {
+  "current": {
+   "title": "Seattle Center as night falls",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Seattle_Center_as_night_falls.jpg",
+   "why_it_qualifies": "CC BY-SA 3.0, not PD/CC0; a landmark/skyline view of Seattle Center at dusk"
+  },
+  "candidates": [
+   {
+    "title": "Looking down 2nd Avenue from University Street towards Smith Tower, Seattle, 2011",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Looking_down_2nd_Avenue_from_University_Street_towards_Smith_Tower,_Seattle,_2011.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Looking_down_2nd_Avenue_from_University_Street_towards_Smith_Tower%2C_Seattle%2C_2011.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "DimiTalen",
+    "width": 3008,
+    "height": 2000,
+    "why": "2nd Avenue from University Street looking south to Smith Tower, downtown; poplars, daylight, street level; one pedestrian at the far left edge.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/seattle-washington_1.jpg"
+   },
+   {
+    "title": "Urban Cityscape (Unsplash)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Urban_Cityscape_(Unsplash).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Urban_Cityscape_%28Unsplash%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "sergee bee sergeebee",
+    "width": 3264,
+    "height": 2448,
+    "why": "Belltown: the Moore Hotel and Moore Theatre signs behind the Rhodes Brothers/Heiden building on 3rd Avenue. Taken from a raised vantage (about one storey up), not quite street level; no people.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/seattle-washington_2.jpg"
+   },
+   {
+    "title": "Seattle, United States (Unsplash)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Seattle,_United_States_(Unsplash).jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Seattle%2C_United_States_%28Unsplash%29.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "sergee bee sergeebee",
+    "width": 3264,
+    "height": 2448,
+    "why": "Pioneer Square alley between First Ave S and Occidental Ave S: brick walls, fire escapes, graffiti; a few people tiny at the far end. Moody, overcast, cool-toned edit.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/seattle-washington_3.jpg"
+   }
+  ]
+ },
+ "chicago-illinois": {
+  "current": {
+   "title": "Chicago River ferry b",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chicago_River_ferry_b.jpg",
+   "why_it_qualifies": "CC BY 2.0, not PD/CC0; a river tour boat in front of Trump Tower (landmark view, a named building as subject)"
+  },
+  "candidates": [
+   {
+    "title": "Andersonville 2022-10-14",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Andersonville_2022-10-14.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Andersonville_2022-10-14.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Boivie",
+    "width": 4608,
+    "height": 3456,
+    "why": "Clark Street, Andersonville, with the neighbourhood's banner and the Swedish-flag water tower; street level, autumn. One man near the centre at mid-distance faces the camera (small): review. (Commons title says 2022; description says 2014.)",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/chicago-illinois_1.jpg"
+   },
+   {
+    "title": "Chicago S Rich Neighborhood (157774065)",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Chicago_S_Rich_Neighborhood_(157774065).jpeg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Chicago_S_Rich_Neighborhood_%28157774065%29.jpeg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Mohamed Hayibor",
+    "width": 2048,
+    "height": 1365,
+    "why": "Brick mansions and a tree-lined sidewalk on a Near North / Gold Coast-style street; no people. The Commons description (a 500px import) does not name the street, so the neighbourhood is unverified. 2048 px wide.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/chicago-illinois_2.jpg"
+   },
+   {
+    "title": "3736-3744 South Michigan Avenue, Chicago, 2025",
+    "source_url": "https://commons.wikimedia.org/wiki/File:3736-3744_South_Michigan_Avenue,_Chicago,_2025.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/3736-3744_South_Michigan_Avenue%2C_Chicago%2C_2025.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "DimiTalen",
+    "width": 5499,
+    "height": 3666,
+    "why": "Greystone and brownstone mansions at 3736-3744 S Michigan Avenue, Bronzeville; daylight, street level; no people.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/chicago-illinois_3.jpg"
+   }
+  ]
+ },
+ "san-diego-california": {
+  "current": {
+   "title": "La Jolla Shores view (cropped)",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:La_Jolla_Shores_view_(cropped).jpg",
+   "why_it_qualifies": "CC BY-SA 3.0, not PD/CC0; a beach view at La Jolla Shores with sea lions, not a city street"
+  },
+  "candidates": [
+   {
+    "title": "North Park San Diego neighborhood sign",
+    "source_url": "https://commons.wikimedia.org/wiki/File:North_Park_San_Diego_neighborhood_sign.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/North_Park_San_Diego_neighborhood_sign.jpg",
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Lrtman",
+    "width": 3888,
+    "height": 2592,
+    "why": "University Avenue at 30th Street with the North Park neighbourhood sign; street level, stormy dark sky, no close people. A small Salvation Army store logo (not a government emblem).",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-diego-california_1.jpg"
+   },
+   {
+    "title": "San Diego Old town 2006 01",
+    "source_url": "https://commons.wikimedia.org/wiki/File:San_Diego_Old_town_2006_01.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/San_Diego_Old_town_2006_01.jpg",
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Epukas",
+    "width": 2288,
+    "height": 1712,
+    "why": "Old Town San Diego market plaza in golden-hour light: Mexican blankets for sale, palms, a mission-style bell tower; people small.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-diego-california_2.jpg"
+   },
+   {
+    "title": "Old Town San Diego 022 - Cosmopolitan Hotel",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Old_Town_San_Diego_022_-_Cosmopolitan_Hotel.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Old_Town_San_Diego_022_-_Cosmopolitan_Hotel.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Andrek02",
+    "width": 4624,
+    "height": 3468,
+    "why": "The Cosmopolitan Hotel, Old Town San Diego State Historic Park; daylight; a single historic building more than a street.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/san-diego-california_3.jpg"
+   }
+  ]
+ },
+ "austin-texas": {
+  "current": {
+   "title": "Skyline of Austin, Texas (cropped)",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Austin,_Texas_(cropped).jpg",
+   "why_it_qualifies": "CC BY 4.0, not PD/CC0; a skyline shot"
+  },
+  "candidates": [
+   {
+    "title": "P01 Austin, Texas 02",
+    "source_url": "https://commons.wikimedia.org/wiki/File:P01_Austin,_Texas_02.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/P01_Austin%2C_Texas_02.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "boklm",
+    "width": 4871,
+    "height": 3252,
+    "why": "Historic Victorian facades in downtown Austin (Congress Avenue/Sixth Street area; the Commons description says only 'Austin, Texas') with towers behind; sunlight, street level, people tiny.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/austin-texas_1.jpg"
+   },
+   {
+    "title": "P01 Austin, Texas 03",
+    "source_url": "https://commons.wikimedia.org/wiki/File:P01_Austin,_Texas_03.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/P01_Austin%2C_Texas_03.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "boklm",
+    "width": 4879,
+    "height": 3257,
+    "why": "East Sixth Street (the Ritz sign) storefronts with holiday garlands; sunlight, street level; a vintage van; people tiny.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/austin-texas_2.jpg"
+   },
+   {
+    "title": "P01 Austin, Texas 06",
+    "source_url": "https://commons.wikimedia.org/wiki/File:P01_Austin,_Texas_06.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/P01_Austin%2C_Texas_06.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "boklm",
+    "width": 4881,
+    "height": 3259,
+    "why": "Congress Avenue looking north to the Texas Capitol (small, far end) between downtown towers; daylight, street level, no close people. Replaces 'P01 Austin, Texas 05' (Sixth Street), rejected: a woman mid-frame faces the camera.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/austin-texas_3.jpg"
+   }
+  ]
+ },
+ "philadelphia-pennsylvania": {
+  "current": {
+   "title": "Philadelphia skyline 20240528 (cropped 2-1)",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Philadelphia_skyline_20240528_(cropped_2-1).jpg",
+   "why_it_qualifies": "CC BY-SA 4.0, not PD/CC0; a skyline shot from the Schuylkill River"
+  },
+  "candidates": [
+   {
+    "title": "Elfreth's Alley, Philadelphia",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Elfreth%27s_Alley,_Philadelphia.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Elfreth%27s_Alley%2C_Philadelphia.jpg",
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Céline Harrand",
+    "width": 4190,
+    "height": 2782,
+    "why": "Elfreth's Alley, Old City: brick row houses, cobbles, bollards, autumn tree; people small at the far end. A Union Jack hangs from one house (not a US government emblem). Strongest pick.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/philadelphia-pennsylvania_1.jpg"
+   },
+   {
+    "title": "Manayunk, Philadelphia",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Manayunk,_Philadelphia.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Manayunk%2C_Philadelphia.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Ii2nmd",
+    "width": 4032,
+    "height": 3024,
+    "why": "Main Street, Manayunk, under the MANAYUNK banner: shops, bare trees, traffic; daylight, street level; one person at the right edge, partly cut off.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/philadelphia-pennsylvania_2.jpg"
+   },
+   {
+    "title": "HeadHouseSquare",
+    "source_url": "https://commons.wikimedia.org/wiki/File:HeadHouseSquare.JPG",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/HeadHouseSquare.JPG",
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Smallbones",
+    "width": 3649,
+    "height": 2737,
+    "why": "Head House Square row houses, Society Hill/Queen Village: Georgian brick fronts, gas lamp, snow on the ground; no people. Replaces 'South Street' (Ii2nmd), rejected: a flag that may be the Pennsylvania state flag (coat of arms) hangs mid-frame.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/philadelphia-pennsylvania_3.jpg"
+   }
+  ]
+ },
+ "new-orleans-louisiana": {
+  "current": {
+   "title": "New Orleans from the Air September 2019 - Central Business District Skyline (cropped)",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_(cropped).jpg",
+   "why_it_qualifies": "CC BY 2.0, not PD/CC0; an aerial of the Central Business District skyline"
+  },
+  "candidates": [
+   {
+    "title": "Barrio francés de Nuevo Orleans Nov 2005",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Daquella manera",
+    "width": 3264,
+    "height": 2448,
+    "why": "Bourbon Street, French Quarter (November 2005, just after the city reopened): iron balconies, bar signs, nearly empty street; daylight. Shop signs include a 'Rat's Hole' bar sign. Older (2005) and 3264 px.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/new-orleans-louisiana_1.jpg"
+   },
+   {
+    "title": "RoyalStFQMonaBenachinnLookDown",
+    "source_url": "https://commons.wikimedia.org/wiki/File:RoyalStFQMonaBenachinnLookDown.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/RoyalStFQMonaBenachinnLookDown.jpg",
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Infrogmation of New Orleans",
+    "width": 2816,
+    "height": 2112,
+    "why": "Royal Street, French Quarter: creole townhouses with balconies and green shutters; overcast; no people. 2816 px.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/new-orleans-louisiana_2.jpg"
+   },
+   {
+    "title": "Esquina calle Magazine Nueva Orleans 2014",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Esquina_calle_Magazine_Nueva_Orleans_2014.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Esquina_calle_Magazine_Nueva_Orleans_2014.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Daniel Lobo",
+    "width": 4000,
+    "height": 3000,
+    "why": "A small pink-and-yellow corner building at Magazine Street and Richard Street (Lower Garden District/Irish Channel); cobbles, power lines; no people. Quirky, not iconic.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/new-orleans-louisiana_3.jpg"
+   }
+  ]
+ },
+ "portland-oregon": {
+  "current": {
+   "title": "Portland Oregon Aerial, June 2025",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Portland_Oregon_Aerial,_June_2025.jpg",
+   "why_it_qualifies": "already CC0, but a drone aerial, not street level"
+  },
+  "candidates": [
+   {
+    "title": "SW Morrison Street - Portland, Oregon - DSC01728",
+    "source_url": "https://commons.wikimedia.org/wiki/File:SW_Morrison_Street_-_Portland,_Oregon_-_DSC01728.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/SW_Morrison_Street_-_Portland%2C_Oregon_-_DSC01728.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Daderot",
+    "width": 5472,
+    "height": 3648,
+    "why": "SW Morrison Street, downtown: red-brick block, blossoming trees, streetcar tracks, early-morning light; people tiny.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/portland-oregon_1.jpg"
+   },
+   {
+    "title": "Looking down SW Broadway from Pioneer Courthouse Square, Portland, 2011",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Looking_down_SW_Broadway_from_Pioneer_Courthouse_Square,_Portland,_2011.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Looking_down_SW_Broadway_from_Pioneer_Courthouse_Square%2C_Portland%2C_2011.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "DimiTalen",
+    "width": 2953,
+    "height": 1963,
+    "why": "SW Broadway from Pioneer Courthouse Square: mid-rise blocks, bike racks, blue sky; people small. An advertising portrait in a shop window at right is incidental.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/portland-oregon_2.jpg"
+   },
+   {
+    "title": "Republic Cafe and the House of Louie - Old Town Chinatown - Portland, Oregon - DSC01185",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Republic_Cafe_and_the_House_of_Louie_-_Old_Town_Chinatown_-_Portland,_Oregon_-_DSC01185.jpg",
+    "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Republic_Cafe_and_the_House_of_Louie_-_Old_Town_Chinatown_-_Portland%2C_Oregon_-_DSC01185.jpg",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Daderot",
+    "width": 5001,
+    "height": 3457,
+    "why": "Republic Cafe and the House of Louie, NW 4th Avenue, Old Town Chinatown: neon signs, red Chinatown lamp post; daylight; no people.",
+    "gate": "pass",
+    "local_file": "results/phase5/_photos/portland-oregon_3.jpg"
+   }
+  ]
+ },
+ "_notes": {
+  "date": "2026-10-08",
+  "method": "Commons searched (CirrusSearch, filew:>1599, structured-data CC0/PD statements; category browsing for New Orleans) and screened by eye on contact sheets. Each candidate's licence, author and size are read from the same imageinfo/extmetadata query city_images.imageinfo() sends, and cleared by city_images.clear_licence() plus the review's refused-file list (REVIEW_REFUSED): all 36 pass. local_file is Wikimedia's own 1600 px rendition (the pipeline's image_url), relative to atlas/. Every candidate is public domain or CC0; no CC BY fallback was needed. Each local file was looked at for: street level, daylight, close identifiable faces, recent US sculpture/mural as subject, government emblem.",
+  "rejected_after_viewing": [
+   {
+    "metro": "austin-texas",
+    "file_title": "File:P01 Austin, Texas 05.jpg",
+    "why": "a woman mid-frame faces the camera at mid-distance (person rule); local copy kept as _photos/austin-texas_x_rejected.jpg"
+   },
+   {
+    "metro": "philadelphia-pennsylvania",
+    "file_title": "File:South Street.jpg",
+    "why": "a flag that may be the Pennsylvania state flag (coat of arms) hangs mid-frame (emblem rule, unconfirmed); local copy kept as _photos/philadelphia-pennsylvania_x_rejected.jpg"
+   },
+   {
+    "metro": "new-orleans-louisiana",
+    "file_title": "File:New Orleans October 2024 - French Quarter Street.jpg",
+    "why": "not taken further: a large flag mid-frame of uncertain identity, and a sidewalk crowd at mid-distance"
+   }
+  ],
+  "nothing_ships": "Nothing here is applied: city-images.json, photo_review.json and the manifests are untouched. A pick would go in photo_review.json 'replaced' (page city, key slug, file_title, was) for photo_review.apply()."
+ }
+}
