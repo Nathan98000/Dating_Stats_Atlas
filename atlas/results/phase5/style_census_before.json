@@ -1,0 +1,68 @@
+{
+ "font_sizes": 34,
+ "radii": 12,
+ "control_heights": 3,
+ "arbitrary_values": {
+  "text": 156,
+  "rounded": 7,
+  "min-h": 24
+ },
+ "arbitrary_total": 187,
+ "detail": {
+  "font_sizes": [
+   "2xl",
+   "[11.5px]",
+   "[12.5px]",
+   "[12px]",
+   "[13.5px]",
+   "[13px]",
+   "[14.5px]",
+   "[14px]",
+   "[15.5px]",
+   "[15px]",
+   "[16.5px]",
+   "[16px]",
+   "[17px]",
+   "[18px]",
+   "[19px]",
+   "[21px]",
+   "[22px]",
+   "[23px]",
+   "[24px]",
+   "[26px]",
+   "[30px]",
+   "[32px]",
+   "[34px]",
+   "[38px]",
+   "[40px]",
+   "[44px]",
+   "[48px]",
+   "css:14px",
+   "css:15.5px",
+   "css:16.5px",
+   "css:24px",
+   "css:38px",
+   "sm",
+   "xs"
+  ],
+  "radii": [
+   "[10px]",
+   "[2px]",
+   "[7px]",
+   "css:10px",
+   "css:5px",
+   "css:8px",
+   "css:999px",
+   "full",
+   "lg",
+   "md",
+   "sm",
+   "xl"
+  ],
+  "control_heights": [
+   "css:min-height:44px",
+   "min-h-[42px]",
+   "min-h-[46px]"
+  ]
+ }
+}

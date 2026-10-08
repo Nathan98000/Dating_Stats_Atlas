@@ -20,7 +20,7 @@ export function LocatorMap({ focus }: { focus: MetroMeta }) {
   const dot = MAP.metros[focus.cbsa];
   const homeState = dot?.[2] ?? null;
   return (
-    <div className="rounded-xl border border-rule bg-surface p-4">
+    <div className="rounded-lg border border-rule bg-surface p-4">
       <svg
         width="100%"
         viewBox={`0 0 ${MAP.w} ${MAP.h}`}

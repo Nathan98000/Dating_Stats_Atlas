@@ -36,7 +36,7 @@ export function CityVariantPart({
     if (!ranked) return null;
     return (
       <section
-        className="flex flex-col gap-4 rounded-xl border border-rule bg-surface px-7 py-6"
+        className="flex flex-col gap-4 rounded-lg border border-rule bg-surface px-7 py-6"
         data-testid="ranked-card"
         data-variant=""
       >
@@ -77,7 +77,7 @@ export function CityVariantPart({
   if (!balance || !balance.available) return null;
   return (
     <section
-      className="flex flex-col gap-2 rounded-xl border border-rule bg-surface px-7 py-6"
+      className="flex flex-col gap-2 rounded-lg border border-rule bg-surface px-7 py-6"
       data-testid="balance-survives"
       data-variant=""
     >

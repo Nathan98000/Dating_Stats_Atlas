@@ -88,7 +88,7 @@ export default async function CityPage({
               <CompareLauncher slug={slug} primary />
               <Link
                 href={`/?${qs}#search-panel`}
-                className="flex min-h-[46px] items-center rounded-lg border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
+                className="flex min-h-[46px] items-center rounded-md border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
               >
                 Change your search
               </Link>
@@ -120,7 +120,7 @@ export default async function CityPage({
             <CityWideners prefs={prefs} />
           </CityNarrowCard>
         ) : (
-          <section className="rounded-xl border border-rule bg-surface px-7 py-6">
+          <section className="rounded-lg border border-rule bg-surface px-7 py-6">
             <p className="max-w-[72ch] text-sm leading-relaxed text-ink-2">
               {city} sits below the population floor this site ranks, so it
               never appears in results — its profile is below.
@@ -159,7 +159,7 @@ export default async function CityPage({
             {/* item 2 (2e): crime as two cards in the SAME grid — rate,
                 band, ⓘ; the FBI's caution lives in the popover */}
             {crime && <CrimeCards crime={crime} meta={meta} />}
-            <div className="stat-card !flex flex-col justify-center gap-2.5 rounded-xl border border-tint-border bg-tint p-[18px]">
+            <div className="stat-card !flex flex-col justify-center gap-2.5 rounded-lg border border-tint-border bg-tint p-[18px]">
               <span className="font-display text-[17px] font-semibold leading-snug text-accent-hover">
                 See how {city} stacks up against a city you know
               </span>
@@ -188,7 +188,7 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
   const statName = (le.stat_page_name ?? le.display_name).toLowerCase();
   const missing = card.missing || card.display === undefined;
   return (
-    <div className="stat-card rounded-xl border border-rule bg-surface p-[18px]" data-card={card.id}>
+    <div className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={card.id}>
       <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
       {missing ? (
         <>

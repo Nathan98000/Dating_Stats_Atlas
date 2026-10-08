@@ -1,11 +1,30 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Design tokens — the v3 boards ("Atlas Redesign Artboards", approved), the
-   ONE place the site's look lives. Warm paper, white surfaces, berry
-   accent, Fraunces display over Figtree, tabular figures on all data, no
-   monospace anywhere, radii 8px on controls and 10–12px on cards, no
-   shadows.
+   Design tokens — the Phase 5 system (design audit of 8 October 2026), the
+   ONE place the site's look lives. It supersedes the v3 boards and
+   docs/design/DESIGN_DIRECTION.md where they differ.
+
+   Colour. Warm paper, white surfaces, a berry accent. --sunken fills
+   tracks and segmented controls, --hover marks a hovered or open row.
+   --rule is decorative only (dividers, card edges); every control
+   boundary is --line-strong (3:1 or better on white and paper). Pink
+   (--tint) means "selected" and nothing else; notices use the --warning
+   pair and validation the --error pair. --highlight (amber) marks the
+   top three ranks only. Plus and minus are teal and clay, each with a
+   soft fill for chips.
+
+   Type. Fraunces (SOFT 30) for page titles, section headings, city names
+   on cards, rank and score; Figtree for everything else, every other
+   number in Figtree 600 with tabular figures. Sizes come only from the
+   scale below (text-display-1 … text-overline, text-data-*); 12px is the
+   smallest. Inputs are 16px, so iOS never zooms.
+
+   Shape. Radii 6 (chips) / 10 (controls, buttons) / 16 (cards, sheets,
+   popovers). Static cards have no shadow; --shadow-sm lifts a selected
+   segment, a slider thumb or a medallion, and --shadow-overlay a popover,
+   menu, sheet or the sticky bottom bar. Controls are 44px tall (48px on
+   phones) and every target is at least 44x44 below 1120px (desk).
 --------------------------------------------------------------------------- */
 :root {
   --paper: #FDF7F3;
@@ -39,7 +58,34 @@
   --dem: #33609E;
   --rep: #A63A3A;
   --lean-other: #8A8085;
+  /* Phase 5 (design audit, 8 October 2026). Measured contrast is pinned by
+     tests/contrast.test.ts. */
+  --sunken: #F3ECE8;
+  --hover: #FBF3EE;
+  --line-strong: #9C8A8F;   /* 3.26:1 on white, 3.07:1 on paper */
+  --highlight: #F2B544;     /* ink on it 9.28:1 */
+  --good-soft: #E6F2EE;     /* --good-strong on it 6.66:1 */
+  --poor-soft: #FBEDE8;     /* --poor-strong on it 7.53:1 */
+  --warning: #9A5B0B;
+  --warning-soft: #FBF0DC;
+  --error: #A8352A;
+  --error-soft: #FBE9E6;
+  --data-neutral: #D9CDC6;
+  --shadow-sm: 0 1px 2px rgba(32, 27, 29, .06);
+  --shadow-overlay: 0 12px 32px rgba(32, 27, 29, .14), 0 2px 6px rgba(32, 27, 29, .06);
+  /* the type scale's phone sizes; desk sizes from 640px (below) */
+  --fs-display-1: 36px; --lh-display-1: 40px;
+  --fs-display-2: 30px; --lh-display-2: 34px;
+  --fs-h2: 24px; --lh-h2: 30px;
   color-scheme: light;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --fs-display-1: 48px; --lh-display-1: 52px;
+    --fs-display-2: 40px; --lh-display-2: 44px;
+    --fs-h2: 28px; --lh-h2: 34px;
+  }
 }
 
 @theme inline {
@@ -62,11 +108,83 @@
   --color-dem: var(--dem);
   --color-rep: var(--rep);
   --color-lean-other: var(--lean-other);
+  --color-sunken: var(--sunken);
+  --color-hover: var(--hover);
+  --color-line-strong: var(--line-strong);
+  --color-highlight: var(--highlight);
+  --color-good-soft: var(--good-soft);
+  --color-poor-soft: var(--poor-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-error: var(--error);
+  --color-error-soft: var(--error-soft);
+  --color-data-neutral: var(--data-neutral);
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-figtree), "Helvetica Neue", Arial, sans-serif;
   --radius-ctl: 8px;
   --radius-card: 12px;
+  /* Phase 5: the three radii (rounded-sm / -md / -lg) and two shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  /* the same values as :root's (an inline theme can't reference its own
+     names) */
+  --shadow-sm: 0 1px 2px rgba(32, 27, 29, .06);
+  --shadow-overlay: 0 12px 32px rgba(32, 27, 29, .14), 0 2px 6px rgba(32, 27, 29, .06);
+  /* 1120px: two columns (rail beside results) from here up */
+  --breakpoint-desk: 70rem;
+  /* the type scale (text-*): size / line height, weight and tracking where
+     the size implies them. Family is set by the class beside it
+     (font-display for Fraunces); data-m and every other number in Figtree
+     is tabular by the body's default. */
+  --text-display-1: var(--fs-display-1);
+  --text-display-1--line-height: var(--lh-display-1);
+  --text-display-1--font-weight: 600;
+  --text-display-1--letter-spacing: -0.02em;
+  --text-display-2: var(--fs-display-2);
+  --text-display-2--line-height: var(--lh-display-2);
+  --text-display-2--font-weight: 600;
+  --text-display-2--letter-spacing: -0.01em;
+  --text-h2: var(--fs-h2);
+  --text-h2--line-height: var(--lh-h2);
+  --text-h2--font-weight: 600;
+  --text-h3: 20px;
+  --text-h3--line-height: 26px;
+  --text-h3--font-weight: 600;
+  --text-title: 17px;
+  --text-title--line-height: 22px;
+  --text-title--font-weight: 600;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-caption: 13px;
+  --text-caption--line-height: 18px;
+  --text-overline: 12px;
+  --text-overline--line-height: 16px;
+  --text-overline--font-weight: 600;
+  --text-overline--letter-spacing: 0.06em;
+  --text-data-xl: 44px;
+  --text-data-xl--line-height: 40px;
+  --text-data-xl--font-weight: 600;
+  --text-data-l: 28px;
+  --text-data-l--line-height: 28px;
+  --text-data-l--font-weight: 600;
+  --text-data-m: 18px;
+  --text-data-m--line-height: 22px;
+  --text-data-m--font-weight: 600;
 }
+
+/* Fraunces' soft axis, wherever the display face is used */
+.font-display,
+.prose-method h1,
+.prose-method h2 {
+  font-variation-settings: "SOFT" 30;
+}
+/* the overline is uppercase wherever it is used */
+.text-overline { text-transform: uppercase; }
 
 body {
   background: var(--paper);
@@ -96,11 +214,11 @@ select.ctl {
   min-height: 44px;
   padding: 0 34px 0 13px;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink);
   background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' fill='none' stroke='%23756B70' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
@@ -131,13 +249,22 @@ input.ctl {
   box-sizing: border-box;
   padding: 0 13px;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink);
   background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
 }
 input.ctl::placeholder { color: var(--ink-3); }
+/* Phase 5: 48px on phones; focus is an accent border and a soft ring (the
+   global :focus-visible outline stays) */
+@media (max-width: 39.99rem) {
+  select.ctl, input.ctl { min-height: 48px; }
+}
+select.ctl:focus, input.ctl:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(158, 59, 87, .18);
+}
 
 /* drawn checkbox (16px, berry check) */
 input.check {

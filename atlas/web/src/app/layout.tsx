@@ -6,12 +6,12 @@ import { PRE_PAINT_SCRIPT } from "@/lib/about-you";
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: "variable",
-  axes: ["opsz"],
+  axes: ["opsz", "SOFT"],
   variable: "--font-fraunces",
 });
 const figtree = Figtree({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-figtree",
 });
 

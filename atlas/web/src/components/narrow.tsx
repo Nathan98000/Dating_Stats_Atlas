@@ -49,7 +49,7 @@ export function NarrowState({
               key={w.label}
               type="button"
               onClick={() => onWiden(w.next)}
-              className="flex min-h-[54px] flex-col items-start gap-[3px] rounded-[10px] bg-accent px-[22px] py-3 text-left hover:bg-accent-hover"
+              className="flex min-h-[54px] flex-col items-start gap-[3px] rounded-md bg-accent px-[22px] py-3 text-left hover:bg-accent-hover"
             >
               <span className="text-[15px] font-bold text-white">{w.label}</span>
               <span className="text-[12.5px] text-tint">{w.sub}</span>
@@ -59,7 +59,7 @@ export function NarrowState({
               key={w.label}
               type="button"
               onClick={() => onWiden(w.next)}
-              className="flex min-h-[54px] flex-col items-start gap-[3px] rounded-[10px] border-[1.5px] border-ink bg-surface px-[22px] py-3 text-left hover:bg-tint"
+              className="flex min-h-[54px] flex-col items-start gap-[3px] rounded-md border-[1.5px] border-ink bg-surface px-[22px] py-3 text-left hover:bg-tint"
             >
               <span className="text-[15px] font-bold text-ink">{w.label}</span>
               <span className="text-[12.5px] text-ink-3">{w.sub}</span>

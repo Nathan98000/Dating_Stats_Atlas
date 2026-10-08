@@ -50,7 +50,7 @@ export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
         <img
           src={`/cities/${img.file}`}
           alt={img.alt ?? ""}
-          className="max-h-[380px] w-full rounded-xl border border-rule bg-surface object-contain"
+          className="max-h-[380px] w-full rounded-lg border border-rule bg-surface object-contain"
         />
       </figure>
     );
@@ -88,7 +88,7 @@ export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
     <div
       aria-hidden="true"
       data-testid="city-art"
-      className="h-[200px] w-full overflow-hidden rounded-xl border border-rule max-sm:h-[140px]"
+      className="h-[200px] w-full overflow-hidden rounded-lg border border-rule max-sm:h-[140px]"
     >
       <svg
         viewBox={`0 0 ${W} ${H}`}

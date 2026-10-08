@@ -121,3 +121,7 @@ atlas/results/city_profile/*_run.log
 # Movers-line fix working files (the Phase 4 pattern): before/after records, run logs
 atlas/results/movers_fix/_*
 atlas/results/movers_fix/*_run.log
+
+# Phase 5: the served-numbers records and scratch
+atlas/results/phase5/_*
+atlas/results/phase5/*_run.log

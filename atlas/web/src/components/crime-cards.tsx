@@ -19,7 +19,7 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
         {["violent_crime_rate", "property_crime_rate"].map((fid) => {
           const le = meta.features[fid];
           return (
-            <div key={fid} className="stat-card rounded-xl border border-rule bg-surface p-[18px]" data-card={fid}>
+            <div key={fid} className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={fid}>
               <span className="flex items-center justify-between text-[13px] font-semibold text-ink-2">
                 {le.display_name}
                 <CrimeInfo fid={fid} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
@@ -40,7 +40,7 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
   return (
     <>
       {crime.stats!.map((s) => (
-        <div key={s.id} className="stat-card rounded-xl border border-rule bg-surface p-[18px]" data-card={s.id}>
+        <div key={s.id} className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={s.id}>
           <span className="flex items-center justify-between text-[13px] font-semibold text-ink-2">
             {s.label}
             <CrimeInfo fid={s.id} crime={crime} seeMore={meta.policy_strings.crime_see_more} />

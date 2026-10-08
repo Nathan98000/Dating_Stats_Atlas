@@ -1,0 +1,361 @@
+{
+ "label": "before",
+ "base": "http://127.0.0.1:3200",
+ "generated": "2026-10-08T19:26:00.119Z",
+ "home": {
+  "390": {
+   "first_result_top": 2150,
+   "first_result_bottom": 2609,
+   "page_height": 86801,
+   "scroll_width": 423,
+   "rows_4_10_height": [
+    459,
+    436,
+    459,
+    459,
+    459,
+    436,
+    459
+   ]
+  },
+  "768": {
+   "first_result_top": 2101,
+   "first_result_bottom": 2375,
+   "page_height": 53229,
+   "scroll_width": 768,
+   "rows_4_10_height": [
+    274,
+    274,
+    274,
+    274,
+    274,
+    274,
+    274
+   ]
+  },
+  "1024": {
+   "first_result_top": 745,
+   "first_result_bottom": 1097,
+   "page_height": 66389,
+   "scroll_width": 1024,
+   "rows_4_10_height": [
+    352,
+    352,
+    352,
+    352,
+    352,
+    352,
+    352
+   ]
+  },
+  "1440": {
+   "first_result_top": 745,
+   "first_result_bottom": 1018,
+   "page_height": 51986,
+   "scroll_width": 1440,
+   "rows_4_10_height": [
+    274,
+    274,
+    274,
+    274,
+    274,
+    274,
+    274
+   ]
+  }
+ },
+ "pages": {
+  "home@1440": {
+   "url": "/",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 51986,
+   "main": 1
+  },
+  "city@1440": {
+   "url": "/city/san-francisco-california",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 1915,
+   "main": 0
+  },
+  "compare_pair@1440": {
+   "url": "/compare/san-francisco-california/boston-massachusetts",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 1876,
+   "main": 0
+  },
+  "compare@1440": {
+   "url": "/compare",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 900,
+   "main": 1
+  },
+  "about@1440": {
+   "url": "/about",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 2376,
+   "main": 1
+  },
+  "stat@1440": {
+   "url": "/stats/rent_1br",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 11246,
+   "main": 1
+  },
+  "privacy@1440": {
+   "url": "/privacy",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 983,
+   "main": 1
+  },
+  "terms@1440": {
+   "url": "/terms",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 1831,
+   "main": 1
+  },
+  "not_found@1440": {
+   "url": "/no-such-page",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 900,
+   "main": 0
+  },
+  "home@390": {
+   "url": "/",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 86801,
+   "main": 1
+  },
+  "city@390": {
+   "url": "/city/san-francisco-california",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 4011,
+   "main": 0
+  },
+  "compare_pair@390": {
+   "url": "/compare/san-francisco-california/boston-massachusetts",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 2373,
+   "main": 0
+  },
+  "compare@390": {
+   "url": "/compare",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 916,
+   "main": 1
+  },
+  "about@390": {
+   "url": "/about",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 3486,
+   "main": 1
+  },
+  "stat@390": {
+   "url": "/stats/rent_1br",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 11182,
+   "main": 1
+  },
+  "privacy@390": {
+   "url": "/privacy",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 1364,
+   "main": 1
+  },
+  "terms@390": {
+   "url": "/terms",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 423,
+   "page_height": 2677,
+   "main": 1
+  },
+  "not_found@390": {
+   "url": "/no-such-page",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 844,
+   "main": 0
+  }
+ },
+ "axe": {
+  "home@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 1,
+   "minor": 0,
+   "rules": [
+    "region (moderate, 1)"
+   ]
+  },
+  "city@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 60,
+   "minor": 0,
+   "rules": [
+    "landmark-one-main (moderate, 1)",
+    "region (moderate, 58)",
+    "skip-link (moderate, 1)"
+   ]
+  },
+  "compare_pair@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 27,
+   "minor": 2,
+   "rules": [
+    "empty-table-header (minor, 2)",
+    "landmark-one-main (moderate, 1)",
+    "region (moderate, 25)",
+    "skip-link (moderate, 1)"
+   ]
+  },
+  "compare@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "about@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "stat@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 1,
+   "minor": 0,
+   "rules": [
+    "region (moderate, 1)"
+   ]
+  },
+  "privacy@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "terms@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "not_found@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 5,
+   "minor": 0,
+   "rules": [
+    "landmark-one-main (moderate, 1)",
+    "region (moderate, 3)",
+    "skip-link (moderate, 1)"
+   ]
+  },
+  "home@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 1,
+   "minor": 0,
+   "rules": [
+    "region (moderate, 1)"
+   ]
+  },
+  "city@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 60,
+   "minor": 0,
+   "rules": [
+    "landmark-one-main (moderate, 1)",
+    "region (moderate, 58)",
+    "skip-link (moderate, 1)"
+   ]
+  },
+  "compare_pair@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 27,
+   "minor": 2,
+   "rules": [
+    "empty-table-header (minor, 2)",
+    "landmark-one-main (moderate, 1)",
+    "region (moderate, 25)",
+    "skip-link (moderate, 1)"
+   ]
+  },
+  "compare@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "about@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "stat@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 1,
+   "minor": 0,
+   "rules": [
+    "region (moderate, 1)"
+   ]
+  },
+  "privacy@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "terms@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "not_found@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 5,
+   "minor": 0,
+   "rules": [
+    "landmark-one-main (moderate, 1)",
+    "region (moderate, 3)",
+    "skip-link (moderate, 1)"
+   ]
+  }
+ },
+ "api_rank": {
+  "bytes": 1503427,
+  "gzip6_bytes": 229569
+ }
+}

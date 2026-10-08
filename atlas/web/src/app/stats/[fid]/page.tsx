@@ -88,7 +88,7 @@ export default async function StatPage({
           <img
             src={`/stats/${img.file}`}
             alt={img.alt ?? ""}
-            className="max-h-[380px] w-full rounded-xl bg-surface object-contain"
+            className="max-h-[380px] w-full rounded-lg bg-surface object-contain"
           />
         </figure>
       )}
@@ -153,7 +153,7 @@ function ValueSections({ page, isDollar }: { page: ValuePage; isDollar: boolean 
         <div
           role="img"
           aria-label={DATA.strings.strip_label}
-          className="relative h-8 overflow-hidden rounded-md border border-rule bg-surface"
+          className="relative h-8 overflow-hidden rounded-sm border border-rule bg-surface"
         >
           {page.strip.ticks.map((t, i) => (
             <span

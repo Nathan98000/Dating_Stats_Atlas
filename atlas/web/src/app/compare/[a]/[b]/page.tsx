@@ -86,7 +86,7 @@ export default async function ComparePage({
           same yardstick as your results.
         </p>
         {isDefaultSearch(sp) && !fromCookie && (
-          <p className="max-w-[64ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13.5px] leading-relaxed text-accent-hover" data-testid="default-profile-note">
+          <p className="max-w-[64ch] rounded-md border border-tint-border bg-tint px-4 py-3 text-[13.5px] leading-relaxed text-accent-hover" data-testid="default-profile-note">
             {policy.compare_default_note.replace(
               "{search}", describeSearch(prefs).toLowerCase())}{" "}
             <Link href={`/?${qs}#search-panel`} className="font-bold underline underline-offset-2">
@@ -95,7 +95,7 @@ export default async function ComparePage({
           </p>
         )}
 
-        <div className="overflow-x-auto rounded-xl border border-rule bg-surface">
+        <div className="overflow-x-auto rounded-lg border border-rule bg-surface">
           <table className="w-full min-w-[620px] text-sm" data-testid="compare-table">
             <caption className="sr-only">
               {mA.display_name_full} compared with {mB.display_name_full}
@@ -194,10 +194,10 @@ export default async function ComparePage({
             city, ONE plain banner above them, the detail one click away —
             and the unit line says per 100,000 so nobody reads a rate as
             a count (item 6.5). */}
-        <section className="flex flex-col gap-4 rounded-xl border border-rule bg-surface px-7 py-6" data-testid="compare-crime">
+        <section className="flex flex-col gap-4 rounded-lg border border-rule bg-surface px-7 py-6" data-testid="compare-crime">
           <h2 className="font-display text-[21px] font-semibold">Reported crime</h2>
           <p
-            className="max-w-[76ch] rounded-lg border border-tint-border bg-tint px-4 py-3 text-[13px] leading-relaxed text-accent-hover"
+            className="max-w-[76ch] rounded-md border border-tint-border bg-tint px-4 py-3 text-[13px] leading-relaxed text-accent-hover"
             data-testid="crime-compare-banner"
           >
             {(profA?.crime ?? profB?.crime)?.compare_banner}{" "}

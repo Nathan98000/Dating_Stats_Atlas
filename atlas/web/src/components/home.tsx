@@ -188,7 +188,7 @@ export function Home({
           ))}
           <button
             type="button"
-            className="ml-auto min-h-[40px] rounded-lg bg-accent px-[18px] text-[13.5px] font-bold text-white hover:bg-accent-hover"
+            className="ml-auto min-h-[40px] rounded-md bg-accent px-[18px] text-[13.5px] font-bold text-white hover:bg-accent-hover"
             onClick={() => {
               panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
               const first = panelRef.current?.querySelector<HTMLElement>("input, select, button");
@@ -232,7 +232,7 @@ export function Home({
 
         <main id="main" className="min-w-0" aria-busy={pending}>
           {error && (
-            <p role="alert" className="mb-4 rounded-lg border border-tint-border bg-tint px-4 py-3 text-sm text-accent-hover">
+            <p role="alert" className="mb-4 rounded-md border border-tint-border bg-tint px-4 py-3 text-sm text-accent-hover">
               {error}
             </p>
           )}

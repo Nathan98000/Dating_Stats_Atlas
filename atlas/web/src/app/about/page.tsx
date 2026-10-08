@@ -74,7 +74,7 @@ export default async function AboutPage() {
         <nav className="mt-5 flex flex-wrap gap-3" data-testid="about-links" aria-label={policy.about_title}>
           <Link
             href="/privacy"
-            className="inline-flex min-h-[46px] items-center rounded-lg border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
+            className="inline-flex min-h-[46px] items-center rounded-md border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
             data-testid="about-privacy-link"
           >
             {policy.about_privacy_link}
@@ -83,7 +83,7 @@ export default async function AboutPage() {
               linked beside Privacy */}
           <Link
             href="/terms"
-            className="inline-flex min-h-[46px] items-center rounded-lg border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
+            className="inline-flex min-h-[46px] items-center rounded-md border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
             data-testid="about-terms-link"
           >
             {policy.about_terms_link}

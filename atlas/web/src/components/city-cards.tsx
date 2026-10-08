@@ -22,7 +22,7 @@ export function CityNarrowCard({
     .replaceAll("{city}", city);
   return (
     <section
-      className="flex flex-col gap-4 rounded-xl border border-rule bg-surface px-7 py-6"
+      className="flex flex-col gap-4 rounded-lg border border-rule bg-surface px-7 py-6"
       data-testid="city-narrow-card"
     >
       <div className="flex items-start gap-4">
@@ -60,8 +60,8 @@ export function CityWideners({ prefs }: { prefs: Prefs }) {
           onClick={() => router.push(`/?${toSearchParams(w.next).toString()}`)}
           className={
             i === 0
-              ? "min-h-[42px] rounded-lg bg-accent px-[18px] text-[13.5px] font-bold text-white hover:bg-accent-hover"
-              : "min-h-[42px] rounded-lg border-[1.5px] border-ink bg-paper px-[18px] text-[13.5px] font-bold text-ink hover:bg-tint"
+              ? "min-h-[42px] rounded-md bg-accent px-[18px] text-[13.5px] font-bold text-white hover:bg-accent-hover"
+              : "min-h-[42px] rounded-md border-[1.5px] border-ink bg-paper px-[18px] text-[13.5px] font-bold text-ink hover:bg-tint"
           }
         >
           {w.label}

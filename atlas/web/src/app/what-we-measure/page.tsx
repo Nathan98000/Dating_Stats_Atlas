@@ -94,7 +94,7 @@ function MeasureRow({
   testid?: string;
 }) {
   return (
-    <div className="flex flex-col gap-1 rounded-xl border border-rule bg-surface px-5 py-4" data-testid={testid}>
+    <div className="flex flex-col gap-1 rounded-lg border border-rule bg-surface px-5 py-4" data-testid={testid}>
       <span className="text-[15.5px] font-semibold">{name}</span>
       <p className="max-w-[64ch] text-[13.5px] leading-relaxed text-ink-2">{sentence}</p>
       {statHref && statLabel ? (

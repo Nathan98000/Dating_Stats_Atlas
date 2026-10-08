@@ -103,7 +103,7 @@ export function SearchPanel({
   const raceSelected = prefs.race ?? allIds;
 
   return (
-    <div className="flex flex-col gap-6 rounded-xl border border-rule bg-surface p-6">
+    <div className="flex flex-col gap-6 rounded-lg border border-rule bg-surface p-6">
       <Section heading={policy.panel_about_you_heading} testid="about-you-section">
         <div className="grid grid-cols-[1fr_96px] gap-3">
           <div data-variant="">
@@ -204,7 +204,7 @@ export function SearchPanel({
                   type="button"
                   role="checkbox"
                   aria-checked={on}
-                  className={`min-h-[40px] flex-1 rounded-lg border px-2 text-[13px] font-semibold ${on ? "border-tint-border bg-tint text-accent-hover" : "border-rule bg-surface text-ink-3"}`}
+                  className={`min-h-[40px] flex-1 rounded-md border px-2 text-[13px] font-semibold ${on ? "border-tint-border bg-tint text-accent-hover" : "border-rule bg-surface text-ink-3"}`}
                   onClick={() => {
                     const next = on
                       ? prefs.marital.filter((m) => m !== v)
@@ -486,7 +486,7 @@ function SelfRaceField({
             id={tipId}
             role="tooltip"
             data-testid="self-race-tip"
-            className="block w-[290px] rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-[12.5px] font-normal leading-relaxed text-ink-2"
+            className="block w-[290px] rounded-md border border-rule bg-surface px-3.5 py-3 text-left text-[12.5px] font-normal leading-relaxed text-ink-2"
           >
             {tip}
           </span>

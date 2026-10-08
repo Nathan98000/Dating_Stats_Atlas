@@ -63,7 +63,7 @@ export default async function PermalinkPage({
           <p>
             <Link
               href={`/?${qs}`}
-              className="inline-flex min-h-[46px] items-center rounded-lg bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
+              className="inline-flex min-h-[46px] items-center rounded-md bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
               data-testid="rerun-current"
             >
               Run this search on the current site
@@ -93,7 +93,7 @@ function StartOver() {
     <p>
       <Link
         href="/"
-        className="inline-flex min-h-[46px] items-center rounded-lg bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
+        className="inline-flex min-h-[46px] items-center rounded-md bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
       >
         Start a search
       </Link>

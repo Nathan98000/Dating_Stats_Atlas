@@ -66,7 +66,7 @@ export function PrimaryButton({
     <button
       type={type}
       onClick={onClick}
-      className={`rounded-lg bg-accent font-bold text-white hover:bg-accent-hover ${small ? "min-h-[42px] px-[18px] text-[13.5px]" : "min-h-[46px] px-5 text-[14.5px]"}`}
+      className={`rounded-md bg-accent font-bold text-white hover:bg-accent-hover ${small ? "min-h-[42px] px-[18px] text-[13.5px]" : "min-h-[46px] px-5 text-[14.5px]"}`}
     >
       {children}
     </button>
@@ -86,7 +86,7 @@ export function SecondaryButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-lg border-[1.5px] border-ink bg-transparent font-bold text-ink hover:bg-tint ${small ? "min-h-[42px] px-[18px] text-[13.5px]" : "min-h-[46px] px-5 text-[14.5px]"}`}
+      className={`rounded-md border-[1.5px] border-ink bg-transparent font-bold text-ink hover:bg-tint ${small ? "min-h-[42px] px-[18px] text-[13.5px]" : "min-h-[46px] px-5 text-[14.5px]"}`}
     >
       {children}
     </button>

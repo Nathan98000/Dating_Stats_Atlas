@@ -47,7 +47,7 @@ export function LeanKey({ block }: { block: Extract<PoliticalLeanBlock, { availa
     <span className="flex flex-wrap gap-x-3 gap-y-0.5 text-[12px] text-ink-2" data-testid="lean-key">
       {block.segments.map((s) => (
         <span key={s.key} className="inline-flex items-center gap-1.5" data-key={s.key}>
-          <span aria-hidden="true" className={`inline-block h-2.5 w-2.5 rounded-sm ${SEGMENT_BG[s.key]}`} />
+          <span aria-hidden="true" className={`inline-block h-2.5 w-2.5 rounded-xs ${SEGMENT_BG[s.key]}`} />
           {s.label}
         </span>
       ))}
@@ -62,7 +62,7 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
   if (!le || !block) return null;
   const statName = (le.stat_page_name ?? le.display_name).toLowerCase();
   return (
-    <div className="stat-card rounded-xl border border-rule bg-surface p-[18px]" data-card="political_lean">
+    <div className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card="political_lean">
       <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
       {block.available ? (
         <>
