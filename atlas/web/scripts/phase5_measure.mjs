@@ -73,7 +73,7 @@ for (const vp of VIEWPORTS) {
   await page.waitForTimeout(300);
   await page.screenshot({ path: path.join(SHOTS, `home-${vp.name}-scrolled.png`) });
   // a row expanded (the redesign's detail; the old rows have none)
-  const toggle = page.locator('li[data-rank="4"] button[aria-expanded]').first();
+  const toggle = page.locator('li[data-rank="4"] button[aria-expanded]').locator("visible=true").first();
   if (await toggle.count()) {
     await toggle.click();
     await page.waitForTimeout(300);

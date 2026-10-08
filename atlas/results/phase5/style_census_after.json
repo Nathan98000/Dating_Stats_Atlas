@@ -1,0 +1,50 @@
+{
+ "font_sizes": 18,
+ "radii": 10,
+ "control_heights": 3,
+ "arbitrary_values": {
+  "text": 0,
+  "rounded": 0,
+  "min-h": 0
+ },
+ "arbitrary_total": 0,
+ "detail": {
+  "font_sizes": [
+   "body",
+   "body-lg",
+   "body-sm",
+   "caption",
+   "css:14px",
+   "css:16px",
+   "css:18px",
+   "css:var(--fs-display-1)",
+   "css:var(--fs-h2)",
+   "data-l",
+   "data-m",
+   "data-xl",
+   "display-1",
+   "display-2",
+   "h2",
+   "h3",
+   "overline",
+   "title"
+  ],
+  "radii": [
+   "css:0",
+   "css:4px",
+   "css:999px",
+   "css:var(--radius-lg) var(--radius-lg) 0 0",
+   "css:var(--radius-md)",
+   "full",
+   "lg",
+   "md",
+   "sm",
+   "xs"
+  ],
+  "control_heights": [
+   "css:min-height:44px",
+   "h-11",
+   "min-h-11"
+  ]
+ }
+}

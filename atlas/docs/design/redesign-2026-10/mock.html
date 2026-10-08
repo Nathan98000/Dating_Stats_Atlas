@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<!-- Reference mock for PHASE5_PROMPT.md (design audit, 2026-10-08). Data: the live /api/rank response for the default search (a 30-year-old woman looking for men 28-40) on 2026-10-08. Chips apply the proposed movers pick (two pluses, the biggest eligible minus) to that day's stat contributions and card bands. Photo slots are placeholders; the median tick needs commit I. Where PHASE5_PROMPT.md is silent, the values in this CSS are the spec. -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dating Stats Atlas — redesign mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&display=swap">
+<style>
+:root{
+  --paper:#FDF7F3; --surface:#FFFFFF; --sunken:#F3ECE8; --hover:#FBF3EE;
+  --ink:#201B1D; --ink-2:#5A5257; --ink-3:#756B70;
+  --line:#EBDFD8; --line-strong:#9C8A8F;
+  --accent:#9E3B57; --accent-hover:#7C2843; --accent-soft:#F7E9EE;
+  --highlight:#F2B544;
+  --pos:#2E7D6B; --pos-strong:#1B5E4B; --pos-soft:#E6F2EE;
+  --neg:#B0543E; --neg-strong:#8A2B18; --neg-soft:#FBEDE8;
+  --data-neutral:#D9CDC6;
+  --r-sm:6px; --r-md:10px; --r-lg:16px;
+  --shadow-sm:0 1px 2px rgba(32,27,29,.06);
+  --shadow-overlay:0 12px 32px rgba(32,27,29,.14),0 2px 6px rgba(32,27,29,.06);
+  --display:"Fraunces Variable", "Fraunces", Georgia, serif;
+  --sans:"Figtree", "Helvetica Neue", Arial, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.display{font-family:var(--display);font-variation-settings:"SOFT" 30;font-weight:600;letter-spacing:-.01em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+/* header */
+header{height:64px;border-bottom:1px solid var(--line);background:var(--paper)}
+header .wrap{height:100%;display:flex;align-items:center;gap:40px}
+.brand{font-family:var(--display);font-variation-settings:"SOFT" 30;font-weight:600;font-size:22px;letter-spacing:-.01em}
+nav{display:flex;gap:28px;margin-left:auto}
+nav a{font-size:15px;font-weight:500;color:var(--ink-2);text-decoration:none;padding:20px 0;border-bottom:2px solid transparent}
+nav a.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.search{width:240px;height:40px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--surface);display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--ink-3);font-size:15px}
+.icon{width:18px;height:18px;flex:none}
+.m-only{display:none}
+/* hero */
+.hero{padding:40px 0 28px}
+.hero h1{font-size:40px;line-height:44px;max-width:17ch}
+.hero p.sub{margin-top:12px;font-size:18px;line-height:28px;color:var(--ink-2);max-width:58ch}
+.quick{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.sentence{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:20px;line-height:28px;color:var(--ink-2)}
+.tok{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 12px 0 14px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--surface);font-size:18px;font-weight:600;color:var(--ink)}
+.tok svg{width:12px;height:12px;color:var(--ink-3)}
+.trust{margin-left:auto;display:flex;gap:16px;font-size:13px;color:var(--ink-3)}
+.trust span{display:flex;align-items:center;gap:6px}
+/* layout */
+.grid{display:grid;grid-template-columns:288px 1fr;gap:32px;padding:16px 0 64px;align-items:start}
+/* rail */
+.rail{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;position:sticky;top:16px}
+.rail h3{font-size:20px;line-height:26px}
+.grp + .grp{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}
+.lbl{font-size:13px;line-height:18px;font-weight:600;color:var(--ink-2)}
+.hint{font-size:13px;line-height:18px;color:var(--ink-3)}
+.slider{margin:14px 0 6px;position:relative;height:22px}
+.slider .t{position:absolute;left:0;right:0;top:9px;height:4px;border-radius:99px;background:var(--data-neutral)}
+.slider .f{position:absolute;left:0;top:9px;height:4px;border-radius:99px;background:var(--accent)}
+.slider .k{position:absolute;top:0;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--accent);box-shadow:var(--shadow-sm);transform:translateX(-50%)}
+.poles{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--ink-2)}
+.imp{margin-top:16px}
+.imp .row{display:flex;justify-content:space-between;align-items:baseline}
+.seg{margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);background:var(--sunken);border-radius:var(--r-md);padding:3px;gap:3px}
+.seg span{height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--ink-2);border-radius:8px;border:1px solid transparent}
+.seg span.on{background:#fff;color:var(--ink);font-weight:600;border:1.5px solid var(--ink-2);box-shadow:var(--shadow-sm)}
+.coll{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.coll .count{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:99px;background:var(--sunken);font-size:12px;font-weight:600;color:var(--ink-2);margin-left:6px}
+.chev{width:16px;height:16px;color:var(--ink-3);margin-top:6px;flex:none}
+.lock{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:6px}
+/* results header */
+.rhead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.over{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.rhead h2{font-size:28px;line-height:34px;margin-top:4px}
+.rhead p{font-size:14px;color:var(--ink-3);margin-top:2px}
+.toggle{display:inline-grid;grid-template-columns:1fr 1fr;background:var(--sunken);border-radius:var(--r-md);padding:3px;gap:3px}
+.toggle span{height:32px;padding:0 14px;display:flex;align-items:center;font-size:14px;font-weight:500;color:var(--ink-2);border-radius:8px;border:1px solid transparent}
+.toggle span.on{background:#fff;color:var(--ink);font-weight:600;border:1.5px solid var(--ink-2)}
+/* featured */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
+.ph{position:relative;aspect-ratio:16/10;background:#EFE4DE center/cover no-repeat}
+.ph.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:12px;line-height:16px;color:var(--ink-3);background:repeating-linear-gradient(135deg,#F3EAE5 0 10px,#EFE4DE 10px 20px)}
+.medal{position:absolute;left:12px;top:12px;width:36px;height:36px;border-radius:50%;background:var(--highlight);color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:18px;box-shadow:var(--shadow-sm)}
+.cb{padding:16px 16px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cb .name{font-size:21px;line-height:26px}
+.scoreline{display:flex;align-items:flex-end;justify-content:space-between}
+.big{font-family:var(--display);font-variation-settings:"SOFT" 30;font-weight:600;font-size:44px;line-height:40px}
+.big small{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-3);margin-left:4px;letter-spacing:0}
+.pool{text-align:right}
+.pool b{display:block;font-size:18px;line-height:22px;font-weight:600}
+.pool span{font-size:13px;color:var(--ink-3)}
+.track{position:relative;height:6px;border-radius:99px;background:var(--sunken)}
+.track .f{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--accent)}
+.track .med{position:absolute;top:-3px;width:2px;height:12px;background:var(--ink-3);border-radius:1px}
+.trackcap{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 7px;border-radius:var(--r-sm);font-size:12px;font-weight:600;white-space:nowrap}
+.chip.p{background:var(--pos-soft);color:var(--pos-strong)}
+.chip.n{background:var(--neg-soft);color:var(--neg-strong)}
+.chip i{font-style:normal;font-size:9px}
+/* list */
+.lhead{display:grid;grid-template-columns:40px 1fr 112px 104px 18px;gap:14px;padding:28px 16px 8px;border-bottom:1px solid var(--line)}
+.lhead .over:nth-child(3),.lhead .over:nth-child(4){text-align:right}
+.r{display:grid;grid-template-columns:40px 1fr 112px 104px 18px;gap:14px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.r .rk{font-family:var(--display);font-weight:600;font-size:22px;color:var(--ink-2)}
+.r .ct b{display:block;font-size:17px;line-height:22px;font-weight:600;margin-bottom:6px}
+.r .pl{text-align:right}
+.r .pl b{display:block;font-size:16px;font-weight:600}
+.r .pl span{font-size:12px;color:var(--ink-3)}
+.r .sc{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.r .sc .n{font-family:var(--display);font-variation-settings:"SOFT" 30;font-weight:600;font-size:28px;line-height:28px}
+.r .sc .track{width:96px;height:4px}
+.r.open{background:var(--hover);border-bottom:none}
+.detail{background:var(--hover);border-bottom:1px solid var(--line);padding:4px 16px 20px 70px;display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:28px}
+.detail h4{font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
+.bal{position:relative;height:8px;border-radius:99px;background:var(--data-neutral);margin:14px 0 8px}
+.bal .mid{position:absolute;left:50%;top:-5px;width:2px;height:18px;background:var(--ink-3)}
+.bal .dot{position:absolute;top:-4px;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid #fff;box-shadow:0 0 0 1px var(--ink);transform:translateX(-50%)}
+.balcap{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)}
+.dv{display:grid;grid-template-columns:96px 1fr 44px;align-items:center;gap:8px;font-size:13px;margin-bottom:5px}
+.dv .axis{position:relative;height:10px}
+.dv .axis:before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line-strong)}
+.dv .bar{position:absolute;top:1px;height:8px;border-radius:2px}
+.dv .v{text-align:right;font-weight:600}
+.links{margin-top:12px;display:flex;gap:18px;font-size:14px;font-weight:600}
+.links a{color:var(--accent);text-decoration:none}
+.more{display:flex;align-items:center;gap:16px;padding-top:24px}
+.btn{height:44px;padding:0 20px;border-radius:var(--r-md);font-size:15px;font-weight:600;display:inline-flex;align-items:center;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.quiet{font-size:15px;font-weight:600;color:var(--accent)}
+.bottombar{display:none}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:14px;color:var(--ink-3)}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap}
+footer b{color:var(--ink);font-family:var(--display);font-weight:600;font-size:16px;margin-right:auto}
+
+/* ---------- phone ---------- */
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  header{height:56px}
+  header .wrap{gap:12px}
+  .brand{font-size:19px}
+  nav,.search,.trust,.rail,.lhead,.detail{display:none}
+  .m-only{display:flex}
+  .hdr-icons{margin-left:auto;gap:4px}
+  .hdr-icons span{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--ink-2)}
+  .hdr-icons svg{width:22px;height:22px}
+  .hero{padding:20px 0 8px}
+  .hero h1{font-size:30px;line-height:34px}
+  .hero p.sub{font-size:16px;line-height:24px}
+  .quick{padding:14px;margin-top:18px}
+  .sentence{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;font-size:13px}
+  .sentence .w{display:none}
+  .sentence .f{display:flex;flex-direction:column;gap:4px}
+  .sentence .f em{font-style:normal;font-size:13px;font-weight:600;color:var(--ink-2)}
+  .tok{height:48px;justify-content:space-between;font-size:16px}
+  .grid{display:block;padding-top:20px}
+  .rhead{flex-direction:column;align-items:flex-start;gap:12px}
+  .rhead h2{font-size:24px;line-height:30px}
+  .feat{grid-template-columns:1fr;gap:14px}
+  .ph{aspect-ratio:2/1}
+  .r{grid-template-columns:32px 1fr 74px;gap:10px;padding:14px 4px}
+  .r .pl,.r .chv{display:none}
+  .r .ct .pm{display:block;font-size:13px;color:var(--ink-3);margin:-2px 0 6px}
+  .r.open{background:none;border-bottom:1px solid var(--line)}
+  .more{flex-direction:column;align-items:stretch}
+  .more .btn{justify-content:center}
+  .bottombar{display:block;position:fixed;left:0;right:0;bottom:0;padding:10px 16px 14px;background:var(--surface);box-shadow:var(--shadow-overlay)}
+  .bottombar .btn{width:100%;height:52px;justify-content:center;gap:10px;font-size:16px}
+  .bottombar .btn .count{background:rgba(255,255,255,.22);border-radius:99px;padding:1px 9px;font-size:13px}
+  footer{padding-bottom:110px}
+}
+.r .ct .pm{display:none}
+@media (max-width:640px){ .r .ct .pm{display:block} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">Dating Stats Atlas</div>
+    <nav><a class="on">Rankings</a><a>Compare</a><a>How it works</a></nav>
+    <div class="search"><svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4" stroke-linecap="round"/></svg>Find a city</div>
+    <div class="m-only hdr-icons"><span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4" stroke-linecap="round"/></svg></span><span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg></span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <h1 class="display">Which city has the best dating scene for you?</h1>
+    <p class="sub">See how many single people who fit what you want live in each of 193 US metros, from Census data, ranked for you.</p>
+    <div class="quick">
+      <div class="sentence">
+        <span class="w">I'm a</span>
+        <span class="f"><em class="m-only">I'm a</em><span class="tok">Woman <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1.5l5 5 5-5"/></svg></span></span>
+        <span class="w">aged</span>
+        <span class="f"><em class="m-only">My age</em><span class="tok">30</span></span>
+        <span class="w">looking for</span>
+        <span class="f"><em class="m-only">Looking for</em><span class="tok">Men <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1.5l5 5 5-5"/></svg></span></span>
+        <span class="w">aged</span>
+        <span class="f"><em class="m-only">Their age</em><span class="tok">28 – 40 <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1.5l5 5 5-5"/></svg></span></span>
+      </div>
+      <div class="trust">
+        <span><svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="14" height="8" rx="2"/><path d="M6 9V6.5a4 4 0 018 0V9"/></svg>We don't save your searches</span>
+        <span>Census Bureau data</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <aside class="rail">
+      <div class="grp">
+        <h3 class="display">What matters to you</h3>
+        <div class="lbl" style="margin-top:14px">Bigger pool or closer match?</div>
+        <div class="slider"><div class="t"></div><div class="f" style="width:45%"></div><div class="k" style="left:45%"></div></div>
+        <div class="poles"><span>Dating pool size</span><span>Compatibility</span></div>
+        <div class="imp"><div class="lbl">Cost of living</div><div class="hint">rent and everyday prices</div><div class="seg"><span>Not much</span><span class="on">Some</span><span>A lot</span></div></div>
+        <div class="imp"><div class="lbl">Social life</div><div class="hint">bars, cafés and restaurants, and walkable streets</div><div class="seg"><span>Not much</span><span class="on">Some</span><span>A lot</span></div></div>
+        <div class="imp"><div class="lbl">Student life</div><div class="hint">how many college students live there</div><div class="seg"><span>Not much</span><span class="on">Some</span><span>A lot</span></div></div>
+        <div class="imp"><div class="lbl">Weather</div><div class="hint">mild, dry days a year</div><div class="seg"><span>Not much</span><span class="on">Some</span><span>A lot</span></div></div>
+      </div>
+      <div class="grp">
+        <div class="coll"><div><h3 class="display" style="font-size:18px">Narrow it down</h3><div class="hint" style="margin-top:4px">Single: never married or divorced/widowed · Any education · Any income · All races</div></div><svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6l4 4 4-4"/></svg></div>
+      </div>
+      <div class="grp">
+        <div class="coll"><div><h3 class="display" style="font-size:18px">Sharpen compatibility</h3><div class="hint lock"><span class="count" style="margin:0 4px 0 0">Optional</span><svg class="icon" style="width:14px;height:14px" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="14" height="8" rx="2"/><path d="M6 9V6.5a4 4 0 018 0V9"/></svg>Your education and race stay in this browser</div></div><svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6l4 4 4-4"/></svg></div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="rhead">
+        <div>
+          <div class="over">Your ranking</div>
+          <h2 class="display">Top cities for single men, 28–40</h2>
+          <p>193 metro areas, scored out of 100 for what you chose</p>
+        </div>
+        <div class="toggle"><span class="on">Best first</span><span>Worst first</span></div>
+      </div>
+      <div class="feat" id="feat"></div>
+      <div class="lhead"><span class="over">#</span><span class="over">City · why it ranks here</span><span class="over">Matches</span><span class="over">Score</span><span></span></div>
+      <div id="list"></div>
+      <div class="more"><span class="btn">Show 10 more</span><span class="quiet">Show all 193</span></div>
+    </main>
+  </div>
+</div>
+<footer><div class="wrap"><b>Dating Stats Atlas</b><span>How it works</span><span>What we measure</span><span>Privacy</span><span>Terms</span><span>Data sources</span></div></footer>
+<div class="bottombar"><span class="btn pri"><svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h9M15 6h2M3 14h2M8 14h9"/><circle cx="13.5" cy="6" r="1.8"/><circle cx="6.5" cy="14" r="1.8"/></svg>Adjust your search</span></div>
+
+<script>
+const DATA = [{"rank": 1, "name": "San Francisco, CA", "slug": "san-francisco-california", "score": "77", "pool": 266309, "match": "114", "balance": "118 men per 100 women", "per100": 118, "contributions": [{"pillar": "pool", "value": 18.1}, {"pillar": "match", "value": 13.08}, {"pillar": "reach", "value": 9.38}, {"pillar": "cost", "value": -7.2}, {"pillar": "weather", "value": 2.91}, {"pillar": "students", "value": 0.25}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,907", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "107", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "268", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "resident_walkability_index", "display": "13.0", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "240", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "63", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "4.6 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 2, "name": "Boston, MA", "slug": "boston-massachusetts", "score": "76", "pool": 241745, "match": "115", "balance": "109 men per 100 women", "per100": 109, "contributions": [{"pillar": "pool", "value": 17.35}, {"pillar": "match", "value": 13.78}, {"pillar": "reach", "value": 7.24}, {"pillar": "cost", "value": -5.85}, {"pillar": "weather", "value": 1.75}, {"pillar": "students", "value": 1.21}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,481", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "102", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "234", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "resident_walkability_index", "display": "11.6", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "99", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "86", "label": "More than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "5 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 3, "name": "New York, NY", "slug": "new-york-new-york", "score": "75", "pool": 1010198, "match": "107", "balance": "107 men per 100 women", "per100": 107, "contributions": [{"pillar": "pool", "value": 22.68}, {"pillar": "match", "value": 8.16}, {"pillar": "reach", "value": 8.65}, {"pillar": "cost", "value": -7.18}, {"pillar": "weather", "value": 1.81}, {"pillar": "students", "value": 0.33}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,757", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "108", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "245", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "resident_walkability_index", "display": "12.6", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "100", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "65", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "19.8 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 4, "name": "Los Angeles, CA", "slug": "los-angeles-california", "score": "74", "pool": 783728, "match": "103", "balance": "113 men per 100 women", "per100": 113, "contributions": [{"pillar": "pool", "value": 22.68}, {"pillar": "match", "value": 5.36}, {"pillar": "reach", "value": 7.55}, {"pillar": "cost", "value": -6.98}, {"pillar": "weather", "value": 2.97}, {"pillar": "students", "value": 1.06}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,576", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "105", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "215", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "13.4", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "292", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "82", "label": "More than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "13 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 5, "name": "San Jose, CA", "slug": "san-jose-california", "score": "71", "pool": 108026, "match": "123", "balance": "148 men per 100 women", "per100": 148, "contributions": [{"pillar": "pool", "value": 11.11}, {"pillar": "match", "value": 13.78}, {"pillar": "reach", "value": 7.86}, {"pillar": "cost", "value": -6.26}, {"pillar": "weather", "value": 2.75}, {"pillar": "students", "value": 0.75}], "summary": "Biggest pluses: the compatibility figure, the size of the pool, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "3,007", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "103", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "220", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "13.6", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "146", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "76", "label": "More than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "2 million", "label": "A big city", "tone": "neutral"}]}, {"rank": 6, "name": "Seattle, WA", "slug": "seattle-washington", "score": "71", "pool": 230026, "match": "108", "balance": "126 men per 100 women", "per100": 126, "contributions": [{"pillar": "pool", "value": 16.97}, {"pillar": "match", "value": 9.45}, {"pillar": "reach", "value": 7.66}, {"pillar": "cost", "value": -6.34}, {"pillar": "weather", "value": 2.69}, {"pillar": "students", "value": -0.67}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,245", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "105", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "236", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "resident_walkability_index", "display": "11.8", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "125", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "51", "label": "Fewer than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "4.1 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 7, "name": "Chicago, IL", "slug": "chicago-illinois", "score": "69", "pool": 454126, "match": "105", "balance": "108 men per 100 women", "per100": 108, "contributions": [{"pillar": "pool", "value": 22.24}, {"pillar": "match", "value": 6.61}, {"pillar": "reach", "value": 5.16}, {"pillar": "cost", "value": -5.79}, {"pillar": "weather", "value": 0.28}, {"pillar": "students", "value": -0.23}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "1,887", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "104", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "197", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "11.7", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "84", "label": "More than most cities", "tone": "good"}, {"id": "students_per_1k_adults", "display": "58", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "9.4 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 8, "name": "San Diego, CA", "slug": "san-diego-california", "score": "67", "pool": 180289, "match": "105", "balance": "123 men per 100 women", "per100": 123, "contributions": [{"pillar": "pool", "value": 15.08}, {"pillar": "match", "value": 6.96}, {"pillar": "reach", "value": 6.3}, {"pillar": "cost", "value": -6.1}, {"pillar": "weather", "value": 3}, {"pillar": "students", "value": 1.25}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,527", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "104", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "210", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "11.8", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "304", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "88", "label": "More than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "3.3 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 9, "name": "Austin, TX", "slug": "austin-texas", "score": "67", "pool": 143263, "match": "107", "balance": "125 men per 100 women", "per100": 125, "contributions": [{"pillar": "pool", "value": 13.29}, {"pillar": "match", "value": 8.7}, {"pillar": "reach", "value": 1.46}, {"pillar": "cost", "value": 1.08}, {"pillar": "weather", "value": 1.16}, {"pillar": "students", "value": 0.62}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, everyday prices", "cards": [{"id": "rent_1br", "display": "1,638", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "95", "label": "Below the US average", "tone": "good"}, {"id": "venues_per_100k", "display": "199", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "9.2", "label": "More walkable than most", "tone": "good"}, {"id": "pleasant_days", "display": "91", "label": "More than most cities", "tone": "good"}, {"id": "students_per_1k_adults", "display": "72", "label": "More than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "2.4 million", "label": "A big city", "tone": "neutral"}]}, {"rank": 10, "name": "Philadelphia, PA", "slug": "philadelphia-pennsylvania", "score": "67", "pool": 297568, "match": "104", "balance": "100 men per 100 women", "per100": 100, "contributions": [{"pillar": "pool", "value": 18.96}, {"pillar": "match", "value": 6.15}, {"pillar": "reach", "value": 4.32}, {"pillar": "cost", "value": -4.13}, {"pillar": "weather", "value": 0.94}, {"pillar": "students", "value": 0.02}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "1,713", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "100", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "189", "label": "About average", "tone": "neutral"}, {"id": "resident_walkability_index", "display": "11.7", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "89", "label": "More than most cities", "tone": "good"}, {"id": "students_per_1k_adults", "display": "61", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "6.3 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 11, "name": "Denver, CO", "slug": "denver-colorado", "score": "65", "pool": 175065, "match": "111", "balance": "125 men per 100 women", "per100": 125, "contributions": [{"pillar": "pool", "value": 14.85}, {"pillar": "match", "value": 11.03}, {"pillar": "reach", "value": 6.15}, {"pillar": "cost", "value": -4.6}, {"pillar": "weather", "value": -2.78}, {"pillar": "students", "value": -0.29}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "1,977", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "100", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "207", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "11.8", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "46", "label": "Far fewer than most cities", "tone": "poor_strong"}, {"id": "students_per_1k_adults", "display": "57", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "3 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 12, "name": "Washington, DC", "slug": "washington-district-of-columbia", "score": "64", "pool": 308116, "match": "108", "balance": "106 men per 100 women", "per100": 106, "contributions": [{"pillar": "pool", "value": 19.23}, {"pillar": "match", "value": 9.39}, {"pillar": "reach", "value": 2.14}, {"pillar": "cost", "value": -6.1}, {"pillar": "weather", "value": -1.5}, {"pillar": "students", "value": 0}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "2,382", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "104", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "173", "label": "About average", "tone": "neutral"}, {"id": "resident_walkability_index", "display": "11.1", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "71", "label": "Fewer than most cities", "tone": "poor"}, {"id": "students_per_1k_adults", "display": "60", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "6.3 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 13, "name": "Portland, OR", "slug": "portland-oregon", "score": "64", "pool": 137480, "match": "102", "balance": "119 men per 100 women", "per100": 119, "contributions": [{"pillar": "pool", "value": 12.97}, {"pillar": "match", "value": 4.81}, {"pillar": "reach", "value": 8.91}, {"pillar": "cost", "value": -4.7}, {"pillar": "weather", "value": 2.59}, {"pillar": "students", "value": -1.44}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "1,745", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "103", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "251", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "resident_walkability_index", "display": "12.6", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "119", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "37", "label": "Fewer than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "2.5 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 14, "name": "Pittsburgh, PA", "slug": "pittsburgh-pennsylvania", "score": "64", "pool": 105699, "match": "105", "balance": "116 men per 100 women", "per100": 116, "contributions": [{"pillar": "pool", "value": 10.94}, {"pillar": "match", "value": 7.03}, {"pillar": "reach", "value": 3.07}, {"pillar": "cost", "value": 0.73}, {"pillar": "weather", "value": 0.38}, {"pillar": "students", "value": 0.56}], "summary": "Biggest pluses: the size of the pool, the compatibility figure, places to go out", "cards": [{"id": "rent_1br", "display": "1,231", "label": "About average for rent", "tone": "neutral"}, {"id": "everyday_prices", "display": "99", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "205", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "9.7", "label": "More walkable than most", "tone": "good"}, {"id": "pleasant_days", "display": "85", "label": "More than most cities", "tone": "good"}, {"id": "students_per_1k_adults", "display": "70", "label": "More than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "2.4 million", "label": "A big city", "tone": "neutral"}]}, {"rank": 15, "name": "Houston, TX", "slug": "houston-texas", "score": "63", "pool": 329566, "match": "97", "balance": "105 men per 100 women", "per100": 105, "contributions": [{"pillar": "pool", "value": 19.75}, {"pillar": "match", "value": 0.96}, {"pillar": "reach", "value": -0.31}, {"pillar": "cost", "value": 0.52}, {"pillar": "weather", "value": 2.19}, {"pillar": "students", "value": -0.77}], "summary": "Biggest pluses: the size of the pool, the weather \u00b7 Places to go out counts against it", "cards": [{"id": "rent_1br", "display": "1,361", "label": "Pricier than most cities", "tone": "poor"}, {"id": "everyday_prices", "display": "98", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "176", "label": "About average", "tone": "neutral"}, {"id": "resident_walkability_index", "display": "9.6", "label": "More walkable than most", "tone": "good"}, {"id": "pleasant_days", "display": "109", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "49", "label": "Fewer than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "7.4 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 16, "name": "Dallas, TX", "slug": "dallas-texas", "score": "62", "pool": 343431, "match": "101", "balance": "105 men per 100 women", "per100": 105, "contributions": [{"pillar": "pool", "value": 20.07}, {"pillar": "match", "value": 3.62}, {"pillar": "reach", "value": 0.62}, {"pillar": "cost", "value": -3.58}, {"pillar": "weather", "value": 0.97}, {"pillar": "students", "value": -0.48}], "summary": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Everyday prices counts against it", "cards": [{"id": "rent_1br", "display": "1,652", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "101", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "181", "label": "About average", "tone": "neutral"}, {"id": "resident_walkability_index", "display": "9.7", "label": "More walkable than most", "tone": "good"}, {"id": "pleasant_days", "display": "89", "label": "More than most cities", "tone": "good"}, {"id": "students_per_1k_adults", "display": "54", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "8 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 17, "name": "Milwaukee, WI", "slug": "milwaukee-wisconsin", "score": "60", "pool": 73906, "match": "100", "balance": "103 men per 100 women", "per100": 103, "contributions": [{"pillar": "pool", "value": 8.16}, {"pillar": "match", "value": 3.51}, {"pillar": "reach", "value": 6.04}, {"pillar": "cost", "value": 2.2}, {"pillar": "weather", "value": -0.75}, {"pillar": "students", "value": 0.19}], "summary": "Biggest pluses: the size of the pool, walkable neighbourhoods, the compatibility figure", "cards": [{"id": "rent_1br", "display": "1,137", "label": "About average for rent", "tone": "neutral"}, {"id": "everyday_prices", "display": "97", "label": "Below the US average", "tone": "good"}, {"id": "venues_per_100k", "display": "214", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "11.2", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "78", "label": "About average", "tone": "neutral"}, {"id": "students_per_1k_adults", "display": "62", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "1.6 million", "label": "A big city", "tone": "neutral"}]}, {"rank": 18, "name": "Madison, WI", "slug": "madison-wisconsin", "score": "60", "pool": 33066, "match": "111", "balance": "129 men per 100 women", "per100": 129, "contributions": [{"pillar": "pool", "value": 1.92}, {"pillar": "match", "value": 11.13}, {"pillar": "reach", "value": 6.09}, {"pillar": "cost", "value": -0.03}, {"pillar": "weather", "value": -1.59}, {"pillar": "students", "value": 1.69}], "summary": "Biggest pluses: the compatibility figure, places to go out, walkable neighbourhoods", "cards": [{"id": "rent_1br", "display": "1,428", "label": "Pricier than most cities", "tone": "poor"}, {"id": "everyday_prices", "display": "97", "label": "Below the US average", "tone": "good"}, {"id": "venues_per_100k", "display": "246", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "resident_walkability_index", "display": "10.3", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "71", "label": "Fewer than most cities", "tone": "poor"}, {"id": "students_per_1k_adults", "display": "126", "label": "Far more than most cities", "tone": "neutral"}, {"id": "who_lives_here", "display": "700,000", "label": "A mid-sized city", "tone": "neutral"}]}, {"rank": 19, "name": "Miami, FL", "slug": "miami-florida", "score": "60", "pool": 317303, "match": "94", "balance": "110 men per 100 women", "per100": 110, "contributions": [{"pillar": "pool", "value": 19.46}, {"pillar": "match", "value": -1.65}, {"pillar": "reach", "value": 6.35}, {"pillar": "cost", "value": -6.22}, {"pillar": "weather", "value": 1.63}, {"pillar": "students", "value": -0.42}], "summary": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Rent counts against it", "cards": [{"id": "rent_1br", "display": "2,199", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "106", "label": "Above the US average", "tone": "poor"}, {"id": "venues_per_100k", "display": "205", "label": "More than most cities", "tone": "good"}, {"id": "resident_walkability_index", "display": "12.5", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "97", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "55", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "6.3 million", "label": "One of the biggest cities", "tone": "neutral"}]}, {"rank": 20, "name": "Phoenix, AZ", "slug": "phoenix-arizona", "score": "60", "pool": 245750, "match": "98", "balance": "118 men per 100 women", "per100": 118, "contributions": [{"pillar": "pool", "value": 17.48}, {"pillar": "match", "value": 1.71}, {"pillar": "reach", "value": -0.31}, {"pillar": "cost", "value": -2.16}, {"pillar": "weather", "value": 2.03}, {"pillar": "students", "value": 0.21}], "summary": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Places to go out counts against it", "cards": [{"id": "rent_1br", "display": "1,611", "label": "Among the priciest cities", "tone": "poor_strong"}, {"id": "everyday_prices", "display": "100", "label": "About the US average", "tone": "neutral"}, {"id": "venues_per_100k", "display": "156", "label": "Fewer than most cities", "tone": "poor"}, {"id": "resident_walkability_index", "display": "10.6", "label": "Among the most walkable", "tone": "good_strong"}, {"id": "pleasant_days", "display": "106", "label": "Far more than most cities", "tone": "good_strong"}, {"id": "students_per_1k_adults", "display": "62", "label": "About average", "tone": "neutral"}, {"id": "who_lives_here", "display": "5 million", "label": "One of the biggest cities", "tone": "neutral"}]}];
+const NAMES = {pool:"Dating pool", match:"Compatibility", reach:"Social life", cost:"Cost of living", weather:"Weather", students:"Student life"};
+const PHOTOS = {};
+const MEDIAN = 43;
+const fmt = n => n.toLocaleString("en-US");
+const CHIP = {"the size of the pool":"Dating pool","the compatibility figure":"Compatibility","rent":"Rent","everyday prices":"Everyday prices","places to go out":"Places to go out","walkable neighbourhoods":"Walkability","the weather":"Weather","the student crowd":"Students","the balance":"Balance"};
+const MOVERS = {"san-francisco-california":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"boston-massachusetts":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"new-york-new-york":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"los-angeles-california":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"san-jose-california":{"plus":["the compatibility figure","the size of the pool"],"minus":["rent"]},"seattle-washington":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"chicago-illinois":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"san-diego-california":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"austin-texas":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]},"philadelphia-pennsylvania":{"plus":["the size of the pool","the compatibility figure"],"minus":["rent"]}};
+// chips = the proposed served movers (commit C): up to two pluses and the biggest eligible minus
+function chips(r){
+  const m = MOVERS[r.slug] || {plus:[],minus:[]};
+  const lab = p => CHIP[p] || p;
+  return m.plus.map(p=>`<span class="chip p"><i>▲</i>${lab(p)}</span>`).join("") + m.minus.map(p=>`<span class="chip n"><i>▼</i>${lab(p)}</span>`).join("");
+}
+const feat = document.getElementById("feat");
+DATA.slice(0,3).forEach(r=>{
+  const ph = PHOTOS[r.slug] ? `<div class="ph" style="background-image:url(${PHOTOS[r.slug]})">` : `<div class="ph placeholder">Photo slot: a public-domain or CC0 photo, cover-cropped<br>(otherwise the locator map)`;
+  feat.insertAdjacentHTML("beforeend", `<article class="card">${ph}<span class="medal">${r.rank}</span></div>
+   <div class="cb"><div class="name display">${r.name}</div>
+   <div class="scoreline"><div class="big">${r.score}<small>/100</small></div><div class="pool"><b>${fmt(r.pool)}</b><span>single men match</span></div></div>
+   <div><div class="track"><div class="f" style="width:${r.score}%"></div><div class="med" style="left:${MEDIAN}%"></div></div><div class="trackcap"><span>0</span><span style="margin-left:${MEDIAN-8}%">median ${MEDIAN}</span><span style="margin-left:auto">100</span></div></div>
+   <div class="chips">${chips(r)}</div></div></article>`);
+});
+const list = document.getElementById("list");
+DATA.slice(3,10).forEach(r=>{
+  const open = r.rank===5;
+  list.insertAdjacentHTML("beforeend", `<div class="r ${open?'open':''}"><span class="rk">${r.rank}</span>
+   <div class="ct"><b>${r.name}</b><span class="pm">${fmt(r.pool)} single men match</span><div class="chips">${chips(r)}</div></div>
+   <div class="pl"><b>${fmt(r.pool)}</b><span>single men</span></div>
+   <div class="sc"><span class="n">${r.score}</span><div class="track"><div class="f" style="width:${r.score}%"></div></div></div>
+   <svg class="chv" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#756B70" stroke-width="1.6" style="transform:rotate(${open?180:0}deg)"><path d="M4 6l4 4 4-4"/></svg></div>`);
+  if(open){
+    const c = r.contributions.filter(x=>x.value!=null).sort((a,b)=>b.value-a.value);
+    const max = 25;
+    const bars = c.map(x=>{const w=Math.abs(x.value)/max*50; const left = x.value>=0?50:50-w; const col = x.value>=0?'var(--pos)':'var(--neg)';
+      return `<div class="dv"><span>${NAMES[x.pillar]}</span><div class="axis"><div class="bar" style="left:${left}%;width:${w}%;background:${col}"></div></div><span class="v" style="color:${x.value>=0?'var(--pos-strong)':'var(--neg-strong)'}">${x.value>=0?'+':'−'}${Math.abs(x.value).toFixed(1)}</span></div>`}).join("");
+    const pos = (r.per100-40)/120*100;
+    list.insertAdjacentHTML("beforeend", `<div class="detail">
+      <div><h4>Balance</h4><div class="bal"><div class="mid"></div><div class="dot" style="left:${pos}%"></div></div><div class="balcap"><span>More women</span><span>Even</span><span>More men</span></div><p style="font-size:14px;margin-top:8px"><b>${r.balance}</b></p><p class="hint">All singles in your age range, before other filters</p></div>
+      <div><h4>Compatibility</h4><p><span class="display" style="font-size:28px">${r.match}</span> <span class="hint">where 100 is the US average</span></p><p class="hint" style="margin-top:6px">How closely the people who match resemble those who pair with someone like you</p></div>
+      <div><h4>What moved the score (points)</h4><p class="hint" style="margin:-4px 0 8px">Compared with the middle of the cities ranked for this search</p>${bars}<div class="links"><a>Open ${r.name.split(",")[0]} →</a><a>Compare</a></div></div>
+    </div>`);
+  }
+});
+</script>
+</body>
+</html>

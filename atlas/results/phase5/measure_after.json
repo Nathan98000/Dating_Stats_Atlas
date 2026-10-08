@@ -1,0 +1,332 @@
+{
+ "label": "after",
+ "base": "http://127.0.0.1:3200",
+ "generated": "2026-10-08T20:34:10.787Z",
+ "home": {
+  "390": {
+   "first_result_top": 636,
+   "first_result_bottom": 1058,
+   "page_height": 3929,
+   "scroll_width": 390,
+   "rows_4_10_height": [
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133
+   ],
+   "expanded_shot": true,
+   "sheet_shot": true
+  },
+  "768": {
+   "first_result_top": 602,
+   "first_result_bottom": 977,
+   "page_height": 2425,
+   "scroll_width": 768,
+   "rows_4_10_height": [
+    81,
+    81,
+    81,
+    111,
+    81,
+    81,
+    111
+   ],
+   "expanded_shot": true
+  },
+  "1024": {
+   "first_result_top": 548,
+   "first_result_bottom": 932,
+   "page_height": 2280,
+   "scroll_width": 1024,
+   "rows_4_10_height": [
+    81,
+    81,
+    81,
+    81,
+    81,
+    81,
+    81
+   ],
+   "expanded_shot": true
+  },
+  "1440": {
+   "first_result_top": 514,
+   "first_result_bottom": 897,
+   "page_height": 2169,
+   "scroll_width": 1440,
+   "rows_4_10_height": [
+    81,
+    81,
+    81,
+    81,
+    81,
+    81,
+    81
+   ],
+   "expanded_shot": true
+  }
+ },
+ "pages": {
+  "home@1440": {
+   "url": "/",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 2169,
+   "main": 1
+  },
+  "city@1440": {
+   "url": "/city/san-francisco-california",
+   "title": "San Francisco, CA · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 2182,
+   "main": 1
+  },
+  "compare_pair@1440": {
+   "url": "/compare/san-francisco-california/boston-massachusetts",
+   "title": "San Francisco, CA vs Boston, MA · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 2071,
+   "main": 1
+  },
+  "compare@1440": {
+   "url": "/compare",
+   "title": "Compare · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 900,
+   "main": 1
+  },
+  "about@1440": {
+   "url": "/about",
+   "title": "How it works · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 2449,
+   "main": 1
+  },
+  "stat@1440": {
+   "url": "/stats/rent_1br",
+   "title": "Rent by city · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 11053,
+   "main": 1
+  },
+  "privacy@1440": {
+   "url": "/privacy",
+   "title": "Privacy · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 1135,
+   "main": 1
+  },
+  "terms@1440": {
+   "url": "/terms",
+   "title": "Terms · Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 1991,
+   "main": 1
+  },
+  "not_found@1440": {
+   "url": "/no-such-page",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 1440,
+   "page_height": 900,
+   "main": 1
+  },
+  "home@390": {
+   "url": "/",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 3929,
+   "main": 1
+  },
+  "city@390": {
+   "url": "/city/san-francisco-california",
+   "title": "San Francisco, CA · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 3193,
+   "main": 1
+  },
+  "compare_pair@390": {
+   "url": "/compare/san-francisco-california/boston-massachusetts",
+   "title": "San Francisco, CA vs Boston, MA · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 2685,
+   "main": 1
+  },
+  "compare@390": {
+   "url": "/compare",
+   "title": "Compare · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 893,
+   "main": 1
+  },
+  "about@390": {
+   "url": "/about",
+   "title": "How it works · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 3563,
+   "main": 1
+  },
+  "stat@390": {
+   "url": "/stats/rent_1br",
+   "title": "Rent by city · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 11108,
+   "main": 1
+  },
+  "privacy@390": {
+   "url": "/privacy",
+   "title": "Privacy · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 1638,
+   "main": 1
+  },
+  "terms@390": {
+   "url": "/terms",
+   "title": "Terms · Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 2990,
+   "main": 1
+  },
+  "not_found@390": {
+   "url": "/no-such-page",
+   "title": "Dating Stats Atlas",
+   "scroll_width": 390,
+   "page_height": 844,
+   "main": 1
+  }
+ },
+ "axe": {
+  "home@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "city@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "compare_pair@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "compare@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "about@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "stat@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "privacy@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "terms@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "not_found@1440": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "home@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "city@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "compare_pair@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "compare@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "about@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "stat@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "privacy@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "terms@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  },
+  "not_found@390": {
+   "critical": 0,
+   "serious": 0,
+   "moderate": 0,
+   "minor": 0,
+   "rules": []
+  }
+ },
+ "api_rank": {
+  "bytes": 1476574,
+  "gzip6_bytes": 227321
+ }
+}

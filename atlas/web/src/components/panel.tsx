@@ -62,7 +62,7 @@ function Disclosure({ heading, testid, summary, children }: {
   const id = useId();
   return (
     <section data-testid={testid} className="border-t border-rule pt-4">
-      <h3 className="font-display text-body-lg font-semibold">
+      <h2 className="font-display text-body-lg font-semibold">
         <button
           type="button"
           aria-expanded={open}
@@ -73,7 +73,7 @@ function Disclosure({ heading, testid, summary, children }: {
           {heading}
           <Chevron open={open} />
         </button>
-      </h3>
+      </h2>
       <div className="mt-1 text-caption text-ink-3">{summary}</div>
       <div id={id} hidden={!open} className="mt-4 flex flex-col gap-4">
         {children}
@@ -128,7 +128,7 @@ export function RailGroups({
   return (
     <div className="flex flex-col gap-4" data-testid="search-panel">
       <section className="flex flex-col gap-4" data-testid="weighting">
-        <h3 className="font-display text-h3">{policy.rail_matters_heading}</h3>
+        <h2 className="font-display text-h3">{policy.rail_matters_heading}</h2>
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-1">
             <label htmlFor={`${uid}-svo`} className="text-caption font-semibold text-ink-2">

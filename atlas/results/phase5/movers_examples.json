@@ -1,0 +1,284 @@
+{
+ "before": "m4.2.0",
+ "after": "m4.2.1",
+ "searches": {
+  "default": {
+   "body": {
+    "self": {
+     "age": 30
+    },
+    "seeking": {
+     "sex": "male",
+     "age": [
+      28,
+      40
+     ],
+     "marital": [
+      "never_married",
+      "previously_married"
+     ]
+    },
+    "sort": "best_first"
+   },
+   "ranked": 193,
+   "rows": [
+    {
+     "rank": 1,
+     "metro": "San Francisco, CA",
+     "score": 77.5,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    },
+    {
+     "rank": 2,
+     "metro": "Boston, MA",
+     "score": 76.5,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    },
+    {
+     "rank": 3,
+     "metro": "New York, NY",
+     "score": 75.4,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    },
+    {
+     "rank": 4,
+     "metro": "Los Angeles, CA",
+     "score": 73.6,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    },
+    {
+     "rank": 5,
+     "metro": "San Jose, CA",
+     "score": 71.0,
+     "before": "Biggest pluses: the compatibility figure, the size of the pool, walkable neighbourhoods",
+     "after": "Biggest pluses: the compatibility figure, the size of the pool · Biggest minus: Rent"
+    },
+    {
+     "rank": 95,
+     "metro": "College Station, TX",
+     "score": 42.9,
+     "before": "Biggest pluses: the compatibility figure · The size of the pool counts against it",
+     "after": "Biggest pluses: the compatibility figure, everyday prices · Biggest minus: The size of the pool"
+    },
+    {
+     "rank": 96,
+     "metro": "Deltona, FL",
+     "score": 42.6,
+     "before": "Biggest pluses: the weather, places to go out · The compatibility figure counts against it",
+     "after": "Biggest pluses: the weather, places to go out · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 97,
+     "metro": "Corpus Christi, TX",
+     "score": 42.6,
+     "before": "Biggest pluses: places to go out, everyday prices · The compatibility figure counts against it",
+     "after": "Biggest pluses: places to go out, everyday prices · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 98,
+     "metro": "Savannah, GA",
+     "score": 42.3,
+     "before": "Biggest pluses: places to go out · Rent counts against it",
+     "after": "Biggest pluses: places to go out, the weather · Biggest minus: Rent"
+    },
+    {
+     "rank": 99,
+     "metro": "Fresno, CA",
+     "score": 41.8,
+     "before": "Biggest pluses: the size of the pool · Places to go out counts against it",
+     "after": "Biggest pluses: the size of the pool, walkable neighborhoods · Biggest minus: Places to go out"
+    },
+    {
+     "rank": 189,
+     "metro": "Clarksville, TN",
+     "score": 21.7,
+     "before": "The size of the pool counts against it",
+     "after": "Biggest pluses: everyday prices, rent · Biggest minus: The size of the pool"
+    },
+    {
+     "rank": 190,
+     "metro": "Visalia, CA",
+     "score": 20.8,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: rent · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 191,
+     "metro": "Spartanburg, SC",
+     "score": 19.5,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: rent · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 192,
+     "metro": "Hagerstown, MD",
+     "score": 18.6,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: rent · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 193,
+     "metro": "Ocala, FL",
+     "score": 18.3,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: the weather · Biggest minus: The compatibility figure"
+    }
+   ],
+   "top10_after": [
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the compatibility figure, the size of the pool · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices"
+   ]
+  },
+  "same_sex_reference": {
+   "body": {
+    "self": {
+     "age": 31
+    },
+    "seeking": {
+     "sex": "male",
+     "age": [
+      27,
+      38
+     ],
+     "marital": [
+      "never_married"
+     ],
+     "education_min": "bachelors"
+    },
+    "sort": "best_first"
+   },
+   "ranked": 120,
+   "rows": [
+    {
+     "rank": 1,
+     "metro": "San Francisco, CA",
+     "score": 78.1,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices"
+    },
+    {
+     "rank": 2,
+     "metro": "Los Angeles, CA",
+     "score": 77.3,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    },
+    {
+     "rank": 3,
+     "metro": "San Jose, CA",
+     "score": 72.3,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    },
+    {
+     "rank": 4,
+     "metro": "New York, NY",
+     "score": 71.9,
+     "before": "Biggest pluses: the size of the pool, walkable neighbourhoods, places to go out",
+     "after": "Biggest pluses: the size of the pool, walkable neighborhoods · Biggest minus: Everyday prices"
+    },
+    {
+     "rank": 5,
+     "metro": "Seattle, WA",
+     "score": 69.8,
+     "before": "Biggest pluses: the size of the pool, the compatibility figure, places to go out",
+     "after": "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices"
+    },
+    {
+     "rank": 59,
+     "metro": "Oklahoma City, OK",
+     "score": 46.3,
+     "before": "Biggest pluses: rent, the size of the pool · The compatibility figure counts against it",
+     "after": "Biggest pluses: rent, the size of the pool · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 60,
+     "metro": "Nashville, TN",
+     "score": 46.1,
+     "before": "Biggest pluses: the size of the pool · Walkable neighbourhoods counts against it",
+     "after": "Biggest pluses: the size of the pool, everyday prices · Biggest minus: Walkable neighborhoods"
+    },
+    {
+     "rank": 61,
+     "metro": "Greenville, SC",
+     "score": 46.0,
+     "before": "Biggest pluses: the compatibility figure · Walkable neighbourhoods counts against it",
+     "after": "Biggest pluses: the compatibility figure, the student crowd · Biggest minus: Walkable neighborhoods"
+    },
+    {
+     "rank": 62,
+     "metro": "Syracuse, NY",
+     "score": 46.0,
+     "before": "Biggest pluses: places to go out, rent · The size of the pool counts against it",
+     "after": "Biggest pluses: places to go out, rent · Biggest minus: The size of the pool"
+    },
+    {
+     "rank": 63,
+     "metro": "Virginia Beach, VA",
+     "score": 46.0,
+     "before": "Biggest pluses: the size of the pool, the weather · The compatibility figure counts against it",
+     "after": "Biggest pluses: the size of the pool, the weather · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 116,
+     "metro": "Fayetteville, NC",
+     "score": 25.2,
+     "before": "The size of the pool counts against it",
+     "after": "Biggest minus: The size of the pool"
+    },
+    {
+     "rank": 117,
+     "metro": "Lakeland, FL",
+     "score": 23.5,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: the weather, everyday prices · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 118,
+     "metro": "Stockton, CA",
+     "score": 22.8,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: walkable neighborhoods, the weather · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 119,
+     "metro": "Provo, UT",
+     "score": 21.1,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest pluses: the student crowd, walkable neighborhoods · Biggest minus: The compatibility figure"
+    },
+    {
+     "rank": 120,
+     "metro": "Waterbury, CT",
+     "score": 20.8,
+     "before": "The compatibility figure counts against it",
+     "after": "Biggest minus: The compatibility figure"
+    }
+   ],
+   "top10_after": [
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, walkable neighborhoods · Biggest minus: Everyday prices",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices",
+    "Biggest pluses: the compatibility figure, places to go out",
+    "Biggest pluses: the size of the pool, places to go out · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Everyday prices",
+    "Biggest pluses: the size of the pool, walkable neighborhoods · Biggest minus: Rent",
+    "Biggest pluses: the size of the pool, walkable neighborhoods · Biggest minus: Everyday prices"
+   ]
+  }
+ }
+}

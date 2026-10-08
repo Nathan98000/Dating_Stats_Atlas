@@ -72,7 +72,8 @@ test("the quick search holds the visitor and who they seek; the rail's three gro
   }
   await expect(quick.getByRole("button", { name: new RegExp(`^${ps.quick_seek_age_short}: `) })).toHaveCount(1);
   const rail = page.getByTestId("search-panel");
-  const headings = rail.getByRole("heading", { level: 3 });
+  // section headings (h2 in the outline, set in the h3 size)
+  const headings = rail.getByRole("heading", { level: 2 });
   await expect(headings).toHaveText([ps.rail_matters_heading, ps.rail_narrow_heading, ps.rail_sharpen_heading]);
   for (const name of [ps.rail_narrow_heading, ps.rail_sharpen_heading]) {
     await expect(rail.getByRole("button", { name, exact: true })).toHaveAttribute("aria-expanded", "false");
