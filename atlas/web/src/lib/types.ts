@@ -144,6 +144,15 @@ export interface RankedRow {
   contributions: { pillar: string; value: number }[];
   top_stats: string[];
   summary_line: string;
+  /** m4.2.1: the pick the line names, as data — the pluses (at most two,
+   * largest first), then the biggest minus; key is the item's first stat
+   * id, whose registry chip_label names it */
+  movers: Mover[];
+}
+
+export interface Mover {
+  key: string;
+  sign: 1 | -1;
 }
 
 export interface SuppressedRow {
@@ -201,7 +210,7 @@ export interface MatchInputs {
  * travels in `variants.balance`, once (m4.1.0, ADR 0004 amended: it is
  * the search's, whoever is searching). */
 export type BaseRow = Omit<RankedRow, "rank" | "score" | "score_display" |
-  "balance" | "match" | "top_stats" | "summary_line"> & {
+  "balance" | "match" | "top_stats" | "summary_line" | "movers"> & {
   match: { available: boolean; unit_line: string };
 };
 export type BaseSuppressedRow = Omit<SuppressedRow, "balance">;
@@ -236,7 +245,7 @@ export interface Variants {
   index: Record<string, Record<string, Record<string, number>>>;
   same_sex_note: string;
   match_bands: { key: string; label: string; tone: Tone }[];
-  explain: { top_stats: string[]; summary_line: string }[];
+  explain: { top_stats: string[]; summary_line: string; movers: Mover[] }[];
   /** m4.1.0: the search's balance, once — its words and the block of
    * every ranked and suppressed row, aligned to them (m4.0.0 sent a copy
    * per own sex, `by_sex`) */
@@ -274,6 +283,8 @@ export interface FeatureLegend {
   unit_short: string;
   unit_template?: string | null;
   mover_phrase?: string | null;
+  /** Phase 5: the result chip's word for this mover */
+  chip_label?: string | null;
   stat_page_name?: string | null;
   stat_page_note?: string | null;
   band_direction?: "good_low" | "good_high" | "neutral" | null;

@@ -1,11 +1,11 @@
 {
   "build": "63c4e5fa51bf",
-  "model_version": "m4.2.0",
+  "model_version": "m4.2.1",
   "generated_by": {
-    "git_sha": "f6fee4b78cfa0bb45121ba86e467609fa47076e7",
+    "git_sha": "3798b3f6e27e497f2322b915fb0597a957dba072",
     "git_dirty": true,
-    "generated_at": "2026-10-03T23:05:08-0400",
-    "engine_model_version": "m4.2.0"
+    "generated_at": "2026-10-08T15:39:27-0400",
+    "engine_model_version": "m4.2.1"
   },
   "hard": {
     "interval_calibration": {
@@ -457,7 +457,7 @@
         "wobble_max": 3.6292,
         "old_rule_min_share_personas": 0.6875,
         "old_rule_min_share_all": 0.6875,
-        "seconds": 76.9
+        "seconds": 44.4
       },
       "reference_file": "results/phase4/stability_reference_m4_0_0.json",
       "per_search": {
@@ -10037,7 +10037,7 @@
           "n_unweighted": 1867,
           "balance": "121 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10050,7 +10050,7 @@
           "n_unweighted": 2970,
           "balance": "114 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, the compatibility figure",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10063,7 +10063,7 @@
           "n_unweighted": 785,
           "balance": "150 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, the size of the pool, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the compatibility figure, the size of the pool \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10076,7 +10076,7 @@
           "n_unweighted": 5158,
           "balance": "89 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10089,7 +10089,7 @@
           "n_unweighted": 16873,
           "balance": "92 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, the compatibility figure",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10102,7 +10102,7 @@
           "n_unweighted": 4692,
           "balance": "84 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10115,7 +10115,7 @@
           "n_unweighted": 1182,
           "balance": "109 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10128,7 +10128,7 @@
           "n_unweighted": 1776,
           "balance": "106 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, the compatibility figure",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10141,7 +10141,7 @@
           "n_unweighted": 2178,
           "balance": "96 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10154,7 +10154,7 @@
           "n_unweighted": 8090,
           "balance": "98 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Everyday prices",
           "flags": []
         },
         {
@@ -10167,7 +10167,7 @@
           "n_unweighted": 3038,
           "balance": "97 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, the compatibility figure",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Everyday prices",
           "flags": []
         },
         {
@@ -10180,7 +10180,7 @@
           "n_unweighted": 6171,
           "balance": "90 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 The compatibility figure counts against it",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: The compatibility figure",
           "flags": []
         },
         {
@@ -10193,7 +10193,7 @@
           "n_unweighted": 308,
           "balance": "108 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Rent counts against it",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10206,7 +10206,7 @@
           "n_unweighted": 241,
           "balance": "107 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool \u00b7 Places to go out counts against it",
+          "explanation": "Biggest pluses: the size of the pool \u00b7 Biggest minus: Places to go out",
           "flags": []
         },
         {
@@ -10219,7 +10219,7 @@
           "n_unweighted": 116,
           "balance": "100 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure \u00b7 The size of the pool counts against it",
+          "explanation": "Biggest pluses: the compatibility figure, everyday prices \u00b7 Biggest minus: The size of the pool",
           "flags": []
         },
         {
@@ -10232,7 +10232,7 @@
           "n_unweighted": 884,
           "balance": "147 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, the size of the pool, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the compatibility figure, the size of the pool \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10245,7 +10245,7 @@
           "n_unweighted": 2129,
           "balance": "113 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Rent counts against it",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10258,7 +10258,7 @@
           "n_unweighted": 1409,
           "balance": "119 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10271,7 +10271,7 @@
           "n_unweighted": 9160,
           "balance": "85 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 Rent counts against it",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10284,7 +10284,7 @@
           "n_unweighted": 5134,
           "balance": "90 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Everyday prices",
           "flags": []
         },
         {
@@ -10297,7 +10297,7 @@
           "n_unweighted": 1314,
           "balance": "82 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10310,7 +10310,7 @@
           "n_unweighted": 890,
           "balance": "95 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, the compatibility figure",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10323,7 +10323,7 @@
           "n_unweighted": 575,
           "balance": "100 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10336,7 +10336,7 @@
           "n_unweighted": 1137,
           "balance": "85 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
           "flags": []
         },
         {
@@ -10349,7 +10349,7 @@
           "n_unweighted": 965,
           "balance": "118 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10362,7 +10362,7 @@
           "n_unweighted": 466,
           "balance": "123 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, the size of the pool, places to go out",
+          "explanation": "Biggest pluses: the compatibility figure, the size of the pool \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10375,7 +10375,7 @@
           "n_unweighted": 1107,
           "balance": "112 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10388,7 +10388,7 @@
           "n_unweighted": 67239,
           "balance": "102 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10401,7 +10401,7 @@
           "n_unweighted": 19963,
           "balance": "97 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10414,7 +10414,7 @@
           "n_unweighted": 77388,
           "balance": "110 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10427,7 +10427,7 @@
           "n_unweighted": 2578,
           "balance": "150 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, walkable neighbourhoods \u00b7 Rent counts against it",
+          "explanation": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10440,7 +10440,7 @@
           "n_unweighted": 5364,
           "balance": "111 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10453,7 +10453,7 @@
           "n_unweighted": 5529,
           "balance": "119 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10466,7 +10466,7 @@
           "n_unweighted": 2578,
           "balance": "150 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, walkable neighbourhoods \u00b7 Rent counts against it",
+          "explanation": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10479,7 +10479,7 @@
           "n_unweighted": 5364,
           "balance": "111 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10492,7 +10492,7 @@
           "n_unweighted": 5529,
           "balance": "119 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10505,7 +10505,7 @@
           "n_unweighted": 17609,
           "balance": "88 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10518,7 +10518,7 @@
           "n_unweighted": 19268,
           "balance": "93 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10531,7 +10531,7 @@
           "n_unweighted": 5398,
           "balance": "85 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10544,7 +10544,7 @@
           "n_unweighted": 23070,
           "balance": "117 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods \u00b7 The compatibility figure counts against it",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: The compatibility figure",
           "flags": []
         },
         {
@@ -10557,7 +10557,7 @@
           "n_unweighted": 5857,
           "balance": "116 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the weather \u00b7 The compatibility figure counts against it",
+          "explanation": "Biggest pluses: the size of the pool, the weather \u00b7 Biggest minus: The compatibility figure",
           "flags": []
         },
         {
@@ -10570,7 +10570,7 @@
           "n_unweighted": 2399,
           "balance": "126 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, everyday prices, the compatibility figure",
+          "explanation": "Biggest pluses: the size of the pool, everyday prices \u00b7 Biggest minus: Places to go out",
           "flags": []
         },
         {
@@ -10583,7 +10583,7 @@
           "n_unweighted": 1911,
           "balance": "123 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, the size of the pool, everyday prices",
+          "explanation": "Biggest pluses: the compatibility figure, the size of the pool \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10596,7 +10596,7 @@
           "n_unweighted": 349,
           "balance": "115 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Rent counts against it",
+          "explanation": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10609,7 +10609,7 @@
           "n_unweighted": 1040,
           "balance": "89 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, everyday prices, the size of the pool",
+          "explanation": "Biggest pluses: the compatibility figure, everyday prices",
           "flags": []
         },
         {
@@ -10622,7 +10622,7 @@
           "n_unweighted": 15734,
           "balance": "88 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the weather, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the weather \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10635,7 +10635,7 @@
           "n_unweighted": 4741,
           "balance": "84 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, the weather",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10648,7 +10648,7 @@
           "n_unweighted": 4537,
           "balance": "93 women per 100 men",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10661,7 +10661,7 @@
           "n_unweighted": 1616,
           "balance": "155 men per 100 women",
           "top_pillar": "match",
-          "explanation": "Biggest pluses: the compatibility figure, the size of the pool, walkable neighbourhoods",
+          "explanation": "Biggest pluses: the compatibility figure, the size of the pool \u00b7 Biggest minus: Rent",
           "flags": []
         },
         {
@@ -10674,7 +10674,7 @@
           "n_unweighted": 9600,
           "balance": "113 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, walkable neighbourhoods, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Everyday prices",
           "flags": []
         },
         {
@@ -10687,7 +10687,7 @@
           "n_unweighted": 3452,
           "balance": "113 men per 100 women",
           "top_pillar": "pool",
-          "explanation": "Biggest pluses: the size of the pool, the compatibility figure, places to go out",
+          "explanation": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent",
           "flags": []
         }
       ]

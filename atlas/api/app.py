@@ -91,6 +91,13 @@ removal — both noted here as the contract docs):
     most, or a plus where it says worse). top_stats lists the named items'
     stats, so an everyday-prices item contributes both of its ids. No
     score, rank, figure, band or suppression changes.
+  - m4.2.1 (Phase 5, ADR 0003 amended): the movers line names at most two
+    pluses and then the biggest minus, "Biggest pluses: X, Y · Biggest
+    minus: Z". Every explanation (variants.explain, and rank()'s rows)
+    gains `movers`, [{key, sign}], the pick as data: key the item's first
+    stat id, sign +1 or -1. /v1/meta's features gain chip_label, and its
+    strings the redesign's labels. No score, rank, figure, band or
+    suppression changes.
 """
 from __future__ import annotations
 

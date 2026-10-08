@@ -1,0 +1,36 @@
+{
+ "build": [
+  "63c4e5fa51bf",
+  "63c4e5fa51bf"
+ ],
+ "model_version": [
+  "m4.2.0",
+  "m4.2.1"
+ ],
+ "mode": "numbers",
+ "test_searches": {
+  "total": 518,
+  "source": "stability_gate.test_searches (ADR 0011: personas, effects grid, same-sex grid)"
+ },
+ "rank_response_identical": 1,
+ "rank_response_identical_without_explanations": 518,
+ "single_seeker_rank_identical_without_explanations": {
+  "identical": 1036,
+  "of": 1036
+ },
+ "default_variant_lines": {
+  "rows": 98415,
+  "changed": 98315
+ },
+ "profiles_identical": {
+  "identical": 387,
+  "of": 387
+ },
+ "political_lean_identical": true,
+ "reference_searches_rank_and_score_identical": {
+  "default": true,
+  "same_sex_reference": true
+ },
+ "generated": "2026-10-08T15:39:20",
+ "pass": true
+}

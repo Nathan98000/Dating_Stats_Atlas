@@ -45,12 +45,16 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
   hard  explanation invariants   no rendered string carries the §12.3
                                  banned vocabulary; the lead phrase is
                                  position-unique (the Phase 2a panel defect,
-                                 found by hand, checked by machine since)
+                                 found by hand, checked by machine since);
+                                 m4.2.1: two pluses at most, then one
+                                 minus, and the line names what `movers`
+                                 serves
   hard  variant invariants       m4.0.0 (ADR 0018): every "about you" variant
                                  of every persona's search — the engine
                                  asserts each one's exact attribution sum;
                                  the selected rows carry no banned word,
-                                 no repeated lead phrase, movers among
+                                 no repeated lead phrase, a line that
+                                 agrees with its served movers, movers among
                                  their own stats and pillar sums that add
                                  up; the persona's own variant and a
                                  spread of others equal rank() exactly;
@@ -114,6 +118,31 @@ BANNED = re.compile(r"\b(odds|rivals?|markets?|supply|inventory|competitors?)\b"
 PEW_CSV = PEW_TABLE      # private, build machine only (ADR 0012; pew_guard)
 CUBE_TO_SPEC = {v: k for k, v in engine.SPEC_RACE.items()}
 
+
+def movers_line_defects(r: dict) -> list[str]:
+    """m4.2.1 (Phase 5): a row's movers line and its served movers agree —
+    each lead at most once ("Biggest pluses: X, Y · Biggest minus: Z"), at
+    most two pluses then at most one minus, the line naming as many pluses
+    as the movers carry, a minus exactly when they carry one, and every
+    mover's key among top_stats."""
+    from atlas.model.suppression import POLICY_STRINGS
+    line, mv = r["summary_line"], r.get("movers")
+    out = []
+    plus_lead, minus_lead = POLICY_STRINGS["pluses_lead"], POLICY_STRINGS["minus_lead"]
+    if line.count(plus_lead) > 1 or line.count(minus_lead) > 1:
+        out.append("lead phrase repeated")
+    if mv is None:
+        return out + ["movers missing"]
+    signs = [m["sign"] for m in mv]
+    if signs.count(1) > 2 or signs.count(-1) > 1 or signs != sorted(signs, reverse=True):
+        out.append("movers beyond two pluses then one minus")
+    head = line.split(" · ")[0]
+    n_plus = len(head[len(plus_lead):].split(", ")) if head.startswith(plus_lead) else 0
+    if n_plus != signs.count(1) or (minus_lead in line) != (-1 in signs):
+        out.append("line and movers disagree")
+    if not {m["key"] for m in mv} <= set(r["top_stats"]):
+        out.append("a mover outside top_stats")
+    return out
 
 def _git_stamp() -> dict:
     def run(*args):
@@ -322,9 +351,9 @@ def check_explanations(build, persona_results) -> dict:
                 if BANNED.search(text):
                     problems.append({"where": f"{name}:{r['cbsa']}",
                                      "text": text})
-            if r["summary_line"].count("Biggest pluses:") > 1:
+            for defect in movers_line_defects(r):
                 problems.append({"where": f"{name}:{r['cbsa']}",
-                                 "defect": "lead phrase repeated",
+                                 "defect": defect,
                                  "text": r["summary_line"]})
             # crime (item 5): figures only ever render beside their
             # coverage and caution, and only above the registry floor
@@ -398,8 +427,8 @@ def check_variants(build, vectors) -> dict:
                         for text in (r["summary_line"], r["balance"].get("display", "")):
                             if BANNED.search(text):
                                 problems.append({"where": where, "text": text})
-                        if r["summary_line"].count("Biggest pluses:") > 1:
-                            problems.append({"where": where, "defect": "lead phrase repeated"})
+                        for defect in movers_line_defects(r):
+                            problems.append({"where": where, "defect": defect})
                         ids = {s["id"] for s in r["stats"]}
                         if not set(r["top_stats"]) <= ids:
                             problems.append({"where": where, "defect": "a mover outside the row's stats"})

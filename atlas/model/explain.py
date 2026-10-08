@@ -1,7 +1,7 @@
 """Explanation layer, m2.0.0: the movers line and the display-string
 helpers. The v3 boards replace per-row sentences with one plain line —
-"Biggest pluses: the size of the pool, the balance, walkable
-neighbourhoods · Rent counts against it" — composed HERE, server-side,
+since m4.2.1 "Biggest pluses: the size of the pool, the compatibility
+figure · Biggest minus: Rent" — composed HERE, server-side,
 from registry mover phrases, so the frontend never selects or words what
 moved a city. The jinja template and its renderer left with the old row
 copy; the §9 metric record stays for the deferred build-time narratives.
@@ -11,11 +11,16 @@ Build.legend); no user-facing name lives here.
 """
 from __future__ import annotations
 
-# The movers line names the top stats by |contribution| in score points.
-# TOP_STATS_MAX per ADR 0003 ("two or three"); a stat below
-# TOP_STATS_MIN_POINTS is noise relative to a 0-100 score and is not
-# presented as having moved anything.
-TOP_STATS_MAX = 3
+# The movers line names the items that moved a score most, by |contribution|
+# in score points. m4.2.1 (Phase 5): at most MAX_PLUSES pluses and the
+# single biggest minus, so a line can no longer fill up with pluses and hide
+# a city's main downside; TOP_STATS_MAX, the most items a line names (ADR
+# 0003's "two or three"), is their sum. An item below TOP_STATS_MIN_POINTS
+# is noise relative to a 0-100 score and is not presented as having moved
+# anything.
+MAX_PLUSES = 2
+MAX_MINUSES = 1
+TOP_STATS_MAX = MAX_PLUSES + MAX_MINUSES
 TOP_STATS_MIN_POINTS = 0.5
 
 # magnitude buckets over |contribution| in score points (metric record only)
@@ -108,8 +113,10 @@ def unit_contributions(contribs: list[float | None], units: list[dict]) -> list[
 
 def pick_movers(contribs: list[float | None], sides: list[int]) -> list[int]:
     """The items that moved this metro's score for these weights, as item
-    positions: |contribution| at least TOP_STATS_MIN_POINTS, largest first,
-    ties in item order, at most TOP_STATS_MAX. m4.1.1: an item whose sign
+    positions: of those with |contribution| at least TOP_STATS_MIN_POINTS,
+    taken largest first (ties in item order), at most MAX_PLUSES pluses and
+    then the single biggest minus (m4.2.1; before, the top TOP_STATS_MAX
+    whatever their sign). m4.1.1: an item whose sign
     contradicts its card is left out — the line never calls a stat a minus
     where the city's card says better than most, nor a plus where it says
     worse than most. (The score measures a stat against the middle of the
@@ -118,11 +125,14 @@ def pick_movers(contribs: list[float | None], sides: list[int]) -> list[int]:
     moved = [u for u, c in enumerate(contribs)
              if c is not None and abs(c) >= TOP_STATS_MIN_POINTS and not c * sides[u] < 0]
     moved.sort(key=lambda u: -abs(contribs[u]))
-    return moved[:TOP_STATS_MAX]
+    pluses = [u for u in moved if contribs[u] > 0][:MAX_PLUSES]
+    minuses = [u for u in moved if contribs[u] < 0][:MAX_MINUSES]
+    return pluses + minuses
 
 
 def movers(row: dict, legend: dict[str, dict], band_keys: list[str]) -> list[dict]:
-    """A row's movers: {phrase, ids, contribution} per item, in order."""
+    """A row's movers: {phrase, ids, contribution} per item, in order: the
+    pluses, largest first, then the minus."""
     units = mover_units([s["id"] for s in row["stats"]], legend)
     contribs = unit_contributions([s.get("contribution") for s in row["stats"]], units)
     sides = mover_sides(units, legend, row.get("cards", []), band_keys)
@@ -130,10 +140,20 @@ def movers(row: dict, legend: dict[str, dict], band_keys: list[str]) -> list[dic
             for u in pick_movers(contribs, sides)]
 
 
+def served_movers(moved: list[dict]) -> list[dict]:
+    """The movers as the API serves them (m4.2.1, beside top_stats and
+    summary_line), so the result chips never re-derive the pick: {key,
+    sign} per item, in order — key the item's first stat id (whose
+    registry chip_label names it), sign +1 for a plus, -1 for a minus."""
+    return [{"key": m["ids"][0], "sign": 1 if m["contribution"] > 0 else -1} for m in moved]
+
+
 def summary_line(moved: list[dict]) -> str:
-    """The v3 row line from the movers, in order: pluses named by their
-    registry mover phrases, the single biggest minus appended as '· X
-    counts against it' (HomeV3's exact shape). Position-unique lead by
+    """The row line from the movers, in order: "Biggest pluses: X, Y ·
+    Biggest minus: Z" (m4.2.1; before, "… · Z counts against it"), the
+    pluses and the minus named by their registry mover phrases, the minus
+    capitalised as the approved shape has it ("Biggest minus: Rent"). A
+    line with no pluses is "Biggest minus: Z". Position-unique lead by
     construction; the validation suite still asserts it, because the last
     renderer that looked obviously correct wasn't."""
     from atlas.model.suppression import POLICY_STRINGS
@@ -144,8 +164,8 @@ def summary_line(moved: list[dict]) -> str:
         parts.append(POLICY_STRINGS["pluses_lead"]
                      + ", ".join(m["phrase"] for m in pluses))
     if minuses:
-        p = minuses[0]["phrase"]          # the biggest: movers come largest first
-        parts.append(p[0].upper() + p[1:] + POLICY_STRINGS["minus_tail"])
+        p = minuses[0]["phrase"]          # the biggest: one minus at most
+        parts.append(POLICY_STRINGS["minus_lead"] + p[0].upper() + p[1:])
     if not parts:
         return "Close to the middle of the pack on everything you weighted"
     return " · ".join(parts)

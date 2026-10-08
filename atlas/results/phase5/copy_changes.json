@@ -1,0 +1,55 @@
+{
+ "phase": "5",
+ "note": "Every served string Phase 5 adds or changes, old -> new. Commit C: the registry (pipeline/registry/features.yaml strings and feature keys), the policy strings (model/suppression.py) and docs/terms.md. Approved as written in the Phase 5 brief (decisions 2, 3, 4, 5) unless marked DRAFT.",
+ "changed": [
+  {
+   "key": "strings.home_subtitle",
+   "old": "Select who you're looking for and what matters to you. Find out how many people match your search in each city based on Census data.",
+   "new": "See how many single people who fit what you want live in each US metro, from Census data, ranked for you.",
+   "why": "decision 5"
+  },
+  {
+   "key": "strings.about_title",
+   "old": "About the site",
+   "new": "How it works",
+   "why": "decision 2"
+  },
+  {
+   "key": "features.resident_walkability_index.mover_phrase",
+   "old": "walkable neighbourhoods",
+   "new": "walkable neighborhoods",
+   "why": "decision 3, US spelling"
+  },
+  {
+   "key": "policy_strings.low_allocation_purity",
+   "old": "Estimates here lean on survey areas this city shares with its neighbours.",
+   "new": "Estimates here lean on survey areas this city shares with its neighbors.",
+   "why": "decision 3, US spelling (sweep)"
+  },
+  {
+   "key": "docs/terms.md (Photographs paragraph)",
+   "old": "may be reused under the licence listed there",
+   "new": "may be reused under the license listed there",
+   "why": "decision 3, US spelling (sweep)"
+  },
+  {
+   "key": "policy_strings.minus_tail -> policy_strings.minus_lead",
+   "old": " counts against it",
+   "new": "Biggest minus: ",
+   "why": "decision 4: the line reads 'Biggest pluses: X, Y · Biggest minus: Z'"
+  }
+ ],
+ "added": "strings.quick_*, trust_*, rail_*, slider_label, optional_pill, sharpen_note, results_*, col_*, pool_short_unit, pool_row_unit (\"single {sought}\", the brief's Matches caption), score_out_of (\"/100\", the cards' score), row_details (\"Details for {city}\", the row chevron's accessible name; DRAFT, not in the brief), show_more, show_all, find_in_results, balance_label/_more/_even/_short_caption, moved_heading/_caption, open_city, compare_action, explainer_*, adjust_search, show_results, close, results_updated, nav_*, footer_*, compare_edge/_note, compare_top_two, title_*; features.*.chip_label (nine labels) — the brief's copy table, verbatim; not_found_title \"Page not found\" and not_found_body \"There is no page at this address.\" (DRAFTS, the 404 page; not in the brief)",
+ "british_spellings_swept": [
+  "walkable neighbourhoods (mover_phrase)",
+  "neighbours (policy_strings.low_allocation_purity)",
+  "licence (docs/terms.md)",
+  "Grey (strings.compare_diff_legend; retired in commit F with the Difference column)"
+ ],
+ "unused": [
+  {
+   "key": "strings.compare_diff_legend",
+   "why": "commit F replaced the Difference column with Edge (compare_edge_note); still served so the D+E commit's compare page renders; retire with the next copy release"
+  }
+ ]
+}

@@ -127,7 +127,7 @@ def test_meta_carries_the_v3_vocabulary(client):
     # are GONE rather than orphaned.
     for k in ("slider_info", "crime_caution", "crime_compare_note",
               "stat_page_link", "home_title", "home_subtitle",
-              "card_missing", "crime_see_more", "compare_diff_legend",
+              "card_missing", "crime_see_more", "compare_edge_note",
               "compare_page_subtitle", "measure_context_heading"):
         assert m["policy_strings"].get(k), k
     for gone in ("stat_page_intro", "measure_page_intro"):

@@ -106,13 +106,15 @@ POLICY_STRINGS = {
     # panel stopped rendering it in Phase 2d, and its always-counted
     # claim stopped being true when the eight groups became equal
 
-    # movers line pieces (HomeV3: "Biggest pluses: … · Rent counts against it")
+    # movers line pieces — m4.2.1 (Phase 5, approved): "Biggest pluses: X,
+    # Y · Biggest minus: Rent" (was "… · Rent counts against it", whose
+    # "counts" disagreed with plural phrases)
     "pluses_lead": "Biggest pluses: ",
-    "minus_tail": " counts against it",
+    "minus_lead": "Biggest minus: ",
 
     # flags, spoken plainly
     "low_allocation_purity": "Estimates here lean on survey areas this city "
-                             "shares with its neighbours.",
+                             "shares with its neighbors.",
     "gq_flag": "A notable share of adults here live in group housing such "
                "as dorms or barracks.",
     "missing_features": "One or two of the place stats aren’t available "

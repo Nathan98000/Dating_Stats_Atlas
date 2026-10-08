@@ -139,7 +139,7 @@ test("About us carries Nathan's account, corrections in, deleted sections gone",
   await page.goto("/how-it-works");
   await expect(page).toHaveURL(/\/about$/);
   // renamed by Nathan on 2026-10-07 (was "About us")
-  await expect(page.locator("h1")).toHaveText("About the site");
+  await expect(page.locator("h1")).toHaveText("How it works");
   const article = page.locator("article.prose-method");
   await expect(article).toBeVisible();
   expect(await article.locator("table").count()).toBeGreaterThanOrEqual(1);

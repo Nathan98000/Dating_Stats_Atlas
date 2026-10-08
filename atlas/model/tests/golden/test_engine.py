@@ -15,7 +15,7 @@ import numpy as np
 import pytest
 
 from atlas import model as engine
-from atlas.model.explain import mover_sides, mover_units, movers, summary_line
+from atlas.model.explain import mover_sides, mover_units, movers, served_movers, summary_line
 from atlas.model.intervals import IntervalModel
 from atlas.model.loader import reduce_cube, reduced_key
 from atlas.model.preferences import (ALLOWED_MARITAL, INCOME_FLOORS,
@@ -744,7 +744,7 @@ def test_summary_line_lead_is_position_unique(build, response):
     ], "cards": []}
     out = summary_line(movers(row, build.legend, build.manifest["standing_bands"]["keys"]))
     assert out.count("Biggest pluses:") == 1
-    assert out.endswith("counts against it")
+    assert out == "Biggest pluses: the size of the pool, rent · Biggest minus: The weather"
     assert not BANNED.search(out)
 
 
@@ -768,7 +768,7 @@ def test_the_two_price_levels_are_one_item(build):
         "Biggest pluses: the size of the pool"
     # the pair's sum can outrank a single stat it would have lost to apart
     assert _line(build, [("rent_1br", -1.2), ("rpp_goods", -0.7), ("rpp_services_other", -0.7)]) == \
-        "Everyday prices counts against it"
+        "Biggest minus: Everyday prices"
 
 
 def test_no_item_is_named_against_its_card(build):
@@ -781,24 +781,48 @@ def test_no_item_is_named_against_its_card(build):
     assert _line(build, walk, [("resident_walkability_index", "high")]) == \
         "Biggest pluses: the size of the pool"
     assert _line(build, walk, [("resident_walkability_index", "mid")]) == \
-        "Biggest pluses: the size of the pool · Walkable neighbourhoods counts against it"
+        "Biggest pluses: the size of the pool · Biggest minus: Walkable neighborhoods"
     assert _line(build, walk, [("resident_walkability_index", "lowest")]).endswith(
-        "Walkable neighbourhoods counts against it")
+        "Biggest minus: Walkable neighborhoods")
     # rent reads the other way: a high band is pricier, the unfavourable side
     assert _line(build, [("rent_1br", 2.0)], [("rent_1br", "high")]) == \
         "Close to the middle of the pack on everything you weighted"
-    assert _line(build, [("rent_1br", -2.0)], [("rent_1br", "high")]) == "Rent counts against it"
+    assert _line(build, [("rent_1br", -2.0)], [("rent_1br", "high")]) == "Biggest minus: Rent"
     assert _line(build, [("rent_1br", 2.0)], [("rent_1br", "lowest")]) == "Biggest pluses: rent"
     # the price pair answers to the everyday prices card
     pair = [("rpp_goods", 1.5), ("rpp_services_other", 1.0)]
     assert _line(build, pair, [("everyday_prices", "highest")]) == \
         "Close to the middle of the pack on everything you weighted"
     assert _line(build, pair, [("everyday_prices", "low")]) == "Biggest pluses: everyday prices"
-    # a vetoed item leaves its place to the next one
+    # a vetoed item leaves its place to the next one (two pluses at most)
     assert _line(build, [("pool_size", 9.0), ("resident_walkability_index", -3.0), ("rent_1br", 2.5),
-                         ("pleasant_days", 1.0), ("students_per_1k_adults", 0.8)],
+                         ("pleasant_days", 1.0), ("students_per_1k_adults", -0.8)],
                  [("resident_walkability_index", "highest")]) == \
-        "Biggest pluses: the size of the pool, rent, the weather"
+        "Biggest pluses: the size of the pool, rent · Biggest minus: The student crowd"
+
+
+def test_two_pluses_and_the_biggest_minus(build):
+    """m4.2.1 (Phase 5): at most two pluses, largest first, then the single
+    biggest eligible minus — even when three pluses outrank it, so a line
+    never hides a city's main downside (San Francisco: rent cost it 3.6
+    points, and the m4.2.0 line named three pluses and no minus)."""
+    sf = [("pool_size", 18.1), ("match_propensity", 13.1), ("venues_per_100k", 5.0),
+          ("resident_walkability_index", 4.4), ("rent_1br", -3.6), ("rpp_goods", -1.2),
+          ("rpp_services_other", -1.0), ("pleasant_days", 2.9)]
+    assert _line(build, sf) == \
+        "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+    # the minus is the biggest by its own size, not its place overall
+    assert _line(build, [("pool_size", 5.0), ("rent_1br", -0.6), ("pleasant_days", -2.0)]) == \
+        "Biggest pluses: the size of the pool · Biggest minus: The weather"
+    # minuses only, and below the floor nothing
+    assert _line(build, [("rent_1br", -3.0), ("pleasant_days", -2.0)]) == "Biggest minus: Rent"
+    assert _line(build, [("rent_1br", -0.4), ("pleasant_days", 0.3)]) == \
+        "Close to the middle of the pack on everything you weighted"
+    # served as data, in the line's order: the pluses, then the minus
+    row = {"stats": [{"id": fid, "contribution": c} for fid, c in sf], "cards": []}
+    assert served_movers(movers(row, build.legend, build.manifest["standing_bands"]["keys"])) == [
+        {"key": "pool_size", "sign": 1}, {"key": "match_propensity", "sign": 1},
+        {"key": "rent_1br", "sign": -1}]
 
 
 def test_served_lines_repeat_nothing_and_never_contradict_a_card(build):

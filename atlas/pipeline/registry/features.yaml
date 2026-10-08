@@ -172,9 +172,11 @@ strings:
   # American and British forms — "favors" beside the site's older
   # "stabilised" — and both ship as given, noted in PHASE2F.md).
   home_title: "Which city has the best dating scene for you?"
+  # Phase 5 (design audit, Nathan's decision 5): the hero subhead,
+  # approved as written
   home_subtitle: >-
-    Select who you're looking for and what matters to you. Find out how
-    many people match your search in each city based on Census data.
+    See how many single people who fit what you want live in each US
+    metro, from Census data, ranked for you.
   # Nathan's wording, verbatim (m3.0.0, ADR 0009; rewritten by Nathan in
   # Phase 4b). The side panel's "What matters more to you?" box, the one
   # explanation of the compatibility figure since Phase 4b (the figure
@@ -277,7 +279,8 @@ strings:
   # (its label names the home page now). Both labels approved by Nathan
   # on 2026-10-06.
   # renamed by Nathan on 2026-10-07 (was "About us"); the nav reads the same
-  about_title: "About the site"
+  # Phase 5 (Nathan's decision 2): "How it works", to match the nav
+  about_title: "How it works"
   about_privacy_link: "Privacy"
   # before launch: the link to the terms of use (docs/terms.md), beside
   # Privacy on About us — approved by Nathan (for now) with the terms
@@ -355,6 +358,9 @@ strings:
   # item 6.3: the line under the compare table. Grey is "we don't judge
   # it" — and a measure set to Not much still carries weight, it is
   # never excluded ({a}/{b} are the two city names, left and right).
+  # UNUSED since Phase 5 F (the Edge column's compare_edge_note replaced
+  # it); still served so no commit of the series renders without it —
+  # retire it with the next copy release
   compare_diff_legend: >-
     Green means the difference favors {a} for your search; red means it
     favors {b}. Grey means we don't judge it: population is just a fact,
@@ -382,6 +388,96 @@ strings:
   political_lean_sort_name: "Name"
   political_lean_sort_dem: "Democratic share"
   political_lean_sort_rep: "Republican share"
+
+  # Phase 5 (design audit of 8 October 2026; Nathan's decision 5: every
+  # string here approved as written). Templates take {} slots filled from
+  # served values only.
+  # the hero's quick search, read as one sentence from 640px ("I'm a
+  # [Woman] aged [30], looking for [Men] aged [28 - 40]") and as four
+  # labelled fields below it
+  quick_self_sex: "I'm a"
+  quick_self_age: "aged"
+  quick_seek_sex: "looking for"
+  quick_seek_age: "aged"
+  quick_self_sex_short: "I'm a"
+  quick_self_age_short: "My age"
+  quick_seek_sex_short: "Looking for"
+  quick_seek_age_short: "Their age"
+  # the quick search's trust line: the approved Privacy summary's words,
+  # and where the counts come from
+  trust_saved: "We don't save your searches"
+  trust_source: "Census Bureau data"
+  # the side rail's three groups
+  rail_matters_heading: "What matters to you"
+  slider_label: "Bigger pool or closer match?"
+  rail_narrow_heading: "Narrow it down"
+  rail_sharpen_heading: "Sharpen compatibility"
+  optional_pill: "Optional"
+  sharpen_note: "Your education and race stay in this browser"
+  # the results header ({sought}: "men"/"women"; {ages}: "28–40"; {n}: the
+  # served count of ranked cities)
+  results_eyebrow: "Your ranking"
+  results_heading_best: "Top cities for single {sought}, {ages}"
+  results_heading_worst: "Lowest-scoring cities for single {sought}, {ages}"
+  results_count: "{n} metro areas, scored out of 100 for what you chose"
+  # the list's column labels, once above the rows
+  col_rank: "#"
+  col_city: "City · why it ranks here"
+  col_matches: "Matches"
+  col_score: "Score"
+  pool_short_unit: "single {sought} match"
+  # the Matches column's caption under each row's pool, the score's
+  # "out of 100" on the cards, and the row chevron's accessible name
+  pool_row_unit: "single {sought}"
+  score_out_of: "/100"
+  row_details: "Details for {city}"
+  show_more: "Show 10 more"
+  show_all: "Show all {n}"
+  find_in_results: "Find a city in your results"
+  # a row's detail
+  balance_label: "Balance"
+  balance_more: "More {word}"
+  balance_even: "Even"
+  balance_short_caption: "All singles in your age range, before other filters"
+  moved_heading: "What moved the score (points)"
+  moved_caption: "Compared with the middle of the cities ranked for this search"
+  open_city: "Open {city} →"
+  compare_action: "Compare"
+  # below the list
+  explainer_heading: "How the score works"
+  explainer_lifestyle: >-
+    Lifestyle: four things you weight — cost of living, social life,
+    student life and weather.
+  # phones and tablets: the sticky bar, the sheet, the live region
+  adjust_search: "Adjust your search"
+  show_results: "Show results"
+  close: "Close"
+  results_updated: "Results updated for {change}"
+  # the header's nav and the footer on every page
+  nav_rankings: "Rankings"
+  nav_compare: "Compare"
+  nav_how: "How it works"
+  footer_how: "How it works"
+  footer_measure: "What we measure"
+  footer_privacy: "Privacy"
+  footer_terms: "Terms"
+  footer_sources: "Data sources"
+  # compare: which city does better on each measure
+  compare_edge: "Edge"
+  compare_edge_note: >-
+    Edge shows which city does better on each measure for your search; a
+    dash means we don't judge it.
+  compare_top_two: "Your top two: {a} vs {b}"
+  # page titles ({page} · Dating Stats Atlas)
+  title_site: "Dating Stats Atlas"
+  title_template: "{page} · Dating Stats Atlas"
+  title_compare_pair: "{a} vs {b}"
+  title_stat: "{stat} by city"
+  title_privacy: "Privacy"
+  title_terms: "Terms"
+  # the 404 page (drafts: not in the brief's copy table)
+  not_found_title: "Page not found"
+  not_found_body: "There is no page at this address."
 
 # Phase 2f item 9.2: the stat pages' source lines — one display name and
 # link per source_id, joined through each feature's provenance.source
@@ -518,6 +614,7 @@ features:
     unit_short: ""
     display_decimals: 0
     mover_phrase: "the size of the pool"
+    chip_label: "Dating pool"
     definition: >-
       The number of people in each city who match your whole search,
       estimated from the Census Bureau's household survey.
@@ -554,6 +651,7 @@ features:
     display_scale: 100
     display_decimals: 0
     mover_phrase: "the balance"
+    chip_label: "Balance"
     definition: >-
       Number of single men per 100 single women in your selected age range
       (or the opposite, if you're looking for women)
@@ -587,6 +685,7 @@ features:
     unit_short: "(US = 100)"
     display_decimals: 0
     mover_phrase: "the compatibility figure"
+    chip_label: "Compatibility"
     band_direction: good_high
     band_labels: ["Far below most cities", "Below most cities",
                   "About average", "Above most cities",
@@ -648,6 +747,7 @@ features:
     unit_short: "$/mo"
     display_decimals: 0
     mover_phrase: "rent"
+    chip_label: "Rent"
     band_direction: good_low
     band_labels: ["Far cheaper than most cities", "Cheaper than most cities",
                   "About average for rent", "Pricier than most cities",
@@ -677,6 +777,7 @@ features:
     unit_short: "(US = 100)"
     display_decimals: 1
     mover_phrase: "everyday prices"
+    chip_label: "Everyday prices"
     definition: "Price level for goods, where the US average is 100 (BEA)."
     provenance: {source: bea_rpp, dataset: "BEA Regional Price Parities",
                  table: MARPP_MSA_2008_2024.csv, variables: ["RPPs: Goods"],
@@ -694,6 +795,7 @@ features:
     unit_short: "(US = 100)"
     display_decimals: 1
     mover_phrase: "everyday prices"
+    chip_label: "Everyday prices"
     definition: >-
       Price level for services other than housing, where the US average is
       100 (BEA).
@@ -745,6 +847,7 @@ features:
     unit_short: "per 100k adults"
     display_decimals: 0
     mover_phrase: "places to go out"
+    chip_label: "Places to go out"
     band_direction: good_high
     band_labels: ["Far fewer than most cities", "Fewer than most cities",
                   "About average", "More than most cities",
@@ -775,7 +878,8 @@ features:
     unit: "walkability, 1 to 20"
     unit_short: "on the 1–20 index"
     display_decimals: 1
-    mover_phrase: "walkable neighbourhoods"
+    mover_phrase: "walkable neighborhoods"
+    chip_label: "Walkability"
     band_direction: good_high
     band_labels: ["Among the least walkable", "Less walkable than most",
                   "About average", "More walkable than most",
@@ -841,6 +945,7 @@ features:
     unit_short: ""
     display_decimals: 0
     mover_phrase: "the weather"
+    chip_label: "Weather"
     band_direction: good_high
     band_labels: ["Far fewer than most cities", "Fewer than most cities",
                   "About average", "More than most cities",
@@ -875,6 +980,7 @@ features:
     unit_short: "per 1k adults"
     display_decimals: 0
     mover_phrase: "the student crowd"
+    chip_label: "Students"
     band_direction: neutral
     band_labels: ["Far fewer than most cities", "Fewer than most cities",
                   "About average", "More than most cities",

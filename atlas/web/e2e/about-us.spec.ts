@@ -52,7 +52,7 @@ test("the top of About us links only Privacy and the terms of use", async ({ pag
 test("the account is Nathan's copy: its sections in order, the sources table linked as he wrote it", async ({ page }) => {
   await page.goto("/about");
   // renamed by Nathan on 2026-10-07 (was "About us")
-  await expect(page.locator("h1")).toHaveText("About the site");
+  await expect(page.locator("h1")).toHaveText("How it works");
   const article = page.locator("article.prose-method");
   await expect(article.getByRole("heading", { level: 2 })).toHaveText(HEADINGS);
   const rows = article.locator("table tbody tr");

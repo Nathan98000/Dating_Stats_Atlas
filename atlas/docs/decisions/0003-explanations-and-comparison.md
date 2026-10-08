@@ -112,3 +112,24 @@ identical to m4.1.0's but for its explanations, and so are all 1,036 single-seek
 13,022 of the default variants' 98,415 lines change: those repeating a phrase fall from 11 to
 0, and those naming a stat against its card from 182 to 0
 (`results/movers_fix/served_numbers_check.json`).
+
+## Amended in m4.2.1 (Phase 5, 8 October 2026): two pluses, then the biggest minus
+
+The design audit of 8 October 2026 found two more problems in the line, and Nathan approved a
+new shape (Phase 5 brief, decision 4).
+
+- **It could hide the main downside.** The line named the top three items whatever their sign,
+  so a city with three large pluses named no minus at all: San Francisco's line was three pluses,
+  though rent cost it 3.6 points. The pick is now at most two pluses, largest first, then the
+  single biggest eligible minus (`explain.pick_movers`, `MAX_PLUSES`, `MAX_MINUSES`). The m4.1.1
+  sides rule, `TOP_STATS_MIN_POINTS` and the merged price levels are unchanged.
+- **Its grammar.** "· Z counts against it" disagreed with plural phrases ("Walkable
+  neighbourhoods counts against it"). The line now reads "Biggest pluses: X, Y · Biggest minus:
+  Z", or "Biggest minus: Z" when nothing is a plus; the middle-of-the-pack sentence is unchanged.
+
+The pick is also served as data, `movers: [{key, sign}]`, beside `top_stats` and `summary_line`
+on every explanation (key: the item's first stat id; its registry `chip_label` names it), so the
+result chips never re-derive it. No score, rank, figure, band or suppression moves: over the 518
+ADR 0011 test searches on build 63c4e5fa51bf every /v1/rank response is identical to m4.2.0's
+without its explanations, as are all 1,036 single-seeker rankings and all 387 profiles
+(`results/phase5/served_numbers_commit_c.json`).

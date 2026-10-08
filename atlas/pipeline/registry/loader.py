@@ -67,6 +67,7 @@ class FeatureSpec:
     unit_short: str = ""
     unit_template: str | None = None
     mover_phrase: str | None = None
+    chip_label: str | None = None       # Phase 5: the result chip's word for this mover
     stat_page_name: str | None = None   # "See all cities by {this}"
     stat_page_note: str | None = None   # Phase 4e: a sentence on its stat page only
     band_direction: str | None = None
@@ -126,6 +127,30 @@ class Registry:
 
     def pillar_features(self, pillar: str) -> list[FeatureSpec]:
         return [f for f in self.scored() if f.pillar == pillar]
+
+
+# Phase 5: the redesign's strings and the slots each template carries
+PHASE5_STRINGS = {
+    "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),
+    "quick_self_sex_short": (), "quick_self_age_short": (), "quick_seek_sex_short": (),
+    "quick_seek_age_short": (), "trust_saved": (), "trust_source": (),
+    "rail_matters_heading": (), "slider_label": (), "rail_narrow_heading": (),
+    "rail_sharpen_heading": (), "optional_pill": (), "sharpen_note": (),
+    "results_eyebrow": (), "results_heading_best": ("sought", "ages"),
+    "results_heading_worst": ("sought", "ages"), "results_count": ("n",),
+    "col_rank": (), "col_city": (), "col_matches": (), "col_score": (),
+    "pool_short_unit": ("sought",), "pool_row_unit": ("sought",), "score_out_of": (),
+    "row_details": ("city",), "show_more": (), "show_all": ("n",), "find_in_results": (),
+    "balance_label": (), "balance_more": ("word",), "balance_even": (), "balance_short_caption": (),
+    "moved_heading": (), "moved_caption": (), "open_city": ("city",), "compare_action": (),
+    "explainer_heading": (), "explainer_lifestyle": (), "adjust_search": (), "show_results": (),
+    "close": (), "results_updated": ("change",), "nav_rankings": (), "nav_compare": (),
+    "nav_how": (), "footer_how": (), "footer_measure": (), "footer_privacy": (),
+    "footer_terms": (), "footer_sources": (), "compare_edge": (), "compare_edge_note": (),
+    "compare_top_two": ("a", "b"), "title_site": (), "title_template": ("page",),
+    "title_compare_pair": ("a", "b"), "title_stat": ("stat",), "title_privacy": (), "title_terms": (),
+    "not_found_title": (), "not_found_body": (),
+}
 
 
 def _assert_display_clean(owner: str, *texts) -> None:
@@ -193,6 +218,7 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             unit_short=str(f.get("unit_short", "")),
             unit_template=f.get("unit_template"),
             mover_phrase=f.get("mover_phrase"),
+            chip_label=f.get("chip_label"),
             stat_page_name=f.get("stat_page_name"),
             stat_page_note=(str(f["stat_page_note"]).strip()
                             if f.get("stat_page_note") else None),
@@ -217,9 +243,11 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             # live entry's rendered strings stay clean
             _assert_display_clean(spec.id, spec.display_name, spec.unit,
                                   spec.unit_short, spec.unit_template,
-                                  spec.mover_phrase, spec.definition,
+                                  spec.mover_phrase, spec.chip_label, spec.definition,
                                   spec.stat_page_name, spec.stat_page_note,
                                   *(spec.band_labels or ()))
+        if spec.mover_phrase and spec.status != "retired":
+            assert spec.chip_label, f"{spec.id}: a mover carries its chip_label (Phase 5)"
         if spec.status == "retired":
             assert spec.weight_in_pillar == 0 and spec.retired_reason, (
                 f"{spec.id}: retired entries carry weight 0 and a reason")
@@ -357,6 +385,12 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
             f"strings.{gone} was retired after Phase 4e (About us links it in its copy)")
     for need_key in ("credits_data_more", "credits_photos_more"):
         assert "{n}" in strings[need_key], f"strings.{need_key} carries its count, {{n}}"
+    # Phase 5 (design audit): the redesign's strings, each template with
+    # the slots its page fills from served values
+    for need_key, slots in PHASE5_STRINGS.items():
+        assert strings.get(need_key), f"strings.{need_key} is required (Phase 5)"
+        for slot in slots:
+            assert "{" + slot + "}" in strings[need_key], f"strings.{need_key} carries {{{slot}}}"
     # Phase 4b (ADR 0018 amended, Nathan's changes): the panel's two
     # section headings and the overall score's label; race is one select
     # defaulting to prefer_not_to_say, the panel carries no inline note,

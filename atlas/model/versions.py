@@ -5,6 +5,24 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.2.1 — Phase 5 (the design audit of 8 October 2026, Nathan's decision
+4): the movers line changes shape. It names at most two pluses, largest
+first, and then the single biggest eligible minus (explain.pick_movers;
+MAX_PLUSES, MAX_MINUSES), and reads "Biggest pluses: X, Y · Biggest minus:
+Z" — "Biggest minus: Z" alone when nothing is a plus — instead of "... · Z
+counts against it", which disagreed with plural phrases ("Walkable
+neighbourhoods counts against it") and could hide a city's main downside
+behind three pluses (San Francisco named no minus, though rent cost it 3.6
+points). The m4.1.1 sides rule, TOP_STATS_MIN_POINTS and the merged price
+levels are unchanged. The pick is also served as data, `movers` ([{key,
+sign}]) beside top_stats and summary_line, for the result chips; the
+registry gains each mover's chip_label and writes "walkable
+neighborhoods". No score, rank, figure, band or suppression moves; only
+which items a line names, its wording, top_stats and movers. The data
+files are unchanged, so the build keeps its id (63c4e5fa51bf) with its
+manifest refreshed. Goldens regenerated: the summary lines, beside the
+version line.
+
 m4.2.0 — Phase 4e (Nathan's rule, 2026-10-03): a new definition of a nice
 day. A day counts when it meets all six of: an average temperature,
 (TMAX + TMIN) / 2, between 55 and 75°F inclusive; a high below 85°F; a low
@@ -324,5 +342,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m4.2.0"
+MODEL_VERSION = "m4.2.1"
 SCHEMA_VERSION = "cube-v1"

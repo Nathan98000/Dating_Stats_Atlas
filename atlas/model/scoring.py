@@ -57,7 +57,7 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import format_value, movers, summary_line
+from atlas.model.explain import format_value, movers, served_movers, summary_line
 from atlas.model.loader import Build, reduced_key
 from atlas.model.preferences import (INCOME_FLOORS, PILLARS, SEX_LEVELS, Request,
                                      axis_vectors, balance_masks_for, pool_mask,
@@ -789,6 +789,8 @@ def ranked_row(build: Build, fr: dict, bal: dict, mt: dict, sc: dict,
     mv = movers(row, build.legend, build.manifest["standing_bands"]["keys"])
     row["top_stats"] = [fid for m in mv for fid in m["ids"]]
     row["summary_line"] = summary_line(mv)
+    # m4.2.1: the pick as data, for the result chips
+    row["movers"] = served_movers(mv)
     return row
 
 

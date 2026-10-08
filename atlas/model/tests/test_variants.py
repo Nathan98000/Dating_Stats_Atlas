@@ -11,8 +11,8 @@ import numpy as np
 import pytest
 
 from atlas import model as engine
-from atlas.model.explain import (TOP_STATS_MAX, mover_units, pick_movers, summary_line,
-                                 unit_contributions)
+from atlas.model.explain import (TOP_STATS_MAX, mover_units, pick_movers, served_movers,
+                                 summary_line, unit_contributions)
 from atlas.model.scoring import scored_features
 from atlas.model.variants import (EDU_KEYS, RACE_KEYS, _explain_codes, _explain_entry,
                                   _explain_key, _explain_of_key, _round_list, _unit_sums,
@@ -70,7 +70,8 @@ def test_movers_encoding_is_explains_rule(build):
     """The vectorised movers (explain codes) pick the items explain.movers
     picks, in its order — the price pair added as one item, an item whose
     sign contradicts its card left out — and the code's entry is the line
-    and top_stats built from the row's own stats (m4.1.1)."""
+    and top_stats built from the row's own stats (m4.1.1), and the served
+    movers (m4.2.1: two pluses at most, then the biggest minus)."""
     rng = np.random.default_rng(11)
     ids = [f["id"] for f in scored_features(build)]
     units = mover_units(ids, build.legend)
@@ -89,6 +90,9 @@ def test_movers_encoding_is_explains_rule(build):
         entry = _explain_entry(_explain_of_key(int(keys[i]), TOP_STATS_MAX), units)
         assert entry["top_stats"] == [fid for m in moved for fid in m["ids"]]
         assert entry["summary_line"] == summary_line(moved)
+        assert entry["movers"] == served_movers(moved)
+        signs = [m["sign"] for m in entry["movers"]]
+        assert signs.count(1) <= 2 and signs.count(-1) <= 1 and signs == sorted(signs, reverse=True)
 
 
 def test_no_about_you_detail_in_the_request_shape(build):

@@ -359,6 +359,7 @@ def build(out_root=None) -> str:
                    "unit_short": f.unit_short,
                    "unit_template": f.unit_template,
                    "mover_phrase": f.mover_phrase,
+                   "chip_label": f.chip_label,
                    "stat_page_name": f.stat_page_name,
                    "stat_page_note": f.stat_page_note,
                    "band_direction": f.band_direction,

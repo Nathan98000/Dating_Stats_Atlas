@@ -17,7 +17,7 @@ The response sends what no variant changes once:
   ranked      rows in the DEFAULT variant's order (own sex opposite the
               sought sex, education not given, race off), each without
               the parts a variant changes: rank, score, score_display,
-              top_stats and summary_line are absent; the match block keeps
+              top_stats, summary_line and movers are absent; the match block keeps
               `available` and `unit_line`; the compatibility figure's stats
               entry keeps id, pillar and weight; the match pillar's
               contribution has value null. The balance block travels in
@@ -31,8 +31,10 @@ The response sends what no variant changes once:
               same_sex_note    the sentence a same-sex figure's box carries
               match_bands      the five bands {key, label, tone} of the
                                figure's within-search standing
-              explain          the distinct {top_stats, summary_line}
-                               pairs the variants' rows point at
+              explain          the distinct {top_stats, summary_line,
+                               movers} entries the variants' rows point
+                               at (movers since m4.2.1: [{key, sign}],
+                               the pick the line names, as data)
               balance          balance_words (sought sex, other sex: the
                                key "seeker" names the other sex, the
                                seeker's own on an opposite-sex search)
@@ -64,8 +66,8 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import (TOP_STATS_MAX, TOP_STATS_MIN_POINTS, mover_sides, mover_units,
-                                 summary_line)
+from atlas.model.explain import (MAX_MINUSES, MAX_PLUSES, TOP_STATS_MAX, TOP_STATS_MIN_POINTS,
+                                 mover_sides, mover_units, served_movers, summary_line)
 from atlas.model.loader import Build
 from atlas.model.preferences import EDU_LEVELS, SEX_LEVELS, SPEC_RACE, Request, seeker_weights
 from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _card_stats, _match_from, _match_parts,
@@ -79,7 +81,7 @@ RACE_KEYS = ["off", *SPEC_RACE]
 # the fields of a ranked row that a variant sets (the selector's list);
 # since m4.1.0 balance is not one of them (ADR 0004 amended) — it travels
 # once, column-wise, in variants.balance
-VARIANT_ROW_FIELDS = ("rank", "score", "score_display", "top_stats", "summary_line")
+VARIANT_ROW_FIELDS = ("rank", "score", "score_display", "top_stats", "summary_line", "movers")
 # the per-variant columns, field by field (variants.columns[name][variant]
 # [position in that variant's rank order]) — field-major, so like values
 # sit together and compress well
@@ -168,17 +170,32 @@ def _explain_codes(Cu: np.ndarray, S: np.ndarray) -> np.ndarray:
     """The movers of every row from its items' contributions Cu (n, U; NaN
     where an item's stats are all missing) and its cards' sides S (n, U):
     explain.pick_movers' rule — an item whose sign contradicts its card is
-    left out; then |contribution| at least TOP_STATS_MIN_POINTS, largest
-    first, ties in item order, at most TOP_STATS_MAX — as codes
-    (item + 1) * 2 + (1 if a plus), 0 where there are fewer movers."""
+    left out; of the rest with |contribution| at least
+    TOP_STATS_MIN_POINTS, taken largest first (ties in item order), at most
+    MAX_PLUSES pluses and then the biggest minus (m4.2.1) — as codes
+    (item + 1) * 2 + (1 if a plus), in that order, 0 where there are fewer
+    movers (TOP_STATS_MAX columns)."""
+    n, U = Cu.shape
     absC = np.abs(Cu)
     eligible = (absC >= TOP_STATS_MIN_POINTS) & ~(Cu * S < 0)    # NaN -> False
     key = np.where(eligible, -absC, np.inf)
-    order = np.argsort(key, axis=1, kind="stable")[:, :TOP_STATS_MAX]
-    rows = np.arange(Cu.shape[0])[:, None]
+    order = np.argsort(key, axis=1, kind="stable")              # largest first
+    rows = np.arange(n)[:, None]
     ok = eligible[rows, order]
-    plus = Cu[rows, order] > 0
-    return np.where(ok, (order + 1) * 2 + plus, 0)
+    plus = ok & (Cu[rows, order] > 0)
+    minus = ok & (Cu[rows, order] < 0)
+    # each item's place among its own sign, in that order
+    take_plus = plus & (np.cumsum(plus, axis=1) <= MAX_PLUSES)
+    take_minus = minus & (np.cumsum(minus, axis=1) <= MAX_MINUSES)
+    codes = np.zeros((n, TOP_STATS_MAX), dtype=np.int64)
+    filled = np.zeros(n, dtype=np.int64)
+    for take, is_plus in ((take_plus, 1), (take_minus, 0)):
+        for p in range(U):
+            hit = take[:, p]
+            r = np.nonzero(hit)[0]
+            codes[r, filled[r]] = (order[r, p] + 1) * 2 + is_plus
+            filled[r] += 1
+    return codes
 
 
 EXPLAIN_BASE = 64      # codes (item + 1) * 2 + sign stay below this
@@ -201,15 +218,16 @@ def _explain_of_key(key: int, width: int) -> tuple[int, ...]:
 
 
 def _explain_entry(code: tuple[int, ...], units: list[dict]) -> dict:
-    """top_stats and summary_line for one movers code, through the same
-    function rank() uses: the movers go in with their order and signs
+    """top_stats, summary_line and movers for one movers code, through the
+    same functions rank() uses: the movers go in with their order and signs
     (summary_line reads nothing else — pluses in order, the first minus)."""
     moved = []
     for p, c in enumerate(x for x in code if x):
         u, is_plus = c // 2 - 1, bool(c % 2)
         moved.append({"phrase": units[u]["phrase"], "ids": units[u]["ids"],
                       "contribution": (1.0 if is_plus else -1.0) * (TOP_STATS_MAX - p)})
-    return {"top_stats": [fid for m in moved for fid in m["ids"]], "summary_line": summary_line(moved)}
+    return {"top_stats": [fid for m in moved for fid in m["ids"]], "summary_line": summary_line(moved),
+            "movers": served_movers(moved)}
 
 
 def _strip_row(row: dict) -> dict:
@@ -445,6 +463,7 @@ def select_variant(resp: dict, sex: str | None = None, education: str | None = N
         ex = V["explain"][col["explain"][p]]
         row["top_stats"] = ex["top_stats"]
         row["summary_line"] = ex["summary_line"]
+        row["movers"] = ex["movers"]
         rows.append(row)
     if resp.get("sort") == "worst_first":
         rows.reverse()

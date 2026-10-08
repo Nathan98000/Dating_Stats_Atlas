@@ -1,5 +1,5 @@
 {
- "model_version": "m4.2.0",
+ "model_version": "m4.2.1",
  "fixture_of": "63c4e5fa51bf",
  "vectors": [
   {
@@ -88,8 +88,8 @@
      "38300": 94.99
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Everyday prices counts against it",
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods \u00b7 Rent counts against it",
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
      "12420": "Biggest pluses: everyday prices, the student crowd"
     },
     "shown_unranked_cbsas": [],
@@ -226,9 +226,9 @@
      "28660": 93.61
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
-     "11460": "Biggest pluses: the compatibility figure, the student crowd \u00b7 The size of the pool counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "11460": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Biggest minus: The size of the pool"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -327,9 +327,9 @@
      "12060": 93.79
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Everyday prices counts against it",
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods \u00b7 Rent counts against it",
-     "47900": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Places to go out counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "47900": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Places to go out"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -453,9 +453,9 @@
      "39340": 103.34
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 The compatibility figure counts against it",
-     "38300": "Biggest pluses: rent, places to go out \u00b7 The size of the pool counts against it",
-     "12060": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Walkable neighbourhoods counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: The compatibility figure",
+     "38300": "Biggest pluses: rent, places to go out \u00b7 Biggest minus: The size of the pool",
+     "12060": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Walkable neighborhoods"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -538,9 +538,9 @@
      "47900": 97.33
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
-     "12060": "Biggest pluses: the compatibility figure \u00b7 The size of the pool counts against it",
-     "47900": "The compatibility figure counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "12060": "Biggest pluses: the compatibility figure, everyday prices \u00b7 Biggest minus: The size of the pool",
+     "47900": "Biggest minus: The compatibility figure"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -646,9 +646,9 @@
      "12060": 94.56
     },
     "summary_lines": {
-     "41940": "Biggest pluses: the compatibility figure, the size of the pool, walkable neighbourhoods",
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Everyday prices counts against it",
-     "47900": "Biggest pluses: the compatibility figure \u00b7 Places to go out counts against it"
+     "41940": "Biggest pluses: the compatibility figure, the size of the pool \u00b7 Biggest minus: Rent",
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "47900": "Biggest pluses: the compatibility figure \u00b7 Biggest minus: Places to go out"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -749,9 +749,9 @@
      "12060": 94.38
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, the compatibility figure, places to go out",
-     "12420": "Biggest pluses: the compatibility figure, everyday prices, the student crowd",
-     "41940": "Biggest pluses: walkable neighbourhoods \u00b7 The size of the pool counts against it"
+     "35620": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Everyday prices",
+     "12420": "Biggest pluses: the compatibility figure, everyday prices",
+     "41940": "Biggest pluses: walkable neighborhoods, the weather \u00b7 Biggest minus: The size of the pool"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -869,9 +869,9 @@
      "12060": 92.16
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Everyday prices counts against it",
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods \u00b7 Rent counts against it",
-     "47900": "Biggest pluses: the size of the pool \u00b7 Places to go out counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "47900": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Places to go out"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -1047,9 +1047,9 @@
      "33460": 90.14
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Everyday prices counts against it",
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods \u00b7 The size of the pool counts against it",
-     "47900": "Biggest pluses: the size of the pool \u00b7 Places to go out counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: The size of the pool",
+     "47900": "Biggest pluses: the size of the pool, walkable neighborhoods \u00b7 Biggest minus: Places to go out"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {
@@ -1186,9 +1186,9 @@
      "39340": 66.47
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out, walkable neighbourhoods",
-     "12420": "Biggest pluses: the compatibility figure, everyday prices, places to go out",
-     "47900": "Biggest pluses: the size of the pool, the compatibility figure, walkable neighbourhoods"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "12420": "Biggest pluses: the compatibility figure, everyday prices",
+     "47900": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Rent"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -1314,9 +1314,9 @@
      "26580": 83.25
     },
     "summary_lines": {
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
-     "11460": "Biggest pluses: the compatibility figure, the student crowd, everyday prices",
-     "12420": "Biggest pluses: everyday prices, the compatibility figure, places to go out"
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "11460": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Biggest minus: Rent",
+     "12420": "Biggest pluses: everyday prices, the compatibility figure"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -1442,9 +1442,9 @@
      "26580": 83.25
     },
     "summary_lines": {
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
-     "11460": "Biggest pluses: the compatibility figure, the student crowd, everyday prices",
-     "12420": "Biggest pluses: everyday prices, the compatibility figure, places to go out"
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "11460": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Biggest minus: Rent",
+     "12420": "Biggest pluses: everyday prices, the compatibility figure"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -1571,9 +1571,9 @@
      "26580": 36.96
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out, the compatibility figure",
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
-     "12420": "Biggest pluses: everyday prices, places to go out, the size of the pool"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "12420": "Biggest pluses: everyday prices, places to go out"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -1698,9 +1698,9 @@
      "11460": 89.18
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 The compatibility figure counts against it",
-     "38300": "Biggest pluses: places to go out, rent, the compatibility figure",
-     "12060": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Walkable neighbourhoods counts against it"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: The compatibility figure",
+     "38300": "Biggest pluses: places to go out, rent",
+     "12060": "Biggest pluses: the size of the pool, the compatibility figure \u00b7 Biggest minus: Walkable neighborhoods"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -1832,9 +1832,9 @@
      "26580": 89.24
     },
     "summary_lines": {
-     "11460": "Biggest pluses: the compatibility figure, the student crowd \u00b7 The size of the pool counts against it",
-     "12420": "Biggest pluses: everyday prices, the compatibility figure, the student crowd",
-     "41940": "Biggest pluses: the compatibility figure \u00b7 Rent counts against it"
+     "11460": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Biggest minus: The size of the pool",
+     "12420": "Biggest pluses: everyday prices, the compatibility figure",
+     "41940": "Biggest pluses: the compatibility figure, the student crowd \u00b7 Biggest minus: Rent"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -1962,9 +1962,9 @@
      "28660": 94.91
     },
     "summary_lines": {
-     "35620": "Biggest pluses: the size of the pool, places to go out, the weather",
-     "12420": "Biggest pluses: the compatibility figure, everyday prices, the weather",
-     "38300": "Biggest pluses: places to go out, the compatibility figure, rent"
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "12420": "Biggest pluses: the compatibility figure, everyday prices",
+     "38300": "Biggest pluses: places to go out, the compatibility figure"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {},
@@ -2076,9 +2076,9 @@
      "39340": 92.23
     },
     "summary_lines": {
-     "41940": "Biggest pluses: the compatibility figure, walkable neighbourhoods, places to go out",
-     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Everyday prices counts against it",
-     "38300": "Biggest pluses: rent, places to go out \u00b7 The size of the pool counts against it"
+     "41940": "Biggest pluses: the compatibility figure, walkable neighborhoods \u00b7 Biggest minus: Rent",
+     "35620": "Biggest pluses: the size of the pool, places to go out \u00b7 Biggest minus: Everyday prices",
+     "38300": "Biggest pluses: rent, places to go out \u00b7 Biggest minus: The size of the pool"
     },
     "shown_unranked_cbsas": [],
     "suppressed": {

@@ -57,7 +57,7 @@ What you tell the site about yourself stays in your browser. The
 The site's text, design, code and figures belong to Dating Stats Atlas.
 Its data and photos come from public sources; both are credited in the
 [About page, Sources and credits](/about#sources-and-credits), and each
-photograph may be reused under the licence listed there. Links to other
+photograph may be reused under the license listed there. Links to other
 websites are there for convenience; we don't control those sites and
 aren't responsible for them.
 
