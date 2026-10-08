@@ -14,7 +14,8 @@ ADR 0011 test search (stability_gate.test_searches):
            the columns' explain) and any `score_median` taken off the
            variant list: everything a number lives in
   rank     the digests of rank() for the search's seeker as either sex,
-           each row's top_stats, summary_line and movers taken out
+           each row's top_stats, summary_line and movers taken out, and
+           its score_median
   lines    the default variant's summary lines in its order
 
 and, beside them, the digest of POST /v1/profile for every metro, of GET
@@ -103,6 +104,7 @@ def record(build_dir: str, out_path: str) -> None:
             b = copy.deepcopy(body)
             b["self"]["sex"], b["seeking"]["sex"] = s, sought
             res = engine.rank(build, engine.parse_request(b))
+            res.pop("score_median", None)            # commit I's new field
             for row in res["ranked"]:
                 for k in EXPLAIN_ROW:
                     row.pop(k, None)

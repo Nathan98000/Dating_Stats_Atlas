@@ -44,7 +44,9 @@ The response sends what no variant changes once:
                                0004 amended) balance does not depend on
                                the visitor
               list             per variant: key, sex, education,
-                               race_ethnicity, match_inputs
+                               race_ethnicity, match_inputs, and (Phase 5)
+                               score_median {value, display}, the median
+                               score of the ranked set, or null
               columns          field by field, per variant, the rows in
                                that variant's rank order: order (each row's
                                position in `ranked`), rank, score,
@@ -73,8 +75,8 @@ from atlas.model.preferences import EDU_LEVELS, SEX_LEVELS, SPEC_RACE, Request, 
 from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _card_stats, _match_from, _match_parts,
                                  _pct_rank, balance_parts, feature_reference, match_inputs,
                                  match_normalised, match_scoring_spec, race_used, ranked_row,
-                                 same_sex_note, score_components, score_from, search_frame,
-                                 suppressed_row)
+                                 same_sex_note, score_components, score_from, score_median,
+                                 search_frame, suppressed_row)
 
 EDU_KEYS = ["none", *EDU_LEVELS]
 RACE_KEYS = ["off", *SPEC_RACE]
@@ -281,7 +283,10 @@ def rank_variants(build: Build, req: Request) -> dict:
                        "race_ethnicity": None if rk == "off" else rk,
                        "match_inputs": match_inputs(build, None if ek == "none" else ek,
                                                     None if rk == "off" else SPEC_RACE[rk],
-                                                    mts[v]["national_rate"], same)})
+                                                    mts[v]["national_rate"], same),
+                       # Phase 5 (commit I): set below with the variant's
+                       # scores; none when nothing is ranked
+                       "score_median": None})
     le = build.legend["match_propensity"]
     bands = build.manifest["standing_bands"]
     out = {"counts": {"universe": int(universe.sum()),
@@ -360,6 +365,7 @@ def rank_variants(build: Build, req: Request) -> dict:
             ref[jm] = feature_reference(z, jm)
             sc = score_from(z, w_eff, ref)
             assert np.array_equal(sc["contrib"][:, others], contrib0[:, others], equal_nan=True)
+            listed[v]["score_median"] = score_median(sc["score"])
             st = _pct_rank(m)
             # this variant's rows in its own rank order (the columns below
             # follow it; `order` names each row's position in `ranked`)
@@ -469,7 +475,8 @@ def select_variant(resp: dict, sex: str | None = None, education: str | None = N
         rows.reverse()
     out = {k: val for k, val in resp.items() if k not in ("ranked", "suppressed", "variants")}
     out.update({"balance_words": bal["balance_words"],
-                "match_inputs": v["match_inputs"], "ranked": rows,
+                "match_inputs": v["match_inputs"], "score_median": v.get("score_median"),
+                "ranked": rows,
                 "suppressed": [{**row, "balance": bal["suppressed"][j]}
                                for j, row in enumerate(resp["suppressed"])]})
     return out

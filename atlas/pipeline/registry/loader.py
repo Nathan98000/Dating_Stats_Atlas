@@ -149,7 +149,7 @@ PHASE5_STRINGS = {
     "footer_terms": (), "footer_sources": (), "compare_edge": (), "compare_edge_note": (),
     "compare_top_two": ("a", "b"), "title_site": (), "title_template": ("page",),
     "title_compare_pair": ("a", "b"), "title_stat": ("stat",), "title_privacy": (), "title_terms": (),
-    "not_found_title": (), "not_found_body": (),
+    "not_found_title": (), "not_found_body": (), "score_median_caption": ("n",),
 }
 
 

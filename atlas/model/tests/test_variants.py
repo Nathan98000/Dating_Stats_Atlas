@@ -107,3 +107,24 @@ def test_no_about_you_detail_in_the_request_shape(build):
     import base64
     core = json.loads(base64.urlsafe_b64decode(token + "=" * (-len(token) % 4)))
     assert core["self"] == {"age": 30}
+
+
+def test_score_median_is_the_middle_of_each_variants_ranked_scores(build):
+    """Phase 5 (commit I): each variant carries the median overall score of
+    the cities ranked for the search, from the same unrounded scores the
+    rows' scores round — value to one decimal, display a whole number —
+    and select_variant hands it on; nothing else moves."""
+    resp = rank_variants(build, engine.parse_request(BODY))
+    for vi, v in enumerate(resp["variants"]["list"]):
+        sex, edu, race = v["sex"], v["education"], v["race_ethnicity"]
+        me = {"sex": sex, "age": BODY["self"]["age"]}
+        if edu:
+            me["education"] = edu
+        if race:
+            me["race_ethnicity"] = race
+        want = engine.rank(build, engine.parse_request({**BODY, "self": me}))
+        assert v["score_median"] == want["score_median"]
+        scores = [r["score"] for r in want["ranked"]]
+        assert abs(v["score_median"]["value"] - float(np.median(scores))) <= 0.051
+        assert abs(float(v["score_median"]["display"]) - v["score_median"]["value"]) <= 0.5
+        assert select_variant(resp, sex, edu, race)["score_median"] == v["score_median"]

@@ -97,7 +97,9 @@ removal — both noted here as the contract docs):
     gains `movers`, [{key, sign}], the pick as data: key the item's first
     stat id, sign +1 or -1. /v1/meta's features gain chip_label, and its
     strings the redesign's labels. No score, rank, figure, band or
-    suppression changes.
+    suppression changes. Phase 5 commit I (ADR 0018 amended): each
+    variants.list entry gains score_median {value, display}, the median
+    overall score of the ranked set (rank() returns it too).
 """
 from __future__ import annotations
 

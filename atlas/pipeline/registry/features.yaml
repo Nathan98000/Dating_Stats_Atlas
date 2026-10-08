@@ -475,6 +475,9 @@ strings:
   title_stat: "{stat} by city"
   title_privacy: "Privacy"
   title_terms: "Terms"
+  # Phase 5 commit I: the caption under the median tick on the score
+  # tracks ({n}: the served score_median display)
+  score_median_caption: "median {n}"
   # the 404 page (drafts: not in the brief's copy table)
   not_found_title: "Page not found"
   not_found_body: "There is no page at this address."

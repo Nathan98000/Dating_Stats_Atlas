@@ -219,7 +219,7 @@ def test_every_variant_equals_the_single_seeker_ranking(client):
                         row["match"].pop("moe")
                     got = api.engine.select_variant(resp, sex, edu, race)
                     for k in ("counts", "weights", "balance_words",
-                              "match_inputs", "ranked", "suppressed"):
+                              "match_inputs", "score_median", "ranked", "suppressed"):
                         assert got[k] == want[k], (sex, ek, rk, k)
                     assert "balance_applies" not in got and "balance_applies" not in want
 

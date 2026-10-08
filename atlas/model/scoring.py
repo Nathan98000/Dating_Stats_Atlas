@@ -817,6 +817,16 @@ def suppressed_row(build: Build, fr: dict, bal: dict, i: int) -> dict:
 MATCH_COLUMN = 1
 
 
+def score_median(score: np.ndarray) -> dict:
+    """Phase 5 (commit I): the median overall score of the cities ranked
+    for a search — the middle the score tracks mark — computed beside the
+    scores from the same unrounded values: {value} to one decimal like
+    `score`, {display} a whole number like `score_display`. Presentation
+    context only: nothing ranks, scores or selects by it."""
+    m = float(np.median(score))
+    return {"value": round(m, 1), "display": str(int(np.rint(m)))}
+
+
 def rank(build: Build, req: Request) -> dict:
     """One ranking for one fully specified seeker — the reference every
     "about you" variant of the m4.0.0 response is checked against
@@ -841,10 +851,12 @@ def rank(build: Build, req: Request) -> dict:
            "match_inputs": match_inputs(build, req.self_edu,
                                         req.self_race if race_used(build, same_sex) else None,
                                         mt["national_rate"], same_sex),
-           "ranked": [], "shown_unranked": [], "suppressed": []}
+           "ranked": [], "shown_unranked": [], "suppressed": [],
+           "score_median": None}
     if len(ridx):
         match_scored = mt["index"][ridx]
         sc = score_components(build, ridx, fr["est"][ridx], match_scored, fr["weights"])
+        out["score_median"] = score_median(sc["score"])
         raw = sc["raw"]
         standing = np.column_stack([_pct_rank(raw[:, j])
                                     for j in range(raw.shape[1])])

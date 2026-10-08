@@ -52,7 +52,8 @@ export function CityVariantPart({
             <span className="font-display text-data-xl" data-testid="score">{ranked.score_display}</span>
             <span className="text-body-sm font-medium text-ink-3">{policy.score_out_of}</span>
           </p>
-          <ScoreTrack score={ranked.score} className="h-1.5 w-full" />
+          <ScoreTrack score={ranked.score} className="h-1.5 w-full" median={sel.score_median}
+            medianCaption={policy.score_median_caption} />
           <span className="text-caption font-semibold text-ink-2" data-testid="score-label">
             {policy.overall_score_label}
           </span>

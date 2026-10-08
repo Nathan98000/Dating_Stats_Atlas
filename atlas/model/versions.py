@@ -21,7 +21,9 @@ neighborhoods". No score, rank, figure, band or suppression moves; only
 which items a line names, its wording, top_stats and movers. The data
 files are unchanged, so the build keeps its id (63c4e5fa51bf) with its
 manifest refreshed. Goldens regenerated: the summary lines, beside the
-version line.
+version line. Phase 5's commit I adds one served field in the same
+release: each variant's score_median {value, display}, the median overall
+score of the ranked set (ADR 0018 amended); no golden moves for it.
 
 m4.2.0 — Phase 4e (Nathan's rule, 2026-10-03): a new definition of a nice
 day. A day counts when it meets all six of: an average temperature,

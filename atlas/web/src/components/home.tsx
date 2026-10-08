@@ -334,7 +334,7 @@ export function Home({
               <NarrowState prefs={prefs} meta={meta} onWiden={onChange} />
             ) : (
               <>
-                <div className="flex flex-wrap items-end justify-between gap-4 pb-4 max-sm:flex-col max-sm:items-start">
+                <div className="flex flex-wrap items-end justify-between gap-4 pb-3 max-sm:flex-col max-sm:items-start">
                   <div className="flex max-w-[60ch] flex-col">
                     <p className="text-overline uppercase text-ink-3">{policy.results_eyebrow}</p>
                     <h2 id="results-heading" className="mt-1 font-display text-h2" data-testid="list-heading">
@@ -362,7 +362,7 @@ export function Home({
                     onChange={(v) => onChange({ ...prefs, sort: v as Prefs["sort"] })}
                   />
                 </div>
-                <div aria-hidden="true" className={pending ? "progress-line mb-4" : "mb-4 h-0.5"} data-testid="pending-line" />
+                <div aria-hidden="true" className={pending ? "progress-line mb-3" : "mb-3 h-0.5"} data-testid="pending-line" />
                 <p className="sr-only" aria-live="polite" data-testid="results-live">{live}</p>
 
                 <div ref={listRef} data-testid="ranked-list" data-variant="">
@@ -375,6 +375,7 @@ export function Home({
                         href={cityHref(row.slug)}
                         sought={short.sought}
                         photo={photos[row.slug]}
+                        median={selected.score_median}
                       />
                     ))}
                   </ol>

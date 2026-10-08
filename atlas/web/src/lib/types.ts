@@ -188,6 +188,9 @@ export interface RankResponse {
    * balance_applies */
   balance_words: { sought: string; seeker: string };
   match_inputs: MatchInputs;
+  /** Phase 5 (commit I): the median overall score of the ranked set, for
+   * the tick on the score tracks; null when nothing is ranked */
+  score_median: ScoreMedian | null;
   ranked: RankedRow[];
   shown_unranked: RankedRow[];
   suppressed: SuppressedRow[];
@@ -236,6 +239,14 @@ export interface VariantInfo {
   education: string | null;
   race_ethnicity: string | null;
   match_inputs: MatchInputs;
+  score_median: ScoreMedian | null;
+}
+
+/** The median score: `value` to one decimal like a row's score, `display`
+ * a whole number like its score_display. */
+export interface ScoreMedian {
+  value: number;
+  display: string;
 }
 
 export interface Variants {

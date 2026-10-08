@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { Meta, RankedRow } from "@/lib/types";
+import type { Meta, RankedRow, ScoreMedian } from "@/lib/types";
 import { divergingBar, fill } from "@/lib/results";
 import { signedPoints } from "@/lib/format";
 import { BalanceTrack } from "./balance-track";
@@ -9,13 +9,37 @@ import { WhyChips } from "./why-chips";
 
 /** A score's 0-100 track: --sunken, filled in the accent to the served
  * score (presentation scaling of the served value). */
-export function ScoreTrack({ score, className }: { score: number; className: string }) {
+export function ScoreTrack({ score, className, median, medianCaption }: {
+  score: number;
+  className: string;
+  /** Phase 5 (commit I): the served median score, marked by a tick */
+  median?: ScoreMedian | null;
+  /** the registry's "median {n}" template, for the caption under the tick */
+  medianCaption?: string;
+}) {
+  const at = (v: number) => `${Math.min(100, Math.max(0, v))}%`;
   return (
-    <div aria-hidden="true" className={`relative overflow-hidden rounded-full bg-sunken ${className}`}>
-      <div
-        className="absolute inset-y-0 left-0 rounded-full bg-accent"
-        style={{ width: `${Math.min(100, Math.max(0, score))}%` }}
-      />
+    <div className={median ? "pb-5" : undefined}>
+      <div aria-hidden="true" className={`relative rounded-full bg-sunken ${className}`}>
+        <div className="absolute inset-y-0 left-0 rounded-full bg-accent" style={{ width: at(score) }} />
+        {median && (
+          <>
+            <span
+              className="absolute -top-[3px] h-3 w-0.5 -translate-x-1/2 rounded-xs bg-ink-3"
+              style={{ left: at(median.value) }}
+              data-testid="median-tick"
+            />
+            {medianCaption && (
+              <span
+                className="absolute top-3 -translate-x-1/2 whitespace-nowrap text-overline font-normal tracking-normal text-ink-3"
+                style={{ left: at(median.value) }}
+              >
+                {fill(medianCaption, { n: median.display })}
+              </span>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -31,12 +55,14 @@ export function FeaturedCard({
   href,
   sought,
   photo,
+  median,
 }: {
   row: RankedRow;
   meta: Meta;
   href: string;
   sought: string;
   photo?: { src: string; alt: string };
+  median?: ScoreMedian | null;
 }) {
   const s = meta.policy_strings;
   const top = row.rank <= 3;
@@ -80,7 +106,8 @@ export function FeaturedCard({
             <span className="text-caption text-ink-3">{fill(s.pool_short_unit, { sought })}</span>
           </p>
         </div>
-        <ScoreTrack score={row.score} className="h-1.5 w-full" />
+        <ScoreTrack score={row.score} className="h-1.5 w-full" median={median}
+          medianCaption={s.score_median_caption} />
         <WhyChips movers={row.movers} meta={meta} />
         <span className="sr-only">{row.summary_line}</span>
       </div>

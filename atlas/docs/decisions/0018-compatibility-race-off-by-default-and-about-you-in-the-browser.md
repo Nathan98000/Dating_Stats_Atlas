@@ -217,3 +217,18 @@ build, 5b780e4f2444, its manifest refreshed.
   sex still selects the compatibility figure and the ranking it feeds; the
   details still never leave the browser, and the response is smaller than
   m4.0.0's for every test search.
+
+## Amended in Phase 5 (8 October 2026): each variant carries its median score
+
+DRAFT for Nathan's approval (Phase 5, commit I). The featured cards and the city page draw a tick
+on the score track at the median overall score of the cities ranked for the search, so "77/100"
+reads against the middle of the list. The median is a number, so the API computes it: each entry
+of `variants.list` gains `score_median: {value, display}` — the median of that variant's
+unrounded ranked scores, `value` to one decimal like a row's `score`, `display` a whole number
+like its `score_display` (null when nothing is ranked). `rank()` returns the same field, and
+`select_variant` and `lib/variants.ts` hand it on, so the parity tests cover it. It is additive:
+no existing field changes, nothing ranks, scores or selects by it, and the visitor's own details
+still never leave the browser — the median of every variant travels, as everything else does.
+Over the 518 ADR 0011 test searches every other part of every /v1/rank response is unchanged
+(`results/phase5/served_numbers_commit_i.json`). The goldens do not move, so the field ships
+inside m4.2.1, the release Phase 5's commit C opened.

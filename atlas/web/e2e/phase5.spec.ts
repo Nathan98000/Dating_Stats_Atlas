@@ -315,3 +315,18 @@ test("the city page leads with the score; on a phone the map is a thumbnail besi
     await expect(page.getByTestId("locator-map")).toBeVisible();
   }
 });
+
+test("the score tracks mark the served median of the ranked cities", async ({ page, request }) => {
+  const r = await request.post("http://127.0.0.1:8600/v1/rank", { data: {
+    self: { age: 30 }, seeking: { sex: "male", age: [28, 40], marital: ["never_married", "previously_married"] } } });
+  const resp = await r.json();
+  const median = resp.variants.list[resp.variants.default].score_median;
+  expect(median.display).toMatch(/^\d+$/);
+  await page.goto(`/?${DEFAULT_QS}`);
+  const card = page.getByTestId("featured-card").first();
+  await expect(card.getByTestId("median-tick")).toHaveCount(1);
+  await expect(card).toContainText(`median ${median.display}`);
+  await page.goto(`/city/provo-utah?${DEFAULT_QS}`);
+  await expect(page.getByTestId("ranked-card").getByTestId("median-tick")).toHaveCount(1);
+  await expect(page.getByTestId("ranked-card")).toContainText(`median ${median.display}`);
+});

@@ -51,5 +51,12 @@
    "key": "strings.compare_diff_legend",
    "why": "commit F replaced the Difference column with Edge (compare_edge_note); still served so the D+E commit's compare page renders; retire with the next copy release"
   }
+ ],
+ "added_in_commit_i": [
+  {
+   "key": "strings.score_median_caption",
+   "new": "median {n}",
+   "why": "the brief's commit I: the caption under the median tick (a registry template)"
+  }
  ]
 }

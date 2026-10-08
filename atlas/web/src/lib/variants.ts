@@ -100,6 +100,7 @@ export function selectVariant(resp: VariantResponse, about: AboutYou): RankRespo
     shown_unranked: resp.shown_unranked,
     balance_words: bal.balance_words,
     match_inputs: V.list[vi].match_inputs,
+    score_median: V.list[vi].score_median ?? null,
     ranked: rows,
     suppressed: resp.suppressed.map((r, j) => ({ ...r, balance: bal.suppressed[j] })),
   };
