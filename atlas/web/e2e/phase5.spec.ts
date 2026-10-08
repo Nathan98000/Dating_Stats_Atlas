@@ -34,11 +34,12 @@ test("the #1 result is in the first screen", async ({ page }) => {
   }
 });
 
-test("at the desk the rail fits and rows 4-10 stay compact", async ({ page }) => {
+test("at the desk the rail fits the window (scrolling inside itself) and rows 4-10 stay compact", async ({ page }) => {
   test.skip(width(page) !== 1440, "the desk only");
   await home(page);
   const rail = page.getByTestId("rail");
-  expect(await rail.evaluate((el) => el.scrollHeight === el.clientHeight)).toBe(true);
+  expect(await rail.evaluate((el) => el.getBoundingClientRect().height)).toBeLessThanOrEqual(900 - 32);
+  expect(await rail.evaluate((el) => getComputedStyle(el).overflowY)).toBe("auto");
   const heights = await page.locator("li[data-rank]").evaluateAll((els) => els
     .filter((e) => { const r = Number(e.getAttribute("data-rank")); return r >= 4 && r <= 10; })
     .map((e) => e.getBoundingClientRect().height));
@@ -76,7 +77,13 @@ test("the expanded row: balance, compatibility, and what moved the score, every 
   const row = await expandRow(page, 4);
   const detail = row.getByTestId("row-detail");
   await expect(detail.getByTestId("balance-tally")).toContainText(/\d+ men per 100 women/);
-  await expect(detail.getByTestId("balance-tally")).toContainText(ps.balance_short_caption);
+  // after the Phase 5 report: the longer words sit behind the tiles'
+  // information boxes, the compatibility figure keeps none (Phase 4b)
+  await expect(detail.getByRole("button", { name: ps.balance_label })).toHaveCount(1);
+  await expect(detail.getByRole("button", { name: ps.moved_heading })).toHaveCount(1);
+  await expect(detail.getByTestId("match-figure").getByRole("button")).toHaveCount(0);
+  await expect(detail).not.toContainText(ps.moved_caption);
+  await expect(detail.getByRole("link", { name: /^Open .+ →$/ })).toBeVisible();
   await expect(detail.getByTestId("match-figure")).toContainText(ps.match_unit_line);
   await expect(detail).toContainText(ps.moved_heading);
   await expect(detail.getByTestId("moved-bars").locator("li")).toHaveCount(6);
@@ -329,4 +336,29 @@ test("the score tracks mark the served median of the ranked cities", async ({ pa
   await page.goto(`/city/provo-utah?${DEFAULT_QS}`);
   await expect(page.getByTestId("ranked-card").getByTestId("median-tick")).toHaveCount(1);
   await expect(page.getByTestId("ranked-card")).toContainText(`median ${median.display}`);
+});
+
+test("after the Phase 5 report: the cards' photo links to the city, no card shows the map, and the search bar carries no trust line", async ({ page, request }) => {
+  const ps = (await fetchMeta(request)).policy_strings;
+  await home(page, `?${DEFAULT_QS}`);
+  const cards = page.getByTestId("featured-card");
+  await expect(cards).toHaveCount(3);
+  for (let i = 0; i < 3; i++) {
+    const card = cards.nth(i);
+    const name = card.getByRole("heading").getByRole("link");
+    const photoLink = card.getByTestId("card-photo-link");
+    await expect(photoLink).toHaveAttribute("href", (await name.getAttribute("href"))!);
+    // a mouse route only: out of the tab order, hidden from screen readers
+    await expect(photoLink).toHaveAttribute("tabindex", "-1");
+    await expect(photoLink).toHaveAttribute("aria-hidden", "true");
+    await expect(card.locator('img[src^="/map/"]')).toHaveCount(0);
+    await expect(card).toContainText(ps.card_matches);
+    await expect(card).not.toContainText("single men match");
+  }
+  await cards.first().getByTestId("card-photo-link").click();
+  await expect(page).toHaveURL(/\/city\//);
+  await page.goBack();
+  const quick = page.getByTestId("quick-search");
+  await expect(quick).not.toContainText("We don't save your searches");
+  await expect(quick).not.toContainText("Census Bureau data");
 });

@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
 import type { Prefs } from "@/lib/prefs";
-import { AgeRange, LockIcon, MyAgeField } from "./panel";
+import { AgeRange, MyAgeField } from "./panel";
 
 /** Phase 5: the hero's quick search — today's four first controls, moved
  * (onSelfSex, onSeekSex, MyAgeField, AgeRange, and their test ids). From
@@ -13,7 +13,8 @@ import { AgeRange, LockIcon, MyAgeField } from "./panel";
  * age"); the sentence's words are what the eye reads beside it. The age
  * range opens a popover holding the two-handle AgeRange (Escape closes it
  * and focus returns to its button). "I'm a" keeps its data-variant
- * wrapper: the pre-paint veil (ADR 0018). */
+ * wrapper: the pre-paint veil (ADR 0018). After the Phase 5 report
+ * (Nathan): no trust line beside the sentence. */
 export function QuickSearch({
   prefs,
   meta,
@@ -80,10 +81,6 @@ export function QuickSearch({
             prefs={prefs} onChange={onChange} />
         </Slot>
       </div>
-      <p className="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-caption text-ink-3 max-sm:hidden" data-testid="trust-line">
-        <span className="flex items-center gap-1.5"><LockIcon />{s.trust_saved}</span>
-        <span>{s.trust_source}</span>
-      </p>
     </div>
   );
 }

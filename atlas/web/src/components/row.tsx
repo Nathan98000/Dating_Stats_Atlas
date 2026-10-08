@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import type { Meta, RankedRow, ScoreMedian } from "@/lib/types";
+import type { CardPhoto } from "@/lib/city-photos";
 import { divergingBar, fill } from "@/lib/results";
 import { signedPoints } from "@/lib/format";
 import { BalanceTrack } from "./balance-track";
+import { InfoTip } from "./info-tip";
 import { WhyChips } from "./why-chips";
 
 /** A score's 0-100 track: --sunken, filled in the accent to the served
@@ -44,24 +46,24 @@ export function ScoreTrack({ score, className, median, medianCaption }: {
   );
 }
 
-/** Phase 5: one of the top three, as a card — a photo slot (the city's
- * photograph only where it may be cropped, public domain or CC0, cover-
- * cropped; otherwise its locator map), a rank medallion (amber for the top
- * three ranks), the city, the score out of 100 with its track, the pool,
- * and the chips. */
+/** Phase 5: one of the top three, as a card — the city's photograph
+ * (cover-cropped where its licence allows, public domain or CC0; shown
+ * whole otherwise — never the locator map, after the Phase 5 report), a
+ * rank medallion (amber for the top three ranks), the city, the score out
+ * of 100 with its track, the pool, and the chips. The photograph links to
+ * the city's page too, as the name does (a second, mouse-only route: out
+ * of the tab order and hidden from screen readers, which have the name). */
 export function FeaturedCard({
   row,
   meta,
   href,
-  sought,
   photo,
   median,
 }: {
   row: RankedRow;
   meta: Meta;
   href: string;
-  sought: string;
-  photo?: { src: string; alt: string };
+  photo?: CardPhoto;
   median?: ScoreMedian | null;
 }) {
   const s = meta.policy_strings;
@@ -74,13 +76,22 @@ export function FeaturedCard({
       data-slug={row.slug}
       data-testid="featured-card"
     >
-      <div className="relative aspect-[16/10] bg-sunken max-sm:aspect-[2/1]">
-        {photo ? (
+      <Link
+        href={href}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="group relative block aspect-[16/10] overflow-hidden bg-sunken max-sm:aspect-[2/1]"
+        data-testid="card-photo-link"
+      >
+        {photo && (
           /* eslint-disable-next-line @next/next/no-img-element */
-          <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover" data-testid="card-photo" />
-        ) : (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img src={`/map/${row.cbsa}.svg`} alt="" className="h-full w-full object-contain p-3" data-testid="card-map" />
+          <img
+            src={photo.src}
+            alt=""
+            className={`h-full w-full transition-transform duration-300 group-hover:scale-[1.03] ${photo.fit === "cover" ? "object-cover" : "object-contain"}`}
+            data-testid="card-photo"
+            data-fit={photo.fit}
+          />
         )}
         <span
           aria-hidden="true"
@@ -88,7 +99,7 @@ export function FeaturedCard({
         >
           {row.rank}
         </span>
-      </div>
+      </Link>
       <div className="flex flex-1 flex-col gap-2.5 px-4 pb-[18px] pt-4">
         <h3 className="font-display text-h3">
           <span className="sr-only">Ranked {row.rank}: </span>
@@ -103,7 +114,7 @@ export function FeaturedCard({
           </p>
           <p className="flex flex-col items-end text-right">
             <span className="text-data-m">{row.pool.toLocaleString("en-US")}</span>
-            <span className="text-caption text-ink-3">{fill(s.pool_short_unit, { sought })}</span>
+            <span className="text-caption text-ink-3">{s.card_matches}</span>
           </p>
         </div>
         <ScoreTrack score={row.score} className="h-1.5 w-full" median={median}
@@ -214,10 +225,15 @@ function ToggleButton({ open, detailId, label, onToggle, className }: {
   );
 }
 
-/** A row's detail: the balance, the compatibility figure, and what moved
- * the score — the six pillar contributions the API served, as diverging
- * bars (±25 points spans the half-width, clamped), sorted by value. Every
- * number is served; the bars are presentation scaling. */
+/** A row's detail, after the Phase 5 report (Nathan: "a lot of text";
+ * make it friendlier): three small tiles, each led by one number or one
+ * picture — the balance (the served figure over its track), the
+ * compatibility figure against 100, and what moved the score (the six
+ * served pillar contributions as diverging bars, ±25 points to the edge,
+ * sorted) — with the longer explanations behind the tiles' information
+ * boxes (the compatibility figure keeps none, Phase 4b: the slider's box
+ * explains it), then the two actions as buttons. Every number is served;
+ * the bars are presentation scaling. */
 function RowDetail({ id, row, meta, href, onCompare }: {
   id: string; row: RankedRow; meta: Meta; href: string; onCompare: () => void;
 }) {
@@ -232,65 +248,72 @@ function RowDetail({ id, row, meta, href, onCompare }: {
   const city = row.display_name.split(",")[0];
   const match = row.match;
   return (
-    <div
-      id={id}
-      className="grid gap-7 bg-hover px-1 pb-5 pt-1 sm:grid-cols-[1fr_1fr_1.4fr] sm:pl-[70px] sm:pr-4"
-      data-testid="row-detail"
-    >
-      <section>
-        <h4 className="mb-2 text-caption font-semibold text-ink-2">{s.balance_label}</h4>
-        <BalanceTrack balance={row.balance} meta={meta} id={id} />
-      </section>
-      <section data-testid={match.available && match.display != null ? "match-figure" : undefined}>
-        <h4 className="mb-2 text-caption font-semibold text-ink-2">
-          {meta.features.match_propensity.display_name}
-        </h4>
-        {match.available && match.display != null ? (
-          <div>
-            <p className="flex flex-wrap items-baseline gap-x-2">
-              <span className="text-data-l" data-figure="">{match.display}</span>
-              <span className="text-caption text-ink-3">{match.unit_line}</span>
-            </p>
-            <p className="mt-1.5 text-caption text-ink-3">{meta.pillars.match?.definition}</p>
-          </div>
-        ) : (
-          <p className="text-body-sm text-ink-3">{s.card_missing}</p>
-        )}
-      </section>
-      <section>
-        <h4 className="text-caption font-semibold text-ink-2">{s.moved_heading}</h4>
-        <p className="mb-2 text-caption text-ink-3">{s.moved_caption}</p>
-        <ul className="flex flex-col gap-1" data-testid="moved-bars">
-          {parts.map((c) => {
-            const bar = divergingBar(c.value);
-            const plus = c.value >= 0;
-            return (
-              <li key={c.pillar} className="grid grid-cols-[96px_1fr_44px] items-center gap-2 text-caption">
-                <span className="text-ink-2">{label(c.pillar)}</span>
-                <span aria-hidden="true" className="relative h-2.5">
-                  <span className="absolute -inset-y-[3px] left-1/2 w-px bg-line-strong" />
-                  <span
-                    className={`absolute top-px h-2 rounded-xs ${plus ? "bg-good" : "bg-poor"}`}
-                    style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
-                  />
-                </span>
-                <span className={`text-right font-semibold ${plus ? "text-good-strong" : "text-poor-strong"}`}>
-                  {signedPoints(c.value)}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-        <p className="mt-3 flex flex-wrap gap-x-5 text-body-sm font-semibold">
-          <Link href={href} className="inline-flex min-h-11 items-center text-accent hover:text-accent-hover">
-            {fill(s.open_city, { city })}
-          </Link>
-          <button type="button" onClick={onCompare}
-            className="inline-flex min-h-11 items-center text-accent hover:text-accent-hover">
-            {s.compare_action}
-          </button>
-        </p>
-      </section>
+    <div id={id} className="bg-hover px-1 pb-5 pt-1 sm:pl-[70px] sm:pr-4" data-testid="row-detail">
+      <div className="grid gap-3 sm:grid-cols-[1fr_1fr_1.35fr]">
+        <Tile title={s.balance_label} tip={s.balance_caption} tipId={`${id}-bal-info`}>
+          <BalanceTrack balance={row.balance} meta={meta} id={id} tile />
+        </Tile>
+        <Tile title={meta.features.match_propensity.display_name}
+          testid={match.available && match.display != null ? "match-figure" : undefined}>
+          {match.available && match.display != null ? (
+            <>
+              <p className="text-data-l" data-figure="">{match.display}</p>
+              <p className="mt-1.5 text-caption text-ink-3">{match.unit_line}</p>
+            </>
+          ) : (
+            <p className="text-body-sm text-ink-3">{s.card_missing}</p>
+          )}
+        </Tile>
+        <Tile title={s.moved_heading} tip={s.moved_caption} tipId={`${id}-moved-info`}>
+          <ul className="flex flex-col gap-1.5" data-testid="moved-bars">
+            {parts.map((c) => {
+              const bar = divergingBar(c.value);
+              const plus = c.value >= 0;
+              return (
+                <li key={c.pillar} className="grid grid-cols-[104px_1fr_44px] items-center gap-2 text-caption">
+                  <span className="truncate text-ink-2">{label(c.pillar)}</span>
+                  <span aria-hidden="true" className="relative h-2.5">
+                    <span className="absolute -inset-y-[3px] left-1/2 w-px bg-line-strong" />
+                    <span
+                      className={`absolute top-px h-2 rounded-xs ${plus ? "bg-good" : "bg-poor"}`}
+                      style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
+                    />
+                  </span>
+                  <span className={`text-right font-semibold ${plus ? "text-good-strong" : "text-poor-strong"}`}>
+                    {signedPoints(c.value)}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </Tile>
+      </div>
+      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <Link href={href}
+          className="inline-flex h-11 items-center rounded-md border border-line-strong bg-surface px-4 text-body-sm font-semibold text-ink hover:bg-hover">
+          {fill(s.open_city, { city })}
+        </Link>
+        <button type="button" onClick={onCompare}
+          className="inline-flex min-h-11 items-center px-1 text-body-sm font-semibold text-accent hover:text-accent-hover">
+          {s.compare_action}
+        </button>
+      </p>
     </div>
+  );
+}
+
+/** One tile of a row's detail: a white card with its title (and, where
+ * the tile has one, an information box holding the longer words). */
+function Tile({ title, tip, tipId, testid, children }: {
+  title: string; tip?: string; tipId?: string; testid?: string; children: React.ReactNode;
+}) {
+  return (
+    <section className="rounded-md border border-rule bg-surface p-4" data-testid={testid}>
+      <h4 className="mb-2.5 flex items-center gap-1 text-caption font-semibold text-ink-2">
+        {title}
+        {tip && tipId && <InfoTip id={tipId} label={title}>{tip}</InfoTip>}
+      </h4>
+      {children}
+    </section>
   );
 }

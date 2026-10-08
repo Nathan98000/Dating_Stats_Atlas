@@ -172,11 +172,12 @@ strings:
   # American and British forms — "favors" beside the site's older
   # "stabilised" — and both ship as given, noted in PHASE2F.md).
   home_title: "Which city has the best dating scene for you?"
-  # Phase 5 (design audit, Nathan's decision 5): the hero subhead,
-  # approved as written
+  # Phase 5 (design audit, Nathan's decision 5); reworded after the Phase 5
+  # report at Nathan's request (he found the approved line awkward) —
+  # DRAFT for his approval
   home_subtitle: >-
-    See how many single people who fit what you want live in each US
-    metro, from Census data, ranked for you.
+    See how many singles in each US metro match what you're looking for,
+    and how each city ranks for you. Based on Census data.
   # Nathan's wording, verbatim (m3.0.0, ADR 0009; rewritten by Nathan in
   # Phase 4b). The side panel's "What matters more to you?" box, the one
   # explanation of the compatibility figure since Phase 4b (the figure
@@ -403,29 +404,31 @@ strings:
   quick_self_age_short: "My age"
   quick_seek_sex_short: "Looking for"
   quick_seek_age_short: "Their age"
-  # the quick search's trust line: the approved Privacy summary's words,
-  # and where the counts come from
-  trust_saved: "We don't save your searches"
-  trust_source: "Census Bureau data"
+  # trust_saved and trust_source (the quick search's trust line) were
+  # deleted after the Phase 5 report, at Nathan's request
   # the side rail's three groups
   rail_matters_heading: "What matters to you"
   slider_label: "Bigger pool or closer match?"
   rail_narrow_heading: "Narrow it down"
   rail_sharpen_heading: "Sharpen compatibility"
   optional_pill: "Optional"
-  sharpen_note: "Your education and race stay in this browser"
+  # sharpen_note ("Your education and race stay in this browser") was
+  # deleted after the Phase 5 report, at Nathan's request
   # the results header ({sought}: "men"/"women"; {ages}: "28–40"; {n}: the
   # served count of ranked cities)
   results_eyebrow: "Your ranking"
   results_heading_best: "Top cities for single {sought}, {ages}"
   results_heading_worst: "Lowest-scoring cities for single {sought}, {ages}"
-  results_count: "{n} metro areas, scored out of 100 for what you chose"
+  # reworded after the Phase 5 report at Nathan's request (DRAFT)
+  results_count: "{n} metro areas ranked for your search, each scored out of 100"
   # the list's column labels, once above the rows
   col_rank: "#"
   col_city: "City · why it ranks here"
   col_matches: "Matches"
   col_score: "Score"
   pool_short_unit: "single {sought} match"
+  # after the Phase 5 report (Nathan): the cards' pool reads just this
+  card_matches: "matches"
   # the Matches column's caption under each row's pool, the score's
   # "out of 100" on the cards, and the row chevron's accessible name
   pool_row_unit: "single {sought}"

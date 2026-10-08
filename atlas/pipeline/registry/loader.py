@@ -133,13 +133,13 @@ class Registry:
 PHASE5_STRINGS = {
     "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),
     "quick_self_sex_short": (), "quick_self_age_short": (), "quick_seek_sex_short": (),
-    "quick_seek_age_short": (), "trust_saved": (), "trust_source": (),
+    "quick_seek_age_short": (),
     "rail_matters_heading": (), "slider_label": (), "rail_narrow_heading": (),
-    "rail_sharpen_heading": (), "optional_pill": (), "sharpen_note": (),
+    "rail_sharpen_heading": (), "optional_pill": (),
     "results_eyebrow": (), "results_heading_best": ("sought", "ages"),
     "results_heading_worst": ("sought", "ages"), "results_count": ("n",),
     "col_rank": (), "col_city": (), "col_matches": (), "col_score": (),
-    "pool_short_unit": ("sought",), "pool_row_unit": ("sought",), "score_out_of": (),
+    "pool_short_unit": ("sought",), "card_matches": (), "pool_row_unit": ("sought",), "score_out_of": (),
     "row_details": ("city",), "show_more": (), "show_all": ("n",), "find_in_results": (),
     "balance_label": (), "balance_more": ("word",), "balance_even": (), "balance_short_caption": (),
     "moved_heading": (), "moved_caption": (), "open_city": ("city",), "compare_action": (),
@@ -387,6 +387,9 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert "{n}" in strings[need_key], f"strings.{need_key} carries its count, {{n}}"
     # Phase 5 (design audit): the redesign's strings, each template with
     # the slots its page fills from served values
+    # deleted after the Phase 5 report at Nathan's request
+    for gone in ("trust_saved", "trust_source", "sharpen_note"):
+        assert gone not in strings, f"strings.{gone} was deleted after the Phase 5 report"
     for need_key, slots in PHASE5_STRINGS.items():
         assert strings.get(need_key), f"strings.{need_key} is required (Phase 5)"
         for slot in slots:

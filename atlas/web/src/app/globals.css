@@ -454,6 +454,13 @@ html[data-about-you="pending"] [data-variant] {
   visibility: hidden;
 }
 
+/* after the Phase 5 report (Nathan): the desk rail scrolls inside itself —
+   a slim scrollbar in the controls' boundary colour */
+.rail-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
 /* Phase 5: the search sheet (below 640px) and drawer (640-1119px), one
    modal <dialog>. The sheet rises from the bottom, 90dvh, rounded on top;
    the drawer slides in from the right, min(420px, 90vw). */

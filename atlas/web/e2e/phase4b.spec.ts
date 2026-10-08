@@ -80,7 +80,9 @@ test("the quick search holds the visitor and who they seek; the rail's three gro
   }
   await expect(rail.getByTestId("filters-summary")).toHaveText(
     "Single: never married or divorced/widowed · Any education · Any income · All races");
-  await expect(rail.getByText(ps.sharpen_note)).toBeVisible();
+  // after the Phase 5 report (Nathan): the group's line is the pill alone
+  await expect(rail.getByTestId("about-you-section").getByText(ps.optional_pill, { exact: true })).toBeVisible();
+  await expect(rail).not.toContainText("stay in this browser");
   // Narrow it down: single means, the partner filters for education,
   // income and race; Sharpen compatibility: my education and my race
   await openRailGroup(page, "Narrow it down");

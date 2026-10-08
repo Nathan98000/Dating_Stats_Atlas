@@ -42,13 +42,25 @@ export function usableAlt(img: CityImage): string {
   return alt;
 }
 
-/** Every croppable photo on disk, by city slug: what the home page's
- * featured cards may show. */
-export function cardPhotos(): Record<string, { src: string; alt: string }> {
-  const out: Record<string, { src: string; alt: string }> = {};
+export interface CardPhoto {
+  src: string;
+  alt: string;
+  /** cover: cropped to the card (public domain or CC0 only); contain:
+   * shown whole, unmodified, on --sunken (any other licence) */
+  fit: "cover" | "contain";
+}
+
+/** Every city photo on disk, by slug, as the home page's featured cards
+ * show it. After the Phase 5 report (Nathan): a card always shows the
+ * city's photograph, never the locator map — cover-cropped where the
+ * licence allows (every ranked city has such a photo since then), shown
+ * whole otherwise. */
+export function cardPhotos(): Record<string, CardPhoto> {
+  const out: Record<string, CardPhoto> = {};
   for (const [slug, img] of Object.entries(IMAGES)) {
-    if (croppable(img.license) && onDisk(img)) {
-      out[slug] = { src: `/cities/${img.file}`, alt: usableAlt(img) };
+    if (onDisk(img)) {
+      out[slug] = { src: `/cities/${img.file}`, alt: usableAlt(img),
+                    fit: croppable(img.license) ? "cover" : "contain" };
     }
   }
   return out;

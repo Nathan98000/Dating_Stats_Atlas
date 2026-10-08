@@ -1,35 +1,70 @@
 import { expect, test } from "@playwright/test";
 
 /** Phase 5 (replacing Phase 2d items 1 + 2): from 1120px the search rail
- * sits beside the results, sticky, and never scrolls inside itself — it
- * fits a 1440×900 screen; below 1120px it lives in a sheet (phones) or a
+ * sits beside the results, sticky — and, after the Phase 5 report
+ * (Nathan), scrolls inside itself, no taller than the window, so its last
+ * controls never wait for the page's end; below 1120px it lives in a sheet (phones) or a
  * drawer (tablets) opened by the sticky "Adjust your search" bar, which
  * appears once the hero's quick search has scrolled away. The slider
  * explanation is a real button that opens on hover AND focus AND tap and
  * closes on Escape and blur. */
 
-test("the rail sticks beside the results and fits 1440×900 without its own scroll", async ({ page }) => {
+for (const size of [{ w: 1440, h: 900 }, { w: 1280, h: 720 }]) {
+  test(`the rail sticks beside the results and scrolls inside itself at ${size.w}×${size.h}`, async ({ page }) => {
+    await page.setViewportSize({ width: size.w, height: size.h });
+    await page.goto("/");
+    await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+    const rail = page.getByTestId("rail");
+    const style = await rail.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return { position: cs.position, overflowY: cs.overflowY, height: el.getBoundingClientRect().height };
+    });
+    expect(style.position).toBe("sticky");
+    expect(style.overflowY).toBe("auto");
+    expect(style.height).toBeLessThanOrEqual(size.h - 32);
+    // open both groups: the rail grows taller than the window, and its
+    // last control is reached by scrolling the RAIL, the page standing still
+    await page.getByRole("button", { name: "Narrow it down", exact: true }).click();
+    await page.getByRole("button", { name: "Sharpen compatibility", exact: true }).click();
+    expect(await rail.evaluate((el) => el.scrollHeight > el.clientHeight)).toBe(true);
+    const pageY = await page.evaluate(() => window.scrollY);
+    const railBox = (await rail.boundingBox())!;
+    await page.mouse.move(railBox.x + railBox.width / 2, railBox.y + railBox.height / 2);
+    await page.mouse.wheel(0, 3000);
+    await expect.poll(() => rail.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+    await expect(page.getByTestId("self-race")).toBeInViewport();
+    expect(await page.evaluate(() => window.scrollY)).toBe(pageY);
+  });
+}
+
+test("the rail stays pinned as the page scrolls, and its information box opens over the cards", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
   const rail = page.getByTestId("rail");
-  const style = await rail.evaluate((el) => {
-    const cs = getComputedStyle(el);
-    return { position: cs.position, overflowY: cs.overflowY,
-             fits: el.scrollHeight === el.clientHeight, height: el.getBoundingClientRect().height };
-  });
-  expect(style.position).toBe("sticky");
-  expect(style.overflowY).toBe("visible");
-  expect(style.fits).toBe(true);
-  expect(style.height).toBeLessThanOrEqual(900 - 16);
+  // the slider's box reaches past the rail's edge, over the first card:
+  // it is drawn on top (Nathan: "should not be covered by the card")
+  await page.getByTestId("slider-info").hover();
+  const note = page.getByTestId("slider-info-note");
+  await expect(note).toBeVisible();
+  const box = (await note.boundingBox())!;
+  const railRight = (await rail.boundingBox())!.x + (await rail.boundingBox())!.width;
+  expect(box.x + box.width).toBeGreaterThan(railRight);
+  const onTop = await page.evaluate(([x, y]) =>
+    !!document.elementFromPoint(x, y)?.closest('[data-testid="slider-info-note"]'),
+  [box.x + box.width - 8, box.y + box.height / 2]);
+  expect(onTop).toBe(true);
+  await page.mouse.move(10, 10);
 
   // scrolling the page down leaves the rail pinned in view (the fixture's
   // list is short: scroll within the results, not past them)
+  const results = (await page.getByTestId("ranked-list").boundingBox())!;
+  await page.mouse.move(results.x + 40, 300);
   await page.mouse.wheel(0, 500);
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(400);
-  const box = await rail.boundingBox();
-  expect(box!.y).toBeGreaterThanOrEqual(0);
-  expect(box!.y).toBeLessThan(40);
+  const pinned = await rail.boundingBox();
+  expect(pinned!.y).toBeGreaterThanOrEqual(0);
+  expect(pinned!.y).toBeLessThan(40);
   await expect(page.getByRole("radiogroup", { name: "Weather importance" })).toBeInViewport();
 });
 

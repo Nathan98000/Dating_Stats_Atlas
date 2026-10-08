@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState,
   useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import type { Meta, VariantResponse } from "@/lib/types";
+import type { CardPhoto } from "@/lib/city-photos";
 import {
   PREFS_COOKIE,
   PREFS_COOKIE_MAX_AGE,
@@ -105,8 +106,9 @@ export function Home({
   meta: Meta;
   initialPrefs: Prefs;
   initialResponse: VariantResponse;
-  /** the croppable city photographs on disk, by slug (lib/city-photos) */
-  photos: Record<string, { src: string; alt: string }>;
+  /** the city photographs on disk, by slug, as a card shows them
+   * (lib/city-photos) */
+  photos: Record<string, CardPhoto>;
 }) {
   const router = useRouter();
   const [prefs, setPrefs] = useState<Prefs>(initialPrefs);
@@ -130,6 +132,8 @@ export function Home({
   const quickRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const adjustRef = useRef<HTMLButtonElement>(null);
+  const railRef = useRef<HTMLElement>(null);
+  const [railMore, setRailMore] = useState(false);
   const { snapshot, play } = useFlip(listRef);
   const policy = meta.policy_strings;
 
@@ -245,6 +249,21 @@ export function Home({
   useEffect(() => () => {
     if (timer.current) clearTimeout(timer.current);
   }, []);
+  // whether the rail has more below its fold (for the bottom fade)
+  useEffect(() => {
+    const el = railRef.current;
+    if (!el) return;
+    const check = () => setRailMore(el.scrollHeight - el.scrollTop - el.clientHeight > 4);
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(check);
+    ro?.observe(el);
+    if (el.firstElementChild) ro?.observe(el.firstElementChild);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro?.disconnect();
+    };
+  }, [desk]);
 
   const qs = toSearchParams(prefs).toString();
   const selected = useMemo(() => selectVariant(response, about), [response, about]);
@@ -314,12 +333,23 @@ export function Home({
 
         <div className="grid gap-8 pt-5 sm:pt-11 desk:grid-cols-[288px_1fr] desk:items-start">
           {desk && (
+            // after the Phase 5 report (Nathan): the rail scrolls inside
+            // itself, so its last controls never wait for the page to end;
+            // it sits above the results (z-10), so nothing it opens is
+            // covered by a card
             <aside
+              ref={railRef}
               aria-label={policy.adjust_search}
-              className="sticky top-4 rounded-lg border border-rule bg-surface p-5 max-desk:hidden"
+              className="rail-scroll sticky top-4 z-10 max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain rounded-lg border border-rule bg-surface p-5 max-desk:hidden"
               data-testid="rail"
             >
               {rail}
+              {/* a fade at the bottom while there is more to scroll to */}
+              <div
+                aria-hidden="true"
+                className={`pointer-events-none sticky bottom-0 -mx-5 -mt-10 h-10 bg-gradient-to-t from-surface to-transparent transition-opacity ${railMore ? "opacity-100" : "opacity-0"}`}
+                data-testid="rail-more"
+              />
             </aside>
           )}
 
@@ -373,7 +403,6 @@ export function Home({
                         row={row}
                         meta={meta}
                         href={cityHref(row.slug)}
-                        sought={short.sought}
                         photo={photos[row.slug]}
                         median={selected.score_median}
                       />

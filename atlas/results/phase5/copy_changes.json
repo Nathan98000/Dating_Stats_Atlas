@@ -58,5 +58,47 @@
    "new": "median {n}",
    "why": "the brief's commit I: the caption under the median tick (a registry template)"
   }
- ]
+ ],
+ "after_the_report": {
+  "date": "2026-10-08",
+  "note": "Nathan's changes after the Phase 5 report; new wording DRAFT for his approval",
+  "changed": [
+   {
+    "key": "strings.home_subtitle",
+    "old": "See how many single people who fit what you want live in each US metro, from Census data, ranked for you.",
+    "new": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+    "why": "Nathan: awkwardly phrased (item 1)"
+   },
+   {
+    "key": "strings.results_count",
+    "old": "{n} metro areas, scored out of 100 for what you chose",
+    "new": "{n} metro areas ranked for your search, each scored out of 100",
+    "why": "Nathan: rephrase (item 3)"
+   }
+  ],
+  "added": [
+   {
+    "key": "strings.card_matches",
+    "new": "matches",
+    "why": "Nathan: the cards' pool reads just 'matches' (item 4)"
+   }
+  ],
+  "deleted": [
+   {
+    "key": "strings.trust_saved",
+    "old": "We don't save your searches",
+    "why": "Nathan item 5"
+   },
+   {
+    "key": "strings.trust_source",
+    "old": "Census Bureau data",
+    "why": "Nathan item 5"
+   },
+   {
+    "key": "strings.sharpen_note",
+    "old": "Your education and race stay in this browser",
+    "why": "Nathan item 6"
+   }
+  ]
+ }
 }

@@ -42,16 +42,6 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-export function LockIcon({ size = 14 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 20 20" aria-hidden="true" className="shrink-0"
-      fill="none" stroke="currentColor" strokeWidth="1.6">
-      <rect x="3" y="9" width="14" height="8" rx="2" />
-      <path d="M6 9V6.5a4 4 0 018 0V9" />
-    </svg>
-  );
-}
-
 /** A collapsible rail group: its heading holds the disclosure button
  * (aria-expanded), so a screen reader meets it by heading and by state.
  * Collapsed, `summary` says what the group holds now. */
@@ -308,12 +298,9 @@ export function RailGroups({
         heading={policy.rail_sharpen_heading}
         testid="about-you-section"
         summary={
-          <span className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex h-[22px] items-center rounded-full bg-sunken px-2 text-overline tracking-normal text-ink-2">
-              {policy.optional_pill}
-            </span>
-            <LockIcon />
-            {policy.sharpen_note}
+          // after the Phase 5 report (Nathan): the pill alone, no note
+          <span className="inline-flex h-[22px] items-center rounded-full bg-sunken px-2 text-overline tracking-normal text-ink-2">
+            {policy.optional_pill}
           </span>
         }
       >
@@ -470,14 +457,14 @@ export function SelfRaceField({
         // open. The padding bridges the gap, so the pointer can move from
         // the field onto the box without it closing.
         <span
-          className={open ? "absolute left-0 top-full z-40 pt-2" : "hidden"}
+          className={open ? "absolute inset-x-0 top-full z-40 pt-2" : "hidden"}
           data-testid="self-race-tip-bridge"
         >
           <span
             id={tipId}
             role="tooltip"
             data-testid="self-race-tip"
-            className="block w-[290px] rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-caption font-normal text-ink-2 shadow-overlay"
+            className="block rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-caption font-normal text-ink-2 shadow-overlay"
           >
             {tip}
           </span>

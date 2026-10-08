@@ -90,7 +90,7 @@ test("the city count appears only when something is excluded", async ({ page }) 
   // (Phase 5: the heading names the search; the count line under it is
   // the served count of ranked cities)
   await expect(page.getByTestId("list-heading")).toHaveText("Top cities for single men, 28\u2060–\u206040");
-  await expect(page.getByTestId("results-count")).toHaveText(/^\d+ metro areas, scored out of 100 for what you chose$/);
+  await expect(page.getByTestId("results-count")).toHaveText(/^\d+ metro areas ranked for your search, each scored out of 100$/);
   await expect(page.getByTestId("excluded-note")).toHaveCount(0);
   // narrow it until cities drop out: count appears with the approved sentence
   await page.goto("/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");

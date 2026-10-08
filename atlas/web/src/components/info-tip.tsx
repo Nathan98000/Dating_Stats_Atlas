@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 /** The accessible information affordance (Phase 2d item 2, shared since
  * Phase 2e; reworked in Phase 2f item 3 so the note stays open long
  * enough to use). Hover is handled on the WRAPPER, not the button: the
- * button and its note are one pointer target, and the note's container
- * starts flush with the button's bottom edge (the visual 8px gap is
- * padding inside the hover target), so moving the pointer from the
- * button into the note never crosses dead space. Focus leaving the
+ * button and its note are one pointer target (the note is the wrapper's
+ * descendant, though positioned against the viewport), and the note
+ * starts flush with the button's 44px hit area, so moving the pointer
+ * from the button into the note never crosses dead space. Focus leaving the
  * wrapper closes it (a relatedTarget still inside — tabbing from the
  * button onto a link in the note — keeps it open); Escape closes and
  * returns focus to the button; pointerdown anywhere outside closes.
@@ -29,26 +29,43 @@ export function InfoTip({
   const wrap = useRef<HTMLSpanElement>(null);
   const btn = useRef<HTMLButtonElement>(null);
   const note = useRef<HTMLSpanElement>(null);
-  const [dx, setDx] = useState(0);
+  const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null);
 
-  // keep the note inside the viewport: a last-column card's centred note
-  // would clip its "See more details" link off the right edge
+  // After the Phase 5 report (Nathan): the note is positioned against the
+  // viewport (position: fixed) from the button's own box, so no container
+  // clips it — the side rail scrolls inside itself now — and no card later
+  // in the page covers it. It sits under the button, flush with the
+  // button's 44px hit area (no dead space to cross), flips above when
+  // there is no room below, stays inside the viewport, and follows the
+  // button while anything scrolls.
+  const place = useCallback(() => {
+    const b = btn.current;
+    if (!b) return;
+    const r = b.getBoundingClientRect();
+    const pad = 12;
+    const width = Math.min(290, window.innerWidth - 2 * pad);
+    const left = Math.min(Math.max(r.left + r.width / 2 - width / 2, pad),
+                          window.innerWidth - pad - width);
+    const h = note.current?.offsetHeight ?? 0;
+    const below = r.bottom + h <= window.innerHeight - pad || r.top - h < pad;
+    setPos({ left: Math.round(left), top: Math.round(below ? r.bottom : r.top - h), width });
+  }, []);
   useLayoutEffect(() => {
     if (!open) {
-      setDx(0);
+      setPos(null);
       return;
     }
-    const el = note.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const pad = 12;
-    let shift = 0;
-    if (r.right > window.innerWidth - pad) {
-      shift = window.innerWidth - pad - r.right;
-    }
-    if (r.left + shift < pad) shift = pad - r.left;
-    setDx(Math.round(shift));
-  }, [open]);
+    place();
+    // a second pass, once the note's own height is known
+    const raf = requestAnimationFrame(place);
+    window.addEventListener("scroll", place, { capture: true, passive: true });
+    window.addEventListener("resize", place);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", place, { capture: true });
+      window.removeEventListener("resize", place);
+    };
+  }, [open, place]);
 
   useEffect(() => {
     if (!open) return;
@@ -105,7 +122,9 @@ export function InfoTip({
       </button>
       {open && (
         <span
-          className="absolute left-1/2 top-[30px] z-40 -translate-x-1/2"
+          className="fixed z-50"
+          style={pos ? { left: pos.left, top: pos.top, width: pos.width }
+                     : { left: 0, top: 0, width: 290, visibility: "hidden" }}
           data-testid={`${testid}-bridge`}
         >
           <span
@@ -113,8 +132,7 @@ export function InfoTip({
             id={id}
             role="note"
             data-testid={`${testid}-note`}
-            className="block w-[290px] rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-caption font-normal text-ink-2 shadow-overlay"
-            style={dx ? { transform: `translateX(${dx}px)` } : undefined}
+            className="block rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-caption font-normal text-ink-2 shadow-overlay"
           >
             {children}
           </span>

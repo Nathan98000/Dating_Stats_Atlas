@@ -15,11 +15,16 @@ export function BalanceTrack({
   meta,
   id,
   caption = true,
+  tile = false,
 }: {
   balance: BalanceBlock;
   meta: Meta;
   id: string;
   caption?: boolean;
+  /** after the Phase 5 report: the row detail's tile — the served
+   * figure first and large, the track beneath with its two end words,
+   * no caption (the tile's information box carries it) */
+  tile?: boolean;
 }) {
   const s = meta.policy_strings;
   if (!balance.available || balance.per_100 == null) {
@@ -30,8 +35,15 @@ export function BalanceTrack({
     );
   }
   const x = balancePosition(balance.per_100) * 100;
+  const figure = (
+    <p className={tile ? "text-body-lg font-semibold" : "text-body-sm font-semibold"}>
+      <span className="sr-only">{meta.features.pool_balance.display_name}: </span>
+      {balance.display}
+    </p>
+  );
   return (
     <div className="flex flex-col gap-2" data-testid="balance-tally">
+      {tile && figure}
       <div aria-hidden="true" className="w-full max-w-[176px]">
         <div className="relative mx-auto my-1 h-2 w-full max-w-[120px] rounded-full bg-data-neutral" data-testid="balance-track">
           <span className="absolute -top-[5px] left-1/2 h-[18px] w-0.5 -translate-x-1/2 bg-ink-3" />
@@ -43,15 +55,12 @@ export function BalanceTrack({
         </div>
         <div className="mt-1.5 flex flex-wrap justify-between gap-x-1.5 text-overline font-normal tracking-normal text-ink-3">
           <span>{fill(s.balance_more, { word: balance.seeker_word ?? "" })}</span>
-          <span>{s.balance_even}</span>
+          {!tile && <span>{s.balance_even}</span>}
           <span>{fill(s.balance_more, { word: balance.sought_word ?? "" })}</span>
         </div>
       </div>
-      <p className="text-body-sm font-semibold">
-        <span className="sr-only">{meta.features.pool_balance.display_name}: </span>
-        {balance.display}
-      </p>
-      {caption && (
+      {!tile && figure}
+      {caption && !tile && (
         <p className="flex items-start gap-1 text-caption text-ink-3">
           <span>{s.balance_short_caption}</span>
           <InfoTip id={`${id}-bal-info`} label={s.balance_label}>
