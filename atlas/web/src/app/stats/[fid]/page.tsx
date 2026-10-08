@@ -1,7 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { CHROME, pageMetadata, pageTitle } from "@/lib/chrome";
+import { fill } from "@/lib/results";
 import { StatList, type StatRow } from "@/components/stat-list";
 import { LeanList, type LeanRow } from "@/components/lean-list";
 import statPages from "@/data/stat-pages.json";
@@ -59,6 +61,13 @@ const DATA = statPages as unknown as {
 };
 const IMAGES = statImages as unknown as Record<string, StatImage>;
 
+export async function generateMetadata({ params }: { params: Promise<{ fid: string }> }) {
+  const { fid } = await params;
+  const page = DATA.pages[fid];
+  if (!page) return {};
+  return pageMetadata(pageTitle(fill(CHROME.title_stat, { stat: page.title })), page.definition, `/stats/${fid}`);
+}
+
 export function generateStaticParams() {
   return DATA.order.map((fid) => ({ fid }));
 }
@@ -79,8 +88,9 @@ export default async function StatPage({
   return (
     <>
       <SiteHeader />
+      <main id="main">
       {imgExists && (
-        <figure className="mx-auto max-w-5xl px-6 pt-6 sm:px-12">
+        <figure className="mx-auto max-w-5xl px-4 pt-6 sm:px-12">
           {/* the photo ships UNMODIFIED — scaled to fit, never cropped
               (an adapted CC-BY-SA image would drag its licence onto the
               adaptation), which is why this is not object-cover */}
@@ -92,22 +102,22 @@ export default async function StatPage({
           />
         </figure>
       )}
-      <main id="main" className="mx-auto flex max-w-3xl flex-col gap-6 px-6 pb-16 pt-8 sm:px-12">
+      <div className="mx-auto flex max-w-3xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
         <div className="flex flex-col gap-2.5">
-          <h1 className="font-display text-[38px] font-semibold leading-tight tracking-tight">
+          <h1 className="font-display text-display-1 font-semibold leading-tight tracking-tight">
             Cities by {page.title.toLowerCase()}
           </h1>
-          <p className="max-w-[64ch] text-[15px] leading-relaxed text-ink-2">
+          <p className="max-w-[64ch] text-body leading-relaxed text-ink-2">
             {page.definition}
           </p>
           {page.kind !== "political_lean" && page.note && (
-            <p className="max-w-[64ch] text-[15px] leading-relaxed text-ink-2" data-testid="stat-page-note">
+            <p className="max-w-[64ch] text-body leading-relaxed text-ink-2" data-testid="stat-page-note">
               {page.note}
             </p>
           )}
           {/* item 9.2: the live source line — name, vintage and link
               from the registry's sources block via the build JSON */}
-          <p className="max-w-[64ch] text-[12.5px] text-ink-3" data-testid="stat-source">
+          <p className="max-w-[64ch] text-caption text-ink-3" data-testid="stat-source">
             {DATA.strings.source_prefix}{" "}
             <a
               href={page.source.url}
@@ -132,12 +142,14 @@ export default async function StatPage({
           <ValueSections page={page} isDollar={isDollar} />
         )}
         {page.missing_in_ranked_set > 0 && (
-          <p className="text-[13px] text-ink-3" data-testid="stat-missing">
+          <p className="text-caption text-ink-3" data-testid="stat-missing">
             {DATA.strings.missing.replace(
               "{n}", page.missing_in_ranked_set.toLocaleString("en-US"))}
           </p>
         )}
+      </div>
       </main>
+      <SiteFooter />
     </>
   );
 }
@@ -163,7 +175,7 @@ function ValueSections({ page, isDollar }: { page: ValuePage; isDollar: boolean 
             />
           ))}
         </div>
-        <div className="flex justify-between pt-1 text-[12px] text-ink-3">
+        <div className="flex justify-between pt-1 text-caption text-ink-3">
           <span>
             {isDollar ? "$" : ""}
             {page.strip.axis[0]}

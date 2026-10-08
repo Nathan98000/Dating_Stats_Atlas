@@ -1,9 +1,14 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { marked } from "marked";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata() {
+  return pageMetadata(pageTitle(CHROME.title_privacy), SITE_DESCRIPTION, "/privacy");
+}
 
 /** The privacy page (m4.0.0, Nathan's decision 9): docs/privacy.md
  * rendered verbatim (synced at build), the same pattern as About us and
@@ -21,6 +26,7 @@ export default async function PrivacyPage() {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </main>
+      <SiteFooter />
     </>
   );
 }

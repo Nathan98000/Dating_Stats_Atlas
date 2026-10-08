@@ -18,10 +18,23 @@ import { CompareVariantRows } from "@/components/compare-variant";
 import { DiffCell, edgeOf, Row, ValueCell } from "@/components/compare-cells";
 import { PoliticalLeanCell } from "@/components/political-lean";
 import { toneText } from "@/lib/tones";
+import { CHROME, pageMetadata, pageTitle } from "@/lib/chrome";
+import { fill } from "@/lib/results";
 import { sliceVariants } from "@/lib/variants";
 import type { BaseRow, BaseSuppressedRow, Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ a: string; b: string }> }) {
+  const { a, b } = await params;
+  const meta = await apiMeta();
+  const mA = meta.metros.find((m) => m.slug === a);
+  const mB = meta.metros.find((m) => m.slug === b);
+  if (!mA || !mB) return {};
+  return pageMetadata(
+    pageTitle(fill(CHROME.title_compare_pair, { a: mA.display_name, b: mB.display_name })),
+    meta.policy_strings.compare_page_subtitle, `/compare/${a}/${b}`);
+}
 
 /** Two cities side by side, from ONE rank response so both sit under the
  * same normalization. Phase 2f item 6 (ADR 0007, reversing ADR 0003's
@@ -211,7 +224,7 @@ export default async function ComparePage({
             </Link>
             .
           </p>
-          <table className="w-full max-w-[560px] text-sm">
+          <table className="w-full max-w-[560px] text-body-sm">
             <thead>
               <tr className="border-b border-rule text-left">
                 <td />

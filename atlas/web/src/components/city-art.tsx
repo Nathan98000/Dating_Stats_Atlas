@@ -1,30 +1,23 @@
-import fs from "fs";
-import path from "path";
-import cityImages from "@/data/city-images.json";
+
+import { croppable, IMAGES, onDisk, usableAlt } from "@/lib/city-photos";
 
 /** Every city page gets a face. Since Phase 2e item 4 that face is a
  * real photograph wherever one CLEARED: sourced from the city's
  * Wikipedia lead image, licence read from the Commons API (public
  * domain, CC0, CC-BY, CC-BY-SA ship; NC/ND or unreadable terms refuse),
- * recorded row-by-row in the committed manifest, displayed UNMODIFIED —
- * scaled to fit, never cropped, recoloured or composited, because an
- * adapted CC-BY-SA image would drag its licence onto the adaptation.
- * Its credit lives with every other one in About us, Sources and credits
- * (m4.0.0, Nathan's decision 8). Alt text describes
- * the view (from the file's own description); the generative fallback
- * stays aria-hidden with the heading carrying the city's name. A photo
- * ships ONLY through the manifest: an unlisted file has no recorded
- * licence and does not render. */
-
-interface CityImage {
-  file: string;
-  alt: string | null;
-  author: string | null;
-  license: string;
-  license_url: string | null;
-  source_url: string;
-}
-const IMAGES = cityImages as unknown as Record<string, CityImage>;
+ * recorded row-by-row in the committed manifest. Its credit lives with
+ * every other one in About us, Sources and credits. A photo ships ONLY
+ * through the manifest: an unlisted file has no recorded licence and does
+ * not render.
+ *
+ * Phase 5: a public-domain or CC0 photograph may be cropped — a full-
+ * bleed 16:7 band, cover-cropped (credited "cropped"); any other licence
+ * shows the photograph UNMODIFIED, at its own width up to 380px tall,
+ * centred on --sunken, with no card around it and no bars beside it (an
+ * adapted CC-BY-SA image would drag its licence onto the adaptation). The
+ * alt text is the manifest's description unless that is a filename, a
+ * bare "image" or the like — then "", since the h1 names the city. The
+ * generative fallback stays aria-hidden. */
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;
@@ -37,20 +30,29 @@ function mulberry32(seed: number) {
   };
 }
 
-const HUES = ["var(--tint)", "var(--male)", "var(--female)", "var(--good)",
+const HUES = ["var(--tint)", "var(--sunken)", "var(--data-neutral)", "var(--good)",
   "var(--accent)", "var(--tint-border)"];
 
 export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
   const img = IMAGES[slug];
-  if (img && fs.existsSync(
-      path.join(process.cwd(), "public", "cities", img.file))) {
-    return (
-      <figure data-testid="city-photo">
+  if (img && onDisk(img)) {
+    const alt = usableAlt(img);
+    return croppable(img.license) ? (
+      <figure data-testid="city-photo" data-cropped="">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/cities/${img.file}`}
-          alt={img.alt ?? ""}
-          className="max-h-[380px] w-full rounded-lg border border-rule bg-surface object-contain"
+          alt={alt}
+          className="aspect-[16/7] w-full rounded-lg object-cover"
+        />
+      </figure>
+    ) : (
+      <figure data-testid="city-photo" className="flex justify-center rounded-lg bg-sunken">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/cities/${img.file}`}
+          alt={alt}
+          className="max-h-[380px] w-auto max-w-full"
         />
       </figure>
     );

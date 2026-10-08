@@ -639,7 +639,7 @@ export function AgeRange({
           }}
         />
       </div>
-      <div className="flex justify-between text-xs text-ink-3">
+      <div className="flex justify-between text-caption text-ink-3">
         <span>{MIN}</span>
         <span>{MAX}</span>
       </div>

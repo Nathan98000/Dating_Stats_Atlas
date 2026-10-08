@@ -39,18 +39,17 @@ test("the terms of use render docs/terms.md, every section of it", async ({ page
   await expect(page.getByTestId("sources-and-credits")).toBeVisible();
 });
 
-test("About us links the terms of use beside Privacy, labelled from the registry", async ({ page, request }) => {
+test("every page's footer links Privacy and Terms (Phase 5: no longer buttons atop About)", async ({ page, request }) => {
   const ps = (await fetchMeta(request)).policy_strings;
-  expect(ps.about_terms_link).toBe("Terms of use");
-  await page.goto("/about");
-  const links = page.getByTestId("about-links");
-  const terms = page.getByTestId("about-terms-link");
-  await expect(terms).toHaveText(ps.about_terms_link);
-  await expect(terms).toHaveAttribute("href", "/terms");
-  // right after Privacy
-  const labels = await links.getByRole("link").allTextContents();
-  expect(labels.indexOf(ps.about_terms_link)).toBe(labels.indexOf(ps.about_privacy_link) + 1);
-  await terms.click();
+  for (const path of ["/", "/about", "/compare", "/stats/rent_1br", "/city/provo-utah"]) {
+    await page.goto(path);
+    const footer = page.getByRole("navigation", { name: "Footer" });
+    await expect(footer.getByRole("link")).toHaveText(
+      [ps.footer_how, ps.footer_measure, ps.footer_privacy, ps.footer_terms, ps.footer_sources]);
+    await expect(footer.getByRole("link", { name: ps.footer_terms })).toHaveAttribute("href", "/terms");
+  }
+  await expect(page.getByTestId("about-terms-link")).toHaveCount(0);
+  await page.getByRole("navigation", { name: "Footer" }).getByRole("link", { name: ps.footer_terms }).click();
   await expect(page).toHaveURL(/\/terms$/);
 });
 

@@ -32,7 +32,7 @@ export function NavLinks({ labels }: { labels: Record<string, string> }) {
             key={d.href}
             href={`${d.href}${suffix}`}
             aria-current={on ? "page" : undefined}
-            className={`flex h-full items-center border-b-2 pt-0.5 text-[15px] ${on
+            className={`flex h-full items-center border-b-2 pt-0.5 text-body ${on
               ? "border-accent font-semibold text-ink"
               : "border-transparent font-medium text-ink-2 hover:text-ink"}`}
           >
@@ -50,7 +50,7 @@ export function BrandLink() {
   return (
     <Link
       href={`/${suffix}`}
-      className="font-display text-[22px] font-semibold tracking-tight text-ink max-sm:text-[19px]"
+      className="font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3"
     >
       Dating Stats Atlas
     </Link>

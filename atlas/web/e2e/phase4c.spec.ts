@@ -78,7 +78,7 @@ async function shownRows(page: Page): Promise<string[]> {
   await revealRows(page);
   return rowsOf(page).evaluateAll((els) => els.map((e) =>
     `${e.getAttribute("data-cbsa")}:${
-      e.querySelector('[data-testid="match-figure"] .font-display')?.textContent ?? ""}:${
+      e.querySelector('[data-testid="match-figure"] [data-figure]')?.textContent ?? ""}:${
       e.querySelector('[data-testid="score"]')?.textContent ?? ""}`));
 }
 

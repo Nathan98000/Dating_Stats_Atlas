@@ -44,7 +44,7 @@ export function LeanBar({ block }: { block: Extract<PoliticalLeanBlock, { availa
  * as a swatch beside it. */
 export function LeanKey({ block }: { block: Extract<PoliticalLeanBlock, { available: true }> }) {
   return (
-    <span className="flex flex-wrap gap-x-3 gap-y-0.5 text-[12px] text-ink-2" data-testid="lean-key">
+    <span className="flex flex-wrap gap-x-3 gap-y-0.5 text-caption text-ink-2" data-testid="lean-key">
       {block.segments.map((s) => (
         <span key={s.key} className="inline-flex items-center gap-1.5" data-key={s.key}>
           <span aria-hidden="true" className={`inline-block h-2.5 w-2.5 rounded-xs ${SEGMENT_BG[s.key]}`} />
@@ -63,16 +63,16 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
   const statName = (le.stat_page_name ?? le.display_name).toLowerCase();
   return (
     <div className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card="political_lean">
-      <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
+      <span className="text-caption font-semibold text-ink-2">{le.display_name}</span>
       {block.available ? (
         <>
           <span
-            className="font-display text-[19px] font-semibold leading-snug [text-wrap:balance]"
+            className="text-data-m [text-wrap:balance]"
             data-testid="lean-text"
           >
             {block.text}
           </span>
-          <span className="unit-line text-[12.5px] text-ink-3" data-testid="lean-caption">
+          <span className="unit-line text-caption text-ink-3" data-testid="lean-caption">
             {le.unit}
           </span>
           <div className="pt-0.5">
@@ -82,7 +82,7 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
           {meta.stat_pages.includes("political_lean") ? (
             <Link
               href="/stats/political_lean"
-              className="self-start text-[12.5px] font-semibold text-accent hover:text-accent-hover"
+              className="self-start text-caption font-semibold text-accent hover:text-accent-hover"
             >
               {meta.policy_strings.stat_page_link.replace("{name}", statName)}
             </Link>
@@ -94,7 +94,7 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
         <>
           {/* the other cards' blank state: the name, the one line, the
               remaining rows empty */}
-          <span className="text-sm text-ink-3" data-testid="lean-missing">
+          <span className="text-body-sm text-ink-3" data-testid="lean-missing">
             {block.note}
           </span>
           <span aria-hidden="true" />
@@ -112,9 +112,9 @@ export function PoliticalLeanCell({ block }: { block: PoliticalLeanBlock | undef
   return (
     <td role="cell" className="px-4 pb-3.5 pt-1 align-top sm:px-5 sm:py-3.5" data-lean-cell="">
       {block?.available ? (
-        <span className="text-[15px] font-semibold">{block.text}</span>
+        <span className="text-body font-semibold">{block.text}</span>
       ) : (
-        <span className="text-[12.5px] text-ink-3">{block?.note}</span>
+        <span className="text-caption text-ink-3">{block?.note}</span>
       )}
     </td>
   );

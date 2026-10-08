@@ -1,15 +1,19 @@
 import { promises as fs } from "fs";
 import fsSync from "fs";
 import path from "path";
-import Link from "next/link";
 import { marked } from "marked";
 import { apiMeta } from "@/lib/api";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 import cityImages from "@/data/city-images.json";
 import statImages from "@/data/stat-images.json";
 import { croppable } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata() {
+  return pageMetadata(pageTitle(CHROME.about_title), SITE_DESCRIPTION, "/about");
+}
 
 /** One photograph's credit, as the licence asks: the title, the author,
  * the licence (linked to its deed), a link to the source file, and
@@ -68,28 +72,12 @@ export default async function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main id="main" className="mx-auto max-w-3xl px-6 pb-16 pt-10 sm:px-12">
-        <h1 className="font-display text-[38px] font-semibold leading-tight tracking-tight">
+      <main id="main" className="mx-auto max-w-3xl px-4 pb-16 pt-10 sm:px-12">
+        {/* Phase 5: "How it works" (decision 2); Privacy and Terms left the
+            top of the page for the footer every page carries */}
+        <h1 className="font-display text-display-1">
           {policy.about_title}
         </h1>
-        <nav className="mt-5 flex flex-wrap gap-3" data-testid="about-links" aria-label={policy.about_title}>
-          <Link
-            href="/privacy"
-            className="inline-flex min-h-[46px] items-center rounded-md border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
-            data-testid="about-privacy-link"
-          >
-            {policy.about_privacy_link}
-          </Link>
-          {/* the terms of use (docs/terms.md), approved by Nathan for now,
-              linked beside Privacy */}
-          <Link
-            href="/terms"
-            className="inline-flex min-h-[46px] items-center rounded-md border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
-            data-testid="about-terms-link"
-          >
-            {policy.about_terms_link}
-          </Link>
-        </nav>
         <article
           className="prose-method mt-8"
           dangerouslySetInnerHTML={{ __html: html }}
@@ -99,29 +87,29 @@ export default async function AboutPage() {
           className="mt-12 border-t border-rule pt-8"
           data-testid="sources-and-credits"
         >
-          <h2 className="font-display text-[26px] font-semibold">{policy.credits_heading}</h2>
-          <h3 className="mt-5 text-[17px] font-semibold">{policy.credits_data_heading}</h3>
+          <h2 className="font-display text-h2 font-semibold">{policy.credits_heading}</h2>
+          <h3 className="mt-5 text-title font-semibold">{policy.credits_data_heading}</h3>
           {citations.length > 0 && (
             <details className="mt-2" data-testid="credits-data-more">
-              <summary className="cursor-pointer text-sm font-semibold text-accent hover:text-accent-hover">
+              <summary className="cursor-pointer text-body-sm font-semibold text-accent hover:text-accent-hover">
                 {policy.credits_data_more.replace("{n}", citations.length.toLocaleString("en-US"))}
               </summary>
               <ul className="mt-3 flex flex-col gap-2" data-testid="credits-data">
                 {citations.map((c) => (
-                  <li key={c} className="text-sm leading-relaxed text-ink-2">{c}</li>
+                  <li key={c} className="text-body-sm leading-relaxed text-ink-2">{c}</li>
                 ))}
               </ul>
               {notices.map((n) => (
-                <p key={n} className="mt-3 text-sm leading-relaxed text-ink-2" data-testid="credits-notice">
+                <p key={n} className="mt-3 text-body-sm leading-relaxed text-ink-2" data-testid="credits-notice">
                   {n}
                 </p>
               ))}
             </details>
           )}
-          <h3 className="mt-7 text-[17px] font-semibold">{policy.credits_photos_heading}</h3>
+          <h3 className="mt-7 text-title font-semibold">{policy.credits_photos_heading}</h3>
           {photos.length > 0 && (
             <details className="mt-2" data-testid="credits-photos-more">
-              <summary className="cursor-pointer text-sm font-semibold text-accent hover:text-accent-hover">
+              <summary className="cursor-pointer text-body-sm font-semibold text-accent hover:text-accent-hover">
                 {policy.credits_photos_more.replace("{n}", photos.length.toLocaleString("en-US"))}
               </summary>
               <ul className="mt-3 flex flex-col gap-2" data-testid="credits-photos">
@@ -133,13 +121,14 @@ export default async function AboutPage() {
           )}
         </section>
       </main>
+      <SiteFooter />
     </>
   );
 }
 
 function Credit({ img, policy }: { img: PhotoCredit; policy: Record<string, string> }) {
   return (
-    <li className="text-[13px] leading-relaxed text-ink-2" data-credit={img.file}>
+    <li className="text-caption leading-relaxed text-ink-2" data-credit={img.file}>
       {img.title ? <>{img.title} · </> : null}
       {img.author ? <>{img.author} · </> : null}
       {img.license_url ? (

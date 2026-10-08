@@ -79,7 +79,7 @@ test("a same-sex search says in the slider's information box whose pairing patte
   await expect(race).toHaveValue("hispanic");
   const figs = async (p: typeof page) => JSON.stringify(await p.getByTestId("ranked-list").locator("li[data-rank]")
     .evaluateAll((els) => els.map((e) => `${e.getAttribute("data-cbsa")}:${
-      e.querySelector('[data-testid="match-figure"] .font-display')?.textContent}:${
+      e.querySelector('[data-testid="match-figure"] [data-figure]')?.textContent}:${
       e.querySelector('[data-testid="score"]')?.textContent}`)));
   await revealRows(page);
   const withRace = await figs(page);

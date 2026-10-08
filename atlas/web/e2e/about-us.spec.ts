@@ -33,13 +33,15 @@ const SOURCES: [string, string | null, string, string][] = [
   ["Reported crime", "/about-crime-data", "FBI Crime Data Explorer", "https://cde.ucr.cjis.gov/"],
 ];
 
-test("the top of About us links only Privacy and the terms of use", async ({ page, request }) => {
+test("the top of About carries no buttons; the footer's Data sources opens Sources and credits", async ({ page, request }) => {
   const ps = (await fetchMeta(request)).policy_strings;
   expect(ps).not.toHaveProperty("about_measure_link");
   expect(ps).not.toHaveProperty("about_crime_link");
   await page.goto("/about");
-  await expect(page.getByTestId("about-links").getByRole("link")).toHaveText(
-    [ps.about_privacy_link, ps.about_terms_link]);
+  // Phase 5: Privacy and Terms moved to the footer every page carries
+  await expect(page.getByTestId("about-links")).toHaveCount(0);
+  await expect(page.getByRole("navigation", { name: "Footer" })
+    .getByRole("link", { name: ps.footer_sources })).toHaveAttribute("href", "/about#sources-and-credits");
   await expect(page.getByTestId("about-measure-link")).toHaveCount(0);
   // the two pages are still reached from the account itself
   const article = page.locator("article.prose-method");

@@ -1,0 +1,62 @@
+{
+ "rule": "web/src/lib/city-photos.usableAlt",
+ "metros": 365,
+ "unusable": {
+  "abilene-texas": {
+   "alt": "image",
+   "title": "Abilene-skyline",
+   "file": "abilene-texas.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Abilene-skyline.jpg"
+  },
+  "chambersburg-pennsylvania": {
+   "alt": null,
+   "title": "Memorial Square Chambersburg",
+   "file": "chambersburg-pennsylvania.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Memorial_Square_Chambersburg.jpg"
+  },
+  "el-centro-california": {
+   "alt": null,
+   "title": "Imperial County Superior Courthouse El Centro Night",
+   "file": "el-centro-california.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Imperial_County_Superior_Courthouse_El_Centro_Night.jpg"
+  },
+  "fargo-north-dakota": {
+   "alt": "Downtown Fargo Aerial - Facing Southeast (51009704407).jpg",
+   "title": "Downtown Fargo Aerial - Facing Southeast (51009704407)",
+   "file": "fargo-north-dakota.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fargo_Aerial_-_Facing_Southeast_(51009704407).jpg"
+  },
+  "gadsden-alabama": {
+   "alt": "Flying over the city of Gadsden, Alabama in May of 2016.\n\nGadsden, Alabama - Aerial (51157939914).jpg",
+   "title": "Gadsden, Alabama - Aerial (51157939914)",
+   "file": "gadsden-alabama.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gadsden,_Alabama_-_Aerial_(51157939914).jpg"
+  },
+  "kennewick-washington": {
+   "alt": "Kennewick-ColumbiaRiverAerial",
+   "title": "Kennewick-ColumbiaRiverAerial (31695765421)",
+   "file": "kennewick-washington.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Kennewick-ColumbiaRiverAerial_(31695765421).jpg"
+  },
+  "macon-georgia": {
+   "alt": "Macon Georgia Aerial (52700955029).jpg",
+   "title": "Macon Georgia Aerial (52700955029)",
+   "file": "macon-georgia.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Macon_Georgia_Aerial_(52700955029).jpg"
+  },
+  "san-francisco-california": {
+   "alt": "zeppelin-ride-020100925-195",
+   "title": "Zeppelin-ride-020100925-195 (5029394846)",
+   "file": "san-francisco-california.jpg",
+   "on_disk": true,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Zeppelin-ride-020100925-195_(5029394846).jpg"
+  }
+ }
+}

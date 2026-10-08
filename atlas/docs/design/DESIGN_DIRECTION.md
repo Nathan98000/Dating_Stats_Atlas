@@ -1,5 +1,9 @@
 # Design direction — art-direction review of the Phase 2b site
 
+> **Superseded where it conflicts** by the Phase 5 redesign (the design audit of 8 October
+> 2026): the system is described in the header of `web/src/app/globals.css`, the target in
+> `docs/design/redesign-2026-10/`, and the changes in `atlas/PHASE5.md`.
+
 Reviewed 2026-09-16 against four screenshots of build `dc23609755ad` (default ranking,
 race-filtered ranking, the all-suppressed empty state, a suppressed metro page). This is a
 visual brief, not a methodology review. Current tokens are in `web/src/app/globals.css`.

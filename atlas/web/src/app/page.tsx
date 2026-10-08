@@ -4,8 +4,14 @@ import { effectiveSearchParams } from "@/lib/server-prefs";
 import { Home } from "@/components/home";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { cardPhotos } from "@/lib/city-photos";
+import { pageMetadata, pageTitle } from "@/lib/chrome";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata() {
+  const meta = await apiMeta();
+  return pageMetadata(pageTitle(), meta.policy_strings.home_subtitle, "/");
+}
 
 export default async function HomePage({
   searchParams,

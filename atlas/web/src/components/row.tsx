@@ -221,7 +221,7 @@ function RowDetail({ id, row, meta, href, onCompare }: {
         {match.available && match.display != null ? (
           <div>
             <p className="flex flex-wrap items-baseline gap-x-2">
-              <span className="font-display text-data-l">{match.display}</span>
+              <span className="text-data-l" data-figure="">{match.display}</span>
               <span className="text-caption text-ink-3">{match.unit_line}</span>
             </p>
             <p className="mt-1.5 text-caption text-ink-3">{meta.pillars.match?.definition}</p>

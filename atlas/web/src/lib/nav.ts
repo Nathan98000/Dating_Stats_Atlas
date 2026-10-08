@@ -17,7 +17,7 @@ export const FOOTER_LINKS = [
   { href: "/what-we-measure", key: "footer_measure" },
   { href: "/privacy", key: "footer_privacy" },
   { href: "/terms", key: "footer_terms" },
-  { href: "/about#sources", key: "footer_sources" },
+  { href: "/about#sources-and-credits", key: "footer_sources" },
 ] as const;
 
 /** Whether a nav destination is the page being shown: Rankings for the

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
 import "./globals.css";
 import { PRE_PAINT_SCRIPT } from "@/lib/about-you";
+import { pageMetadata, pageTitle, SITE_DESCRIPTION, SITE_URL } from "@/lib/chrome";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -16,9 +17,12 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: "Dating Stats Atlas",
-  description:
-    "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+  metadataBase: new URL(SITE_URL),
+  ...pageMetadata(
+    pageTitle(),
+    SITE_DESCRIPTION,
+    "/",
+  ),
 };
 
 export default function RootLayout({

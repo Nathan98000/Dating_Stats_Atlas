@@ -1,9 +1,16 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { marked } from "marked";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { apiMeta } from "@/lib/api";
+import { pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata() {
+  const meta = await apiMeta();
+  return pageMetadata(pageTitle(meta.policy_strings.measure_crime_link), SITE_DESCRIPTION, "/about-crime-data");
+}
 
 /** The crime explainer (item 9): the subtle callout made permanent —
  * what the figures are, why the reporting panel makes cities not
@@ -23,6 +30,7 @@ export default async function AboutCrimeDataPage() {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </main>
+      <SiteFooter />
     </>
   );
 }

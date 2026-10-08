@@ -9,7 +9,7 @@ import {
   type SearchParams,
 } from "@/lib/prefs";
 import { effectiveSearchParams } from "@/lib/server-prefs";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { LocatorMap } from "@/components/locator-map";
 import { CityArt } from "@/components/city-art";
 import { CityVariantPart } from "@/components/city-variant";
@@ -19,9 +19,21 @@ import { CompareLauncher } from "@/components/compare-launcher";
 import { CrimeCards } from "@/components/crime-cards";
 import { PoliticalLeanCard } from "@/components/political-lean";
 import { toneSeg, toneText } from "@/lib/tones";
+import { pageMetadata, pageTitle } from "@/lib/chrome";
+import { croppable, IMAGES, onDisk } from "@/lib/city-photos";
 import type { Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const meta = await apiMeta();
+  const metro = meta.metros.find((m) => m.slug === slug);
+  if (!metro) return {};
+  const img = IMAGES[slug];
+  const image = img && croppable(img.license) && onDisk(img) ? `/cities/${img.file}` : undefined;
+  return pageMetadata(pageTitle(metro.display_name), metro.description, `/city/${slug}`, image);
+}
 
 /** The v3 city page (MetroV3): name, the one-line description (from the
  * build, never hand-written), locator map, the for-your-search card —
@@ -68,33 +80,42 @@ export default async function CityPage({
   return (
     <>
       <SiteHeader />
-      <div className="mx-auto flex max-w-6xl flex-col gap-7 px-6 pb-16 pt-8 sm:px-12">
+      <main id="main" className="mx-auto flex max-w-6xl flex-col gap-7 px-4 pb-16 pt-6 sm:px-12 sm:pt-8">
         <Link
           href={`/?${qs}`}
-          className="text-sm font-semibold text-accent hover:text-accent-hover"
+          className="inline-flex min-h-11 items-center self-start text-body-sm font-semibold text-accent hover:text-accent-hover"
         >
           ← Back to your results
         </Link>
 
-        <div className="grid grid-cols-[1fr_300px] items-center gap-12 max-md:grid-cols-1">
+        <div className="grid grid-cols-[1fr_300px] items-center gap-12 max-md:grid-cols-1 max-md:gap-6">
           <div className="flex flex-col gap-3.5">
-            <h1 className="font-display text-[48px] font-semibold leading-[1.05] tracking-tight max-sm:text-[34px]">
-              {metro.display_name_full}
-            </h1>
-            <p className="max-w-[52ch] text-[17px] leading-relaxed text-ink-2" data-testid="city-description">
+            {/* Phase 5: on a phone the locator map is a 96px thumbnail
+                beside the city's name */}
+            <div className="flex items-center gap-4">
+              <h1 className="min-w-0 flex-1 font-display text-display-1">
+                {metro.display_name_full}
+              </h1>
+              <div className="w-24 shrink-0 sm:hidden" data-testid="locator-thumb">
+                <LocatorMap focus={metro} thumb />
+              </div>
+            </div>
+            <p className="max-w-[52ch] text-body-lg text-ink-2" data-testid="city-description">
               {metro.description}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <CompareLauncher slug={slug} primary />
               <Link
                 href={`/?${qs}#search-panel`}
-                className="flex min-h-[46px] items-center rounded-md border-[1.5px] border-ink px-5 text-[14.5px] font-bold text-ink hover:bg-tint"
+                className="flex min-h-11 items-center rounded-md border border-line-strong bg-surface px-5 text-body font-semibold text-ink hover:bg-hover"
               >
                 Change your search
               </Link>
             </div>
           </div>
-          <LocatorMap focus={metro} />
+          <div className="max-sm:hidden">
+            <LocatorMap focus={metro} />
+          </div>
         </div>
 
         {/* item 7: every page gets a face — deterministic artwork in the
@@ -120,8 +141,8 @@ export default async function CityPage({
             <CityWideners prefs={prefs} />
           </CityNarrowCard>
         ) : (
-          <section className="rounded-lg border border-rule bg-surface px-7 py-6">
-            <p className="max-w-[72ch] text-sm leading-relaxed text-ink-2">
+          <section className="rounded-lg border border-rule bg-surface px-5 py-6 sm:px-7">
+            <p className="max-w-[72ch] text-body-sm text-ink-2">
               {city} sits below the population floor this site ranks, so it
               never appears in results — its profile is below.
             </p>
@@ -140,14 +161,14 @@ export default async function CityPage({
         )}
 
         <section className="flex flex-col gap-4">
-          <h2 className="font-display text-[26px] font-semibold">
+          <h2 className="font-display text-h2">
             What {city} is like
           </h2>
           {/* item 5.2: each card is a SUBGRID over six shared rows (name /
               value / unit / segments / band label / link), so the
               five-segment indicators sit at one height across a row of
               cards even when a neighbour's unit line wraps */}
-          <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+          <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:gap-3">
             {cards.map((c) => (
               <StatCard key={c.id} card={c} meta={meta} />
             ))}
@@ -159,15 +180,16 @@ export default async function CityPage({
             {/* item 2 (2e): crime as two cards in the SAME grid — rate,
                 band, ⓘ; the FBI's caution lives in the popover */}
             {crime && <CrimeCards crime={crime} meta={meta} />}
-            <div className="stat-card !flex flex-col justify-center gap-2.5 rounded-lg border border-tint-border bg-tint p-[18px]">
-              <span className="font-display text-[17px] font-semibold leading-snug text-accent-hover">
+            <div className="stat-card col-span-full !flex flex-col justify-center gap-2.5 rounded-lg border border-rule bg-surface p-[18px] sm:col-span-1">
+              <span className="font-display text-title text-ink">
                 See how {city} stacks up against a city you know
               </span>
               <CompareLauncher slug={slug} small />
             </div>
           </div>
         </section>
-      </div>
+      </main>
+      <SiteFooter />
     </>
   );
 }
@@ -188,11 +210,11 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
   const statName = (le.stat_page_name ?? le.display_name).toLowerCase();
   const missing = card.missing || card.display === undefined;
   return (
-    <div className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={card.id}>
-      <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
+    <div className="stat-card rounded-lg border border-rule bg-surface p-[18px] max-sm:p-3.5" data-card={card.id}>
+      <span className="text-caption font-semibold text-ink-2">{le.display_name}</span>
       {missing ? (
         <>
-          <span className="text-sm text-ink-3">
+          <span className="text-body-sm text-ink-3">
             {meta.policy_strings.card_missing}
           </span>
           <span aria-hidden="true" />
@@ -202,11 +224,11 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
         </>
       ) : (
         <>
-          <span className="font-display text-[30px] font-semibold leading-none">
+          <span className="text-data-l max-sm:text-h2 max-sm:leading-none">
             {isDollar ? "$" : ""}
             {card.display}
           </span>
-          <span className="unit-line text-[12.5px] text-ink-3">{card.unit_line}</span>
+          <span className="unit-line text-caption text-ink-3">{card.unit_line}</span>
           {card.band ? (
             <div className="flex gap-1 pt-0.5" aria-hidden="true">
               {segments.map((seg) => (
@@ -224,7 +246,7 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
             <span aria-hidden="true" />
           )}
           {card.band ? (
-            <span data-testid="band-label" className={`text-[12.5px] font-semibold ${toneColor}`}>
+            <span data-testid="band-label" className={`text-caption font-semibold ${toneColor}`}>
               {card.band.label}
             </span>
           ) : (
@@ -233,7 +255,7 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
           {statPage ? (
             <Link
               href={`/stats/${card.id}`}
-              className="self-start text-[12.5px] font-semibold text-accent hover:text-accent-hover"
+              className="self-start text-caption font-semibold text-accent hover:text-accent-hover"
             >
               {meta.policy_strings.stat_page_link.replace("{name}", statName)}
             </Link>

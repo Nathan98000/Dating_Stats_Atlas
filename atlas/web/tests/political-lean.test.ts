@@ -51,8 +51,10 @@ describe("the bar's colours hold AA where they sit (white cards, paper page)", (
     }
   }
 
-  it("keeps the party colours apart from the tones, the sex colours and the accent", () => {
-    const others = ["good", "poor", "good-strong", "poor-strong", "male", "female", "accent"]
+  // Phase 5: the sex colours (--male, --female) were retired with the
+  // balance tally; the party colours stay apart from the rest
+  it("keeps the party colours apart from the tones and the accent", () => {
+    const others = ["good", "poor", "good-strong", "poor-strong", "accent"]
       .map((n) => token(n).toUpperCase());
     for (const n of ["dem", "rep", "lean-other"]) {
       expect(others).not.toContain(token(n).toUpperCase());

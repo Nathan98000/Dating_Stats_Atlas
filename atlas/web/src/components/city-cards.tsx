@@ -26,17 +26,17 @@ export function CityNarrowCard({
       data-testid="city-narrow-card"
     >
       <div className="flex items-start gap-4">
-        <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-tint">
+        <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-sunken">
           <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
             <circle cx="8.5" cy="8.5" r="6" fill="none" stroke="var(--accent)" strokeWidth="1.8" />
             <path d="M13 13L18 18" fill="none" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
         </span>
         <div className="flex flex-col gap-[7px]">
-          <span className="font-display text-[21px] font-semibold">
+          <span className="font-display text-h3 font-semibold">
             {policy.city_narrow_title}
           </span>
-          <p className="max-w-[78ch] text-[15px] leading-relaxed text-ink-2">
+          <p className="max-w-[78ch] text-body leading-relaxed text-ink-2">
             {body}
           </p>
         </div>
@@ -60,8 +60,8 @@ export function CityWideners({ prefs }: { prefs: Prefs }) {
           onClick={() => router.push(`/?${toSearchParams(w.next).toString()}`)}
           className={
             i === 0
-              ? "min-h-[42px] rounded-md bg-accent px-[18px] text-[13.5px] font-bold text-white hover:bg-accent-hover"
-              : "min-h-[42px] rounded-md border-[1.5px] border-ink bg-paper px-[18px] text-[13.5px] font-bold text-ink hover:bg-tint"
+              ? "min-h-11 rounded-md bg-accent px-[18px] text-caption font-bold text-white hover:bg-accent-hover"
+              : "min-h-11 rounded-md border-[1.5px] border-ink bg-paper px-[18px] text-caption font-bold text-ink hover:bg-hover"
           }
         >
           {w.label}

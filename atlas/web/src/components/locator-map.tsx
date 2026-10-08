@@ -16,17 +16,17 @@ const MAP = usMap as unknown as {
   metros: Record<string, [number, number, string | null]>;
 };
 
-export function LocatorMap({ focus }: { focus: MetroMeta }) {
+export function LocatorMap({ focus, thumb = false }: { focus: MetroMeta; thumb?: boolean }) {
   const dot = MAP.metros[focus.cbsa];
   const homeState = dot?.[2] ?? null;
   return (
-    <div className="rounded-lg border border-rule bg-surface p-4">
+    <div className={thumb ? "rounded-md border border-rule bg-surface p-1" : "rounded-lg border border-rule bg-surface p-4"}>
       <svg
         width="100%"
         viewBox={`0 0 ${MAP.w} ${MAP.h}`}
         role="img"
         aria-label={`Map of the United States with ${focus.display_name_full} marked`}
-        data-testid="locator-map"
+        data-testid={thumb ? "locator-map-thumb" : "locator-map"}
       >
         {MAP.states.map((s) => (
           <path

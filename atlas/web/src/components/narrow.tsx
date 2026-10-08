@@ -25,15 +25,15 @@ export function NarrowState({
       data-testid="narrow-state"
     >
       <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-        <circle cx="36" cy="36" r="34" fill="var(--tint)" />
+        <circle cx="36" cy="36" r="34" fill="var(--sunken)" />
         <circle cx="32" cy="32" r="13" fill="none" stroke="var(--accent)" strokeWidth="3" />
         <path d="M42 42L54 54" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" />
       </svg>
       <div className="flex flex-col items-center gap-3.5">
-        <h2 className="max-w-[26ch] text-balance font-display text-[34px] font-semibold leading-tight">
+        <h2 className="max-w-[26ch] text-balance font-display text-h2 font-semibold leading-tight">
           {policy.narrow_title}
         </h2>
-        <p className="max-w-[66ch] text-[16.5px] leading-relaxed text-ink-2">
+        <p className="max-w-[66ch] text-body leading-relaxed text-ink-2">
           {body}
         </p>
       </div>
@@ -48,20 +48,20 @@ export function NarrowState({
               key={w.label}
               type="button"
               onClick={() => onWiden(w.next)}
-              className="flex min-h-[54px] flex-col items-start gap-[3px] rounded-md bg-accent px-[22px] py-3 text-left hover:bg-accent-hover"
+              className="flex min-h-13 flex-col items-start gap-0.5 rounded-md bg-accent px-5 py-3 text-left hover:bg-accent-hover"
             >
-              <span className="text-[15px] font-bold text-white">{w.label}</span>
-              <span className="text-[12.5px] text-tint">{w.sub}</span>
+              <span className="text-body font-bold text-white">{w.label}</span>
+              <span className="text-caption text-tint">{w.sub}</span>
             </button>
           ) : (
             <button
               key={w.label}
               type="button"
               onClick={() => onWiden(w.next)}
-              className="flex min-h-[54px] flex-col items-start gap-[3px] rounded-md border-[1.5px] border-ink bg-surface px-[22px] py-3 text-left hover:bg-tint"
+              className="flex min-h-13 flex-col items-start gap-0.5 rounded-md border border-line-strong bg-surface px-5 py-3 text-left hover:bg-hover"
             >
-              <span className="text-[15px] font-bold text-ink">{w.label}</span>
-              <span className="text-[12.5px] text-ink-3">{w.sub}</span>
+              <span className="text-body font-bold text-ink">{w.label}</span>
+              <span className="text-caption text-ink-3">{w.sub}</span>
             </button>
           ),
         )}

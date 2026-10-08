@@ -6,8 +6,14 @@ import { ComparePickers } from "@/components/compare-pickers";
 import { one, parsePrefs, toRankBody, toSearchParams, type SearchParams } from "@/lib/prefs";
 import { effectiveSearchParams } from "@/lib/server-prefs";
 import { fill } from "@/lib/results";
+import { CHROME, pageMetadata, pageTitle } from "@/lib/chrome";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata() {
+  const meta = await apiMeta();
+  return pageMetadata(pageTitle(CHROME.nav_compare), meta.policy_strings.compare_page_subtitle, "/compare");
+}
 
 /** The compare landing (2d item 8), reachable from the nav: two city
  * pickers over the same client-side index, pre-filled from ?a=&b= when

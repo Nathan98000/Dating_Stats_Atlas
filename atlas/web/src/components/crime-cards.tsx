@@ -20,11 +20,11 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
           const le = meta.features[fid];
           return (
             <div key={fid} className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={fid}>
-              <span className="flex items-center justify-between text-[13px] font-semibold text-ink-2">
+              <span className="flex items-center justify-between text-caption font-semibold text-ink-2">
                 {le.display_name}
                 <CrimeInfo fid={fid} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
               </span>
-              <span className="text-sm text-ink-3" data-testid="crime-card-blank">
+              <span className="text-body-sm text-ink-3" data-testid="crime-card-blank">
                 {crime.card_blank}
               </span>
               <span aria-hidden="true" />
@@ -41,14 +41,14 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
     <>
       {crime.stats!.map((s) => (
         <div key={s.id} className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={s.id}>
-          <span className="flex items-center justify-between text-[13px] font-semibold text-ink-2">
+          <span className="flex items-center justify-between text-caption font-semibold text-ink-2">
             {s.label}
             <CrimeInfo fid={s.id} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
           </span>
-          <span className="font-display text-[30px] font-semibold leading-none">
+          <span className="text-data-l max-sm:text-h2 max-sm:leading-none">
             {s.display}
           </span>
-          <span className="unit-line text-[12.5px] text-ink-3">{s.unit_line}</span>
+          <span className="unit-line text-caption text-ink-3">{s.unit_line}</span>
           {s.band ? (
             <div className="flex gap-1 pt-0.5" aria-hidden="true">
               {segments.map((seg) => (
@@ -66,7 +66,7 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
             <span aria-hidden="true" />
           )}
           {s.band ? (
-            <span data-testid="band-label" className="text-[12.5px] font-semibold text-ink-2">
+            <span data-testid="band-label" className="text-caption font-semibold text-ink-2">
               {s.band.label}
             </span>
           ) : (

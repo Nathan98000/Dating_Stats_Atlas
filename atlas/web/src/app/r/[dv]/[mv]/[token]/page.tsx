@@ -2,7 +2,7 @@ import Link from "next/link";
 import { apiMeta, apiRank, RankError } from "@/lib/api";
 import { decodeToken } from "@/lib/permalink";
 import { bodyToPrefs, toSearchParams } from "@/lib/prefs";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { Home } from "@/components/home";
 import { cardPhotos } from "@/lib/city-photos";
 
@@ -24,7 +24,7 @@ export default async function PermalinkPage({
   } catch {
     return (
       <Shell title="That link didn't survive the trip">
-        <p className="max-w-[60ch] text-[15px] leading-relaxed text-ink-2">
+        <p className="max-w-[60ch] text-body leading-relaxed text-ink-2">
           It looks cut short or altered. Ask whoever sent it for a fresh one,
           or start a search of your own.
         </p>
@@ -55,7 +55,7 @@ export default async function PermalinkPage({
     if (e instanceof RankError && e.status === 409) {
       return (
         <Shell title="This link came from an earlier edition of the site">
-          <p className="max-w-[62ch] text-[15px] leading-relaxed text-ink-2">
+          <p className="max-w-[62ch] text-body leading-relaxed text-ink-2">
             The way we count has been improved since it was made, and we
             don&rsquo;t quietly swap new numbers under old links. Run the same
             search on the current site instead — it may rank cities
@@ -64,7 +64,7 @@ export default async function PermalinkPage({
           <p>
             <Link
               href={`/?${qs}`}
-              className="inline-flex min-h-[46px] items-center rounded-md bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
+              className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 text-body-sm font-bold text-white hover:bg-accent-hover"
               data-testid="rerun-current"
             >
               Run this search on the current site
@@ -82,9 +82,10 @@ function Shell({ title, children }: { title: string; children: React.ReactNode }
     <>
       <SiteHeader />
       <main id="main" className="mx-auto flex max-w-3xl flex-col gap-4 px-6 pb-16 pt-12 sm:px-12" data-testid="pin-mismatch">
-        <h1 className="font-display text-[34px] font-semibold leading-tight">{title}</h1>
+        <h1 className="font-display text-h2 font-semibold leading-tight">{title}</h1>
         {children}
       </main>
+      <SiteFooter />
     </>
   );
 }
@@ -94,7 +95,7 @@ function StartOver() {
     <p>
       <Link
         href="/"
-        className="inline-flex min-h-[46px] items-center rounded-md bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
+        className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 text-body-sm font-bold text-white hover:bg-accent-hover"
       >
         Start a search
       </Link>

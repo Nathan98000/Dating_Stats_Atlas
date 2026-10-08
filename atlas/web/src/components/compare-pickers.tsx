@@ -60,7 +60,7 @@ export function ComparePickers({
         data-testid="compare-go"
         disabled={!a || !b || a === b}
         onClick={go}
-        className="min-h-[46px] self-start rounded-md bg-accent px-6 text-[14.5px] font-bold text-white hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
+        className="min-h-11 self-start rounded-md bg-accent px-6 text-body-sm font-bold text-white hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
       >
         Compare these two
       </button>
@@ -101,7 +101,7 @@ function CityPicker({
 
   return (
     <div className="relative">
-      <label htmlFor={id} className="mb-1.5 block text-[13px] font-semibold text-ink-2">
+      <label htmlFor={id} className="mb-1.5 block text-caption font-semibold text-ink-2">
         {label}
       </label>
       <input
@@ -142,7 +142,7 @@ function CityPicker({
         <ul
           id={`${id}-list`}
           role="listbox"
-          className="absolute z-30 mt-1 w-full overflow-hidden rounded-md border border-rule bg-surface text-sm"
+          className="absolute z-30 mt-1 w-full overflow-hidden rounded-lg border border-rule bg-surface text-body-sm shadow-overlay"
         >
           {results.map((r, i) => (
             <li

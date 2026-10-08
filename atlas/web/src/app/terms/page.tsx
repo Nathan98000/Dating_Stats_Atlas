@@ -1,9 +1,14 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { marked } from "marked";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata() {
+  return pageMetadata(pageTitle(CHROME.title_terms), SITE_DESCRIPTION, "/terms");
+}
 
 /** The terms of use (written before launch; approved by Nathan for now):
  * docs/terms.md rendered verbatim (synced at build), the same pattern as
@@ -21,6 +26,7 @@ export default async function TermsPage() {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </main>
+      <SiteFooter />
     </>
   );
 }

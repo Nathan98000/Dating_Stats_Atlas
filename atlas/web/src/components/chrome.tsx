@@ -3,24 +3,23 @@ import { Suspense } from "react";
 import { SearchBox } from "./search";
 import { BrandLink, HeaderSearchToggle, MenuButton, NavLinks } from "./nav-links";
 import { FOOTER_LINKS } from "@/lib/nav";
-import { apiMeta } from "@/lib/api";
+import { CHROME } from "@/lib/chrome";
 
 /** Phase 5's header: brand, nav and find-a-city, one row 64px tall (56px
  * on phones). From 1120px the nav and a 240px search field; 640-1119px
  * the nav and a search icon; below 640px a search icon and a menu button,
  * whose panel holds the nav and the footer's links. Labels come from the
- * registry; the links carry the visitor's preference query string when
+ * registry (lib/chrome: no API call, so prerendered pages have them); the links carry the visitor's preference query string when
  * the page has one (Phase 2f item 2; the Suspense fallbacks render the
  * same links bare, so nothing shifts). */
-export async function SiteHeader() {
-  const meta = await apiMeta();
-  const labels = meta.policy_strings;
+export function SiteHeader() {
+  const labels = CHROME;
   return (
     <header className="relative h-16 border-b border-rule bg-paper max-sm:h-14">
       <div className="mx-auto flex h-full max-w-[1200px] items-center gap-10 px-4 sm:px-12 max-sm:gap-3">
         <Suspense
           fallback={
-            <Link href="/" className="font-display text-[22px] font-semibold tracking-tight text-ink max-sm:text-[19px]">
+            <Link href="/" className="font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3">
               Dating Stats Atlas
             </Link>
           }
@@ -54,9 +53,8 @@ export async function SiteHeader() {
 
 /** Phase 5: the footer on every page — the brand and five links (How it
  * works, What we measure, Privacy, Terms, Data sources). */
-export async function SiteFooter() {
-  const meta = await apiMeta();
-  const labels = meta.policy_strings;
+export function SiteFooter() {
+  const labels = CHROME;
   return (
     <footer className="border-t border-rule max-desk:pb-24">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-x-6 gap-y-1 px-4 py-7 text-body-sm text-ink-3 sm:px-12">

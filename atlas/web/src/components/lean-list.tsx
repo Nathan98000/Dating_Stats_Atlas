@@ -57,7 +57,7 @@ export function LeanList({
   return (
     <>
       <div className="flex flex-wrap items-center justify-end gap-2.5">
-        <span className="text-[13px] font-semibold text-ink-2" id="lean-sort-label">
+        <span className="text-caption font-semibold text-ink-2" id="lean-sort-label">
           {sort.label}
         </span>
         <div role="radiogroup" aria-labelledby="lean-sort-label" className="flex flex-wrap gap-[5px]" data-testid="lean-sort">
@@ -70,7 +70,7 @@ export function LeanList({
                 role="radio"
                 aria-checked={on}
                 data-sort={opt.key}
-                className={`min-h-[36px] rounded-[7px] border px-3.5 text-[12.5px] font-semibold ${on ? "border-accent bg-accent text-white" : "border-rule bg-paper text-ink-3 hover:border-ink-3"}`}
+                className={`min-h-11 desk:min-h-9 rounded-sm border px-3.5 text-caption font-semibold ${on ? "border-accent bg-accent text-white" : "border-rule bg-paper text-ink-3 hover:border-ink-3"}`}
                 onClick={() => setKey(opt.key)}
               >
                 {opt.label}
@@ -85,14 +85,14 @@ export function LeanList({
         <div
           aria-hidden="true"
           data-testid="lean-list-header"
-          className="grid grid-cols-[1fr_auto_auto] items-baseline gap-x-6 border-b-2 border-rule pb-2 text-[12px] font-bold uppercase tracking-wide text-ink-3"
+          className="grid grid-cols-[1fr_auto_auto] items-baseline gap-x-6 border-b-2 border-rule pb-2 text-caption font-bold uppercase tracking-wide text-ink-3"
         >
           <span>{colCity}</span>
           <span className="w-[92px] text-right">{columns.dem}</span>
           <span className="w-[92px] text-right">{columns.rep}</span>
           <span
             data-testid="lean-list-unit"
-            className="col-span-3 mt-0.5 block text-right text-[12px] font-normal normal-case leading-snug tracking-normal"
+            className="col-span-3 mt-0.5 block text-right text-caption font-normal normal-case leading-snug tracking-normal"
           >
             {unit}
           </span>
@@ -107,16 +107,16 @@ export function LeanList({
               <span className="min-w-0">
                 <Link
                   href={`/city/${r.slug}`}
-                  className="text-[15.5px] font-semibold hover:text-accent-hover hover:underline"
+                  className="text-body font-semibold hover:text-accent-hover hover:underline"
                 >
                   {r.name}
                 </Link>
               </span>
-              <span className="w-[92px] text-right font-display text-[18px] font-semibold" data-col="dem">
+              <span className="w-[92px] text-right text-data-m" data-col="dem">
                 {r.dem}
                 <span className="sr-only"> {columns.dem},</span>
               </span>
-              <span className="w-[92px] text-right font-display text-[18px] font-semibold" data-col="rep">
+              <span className="w-[92px] text-right text-data-m" data-col="rep">
                 {r.rep}
                 <span className="sr-only"> {columns.rep}</span>
               </span>

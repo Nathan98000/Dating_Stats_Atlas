@@ -255,3 +255,63 @@ test("compare landing: a link to the visitor's top two", async ({ page, request 
   const ranked = (await r.json()).ranked as { slug: string }[];
   await expect(link).toHaveAttribute("href", new RegExp(`^/compare/${ranked[0].slug}/${ranked[1].slug}\\?`));
 });
+
+for (const path of ["/city/provo-utah", "/compare/provo-utah/austin-texas"]) {
+  test(`landmark-one-main and skip-link pass: ${path}`, async ({ page }) => {
+    test.skip(width(page) === 1024, "1440 and 390");
+    await page.goto(path);
+    await page.waitForLoadState("networkidle");
+    const results = await new AxeBuilder({ page }).withRules(["landmark-one-main", "skip-link", "region"]).analyze();
+    expect(results.violations.map((v) => v.id)).toEqual([]);
+    await expect(page.locator("main#main")).toHaveCount(1);
+  });
+}
+
+test("every page has its own title and Open Graph tags", async ({ page }) => {
+  test.skip(width(page) !== 1440, "once is enough");
+  const want: [string, RegExp][] = [
+    ["/", /^Dating Stats Atlas$/],
+    ["/city/provo-utah", /^Provo, UT · Dating Stats Atlas$/],
+    ["/compare/provo-utah/austin-texas", /^Provo, UT vs Austin, TX · Dating Stats Atlas$/],
+    ["/compare", /^Compare · Dating Stats Atlas$/],
+    ["/stats/rent_1br", /^Rent by city · Dating Stats Atlas$/],
+    ["/about", /^How it works · Dating Stats Atlas$/],
+    ["/privacy", /^Privacy · Dating Stats Atlas$/],
+    ["/terms", /^Terms · Dating Stats Atlas$/],
+  ];
+  for (const [path, title] of want) {
+    await page.goto(path);
+    await expect(page, path).toHaveTitle(title);
+    await expect(page.locator('meta[property="og:title"]'), path).toHaveAttribute("content", title);
+    await expect(page.locator('meta[property="og:description"]'), path).toHaveAttribute("content", /.+/);
+    await expect(page.locator('meta[property="og:url"]'), path).toHaveAttribute("content", /^https?:\/\/.+/);
+  }
+});
+
+test("the 404 has the header, the footer and a main landmark", async ({ page }) => {
+  const r = await page.goto("/no-such-page");
+  expect(r!.status()).toBe(404);
+  await expect(page.locator("header").first()).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Footer" })).toBeVisible();
+  await expect(page.locator("main#main")).toHaveCount(1);
+});
+
+test("the city page leads with the score; on a phone the map is a thumbnail beside the name", async ({ page }) => {
+  await page.goto(`/city/provo-utah?${DEFAULT_QS}`);
+  const card = page.getByTestId("ranked-card");
+  await expect(card.getByTestId("score")).toHaveText(/^\d+$/);
+  await expect(card.getByTestId("score-label")).toHaveText("Overall score");
+  await expect(card.getByTestId("balance-tally")).toBeVisible();
+  if (width(page) < 640) {
+    const thumb = page.getByTestId("locator-thumb");
+    await expect(thumb).toBeVisible();
+    expect((await thumb.boundingBox())!.width).toBeLessThanOrEqual(97);
+    await expect(page.getByTestId("locator-map")).toBeHidden();
+    // stat cards two to a row
+    const cards = page.locator("[data-card]");
+    const [a, b] = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox()]);
+    expect(Math.abs(a!.y - b!.y)).toBeLessThan(2);
+  } else {
+    await expect(page.getByTestId("locator-map")).toBeVisible();
+  }
+});

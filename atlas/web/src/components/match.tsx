@@ -21,12 +21,12 @@ export function MatchFigure({
   if (!match || !match.available || match.display == null) return null;
   return (
     <div className="flex flex-col gap-1" data-testid="match-figure">
-      <span className="text-[13px] font-semibold text-ink-2">{le.display_name}</span>
+      <span className="text-caption font-semibold text-ink-2">{le.display_name}</span>
       <p className="flex flex-wrap items-baseline gap-x-2">
-        <span className={`font-display font-semibold leading-none ${compact ? "text-[22px]" : "text-[30px]"}`}>
+        <span className={compact ? "text-data-m" : "text-data-l"} data-figure="">
           {match.display}
         </span>
-        <span className={`text-ink-3 ${compact ? "text-[12.5px]" : "text-sm"}`}>
+        <span className={`text-ink-3 ${compact ? "text-caption" : "text-body-sm"}`}>
           {match.unit_line ?? le.unit}
         </span>
       </p>

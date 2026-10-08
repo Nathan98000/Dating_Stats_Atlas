@@ -34,8 +34,8 @@ export function CompareLauncher({
         onClick={() => setOpen(true)}
         className={
           primary
-            ? "min-h-[46px] self-start rounded-md bg-accent px-5 text-[14.5px] font-bold text-white hover:bg-accent-hover"
-            : "min-h-[42px] self-start rounded-md bg-accent px-4 text-[13.5px] font-bold text-white hover:bg-accent-hover"
+            ? "min-h-11 self-start rounded-md bg-accent px-5 text-body-sm font-bold text-white hover:bg-accent-hover"
+            : "min-h-11 self-start rounded-md bg-accent px-4 text-caption font-bold text-white hover:bg-accent-hover"
         }
       >
         {label}
@@ -63,12 +63,12 @@ export function CompareLauncher({
         }}
       />
       {results.length > 0 && (
-        <ul className="absolute z-20 mt-1 w-full overflow-hidden rounded-md border border-rule bg-surface text-sm">
+        <ul className="absolute z-20 mt-1 w-full overflow-hidden rounded-lg border border-rule bg-surface text-body-sm shadow-overlay">
           {results.map((r) => (
             <li key={r.s}>
               <button
                 type="button"
-                className="block w-full px-3.5 py-2.5 text-left text-ink-2 hover:bg-tint hover:text-ink"
+                className="block w-full px-3.5 py-2.5 text-left text-ink-2 hover:bg-hover hover:text-ink"
                 onClick={() => {
                   const qs = sp.toString();
                   router.push(`/compare/${slug}/${r.s}${qs ? `?${qs}` : ""}`);

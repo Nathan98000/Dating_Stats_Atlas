@@ -37,8 +37,6 @@
   --accent-hover: #7C2843;
   --tint: #F7E9EE;
   --tint-border: #E3C3CE;
-  --male: #4E86C7;
-  --female: #C25C86;
   --good: #2E7D6B;
   --poor: #B0543E; /* the board's #C2624A sits at 4.1:1 on white; this holds 5.0:1 */
   /* Phase 2f item 1: the strong pair for the extreme bands — measured
@@ -50,7 +48,7 @@
   --poor-strong: #8A2B18;
   /* Phase 4d (ADR 0019): political lean's bar — the conventional blue for
      Democratic and red for Republican, muted to sit with the palette and
-     kept apart from the sex colours (--male), the tones (--poor) and the
+     kept apart from the tones (--poor) and the
      accent, with a neutral grey for everyone else between them. Every
      segment also carries its party's name in text, so colour is never the
      only cue; each measures at least 4.5:1 on white and paper (the grey
@@ -99,8 +97,6 @@
   --color-accent-hover: var(--accent-hover);
   --color-tint: var(--tint);
   --color-tint-border: var(--tint-border);
-  --color-male: var(--male);
-  --color-female: var(--female);
   --color-good: var(--good);
   --color-poor: var(--poor);
   --color-good-strong: var(--good-strong);
@@ -294,7 +290,7 @@ input.check {
   height: 18px;
   flex-shrink: 0;
   border: 1.5px solid var(--ink-3);
-  border-radius: 5px;
+  border-radius: 4px;
   background: var(--surface);
   display: inline-grid;
   place-content: center;
@@ -391,29 +387,29 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
 /* rendered markdown (How it works, the crime explainer): real headings,
    real lists, a real table — item 10's "structure, not dumped prose" */
 .prose-method {
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.65;
   color: var(--ink-2);
 }
 .prose-method h1 {
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: 38px;
+  font-size: var(--fs-display-1);
   font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+  line-height: var(--lh-display-1);
+  letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 18px;
 }
 .prose-method h2 {
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: 24px;
+  font-size: var(--fs-h2);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--lh-h2);
   color: var(--ink);
   margin: 34px 0 10px;
 }
 .prose-method p { margin: 12px 0; max-width: 68ch; }
-.prose-method h1 + p { font-size: 16.5px; }
+.prose-method h1 + p { font-size: 18px; line-height: 28px; }
 .prose-method strong { color: var(--ink); font-weight: 650; }
 .prose-method a {
   color: var(--accent);
@@ -430,10 +426,10 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
   max-width: 560px;
   margin: 14px 0;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 14px;   /* body-sm */
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 .prose-method th {

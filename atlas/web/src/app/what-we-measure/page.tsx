@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { apiMeta } from "@/lib/api";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 import type { Meta } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata() {
+  return pageMetadata(pageTitle(CHROME.footer_measure), SITE_DESCRIPTION, "/what-we-measure");
+}
 
 /** What we measure (Phase 2e item 12, recomposed in Phase 2f item 8):
  * heading straight into the groups — no intro — with the composition
@@ -28,13 +33,13 @@ export default async function WhatWeMeasurePage() {
     <>
       <SiteHeader />
       <main id="main" className="mx-auto flex max-w-3xl flex-col gap-8 px-6 pb-16 pt-10 sm:px-12">
-        <h1 className="font-display text-[38px] font-semibold leading-tight tracking-tight">
+        <h1 className="font-display text-display-1 font-semibold leading-tight tracking-tight">
           What we measure
         </h1>
 
         {meta.measure_page.map((group) => (
           <section key={group.heading} className="flex flex-col gap-3" data-group={group.heading}>
-            <h2 className="font-display text-[24px] font-semibold">
+            <h2 className="font-display text-h2 font-semibold">
               {heading(group.heading)}
             </h2>
             {(group.pillars ?? []).map((p) => (
@@ -63,6 +68,7 @@ export default async function WhatWeMeasurePage() {
           </section>
         ))}
       </main>
+      <SiteFooter />
     </>
   );
 }
@@ -95,12 +101,12 @@ function MeasureRow({
 }) {
   return (
     <div className="flex flex-col gap-1 rounded-lg border border-rule bg-surface px-5 py-4" data-testid={testid}>
-      <span className="text-[15.5px] font-semibold">{name}</span>
-      <p className="max-w-[64ch] text-[13.5px] leading-relaxed text-ink-2">{sentence}</p>
+      <span className="text-body font-semibold">{name}</span>
+      <p className="max-w-[64ch] text-caption leading-relaxed text-ink-2">{sentence}</p>
       {statHref && statLabel ? (
         <Link
           href={statHref}
-          className="self-start pt-0.5 text-[12.5px] font-semibold text-accent hover:text-accent-hover"
+          className="self-start pt-0.5 text-caption font-semibold text-accent hover:text-accent-hover"
         >
           {statLabel}
         </Link>

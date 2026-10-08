@@ -77,6 +77,12 @@ def political_lean_page(build, m: dict, le: dict) -> dict:
     }
 
 
+CHROME_KEYS = ("nav_rankings", "nav_compare", "nav_how", "footer_how", "footer_measure",
+               "footer_privacy", "footer_terms", "footer_sources", "close", "title_site",
+               "title_template", "title_compare_pair", "title_stat", "title_privacy",
+               "title_terms", "about_title", "not_found_title", "not_found_body")
+
+
 def main() -> None:
     build_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else default_build()
     build = load_build(build_dir)
@@ -174,7 +180,11 @@ def main() -> None:
                            "sort_high": m["strings"]["stat_sort_high"],
                            "strip_label": m["strings"]["stat_strip_label"],
                            "col_city": m["strings"]["stat_col_city"],
-                           "source_prefix": m["strings"]["stat_source_prefix"]}}
+                           "source_prefix": m["strings"]["stat_source_prefix"]},
+               # Phase 5: the header's and footer's labels and the page
+               # titles, for every page's chrome — which the stat pages,
+               # built ahead of time with no API to ask, share
+               "chrome": {k: m["strings"][k] for k in CHROME_KEYS}}
     out.write_text(json.dumps(payload, separators=(",", ":"),
                               ensure_ascii=False) + "\n", encoding="utf-8")
     n = len(pages)
