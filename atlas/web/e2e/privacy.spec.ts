@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { openRailGroup } from "./helpers";
 
 /** ADR 0017 (Nathan's decision): race and sex inputs never feed ads,
  * listings, referrals, or any housing, credit or job use. The build holds
@@ -78,6 +79,9 @@ test("no request, cookie, link or permalink carries an about-you detail across a
   // 4b: one select, "Prefer not to say" until he chooses)
   await page.getByTestId("self-sex").selectOption("male");
   await expect(page.getByTestId("seek-sex")).toHaveValue("female");
+  // Phase 5: the details sit in the rail's "Sharpen compatibility" group,
+  // collapsed until opened (the one line this test gained; no check changed)
+  await openRailGroup(page, "Sharpen compatibility");
   await page.getByTestId("self-edu").selectOption("graduate");
   await page.getByTestId("self-race").selectOption("black_nh");
   // and a partner filter, so the page re-asks the API

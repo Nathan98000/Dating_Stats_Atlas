@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync } from "fs";
+import { openRailGroup } from "./helpers";
 import path from "path";
 import { expect, test } from "@playwright/test";
 
@@ -96,7 +97,7 @@ test('the compare picker finds New York for "new york" (the item-5 bug)', async 
   const texts = await options.allTextContents();
   expect(texts.slice(0, 3).join(" | ")).toMatch(/New York, New York/);
   // and the header search agrees, from the same implementation
-  await page.getByLabel("Find a city").fill("new york");
+  await page.getByLabel("Find a city").locator("visible=true").fill("new york");
   const headerOpts = page.locator("#city-search-results").getByRole("option");
   await expect(headerOpts.first()).toContainText("New York, New York");
 });
@@ -104,6 +105,7 @@ test('the compare picker finds New York for "new york" (the item-5 bug)', async 
 test("eight equal race groups in the panel, the pair selectable alone", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  await openRailGroup(page, "Narrow it down");
   const panel = page.getByTestId("race-panel");
   const boxes = panel.locator("input.check");
   await expect(boxes).toHaveCount(8);
@@ -145,7 +147,7 @@ test("What we measure lists every statistic, grouped, with crime's own line", as
   // since Nathan's About us changes after Phase 4e, from the account's own
   // last section rather than a button at the top
   await page.goto("/");
-  await page.getByRole("link", { name: "About the site" }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "How it works", exact: true }).click();
   await page.locator("article.prose-method")
     .getByRole("link", { name: "What we measure", exact: true }).click();
   await expect(page).toHaveURL(/what-we-measure/);

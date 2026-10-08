@@ -104,24 +104,26 @@ test("the data sources are collapsed, the Census API notice folded in with them"
     "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.");
 });
 
-test("the home page photograph is credited inside the collapsed photographs' list, cropped", async ({ page, request }) => {
+test("the photographs' list credits what the site shows, the cropped ones marked; the home photograph has left", async ({ page, request }) => {
   const ps = (await fetchMeta(request)).policy_strings;
-  // the credits the page owes: every photograph whose file is on disk, the
-  // home page's first, then the stat pages' and the cities' (the files are
-  // gitignored, so a fresh checkout — CI's — owes none)
-  type Img = { file: string };
+  // Phase 5 (Nathan's decision 1): the home page has no photograph band,
+  // so its credit left; the credits the page owes are every stat and city
+  // photograph on disk (gitignored: a fresh checkout — CI's — owes none),
+  // a public-domain or CC0 city photograph marked cropped (the home
+  // page's cards crop it)
+  type Img = { file: string; license: string };
+  const cities = Object.values(cityImages as unknown as Record<string, Img>)
+    .filter((i) => photoOnDisk(`cities/${i.file}`));
   const files = [
-    ...(photoOnDisk(heroImage.file) ? [heroImage.file] : []),
     ...Object.values(statImages as unknown as Record<string, Img>)
       .filter((i) => photoOnDisk(`stats/${i.file}`)).map((i) => i.file),
-    ...Object.values(cityImages as unknown as Record<string, Img>)
-      .filter((i) => photoOnDisk(`cities/${i.file}`)).map((i) => i.file),
+    ...cities.map((i) => i.file),
   ];
   await page.goto("/about");
   await expect(page.getByTestId("sources-and-credits")).toBeVisible();
+  await expect(page.locator(`[data-credit="${heroImage.file}"]`)).toHaveCount(0);
   const more = page.getByTestId("credits-photos-more");
   if (files.length === 0) {
-    // nothing on disk to credit: no list, and no credit anywhere
     await expect(more).toHaveCount(0);
     await expect(page.locator("[data-credit]")).toHaveCount(0);
     return;
@@ -129,32 +131,12 @@ test("the home page photograph is credited inside the collapsed photographs' lis
   await expect(more).not.toHaveAttribute("open", /.*/);
   await expect(more.locator("summary")).toHaveText(
     ps.credits_photos_more.replace("{n}", files.length.toLocaleString("en-US")));
-  // every credit sits inside the collapsed list, in that order
-  await expect(page.locator("[data-credit]")).toHaveCount(files.length);
   expect(await more.locator("li[data-credit]").evaluateAll(
     (lis) => lis.map((li) => li.getAttribute("data-credit")))).toEqual(files);
-  const hero = more.locator(`[data-credit="${heroImage.file}"]`);
-  if (!photoOnDisk(heroImage.file)) {
-    await expect(hero).toHaveCount(0);
-    return;
-  }
-  await expect(hero).toBeHidden();
   await more.locator("summary").click();
-  await expect(hero).toBeVisible();
-  await expect(hero).toContainText(heroImage.title);
-  await expect(hero).toContainText(heroImage.author);
-  await expect(hero).toContainText(ps.credits_cropped);
-  await expect(hero.getByRole("link", { name: ps.credits_source }))
-    .toHaveAttribute("href", heroImage.source_url);
-});
-
-
-test("the home page shows the new photograph with its alt text", async ({ page }) => {
-  await page.goto("/");
-  const photo = page.getByTestId("hero-photo");
-  test.skip(!(await photo.count()), "the hero file is gitignored and absent here");
-  await expect(photo.locator("img")).toHaveAttribute("alt", heroImage.alt);
-  expect(heroImage.source_url).toBe(
-    "https://commons.wikimedia.org/wiki/File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg");
-  expect(heroImage.license).toBe("CC0");
+  for (const img of cities) {
+    const li = more.locator(`[data-credit="${img.file}"]`);
+    if (/public domain|cc0/i.test(img.license)) await expect(li).toContainText(`· ${ps.credits_cropped}`);
+    else await expect(li).not.toContainText(`· ${ps.credits_cropped}`);
+  }
 });

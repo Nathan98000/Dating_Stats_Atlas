@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import type { Meta, VariantResponse } from "@/lib/types";
 import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
-import { BalanceTally } from "./tally";
+import { BalanceTrack } from "./balance-track";
 import { MatchFigure } from "./match";
 
 /** The parts of the city page an "about you" variant changes (m4.0.0,
@@ -62,7 +62,7 @@ export function CityVariantPart({
             </span>
           </div>
           <div className="min-w-[220px]">
-            <BalanceTally balance={ranked.balance} compact />
+            <BalanceTrack balance={ranked.balance} meta={meta} id={`city-${cbsa}`} />
           </div>
           {/* the compatibility figure beside pool and balance (no box or
               band since Phase 4b) */}
@@ -84,7 +84,7 @@ export function CityVariantPart({
       <h2 className="text-[15px] font-semibold">
         {meta.features.pool_balance.display_name} in {city}
       </h2>
-      <BalanceTally balance={balance} />
+      <BalanceTrack balance={balance} meta={meta} id={`city-${cbsa}-s`} caption={false} />
       <p className="max-w-[64ch] text-[12.5px] text-ink-3">
         {policy.balance_caption}
       </p>

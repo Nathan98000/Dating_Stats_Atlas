@@ -1,13 +1,28 @@
-/** The header's destinations — shared by the server-rendered fallback
- * and the client links that carry the visitor's query (Phase 2f item 2).
- * Plain data module: importable from both sides of the boundary. m4.0.0
- * (Nathan's decision 7): Browse cities, Compare cities, About us — What
- * we measure keeps its page, linked from About us. Phase 4e (Nathan):
- * "Browse cities" reads "Home" — Home, Compare cities, About us. Renamed by
- * Nathan on 2026-10-07: the About page is "About the site", here and in
- * its heading (the registry's about_title). */
+/** The header's destinations and the footer's links — shared by the
+ * server-rendered header and footer and the client links that carry the
+ * visitor's query (Phase 2f item 2). Plain data module: importable from
+ * both sides of the boundary. Phase 5 (Nathan's decision 2): Rankings,
+ * Compare, How it works — the labels are the registry's (nav_*, footer_*),
+ * named here by key. */
 export const NAV_DESTINATIONS = [
-  { href: "/", label: "Home" },
-  { href: "/compare", label: "Compare cities" },
-  { href: "/about", label: "About the site" },
+  { href: "/", key: "nav_rankings" },
+  { href: "/compare", key: "nav_compare" },
+  { href: "/about", key: "nav_how" },
 ] as const;
+
+/** Phase 5: the footer on every page (also in the phone menu). Data
+ * sources is About's Sources and credits section. */
+export const FOOTER_LINKS = [
+  { href: "/about", key: "footer_how" },
+  { href: "/what-we-measure", key: "footer_measure" },
+  { href: "/privacy", key: "footer_privacy" },
+  { href: "/terms", key: "footer_terms" },
+  { href: "/about#sources", key: "footer_sources" },
+] as const;
+
+/** Whether a nav destination is the page being shown: Rankings for the
+ * home page (and its permalink pages), the others for their own section. */
+export function isCurrent(href: string, pathname: string): boolean {
+  if (href === "/") return pathname === "/" || pathname.startsWith("/r/");
+  return pathname === href || pathname.startsWith(`${href}/`);
+}

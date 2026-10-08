@@ -1,76 +1,89 @@
 import { expect, test } from "@playwright/test";
 
-/** Phase 2d items 1 + 2 (gates 1 + 2): the panel follows the page and
- * scrolls inside itself — keyboard included — at both test viewports and
- * goes back to a normal block at phone width; the slider explanation is
- * a real button that opens on hover AND focus AND tap and closes on
- * Escape and blur. */
+/** Phase 5 (replacing Phase 2d items 1 + 2): from 1120px the search rail
+ * sits beside the results, sticky, and never scrolls inside itself — it
+ * fits a 1440×900 screen; below 1120px it lives in a sheet (phones) or a
+ * drawer (tablets) opened by the sticky "Adjust your search" bar, which
+ * appears once the hero's quick search has scrolled away. The slider
+ * explanation is a real button that opens on hover AND focus AND tap and
+ * closes on Escape and blur. */
 
-for (const size of [{ w: 1280, h: 720 }, { w: 1280, h: 900 }]) {
-  test(`the panel sticks and scrolls inside itself at ${size.w}×${size.h}`, async ({ page }) => {
+test("the rail sticks beside the results and fits 1440×900 without its own scroll", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  const rail = page.getByTestId("rail");
+  const style = await rail.evaluate((el) => {
+    const cs = getComputedStyle(el);
+    return { position: cs.position, overflowY: cs.overflowY,
+             fits: el.scrollHeight === el.clientHeight, height: el.getBoundingClientRect().height };
+  });
+  expect(style.position).toBe("sticky");
+  expect(style.overflowY).toBe("visible");
+  expect(style.fits).toBe(true);
+  expect(style.height).toBeLessThanOrEqual(900 - 16);
+
+  // scrolling the page down leaves the rail pinned in view (the fixture's
+  // list is short: scroll within the results, not past them)
+  await page.mouse.wheel(0, 500);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(400);
+  const box = await rail.boundingBox();
+  expect(box!.y).toBeGreaterThanOrEqual(0);
+  expect(box!.y).toBeLessThan(40);
+  await expect(page.getByRole("radiogroup", { name: "Weather importance" })).toBeInViewport();
+});
+
+for (const size of [{ w: 390, h: 844, name: "sheet" }, { w: 1024, h: 768, name: "drawer" }]) {
+  test(`below 1120px the search lives in a ${size.name}, opened from the sticky bar`, async ({ page }) => {
     await page.setViewportSize({ width: size.w, height: size.h });
     await page.goto("/");
     await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-    const panel = page.getByTestId("search-panel");
-    const style = await panel.evaluate((el) => {
-      const cs = getComputedStyle(el);
-      return { position: cs.position, overflowY: cs.overflowY,
-               maxHeight: cs.maxHeight };
-    });
-    expect(style.position).toBe("sticky");
-    expect(style.overflowY).toBe("auto");
-    expect(style.maxHeight).not.toBe("none");
-
-    // scrolling the PAGE far down leaves the panel pinned in view — the
-    // page is never trapped by a panel taller than the viewport
-    await page.mouse.wheel(0, 2500);
-    await expect
-      .poll(() => page.evaluate(() => window.scrollY))
-      .toBeGreaterThan(1200);
-    const box = await panel.boundingBox();
-    expect(box!.y).toBeGreaterThanOrEqual(0);
-    expect(box!.y).toBeLessThan(40);
-
-    // the scroll container is keyboard-reachable and scrollable: focus
-    // it and page through it without moving the page
-    await panel.focus();
-    const pageYBefore = await page.evaluate(() => window.scrollY);
-    const innerBefore = await panel.evaluate((el) => el.scrollTop);
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("ArrowDown");
-    if (size.h === 720) {
-      // at 720 the panel overflows, so arrows must scroll ITS content
-      await expect.poll(() => panel.evaluate((el) => el.scrollTop))
-        .toBeGreaterThan(innerBefore);
-    }
-    expect(await page.evaluate(() => window.scrollY)).toBe(pageYBefore);
-
-    // every control stays reachable inside the panel's own scroll — the
-    // last importance row can always be brought into view
-    const lastRow = page.getByRole("radiogroup", { name: "Weather importance" });
-    await lastRow.getByRole("radio", { name: "Some" }).focus();
-    await expect(lastRow).toBeInViewport();
+    await expect(page.getByTestId("rail")).toHaveCount(0);
+    const bar = page.getByTestId("bottom-bar");
+    await expect(bar).toBeHidden();
+    await page.mouse.wheel(0, 1600);
+    await expect(bar).toBeVisible();
+    const adjust = bar.getByRole("button", { name: "Adjust your search" });
+    await adjust.click();
+    const sheet = page.getByRole("dialog", { name: "Adjust your search" });
+    await expect(sheet).toBeVisible();
+    await expect(sheet.getByRole("radiogroup", { name: "Cost of living importance" })).toBeVisible();
+    // the page behind does not scroll
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflow)).toBe("hidden");
+    // a change applies live, and Show results closes the sheet
+    await sheet.getByRole("radiogroup", { name: "Cost of living importance" })
+      .getByRole("radio", { name: "A lot" }).click();
+    await expect(page).toHaveURL(/ic=a/);
+    await sheet.getByRole("button", { name: "Show results" }).click();
+    await expect(sheet).toBeHidden();
+    await expect(adjust).toBeFocused();
   });
 }
 
-test("at phone width the panel is a normal block above the results", async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 812 });
+test("the sheet traps focus, closes on Escape and returns focus", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  const panel = page.getByTestId("search-panel");
-  const style = await panel.evaluate((el) => getComputedStyle(el).position);
-  expect(style).toBe("static");
-  const panelBox = await panel.boundingBox();
-  const listBox = await page.getByTestId("ranked-list").boundingBox();
-  expect(panelBox!.y).toBeLessThan(listBox!.y);
-  // the chips bar brings Change search back once the panel scrolls away
-  await page.mouse.wheel(0, panelBox!.height + 800);
-  await expect(page.getByTestId("chips-bar")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Change search" })).toBeVisible();
+  await page.mouse.wheel(0, 1600);
+  const adjust = page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" });
+  await adjust.click();
+  const sheet = page.getByRole("dialog", { name: "Adjust your search" });
+  await expect(sheet).toBeVisible();
+  for (let i = 0; i < 40; i++) {
+    await page.keyboard.press("Tab");
+    const inside = await page.evaluate(() =>
+      !!document.activeElement?.closest("dialog[open]") || document.activeElement === document.body);
+    expect(inside, `tab ${i} stays in the sheet`).toBe(true);
+  }
+  await page.keyboard.press("Escape");
+  await expect(sheet).toBeHidden();
+  await expect(adjust).toBeFocused();
+  await expect.poll(() => page.evaluate(() => getComputedStyle(document.documentElement).overflow))
+    .not.toBe("hidden");
 });
 
 test("the slider explanation opens on hover, focus and tap, closes on Escape and blur", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   const btn = page.getByTestId("slider-info");
   const note = page.getByTestId("slider-info-note");

@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type APIRequestContext, type Locator, type Page } from "@playwright/test";
-import { E2E_API, fetchMeta, seedAboutYou } from "./helpers";
+import { E2E_API, fetchMeta, openRailGroup, revealRows, seedAboutYou } from "./helpers";
 import { parsePrefs, toRankBody } from "../src/lib/prefs";
 import { selectVariant } from "../src/lib/variants";
 import type { AboutYou } from "../src/lib/about-you";
@@ -33,10 +33,13 @@ const REMOVED_TESTIDS = ["self-race-switch", "self-race-note", "race-switch-bloc
 // the switch's wording, which Privacy and About us kept until 2026-09-30
 const SWITCH_WORDING = /\bswitch(ed|es|ing)?\b|\bturn(ed|s|ing)? (it|race|them) (on|off)\b|\boff unless\b|\bwith it off\b/i;
 
-const rowsOf = (page: Page) => page.getByTestId("ranked-list").locator("li");
+const rowsOf = (page: Page) => page.getByTestId("ranked-list").locator("li[data-rank]");
 
-/** What the page shows per row: city, the compatibility figure, the score. */
+/** What the page shows per row: city, the compatibility figure, the score.
+ * Phase 5: every row shown and its detail open first; the top three are
+ * cards, which show no figure. */
 async function shownRows(page: Page): Promise<string[]> {
+  await revealRows(page);
   return rowsOf(page).evaluateAll((els) => els.map((e) =>
     `${e.getAttribute("data-cbsa")}:${
       e.querySelector('[data-testid="match-figure"] .font-display')?.textContent ?? ""}:${
@@ -50,56 +53,48 @@ async function variantRows(request: APIRequestContext, qs: string, about: AboutY
   const r = await request.post(`${E2E_API}/v1/rank`, { data: body });
   expect(r.ok()).toBe(true);
   const resp = (await r.json()) as VariantResponse;
-  return selectVariant(resp, about).ranked.map((row) =>
-    `${row.cbsa}:${row.match.available && row.match.display != null ? row.match.display : ""}:${
+  return selectVariant(resp, about).ranked.map((row, i) =>
+    `${row.cbsa}:${i >= 3 && row.match.available && row.match.display != null ? row.match.display : ""}:${
       row.score_display}`);
 }
 
-test("the panel has two labelled sections: About you, then Who you're looking for", async ({ page, request }) => {
+test("the quick search holds the visitor and who they seek; the rail's three groups hold the rest", async ({ page, request }) => {
+  // Phase 5 (replacing Phase 4b's "About you" / "Who you're looking for"
+  // sections): I'm a, My age, Looking for and Their age sit in the hero's
+  // quick search; the rail has What matters to you (open), Narrow it down
+  // and Sharpen compatibility (each collapsed, a disclosure in a heading)
   const ps = (await fetchMeta(request)).policy_strings;
   await page.goto("/");
   await expect(rowsOf(page).first()).toBeVisible();
-  const panel = page.getByTestId("search-panel");
-  const about = panel.getByRole("group", { name: ps.panel_about_you_heading, exact: true });
-  const seeking = panel.getByRole("group", { name: ps.panel_looking_for_heading, exact: true });
-  await expect(about).toHaveCount(1);
-  await expect(seeking).toHaveCount(1);
-  // visible headings, and real ones: a screen reader meets the same groups
-  // and can jump between them by heading
-  await expect(about.getByRole("heading", { level: 2 })).toHaveText(ps.panel_about_you_heading);
-  await expect(seeking.getByRole("heading", { level: 2 })).toHaveText(ps.panel_looking_for_heading);
-  await expect(about.getByRole("heading", { level: 2 })).toBeVisible();
-  await expect(seeking.getByRole("heading", { level: 2 })).toBeVisible();
-
-  // About you: I'm a, My age, My education, My race or ethnicity
-  for (const label of ["I'm a", "My age", ps.self_edu_label, ps.self_race_label]) {
-    await expect(about.getByLabel(label, { exact: true }), label).toHaveCount(1);
-    await expect(seeking.getByLabel(label, { exact: true }), label).toHaveCount(0);
+  const quick = page.getByTestId("quick-search");
+  for (const label of [ps.quick_self_sex_short, ps.quick_self_age_short, ps.quick_seek_sex_short]) {
+    await expect(quick.getByLabel(label, { exact: true }), label).toHaveCount(1);
   }
-  // Who you're looking for: I'm looking for, the age range, Single means
-  // and the partner filters for education, income and race
-  for (const label of ["I'm looking for", "Youngest age", "Oldest age", "Education", "Earning at least"]) {
-    await expect(seeking.getByLabel(label, { exact: true }), label).toHaveCount(1);
-    await expect(about.getByLabel(label, { exact: true }), label).toHaveCount(0);
+  await expect(quick.getByRole("button", { name: new RegExp(`^${ps.quick_seek_age_short}: `) })).toHaveCount(1);
+  const rail = page.getByTestId("search-panel");
+  const headings = rail.getByRole("heading", { level: 3 });
+  await expect(headings).toHaveText([ps.rail_matters_heading, ps.rail_narrow_heading, ps.rail_sharpen_heading]);
+  for (const name of [ps.rail_narrow_heading, ps.rail_sharpen_heading]) {
+    await expect(rail.getByRole("button", { name, exact: true })).toHaveAttribute("aria-expanded", "false");
   }
-  await expect(seeking.getByRole("group", { name: "Single means" })).toHaveCount(1);
-  await expect(seeking.getByTestId("race-panel").getByRole("checkbox")).toHaveCount(8);
-  await expect(about.getByRole("group", { name: "Single means" })).toHaveCount(0);
-  await expect(about.getByRole("checkbox")).toHaveCount(0);
-
-  // in that order, "What matters more to you?" after them, and a rule
-  // dividing the two sections
-  const top = async (l: Locator) => (await l.boundingBox())!.y;
-  const weighting = panel.getByTestId("weighting");
-  expect(await top(about)).toBeLessThan(await top(seeking));
-  expect(await top(seeking)).toBeLessThan(await top(weighting));
-  await expect(weighting.getByText("What matters more to you?")).toBeVisible();
-  const rule = await seeking.evaluate((el) => {
-    const cs = getComputedStyle(el.parentElement as HTMLElement);
-    return { width: parseFloat(cs.borderTopWidth), style: cs.borderTopStyle };
-  });
-  expect(rule.width).toBeGreaterThan(0);
-  expect(rule.style).toBe("solid");
+  await expect(rail.getByTestId("filters-summary")).toHaveText(
+    "Single: never married or divorced/widowed · Any education · Any income · All races");
+  await expect(rail.getByText(ps.sharpen_note)).toBeVisible();
+  // Narrow it down: single means, the partner filters for education,
+  // income and race; Sharpen compatibility: my education and my race
+  await openRailGroup(page, "Narrow it down");
+  const narrow = rail.getByTestId("looking-for-section");
+  await expect(narrow.getByRole("group", { name: "Single means" })).toBeVisible();
+  for (const label of ["Education", "Earning at least"]) {
+    await expect(narrow.getByLabel(label, { exact: true }), label).toBeVisible();
+  }
+  await expect(narrow.getByTestId("race-panel").getByRole("checkbox")).toHaveCount(8);
+  await openRailGroup(page, "Sharpen compatibility");
+  const sharpen = rail.getByTestId("about-you-section");
+  for (const label of [ps.self_edu_label, ps.self_race_label]) {
+    await expect(sharpen.getByLabel(label, { exact: true }), label).toBeVisible();
+  }
+  await expect(rail.getByTestId("weighting").getByText(ps.slider_label)).toBeVisible();
 });
 
 test("race is one select, Prefer not to say by default; a group selects its variant with no request", async ({ page, request }) => {
@@ -110,6 +105,7 @@ test("race is one select, Prefer not to say by default; a group selects its vari
   });
   await page.goto(`/?${DEFAULT_QS}`);
   await expect(rowsOf(page).first()).toBeVisible();
+  await openRailGroup(page, "Sharpen compatibility");
   const race = page.getByTestId("self-race");
   await expect(race).toHaveValue("");
   await expect(race).toBeEnabled();
@@ -150,6 +146,7 @@ test("none of the removed notes appears anywhere on the home page", async ({ pag
   await page.goto("/");
   await expect(rowsOf(page).first()).toBeVisible();
   await check("the default search");
+  await openRailGroup(page, "Sharpen compatibility");
   await page.getByTestId("self-edu").selectOption("graduate");
   await page.getByTestId("self-race").selectOption("asian_nh");
   await check("details given");
@@ -232,6 +229,7 @@ test("the compatibility figure has no information box and no band words: home ro
   };
   const homeRows = async (state: string) => {
     await expect(rowsOf(page).first()).toBeVisible();
+    await revealRows(page);
     const figs = page.getByTestId("ranked-list").getByTestId("match-figure");
     const n = await figs.count();
     expect(n).toBeGreaterThan(0);
@@ -245,7 +243,9 @@ test("the compatibility figure has no information box and no band words: home ro
   // at 250+ and served "Far above most cities"
   await page.evaluate(() => window.localStorage.setItem("dsa_about_you",
     JSON.stringify({ sex: "female", edu: "graduate", race: "asian_nh" })));
-  await page.reload();
+  // Phase 5: worst first, so San Jose (near the top here) is a row, not a
+  // card — cards carry no figure
+  await page.goto(`/?${DEFAULT_QS}&sort=worst_first`);
   await homeRows("race on");
   await expect(rowsOf(page).filter({ hasText: "San Jose" }).getByTestId("match-figure"))
     .toContainText("250+");
@@ -265,27 +265,21 @@ test("the compatibility figure has no information box and no band words: home ro
   await bare(row, "compare");
 });
 
-test("every home row and the compare table label the overall score", async ({ page, request }) => {
+test("the home list labels its score column once, and the compare table labels the overall score", async ({ page, request }) => {
   const ps = (await fetchMeta(request)).policy_strings;
   expect(ps.overall_score_label).toBeTruthy();
+  // Phase 5: "Overall score" and "out of 100" no longer repeat on every
+  // row — the list's column label carries it, once
   for (const qs of [DEFAULT_QS, `${DEFAULT_QS}&sort=worst_first`]) {
     await page.goto(`/?${qs}`);
     await expect(rowsOf(page).first()).toBeVisible();
-    const got = await rowsOf(page).evaluateAll((els) => els.map((e) => {
-      const label = e.querySelector('[data-testid="score-label"]');
-      return {
-        label: label?.textContent ?? null,
-        score: e.querySelector('[data-testid="score"]')?.textContent ?? null,
-        // the label, the number and its "out of 100", together
-        block: (label?.parentElement?.textContent ?? "").replace(/\s+/g, " ").trim(),
-      };
-    }));
-    expect(got.length).toBeGreaterThan(0);
-    for (const r of got) {
-      expect(r.label).toBe(ps.overall_score_label);
-      expect(r.score).toMatch(/^\d+$/);
-      expect(r.block).toBe(`${ps.overall_score_label}${r.score}out of 100`);
-    }
+    await expect(page.getByTestId("score-label")).toHaveCount(1);
+    await expect(page.getByTestId("score-label")).toHaveText(ps.col_score);
+    const scores = await rowsOf(page).evaluateAll((els) =>
+      els.map((e) => e.querySelector('[data-testid="score"]')?.textContent ?? null));
+    expect(scores.length).toBeGreaterThan(0);
+    for (const sc of scores) expect(sc).toMatch(/^\d+$/);
+    await expect(rowsOf(page).filter({ hasText: "out of 100" })).toHaveCount(0);
   }
   await page.goto(`/compare/provo-utah/austin-texas?${DEFAULT_QS}`);
   const table = page.getByTestId("compare-table");

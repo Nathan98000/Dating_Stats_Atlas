@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import type { Meta, RankedRow, SuppressedRow, VariantResponse } from "@/lib/types";
 import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
-import { BalanceTally } from "./tally";
+import { BalanceTrack } from "./balance-track";
 import { DiffCell, Row } from "./compare-cells";
 
 /** The compare table's rows an "about you" variant changes (m4.0.0, ADR
@@ -137,7 +137,7 @@ export function CompareVariantRows({
       <Row label={meta.features.pool_balance.display_name}>
         {[rowA, rowB].map((r, i) => (
           <td key={i} className="px-5 py-3.5" data-variant="">
-            {r ? <BalanceTally balance={r.balance} compact /> : "—"}
+            {r ? <BalanceTrack balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} /> : "—"}
           </td>
         ))}
         <DiffCell

@@ -183,8 +183,7 @@
 .prose-method h2 {
   font-variation-settings: "SOFT" 30;
 }
-/* the overline is uppercase wherever it is used */
-.text-overline { text-transform: uppercase; }
+
 
 body {
   background: var(--paper);
@@ -260,6 +259,27 @@ input.ctl::placeholder { color: var(--ink-3); }
    global :focus-visible outline stays) */
 @media (max-width: 39.99rem) {
   select.ctl, input.ctl { min-height: 48px; }
+}
+/* Phase 5: the quick search's sentence tokens — 18px 600 in a 44px
+   control, sized to their content from 640px (48px and 16px below) */
+.ctl.tok { font-size: 18px; font-weight: 600; }
+/* the age range's token is a button drawn as a field */
+button.ctl {
+  min-height: 44px;
+  padding: 0 12px 0 14px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+}
+@media (max-width: 39.99rem) {
+  button.ctl { min-height: 48px; }
+}
+@media (min-width: 40rem) {
+  select.ctl.tok { width: auto; }
+}
+@media (max-width: 39.99rem) {
+  .ctl.tok { font-size: 16px; }
 }
 select.ctl:focus, input.ctl:focus {
   border-color: var(--accent);
@@ -436,4 +456,54 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
    parts a variant changes keep their space but stay unseen */
 html[data-about-you="pending"] [data-variant] {
   visibility: hidden;
+}
+
+/* Phase 5: the search sheet (below 640px) and drawer (640-1119px), one
+   modal <dialog>. The sheet rises from the bottom, 90dvh, rounded on top;
+   the drawer slides in from the right, min(420px, 90vw). */
+dialog.sheet[open] {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+dialog.sheet .sheet-panel {
+  width: 100%;
+  height: 90dvh;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: transform 200ms ease-out;
+}
+@media (min-width: 40rem) {
+  dialog.sheet .sheet-panel {
+    width: min(420px, 90vw);
+    height: 100%;
+    border-radius: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog.sheet .sheet-panel { transition: none; }
+}
+/* the results' pending line: a 2px indeterminate bar under the header */
+.progress-line {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
+}
+.progress-line::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 30%;
+  background: var(--accent);
+  animation: progress-slide 1.1s ease-in-out infinite;
+}
+@keyframes progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(340%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-line::after { width: 100%; animation: none; opacity: .5; }
 }

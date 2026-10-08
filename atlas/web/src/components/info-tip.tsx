@@ -91,15 +91,21 @@ export function InfoTip({
         aria-label={label}
         aria-expanded={open}
         aria-describedby={open ? id : undefined}
-        className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-[1.5px] border-ink-3 text-[12px] font-bold leading-none text-ink-2 hover:border-accent hover:text-accent"
+        className="-m-[14px] flex h-11 w-11 items-center justify-center rounded-full text-ink-3 hover:text-accent"
         onClick={() => setOpen(true)}
         onFocus={() => setOpen(true)}
       >
-        i
+        {/* Phase 5: a 16px icon inside a 44x44 hit area (the negative
+            margin keeps the line it sits in at the icon's size) */}
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none">
+          <circle cx="8" cy="8" r="7.1" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M8 7.2v4.3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          <circle cx="8" cy="4.9" r="1" fill="currentColor" />
+        </svg>
       </button>
       {open && (
         <span
-          className="absolute left-1/2 top-[22px] z-40 -translate-x-1/2 pt-2"
+          className="absolute left-1/2 top-[30px] z-40 -translate-x-1/2"
           data-testid={`${testid}-bridge`}
         >
           <span
@@ -107,7 +113,7 @@ export function InfoTip({
             id={id}
             role="note"
             data-testid={`${testid}-note`}
-            className="block w-[290px] rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-[12.5px] font-normal leading-relaxed text-ink-2"
+            className="block w-[290px] rounded-lg border border-rule bg-surface px-3.5 py-3 text-left text-caption font-normal text-ink-2 shadow-overlay"
             style={dx ? { transform: `translateX(${dx}px)` } : undefined}
           >
             {children}

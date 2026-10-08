@@ -1,6 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type APIRequestContext, type Browser, type Page } from "@playwright/test";
-import { E2E_API, fetchMeta, seedAboutYou } from "./helpers";
+import { E2E_API, fetchMeta, openRailGroup, revealRows, seedAboutYou } from "./helpers";
 import { parsePrefs, toRankBody } from "../src/lib/prefs";
 import { selectVariant } from "../src/lib/variants";
 import type { AboutYou } from "../src/lib/about-you";
@@ -26,7 +26,7 @@ const DOESNT_APPLY = /doesn[’']t apply/;
 const BANNED = /\b(odds|rivals?|markets?|supply|inventory|competitors?)\b/i;
 const TOUCH = { hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } };
 
-const rowsOf = (page: Page) => page.getByTestId("ranked-list").locator("li");
+const rowsOf = (page: Page) => page.getByTestId("ranked-list").locator("li[data-rank]");
 
 type RGB = [number, number, number];
 const rgb = (css: string): RGB => {
@@ -75,6 +75,7 @@ async function rowTexts(page: Page): Promise<string[]> {
 
 /** City, compatibility figure, score — as the page shows them. */
 async function shownRows(page: Page): Promise<string[]> {
+  await revealRows(page);
   return rowsOf(page).evaluateAll((els) => els.map((e) =>
     `${e.getAttribute("data-cbsa")}:${
       e.querySelector('[data-testid="match-figure"] .font-display')?.textContent ?? ""}:${
@@ -90,8 +91,8 @@ async function served(request: APIRequestContext, qs: string): Promise<VariantRe
 
 /** The same, for the variant the API computed for these details. */
 async function variantRows(request: APIRequestContext, qs: string, about: AboutYou): Promise<string[]> {
-  return selectVariant(await served(request, qs), about).ranked.map((row) =>
-    `${row.cbsa}:${row.match.available && row.match.display != null ? row.match.display : ""}:${
+  return selectVariant(await served(request, qs), about).ranked.map((row, i) =>
+    `${row.cbsa}:${i >= 3 && row.match.available && row.match.display != null ? row.match.display : ""}:${
       row.score_display}`);
 }
 
@@ -124,6 +125,7 @@ test("on a same-sex search own race stays selectable: operable, muted within AA,
   await seedAboutYou(page, { sex: "male" });
   await page.goto(`/?${SAME_SEX_QS}`);
   await expect(rowsOf(page).first()).toBeVisible();
+  await openRailGroup(page, "Sharpen compatibility");
   const race = page.getByTestId("self-race");
 
   // operable: neither disabled nor aria-disabled
@@ -187,14 +189,17 @@ test("where there is no hover, an information button beside the label opens the 
   const ps = (await fetchMeta(request)).policy_strings;
   const { ctx, page } = await openAs(browser, { sex: "male" }, `/?${SAME_SEX_QS}`, true);
   await expect(rowsOf(page).first()).toBeVisible();
+  // Phase 5: on a phone the field sits in the search sheet's Sharpen group
+  await openRailGroup(page, "Sharpen compatibility");
   expect(await page.evaluate(() => window.matchMedia("(hover: none)").matches)).toBe(true);
 
   const btn = page.getByTestId("self-race-tip-button");
   await expect(btn).toBeVisible();
   await expect(btn).toHaveAccessibleName(ps.self_race_same_sex_tip_label);
-  // beside the field's label, on its line
+  // beside the field's label, on its line (Phase 5: the drawn icon is; its
+  // 44px hit area reaches past it, over the label's end)
   const label = await page.getByTestId("self-race-field").locator("label").boundingBox();
-  const box = await btn.boundingBox();
+  const box = await btn.locator("svg").boundingBox();
   expect(box!.x).toBeGreaterThanOrEqual(label!.x + label!.width - 1);
   expect(Math.abs((box!.y + box!.height / 2) - (label!.y + label!.height / 2))).toBeLessThan(12);
 
@@ -217,6 +222,8 @@ test("a race chosen on a same-sex search changes no number, is stored, and appli
   await seedAboutYou(page, { sex: "male" });
   await page.goto(`/?${SAME_SEX_QS}`);
   await expect(rowsOf(page).first()).toBeVisible();
+  await openRailGroup(page, "Sharpen compatibility");
+  await revealRows(page);
   const before = await rowTexts(page);
   // the rows are the race-off variant the API computed, and on a same-sex
   // search a race selects that same variant
@@ -255,6 +262,7 @@ test("a race chosen on a same-sex search changes no number, is stored, and appli
 test("an opposite-sex search: the race field looks as it always has, with no box", async ({ page }) => {
   await page.goto(`/?${DEFAULT_QS}`); // a woman (the default) looking for men
   await expect(rowsOf(page).first()).toBeVisible();
+  await openRailGroup(page, "Sharpen compatibility");
   const race = page.getByTestId("self-race");
   await expect(race).toBeEnabled();
   await expect(race).not.toHaveClass(/ctl-muted/);
@@ -289,8 +297,10 @@ test("a same-sex search shows balance, the opposite-sex figure for the same peop
   const rowsFor = async (about: AboutYou) => {
     const { ctx, page } = await openAs(browser, about, `/?${SAME_SEX_QS}`);
     await expect(rowsOf(page).first()).toBeVisible();
+    // Phase 5: each row's balance sits in its detail (rows from the 4th)
+    await revealRows(page);
     const out: Record<string, string> = {};
-    for (const li of await rowsOf(page).all()) {
+    for (const li of await rowsOf(page).filter({ has: page.getByTestId("row-detail") }).all()) {
       const cbsa = (await li.getAttribute("data-cbsa"))!;
       const tally = li.getByTestId("balance-tally");
       await expect(tally).toContainText(shown[cbsa].display!);
@@ -302,7 +312,7 @@ test("a same-sex search shows balance, the opposite-sex figure for the same peop
     return out;
   };
   const his = await rowsFor({ sex: "male" });
-  expect(Object.keys(his).length).toBe(man.ranked.length);
+  expect(Object.keys(his).length).toBe(man.ranked.length - 3);
   expect(await rowsFor({ sex: "female" })).toEqual(his);
 
   // the city card of a ranked city, and a left-out city's surviving balance
@@ -348,6 +358,7 @@ test("no \"doesn't apply\" (and no banned word) is served or shown: /v1/meta, th
     await page.goto(path);
     await page.waitForLoadState("networkidle");
     if (path === `/?${SAME_SEX_QS}`) {
+      await openRailGroup(page, "Sharpen compatibility");
       await page.getByTestId("self-race").hover();
       await expect(page.getByTestId("self-race-tip")).toBeVisible();
     }
@@ -362,6 +373,7 @@ test("axe: a same-sex search with the race tip open from the keyboard", async ({
   await seedAboutYou(page, { sex: "male", race: "hispanic" });
   await page.goto(`/?${SAME_SEX_QS}`);
   await expect(rowsOf(page).first()).toBeVisible();
+  await openRailGroup(page, "Sharpen compatibility");
   await page.getByTestId("self-edu").focus();
   await page.keyboard.press("Tab");
   await expect(page.getByTestId("self-race-tip")).toBeVisible();
@@ -371,6 +383,8 @@ test("axe: a same-sex search with the race tip open from the keyboard", async ({
 test("axe: a same-sex search on a touch screen with the information button's box open", async ({ browser }) => {
   const { ctx, page } = await openAs(browser, { sex: "male" }, `/?${SAME_SEX_QS}`, true);
   await expect(rowsOf(page).first()).toBeVisible();
+  // Phase 5: on a phone the field sits in the search sheet's Sharpen group
+  await openRailGroup(page, "Sharpen compatibility");
   await page.getByTestId("self-race-tip-button").tap();
   await expect(page.getByTestId("self-race-tip-button-note")).toBeVisible();
   await noSerious(page);

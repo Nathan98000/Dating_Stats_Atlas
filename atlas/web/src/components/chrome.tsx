@@ -1,112 +1,74 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { SearchBox } from "./search";
-import { BrandLink, NavLinks } from "./nav-links";
-import { NAV_DESTINATIONS } from "@/lib/nav";
+import { BrandLink, HeaderSearchToggle, MenuButton, NavLinks } from "./nav-links";
+import { FOOTER_LINKS } from "@/lib/nav";
+import { apiMeta } from "@/lib/api";
 
-/** The v3 header: brand, nav, find-a-city. Since Phase 2f item 2 the
- * links carry the visitor's preference query string when the page has
- * one (the Suspense fallback renders the same links bare, so nothing
- * shifts). */
-export function SiteHeader({ border = true }: { border?: boolean }) {
+/** Phase 5's header: brand, nav and find-a-city, one row 64px tall (56px
+ * on phones). From 1120px the nav and a 240px search field; 640-1119px
+ * the nav and a search icon; below 640px a search icon and a menu button,
+ * whose panel holds the nav and the footer's links. Labels come from the
+ * registry; the links carry the visitor's preference query string when
+ * the page has one (Phase 2f item 2; the Suspense fallbacks render the
+ * same links bare, so nothing shifts). */
+export async function SiteHeader() {
+  const meta = await apiMeta();
+  const labels = meta.policy_strings;
   return (
-    <header
-      className={`flex flex-wrap items-center justify-between gap-x-10 gap-y-3 px-6 py-5 sm:px-12 ${border ? "border-b border-rule" : ""}`}
-    >
-      <Suspense
-        fallback={
-          <Link
-            href="/"
-            className="font-display text-[23px] font-semibold tracking-tight text-ink"
-          >
-            Dating Stats Atlas
-          </Link>
-        }
-      >
-        <BrandLink />
-      </Suspense>
-      <div className="flex items-center gap-6">
+    <header className="relative h-16 border-b border-rule bg-paper max-sm:h-14">
+      <div className="mx-auto flex h-full max-w-[1200px] items-center gap-10 px-4 sm:px-12 max-sm:gap-3">
         <Suspense
           fallback={
-            <>
-              {NAV_DESTINATIONS.map((d) => (
-                <Link
-                  key={d.href}
-                  href={d.href}
-                  className="text-sm font-semibold text-ink-2 hover:text-ink"
-                >
-                  {d.label}
-                </Link>
-              ))}
-            </>
+            <Link href="/" className="font-display text-[22px] font-semibold tracking-tight text-ink max-sm:text-[19px]">
+              Dating Stats Atlas
+            </Link>
           }
         >
-          <NavLinks />
+          <BrandLink />
         </Suspense>
-        <Suspense fallback={<div className="h-[42px] w-[190px]" />}>
-          <SearchBox />
-        </Suspense>
+        <nav aria-label="Main" className="ml-auto flex h-full gap-7 max-sm:hidden">
+          <Suspense fallback={null}>
+            <NavLinks labels={labels} />
+          </Suspense>
+        </nav>
+        <div className="hidden desk:block">
+          <Suspense fallback={<div className="h-10 w-[240px]" />}>
+            <SearchBox />
+          </Suspense>
+        </div>
+        <div className="flex items-center gap-1 max-sm:ml-auto desk:hidden">
+          <Suspense fallback={<div className="h-11 w-11" />}>
+            <HeaderSearchToggle label="Find a city" closeLabel={labels.close} />
+          </Suspense>
+          <div className="sm:hidden">
+            <Suspense fallback={<div className="h-11 w-11" />}>
+              <MenuButton labels={labels} menuLabel="Menu" closeLabel={labels.close} />
+            </Suspense>
+          </div>
+        </div>
       </div>
     </header>
   );
 }
 
-export function PrimaryButton({
-  children,
-  onClick,
-  type = "button",
-  small = false,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  type?: "button" | "submit";
-  small?: boolean;
-}) {
+/** Phase 5: the footer on every page — the brand and five links (How it
+ * works, What we measure, Privacy, Terms, Data sources). */
+export async function SiteFooter() {
+  const meta = await apiMeta();
+  const labels = meta.policy_strings;
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={`rounded-md bg-accent font-bold text-white hover:bg-accent-hover ${small ? "min-h-[42px] px-[18px] text-[13.5px]" : "min-h-[46px] px-5 text-[14.5px]"}`}
-    >
-      {children}
-    </button>
-  );
-}
-
-export function SecondaryButton({
-  children,
-  onClick,
-  small = false,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  small?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`rounded-md border-[1.5px] border-ink bg-transparent font-bold text-ink hover:bg-tint ${small ? "min-h-[42px] px-[18px] text-[13.5px]" : "min-h-[46px] px-5 text-[14.5px]"}`}
-    >
-      {children}
-    </button>
-  );
-}
-
-export function MaleMark({ color = "var(--male)", size = 15 }: { color?: string; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 16 16" aria-hidden="true">
-      <circle cx="6.5" cy="9.5" r="4.2" fill="none" stroke={color} strokeWidth="1.6" />
-      <path d="M10 6L14 2M10.5 2H14V5.5" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function FemaleMark({ color = "var(--female)", size = 15 }: { color?: string; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 16 16" aria-hidden="true">
-      <circle cx="8" cy="6" r="4.2" fill="none" stroke={color} strokeWidth="1.6" />
-      <path d="M8 10.4V15M5.6 12.8H10.4" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
+    <footer className="border-t border-rule max-desk:pb-24">
+      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-x-6 gap-y-1 px-4 py-7 text-body-sm text-ink-3 sm:px-12">
+        <span className="mr-auto font-display text-body font-semibold text-ink">Dating Stats Atlas</span>
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-6">
+          {FOOTER_LINKS.map((f) => (
+            <Link key={f.key} href={f.href} className="inline-flex min-h-11 items-center hover:text-ink">
+              {labels[f.key]}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </footer>
   );
 }

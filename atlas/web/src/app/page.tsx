@@ -2,8 +2,8 @@ import { apiMeta, apiRank } from "@/lib/api";
 import { parsePrefs, toRankBody, type SearchParams } from "@/lib/prefs";
 import { effectiveSearchParams } from "@/lib/server-prefs";
 import { Home } from "@/components/home";
-import { Hero } from "@/components/hero";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { cardPhotos } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
 
@@ -22,9 +22,9 @@ export default async function HomePage({
   ]);
   return (
     <>
-      <SiteHeader border={false} />
-      <Hero policy={meta.policy_strings} />
-      <Home meta={meta} initialPrefs={prefs} initialResponse={response} />
+      <SiteHeader />
+      <Home meta={meta} initialPrefs={prefs} initialResponse={response} photos={cardPhotos()} />
+      <SiteFooter />
     </>
   );
 }

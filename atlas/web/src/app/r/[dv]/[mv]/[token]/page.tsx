@@ -4,6 +4,7 @@ import { decodeToken } from "@/lib/permalink";
 import { bodyToPrefs, toSearchParams } from "@/lib/prefs";
 import { SiteHeader } from "@/components/chrome";
 import { Home } from "@/components/home";
+import { cardPhotos } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +48,7 @@ export default async function PermalinkPage({
     return (
       <>
         <SiteHeader />
-        <Home meta={meta} initialPrefs={prefs} initialResponse={response} />
+        <Home meta={meta} initialPrefs={prefs} initialResponse={response} photos={cardPhotos()} />
       </>
     );
   } catch (e) {

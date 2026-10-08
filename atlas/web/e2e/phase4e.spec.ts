@@ -36,22 +36,23 @@ test("the walkability note sits under the definition on its stat page, and nowhe
   for (const path of ["/", "/city/pittsburgh-pennsylvania", "/compare?cities=pittsburgh-pennsylvania",
                       "/what-we-measure", "/about"]) {
     await page.goto(`${path}${path.includes("?") ? "&" : "?"}${QS.slice(1)}`);
-    await expect(page.locator("header")).toBeVisible();
+    await expect(page.locator("header").first()).toBeVisible();
     await page.waitForLoadState("networkidle");
     expect(await page.locator("body").innerText(), path).not.toContain(note);
   }
 });
 
-test("the nav reads Home, Compare cities, About the site", async ({ page }) => {
+test("the nav reads Rankings, Compare, How it works", async ({ page }) => {
   await page.goto(`/${QS}`);
   const header = page.locator("header").first();
-  // the brand link first, then the three destinations in order (the
-  // About page renamed "About the site" by Nathan on 2026-10-07)
+  // the brand link first, then the three destinations in order (Phase 5,
+  // Nathan's decision 2: Rankings, Compare, How it works)
   await expect(header.getByRole("link")).toHaveText(
-    ["Dating Stats Atlas", "Home", "Compare cities", "About the site"]);
+    ["Dating Stats Atlas", "Rankings", "Compare", "How it works"]);
+  await expect(header.getByRole("link", { name: "Rankings" })).toHaveAttribute("aria-current", "page");
   await expect(page.getByRole("link", { name: "Browse cities" })).toHaveCount(0);
-  await page.getByRole("link", { name: "About the site", exact: true }).click();
-  await page.getByRole("link", { name: "Home", exact: true }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "How it works", exact: true }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Rankings", exact: true }).click();
   await expect(page).toHaveURL(/127\.0\.0\.1:3100\/\?/);
 });
 

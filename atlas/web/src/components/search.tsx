@@ -7,8 +7,9 @@ import { searchCities, type CityEntry } from "@/lib/search";
 
 /** Find-a-city (§8.3): the committed index, matched in the browser
  * through lib/search — the ONE matcher every city chooser shares since
- * Phase 2e item 5 — routed by slug. */
-export function SearchBox() {
+ * Phase 2e item 5 — routed by slug. Phase 5: 240px in the desk header
+ * (its menu 260px); `wide` fills the phone header's overlay. */
+export function SearchBox({ wide = false, autoFocus = false }: { wide?: boolean; autoFocus?: boolean }) {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
@@ -29,7 +30,7 @@ export function SearchBox() {
 
   const listOpen = open && results.length > 0;
   return (
-    <div className="relative w-[190px]">
+    <div className={`relative ${wide ? "flex-1" : "w-[240px]"}`}>
       <label className="sr-only" htmlFor="city-search">Find a city</label>
       <input
         id="city-search"
@@ -40,7 +41,8 @@ export function SearchBox() {
         aria-activedescendant={listOpen && results[active] ? `cs-${results[active].s}` : undefined}
         autoComplete="off"
         placeholder="Find a city"
-        className="ctl !min-h-[42px]"
+        autoFocus={autoFocus}
+        className={`ctl ${wide ? "" : "!min-h-10"}`}
         value={q}
         onChange={(e) => {
           setQ(e.target.value);
@@ -68,7 +70,7 @@ export function SearchBox() {
         <ul
           id="city-search-results"
           role="listbox"
-          className="absolute right-0 z-30 mt-1 w-[260px] overflow-hidden rounded-lg border border-rule bg-surface text-sm"
+          className={`absolute right-0 z-30 mt-1 overflow-hidden rounded-lg border border-rule bg-surface text-body-sm shadow-overlay ${wide ? "left-0" : "w-[260px]"}`}
         >
           {results.map((r, i) => (
             <li
@@ -76,7 +78,7 @@ export function SearchBox() {
               id={`cs-${r.s}`}
               role="option"
               aria-selected={i === active}
-              className={`cursor-pointer px-3.5 py-2 ${i === active ? "bg-tint text-ink" : "text-ink-2"}`}
+              className={`flex min-h-11 cursor-pointer items-center px-3.5 desk:min-h-9 ${i === active ? "bg-tint text-ink" : "text-ink-2"}`}
               onMouseDown={(e) => {
                 e.preventDefault();
                 go(r.s);

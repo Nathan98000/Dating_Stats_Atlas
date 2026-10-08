@@ -21,7 +21,18 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:3100",
     trace: "retain-on-failure",
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] }, testIgnore: /phase5\.spec\.ts/ },
+    // Phase 5: the redesign's three widths — the desk, a laptop below the
+    // 1120px breakpoint, and a touch phone
+    { name: "desk-1440", testMatch: /phase5\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
+    { name: "laptop-1024", testMatch: /phase5\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1024, height: 768 } } },
+    { name: "phone-390", testMatch: /phase5\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], viewport: { width: 390, height: 844 },
+             isMobile: true, hasTouch: true } },
+  ],
   webServer: [
     {
       command:

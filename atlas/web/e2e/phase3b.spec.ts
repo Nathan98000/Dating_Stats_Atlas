@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { seedAboutYou } from "./helpers";
+import { expandRow, revealRows, seedAboutYou } from "./helpers";
 
 /** Phase 3b (m3.1.0, ADR 0009 amended): the compatibility figure's DISPLAY is
  * capped at the registry ceiling and renders as "250+" wherever the figure
@@ -13,9 +13,13 @@ const DISCLOSED_QS = "sex=male&self_age=30&age=28-40&marital=never,previously";
 
 test("a figure above the ceiling renders as 250+ on the result row, the city page and the compare table", async ({ page }) => {
   await seedAboutYou(page, { sex: "female", edu: "graduate", race: "asian_nh" });
-  await page.goto(`/?${DISCLOSED_QS}`);
-  const rows = page.getByTestId("ranked-list").locator("li");
+  // Phase 5: the top three are cards, which carry no figure; worst first,
+  // San Jose (near the top of this variant) is a row
+  await page.goto(`/?${DISCLOSED_QS}&sort=worst_first`);
+  const rows = page.getByTestId("ranked-list").locator("li[data-rank]");
   await expect(rows.first()).toBeVisible();
+  // Phase 5: the figure sits in each row's detail
+  await revealRows(page);
   const sanJose = rows.filter({ hasText: "San Jose" }).first();
   const fig = sanJose.getByTestId("match-figure");
   await expect(fig).toContainText("250+");
@@ -54,10 +58,9 @@ test("a same-sex search says in the slider's information box whose pairing patte
   // earlier search) are in the browser
   await seedAboutYou(page, { sex: "male", race: "hispanic" });
   await page.goto("/?self_age=31&sex=male&age=27-38&marital=never");
-  const first = page.getByTestId("ranked-list").locator("li").first();
-  await expect(first).toBeVisible();
   // Phase 4b (ADR 0018 amended): the note sits in the side panel's box,
-  // not beside the figure
+  // not beside the figure (Phase 5: the figure is in a row's detail)
+  const first = await expandRow(page, 4);
   await expect(first.getByTestId("match-figure")).not.toContainText(/For a same-sex search/);
   await page.getByTestId("slider-info").focus();
   const note = page.getByTestId("slider-info-note");
@@ -74,16 +77,18 @@ test("a same-sex search says in the slider's information box whose pairing patte
   await expect(race).toBeEnabled();
   await expect(race).toHaveClass(/\bctl-muted\b/);
   await expect(race).toHaveValue("hispanic");
-  const figs = async (p: typeof page) => JSON.stringify(await p.getByTestId("ranked-list").locator("li")
+  const figs = async (p: typeof page) => JSON.stringify(await p.getByTestId("ranked-list").locator("li[data-rank]")
     .evaluateAll((els) => els.map((e) => `${e.getAttribute("data-cbsa")}:${
       e.querySelector('[data-testid="match-figure"] .font-display')?.textContent}:${
       e.querySelector('[data-testid="score"]')?.textContent}`)));
+  await revealRows(page);
   const withRace = await figs(page);
   const other = await browser.newContext();
   const without = await other.newPage();
   await seedAboutYou(without, { sex: "male" });
   await without.goto("/?self_age=31&sex=male&age=27-38&marital=never");
   await expect(without.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  await revealRows(without);
   await expect.poll(() => figs(without)).toBe(withRace);
   await other.close();
   // an opposite-sex search carries no such sentence, and the race is back

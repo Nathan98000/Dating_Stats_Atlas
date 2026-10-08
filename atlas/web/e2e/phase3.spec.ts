@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { expandRow, openRailGroup, revealRows } from "./helpers";
 
 /** Phase 3 (m3.0.0, ADR 0009), renamed in m4.0.0 (ADR 0018): the slider's
  * second pole is compatibility; the "about you" inputs, kept in the
@@ -28,6 +29,8 @@ test("the details about you stay in the browser: no request, URL or cookie carri
     if (req.url().includes("/api/rank")) rankCalls.push(req.postData() ?? "");
   });
   await page.goto("/");
+  // Phase 5: the details sit under "Sharpen compatibility", collapsed
+  await openRailGroup(page, "Sharpen compatibility");
   const edu = page.getByTestId("self-edu");
   const race = page.getByTestId("self-race");
   await expect(edu).toHaveValue("");
@@ -43,8 +46,10 @@ test("the details about you stay in the browser: no request, URL or cookie carri
   await expect(edu.locator("option")).toHaveCount(5);
   await expect(race.locator("option").first()).toHaveText("Prefer not to say");
   await expect(race.locator("option")).toHaveCount(9);
-  const rows = page.getByTestId("ranked-list").locator("li");
+  const rows = page.getByTestId("ranked-list").locator("li[data-rank]");
   await expect(rows.first()).toBeVisible();
+  // Phase 5: every row shown, each detail open (the figure lives there)
+  await revealRows(page);
   const figures = async () => JSON.stringify(await rows.evaluateAll((els) =>
     els.map((e) => `${e.getAttribute("data-cbsa")}:${e.querySelector('[data-testid="match-figure"]')?.textContent ?? ""}`)));
   const before = await figures();
@@ -66,7 +71,9 @@ test("the details about you stay in the browser: no request, URL or cookie carri
   const disclosed = await figures();
   await page.reload();
   await expect(rows.first()).toBeVisible();
+  await revealRows(page);
   await expect.poll(figures).toBe(disclosed);
+  await openRailGroup(page, "Sharpen compatibility");
   await expect(page.getByTestId("self-edu")).toHaveValue("graduate");
   await expect(page.getByTestId("self-race")).toHaveValue("asian_nh");
   // "Prefer not to say" removes the race from the browser too
@@ -77,8 +84,8 @@ test("the details about you stay in the browser: no request, URL or cookie carri
 
 test("every ranked row shows the compatibility figure — no band words, no information box — and balance beside it", async ({ page }) => {
   await page.goto(`/?${DEFAULT_QS}`);
-  const first = page.getByTestId("ranked-list").locator("li").first();
-  await expect(first).toBeVisible();
+  // Phase 5: a row's figure and balance sit in its detail (from the 4th)
+  const first = await expandRow(page, 4);
   const fig = first.getByTestId("match-figure");
   await expect(fig).toContainText("Compatibility");
   await expect(fig).toContainText(/\d+/);

@@ -106,11 +106,11 @@ test("preferences follow the visitor; explicit parameters always win (item 2)", 
     .getByRole("radio", { name: "A lot" }).click();
   await expect(page).toHaveURL(/ic=a/);
   // the nav carries the query to every destination and back
-  await page.getByRole("link", { name: "About the site" }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "How it works", exact: true }).click();
   await expect(page).toHaveURL(/about\?.*ic=a/);
-  await page.getByRole("link", { name: "Compare cities" }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Compare", exact: true }).click();
   await expect(page).toHaveURL(/compare\?.*ic=a/);
-  await page.getByRole("link", { name: "Home", exact: true }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Rankings", exact: true }).click();
   await expect(page).toHaveURL(/\/\?.*ic=a/);
   await expect(
     page.getByRole("radiogroup", { name: "Cost of living importance" })
@@ -266,11 +266,12 @@ test("the slider sits with the importance controls as one group (item 4.5)", asy
   const weighting = page.getByTestId("weighting");
   await expect(weighting.locator("input.svo")).toHaveCount(1);
   await expect(weighting.getByTestId("importance")).toBeVisible();
-  // the slider comes immediately above "How much do these matter?"
+  // the slider comes immediately above the four importance controls
   const sliderBox = (await weighting.locator("input.svo").boundingBox())!;
   const impBox = (await weighting.getByTestId("importance").boundingBox())!;
   expect(sliderBox.y).toBeLessThan(impBox.y);
-  // and the race section sits above the whole weighting group
-  const raceBox = (await page.getByTestId("race-panel").boundingBox())!;
-  expect(raceBox.y).toBeLessThan(sliderBox.y);
+  // Phase 5: the weighting group opens the rail ("What matters to you"),
+  // and the partner filters ("Narrow it down") follow it
+  const narrowBox = (await page.getByTestId("looking-for-section").boundingBox())!;
+  expect(impBox.y).toBeLessThan(narrowBox.y);
 });

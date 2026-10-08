@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { openRailGroup } from "./helpers";
 
 /** Home/results behavior against the pinned fixture (v3 boards):
  * server-rendered results, the two-handle age control by keyboard alone,
@@ -12,17 +13,12 @@ test("first results are server-rendered, with the hero", async ({ page }) => {
   });
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  // Phase 2f item 4.1: the sourced photograph when the (gitignored,
-  // re-fetchable) file is present; the labelled placeholder otherwise.
-  // m4.0.0 (Nathan's decision 8): its credit is in About us, Sources and
-  // credits, not under the band
-  const photo = page.getByTestId("hero-photo");
-  if (await photo.count()) {
-    await expect(photo.locator("img")).toBeVisible();
-    await expect(photo.locator("figcaption")).toHaveCount(0);
-  } else {
-    await expect(page.getByTestId("hero-placeholder")).toBeVisible();
-  }
+  // Phase 5 (Nathan's decision 1): the hero has no photograph band and
+  // no placeholder — the headline, the subhead and the quick search
+  await expect(page.getByTestId("hero")).toBeVisible();
+  await expect(page.getByTestId("hero-photo")).toHaveCount(0);
+  await expect(page.getByTestId("hero-placeholder")).toHaveCount(0);
+  await expect(page.getByTestId("hero").getByTestId("quick-search")).toBeVisible();
   // items 4.2/4.3: headline and subhead from the registry
   await expect(page.locator("h1")).toHaveText(
     "Which city has the best dating scene for you?");
@@ -34,6 +30,11 @@ test("first results are server-rendered, with the hero", async ({ page }) => {
 
 test("the two-handle age control works by keyboard only", async ({ page }) => {
   await page.goto("/");
+  // Phase 5: the control lives in the age range's popover; Enter opens it
+  // and focus moves to the first handle
+  await page.getByTestId("age-token").focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByTestId("age-popover")).toBeVisible();
   const younger = page.getByLabel("Youngest age");
   const older = page.getByLabel("Oldest age");
   await expect(younger).toHaveCount(1);
@@ -50,17 +51,28 @@ test("the two-handle age control works by keyboard only", async ({ page }) => {
   for (let i = 0; i < 60; i++) await page.keyboard.press("ArrowDown");
   const out = (await page.getByTestId("age-output").textContent()) ?? "";
   expect(out).toContain("26 – 26");
+  // Escape closes the popover and returns focus to its button
+  await page.keyboard.press("Escape");
+  await expect(page.getByTestId("age-popover")).toBeHidden();
+  await expect(page.getByTestId("age-token")).toBeFocused();
+  await expect(page.getByTestId("age-token")).toContainText("26 – 26");
 });
 
 test("sort reverses the order without changing membership or ranks", async ({ page }) => {
   await page.goto("/");
-  const rows = page.getByTestId("ranked-list").locator("li");
+  const rows = page.getByTestId("ranked-list").locator("li[data-rank]");
   await expect(rows.first()).toBeVisible();
+  // Phase 5: ten rows at first; show them all to compare membership
+  await page.getByTestId("show-all").click();
+  await expect(page.getByTestId("show-all")).toHaveCount(0);
   const before = await rows.evaluateAll((els) =>
     els.map((e) => `${e.getAttribute("data-cbsa")}:${e.getAttribute("data-rank")}`),
   );
-  await page.getByTestId("sort").selectOption("worst_first");
+  // Phase 5: Best/Worst is a segmented radiogroup (test id kept)
+  await page.getByTestId("sort").getByRole("radio", { name: "Worst first" }).click();
   await expect(page).toHaveURL(/sort=worst_first/);
+  // a new search starts again at ten rows
+  await page.getByTestId("show-all").click();
   await expect
     .poll(async () =>
       (await rows.evaluateAll((els) => els.map((e) => e.getAttribute("data-cbsa"))))[0],
@@ -74,14 +86,16 @@ test("sort reverses the order without changing membership or ranks", async ({ pa
 
 test("the city count appears only when something is excluded", async ({ page }) => {
   await page.goto("/");
-  // the fixture's default profile ranks every city: heading carries no number
-  await expect(page.getByTestId("list-heading")).toHaveText("Cities for you");
+  // the fixture's default profile ranks every city: no excluded note
+  // (Phase 5: the heading names the search; the count line under it is
+  // the served count of ranked cities)
+  await expect(page.getByTestId("list-heading")).toHaveText("Top cities for single men, 28\u2060–\u206040");
+  await expect(page.getByTestId("results-count")).toHaveText(/^\d+ metro areas, scored out of 100 for what you chose$/);
   await expect(page.getByTestId("excluded-note")).toHaveCount(0);
   // narrow it until cities drop out: count appears with the approved sentence
   await page.goto("/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  const heading = await page.getByTestId("list-heading").textContent();
-  expect(heading).toMatch(/^\d+ cities for you$/);
+  await expect(page.getByTestId("results-count")).toHaveText(/^\d+ metro areas/);
   await expect(page.getByTestId("excluded-note")).toContainText(
     /don’t have enough people matching this search/,
   );
@@ -146,6 +160,7 @@ test("unticking every race group means everyone, not the leftovers", async ({ pa
   const baseline = await rows.evaluateAll((els) =>
     els.map((e) => e.getAttribute("data-cbsa")),
   );
+  await openRailGroup(page, "Narrow it down");
   const panel = page.getByTestId("race-panel");
   // item 3: nothing editorial in this section — the always-counted
   // disclosure lives on How it works now, so it must NOT render here

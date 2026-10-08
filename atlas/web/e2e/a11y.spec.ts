@@ -54,11 +54,15 @@ test("each age handle is separately labelled and tab-reachable", async ({ page }
   const older = page.getByLabel("Oldest age");
   await expect(younger).toHaveCount(1);
   await expect(older).toHaveCount(1);
-  // both reachable by Tab alone, in order
+  // both reachable by the keyboard alone, in order (Phase 5: Tab to the
+  // age range's button, Enter opens its popover on the first handle)
   let sawYounger = false;
   let sawOlder = false;
   for (let i = 0; i < 30 && !(sawYounger && sawOlder); i++) {
-    await page.keyboard.press("Tab");
+    const current = await page.evaluate(
+      () => document.activeElement?.getAttribute("aria-label") ?? "",
+    );
+    await page.keyboard.press(current.startsWith("Their age") ? "Enter" : "Tab");
     const label = await page.evaluate(
       () => document.activeElement?.getAttribute("aria-label") ?? "",
     );

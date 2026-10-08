@@ -5,9 +5,9 @@ import Link from "next/link";
 import { marked } from "marked";
 import { apiMeta } from "@/lib/api";
 import { SiteHeader } from "@/components/chrome";
-import heroImage from "@/data/hero.json";
 import cityImages from "@/data/city-images.json";
 import statImages from "@/data/stat-images.json";
+import { croppable } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
 
@@ -40,8 +40,8 @@ function shipped(dir: string, img: PhotoCredit | undefined): img is PhotoCredit 
  * 2026-10-06): What we measure and About crime data are no longer buttons
  * here — the account links them in its own words (its last section, and
  * the Reported crime row of its sources table); the data citations
- * collapse like the photographs, and the home page photograph's credit
- * sits in the photographs' list with the rest. The Census API notice
+ * collapse like the photographs. Phase 5: the home page photograph's
+ * credit left with its band. The Census API notice
  * folds into the collapsed list with the citations it belongs to (Nathan,
  * 2026-10-06; ADR 0012: it appears with the citations). Every label comes
  * from the registry. */
@@ -55,14 +55,15 @@ export default async function AboutPage() {
   const licences = Object.values(meta.licenses);
   const citations = [...new Set(licences.flatMap((l) => l.citations ?? []))];
   const notices = [...new Set(licences.flatMap((l) => (l.notice ? [l.notice] : [])))];
-  const hero = heroImage as unknown as PhotoCredit;
-  const heroShown = fsSync.existsSync(path.join(process.cwd(), "public", "hero.jpg")) ? hero : null;
   const stats = Object.values(statImages as unknown as Record<string, PhotoCredit>)
     .filter((img) => shipped("stats", img));
+  // Phase 5: a public-domain or CC0 city photograph is shown cropped (the
+  // home page's cards), and says so; the home page's own photograph left
+  // with its band (Nathan's decision 1)
   const cities = Object.values(cityImages as unknown as Record<string, PhotoCredit>)
-    .filter((img) => shipped("cities", img));
-  // the home page photograph leads the one list of photograph credits
-  const photos = [...(heroShown ? [heroShown] : []), ...stats, ...cities];
+    .filter((img) => shipped("cities", img))
+    .map((img) => (croppable(img.license) ? { ...img, cropped: true } : img));
+  const photos = [...stats, ...cities];
 
   return (
     <>

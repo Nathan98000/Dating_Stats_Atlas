@@ -2,7 +2,6 @@
 
 import type { Meta } from "@/lib/types";
 import { describeSearch, wideners, type Prefs } from "@/lib/prefs";
-import { PrimaryButton } from "./chrome";
 
 /** NarrowV3, approved copy verbatim from the policy strings: the shape of
  * the problem, three one-click wideners, and the plain statement that too
@@ -71,4 +70,3 @@ export function NarrowState({
   );
 }
 
-export { PrimaryButton };

@@ -25,7 +25,7 @@ test("the narrow state leads with the shape of the problem, never a count", asyn
   // the body reads as a sentence: the capitalised search phrase leads
   expect(text).toMatch(/Men \d+–\d+.* is a very small group in any city/);
   // the screen still offers a route to the explainer (the header nav)
-  await expect(page.getByRole("link", { name: "About the site" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "How it works", exact: true })).toBeVisible();
   // the wideners restate the loosened query and apply it in one click.
   // On the 12-metro fixture one loosening may still be too narrow — the
   // guarantee is the state changed honestly, not that any search recovers.

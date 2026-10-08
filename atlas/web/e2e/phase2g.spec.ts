@@ -30,10 +30,12 @@ test("the all-excluded body reads as a sentence at 1280 and 375 (gate 7)", async
     const text = (await narrow.textContent()) ?? "";
     expect(text, `at ${width}px`).toMatch(
       /Men \d+–\d+[^.]* is a very small group in any city\./);
-    // the note box is gone; the nav still routes to the explainer
+    // the note box is gone; the nav still routes to the explainer (on a
+    // phone, through the header's menu — Phase 5)
     await expect(narrow).not.toContainText(/The narrower the search/);
-    await expect(
-      page.getByRole("link", { name: "About the site" })).toBeVisible();
+    if (width === 375) await page.getByTestId("menu-button").click();
+    const nav = width === 375 ? page.locator("#site-menu") : page.getByRole("navigation", { name: "Main" });
+    await expect(nav.getByRole("link", { name: "How it works", exact: true })).toBeVisible();
   }
 });
 

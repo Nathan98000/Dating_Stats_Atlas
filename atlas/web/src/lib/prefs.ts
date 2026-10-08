@@ -285,6 +285,47 @@ export function describeSearch(p: Prefs): string {
   return s;
 }
 
+/** Phase 5: the short form of the search for the results heading's slots
+ * (results_heading_best / _worst: "Top cities for single {sought},
+ * {ages}") — the sought sex as a plural noun and the age range. */
+export function describeSearchShort(p: Prefs): { sought: string; ages: string } {
+  // word joiners keep "28–40" on one line
+  return { sought: p.seekSex === "male" ? "men" : "women", ages: `${p.ageMin}\u2060–\u2060${p.ageMax}` };
+}
+
+/** Phase 5: the rail's collapsed "Narrow it down" line — the current
+ * partner filters in a few words, searchChips' logic in a sentence:
+ * "Single: never married or divorced/widowed · Any education · Any income
+ * · All races". */
+export function filtersSummary(p: Prefs): string {
+  const single = p.marital.length === 2 ? "never married or divorced/widowed"
+    : p.marital[0] === "never_married" ? "never married" : "divorced/widowed";
+  const edu = p.educationMin === "bachelors" ? "College degree"
+    : p.educationMin === "graduate" ? "Graduate degree" : "Any education";
+  const inc = p.incomeMin !== undefined ? `Earning $${p.incomeMin.toLocaleString("en-US")}+` : "Any income";
+  const race = p.race?.length ? `${p.race.length} of ${RACE_IDS.length} groups` : "All races";
+  return [`Single: ${single}`, edu, inc, race].join(" · ");
+}
+
+/** Phase 5: what changed between two searches, in a few words, for the
+ * results' live region (results_updated: "Results updated for {change}").
+ * Only the first difference is named; none is "your search". */
+export function describeChange(a: Prefs, b: Prefs): string {
+  if (a.seekSex !== b.seekSex) return b.seekSex === "male" ? "men" : "women";
+  if (a.ageMin !== b.ageMin || a.ageMax !== b.ageMax) return `ages ${b.ageMin}–${b.ageMax}`;
+  if (a.selfAge !== b.selfAge) return `your age, ${b.selfAge}`;
+  if (a.sort !== b.sort) return b.sort === "best_first" ? "best first" : "worst first";
+  if (a.poolVsMatch !== b.poolVsMatch) return "bigger pool or closer match";
+  if (a.marital.join() !== b.marital.join() || a.educationMin !== b.educationMin
+      || a.incomeMin !== b.incomeMin || (a.race ?? []).join() !== (b.race ?? []).join()) {
+    return filtersSummary(b);
+  }
+  for (const k of IMPORTANCE_PILLARS) {
+    if (a.importance[k] !== b.importance[k]) return "what matters to you";
+  }
+  return "your search";
+}
+
 /** `selfSex` is the visitor's own sex as this browser holds it (m4.0.0:
  * never part of the prefs). */
 export function searchChips(p: Prefs, selfSex: "male" | "female"): { label: string; active: boolean }[] {

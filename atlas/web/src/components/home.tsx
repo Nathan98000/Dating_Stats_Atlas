@@ -1,11 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState,
+  useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation";
 import type { Meta, VariantResponse } from "@/lib/types";
 import {
   PREFS_COOKIE,
   PREFS_COOKIE_MAX_AGE,
-  searchChips,
+  describeChange,
+  describeSearchShort,
   toRankBody,
   toSearchParams,
   type Prefs,
@@ -19,28 +22,93 @@ import {
   type AboutYou,
 } from "@/lib/about-you";
 import { selectVariant } from "@/lib/variants";
-import { SearchPanel } from "./panel";
-import { ResultRow } from "./row";
+import { fill, INITIAL_VISIBLE, showMore, visibleSlice, visibleToInclude } from "@/lib/results";
+import { RailGroups } from "./panel";
+import { FeaturedCard, ResultRow } from "./row";
 import { NarrowState } from "./narrow";
+import { Hero } from "./hero";
+import { QuickSearch } from "./quick-search";
+import { Segmented } from "./segmented";
+import { FindInResults } from "./find-in-results";
+import { BottomSheet } from "./bottom-sheet";
 
-/** The home page's client shell (HomeV3): hero, the full panel, results.
- * The first response arrives server-rendered; every change of the search
- * re-asks the API through the same-origin proxy and rewrites the query
- * string. m4.0.0 (ADR 0018): the visitor's own sex, education and race
- * live in this browser (lib/about-you) and are never sent — the response
- * carries every variant, and changing one of them only selects another
- * (lib/variants), with no request at all. Nothing is recomputed here. A
- * sticky search-summary bar with Change search appears once the panel
- * scrolls out of view (StatesV3/NarrowV3's chips row). */
+const DESK = "(min-width: 70rem)";
+const subscribeDesk = (cb: () => void) => {
+  const mq = window.matchMedia(DESK);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+
+/** Whether the page is at the desk breakpoint (1120px): the rail sits
+ * beside the results there, and in the sheet or drawer below it. The
+ * server renders the desk layout (the rail is hidden by CSS below 1120px
+ * until the page hydrates), so the rail's controls exist once, never
+ * twice. */
+function useDesk(): boolean {
+  return useSyncExternalStore(subscribeDesk, () => window.matchMedia(DESK).matches, () => true);
+}
+
+/** FLIP for the result list (Phase 5): before new rows render, each row's
+ * position is recorded by cbsa; after, a moved row starts where it was
+ * and slides to its new place, 200ms ease-out. Nothing moves under
+ * prefers-reduced-motion. */
+function useFlip(container: React.RefObject<HTMLElement | null>) {
+  const before = useRef<Map<string, number> | null>(null);
+  const snapshot = useCallback(() => {
+    const el = container.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const m = new Map<string, number>();
+    el.querySelectorAll<HTMLElement>("[data-cbsa]").forEach((n) => {
+      m.set(n.dataset.cbsa!, n.getBoundingClientRect().top);
+    });
+    before.current = m;
+  }, [container]);
+  const play = useCallback(() => {
+    const m = before.current;
+    before.current = null;
+    const el = container.current;
+    if (!m || !el) return;
+    el.querySelectorAll<HTMLElement>("[data-cbsa]").forEach((n) => {
+      const was = m.get(n.dataset.cbsa!);
+      if (was === undefined) return;
+      const dy = was - n.getBoundingClientRect().top;
+      if (Math.abs(dy) < 1) return;
+      n.style.transition = "none";
+      n.style.transform = `translateY(${dy}px)`;
+      requestAnimationFrame(() => {
+        n.style.transition = "transform 200ms ease-out";
+        n.style.transform = "";
+        n.addEventListener("transitionend", () => { n.style.transition = ""; }, { once: true });
+      });
+    });
+  }, [container]);
+  return { snapshot, play };
+}
+
+/** The home page's client shell (Phase 5, the design audit of 8 October
+ * 2026): the hero with its quick search, the rail beside the results
+ * from 1120px (in a sheet or drawer below that), and the results — a
+ * header, the top three as cards, the rows from the fourth, ten at a
+ * time, and how the score works. The first response arrives server-
+ * rendered; every change of the search re-asks the API through the same-
+ * origin proxy and rewrites the query string. m4.0.0 (ADR 0018): the
+ * visitor's own sex, education and race live in this browser (lib/about-
+ * you) and are never sent — the response carries every variant, and
+ * changing one of them only selects another (lib/variants), with no
+ * request at all. Nothing is recomputed here. */
 export function Home({
   meta,
   initialPrefs,
   initialResponse,
+  photos,
 }: {
   meta: Meta;
   initialPrefs: Prefs;
   initialResponse: VariantResponse;
+  /** the croppable city photographs on disk, by slug (lib/city-photos) */
+  photos: Record<string, { src: string; alt: string }>;
 }) {
+  const router = useRouter();
   const [prefs, setPrefs] = useState<Prefs>(initialPrefs);
   const [response, setResponse] = useState<VariantResponse>(initialResponse);
   // the server renders the default variant; the stored one is read after
@@ -49,10 +117,21 @@ export function Home({
   const [ready, setReady] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [chipsVisible, setChipsVisible] = useState(false);
+  const [visible, setVisible] = useState(INITIAL_VISIBLE);
+  const [openRows, setOpenRows] = useState<Set<string>>(() => new Set());
+  const [highlight, setHighlight] = useState<string | null>(null);
+  const [live, setLive] = useState("");
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [barVisible, setBarVisible] = useState(false);
+  const desk = useDesk();
   const seq = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const lastPrefs = useRef<Prefs>(initialPrefs);
+  const quickRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const adjustRef = useRef<HTMLButtonElement>(null);
+  const { snapshot, play } = useFlip(listRef);
+  const policy = meta.policy_strings;
 
   const refetch = useCallback((next: Prefs) => {
     const mine = ++seq.current;
@@ -70,7 +149,12 @@ export function Home({
           return;
         }
         setError(null);
-        setResponse(await r.json());
+        const body = await r.json();
+        if (mine !== seq.current) return;
+        snapshot();
+        setResponse(body);
+        setLive(fill(policy.results_updated, { change: describeChange(lastPrefs.current, next) }));
+        lastPrefs.current = next;
       })
       .catch(() => {
         if (mine === seq.current) setError("the ranking service is unreachable");
@@ -78,11 +162,13 @@ export function Home({
       .finally(() => {
         if (mine === seq.current) setPending(false);
       });
-  }, []);
+  }, [snapshot, policy.results_updated]);
 
   const onChange = useCallback(
     (next: Prefs, now = false) => {
       setPrefs(next);
+      setVisible(INITIAL_VISIBLE);
+      setOpenRows(new Set());
       const qs = toSearchParams(next).toString();
       window.history.replaceState(null, "", `${window.location.pathname}?${qs}`);
       // Phase 2f item 2 (ADR 0007): the search follows the visitor. The
@@ -125,9 +211,10 @@ export function Home({
   }, [ready, pending, response, prefs.seekSex]);
 
   const saveAbout = useCallback((next: AboutYou) => {
+    snapshot();
     writeAboutYou(next);
     setAbout(next);
-  }, []);
+  }, [snapshot]);
   /** Own sex: stored in this browser. A search that was opposite-sex stays
    * opposite-sex (the sought sex follows, as it did when it defaulted to
    * the opposite of the visitor's); a same-sex search keeps its sought
@@ -146,13 +233,12 @@ export function Home({
     onChange({ ...prefs, seekSex });
   }, [about, prefs, onChange, saveAbout]);
 
+  // the sticky bottom bar (below 1120px) appears once the quick search
+  // has scrolled out of view
   useEffect(() => {
-    const el = panelRef.current;
+    const el = quickRef.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(
-      ([entry]) => setChipsVisible(!entry.isIntersecting),
-      { rootMargin: "-80px 0px 0px 0px" },
-    );
+    const io = new IntersectionObserver(([entry]) => setBarVisible(!entry.isIntersecting));
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -160,142 +246,269 @@ export function Home({
     if (timer.current) clearTimeout(timer.current);
   }, []);
 
-  const policy = meta.policy_strings;
   const qs = toSearchParams(prefs).toString();
   const selected = useMemo(() => selectVariant(response, about), [response, about]);
+  // the rows have rendered in their new places: slide them there
+  useLayoutEffect(() => { play(); }, [selected, play]);
+  useEffect(() => {
+    if (!highlight) return;
+    const t = setTimeout(() => setHighlight(null), 2000);
+    return () => clearTimeout(t);
+  }, [highlight]);
+
   const excluded = selected.counts.suppressed;
   const allOut = selected.counts.ranked === 0;
-  // the panel reflects the search as set (the list, the response it has)
   const selfSex = effectiveSex(about, prefs.seekSex);
   const sameSex = selfSex === prefs.seekSex;
+  const short = describeSearchShort(prefs);
+  const { featured, rest } = visibleSlice(selected.ranked, visible);
+  const total = selected.ranked.length;
+  const cityHref = (slug: string) => `/city/${slug}${qs ? `?${qs}` : ""}`;
+
+  const findCity = (slug: string) => {
+    const i = selected.ranked.findIndex((r) => r.slug === slug);
+    if (i < 0) return;
+    setVisible((v) => visibleToInclude(v, i));
+    setHighlight(slug);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const li = listRef.current?.querySelector<HTMLElement>(`[data-slug="${slug}"]`);
+      li?.scrollIntoView({ block: "center" });
+      li?.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
+    }));
+  };
+  const toggleRow = (cbsa: string) =>
+    setOpenRows((cur) => {
+      const next = new Set(cur);
+      if (next.has(cbsa)) next.delete(cbsa);
+      else next.add(cbsa);
+      return next;
+    });
+
+  const rail = (
+    <RailGroups
+      prefs={prefs}
+      meta={meta}
+      onChange={onChange}
+      sameSex={sameSex}
+      sameSexNote={response.variants.same_sex_note}
+      about={about}
+      onAbout={saveAbout}
+    />
+  );
 
   return (
     <>
-      {/* sticky search summary (visible once the panel scrolls away) */}
-      <div
-        className={`sticky top-0 z-30 border-b border-t border-rule bg-surface px-6 py-3 sm:px-12 ${chipsVisible ? "" : "hidden"}`}
-        data-testid="chips-bar"
-      >
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3">
-          <span className="text-[13px] font-bold text-ink-2">Your search</span>
-          {searchChips(prefs, selfSex).map((c) => (
-            <span
-              key={c.label}
-              className={`flex min-h-[36px] items-center rounded-full border px-3.5 py-2 text-[13px] ${c.active ? "border-tint-border bg-tint font-semibold text-accent-hover" : "border-rule bg-paper"}`}
+      <main id="main" className="mx-auto max-w-[1200px] px-4 pb-16 sm:px-12">
+        <Hero title={policy.home_title} subtitle={policy.home_subtitle}>
+          <div ref={quickRef}>
+            <QuickSearch
+              prefs={prefs}
+              meta={meta}
+              selfSex={selfSex}
+              onSelfSex={onSelfSex}
+              onSeekSex={onSeekSex}
+              onChange={onChange}
+            />
+          </div>
+        </Hero>
+
+        <div className="grid gap-8 pt-5 sm:pt-11 desk:grid-cols-[288px_1fr] desk:items-start">
+          {desk && (
+            <aside
+              aria-label={policy.adjust_search}
+              className="sticky top-4 rounded-lg border border-rule bg-surface p-5 max-desk:hidden"
+              data-testid="rail"
             >
-              {c.label}
-            </span>
-          ))}
-          <button
-            type="button"
-            className="ml-auto min-h-[40px] rounded-md bg-accent px-[18px] text-[13.5px] font-bold text-white hover:bg-accent-hover"
-            onClick={() => {
-              panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-              const first = panelRef.current?.querySelector<HTMLElement>("input, select, button");
-              first?.focus({ preventScroll: true });
-            }}
-          >
-            Change search
-          </button>
-        </div>
-      </div>
-
-      <div className="mx-auto grid max-w-6xl grid-cols-[360px_1fr] gap-10 px-6 pb-16 pt-8 sm:px-12 max-lg:grid-cols-1">
-        {/* Item 1: the panel follows the page. Sticky with its own
-            max-height and internal scroll, so a panel taller than the
-            viewport scrolls inside itself instead of trapping the page;
-            tabIndex + role make the scroll container keyboard-reachable
-            (arrow keys scroll it). At phone width it goes back to being a
-            normal block above the results. */}
-        <div
-          ref={panelRef}
-          id="search-panel"
-          tabIndex={0}
-          role="region"
-          aria-label="Your search"
-          data-testid="search-panel"
-          className="lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:touch-pan-y lg:self-start lg:overflow-y-auto"
-        >
-          <SearchPanel
-            prefs={prefs}
-            meta={meta}
-            onChange={onChange}
-            sameSex={sameSex}
-            sameSexNote={response.variants.same_sex_note}
-            about={about}
-            selfSex={selfSex}
-            onSelfSex={onSelfSex}
-            onSeekSex={onSeekSex}
-            onAbout={saveAbout}
-          />
-        </div>
-
-        <main id="main" className="min-w-0" aria-busy={pending}>
-          {error && (
-            <p role="alert" className="mb-4 rounded-md border border-tint-border bg-tint px-4 py-3 text-sm text-accent-hover">
-              {error}
-            </p>
+              {rail}
+            </aside>
           )}
 
-          {allOut ? (
-            <NarrowState prefs={prefs} meta={meta} onWiden={onChange} />
-          ) : (
-            <>
-              <div className="flex flex-wrap items-end justify-between gap-4 pb-2">
-                <div className="flex max-w-[58ch] flex-col gap-1.5">
-                  <h2 className="font-display text-2xl font-semibold" data-testid="list-heading">
-                    {excluded > 0
-                      ? policy.list_heading_count.replace(
-                          "{n}", selected.counts.ranked.toLocaleString("en-US"))
-                      : policy.list_heading}
-                  </h2>
-                  {excluded > 0 && (
-                    <p className="text-[13.5px] leading-relaxed text-ink-2" data-testid="excluded-note">
-                      {policy.excluded_count.replace(
-                        "{n}", excluded.toLocaleString("en-US"))}
+          <section aria-labelledby="results-heading" aria-busy={pending} className="min-w-0">
+            {error && (
+              <p role="alert" className="mb-4 rounded-md border border-error bg-error-soft px-4 py-3 text-body-sm text-error">
+                {error}
+              </p>
+            )}
+
+            {allOut ? (
+              <NarrowState prefs={prefs} meta={meta} onWiden={onChange} />
+            ) : (
+              <>
+                <div className="flex flex-wrap items-end justify-between gap-4 pb-4 max-sm:flex-col max-sm:items-start">
+                  <div className="flex max-w-[60ch] flex-col">
+                    <p className="text-overline uppercase text-ink-3">{policy.results_eyebrow}</p>
+                    <h2 id="results-heading" className="mt-1 font-display text-h2" data-testid="list-heading">
+                      {fill(prefs.sort === "worst_first" ? policy.results_heading_worst
+                        : policy.results_heading_best, short)}
+                    </h2>
+                    <p className="text-body-sm text-ink-3" data-testid="results-count">
+                      {fill(policy.results_count, { n: selected.counts.ranked.toLocaleString("en-US") })}
                     </p>
+                    {excluded > 0 && (
+                      <p className="mt-1 text-body-sm text-ink-2" data-testid="excluded-note">
+                        {policy.excluded_count.replace("{n}", excluded.toLocaleString("en-US"))}
+                      </p>
+                    )}
+                  </div>
+                  <Segmented
+                    inline
+                    label="Show"
+                    testid="sort"
+                    options={[
+                      { value: "best_first", label: "Best first" },
+                      { value: "worst_first", label: "Worst first" },
+                    ]}
+                    value={prefs.sort}
+                    onChange={(v) => onChange({ ...prefs, sort: v as Prefs["sort"] })}
+                  />
+                </div>
+                <div aria-hidden="true" className={pending ? "progress-line mb-4" : "mb-4 h-0.5"} data-testid="pending-line" />
+                <p className="sr-only" aria-live="polite" data-testid="results-live">{live}</p>
+
+                <div ref={listRef} data-testid="ranked-list" data-variant="">
+                  <ol aria-label="Cities" className="grid gap-4 md:grid-cols-3">
+                    {featured.map((row) => (
+                      <FeaturedCard
+                        key={row.cbsa}
+                        row={row}
+                        meta={meta}
+                        href={cityHref(row.slug)}
+                        sought={short.sought}
+                        photo={photos[row.slug]}
+                      />
+                    ))}
+                  </ol>
+
+                  {rest.length > 0 && (
+                    <>
+                      <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
+                        <FindInResults
+                          label={policy.find_in_results}
+                          ranked={selected.ranked.map((r) => r.slug)}
+                          onPick={findCity}
+                        />
+                      </div>
+                      <div className="mt-4 hidden grid-cols-[40px_1fr_112px_104px_18px] gap-x-3.5 border-b border-rule px-4 pb-2 text-overline uppercase text-ink-3 sm:grid">
+                        <span>{policy.col_rank}</span>
+                        <span>{policy.col_city}</span>
+                        <span className="text-right">{policy.col_matches}</span>
+                        <span className="text-right" data-testid="score-label">{policy.col_score}</span>
+                        <span />
+                      </div>
+                      <ol start={featured.length + 1} aria-label="More cities" className="max-sm:mt-3 max-sm:border-t max-sm:border-rule">
+                        {rest.map((row) => (
+                          <ResultRow
+                            key={row.cbsa}
+                            row={row}
+                            meta={meta}
+                            href={cityHref(row.slug)}
+                            sought={short.sought}
+                            open={openRows.has(row.cbsa)}
+                            onToggle={() => toggleRow(row.cbsa)}
+                            onCompare={() => router.push(`/compare?a=${row.slug}${qs ? `&${qs}` : ""}`)}
+                            highlighted={highlight === row.slug}
+                          />
+                        ))}
+                      </ol>
+                    </>
                   )}
                 </div>
-                <label className="flex items-center gap-2.5 text-[13px] font-semibold text-ink-2">
-                  Show
-                  <select
-                    className="ctl !w-auto !min-h-[40px] pr-9 text-[13.5px] font-semibold text-ink"
-                    value={prefs.sort}
-                    data-testid="sort"
-                    onChange={(e) =>
-                      onChange({ ...prefs, sort: e.target.value as Prefs["sort"] })
-                    }
-                  >
-                    <option value="best_first">Best first</option>
-                    <option value="worst_first">Worst first</option>
-                  </select>
-                </label>
-              </div>
 
-              <ol
-                aria-label="Cities"
-                data-testid="ranked-list"
-                data-variant=""
-                className={pending ? "opacity-60 transition-opacity" : "transition-opacity"}
-              >
-                {selected.ranked.map((row) => (
-                  <ResultRow key={row.cbsa} row={row} meta={meta} queryString={qs} />
-                ))}
-              </ol>
+                {visible < total && (
+                  <div className="flex items-center gap-4 pt-6 max-sm:flex-col max-sm:items-stretch">
+                    <button
+                      type="button"
+                      data-testid="show-more"
+                      onClick={() => setVisible((v) => showMore(v, total))}
+                      className="flex h-11 items-center justify-center rounded-md border border-line-strong bg-surface px-5 text-body font-semibold text-ink hover:bg-hover"
+                    >
+                      {policy.show_more}
+                    </button>
+                    <button
+                      type="button"
+                      data-testid="show-all"
+                      onClick={() => setVisible(total)}
+                      className="flex min-h-11 items-center justify-center text-body font-semibold text-accent hover:text-accent-hover"
+                    >
+                      {fill(policy.show_all, { n: total.toLocaleString("en-US") })}
+                    </button>
+                  </div>
+                )}
 
-              {/* Phase 4c (ADR 0004 amended): balance applies to every
-                  search, same-sex included, so the footnote is always the
-                  caption — and, the same for every visitor, needs no veil */}
-              <p className="mx-auto max-w-[70ch] pt-8 text-center text-[13px] leading-relaxed text-ink-3" data-testid="balance-footnote">
-                {policy.balance_caption}{" "}
-                <a href="/about" className="font-semibold text-accent hover:text-accent-hover">
-                  How it works
-                </a>
-              </p>
-            </>
-          )}
-        </main>
-      </div>
+                <ScoreExplainer meta={meta} />
+              </>
+            )}
+          </section>
+        </div>
+      </main>
+
+      {!desk && (
+        <>
+          <div
+            className={`fixed inset-x-0 bottom-0 z-30 bg-surface px-4 pb-[calc(14px+env(safe-area-inset-bottom))] pt-2.5 shadow-overlay ${barVisible ? "" : "hidden"}`}
+            data-testid="bottom-bar"
+          >
+            <button
+              ref={adjustRef}
+              type="button"
+              onClick={() => setSheetOpen(true)}
+              className="flex h-[52px] w-full items-center justify-center gap-2.5 rounded-md bg-accent text-body font-semibold text-white hover:bg-accent-hover"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" fill="none"
+                stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <path d="M3 6h9M15 6h2M3 14h2M8 14h9" />
+                <circle cx="13.5" cy="6" r="1.8" />
+                <circle cx="6.5" cy="14" r="1.8" />
+              </svg>
+              {policy.adjust_search}
+            </button>
+          </div>
+          <BottomSheet
+            open={sheetOpen}
+            onClose={() => setSheetOpen(false)}
+            title={policy.adjust_search}
+            footerLabel={policy.show_results}
+            closeLabel={policy.close}
+            returnFocus={adjustRef}
+          >
+            {rail}
+          </BottomSheet>
+        </>
+      )}
     </>
+  );
+}
+
+/** "How the score works", below the list: the two people pillars in their
+ * served definitions, the lifestyle line, a link to How it works, and the
+ * balance caption. */
+function ScoreExplainer({ meta }: { meta: Meta }) {
+  const s = meta.policy_strings;
+  const [lifeHead, ...lifeRest] = s.explainer_lifestyle.split(":");
+  const cols = [
+    { head: meta.pillars.pool?.display_name, body: meta.pillars.pool?.definition },
+    { head: meta.pillars.match?.display_name, body: meta.pillars.match?.definition },
+    { head: lifeHead, body: lifeRest.join(":").trim() },
+  ];
+  return (
+    <section className="mt-14 border-t border-rule pt-8" aria-labelledby="score-explainer" data-testid="score-explainer">
+      <h2 id="score-explainer" className="font-display text-h3">{s.explainer_heading}</h2>
+      <div className="mt-4 grid gap-6 sm:grid-cols-3">
+        {cols.map((c) => (
+          <div key={c.head}>
+            <h3 className="text-body-sm font-semibold text-ink">{c.head}</h3>
+            <p className="mt-1 text-body-sm text-ink-2">{c.body}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-5 text-body-sm">
+        <a href="/about" className="inline-flex min-h-11 items-center font-semibold text-accent hover:text-accent-hover">
+          {s.nav_how} →
+        </a>
+      </p>
+      <p className="mt-1 max-w-[70ch] text-caption text-ink-3" data-testid="balance-footnote">
+        {s.balance_caption}
+      </p>
+    </section>
   );
 }
