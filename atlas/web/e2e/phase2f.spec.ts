@@ -162,8 +162,9 @@ test("every compare difference equals the subtraction of the two displayed value
         id: diffTd.getAttribute("data-diff-for")!,
         a: cells[0]?.textContent ?? "",
         b: cells[1]?.textContent ?? "",
-        diff: diffTd.textContent?.trim() ?? "",
-        color: getComputedStyle(diffTd).color,
+        // Phase 5: the number sits under the Edge as quiet text
+        diff: diffTd.querySelector("[data-diff-value]")?.textContent?.trim() ?? "",
+        edge: diffTd.getAttribute("data-edge"),
       };
     }),
   );
@@ -187,10 +188,11 @@ test("every compare difference equals the subtraction of the two displayed value
   // rent carries $ after the sign (item 6.2); population stays grey
   const byId = Object.fromEntries(rows.map((r) => [r.id, r]));
   expect(byId.rent_1br.diff).toMatch(/^[+−]\$/);
-  expect(byId.who_lives_here.color).toBe(RGB.grey);
-  // the legend line explains the colours, from the registry (item 6.3)
-  await expect(page.getByTestId("diff-legend")).toContainText(
-    /Green means the difference favors Provo/);
+  expect(byId.who_lives_here.edge).toBe("0");
+  // the line under the table explains the Edge column, from the registry
+  // (Phase 5, replacing item 6.3's colour legend)
+  await expect(page.getByTestId("diff-legend")).toHaveText(
+    "Edge shows which city does better on each measure for your search; a dash means we don't judge it.");
 });
 
 test("either side missing gives an em dash (gate 5)", async ({ page }) => {

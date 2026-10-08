@@ -32,8 +32,8 @@ export function BalanceTrack({
   const x = balancePosition(balance.per_100) * 100;
   return (
     <div className="flex flex-col gap-2" data-testid="balance-tally">
-      <div aria-hidden="true" className="w-[176px]">
-        <div className="relative mx-auto my-1 h-2 w-[120px] rounded-full bg-data-neutral" data-testid="balance-track">
+      <div aria-hidden="true" className="w-full max-w-[176px]">
+        <div className="relative mx-auto my-1 h-2 w-full max-w-[120px] rounded-full bg-data-neutral" data-testid="balance-track">
           <span className="absolute -top-[5px] left-1/2 h-[18px] w-0.5 -translate-x-1/2 bg-ink-3" />
           <span
             className="absolute -top-1 h-4 w-4 -translate-x-1/2 rounded-full border-[3px] border-surface bg-ink shadow-[0_0_0_1px_var(--ink)]"
@@ -41,7 +41,7 @@ export function BalanceTrack({
             data-testid="balance-dot"
           />
         </div>
-        <div className="mt-1.5 flex justify-between text-overline font-normal tracking-normal text-ink-3">
+        <div className="mt-1.5 flex flex-wrap justify-between gap-x-1.5 text-overline font-normal tracking-normal text-ink-3">
           <span>{fill(s.balance_more, { word: balance.seeker_word ?? "" })}</span>
           <span>{s.balance_even}</span>
           <span>{fill(s.balance_more, { word: balance.sought_word ?? "" })}</span>

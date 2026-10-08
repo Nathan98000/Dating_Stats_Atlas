@@ -42,7 +42,7 @@ test("a figure above the ceiling renders as 250+ on the result row, the city pag
   await expect(diff).toBeVisible();
   await expect(diff).toHaveText("—");
   // every other row's difference still computes
-  await expect(table.locator('[data-diff-for="pool"]')).not.toHaveText("—");
+  await expect(table.locator('[data-diff-for="pool"] [data-diff-value]')).toHaveText(/\d/);
 });
 
 test("an uncapped search computes the compatibility difference as before", async ({ page }) => {
@@ -50,7 +50,7 @@ test("an uncapped search computes the compatibility difference as before", async
     "/compare/san-jose-california/austin-texas?sex=male&self_age=30&age=28-40&marital=never,previously");
   const table = page.getByTestId("compare-table");
   await expect(table).not.toContainText("250+");
-  await expect(table.locator('[data-diff-for="match_propensity"]')).toHaveText(/^[+−]\d+$|^0$/);
+  await expect(table.locator('[data-diff-for="match_propensity"] [data-diff-value]')).toHaveText(/^[+−]\d+$|^0$/);
 });
 
 test("a same-sex search says in the slider's information box whose pairing patterns the figure is built from", async ({ page, browser }) => {

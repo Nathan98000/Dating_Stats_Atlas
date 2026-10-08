@@ -215,3 +215,43 @@ for (const path of PAGES) {
     expect(serious.map((v) => `${v.id}: ${v.nodes.length} — ${v.help}`)).toEqual([]);
   });
 }
+
+test("compare: the Edge column names the city that does better, and below 640px each measure is a block", async ({ page }) => {
+  await page.goto(`/compare/provo-utah/austin-texas?${DEFAULT_QS}`);
+  const table = page.getByTestId("compare-table");
+  await expect(table).toBeVisible();
+  await expect(page.locator("main#main")).toHaveCount(1);
+  if (width(page) >= 640) {
+    await expect(table.getByRole("columnheader", { name: "Edge" })).toBeVisible();
+    const edges = await table.locator("[data-diff-for][data-edge]").evaluateAll((tds) =>
+      tds.map((td) => ({ edge: td.getAttribute("data-edge"), text: td.textContent ?? "" })));
+    expect(edges.length).toBeGreaterThan(5);
+    for (const e of edges) {
+      if (e.edge === "1") expect(e.text).toMatch(/^Provo/);
+      else if (e.edge === "-1") expect(e.text).toMatch(/^Austin/);
+      else expect(e.text).toMatch(/^—/);
+    }
+    // population is a fact: never an edge
+    await expect(table.locator('[data-diff-for="who_lives_here"]')).toHaveAttribute("data-edge", "0");
+  } else {
+    await expect(table.locator("[data-diff-for]").first()).toBeHidden();
+    // the two values sit side by side under the measure's label
+    const row = table.getByRole("row").filter({ has: page.getByRole("rowheader", { name: "Rent", exact: true }) });
+    const [label, a, b] = await Promise.all([
+      row.getByRole("rowheader").boundingBox(), row.getByRole("cell").nth(0).boundingBox(),
+      row.getByRole("cell").nth(1).boundingBox()]);
+    expect(a!.y).toBeGreaterThan(label!.y);
+    expect(Math.abs(a!.y - b!.y)).toBeLessThan(2);
+    expect(b!.x).toBeGreaterThan(a!.x + a!.width - 2);
+  }
+});
+
+test("compare landing: a link to the visitor's top two", async ({ page, request }) => {
+  await page.goto(`/compare?${DEFAULT_QS}`);
+  const link = page.getByTestId("compare-top-two");
+  await expect(link).toHaveText(/^Your top two: .+ vs .+$/);
+  const r = await request.post("http://127.0.0.1:8600/v1/rank", { data: {
+    self: { age: 30 }, seeking: { sex: "male", age: [28, 40], marital: ["never_married", "previously_married"] } } });
+  const ranked = (await r.json()).ranked as { slug: string }[];
+  await expect(link).toHaveAttribute("href", new RegExp(`^/compare/${ranked[0].slug}/${ranked[1].slug}\\?`));
+});

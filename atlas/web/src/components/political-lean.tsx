@@ -110,7 +110,7 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
 /** A compare-table cell: the same text the card shows, or "Not available". */
 export function PoliticalLeanCell({ block }: { block: PoliticalLeanBlock | undefined }) {
   return (
-    <td className="px-5 py-3.5" data-lean-cell="">
+    <td role="cell" className="px-4 pb-3.5 pt-1 align-top sm:px-5 sm:py-3.5" data-lean-cell="">
       {block?.available ? (
         <span className="text-[15px] font-semibold">{block.text}</span>
       ) : (

@@ -49,7 +49,7 @@ test("the compare page shows two cities from one response", async ({ page }) => 
   await expect(table).toContainText("People who match");
   // Phase 2f item 6.1 (ADR 0007, reversing ADR 0003): pools GET a
   // difference now — the plain subtraction of the two displayed counts
-  const poolDiff = table.locator('[data-diff-for="pool"]');
+  const poolDiff = table.locator('[data-diff-for="pool"] [data-diff-value]');
   await expect(poolDiff).toHaveText(/^[+−][\d,]+$/);
   await expect(table).toContainText("Rent");
   const text = (await table.textContent()) ?? "";

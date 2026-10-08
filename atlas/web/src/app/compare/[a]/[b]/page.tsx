@@ -13,9 +13,9 @@ import {
   type SearchParams,
 } from "@/lib/prefs";
 import { effectiveSearchParams } from "@/lib/server-prefs";
-import { SiteHeader } from "@/components/chrome";
+import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { CompareVariantRows } from "@/components/compare-variant";
-import { DiffCell, Row } from "@/components/compare-cells";
+import { DiffCell, edgeOf, Row, ValueCell } from "@/components/compare-cells";
 import { PoliticalLeanCell } from "@/components/political-lean";
 import { toneText } from "@/lib/tones";
 import { sliceVariants } from "@/lib/variants";
@@ -29,10 +29,10 @@ export const dynamic = "force-dynamic";
  * plain subtraction of the two DISPLAYED values — parsed back from the
  * display strings themselves, so the equality with what the visitor
  * sees holds by construction and nothing is recomputed from raw values.
- * The colour of a difference says whether A − B favours the left-hand
- * city for this visitor, from the registry's direction field; grey
- * means no judgement (population always; a pillar set to Not much,
- * which still carries weight; anything without a direction). */
+ * Phase 5: the Edge column names the city a difference favours for this
+ * visitor (A − B read through the registry's direction field), a dash
+ * where the site doesn't judge (population always; a pillar set to Not
+ * much, which still carries weight; anything without a direction). */
 export default async function ComparePage({
   params,
   searchParams,
@@ -74,19 +74,19 @@ export default async function ComparePage({
   return (
     <>
       <SiteHeader />
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 pb-16 pt-8 sm:px-12">
-        <Link href={`/?${qs}`} className="text-sm font-semibold text-accent hover:text-accent-hover">
+      <main id="main" className="mx-auto flex max-w-5xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
+        <Link href={`/?${qs}`} className="inline-flex min-h-11 items-center self-start text-body-sm font-semibold text-accent hover:text-accent-hover">
           ← Back to your results
         </Link>
-        <h1 className="font-display text-[34px] font-semibold leading-tight tracking-tight">
+        <h1 className="font-display text-h2">
           {cityA} <span className="text-ink-3">and</span> {cityB}
         </h1>
-        <p className="max-w-[64ch] text-[15px] text-ink-2">
+        <p className="max-w-[64ch] text-body text-ink-2">
           For {describeSearch(prefs).toLowerCase()} — the same search and the
           same yardstick as your results.
         </p>
         {isDefaultSearch(sp) && !fromCookie && (
-          <p className="max-w-[64ch] rounded-md border border-tint-border bg-tint px-4 py-3 text-[13.5px] leading-relaxed text-accent-hover" data-testid="default-profile-note">
+          <p className="max-w-[64ch] rounded-md border border-warning bg-warning-soft px-4 py-3 text-body-sm text-warning" data-testid="default-profile-note">
             {policy.compare_default_note.replace(
               "{search}", describeSearch(prefs).toLowerCase())}{" "}
             <Link href={`/?${qs}#search-panel`} className="font-bold underline underline-offset-2">
@@ -95,30 +95,33 @@ export default async function ComparePage({
           </p>
         )}
 
-        <div className="overflow-x-auto rounded-lg border border-rule bg-surface">
-          <table className="w-full min-w-[620px] text-sm" data-testid="compare-table">
+        {/* Phase 5: a table from 640px; below that each measure is a block,
+            the two cities side by side under a sticky row naming them (no
+            sideways scroll) */}
+        <div className="rounded-lg border border-rule bg-surface">
+          <table role="table" className="block w-full text-body-sm sm:table" data-testid="compare-table">
             <caption className="sr-only">
               {mA.display_name_full} compared with {mB.display_name_full}
             </caption>
-            <thead>
-              <tr className="border-b border-rule text-left">
-                <th scope="col" className="w-[26%] px-5 py-3.5 text-[13px] font-semibold text-ink-3" />
+            <thead role="rowgroup" className="sticky top-0 z-10 block rounded-t-lg bg-surface sm:static sm:table-header-group">
+              <tr role="row" className="grid grid-cols-2 border-b border-rule text-left sm:table-row">
+                <td className="w-[26%] max-sm:hidden" />
                 {[mA, mB].map((m) => (
-                  <th key={m.slug} scope="col" className="px-5 py-3.5">
+                  <th key={m.slug} role="columnheader" scope="col" className="px-4 py-3 sm:px-5 sm:py-3.5">
                     <Link
                       href={`/city/${m.slug}?${qs}`}
-                      className="font-display text-[17px] font-semibold text-ink hover:text-accent-hover"
+                      className="font-display text-title text-ink hover:text-accent-hover"
                     >
                       {m.display_name}
                     </Link>
                   </th>
                 ))}
-                <th scope="col" className="px-5 py-3.5 text-[13px] font-semibold text-ink-3">
-                  Difference
+                <th role="columnheader" scope="col" className="px-5 py-3.5 text-caption font-semibold text-ink-3 max-sm:hidden">
+                  {policy.compare_edge}
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody role="rowgroup" className="block sm:table-row-group">
               {/* item 6.1 and the people rows: spot, score, the
                   compatibility figure and balance — what an "about you"
                   variant changes, selected in the browser (m4.0.0) */}
@@ -126,6 +129,8 @@ export default async function ComparePage({
                 slice={slice}
                 cbsaA={mA.cbsa}
                 cbsaB={mB.cbsa}
+                nameA={cityA}
+                nameB={cityB}
                 meta={meta}
               />
               {meta.city_cards.map((id) => {
@@ -133,31 +138,33 @@ export default async function ComparePage({
                 const cA = cardOf(profA, id);
                 const cB = cardOf(profB, id);
                 const grey = greyRule(id, le.pillar, le.direction, prefs);
+                const edge = edgeOf(cA?.display, cB?.display, grey ? 0 : le.direction, grey);
                 return (
                   <Row key={id} label={le.display_name}>
                     {[cA, cB].map((c, i) => (
-                      <td key={i} className="px-5 py-3.5">
+                      <ValueCell key={i} win={edge === (i === 0 ? 1 : -1)} edgeLabel={policy.compare_edge}>
                         {c && c.display !== undefined ? (
                           <div className="flex flex-col">
-                            <span className="text-[16px] font-semibold">
+                            <span className="text-body font-semibold">
                               {id === "rent_1br" ? "$" : ""}
                               {c.display}
                             </span>
                             {c.band && (
-                              <span className={`text-[12px] font-semibold ${toneText(c.band.tone)}`}>
+                              <span className={`text-overline tracking-normal ${toneText(c.band.tone)}`}>
                                 {c.band.label}
                               </span>
                             )}
                           </div>
                         ) : (
-                          <span className="text-[12.5px] text-ink-3">
+                          <span className="text-caption text-ink-3">
                             {policy.card_missing}
                           </span>
                         )}
-                      </td>
+                      </ValueCell>
                     ))}
                     <DiffCell
                       id={id}
+                      names={[cityA, cityB]}
                       a={cA?.display}
                       b={cB?.display}
                       decimals={le.display_decimals}
@@ -176,28 +183,26 @@ export default async function ComparePage({
                 <Row label={meta.features.political_lean.display_name}>
                   <PoliticalLeanCell block={lean.metros[mA.cbsa]} />
                   <PoliticalLeanCell block={lean.metros[mB.cbsa]} />
-                  <td className="px-5 py-3.5" data-no-diff="political_lean" />
+                  <td role="cell" className="px-5 py-3.5 max-sm:hidden" data-no-diff="political_lean" />
                 </Row>
               )}
             </tbody>
           </table>
         </div>
-        {/* item 6.3: what the colours mean, from the registry — grey is
-            "we don't judge it", never "this is excluded" */}
-        <p className="max-w-[76ch] text-[12.5px] leading-relaxed text-ink-3" data-testid="diff-legend">
-          {policy.compare_diff_legend
-            .replace("{a}", cityA)
-            .replace("{b}", cityB)}
+        {/* Phase 5: what the Edge column says, from the registry — a dash
+            is "we don't judge it", never "this is excluded" */}
+        <p className="max-w-[76ch] text-caption text-ink-3" data-testid="diff-legend">
+          {policy.compare_edge_note}
         </p>
 
         {/* Phase 2e item 11, reworded in 2f item 6.4: two numbers per
             city, ONE plain banner above them, the detail one click away —
             and the unit line says per 100,000 so nobody reads a rate as
             a count (item 6.5). */}
-        <section className="flex flex-col gap-4 rounded-lg border border-rule bg-surface px-7 py-6" data-testid="compare-crime">
-          <h2 className="font-display text-[21px] font-semibold">Reported crime</h2>
+        <section className="flex flex-col gap-4 rounded-lg border border-rule bg-surface px-4 py-6 sm:px-7" data-testid="compare-crime">
+          <h2 className="font-display text-h3">Reported crime</h2>
           <p
-            className="max-w-[76ch] rounded-md border border-tint-border bg-tint px-4 py-3 text-[13px] leading-relaxed text-accent-hover"
+            className="max-w-[76ch] rounded-md border border-warning bg-warning-soft px-4 py-3 text-caption text-warning"
             data-testid="crime-compare-banner"
           >
             {(profA?.crime ?? profB?.crime)?.compare_banner}{" "}
@@ -209,9 +214,9 @@ export default async function ComparePage({
           <table className="w-full max-w-[560px] text-sm">
             <thead>
               <tr className="border-b border-rule text-left">
-                <th scope="col" className="py-2 pr-4 text-[13px] font-semibold text-ink-3" />
+                <td />
                 {[mA, mB].map((m) => (
-                  <th key={m.slug} scope="col" className="py-2 pr-4 font-display text-[15px] font-semibold">
+                  <th key={m.slug} scope="col" className="py-2 pr-4 text-body-sm font-semibold">
                     {m.display_name}
                   </th>
                 ))}
@@ -221,10 +226,10 @@ export default async function ComparePage({
               {(["violent_crime_rate", "property_crime_rate"] as const).map((fid) => (
                 <tr key={fid} className="border-b border-rule last:border-b-0">
                   <th scope="row" className="py-2.5 pr-4 text-left align-top">
-                    <span className="block text-[13px] font-semibold text-ink-2">
+                    <span className="block text-caption font-semibold text-ink-2">
                       {meta.features[fid].display_name}
                     </span>
-                    <span className="block max-w-[22ch] text-[11.5px] font-normal leading-snug text-ink-3">
+                    <span className="block max-w-[22ch] text-overline font-normal tracking-normal text-ink-3">
                       {meta.features[fid].unit}
                     </span>
                   </th>
@@ -233,9 +238,9 @@ export default async function ComparePage({
                     return (
                       <td key={i} className="py-2.5 pr-4 align-top">
                         {s ? (
-                          <span className="font-display text-[19px] font-semibold">{s.display}</span>
+                          <span className="text-data-m">{s.display}</span>
                         ) : (
-                          <span className="text-[12.5px] text-ink-3">
+                          <span className="text-caption text-ink-3">
                             {r?.crime?.card_blank ?? "Not covered"}
                           </span>
                         )}
@@ -247,7 +252,8 @@ export default async function ComparePage({
             </tbody>
           </table>
         </section>
-      </div>
+      </main>
+      <SiteFooter />
     </>
   );
 }
