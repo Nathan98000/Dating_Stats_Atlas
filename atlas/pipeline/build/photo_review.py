@@ -276,21 +276,25 @@ def apply_display(rev: dict, city: dict, stat: dict) -> list[str]:
     in the Deltona metro area"), `place_caption`, a caption that is not
     that template ("Vineyards outside Santa Maria"), and `focus`, its focal
     point as an object-position value (F30: the card, the band and the
-    link-preview crop; "50% 35%" when absent). An entry replaces every
-    display field of its photograph, so removing one from the review
-    removes it from the page. Offline and idempotent."""
-    done = []
+    link-preview crop; "50% 35%" when absent). A photograph's entries are
+    merged, and together they set every display field it has, so removing
+    one from the review removes it from the page. Offline and idempotent."""
+    merged: dict[tuple[str, str], dict] = {}
     for r in rev.get("photo_display", []):
-        target = city if r["page"] == "city" else stat
-        entry = target.get(r["key"])
+        fields = merged.setdefault((r["page"], r["key"]), {})
+        fields.update({k: r[k] for k in DISPLAY_FIELDS if r.get(k)})
+    done = []
+    for (page, key), fields in merged.items():
+        target = city if page == "city" else stat
+        entry = target.get(key)
         if entry is None:
             continue
         for k in DISPLAY_FIELDS:
-            if r.get(k):
-                entry[k] = r[k]
+            if k in fields:
+                entry[k] = fields[k]
             else:
                 entry.pop(k, None)
-        done.append(r["key"])
+        done.append(key)
     return done
 
 

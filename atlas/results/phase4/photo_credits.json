@@ -1,21 +1,21 @@
 {
  "photos_in_use": 377,
  "by_licence": {
-  "CC BY 2.0": 40,
+  "CC BY 2.0": 41,
   "CC BY 2.5": 2,
-  "CC BY 3.0": 12,
+  "CC BY 3.0": 13,
   "CC BY 3.0 us": 1,
   "CC BY 4.0": 60,
   "CC BY-NC-SA 2.0": 1,
   "CC BY-SA 1.0": 1,
-  "CC BY-SA 2.0": 19,
+  "CC BY-SA 2.0": 18,
   "CC BY-SA 2.5": 6,
-  "CC BY-SA 3.0": 52,
+  "CC BY-SA 3.0": 55,
   "CC BY-SA 4.0": 106,
-  "CC0": 35,
+  "CC0": 33,
   "Free Art License": 1,
   "Public Domain": 1,
-  "Public domain": 40
+  "Public domain": 38
  },
  "cropped": [
   "abilene-texas",
@@ -389,17 +389,17 @@
   "hero"
  ],
  "cc_before_4_0": {
-  "count": 134,
+  "count": 138,
   "by_licence": {
-   "CC BY 2.0": 40,
+   "CC BY 2.0": 41,
    "CC BY 2.5": 2,
-   "CC BY 3.0": 12,
+   "CC BY 3.0": 13,
    "CC BY 3.0 us": 1,
    "CC BY-NC-SA 2.0": 1,
    "CC BY-SA 1.0": 1,
-   "CC BY-SA 2.0": 19,
+   "CC BY-SA 2.0": 18,
    "CC BY-SA 2.5": 6,
-   "CC BY-SA 3.0": 52
+   "CC BY-SA 3.0": 55
   },
   "photos": [
    {
@@ -411,6 +411,11 @@
     "page": "city",
     "key": "alexandria-louisiana",
     "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
+    "key": "amarillo-texas",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -469,6 +474,11 @@
    },
    {
     "page": "city",
+    "key": "cape-coral-florida",
+    "license": "CC BY 2.0"
+   },
+   {
+    "page": "city",
     "key": "cedar-rapids-iowa",
     "license": "CC BY-SA 3.0"
    },
@@ -501,6 +511,11 @@
     "page": "city",
     "key": "crestview-florida",
     "license": "CC BY 2.0"
+   },
+   {
+    "page": "city",
+    "key": "davenport-iowa",
+    "license": "CC BY 3.0"
    },
    {
     "page": "city",
@@ -634,6 +649,11 @@
    },
    {
     "page": "city",
+    "key": "hickory-north-carolina",
+    "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
     "key": "homosassa-springs-florida",
     "license": "CC BY-SA 3.0"
    },
@@ -731,11 +751,6 @@
     "page": "city",
     "key": "longview-texas",
     "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
-    "key": "los-angeles-california",
-    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -974,6 +989,11 @@
    },
    {
     "page": "city",
+    "key": "spartanburg-south-carolina",
+    "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
     "key": "springfield-illinois",
     "license": "CC BY-SA 2.0"
    },
@@ -1045,7 +1065,7 @@
    {
     "page": "city",
     "key": "wilmington-north-carolina",
-    "license": "CC BY 2.0"
+    "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
@@ -1168,11 +1188,11 @@
   {
    "page": "city",
    "key": "amarillo-texas",
-   "title": "Marriott Courtyard Downtown Amarillo from SSE 2",
-   "author": "Ammodramus",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "title": "High-rises on Polk Street, Amarillo, TX",
+   "author": "Paul Sableman",
+   "source_url": "https://commons.wikimedia.org/wiki/File:High-rises_on_Polk_Street,_Amarillo,_TX.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
    "cropped": true
   },
   {
@@ -1538,9 +1558,9 @@
   {
    "page": "city",
    "key": "bridgeport-connecticut",
-   "title": "Bridgeport, Connecticut downtown",
+   "title": "Downtown Bridgeport, Connecticut",
    "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Bridgeport,_Connecticut_downtown.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Bridgeport,_Connecticut.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
    "cropped": true
@@ -1608,11 +1628,11 @@
   {
    "page": "city",
    "key": "cape-coral-florida",
-   "title": "SR 867 McGregor Boulevard",
-   "author": "unknown",
-   "source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
-   "license": "Public domain",
-   "license_url": null,
+   "title": "Cape Coral, Florida",
+   "author": "David Wilson",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cape_Coral,_Florida.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
    "cropped": true
   },
   {
@@ -1908,11 +1928,11 @@
   {
    "page": "city",
    "key": "davenport-iowa",
-   "title": "2018 Davenport skyline 02",
-   "author": "Farragutful",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "title": "Centennial Bridge - panoramio",
+   "author": "Bohao Zhao",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Centennial_Bridge_-_panoramio.jpg",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
    "cropped": true
   },
   {
@@ -2518,11 +2538,11 @@
   {
    "page": "city",
    "key": "hickory-north-carolina",
-   "title": "US-NC-Hickory Union Square",
-   "author": "Netmogul",
-   "source_url": "https://commons.wikimedia.org/wiki/File:US-NC-Hickory_Union_Square.JPG",
-   "license": "Public domain",
-   "license_url": null,
+   "title": "Elliott Carnegie Library, Hickory, North Carolina",
+   "author": "Tylerg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Elliott_Carnegie_Library,_Hickory,_North_Carolina.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
    "cropped": true
   },
   {
@@ -3078,11 +3098,11 @@
   {
    "page": "city",
    "key": "los-angeles-california",
-   "title": "Hollywood sign (8485145044)",
-   "author": "Gnaphron",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Hollywood_sign_(8485145044).jpg",
-   "license": "CC BY-SA 2.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "title": "Los Angeles, Winter 2016",
+   "author": "salewskia",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Los_Angeles,_Winter_2016.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": true
   },
   {
@@ -3418,11 +3438,11 @@
   {
    "page": "city",
    "key": "new-orleans-louisiana",
-   "title": "Barrio francés de Nuevo Orleans Nov 2005",
-   "author": "Daquella manera",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "title": "Jackson Square",
+   "author": "Daniel Schwen",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jackson_Square.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": true
   },
   {
@@ -3788,9 +3808,9 @@
   {
    "page": "city",
    "key": "reading-pennsylvania",
-   "title": "ReadingPennsylvaniaSkyline",
-   "author": "BigCheddah",
-   "source_url": "https://commons.wikimedia.org/wiki/File:ReadingPennsylvaniaSkyline.jpg",
+   "title": "Pagoda (Reading, Pennsylvania)",
+   "author": "firoz-ansari",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pagoda_(Reading,_Pennsylvania).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": true
@@ -4178,11 +4198,11 @@
   {
    "page": "city",
    "key": "spartanburg-south-carolina",
-   "title": "Palmetto Building - Spartanburg",
-   "author": "PegasusRacer28",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "title": "Fountain at Morgan Square, Spartanburg, SC IMG 4821",
+   "author": "Billy Hathorn",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fountain_at_Morgan_Square,_Spartanburg,_SC_IMG_4821.JPG",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
    "cropped": true
   },
   {
@@ -4368,9 +4388,9 @@
   {
    "page": "city",
    "key": "toledo-ohio",
-   "title": "Anthony Wayne Bridge, Toledo, OH from Middlegrounds Metropark with Skyline",
-   "author": "Limpfster94",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
+   "title": "Toledo, Ohio Skyline, July 2022",
+   "author": "MrJacon000",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Toledo,_Ohio_Skyline,_July_2022.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": true
@@ -4668,11 +4688,11 @@
   {
    "page": "city",
    "key": "wilmington-north-carolina",
-   "title": "BRIDGE 2024-05-07 Cape Fear Memorial Bridge Press Conf-831-155 (cropped)",
-   "author": "NCDOTcommunications",
-   "source_url": "https://commons.wikimedia.org/wiki/File:BRIDGE_2024-05-07_Cape_Fear_Memorial_Bridge_Press_Conf-831-155_(cropped).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "title": "Wilmington Riverwalk and downtown",
+   "author": "Jason W. Smith",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Wilmington_Riverwalk_and_downtown.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
    "cropped": true
   },
   {

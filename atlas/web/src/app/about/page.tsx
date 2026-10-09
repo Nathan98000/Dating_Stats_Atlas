@@ -7,6 +7,7 @@ import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 import cityImages from "@/data/city-images.json";
 import statImages from "@/data/stat-images.json";
+import { ogImage } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
 
@@ -58,8 +59,12 @@ export default async function AboutPage() {
   const licences = Object.values(meta.licenses);
   const citations = [...new Set(licences.flatMap((l) => l.citations ?? []))];
   const notices = [...new Set(licences.flatMap((l) => (l.notice ? [l.notice] : [])))];
-  const stats = Object.values(statImages as unknown as Record<string, PhotoCredit>)
-    .filter((img) => shipped("stats", img));
+  // Phase 6 (commit I, ADR 0012 amended): a stat photograph is shown
+  // uncropped on its page, but its link preview (public/stats/og/) is a
+  // crop, so its credit says "cropped" once that preview exists
+  const stats = Object.entries(statImages as unknown as Record<string, PhotoCredit>)
+    .filter(([, img]) => shipped("stats", img))
+    .map(([fid, img]) => (ogImage("stats", fid) ? { ...img, cropped: true } : img));
   // after the Phase 5 report: every city photograph is shown cropped (the
   // home page's cards, the city page's band), and says so; the home
   // page's own photograph left with its band (Nathan's decision 1)

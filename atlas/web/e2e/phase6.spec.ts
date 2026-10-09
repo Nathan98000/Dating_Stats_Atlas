@@ -781,3 +781,24 @@ test.describe("city and stat pages, sharing, the footer (H)", () => {
     expect(docH).toBeGreaterThanOrEqual(page.viewportSize()!.height);
   });
 });
+
+test.describe("photographs (A, I)", () => {
+  test("card #1 is fetched first, #2-#3 lazily; every card and band carries its sized copies (F03)", async ({ page }) => {
+    test.skip(!photoOnDisk("cities/new-york-new-york.jpg") && !photoOnDisk("cities/new-york-new-york.png"),
+      "no photographs on this checkout");
+    await home(page);
+    const imgs = page.getByTestId("card-photo");
+    await expect(imgs).toHaveCount(3);
+    await expect(imgs.nth(0)).toHaveAttribute("fetchpriority", "high");
+    await expect(imgs.nth(1)).toHaveAttribute("loading", "lazy");
+    await expect(imgs.nth(2)).toHaveAttribute("loading", "lazy");
+    for (let i = 0; i < 3; i++) {
+      await expect(imgs.nth(i)).toHaveAttribute("srcset", /\/cities\/w\/[a-z-]+-\d+\.webp \d+w/);
+      await expect(imgs.nth(i)).toHaveAttribute("width", /^\d+$/);
+    }
+    await page.goto("/city/austin-texas");
+    const band = page.getByTestId("city-photo").locator("img");
+    await expect(band).toHaveAttribute("srcset", /\/cities\/w\/austin-texas-\d+\.webp/);
+    await expect(band).toHaveAttribute("fetchpriority", "high");
+  });
+});

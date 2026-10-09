@@ -90,7 +90,10 @@ for (const fid of ["who_lives_here", "political_lean"]) {
     await expect(credit).toHaveCount(1);
     await page.getByTestId("credits-photos-more").locator("summary").click();
     await expect(credit).toContainText(img.author!);
-    await expect(credit).not.toContainText("cropped");
+    // the stat page shows it uncropped; since Phase 6 (ADR 0012 amended) its
+    // 1200x630 link preview is a crop, so once that exists the credit says so
+    if (photoOnDisk(`stats/og/${fid}.jpg`)) await expect(credit).toContainText("cropped");
+    else await expect(credit).not.toContainText("cropped");
     await expect(credit.getByRole("link", { name: "source" })).toHaveAttribute("href", /^https:\/\/commons\.wikimedia\.org\//);
   });
 }

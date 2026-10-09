@@ -477,25 +477,6 @@
   {
    "date": "2026-10-08",
    "page": "city",
-   "key": "amarillo-texas",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Revisited under the any-licence brief: Amarillo has no single iconic downtown view on Commons. The current photo (a cluster of towers incl. the black Amarillo National Bank tower) is about as representative but grey and overcast, with a construction barrier; the other skyline files are night shots, and the Route 66 Sixth Street photos are car-heavy. This sunny ground-level view of Polk Street with the 1920s Fisk Building (now a Courtyard by Marriott; small hotel sign on the roofline) is the better card; CC0. The 16:7 band keeps the facade and street.",
-   "was": NaN,
-   "title": "Marriott Courtyard Downtown Amarillo from SSE 2",
-   "author": "Ammodramus",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG/1920px-Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "235a38a8ae831ccf5b0825da5ecec8c472f22215367bac42934482f532cdbfe2",
-   "alt": "Historic brick Fisk Building rising over Polk Street and older storefronts in downtown Amarillo under a blue sky.",
-   "licence_evidence": [
-    "as the source states it: CC0",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
    "key": "anchorage-alaska",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. The defining Anchorage view, downtown under the Chugach range across the water, crisp in winter daylight; crops well to 16:10 and 16:7. The current drone shot is mostly office blocks and parking lots, and its thin mountain band is lost in the 16:7 crop.",
    "was": NaN,
@@ -667,25 +648,6 @@
   {
    "date": "2026-10-08",
    "page": "city",
-   "key": "cape-coral-florida",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Re-checked under the new brief. The current photo is an airliner aerial of Cape Coral's canal grid (map-like), so it is replaced. Cape Coral's defining sight, its canals and waterfront homes, has no usable ground-level photo on Commons (only satellite and plane shots, owls, road signs and a police HQ) or on Unsplash (no reliably located shots). So this uses Fort Myers, the metro's other named city: McGregor's royal palms are the image behind its City of Palms nickname. Sunny, green, a couple of cars in the distance; both crops work. Public domain. Runner-up: File:First Street Fort Myers.JPG (CC0, historic downtown Fort Myers).",
-   "was": NaN,
-   "title": "SR 867 McGregor Boulevard",
-   "author": "unknown",
-   "license": "Public domain",
-   "license_url": null,
-   "source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/SR_867_McGregor_Boulevard.jpg/1920px-SR_867_McGregor_Boulevard.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "b98baa1e39fb3530b0a0b21fcb70e6cd5f296763689eea753aef17d2fb4c2dab",
-   "alt": "Tall royal palms and tropical trees lining McGregor Boulevard near downtown Fort Myers under a clear blue sky.",
-   "licence_evidence": [
-    "as the source states it: Public domain",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
    "key": "cedar-rapids-iowa",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Mays Island, with the city's civic buildings sitting in the middle of the Cedar River, is Cedar Rapids' signature downtown view; bright daylight, building and bridge both stay whole in a 16:10 crop. More representative than the current photo (the Czech & Slovak Museum facade, a single building with flags). Replaces my earlier PD pick (a HUD street photo). Original is 1600x1200 (only just meets 1600 px). Local copy is Wikimedia's 1280px rendition (thumb.wikimedia.org) because upload.wikimedia.org was rate-limiting; image_url names that file.",
    "was": NaN,
@@ -832,25 +794,6 @@
    "alt": "Boats, a white sandbar and emerald water at Destin Harbor, with beachfront towers beyond, on a sunny day.",
    "licence_evidence": [
     "as the source states it: CC BY 2.0",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
-   "key": "davenport-iowa",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. The riverfront skyline across the Mississippi is the view people recognise for Davenport; sharp, daylight, blue sky, and the skyline sits mid-frame so both 16:10 and 16:7 crops keep it. The current photo (Village of East Davenport storefronts) is pleasant but a minor district with parked cars across the foreground.",
-   "was": NaN,
-   "title": "2018 Davenport skyline 02",
-   "author": "Farragutful",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/2018_Davenport_skyline_02.jpg/1920px-2018_Davenport_skyline_02.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "c012912a3f90a49a81a657583a0efa7eb1f5ebb8280862b1471ddf3f9d6c0e70",
-   "alt": "Downtown Davenport skyline with the Figge Art Museum and historic towers across the Mississippi River on a sunny day.",
-   "licence_evidence": [
-    "as the source states it: CC BY-SA 4.0",
     "Nathan, 2026-10-08: assume he gets licence permission"
    ]
   },
@@ -1598,25 +1541,6 @@
   {
    "date": "2026-10-08",
    "page": "city",
-   "key": "new-orleans-louisiana",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. French Quarter balconies, the city's signature streetscape, replacing an aerial of the business district.",
-   "was": NaN,
-   "title": "Barrio francés de Nuevo Orleans Nov 2005",
-   "author": "Daquella manera",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg/1920px-Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "b7ef269d2c4ac4ced59ecd40837df598f8a3c382dfb9aae374329bc43a6b9c6b",
-   "alt": "Wrought-iron balconies along a street in the French Quarter of New Orleans.",
-   "licence_evidence": [
-    "as the source states it: CC0",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
    "key": "north-port-florida",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. North Port itself has nothing representative on Commons: the current photo is a close-up of the public library (a single unremarkable building), and the only other North Port subjects are Hurricane Ian damage, a motel and signs/parking at Warm Mineral Springs. A web search found no usable stock photo of Warm Mineral Springs either. The metro is best known for its Gulf beaches, and Siesta Key is the most famous of them, so this is a metro-level substitute: flag it if the card must show North Port proper (the weak in-city fallback would be File:Warm Mineral Springs FL01.jpg, CC BY-SA 3.0, Ebyabe, mostly parking). Centre crops keep the lifeguard stand.",
    "was": NaN,
@@ -2092,25 +2016,6 @@
   {
    "date": "2026-10-08",
    "page": "city",
-   "key": "spartanburg-south-carolina",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Morgan Square is the heart of downtown Spartanburg and this is its landmark block, in warm sun with street-café life. Replaces the current photo, whose main subject is the recent 'Love Where You Live' mural (not allowed). Commons has no wide Morgan Square view without a foreground modern sculpture (File:Main Street Downtown Spartanburg.jpg has one front and centre). The facade fills the frame, so 16:10 and 16:7 crops keep it.",
-   "was": NaN,
-   "title": "Palmetto Building - Spartanburg",
-   "author": "PegasusRacer28",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Palmetto_Building_-_Spartanburg.jpg/1920px-Palmetto_Building_-_Spartanburg.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "56940619a3c46e7b8deecce4b8a3cb043f93d141b5c0d2caeedcb2fce0cd8a49",
-   "alt": "The historic three-story brick Palmetto Building with striped awnings and café tables on Morgan Square in downtown Spartanburg.",
-   "licence_evidence": [
-    "as the source states it: CC BY-SA 4.0",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
    "key": "springfield-missouri",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. The heart of downtown Springfield (“the Square”), green and inviting in daylight; more representative of the city than the current drone photo, which is dominated by the Hammons Field baseball diamond. Commons has little else of Springfield (its only “skyline” file is a night aerial). A small child walking in the middle distance is incidental and not identifiable. The author field is unclear (credit “CVBCS”), so the permission request should go via the uploader or the credited source. On review: the credit as Commons states it (the Credit field, CVBCS, and the uploader; its Artist field is empty), and the licence link it gives.",
    "was": NaN,
@@ -2162,25 +2067,6 @@
    "alt": "Florida's Old Capitol in Tallahassee, with red-and-white striped awnings, in front of the tall New Capitol tower.",
    "licence_evidence": [
     "as the source states it: CC0",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
-   "key": "toledo-ohio",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Toledo's signature bridge and riverfront with the downtown skyline in the distance, in clear autumn daylight: bright, sharp (5184x3456) and it crops well to both 16:10 and 16:7. Replaces the current Toledo Museum of Art facade (a single building under a grey sky). Licence CC BY-SA 4.0 (Commons). Skyline alternatives across the Maumee from International Park, if a skyline is preferred: File:Toledo skyline on the Maumee River (53863895164).jpg (CC BY 2.0, winter, grey sky) and File:Toledo, Ohio Skyline, July 2022.jpg (CC BY-SA 4.0, hazy; panorama, so the 16:10 crop of the 1920px rendition is under 1000px wide).",
-   "was": NaN,
-   "title": "Anthony Wayne Bridge, Toledo, OH from Middlegrounds Metropark with Skyline",
-   "author": "Limpfster94",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Anthony_Wayne_Bridge%2C_Toledo%2C_OH_from_Middlegrounds_Metropark_with_Skyline.jpg/1920px-Anthony_Wayne_Bridge%2C_Toledo%2C_OH_from_Middlegrounds_Metropark_with_Skyline.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "69f30a509fd0ad65e8ab40b19e543c91a0f6c034160d6a38bcde0bfd463ed543",
-   "alt": "The blue Anthony Wayne suspension bridge over the Maumee River, with autumn trees and downtown Toledo's towers beyond.",
-   "licence_evidence": [
-    "as the source states it: CC BY-SA 4.0",
     "Nathan, 2026-10-08: assume he gets licence permission"
    ]
   },
@@ -2297,6 +2183,215 @@
     "as the source states it: Public domain",
     "Nathan, 2026-10-08: assume he gets licence permission"
    ]
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "amarillo-texas",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a hotel brand (a 'COURTYARD Marriott' sign) as the city's face. Downtown's Polk Street without it, in daylight; 4320px wide. A modest view: the other candidates carried a bank's name on a tower, store signs, or a watermark, or showed a thin, distant skyline.",
+   "was": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
+   "title": "High-rises on Polk Street, Amarillo, TX",
+   "author": "Paul Sableman",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:High-rises_on_Polk_Street,_Amarillo,_TX.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/High-rises_on_Polk_Street%2C_Amarillo%2C_TX.jpg/1920px-High-rises_on_Polk_Street%2C_Amarillo%2C_TX.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "f00f98d199592a4a783931cb9aac0c68e2eaddf481dd491be5ea64497c7feb80",
+   "alt": "Two brick high-rises frame Polk Street in downtown Amarillo in the late-afternoon sun.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY 2.0, by Paul Sableman"
+   ],
+   "checked": "two downtown high-rises over the street; no person as the subject; no prominent logo or brand"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "bridgeport-connecticut",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a generic aerial with a power-plant stack. The downtown skyline across the harbor in clear daylight; 12288px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:Bridgeport,_Connecticut_downtown.jpg",
+   "title": "Downtown Bridgeport, Connecticut",
+   "author": "Quintin Soloviev",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Bridgeport,_Connecticut.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Downtown_Bridgeport%2C_Connecticut.jpg/1920px-Downtown_Bridgeport%2C_Connecticut.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "658c40f8fc39d1c33e8d507a1ce7dd428a4646a0ad90a9433446f49ed62940b0",
+   "alt": "Downtown Bridgeport's towers across the harbor, with a ferry at its dock in the foreground, on a clear winter day.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY 4.0, by Quintin Soloviev"
+   ],
+   "checked": "downtown's towers, the harbor, a docked ferry, patches of snow; no person; no sculpture or mural; no prominent logo"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "cape-coral-florida",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a palm-lined road in Fort Myers, interchangeable with any Florida town. Cape Coral's own canals, from the air, in daylight; 2816px wide. It shows the city itself, so the band loses its 'Fort Myers' caption.",
+   "was": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
+   "title": "Cape Coral, Florida",
+   "author": "David Wilson",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cape_Coral,_Florida.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Cape_Coral%2C_Florida.jpg/1920px-Cape_Coral%2C_Florida.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "16b860bb44924a6a8049b154b12aae6e73b96378d72802e4ccefa2de3c1bb3c1",
+   "alt": "Cape Coral's grid of canals and streets seen from the air, with open water and the Gulf coast beyond.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY 2.0, by David Wilson"
+   ],
+   "checked": "an aerial of the canal grid and the coast; no person; no sculpture or mural; no logo"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "davenport-iowa",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a thin skyline under 60% sky. The Centennial Bridge, Davenport's landmark over the Mississippi, in daylight; 4000px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
+   "title": "Centennial Bridge - panoramio",
+   "author": "Bohao Zhao",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Centennial_Bridge_-_panoramio.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Centennial_Bridge_-_panoramio.jpg/1920px-Centennial_Bridge_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "354ea555f96f6a837a28abfc6073260e9532704f1a55805d8fff6be8dd5dc77d",
+   "alt": "The arches of the Centennial Bridge spanning the Mississippi River at Davenport, seen from the riverside wall on a sunny day.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY 3.0, by Bohao Zhao"
+   ],
+   "checked": "the bridge's arches and the river; no person; no sculpture or mural; no logo"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "hickory-north-carolina",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found the photograph 576px wide, stretched 1.8 times in the band. No photograph of Union Square at least 1,600px wide was found under the four licences; the Elliott Carnegie Library, a historic landmark of the city, in daylight, 4317px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:US-NC-Hickory_Union_Square.JPG",
+   "title": "Elliott Carnegie Library, Hickory, North Carolina",
+   "author": "Tylerg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Elliott_Carnegie_Library,_Hickory,_North_Carolina.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Elliott_Carnegie_Library%2C_Hickory%2C_North_Carolina.jpg/1920px-Elliott_Carnegie_Library%2C_Hickory%2C_North_Carolina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "6faadf1a6412f63fb354e299b968ed593cb3c68f5a24e02f9e8ebff6551be05e",
+   "alt": "The red-brick Elliott Carnegie Library in Hickory, with its white columns and arched doorway, under a blue sky.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 3.0, by Tylerg"
+   ],
+   "checked": "the library's facade; no person; no sculpture or mural; a small plaque by the door, not a brand"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "los-angeles-california",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): Los Angeles without the Hollywood Sign, whose name and likeness are registered trademarks (Nathan's decision 6). First preference, the downtown skyline with the San Gabriel Mountains: this one in daylight, the mountains snow-capped, 4096px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:Hollywood_sign_(8485145044).jpg",
+   "title": "Los Angeles, Winter 2016",
+   "author": "salewskia",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Los_Angeles,_Winter_2016.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Los_Angeles%2C_Winter_2016.jpg/1920px-Los_Angeles%2C_Winter_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "8cd7b0492e912aaccd994ab372944e65cbe6cf543d43b98f380f1a765a00f201",
+   "alt": "Downtown Los Angeles's towers in front of the snow-capped San Gabriel Mountains on a clear winter day.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 4.0, by salewskia"
+   ],
+   "checked": "the downtown towers before the snow-capped San Gabriel Mountains; no person as the subject; no sculpture or mural; no prominent logo (a few small rooftop names at the towers' tops, unreadable at card size)"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "new-orleans-louisiana",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a French Quarter street filled with parked cars. Jackson Square and St. Louis Cathedral in daylight, no cars; 4112px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
+   "title": "Jackson Square",
+   "author": "Daniel Schwen",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jackson_Square.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Jackson_Square.jpg/1920px-Jackson_Square.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "f3f7a2a00ae7a359bf8014ab4073e7ea28b3f2171fe36699ac7e8f886db354e3",
+   "alt": "St. Louis Cathedral rising behind the Andrew Jackson statue in Jackson Square, New Orleans, under a deep blue sky.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 4.0, by Daniel Schwen"
+   ],
+   "checked": "the cathedral and the square; the equestrian statue dates from 1856 (not a recent sculpture); no person as the subject; no logo; licence read from the file's page: {{PD-old}} covers the statue (Clark Mills, 1856) and {{self|cc-by-sa-4.0}} the photograph by Daniel Schwen — the page's metadata reported the statue's licence and sculptor first, so the photograph's own credit is recorded here"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "reading-pennsylvania",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a dark, hazy aerial with no landmark. The Pagoda, the city's emblem, in daylight; 2000px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:ReadingPennsylvaniaSkyline.jpg",
+   "title": "Pagoda (Reading, Pennsylvania)",
+   "author": "firoz-ansari",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pagoda_(Reading,_Pennsylvania).jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Pagoda_%28Reading%2C_Pennsylvania%29.jpg/1920px-Pagoda_%28Reading%2C_Pennsylvania%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "c72f1ec0f13508a245db08bf37e9957b5cbbb389c0e4259e5866d7b284f8a69a",
+   "alt": "The red, tiered Pagoda on Mount Penn above Reading under a bright blue sky, framed by tree branches.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 4.0, by firoz-ansari"
+   ],
+   "checked": "the Pagoda (1908) on Mount Penn with the valley below; no person; no recent sculpture or mural; its own small name board over the door, not a brand"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "spartanburg-south-carolina",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found one storefront building. Morgan Square itself, with its fountain, in daylight; 4608px wide.",
+   "was": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
+   "title": "Fountain at Morgan Square, Spartanburg, SC IMG 4821",
+   "author": "Billy Hathorn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fountain_at_Morgan_Square,_Spartanburg,_SC_IMG_4821.JPG",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Fountain_at_Morgan_Square%2C_Spartanburg%2C_SC_IMG_4821.JPG/1920px-Fountain_at_Morgan_Square%2C_Spartanburg%2C_SC_IMG_4821.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "d15d3e93b3bacf7bf3af6f87f68d3fd5928fbf2adc91ffe76a63bb4cd65d55c3",
+   "alt": "The fountain on Morgan Square in downtown Spartanburg, in front of the arched brick and stone One Morgan Square building on a sunny day.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 3.0, by Billy Hathorn"
+   ],
+   "checked": "the square's fountain and One Morgan Square (its carved name, not a brand); no person as the subject; the fountain is a water jet, not a sculpture"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "toledo-ohio",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found a bridge behind a tree, the city a strip at the horizon. The Maumee riverfront skyline in summer daylight; 4896px wide (a wide panorama, so the 1920px rendition is 573px tall, which still fills the crops at the sizes shown).",
+   "was": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
+   "title": "Toledo, Ohio Skyline, July 2022",
+   "author": "MrJacon000",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Toledo,_Ohio_Skyline,_July_2022.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Toledo%2C_Ohio_Skyline%2C_July_2022.jpg/1920px-Toledo%2C_Ohio_Skyline%2C_July_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "0163df13bfd9148ce12ebe11d1c94fcc946d8244796f8226e607ddae5349faed",
+   "alt": "Downtown Toledo's towers along the Maumee River on a summer day.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 4.0, by MrJacon000"
+   ],
+   "checked": "the skyline across the river; no person; no sculpture or mural; no prominent logo"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "city",
+   "key": "wilmington-north-carolina",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found the riverfront as a thin band. The Riverwalk itself, with the river and downtown, in daylight; 1943px wide. No candidate under the four licences shows the Riverwalk with the USS North Carolina together.",
+   "was": "https://commons.wikimedia.org/wiki/File:BRIDGE_2024-05-07_Cape_Fear_Memorial_Bridge_Press_Conf-831-155_(cropped).jpg",
+   "title": "Wilmington Riverwalk and downtown",
+   "author": "Jason W. Smith",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Wilmington_Riverwalk_and_downtown.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Wilmington_Riverwalk_and_downtown.jpg/1920px-Wilmington_Riverwalk_and_downtown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "25e440ba585129930190cec653981f26994c68c356f8dbe3f2e7f2969c43f99f",
+   "alt": "The Riverwalk's wooden boardwalk along the Cape Fear River, with downtown Wilmington beyond, under a partly cloudy sky.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 3.0, by Jason W. Smith"
+   ],
+   "checked": "the boardwalk, the river and downtown; the blue shapes are closed patio umbrellas; no person as the subject; no sculpture or mural; no logo"
   }
  ],
  "alt_overrides": [
@@ -2359,12 +2454,6 @@
    "key": "boston-massachusetts",
    "alt": "Brick row houses and gas lamps along a narrow cobbled lane on Boston's Beacon Hill.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. A Beacon Hill lane: already representative."
-  },
-  {
-   "page": "city",
-   "key": "bridgeport-connecticut",
-   "alt": "Downtown Bridgeport, Connecticut, from above, with its harbor and Long Island Sound beyond on a clear summer day.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Current photo (Quintin Soloviev, CC BY 4.0) is a sharp oblique drone view of downtown Bridgeport, its harbor and Long Island Sound in summer daylight: the most representative overview of the city; not map-like; 3:2, both centre crops keep downtown and the harbor. The best public-domain alternative found (a marina at Captain's Cove) is far less recognisable."
   },
   {
    "page": "city",
@@ -2512,12 +2601,6 @@
   },
   {
    "page": "city",
-   "key": "los-angeles-california",
-   "alt": "The Hollywood sign on the hillside above Los Angeles.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. The Hollywood sign: already representative."
-  },
-  {
-   "page": "city",
    "key": "manchester-new-hampshire",
    "alt": "Downtown Manchester’s towers and brick rowhouses rising beyond the old Millyard mill buildings under a pale blue sky.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Representative and sharp: downtown Manchester’s towers rising beyond the brick Millyard mill buildings, in daylight. The only public-domain/CC0 alternative found (a rooftop view from Manchester West High School) is weaker, so it was set aside (renamed _x_rejected)."
@@ -2611,12 +2694,6 @@
    "key": "raleigh-north-carolina",
    "alt": "Downtown Raleigh's skyline rising above leafy streets in warm late-afternoon light.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Current photo (Abhiram Juvvadi, CC BY-SA 4.0) is a sharp elevated view of the whole downtown Raleigh skyline above green trees in warm late-afternoon daylight; representative and crops well."
-  },
-  {
-   "page": "city",
-   "key": "reading-pennsylvania",
-   "alt": "Downtown Reading’s towers and rooftops among green hills, seen from the Pagoda on Mount Penn on a summer day.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Downtown Reading seen from the Pagoda on Mount Penn — the city’s classic lookout view — in daylight and high resolution (5889 px original). The only stronger subject, the Pagoda itself, exists on Commons only at dusk or night (best: File:Pagoda (Reading, Pennsylvania).jpg, CC BY-SA 4.0, firoz-ansari, blue hour with its lights on; downloaded for reference as reading-pennsylvania_x_rejected.jpg) or as old postcards, so the current photo stays."
   },
   {
    "page": "city",
@@ -2740,12 +2817,6 @@
   },
   {
    "page": "city",
-   "key": "wilmington-north-carolina",
-   "alt": "Downtown Wilmington's riverfront and historic buildings seen across the Cape Fear River on a clear day.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Historic downtown riverfront across the Cape Fear River in clear daylight; the city's recognisable waterfront view (already 16:10)."
-  },
-  {
-   "page": "city",
    "key": "worcester-massachusetts",
    "alt": "Downtown Worcester office towers rising beyond brick buildings, rail tracks and triple-decker houses on a clear day.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Elevated daylight view of the downtown Worcester skyline above the rail line and triple-decker neighbourhoods; it is the city's recognisable skyline, wide (16:9) so both crops keep the towers. Union Station (CC BY 4.0, File:Worcester_Union_Station_in_the_morning_July_2025.jpg) is a handsome alternative, but its tower tops would be cut by the 16:7 band."
@@ -2767,6 +2838,12 @@
    "key": "youngstown-ohio",
    "alt": "Lanterman's Mill and its waterfall among green woods in Youngstown's Mill Creek Park on a sunny day.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. The current photo is Youngstown's best-known scene, Lanterman's Mill and falls in Mill Creek Park, in bright summer light among green woods; sharp, landscape, and the 16:10 crop keeps mill and falls. A few tiny, unidentifiable visitors at left. Current licence CC BY-SA 4.0."
+  },
+  {
+   "page": "city",
+   "key": "kalamazoo-michigan",
+   "alt": "Downtown Kalamazoo's brick buildings and glass towers above a green footbridge over Arcadia Creek on a summer day.",
+   "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found the alt text a raw Commons description; a written one (the photograph stays)."
   }
  ],
  "phase5_card_photos": {
@@ -2781,12 +2858,6 @@
   "alt_overrides": 78
  },
  "photo_display": [
-  {
-   "page": "city",
-   "key": "cape-coral-florida",
-   "place": "Fort Myers",
-   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
-  },
   {
    "page": "city",
    "key": "crestview-florida",
@@ -2853,6 +2924,62 @@
    "key": "south-bend-indiana",
    "place": "Notre Dame",
    "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "rochester-new-york",
+   "focus": "50% 85%",
+   "why": "Phase 6 (F30, the round-3 review §7): the band kept the buildings and the lip of High Falls but cut the falls themselves; the focal point the prompt sets keeps the subject in the card (16:10, 16:7 below 640px), the band (16:7) and the link preview."
+  },
+  {
+   "page": "city",
+   "key": "lafayette-louisiana",
+   "focus": "50% 10%",
+   "why": "Phase 6 (F30, the round-3 review §7): the band cut the top of the cathedral's tower; the focal point the prompt sets keeps the subject in the card (16:10, 16:7 below 640px), the band (16:7) and the link preview."
+  },
+  {
+   "page": "city",
+   "key": "laredo-texas",
+   "focus": "50% 15%",
+   "why": "Phase 6 (F30, the round-3 review §7): the band clipped the spire's tip; the focal point the prompt sets keeps the subject in the card (16:10, 16:7 below 640px), the band (16:7) and the link preview."
+  },
+  {
+   "page": "city",
+   "key": "fargo-north-dakota",
+   "focus": "50% 20%",
+   "why": "Phase 6 (F30, the round-3 review §7): the band showed 'ARGO' of the vertical FARGO sign; the focal point the prompt sets keeps the subject in the card (16:10, 16:7 below 640px), the band (16:7) and the link preview."
+  },
+  {
+   "page": "city",
+   "key": "visalia-california",
+   "focus": "50% 30%",
+   "why": "Phase 6 (F30, the round-3 review §7): the band cut the Fox sign; the focal point the prompt sets keeps the subject in the card (16:10, 16:7 below 640px), the band (16:7) and the link preview."
   }
- ]
+ ],
+ "phase6_photographs": {
+  "date": "2026-10-09",
+  "brief": "Phase 6 §I: Los Angeles without the Hollywood Sign (the downtown skyline with the San Gabriel Mountains first); the weak photographs of the review's §7 replaced only by a clearly better candidate — a recognisable view of the city, daylight where possible, at least 1,600px wide — under public domain, CC0, CC BY or CC BY-SA; focal points for five crops",
+  "rules": [
+   "the view people recognise: a skyline, signature landmark, famous street, district or waterfront, in daylight",
+   "the photo review's rules: no identifiable person as the subject, no recent sculpture or mural as a subject, no prominent government seal",
+   "landscape, good cropped to 16:10 and 16:7",
+   "no prominent logo, seal or trademark as the subject (the Hollywood Sign; a hotel brand)"
+  ],
+  "new_photographs": [
+   "amarillo-texas",
+   "bridgeport-connecticut",
+   "cape-coral-florida",
+   "davenport-iowa",
+   "hickory-north-carolina",
+   "los-angeles-california",
+   "new-orleans-louisiana",
+   "reading-pennsylvania",
+   "spartanburg-south-carolina",
+   "toledo-ohio",
+   "wilmington-north-carolina"
+  ],
+  "alt_overrides": [
+   "kalamazoo-michigan"
+  ]
+ }
 }

@@ -331,3 +331,45 @@ to now (the record: `results/phase4/photo_review.json`, its
   photographs he restored (Bend, Boulder, Gulfport, Huntsville, Lakeland,
   Salinas, Spartanburg) gave way to new card photographs; the review still
   records the restorations.
+
+## Amended in Phase 6 (9 October 2026): sized copies, the new photographs, focal points
+
+DRAFT for Nathan's approval (Phase 6, commits A, H and I).
+
+- **Sized copies and link previews (A).** `web/scripts/photo_sizes.mjs`
+  writes, beside each photograph, WebP copies at 480 to 2048px wide
+  (`public/{cities,stats}/w/`) and a 1200×630 JPEG link preview
+  (`public/{cities,stats}/og/`). A sized copy is the same photograph,
+  resized: it carries the original's credit and licence. The link preview is
+  cropped, so it is credited "cropped" like every city photograph, under
+  the same licence (public domain, CC0, CC BY and CC BY-SA all permit it).
+  The stat pages show their photographs uncropped, but their previews are
+  crops, so a stat photograph's credit on How it works now says "cropped"
+  too, once its preview exists. The copies are made from the pinned files, at build time, and stay
+  out of git with them; `src/data/photo-sizes.json` (committed) records
+  their sizes.
+- **Eleven new photographs (I).** Los Angeles without the Hollywood Sign
+  (whose name and likeness are registered trademarks): the downtown skyline
+  before the snow-capped San Gabriel Mountains, CC BY-SA 4.0. And ten of the
+  weak photographs the round-3 review listed, each replaced only by a
+  clearly better view of the city, in daylight, at least 1,600px wide, under
+  the four licences: Reading, Davenport, Bridgeport, Cape Coral, Toledo,
+  Spartanburg, Wilmington, New Orleans, Amarillo (its old photograph's face
+  was a hotel's brand) and Hickory (its old one was 576px wide). Palm Bay
+  and Rockford keep theirs (no clearly better candidate, or one with a
+  prominent logo). Each is pinned in the review's `external_files` by its
+  exact bytes, with its credit as the file's Commons page states it in its
+  licence section — for New Orleans the page's metadata gave the statue's
+  licence (PD-old) and its sculptor first, so the photograph's own licence
+  (CC BY-SA 4.0) and author (Daniel Schwen) are recorded. Kalamazoo keeps
+  its photograph with a written alt text. `results/phase6/card_photos.json`
+  records each city's outcome. The subject rules add a word: no prominent
+  logo, seal **or trademark** as the subject.
+- **Focal points (H, I).** A photograph may carry `focus`, an
+  object-position value from the review's `photo_display` entries, used by
+  the card, the band and the link preview (default 50% 35%): Rochester (50%
+  85%), Lafayette (50% 10%), Laredo (50% 15%), Fargo (50% 20%) and Visalia
+  (50% 30%). The same entries carry `place` (and Santa Maria's
+  `place_caption`) for the band's caption under a photograph of a place
+  elsewhere in its metro; eleven of the twelve remain (Cape Coral's new
+  photograph shows the city itself).

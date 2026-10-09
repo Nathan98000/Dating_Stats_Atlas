@@ -1,7 +1,8 @@
 # Contact sheets of every ranked city's photograph as the site crops it: the home card
 # (16:10, object-position 50% 35%, with the rank medallion drawn where it sits) and the
-# city-page band (16:7, same position). Also a table of each file's size and pixels.
-#   python3 photo_sheets.py -> photos/sheet-NN.png, photos/photo_files.json
+# city-page band (16:7, same position; also the phone card's crop). Also a table of each
+# file's size and pixels. Phase 6: each photo's manifest `focus` replaces 50% 35% when set.
+#   python3 photo_sheets.py -> photos/sheet-NN.jpg, photos/photo_files.json
 import json, os, urllib.request
 from PIL import Image, ImageDraw, ImageFont
 # Paths relative to atlas/web (Phase 6 port). The rank order comes from RANK_JSON if set,
@@ -44,16 +45,18 @@ for s in range(0, len(cities), COLS * ROWS):
             d.text((x, y + 18), "NO PHOTO", fill=(168, 53, 42), font=small); continue
         im = Image.open(path).convert("RGB")
         kb = os.path.getsize(path) // 1024
-        files.append({"rank": rk, "city": name, "file": meta["file"], "w": im.size[0], "h": im.size[1], "kb": kb, "license": meta.get("license"), "alt": meta.get("alt")})
+        files.append({"rank": rk, "city": name, "file": meta["file"], "w": im.size[0], "h": im.size[1], "kb": kb, "license": meta.get("license"), "alt": meta.get("alt"), "focus": meta.get("focus")})
         d.text((x, y + 18), f"{im.size[0]}x{im.size[1]}  {kb} KB  {meta.get('license','')}", fill=(117, 107, 112), font=small)
-        card = crop(im, 1.6, TW)
+        # Phase 6 (§I): the photo's own focal point (object-position), else 50% 35%
+        fx, fy = [float(v.rstrip("%")) / 100 for v in (meta.get("focus") or "50% 35%").split()]
+        card = crop(im, 1.6, TW, posy=fy, posx=fx)
         cd = ImageDraw.Draw(card)
         r = int(36 * TW / 249); o = int(12 * TW / 249)
         cd.ellipse((o, o, o + r, o + r), fill=(242, 181, 68))
         sheet.paste(card, (x, y + LABEL))
-        band = crop(im, 16 / 7, TW)
+        band = crop(im, 16 / 7, TW, posy=fy, posx=fx)
         sheet.paste(band, (x, y + LABEL + CARD_H + 6))
-    sheet.save(f"photos/sheet-{s // (COLS * ROWS) + 1:02d}.png")
+    sheet.save(f"photos/sheet-{s // (COLS * ROWS) + 1:02d}.jpg", quality=85)
 json.dump(files, open("photos/photo_files.json", "w"), indent=1)
 kbs = sorted(f["kb"] for f in files)
 print(len(files), "photos; median KB", kbs[len(kbs)//2], "max", kbs[-1], "sum MB", sum(kbs)//1024)

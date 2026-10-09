@@ -1,0 +1,185 @@
+{
+ "los-angeles-california": {
+  "file_title": "File:Los Angeles, Winter 2016.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Los_Angeles%2C_Winter_2016.jpg/1920px-Los_Angeles%2C_Winter_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/los-angeles-california.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "author": "salewskia",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Los_Angeles,_Winter_2016.jpg",
+  "alt": "Downtown Los Angeles's towers in front of the snow-capped San Gabriel Mountains on a clear winter day.",
+  "why": "Los Angeles without the Hollywood Sign, whose name and likeness are registered trademarks (Nathan's decision 6). First preference, the downtown skyline with the San Gabriel Mountains: this one in daylight, the mountains snow-capped, 4096px wide.",
+  "checked": "the downtown towers before the snow-capped San Gabriel Mountains; no person as the subject; no sculpture or mural; no prominent logo (a few small rooftop names at the towers' tops, unreadable at card size)",
+  "alternatives": [
+   {
+    "file_title": "File:LA Skyline Mountains2.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Nserrano",
+    "source_url": "https://commons.wikimedia.org/wiki/File:LA_Skyline_Mountains2.jpg",
+    "width": 2816,
+    "note": "the same view (the skyline before the snowy San Gabriels), a darker sky"
+   },
+   {
+    "file_title": "File:Griffith Observatory with Downtown Los Angeles In The Background - 54084315490.jpg",
+    "license": "CC0",
+    "author": "The Fun Chronicles",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Griffith_Observatory_with_Downtown_Los_Angeles_In_The_Background_-_54084315490.jpg",
+    "width": 2147,
+    "note": "the second preference: Griffith Observatory on its hill with downtown behind; hazier"
+   }
+  ]
+ },
+ "reading-pennsylvania": {
+  "file_title": "File:Pagoda (Reading, Pennsylvania).jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Pagoda_%28Reading%2C_Pennsylvania%29.jpg/1920px-Pagoda_%28Reading%2C_Pennsylvania%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/reading-pennsylvania.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "author": "firoz-ansari",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Pagoda_(Reading,_Pennsylvania).jpg",
+  "alt": "The red, tiered Pagoda on Mount Penn above Reading under a bright blue sky, framed by tree branches.",
+  "why": "The review found a dark, hazy aerial with no landmark. The Pagoda, the city's emblem, in daylight; 2000px wide.",
+  "checked": "the Pagoda (1908) on Mount Penn with the valley below; no person; no recent sculpture or mural; its own small name board over the door, not a brand"
+ },
+ "davenport-iowa": {
+  "file_title": "File:Centennial Bridge - panoramio.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Centennial_Bridge_-_panoramio.jpg/1920px-Centennial_Bridge_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/davenport-iowa.jpg",
+  "license": "CC BY 3.0",
+  "license_url": "https://creativecommons.org/licenses/by/3.0",
+  "author": "Bohao Zhao",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Centennial_Bridge_-_panoramio.jpg",
+  "alt": "The arches of the Centennial Bridge spanning the Mississippi River at Davenport, seen from the riverside wall on a sunny day.",
+  "why": "The review found a thin skyline under 60% sky. The Centennial Bridge, Davenport's landmark over the Mississippi, in daylight; 4000px wide.",
+  "checked": "the bridge's arches and the river; no person; no sculpture or mural; no logo"
+ },
+ "bridgeport-connecticut": {
+  "file_title": "File:Downtown Bridgeport, Connecticut.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Downtown_Bridgeport%2C_Connecticut.jpg/1920px-Downtown_Bridgeport%2C_Connecticut.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/bridgeport-connecticut.jpg",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0",
+  "author": "Quintin Soloviev",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Bridgeport,_Connecticut.jpg",
+  "alt": "Downtown Bridgeport's towers across the harbor, with a ferry at its dock in the foreground, on a clear winter day.",
+  "why": "The review found a generic aerial with a power-plant stack. The downtown skyline across the harbor in clear daylight; 12288px wide.",
+  "checked": "downtown's towers, the harbor, a docked ferry, patches of snow; no person; no sculpture or mural; no prominent logo"
+ },
+ "cape-coral-florida": {
+  "file_title": "File:Cape Coral, Florida.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Cape_Coral%2C_Florida.jpg/1920px-Cape_Coral%2C_Florida.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/cape-coral-florida.jpg",
+  "license": "CC BY 2.0",
+  "license_url": "https://creativecommons.org/licenses/by/2.0",
+  "author": "David Wilson",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Cape_Coral,_Florida.jpg",
+  "alt": "Cape Coral's grid of canals and streets seen from the air, with open water and the Gulf coast beyond.",
+  "why": "The review found a palm-lined road in Fort Myers, interchangeable with any Florida town. Cape Coral's own canals, from the air, in daylight; 2816px wide. It shows the city itself, so the band loses its 'Fort Myers' caption.",
+  "checked": "an aerial of the canal grid and the coast; no person; no sculpture or mural; no logo"
+ },
+ "toledo-ohio": {
+  "file_title": "File:Toledo, Ohio Skyline, July 2022.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Toledo%2C_Ohio_Skyline%2C_July_2022.jpg/1920px-Toledo%2C_Ohio_Skyline%2C_July_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/toledo-ohio.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "author": "MrJacon000",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Toledo,_Ohio_Skyline,_July_2022.jpg",
+  "alt": "Downtown Toledo's towers along the Maumee River on a summer day.",
+  "why": "The review found a bridge behind a tree, the city a strip at the horizon. The Maumee riverfront skyline in summer daylight; 4896px wide (a wide panorama, so the 1920px rendition is 573px tall, which still fills the crops at the sizes shown).",
+  "checked": "the skyline across the river; no person; no sculpture or mural; no prominent logo"
+ },
+ "spartanburg-south-carolina": {
+  "file_title": "File:Fountain at Morgan Square, Spartanburg, SC IMG 4821.JPG",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Fountain_at_Morgan_Square%2C_Spartanburg%2C_SC_IMG_4821.JPG/1920px-Fountain_at_Morgan_Square%2C_Spartanburg%2C_SC_IMG_4821.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/spartanburg-south-carolina.jpg",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "author": "Billy Hathorn",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Fountain_at_Morgan_Square,_Spartanburg,_SC_IMG_4821.JPG",
+  "alt": "The fountain on Morgan Square in downtown Spartanburg, in front of the arched brick and stone One Morgan Square building on a sunny day.",
+  "why": "The review found one storefront building. Morgan Square itself, with its fountain, in daylight; 4608px wide.",
+  "checked": "the square's fountain and One Morgan Square (its carved name, not a brand); no person as the subject; the fountain is a water jet, not a sculpture"
+ },
+ "wilmington-north-carolina": {
+  "file_title": "File:Wilmington Riverwalk and downtown.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Wilmington_Riverwalk_and_downtown.jpg/1920px-Wilmington_Riverwalk_and_downtown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/wilmington-north-carolina.jpg",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "author": "Jason W. Smith",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Wilmington_Riverwalk_and_downtown.jpg",
+  "alt": "The Riverwalk's wooden boardwalk along the Cape Fear River, with downtown Wilmington beyond, under a partly cloudy sky.",
+  "why": "The review found the riverfront as a thin band. The Riverwalk itself, with the river and downtown, in daylight; 1943px wide. No candidate under the four licences shows the Riverwalk with the USS North Carolina together.",
+  "checked": "the boardwalk, the river and downtown; the blue shapes are closed patio umbrellas; no person as the subject; no sculpture or mural; no logo"
+ },
+ "new-orleans-louisiana": {
+  "file_title": "File:Jackson Square.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Jackson_Square.jpg/1920px-Jackson_Square.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/new-orleans-louisiana.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "author": "Daniel Schwen",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Jackson_Square.jpg",
+  "alt": "St. Louis Cathedral rising behind the Andrew Jackson statue in Jackson Square, New Orleans, under a deep blue sky.",
+  "why": "The review found a French Quarter street filled with parked cars. Jackson Square and St. Louis Cathedral in daylight, no cars; 4112px wide.",
+  "checked": "the cathedral and the square; the equestrian statue dates from 1856 (not a recent sculpture); no person as the subject; no logo; licence read from the file's page: {{PD-old}} covers the statue (Clark Mills, 1856) and {{self|cc-by-sa-4.0}} the photograph by Daniel Schwen — the page's metadata reported the statue's licence and sculptor first, so the photograph's own credit is recorded here"
+ },
+ "amarillo-texas": {
+  "file_title": "File:High-rises on Polk Street, Amarillo, TX.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/High-rises_on_Polk_Street%2C_Amarillo%2C_TX.jpg/1920px-High-rises_on_Polk_Street%2C_Amarillo%2C_TX.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/amarillo-texas.jpg",
+  "license": "CC BY 2.0",
+  "license_url": "https://creativecommons.org/licenses/by/2.0",
+  "author": "Paul Sableman",
+  "source_url": "https://commons.wikimedia.org/wiki/File:High-rises_on_Polk_Street,_Amarillo,_TX.jpg",
+  "alt": "Two brick high-rises frame Polk Street in downtown Amarillo in the late-afternoon sun.",
+  "why": "The review found a hotel brand (a 'COURTYARD Marriott' sign) as the city's face. Downtown's Polk Street without it, in daylight; 4320px wide. A modest view: the other candidates carried a bank's name on a tower, store signs, or a watermark, or showed a thin, distant skyline.",
+  "checked": "two downtown high-rises over the street; no person as the subject; no prominent logo or brand"
+ },
+ "hickory-north-carolina": {
+  "file_title": "File:Elliott Carnegie Library, Hickory, North Carolina.jpg",
+  "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Elliott_Carnegie_Library%2C_Hickory%2C_North_Carolina.jpg/1920px-Elliott_Carnegie_Library%2C_Hickory%2C_North_Carolina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_file": "atlas/data/raw/phase6_photos/hickory-north-carolina.jpg",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "author": "Tylerg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Elliott_Carnegie_Library,_Hickory,_North_Carolina.jpg",
+  "alt": "The red-brick Elliott Carnegie Library in Hickory, with its white columns and arched doorway, under a blue sky.",
+  "why": "The review found the photograph 576px wide, stretched 1.8 times in the band. No photograph of Union Square at least 1,600px wide was found under the four licences; the Elliott Carnegie Library, a historic landmark of the city, in daylight, 4317px wide.",
+  "checked": "the library's facade; no person; no sculpture or mural; a small plaque by the door, not a brand"
+ },
+ "kalamazoo-michigan": {
+  "alt_only": true,
+  "alt": "Downtown Kalamazoo's brick buildings and glass towers above a green footbridge over Arcadia Creek on a summer day.",
+  "why": "The review found the alt text a raw Commons description; a written one (the photograph stays)."
+ },
+ "palm-bay-florida": {
+  "keep": true,
+  "why": "No clearly better photograph: every cleared candidate at least 1,600px wide is the same kind of view as the current one (river, palms, a park's beach) or a single building or business (a church, a closed golf club, a Publix, a fire). Kept.",
+  "candidates_seen": [
+   "File:Beach Along Indian River, Castaway Point Park, Palm Bay, Florida.jpg",
+   "File:Lagoon House (Palm Bay, Florida) 002.jpg",
+   "File:PalmBayFLBay.jpg",
+   "File:Palm Bay, United States (Unsplash).jpg",
+   "File:Palm Bay-Melbourne-Titusville, FL, FL, USA - panoramio (4).jpg",
+   "File:Palm Bay (Florida) 001.jpg",
+   "File:Turkey Creek in Palm Bay, FL.jpg",
+   "File:View of the Indian River, Castaway Point Park, Palm Bay, Florida.jpg"
+  ]
+ },
+ "rockford-illinois": {
+  "keep": true,
+  "why": "The current photograph is the Rock River past downtown (Overview of eastern downtown Rockford). The one clearly stronger view, the river at Fordham Dam with downtown behind (File:Fordham Dam Rockford IL.jpg, CC BY 2.0), carries a large gear-and-'fL' logo wrapped on a building near the centre of the crop, which the subject rules exclude; the others are weaker or carry bank and company signs. Kept. A focal point lower in the frame (about 50% 75%) would show more river and downtown and less sky — for Nathan to decide.",
+  "candidates_seen": [
+   "File:Downtown Rockford.JPG",
+   "File:Fordham Dam Rockford IL.jpg",
+   "File:Morgan St Bridge Rockford IL.jpg",
+   "File:Rockford, IL Along the Rock River 01.JPG",
+   "File:Rockford, IL Chestnut Street Bridge.JPG",
+   "File:Rockford Illinois (28877633000).jpg",
+   "File:Overview of eastern downtown Rockford.jpg",
+   "File:Riverwalk in Rockford Illinois.JPG"
+  ]
+ }
+}

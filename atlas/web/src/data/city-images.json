@@ -90,14 +90,14 @@
 "title": "Altoona, Pennsylvania"
 },
 "amarillo-texas": {
-"alt": "Historic brick Fisk Building rising over Polk Street and older storefronts in downtown Amarillo under a blue sky.",
-"author": "Ammodramus",
+"alt": "Two brick high-rises frame Polk Street in downtown Amarillo in the late-afternoon sun.",
+"author": "Paul Sableman",
 "cropped": true,
 "file": "amarillo-texas.jpg",
-"license": "CC0",
-"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-"source_url": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
-"title": "Marriott Courtyard Downtown Amarillo from SSE 2"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:High-rises_on_Polk_Street,_Amarillo,_TX.jpg",
+"title": "High-rises on Polk Street, Amarillo, TX"
 },
 "ames-iowa": {
 "alt": "Iowa State University",
@@ -460,14 +460,14 @@
 "title": "MV Kitsap at Bremerton 02"
 },
 "bridgeport-connecticut": {
-"alt": "Downtown Bridgeport, Connecticut, from above, with its harbor and Long Island Sound beyond on a clear summer day.",
+"alt": "Downtown Bridgeport's towers across the harbor, with a ferry at its dock in the foreground, on a clear winter day.",
 "author": "Quintin Soloviev",
 "cropped": true,
 "file": "bridgeport-connecticut.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Bridgeport,_Connecticut_downtown.jpg",
-"title": "Bridgeport, Connecticut downtown"
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Bridgeport,_Connecticut.jpg",
+"title": "Downtown Bridgeport, Connecticut"
 },
 "brownsville-texas": {
 "alt": "Arcaded brick buildings of historic Fort Brown, now a university campus, behind a wide lawn, trees and palms in Brownsville.",
@@ -530,15 +530,14 @@
 "title": "Pro Football Hall of Fame (23945852607)"
 },
 "cape-coral-florida": {
-"alt": "Tall royal palms and tropical trees lining McGregor Boulevard near downtown Fort Myers under a clear blue sky.",
-"author": "unknown",
+"alt": "Cape Coral's grid of canals and streets seen from the air, with open water and the Gulf coast beyond.",
+"author": "David Wilson",
 "cropped": true,
 "file": "cape-coral-florida.jpg",
-"license": "Public domain",
-"license_url": null,
-"place": "Fort Myers",
-"source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
-"title": "SR 867 McGregor Boulevard"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Cape_Coral,_Florida.jpg",
+"title": "Cape Coral, Florida"
 },
 "cape-girardeau-missouri": {
 "alt": "Cape Girardeau downtown facing the City Hall building",
@@ -832,14 +831,14 @@
 "title": "Dallas Texas skyline from Reunion Tower September 2025 (cropped)"
 },
 "davenport-iowa": {
-"alt": "Downtown Davenport skyline with the Figge Art Museum and historic towers across the Mississippi River on a sunny day.",
-"author": "Farragutful",
+"alt": "The arches of the Centennial Bridge spanning the Mississippi River at Davenport, seen from the riverside wall on a sunny day.",
+"author": "Bohao Zhao",
 "cropped": true,
 "file": "davenport-iowa.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
-"title": "2018 Davenport skyline 02"
+"license": "CC BY 3.0",
+"license_url": "https://creativecommons.org/licenses/by/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Centennial_Bridge_-_panoramio.jpg",
+"title": "Centennial Bridge - panoramio"
 },
 "dayton-ohio": {
 "alt": "Downtown Dayton's skyline and a church steeple above older brick neighbourhoods under a pink and orange sunset sky.",
@@ -1077,6 +1076,7 @@
 "author": "AJ LEON",
 "cropped": true,
 "file": "fargo-north-dakota.jpg",
+"focus": "50% 20%",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:Fargo_Theatre_-_Fargo.jpg",
@@ -1444,14 +1444,14 @@
 "title": "Montana State Capitol by T. Elizabeth"
 },
 "hickory-north-carolina": {
-"alt": "Hickory, North Carolina.  Union Square is the center of Hickory.  This photo from the spring of 2002 looks NW to Smith Drugs, Hickory Wine Shoppe, and the Mirac",
-"author": "Netmogul",
+"alt": "The red-brick Elliott Carnegie Library in Hickory, with its white columns and arched doorway, under a blue sky.",
+"author": "Tylerg",
 "cropped": true,
 "file": "hickory-north-carolina.jpg",
-"license": "Public domain",
-"license_url": null,
-"source_url": "https://commons.wikimedia.org/wiki/File:US-NC-Hickory_Union_Square.JPG",
-"title": "US-NC-Hickory Union Square"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Elliott_Carnegie_Library,_Hickory,_North_Carolina.jpg",
+"title": "Elliott Carnegie Library, Hickory, North Carolina"
 },
 "hilton-head-island-south-carolina": {
 "alt": "Harbour Town Marina in Sea Pines, Hilton Head Island, SC, 2026",
@@ -1694,7 +1694,7 @@
 "title": "AirViewKahului"
 },
 "kalamazoo-michigan": {
-"alt": "Looking southwest from N. Edwards Street in downtown Kalamazoo, Michigan. Round-topped towers are the Radisson Plaza hotel.",
+"alt": "Downtown Kalamazoo's brick buildings and glass towers above a green footbridge over Arcadia Creek on a summer day.",
 "author": "User Mxobe on en.wikipedia",
 "cropped": true,
 "file": "kalamazoo-michigan.jpg",
@@ -1831,6 +1831,7 @@
 "author": "joseph a",
 "cropped": true,
 "file": "lafayette-louisiana.jpg",
+"focus": "50% 10%",
 "license": "CC BY-NC-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-nc-sa/2.0/",
 "source_url": "https://www.flickr.com/photos/7150652@N02/46618679322",
@@ -1881,6 +1882,7 @@
 "author": "Renelibrary",
 "cropped": true,
 "file": "laredo-texas.jpg",
+"focus": "50% 15%",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:St._Augustin_Church_(1_of_1).jpg",
@@ -2007,14 +2009,14 @@
 "title": "Longviewwa1"
 },
 "los-angeles-california": {
-"alt": "The Hollywood sign on the hillside above Los Angeles.",
-"author": "Gnaphron",
+"alt": "Downtown Los Angeles's towers in front of the snow-capped San Gabriel Mountains on a clear winter day.",
+"author": "salewskia",
 "cropped": true,
 "file": "los-angeles-california.jpg",
-"license": "CC BY-SA 2.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Hollywood_sign_(8485145044).jpg",
-"title": "Hollywood sign (8485145044)"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Los_Angeles,_Winter_2016.jpg",
+"title": "Los Angeles, Winter 2016"
 },
 "louisville-kentucky": {
 "alt": "The paddle steamboat Delta Queen cruises the Ohio River below downtown Louisville's towers on a clear day.",
@@ -2347,14 +2349,14 @@
 "title": "New Haven, Connecticut skyline (cropped)"
 },
 "new-orleans-louisiana": {
-"alt": "Wrought-iron balconies along a street in the French Quarter of New Orleans.",
-"author": "Daquella manera",
+"alt": "St. Louis Cathedral rising behind the Andrew Jackson statue in Jackson Square, New Orleans, under a deep blue sky.",
+"author": "Daniel Schwen",
 "cropped": true,
 "file": "new-orleans-louisiana.jpg",
-"license": "CC0",
-"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-"source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
-"title": "Barrio francés de Nuevo Orleans Nov 2005"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Jackson_Square.jpg",
+"title": "Jackson Square"
 },
 "new-york-new-york": {
 "alt": "The Empire State Building lit green above Midtown Manhattan at sunset, seen from Rockefeller Center.",
@@ -2720,14 +2722,14 @@
 "title": "Rapid City Skyline (2022)"
 },
 "reading-pennsylvania": {
-"alt": "Downtown Reading’s towers and rooftops among green hills, seen from the Pagoda on Mount Penn on a summer day.",
-"author": "BigCheddah",
+"alt": "The red, tiered Pagoda on Mount Penn above Reading under a bright blue sky, framed by tree branches.",
+"author": "firoz-ansari",
 "cropped": true,
 "file": "reading-pennsylvania.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:ReadingPennsylvaniaSkyline.jpg",
-"title": "ReadingPennsylvaniaSkyline"
+"source_url": "https://commons.wikimedia.org/wiki/File:Pagoda_(Reading,_Pennsylvania).jpg",
+"title": "Pagoda (Reading, Pennsylvania)"
 },
 "redding-california": {
 "alt": "Sundial Bridge at Turtle Bay, Redding, California, USA",
@@ -2794,6 +2796,7 @@
 "author": "Evilarry",
 "cropped": true,
 "file": "rochester-new-york.jpg",
+"focus": "50% 85%",
 "license": "Public domain",
 "license_url": null,
 "source_url": "https://commons.wikimedia.org/wiki/File:Rochester_High_Falls.jpg",
@@ -3113,14 +3116,14 @@
 "title": "Main Building at the University of Notre Dame"
 },
 "spartanburg-south-carolina": {
-"alt": "The historic three-story brick Palmetto Building with striped awnings and café tables on Morgan Square in downtown Spartanburg.",
-"author": "PegasusRacer28",
+"alt": "The fountain on Morgan Square in downtown Spartanburg, in front of the arched brick and stone One Morgan Square building on a sunny day.",
+"author": "Billy Hathorn",
 "cropped": true,
 "file": "spartanburg-south-carolina.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
-"title": "Palmetto Building - Spartanburg"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Fountain_at_Morgan_Square,_Spartanburg,_SC_IMG_4821.JPG",
+"title": "Fountain at Morgan Square, Spartanburg, SC IMG 4821"
 },
 "spokane-washington": {
 "alt": "Downtown Spokane and the arched Monroe Street Bridge above the rushing Spokane River, seen from above on a cloudy day.",
@@ -3303,14 +3306,14 @@
 "title": "Texarkana April 2016 002 (Texarkana Texas City Hall)"
 },
 "toledo-ohio": {
-"alt": "The blue Anthony Wayne suspension bridge over the Maumee River, with autumn trees and downtown Toledo's towers beyond.",
-"author": "Limpfster94",
+"alt": "Downtown Toledo's towers along the Maumee River on a summer day.",
+"author": "MrJacon000",
 "cropped": true,
 "file": "toledo-ohio.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
-"title": "Anthony Wayne Bridge, Toledo, OH from Middlegrounds Metropark with Skyline"
+"source_url": "https://commons.wikimedia.org/wiki/File:Toledo,_Ohio_Skyline,_July_2022.jpg",
+"title": "Toledo, Ohio Skyline, July 2022"
 },
 "topeka-kansas": {
 "alt": "Aerial view of the Capitol building in Topeka, KS",
@@ -3457,6 +3460,7 @@
 "author": "Visalia Convention & Visitors Bureau",
 "cropped": true,
 "file": "visalia-california.jpg",
+"focus": "50% 30%",
 "license": "Public domain",
 "license_url": null,
 "source_url": "https://commons.wikimedia.org/wiki/File:Teatro_Visalia.jpg",
@@ -3603,14 +3607,14 @@
 "title": "Wildwood city hall and fountain wildwood florida"
 },
 "wilmington-north-carolina": {
-"alt": "Downtown Wilmington's riverfront and historic buildings seen across the Cape Fear River on a clear day.",
-"author": "NCDOTcommunications",
+"alt": "The Riverwalk's wooden boardwalk along the Cape Fear River, with downtown Wilmington beyond, under a partly cloudy sky.",
+"author": "Jason W. Smith",
 "cropped": true,
 "file": "wilmington-north-carolina.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:BRIDGE_2024-05-07_Cape_Fear_Memorial_Bridge_Press_Conf-831-155_(cropped).jpg",
-"title": "BRIDGE 2024-05-07 Cape Fear Memorial Bridge Press Conf-831-155 (cropped)"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Wilmington_Riverwalk_and_downtown.jpg",
+"title": "Wilmington Riverwalk and downtown"
 },
 "winchester-virginia": {
 "alt": "Facing south on the Loudoun Street Mall in Winchester, Virginia.",

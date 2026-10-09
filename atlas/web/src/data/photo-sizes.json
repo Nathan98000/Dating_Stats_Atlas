@@ -91,7 +91,7 @@
   },
   "amarillo-texas": {
    "width": 1920,
-   "height": 1163,
+   "height": 1440,
    "widths": [
     480,
     720,
@@ -817,7 +817,7 @@
   },
   "davenport-iowa": {
    "width": 1920,
-   "height": 1396,
+   "height": 1279,
    "widths": [
     480,
     720,
@@ -1413,10 +1413,13 @@
    ]
   },
   "hickory-north-carolina": {
-   "width": 576,
-   "height": 432,
+   "width": 1920,
+   "height": 1459,
    "widths": [
-    480
+    480,
+    720,
+    1080,
+    1600
    ]
   },
   "hilton-head-island-south-carolina": {
@@ -1960,7 +1963,7 @@
   },
   "los-angeles-california": {
    "width": 1920,
-   "height": 1280,
+   "height": 1196,
    "widths": [
     480,
     720,
@@ -2299,7 +2302,7 @@
   },
   "new-orleans-louisiana": {
    "width": 1920,
-   "height": 1440,
+   "height": 1381,
    "widths": [
     480,
     720,
@@ -2662,7 +2665,7 @@
   },
   "reading-pennsylvania": {
    "width": 1920,
-   "height": 1280,
+   "height": 1281,
    "widths": [
     480,
     720,
@@ -3045,7 +3048,7 @@
   },
   "spartanburg-south-carolina": {
    "width": 1920,
-   "height": 1352,
+   "height": 1440,
    "widths": [
     480,
     720,
@@ -3230,7 +3233,7 @@
   },
   "toledo-ohio": {
    "width": 1920,
-   "height": 1280,
+   "height": 573,
    "widths": [
     480,
     720,
@@ -3523,8 +3526,8 @@
    ]
   },
   "wilmington-north-carolina": {
-   "width": 1753,
-   "height": 1093,
+   "width": 1920,
+   "height": 1280,
    "widths": [
     480,
     720,
