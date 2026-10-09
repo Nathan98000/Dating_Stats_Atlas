@@ -3,14 +3,18 @@ import fs from "fs";
 import path from "path";
 import cityImages from "@/data/city-images.json";
 
-/** Phase 5: which city photographs may be cropped, and their alt text.
+/** Phase 5: the city photographs, how they may be shown, and their alt
+ * text.
  *
- * A crop is an adaptation, and an adapted CC-BY-SA photograph would drag
- * its licence onto the page — so a photo is cover-cropped (a featured
- * card, the city page's band) ONLY where it is public domain or CC0, the
- * rule hero.tsx applied; every other photo shows unmodified, or not at
- * all. A photo ships only through the committed manifest and only while
- * its file is on disk ("no file, no photo"). */
+ * Phase 5 cropped only public-domain or CC0 photographs (an adapted
+ * CC-BY-SA photograph must itself stay CC-BY-SA). After the Phase 5 report
+ * (Nathan, 2026-10-08: the most representative photograph of each city,
+ * from any source, with the permissions he arranges) every city photograph
+ * may be cropped — the home page's cards and the city page's band — and
+ * its credit says "cropped": public domain, CC0, CC BY and CC BY-SA each
+ * permit the adaptation, and a photograph from elsewhere is used by
+ * permission. A photo ships only through the committed manifest and only
+ * while its file is on disk ("no file, no photo"). */
 
 export interface CityImage {
   file: string;
@@ -22,10 +26,6 @@ export interface CityImage {
   title?: string;
 }
 export const IMAGES = cityImages as unknown as Record<string, CityImage>;
-
-export function croppable(license: string): boolean {
-  return /public domain|cc0/i.test(license);
-}
 
 export function onDisk(img: CityImage): boolean {
   return fs.existsSync(path.join(process.cwd(), "public", "cities", img.file));
@@ -45,23 +45,15 @@ export function usableAlt(img: CityImage): string {
 export interface CardPhoto {
   src: string;
   alt: string;
-  /** cover: cropped to the card (public domain or CC0 only); contain:
-   * shown whole, unmodified, on --sunken (any other licence) */
-  fit: "cover" | "contain";
 }
 
 /** Every city photo on disk, by slug, as the home page's featured cards
- * show it. After the Phase 5 report (Nathan): a card always shows the
- * city's photograph, never the locator map — cover-cropped where the
- * licence allows (every ranked city has such a photo since then), shown
- * whole otherwise. */
+ * show it (cover-cropped). After the Phase 5 report (Nathan): a card
+ * always shows the city's photograph, never the locator map. */
 export function cardPhotos(): Record<string, CardPhoto> {
   const out: Record<string, CardPhoto> = {};
   for (const [slug, img] of Object.entries(IMAGES)) {
-    if (onDisk(img)) {
-      out[slug] = { src: `/cities/${img.file}`, alt: usableAlt(img),
-                    fit: croppable(img.license) ? "cover" : "contain" };
-    }
+    if (onDisk(img)) out[slug] = { src: `/cities/${img.file}`, alt: usableAlt(img) };
   }
   return out;
 }

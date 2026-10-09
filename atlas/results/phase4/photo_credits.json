@@ -1,33 +1,405 @@
 {
- "photos_in_use": 374,
+ "photos_in_use": 377,
  "by_licence": {
-  "CC BY 2.0": 43,
-  "CC BY 2.5": 1,
-  "CC BY 3.0": 17,
+  "CC BY 2.0": 40,
+  "CC BY 2.5": 2,
+  "CC BY 3.0": 12,
   "CC BY 3.0 us": 1,
-  "CC BY 4.0": 63,
+  "CC BY 4.0": 60,
+  "CC BY-NC-SA 2.0": 1,
   "CC BY-SA 1.0": 1,
-  "CC BY-SA 2.0": 17,
-  "CC BY-SA 2.5": 4,
-  "CC BY-SA 3.0": 67,
-  "CC BY-SA 4.0": 102,
-  "CC0": 24,
-  "Public domain": 34
+  "CC BY-SA 2.0": 19,
+  "CC BY-SA 2.5": 6,
+  "CC BY-SA 3.0": 52,
+  "CC BY-SA 4.0": 106,
+  "CC0": 35,
+  "Free Art License": 1,
+  "Public Domain": 1,
+  "Public domain": 40
  },
  "cropped": [
+  "abilene-texas",
+  "akron-ohio",
+  "albany-georgia",
+  "albany-new-york",
+  "albany-oregon",
+  "albuquerque-new-mexico",
+  "alexandria-louisiana",
+  "allentown-pennsylvania",
+  "altoona-pennsylvania",
+  "amarillo-texas",
+  "ames-iowa",
+  "anchorage-alaska",
+  "ann-arbor-michigan",
+  "anniston-alabama",
+  "appleton-wisconsin",
+  "asheville-north-carolina",
+  "athens-georgia",
+  "atlanta-georgia",
+  "atlantic-city-new-jersey",
+  "auburn-alabama",
+  "augusta-georgia",
+  "austin-texas",
+  "bakersfield-california",
+  "baltimore-maryland",
+  "bangor-maine",
+  "barnstable-town-massachusetts",
+  "baton-rouge-louisiana",
+  "battle-creek-michigan",
+  "bay-city-michigan",
+  "beaumont-texas",
+  "beckley-west-virginia",
+  "bellingham-washington",
+  "bend-oregon",
+  "billings-montana",
+  "binghamton-new-york",
+  "birmingham-alabama",
+  "bismarck-north-dakota",
+  "blacksburg-virginia",
+  "bloomington-illinois",
+  "bloomington-indiana",
+  "boise-city-idaho",
+  "boston-massachusetts",
+  "boulder-colorado",
+  "bowling-green-kentucky",
+  "bozeman-montana",
+  "bremerton-washington",
+  "bridgeport-connecticut",
+  "brownsville-texas",
+  "brunswick-georgia",
+  "buffalo-new-york",
+  "burlington-north-carolina",
+  "burlington-vermont",
+  "canton-ohio",
+  "cape-coral-florida",
+  "cape-girardeau-missouri",
+  "carson-city-nevada",
+  "casper-wyoming",
+  "cedar-rapids-iowa",
+  "chambersburg-pennsylvania",
+  "charleston-south-carolina",
+  "charleston-west-virginia",
+  "charlotte-north-carolina",
+  "charlottesville-virginia",
+  "chattanooga-tennessee",
+  "cheyenne-wyoming",
+  "chicago-illinois",
+  "chico-california",
+  "cincinnati-ohio",
+  "clarksville-tennessee",
+  "cleveland-ohio",
+  "cleveland-tennessee",
+  "coeur-dalene-idaho",
+  "college-station-texas",
+  "colorado-springs-colorado",
+  "columbia-missouri",
+  "columbia-south-carolina",
+  "columbus-georgia",
+  "columbus-indiana",
+  "columbus-ohio",
+  "corpus-christi-texas",
+  "corvallis-oregon",
+  "crestview-florida",
+  "dallas-texas",
+  "davenport-iowa",
+  "dayton-ohio",
+  "decatur-alabama",
+  "decatur-illinois",
+  "deltona-florida",
+  "denver-colorado",
+  "des-moines-iowa",
+  "detroit-michigan",
+  "dothan-alabama",
+  "dover-delaware",
+  "dubuque-iowa",
+  "duluth-minnesota",
+  "durham-north-carolina",
+  "eagle-pass-texas",
+  "el-centro-california",
+  "el-paso-texas",
+  "elizabethtown-kentucky",
+  "elkhart-indiana",
+  "elmira-new-york",
+  "enid-oklahoma",
+  "erie-pennsylvania",
+  "eugene-oregon",
+  "evansville-indiana",
+  "fairbanks-alaska",
+  "fargo-north-dakota",
+  "fayetteville-arkansas",
+  "fayetteville-north-carolina",
+  "flagstaff-arizona",
+  "flint-michigan",
+  "florence-alabama",
+  "florence-south-carolina",
+  "fond-du-lac-wisconsin",
+  "fort-collins-colorado",
+  "fort-smith-arkansas",
+  "fort-wayne-indiana",
+  "fresno-california",
+  "gadsden-alabama",
+  "gainesville-florida",
+  "gainesville-georgia",
+  "gettysburg-pennsylvania",
+  "glens-falls-new-york",
+  "grand-forks-north-dakota",
+  "grand-island-nebraska",
+  "grand-junction-colorado",
+  "grand-rapids-michigan",
+  "grants-pass-oregon",
+  "great-falls-montana",
+  "greeley-colorado",
+  "green-bay-wisconsin",
+  "greensboro-north-carolina",
+  "greenville-north-carolina",
+  "greenville-south-carolina",
+  "gulfport-mississippi",
+  "hagerstown-maryland",
+  "hammond-louisiana",
+  "hanford-california",
+  "harrisburg-pennsylvania",
+  "harrisonburg-virginia",
+  "hartford-connecticut",
+  "hattiesburg-mississippi",
+  "helena-montana",
+  "hickory-north-carolina",
+  "hilton-head-island-south-carolina",
+  "hinesville-georgia",
+  "homosassa-springs-florida",
+  "honolulu-hawaii",
+  "hot-springs-arkansas",
+  "houma-louisiana",
+  "houston-texas",
+  "huntington-west-virginia",
+  "huntsville-alabama",
+  "idaho-falls-idaho",
+  "indianapolis-indiana",
+  "iowa-city-iowa",
+  "ithaca-new-york",
+  "jackson-michigan",
+  "jackson-mississippi",
+  "jackson-tennessee",
+  "jacksonville-florida",
+  "jacksonville-north-carolina",
+  "janesville-wisconsin",
+  "jefferson-city-missouri",
+  "johnson-city-tennessee",
+  "jonesboro-arkansas",
+  "joplin-missouri",
+  "kahului-hawaii",
+  "kalamazoo-michigan",
+  "kankakee-illinois",
+  "kansas-city-missouri",
+  "kennewick-washington",
+  "kenosha-wisconsin",
+  "killeen-texas",
+  "kingsport-tennessee",
+  "kingston-new-york",
+  "kiryas-joel-new-york",
+  "knoxville-tennessee",
+  "kokomo-indiana",
+  "la-crosse-wisconsin",
+  "lafayette-indiana",
+  "lafayette-louisiana",
+  "lake-havasu-city-arizona",
+  "lakeland-florida",
+  "lancaster-pennsylvania",
+  "lansing-michigan",
+  "laredo-texas",
+  "las-cruces-new-mexico",
+  "las-vegas-nevada",
+  "lawrence-kansas",
+  "lawton-oklahoma",
+  "lebanon-pennsylvania",
+  "lewiston-maine",
+  "lexington-kentucky",
+  "lima-ohio",
+  "lincoln-nebraska",
+  "little-rock-arkansas",
+  "longview-texas",
+  "longview-washington",
+  "los-angeles-california",
+  "louisville-kentucky",
+  "lubbock-texas",
+  "lynchburg-virginia",
+  "macon-georgia",
+  "madison-wisconsin",
+  "manchester-new-hampshire",
+  "manhattan-kansas",
+  "mankato-minnesota",
+  "mansfield-ohio",
+  "mcallen-texas",
+  "memphis-tennessee",
+  "merced-california",
+  "miami-florida",
+  "michigan-city-indiana",
+  "midland-michigan",
+  "midland-texas",
+  "milwaukee-wisconsin",
+  "minneapolis-minnesota",
+  "minot-north-dakota",
+  "missoula-montana",
+  "mobile-alabama",
+  "modesto-california",
+  "monroe-michigan",
+  "montgomery-alabama",
+  "morgantown-west-virginia",
+  "morristown-tennessee",
+  "mount-vernon-washington",
+  "muskegon-michigan",
+  "myrtle-beach-south-carolina",
+  "napa-california",
+  "naples-florida",
+  "nashville-tennessee",
+  "new-haven-connecticut",
+  "new-orleans-louisiana",
+  "new-york-new-york",
+  "niles-michigan",
+  "north-port-florida",
+  "norwich-connecticut",
+  "ocala-florida",
+  "odessa-texas",
+  "ogden-utah",
+  "oklahoma-city-oklahoma",
+  "olympia-washington",
+  "omaha-nebraska",
+  "orlando-florida",
+  "oshkosh-wisconsin",
+  "owensboro-kentucky",
+  "oxnard-california",
+  "paducah-kentucky",
+  "palm-bay-florida",
+  "panama-city-florida",
+  "parkersburg-west-virginia",
+  "pensacola-florida",
+  "peoria-illinois",
+  "philadelphia-pennsylvania",
+  "phoenix-arizona",
+  "pinehurst-north-carolina",
+  "pittsburgh-pennsylvania",
+  "pittsfield-massachusetts",
+  "port-st-lucie-florida",
+  "portland-maine",
+  "portland-oregon",
+  "prescott-valley-arizona",
+  "providence-rhode-island",
+  "provo-utah",
+  "pueblo-colorado",
+  "punta-gorda-florida",
+  "racine-wisconsin",
+  "raleigh-north-carolina",
+  "rapid-city-south-dakota",
+  "reading-pennsylvania",
+  "redding-california",
+  "reno-nevada",
+  "richmond-virginia",
+  "riverside-california",
+  "roanoke-virginia",
+  "rochester-minnesota",
+  "rochester-new-york",
+  "rockford-illinois",
+  "rocky-mount-north-carolina",
+  "rome-georgia",
+  "sacramento-california",
+  "saginaw-michigan",
+  "salem-oregon",
+  "salinas-california",
+  "salisbury-maryland",
+  "salt-lake-city-utah",
+  "san-angelo-texas",
+  "san-antonio-texas",
+  "san-diego-california",
+  "san-francisco-california",
+  "san-jose-california",
+  "san-luis-obispo-california",
+  "sandusky-ohio",
+  "santa-cruz-california",
+  "santa-fe-new-mexico",
+  "santa-maria-california",
+  "santa-rosa-california",
+  "savannah-georgia",
+  "scranton-pennsylvania",
+  "seattle-washington",
+  "sebastian-florida",
+  "sheboygan-wisconsin",
+  "sherman-texas",
+  "shreveport-louisiana",
+  "sioux-city-iowa",
+  "sioux-falls-south-dakota",
+  "slidell-louisiana",
+  "south-bend-indiana",
+  "spartanburg-south-carolina",
+  "spokane-washington",
+  "springfield-illinois",
+  "springfield-massachusetts",
+  "springfield-missouri",
+  "springfield-ohio",
+  "st-cloud-minnesota",
+  "st-george-utah",
+  "st-joseph-missouri",
+  "st-louis-missouri",
+  "state-college-pennsylvania",
+  "staunton-virginia",
+  "stockton-california",
+  "sumter-south-carolina",
+  "syracuse-new-york",
+  "tallahassee-florida",
+  "tampa-florida",
+  "terre-haute-indiana",
+  "texarkana-texas",
+  "toledo-ohio",
+  "topeka-kansas",
+  "traverse-city-michigan",
+  "trenton-new-jersey",
+  "tucson-arizona",
+  "tulsa-oklahoma",
+  "tuscaloosa-alabama",
+  "twin-falls-idaho",
+  "tyler-texas",
+  "utica-new-york",
+  "valdosta-georgia",
+  "vallejo-california",
+  "victoria-texas",
+  "vineland-new-jersey",
+  "virginia-beach-virginia",
+  "visalia-california",
+  "waco-texas",
+  "walla-walla-washington",
+  "warner-robins-georgia",
+  "washington-district-of-columbia",
+  "waterbury-connecticut",
+  "waterloo-iowa",
+  "watertown-new-york",
+  "wausau-wisconsin",
+  "weirton-west-virginia",
+  "wenatchee-washington",
+  "wheeling-west-virginia",
+  "wichita-falls-texas",
+  "wichita-kansas",
+  "wildwood-florida",
+  "wilmington-north-carolina",
+  "winchester-virginia",
+  "winston-salem-north-carolina",
+  "worcester-massachusetts",
+  "yakima-washington",
+  "york-pennsylvania",
+  "youngstown-ohio",
+  "yuba-city-california",
+  "yuma-arizona",
   "hero"
  ],
  "cc_before_4_0": {
-  "count": 151,
+  "count": 134,
   "by_licence": {
-   "CC BY 2.0": 43,
-   "CC BY 2.5": 1,
-   "CC BY 3.0": 17,
+   "CC BY 2.0": 40,
+   "CC BY 2.5": 2,
+   "CC BY 3.0": 12,
    "CC BY 3.0 us": 1,
+   "CC BY-NC-SA 2.0": 1,
    "CC BY-SA 1.0": 1,
-   "CC BY-SA 2.0": 17,
-   "CC BY-SA 2.5": 4,
-   "CC BY-SA 3.0": 67
+   "CC BY-SA 2.0": 19,
+   "CC BY-SA 2.5": 6,
+   "CC BY-SA 3.0": 52
   },
   "photos": [
    {
@@ -42,12 +414,12 @@
    },
    {
     "page": "city",
-    "key": "amarillo-texas",
-    "license": "CC BY-SA 3.0"
+    "key": "ames-iowa",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
-    "key": "ames-iowa",
+    "key": "anchorage-alaska",
     "license": "CC BY 2.0"
    },
    {
@@ -62,18 +434,8 @@
    },
    {
     "page": "city",
-    "key": "bakersfield-california",
-    "license": "CC BY 3.0"
-   },
-   {
-    "page": "city",
     "key": "barnstable-town-massachusetts",
     "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "bend-oregon",
-    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -87,22 +449,12 @@
    },
    {
     "page": "city",
-    "key": "boulder-colorado",
-    "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
     "key": "bowling-green-kentucky",
     "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
     "key": "bozeman-montana",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "brownsville-texas",
     "license": "CC BY-SA 3.0"
    },
    {
@@ -117,17 +469,7 @@
    },
    {
     "page": "city",
-    "key": "cape-coral-florida",
-    "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
     "key": "cedar-rapids-iowa",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "charleston-south-carolina",
     "license": "CC BY-SA 3.0"
    },
    {
@@ -143,7 +485,7 @@
    {
     "page": "city",
     "key": "college-station-texas",
-    "license": "CC BY-SA 3.0"
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -157,18 +499,13 @@
    },
    {
     "page": "city",
-    "key": "davenport-iowa",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "deltona-florida",
-    "license": "CC BY 3.0"
+    "key": "crestview-florida",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
     "key": "des-moines-iowa",
-    "license": "CC BY 2.0"
+    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -179,11 +516,6 @@
     "page": "city",
     "key": "dubuque-iowa",
     "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
-    "key": "duluth-minnesota",
-    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -203,17 +535,17 @@
    {
     "page": "city",
     "key": "eugene-oregon",
-    "license": "CC BY 3.0"
+    "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
+    "key": "evansville-indiana",
+    "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
     "key": "fargo-north-dakota",
-    "license": "CC BY-SA 2.0"
-   },
-   {
-    "page": "city",
-    "key": "fayetteville-arkansas",
-    "license": "CC BY-SA 3.0"
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -237,8 +569,23 @@
    },
    {
     "page": "city",
+    "key": "fort-wayne-indiana",
+    "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "city",
+    "key": "fresno-california",
+    "license": "CC BY-SA 2.0"
+   },
+   {
+    "page": "city",
     "key": "gadsden-alabama",
     "license": "CC BY-SA 2.0"
+   },
+   {
+    "page": "city",
+    "key": "gainesville-florida",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -267,22 +614,12 @@
    },
    {
     "page": "city",
-    "key": "gulfport-mississippi",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
     "key": "hammond-louisiana",
     "license": "CC BY 2.0"
    },
    {
     "page": "city",
     "key": "hanford-california",
-    "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
-    "key": "harrisburg-pennsylvania",
     "license": "CC BY 2.0"
    },
    {
@@ -309,11 +646,6 @@
     "page": "city",
     "key": "houma-louisiana",
     "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "houston-texas",
-    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -353,27 +685,12 @@
    {
     "page": "city",
     "key": "kansas-city-missouri",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "kennewick-washington",
-    "license": "CC BY-SA 2.0"
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
     "key": "kenosha-wisconsin",
     "license": "CC BY-SA 2.0"
-   },
-   {
-    "page": "city",
-    "key": "killeen-texas",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "kiryas-joel-new-york",
-    "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
@@ -387,8 +704,8 @@
    },
    {
     "page": "city",
-    "key": "lakeland-florida",
-    "license": "CC BY 3.0"
+    "key": "lafayette-louisiana",
+    "license": "CC BY-NC-SA 2.0"
    },
    {
     "page": "city",
@@ -402,18 +719,8 @@
    },
    {
     "page": "city",
-    "key": "laredo-texas",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
     "key": "las-cruces-new-mexico",
     "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "las-vegas-nevada",
-    "license": "CC BY 2.0"
    },
    {
     "page": "city",
@@ -432,7 +739,7 @@
    },
    {
     "page": "city",
-    "key": "louisville-kentucky",
+    "key": "lubbock-texas",
     "license": "CC BY 2.0"
    },
    {
@@ -462,13 +769,13 @@
    },
    {
     "page": "city",
-    "key": "merced-california",
+    "key": "mcallen-texas",
     "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
-    "key": "miami-florida",
-    "license": "CC BY 3.0"
+    "key": "merced-california",
+    "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
@@ -482,11 +789,6 @@
    },
    {
     "page": "city",
-    "key": "modesto-california",
-    "license": "CC BY 3.0"
-   },
-   {
-    "page": "city",
     "key": "morgantown-west-virginia",
     "license": "CC BY-SA 2.0"
    },
@@ -497,18 +799,18 @@
    },
    {
     "page": "city",
-    "key": "myrtle-beach-south-carolina",
-    "license": "CC BY-SA 3.0"
+    "key": "naples-florida",
+    "license": "CC BY-SA 2.5"
    },
    {
     "page": "city",
-    "key": "naples-florida",
+    "key": "north-port-florida",
     "license": "CC BY 3.0"
    },
    {
     "page": "city",
-    "key": "new-orleans-louisiana",
-    "license": "CC BY 2.0"
+    "key": "ogden-utah",
+    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -522,13 +824,28 @@
    },
    {
     "page": "city",
+    "key": "orlando-florida",
+    "license": "CC BY 3.0"
+   },
+   {
+    "page": "city",
     "key": "oshkosh-wisconsin",
     "license": "CC BY-SA 2.5"
    },
    {
     "page": "city",
     "key": "oxnard-california",
-    "license": "CC BY-SA 3.0"
+    "license": "CC BY 3.0"
+   },
+   {
+    "page": "city",
+    "key": "pensacola-florida",
+    "license": "CC BY 2.0"
+   },
+   {
+    "page": "city",
+    "key": "peoria-illinois",
+    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -544,11 +861,6 @@
     "page": "city",
     "key": "portland-maine",
     "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
-    "key": "provo-utah",
-    "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
@@ -568,16 +880,11 @@
    {
     "page": "city",
     "key": "roanoke-virginia",
-    "license": "CC BY-SA 3.0"
+    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
     "key": "rochester-minnesota",
-    "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
-    "key": "rochester-new-york",
     "license": "CC BY 2.0"
    },
    {
@@ -592,12 +899,17 @@
    },
    {
     "page": "city",
-    "key": "salem-oregon",
-    "license": "CC BY-SA 3.0"
+    "key": "salinas-california",
+    "license": "CC BY 2.0"
    },
    {
     "page": "city",
     "key": "salisbury-maryland",
+    "license": "CC BY 2.0"
+   },
+   {
+    "page": "city",
+    "key": "san-antonio-texas",
     "license": "CC BY 2.0"
    },
    {
@@ -608,7 +920,7 @@
    {
     "page": "city",
     "key": "san-francisco-california",
-    "license": "CC BY 2.0"
+    "license": "CC BY 2.5"
    },
    {
     "page": "city",
@@ -623,17 +935,12 @@
    {
     "page": "city",
     "key": "santa-cruz-california",
-    "license": "CC BY 2.0"
+    "license": "CC BY-SA 3.0"
    },
    {
     "page": "city",
     "key": "santa-fe-new-mexico",
     "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
-    "key": "santa-rosa-california",
-    "license": "CC BY 3.0"
    },
    {
     "page": "city",
@@ -667,11 +974,6 @@
    },
    {
     "page": "city",
-    "key": "slidell-louisiana",
-    "license": "CC BY 2.0"
-   },
-   {
-    "page": "city",
     "key": "springfield-illinois",
     "license": "CC BY-SA 2.0"
    },
@@ -697,8 +999,8 @@
    },
    {
     "page": "city",
-    "key": "toledo-ohio",
-    "license": "CC BY-SA 3.0"
+    "key": "tulsa-oklahoma",
+    "license": "CC BY-SA 2.5"
    },
    {
     "page": "city",
@@ -707,17 +1009,7 @@
    },
    {
     "page": "city",
-    "key": "vallejo-california",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
     "key": "victoria-texas",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "visalia-california",
     "license": "CC BY-SA 3.0"
    },
    {
@@ -728,11 +1020,6 @@
    {
     "page": "city",
     "key": "walla-walla-washington",
-    "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "washington-district-of-columbia",
     "license": "CC BY-SA 3.0"
    },
    {
@@ -796,7 +1083,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Abilene-skyline.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -806,7 +1093,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Stan_Hywet_Hall_2.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -816,7 +1103,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Albany_Railroad_Historic_District_Buildings.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -826,7 +1113,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Albany,_New_York.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -836,17 +1123,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Albany,_Oregon_looking_west_down_1st_Ave_SW_in_the_summer_of_2014.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "albuquerque-new-mexico",
-   "title": "Albuquerque, New Mexico skyline",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Albuquerque,_New_Mexico_skyline.jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Downtown Albuquerque, New Mexico (31780770537)",
+   "author": "BrandonStephenson",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Albuquerque,_New_Mexico_(31780770537).jpg",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -856,7 +1143,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Third_Street_in_Alexandria,_LA_IMG_4316.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -866,7 +1153,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Allentown,_Pennsylvania_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -876,17 +1163,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Altoona,_Pennsylvania.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "amarillo-texas",
-   "title": "Amarillo Texas Downtown",
-   "author": "Who What Where Nguyen Why a/k/a Anonymous Cow",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Amarillo_Texas_Downtown.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "title": "Marriott Courtyard Downtown Amarillo from SSE 2",
+   "author": "Ammodramus",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -896,17 +1183,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Reiman_Gardens_33.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "anchorage-alaska",
-   "title": "Anchorage, Alaska skyline",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Anchorage,_Alaska_skyline.jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Anchorage Downtown",
+   "author": "Luke Jones",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Anchorage_Downtown.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -916,7 +1203,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:University_of_Michigan_Law_School.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -926,7 +1213,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Anniston,_Alabama.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -936,7 +1223,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Appleton_Skyline.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -946,7 +1233,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Asheville_at_dusk_(cropped).jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -956,7 +1243,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Athens_Georgia_City_Hall_1.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -966,7 +1253,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:A2ATL20250614-0721_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -976,7 +1263,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:A_sunset_view_of_the_beach_in_Atlantic_City,_NJ.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -986,7 +1273,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Auburn_Alabama_City_Hall.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -996,7 +1283,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Augusta,_GA_Downtown_Skyline_2017.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1006,27 +1293,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Austin,_Texas_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "bakersfield-california",
-   "title": "2009-0726-CA-Bakersfield-FoxTheater (cropped)",
-   "author": "Bobak Ha'Eri",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2009-0726-CA-Bakersfield-FoxTheater_(cropped).jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Fox Theater - Bakersfield, CA - DSC00484",
+   "author": "Daderot",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fox_Theater_-_Bakersfield,_CA_-_DSC00484.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "baltimore-maryland",
-   "title": "Fell's Point Aerial 2022",
-   "author": "Matthew Binebrink",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Fell%27s_Point_Aerial_2022.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Bmoreharbor",
+   "author": "Oldlinestate",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bmoreharbor.JPG",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -1036,7 +1323,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bangor,_Maine.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1046,17 +1333,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Barnstable_County_Courthouse,_Barnstable_MA.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "baton-rouge-louisiana",
-   "title": "Downtown Baton Rouge, Louisiana from Tiger Stadium (LSU)",
-   "author": "Spatms",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Baton_Rouge,_Louisiana_from_Tiger_Stadium_(LSU).jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Baton Rouge - Old State Capitol from the riverfront, April 2024",
+   "author": "xiquinhosilva",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Baton_Rouge_-_Old_State_Capitol_from_the_riverfront,_April_2024.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1066,7 +1353,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Battle_Creek.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1076,17 +1363,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bay_City,_Michigan_(2022).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "beaumont-texas",
-   "title": "Ground Soldiers take to the Sea; provides Expeditionary Sustainment 150415-A-NS540-005",
-   "author": "Sgt. 1st Class E. L. Craig",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Ground_Soldiers_take_to_the_Sea;_provides_Expeditionary_Sustainment_150415-A-NS540-005.jpg",
+   "title": "BeaumontTX",
+   "author": "Wbband08 at English Wikipedia",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BeaumontTX.JPG",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1096,7 +1383,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Beckley,_West_Virginia.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1106,17 +1393,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bellingham,_Washington_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "bend-oregon",
-   "title": "20210803 03 Bend, Oregon",
-   "author": "David Wilson",
-   "source_url": "https://commons.wikimedia.org/wiki/File:20210803_03_Bend,_Oregon.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Drake Park, Mirror Pond, Bend - DPLA - abff0ea08438d6effa849247b6bbdfeb",
+   "author": "Gary Halvorson, Oregon State Archives",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Drake_Park,_Mirror_Pond,_Bend_-_DPLA_-_abff0ea08438d6effa849247b6bbdfeb.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1126,7 +1413,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Billings,_Montana_skyline_in_2024.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1136,7 +1423,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Binghamton,_New_York,_USA.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1146,7 +1433,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Birmingham,_Alabama.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1156,7 +1443,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bismarck,_North_Dakota_aerial_view.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1166,7 +1453,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Blacksburg,_Virginia.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1176,7 +1463,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bloomington,_IL_city_hall_1_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1186,7 +1473,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bloomington_IN_Kirkwood.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1196,7 +1483,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Boise,_Idaho.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1206,17 +1493,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:ISH_WC_Boston4.jpg",
    "license": "CC BY 2.5",
    "license_url": "https://creativecommons.org/licenses/by/2.5",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "boulder-colorado",
-   "title": "Pearl Street Mall",
-   "author": "Lee Coursey",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Pearl_Street_Mall.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Boulder, United States (Unsplash IPvSZvM5Elg)",
+   "author": "Jeremy Thomas jeremythomasphoto",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boulder,_United_States_(Unsplash_IPvSZvM5Elg).jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1226,7 +1513,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Fountain_Square_Park,_Bowling_Green,_Kentucky.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1236,17 +1523,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Main_St,_Bozeman,_Montana_(1).JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "bremerton-washington",
-   "title": "Aerial view of Bremerton 2",
-   "author": "Dcoetzee",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Bremerton_2.jpg",
-   "license": "Public domain",
-   "license_url": null,
-   "cropped": false
+   "title": "MV Kitsap at Bremerton 02",
+   "author": "Joe Mabel",
+   "source_url": "https://commons.wikimedia.org/wiki/File:MV_Kitsap_at_Bremerton_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1256,17 +1543,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bridgeport,_Connecticut_downtown.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "brownsville-texas",
-   "title": "Brownsville Skyline",
-   "author": "Jc161991",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Brownsville_Skyline.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Some of the buildings at Fort Brown in Brownsville, Texas LCCN2014630475",
+   "author": "Carol M. Highsmith",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Some_of_the_buildings_at_Fort_Brown_in_Brownsville,_Texas_LCCN2014630475.tif",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -1276,7 +1563,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Sidney_Lanier_Bridge.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1286,7 +1573,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Buffalo,_NY_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1296,7 +1583,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Tallest_building_in_Burlington.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1306,7 +1593,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:View_of_the_Burlington_Marketplace_2017-10-01.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1316,17 +1603,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Pro_Football_Hall_of_Fame_(23945852607).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "cape-coral-florida",
-   "title": "Cape Coral, Florida",
-   "author": "David Wilson",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Cape_Coral,_Florida.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "SR 867 McGregor Boulevard",
+   "author": "unknown",
+   "source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -1336,7 +1623,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Cape_Girardeau_dec29-07_(23).jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1346,7 +1633,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Carson_City,_NV.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1356,17 +1643,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Casperskyline1to1.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "cedar-rapids-iowa",
-   "title": "National-Czech-and-Slovak-Museum-Library (cropped)",
-   "author": "ArtisticAbode",
-   "source_url": "https://commons.wikimedia.org/wiki/File:National-Czech-and-Slovak-Museum-Library_(cropped).jpg",
+   "title": "Cedar Rapids - Mays Island",
+   "author": "Davumaya",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cedar_Rapids_-_Mays_Island.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1376,17 +1663,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Memorial_Square_Chambersburg.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "charleston-south-carolina",
-   "title": "East Battery Street Charleston Aug2010",
-   "author": "Chris Pruitt",
-   "source_url": "https://commons.wikimedia.org/wiki/File:East_Battery_Street_Charleston_Aug2010.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Rainbow Row Charleston July 2024 2",
+   "author": "Thomson200",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1396,17 +1683,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:The_West_Virginia_State_Capitol_building_-_Image03.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "charlotte-north-carolina",
-   "title": "Uptown Charlotte 2018 taking by DJI Phantom 4 pro",
-   "author": "Precisionviews",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Uptown_Charlotte_2018_taking_by_DJI_Phantom_4_pro.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Skyline of Charlotte 2016",
+   "author": "brandon walker",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Charlotte_2016.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1416,17 +1703,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Charlottesville,_Virginia.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "chattanooga-tennessee",
-   "title": "Chattanooga, Tennessee (2023)",
-   "author": "WeaponizingArchitecture",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Chattanooga,_Tennessee_(2023).jpg",
+   "title": "Walnut Street Bridge 02",
+   "author": "Ɱ",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Walnut_Street_Bridge_02.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1436,7 +1723,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:CheyenneWyoming_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1446,7 +1733,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Chicago_River_ferry_b.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1456,17 +1743,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:ChicoSquare_(cropped).jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "cincinnati-ohio",
-   "title": "Downtown Cincinnati viewed from Devou Park (cropped)",
-   "author": "EEJCC",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_viewed_from_Devou_Park_(cropped).jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Downtown Cincinnati and Covington",
+   "author": "Krisandjanis324",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_and_Covington.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1476,7 +1763,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Clarksville_TN.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1486,7 +1773,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Cleveland_skyline_from_Lakewood_Park,_January_2026.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1496,7 +1783,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cleveland,_Tennessee,_in_Bradley_County_02.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1506,27 +1793,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Coeur_d%27Alene_aerial,_May_2023_(cropped).png",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "college-station-texas",
-   "title": "TAMUcampus",
-   "author": "Aggie0083 at English Wikipedia",
-   "source_url": "https://commons.wikimedia.org/wiki/File:TAMUcampus.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "title": "AcademicBuilding-TAMU",
+   "author": "Stu Seeger",
+   "source_url": "https://commons.wikimedia.org/wiki/File:AcademicBuilding-TAMU.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "colorado-springs-colorado",
-   "title": "Colorado Springs, Colorado (cropped)",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Colorado_Springs,_Colorado_(cropped).jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Garden of the Gods, with Pikes Peak in the background",
+   "author": "CaroleHenson",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Garden_of_the_Gods,_with_Pikes_Peak_in_the_background.JPG",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1536,7 +1823,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mizzou_Jesse_Thumb.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1546,7 +1833,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Fall_skyline_of_Columbia_SC_from_Arsenal_Hill.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1556,7 +1843,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Columbus,_Georgia_skyline.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1566,7 +1853,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Stewart-bridge-1933328.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1576,7 +1863,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Columbus_View_from_Main_St_Bridge_-_edit1.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1586,7 +1873,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Corpus_Christi_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1596,17 +1883,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Benton_County_Courthouse_Greg_Keene.jpg",
    "license": "CC BY 3.0 us",
    "license_url": "https://creativecommons.org/licenses/by/3.0/us/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "crestview-florida",
-   "title": "New Crestview Courthouse",
-   "author": "Hoteltwo",
-   "source_url": "https://commons.wikimedia.org/wiki/File:New_Crestview_Courthouse.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "View of Destin, Florida from the Destin Harbor",
+   "author": "Destin Vacation Boat Rentals",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Destin,_Florida_from_the_Destin_Harbor.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1616,17 +1903,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Dallas_Texas_skyline_from_Reunion_Tower_September_2025_(cropped).png",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "davenport-iowa",
-   "title": "Village of East Davenport 2",
-   "author": "Kepper66",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Village_of_East_Davenport_2.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "2018 Davenport skyline 02",
+   "author": "Farragutful",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1636,7 +1923,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Dayton_Skyline_-_Sunset_September_2022_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1646,7 +1933,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Decatur,_Alabama_(2023).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1656,17 +1943,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown-MerchantRsz_(cropped).jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "deltona-florida",
-   "title": "Deltona city hall deltona florida",
-   "author": "Connor J. Williams",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Deltona_city_hall_deltona_florida.jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Gfp-florida-daytona-beach-building-on-the-ocean",
+   "author": "Yinan Chen",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg",
+   "license": "Public Domain",
+   "license_url": "https://web.archive.org/web/20230926203737/https://creativecommons.org/licenses/publicdomain/",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1676,17 +1963,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Denver,_Colorado_skyline_(cropped_3x5).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "des-moines-iowa",
-   "title": "Morning Skyline - Des Moines, Iowa - Winter on the Des Moines River (24805016620) (cropped)",
-   "author": "Tony Webster from Minneapolis, Minnesota, United States",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Morning_Skyline_-_Des_Moines,_Iowa_-_Winter_on_the_Des_Moines_River_(24805016620)_(cropped).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Skyline downtown Des Moines",
+   "author": "BarbaraLN",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_downtown_Des_Moines.jpg",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1696,7 +1983,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Detroit_Skyline_from_Windsor_2025-09-01.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1706,7 +1993,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:DowntownDothan02_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1716,7 +2003,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Dover_Delaware.jpg",
    "license": "CC BY-SA 2.5",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1726,27 +2013,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Dubuque_IA_-_overview.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "duluth-minnesota",
-   "title": "Downtown Duluth, Minnesota Skyline (25406820466) (cropped)",
-   "author": "Tony Webster from San Francisco, California",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Duluth,_Minnesota_Skyline_(25406820466)_(cropped).jpg",
-   "license": "CC BY-SA 2.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "title": "Duluth Drone",
+   "author": "Chrisographer",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Duluth_Drone.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "durham-north-carolina",
-   "title": "Carolina Theatre (Durham Auditorium 1924)",
-   "author": "Maria Miracoli",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Carolina_Theatre_(Durham_Auditorium_1924).jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "SKYL015 Downtown Durham Skyline DiscoverDurham",
+   "author": "Discover Durham",
+   "source_url": "https://commons.wikimedia.org/wiki/File:SKYL015_Downtown_Durham_Skyline_DiscoverDurham.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1756,7 +2043,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Bienvenidos,_Eagle_Pass,_TX_IMG_0442.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1766,7 +2053,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Imperial_County_Superior_Courthouse_El_Centro_Night.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1776,7 +2063,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:El_Paso_Cityscape_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1786,7 +2073,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hardin_County_Courthouse_in_Elizabethtown.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1796,7 +2083,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Elkhart,_Indiana_-_Main_Street.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1806,7 +2093,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:City_Hall_Elmira_NY.jpg",
    "license": "CC BY-SA 1.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/1.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1816,7 +2103,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Enid_Independence_Street.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1826,27 +2113,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Erie_PA_skyline_from_tower_observation_deck_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "eugene-oregon",
-   "title": "102707-Oregon-Autzen-USC-UO-Sanchezpass",
-   "author": "Bobak Ha'Eri",
-   "source_url": "https://commons.wikimedia.org/wiki/File:102707-Oregon-Autzen-USC-UO-Sanchezpass.jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Eugene Oregon from Skinner Butte",
+   "author": "Laura Alier",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Eugene_Oregon_from_Skinner_Butte.JPG",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "evansville-indiana",
-   "title": "Ford Center from Main Street",
-   "author": "Nyttend",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Ford_Center_from_Main_Street.jpg",
-   "license": "Public domain",
-   "license_url": null,
-   "cropped": false
+   "title": "Old Vanderburgh County Courthouse, Evansville, Indiana",
+   "author": "Roman Eugeniusz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Old_Vanderburgh_County_Courthouse,_Evansville,_Indiana.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1856,27 +2143,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Fairbanks_Alaska_skyline_(Quintin_Soloviev).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "fargo-north-dakota",
-   "title": "Downtown Fargo Aerial - Facing Southeast (51009704407)",
-   "author": "formulanone",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fargo_Aerial_-_Facing_Southeast_(51009704407).jpg",
-   "license": "CC BY-SA 2.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "title": "Fargo Theatre - Fargo",
+   "author": "AJ LEON",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fargo_Theatre_-_Fargo.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "fayetteville-arkansas",
-   "title": "Downtown Fayetteville from Old Main 001",
-   "author": "Brandonrush",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fayetteville_from_Old_Main_001.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "University of Arkansas May 2017 07 (Old Main)",
+   "author": "Michael Barera",
+   "source_url": "https://commons.wikimedia.org/wiki/File:University_of_Arkansas_May_2017_07_(Old_Main).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1886,7 +2173,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Fayetteville,_NC_Downtown_Skyline.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1896,7 +2183,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Flagstaff_AZ_-_downtown_hotel.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1906,7 +2193,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Flint,_Michigan.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1916,7 +2203,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Florence_Historic_District_cropped.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1926,7 +2213,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Western_Florence,_South_Carolina.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1936,7 +2223,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:SouthMainStreetHistoricDistrictFondDuLacWisUS45.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1946,7 +2233,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fort_Collins_Colorado.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -1956,27 +2243,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Fort_Smith,_AR_002.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "fort-wayne-indiana",
-   "title": "Historic Fort Wayne, Fort Wayne, Indiana, May 2014",
-   "author": "Momoneymoproblemz",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Historic_Fort_Wayne,_Fort_Wayne,_Indiana,_May_2014.jpg",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "title": "Cortes del Condado de Allen, Fort Wayne, Indiana, Estados Unidos, 2012-11-12, DD 01",
+   "author": "Diego Delso",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cortes_del_Condado_de_Allen,_Fort_Wayne,_Indiana,_Estados_Unidos,_2012-11-12,_DD_01.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "fresno-california",
-   "title": "Fresno Skyline (2)",
-   "author": "Etherealsmoke",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Fresno_Skyline_(2).jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Tower Theatre Fresno 2",
+   "author": "David Prasad (niiicedave)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tower_Theatre_Fresno_2.jpg",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -1986,17 +2273,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Gadsden,_Alabama_-_Aerial_(51157939914).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "gainesville-florida",
-   "title": "Gainesville, FL Downtown",
-   "author": "Rbrko",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Gainesville,_FL_Downtown.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Century Tower (University of Florida)",
+   "author": "Kate Haskell from Gainesville, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Century_Tower_(University_of_Florida).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2006,7 +2293,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Gainesville,_Georgia.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2016,7 +2303,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Gettysburg_Battlefield,_Pennsylvania,_US_(98).jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2026,7 +2313,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Glens_Falls,_NY.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2036,7 +2323,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:FEMA_-_29438_-_Photograph_by_Brenda_Riskey_taken_on_05-17-2006_in_North_Dakota.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2046,7 +2333,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hall_Co_Courthouse_6.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2056,17 +2343,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Grand-junction-skyline.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "grand-rapids-michigan",
-   "title": "Meyer May House",
+   "title": "Blue Bridge Grand Rapids, Michigan",
    "author": "WMrapids",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Meyer_May_House.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blue_Bridge_Grand_Rapids,_Michigan.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2076,7 +2363,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Grants_Pass,_Its_the_Climate.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2086,17 +2373,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Central_Ave_and_Civic_Center_2.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "greeley-colorado",
-   "title": "Greeley, Colorado Courthouse",
+   "title": "Downtown Greeley",
    "author": "Peter Romero",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Greeley,_Colorado_Courthouse.JPG",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Greeley.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2106,7 +2393,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Green_Bay_CityDeck_along_the_Fox_River.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2116,7 +2403,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Greensboro_Skyline.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2126,7 +2413,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Greenville,_North_Carolina_-_2026_9.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2136,27 +2423,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:2024-4-12-Falls_Park_Waterfall_Greenville_South_Carolina_by_Yousef_AbdulHusain.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "gulfport-mississippi",
-   "title": "FightingSeabee NavalConstructionBattalionCenter Gulfport,MS",
-   "author": "Woodlot",
-   "source_url": "https://commons.wikimedia.org/wiki/File:FightingSeabee_NavalConstructionBattalionCenter_Gulfport,MS.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "The Biloxi Lighthouse",
+   "author": "Jeff D. Howard",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Biloxi_Lighthouse.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "hagerstown-maryland",
-   "title": "Downtown Hagerstown on Franklin Street",
-   "author": "Charlotte Jackson",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Hagerstown_on_Franklin_Street.jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Hagerstown City Park 02",
+   "author": "Farragutful",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hagerstown_City_Park_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2166,7 +2453,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hammond,_Louisiana_Feb_2019_street_scene.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2176,17 +2463,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hanford,_California_(11774483763)_(cropped).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "harrisburg-pennsylvania",
-   "title": "PA State Capitol Building twilight",
-   "author": "Ted Van Pelt",
-   "source_url": "https://commons.wikimedia.org/wiki/File:PA_State_Capitol_Building_twilight.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "State Street - Harrisburg, Pennsylvania",
+   "author": "Farragutful",
+   "source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Harrisburg,_Pennsylvania.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2196,7 +2483,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Rockingham_County_Courthouse.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2206,7 +2493,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hartford,_CT_skyline_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2216,7 +2503,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hattiesburg,_Mississippi.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2226,7 +2513,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Montana_State_Capitol_by_T._Elizabeth.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2236,7 +2523,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:US-NC-Hickory_Union_Square.JPG",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2246,7 +2533,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hilton_Head_Island_Lighthouse_June_2026.png",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2256,7 +2543,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hinesville_city_hall.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2266,17 +2553,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:NB_US_19-98_Homosassa_Springs_FL_Sign.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "honolulu-hawaii",
-   "title": "2022 Views from Diamond Head 02",
-   "author": "Farragutful",
-   "source_url": "https://commons.wikimedia.org/wiki/File:2022_Views_from_Diamond_Head_02.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Honolulu cityscape",
+   "author": "Christian Joudrey",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Honolulu_cityscape.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2286,7 +2573,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hot_Springs_collage.png",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2296,17 +2583,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:HoumaPetitTheatreAug09.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "houston-texas",
-   "title": "Texas medical center",
-   "author": "Katie Haugland Brown",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Texas_medical_center.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Downtown Houston, TX Skyline - 2018",
+   "author": "David Daniel Turner",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Houston,_TX_Skyline_-_2018.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2316,17 +2603,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Huntington,_West_Virginia_(2023).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "huntsville-alabama",
-   "title": "Huntsville Art Museum - front façade and stairs 2023",
-   "author": "American Diabetio",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Huntsville_Art_Museum_-_front_fa%C3%A7ade_and_stairs_2023.jpg",
+   "title": "Big Spring International Park, Huntsville AL 20160715 1",
+   "author": "DXR",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Big_Spring_International_Park,_Huntsville_AL_20160715_1.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2336,7 +2623,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Idaho_Falls.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2346,7 +2633,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Indianapolis-1872529_1920_(cropped).jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2356,7 +2643,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Iowa_City_Downtown_June_2021_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2366,7 +2653,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Ithaca_Commons_(New_York).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2376,7 +2663,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Jackson,_MI.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2386,7 +2673,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mississippi_State_Capitol_Building_(26815684617).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2396,7 +2683,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:JacksonTN.JPG",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2406,7 +2693,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Jacksonville_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2416,7 +2703,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Jacksonville,_North_Carolina_collage.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2426,7 +2713,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Janesville_June_2024_105_(Town_Square).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2436,7 +2723,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:MissouriCapitol.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2446,7 +2733,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Johnson_City.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2456,7 +2743,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Jonesboro_collage.png",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2466,7 +2753,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Joplin_Downtown_Historic_District.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2476,7 +2763,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:AirViewKahului.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2486,7 +2773,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Kalamazoo.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2496,27 +2783,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Kankakee_County_Courthouse.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "kansas-city-missouri",
-   "title": "Kansas City - Downtown - panoramio (15)",
-   "author": "Stephen Edmonds",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Kansas_City_-_Downtown_-_panoramio_(15).jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Kansas city (16778782291)",
+   "author": "Dean Hochman from Overland Park, Kansas, U.S.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Kansas_city_(16778782291).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "kennewick-washington",
-   "title": "Kennewick-ColumbiaRiverAerial (31695765421)",
-   "author": "formulanone from Huntsville, United States",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Kennewick-ColumbiaRiverAerial_(31695765421).jpg",
-   "license": "CC BY-SA 2.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "title": "Cable Bridge (Tri-Cities, Washington)",
+   "author": "Corbin Harder",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cable_Bridge_(Tri-Cities,_Washington).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2526,27 +2813,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:South_on_6th_Ave._from_56th_St.,_Kenosha,_WI.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "killeen-texas",
-   "title": "D Avenue",
-   "author": "Victorenriqueagosto",
-   "source_url": "https://commons.wikimedia.org/wiki/File:D_Avenue.JPG",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "BellCourthouse1 (1 of 1)",
+   "author": "Renelibrary",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BellCourthouse1_(1_of_1).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "kingsport-tennessee",
-   "title": "Broad Street, Downtown Kingsport, TN",
+   "title": "State Street - Bristol, TN-VA",
    "author": "AppalachianCentrist",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Broad_Street,_Downtown_Kingsport,_TN.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Bristol,_TN-VA.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2556,17 +2843,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Kingston,_NY_-_view_of_the_Stockade.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "kiryas-joel-new-york",
-   "title": "Kiryas Joel crop",
-   "author": "The original uploader was Daniel Case at English Wikipedia.; dropped by Beyond My Ken (talk) 20:59, 24 September 2014 (UTC)",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Kiryas_Joel_crop.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "title": "Poughkeepsie Railroad Bridge 20071020",
+   "author": "Jag9889",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Poughkeepsie_Railroad_Bridge_20071020.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2576,7 +2863,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Four-market-square-tn1.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2586,7 +2873,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Kokomo,_Indiana_skyline.png",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2596,7 +2883,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:La_Crosse_Main_Street_-_panoramio.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2606,17 +2893,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Lafayette.downtown.Riehle.Plaza.JPG",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "lafayette-louisiana",
-   "title": "Downtown Lafayette LA 2021",
-   "author": "TheLionHasSeen",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Lafayette_LA_2021.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "St. John's Cathedral, Lafayette, LA",
+   "author": "joseph a",
+   "source_url": "https://www.flickr.com/photos/7150652@N02/46618679322",
+   "license": "CC BY-NC-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-nc-sa/2.0/",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2626,17 +2913,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:London_Bridge,_Lake_Havasu_City_-_2011_(Aerial_Photo).jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "lakeland-florida",
-   "title": "Lakeland city hall lakeland florida",
-   "author": "Connor J. Williams",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Lakeland_city_hall_lakeland_florida.jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Lake Mirror Lakeland Florida September 2024",
+   "author": "Trevorrrrvalent",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lake_Mirror_Lakeland_Florida_September_2024.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2646,7 +2933,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Lancaster_Pennsylvania_downtown.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2656,17 +2943,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:State_Capital_and_Statue_-_panoramio.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "laredo-texas",
-   "title": "Laredo Downtown",
-   "author": "Not home at en.wikipedia",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Laredo_Downtown.JPG",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "St. Augustin Church (1 of 1)",
+   "author": "Renelibrary",
+   "source_url": "https://commons.wikimedia.org/wiki/File:St._Augustin_Church_(1_of_1).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2676,17 +2963,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:NMSU_BransonLibrary.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "las-vegas-nevada",
-   "title": "Las Vegas from above (40064746644)",
-   "author": "Mike McBey",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Las_Vegas_from_above_(40064746644).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Daytime aerial view of the Strip, Las Vegas, Nevada LCCN2010630596",
+   "author": "Carol M. Highsmith",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Daytime_aerial_view_of_the_Strip,_Las_Vegas,_Nevada_LCCN2010630596.tif",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -2696,7 +2983,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Lawrence,_KS_August_2025.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2706,7 +2993,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Old_Lawton_High_School.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2716,7 +3003,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Lebanon-PA.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2726,7 +3013,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Lewiston,_Maine.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2736,7 +3023,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:LexingtonDowntown.JPG",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2746,17 +3033,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Lima_public_square.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "lincoln-nebraska",
-   "title": "Aerial view of the old Haymarket and West Haymarket, Lincoln, Nebraska, USA",
-   "author": "Hanyou23",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_the_old_Haymarket_and_West_Haymarket,_Lincoln,_Nebraska,_USA.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Nebraska State Capitol, July 2026",
+   "author": "Hurstbergn",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nebraska_State_Capitol,_July_2026.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2766,7 +3053,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Little_Rock,_Arkansas_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2776,7 +3063,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Longview,_Texas.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2786,7 +3073,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Longviewwa1.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2796,37 +3083,37 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Hollywood_sign_(8485145044).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "louisville-kentucky",
-   "title": "Louisville Skyline 2021 (3)",
-   "author": "Charles Delano of LouisvilleUSACE - Louisville District of the US Army Corp of Engineers",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Louisville_Skyline_2021_(3).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Steamboat Delta Queen and downtown buildings Louisville Kentucky USA Ohio River mile 604 July 2005 file a5g004",
+   "author": "William Alden",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Steamboat_Delta_Queen_and_downtown_buildings_Louisville_Kentucky_USA_Ohio_River_mile_604_July_2005_file_a5g004.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "lubbock-texas",
-   "title": "Lubbock Skyline",
-   "author": "Noah Puente",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Lubbock_Skyline.jpg",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "title": "Administration Building at Texas Tech University (3848855050)",
+   "author": "Texas Tech University - University Student Housing",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Administration_Building_at_Texas_Tech_University_(3848855050).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "lynchburg-virginia",
-   "title": "Lynchburg, Virginia (cropped)",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Lynchburg,_Virginia_(cropped).jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Downtown Lynchburg zoomed in",
+   "author": "Northern-Virginia-Photographer",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Lynchburg_zoomed_in.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2836,17 +3123,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Macon_Georgia_Aerial_(52700955029).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "madison-wisconsin",
-   "title": "Aerial View of Campus, with Helen C. White Hall in foreground (14070186173)",
-   "author": "college.library",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_View_of_Campus,_with_Helen_C._White_Hall_in_foreground_(14070186173).jpg",
+   "title": "Madison Wisconsin 05-04-2015 110 (17349544126)",
+   "author": "Richard Hurd from Green Bay, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Madison_Wisconsin_05-04-2015_110_(17349544126).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2856,7 +3143,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Manchester,_New_Hampshire_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2866,7 +3153,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Riley_(Kansas)_County_Courthouse_1.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2876,7 +3163,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:2009-0805-Mankato-NFrontStDist.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2886,17 +3173,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mansfield_skyline.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "mcallen-texas",
-   "title": "Skyline of McAllen",
-   "author": "Theunderratedtaco",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_McAllen.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Casa de Palmas 2012-09-13 14-05-27",
+   "author": "25or6to4",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Casa_de_Palmas_2012-09-13_14-05-27.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2906,7 +3193,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Memphis,_TN.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2916,17 +3203,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Tioga_Hotel_-_Merced_California_(cropped).jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "miami-florida",
-   "title": "Villa Vizcaya 20110228",
-   "author": "Averette",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Villa_Vizcaya_20110228.jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Miami skylines 343",
+   "author": "Wilfredor",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Miami_skylines_343.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -2936,7 +3223,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Michigan_City_Lighthouse.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2946,7 +3233,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Midland_County_Courthouse.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2956,7 +3243,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Midland,_TX_skyline_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2966,7 +3253,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Milwaukee_Skyline_w_New_NW_Mutual_Building_2025_by_Isaac_Rowlett.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2976,7 +3263,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Minneapolis_Skyline_looking_south.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2986,7 +3273,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Minot,_North_Dakota_(2022).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -2996,7 +3283,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Missoula,_Montana.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3006,17 +3293,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mobile,_Alabama_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "modesto-california",
-   "title": "Gallo Center for the Arts Modesto (cropped)",
-   "author": "OsotedeMonte",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Gallo_Center_for_the_Arts_Modesto_(cropped).JPG",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Modesto Arch",
+   "author": "Carl Skaggs",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Modesto_Arch.JPG",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -3026,7 +3313,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Monroe_from_the_River_Raisin.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3036,7 +3323,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Montgomery,_Alabama_LCCN2011646683.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3046,7 +3333,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Woodburn_Hall_WVU_(9300119056).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3056,7 +3343,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Morristown_Main_Street_looking_east.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3066,7 +3353,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mount_Vernon,_Washington.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3076,17 +3363,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Muskegon_skyline_and_lake.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "myrtle-beach-south-carolina",
-   "title": "BroadwayAtTheBeach1",
-   "author": "w:User:Isipeoria",
-   "source_url": "https://commons.wikimedia.org/wiki/File:BroadwayAtTheBeach1.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "title": "Myrtle Beach ferris wheel",
+   "author": "The ed17",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Myrtle_Beach_ferris_wheel.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3096,27 +3383,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:City_of_Napa_by_the_Napa_River_(cropped).JPG",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "naples-florida",
-   "title": "Bayside www.florida-infos.com - panoramio (1)",
-   "author": "Franz Stellbrink",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Bayside_www.florida-infos.com_-_panoramio_(1).jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "Naples Beach4",
+   "author": "Marc Ryckaert",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Naples_Beach4.jpg",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "nashville-tennessee",
-   "title": "Nashville, TN skyline",
+   "title": "Nashville, Tennessee (cropped)",
    "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Nashville,_TN_skyline.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nashville,_Tennessee_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3126,17 +3413,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:New_Haven,_Connecticut_skyline_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "new-orleans-louisiana",
-   "title": "New Orleans from the Air September 2019 - Central Business District Skyline (cropped)",
-   "author": "George Bannister",
-   "source_url": "https://commons.wikimedia.org/wiki/File:New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_(cropped).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Barrio francés de Nuevo Orleans Nov 2005",
+   "author": "Daquella manera",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3146,7 +3433,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3156,17 +3443,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:A_view_of_downtown_Niles_from_SLR_pilates_studio.webp",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "north-port-florida",
-   "title": "North Port Public Library Side",
-   "author": "Rino Landa",
-   "source_url": "https://commons.wikimedia.org/wiki/File:North_Port_Public_Library_Side.JPG",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Siesta Key Beach. Sarasota - panoramio - 4net (3)",
+   "author": "4net",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Siesta_Key_Beach._Sarasota_-_panoramio_-_4net_(3).jpg",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3176,17 +3463,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Norwich,_Connecticut_2.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "ocala-florida",
-   "title": "OcalaFLMontage",
-   "author": "Excel23",
-   "source_url": "https://commons.wikimedia.org/wiki/File:OcalaFLMontage.png",
+   "title": "Silver Springs State Park - Glass-Bottom Boats 2017",
+   "author": "Jackdude101",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Silver_Springs_State_Park_-_Glass-Bottom_Boats_2017.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3196,17 +3483,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Odessa,_Texas.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "ogden-utah",
-   "title": "US Utah Ogden Montage",
-   "author": "Thomas Wozniak",
-   "source_url": "https://commons.wikimedia.org/wiki/File:US_Utah_Ogden_Montage.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Ogden Utah downtown",
+   "author": "Scott Catron from Sandy, Utah, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ogden_Utah_downtown.jpg",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3216,17 +3503,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Oklahoma_city_downtown.JPG",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "olympia-washington",
-   "title": "Capitol Lake, Olympia, Washington, July 20, 2025 (cropped)",
-   "author": "OceanLoop",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Capitol_Lake,_Olympia,_Washington,_July_20,_2025_(cropped).jpg",
+   "title": "MK03165 Washington State Capitol (Olympia)",
+   "author": "Martin Kraft",
+   "source_url": "https://commons.wikimedia.org/wiki/File:MK03165_Washington_State_Capitol_(Olympia).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3236,17 +3523,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:City_of_Omaha,_Nebraska_Skyline_on_the_Missouri_River_(30899969517).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "orlando-florida",
-   "title": "Orlando, Florida (cropped)",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Orlando,_Florida_(cropped).jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "South Eola, Orlando, FL 32801, USA - panoramio (1)",
+   "author": "nick hoke",
+   "source_url": "https://commons.wikimedia.org/wiki/File:South_Eola,_Orlando,_FL_32801,_USA_-_panoramio_(1).jpg",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3256,7 +3543,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Oshkosh,_Wisconsin,_in_2006.jpg",
    "license": "CC BY-SA 2.5",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3266,17 +3553,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Owensboro2ndStAnn.JPG",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "oxnard-california",
-   "title": "Embassy Suites Lobby Front, Oxnard, CA,USA May 2009 - panoramio (cropped)",
-   "author": "Tori Sloane",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Embassy_Suites_Lobby_Front,_Oxnard,_CA,USA_May_2009_-_panoramio_(cropped).jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Channel Islands, Oxnard, CA 93035, USA - panoramio - Sergei Gussev (1)",
+   "author": "Sergei Gussev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Channel_Islands,_Oxnard,_CA_93035,_USA_-_panoramio_-_Sergei_Gussev_(1).jpg",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3286,17 +3573,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Broadway_-_Paducah,_Kentucky.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "palm-bay-florida",
-   "title": "PalmBayFL2020",
+   "title": "PalmBayFLBay",
    "author": "Excel23",
-   "source_url": "https://commons.wikimedia.org/wiki/File:PalmBayFL2020.png",
+   "source_url": "https://commons.wikimedia.org/wiki/File:PalmBayFLBay.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3306,7 +3593,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Panama_City_FL_City_Hall.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3316,17 +3603,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Boreman_view.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "pensacola-florida",
-   "title": "Collage of images from around Pensacola",
-   "author": "Dom Price (Skyline Photo) Ebyabe (Photos of the Customhouse and Plaza Ferdinand Only), Thomas Baxter (Photo of library at UWF), Naval Air Museum & TT Wentworth (Public Domain)",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Collage_of_images_from_around_Pensacola.jpg",
-   "license": "Public domain",
-   "license_url": null,
-   "cropped": false
+   "title": "The beach at Gulf Pier in Pensacola Beach, Florida",
+   "author": "TimothyJ",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_beach_at_Gulf_Pier_in_Pensacola_Beach,_Florida.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
+  },
+  {
+   "page": "city",
+   "key": "peoria-illinois",
+   "title": "Peoria Illinois Skyline (cropped) (cropped)",
+   "author": "Scott Tranchitella from West Peoria, Illinois, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Peoria_Illinois_Skyline_(cropped)_(cropped).jpg",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3336,7 +3633,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Philadelphia_skyline_20240528_(cropped_2-1).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3346,7 +3643,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Phoenix_Aerial_Looking_Northeast.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3356,17 +3653,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mystic_Cottage_(Pinehurst,_North_Carolina)_001.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "pittsburgh-pennsylvania",
-   "title": "Ascending the Duquesne Incline",
+   "title": "Downtown Pittsburgh from Duquesne Incline in the morning",
    "author": "Dllu",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Ascending_the_Duquesne_Incline.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Pittsburgh_from_Duquesne_Incline_in_the_morning.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3376,17 +3673,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Pittsfield,_Massachusetts_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "port-st-lucie-florida",
-   "title": "Psl golf course",
-   "author": "Zverzver (talk)",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Psl_golf_course.jpg",
-   "license": "Public domain",
-   "license_url": null,
-   "cropped": false
+   "title": "Gazebo at Lake Tradition in Port St Lucie FL",
+   "author": "Dough4872",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gazebo_at_Lake_Tradition_in_Port_St_Lucie_FL.jpeg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3396,7 +3693,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:TheOldPort.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3406,7 +3703,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Portland_Oregon_Aerial,_June_2025.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3416,27 +3713,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Prescott_Valley_civic_center.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "providence-rhode-island",
-   "title": "Providence RI skyline",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Providence_RI_skyline.jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Providence Rhode Island skyline 2017",
+   "author": "Kenneth C. Zirkel",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Providence_Rhode_Island_skyline_2017.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "provo-utah",
-   "title": "Downtown Provo",
-   "author": "Javin Weaver",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Provo.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Historic Utah County Courthouse 03",
+   "author": "Farragutful",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Historic_Utah_County_Courthouse_03.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3446,7 +3743,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Pueblo,_Colorado.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3456,7 +3753,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Punta_Gorda_City_Hall.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3466,7 +3763,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:City_of_Racine_Monument_Square.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3476,7 +3773,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Raleigh_Skyline.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3486,7 +3783,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Rapid_City_Skyline_(2022).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3496,7 +3793,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:ReadingPennsylvaniaSkyline.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3506,7 +3803,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Sundial_Bridge_at_Turtle_Bay_(cropped).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3516,7 +3813,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Reno,_Nevada_(16931715632).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3526,7 +3823,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:A_downtown_view_of_Richmond,_VA.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3536,17 +3833,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mission_Inn%27s_main_interior_courtyard.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "roanoke-virginia",
-   "title": "Roanoke City (Virginia) from Mill Mountain Star at Dusk",
-   "author": "Joe Ravi",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Roanoke_City_(Virginia)_from_Mill_Mountain_Star_at_Dusk.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Roanoke, Virginia viewed from Mill Mountain",
+   "author": "SchuminWeb",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Roanoke,_Virginia_viewed_from_Mill_Mountain.jpg",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3556,27 +3853,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Rochester,_MN-Peace_Plaza.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "rochester-new-york",
-   "title": "Downtown Rochester, NY HDR by patrickashley",
-   "author": "Patrick Ashley",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Rochester,_NY_HDR_by_patrickashley.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Rochester High Falls",
+   "author": "Evilarry",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rochester_High_Falls.jpg",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
    "key": "rockford-illinois",
-   "title": "East State Street in downtown Rockford",
+   "title": "Overview of eastern downtown Rockford",
    "author": "Alexbaumgarner",
-   "source_url": "https://commons.wikimedia.org/wiki/File:East_State_Street_in_downtown_Rockford.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Overview_of_eastern_downtown_Rockford.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3586,7 +3883,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:RM_CityLake.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3596,7 +3893,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Rome_GA_viewed_from_Myrtle_Hill_Cemetery,_Nov_2017.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3606,7 +3903,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Sacramento,_CA_skyline_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3616,27 +3913,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Saginaw,_Michigan_Skyline_(2022).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "salem-oregon",
-   "title": "Salem Oregon downtown",
+   "title": "Oregon State Capitol 1",
    "author": "M.O. Stevens",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Salem_Oregon_downtown.JPG",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "source_url": "https://commons.wikimedia.org/wiki/File:Oregon_State_Capitol_1.jpg",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
    "key": "salinas-california",
-   "title": "Monterey County Courthouse 2018 Salinas CA (1)",
-   "author": "Sgerbic",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Monterey_County_Courthouse_2018_Salinas_CA_(1).jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "Main Street, Salinas",
+   "author": "Naotake Murayama",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Main_Street,_Salinas.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3646,7 +3943,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Salisbury_MD_Main_Street.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3656,7 +3953,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:SLC_Skyline_2024.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3666,17 +3963,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:San_Angelo_September_2019_03_(San_Angelo_City_Hall).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "san-antonio-texas",
-   "title": "San Antonio Botanical Garden Overlook View",
-   "author": "Jouaienttoi",
-   "source_url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Botanical_Garden_Overlook_View.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "San Antonio Riverwalk, San Antonio, Texas (50187302062)",
+   "author": "Nicolas Henderson from Coppell, Texas",
+   "source_url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Riverwalk,_San_Antonio,_Texas_(50187302062).jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3686,17 +3983,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:La_Jolla_Shores_view_(cropped).jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "san-francisco-california",
-   "title": "Zeppelin-ride-020100925-195 (5029394846)",
-   "author": "Craig Howell from San Carlos, CA, USA",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Zeppelin-ride-020100925-195_(5029394846).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "GoldenGateBridge-001",
+   "author": "Rich Niewiroski Jr.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:GoldenGateBridge-001.jpg",
+   "license": "CC BY 2.5",
+   "license_url": "https://creativecommons.org/licenses/by/2.5",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3706,7 +4003,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Valencia_Hotel,_Santana_Row_(cropped).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3716,7 +4013,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mission_San_Luis_Obispo_(cropped).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3726,17 +4023,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:City_of_Sandusky_Downtown.png",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "santa-cruz-california",
-   "title": "Mission Santa Cruz (8321945663)",
-   "author": "Don DeBold from San Jose, CA, USA",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Mission_Santa_Cruz_(8321945663).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "Park at the beach - panoramio",
+   "author": "Vadim Manuylov",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Park_at_the_beach_-_panoramio.jpg",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3746,17 +4043,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Palace_of_the_Governors.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
+  },
+  {
+   "page": "city",
+   "key": "santa-maria-california",
+   "title": "Vineyard and hills (Unsplash)",
+   "author": "Tim Mossholder timmossholder",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Vineyard_and_hills_(Unsplash).jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "santa-rosa-california",
-   "title": "Old Santa Rosa Post Office, Downtown Santa Rosa,2",
-   "author": "Wulfnoth of English Wikipedia",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Old_Santa_Rosa_Post_Office,_Downtown_Santa_Rosa,2.jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "title": "DowntownSquare",
+   "author": "Thedbutler",
+   "source_url": "https://commons.wikimedia.org/wiki/File:DowntownSquare.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3766,7 +4073,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:The_Fountain_at_Forsyth.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3776,7 +4083,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Scranton_-_Downtown_(48472890492).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3786,7 +4093,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Seattle_Center_as_night_falls.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3796,7 +4103,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Sebastian_FL_city_hall01.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3806,7 +4113,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Sheboygan_Riverfront.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3816,7 +4123,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Shermancourthouse1.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3826,7 +4133,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Shreveport_LA,_USA_-_panoramio_(6).jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3836,7 +4143,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Woodbury_County_Courthouse,_Douglas_Street_and_7th_Street,_Sioux_City,_IA_-_53712470546.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3846,37 +4153,37 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_and_Falls_Park_03-16-24.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "slidell-louisiana",
-   "title": "Heritage Park Slidell, La",
-   "author": "jahebert 7",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Heritage_Park_Slidell,_La.jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "title": "DepoHDR",
+   "author": "Willam Blackwell",
+   "source_url": "https://commons.wikimedia.org/wiki/File:DepoHDR.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
    "key": "south-bend-indiana",
-   "title": "Downtown South Bend",
-   "author": "Scott Palmer",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_South_Bend.jpg",
+   "title": "Main Building at the University of Notre Dame",
+   "author": "Matthew Rice",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Main_Building_at_the_University_of_Notre_Dame.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "spartanburg-south-carolina",
-   "title": "Love Where You Live mural in downtown Spartanburg",
+   "title": "Palmetto Building - Spartanburg",
    "author": "PegasusRacer28",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Love_Where_You_Live_mural_in_downtown_Spartanburg.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3886,7 +4193,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Spokane,_Washington_skyline_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3896,7 +4203,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Dana-Thomas_House,_Lawrence_Avenue_and_4th_Street,_Springfield,_IL_-_53322374502.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3906,17 +4213,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Springfield,_MA.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "springfield-missouri",
-   "title": "Downtown Springfield, MO and Hammons Field",
-   "author": "Raschmidt87",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Springfield,_MO_and_Hammons_Field.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "ParkCentralSquarefountainbyCVBCS",
+   "author": "CVBCS (uploaded by Joelfun)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ParkCentralSquarefountainbyCVBCS.jpg",
+   "license": "Free Art License",
+   "license_url": "http://artlibre.org/licence/lal/en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -3926,7 +4233,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Springfield,_Ohio_2021.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3936,7 +4243,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_St_Cloud_(cropped).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3946,7 +4253,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:EM_ST._GEORGE,_UTAH_(2624012794).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3956,7 +4263,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Buchanan_County_Courthouse_St_Joseph_Missouri.jpg",
    "license": "CC BY-SA 2.5",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3966,7 +4273,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Runner_Fountain_and_Old_Courthouse_and_Arch_(5618845531).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3976,7 +4283,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_sc.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -3986,17 +4293,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Frederick_Street.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "stockton-california",
-   "title": "Aerial view of Stockton, California skyline",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Stockton,_California_skyline.jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Downtown Stockton California",
+   "author": "LPS.1",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Stockton_California.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -4006,7 +4313,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Sumter_2010.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4016,17 +4323,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Syracuse,_New_York_skyline_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "tallahassee-florida",
-   "title": "Florida Supreme Court 2022",
-   "author": "Urbantallahassee",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Florida_Supreme_Court_2022.jpg",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "title": "The Old Florida Capitol, Tallahassee, Public Domain",
+   "author": "Civil10",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Old_Florida_Capitol,_Tallahassee,_Public_Domain.jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "cropped": true
   },
   {
    "page": "city",
@@ -4036,7 +4343,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Tampa,_Florida.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4046,7 +4353,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Terre_Haute,_Indiana_city_hall.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4056,17 +4363,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Texarkana_April_2016_002_(Texarkana_Texas_City_Hall).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "toledo-ohio",
-   "title": "Toledo Museum of Art exterior, Art Museum Dr entrance",
-   "author": "Jason Zhang",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Toledo_Museum_of_Art_exterior,_Art_Museum_Dr_entrance.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Anthony Wayne Bridge, Toledo, OH from Middlegrounds Metropark with Skyline",
+   "author": "Limpfster94",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -4076,7 +4383,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Kansas_Capitol.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4086,7 +4393,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Grand_Traverse_County_Courthouse.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4096,7 +4403,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Trenton,_New_Jersey_(cropped).jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4106,17 +4413,27 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Tucson_from_Sentinel_Peak_2.jpg",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "tulsa-oklahoma",
-   "title": "Tulsa skyline aerial, April 2023",
-   "author": "Nils Huenerfuerst",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Tulsa_skyline_aerial,_April_2023.jpg",
+   "title": "Tulsa Skyline",
+   "author": "Caleb Long",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tulsa_Skyline.jpg",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+   "cropped": true
+  },
+  {
+   "page": "city",
+   "key": "tuscaloosa-alabama",
+   "title": "Bryant–Denny Stadium, Tuscaloosa AL, North view 20160714 1",
+   "author": "DXR",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bryant%E2%80%93Denny_Stadium,_Tuscaloosa_AL,_North_view_20160714_1.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4126,7 +4443,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Twin_Falls,_ID.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4136,17 +4453,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Tyler_May_2016_42_(People%27s_Petroleum_Building_and_Plaza_Tower).jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "utica-new-york",
-   "title": "Utica, New York skyline",
-   "author": "Quintin Soloviev",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Utica,_New_York_skyline.jpg",
-   "license": "CC BY 4.0",
-   "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "title": "Utica, New York - 09 - street clock at Genesee and Washington Streets - 20210828",
+   "author": "Andre Carrotflower",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Utica,_New_York_-_09_-_street_clock_at_Genesee_and_Washington_Streets_-_20210828.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -4156,17 +4473,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Valdosta_GA_Comm_Hist_Dist03.jpg",
    "license": "CC BY-SA 2.5",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "vallejo-california",
-   "title": "Vallejo City Hall and County Building Branch, 734 Marin St., Vallejo, CA 4-21-2013 2-17-21 PM",
-   "author": "Sanfranman59",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Vallejo_City_Hall_and_County_Building_Branch,_734_Marin_St.,_Vallejo,_CA_4-21-2013_2-17-21_PM.JPG",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "The ferry is seen from the Vallejo waterfront",
+   "author": "Kiddo27",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_ferry_is_seen_from_the_Vallejo_waterfront.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "cropped": true
   },
   {
    "page": "city",
@@ -4176,7 +4493,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Goingtovic.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4186,7 +4503,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Vineland_Downtown.JPG",
    "license": "Public domain",
    "license_url": null,
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4196,17 +4513,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:VB_Oceanfront.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "visalia-california",
-   "title": "Visalia Tranist Center 2011 (cropped)",
-   "author": "VISALIA2010",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Visalia_Tranist_Center_2011_(cropped).jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Teatro Visalia",
+   "author": "Visalia Convention & Visitors Bureau",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Teatro_Visalia.jpg",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -4216,7 +4533,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Obligatory_waco_suspension_bridge_photo.jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4226,7 +4543,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Second_and_Main_in_Walla_Walla.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4236,17 +4553,17 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Warner_Robins_City_Hall.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
    "key": "washington-district-of-columbia",
-   "title": "12-07-13-washington-by-RalfR-08",
-   "author": "Ralf Roletschek (talk) - Infos über Fahrräder auf fahrradmonteur.de  Wikis in der Ausbildung",
-   "source_url": "https://commons.wikimedia.org/wiki/File:12-07-13-washington-by-RalfR-08.jpg",
-   "license": "CC BY-SA 3.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "title": "Capitol Building Full View",
+   "author": "Noclip",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Capitol_Building_Full_View.jpg",
+   "license": "Public domain",
+   "license_url": null,
+   "cropped": true
   },
   {
    "page": "city",
@@ -4256,7 +4573,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Waterbury,_Connecticut_3.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4266,7 +4583,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Waterloo,_Iowa_(2014)_(cropped).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4276,7 +4593,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Public_Square,_Watertown,_New_York.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4286,7 +4603,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:2009-0620-WI017-Wausau-400block.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4296,7 +4613,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Looking_south_down_Main_Street_in_downtown_Weirton,_West_Virginia,_05-25-2025.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4306,7 +4623,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Wenatchee_WA_2009.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4316,7 +4633,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:West_Virginia_Independence_Hall.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4326,7 +4643,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Reproduction_Waterfall_Wichita_Falls.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4336,7 +4653,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Wichita,_Kansas_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4346,7 +4663,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Wildwood_city_hall_and_fountain_wildwood_florida.jpg",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4356,7 +4673,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:BRIDGE_2024-05-07_Cape_Fear_Memorial_Bridge_Press_Conf-831-155_(cropped).jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4366,7 +4683,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Loudoun_Street_Mall.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4376,7 +4693,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Winston-Salem_skyline.jpg",
    "license": "CC0",
    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4386,7 +4703,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Worcester,_Massachusetts.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4396,7 +4713,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Yakima,_Washington_skyline.jpg",
    "license": "CC BY 4.0",
    "license_url": "https://creativecommons.org/licenses/by/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4406,7 +4723,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:York,_Pennsylvania_(65).jpg",
    "license": "CC BY-SA 2.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4416,7 +4733,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Mill_Creek_Park_Lanterman%27s_Mill.jpg",
    "license": "CC BY-SA 4.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4426,7 +4743,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Yuba_City.jpg",
    "license": "CC BY 2.0",
    "license_url": "https://creativecommons.org/licenses/by/2.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "city",
@@ -4436,7 +4753,7 @@
    "source_url": "https://commons.wikimedia.org/wiki/File:Old_Yuma_City_Hall.jpg",
    "license": "CC BY-SA 3.0",
    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-   "cropped": false
+   "cropped": true
   },
   {
    "page": "stat",

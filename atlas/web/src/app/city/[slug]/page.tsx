@@ -20,7 +20,7 @@ import { CrimeCards } from "@/components/crime-cards";
 import { PoliticalLeanCard } from "@/components/political-lean";
 import { toneSeg, toneText } from "@/lib/tones";
 import { pageMetadata, pageTitle } from "@/lib/chrome";
-import { croppable, IMAGES, onDisk } from "@/lib/city-photos";
+import { IMAGES, onDisk } from "@/lib/city-photos";
 import type { Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const metro = meta.metros.find((m) => m.slug === slug);
   if (!metro) return {};
   const img = IMAGES[slug];
-  const image = img && croppable(img.license) && onDisk(img) ? `/cities/${img.file}` : undefined;
+  const image = img && onDisk(img) ? `/cities/${img.file}` : undefined;
   return pageMetadata(pageTitle(metro.display_name), metro.description, `/city/${slug}`, image);
 }
 

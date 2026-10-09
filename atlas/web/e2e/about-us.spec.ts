@@ -111,8 +111,8 @@ test("the photographs' list credits what the site shows, the cropped ones marked
   // Phase 5 (Nathan's decision 1): the home page has no photograph band,
   // so its credit left; the credits the page owes are every stat and city
   // photograph on disk (gitignored: a fresh checkout — CI's — owes none),
-  // a public-domain or CC0 city photograph marked cropped (the home
-  // page's cards crop it)
+  // every city photograph marked cropped (after the Phase 5 report the
+  // home page's cards and the city page's band crop them all)
   type Img = { file: string; license: string };
   const cities = Object.values(cityImages as unknown as Record<string, Img>)
     .filter((i) => photoOnDisk(`cities/${i.file}`));
@@ -138,7 +138,6 @@ test("the photographs' list credits what the site shows, the cropped ones marked
   await more.locator("summary").click();
   for (const img of cities) {
     const li = more.locator(`[data-credit="${img.file}"]`);
-    if (/public domain|cc0/i.test(img.license)) await expect(li).toContainText(`· ${ps.credits_cropped}`);
-    else await expect(li).not.toContainText(`· ${ps.credits_cropped}`);
+    await expect(li).toContainText(`· ${ps.credits_cropped}`);
   }
 });

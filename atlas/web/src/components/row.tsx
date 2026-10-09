@@ -46,9 +46,8 @@ export function ScoreTrack({ score, className, median, medianCaption }: {
   );
 }
 
-/** Phase 5: one of the top three, as a card — the city's photograph
- * (cover-cropped where its licence allows, public domain or CC0; shown
- * whole otherwise — never the locator map, after the Phase 5 report), a
+/** Phase 5: one of the top three, as a card — the city's photograph,
+ * cover-cropped (never the locator map, after the Phase 5 report), a
  * rank medallion (amber for the top three ranks), the city, the score out
  * of 100 with its track, the pool, and the chips. The photograph links to
  * the city's page too, as the name does (a second, mouse-only route: out
@@ -88,9 +87,8 @@ export function FeaturedCard({
           <img
             src={photo.src}
             alt=""
-            className={`h-full w-full transition-transform duration-300 group-hover:scale-[1.03] ${photo.fit === "cover" ? "object-cover" : "object-contain"}`}
+            className="h-full w-full object-cover object-[50%_35%] transition-transform duration-300 group-hover:scale-[1.03]"
             data-testid="card-photo"
-            data-fit={photo.fit}
           />
         )}
         <span

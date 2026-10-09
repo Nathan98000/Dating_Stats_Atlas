@@ -303,14 +303,23 @@ def source_stat(fid: str, cands: list[str], retrieved: str) -> tuple[dict, dict 
     return row, entry
 
 
-def source_external(fid: str, ext: dict, retrieved: str) -> tuple[dict, dict | None]:
-    """A stat page's photograph from outside Commons, as the review records
-    it: the file on disk must be exactly the recorded bytes (sha256) — a
-    file already there under the page's name is replaced unless it is —
-    fetched from the record's image link, or its archived copy."""
-    suffix = "." + ext["image_url"].rsplit(".", 1)[-1].split("?")[0].lower()
+def external_suffix(image_url: str) -> str:
+    """The file extension a pinned outside photograph is saved under."""
+    suffix = "." + image_url.split("?")[0].rsplit(".", 1)[-1].lower()
     suffix = {".jpeg": ".jpg"}.get(suffix, suffix)
-    dest = WEB / "public" / "stats" / f"{fid}{suffix}"
+    return suffix if suffix in (".jpg", ".png", ".webp") else ".jpg"
+
+
+def source_external(fid: str, ext: dict, retrieved: str,
+                    page: str = "stat") -> tuple[dict, dict | None]:
+    """A photograph from outside Commons, as the review records it — a stat
+    page's (2026-10-07) or, after the Phase 5 report (Nathan, 2026-10-08:
+    the most representative photograph of each city, from any source), a
+    city's: the file on disk must be exactly the recorded bytes (sha256) —
+    a file already there under the page's name is replaced unless it is —
+    fetched from the record's image link, or its archived copy."""
+    suffix = external_suffix(ext["image_url"])
+    dest = WEB / "public" / ("stats" if page == "stat" else "cities") / f"{fid}{suffix}"
     if not (dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest() == ext["sha256"]):
         for url in (ext["image_url"], ext.get("fallback_image_url")):
             if not url:
@@ -325,16 +334,16 @@ def source_external(fid: str, ext: dict, retrieved: str) -> tuple[dict, dict | N
                 dest.write_bytes(r.content)
                 break
         else:
-            return {"stat": fid, "status": "external_file_unavailable"}, None
-    row = {"stat": fid, "status": "ok", "page_title": None, "file_title": None,
+            return {page: fid, "status": "external_file_unavailable"}, None
+    row = {page: fid, "status": "ok", "page_title": None, "file_title": None,
            "source_url": ext["source_url"], "image_url": ext["image_url"],
            "author": ext["author"], "license": ext["license"],
-           "license_url": ext["license_url"], "retrieved": retrieved,
+           "license_url": ext.get("license_url"), "retrieved": retrieved,
            "sha256": ext["sha256"], "file": dest.name}
     entry = {"file": dest.name, "alt": ext["alt"], "author": ext["author"],
-             "license": ext["license"], "license_url": ext["license_url"],
+             "license": ext["license"], "license_url": ext.get("license_url"),
              "source_url": ext["source_url"], "title": ext["title"],
-             "cropped": CROPPED["stat"]}
+             "cropped": CROPPED[page]}
     return row, entry
 
 
@@ -379,6 +388,17 @@ def main() -> None:
     for n, (_, m) in enumerate(cm.iterrows()):
         city = m["display_name_full"].split(",")[0].strip()
         state = m["state_full"]
+        # after the Phase 5 report: a city photograph from outside Commons,
+        # pinned by its bytes in the review
+        ext = REVIEW_EXTERNAL.get(("city", m["slug"]))
+        if ext:
+            row, entry = source_external(m["slug"], ext, retrieved, page="city")
+            rows.append({"cbsa": m["cbsa"], "slug": m["slug"], **{k: v for k, v in row.items() if k != "city"}})
+            if entry:
+                render[m["slug"]] = entry
+            else:
+                reasons[row["status"]] = reasons.get(row["status"], 0) + 1
+            continue
         pin = REVIEW_PINNED.get(("city", m["slug"]))
         rec, reason = source_file(pin) if pin else source_one([f"{city}, {state}", city])
         if not rec:

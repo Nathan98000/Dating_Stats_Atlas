@@ -21,7 +21,7 @@ export const SITE_DESCRIPTION =
 export const SITE_URL = process.env.SITE_URL ?? "https://dating-stats-atlas.duckdns.org";
 
 /** A page's <title>, description and Open Graph tags (og:title,
- * og:description, og:url, and og:image where the page has a croppable
+ * og:description, og:url, and og:image where the page has a
  * photograph). */
 export function pageMetadata(title: string, description: string, url: string, image?: string) {
   return {

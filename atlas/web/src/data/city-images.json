@@ -2,7 +2,7 @@
 "abilene-texas": {
 "alt": "image",
 "author": "Atownbman",
-"cropped": false,
+"cropped": true,
 "file": "abilene-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -10,9 +10,9 @@
 "title": "Abilene-skyline"
 },
 "akron-ohio": {
-"alt": "Stan Hywet Hall, Akron, Ohio \n\n\n\n\n\n\nThis is an image of a place or building that is listed on the National Register of Historic Places in the United States of A",
+"alt": "Stan Hywet Hall's Tudor Revival brick manor and green lawn in Akron on a sunny day.",
 "author": "Brandon Bisel",
-"cropped": false,
+"cropped": true,
 "file": "akron-ohio.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -22,7 +22,7 @@
 "albany-georgia": {
 "alt": "Albany Railroad Depot Historic District, E. Roosevelt Ave. Albany. Albany Railroad Historic District Buildings",
 "author": "Michael Rivera",
-"cropped": false,
+"cropped": true,
 "file": "albany-georgia.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -30,9 +30,9 @@
 "title": "Albany Railroad Historic District Buildings"
 },
 "albany-new-york": {
-"alt": "Skyline of downtown Albany, New York (pop. 99,224), the capital city of the U.S. state of New York.",
+"alt": "Downtown Albany's skyline, with the Empire State Plaza towers and the Capitol, rising above the Hudson River on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "albany-new-york.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -42,7 +42,7 @@
 "albany-oregon": {
 "alt": "Albany, Oregon looking west down 1st Ave SW in the summer of 2014",
 "author": "Edfallere",
-"cropped": false,
+"cropped": true,
 "file": "albany-oregon.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -50,19 +50,19 @@
 "title": "Albany, Oregon looking west down 1st Ave SW in the summer of 2014"
 },
 "albuquerque-new-mexico": {
-"alt": "The skyline of downtown Albuquerque, New Mexico. The city is home to 564,000 residents and is the 32nd most populous city in the U.S.",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "Downtown Albuquerque's skyline beneath the sunlit Sandia Mountains under dramatic clouds.",
+"author": "BrandonStephenson",
+"cropped": true,
 "file": "albuquerque-new-mexico.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Albuquerque,_New_Mexico_skyline.jpg",
-"title": "Albuquerque, New Mexico skyline"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Albuquerque,_New_Mexico_(31780770537).jpg",
+"title": "Downtown Albuquerque, New Mexico (31780770537)"
 },
 "alexandria-louisiana": {
 "alt": "Downtown Third Street in Alexandria, LA",
 "author": "Billy Hathorn",
-"cropped": false,
+"cropped": true,
 "file": "alexandria-louisiana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -70,9 +70,9 @@
 "title": "Downtown Third Street in Alexandria, LA IMG 4316"
 },
 "allentown-pennsylvania": {
-"alt": "Aerial view of downtown Allentown, Pennsylvania, a city of 125,845 residents and the third-largest city in the state, serving as the commercial center of the Le",
+"alt": "Downtown Allentown’s skyline with the Art Deco PPL Building and the arched Eighth Street Bridge above green parkland on a sunny day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "allentown-pennsylvania.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -82,7 +82,7 @@
 "altoona-pennsylvania": {
 "alt": "Aerial view of Altoona, Pennsylvania, a city of 43,963 residents developed as a major Pennsylvania Railroad center and today serving as a regional hub for healt",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "altoona-pennsylvania.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -90,19 +90,19 @@
 "title": "Altoona, Pennsylvania"
 },
 "amarillo-texas": {
-"alt": "A shot of downtown Amarillo, Texas, U.S.A.",
-"author": "Who What Where Nguyen Why a/k/a Anonymous Cow",
-"cropped": false,
+"alt": "Historic brick Fisk Building rising over Polk Street and older storefronts in downtown Amarillo under a blue sky.",
+"author": "Ammodramus",
+"cropped": true,
 "file": "amarillo-texas.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-"source_url": "https://commons.wikimedia.org/wiki/File:Amarillo_Texas_Downtown.jpg",
-"title": "Amarillo Texas Downtown"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
+"title": "Marriott Courtyard Downtown Amarillo from SSE 2"
 },
 "ames-iowa": {
 "alt": "Iowa State University",
 "author": "Dirk DBQ",
-"cropped": false,
+"cropped": true,
 "file": "ames-iowa.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -110,19 +110,19 @@
 "title": "Reiman Gardens 33"
 },
 "anchorage-alaska": {
-"alt": "The skyline of downtown Anchorage, Alaska. Home to 291,247 residents, it's the largest city in Alaska and contains nearly 40 percent of the state's population.",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "Downtown Anchorage's towers beneath the snow-covered Chugach Mountains, seen across icy water on a clear winter day.",
+"author": "Luke Jones",
+"cropped": true,
 "file": "anchorage-alaska.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Anchorage,_Alaska_skyline.jpg",
-"title": "Anchorage, Alaska skyline"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Anchorage_Downtown.jpg",
+"title": "Anchorage Downtown"
 },
 "ann-arbor-michigan": {
-"alt": "law school",
+"alt": "Snow-covered lawns and the Gothic stone Law Quadrangle of the University of Michigan in Ann Arbor on a sunny winter day.",
 "author": "Flavinista",
-"cropped": false,
+"cropped": true,
 "file": "ann-arbor-michigan.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -132,7 +132,7 @@
 "anniston-alabama": {
 "alt": "This is a photo of downtown Anniston, Alabama.",
 "author": "Rivers Langley; SaveRivers",
-"cropped": false,
+"cropped": true,
 "file": "anniston-alabama.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -142,7 +142,7 @@
 "appleton-wisconsin": {
 "alt": "This was taken from the fox river in 2015.",
 "author": "Jasperthedog28",
-"cropped": false,
+"cropped": true,
 "file": "appleton-wisconsin.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -152,7 +152,7 @@
 "asheville-north-carolina": {
 "alt": "Downtown Asheville, North Carolina, at dusk",
 "author": "Michael Tracey",
-"cropped": false,
+"cropped": true,
 "file": "asheville-north-carolina.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -162,7 +162,7 @@
 "athens-georgia": {
 "alt": "City Hall in Athens, Georgia, US",
 "author": "Jud McCranie",
-"cropped": false,
+"cropped": true,
 "file": "athens-georgia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -170,9 +170,9 @@
 "title": "Athens Georgia City Hall 1"
 },
 "atlanta-georgia": {
-"alt": "Midtown and Downtown Atlanta",
+"alt": "The skyline of Midtown and Downtown Atlanta rising above trees and the Downtown Connector under a partly cloudy sky.",
 "author": "AtlChampion",
-"cropped": false,
+"cropped": true,
 "file": "atlanta-georgia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -180,9 +180,9 @@
 "title": "A2ATL20250614-0721 (cropped)"
 },
 "atlantic-city-new-jersey": {
-"alt": "A sunset view of the beach in Atlantic City, NJ",
+"alt": "The beach and surf at sunset with Atlantic City's lit casino towers along the shore.",
 "author": "Bruce Emmerling",
-"cropped": false,
+"cropped": true,
 "file": "atlantic-city-new-jersey.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -192,7 +192,7 @@
 "auburn-alabama": {
 "alt": "This is a picture of Auburn City Hall in Auburn, Alabama, built in 1933, is the city hall of Auburn, Alabama.",
 "author": "Rivers Langley SaveRivers",
-"cropped": false,
+"cropped": true,
 "file": "auburn-alabama.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -202,7 +202,7 @@
 "augusta-georgia": {
 "alt": "Downtown Augusta, Georgia as seen across the Savannah River, on the Fifth Street Bridge.",
 "author": "c_live_lee",
-"cropped": false,
+"cropped": true,
 "file": "augusta-georgia.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -210,9 +210,9 @@
 "title": "Augusta, GA Downtown Skyline 2017"
 },
 "austin-texas": {
-"alt": "The skyline of Austin, the capital city of Texas. With a population of 961,855, it's the 13th-most populous city in the U.S.",
+"alt": "Downtown Austin's high-rises along Lady Bird Lake on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "austin-texas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -220,29 +220,29 @@
 "title": "Skyline of Austin, Texas (cropped)"
 },
 "bakersfield-california": {
-"alt": "The Fox Theater, Bakersfield, California, USA.",
-"author": "Bobak Ha'Eri",
-"cropped": false,
+"alt": "The Fox Theater's clock tower and marquee glowing in late-afternoon sun on a downtown street corner in Bakersfield.",
+"author": "Daderot",
+"cropped": true,
 "file": "bakersfield-california.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:2009-0726-CA-Bakersfield-FoxTheater_(cropped).jpg",
-"title": "2009-0726-CA-Bakersfield-FoxTheater (cropped)"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Fox_Theater_-_Bakersfield,_CA_-_DSC00484.jpg",
+"title": "Fox Theater - Bakersfield, CA - DSC00484"
 },
 "baltimore-maryland": {
-"alt": "An aerial photograph of the Fell's Point waterfront in Baltimore, in June 2022 at sunset.",
-"author": "Matthew Binebrink",
-"cropped": false,
+"alt": "Boats moored in Baltimore's Inner Harbor below the downtown skyline on a clear, sunny day.",
+"author": "Oldlinestate",
+"cropped": true,
 "file": "baltimore-maryland.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Fell%27s_Point_Aerial_2022.jpg",
-"title": "Fell's Point Aerial 2022"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Bmoreharbor.JPG",
+"title": "Bmoreharbor"
 },
 "bangor-maine": {
 "alt": "Skyline of Bangor, Maine in 2025",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "bangor-maine.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -252,7 +252,7 @@
 "barnstable-town-massachusetts": {
 "alt": "Barnstable County Courthouse, Barnstable Massachusetts",
 "author": "John Phelan",
-"cropped": false,
+"cropped": true,
 "file": "barnstable-town-massachusetts.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -260,19 +260,19 @@
 "title": "Barnstable County Courthouse, Barnstable MA"
 },
 "baton-rouge-louisiana": {
-"alt": "Downtown Baton Rouge, Louisiana from Tiger Stadium (LSU)",
-"author": "Spatms",
-"cropped": false,
+"alt": "The white Gothic Revival Old Louisiana State Capitol, with its castle-like turrets, in warm sunlight in downtown Baton Rouge.",
+"author": "xiquinhosilva",
+"cropped": true,
 "file": "baton-rouge-louisiana.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Baton_Rouge,_Louisiana_from_Tiger_Stadium_(LSU).jpg",
-"title": "Downtown Baton Rouge, Louisiana from Tiger Stadium (LSU)"
+"license": "CC BY 4.0",
+"license_url": "https://creativecommons.org/licenses/by/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Baton_Rouge_-_Old_State_Capitol_from_the_riverfront,_April_2024.jpg",
+"title": "Baton Rouge - Old State Capitol from the riverfront, April 2024"
 },
 "battle-creek-michigan": {
 "alt": "Michigan Avenue in Battle Creek, Michigan.",
 "author": "Rickpaty",
-"cropped": false,
+"cropped": true,
 "file": "battle-creek-michigan.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -282,7 +282,7 @@
 "bay-city-michigan": {
 "alt": "Skyline of Bay City from the Saginaw River",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "bay-city-michigan.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -290,19 +290,19 @@
 "title": "Bay City, Michigan (2022)"
 },
 "beaumont-texas": {
-"alt": "Soldiers with 710th BSB conducted their expeditionary Sealift Emergency Deployment Readiness Exercise, convoying from Fort Polk, La., to the Port of Beaumont, T",
-"author": "Sgt. 1st Class E. L. Craig",
-"cropped": false,
+"alt": "Downtown Beaumont towers rising beyond the tree-lined Neches River on a clear day.",
+"author": "Wbband08 at English Wikipedia",
+"cropped": true,
 "file": "beaumont-texas.jpg",
 "license": "Public domain",
 "license_url": null,
-"source_url": "https://commons.wikimedia.org/wiki/File:Ground_Soldiers_take_to_the_Sea;_provides_Expeditionary_Sustainment_150415-A-NS540-005.jpg",
-"title": "Ground Soldiers take to the Sea; provides Expeditionary Sustainment 150415-A-NS540-005"
+"source_url": "https://commons.wikimedia.org/wiki/File:BeaumontTX.JPG",
+"title": "BeaumontTX"
 },
 "beckley-west-virginia": {
 "alt": "Aerial view of downtown Beckley, West Virginia, a city of 17,286 residents and a commercial hub for the surrounding coalfields.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "beckley-west-virginia.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -312,7 +312,7 @@
 "bellingham-washington": {
 "alt": "The skyline of downtown Bellingham, Washington (pop. 91,482), the county seat of Whatcom County.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "bellingham-washington.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -320,19 +320,19 @@
 "title": "Bellingham, Washington (cropped)"
 },
 "bend-oregon": {
-"alt": "20210803 03 Bend, Oregon",
-"author": "David Wilson",
-"cropped": false,
+"alt": "Willows and tall pines reflected in the calm water of Mirror Pond in Bend, with wildflowers on the bank and a blue summer sky.",
+"author": "Gary Halvorson, Oregon State Archives",
+"cropped": true,
 "file": "bend-oregon.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:20210803_03_Bend,_Oregon.jpg",
-"title": "20210803 03 Bend, Oregon"
+"license": "CC BY 4.0",
+"license_url": "https://creativecommons.org/licenses/by/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Drake_Park,_Mirror_Pond,_Bend_-_DPLA_-_abff0ea08438d6effa849247b6bbdfeb.jpg",
+"title": "Drake Park, Mirror Pond, Bend - DPLA - abff0ea08438d6effa849247b6bbdfeb"
 },
 "billings-montana": {
 "alt": "Billings, Montana skyline in 2024",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "billings-montana.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -342,7 +342,7 @@
 "binghamton-new-york": {
 "alt": "Skyline of Binghamton, New York, USA",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "binghamton-new-york.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -350,9 +350,9 @@
 "title": "Binghamton, New York, USA"
 },
 "birmingham-alabama": {
-"alt": "The skyline of Birmingham, Alabama, home to an estimated population of 196,357 people.",
+"alt": "Downtown Birmingham skyline under a clear blue sky, with Railroad Park and the rail line in the foreground.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "birmingham-alabama.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -362,7 +362,7 @@
 "bismarck-north-dakota": {
 "alt": "Aerial view of downtown Bismarck, North Dakota, the state capital and a city of 73,622 residents, with the North Dakota State Capitol in the background.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "bismarck-north-dakota.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -372,7 +372,7 @@
 "blacksburg-virginia": {
 "alt": "A view of Blacksburg, Virginia",
 "author": "Smash the Iron Cage",
-"cropped": false,
+"cropped": true,
 "file": "blacksburg-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -382,7 +382,7 @@
 "bloomington-illinois": {
 "alt": "City Hall Bloomington, Illinois",
 "author": "Daniel Schwen",
-"cropped": false,
+"cropped": true,
 "file": "bloomington-illinois.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -392,7 +392,7 @@
 "bloomington-indiana": {
 "alt": "Kirkwood Ave. in Bloomington, IN. http://art.alahay.org",
 "author": "Yahala",
-"cropped": false,
+"cropped": true,
 "file": "bloomington-indiana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -400,9 +400,9 @@
 "title": "Bloomington IN Kirkwood"
 },
 "boise-city-idaho": {
-"alt": "Downtown Boise in the winter of 2021",
+"alt": "Capitol Boulevard leading into downtown Boise at golden hour, with snow-dusted foothills glowing behind the towers.",
 "author": "Jyoni Shuler",
-"cropped": false,
+"cropped": true,
 "file": "boise-city-idaho.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -410,9 +410,9 @@
 "title": "Boise, Idaho"
 },
 "boston-massachusetts": {
-"alt": "Boston, Beacon Hill",
+"alt": "Brick row houses and gas lamps along a narrow cobbled lane on Boston's Beacon Hill.",
 "author": "Ian Howard",
-"cropped": false,
+"cropped": true,
 "file": "boston-massachusetts.jpg",
 "license": "CC BY 2.5",
 "license_url": "https://creativecommons.org/licenses/by/2.5",
@@ -420,19 +420,19 @@
 "title": "ISH WC Boston4"
 },
 "boulder-colorado": {
-"alt": "Pearl Street Mall in downtown Boulder, Colorado in 2009.",
-"author": "Lee Coursey",
-"cropped": false,
+"alt": "Hikers cross a golden grassy meadow below the Flatirons in Boulder on a sunny day.",
+"author": "Jeremy Thomas jeremythomasphoto",
+"cropped": true,
 "file": "boulder-colorado.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Pearl_Street_Mall.jpg",
-"title": "Pearl Street Mall"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Boulder,_United_States_(Unsplash_IPvSZvM5Elg).jpg",
+"title": "Boulder, United States (Unsplash IPvSZvM5Elg)"
 },
 "bowling-green-kentucky": {
 "alt": "Fountain Square Park in the center of Downtown Bowling Green",
 "author": "OPMaster (talk)",
-"cropped": false,
+"cropped": true,
 "file": "bowling-green-kentucky.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -442,7 +442,7 @@
 "bozeman-montana": {
 "alt": "Main Street Historic District (Springfield, Montana)",
 "author": "Chris06",
-"cropped": false,
+"cropped": true,
 "file": "bozeman-montana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -450,19 +450,19 @@
 "title": "Main St, Bozeman, Montana (1)"
 },
 "bremerton-washington": {
-"alt": "Aerial view of Bremerton, Washington, surrounded on three sides by water, out over Olympic Peninsula, facing northwest.",
-"author": "Dcoetzee",
-"cropped": false,
+"alt": "A green-and-white Washington State ferry docked at the Bremerton terminal in front of the downtown waterfront buildings.",
+"author": "Joe Mabel",
+"cropped": true,
 "file": "bremerton-washington.jpg",
-"license": "Public domain",
-"license_url": null,
-"source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Bremerton_2.jpg",
-"title": "Aerial view of Bremerton 2"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:MV_Kitsap_at_Bremerton_02.jpg",
+"title": "MV Kitsap at Bremerton 02"
 },
 "bridgeport-connecticut": {
-"alt": "Aerial view of downtown Bridgeport, Connecticut, the 5th-most populous city in New England (pop. 148,654).",
+"alt": "Downtown Bridgeport, Connecticut, from above, with its harbor and Long Island Sound beyond on a clear summer day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "bridgeport-connecticut.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -470,19 +470,19 @@
 "title": "Bridgeport, Connecticut downtown"
 },
 "brownsville-texas": {
-"alt": "These are buildings, structures and areas in Brownsville, Texas.",
-"author": "Jc161991",
-"cropped": false,
+"alt": "Arcaded brick buildings of historic Fort Brown, now a university campus, behind a wide lawn, trees and palms in Brownsville.",
+"author": "Carol M. Highsmith",
+"cropped": true,
 "file": "brownsville-texas.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Brownsville_Skyline.jpg",
-"title": "Brownsville Skyline"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Some_of_the_buildings_at_Fort_Brown_in_Brownsville,_Texas_LCCN2014630475.tif",
+"title": "Some of the buildings at Fort Brown in Brownsville, Texas LCCN2014630475"
 },
 "brunswick-georgia": {
 "alt": "Sidney Lanier Bridge",
 "author": "Hyku on Flickr",
-"cropped": false,
+"cropped": true,
 "file": "brunswick-georgia.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -490,9 +490,9 @@
 "title": "Sidney Lanier Bridge"
 },
 "buffalo-new-york": {
-"alt": "The skyline of downtown Buffalo, New York, pictured in 2023.",
+"alt": "Downtown Buffalo skyline and Sahlen Field ballpark in late-afternoon light, seen from above the waterfront.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "buffalo-new-york.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -502,7 +502,7 @@
 "burlington-north-carolina": {
 "alt": "Old AB&T Building",
 "author": "Ak1047",
-"cropped": false,
+"cropped": true,
 "file": "burlington-north-carolina.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -512,7 +512,7 @@
 "burlington-vermont": {
 "alt": "View of Church Street, a blocks-long pedestrians-only shopping and entertainment street in downtown Burlington, Vermont.",
 "author": "Carol M. Highsmith",
-"cropped": false,
+"cropped": true,
 "file": "burlington-vermont.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -520,9 +520,9 @@
 "title": "View of the Burlington Marketplace 2017-10-01"
 },
 "canton-ohio": {
-"alt": "Pro Football Hall of Fame",
+"alt": "The Pro Football Hall of Fame's white football-shaped dome and stone rotunda in Canton under a clear blue sky.",
 "author": "Erik Drost",
-"cropped": false,
+"cropped": true,
 "file": "canton-ohio.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -530,19 +530,19 @@
 "title": "Pro Football Hall of Fame (23945852607)"
 },
 "cape-coral-florida": {
-"alt": "City of Cape Coral, Florida from the air.",
-"author": "David Wilson",
-"cropped": false,
+"alt": "Tall royal palms and tropical trees lining McGregor Boulevard near downtown Fort Myers under a clear blue sky.",
+"author": "unknown",
+"cropped": true,
 "file": "cape-coral-florida.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Cape_Coral,_Florida.jpg",
-"title": "Cape Coral, Florida"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
+"title": "SR 867 McGregor Boulevard"
 },
 "cape-girardeau-missouri": {
 "alt": "Cape Girardeau downtown facing the City Hall building",
 "author": "Drowzy at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "cape-girardeau-missouri.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -552,7 +552,7 @@
 "carson-city-nevada": {
 "alt": "Aerial view of Carson City, Nevada",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "carson-city-nevada.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -562,7 +562,7 @@
 "casper-wyoming": {
 "alt": "File:Casperskyline.jpg but cropped in a 1:1 ratio.",
 "author": "Adbay",
-"cropped": false,
+"cropped": true,
 "file": "casper-wyoming.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -570,19 +570,19 @@
 "title": "Casperskyline1to1"
 },
 "cedar-rapids-iowa": {
-"alt": "Bohemian Commercial Historic District",
-"author": "ArtisticAbode",
-"cropped": false,
+"alt": "The Veterans Memorial Building on Mays Island in Cedar Rapids, beside an arched bridge over the Cedar River.",
+"author": "Davumaya",
+"cropped": true,
 "file": "cedar-rapids-iowa.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:National-Czech-and-Slovak-Museum-Library_(cropped).jpg",
-"title": "National-Czech-and-Slovak-Museum-Library (cropped)"
+"source_url": "https://commons.wikimedia.org/wiki/File:Cedar_Rapids_-_Mays_Island.jpg",
+"title": "Cedar Rapids - Mays Island"
 },
 "chambersburg-pennsylvania": {
 "alt": null,
 "author": null,
-"cropped": false,
+"cropped": true,
 "file": "chambersburg-pennsylvania.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -590,19 +590,19 @@
 "title": "Memorial Square Chambersburg"
 },
 "charleston-south-carolina": {
-"alt": "Homes on East Battery Street in Charleston, South Carolina",
-"author": "Chris Pruitt",
-"cropped": false,
+"alt": "Pastel pink, lavender and green historic row houses with palmetto trees along Rainbow Row in Charleston.",
+"author": "Thomson200",
+"cropped": true,
 "file": "charleston-south-carolina.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:East_Battery_Street_Charleston_Aug2010.jpg",
-"title": "East Battery Street Charleston Aug2010"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+"title": "Rainbow Row Charleston July 2024 2"
 },
 "charleston-west-virginia": {
 "alt": "The West Virginia State Capitol building, designed by Cass Gilbert in neoclassical architectural style, built between 1924–1932, located at 1900 Kanawha Bouleva",
 "author": "Daniel G Rego",
-"cropped": false,
+"cropped": true,
 "file": "charleston-west-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -610,19 +610,19 @@
 "title": "The West Virginia State Capitol building - Image03"
 },
 "charlotte-north-carolina": {
-"alt": "Beautiful Uptown Charlotte",
-"author": "Precisionviews",
-"cropped": false,
+"alt": "Uptown Charlotte's glass towers rising above spring trees and freeway overpasses under a clear blue sky.",
+"author": "brandon walker",
+"cropped": true,
 "file": "charlotte-north-carolina.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Uptown_Charlotte_2018_taking_by_DJI_Phantom_4_pro.jpg",
-"title": "Uptown Charlotte 2018 taking by DJI Phantom 4 pro"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Charlotte_2016.jpg",
+"title": "Skyline of Charlotte 2016"
 },
 "charlottesville-virginia": {
 "alt": "Aerial view of downtown Charlottesville, Virginia (pop. 46,553).",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "charlottesville-virginia.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -630,19 +630,19 @@
 "title": "Charlottesville, Virginia"
 },
 "chattanooga-tennessee": {
-"alt": "Chattanooga, Tennessee's downtown viewed from the side of a mountain.",
-"author": "WeaponizingArchitecture",
-"cropped": false,
+"alt": "The blue Walnut Street pedestrian bridge spanning the Tennessee River in Chattanooga under a clear blue sky.",
+"author": "Ɱ",
+"cropped": true,
 "file": "chattanooga-tennessee.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Chattanooga,_Tennessee_(2023).jpg",
-"title": "Chattanooga, Tennessee (2023)"
+"source_url": "https://commons.wikimedia.org/wiki/File:Walnut_Street_Bridge_02.jpg",
+"title": "Walnut Street Bridge 02"
 },
 "cheyenne-wyoming": {
 "alt": "Downtown Cheyenne, looking north from I-80",
 "author": "Vasiliymeshko",
-"cropped": false,
+"cropped": true,
 "file": "cheyenne-wyoming.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -650,9 +650,9 @@
 "title": "CheyenneWyoming (cropped)"
 },
 "chicago-illinois": {
-"alt": "A Chicago River tour boat passes in front of Trump Tower",
+"alt": "A tour boat on the Chicago River between the downtown towers on a sunny day.",
 "author": "File:Chicago River ferry.jpg: John Picken\nderivative work: Georgfotoart",
-"cropped": false,
+"cropped": true,
 "file": "chicago-illinois.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -662,7 +662,7 @@
 "chico-california": {
 "alt": "Home of Bidwell Park and California State University Chico",
 "author": "Travisthurston",
-"cropped": false,
+"cropped": true,
 "file": "chico-california.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -670,19 +670,19 @@
 "title": "ChicoSquare (cropped)"
 },
 "cincinnati-ohio": {
-"alt": "Downtown Cincinnati viewed from Devou Park",
-"author": "EEJCC",
-"cropped": false,
+"alt": "Downtown Cincinnati skyline and an Ohio River bridge in warm late-afternoon light, seen from Devou Park across the river.",
+"author": "Krisandjanis324",
+"cropped": true,
 "file": "cincinnati-ohio.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_viewed_from_Devou_Park_(cropped).jpg",
-"title": "Downtown Cincinnati viewed from Devou Park (cropped)"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_and_Covington.jpg",
+"title": "Downtown Cincinnati and Covington"
 },
 "clarksville-tennessee": {
-"alt": "Downtown Clarksville Tennessee",
+"alt": "Historic brick buildings and the vertical Roxy theatre sign along Franklin Street in downtown Clarksville under a blue sky.",
 "author": "GatewayPolitics",
-"cropped": false,
+"cropped": true,
 "file": "clarksville-tennessee.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -690,9 +690,9 @@
 "title": "Downtown Clarksville TN"
 },
 "cleveland-ohio": {
-"alt": "Cleveland skyline from Lakewood Park, January 2026",
+"alt": "Cleveland's downtown skyline, with Key Tower and Terminal Tower, seen across Lake Erie on a clear day.",
 "author": "Erik Drost",
-"cropped": false,
+"cropped": true,
 "file": "cleveland-ohio.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -702,7 +702,7 @@
 "cleveland-tennessee": {
 "alt": "Downtown Cleveland, Tennessee, in Bradley County",
 "author": "Harrison Keely",
-"cropped": false,
+"cropped": true,
 "file": "cleveland-tennessee.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -712,7 +712,7 @@
 "coeur-dalene-idaho": {
 "alt": "Drone view of Coeur d'Alene, Idaho State, USA",
 "author": "Spicypepper999",
-"cropped": false,
+"cropped": true,
 "file": "coeur-dalene-idaho.png",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -720,29 +720,29 @@
 "title": "Coeur d'Alene aerial, May 2023 (cropped)"
 },
 "college-station-texas": {
-"alt": "View of a portion of the Texas A&M University campus from the top of the North End-zone of Kyle Field, at College Station, Texas, United States.",
-"author": "Aggie0083 at English Wikipedia",
-"cropped": false,
+"alt": "The domed Academic Building at Texas A&M University in College Station under a blue sky, seen across the plaza.",
+"author": "Stu Seeger",
+"cropped": true,
 "file": "college-station-texas.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-"source_url": "https://commons.wikimedia.org/wiki/File:TAMUcampus.jpg",
-"title": "TAMUcampus"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:AcademicBuilding-TAMU.jpg",
+"title": "AcademicBuilding-TAMU"
 },
 "colorado-springs-colorado": {
-"alt": "Skyline of downtown Colorado Springs, Colorado, March 2026.",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "Red sandstone rocks of the Garden of the Gods in Colorado Springs, with snow-capped Pikes Peak rising behind.",
+"author": "CaroleHenson",
+"cropped": true,
 "file": "colorado-springs-colorado.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Colorado_Springs,_Colorado_(cropped).jpg",
-"title": "Colorado Springs, Colorado (cropped)"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Garden_of_the_Gods,_with_Pikes_Peak_in_the_background.JPG",
+"title": "Garden of the Gods, with Pikes Peak in the background"
 },
 "columbia-missouri": {
 "alt": "This picture was created by User: Stevehrowe2 and edited by User: Grey Wanderer",
 "author": "Grey Wanderer at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "columbia-missouri.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -750,9 +750,9 @@
 "title": "Mizzou Jesse Thumb"
 },
 "columbia-south-carolina": {
-"alt": "skyline of downtown Columbia, SC, USA from Arsenal Hill neighborhood",
+"alt": "Downtown Columbia's office towers rise above autumn trees, seen from Arsenal Hill under a clear blue sky.",
 "author": "Akhenaton06",
-"cropped": false,
+"cropped": true,
 "file": "columbia-south-carolina.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -760,9 +760,9 @@
 "title": "Fall skyline of Columbia SC from Arsenal Hill"
 },
 "columbus-georgia": {
-"alt": "View of Downtown Columbus, Georgia from across the Chattahoochee River",
+"alt": "Whitewater rapids on the Chattahoochee River below the old brick mill buildings of downtown Columbus's riverfront.",
 "author": "PghPhxNfk",
-"cropped": false,
+"cropped": true,
 "file": "columbus-georgia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -772,7 +772,7 @@
 "columbus-indiana": {
 "alt": "Support cables on J. Muller International's Robert N. Stewart Bridge across the Flatrock River in Columbus, a south-central Indiana city that has become a desti",
 "author": "Carol M. Highsmith",
-"cropped": false,
+"cropped": true,
 "file": "columbus-indiana.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -782,7 +782,7 @@
 "columbus-ohio": {
 "alt": "Downtown Columbus, Ohio, view from Main St. Bridge (Edited version)",
 "author": "Paul Wasneski",
-"cropped": false,
+"cropped": true,
 "file": "columbus-ohio.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -790,9 +790,9 @@
 "title": "Downtown Columbus View from Main St Bridge - edit1"
 },
 "corpus-christi-texas": {
-"alt": "Skyline of Corpus Christi, Texas",
+"alt": "Marinas along the Corpus Christi bayfront below the downtown skyline under a blue sky with scattered clouds.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "corpus-christi-texas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -802,7 +802,7 @@
 "corvallis-oregon": {
 "alt": "Courthouse in Corvallis, Oregon, Benton County, Oregon, US",
 "author": "Gregkeene",
-"cropped": false,
+"cropped": true,
 "file": "corvallis-oregon.jpg",
 "license": "CC BY 3.0 us",
 "license_url": "https://creativecommons.org/licenses/by/3.0/us/deed.en",
@@ -810,19 +810,19 @@
 "title": "Benton County Courthouse Greg Keene"
 },
 "crestview-florida": {
-"alt": "The 68,500-square-foot,  $27.3 million new courthouse was completed in 2018 after the former courthouse was closed in 2016.",
-"author": "Hoteltwo",
-"cropped": false,
+"alt": "Boats, a white sandbar and emerald water at Destin Harbor, with beachfront towers beyond, on a sunny day.",
+"author": "Destin Vacation Boat Rentals",
+"cropped": true,
 "file": "crestview-florida.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:New_Crestview_Courthouse.jpg",
-"title": "New Crestview Courthouse"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:View_of_Destin,_Florida_from_the_Destin_Harbor.jpg",
+"title": "View of Destin, Florida from the Destin Harbor"
 },
 "dallas-texas": {
 "alt": "Dallas Texas skyline from Reunion Tower September 2025",
 "author": "IcedCowboyCoffee",
-"cropped": false,
+"cropped": true,
 "file": "dallas-texas.png",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -830,19 +830,19 @@
 "title": "Dallas Texas skyline from Reunion Tower September 2025 (cropped)"
 },
 "davenport-iowa": {
-"alt": "One of Davenport's oldest neighborhoods, the Village of East Davenport is full of small specialty shops and was used as parade grounds for Civil War soldiers fr",
-"author": "Kepper66",
-"cropped": false,
+"alt": "Downtown Davenport skyline with the Figge Art Museum and historic towers across the Mississippi River on a sunny day.",
+"author": "Farragutful",
+"cropped": true,
 "file": "davenport-iowa.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Village_of_East_Davenport_2.jpg",
-"title": "Village of East Davenport 2"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
+"title": "2018 Davenport skyline 02"
 },
 "dayton-ohio": {
-"alt": "Sunset over Dayton Ohio in September 2022. Photo taken from Dayton Towers, an apartment east of downtown.",
+"alt": "Downtown Dayton's skyline and a church steeple above older brick neighbourhoods under a pink and orange sunset sky.",
 "author": "Blervis",
-"cropped": false,
+"cropped": true,
 "file": "dayton-ohio.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -852,7 +852,7 @@
 "decatur-alabama": {
 "alt": "Decatur, Alabama from 2nd avenue",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "decatur-alabama.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -862,7 +862,7 @@
 "decatur-illinois": {
 "alt": "Downtown Decatur",
 "author": "Gil Lebois",
-"cropped": false,
+"cropped": true,
 "file": "decatur-illinois.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -870,19 +870,19 @@
 "title": "Downtown-MerchantRsz (cropped)"
 },
 "deltona-florida": {
-"alt": "Deltona City Hall in Deltona, Florida, United States.",
-"author": "Connor J. Williams",
-"cropped": false,
+"alt": "The Main Street Pier and its pier-top restaurant stretching over the sand and surf at Daytona Beach on a sunny afternoon.",
+"author": "Yinan Chen",
+"cropped": true,
 "file": "deltona-florida.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Deltona_city_hall_deltona_florida.jpg",
-"title": "Deltona city hall deltona florida"
+"license": "Public Domain",
+"license_url": "https://web.archive.org/web/20230926203737/https://creativecommons.org/licenses/publicdomain/",
+"source_url": "https://commons.wikimedia.org/wiki/File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg",
+"title": "Gfp-florida-daytona-beach-building-on-the-ocean"
 },
 "denver-colorado": {
-"alt": "Skyline of Denver, Colorado, the 19th-most populous city in the United States (715,522).",
+"alt": "The downtown Denver skyline seen from City Park, with the snow-capped Rocky Mountains behind on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "denver-colorado.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -890,19 +890,19 @@
 "title": "Denver, Colorado skyline (cropped 3x5)"
 },
 "des-moines-iowa": {
-"alt": "The Des Moines River leading to the Des Moines, Iowa skyline, as viewed from the SE 6th Street bridge.",
-"author": "Tony Webster from Minneapolis, Minnesota, United States",
-"cropped": false,
+"alt": "A white arched footbridge over the Des Moines River framing downtown Des Moines' towers under a clear blue sky.",
+"author": "BarbaraLN",
+"cropped": true,
 "file": "des-moines-iowa.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Morning_Skyline_-_Des_Moines,_Iowa_-_Winter_on_the_Des_Moines_River_(24805016620)_(cropped).jpg",
-"title": "Morning Skyline - Des Moines, Iowa - Winter on the Des Moines River (24805016620) (cropped)"
+"license": "CC BY-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Skyline_downtown_Des_Moines.jpg",
+"title": "Skyline downtown Des Moines"
 },
 "detroit-michigan": {
 "alt": "The Detroit skyline as it appeared from Windsor, Ontario on a sunny Labor Day 2025, known as the “Motor City,” Detroit sits on the Detroit River and anchors the",
 "author": "TheWxResearcher",
-"cropped": false,
+"cropped": true,
 "file": "detroit-michigan.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -912,7 +912,7 @@
 "dothan-alabama": {
 "alt": "Downtown Dothan (c. March 2017)",
 "author": "Prussian_Fool",
-"cropped": false,
+"cropped": true,
 "file": "dothan-alabama.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -922,7 +922,7 @@
 "dover-delaware": {
 "alt": "West Loockerman Street in downtown w:Dover, Delaware",
 "author": "Tim Kiser (w:User:Malepheasant)",
-"cropped": false,
+"cropped": true,
 "file": "dover-delaware.jpg",
 "license": "CC BY-SA 2.5",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
@@ -932,7 +932,7 @@
 "dubuque-iowa": {
 "alt": "Dubuque, Iowa, USA.",
 "author": "Dirk",
-"cropped": false,
+"cropped": true,
 "file": "dubuque-iowa.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -940,29 +940,29 @@
 "title": "Dubuque IA - overview"
 },
 "duluth-minnesota": {
-"alt": "Duluth, Minnesota, as seen from the 5th Avenue bridge over I-35.",
-"author": "Tony Webster from San Francisco, California",
-"cropped": false,
+"alt": "Duluth's Aerial Lift Bridge spanning the ship canal, with Canal Park and downtown climbing the green hillside behind.",
+"author": "Chrisographer",
+"cropped": true,
 "file": "duluth-minnesota.jpg",
-"license": "CC BY-SA 2.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Duluth,_Minnesota_Skyline_(25406820466)_(cropped).jpg",
-"title": "Downtown Duluth, Minnesota Skyline (25406820466) (cropped)"
-},
-"durham-north-carolina": {
-"alt": "This is an image of a place or building that is listed on the National Register of Historic Places in the United States of America. Its reference number is 7700",
-"author": "Maria Miracoli",
-"cropped": false,
-"file": "durham-north-carolina.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Carolina_Theatre_(Durham_Auditorium_1924).jpg",
-"title": "Carolina Theatre (Durham Auditorium 1924)"
+"source_url": "https://commons.wikimedia.org/wiki/File:Duluth_Drone.jpg",
+"title": "Duluth Drone"
+},
+"durham-north-carolina": {
+"alt": "Downtown Durham's skyline, with the gold Hill Building and the Lucky Strike water tower, above green trees on a sunny day.",
+"author": "Discover Durham",
+"cropped": true,
+"file": "durham-north-carolina.jpg",
+"license": "CC BY 4.0",
+"license_url": "https://creativecommons.org/licenses/by/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:SKYL015_Downtown_Durham_Skyline_DiscoverDurham.jpg",
+"title": "SKYL015 Downtown Durham Skyline DiscoverDurham"
 },
 "eagle-pass-texas": {
 "alt": "I took photo on May 17, 2009.Billy Hathorn (talk) 23:46, 17 May 2009 (UTC)",
 "author": "Billy Hathorn at en.wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "eagle-pass-texas.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
@@ -972,7 +972,7 @@
 "el-centro-california": {
 "alt": null,
 "author": null,
-"cropped": false,
+"cropped": true,
 "file": "el-centro-california.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -980,9 +980,9 @@
 "title": "Imperial County Superior Courthouse El Centro Night"
 },
 "el-paso-texas": {
-"alt": "El Paso, Texas as seen from Scenic Drive on the Franklin Mountains.",
+"alt": "Downtown El Paso’s high-rises, with Ciudad Juárez and rugged mountains beyond, seen from Scenic Drive under a blue sky.",
 "author": "WmCheez",
-"cropped": false,
+"cropped": true,
 "file": "el-paso-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -992,7 +992,7 @@
 "elizabethtown-kentucky": {
 "alt": "Western front of the Hardin County Courthouse, located at the center of Courthouse Square in Elizabethtown, Kentucky, United States.  Built in 1933, it is part",
 "author": "Nyttend",
-"cropped": false,
+"cropped": true,
 "file": "elizabethtown-kentucky.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1002,7 +1002,7 @@
 "elkhart-indiana": {
 "alt": "Main Street looking north in Elkhart, Indiana. This area is part of the Elkhart Downtown Commercial Historic District.",
 "author": "Publichall",
-"cropped": false,
+"cropped": true,
 "file": "elkhart-indiana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1012,7 +1012,7 @@
 "elmira-new-york": {
 "alt": "City Hall, Elmira, NY",
 "author": "Stilfehler 19:28, 9 July 2007 (CEST)",
-"cropped": false,
+"cropped": true,
 "file": "elmira-new-york.jpg",
 "license": "CC BY-SA 1.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/1.0",
@@ -1022,7 +1022,7 @@
 "enid-oklahoma": {
 "alt": "A view of downtown Enid, Oklahoma via. N. Independence Street, nearby the Garfield County Courthouse.",
 "author": "Snamgungtaylor",
-"cropped": false,
+"cropped": true,
 "file": "enid-oklahoma.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1030,9 +1030,9 @@
 "title": "Downtown Enid Independence Street"
 },
 "erie-pennsylvania": {
-"alt": "Erie PA skyline from tower observation deck",
+"alt": "Downtown Erie, Dobbins Landing and the marinas of Presque Isle Bay, looking south along State Street from the Bicentennial Tower.",
 "author": "User:Cards84664",
-"cropped": false,
+"cropped": true,
 "file": "erie-pennsylvania.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1040,29 +1040,29 @@
 "title": "Erie PA skyline from tower observation deck (cropped)"
 },
 "eugene-oregon": {
-"alt": "Autzen Stadium, home of theUniversity of Oregon Ducks football, during the 2007 season game between the USC Trojans and the Ducks; it was the first time two top",
-"author": "Bobak Ha'Eri",
-"cropped": false,
+"alt": "Downtown Eugene's buildings among dark green firs, with Spencer Butte and forested hills under a blue sky.",
+"author": "Laura Alier",
+"cropped": true,
 "file": "eugene-oregon.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:102707-Oregon-Autzen-USC-UO-Sanchezpass.jpg",
-"title": "102707-Oregon-Autzen-USC-UO-Sanchezpass"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Eugene_Oregon_from_Skinner_Butte.JPG",
+"title": "Eugene Oregon from Skinner Butte"
 },
 "evansville-indiana": {
-"alt": "Ford Center, Evansville, Indiana",
-"author": "Nyttend",
-"cropped": false,
+"alt": "The ornate Old Vanderburgh County Courthouse in downtown Evansville, with its domed clock tower, under a blue sky.",
+"author": "Roman Eugeniusz",
+"cropped": true,
 "file": "evansville-indiana.jpg",
-"license": "Public domain",
-"license_url": null,
-"source_url": "https://commons.wikimedia.org/wiki/File:Ford_Center_from_Main_Street.jpg",
-"title": "Ford Center from Main Street"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Old_Vanderburgh_County_Courthouse,_Evansville,_Indiana.jpg",
+"title": "Old Vanderburgh County Courthouse, Evansville, Indiana"
 },
 "fairbanks-alaska": {
 "alt": "Aerial view of Fairbanks, AK skyline",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "fairbanks-alaska.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1070,29 +1070,29 @@
 "title": "Aerial view of Fairbanks Alaska skyline (Quintin Soloviev)"
 },
 "fargo-north-dakota": {
-"alt": "Downtown Fargo Aerial - Facing Southeast (51009704407).jpg",
-"author": "formulanone",
-"cropped": false,
+"alt": "The Fargo Theatre with its tall vertical FARGO sign and marquee on Broadway in downtown Fargo on a sunny day.",
+"author": "AJ LEON",
+"cropped": true,
 "file": "fargo-north-dakota.jpg",
-"license": "CC BY-SA 2.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fargo_Aerial_-_Facing_Southeast_(51009704407).jpg",
-"title": "Downtown Fargo Aerial - Facing Southeast (51009704407)"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Fargo_Theatre_-_Fargo.jpg",
+"title": "Fargo Theatre - Fargo"
 },
 "fayetteville-arkansas": {
-"alt": "Downtown Fayetteville, AR skyline as viewed from Old Main at the University of Arkansas",
-"author": "Brandonrush",
-"cropped": false,
+"alt": "The red-brick Old Main at the University of Arkansas in Fayetteville, with its two towers rising above a green lawn.",
+"author": "Michael Barera",
+"cropped": true,
 "file": "fayetteville-arkansas.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fayetteville_from_Old_Main_001.jpg",
-"title": "Downtown Fayetteville from Old Main 001"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:University_of_Arkansas_May_2017_07_(Old_Main).jpg",
+"title": "University of Arkansas May 2017 07 (Old Main)"
 },
 "fayetteville-north-carolina": {
 "alt": "Fayetteville, NC Downtown Skyline",
 "author": "Public domain, City of Fayetteville",
-"cropped": false,
+"cropped": true,
 "file": "fayetteville-north-carolina.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1102,7 +1102,7 @@
 "flagstaff-arizona": {
 "alt": "Hotel in downtown Flagstaff, Arizona, USA.",
 "author": "SearchNet Media from Tucson, Arizona, USA",
-"cropped": false,
+"cropped": true,
 "file": "flagstaff-arizona.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -1112,7 +1112,7 @@
 "flint-michigan": {
 "alt": "Aerial photograph of Flint, Michigan",
 "author": "WMrapids",
-"cropped": false,
+"cropped": true,
 "file": "flint-michigan.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -1122,7 +1122,7 @@
 "florence-alabama": {
 "alt": "Downtown Florence Historic District, in Florence, Alabama, United States.",
 "author": "themidnite (original), Yassie (derivative work",
-"cropped": false,
+"cropped": true,
 "file": "florence-alabama.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1132,7 +1132,7 @@
 "florence-south-carolina": {
 "alt": "An Aerial View of Western Florence, South Carolina, USA near the junction of Interstates I-20 and I-95.",
 "author": "Florence Conventions and Visitors Bureau",
-"cropped": false,
+"cropped": true,
 "file": "florence-south-carolina.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1142,7 +1142,7 @@
 "fond-du-lac-wisconsin": {
 "alt": "The w:South Main Street Historic District on Main Street, w:Fond du Lac, Wisconsin along w:U.S. Route 45, listed on the National Register of Historic Places.  T",
 "author": "Royalbroil",
-"cropped": false,
+"cropped": true,
 "file": "fond-du-lac-wisconsin.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1150,9 +1150,9 @@
 "title": "SouthMainStreetHistoricDistrictFondDuLacWisUS45"
 },
 "fort-collins-colorado": {
-"alt": "Downtown Fort Collins, Colorado",
+"alt": "Cyclists ride past bright petunias and a turreted Victorian building in Old Town Fort Collins on a sunny day.",
 "author": "Citycommunications at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "fort-collins-colorado.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -1162,7 +1162,7 @@
 "fort-smith-arkansas": {
 "alt": "Downtown Fort Smith, AR, facing east",
 "author": "Brandonrush",
-"cropped": false,
+"cropped": true,
 "file": "fort-smith-arkansas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1170,29 +1170,29 @@
 "title": "Fort Smith, AR 002"
 },
 "fort-wayne-indiana": {
-"alt": "One of the blockhouses on the site of Historic Fort Wayne in Fort Wayne, Indiana.",
-"author": "Momoneymoproblemz",
-"cropped": false,
+"alt": "The domed Allen County Courthouse in downtown Fort Wayne under a blue sky, with an office tower behind it.",
+"author": "Diego Delso",
+"cropped": true,
 "file": "fort-wayne-indiana.jpg",
-"license": "CC0",
-"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-"source_url": "https://commons.wikimedia.org/wiki/File:Historic_Fort_Wayne,_Fort_Wayne,_Indiana,_May_2014.jpg",
-"title": "Historic Fort Wayne, Fort Wayne, Indiana, May 2014"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Cortes_del_Condado_de_Allen,_Fort_Wayne,_Indiana,_Estados_Unidos,_2012-11-12,_DD_01.jpg",
+"title": "Cortes del Condado de Allen, Fort Wayne, Indiana, Estados Unidos, 2012-11-12, DD 01"
 },
 "fresno-california": {
-"alt": "Fresno Skyline",
-"author": "Etherealsmoke",
-"cropped": false,
+"alt": "The Art Deco Tower Theatre's white spire and pastel \"Tower\" marquee in Fresno's Tower District under a deep blue sky.",
+"author": "David Prasad (niiicedave)",
+"cropped": true,
 "file": "fresno-california.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Fresno_Skyline_(2).jpg",
-"title": "Fresno Skyline (2)"
+"license": "CC BY-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Tower_Theatre_Fresno_2.jpg",
+"title": "Tower Theatre Fresno 2"
 },
 "gadsden-alabama": {
 "alt": "Flying over the city of Gadsden, Alabama in May of 2016.\n\nGadsden, Alabama - Aerial (51157939914).jpg",
 "author": "formulanone",
-"cropped": false,
+"cropped": true,
 "file": "gadsden-alabama.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -1200,19 +1200,19 @@
 "title": "Gadsden, Alabama - Aerial (51157939914)"
 },
 "gainesville-florida": {
-"alt": "Downtown Gainesville, FL looking southwest from SE 1st Ave/SE 2nd Ave.",
-"author": "Rbrko",
-"cropped": false,
+"alt": "The red-brick Century Tower on the University of Florida campus in Gainesville against a bright blue sky.",
+"author": "Kate Haskell from Gainesville, USA",
+"cropped": true,
 "file": "gainesville-florida.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Gainesville,_FL_Downtown.jpg",
-"title": "Gainesville, FL Downtown"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Century_Tower_(University_of_Florida).jpg",
+"title": "Century Tower (University of Florida)"
 },
 "gainesville-georgia": {
 "alt": "Downtown Gainesville, Georgia",
 "author": "ATLJonJon",
-"cropped": false,
+"cropped": true,
 "file": "gainesville-georgia.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1222,7 +1222,7 @@
 "gettysburg-pennsylvania": {
 "alt": "View of Devil's Den from Little Round Top, Gettysburg Battlefield, Pennsylvania, US\n\n\n\n\n\n\nThis is an image of a place or building that is listed on the National",
 "author": "Bubba73",
-"cropped": false,
+"cropped": true,
 "file": "gettysburg-pennsylvania.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1232,7 +1232,7 @@
 "glens-falls-new-york": {
 "alt": "Aerial view of downtown Glens Falls, New York.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "glens-falls-new-york.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1242,7 +1242,7 @@
 "grand-forks-north-dakota": {
 "alt": "Grand Forks, ND, May 17, 2006 -- Aerial view of Grand Forks mitigation project building new levee walls, burns and pumping stations protecting the city from the",
 "author": "Brenda Riskey",
-"cropped": false,
+"cropped": true,
 "file": "grand-forks-north-dakota.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1252,7 +1252,7 @@
 "grand-island-nebraska": {
 "alt": "Facade of the Hall County Courthouse, located at the intersection of First and Locust Streets in Grand Island, Nebraska, United States. Designed by architect Th",
 "author": "Brad Mellema",
-"cropped": false,
+"cropped": true,
 "file": "grand-island-nebraska.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1262,7 +1262,7 @@
 "grand-junction-colorado": {
 "alt": "Grand Junction, Colorado skyline",
 "author": "Eleaf",
-"cropped": false,
+"cropped": true,
 "file": "grand-junction-colorado.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1270,19 +1270,19 @@
 "title": "Grand-junction-skyline"
 },
 "grand-rapids-michigan": {
-"alt": "Meyer May House, a Frank Lloyd Wright-designed house, in Grand Rapids, Michigan.",
+"alt": "The Blue Bridge, a blue steel footbridge, crossing the Grand River toward downtown Grand Rapids under a clear sky.",
 "author": "WMrapids",
-"cropped": false,
+"cropped": true,
 "file": "grand-rapids-michigan.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-"source_url": "https://commons.wikimedia.org/wiki/File:Meyer_May_House.jpg",
-"title": "Meyer May House"
+"source_url": "https://commons.wikimedia.org/wiki/File:Blue_Bridge_Grand_Rapids,_Michigan.jpg",
+"title": "Blue Bridge Grand Rapids, Michigan"
 },
 "grants-pass-oregon": {
 "alt": "The \"It's The Climate\" sign in Grants Pass, Oregon",
 "author": "Nicolas from Paris, France",
-"cropped": false,
+"cropped": true,
 "file": "grants-pass-oregon.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -1292,7 +1292,7 @@
 "great-falls-montana": {
 "alt": "Central Avenue, Great Falls, Montana, looking west from intersection of 4th St. N. Civic Center at end of street, old Paris of Montana department store building",
 "author": "Montanabw",
-"cropped": false,
+"cropped": true,
 "file": "great-falls-montana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1300,19 +1300,19 @@
 "title": "Central Ave and Civic Center 2"
 },
 "greeley-colorado": {
-"alt": "The courthouse and county seat of Greeley, Colorado, USA.",
+"alt": "Historic brick storefronts with arched windows and a faded painted sign along 9th Street in downtown Greeley on a sunny day.",
 "author": "Peter Romero",
-"cropped": false,
+"cropped": true,
 "file": "greeley-colorado.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Greeley,_Colorado_Courthouse.JPG",
-"title": "Greeley, Colorado Courthouse"
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Greeley.JPG",
+"title": "Downtown Greeley"
 },
 "green-bay-wisconsin": {
-"alt": "Friday evening concert on the CityDeck with the Peacemaker tall ship docked at the Cherry Street boat landing.",
+"alt": "Downtown Green Bay's CityDeck and docked boats along the Fox River, seen from above on a sunny summer evening.",
 "author": "Chris Rand",
-"cropped": false,
+"cropped": true,
 "file": "green-bay-wisconsin.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1322,7 +1322,7 @@
 "greensboro-north-carolina": {
 "alt": "Skyline of Greensboro, North Carolina, United States.",
 "author": "Beyonce245 of English Wikipedia.",
-"cropped": false,
+"cropped": true,
 "file": "greensboro-north-carolina.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1332,7 +1332,7 @@
 "greenville-north-carolina": {
 "alt": "Greenville, North Carolina",
 "author": "Aaron Hines/City of Greenville",
-"cropped": false,
+"cropped": true,
 "file": "greenville-north-carolina.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1340,9 +1340,9 @@
 "title": "Greenville, North Carolina - 2026 9"
 },
 "greenville-south-carolina": {
-"alt": "Falls Park Waterfall Greenville South Carolina by Yousef AbdulHusain",
+"alt": "Water cascading over the rocks of Reedy River Falls in Falls Park, downtown Greenville, on a spring day.",
 "author": "CantoV",
-"cropped": false,
+"cropped": true,
 "file": "greenville-south-carolina.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1350,29 +1350,29 @@
 "title": "2024-4-12-Falls Park Waterfall Greenville South Carolina by Yousef AbdulHusain"
 },
 "gulfport-mississippi": {
-"alt": "Fighting Seabees Statue located at the entrance to the Naval Construction Battalion Center in Gulfport, Mississippi.",
-"author": "Woodlot",
-"cropped": false,
+"alt": "The white Biloxi Lighthouse beside the coast highway, with the Biloxi Visitors Center behind under a bright blue sky.",
+"author": "Jeff D. Howard",
+"cropped": true,
 "file": "gulfport-mississippi.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:FightingSeabee_NavalConstructionBattalionCenter_Gulfport,MS.jpg",
-"title": "FightingSeabee NavalConstructionBattalionCenter Gulfport,MS"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:The_Biloxi_Lighthouse.jpg",
+"title": "The Biloxi Lighthouse"
 },
 "hagerstown-maryland": {
-"alt": "Downtown Hagerstown, Maryland looking west on Franklin Street. Image slightly edited to crop out hood of vehicle and blur license plates.",
-"author": "Charlotte Jackson",
-"cropped": false,
+"alt": "A green iron arch reading Hagerstown City Park stands before the park's lake and shade trees on a summer day.",
+"author": "Farragutful",
+"cropped": true,
 "file": "hagerstown-maryland.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Hagerstown_on_Franklin_Street.jpg",
-"title": "Downtown Hagerstown on Franklin Street"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Hagerstown_City_Park_02.jpg",
+"title": "Hagerstown City Park 02"
 },
 "hammond-louisiana": {
 "alt": "Hammond, Louisiana Feb 2019 street scene",
 "author": "David Wilson",
-"cropped": false,
+"cropped": true,
 "file": "hammond-louisiana.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -1382,7 +1382,7 @@
 "hanford-california": {
 "alt": "Hanford, California",
 "author": "Julie Jordan Scott from Bakersfield, California, USA",
-"cropped": false,
+"cropped": true,
 "file": "hanford-california.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -1390,19 +1390,19 @@
 "title": "Hanford, California (11774483763) (cropped)"
 },
 "harrisburg-pennsylvania": {
-"alt": "PA State Capitol Building at twilight",
-"author": "Ted Van Pelt",
-"cropped": false,
+"alt": "Tree-lined State Street leading to the green dome of the Pennsylvania State Capitol in Harrisburg under a clear blue sky.",
+"author": "Farragutful",
+"cropped": true,
 "file": "harrisburg-pennsylvania.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:PA_State_Capitol_Building_twilight.jpg",
-"title": "PA State Capitol Building twilight"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Harrisburg,_Pennsylvania.jpg",
+"title": "State Street - Harrisburg, Pennsylvania"
 },
 "harrisonburg-virginia": {
 "alt": "Rockingham County Courthouse in Court Square, Harrisonburg, Virginia.",
 "author": "Alma mater",
-"cropped": false,
+"cropped": true,
 "file": "harrisonburg-virginia.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
@@ -1410,9 +1410,9 @@
 "title": "Rockingham County Courthouse"
 },
 "hartford-connecticut": {
-"alt": "The skyline of Hartford, Connecticut's capital city with a population of 121,000. Taken on October 31, 2025",
+"alt": "Hartford's skyline, with the gold-domed State Capitol and the Travelers Tower, rising above autumn trees under a stormy sky.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "hartford-connecticut.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1422,7 +1422,7 @@
 "hattiesburg-mississippi": {
 "alt": "Aerial view of downtown Hattiesburg, Mississippi (pop. 48,730).",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "hattiesburg-mississippi.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1432,7 +1432,7 @@
 "helena-montana": {
 "alt": "Montana State Capitol in, Helena, MT. 2012.",
 "author": "Tracey Elizabeth",
-"cropped": false,
+"cropped": true,
 "file": "helena-montana.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -1442,7 +1442,7 @@
 "hickory-north-carolina": {
 "alt": "Hickory, North Carolina.  Union Square is the center of Hickory.  This photo from the spring of 2002 looks NW to Smith Drugs, Hickory Wine Shoppe, and the Mirac",
 "author": "Netmogul",
-"cropped": false,
+"cropped": true,
 "file": "hickory-north-carolina.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1452,7 +1452,7 @@
 "hilton-head-island-south-carolina": {
 "alt": "Harbour Town Marina in Sea Pines, Hilton Head Island, SC, 2026",
 "author": "Locust member",
-"cropped": false,
+"cropped": true,
 "file": "hilton-head-island-south-carolina.png",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1462,7 +1462,7 @@
 "hinesville-georgia": {
 "alt": "Hinesville city hall, Hinesville, Liberty County, Georgia",
 "author": "Michael Rivera",
-"cropped": false,
+"cropped": true,
 "file": "hinesville-georgia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1472,7 +1472,7 @@
 "homosassa-springs-florida": {
 "alt": "A shot of northbound US 19-98 as it enters the border of Homosassa Springs in Citrus County, Florida.",
 "author": "DanTD",
-"cropped": false,
+"cropped": true,
 "file": "homosassa-springs-florida.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1480,19 +1480,19 @@
 "title": "NB US 19-98 Homosassa Springs FL Sign"
 },
 "honolulu-hawaii": {
-"alt": "Views from Diamond Head in Honolulu, Hawaii",
-"author": "Farragutful",
-"cropped": false,
+"alt": "Waikiki high-rises and turquoise sea, with green parkland below, seen from the Diamond Head crater rim in Honolulu.",
+"author": "Christian Joudrey",
+"cropped": true,
 "file": "honolulu-hawaii.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:2022_Views_from_Diamond_Head_02.jpg",
-"title": "2022 Views from Diamond Head 02"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Honolulu_cityscape.jpg",
+"title": "Honolulu cityscape"
 },
 "hot-springs-arkansas": {
 "alt": "* File:Hot Springs, Arkansas aerial view.jpg\nFile:Army-Navy Hospital 002.jpg\nFile:Hot Springs National Park 007.jpg\nFile:ChrisLitherlandHotSprings.jpg\nFile:Bath",
 "author": "Brandonrush",
-"cropped": false,
+"cropped": true,
 "file": "hot-springs-arkansas.png",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1502,7 +1502,7 @@
 "houma-louisiana": {
 "alt": "Main Street, Houma, Louisiana. \"Le Petit Theatre\", in building that was the former City Hall.",
 "author": "Infrogmation of New Orleans",
-"cropped": false,
+"cropped": true,
 "file": "houma-louisiana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1510,19 +1510,19 @@
 "title": "HoumaPetitTheatreAug09"
 },
 "houston-texas": {
-"alt": "Houston, TX",
-"author": "Katie Haugland Brown",
-"cropped": false,
+"alt": "Downtown Houston skyscrapers rising above the green trees of Buffalo Bayou Park in late-afternoon sun.",
+"author": "David Daniel Turner",
+"cropped": true,
 "file": "houston-texas.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Texas_medical_center.jpg",
-"title": "Texas medical center"
+"license": "CC BY 4.0",
+"license_url": "https://creativecommons.org/licenses/by/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Houston,_TX_Skyline_-_2018.jpg",
+"title": "Downtown Houston, TX Skyline - 2018"
 },
 "huntington-west-virginia": {
-"alt": "Huntington WV skyline picture",
+"alt": "Downtown Huntington's buildings rise beyond the trees on the bank of the Ohio River under a blue sky.",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "huntington-west-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1530,19 +1530,19 @@
 "title": "Huntington, West Virginia (2023)"
 },
 "huntsville-alabama": {
-"alt": "I took this picture when I walked by the Museum",
-"author": "American Diabetio",
-"cropped": false,
+"alt": "Downtown Huntsville buildings and trees reflected in the lagoon at Big Spring International Park under a blue summer sky.",
+"author": "DXR",
+"cropped": true,
 "file": "huntsville-alabama.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Huntsville_Art_Museum_-_front_fa%C3%A7ade_and_stairs_2023.jpg",
-"title": "Huntsville Art Museum - front façade and stairs 2023"
+"source_url": "https://commons.wikimedia.org/wiki/File:Big_Spring_International_Park,_Huntsville_AL_20160715_1.jpg",
+"title": "Big Spring International Park, Huntsville AL 20160715 1"
 },
 "idaho-falls-idaho": {
 "alt": "Downtown Idaho Falls, Idaho, United States.",
 "author": "Eric Fredericks from Rancho Cordova, California, United States",
-"cropped": false,
+"cropped": true,
 "file": "idaho-falls-idaho.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -1552,7 +1552,7 @@
 "indianapolis-indiana": {
 "alt": "indianapolis",
 "author": "Carol M. Highsmith",
-"cropped": false,
+"cropped": true,
 "file": "indianapolis-indiana.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1562,7 +1562,7 @@
 "iowa-city-iowa": {
 "alt": "Picture of downtown Iowa City looking South down S Clinton Street. Taken June 6, 2021",
 "author": "Stevat20",
-"cropped": false,
+"cropped": true,
 "file": "iowa-city-iowa.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1572,7 +1572,7 @@
 "ithaca-new-york": {
 "alt": "Ithaca Commons, west entrance, at Cayuga Street (New York)",
 "author": "Kenneth C. Zirkel",
-"cropped": false,
+"cropped": true,
 "file": "ithaca-new-york.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1582,7 +1582,7 @@
 "jackson-michigan": {
 "alt": "Downtown Jackson as seen from 12th floor of One Energy Plaza (CMS Energy World Headquarters)",
 "author": "Phillip L. Hofmeister",
-"cropped": false,
+"cropped": true,
 "file": "jackson-michigan.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -1590,9 +1590,9 @@
 "title": "Downtown Jackson, MI"
 },
 "jackson-mississippi": {
-"alt": "Jackson, Mississippi",
+"alt": "The domed Mississippi State Capitol in Jackson, framed by trees along its front walk on a sunny day.",
 "author": "formulanone from Huntsville, United States",
-"cropped": false,
+"cropped": true,
 "file": "jackson-mississippi.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -1602,7 +1602,7 @@
 "jackson-tennessee": {
 "alt": "Birds eye view of Jackson, TN",
 "author": "Garryharvey",
-"cropped": false,
+"cropped": true,
 "file": "jackson-tennessee.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1610,9 +1610,9 @@
 "title": "JacksonTN"
 },
 "jacksonville-florida": {
-"alt": "Downtown Jacksonville, Florida skyline and the Main Street Bridge viewed from above the St. Johns River",
+"alt": "Downtown Jacksonville's towers and the blue Main Street Bridge over the St. Johns River on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "jacksonville-florida.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1622,7 +1622,7 @@
 "jacksonville-north-carolina": {
 "alt": "Clockwise from top left: Jacksonville waterfront along New River, LP Willingham Riverfront Park, Court Street, Onslow County Courthouse",
 "author": "Indy beetle",
-"cropped": false,
+"cropped": true,
 "file": "jacksonville-north-carolina.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -1632,7 +1632,7 @@
 "janesville-wisconsin": {
 "alt": "The Town Square in Janesville, Wisconsin (United States).",
 "author": "Michael Barera",
-"cropped": false,
+"cropped": true,
 "file": "janesville-wisconsin.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1642,7 +1642,7 @@
 "jefferson-city-missouri": {
 "alt": "Missouri State Capitol",
 "author": "RebelAt of English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "jefferson-city-missouri.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1652,7 +1652,7 @@
 "johnson-city-tennessee": {
 "alt": "This is a photo of picturesque, downtown Johnson City Tennessee with Buffalo Mountain in the background.",
 "author": "Mrgriffter",
-"cropped": false,
+"cropped": true,
 "file": "johnson-city-tennessee.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1662,7 +1662,7 @@
 "jonesboro-arkansas": {
 "alt": "Collage of Jonesboro, AR",
 "author": "Brandonrush",
-"cropped": false,
+"cropped": true,
 "file": "jonesboro-arkansas.png",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1672,7 +1672,7 @@
 "joplin-missouri": {
 "alt": "Downtown Joplin, MO looking north from 6th and Main St.",
 "author": "AbeEzekowitz",
-"cropped": false,
+"cropped": true,
 "file": "joplin-missouri.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1682,7 +1682,7 @@
 "kahului-hawaii": {
 "alt": "Air view of Kahului.\n\n(Uploader on Flickr identified the shot as \"Air View of Wailuku.\" But it's been misidentifed.)",
 "author": "ideatrendz",
-"cropped": false,
+"cropped": true,
 "file": "kahului-hawaii.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -1692,7 +1692,7 @@
 "kalamazoo-michigan": {
 "alt": "Looking southwest from N. Edwards Street in downtown Kalamazoo, Michigan. Round-topped towers are the Radisson Plaza hotel.",
 "author": "User Mxobe on en.wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "kalamazoo-michigan.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1702,7 +1702,7 @@
 "kankakee-illinois": {
 "alt": "Kankakee County Courthouse, in Kankakee, Illinois.",
 "author": "MrHarman at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "kankakee-illinois.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1710,29 +1710,29 @@
 "title": "Kankakee County Courthouse"
 },
 "kansas-city-missouri": {
-"alt": "Downtown",
-"author": "Stephen Edmonds",
-"cropped": false,
+"alt": "Kansas City's Union Station and downtown skyline in golden autumn light, with fall trees and a green lawn in front.",
+"author": "Dean Hochman from Overland Park, Kansas, U.S.",
+"cropped": true,
 "file": "kansas-city-missouri.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Kansas_City_-_Downtown_-_panoramio_(15).jpg",
-"title": "Kansas City - Downtown - panoramio (15)"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Kansas_city_(16778782291).jpg",
+"title": "Kansas city (16778782291)"
 },
 "kennewick-washington": {
-"alt": "Kennewick-ColumbiaRiverAerial",
-"author": "formulanone from Huntsville, United States",
-"cropped": false,
+"alt": "The white cable-stayed Cable Bridge spanning the Columbia River at Kennewick under a clear blue sky.",
+"author": "Corbin Harder",
+"cropped": true,
 "file": "kennewick-washington.jpg",
-"license": "CC BY-SA 2.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Kennewick-ColumbiaRiverAerial_(31695765421).jpg",
-"title": "Kennewick-ColumbiaRiverAerial (31695765421)"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Cable_Bridge_(Tri-Cities,_Washington).jpg",
+"title": "Cable Bridge (Tri-Cities, Washington)"
 },
 "kenosha-wisconsin": {
 "alt": "South on 6th Ave. from 56th St., Kenosha, WI",
 "author": "artistmac",
-"cropped": false,
+"cropped": true,
 "file": "kenosha-wisconsin.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -1740,29 +1740,29 @@
 "title": "South on 6th Ave. from 56th St., Kenosha, WI"
 },
 "killeen-texas": {
-"alt": "Killeen Downtown Historic District, Roughly bounded by Avenue A, Santa Fe Plaza, North 4th",
-"author": "Victorenriqueagosto",
-"cropped": false,
+"alt": "The 1884 Bell County Courthouse in Belton, with its domed clock tower, behind red crape myrtles under a deep blue sky.",
+"author": "Renelibrary",
+"cropped": true,
 "file": "killeen-texas.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:D_Avenue.JPG",
-"title": "D Avenue"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:BellCourthouse1_(1_of_1).jpg",
+"title": "BellCourthouse1 (1 of 1)"
 },
 "kingsport-tennessee": {
-"alt": "Broad Street in downtown Kingsport, Tennessee",
+"alt": "Historic storefronts and flags along sunny State Street in downtown Bristol, where the Tennessee–Virginia line runs down the street.",
 "author": "AppalachianCentrist",
-"cropped": false,
+"cropped": true,
 "file": "kingsport-tennessee.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Broad_Street,_Downtown_Kingsport,_TN.jpg",
-"title": "Broad Street, Downtown Kingsport, TN"
+"source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Bristol,_TN-VA.jpg",
+"title": "State Street - Bristol, TN-VA"
 },
 "kingston-new-york": {
 "alt": "View of the Stockade District in Kingston, NY.",
 "author": "Amy Lavine",
-"cropped": false,
+"cropped": true,
 "file": "kingston-new-york.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1770,19 +1770,19 @@
 "title": "Kingston, NY - view of the Stockade"
 },
 "kiryas-joel-new-york": {
-"alt": "Photographed by Daniel Case 2006-04-04",
-"author": "The original uploader was Daniel Case at English Wikipedia.; dropped by Beyond My Ken (talk) 20:59, 24 September 2014 (UTC)",
-"cropped": false,
+"alt": "The steel trusses of the Walkway Over the Hudson at Poughkeepsie tower over the river beneath autumn-coloured hills.",
+"author": "Jag9889",
+"cropped": true,
 "file": "kiryas-joel-new-york.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-"source_url": "https://commons.wikimedia.org/wiki/File:Kiryas_Joel_crop.jpg",
-"title": "Kiryas Joel crop"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Poughkeepsie_Railroad_Bridge_20071020.jpg",
+"title": "Poughkeepsie Railroad Bridge 20071020"
 },
 "knoxville-tennessee": {
-"alt": "The southeast corner of Market Square in Knoxville, Tennessee, USA.",
+"alt": "People strolling past brick buildings and cafe awnings under shade trees in Market Square, downtown Knoxville.",
 "author": "Brian Stansberry",
-"cropped": false,
+"cropped": true,
 "file": "knoxville-tennessee.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -1792,7 +1792,7 @@
 "kokomo-indiana": {
 "alt": "Kokomo skyline from mid-rise building looking south.",
 "author": "JJIndiana",
-"cropped": false,
+"cropped": true,
 "file": "kokomo-indiana.png",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -1802,7 +1802,7 @@
 "la-crosse-wisconsin": {
 "alt": "La Crosse Main Street",
 "author": "Bohao Zhao",
-"cropped": false,
+"cropped": true,
 "file": "la-crosse-wisconsin.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -1812,7 +1812,7 @@
 "lafayette-indiana": {
 "alt": "Lafayette downtown, Riehle Plaza",
 "author": "Qsthomson at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "lafayette-indiana.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -1820,19 +1820,19 @@
 "title": "Lafayette.downtown.Riehle.Plaza"
 },
 "lafayette-louisiana": {
-"alt": "This is a photograph of the downtown area in Lafayette, Louisiana, United States; it was taken on 16 October 2021 during the Boudin Festival in the afternoon.",
-"author": "TheLionHasSeen",
-"cropped": false,
+"alt": "The red-brick Cathedral of St. John the Evangelist in Lafayette, its tall bell tower rising against a cloudy sky.",
+"author": "joseph a",
+"cropped": true,
 "file": "lafayette-louisiana.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Lafayette_LA_2021.jpg",
-"title": "Downtown Lafayette LA 2021"
+"license": "CC BY-NC-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-nc-sa/2.0/",
+"source_url": "https://www.flickr.com/photos/7150652@N02/46618679322",
+"title": "St. John's Cathedral, Lafayette, LA"
 },
 "lake-havasu-city-arizona": {
 "alt": "Aerial photo of London Bridge in Lake Havasu City.",
 "author": "S. Winkvist",
-"cropped": false,
+"cropped": true,
 "file": "lake-havasu-city-arizona.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -1840,19 +1840,19 @@
 "title": "London Bridge, Lake Havasu City - 2011 (Aerial Photo)"
 },
 "lakeland-florida": {
-"alt": "Lakeland City Hall in Lakeland, Florida.",
-"author": "Connor J. Williams",
-"cropped": false,
+"alt": "Downtown Lakeland's buildings and a fountain across Lake Mirror, with wading birds on the grassy shore under a blue sky.",
+"author": "Trevorrrrvalent",
+"cropped": true,
 "file": "lakeland-florida.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Lakeland_city_hall_lakeland_florida.jpg",
-"title": "Lakeland city hall lakeland florida"
+"license": "CC BY 4.0",
+"license_url": "https://creativecommons.org/licenses/by/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Lake_Mirror_Lakeland_Florida_September_2024.jpg",
+"title": "Lake Mirror Lakeland Florida September 2024"
 },
 "lancaster-pennsylvania": {
-"alt": "Downtown Lancaster, Pennsylvania",
+"alt": "Downtown Lancaster's rooftops, the Griest Building tower and a green copper cupola under a blue summer sky.",
 "author": "Randolph Carney",
-"cropped": false,
+"cropped": true,
 "file": "lancaster-pennsylvania.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1860,9 +1860,9 @@
 "title": "Lancaster Pennsylvania downtown"
 },
 "lansing-michigan": {
-"alt": "State Capitol and Statue",
+"alt": "The domed Michigan State Capitol in Lansing under a clear blue sky, with the Austin Blair statue at right.",
 "author": "Andrew Martin",
-"cropped": false,
+"cropped": true,
 "file": "lansing-michigan.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -1870,19 +1870,19 @@
 "title": "State Capital and Statue - panoramio"
 },
 "laredo-texas": {
-"alt": "Downtown Laredo at the intersection of Covent and Iturbide Streets.",
-"author": "Not home at en.wikipedia",
-"cropped": false,
+"alt": "The white San Agustín Cathedral and its clock tower rising above the plaza’s trees in Laredo’s historic district under a deep blue sky.",
+"author": "Renelibrary",
+"cropped": true,
 "file": "laredo-texas.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Laredo_Downtown.JPG",
-"title": "Laredo Downtown"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:St._Augustin_Church_(1_of_1).jpg",
+"title": "St. Augustin Church (1 of 1)"
 },
 "las-cruces-new-mexico": {
 "alt": "Branson Library, New Mexico State University",
 "author": "Terry Umbenhaur",
-"cropped": false,
+"cropped": true,
 "file": "las-cruces-new-mexico.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1890,19 +1890,19 @@
 "title": "NMSU BransonLibrary"
 },
 "las-vegas-nevada": {
-"alt": "Downtown Las Vegas, taken from the Stratosphere tower.",
-"author": "Mike McBey",
-"cropped": false,
+"alt": "The Las Vegas Strip from above on a clear day, lined with casino hotels and towers.",
+"author": "Carol M. Highsmith",
+"cropped": true,
 "file": "las-vegas-nevada.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Las_Vegas_from_above_(40064746644).jpg",
-"title": "Las Vegas from above (40064746644)"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Daytime_aerial_view_of_the_Strip,_Las_Vegas,_Nevada_LCCN2010630596.tif",
+"title": "Daytime aerial view of the Strip, Las Vegas, Nevada LCCN2010630596"
 },
 "lawrence-kansas": {
 "alt": "An aerial shot of downtown Lawrence, Kansas.",
 "author": "Shannon Beat",
-"cropped": false,
+"cropped": true,
 "file": "lawrence-kansas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1912,7 +1912,7 @@
 "lawton-oklahoma": {
 "alt": "Picture of the Old Lawton High School Building",
 "author": "Crimsonedge34",
-"cropped": false,
+"cropped": true,
 "file": "lawton-oklahoma.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -1922,7 +1922,7 @@
 "lebanon-pennsylvania": {
 "alt": "Cumberland Street View Image",
 "author": "City of Lebanon",
-"cropped": false,
+"cropped": true,
 "file": "lebanon-pennsylvania.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1932,7 +1932,7 @@
 "lewiston-maine": {
 "alt": "Skyline of Lewiston, Maine in 2025",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "lewiston-maine.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1942,7 +1942,7 @@
 "lexington-kentucky": {
 "alt": "Downtown Lexington, Kentucky. The Lexington Financial Center (blue building) is the city's tallest.",
 "author": "Madgeek1450 at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "lexington-kentucky.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1952,7 +1952,7 @@
 "lima-ohio": {
 "alt": "Public Square in downtown Lima, Ohio, United States, seen from the square's southeastern corner.",
 "author": "Nyttend",
-"cropped": false,
+"cropped": true,
 "file": "lima-ohio.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -1960,19 +1960,19 @@
 "title": "Lima public square"
 },
 "lincoln-nebraska": {
-"alt": "Aerial view of the old Haymarket and West Haymarket; as seen from the Que Place Garage, 1111 \"Q\" Street in Lincoln, Nebraska.  Photo is looking west (and slight",
-"author": "Hanyou23",
-"cropped": false,
+"alt": "The Nebraska State Capitol's tall stone tower and domed top rise above trees and a green lawn under a blue, cloud-streaked sky.",
+"author": "Hurstbergn",
+"cropped": true,
 "file": "lincoln-nebraska.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_the_old_Haymarket_and_West_Haymarket,_Lincoln,_Nebraska,_USA.jpg",
-"title": "Aerial view of the old Haymarket and West Haymarket, Lincoln, Nebraska, USA"
+"license": "CC BY 4.0",
+"license_url": "https://creativecommons.org/licenses/by/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Nebraska_State_Capitol,_July_2026.jpg",
+"title": "Nebraska State Capitol, July 2026"
 },
 "little-rock-arkansas": {
-"alt": "Aerial view of downtown Little Rock, Arkansas, a city of 202,591 people known as the state capital and a regional center for government, healthcare and finance.",
+"alt": "Downtown Little Rock towers with the Arkansas River and its bridges beyond, seen from above on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "little-rock-arkansas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -1980,9 +1980,9 @@
 "title": "Little Rock, Arkansas skyline"
 },
 "longview-texas": {
-"alt": "Longview, Texas",
+"alt": "Brick storefronts and mid-rise towers along a quiet street in downtown Longview, Texas, on a sunny day.",
 "author": "pasa47",
-"cropped": false,
+"cropped": true,
 "file": "longview-texas.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -1992,7 +1992,7 @@
 "longview-washington": {
 "alt": "Downtown Longview WA, on the corner of Commerce Avenue and Hudson Street.",
 "author": "khiara jones",
-"cropped": false,
+"cropped": true,
 "file": "longview-washington.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -2000,9 +2000,9 @@
 "title": "Longviewwa1"
 },
 "los-angeles-california": {
-"alt": "The image is of the Hollywood landmark sign",
+"alt": "The Hollywood sign on the hillside above Los Angeles.",
 "author": "Gnaphron",
-"cropped": false,
+"cropped": true,
 "file": "los-angeles-california.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -2010,39 +2010,39 @@
 "title": "Hollywood sign (8485145044)"
 },
 "louisville-kentucky": {
-"alt": "The skyline of Louisville, Kentucky, lit up at night, featuring the KFC Yum! Center and 400 West Market, among other buildings. Taken in 2021. Modified (cropped",
-"author": "Charles Delano of LouisvilleUSACE - Louisville District of the US Army Corp of Engineers",
-"cropped": false,
+"alt": "The paddle steamboat Delta Queen cruises the Ohio River below downtown Louisville's towers on a clear day.",
+"author": "William Alden",
+"cropped": true,
 "file": "louisville-kentucky.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Louisville_Skyline_2021_(3).jpg",
-"title": "Louisville Skyline 2021 (3)"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Steamboat_Delta_Queen_and_downtown_buildings_Louisville_Kentucky_USA_Ohio_River_mile_604_July_2005_file_a5g004.jpg",
+"title": "Steamboat Delta Queen and downtown buildings Louisville Kentucky USA Ohio River mile 604 July 2005 file a5g004"
 },
 "lubbock-texas": {
-"alt": "Image of the Lubbock skyline as taken from Raider Park Garage at sundown",
-"author": "Noah Puente",
-"cropped": false,
+"alt": "Texas Tech University's Administration Building in Lubbock, with its two bell towers, beyond a wide lawn under a clear sky.",
+"author": "Texas Tech University - University Student Housing",
+"cropped": true,
 "file": "lubbock-texas.jpg",
-"license": "CC0",
-"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-"source_url": "https://commons.wikimedia.org/wiki/File:Lubbock_Skyline.jpg",
-"title": "Lubbock Skyline"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Administration_Building_at_Texas_Tech_University_(3848855050).jpg",
+"title": "Administration Building at Texas Tech University (3848855050)"
 },
 "lynchburg-virginia": {
-"alt": "Aerial view of Lynchburg, Virginia (pop. 79,009).",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "Downtown Lynchburg's brick buildings and tower rising above the tree-lined James River under a blue, streaky sky.",
+"author": "Northern-Virginia-Photographer",
+"cropped": true,
 "file": "lynchburg-virginia.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Lynchburg,_Virginia_(cropped).jpg",
-"title": "Lynchburg, Virginia (cropped)"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Lynchburg_zoomed_in.jpg",
+"title": "Downtown Lynchburg zoomed in"
 },
 "macon-georgia": {
 "alt": "Macon Georgia Aerial (52700955029).jpg",
 "author": "formulanone",
-"cropped": false,
+"cropped": true,
 "file": "macon-georgia.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -2050,19 +2050,19 @@
 "title": "Macon Georgia Aerial (52700955029)"
 },
 "madison-wisconsin": {
-"alt": "The Lake Mendota shoreline is pictured in an aerial view of the University of Wisconsin-Madison campus looking toward the downtown Madison skyline during an aut",
-"author": "college.library",
-"cropped": false,
+"alt": "Downtown Madison and the domed Wisconsin State Capitol seen across Lake Monona under a blue sky with puffy clouds.",
+"author": "Richard Hurd from Green Bay, USA",
+"cropped": true,
 "file": "madison-wisconsin.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Aerial_View_of_Campus,_with_Helen_C._White_Hall_in_foreground_(14070186173).jpg",
-"title": "Aerial View of Campus, with Helen C. White Hall in foreground (14070186173)"
+"source_url": "https://commons.wikimedia.org/wiki/File:Madison_Wisconsin_05-04-2015_110_(17349544126).jpg",
+"title": "Madison Wisconsin 05-04-2015 110 (17349544126)"
 },
 "manchester-new-hampshire": {
-"alt": "Manchester, New Hampshire skyline",
+"alt": "Downtown Manchester’s towers and brick rowhouses rising beyond the old Millyard mill buildings under a pale blue sky.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "manchester-new-hampshire.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2072,7 +2072,7 @@
 "manhattan-kansas": {
 "alt": "Riley County Courthouse in Manhattan Kansas",
 "author": "Kevin Zollman Kzollman 22:00, 4 May 2006 (UTC)",
-"cropped": false,
+"cropped": true,
 "file": "manhattan-kansas.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
@@ -2082,7 +2082,7 @@
 "mankato-minnesota": {
 "alt": "en:North Riverfront Drive Commercial District, Mankato, Minnesota, USA.",
 "author": "Bobak Ha'Eri",
-"cropped": false,
+"cropped": true,
 "file": "mankato-minnesota.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -2092,7 +2092,7 @@
 "mansfield-ohio": {
 "alt": "Mansfield, Ohio",
 "author": "John Siegenthaler",
-"cropped": false,
+"cropped": true,
 "file": "mansfield-ohio.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2100,19 +2100,19 @@
 "title": "Mansfield skyline"
 },
 "mcallen-texas": {
-"alt": "View of downtown McAllen. From left to right: Bentsen Tower; Chase Bank Tower (Neuhaus Tower).\nPhoto taken from the sixth floor of the McAllen Medical Center.",
-"author": "Theunderratedtaco",
-"cropped": false,
+"alt": "Tall palm trees in front of the white Spanish-style Casa de Palmas hotel in downtown McAllen under a blue sky.",
+"author": "25or6to4",
+"cropped": true,
 "file": "mcallen-texas.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_McAllen.jpg",
-"title": "Skyline of McAllen"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Casa_de_Palmas_2012-09-13_14-05-27.jpg",
+"title": "Casa de Palmas 2012-09-13 14-05-27"
 },
 "memphis-tennessee": {
-"alt": "The skyline of Memphis, Tennessee, along the Mississippi River.",
+"alt": "Downtown Memphis's skyline above the Mississippi River and its sandy riverbank on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "memphis-tennessee.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2120,9 +2120,9 @@
 "title": "Skyline of Memphis, TN"
 },
 "merced-california": {
-"alt": "The historic Tioga Hotel located in Merced, California. It is listed on the National Register of Historic Places.",
+"alt": "The white historic Tioga Hotel with tall palm trees on a sunny day in downtown Merced.",
 "author": "Publichall",
-"cropped": false,
+"cropped": true,
 "file": "merced-california.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2130,19 +2130,19 @@
 "title": "Tioga Hotel - Merced California (cropped)"
 },
 "miami-florida": {
-"alt": "I, the copyright holder of this work, hereby publish it under the following license:",
-"author": "Averette",
-"cropped": false,
+"alt": "The towers of Miami's Brickell district rising above the blue water of Biscayne Bay in late-afternoon sun.",
+"author": "Wilfredor",
+"cropped": true,
 "file": "miami-florida.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Villa_Vizcaya_20110228.jpg",
-"title": "Villa Vizcaya 20110228"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Miami_skylines_343.jpg",
+"title": "Miami skylines 343"
 },
 "michigan-city-indiana": {
 "alt": "Michigan City East Pierhead Light Tower and Elevated Walk",
 "author": "Matt Morse",
-"cropped": false,
+"cropped": true,
 "file": "michigan-city-indiana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2152,7 +2152,7 @@
 "midland-michigan": {
 "alt": "Midland County Courthouse",
 "author": "O. David Redwine",
-"cropped": false,
+"cropped": true,
 "file": "midland-michigan.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2162,7 +2162,7 @@
 "midland-texas": {
 "alt": "Skyline of downtown Midland, Texas, a major oil & gas city with a population of 169,983 residents.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "midland-texas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2170,9 +2170,9 @@
 "title": "Midland, TX skyline (cropped)"
 },
 "milwaukee-wisconsin": {
-"alt": "Milwaukee Skyline with New NW Mutual Building 2025 by Isaac Rowlett",
+"alt": "Milwaukee's downtown towers above the snowy lakefront, with the winged Milwaukee Art Museum on Lake Michigan.",
 "author": "Bfkenney",
-"cropped": false,
+"cropped": true,
 "file": "milwaukee-wisconsin.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2180,9 +2180,9 @@
 "title": "Milwaukee Skyline w New NW Mutual Building 2025 by Isaac Rowlett"
 },
 "minneapolis-minnesota": {
-"alt": "View of the Minneapolis Skyline and the Mississippi River from North Minneapolis",
+"alt": "The Minneapolis skyline rising beyond the Mississippi River and a bridge on a clear winter day.",
 "author": "BpA9543",
-"cropped": false,
+"cropped": true,
 "file": "minneapolis-minnesota.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2192,7 +2192,7 @@
 "minot-north-dakota": {
 "alt": "Downtown Minot, North Dakota",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "minot-north-dakota.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2202,7 +2202,7 @@
 "missoula-montana": {
 "alt": "Skyline of Missoula, Montana in 2019",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "missoula-montana.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2210,9 +2210,9 @@
 "title": "Missoula, Montana"
 },
 "mobile-alabama": {
-"alt": "Skyline of Mobile, Alabama, viewed from the west, with downtown buildings along the Mobile River.",
+"alt": "Downtown Mobile's skyline, led by the spired RSA Battle House Tower, under a clear blue sky.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "mobile-alabama.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2220,19 +2220,19 @@
 "title": "Mobile, Alabama skyline"
 },
 "modesto-california": {
-"alt": "The Gallo Center for the Arts in Modesto, California.",
-"author": "OsotedeMonte",
-"cropped": false,
+"alt": "The Modesto Arch, reading “Water Wealth Contentment Health”, spanning a downtown street between tall cypress trees under a blue sky.",
+"author": "Carl Skaggs",
+"cropped": true,
 "file": "modesto-california.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Gallo_Center_for_the_Arts_Modesto_(cropped).JPG",
-"title": "Gallo Center for the Arts Modesto (cropped)"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Modesto_Arch.JPG",
+"title": "Modesto Arch"
 },
 "monroe-michigan": {
 "alt": "Monroe Skyline",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "monroe-michigan.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2242,7 +2242,7 @@
 "montgomery-alabama": {
 "alt": "Title: Aerial view of Montgomery, Alabama\nPhysical description: 1 photograph : digital, TIFF file, color.\n\nNotes: Title, date, and keywords provided by the phot",
 "author": "Carol M. Highsmith",
-"cropped": false,
+"cropped": true,
 "file": "montgomery-alabama.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -2252,7 +2252,7 @@
 "morgantown-west-virginia": {
 "alt": "Woodburn Hall",
 "author": "Tom Long from Oak Island, USA",
-"cropped": false,
+"cropped": true,
 "file": "morgantown-west-virginia.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -2262,7 +2262,7 @@
 "morristown-tennessee": {
 "alt": "The downtown area of Morristown, Tennessee on Main Street, looking east",
 "author": "AppalachianCentrist",
-"cropped": false,
+"cropped": true,
 "file": "morristown-tennessee.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2272,7 +2272,7 @@
 "mount-vernon-washington": {
 "alt": "Aerial view of downtown Mount Vernon, Washington (pop. 35,219), the county seat and most populous city in Skagit County.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "mount-vernon-washington.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2282,7 +2282,7 @@
 "muskegon-michigan": {
 "alt": "View across Muskegon lake from N. Muskegon.",
 "author": "bigmikesndtech",
-"cropped": false,
+"cropped": true,
 "file": "muskegon-michigan.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2290,19 +2290,19 @@
 "title": "Muskegon skyline and lake"
 },
 "myrtle-beach-south-carolina": {
-"alt": "Margartiaville at Broadway at the Beach in Myrtle Beach, South Carolina",
-"author": "w:User:Isipeoria",
-"cropped": false,
+"alt": "The SkyWheel and oceanfront hotels above the wide sandy beach at Myrtle Beach on a sunny day.",
+"author": "The ed17",
+"cropped": true,
 "file": "myrtle-beach-south-carolina.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-"source_url": "https://commons.wikimedia.org/wiki/File:BroadwayAtTheBeach1.jpg",
-"title": "BroadwayAtTheBeach1"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Myrtle_Beach_ferris_wheel.jpg",
+"title": "Myrtle Beach ferris wheel"
 },
 "napa-california": {
 "alt": "City of Napa by the Napa River",
 "author": "Oleg Alexandrov",
-"cropped": false,
+"cropped": true,
 "file": "napa-california.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2310,29 +2310,29 @@
 "title": "City of Napa by the Napa River (cropped)"
 },
 "naples-florida": {
-"alt": "Bayside   www.florida-infos.com",
-"author": "Franz Stellbrink",
-"cropped": false,
+"alt": "The long wooden Naples Pier stretches into the Gulf of Mexico beyond a white-sand beach and sea grape bushes on a sunny day.",
+"author": "Marc Ryckaert",
+"cropped": true,
 "file": "naples-florida.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Bayside_www.florida-infos.com_-_panoramio_(1).jpg",
-"title": "Bayside www.florida-infos.com - panoramio (1)"
+"license": "CC BY-SA 2.5",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+"source_url": "https://commons.wikimedia.org/wiki/File:Naples_Beach4.jpg",
+"title": "Naples Beach4"
 },
 "nashville-tennessee": {
-"alt": "Skyline of Downtown Nashville, Tennessee.",
+"alt": "Downtown Nashville skyline above the Cumberland River and its bridges on a clear, sunny day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "nashville-tennessee.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Nashville,_TN_skyline.jpg",
-"title": "Nashville, TN skyline"
+"source_url": "https://commons.wikimedia.org/wiki/File:Nashville,_Tennessee_(cropped).jpg",
+"title": "Nashville, Tennessee (cropped)"
 },
 "new-haven-connecticut": {
-"alt": "The skyline of New Haven, Connecticut. It's home to 135,000 residents and Yale University, the city's biggest taxpayer and employer",
+"alt": "Downtown New Haven's towers rising above tree-filled neighborhoods in autumn color, with low hills on the horizon.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "new-haven-connecticut.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2340,19 +2340,19 @@
 "title": "New Haven, Connecticut skyline (cropped)"
 },
 "new-orleans-louisiana": {
-"alt": "New Orleans from the Air- High rises of the Central Business District",
-"author": "George Bannister",
-"cropped": false,
+"alt": "Wrought-iron balconies along a street in the French Quarter of New Orleans.",
+"author": "Daquella manera",
+"cropped": true,
 "file": "new-orleans-louisiana.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_(cropped).jpg",
-"title": "New Orleans from the Air September 2019 - Central Business District Skyline (cropped)"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
+"title": "Barrio francés de Nuevo Orleans Nov 2005"
 },
 "new-york-new-york": {
-"alt": "View of the Empire State Building in New York City from the Top of the Rock at 30 Rockefeller Plaza during sunset. The tower was illuminated in green in honor o",
+"alt": "The Empire State Building lit green above Midtown Manhattan at sunset, seen from Rockefeller Center.",
 "author": "Dllu",
-"cropped": false,
+"cropped": true,
 "file": "new-york-new-york.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2362,7 +2362,7 @@
 "niles-michigan": {
 "alt": "A view of downtown Niles",
 "author": "Robert Franklin",
-"cropped": false,
+"cropped": true,
 "file": "niles-michigan.webp",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2370,19 +2370,19 @@
 "title": "A view of downtown Niles from SLR pilates studio"
 },
 "north-port-florida": {
-"alt": "A side view of the North Port Public Library in North Port, Sarasota County, FL.",
-"author": "Rino Landa",
-"cropped": false,
+"alt": "A red lifeguard stand on the white quartz sand of Siesta Key Beach by calm Gulf waters near Sarasota.",
+"author": "4net",
+"cropped": true,
 "file": "north-port-florida.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:North_Port_Public_Library_Side.JPG",
-"title": "North Port Public Library Side"
+"license": "CC BY 3.0",
+"license_url": "https://creativecommons.org/licenses/by/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Siesta_Key_Beach._Sarasota_-_panoramio_-_4net_(3).jpg",
+"title": "Siesta Key Beach. Sarasota - panoramio - 4net (3)"
 },
 "norwich-connecticut": {
-"alt": "Norwich, Connecticut",
+"alt": "Norwich's harbor, marina and brick downtown at the head of the Thames River, seen from above in warm late-day light.",
 "author": "Hayden Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "norwich-connecticut.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2390,19 +2390,19 @@
 "title": "Norwich, Connecticut 2"
 },
 "ocala-florida": {
-"alt": "Photos I took in Ocala.",
-"author": "Excel23",
-"cropped": false,
-"file": "ocala-florida.png",
+"alt": "Glass-bottom boats on the clear blue headspring at Silver Springs near Ocala, with palm trees and the old boathouse.",
+"author": "Jackdude101",
+"cropped": true,
+"file": "ocala-florida.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:OcalaFLMontage.png",
-"title": "OcalaFLMontage"
+"source_url": "https://commons.wikimedia.org/wiki/File:Silver_Springs_State_Park_-_Glass-Bottom_Boats_2017.jpg",
+"title": "Silver Springs State Park - Glass-Bottom Boats 2017"
 },
 "odessa-texas": {
 "alt": "Skyline of Odessa, Texas. looking east from TX-302",
 "author": "Vasiliymeshko",
-"cropped": false,
+"cropped": true,
 "file": "odessa-texas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2410,19 +2410,19 @@
 "title": "Odessa, Texas"
 },
 "ogden-utah": {
-"alt": "An image montage of Ogden City. From Top to Bottom:\nOgden High School\nTower Bell Weber State University\nPeery's Egyptian Theater\nDowntown\nGantry Sign Ogden\nAeri",
-"author": "Thomas Wozniak",
-"cropped": false,
+"alt": "Downtown Ogden’s brick storefronts and a church spire beneath the snow-covered Wasatch Mountains on a clear winter day.",
+"author": "Scott Catron from Sandy, Utah, USA",
+"cropped": true,
 "file": "ogden-utah.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:US_Utah_Ogden_Montage.jpg",
-"title": "US Utah Ogden Montage"
+"license": "CC BY-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Ogden_Utah_downtown.jpg",
+"title": "Ogden Utah downtown"
 },
 "oklahoma-city-oklahoma": {
-"alt": "The Central Business District of downtown Oklahoma City.",
+"alt": "Downtown Oklahoma City skyline with the glass Devon Energy Center tower against a clear blue sky.",
 "author": "Urbanative",
-"cropped": false,
+"cropped": true,
 "file": "oklahoma-city-oklahoma.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2430,19 +2430,19 @@
 "title": "Oklahoma city downtown"
 },
 "olympia-washington": {
-"alt": "Final day of annual Lakefair festival at Capitol Lake in Olympia, Washington; taken on July 20, 2025 from the Law Enforcement Memorial at the Washington State C",
-"author": "OceanLoop",
-"cropped": false,
+"alt": "The domed Washington State Capitol in Olympia, framed by two stone office buildings and lawns under a partly cloudy sky.",
+"author": "Martin Kraft",
+"cropped": true,
 "file": "olympia-washington.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Capitol_Lake,_Olympia,_Washington,_July_20,_2025_(cropped).jpg",
-"title": "Capitol Lake, Olympia, Washington, July 20, 2025 (cropped)"
+"source_url": "https://commons.wikimedia.org/wiki/File:MK03165_Washington_State_Capitol_(Olympia).jpg",
+"title": "MK03165 Washington State Capitol (Olympia)"
 },
 "omaha-nebraska": {
-"alt": "The downtown skyline in Omaha, Nebraska, as seen from across the Missouri River in Council Bluffs, Iowa.\n\n/sim",
+"alt": "Downtown Omaha skyline rising above the Missouri River and green riverbank on a clear, sunny day.",
 "author": "Tony Webster from Minneapolis, Minnesota, United States",
-"cropped": false,
+"cropped": true,
 "file": "omaha-nebraska.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2450,19 +2450,19 @@
 "title": "City of Omaha, Nebraska Skyline on the Missouri River (30899969517)"
 },
 "orlando-florida": {
-"alt": "The skyline of downtown Orlando, Florida.",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "Swan boats and the fountain on Lake Eola, with downtown Orlando's towers rising behind under a bright sky.",
+"author": "nick hoke",
+"cropped": true,
 "file": "orlando-florida.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Orlando,_Florida_(cropped).jpg",
-"title": "Orlando, Florida (cropped)"
+"license": "CC BY 3.0",
+"license_url": "https://creativecommons.org/licenses/by/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:South_Eola,_Orlando,_FL_32801,_USA_-_panoramio_(1).jpg",
+"title": "South Eola, Orlando, FL 32801, USA - panoramio (1)"
 },
 "oshkosh-wisconsin": {
 "alt": "Looking northerly at downtown Oshkosh, Wisconsin, USA at Main Street which is U.S. Highway 45. Cropped from the original.",
 "author": "self",
-"cropped": false,
+"cropped": true,
 "file": "oshkosh-wisconsin.jpg",
 "license": "CC BY-SA 2.5",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
@@ -2472,7 +2472,7 @@
 "owensboro-kentucky": {
 "alt": "Corner of West 3rd and St. Ann Streets in Owensboro, Kentucky.  In a NRHP Historic District",
 "author": "Smallbones",
-"cropped": false,
+"cropped": true,
 "file": "owensboro-kentucky.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -2480,19 +2480,19 @@
 "title": "Owensboro2ndStAnn"
 },
 "oxnard-california": {
-"alt": "Embassy Suites Lobby Front, Oxnard, CA,USA May 2009",
-"author": "Tori Sloane",
-"cropped": false,
+"alt": "Boats moored along a palm-lined residential canal at Channel Islands Harbor in Oxnard on a sunny day.",
+"author": "Sergei Gussev",
+"cropped": true,
 "file": "oxnard-california.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Embassy_Suites_Lobby_Front,_Oxnard,_CA,USA_May_2009_-_panoramio_(cropped).jpg",
-"title": "Embassy Suites Lobby Front, Oxnard, CA,USA May 2009 - panoramio (cropped)"
+"license": "CC BY 3.0",
+"license_url": "https://creativecommons.org/licenses/by/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Channel_Islands,_Oxnard,_CA_93035,_USA_-_panoramio_-_Sergei_Gussev_(1).jpg",
+"title": "Channel Islands, Oxnard, CA 93035, USA - panoramio - Sergei Gussev (1)"
 },
 "paducah-kentucky": {
 "alt": "Buildings on Broadway in Paducah, Kentucky.",
 "author": "Farragutful",
-"cropped": false,
+"cropped": true,
 "file": "paducah-kentucky.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2500,19 +2500,19 @@
 "title": "Broadway - Paducah, Kentucky"
 },
 "palm-bay-florida": {
-"alt": "Photos I took in Palm Bay, Florida.",
+"alt": "A sabal palm leaning over the blue water of the bay in Palm Bay, Florida, with a moored sailboat and puffy white clouds.",
 "author": "Excel23",
-"cropped": false,
-"file": "palm-bay-florida.png",
+"cropped": true,
+"file": "palm-bay-florida.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:PalmBayFL2020.png",
-"title": "PalmBayFL2020"
+"source_url": "https://commons.wikimedia.org/wiki/File:PalmBayFLBay.jpg",
+"title": "PalmBayFLBay"
 },
 "panama-city-florida": {
 "alt": "The Panama City, FL City Hall from the main parking lot.",
 "author": "Balon Greyjoy",
-"cropped": false,
+"cropped": true,
 "file": "panama-city-florida.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -2522,7 +2522,7 @@
 "parkersburg-west-virginia": {
 "alt": "View of Parkersburg, West Virginia",
 "author": "Mgoudy85 (talk)",
-"cropped": false,
+"cropped": true,
 "file": "parkersburg-west-virginia.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -2530,19 +2530,29 @@
 "title": "Boreman view"
 },
 "pensacola-florida": {
-"alt": "Collage of images from around Pensacola",
-"author": "Dom Price (Skyline Photo) Ebyabe (Photos of the Customhouse and Plaza Ferdinand Only), Thomas Baxter (Photo of library at UWF), Naval Air Museum & TT Wentworth (Public Domain)",
-"cropped": false,
+"alt": "The long concrete Gulf Pier stretching over emerald-green surf from the white sand of Pensacola Beach.",
+"author": "TimothyJ",
+"cropped": true,
 "file": "pensacola-florida.jpg",
-"license": "Public domain",
-"license_url": null,
-"source_url": "https://commons.wikimedia.org/wiki/File:Collage_of_images_from_around_Pensacola.jpg",
-"title": "Collage of images from around Pensacola"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:The_beach_at_Gulf_Pier_in_Pensacola_Beach,_Florida.jpg",
+"title": "The beach at Gulf Pier in Pensacola Beach, Florida"
+},
+"peoria-illinois": {
+"alt": "Downtown Peoria’s towers across the Illinois River, seen from the East Peoria riverfront with its blue railing on a winter day.",
+"author": "Scott Tranchitella from West Peoria, Illinois, USA",
+"cropped": true,
+"file": "peoria-illinois.jpg",
+"license": "CC BY-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Peoria_Illinois_Skyline_(cropped)_(cropped).jpg",
+"title": "Peoria Illinois Skyline (cropped) (cropped)"
 },
 "philadelphia-pennsylvania": {
-"alt": "Philadelphia Skyline from ​Schuylkill River",
+"alt": "The Philadelphia skyline rising beyond the Schuylkill River and its wooded banks.",
 "author": "颐园居",
-"cropped": false,
+"cropped": true,
 "file": "philadelphia-pennsylvania.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2550,9 +2560,9 @@
 "title": "Philadelphia skyline 20240528 (cropped 2-1)"
 },
 "phoenix-arizona": {
-"alt": "Skyline view of Phoenix — looking northeast from a helicopter, from above the 4th Avenue Jail. \nForeground is the Central City Village and Central Avenue Corrid",
+"alt": "Downtown Phoenix high-rises with desert mountains on the horizon, seen from the air on a clear, sunny day.",
 "author": "DPPed",
-"cropped": false,
+"cropped": true,
 "file": "phoenix-arizona.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2562,7 +2572,7 @@
 "pinehurst-north-carolina": {
 "alt": "Mystic Cottage, 105 Magnolia Road, Pinehurst, North Carolina.",
 "author": "Leonard J. DeFrancisci",
-"cropped": false,
+"cropped": true,
 "file": "pinehurst-north-carolina.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2570,19 +2580,19 @@
 "title": "Mystic Cottage (Pinehurst, North Carolina) 001"
 },
 "pittsburgh-pennsylvania": {
-"alt": "Ascending the Duquesne Incline on Mount Washington.",
+"alt": "Downtown Pittsburgh's skyline and the Point where its rivers meet, seen from Mount Washington above a red incline car in morning sun.",
 "author": "Dllu",
-"cropped": false,
+"cropped": true,
 "file": "pittsburgh-pennsylvania.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Ascending_the_Duquesne_Incline.jpg",
-"title": "Ascending the Duquesne Incline"
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Pittsburgh_from_Duquesne_Incline_in_the_morning.jpg",
+"title": "Downtown Pittsburgh from Duquesne Incline in the morning"
 },
 "pittsfield-massachusetts": {
 "alt": "Aerial view of downtown Pittsfield, Massachusetts (pop. 43,927), the most populous city and county seat of Berkshire County.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "pittsfield-massachusetts.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2590,19 +2600,19 @@
 "title": "Pittsfield, Massachusetts skyline"
 },
 "port-st-lucie-florida": {
-"alt": "Golf Course in Port Saint Lucie",
-"author": "Zverzver (talk)",
-"cropped": false,
+"alt": "A white gazebo framed by four tall palm trees on the shore of Lake Tradition in Port St. Lucie at dusk.",
+"author": "Dough4872",
+"cropped": true,
 "file": "port-st-lucie-florida.jpg",
-"license": "Public domain",
-"license_url": null,
-"source_url": "https://commons.wikimedia.org/wiki/File:Psl_golf_course.jpg",
-"title": "Psl golf course"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Gazebo_at_Lake_Tradition_in_Port_St_Lucie_FL.jpeg",
+"title": "Gazebo at Lake Tradition in Port St Lucie FL"
 },
 "portland-maine": {
-"alt": "Old Port in Portland, Maine courtesy of PhilipC's photostream",
+"alt": "A cobblestone lane lined with old brick buildings and shop signs in Portland's Old Port district after rain.",
 "author": "PhilipC",
-"cropped": false,
+"cropped": true,
 "file": "portland-maine.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2610,9 +2620,9 @@
 "title": "TheOldPort"
 },
 "portland-oregon": {
-"alt": "Drone photo of Portland, Oregon",
+"alt": "Downtown Portland and its green hills, with Mount Hood on the horizon.",
 "author": "Spicypepper999",
-"cropped": false,
+"cropped": true,
 "file": "portland-oregon.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -2622,7 +2632,7 @@
 "prescott-valley-arizona": {
 "alt": "skyline of Prescott Valley civic center",
 "author": "CZfromPV",
-"cropped": false,
+"cropped": true,
 "file": "prescott-valley-arizona.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2630,29 +2640,29 @@
 "title": "Skyline of Prescott Valley civic center"
 },
 "providence-rhode-island": {
-"alt": "Skyline of Providence, Rhode Island, USA with a view of Providence River Bridge",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "Downtown Providence's towers, led by the Art Deco Industrial Trust Building, across the Providence River on a sunny day.",
+"author": "Kenneth C. Zirkel",
+"cropped": true,
 "file": "providence-rhode-island.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Providence_RI_skyline.jpg",
-"title": "Providence RI skyline"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Providence_Rhode_Island_skyline_2017.jpg",
+"title": "Providence Rhode Island skyline 2017"
 },
 "provo-utah": {
-"alt": "A view of Downtown Provo",
-"author": "Javin Weaver",
-"cropped": false,
+"alt": "The white-columned Historic Utah County Courthouse behind lawns and red flower beds, with a green Wasatch peak rising behind.",
+"author": "Farragutful",
+"cropped": true,
 "file": "provo-utah.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Provo.jpg",
-"title": "Downtown Provo"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Historic_Utah_County_Courthouse_03.jpg",
+"title": "Historic Utah County Courthouse 03"
 },
 "pueblo-colorado": {
 "alt": "Aerial view of downtown Pueblo, Colorado (pop. 111,876), featuring the historic Arkansas Riverwalk.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "pueblo-colorado.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2662,7 +2672,7 @@
 "punta-gorda-florida": {
 "alt": "City Hall in Punta Gorda, Florida.",
 "author": "Wknight94",
-"cropped": false,
+"cropped": true,
 "file": "punta-gorda-florida.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
@@ -2672,7 +2682,7 @@
 "racine-wisconsin": {
 "alt": "Monument Square overlooking the Johnson's Financial Building and the Racine Art Museum",
 "author": "Racine2020",
-"cropped": false,
+"cropped": true,
 "file": "racine-wisconsin.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2680,9 +2690,9 @@
 "title": "City of Racine Monument Square"
 },
 "raleigh-north-carolina": {
-"alt": "The Raleigh skyline as viewed from Dorothea Dix Park.",
+"alt": "Downtown Raleigh's skyline rising above leafy streets in warm late-afternoon light.",
 "author": "Abhiram Juvvadi",
-"cropped": false,
+"cropped": true,
 "file": "raleigh-north-carolina.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2692,7 +2702,7 @@
 "rapid-city-south-dakota": {
 "alt": "Skyline of Rapid City, South Dakota, taken from Hillcrest Drive",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "rapid-city-south-dakota.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2700,9 +2710,9 @@
 "title": "Rapid City Skyline (2022)"
 },
 "reading-pennsylvania": {
-"alt": "The skyline of Reading, Pennsylvania taken from the Pagoda with a zoom lens.",
+"alt": "Downtown Reading’s towers and rooftops among green hills, seen from the Pagoda on Mount Penn on a summer day.",
 "author": "BigCheddah",
-"cropped": false,
+"cropped": true,
 "file": "reading-pennsylvania.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2712,7 +2722,7 @@
 "redding-california": {
 "alt": "Sundial Bridge at Turtle Bay, Redding, California, USA",
 "author": "Chad K",
-"cropped": false,
+"cropped": true,
 "file": "redding-california.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2720,9 +2730,9 @@
 "title": "Sundial Bridge at Turtle Bay (cropped)"
 },
 "reno-nevada": {
-"alt": "Throwback to September, 2013",
+"alt": "Downtown Reno's towers glowing in golden-hour light beneath snow-capped mountains, seen across a sagebrush hillside.",
 "author": "Trevor Bexon",
-"cropped": false,
+"cropped": true,
 "file": "reno-nevada.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2730,9 +2740,9 @@
 "title": "Reno, Nevada (16931715632)"
 },
 "richmond-virginia": {
-"alt": "A downtown view of Richmond, VA",
+"alt": "Downtown Richmond's office towers rise above trees and old brick buildings under a clear blue sky.",
 "author": "Bruce Emmerling",
-"cropped": false,
+"cropped": true,
 "file": "richmond-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2740,9 +2750,9 @@
 "title": "A downtown view of Richmond, VA"
 },
 "riverside-california": {
-"alt": "This is an image of a place or building that is listed on the National Register of Historic Places in the United States of America. Its reference number is 7100",
+"alt": "Arched balconies, flower boxes and a copper dome around the courtyard of the historic Mission Inn in Riverside.",
 "author": "Aaron Guzman",
-"cropped": false,
+"cropped": true,
 "file": "riverside-california.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2750,19 +2760,19 @@
 "title": "Mission Inn's main interior courtyard"
 },
 "roanoke-virginia": {
-"alt": "Roanoke City as seen from Mill Mountain Star at dusk in Virginia, USA.",
-"author": "Joe Ravi",
-"cropped": false,
+"alt": "Downtown Roanoke from Mill Mountain in late-afternoon sun, with Blue Ridge ridges on the horizon.",
+"author": "SchuminWeb",
+"cropped": true,
 "file": "roanoke-virginia.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Roanoke_City_(Virginia)_from_Mill_Mountain_Star_at_Dusk.jpg",
-"title": "Roanoke City (Virginia) from Mill Mountain Star at Dusk"
+"license": "CC BY-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Roanoke,_Virginia_viewed_from_Mill_Mountain.jpg",
+"title": "Roanoke, Virginia viewed from Mill Mountain"
 },
 "rochester-minnesota": {
 "alt": "Peace PlazaDowntown Rochester, MN",
 "author": "cjohnson7",
-"cropped": false,
+"cropped": true,
 "file": "rochester-minnesota.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2770,29 +2780,29 @@
 "title": "Downtown Rochester, MN-Peace Plaza"
 },
 "rochester-new-york": {
-"alt": "A beautiful night in July 2011 made this shot happen - that, and some HDR work.",
-"author": "Patrick Ashley",
-"cropped": false,
+"alt": "The Genesee River pours over High Falls beneath downtown Rochester's buildings on a sunny day.",
+"author": "Evilarry",
+"cropped": true,
 "file": "rochester-new-york.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Rochester,_NY_HDR_by_patrickashley.jpg",
-"title": "Downtown Rochester, NY HDR by patrickashley"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Rochester_High_Falls.jpg",
+"title": "Rochester High Falls"
 },
 "rockford-illinois": {
-"alt": "A westward view of the downtown East Street Street corridor is seen from the intersection of E State St and 3rd Street in Rockford, IL",
+"alt": "The Rock River winding past downtown Rockford's brick buildings and towers, with the Jefferson Street Bridge and a blue sky.",
 "author": "Alexbaumgarner",
-"cropped": false,
+"cropped": true,
 "file": "rockford-illinois.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:East_State_Street_in_downtown_Rockford.jpg",
-"title": "East State Street in downtown Rockford"
+"source_url": "https://commons.wikimedia.org/wiki/File:Overview_of_eastern_downtown_Rockford.jpg",
+"title": "Overview of eastern downtown Rockford"
 },
 "rocky-mount-north-carolina": {
 "alt": "Rocky Mount, North Carolina city lake and Power Plant in background.",
 "author": "Harris Walker",
-"cropped": false,
+"cropped": true,
 "file": "rocky-mount-north-carolina.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2802,7 +2812,7 @@
 "rome-georgia": {
 "alt": "Rome GA viewed from Myrtle Hill Cemetery",
 "author": "Thomson200",
-"cropped": false,
+"cropped": true,
 "file": "rome-georgia.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -2810,9 +2820,9 @@
 "title": "Rome GA viewed from Myrtle Hill Cemetery, Nov 2017"
 },
 "sacramento-california": {
-"alt": "The skyline of downtown Sacramento (pop. 524,943), the capital city of California.",
+"alt": "The gold Tower Bridge over the Sacramento River with downtown Sacramento's skyline behind on a sunny day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "sacramento-california.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2822,7 +2832,7 @@
 "saginaw-michigan": {
 "alt": "Saginaw from the River",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "saginaw-michigan.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2830,29 +2840,29 @@
 "title": "Saginaw, Michigan Skyline (2022)"
 },
 "salem-oregon": {
-"alt": "Downtown w:Salem, Oregon from top of w:Oregon State Capitol",
+"alt": "The white marble Oregon State Capitol with its gilded pioneer statue, framed by blossoming cherry trees on the lawn in Salem.",
 "author": "M.O. Stevens",
-"cropped": false,
+"cropped": true,
 "file": "salem-oregon.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Salem_Oregon_downtown.JPG",
-"title": "Salem Oregon downtown"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Oregon_State_Capitol_1.jpg",
+"title": "Oregon State Capitol 1"
 },
 "salinas-california": {
-"alt": "After 2018 renovations",
-"author": "Sgerbic",
-"cropped": false,
+"alt": "Historic brick and stucco storefronts and a cinema sign along sunny Main Street in Oldtown Salinas.",
+"author": "Naotake Murayama",
+"cropped": true,
 "file": "salinas-california.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Monterey_County_Courthouse_2018_Salinas_CA_(1).jpg",
-"title": "Monterey County Courthouse 2018 Salinas CA (1)"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Main_Street,_Salinas.jpg",
+"title": "Main Street, Salinas"
 },
 "salisbury-maryland": {
 "alt": "Main Street in Salisbury, Maryland",
 "author": "Eric Fischer",
-"cropped": false,
+"cropped": true,
 "file": "salisbury-maryland.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2860,9 +2870,9 @@
 "title": "Salisbury MD Main Street"
 },
 "salt-lake-city-utah": {
-"alt": "Salt Lake City skyline view",
+"alt": "Downtown Salt Lake City's towers in front of the snow-capped Wasatch Mountains under a clear blue sky.",
 "author": "Invictus323",
-"cropped": false,
+"cropped": true,
 "file": "salt-lake-city-utah.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -2872,7 +2882,7 @@
 "san-angelo-texas": {
 "alt": "San Angelo City Hall in San Angelo, Texas (United States).",
 "author": "Michael Barera",
-"cropped": false,
+"cropped": true,
 "file": "san-angelo-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2880,19 +2890,19 @@
 "title": "San Angelo September 2019 03 (San Angelo City Hall)"
 },
 "san-antonio-texas": {
-"alt": "View from the highest point in the San Antonio Botanical Garden",
-"author": "Jouaienttoi",
-"cropped": false,
+"alt": "A tour barge gliding along the tree-shaded San Antonio River Walk past stone walls, stairs and an arched bridge.",
+"author": "Nicolas Henderson from Coppell, Texas",
+"cropped": true,
 "file": "san-antonio-texas.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Botanical_Garden_Overlook_View.jpg",
-"title": "San Antonio Botanical Garden Overlook View"
+"license": "CC BY 2.0",
+"license_url": "https://creativecommons.org/licenses/by/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Riverwalk,_San_Antonio,_Texas_(50187302062).jpg",
+"title": "San Antonio Riverwalk, San Antonio, Texas (50187302062)"
 },
 "san-diego-california": {
-"alt": "La Jolla Shores CA view.  Sea lions in the foreground. Pacific Ocean Dec 2011  California Beach",
+"alt": "Sea lions on the rocks below the bluffs and homes of La Jolla, San Diego.",
 "author": "Dirk Hansen",
-"cropped": false,
+"cropped": true,
 "file": "san-diego-california.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -2900,19 +2910,19 @@
 "title": "La Jolla Shores view (cropped)"
 },
 "san-francisco-california": {
-"alt": "zeppelin-ride-020100925-195",
-"author": "Craig Howell from San Carlos, CA, USA",
-"cropped": false,
+"alt": "The Golden Gate Bridge in warm evening light, with San Francisco across the bay behind it.",
+"author": "Rich Niewiroski Jr.",
+"cropped": true,
 "file": "san-francisco-california.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Zeppelin-ride-020100925-195_(5029394846).jpg",
-"title": "Zeppelin-ride-020100925-195 (5029394846)"
+"license": "CC BY 2.5",
+"license_url": "https://creativecommons.org/licenses/by/2.5",
+"source_url": "https://commons.wikimedia.org/wiki/File:GoldenGateBridge-001.jpg",
+"title": "GoldenGateBridge-001"
 },
 "san-jose-california": {
-"alt": "Valencia Hotel, Santana Row",
+"alt": "Palm trees and the Valencia Hotel along Santana Row in San Jose on a sunny day.",
 "author": "Payton Chung",
-"cropped": false,
+"cropped": true,
 "file": "san-jose-california.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2920,9 +2930,9 @@
 "title": "Valencia Hotel, Santana Row (cropped)"
 },
 "san-luis-obispo-california": {
-"alt": "Mission San Luis Obispo, taken June 12, 2011.",
+"alt": "The white adobe church and bell wall of Mission San Luis Obispo de Tolosa in warm evening light.",
 "author": "Rennett Stowe",
-"cropped": false,
+"cropped": true,
 "file": "san-luis-obispo-california.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2932,7 +2942,7 @@
 "sandusky-ohio": {
 "alt": "Ariel view of Downtown Sandusky",
 "author": "Joseph42904",
-"cropped": false,
+"cropped": true,
 "file": "sandusky-ohio.png",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2940,39 +2950,49 @@
 "title": "City of Sandusky Downtown"
 },
 "santa-cruz-california": {
-"alt": "Mission Santa Cruz",
-"author": "Don DeBold from San Jose, CA, USA",
-"cropped": false,
+"alt": "Rides of the Santa Cruz Beach Boardwalk rise above a busy beach on Monterey Bay, with wooded hills behind, on a sunny day.",
+"author": "Vadim Manuylov",
+"cropped": true,
 "file": "santa-cruz-california.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Mission_Santa_Cruz_(8321945663).jpg",
-"title": "Mission Santa Cruz (8321945663)"
+"license": "CC BY-SA 3.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Park_at_the_beach_-_panoramio.jpg",
+"title": "Park at the beach - panoramio"
 },
 "santa-fe-new-mexico": {
 "alt": "The Palace of the Governors is an adobe structure located on Palace Avenue on the Plaza of Santa Fe.",
 "author": "Tony Hisgett from Birmingham, UK",
-"cropped": false,
+"cropped": true,
 "file": "santa-fe-new-mexico.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:Palace_of_the_Governors.jpg",
 "title": "Palace of the Governors"
 },
+"santa-maria-california": {
+"alt": "Rows of green grapevines in the Santa Maria Valley beneath a bare, sunlit ridge on a clear afternoon.",
+"author": "Tim Mossholder timmossholder",
+"cropped": true,
+"file": "santa-maria-california.jpg",
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Vineyard_and_hills_(Unsplash).jpg",
+"title": "Vineyard and hills (Unsplash)"
+},
 "santa-rosa-california": {
-"alt": "The Sonoma County Museum on 7th St., Downtown Santa Rosa, California, United States. Completed in 1910, it was originally the Post Office and Federal Building.",
-"author": "Wulfnoth of English Wikipedia",
-"cropped": false,
+"alt": "The Empire Building's clock tower above Old Courthouse Square in downtown Santa Rosa under a streaky evening sky.",
+"author": "Thedbutler",
+"cropped": true,
 "file": "santa-rosa-california.jpg",
-"license": "CC BY 3.0",
-"license_url": "https://creativecommons.org/licenses/by/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Old_Santa_Rosa_Post_Office,_Downtown_Santa_Rosa,2.jpg",
-"title": "Old Santa Rosa Post Office, Downtown Santa Rosa,2"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:DowntownSquare.jpg",
+"title": "DowntownSquare"
 },
 "savannah-georgia": {
 "alt": "The Forsyth Park fountain in Savannah, Georgia.",
 "author": "Derrick Gaines",
-"cropped": false,
+"cropped": true,
 "file": "savannah-georgia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -2980,9 +3000,9 @@
 "title": "The Fountain at Forsyth"
 },
 "scranton-pennsylvania": {
-"alt": "Scranton, PA",
+"alt": "The clock tower of the Lackawanna County Courthouse and historic downtown Scranton buildings in warm sunlight.",
 "author": "Ajay Suresh from New York, NY, USA",
-"cropped": false,
+"cropped": true,
 "file": "scranton-pennsylvania.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2990,9 +3010,9 @@
 "title": "Scranton - Downtown (48472890492)"
 },
 "seattle-washington": {
-"alt": "Seattle Center as night falls.",
+"alt": "The Space Needle against the Olympic Mountains and Elliott Bay as night falls in Seattle.",
 "author": "Jeffery Hayes",
-"cropped": false,
+"cropped": true,
 "file": "seattle-washington.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -3002,7 +3022,7 @@
 "sebastian-florida": {
 "alt": "Sebastian, Florida:\n\nCity hall",
 "author": "Ebyabe",
-"cropped": false,
+"cropped": true,
 "file": "sebastian-florida.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -3012,7 +3032,7 @@
 "sheboygan-wisconsin": {
 "alt": "The Sheboygan Riverfront as seen in June 2025.",
 "author": "AsherHeimermann",
-"cropped": false,
+"cropped": true,
 "file": "sheboygan-wisconsin.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3022,7 +3042,7 @@
 "sherman-texas": {
 "alt": "Sherman US Post Office and Courthouse",
 "author": "Renelibrary",
-"cropped": false,
+"cropped": true,
 "file": "sherman-texas.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -3030,9 +3050,9 @@
 "title": "Shermancourthouse1"
 },
 "shreveport-louisiana": {
-"alt": "Red River Bridge in Shreveport, LA, USA",
+"alt": "An old steel railroad bridge crosses the Red River in front of downtown Shreveport's skyline on a sunny day.",
 "author": "Roman Eugeniusz",
-"cropped": false,
+"cropped": true,
 "file": "shreveport-louisiana.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -3042,7 +3062,7 @@
 "sioux-city-iowa": {
 "alt": "Built in 1916-1918, this Prairie-style building was designed by George Grant Elmslie and William Gray Purcell of Purcell and Elmslie, with local architect Willi",
 "author": "w_lemay",
-"cropped": false,
+"cropped": true,
 "file": "sioux-city-iowa.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -3052,7 +3072,7 @@
 "sioux-falls-south-dakota": {
 "alt": "Part of downtown Sioux Falls and Falls Park on March 16, 2024, taken from the viewing tower at Falls Park",
 "author": "Maxpower2727",
-"cropped": false,
+"cropped": true,
 "file": "sioux-falls-south-dakota.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -3060,39 +3080,39 @@
 "title": "Downtown and Falls Park 03-16-24"
 },
 "slidell-louisiana": {
-"alt": "Heritage Park Slidell, Louisiana",
-"author": "jahebert 7",
-"cropped": false,
+"alt": "The historic brick railroad depot in Olde Towne Slidell beside the tracks in warm late-afternoon light.",
+"author": "Willam Blackwell",
+"cropped": true,
 "file": "slidell-louisiana.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Heritage_Park_Slidell,_La.jpg",
-"title": "Heritage Park Slidell, La"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:DepoHDR.jpg",
+"title": "DepoHDR"
 },
 "south-bend-indiana": {
-"alt": "A view overlooking the St Joseph River in downtown South Bend, IN in September 2022",
-"author": "Scott Palmer",
-"cropped": false,
+"alt": "The gold-domed Main Building of the University of Notre Dame near South Bend, framed by trees under a blue sky.",
+"author": "Matthew Rice",
+"cropped": true,
 "file": "south-bend-indiana.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_South_Bend.jpg",
-"title": "Downtown South Bend"
+"source_url": "https://commons.wikimedia.org/wiki/File:Main_Building_at_the_University_of_Notre_Dame.jpg",
+"title": "Main Building at the University of Notre Dame"
 },
 "spartanburg-south-carolina": {
-"alt": "\"Love Where You Live\" mural, which is a popular photo spot in downtown Spartanburg",
+"alt": "The historic three-story brick Palmetto Building with striped awnings and café tables on Morgan Square in downtown Spartanburg.",
 "author": "PegasusRacer28",
-"cropped": false,
+"cropped": true,
 "file": "spartanburg-south-carolina.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Love_Where_You_Live_mural_in_downtown_Spartanburg.jpg",
-"title": "Love Where You Live mural in downtown Spartanburg"
+"source_url": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
+"title": "Palmetto Building - Spartanburg"
 },
 "spokane-washington": {
-"alt": "Aerial view of downtown Spokane, the largest city in eastern Washington and Washington’s second-largest city, with a 2024 estimated population of 230,609.",
+"alt": "Downtown Spokane and the arched Monroe Street Bridge above the rushing Spokane River, seen from above on a cloudy day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "spokane-washington.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3102,7 +3122,7 @@
 "springfield-illinois": {
 "alt": "Built in 1902-1904, this Prairie-style house was designed by Frank Lloyd Wright for Susan Lawrence Dana, as a renovation of an Italianate-style house built in 1",
 "author": "w_lemay",
-"cropped": false,
+"cropped": true,
 "file": "springfield-illinois.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -3110,9 +3130,9 @@
 "title": "Dana-Thomas House, Lawrence Avenue and 4th Street, Springfield, IL - 53322374502"
 },
 "springfield-massachusetts": {
-"alt": "Skyline of Springfield, Massachusetts, the fourth most populous city in New England",
+"alt": "Downtown Springfield's towers and Campanile above autumn trees under a blue sky with white clouds.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "springfield-massachusetts.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3120,19 +3140,19 @@
 "title": "Springfield, MA"
 },
 "springfield-missouri": {
-"alt": "A drone shot of downtown Springfield in 2021",
-"author": "Raschmidt87",
-"cropped": false,
+"alt": "The stepped fountain, brick plaza and trees of Park Central Square, with a white early-1900s office tower, in downtown Springfield.",
+"author": "CVBCS (uploaded by Joelfun)",
+"cropped": true,
 "file": "springfield-missouri.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Springfield,_MO_and_Hammons_Field.jpg",
-"title": "Downtown Springfield, MO and Hammons Field"
+"license": "Free Art License",
+"license_url": "http://artlibre.org/licence/lal/en",
+"source_url": "https://commons.wikimedia.org/wiki/File:ParkCentralSquarefountainbyCVBCS.jpg",
+"title": "ParkCentralSquarefountainbyCVBCS"
 },
 "springfield-ohio": {
 "alt": "Springfield, Ohio",
 "author": "David Wilson",
-"cropped": false,
+"cropped": true,
 "file": "springfield-ohio.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -3142,7 +3162,7 @@
 "st-cloud-minnesota": {
 "alt": "800-block of St Germain St, St Cloud Commercial Historic District, St Cloud, Minnesota, USA.  Viewed from the east.  \n\n\n\n\n\nThis is an image of a place or buildi",
 "author": "McGhiever",
-"cropped": false,
+"cropped": true,
 "file": "st-cloud-minnesota.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3152,7 +3172,7 @@
 "st-george-utah": {
 "alt": "ST. GEORGE, UTAH",
 "author": "Eddie Maloney from  North Las Vegas, USA",
-"cropped": false,
+"cropped": true,
 "file": "st-george-utah.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -3162,7 +3182,7 @@
 "st-joseph-missouri": {
 "alt": "The w:Buchanan County, Missouri courthouse in downtown w:Saint Joseph, Missouri",
 "author": "Tim Kiser (w:User:Malepheasant)",
-"cropped": false,
+"cropped": true,
 "file": "st-joseph-missouri.jpg",
 "license": "CC BY-SA 2.5",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
@@ -3170,9 +3190,9 @@
 "title": "Buchanan County Courthouse St Joseph Missouri"
 },
 "st-louis-missouri": {
-"alt": "Runner Fountain and Old Courthouse and Arch",
+"alt": "The Gateway Arch rising behind the green-domed Old Courthouse, seen across the fountains of Kiener Plaza in St. Louis.",
 "author": "Jefferson National Expansion Memorial, NPS from St. Louis, MO, USA",
-"cropped": false,
+"cropped": true,
 "file": "st-louis-missouri.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -3182,7 +3202,7 @@
 "state-college-pennsylvania": {
 "alt": "View of Calder Way in Downtown State College from above with Mount Nittany in the background",
 "author": "Goonsnick",
-"cropped": false,
+"cropped": true,
 "file": "state-college-pennsylvania.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3192,7 +3212,7 @@
 "staunton-virginia": {
 "alt": "Frederick Street, looking west from Coalter Street, Staunton, Virginia",
 "author": "Ned Hartley",
-"cropped": false,
+"cropped": true,
 "file": "staunton-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3200,19 +3220,19 @@
 "title": "Frederick Street"
 },
 "stockton-california": {
-"alt": "Aerial view of Stockton, California skyline",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "The Stockton Channel leads to the ornate Hotel Stockton, with palm trees and a waterside promenade in downtown Stockton.",
+"author": "LPS.1",
+"cropped": true,
 "file": "stockton-california.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Stockton,_California_skyline.jpg",
-"title": "Aerial view of Stockton, California skyline"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Stockton_California.jpg",
+"title": "Downtown Stockton California"
 },
 "sumter-south-carolina": {
 "alt": "Downtown Sumter",
 "author": "City of Sumter",
-"cropped": false,
+"cropped": true,
 "file": "sumter-south-carolina.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -3220,9 +3240,9 @@
 "title": "Downtown Sumter 2010"
 },
 "syracuse-new-york": {
-"alt": "Skyline of downtown Syracuse, New York. With a metro-population of 662,057, it's the 5th-most populated city in New York state.",
+"alt": "Downtown Syracuse office towers and brick buildings with green hills beyond, seen from above on a sunny day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "syracuse-new-york.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3230,19 +3250,19 @@
 "title": "Syracuse, New York skyline (cropped)"
 },
 "tallahassee-florida": {
-"alt": "The Florida Supreme Court (2022)",
-"author": "Urbantallahassee",
-"cropped": false,
+"alt": "Florida's Old Capitol in Tallahassee, with red-and-white striped awnings, in front of the tall New Capitol tower.",
+"author": "Civil10",
+"cropped": true,
 "file": "tallahassee-florida.jpg",
-"license": "CC BY-SA 4.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Florida_Supreme_Court_2022.jpg",
-"title": "Florida Supreme Court 2022"
+"license": "CC0",
+"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"source_url": "https://commons.wikimedia.org/wiki/File:The_Old_Florida_Capitol,_Tallahassee,_Public_Domain.jpg",
+"title": "The Old Florida Capitol, Tallahassee, Public Domain"
 },
 "tampa-florida": {
-"alt": "Downtown Tampa, Florida",
+"alt": "Downtown Tampa's skyscrapers rise behind a highway bridge over the Hillsborough River on a sunny day.",
 "author": "Clément Bardot",
-"cropped": false,
+"cropped": true,
 "file": "tampa-florida.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3252,7 +3272,7 @@
 "terre-haute-indiana": {
 "alt": "The city hall of Terre Haute, Indiana, photographed from the Vigo County Courthouse. Photo looks west.",
 "author": "Huwmanbeing (original), Yassie (jpeg conversion)",
-"cropped": false,
+"cropped": true,
 "file": "terre-haute-indiana.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -3262,7 +3282,7 @@
 "texarkana-texas": {
 "alt": "Texarkana Texas City Hall in Texarkana, Texas (United States).",
 "author": "Michael Barera",
-"cropped": false,
+"cropped": true,
 "file": "texarkana-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3270,19 +3290,19 @@
 "title": "Texarkana April 2016 002 (Texarkana Texas City Hall)"
 },
 "toledo-ohio": {
-"alt": "The entrance and front facade of the Toledo Museum of Art from Art Museum Drive.",
-"author": "Jason Zhang",
-"cropped": false,
+"alt": "The blue Anthony Wayne suspension bridge over the Maumee River, with autumn trees and downtown Toledo's towers beyond.",
+"author": "Limpfster94",
+"cropped": true,
 "file": "toledo-ohio.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Toledo_Museum_of_Art_exterior,_Art_Museum_Dr_entrance.jpg",
-"title": "Toledo Museum of Art exterior, Art Museum Dr entrance"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
+"title": "Anthony Wayne Bridge, Toledo, OH from Middlegrounds Metropark with Skyline"
 },
 "topeka-kansas": {
 "alt": "Aerial view of the Capitol building in Topeka, KS",
 "author": "Srudisell",
-"cropped": false,
+"cropped": true,
 "file": "topeka-kansas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3292,7 +3312,7 @@
 "traverse-city-michigan": {
 "alt": "Grand Traverse County Courthouse",
 "author": "rossograph",
-"cropped": false,
+"cropped": true,
 "file": "traverse-city-michigan.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3300,9 +3320,9 @@
 "title": "Grand Traverse County Courthouse"
 },
 "trenton-new-jersey": {
-"alt": "Aerial view of downtown Trenton, New Jersey (pop. 90,000), the former capital of the United States from November 1 until December 24, 1784.",
+"alt": "Downtown Trenton beside the Delaware River on a sunny summer day, with the gold-domed State House at left.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "trenton-new-jersey.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3312,7 +3332,7 @@
 "tucson-arizona": {
 "alt": "Downtown Tucson, Arizona taken from Sentinel Peak.",
 "author": "John Diebolt",
-"cropped": false,
+"cropped": true,
 "file": "tucson-arizona.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -3320,19 +3340,29 @@
 "title": "View of Tucson from Sentinel Peak 2"
 },
 "tulsa-oklahoma": {
-"alt": "Skyline in Tulsa/Oklahoma",
-"author": "Nils Huenerfuerst",
-"cropped": false,
+"alt": "Downtown Tulsa’s towers rising beyond a green park with a pond and fountains on a clear spring day.",
+"author": "Caleb Long",
+"cropped": true,
 "file": "tulsa-oklahoma.jpg",
+"license": "CC BY-SA 2.5",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.5",
+"source_url": "https://commons.wikimedia.org/wiki/File:Tulsa_Skyline.jpg",
+"title": "Tulsa Skyline"
+},
+"tuscaloosa-alabama": {
+"alt": "The brick and concrete north facade of Bryant-Denny Stadium at the end of a wide brick walkway on a sunny day in Tuscaloosa.",
+"author": "DXR",
+"cropped": true,
+"file": "tuscaloosa-alabama.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Tulsa_skyline_aerial,_April_2023.jpg",
-"title": "Tulsa skyline aerial, April 2023"
+"source_url": "https://commons.wikimedia.org/wiki/File:Bryant%E2%80%93Denny_Stadium,_Tuscaloosa_AL,_North_view_20160714_1.jpg",
+"title": "Bryant–Denny Stadium, Tuscaloosa AL, North view 20160714 1"
 },
 "twin-falls-idaho": {
 "alt": "Main Ave between Gooding and Shoshone Streets",
 "author": "Tommyers89",
-"cropped": false,
+"cropped": true,
 "file": "twin-falls-idaho.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3342,7 +3372,7 @@
 "tyler-texas": {
 "alt": "The People's Petroleum Building and Plaza Tower in Tyler, Texas (United States).",
 "author": "Michael Barera",
-"cropped": false,
+"cropped": true,
 "file": "tyler-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3350,19 +3380,19 @@
 "title": "Tyler May 2016 42 (People's Petroleum Building and Plaza Tower)"
 },
 "utica-new-york": {
-"alt": "Aerial view of downtown Utica, New York, looking south across the city’s rail corridor.",
-"author": "Quintin Soloviev",
-"cropped": false,
+"alt": "A vintage street clock reading Utica above a flower bed on Genesee Street, with historic brick buildings and a church tower.",
+"author": "Andre Carrotflower",
+"cropped": true,
 "file": "utica-new-york.jpg",
-"license": "CC BY 4.0",
-"license_url": "https://creativecommons.org/licenses/by/4.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Utica,_New_York_skyline.jpg",
-"title": "Utica, New York skyline"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:Utica,_New_York_-_09_-_street_clock_at_Genesee_and_Washington_Streets_-_20210828.jpg",
+"title": "Utica, New York - 09 - street clock at Genesee and Washington Streets - 20210828"
 },
 "valdosta-georgia": {
 "alt": "Valdosta, Georgia: Valdosta Commercial Historic District",
 "author": "Ebyabe",
-"cropped": false,
+"cropped": true,
 "file": "valdosta-georgia.jpg",
 "license": "CC BY-SA 2.5",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.5",
@@ -3370,19 +3400,19 @@
 "title": "Valdosta GA Comm Hist Dist03"
 },
 "vallejo-california": {
-"alt": "Vallejo City Hall and County Building Branch (now the Vallejo Naval and Historical Museum), 734 Marin St., Vallejo, California",
-"author": "Sanfranman59",
-"cropped": false,
+"alt": "A ferry crossing the Mare Island Strait beside the Vallejo waterfront promenade on a sunny day.",
+"author": "Kiddo27",
+"cropped": true,
 "file": "vallejo-california.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Vallejo_City_Hall_and_County_Building_Branch,_734_Marin_St.,_Vallejo,_CA_4-21-2013_2-17-21_PM.JPG",
-"title": "Vallejo City Hall and County Building Branch, 734 Marin St., Vallejo, CA 4-21-2013 2-17-21 PM"
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:The_ferry_is_seen_from_the_Vallejo_waterfront.jpg",
+"title": "The ferry is seen from the Vallejo waterfront"
 },
 "victoria-texas": {
 "alt": "Skyline",
 "author": "Justin65656 at English Wikipedia",
-"cropped": false,
+"cropped": true,
 "file": "victoria-texas.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -3392,7 +3422,7 @@
 "vineland-new-jersey": {
 "alt": "Downtown Vineland, New Jersey in Cumberland County.  Nice old downtown buildings on Landis Ave.",
 "author": "Smallbones",
-"cropped": false,
+"cropped": true,
 "file": "vineland-new-jersey.jpg",
 "license": "Public domain",
 "license_url": null,
@@ -3400,9 +3430,9 @@
 "title": "Vineland Downtown"
 },
 "virginia-beach-virginia": {
-"alt": "Virginia Beach, VA, May 2021",
+"alt": "Waves rolling onto the wide sandy beach at the Virginia Beach Oceanfront, with hotels lining the shore.",
 "author": "DanRVA",
-"cropped": false,
+"cropped": true,
 "file": "virginia-beach-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3410,19 +3440,19 @@
 "title": "VB Oceanfront"
 },
 "visalia-california": {
-"alt": "Looking east from Bank of Sierra",
-"author": "VISALIA2010",
-"cropped": false,
+"alt": "The Visalia Fox Theatre's clock tower and glowing marquee on a downtown Visalia corner under a pink dusk sky.",
+"author": "Visalia Convention & Visitors Bureau",
+"cropped": true,
 "file": "visalia-california.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Visalia_Tranist_Center_2011_(cropped).jpg",
-"title": "Visalia Tranist Center 2011 (cropped)"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Teatro_Visalia.jpg",
+"title": "Teatro Visalia"
 },
 "waco-texas": {
 "alt": "The Waco Suspension Bridge in Waco, Texas.",
 "author": "Steve",
-"cropped": false,
+"cropped": true,
 "file": "waco-texas.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -3432,7 +3462,7 @@
 "walla-walla-washington": {
 "alt": "Day Reynolds Building, Sterling Bank and Baker Boyer Bank buildings in downtown Walla Walla, WA at Second and Main.",
 "author": "Squarestate7",
-"cropped": false,
+"cropped": true,
 "file": "walla-walla-washington.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
@@ -3442,7 +3472,7 @@
 "warner-robins-georgia": {
 "alt": "City Hall, 700 Watson Blvd., Warner Robins, Houston County, Georgia",
 "author": "Michael Rivera",
-"cropped": false,
+"cropped": true,
 "file": "warner-robins-georgia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3450,19 +3480,19 @@
 "title": "Warner Robins City Hall"
 },
 "washington-district-of-columbia": {
-"alt": "United States Capitol, Washington D.C.",
-"author": "Ralf Roletschek (talk) - Infos über Fahrräder auf fahrradmonteur.de  Wikis in der Ausbildung",
-"cropped": false,
+"alt": "The white-domed United States Capitol in Washington, D.C., seen across its west lawn under a clear blue sky.",
+"author": "Noclip",
+"cropped": true,
 "file": "washington-district-of-columbia.jpg",
-"license": "CC BY-SA 3.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:12-07-13-washington-by-RalfR-08.jpg",
-"title": "12-07-13-washington-by-RalfR-08"
+"license": "Public domain",
+"license_url": null,
+"source_url": "https://commons.wikimedia.org/wiki/File:Capitol_Building_Full_View.jpg",
+"title": "Capitol Building Full View"
 },
 "waterbury-connecticut": {
-"alt": "Waterbury, Connecticut",
+"alt": "Downtown Waterbury’s brick buildings and the Union Station clock tower among green hills, seen from above on a clear day.",
 "author": "Hayden Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "waterbury-connecticut.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3472,7 +3502,7 @@
 "waterloo-iowa": {
 "alt": "Waterloo, Iowa.",
 "author": "David Wilson from Oak Park, Illinois, USA",
-"cropped": false,
+"cropped": true,
 "file": "waterloo-iowa.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -3482,7 +3512,7 @@
 "watertown-new-york": {
 "alt": "Watertown, New York",
 "author": "Lallint",
-"cropped": false,
+"cropped": true,
 "file": "watertown-new-york.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -3492,7 +3522,7 @@
 "wausau-wisconsin": {
 "alt": "The \"400 Block\", a large plaza/park in downtown Wausau, Wisconsin, USA.",
 "author": "Bobak Ha'Eri",
-"cropped": false,
+"cropped": true,
 "file": "wausau-wisconsin.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -3502,7 +3532,7 @@
 "weirton-west-virginia": {
 "alt": "Looking south down Main Street in downtown Weirton, West Virginia. The absence of pedestrian traffic is not something unique to Sundays; most storefronts are va",
 "author": "Cutlass",
-"cropped": false,
+"cropped": true,
 "file": "weirton-west-virginia.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -3512,7 +3542,7 @@
 "wenatchee-washington": {
 "alt": "Wenatchee, Washington, USA",
 "author": "Jennifer Gottwald",
-"cropped": false,
+"cropped": true,
 "file": "wenatchee-washington.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -3522,7 +3552,7 @@
 "wheeling-west-virginia": {
 "alt": "West Virginia Independence Hall in Wheeling, WV.",
 "author": "WeaponizingArchitecture",
-"cropped": false,
+"cropped": true,
 "file": "wheeling-west-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3532,7 +3562,7 @@
 "wichita-falls-texas": {
 "alt": "The \"restored Falls\" of the Wichita River in Wichita Falls, Texas, off Interstate 44.",
 "author": "© Travis K. Witt",
-"cropped": false,
+"cropped": true,
 "file": "wichita-falls-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3540,9 +3570,9 @@
 "title": "Reproduction Waterfall Wichita Falls"
 },
 "wichita-kansas": {
-"alt": "The skyline of downtown Wichita, the largest city in Kansas with a metro-area population of 647,610",
+"alt": "Downtown Wichita and the round Century II hall beside the Arkansas River, seen from above in late-day sun.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "wichita-kansas.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3552,7 +3582,7 @@
 "wildwood-florida": {
 "alt": "Wildwood City Hall and fountain in Wildwood, Florida.",
 "author": "Connor J. Williams",
-"cropped": false,
+"cropped": true,
 "file": "wildwood-florida.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
@@ -3560,9 +3590,9 @@
 "title": "Wildwood city hall and fountain wildwood florida"
 },
 "wilmington-north-carolina": {
-"alt": "The westbound lanes of the bridge are scheduled to reopen to traffic on May 8 at 7 p.m. Like the reopening of the eastbound lanes, the process will take several",
+"alt": "Downtown Wilmington's riverfront and historic buildings seen across the Cape Fear River on a clear day.",
 "author": "NCDOTcommunications",
-"cropped": false,
+"cropped": true,
 "file": "wilmington-north-carolina.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -3572,7 +3602,7 @@
 "winchester-virginia": {
 "alt": "Facing south on the Loudoun Street Mall in Winchester, Virginia.",
 "author": "APK",
-"cropped": false,
+"cropped": true,
 "file": "winchester-virginia.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3582,7 +3612,7 @@
 "winston-salem-north-carolina": {
 "alt": "Skyline of downtown Winston-Salem with the redeveloped Bailey Power Plant in the foreground and 100 North Main Street, Winston Tower, the Reynolds Building, and",
 "author": "Indy beetle",
-"cropped": false,
+"cropped": true,
 "file": "winston-salem-north-carolina.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
@@ -3590,9 +3620,9 @@
 "title": "Winston-Salem skyline"
 },
 "worcester-massachusetts": {
-"alt": "The skyline of Worcester, the 2nd-most populous city in Massachusetts and the 113th in the United States.",
+"alt": "Downtown Worcester office towers rising beyond brick buildings, rail tracks and triple-decker houses on a clear day.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "worcester-massachusetts.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3600,9 +3630,9 @@
 "title": "Worcester, Massachusetts"
 },
 "yakima-washington": {
-"alt": "Skyline of downtown Yakima, Washington (pop. 96,968), the county seat of Yakima County.",
+"alt": "Downtown Yakima's low-rise blocks spread across the valley floor, with brown ridges on the horizon under a cloudy sky.",
 "author": "Quintin Soloviev",
-"cropped": false,
+"cropped": true,
 "file": "yakima-washington.jpg",
 "license": "CC BY 4.0",
 "license_url": "https://creativecommons.org/licenses/by/4.0",
@@ -3610,9 +3640,9 @@
 "title": "Yakima, Washington skyline"
 },
 "york-pennsylvania": {
-"alt": "041209 195",
+"alt": "White spring blossoms arch over a quiet downtown York street beside a columned civic building and historic brick buildings.",
 "author": "Doug Kerr from Albany, NY, United States",
-"cropped": false,
+"cropped": true,
 "file": "york-pennsylvania.jpg",
 "license": "CC BY-SA 2.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
@@ -3620,9 +3650,9 @@
 "title": "York, Pennsylvania (65)"
 },
 "youngstown-ohio": {
-"alt": "A view of Lanterman's Mill and Lanterman's Falls in Mill Creek Park in Youngstown, Ohio",
+"alt": "Lanterman's Mill and its waterfall among green woods in Youngstown's Mill Creek Park on a sunny day.",
 "author": "Dblcut3",
-"cropped": false,
+"cropped": true,
 "file": "youngstown-ohio.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3632,7 +3662,7 @@
 "yuba-city-california": {
 "alt": "Downtown Yuba City",
 "author": "Ray Bouknight from Sacramento, CA, USA",
-"cropped": false,
+"cropped": true,
 "file": "yuba-city-california.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -3642,7 +3672,7 @@
 "yuma-arizona": {
 "alt": "Former Yuma City Hall, 180 1st Street, Yuma, Arizona",
 "author": "Cbl62",
-"cropped": false,
+"cropped": true,
 "file": "yuma-arizona.jpg",
 "license": "CC BY-SA 3.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/3.0",

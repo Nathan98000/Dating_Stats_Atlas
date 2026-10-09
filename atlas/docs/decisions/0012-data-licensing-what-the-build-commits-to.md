@@ -284,3 +284,50 @@ never scored or asked). What the build commits to:
   precedent).
 - **No logo, and nothing implying endorsement** by MIT or the lab, as for
   every source.
+
+## Amended after the Phase 5 report (8 October 2026): the city photographs
+
+DRAFT for Nathan's approval. After the Phase 5 report Nathan asked for the
+most representative photograph of each city, and no locator map on the home
+page's cards, then: "Photos do not have to come specifically from Wikimedia.
+Assume that I will able to get license permission." What the build commits
+to now (the record: `results/phase4/photo_review.json`, its
+`phase5_card_photos` summary; the outcome per city:
+`results/phase5/card_photos.json`; PHASE5.md section 7):
+
+- **Every ranked city has a photograph** (any of the 193 can be a card), and
+  **every city photograph is cropped**: 16:10 on the home page's cards, 16:7
+  in the city page's band. Each credit says "cropped". Public domain, CC0,
+  CC BY and CC BY-SA each permit the crop; a cropped CC BY-SA photograph
+  stays under CC BY-SA, which its credit names. For city photographs this
+  replaces ADR 0006's "never cropped" and Phase 5's rule that only public
+  domain and CC0 photographs crop. Stat-page photographs still scale into
+  their box uncropped, and the hero rule is unchanged.
+- **Any source.** A city's photograph need not be its Wikipedia lead image or
+  come from Commons. Each new one is pinned in the review record
+  (`external_files`, the mechanism the everyday prices photograph introduced
+  on 7 October) by its exact bytes (SHA-256), with the link it came from,
+  its author, licence and licence link as the source states them, and its
+  alt text. A pipeline re-run takes the pinned file, never the API's choice,
+  and a city page that takes a pinned photograph skips any older removal,
+  restoration or replacement of its own. 97 cities took a new photograph
+  (96 from Commons, one from Flickr); 80 kept theirs, 78 of them with a
+  rewritten alt text (`alt_overrides`); and 16 public-domain or CC0
+  photographs stayed as they were.
+- **A licence outside public domain, CC0, CC BY and CC BY-SA ships only with
+  Nathan's permission.** Two photographs need it: Lafayette's (CC BY-NC-SA
+  2.0, Flickr: non-commercial, and the crop is an adaptation) and
+  Springfield, Missouri's (the Free Art License, which permits the crop the
+  way CC BY-SA does but is not on the list, and Commons names no author,
+  only a credit, "CVBCS"). `card_photos.json` lists them under
+  `permission_needed`.
+- **The subject rules stand**: no identifiable person as the subject, no
+  recent sculpture or mural as the subject, no prominent seal. Where the
+  principal city has no usable photograph, the photograph shows a place
+  elsewhere in its metro, named in the alt text (twelve cities; PHASE5.md
+  lists them).
+- **Nathan's Phase 4c calls stand.** Waco's and Savannah's replacements and
+  the alt texts he approved for them are unchanged. Seven of the fifteen
+  photographs he restored (Bend, Boulder, Gulfport, Huntsville, Lakeland,
+  Salinas, Spartanburg) gave way to new card photographs; the review still
+  records the restorations.

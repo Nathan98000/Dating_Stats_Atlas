@@ -1,5 +1,5 @@
 
-import { croppable, IMAGES, onDisk, usableAlt } from "@/lib/city-photos";
+import { IMAGES, onDisk, usableAlt } from "@/lib/city-photos";
 
 /** Every city page gets a face. Since Phase 2e item 4 that face is a
  * real photograph wherever one CLEARED: sourced from the city's
@@ -10,14 +10,15 @@ import { croppable, IMAGES, onDisk, usableAlt } from "@/lib/city-photos";
  * through the manifest: an unlisted file has no recorded licence and does
  * not render.
  *
- * Phase 5: a public-domain or CC0 photograph may be cropped — a full-
- * bleed 16:7 band, cover-cropped (credited "cropped"); any other licence
- * shows the photograph UNMODIFIED, at its own width up to 380px tall,
- * centred on --sunken, with no card around it and no bars beside it (an
- * adapted CC-BY-SA image would drag its licence onto the adaptation). The
- * alt text is the manifest's description unless that is a filename, a
- * bare "image" or the like — then "", since the h1 names the city. The
- * generative fallback stays aria-hidden. */
+ * Phase 5, after the report (Nathan): every city photograph is a
+ * full-bleed 16:7 band, cover-cropped, credited "cropped" (public domain,
+ * CC0, CC BY and CC BY-SA permit it; a photograph from elsewhere is used
+ * by the permission Nathan arranges). The crop keeps more of a photograph's
+ * top than its bottom (35% down, as the home page's cards do): towers and
+ * domes rise, and roads, lawns and water sit low. The alt text is the
+ * manifest's description unless that is a filename, a bare "image" or the
+ * like — then "", since the h1 names the city. The generative fallback
+ * stays aria-hidden. */
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;
@@ -37,22 +38,13 @@ export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
   const img = IMAGES[slug];
   if (img && onDisk(img)) {
     const alt = usableAlt(img);
-    return croppable(img.license) ? (
+    return (
       <figure data-testid="city-photo" data-cropped="">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/cities/${img.file}`}
           alt={alt}
-          className="aspect-[16/7] w-full rounded-lg object-cover"
-        />
-      </figure>
-    ) : (
-      <figure data-testid="city-photo" className="flex justify-center rounded-lg bg-sunken">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`/cities/${img.file}`}
-          alt={alt}
-          className="max-h-[380px] w-auto max-w-full"
+          className="aspect-[16/7] w-full rounded-lg object-cover object-[50%_35%]"
         />
       </figure>
     );

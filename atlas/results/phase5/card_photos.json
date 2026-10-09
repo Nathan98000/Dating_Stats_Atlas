@@ -1,0 +1,1620 @@
+{
+ "date": "2026-10-08",
+ "cities": {
+  "akron-ohio": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Brandon Bisel",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Stan_Hywet_Hall_2.jpg",
+   "alt": "Stan Hywet Hall's Tudor Revival brick manor and green lawn in Akron on a sunny day.",
+   "permission_needed": false
+  },
+  "albany-new-york": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Albany,_New_York.jpg",
+   "alt": "Downtown Albany's skyline, with the Empire State Plaza towers and the Capitol, rising above the Hudson River on a clear day.",
+   "permission_needed": false
+  },
+  "albuquerque-new-mexico": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Albuquerque,_New_Mexico_(31780770537).jpg",
+   "license": "Public domain",
+   "author": "BrandonStephenson",
+   "alt": "Downtown Albuquerque's skyline beneath the sunlit Sandia Mountains under dramatic clouds.",
+   "permission_needed": false
+  },
+  "allentown-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Allentown,_Pennsylvania_(cropped).jpg",
+   "alt": "Downtown Allentown’s skyline with the Art Deco PPL Building and the arched Eighth Street Bridge above green parkland on a sunny day.",
+   "permission_needed": false
+  },
+  "amarillo-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Marriott_Courtyard_Downtown_Amarillo_from_SSE_2.JPG",
+   "license": "CC0",
+   "author": "Ammodramus",
+   "alt": "Historic brick Fisk Building rising over Polk Street and older storefronts in downtown Amarillo under a blue sky.",
+   "permission_needed": false
+  },
+  "anchorage-alaska": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Anchorage_Downtown.jpg",
+   "license": "CC BY 2.0",
+   "author": "Luke Jones",
+   "alt": "Downtown Anchorage's towers beneath the snow-covered Chugach Mountains, seen across icy water on a clear winter day.",
+   "permission_needed": false
+  },
+  "ann-arbor-michigan": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Flavinista",
+   "source_url": "https://commons.wikimedia.org/wiki/File:University_of_Michigan_Law_School.jpg",
+   "alt": "Snow-covered lawns and the Gothic stone Law Quadrangle of the University of Michigan in Ann Arbor on a sunny winter day.",
+   "permission_needed": false
+  },
+  "atlanta-georgia": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "AtlChampion",
+   "source_url": "https://commons.wikimedia.org/wiki/File:A2ATL20250614-0721_(cropped).jpg",
+   "alt": "The skyline of Midtown and Downtown Atlanta rising above trees and the Downtown Connector under a partly cloudy sky.",
+   "permission_needed": false
+  },
+  "atlantic-city-new-jersey": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Bruce Emmerling",
+   "source_url": "https://commons.wikimedia.org/wiki/File:A_sunset_view_of_the_beach_in_Atlantic_City,_NJ.jpg",
+   "alt": "The beach and surf at sunset with Atlantic City's lit casino towers along the shore.",
+   "permission_needed": false
+  },
+  "austin-texas": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Austin,_Texas_(cropped).jpg",
+   "alt": "Downtown Austin's high-rises along Lady Bird Lake on a clear day.",
+   "permission_needed": false
+  },
+  "bakersfield-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fox_Theater_-_Bakersfield,_CA_-_DSC00484.jpg",
+   "license": "CC0",
+   "author": "Daderot",
+   "alt": "The Fox Theater's clock tower and marquee glowing in late-afternoon sun on a downtown street corner in Bakersfield.",
+   "permission_needed": false
+  },
+  "baltimore-maryland": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bmoreharbor.JPG",
+   "license": "Public domain",
+   "author": "Oldlinestate",
+   "alt": "Boats moored in Baltimore's Inner Harbor below the downtown skyline on a clear, sunny day.",
+   "permission_needed": false
+  },
+  "baton-rouge-louisiana": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Baton_Rouge_-_Old_State_Capitol_from_the_riverfront,_April_2024.jpg",
+   "license": "CC BY 4.0",
+   "author": "xiquinhosilva",
+   "alt": "The white Gothic Revival Old Louisiana State Capitol, with its castle-like turrets, in warm sunlight in downtown Baton Rouge.",
+   "permission_needed": false
+  },
+  "beaumont-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:BeaumontTX.JPG",
+   "license": "Public domain",
+   "author": "Wbband08 at English Wikipedia",
+   "alt": "Downtown Beaumont towers rising beyond the tree-lined Neches River on a clear day.",
+   "permission_needed": false
+  },
+  "bend-oregon": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Drake_Park,_Mirror_Pond,_Bend_-_DPLA_-_abff0ea08438d6effa849247b6bbdfeb.jpg",
+   "license": "CC BY 4.0",
+   "author": "Gary Halvorson, Oregon State Archives",
+   "alt": "Willows and tall pines reflected in the calm water of Mirror Pond in Bend, with wildflowers on the bank and a blue summer sky.",
+   "permission_needed": false
+  },
+  "birmingham-alabama": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Birmingham,_Alabama.jpg",
+   "alt": "Downtown Birmingham skyline under a clear blue sky, with Railroad Park and the rail line in the foreground.",
+   "permission_needed": false
+  },
+  "boise-city-idaho": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Jyoni Shuler",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boise,_Idaho.jpg",
+   "alt": "Capitol Boulevard leading into downtown Boise at golden hour, with snow-dusted foothills glowing behind the towers.",
+   "permission_needed": false
+  },
+  "boston-massachusetts": {
+   "outcome": "kept",
+   "license": "CC BY 2.5",
+   "author": "Ian Howard",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ISH_WC_Boston4.jpg",
+   "alt": "Brick row houses and gas lamps along a narrow cobbled lane on Boston's Beacon Hill.",
+   "permission_needed": false
+  },
+  "boulder-colorado": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boulder,_United_States_(Unsplash_IPvSZvM5Elg).jpg",
+   "license": "CC0",
+   "author": "Jeremy Thomas jeremythomasphoto",
+   "alt": "Hikers cross a golden grassy meadow below the Flatirons in Boulder on a sunny day.",
+   "permission_needed": false
+  },
+  "bremerton-washington": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:MV_Kitsap_at_Bremerton_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Joe Mabel",
+   "alt": "A green-and-white Washington State ferry docked at the Bremerton terminal in front of the downtown waterfront buildings.",
+   "permission_needed": false
+  },
+  "bridgeport-connecticut": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bridgeport,_Connecticut_downtown.jpg",
+   "alt": "Downtown Bridgeport, Connecticut, from above, with its harbor and Long Island Sound beyond on a clear summer day.",
+   "permission_needed": false
+  },
+  "brownsville-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Some_of_the_buildings_at_Fort_Brown_in_Brownsville,_Texas_LCCN2014630475.tif",
+   "license": "Public domain",
+   "author": "Carol M. Highsmith",
+   "alt": "Arcaded brick buildings of historic Fort Brown, now a university campus, behind a wide lawn, trees and palms in Brownsville.",
+   "permission_needed": false
+  },
+  "buffalo-new-york": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Buffalo,_NY_skyline.jpg",
+   "alt": "Downtown Buffalo skyline and Sahlen Field ballpark in late-afternoon light, seen from above the waterfront.",
+   "permission_needed": false
+  },
+  "canton-ohio": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Erik Drost",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pro_Football_Hall_of_Fame_(23945852607).jpg",
+   "alt": "The Pro Football Hall of Fame's white football-shaped dome and stone rotunda in Canton under a clear blue sky.",
+   "permission_needed": false
+  },
+  "cape-coral-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
+   "license": "Public domain",
+   "author": "unknown",
+   "alt": "Tall royal palms and tropical trees lining McGregor Boulevard near downtown Fort Myers under a clear blue sky.",
+   "permission_needed": false
+  },
+  "cedar-rapids-iowa": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cedar_Rapids_-_Mays_Island.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "Davumaya",
+   "alt": "The Veterans Memorial Building on Mays Island in Cedar Rapids, beside an arched bridge over the Cedar River.",
+   "permission_needed": false
+  },
+  "charleston-south-carolina": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+   "license": "CC0",
+   "author": "Thomson200",
+   "alt": "Pastel pink, lavender and green historic row houses with palmetto trees along Rainbow Row in Charleston.",
+   "permission_needed": false
+  },
+  "charlotte-north-carolina": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Charlotte_2016.jpg",
+   "license": "CC0",
+   "author": "brandon walker",
+   "alt": "Uptown Charlotte's glass towers rising above spring trees and freeway overpasses under a clear blue sky.",
+   "permission_needed": false
+  },
+  "chattanooga-tennessee": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Walnut_Street_Bridge_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Ɱ",
+   "alt": "The blue Walnut Street pedestrian bridge spanning the Tennessee River in Chattanooga under a clear blue sky.",
+   "permission_needed": false
+  },
+  "chicago-illinois": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "File:Chicago River ferry.jpg: John Picken\nderivative work: Georgfotoart",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chicago_River_ferry_b.jpg",
+   "alt": "A tour boat on the Chicago River between the downtown towers on a sunny day.",
+   "permission_needed": false
+  },
+  "cincinnati-ohio": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Cincinnati_and_Covington.jpg",
+   "license": "CC0",
+   "author": "Krisandjanis324",
+   "alt": "Downtown Cincinnati skyline and an Ohio River bridge in warm late-afternoon light, seen from Devou Park across the river.",
+   "permission_needed": false
+  },
+  "clarksville-tennessee": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "GatewayPolitics",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Clarksville_TN.jpg",
+   "alt": "Historic brick buildings and the vertical Roxy theatre sign along Franklin Street in downtown Clarksville under a blue sky.",
+   "permission_needed": false
+  },
+  "cleveland-ohio": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Erik Drost",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cleveland_skyline_from_Lakewood_Park,_January_2026.jpg",
+   "alt": "Cleveland's downtown skyline, with Key Tower and Terminal Tower, seen across Lake Erie on a clear day.",
+   "permission_needed": false
+  },
+  "college-station-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:AcademicBuilding-TAMU.jpg",
+   "license": "CC BY 2.0",
+   "author": "Stu Seeger",
+   "alt": "The domed Academic Building at Texas A&M University in College Station under a blue sky, seen across the plaza.",
+   "permission_needed": false
+  },
+  "colorado-springs-colorado": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Garden_of_the_Gods,_with_Pikes_Peak_in_the_background.JPG",
+   "license": "CC BY-SA 4.0",
+   "author": "CaroleHenson",
+   "alt": "Red sandstone rocks of the Garden of the Gods in Colorado Springs, with snow-capped Pikes Peak rising behind.",
+   "permission_needed": false
+  },
+  "columbia-south-carolina": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Akhenaton06",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fall_skyline_of_Columbia_SC_from_Arsenal_Hill.jpg",
+   "alt": "Downtown Columbia's office towers rise above autumn trees, seen from Arsenal Hill under a clear blue sky.",
+   "permission_needed": false
+  },
+  "columbus-georgia": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "PghPhxNfk",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Columbus,_Georgia_skyline.jpg",
+   "alt": "Whitewater rapids on the Chattahoochee River below the old brick mill buildings of downtown Columbus's riverfront.",
+   "permission_needed": false
+  },
+  "corpus-christi-texas": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Corpus_Christi_skyline.jpg",
+   "alt": "Marinas along the Corpus Christi bayfront below the downtown skyline under a blue sky with scattered clouds.",
+   "permission_needed": false
+  },
+  "crestview-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Destin,_Florida_from_the_Destin_Harbor.jpg",
+   "license": "CC BY 2.0",
+   "author": "Destin Vacation Boat Rentals",
+   "alt": "Boats, a white sandbar and emerald water at Destin Harbor, with beachfront towers beyond, on a sunny day.",
+   "permission_needed": false
+  },
+  "davenport-iowa": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:2018_Davenport_skyline_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Farragutful",
+   "alt": "Downtown Davenport skyline with the Figge Art Museum and historic towers across the Mississippi River on a sunny day.",
+   "permission_needed": false
+  },
+  "dayton-ohio": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Blervis",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dayton_Skyline_-_Sunset_September_2022_(cropped).jpg",
+   "alt": "Downtown Dayton's skyline and a church steeple above older brick neighbourhoods under a pink and orange sunset sky.",
+   "permission_needed": false
+  },
+  "deltona-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg",
+   "license": "Public Domain",
+   "author": "Yinan Chen",
+   "alt": "The Main Street Pier and its pier-top restaurant stretching over the sand and surf at Daytona Beach on a sunny afternoon.",
+   "permission_needed": false
+  },
+  "denver-colorado": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Denver,_Colorado_skyline_(cropped_3x5).jpg",
+   "alt": "The downtown Denver skyline seen from City Park, with the snow-capped Rocky Mountains behind on a clear day.",
+   "permission_needed": false
+  },
+  "des-moines-iowa": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_downtown_Des_Moines.jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "BarbaraLN",
+   "alt": "A white arched footbridge over the Des Moines River framing downtown Des Moines' towers under a clear blue sky.",
+   "permission_needed": false
+  },
+  "duluth-minnesota": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Duluth_Drone.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Chrisographer",
+   "alt": "Duluth's Aerial Lift Bridge spanning the ship canal, with Canal Park and downtown climbing the green hillside behind.",
+   "permission_needed": false
+  },
+  "durham-north-carolina": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:SKYL015_Downtown_Durham_Skyline_DiscoverDurham.jpg",
+   "license": "CC BY 4.0",
+   "author": "Discover Durham",
+   "alt": "Downtown Durham's skyline, with the gold Hill Building and the Lucky Strike water tower, above green trees on a sunny day.",
+   "permission_needed": false
+  },
+  "el-paso-texas": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "WmCheez",
+   "source_url": "https://commons.wikimedia.org/wiki/File:El_Paso_Cityscape_(cropped).jpg",
+   "alt": "Downtown El Paso’s high-rises, with Ciudad Juárez and rugged mountains beyond, seen from Scenic Drive under a blue sky.",
+   "permission_needed": false
+  },
+  "erie-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "User:Cards84664",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Erie_PA_skyline_from_tower_observation_deck_(cropped).jpg",
+   "alt": "Downtown Erie, Dobbins Landing and the marinas of Presque Isle Bay, looking south along State Street from the Bicentennial Tower.",
+   "permission_needed": false
+  },
+  "eugene-oregon": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Eugene_Oregon_from_Skinner_Butte.JPG",
+   "license": "CC BY-SA 3.0",
+   "author": "Laura Alier",
+   "alt": "Downtown Eugene's buildings among dark green firs, with Spencer Butte and forested hills under a blue sky.",
+   "permission_needed": false
+  },
+  "evansville-indiana": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Old_Vanderburgh_County_Courthouse,_Evansville,_Indiana.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "Roman Eugeniusz",
+   "alt": "The ornate Old Vanderburgh County Courthouse in downtown Evansville, with its domed clock tower, under a blue sky.",
+   "permission_needed": false
+  },
+  "fargo-north-dakota": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fargo_Theatre_-_Fargo.jpg",
+   "license": "CC BY 2.0",
+   "author": "AJ LEON",
+   "alt": "The Fargo Theatre with its tall vertical FARGO sign and marquee on Broadway in downtown Fargo on a sunny day.",
+   "permission_needed": false
+  },
+  "fayetteville-arkansas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:University_of_Arkansas_May_2017_07_(Old_Main).jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Michael Barera",
+   "alt": "The red-brick Old Main at the University of Arkansas in Fayetteville, with its two towers rising above a green lawn.",
+   "permission_needed": false
+  },
+  "fort-collins-colorado": {
+   "outcome": "kept",
+   "license": "CC BY 3.0",
+   "author": "Citycommunications at English Wikipedia",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Fort_Collins_Colorado.jpg",
+   "alt": "Cyclists ride past bright petunias and a turreted Victorian building in Old Town Fort Collins on a sunny day.",
+   "permission_needed": false
+  },
+  "fort-wayne-indiana": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cortes_del_Condado_de_Allen,_Fort_Wayne,_Indiana,_Estados_Unidos,_2012-11-12,_DD_01.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "Diego Delso",
+   "alt": "The domed Allen County Courthouse in downtown Fort Wayne under a blue sky, with an office tower behind it.",
+   "permission_needed": false
+  },
+  "fresno-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tower_Theatre_Fresno_2.jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "David Prasad (niiicedave)",
+   "alt": "The Art Deco Tower Theatre's white spire and pastel \"Tower\" marquee in Fresno's Tower District under a deep blue sky.",
+   "permission_needed": false
+  },
+  "gainesville-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Century_Tower_(University_of_Florida).jpg",
+   "license": "CC BY 2.0",
+   "author": "Kate Haskell from Gainesville, USA",
+   "alt": "The red-brick Century Tower on the University of Florida campus in Gainesville against a bright blue sky.",
+   "permission_needed": false
+  },
+  "grand-rapids-michigan": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blue_Bridge_Grand_Rapids,_Michigan.jpg",
+   "license": "CC0",
+   "author": "WMrapids",
+   "alt": "The Blue Bridge, a blue steel footbridge, crossing the Grand River toward downtown Grand Rapids under a clear sky.",
+   "permission_needed": false
+  },
+  "greeley-colorado": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Greeley.JPG",
+   "license": "CC BY-SA 3.0",
+   "author": "Peter Romero",
+   "alt": "Historic brick storefronts with arched windows and a faded painted sign along 9th Street in downtown Greeley on a sunny day.",
+   "permission_needed": false
+  },
+  "green-bay-wisconsin": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Chris Rand",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Green_Bay_CityDeck_along_the_Fox_River.jpg",
+   "alt": "Downtown Green Bay's CityDeck and docked boats along the Fox River, seen from above on a sunny summer evening.",
+   "permission_needed": false
+  },
+  "greenville-south-carolina": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "CantoV",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2024-4-12-Falls_Park_Waterfall_Greenville_South_Carolina_by_Yousef_AbdulHusain.jpg",
+   "alt": "Water cascading over the rocks of Reedy River Falls in Falls Park, downtown Greenville, on a spring day.",
+   "permission_needed": false
+  },
+  "gulfport-mississippi": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Biloxi_Lighthouse.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Jeff D. Howard",
+   "alt": "The white Biloxi Lighthouse beside the coast highway, with the Biloxi Visitors Center behind under a bright blue sky.",
+   "permission_needed": false
+  },
+  "hagerstown-maryland": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hagerstown_City_Park_02.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Farragutful",
+   "alt": "A green iron arch reading Hagerstown City Park stands before the park's lake and shade trees on a summer day.",
+   "permission_needed": false
+  },
+  "harrisburg-pennsylvania": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Harrisburg,_Pennsylvania.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Farragutful",
+   "alt": "Tree-lined State Street leading to the green dome of the Pennsylvania State Capitol in Harrisburg under a clear blue sky.",
+   "permission_needed": false
+  },
+  "hartford-connecticut": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hartford,_CT_skyline_(cropped).jpg",
+   "alt": "Hartford's skyline, with the gold-domed State Capitol and the Travelers Tower, rising above autumn trees under a stormy sky.",
+   "permission_needed": false
+  },
+  "honolulu-hawaii": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Honolulu_cityscape.jpg",
+   "license": "CC0",
+   "author": "Christian Joudrey",
+   "alt": "Waikiki high-rises and turquoise sea, with green parkland below, seen from the Diamond Head crater rim in Honolulu.",
+   "permission_needed": false
+  },
+  "houston-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Houston,_TX_Skyline_-_2018.jpg",
+   "license": "CC BY 4.0",
+   "author": "David Daniel Turner",
+   "alt": "Downtown Houston skyscrapers rising above the green trees of Buffalo Bayou Park in late-afternoon sun.",
+   "permission_needed": false
+  },
+  "huntington-west-virginia": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "WeaponizingArchitecture",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Huntington,_West_Virginia_(2023).jpg",
+   "alt": "Downtown Huntington's buildings rise beyond the trees on the bank of the Ohio River under a blue sky.",
+   "permission_needed": false
+  },
+  "huntsville-alabama": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Big_Spring_International_Park,_Huntsville_AL_20160715_1.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "DXR",
+   "alt": "Downtown Huntsville buildings and trees reflected in the lagoon at Big Spring International Park under a blue summer sky.",
+   "permission_needed": false
+  },
+  "jackson-mississippi": {
+   "outcome": "kept",
+   "license": "CC BY-SA 2.0",
+   "author": "formulanone from Huntsville, United States",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mississippi_State_Capitol_Building_(26815684617).jpg",
+   "alt": "The domed Mississippi State Capitol in Jackson, framed by trees along its front walk on a sunny day.",
+   "permission_needed": false
+  },
+  "jacksonville-florida": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jacksonville_skyline.jpg",
+   "alt": "Downtown Jacksonville's towers and the blue Main Street Bridge over the St. Johns River on a clear day.",
+   "permission_needed": false
+  },
+  "kansas-city-missouri": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Kansas_city_(16778782291).jpg",
+   "license": "CC BY 2.0",
+   "author": "Dean Hochman from Overland Park, Kansas, U.S.",
+   "alt": "Kansas City's Union Station and downtown skyline in golden autumn light, with fall trees and a green lawn in front.",
+   "permission_needed": false
+  },
+  "kennewick-washington": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cable_Bridge_(Tri-Cities,_Washington).jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Corbin Harder",
+   "alt": "The white cable-stayed Cable Bridge spanning the Columbia River at Kennewick under a clear blue sky.",
+   "permission_needed": false
+  },
+  "killeen-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:BellCourthouse1_(1_of_1).jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Renelibrary",
+   "alt": "The 1884 Bell County Courthouse in Belton, with its domed clock tower, behind red crape myrtles under a deep blue sky.",
+   "permission_needed": false
+  },
+  "kingsport-tennessee": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Bristol,_TN-VA.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "AppalachianCentrist",
+   "alt": "Historic storefronts and flags along sunny State Street in downtown Bristol, where the Tennessee–Virginia line runs down the street.",
+   "permission_needed": false
+  },
+  "kiryas-joel-new-york": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Poughkeepsie_Railroad_Bridge_20071020.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Jag9889",
+   "alt": "The steel trusses of the Walkway Over the Hudson at Poughkeepsie tower over the river beneath autumn-coloured hills.",
+   "permission_needed": false
+  },
+  "knoxville-tennessee": {
+   "outcome": "kept",
+   "license": "CC BY 3.0",
+   "author": "Brian Stansberry",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Four-market-square-tn1.jpg",
+   "alt": "People strolling past brick buildings and cafe awnings under shade trees in Market Square, downtown Knoxville.",
+   "permission_needed": false
+  },
+  "lafayette-louisiana": {
+   "outcome": "new",
+   "from_commons": false,
+   "was": NaN,
+   "source_url": "https://www.flickr.com/photos/7150652@N02/46618679322",
+   "license": "CC BY-NC-SA 2.0",
+   "author": "joseph a",
+   "alt": "The red-brick Cathedral of St. John the Evangelist in Lafayette, its tall bell tower rising against a cloudy sky.",
+   "permission_needed": true
+  },
+  "lakeland-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lake_Mirror_Lakeland_Florida_September_2024.jpg",
+   "license": "CC BY 4.0",
+   "author": "Trevorrrrvalent",
+   "alt": "Downtown Lakeland's buildings and a fountain across Lake Mirror, with wading birds on the grassy shore under a blue sky.",
+   "permission_needed": false
+  },
+  "lancaster-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Randolph Carney",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lancaster_Pennsylvania_downtown.jpg",
+   "alt": "Downtown Lancaster's rooftops, the Griest Building tower and a green copper cupola under a blue summer sky.",
+   "permission_needed": false
+  },
+  "lansing-michigan": {
+   "outcome": "kept",
+   "license": "CC BY 3.0",
+   "author": "Andrew Martin",
+   "source_url": "https://commons.wikimedia.org/wiki/File:State_Capital_and_Statue_-_panoramio.jpg",
+   "alt": "The domed Michigan State Capitol in Lansing under a clear blue sky, with the Austin Blair statue at right.",
+   "permission_needed": false
+  },
+  "laredo-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:St._Augustin_Church_(1_of_1).jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Renelibrary",
+   "alt": "The white San Agustín Cathedral and its clock tower rising above the plaza’s trees in Laredo’s historic district under a deep blue sky.",
+   "permission_needed": false
+  },
+  "las-vegas-nevada": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Daytime_aerial_view_of_the_Strip,_Las_Vegas,_Nevada_LCCN2010630596.tif",
+   "license": "Public domain",
+   "author": "Carol M. Highsmith",
+   "alt": "The Las Vegas Strip from above on a clear day, lined with casino hotels and towers.",
+   "permission_needed": false
+  },
+  "lincoln-nebraska": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nebraska_State_Capitol,_July_2026.jpg",
+   "license": "CC BY 4.0",
+   "author": "Hurstbergn",
+   "alt": "The Nebraska State Capitol's tall stone tower and domed top rise above trees and a green lawn under a blue, cloud-streaked sky.",
+   "permission_needed": false
+  },
+  "little-rock-arkansas": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Little_Rock,_Arkansas_skyline.jpg",
+   "alt": "Downtown Little Rock towers with the Arkansas River and its bridges beyond, seen from above on a clear day.",
+   "permission_needed": false
+  },
+  "longview-texas": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "pasa47",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Longview,_Texas.jpg",
+   "alt": "Brick storefronts and mid-rise towers along a quiet street in downtown Longview, Texas, on a sunny day.",
+   "permission_needed": false
+  },
+  "los-angeles-california": {
+   "outcome": "kept",
+   "license": "CC BY-SA 2.0",
+   "author": "Gnaphron",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hollywood_sign_(8485145044).jpg",
+   "alt": "The Hollywood sign on the hillside above Los Angeles.",
+   "permission_needed": false
+  },
+  "louisville-kentucky": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Steamboat_Delta_Queen_and_downtown_buildings_Louisville_Kentucky_USA_Ohio_River_mile_604_July_2005_file_a5g004.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "William Alden",
+   "alt": "The paddle steamboat Delta Queen cruises the Ohio River below downtown Louisville's towers on a clear day.",
+   "permission_needed": false
+  },
+  "lubbock-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Administration_Building_at_Texas_Tech_University_(3848855050).jpg",
+   "license": "CC BY 2.0",
+   "author": "Texas Tech University - University Student Housing",
+   "alt": "Texas Tech University's Administration Building in Lubbock, with its two bell towers, beyond a wide lawn under a clear sky.",
+   "permission_needed": false
+  },
+  "lynchburg-virginia": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Lynchburg_zoomed_in.jpg",
+   "license": "CC0",
+   "author": "Northern-Virginia-Photographer",
+   "alt": "Downtown Lynchburg's brick buildings and tower rising above the tree-lined James River under a blue, streaky sky.",
+   "permission_needed": false
+  },
+  "madison-wisconsin": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Madison_Wisconsin_05-04-2015_110_(17349544126).jpg",
+   "license": "CC BY 2.0",
+   "author": "Richard Hurd from Green Bay, USA",
+   "alt": "Downtown Madison and the domed Wisconsin State Capitol seen across Lake Monona under a blue sky with puffy clouds.",
+   "permission_needed": false
+  },
+  "manchester-new-hampshire": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Manchester,_New_Hampshire_skyline.jpg",
+   "alt": "Downtown Manchester’s towers and brick rowhouses rising beyond the old Millyard mill buildings under a pale blue sky.",
+   "permission_needed": false
+  },
+  "mcallen-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Casa_de_Palmas_2012-09-13_14-05-27.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "25or6to4",
+   "alt": "Tall palm trees in front of the white Spanish-style Casa de Palmas hotel in downtown McAllen under a blue sky.",
+   "permission_needed": false
+  },
+  "memphis-tennessee": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Skyline_of_Memphis,_TN.jpg",
+   "alt": "Downtown Memphis's skyline above the Mississippi River and its sandy riverbank on a clear day.",
+   "permission_needed": false
+  },
+  "merced-california": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Publichall",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tioga_Hotel_-_Merced_California_(cropped).jpg",
+   "alt": "The white historic Tioga Hotel with tall palm trees on a sunny day in downtown Merced.",
+   "permission_needed": false
+  },
+  "miami-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Miami_skylines_343.jpg",
+   "license": "CC0",
+   "author": "Wilfredor",
+   "alt": "The towers of Miami's Brickell district rising above the blue water of Biscayne Bay in late-afternoon sun.",
+   "permission_needed": false
+  },
+  "milwaukee-wisconsin": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Bfkenney",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Milwaukee_Skyline_w_New_NW_Mutual_Building_2025_by_Isaac_Rowlett.jpg",
+   "alt": "Milwaukee's downtown towers above the snowy lakefront, with the winged Milwaukee Art Museum on Lake Michigan.",
+   "permission_needed": false
+  },
+  "minneapolis-minnesota": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "BpA9543",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Minneapolis_Skyline_looking_south.jpg",
+   "alt": "The Minneapolis skyline rising beyond the Mississippi River and a bridge on a clear winter day.",
+   "permission_needed": false
+  },
+  "mobile-alabama": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mobile,_Alabama_skyline.jpg",
+   "alt": "Downtown Mobile's skyline, led by the spired RSA Battle House Tower, under a clear blue sky.",
+   "permission_needed": false
+  },
+  "modesto-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Modesto_Arch.JPG",
+   "license": "Public domain",
+   "author": "Carl Skaggs",
+   "alt": "The Modesto Arch, reading “Water Wealth Contentment Health”, spanning a downtown street between tall cypress trees under a blue sky.",
+   "permission_needed": false
+  },
+  "myrtle-beach-south-carolina": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Myrtle_Beach_ferris_wheel.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "The ed17",
+   "alt": "The SkyWheel and oceanfront hotels above the wide sandy beach at Myrtle Beach on a sunny day.",
+   "permission_needed": false
+  },
+  "naples-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Naples_Beach4.jpg",
+   "license": "CC BY-SA 2.5",
+   "author": "Marc Ryckaert",
+   "alt": "The long wooden Naples Pier stretches into the Gulf of Mexico beyond a white-sand beach and sea grape bushes on a sunny day.",
+   "permission_needed": false
+  },
+  "nashville-tennessee": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nashville,_Tennessee_(cropped).jpg",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "alt": "Downtown Nashville skyline above the Cumberland River and its bridges on a clear, sunny day.",
+   "permission_needed": false
+  },
+  "new-haven-connecticut": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:New_Haven,_Connecticut_skyline_(cropped).jpg",
+   "alt": "Downtown New Haven's towers rising above tree-filled neighborhoods in autumn color, with low hills on the horizon.",
+   "permission_needed": false
+  },
+  "new-orleans-louisiana": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Barrio_franc%C3%A9s_de_Nuevo_Orleans_Nov_2005.jpg",
+   "license": "CC0",
+   "author": "Daquella manera",
+   "alt": "Wrought-iron balconies along a street in the French Quarter of New Orleans.",
+   "permission_needed": false
+  },
+  "new-york-new-york": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Dllu",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_(cropped).jpg",
+   "alt": "The Empire State Building lit green above Midtown Manhattan at sunset, seen from Rockefeller Center.",
+   "permission_needed": false
+  },
+  "north-port-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Siesta_Key_Beach._Sarasota_-_panoramio_-_4net_(3).jpg",
+   "license": "CC BY 3.0",
+   "author": "4net",
+   "alt": "A red lifeguard stand on the white quartz sand of Siesta Key Beach by calm Gulf waters near Sarasota.",
+   "permission_needed": false
+  },
+  "norwich-connecticut": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Hayden Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Norwich,_Connecticut_2.jpg",
+   "alt": "Norwich's harbor, marina and brick downtown at the head of the Thames River, seen from above in warm late-day light.",
+   "permission_needed": false
+  },
+  "ocala-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Silver_Springs_State_Park_-_Glass-Bottom_Boats_2017.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Jackdude101",
+   "alt": "Glass-bottom boats on the clear blue headspring at Silver Springs near Ocala, with palm trees and the old boathouse.",
+   "permission_needed": false
+  },
+  "ogden-utah": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ogden_Utah_downtown.jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "Scott Catron from Sandy, Utah, USA",
+   "alt": "Downtown Ogden’s brick storefronts and a church spire beneath the snow-covered Wasatch Mountains on a clear winter day.",
+   "permission_needed": false
+  },
+  "oklahoma-city-oklahoma": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Urbanative",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Oklahoma_city_downtown.JPG",
+   "alt": "Downtown Oklahoma City skyline with the glass Devon Energy Center tower against a clear blue sky.",
+   "permission_needed": false
+  },
+  "olympia-washington": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:MK03165_Washington_State_Capitol_(Olympia).jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Martin Kraft",
+   "alt": "The domed Washington State Capitol in Olympia, framed by two stone office buildings and lawns under a partly cloudy sky.",
+   "permission_needed": false
+  },
+  "omaha-nebraska": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Tony Webster from Minneapolis, Minnesota, United States",
+   "source_url": "https://commons.wikimedia.org/wiki/File:City_of_Omaha,_Nebraska_Skyline_on_the_Missouri_River_(30899969517).jpg",
+   "alt": "Downtown Omaha skyline rising above the Missouri River and green riverbank on a clear, sunny day.",
+   "permission_needed": false
+  },
+  "orlando-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:South_Eola,_Orlando,_FL_32801,_USA_-_panoramio_(1).jpg",
+   "license": "CC BY 3.0",
+   "author": "nick hoke",
+   "alt": "Swan boats and the fountain on Lake Eola, with downtown Orlando's towers rising behind under a bright sky.",
+   "permission_needed": false
+  },
+  "oxnard-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Channel_Islands,_Oxnard,_CA_93035,_USA_-_panoramio_-_Sergei_Gussev_(1).jpg",
+   "license": "CC BY 3.0",
+   "author": "Sergei Gussev",
+   "alt": "Boats moored along a palm-lined residential canal at Channel Islands Harbor in Oxnard on a sunny day.",
+   "permission_needed": false
+  },
+  "palm-bay-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:PalmBayFLBay.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Excel23",
+   "alt": "A sabal palm leaning over the blue water of the bay in Palm Bay, Florida, with a moored sailboat and puffy white clouds.",
+   "permission_needed": false
+  },
+  "pensacola-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_beach_at_Gulf_Pier_in_Pensacola_Beach,_Florida.jpg",
+   "license": "CC BY 2.0",
+   "author": "TimothyJ",
+   "alt": "The long concrete Gulf Pier stretching over emerald-green surf from the white sand of Pensacola Beach.",
+   "permission_needed": false
+  },
+  "peoria-illinois": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Peoria_Illinois_Skyline_(cropped)_(cropped).jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "Scott Tranchitella from West Peoria, Illinois, USA",
+   "alt": "Downtown Peoria’s towers across the Illinois River, seen from the East Peoria riverfront with its blue railing on a winter day.",
+   "permission_needed": false
+  },
+  "philadelphia-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "颐园居",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Philadelphia_skyline_20240528_(cropped_2-1).jpg",
+   "alt": "The Philadelphia skyline rising beyond the Schuylkill River and its wooded banks.",
+   "permission_needed": false
+  },
+  "phoenix-arizona": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "DPPed",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Phoenix_Aerial_Looking_Northeast.jpg",
+   "alt": "Downtown Phoenix high-rises with desert mountains on the horizon, seen from the air on a clear, sunny day.",
+   "permission_needed": false
+  },
+  "pittsburgh-pennsylvania": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Pittsburgh_from_Duquesne_Incline_in_the_morning.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Dllu",
+   "alt": "Downtown Pittsburgh's skyline and the Point where its rivers meet, seen from Mount Washington above a red incline car in morning sun.",
+   "permission_needed": false
+  },
+  "port-st-lucie-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gazebo_at_Lake_Tradition_in_Port_St_Lucie_FL.jpeg",
+   "license": "CC BY-SA 4.0",
+   "author": "Dough4872",
+   "alt": "A white gazebo framed by four tall palm trees on the shore of Lake Tradition in Port St. Lucie at dusk.",
+   "permission_needed": false
+  },
+  "portland-maine": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "PhilipC",
+   "source_url": "https://commons.wikimedia.org/wiki/File:TheOldPort.jpg",
+   "alt": "A cobblestone lane lined with old brick buildings and shop signs in Portland's Old Port district after rain.",
+   "permission_needed": false
+  },
+  "portland-oregon": {
+   "outcome": "kept",
+   "license": "CC0",
+   "author": "Spicypepper999",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Portland_Oregon_Aerial,_June_2025.jpg",
+   "alt": "Downtown Portland and its green hills, with Mount Hood on the horizon.",
+   "permission_needed": false
+  },
+  "providence-rhode-island": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Providence_Rhode_Island_skyline_2017.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Kenneth C. Zirkel",
+   "alt": "Downtown Providence's towers, led by the Art Deco Industrial Trust Building, across the Providence River on a sunny day.",
+   "permission_needed": false
+  },
+  "provo-utah": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Historic_Utah_County_Courthouse_03.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Farragutful",
+   "alt": "The white-columned Historic Utah County Courthouse behind lawns and red flower beds, with a green Wasatch peak rising behind.",
+   "permission_needed": false
+  },
+  "raleigh-north-carolina": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Abhiram Juvvadi",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Raleigh_Skyline.jpg",
+   "alt": "Downtown Raleigh's skyline rising above leafy streets in warm late-afternoon light.",
+   "permission_needed": false
+  },
+  "reading-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "BigCheddah",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ReadingPennsylvaniaSkyline.jpg",
+   "alt": "Downtown Reading’s towers and rooftops among green hills, seen from the Pagoda on Mount Penn on a summer day.",
+   "permission_needed": false
+  },
+  "reno-nevada": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Trevor Bexon",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Reno,_Nevada_(16931715632).jpg",
+   "alt": "Downtown Reno's towers glowing in golden-hour light beneath snow-capped mountains, seen across a sagebrush hillside.",
+   "permission_needed": false
+  },
+  "richmond-virginia": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Bruce Emmerling",
+   "source_url": "https://commons.wikimedia.org/wiki/File:A_downtown_view_of_Richmond,_VA.jpg",
+   "alt": "Downtown Richmond's office towers rise above trees and old brick buildings under a clear blue sky.",
+   "permission_needed": false
+  },
+  "riverside-california": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Aaron Guzman",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mission_Inn%27s_main_interior_courtyard.jpg",
+   "alt": "Arched balconies, flower boxes and a copper dome around the courtyard of the historic Mission Inn in Riverside.",
+   "permission_needed": false
+  },
+  "roanoke-virginia": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Roanoke,_Virginia_viewed_from_Mill_Mountain.jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "SchuminWeb",
+   "alt": "Downtown Roanoke from Mill Mountain in late-afternoon sun, with Blue Ridge ridges on the horizon.",
+   "permission_needed": false
+  },
+  "rochester-new-york": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rochester_High_Falls.jpg",
+   "license": "Public domain",
+   "author": "Evilarry",
+   "alt": "The Genesee River pours over High Falls beneath downtown Rochester's buildings on a sunny day.",
+   "permission_needed": false
+  },
+  "rockford-illinois": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Overview_of_eastern_downtown_Rockford.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "Alexbaumgarner",
+   "alt": "The Rock River winding past downtown Rockford's brick buildings and towers, with the Jefferson Street Bridge and a blue sky.",
+   "permission_needed": false
+  },
+  "sacramento-california": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Sacramento,_CA_skyline_(cropped).jpg",
+   "alt": "The gold Tower Bridge over the Sacramento River with downtown Sacramento's skyline behind on a sunny day.",
+   "permission_needed": false
+  },
+  "salem-oregon": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Oregon_State_Capitol_1.jpg",
+   "license": "Public domain",
+   "author": "M.O. Stevens",
+   "alt": "The white marble Oregon State Capitol with its gilded pioneer statue, framed by blossoming cherry trees on the lawn in Salem.",
+   "permission_needed": false
+  },
+  "salinas-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Main_Street,_Salinas.jpg",
+   "license": "CC BY 2.0",
+   "author": "Naotake Murayama",
+   "alt": "Historic brick and stucco storefronts and a cinema sign along sunny Main Street in Oldtown Salinas.",
+   "permission_needed": false
+  },
+  "salt-lake-city-utah": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Invictus323",
+   "source_url": "https://commons.wikimedia.org/wiki/File:SLC_Skyline_2024.jpg",
+   "alt": "Downtown Salt Lake City's towers in front of the snow-capped Wasatch Mountains under a clear blue sky.",
+   "permission_needed": false
+  },
+  "san-antonio-texas": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:San_Antonio_Riverwalk,_San_Antonio,_Texas_(50187302062).jpg",
+   "license": "CC BY 2.0",
+   "author": "Nicolas Henderson from Coppell, Texas",
+   "alt": "A tour barge gliding along the tree-shaded San Antonio River Walk past stone walls, stairs and an arched bridge.",
+   "permission_needed": false
+  },
+  "san-diego-california": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Dirk Hansen",
+   "source_url": "https://commons.wikimedia.org/wiki/File:La_Jolla_Shores_view_(cropped).jpg",
+   "alt": "Sea lions on the rocks below the bluffs and homes of La Jolla, San Diego.",
+   "permission_needed": false
+  },
+  "san-francisco-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:GoldenGateBridge-001.jpg",
+   "license": "CC BY 2.5",
+   "author": "Rich Niewiroski Jr.",
+   "alt": "The Golden Gate Bridge in warm evening light, with San Francisco across the bay behind it.",
+   "permission_needed": false
+  },
+  "san-jose-california": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Payton Chung",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Valencia_Hotel,_Santana_Row_(cropped).jpg",
+   "alt": "Palm trees and the Valencia Hotel along Santana Row in San Jose on a sunny day.",
+   "permission_needed": false
+  },
+  "san-luis-obispo-california": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Rennett Stowe",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mission_San_Luis_Obispo_(cropped).jpg",
+   "alt": "The white adobe church and bell wall of Mission San Luis Obispo de Tolosa in warm evening light.",
+   "permission_needed": false
+  },
+  "santa-cruz-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Park_at_the_beach_-_panoramio.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "Vadim Manuylov",
+   "alt": "Rides of the Santa Cruz Beach Boardwalk rise above a busy beach on Monterey Bay, with wooded hills behind, on a sunny day.",
+   "permission_needed": false
+  },
+  "santa-maria-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Vineyard_and_hills_(Unsplash).jpg",
+   "license": "CC0",
+   "author": "Tim Mossholder timmossholder",
+   "alt": "Rows of green grapevines in the Santa Maria Valley beneath a bare, sunlit ridge on a clear afternoon.",
+   "permission_needed": false
+  },
+  "santa-rosa-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:DowntownSquare.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Thedbutler",
+   "alt": "The Empire Building's clock tower above Old Courthouse Square in downtown Santa Rosa under a streaky evening sky.",
+   "permission_needed": false
+  },
+  "savannah-georgia": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Derrick Gaines",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Fountain_at_Forsyth.jpg",
+   "alt": "The white cast-iron fountain in Forsyth Park, Savannah, framed by live oaks hung with Spanish moss.",
+   "permission_needed": false
+  },
+  "scranton-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Ajay Suresh from New York, NY, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Scranton_-_Downtown_(48472890492).jpg",
+   "alt": "The clock tower of the Lackawanna County Courthouse and historic downtown Scranton buildings in warm sunlight.",
+   "permission_needed": false
+  },
+  "seattle-washington": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Jeffery Hayes",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Seattle_Center_as_night_falls.jpg",
+   "alt": "The Space Needle against the Olympic Mountains and Elliott Bay as night falls in Seattle.",
+   "permission_needed": false
+  },
+  "shreveport-louisiana": {
+   "outcome": "kept",
+   "license": "CC BY-SA 3.0",
+   "author": "Roman Eugeniusz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Shreveport_LA,_USA_-_panoramio_(6).jpg",
+   "alt": "An old steel railroad bridge crosses the Red River in front of downtown Shreveport's skyline on a sunny day.",
+   "permission_needed": false
+  },
+  "slidell-louisiana": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:DepoHDR.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Willam Blackwell",
+   "alt": "The historic brick railroad depot in Olde Towne Slidell beside the tracks in warm late-afternoon light.",
+   "permission_needed": false
+  },
+  "south-bend-indiana": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Main_Building_at_the_University_of_Notre_Dame.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Matthew Rice",
+   "alt": "The gold-domed Main Building of the University of Notre Dame near South Bend, framed by trees under a blue sky.",
+   "permission_needed": false
+  },
+  "spartanburg-south-carolina": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Palmetto_Building_-_Spartanburg.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "PegasusRacer28",
+   "alt": "The historic three-story brick Palmetto Building with striped awnings and café tables on Morgan Square in downtown Spartanburg.",
+   "permission_needed": false
+  },
+  "spokane-washington": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Spokane,_Washington_skyline_(cropped).jpg",
+   "alt": "Downtown Spokane and the arched Monroe Street Bridge above the rushing Spokane River, seen from above on a cloudy day.",
+   "permission_needed": false
+  },
+  "springfield-massachusetts": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Springfield,_MA.jpg",
+   "alt": "Downtown Springfield's towers and Campanile above autumn trees under a blue sky with white clouds.",
+   "permission_needed": false
+  },
+  "springfield-missouri": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:ParkCentralSquarefountainbyCVBCS.jpg",
+   "license": "Free Art License",
+   "author": "CVBCS (uploaded by Joelfun)",
+   "alt": "The stepped fountain, brick plaza and trees of Park Central Square, with a white early-1900s office tower, in downtown Springfield.",
+   "permission_needed": true
+  },
+  "st-louis-missouri": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "Jefferson National Expansion Memorial, NPS from St. Louis, MO, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Runner_Fountain_and_Old_Courthouse_and_Arch_(5618845531).jpg",
+   "alt": "The Gateway Arch rising behind the green-domed Old Courthouse, seen across the fountains of Kiener Plaza in St. Louis.",
+   "permission_needed": false
+  },
+  "stockton-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Stockton_California.jpg",
+   "license": "CC0",
+   "author": "LPS.1",
+   "alt": "The Stockton Channel leads to the ornate Hotel Stockton, with palm trees and a waterside promenade in downtown Stockton.",
+   "permission_needed": false
+  },
+  "syracuse-new-york": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Syracuse,_New_York_skyline_(cropped).jpg",
+   "alt": "Downtown Syracuse office towers and brick buildings with green hills beyond, seen from above on a sunny day.",
+   "permission_needed": false
+  },
+  "tallahassee-florida": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Old_Florida_Capitol,_Tallahassee,_Public_Domain.jpg",
+   "license": "CC0",
+   "author": "Civil10",
+   "alt": "Florida's Old Capitol in Tallahassee, with red-and-white striped awnings, in front of the tall New Capitol tower.",
+   "permission_needed": false
+  },
+  "tampa-florida": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Clément Bardot",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Tampa,_Florida.jpg",
+   "alt": "Downtown Tampa's skyscrapers rise behind a highway bridge over the Hillsborough River on a sunny day.",
+   "permission_needed": false
+  },
+  "toledo-ohio": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Wayne_Bridge,_Toledo,_OH_from_Middlegrounds_Metropark_with_Skyline.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Limpfster94",
+   "alt": "The blue Anthony Wayne suspension bridge over the Maumee River, with autumn trees and downtown Toledo's towers beyond.",
+   "permission_needed": false
+  },
+  "trenton-new-jersey": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trenton,_New_Jersey_(cropped).jpg",
+   "alt": "Downtown Trenton beside the Delaware River on a sunny summer day, with the gold-domed State House at left.",
+   "permission_needed": false
+  },
+  "tulsa-oklahoma": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tulsa_Skyline.jpg",
+   "license": "CC BY-SA 2.5",
+   "author": "Caleb Long",
+   "alt": "Downtown Tulsa’s towers rising beyond a green park with a pond and fountains on a clear spring day.",
+   "permission_needed": false
+  },
+  "tuscaloosa-alabama": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bryant%E2%80%93Denny_Stadium,_Tuscaloosa_AL,_North_view_20160714_1.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "DXR",
+   "alt": "The brick and concrete north facade of Bryant-Denny Stadium at the end of a wide brick walkway on a sunny day in Tuscaloosa.",
+   "permission_needed": false
+  },
+  "utica-new-york": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Utica,_New_York_-_09_-_street_clock_at_Genesee_and_Washington_Streets_-_20210828.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Andre Carrotflower",
+   "alt": "A vintage street clock reading Utica above a flower bed on Genesee Street, with historic brick buildings and a church tower.",
+   "permission_needed": false
+  },
+  "vallejo-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_ferry_is_seen_from_the_Vallejo_waterfront.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Kiddo27",
+   "alt": "A ferry crossing the Mare Island Strait beside the Vallejo waterfront promenade on a sunny day.",
+   "permission_needed": false
+  },
+  "virginia-beach-virginia": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "DanRVA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:VB_Oceanfront.jpg",
+   "alt": "Waves rolling onto the wide sandy beach at the Virginia Beach Oceanfront, with hotels lining the shore.",
+   "permission_needed": false
+  },
+  "visalia-california": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Teatro_Visalia.jpg",
+   "license": "Public domain",
+   "author": "Visalia Convention & Visitors Bureau",
+   "alt": "The Visalia Fox Theatre's clock tower and glowing marquee on a downtown Visalia corner under a pink dusk sky.",
+   "permission_needed": false
+  },
+  "waco-texas": {
+   "outcome": "kept",
+   "license": "CC BY-SA 2.0",
+   "author": "Steve",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Obligatory_waco_suspension_bridge_photo.jpg",
+   "alt": "The cream-colored towers of the Waco Suspension Bridge at the end of a tree-lined park path under a blue sky.",
+   "permission_needed": false
+  },
+  "washington-district-of-columbia": {
+   "outcome": "new",
+   "from_commons": true,
+   "was": NaN,
+   "source_url": "https://commons.wikimedia.org/wiki/File:Capitol_Building_Full_View.jpg",
+   "license": "Public domain",
+   "author": "Noclip",
+   "alt": "The white-domed United States Capitol in Washington, D.C., seen across its west lawn under a clear blue sky.",
+   "permission_needed": false
+  },
+  "waterbury-connecticut": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Hayden Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Waterbury,_Connecticut_3.jpg",
+   "alt": "Downtown Waterbury’s brick buildings and the Union Station clock tower among green hills, seen from above on a clear day.",
+   "permission_needed": false
+  },
+  "wichita-kansas": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Wichita,_Kansas_skyline.jpg",
+   "alt": "Downtown Wichita and the round Century II hall beside the Arkansas River, seen from above in late-day sun.",
+   "permission_needed": false
+  },
+  "wilmington-north-carolina": {
+   "outcome": "kept",
+   "license": "CC BY 2.0",
+   "author": "NCDOTcommunications",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BRIDGE_2024-05-07_Cape_Fear_Memorial_Bridge_Press_Conf-831-155_(cropped).jpg",
+   "alt": "Downtown Wilmington's riverfront and historic buildings seen across the Cape Fear River on a clear day.",
+   "permission_needed": false
+  },
+  "worcester-massachusetts": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Worcester,_Massachusetts.jpg",
+   "alt": "Downtown Worcester office towers rising beyond brick buildings, rail tracks and triple-decker houses on a clear day.",
+   "permission_needed": false
+  },
+  "yakima-washington": {
+   "outcome": "kept",
+   "license": "CC BY 4.0",
+   "author": "Quintin Soloviev",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Yakima,_Washington_skyline.jpg",
+   "alt": "Downtown Yakima's low-rise blocks spread across the valley floor, with brown ridges on the horizon under a cloudy sky.",
+   "permission_needed": false
+  },
+  "york-pennsylvania": {
+   "outcome": "kept",
+   "license": "CC BY-SA 2.0",
+   "author": "Doug Kerr from Albany, NY, United States",
+   "source_url": "https://commons.wikimedia.org/wiki/File:York,_Pennsylvania_(65).jpg",
+   "alt": "White spring blossoms arch over a quiet downtown York street beside a columned civic building and historic brick buildings.",
+   "permission_needed": false
+  },
+  "youngstown-ohio": {
+   "outcome": "kept",
+   "license": "CC BY-SA 4.0",
+   "author": "Dblcut3",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mill_Creek_Park_Lanterman%27s_Mill.jpg",
+   "alt": "Lanterman's Mill and its waterfall among green woods in Youngstown's Mill Creek Park on a sunny day.",
+   "permission_needed": false
+  }
+ },
+ "permission_needed": [
+  "lafayette-louisiana",
+  "springfield-missouri"
+ ],
+ "ranked_without_a_photo_on_disk": []
+}

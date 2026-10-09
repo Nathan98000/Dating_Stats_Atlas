@@ -58,8 +58,13 @@ P2E = RESULTS / "phase2e"
 TRASH = Path.home() / ".Trash" / "Dating_Stats_Atlas_phase4_photo_review"
 
 # how each surface lays its photograph out (the components' classes):
-# city and stat photographs scale into their box, the hero crops a band
-CROPPED = {"city": False, "stat": False, "hero": True}
+# stat photographs scale into their box, the hero crops a band. After the
+# Phase 5 report (Nathan, 2026-10-08) every city photograph is cropped —
+# the home page's cards and the city page's band: public domain, CC0, CC BY
+# and CC BY-SA each permit an adaptation (the credit says "cropped" and
+# names the licence; a cropped BY-SA photograph stays BY-SA), and a
+# photograph from elsewhere is used by the permission Nathan arranges.
+CROPPED = {"city": True, "stat": False, "hero": True}
 
 
 def refused_files() -> dict[str, str]:
@@ -96,6 +101,8 @@ def pinned_alts() -> dict[tuple[str, str], str]:
         return {}
     rev = json.loads(REVIEW.read_text())
     named = rev.get("replaced", []) + rev.get("phase4e_stat_pages", {}).get("pinned", [])
+    # after the Phase 5 report: a kept photograph's alt text, rewritten
+    named += rev.get("alt_overrides", [])
     return {(r["page"], r["key"]): r["alt"] for r in named if r.get("alt")}
 
 
@@ -234,6 +241,30 @@ def _replace(r: dict, city: dict, stat: dict, city_csv: pd.DataFrame,
     return {"key": r["key"], "file": how, "file_title": row["file_title"]}
 
 
+def _external(r: dict, city: dict, stat: dict, city_csv: pd.DataFrame,
+              stat_csv: pd.DataFrame, retrieved: str) -> dict:
+    """After the Phase 5 report: a city photograph from outside Commons, as
+    the review records it (its credit, alt text and exact bytes): the old
+    file to the Trash unless it already is these bytes, the recorded file
+    fetched and checked by city_images.source_external, the manifest row
+    and render entry rewritten. Re-running changes nothing once applied."""
+    from atlas.pipeline.build import city_images as CI
+    render, csv, sel, folder, sub, cropped = _surface(r, city, stat, city_csv, stat_csv)
+    row = csv.loc[sel].iloc[0].to_dict()
+    dest = folder / f"{r['key']}{CI.external_suffix(r['image_url'])}"
+    old = folder / str(_none(row.get("file")) or f"{r['key']}.jpg")
+    if old.exists() and not (old == dest and _sha(old) == r["sha256"]):
+        _to_trash(old, "replaced")
+    new_row, entry = CI.source_external(r["key"], r, retrieved, page=r["page"])
+    assert entry, f"{r['key']}: the pinned photograph is unavailable ({new_row['status']})"
+    for k, v in new_row.items():
+        if k in csv.columns:
+            csv[k] = csv[k].astype(object)
+            csv.loc[sel, k] = v
+    render[r["key"]] = entry
+    return {"key": r["key"], "file": entry["file"], "source": r["source_url"]}
+
+
 def apply() -> dict:
     rev = _read(REVIEW)
     city_path = WEB / "src" / "data" / "city-images.json"
@@ -243,11 +274,16 @@ def apply() -> dict:
     city_csv = pd.read_csv(P2E / "city_images.csv", dtype={"cbsa": str})
     stat_csv = pd.read_csv(P2E / "stat_images.csv")
     moved = []
+    # after the Phase 5 report: a city page that takes a photograph from
+    # outside Commons no longer takes an older removal, restoration or
+    # replacement (seven of the restored photographs gave way to card photos)
+    outside_pages = {(r["page"], r["key"]) for r in rev.get("external_files", [])
+                     if r["page"] == "city"}
     # a replaced photograph's page takes the named file, so a removal on
     # the same page (Waco's collage) no longer touches it
     replaced_pages = {(r["page"], r["key"]) for r in rev.get("replaced", [])}
     for r in rev["removed"]:
-        if (r["page"], r["key"]) in replaced_pages:
+        if (r["page"], r["key"]) in replaced_pages | outside_pages:
             continue
         status = f"refused_review:{r['category']}"
         if r["page"] == "city":
@@ -264,10 +300,19 @@ def apply() -> dict:
         moved.append(_to_trash(RESULTS.parents[0] / s["file"], "stray"))
     # after Phase 4c (Nathan's calls): the removals he kept, then the
     # replacements the review names
-    restored = [_restore(r, city, stat, city_csv, stat_csv) for r in rev.get("restored", [])]
+    restored = [_restore(r, city, stat, city_csv, stat_csv) for r in rev.get("restored", [])
+                if (r["page"], r["key"]) not in outside_pages]
     retrieved = time.strftime("%Y-%m-%d")
     replaced = [_replace(r, city, stat, city_csv, stat_csv, retrieved)
-                for r in rev.get("replaced", [])]
+                for r in rev.get("replaced", []) if (r["page"], r["key"]) not in outside_pages]
+    # after the Phase 5 report: city photographs from outside Commons, and
+    # kept photographs' rewritten alt texts
+    outside = [_external(r, city, stat, city_csv, stat_csv, retrieved)
+               for r in rev.get("external_files", []) if r["page"] == "city"]
+    for r in rev.get("alt_overrides", []):
+        target = city if r["page"] == "city" else stat
+        if r["key"] in target:
+            target[r["key"]]["alt"] = r["alt"]
     external = external_files()
     for page, render in (("city", city), ("stat", stat)):
         for key, v in render.items():
@@ -283,7 +328,7 @@ def apply() -> dict:
     city_csv.to_csv(P2E / "city_images.csv", index=False)
     stat_csv.to_csv(P2E / "stat_images.csv", index=False)
     return {"removed": len(rev["removed"]), "moved_to_trash": [m for m in moved if m],
-            "restored": restored, "replaced": replaced,
+            "restored": restored, "replaced": replaced, "outside_commons": outside,
             "city_photos": len(city), "stat_photos": len(stat)}
 
 

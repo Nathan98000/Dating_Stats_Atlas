@@ -7,7 +7,6 @@ import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION } from "@/lib/chrome";
 import cityImages from "@/data/city-images.json";
 import statImages from "@/data/stat-images.json";
-import { croppable } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
 
@@ -61,12 +60,12 @@ export default async function AboutPage() {
   const notices = [...new Set(licences.flatMap((l) => (l.notice ? [l.notice] : [])))];
   const stats = Object.values(statImages as unknown as Record<string, PhotoCredit>)
     .filter((img) => shipped("stats", img));
-  // Phase 5: a public-domain or CC0 city photograph is shown cropped (the
-  // home page's cards), and says so; the home page's own photograph left
-  // with its band (Nathan's decision 1)
+  // after the Phase 5 report: every city photograph is shown cropped (the
+  // home page's cards, the city page's band), and says so; the home
+  // page's own photograph left with its band (Nathan's decision 1)
   const cities = Object.values(cityImages as unknown as Record<string, PhotoCredit>)
     .filter((img) => shipped("cities", img))
-    .map((img) => (croppable(img.license) ? { ...img, cropped: true } : img));
+    .map((img) => ({ ...img, cropped: true }));
   const photos = [...stats, ...cities];
 
   return (

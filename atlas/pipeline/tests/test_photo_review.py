@@ -47,7 +47,12 @@ def test_nathans_calls_are_recorded(state):
 
 
 def test_every_restored_photograph_renders_as_recorded(state):
+    # after the Phase 5 report a restored photograph can give way to the
+    # city's card photograph from outside Commons (checked below)
+    outside = {(r["page"], r["key"]) for r in state["rev"].get("external_files", [])}
     for r in state["rev"]["restored"]:
+        if (r["page"], r["key"]) in outside:
+            continue
         render, row = _page(state, r)
         assert r["key"] in render, r["key"]
         assert row["status"] == "ok", r["key"]
@@ -148,3 +153,26 @@ def test_a_photograph_from_outside_commons_is_pinned_by_hash(state):
     # the photograph it replaces renders nowhere, and no Commons pin competes
     assert rec["was"] not in {_file_of(v["source_url"]) for v in state["stat"].values()}
     assert ("stat", "everyday_prices") not in PR.pinned_files()
+
+
+def test_every_ranked_city_has_a_representative_photograph_recorded(state):
+    """After the Phase 5 report (Nathan, 2026-10-08): every ranked city —
+    any of them can be a home-page card — has a photograph, from any source
+    (he arranges the permission), and every city photograph is credited
+    "cropped" (the cards and the city page's band crop them). A photograph
+    from outside Commons renders exactly its review record, pinned by its
+    bytes; a kept photograph's rewritten alt text is the one rendered."""
+    idx = json.loads((WEB / "search-index.json").read_text())
+    ranked = [e["s"] for e in idx if e["r"]]
+    assert all(s in state["city"] for s in ranked), [s for s in ranked if s not in state["city"]]
+    assert all(v["cropped"] is True for v in state["city"].values())
+    for r in state["rev"].get("external_files", []):
+        if r["page"] != "city":
+            continue
+        entry = state["city"][r["key"]]
+        for k in ("author", "license", "source_url", "title", "alt"):
+            assert entry[k] == r[k], (r["key"], k)
+        row = state["city_csv"][state["city_csv"]["slug"] == r["key"]].iloc[0]
+        assert row["status"] == "ok" and row["sha256"] == r["sha256"] and row["file"] == entry["file"]
+    for r in state["rev"].get("alt_overrides", []):
+        assert state["city"][r["key"]]["alt"] == r["alt"], r["key"]
