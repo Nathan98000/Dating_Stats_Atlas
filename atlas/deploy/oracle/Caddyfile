@@ -4,7 +4,13 @@
 # network. No access log is configured, so no visit is recorded. Responses
 # are compressed for clients that accept it: /api/rank's JSON is about 1.5MB
 # raw and about 230KB gzipped, and Next compresses only its HTML.
+# Phase 6 (F03): the photographs, their sized copies and the link-preview
+# images keep their names when unchanged, so a browser may reuse them for a
+# week instead of asking again on every view (Next serves public files with
+# max-age=0; ">" replaces the proxied header after the app answers).
 {$SITE_ADDRESS} {
 	encode zstd gzip
+	@photos path /cities/* /stats/* /og/*
+	header @photos >Cache-Control "public, max-age=604800"
 	reverse_proxy web:3000
 }

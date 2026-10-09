@@ -397,9 +397,10 @@ export function Home({
 
                 <div ref={listRef} data-testid="ranked-list" data-variant="">
                   <ol aria-label="Cities" className="grid gap-4 md:grid-cols-3">
-                    {featured.map((row) => (
+                    {featured.map((row, i) => (
                       <FeaturedCard
                         key={row.cbsa}
+                        first={i === 0}
                         row={row}
                         meta={meta}
                         href={cityHref(row.slug)}

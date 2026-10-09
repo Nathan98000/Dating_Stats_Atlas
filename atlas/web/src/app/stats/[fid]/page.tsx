@@ -8,6 +8,7 @@ import { StatList, type StatRow } from "@/components/stat-list";
 import { LeanList, type LeanRow } from "@/components/lean-list";
 import statPages from "@/data/stat-pages.json";
 import statImages from "@/data/stat-images.json";
+import { sized } from "@/lib/city-photos";
 
 /** One page per static statistic (item 9, extended by Phase 2e): a
  * cleared full-width photograph (its credit in About us, Sources and
@@ -96,9 +97,11 @@ export default async function StatPage({
               adaptation), which is why this is not object-cover */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`/stats/${img.file}`}
+            {...sized("stats", fid, img.file)}
+            sizes="(min-width: 1024px) 928px, (min-width: 640px) calc(100vw - 96px), calc(100vw - 32px)"
+            loading="eager"
             alt={img.alt ?? ""}
-            className="max-h-[380px] w-full rounded-lg bg-surface object-contain"
+            className="h-auto max-h-[380px] w-full rounded-lg bg-surface object-contain"
           />
         </figure>
       )}

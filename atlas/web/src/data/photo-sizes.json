@@ -1,0 +1,3695 @@
+{
+ "cities": {
+  "abilene-texas": {
+   "width": 1260,
+   "height": 460,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "akron-ohio": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "albany-georgia": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "albany-new-york": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "albany-oregon": {
+   "width": 1920,
+   "height": 1071,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "albuquerque-new-mexico": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "alexandria-louisiana": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "allentown-pennsylvania": {
+   "width": 1920,
+   "height": 1153,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "altoona-pennsylvania": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "amarillo-texas": {
+   "width": 1920,
+   "height": 1163,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "ames-iowa": {
+   "width": 1920,
+   "height": 1281,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "anchorage-alaska": {
+   "width": 1920,
+   "height": 998,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "ann-arbor-michigan": {
+   "width": 1920,
+   "height": 933,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "anniston-alabama": {
+   "width": 1920,
+   "height": 1025,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "appleton-wisconsin": {
+   "width": 1920,
+   "height": 1027,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "asheville-north-carolina": {
+   "width": 1920,
+   "height": 934,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "athens-georgia": {
+   "width": 1920,
+   "height": 1282,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "atlanta-georgia": {
+   "width": 1920,
+   "height": 1061,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "atlantic-city-new-jersey": {
+   "width": 1920,
+   "height": 1132,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "auburn-alabama": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "augusta-georgia": {
+   "width": 1920,
+   "height": 1317,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "austin-texas": {
+   "width": 1920,
+   "height": 1057,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bakersfield-california": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "baltimore-maryland": {
+   "width": 1920,
+   "height": 1277,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bangor-maine": {
+   "width": 1920,
+   "height": 1248,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "barnstable-town-massachusetts": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "baton-rouge-louisiana": {
+   "width": 1920,
+   "height": 1277,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "battle-creek-michigan": {
+   "width": 1920,
+   "height": 2407,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bay-city-michigan": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "beaumont-texas": {
+   "width": 1280,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "beckley-west-virginia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bellingham-washington": {
+   "width": 1920,
+   "height": 1153,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bend-oregon": {
+   "width": 1920,
+   "height": 1282,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "billings-montana": {
+   "width": 1920,
+   "height": 1258,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "binghamton-new-york": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "birmingham-alabama": {
+   "width": 1920,
+   "height": 927,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bismarck-north-dakota": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "blacksburg-virginia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bloomington-illinois": {
+   "width": 1920,
+   "height": 967,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bloomington-indiana": {
+   "width": 1920,
+   "height": 1274,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "boise-city-idaho": {
+   "width": 1920,
+   "height": 1335,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "boston-massachusetts": {
+   "width": 1920,
+   "height": 1251,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "boulder-colorado": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bowling-green-kentucky": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bozeman-montana": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bremerton-washington": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "bridgeport-connecticut": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "brownsville-texas": {
+   "width": 1920,
+   "height": 1281,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "brunswick-georgia": {
+   "width": 1600,
+   "height": 1067,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "buffalo-new-york": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "burlington-north-carolina": {
+   "width": 1920,
+   "height": 1071,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "burlington-vermont": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "canton-ohio": {
+   "width": 1920,
+   "height": 1284,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "cape-coral-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "cape-girardeau-missouri": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "carson-city-nevada": {
+   "width": 1920,
+   "height": 1344,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "casper-wyoming": {
+   "width": 500,
+   "height": 500,
+   "widths": [
+    480
+   ]
+  },
+  "cedar-rapids-iowa": {
+   "width": 1280,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "chambersburg-pennsylvania": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "charleston-south-carolina": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "charleston-west-virginia": {
+   "width": 1920,
+   "height": 1281,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "charlotte-north-carolina": {
+   "width": 1920,
+   "height": 1108,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "charlottesville-virginia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "chattanooga-tennessee": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "cheyenne-wyoming": {
+   "width": 1500,
+   "height": 865,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "chicago-illinois": {
+   "width": 1920,
+   "height": 1357,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "chico-california": {
+   "width": 595,
+   "height": 381,
+   "widths": [
+    480
+   ]
+  },
+  "cincinnati-ohio": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "clarksville-tennessee": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "cleveland-ohio": {
+   "width": 1920,
+   "height": 1016,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "cleveland-tennessee": {
+   "width": 1920,
+   "height": 1079,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "coeur-dalene-idaho": {
+   "width": 1920,
+   "height": 1193,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "college-station-texas": {
+   "width": 1920,
+   "height": 1277,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "colorado-springs-colorado": {
+   "width": 1920,
+   "height": 919,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "columbia-missouri": {
+   "width": 351,
+   "height": 248,
+   "widths": []
+  },
+  "columbia-south-carolina": {
+   "width": 1844,
+   "height": 892,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "columbus-georgia": {
+   "width": 1920,
+   "height": 1439,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "columbus-indiana": {
+   "width": 1920,
+   "height": 1623,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "columbus-ohio": {
+   "width": 1920,
+   "height": 1312,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "corpus-christi-texas": {
+   "width": 1920,
+   "height": 1149,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "corvallis-oregon": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "crestview-florida": {
+   "width": 1920,
+   "height": 1003,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "dallas-texas": {
+   "width": 1920,
+   "height": 978,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "davenport-iowa": {
+   "width": 1920,
+   "height": 1396,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "dayton-ohio": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "decatur-alabama": {
+   "width": 1920,
+   "height": 955,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "decatur-illinois": {
+   "width": 812,
+   "height": 415,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "deltona-florida": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "denver-colorado": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "des-moines-iowa": {
+   "width": 1920,
+   "height": 1210,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "detroit-michigan": {
+   "width": 1920,
+   "height": 1121,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "dothan-alabama": {
+   "width": 1920,
+   "height": 636,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "dover-delaware": {
+   "width": 1920,
+   "height": 1200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "dubuque-iowa": {
+   "width": 1920,
+   "height": 1039,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "duluth-minnesota": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "durham-north-carolina": {
+   "width": 1920,
+   "height": 873,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "eagle-pass-texas": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "el-centro-california": {
+   "width": 448,
+   "height": 299,
+   "widths": []
+  },
+  "el-paso-texas": {
+   "width": 1920,
+   "height": 1064,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "elizabethtown-kentucky": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "elkhart-indiana": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "elmira-new-york": {
+   "width": 1240,
+   "height": 936,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "enid-oklahoma": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "erie-pennsylvania": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "eugene-oregon": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "evansville-indiana": {
+   "width": 1920,
+   "height": 1568,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fairbanks-alaska": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fargo-north-dakota": {
+   "width": 1920,
+   "height": 1723,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fayetteville-arkansas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fayetteville-north-carolina": {
+   "width": 1920,
+   "height": 725,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "flagstaff-arizona": {
+   "width": 800,
+   "height": 533,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "flint-michigan": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "florence-alabama": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "florence-south-carolina": {
+   "width": 1920,
+   "height": 1242,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fond-du-lac-wisconsin": {
+   "width": 1920,
+   "height": 1277,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fort-collins-colorado": {
+   "width": 1500,
+   "height": 1000,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "fort-smith-arkansas": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fort-wayne-indiana": {
+   "width": 1920,
+   "height": 1145,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "fresno-california": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "gadsden-alabama": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "gainesville-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "gainesville-georgia": {
+   "width": 1920,
+   "height": 1279,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "gettysburg-pennsylvania": {
+   "width": 1920,
+   "height": 1282,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "glens-falls-new-york": {
+   "width": 1920,
+   "height": 1200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "grand-forks-north-dakota": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "grand-island-nebraska": {
+   "width": 1920,
+   "height": 1278,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "grand-junction-colorado": {
+   "width": 1920,
+   "height": 1087,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "grand-rapids-michigan": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "grants-pass-oregon": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "great-falls-montana": {
+   "width": 1920,
+   "height": 1110,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "greeley-colorado": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "green-bay-wisconsin": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "greensboro-north-carolina": {
+   "width": 1500,
+   "height": 1125,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "greenville-north-carolina": {
+   "width": 1920,
+   "height": 1279,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "greenville-south-carolina": {
+   "width": 1920,
+   "height": 1446,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "gulfport-mississippi": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hagerstown-maryland": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hammond-louisiana": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hanford-california": {
+   "width": 1920,
+   "height": 1049,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "harrisburg-pennsylvania": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "harrisonburg-virginia": {
+   "width": 1280,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "hartford-connecticut": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hattiesburg-mississippi": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "helena-montana": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hickory-north-carolina": {
+   "width": 576,
+   "height": 432,
+   "widths": [
+    480
+   ]
+  },
+  "hilton-head-island-south-carolina": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hinesville-georgia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "homosassa-springs-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "honolulu-hawaii": {
+   "width": 1920,
+   "height": 941,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "hot-springs-arkansas": {
+   "width": 933,
+   "height": 1416,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "houma-louisiana": {
+   "width": 1920,
+   "height": 1210,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "houston-texas": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "huntington-west-virginia": {
+   "width": 1920,
+   "height": 979,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "huntsville-alabama": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "idaho-falls-idaho": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "indianapolis-indiana": {
+   "width": 1920,
+   "height": 1067,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "iowa-city-iowa": {
+   "width": 1195,
+   "height": 596,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "ithaca-new-york": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jackson-michigan": {
+   "width": 1920,
+   "height": 1378,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jackson-mississippi": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jackson-tennessee": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jacksonville-florida": {
+   "width": 1920,
+   "height": 1236,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jacksonville-north-carolina": {
+   "width": 888,
+   "height": 638,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "janesville-wisconsin": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jefferson-city-missouri": {
+   "width": 1600,
+   "height": 913,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "johnson-city-tennessee": {
+   "width": 1920,
+   "height": 1079,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "jonesboro-arkansas": {
+   "width": 772,
+   "height": 953,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "joplin-missouri": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kahului-hawaii": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kalamazoo-michigan": {
+   "width": 1159,
+   "height": 500,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "kankakee-illinois": {
+   "width": 1698,
+   "height": 2180,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kansas-city-missouri": {
+   "width": 1920,
+   "height": 1119,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kennewick-washington": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kenosha-wisconsin": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "killeen-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kingsport-tennessee": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kingston-new-york": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kiryas-joel-new-york": {
+   "width": 1920,
+   "height": 1200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "knoxville-tennessee": {
+   "width": 1920,
+   "height": 1195,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "kokomo-indiana": {
+   "width": 1920,
+   "height": 886,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "la-crosse-wisconsin": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lafayette-indiana": {
+   "width": 1920,
+   "height": 1079,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lafayette-louisiana": {
+   "width": 2048,
+   "height": 1365,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600,
+    2048
+   ]
+  },
+  "lake-havasu-city-arizona": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lakeland-florida": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lancaster-pennsylvania": {
+   "width": 1920,
+   "height": 1064,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lansing-michigan": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "laredo-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "las-cruces-new-mexico": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "las-vegas-nevada": {
+   "width": 1920,
+   "height": 1237,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lawrence-kansas": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lawton-oklahoma": {
+   "width": 1920,
+   "height": 1307,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lebanon-pennsylvania": {
+   "width": 640,
+   "height": 481,
+   "widths": [
+    480
+   ]
+  },
+  "lewiston-maine": {
+   "width": 1920,
+   "height": 1229,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lexington-kentucky": {
+   "width": 1544,
+   "height": 1024,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "lima-ohio": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lincoln-nebraska": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "little-rock-arkansas": {
+   "width": 1920,
+   "height": 1153,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "longview-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "longview-washington": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "los-angeles-california": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "louisville-kentucky": {
+   "width": 1920,
+   "height": 1295,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lubbock-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "lynchburg-virginia": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "macon-georgia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "madison-wisconsin": {
+   "width": 1920,
+   "height": 1272,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "manchester-new-hampshire": {
+   "width": 1920,
+   "height": 1373,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "manhattan-kansas": {
+   "width": 1088,
+   "height": 1472,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "mankato-minnesota": {
+   "width": 1920,
+   "height": 816,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "mansfield-ohio": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "mcallen-texas": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "memphis-tennessee": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "merced-california": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "miami-florida": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "michigan-city-indiana": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "midland-michigan": {
+   "width": 1920,
+   "height": 1442,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "midland-texas": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "milwaukee-wisconsin": {
+   "width": 1920,
+   "height": 1277,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "minneapolis-minnesota": {
+   "width": 1920,
+   "height": 1063,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "minot-north-dakota": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "missoula-montana": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "mobile-alabama": {
+   "width": 1920,
+   "height": 1200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "modesto-california": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "monroe-michigan": {
+   "width": 1920,
+   "height": 1279,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "montgomery-alabama": {
+   "width": 1920,
+   "height": 1331,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "morgantown-west-virginia": {
+   "width": 1920,
+   "height": 1276,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "morristown-tennessee": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "mount-vernon-washington": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "muskegon-michigan": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "myrtle-beach-south-carolina": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "napa-california": {
+   "width": 1920,
+   "height": 1117,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "naples-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "nashville-tennessee": {
+   "width": 1920,
+   "height": 1153,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "new-haven-connecticut": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "new-orleans-louisiana": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "new-york-new-york": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "niles-michigan": {
+   "width": 660,
+   "height": 440,
+   "widths": [
+    480
+   ]
+  },
+  "north-port-florida": {
+   "width": 1920,
+   "height": 1289,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "norwich-connecticut": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "ocala-florida": {
+   "width": 1920,
+   "height": 1079,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "odessa-texas": {
+   "width": 1920,
+   "height": 1231,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "ogden-utah": {
+   "width": 1920,
+   "height": 1275,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "oklahoma-city-oklahoma": {
+   "width": 1920,
+   "height": 1132,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "olympia-washington": {
+   "width": 1920,
+   "height": 1200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "omaha-nebraska": {
+   "width": 1920,
+   "height": 1227,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "orlando-florida": {
+   "width": 1920,
+   "height": 1331,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "oshkosh-wisconsin": {
+   "width": 1920,
+   "height": 1361,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "owensboro-kentucky": {
+   "width": 1920,
+   "height": 1160,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "oxnard-california": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "paducah-kentucky": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "palm-bay-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "panama-city-florida": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "parkersburg-west-virginia": {
+   "width": 892,
+   "height": 410,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "pensacola-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "peoria-illinois": {
+   "width": 1920,
+   "height": 827,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "philadelphia-pennsylvania": {
+   "width": 1920,
+   "height": 960,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "phoenix-arizona": {
+   "width": 1920,
+   "height": 1484,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "pinehurst-north-carolina": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "pittsburgh-pennsylvania": {
+   "width": 1920,
+   "height": 1282,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "pittsfield-massachusetts": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "port-st-lucie-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "portland-maine": {
+   "width": 1920,
+   "height": 1285,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "portland-oregon": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "prescott-valley-arizona": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "providence-rhode-island": {
+   "width": 1920,
+   "height": 970,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "provo-utah": {
+   "width": 1920,
+   "height": 1336,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "pueblo-colorado": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "punta-gorda-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "racine-wisconsin": {
+   "width": 800,
+   "height": 600,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "raleigh-north-carolina": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "rapid-city-south-dakota": {
+   "width": 1920,
+   "height": 1079,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "reading-pennsylvania": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "redding-california": {
+   "width": 1920,
+   "height": 1013,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "reno-nevada": {
+   "width": 900,
+   "height": 600,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "richmond-virginia": {
+   "width": 1920,
+   "height": 1233,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "riverside-california": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "roanoke-virginia": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "rochester-minnesota": {
+   "width": 800,
+   "height": 580,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "rochester-new-york": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "rockford-illinois": {
+   "width": 1920,
+   "height": 1346,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "rocky-mount-north-carolina": {
+   "width": 1920,
+   "height": 1278,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "rome-georgia": {
+   "width": 1920,
+   "height": 1230,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sacramento-california": {
+   "width": 1920,
+   "height": 1081,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "saginaw-michigan": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "salem-oregon": {
+   "width": 1920,
+   "height": 1455,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "salinas-california": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "salisbury-maryland": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "salt-lake-city-utah": {
+   "width": 1920,
+   "height": 893,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "san-angelo-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "san-antonio-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "san-diego-california": {
+   "width": 1920,
+   "height": 1237,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "san-francisco-california": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "san-jose-california": {
+   "width": 1920,
+   "height": 1292,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "san-luis-obispo-california": {
+   "width": 1920,
+   "height": 1011,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sandusky-ohio": {
+   "width": 647,
+   "height": 419,
+   "widths": [
+    480
+   ]
+  },
+  "santa-cruz-california": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "santa-fe-new-mexico": {
+   "width": 1920,
+   "height": 881,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "santa-maria-california": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "santa-rosa-california": {
+   "width": 1920,
+   "height": 1660,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "savannah-georgia": {
+   "width": 1920,
+   "height": 1332,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "scranton-pennsylvania": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "seattle-washington": {
+   "width": 1920,
+   "height": 1200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sebastian-florida": {
+   "width": 1920,
+   "height": 1374,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sheboygan-wisconsin": {
+   "width": 1920,
+   "height": 1151,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sherman-texas": {
+   "width": 1920,
+   "height": 1158,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "shreveport-louisiana": {
+   "width": 1920,
+   "height": 1439,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sioux-city-iowa": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sioux-falls-south-dakota": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "slidell-louisiana": {
+   "width": 1920,
+   "height": 938,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "south-bend-indiana": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "spartanburg-south-carolina": {
+   "width": 1920,
+   "height": 1352,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "spokane-washington": {
+   "width": 1920,
+   "height": 1056,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "springfield-illinois": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "springfield-massachusetts": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "springfield-missouri": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "springfield-ohio": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "st-cloud-minnesota": {
+   "width": 1611,
+   "height": 863,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "st-george-utah": {
+   "width": 1920,
+   "height": 1285,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "st-joseph-missouri": {
+   "width": 1920,
+   "height": 1056,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "st-louis-missouri": {
+   "width": 1920,
+   "height": 1471,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "state-college-pennsylvania": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "staunton-virginia": {
+   "width": 1920,
+   "height": 3200,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "stockton-california": {
+   "width": 1920,
+   "height": 1272,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "sumter-south-carolina": {
+   "width": 432,
+   "height": 279,
+   "widths": []
+  },
+  "syracuse-new-york": {
+   "width": 1920,
+   "height": 1067,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "tallahassee-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "tampa-florida": {
+   "width": 1920,
+   "height": 1103,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "terre-haute-indiana": {
+   "width": 1920,
+   "height": 1182,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "texarkana-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "toledo-ohio": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "topeka-kansas": {
+   "width": 1920,
+   "height": 1983,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "traverse-city-michigan": {
+   "width": 1920,
+   "height": 1508,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "trenton-new-jersey": {
+   "width": 1920,
+   "height": 1068,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "tucson-arizona": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "tulsa-oklahoma": {
+   "width": 1920,
+   "height": 1275,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "tuscaloosa-alabama": {
+   "width": 1920,
+   "height": 1128,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "twin-falls-idaho": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "tyler-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "utica-new-york": {
+   "width": 1920,
+   "height": 1371,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "valdosta-georgia": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "vallejo-california": {
+   "width": 1920,
+   "height": 1080,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "victoria-texas": {
+   "width": 640,
+   "height": 480,
+   "widths": [
+    480
+   ]
+  },
+  "vineland-new-jersey": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "virginia-beach-virginia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "visalia-california": {
+   "width": 1280,
+   "height": 640,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "waco-texas": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "walla-walla-washington": {
+   "width": 1920,
+   "height": 1003,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "warner-robins-georgia": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "washington-district-of-columbia": {
+   "width": 1920,
+   "height": 823,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "waterbury-connecticut": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "waterloo-iowa": {
+   "width": 1920,
+   "height": 1010,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "watertown-new-york": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "wausau-wisconsin": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "weirton-west-virginia": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "wenatchee-washington": {
+   "width": 1024,
+   "height": 683,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "wheeling-west-virginia": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "wichita-falls-texas": {
+   "width": 1920,
+   "height": 2880,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "wichita-kansas": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "wildwood-florida": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "wilmington-north-carolina": {
+   "width": 1753,
+   "height": 1093,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "winchester-virginia": {
+   "width": 1920,
+   "height": 1372,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "winston-salem-north-carolina": {
+   "width": 1920,
+   "height": 1210,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "worcester-massachusetts": {
+   "width": 1920,
+   "height": 1067,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "yakima-washington": {
+   "width": 1920,
+   "height": 1152,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "york-pennsylvania": {
+   "width": 1024,
+   "height": 768,
+   "widths": [
+    480,
+    720
+   ]
+  },
+  "youngstown-ohio": {
+   "width": 1920,
+   "height": 1340,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "yuba-city-california": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "yuma-arizona": {
+   "width": 1920,
+   "height": 1128,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  }
+ },
+ "stats": {
+  "everyday_prices": {
+   "width": 1280,
+   "height": 744,
+   "widths": [
+    480,
+    720,
+    1080
+   ]
+  },
+  "pleasant_days": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "political_lean": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "rent_1br": {
+   "width": 1920,
+   "height": 1280,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "resident_walkability_index": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "students_per_1k_adults": {
+   "width": 1920,
+   "height": 1294,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "venues_per_100k": {
+   "width": 1920,
+   "height": 1281,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  },
+  "who_lives_here": {
+   "width": 1920,
+   "height": 1440,
+   "widths": [
+    480,
+    720,
+    1080,
+    1600
+   ]
+  }
+ }
+}

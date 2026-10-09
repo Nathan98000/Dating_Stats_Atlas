@@ -120,6 +120,12 @@ Deploy, from the repository root on Nathan's Mac:
 1. The code: `git archive --format=tar <commit> | ssh dsa-oracle 'tar -x -C /srv/atlas/src'`.
 2. The photographs, which git does not hold (from the main checkout):
    `rsync -a atlas/web/public/cities atlas/web/public/stats atlas/web/public/hero.jpg dsa-oracle:/srv/atlas/src/atlas/web/public/`.
+   Since Phase 6 this copy must include the sized copies and link previews
+   that `node atlas/web/scripts/photo_sizes.mjs` writes beside the originals:
+   `public/cities/w`, `public/cities/og`, `public/stats/w` and
+   `public/stats/og` (`rsync -a` of the two folders carries them; run the
+   script first whenever a photograph changes, and check that
+   `src/data/photo-sizes.json` is committed with it).
 3. The build, mounted read-only as the API's `BUILD_DIR`:
    `rsync -a atlas/data/builds/<data_version>/ dsa-oracle:/srv/atlas/build/`.
 4. On the VM: `cd /srv/atlas/src && docker compose -f atlas/deploy/oracle/compose.yaml up -d --build api web`.

@@ -1,5 +1,5 @@
 
-import { IMAGES, onDisk, usableAlt } from "@/lib/city-photos";
+import { DEFAULT_FOCUS, IMAGES, onDisk, sized, usableAlt } from "@/lib/city-photos";
 
 /** Every city page gets a face. Since Phase 2e item 4 that face is a
  * real photograph wherever one CLEARED: sourced from the city's
@@ -38,13 +38,21 @@ export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
   const img = IMAGES[slug];
   if (img && onDisk(img)) {
     const alt = usableAlt(img);
+    const s = sized("cities", slug, img.file);
     return (
       <figure data-testid="city-photo" data-cropped="">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/cities/${img.file}`}
+          src={s.src}
+          srcSet={s.srcSet}
+          sizes={s.srcSet ? "(min-width: 1120px) 1056px, calc(100vw - 32px)" : undefined}
+          width={s.width}
+          height={s.height}
+          fetchPriority="high"
+          loading="eager"
           alt={alt}
-          className="aspect-[16/7] w-full rounded-lg object-cover object-[50%_35%]"
+          className="aspect-[16/7] h-auto w-full rounded-lg object-cover"
+          style={{ objectPosition: img.focus ?? DEFAULT_FOCUS }}
         />
       </figure>
     );

@@ -2,6 +2,7 @@ import "server-only";
 import fs from "fs";
 import path from "path";
 import cityImages from "@/data/city-images.json";
+import photoSizes from "@/data/photo-sizes.json";
 
 /** Phase 5: the city photographs, how they may be shown, and their alt
  * text.
@@ -24,6 +25,9 @@ export interface CityImage {
   license_url: string | null;
   source_url: string;
   title?: string;
+  /** Phase 6 (§I): the photo's focal point, an object-position value, used
+   * by the card, the band and the link-preview crop; default "50% 35%" */
+  focus?: string;
 }
 export const IMAGES = cityImages as unknown as Record<string, CityImage>;
 
@@ -42,9 +46,50 @@ export function usableAlt(img: CityImage): string {
   return alt;
 }
 
-export interface CardPhoto {
+/** Phase 6 (commit A, F03): what photo_sizes.mjs wrote for a photograph —
+ * its natural size and the widths of its WebP copies (public/<group>/w/
+ * <slug>-<w>.webp), from src/data/photo-sizes.json. */
+interface PhotoSize {
+  width: number;
+  height: number;
+  widths: number[];
+}
+const SIZES = photoSizes as unknown as Record<string, Record<string, PhotoSize>>;
+export const DEFAULT_FOCUS = "50% 35%";
+
+/** The <img> attributes that deliver a photograph at the size it is shown:
+ * the original as src, the WebP copies as srcset, and its natural width
+ * and height. A slug missing from photo-sizes.json renders as before (the
+ * original alone): the CI case, where there are no photographs. */
+export interface Sized {
   src: string;
+  srcSet?: string;
+  width?: number;
+  height?: number;
+}
+export function sized(group: "cities" | "stats", slug: string, file: string): Sized {
+  const src = `/${group}/${file}`;
+  const s = SIZES[group]?.[slug];
+  if (!s) return { src };
+  // an original narrower than the largest copy (2048) and wider than its
+  // own largest copy is itself the top candidate, so a wide screen never
+  // gets less than the photograph has
+  const cands = s.widths.map((w) => `/${group}/w/${slug}-${w}.webp ${w}w`);
+  if (s.width > Math.max(0, ...s.widths) && s.width < 2048) cands.push(`${src} ${s.width}w`);
+  const srcSet = s.widths.length ? cands.join(", ") : undefined;
+  return { src, srcSet, width: s.width, height: s.height };
+}
+
+/** The 1200x630 link-preview crop photo_sizes.mjs wrote, if it did. */
+export function ogImage(group: "cities" | "stats", slug: string): string | null {
+  if (!SIZES[group]?.[slug]) return null;
+  return fs.existsSync(path.join(process.cwd(), "public", group, "og", `${slug}.jpg`))
+    ? `/${group}/og/${slug}.jpg` : null;
+}
+
+export interface CardPhoto extends Sized {
   alt: string;
+  focus: string;
 }
 
 /** Every city photo on disk, by slug, as the home page's featured cards
@@ -53,7 +98,9 @@ export interface CardPhoto {
 export function cardPhotos(): Record<string, CardPhoto> {
   const out: Record<string, CardPhoto> = {};
   for (const [slug, img] of Object.entries(IMAGES)) {
-    if (onDisk(img)) out[slug] = { src: `/cities/${img.file}`, alt: usableAlt(img) };
+    if (onDisk(img)) {
+      out[slug] = { ...sized("cities", slug, img.file), alt: usableAlt(img), focus: img.focus ?? DEFAULT_FOCUS };
+    }
   }
   return out;
 }

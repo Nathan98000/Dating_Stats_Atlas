@@ -46,6 +46,10 @@ export function ScoreTrack({ score, className, median, medianCaption }: {
   );
 }
 
+/** Phase 6 (F03): a card's shown width — 250px at the desk, a third of the
+ * row from 768px, the screen less its two 16px gutters on a phone. */
+const CARD_SIZES = "(min-width: 1120px) 250px, (min-width: 768px) 33vw, calc(100vw - 32px)";
+
 /** Phase 5: one of the top three, as a card — the city's photograph,
  * cover-cropped (never the locator map, after the Phase 5 report), a
  * rank medallion (amber for the top three ranks), the city, the score out
@@ -58,12 +62,16 @@ export function FeaturedCard({
   href,
   photo,
   median,
+  first = false,
 }: {
   row: RankedRow;
   meta: Meta;
   href: string;
   photo?: CardPhoto;
   median?: ScoreMedian | null;
+  /** Phase 6 (F03): the first card's photo is the phone's largest paint —
+   * fetched first and eagerly; the other two wait until they near view */
+  first?: boolean;
 }) {
   const s = meta.policy_strings;
   const top = row.rank <= 3;
@@ -86,8 +94,16 @@ export function FeaturedCard({
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={photo.src}
+            srcSet={photo.srcSet}
+            sizes={photo.srcSet ? CARD_SIZES : undefined}
+            width={photo.width}
+            height={photo.height}
             alt=""
-            className="h-full w-full object-cover object-[50%_35%] transition-transform duration-300 group-hover:scale-[1.03]"
+            {...(first
+              ? { fetchPriority: "high" as const, loading: "eager" as const }
+              : { loading: "lazy" as const, decoding: "async" as const })}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+            style={{ objectPosition: photo.focus }}
             data-testid="card-photo"
           />
         )}
