@@ -18,7 +18,7 @@ that waits for your go.
 
 Branch `claude/phase5` (not pushed): A `35e9c76`, B `3798b3f`, C `30e1188`,
 D+E `7988fdb`, F `10fd516`, G `db5ca1d`, H `59c80f0`, I `ac7c1f7`, plus this
-report.
+report. Your ten changes after it are in section 7.
 
 ## 2. The commits
 
@@ -98,7 +98,8 @@ candidates is public domain or CC0, passes the pipeline's licence gate, and
 was checked by eye. Strongest picks: San Francisco, Green Street in North
 Beach; Boston, Acorn Street; New York, Broadway in SoHo; Philadelphia,
 Elfreth's Alley. Two to check for faces: Boston 2 and Chicago 1. Until you
-pick, these cards show the locator map.
+pick, these cards show the locator map. *(Superseded after the report: see
+section 7.)*
 
 **f. The movers change** (`results/phase5/movers_examples.json`). Default
 search (193 ranked), before → after:
@@ -231,9 +232,99 @@ new nav labels. No check was dropped.
 13. On phones the stat-card value is 24px via the h2 phone size, not a
     separate token.
 
+## 7. After the report: your ten changes (8 October)
+
+All ten are done on the same branch, still not pushed or deployed: commit
+`ac5b13f` (the copy, the rail, the info boxes, the card links and the row
+detail) and `374418a` (the photographs).
+
+| # | Your change | What I did |
+|---|---|---|
+| 1 | Reword the subhead | "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data." (draft) |
+| 2 | Photos for every city; no map on the cards | All 193 ranked cities have a photograph now (any of them can be a card), and the map is gone from the cards. Details below. |
+| 3 | Reword "68 metro areas, scored out of 100 for what you chose" | "68 metro areas ranked for your search, each scored out of 100" (draft) |
+| 4 | Cards say "matches" | Done (a new registry string, `card_matches`). The phone rows still read "… single men match"; say if you want those shortened too. |
+| 5 | Delete the trust line | Done; both strings deleted from the registry. |
+| 6 | Delete "Your education and race stay in this browser" | Done; the group's line is now just the "Optional" pill. |
+| 7 | A separate scroll bar for the panel | The rail now scrolls inside itself. It stays pinned, is never taller than the window, and fades at the bottom while there's more below. Scrolling it doesn't move the page. |
+| 8 | The card photo links to the city | Done. The name is still the link screen readers and the keyboard use; the photo is an extra mouse target. |
+| 9 | The info box covered by a card | Info boxes now float above everything, and flip upwards when there's no room below. The same fix stops the scrolling rail from clipping them. |
+| 10 | Friendlier row detail | Three small tiles, each led by one number or one picture. Balance shows the figure over its track; Compatibility shows the figure against 100; "What moved the score" shows the bars. The longer explanations moved behind the tiles' ⓘ buttons. The compatibility tile has none, as you decided in Phase 4b, because the slider's box explains it. The two links became buttons. |
+
+**The photographs.** For each city I looked for the view people recognise
+(a skyline, a landmark, a famous street or waterfront, in daylight where
+possible), whole and as the card and the city page crop it. A city kept its
+photograph when that was already the best one found. Following your second
+message, any source and any licence counted.
+
+- **97 new, 96 kept.** 96 of the new ones come from Wikimedia Commons and
+  one from Flickr. 78 of the kept photographs got a better alt text; 16
+  public domain or CC0 ones stayed exactly as they were. Peoria, Santa
+  Maria and Tuscaloosa had no photograph before.
+- **Every city photograph is cropped now**: 16:10 on the cards, 16:7 on the
+  city page, and each credit says "cropped". The crop sits a little high
+  (35% down rather than the middle), so towers and domes keep their tops.
+- **Two need your permission before they go live:**
+  - Lafayette, LA: St. John's Cathedral, from Flickr (joseph a). Its
+    licence, CC BY-NC-SA 2.0, is non-commercial. Commons only had a photo
+    that cuts the towers off.
+  - Springfield, MO: Park Central Square, under the Free Art License. That
+    licence allows the crop, but Commons names no photographer, only a
+    credit ("CVBCS", uploaded by Joelfun), so it isn't clear whom to ask.
+
+  Every other photograph is public domain, CC0, CC BY or CC BY-SA. Those
+  allow the crop with the credit the site shows.
+- **Twelve show a place elsewhere in the metro**, because the city itself
+  had nothing usable. Each alt text names the place: Cape Coral → Fort
+  Myers; Crestview → Destin; Deltona → Daytona Beach; Gulfport → Biloxi;
+  Killeen → Belton; Kingsport → Bristol; Kiryas Joel → Poughkeepsie; North
+  Port → Siesta Key; Ocala → Silver Springs; Pensacola → Pensacola Beach;
+  Santa Maria → vineyards outside the city; South Bend → Notre Dame.
+- **Worth a look** (each is the best I found, not a perfect one):
+  - Las Vegas is a 2009 aerial of the Strip. The best street-level photo
+    had a pin-up billboard and showgirls along one edge.
+  - The Fresno marquee advertises a film festival (Reel Pride).
+  - Dusk rather than daylight: Atlantic City, Dayton, Port St. Lucie, Santa
+    Rosa, Visalia.
+  - Small files: Reno (900px wide) and Visalia (1,280px).
+  - Weaker views: Eugene (downtown is a thin band), Vallejo (a waterfront
+    promenade), Longview (a quiet street).
+  - Fort Collins still has two cyclists mid-frame. They passed the Phase 4
+    people review.
+- **The alt texts are drafts.** All 175 new or rewritten ones are in
+  `results/phase5/card_photos.json`. Waco and Savannah keep the wording you
+  approved.
+- **The records.** Each new photograph is pinned by its exact bytes in
+  `results/phase4/photo_review.json`, so a pipeline re-run can't swap it.
+  `results/phase5/card_photos.json` has each city's outcome and the
+  permission list, and `results/phase5/card_photos_apply.py` applied them.
+  ADR 0012 has a DRAFT amendment recording the new rules.
+
+**Undoing item 7 against the brief.** The Phase 5 brief said the rail must
+not scroll inside itself. You've now asked for a separate scroll bar, so it
+does, and the tests check that instead.
+
+**Checks after these changes:** pytest 191, vitest 135, Playwright 246
+passed (19 skipped by design). No served number moved: all 518 test
+searches' `/v1/rank` responses are byte-identical to commit I's, and so are
+the 387 profiles and the political lean (`served_numbers_after_report.json`).
+
 ## Deploy
 
 Commit A needs the Caddy restart, and D through I need new images. The
 build id is unchanged (63c4e5fa51bf, manifest refreshed: copy the new
-`manifest.json` into `/srv/atlas/build`). Shall I deploy, following
-`docs/deploy.md`?
+`manifest.json` into `/srv/atlas/build`).
+
+The photographs travel separately (step 2 of `docs/deploy.md` copies
+`atlas/web/public/cities`). Two of them changed name, from `.png` to
+`.jpg`: Palm Bay and Ocala. The copy leaves the old `palm-bay-florida.png`
+and `ocala-florida.png` on the VM. They no longer show anywhere, but they
+should be deleted there.
+
+Two questions before I deploy, following `docs/deploy.md`:
+
+1. Go ahead?
+2. Should Lafayette's and Springfield's photographs go live before you have
+   the permission? If not, those two keep their previous photographs (a
+   rooftop view of downtown Lafayette, a Springfield ballpark) until it
+   arrives.
