@@ -273,11 +273,15 @@ const EDU_WORDS: Record<string, string> = {
 };
 
 /** Plain-words restatement of the search (chips, headings, and the
- * narrow-state body's {search} slot — NarrowV3's own grammar). */
+ * narrow-state body's {search} slot — NarrowV3's own grammar). Phase 6
+ * (F34, approved): "Single men 28–40 (never married, divorced or
+ * widowed)", the marital words in brackets (was "Men 28–40, never married
+ * or divorced or widowed"); capitalised, as a sentence's start, and
+ * lowercased by the pages that set it mid-sentence. */
 export function describeSearch(p: Prefs): string {
-  const noun = p.seekSex === "male" ? "Men" : "Women";
-  let s = `${noun} ${p.ageMin}–${p.ageMax}, `
-    + p.marital.map((m) => MARITAL_WORDS[m]).join(" or ");
+  const noun = p.seekSex === "male" ? "men" : "women";
+  let s = `Single ${noun} ${p.ageMin}–${p.ageMax} (`
+    + p.marital.map((m) => MARITAL_WORDS[m]).join(", ") + ")";
   if (p.educationMin) s += `, with ${EDU_WORDS[p.educationMin]}`;
   if (p.incomeMin !== undefined) {
     s += `, earning $${p.incomeMin.toLocaleString("en-US")} or more`;

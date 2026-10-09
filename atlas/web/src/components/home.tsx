@@ -25,7 +25,7 @@ import {
 import { selectVariant } from "@/lib/variants";
 import { fill, INITIAL_VISIBLE, showMore, visibleSlice, visibleToInclude } from "@/lib/results";
 import { RailGroups } from "./panel";
-import { FeaturedCard, ResultRow } from "./row";
+import { FeaturedCard, ResultRow, RowDetail } from "./row";
 import { NarrowState } from "./narrow";
 import { Hero } from "./hero";
 import { QuickSearch } from "./quick-search";
@@ -39,6 +39,19 @@ const subscribeDesk = (cb: () => void) => {
   mq.addEventListener("change", cb);
   return () => mq.removeEventListener("change", cb);
 };
+
+/** Phase 6 (F06): whether the cards sit three to a row (from 768px), so a
+ * card's detail opens in one panel under them rather than inside the card.
+ * The server renders cards closed, so its answer (true) never shows. */
+const WIDE = "(min-width: 48rem)";
+const subscribeWide = (cb: () => void) => {
+  const mq = window.matchMedia(WIDE);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+function useWide(): boolean {
+  return useSyncExternalStore(subscribeWide, () => window.matchMedia(WIDE).matches, () => true);
+}
 
 /** Whether the page is at the desk breakpoint (1120px): the rail sits
  * beside the results there, and in the sheet or drawer below it. The
@@ -121,11 +134,14 @@ export function Home({
   const [error, setError] = useState<string | null>(null);
   const [visible, setVisible] = useState(INITIAL_VISIBLE);
   const [openRows, setOpenRows] = useState<Set<string>>(() => new Set());
+  // Phase 6 (F06): the one featured card whose detail is open
+  const [openCard, setOpenCard] = useState<string | null>(null);
   const [highlight, setHighlight] = useState<string | null>(null);
   const [live, setLive] = useState("");
   const [sheetOpen, setSheetOpen] = useState(false);
   const [barVisible, setBarVisible] = useState(false);
   const desk = useDesk();
+  const wide = useWide();
   const seq = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastPrefs = useRef<Prefs>(initialPrefs);
@@ -173,6 +189,7 @@ export function Home({
       setPrefs(next);
       setVisible(INITIAL_VISIBLE);
       setOpenRows(new Set());
+      setOpenCard(null);
       const qs = toSearchParams(next).toString();
       window.history.replaceState(null, "", `${window.location.pathname}?${qs}`);
       // Phase 2f item 2 (ADR 0007): the search follows the visitor. The
@@ -283,6 +300,24 @@ export function Home({
   const { featured, rest } = visibleSlice(selected.ranked, visible);
   const total = selected.ranked.length;
   const cityHref = (slug: string) => `/city/${slug}${qs ? `?${qs}` : ""}`;
+  const compareFrom = (slug: string) => router.push(`/compare?a=${slug}${qs ? `&${qs}` : ""}`);
+  const cardOpen = featured.find((r) => r.cbsa === openCard) ?? null;
+  // Best first / Worst first: in the results header, and below 640px under
+  // the three cards instead (Phase 6, F15: the #1 card's score in the
+  // first screen of a phone) — the same control, shown in one place
+  const sortControl = (
+    <Segmented
+      inline
+      label="Show"
+      testid="sort"
+      options={[
+        { value: "best_first", label: "Best first" },
+        { value: "worst_first", label: "Worst first" },
+      ]}
+      value={prefs.sort}
+      onChange={(v) => onChange({ ...prefs, sort: v as Prefs["sort"] })}
+    />
+  );
 
   const findCity = (slug: string) => {
     const i = selected.ranked.findIndex((r) => r.slug === slug);
@@ -379,18 +414,18 @@ export function Home({
                         {policy.excluded_count.replace("{n}", excluded.toLocaleString("en-US"))}
                       </p>
                     )}
+                    {/* Phase 6 (F01): on a same-sex search the count is every
+                        single person of the sought sex in these ages — said
+                        here, chosen in the browser from the stored own sex,
+                        inside the variant veil (never in the server's HTML) */}
+                    {sameSex && (
+                      <p data-variant="" className="mt-1.5 max-w-[58ch] text-caption text-ink-2" data-testid="same-sex-note">
+                        {fill(policy.same_sex_pool_note, {
+                          sought_one: prefs.seekSex === "male" ? "man" : "woman", sought: short.sought })}
+                      </p>
+                    )}
                   </div>
-                  <Segmented
-                    inline
-                    label="Show"
-                    testid="sort"
-                    options={[
-                      { value: "best_first", label: "Best first" },
-                      { value: "worst_first", label: "Worst first" },
-                    ]}
-                    value={prefs.sort}
-                    onChange={(v) => onChange({ ...prefs, sort: v as Prefs["sort"] })}
-                  />
+                  <div className="max-sm:hidden">{sortControl}</div>
                 </div>
                 <div aria-hidden="true" className={pending ? "progress-line mb-3" : "mb-3 h-0.5"} data-testid="pending-line" />
                 <p className="sr-only" aria-live="polite" data-testid="results-live">{live}</p>
@@ -406,9 +441,24 @@ export function Home({
                         href={cityHref(row.slug)}
                         photo={photos[row.slug]}
                         median={selected.score_median}
+                        open={openCard === row.cbsa}
+                        inline={!wide}
+                        sameSex={sameSex}
+                        onToggle={() => setOpenCard((c) => (c === row.cbsa ? null : row.cbsa))}
+                        onCompare={() => compareFrom(row.slug)}
                       />
                     ))}
                   </ol>
+                  {/* Phase 6 (F06): from 768px a card's detail opens in one
+                      panel spanning the three cards, directly under them */}
+                  {wide && cardOpen && (
+                    <div className="mt-4">
+                      <RowDetail id={`card-detail-${cardOpen.cbsa}`} row={cardOpen} meta={meta}
+                        href={cityHref(cardOpen.slug)} sameSex={sameSex} variant="panel"
+                        testid="card-detail" onCompare={() => compareFrom(cardOpen.slug)} />
+                    </div>
+                  )}
+                  <div className="mt-6 sm:hidden">{sortControl}</div>
 
                   {rest.length > 0 && (
                     <>
@@ -436,8 +486,9 @@ export function Home({
                             sought={short.sought}
                             open={openRows.has(row.cbsa)}
                             onToggle={() => toggleRow(row.cbsa)}
-                            onCompare={() => router.push(`/compare?a=${row.slug}${qs ? `&${qs}` : ""}`)}
+                            onCompare={() => compareFrom(row.slug)}
                             highlighted={highlight === row.slug}
+                            sameSex={sameSex}
                           />
                         ))}
                       </ol>
@@ -466,7 +517,7 @@ export function Home({
                   </div>
                 )}
 
-                <ScoreExplainer meta={meta} />
+                <ScoreExplainer meta={meta} sameSex={sameSex} />
               </>
             )}
           </section>
@@ -513,7 +564,7 @@ export function Home({
 /** "How the score works", below the list: the two people pillars in their
  * served definitions, the lifestyle line, a link to How it works, and the
  * balance caption. */
-function ScoreExplainer({ meta }: { meta: Meta }) {
+function ScoreExplainer({ meta, sameSex }: { meta: Meta; sameSex: boolean }) {
   const s = meta.policy_strings;
   const [lifeHead, ...lifeRest] = s.explainer_lifestyle.split(":");
   const cols = [
@@ -537,8 +588,10 @@ function ScoreExplainer({ meta }: { meta: Meta }) {
           {s.nav_how} →
         </a>
       </p>
-      <p className="mt-1 max-w-[70ch] text-caption text-ink-3" data-testid="balance-footnote">
-        {s.balance_caption}
+      {/* Phase 6 (F01): the same-sex caption on a same-sex search, chosen in
+          the browser like the results header's note */}
+      <p data-variant="" className="mt-1 max-w-[70ch] text-caption text-ink-3" data-testid="balance-footnote">
+        {sameSex ? s.balance_caption_same_sex : s.balance_caption}
       </p>
     </section>
   );

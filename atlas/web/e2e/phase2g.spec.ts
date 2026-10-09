@@ -29,7 +29,7 @@ test("the all-excluded body reads as a sentence at 1280 and 375 (gate 7)", async
     await expect(narrow).toBeVisible();
     const text = (await narrow.textContent()) ?? "";
     expect(text, `at ${width}px`).toMatch(
-      /Men \d+–\d+[^.]* is a very small group in any city\./);
+      /Single men \d+–\d+[^.]* is a very small group in any city\./);
     // the note box is gone; the nav still routes to the explainer (on a
     // phone, through the header's menu — Phase 5)
     await expect(narrow).not.toContainText(/The narrower the search/);

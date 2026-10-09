@@ -71,7 +71,7 @@ test("sort reverses the order without changing membership or ranks", async ({ pa
     els.map((e) => `${e.getAttribute("data-cbsa")}:${e.getAttribute("data-rank")}`),
   );
   // Phase 5: Best/Worst is a segmented radiogroup (test id kept)
-  await page.getByTestId("sort").getByRole("radio", { name: "Worst first" }).click();
+  await page.getByTestId("sort").locator("visible=true").getByRole("radio", { name: "Worst first" }).click();
   await expect(page).toHaveURL(/sort=worst_first/);
   // a new search starts again at ten rows
   await page.getByTestId("show-all").click();

@@ -16,6 +16,7 @@ export function BalanceTrack({
   id,
   caption = true,
   tile = false,
+  sameSex = false,
 }: {
   balance: BalanceBlock;
   meta: Meta;
@@ -25,6 +26,9 @@ export function BalanceTrack({
    * figure first and large, the track beneath with its two end words,
    * no caption (the tile's information box carries it) */
   tile?: boolean;
+  /** Phase 6 (F01): on a same-sex search the caption's box says that
+   * balance describes the city, not the visitor's matches */
+  sameSex?: boolean;
 }) {
   const s = meta.policy_strings;
   if (!balance.available || balance.per_100 == null) {
@@ -55,7 +59,8 @@ export function BalanceTrack({
         </div>
         <div className="mt-1.5 flex flex-wrap justify-between gap-x-1.5 text-overline font-normal tracking-normal text-ink-3">
           <span>{fill(s.balance_more, { word: balance.seeker_word ?? "" })}</span>
-          {!tile && <span>{s.balance_even}</span>}
+          {/* Phase 6 (F25): "Even" under the centre tick in the tile too */}
+          <span>{s.balance_even}</span>
           <span>{fill(s.balance_more, { word: balance.sought_word ?? "" })}</span>
         </div>
       </div>
@@ -63,8 +68,8 @@ export function BalanceTrack({
       {caption && !tile && (
         <p className="flex items-start gap-1 text-caption text-ink-3">
           <span>{s.balance_short_caption}</span>
-          <InfoTip id={`${id}-bal-info`} label={s.balance_label}>
-            {s.balance_caption}
+          <InfoTip id={`${id}-bal-info`} label={s.balance_info_label}>
+            {sameSex ? s.balance_caption_same_sex : s.balance_caption}
           </InfoTip>
         </p>
       )}

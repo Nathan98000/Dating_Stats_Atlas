@@ -306,8 +306,10 @@ test("a same-sex search shows balance, the opposite-sex figure for the same peop
       await expect(tally).toContainText(shown[cbsa].display!);
       out[cbsa] = (await tally.textContent()) ?? "";
     }
-    // the footnote is the caption on this search too
-    await expect(page.getByTestId("balance-footnote")).toContainText(meta.policy_strings.balance_caption);
+    // the footnote: the caption, and since Phase 6 (F01) its same-sex form
+    // when the visitor's own sex is the sought sex
+    await expect(page.getByTestId("balance-footnote")).toContainText(
+      about.sex === "male" ? meta.policy_strings.balance_caption_same_sex : meta.policy_strings.balance_caption);
     await ctx.close();
     return out;
   };

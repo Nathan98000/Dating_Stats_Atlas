@@ -80,7 +80,7 @@ export function CityVariantPart({
               band since Phase 4b) */}
           <MatchFigure match={ranked.match} meta={meta} />
         </div>
-        <WhyChips movers={ranked.movers} meta={meta} />
+        <WhyChips movers={ranked.lifestyle_movers} meta={meta} />
         <p className="sr-only">{ranked.summary_line}</p>
       </section>
     );

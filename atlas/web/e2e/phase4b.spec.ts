@@ -282,7 +282,14 @@ test("the home list labels its score column once, and the compare table labels t
       els.map((e) => e.querySelector('[data-testid="score"]')?.textContent ?? null));
     expect(scores.length).toBeGreaterThan(0);
     for (const sc of scores) expect(sc).toMatch(/^\d+$/);
-    await expect(rowsOf(page).filter({ hasText: "out of 100" })).toHaveCount(0);
+    // Phase 6 (F26): a screen reader hears "Overall score {n} out of 100"
+    // before each row's score; nothing of it is visible
+    const visibleLabels = await rowsOf(page).evaluateAll((els) =>
+      els.filter((e) => [...e.querySelectorAll("*")].some((n) =>
+        !n.closest(".sr-only") && n.childNodes.length && [...n.childNodes].some((c) =>
+          c.nodeType === 3 && /out of 100/.test(c.textContent ?? "")))).length);
+    expect(visibleLabels).toBe(0);
+    await expect(rowsOf(page).first().locator(".sr-only").filter({ hasText: /^Overall score \d+ out of 100$/ })).toHaveCount(1);
   }
   await page.goto(`/compare/provo-utah/austin-texas?${DEFAULT_QS}`);
   const table = page.getByTestId("compare-table");

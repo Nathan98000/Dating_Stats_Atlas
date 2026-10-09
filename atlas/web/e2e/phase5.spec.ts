@@ -79,10 +79,12 @@ test("the expanded row: balance, compatibility, and what moved the score, every 
   await expect(detail.getByTestId("balance-tally")).toContainText(/\d+ men per 100 women/);
   // after the Phase 5 report: the longer words sit behind the tiles'
   // information boxes, the compatibility figure keeps none (Phase 4b)
-  await expect(detail.getByRole("button", { name: ps.balance_label })).toHaveCount(1);
-  await expect(detail.getByRole("button", { name: ps.moved_heading })).toHaveCount(1);
+  // Phase 6: the buttons are named on their own (F26) and the bars'
+  // yardstick shows under their heading as well as in its box (F22)
+  await expect(detail.getByRole("button", { name: ps.balance_info_label })).toHaveCount(1);
+  await expect(detail.getByRole("button", { name: ps.moved_info_label })).toHaveCount(1);
   await expect(detail.getByTestId("match-figure").getByRole("button")).toHaveCount(0);
-  await expect(detail).not.toContainText(ps.moved_caption);
+  await expect(detail.getByTestId("moved-caption")).toHaveText(ps.moved_caption);
   await expect(detail.getByRole("link", { name: /^Open .+ →$/ })).toBeVisible();
   await expect(detail.getByTestId("match-figure")).toContainText(ps.match_unit_line);
   await expect(detail).toContainText(ps.moved_heading);
@@ -108,13 +110,18 @@ test("the chips are the served movers: two pluses at most, then one minus", asyn
     expect(signs.filter((x) => x === "plus").length).toBeLessThanOrEqual(2);
     expect(signs.filter((x) => x === "minus").length).toBeLessThanOrEqual(1);
     expect(signs).toEqual([...signs].sort((a, b) => (a === "plus" ? -1 : 1) - (b === "plus" ? -1 : 1)));
-    await expect(chips.nth(i)).toHaveAttribute("aria-hidden", "true");
+    // hidden from screen readers (the row carries the line): the group, or
+    // since Phase 6 on a card, where the Details chevron follows the chips,
+    // each chip
+    const hidden = await chips.nth(i).evaluate((g) => g.getAttribute("aria-hidden") === "true"
+      || [...g.querySelectorAll("[data-sign]")].every((c) => c.getAttribute("aria-hidden") === "true"));
+    expect(hidden).toBe(true);
   }
 });
 
 test("segmented controls move with the arrow keys", async ({ page }) => {
   await home(page);
-  const sort = page.getByTestId("sort");
+  const sort = page.getByTestId("sort").locator("visible=true");
   await sort.getByRole("radio", { name: "Best first" }).focus();
   await page.keyboard.press("ArrowRight");
   await expect(sort.getByRole("radio", { name: "Worst first" })).toHaveAttribute("aria-checked", "true");
@@ -133,7 +140,7 @@ test("show 10 more, show all, and a new search starts again at ten", async ({ pa
   await page.getByTestId("show-more").click();
   await expect(rows).toHaveCount(total);
   await expect(page.getByTestId("show-more")).toHaveCount(0);
-  await page.getByTestId("sort").getByRole("radio", { name: "Worst first" }).click();
+  await page.getByTestId("sort").locator("visible=true").getByRole("radio", { name: "Worst first" }).click();
   await expect(rows).toHaveCount(10);
 });
 
@@ -188,7 +195,7 @@ test("under reduced motion no row slides (no FLIP transform)", async ({ browser 
       if (el.style?.transform) (window as unknown as { __t: string[] }).__t.push(el.style.transform);
     })).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["style"] });
   });
-  await page.getByTestId("sort").getByRole("radio", { name: "Worst first" }).click();
+  await page.getByTestId("sort").locator("visible=true").getByRole("radio", { name: "Worst first" }).click();
   await expect(page.locator('li[data-rank]').first()).not.toHaveAttribute("data-rank", "1");
   expect(await page.evaluate(() => (window as unknown as { __t: string[] }).__t)).toEqual([]);
   await ctx.close();

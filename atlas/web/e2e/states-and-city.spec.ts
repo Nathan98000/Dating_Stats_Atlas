@@ -23,7 +23,7 @@ test("the narrow state leads with the shape of the problem, never a count", asyn
   expect(text).not.toMatch(/\bzero\b/i);
   expect(text).not.toMatch(/\d+ cities/);
   // the body reads as a sentence: the capitalised search phrase leads
-  expect(text).toMatch(/Men \d+–\d+.* is a very small group in any city/);
+  expect(text).toMatch(/Single men \d+–\d+.* is a very small group in any city/);
   // the screen still offers a route to the explainer (the header nav)
   await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "How it works", exact: true })).toBeVisible();
   // the wideners restate the loosened query and apply it in one click.
