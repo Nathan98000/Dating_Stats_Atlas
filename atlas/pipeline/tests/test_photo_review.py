@@ -155,6 +155,32 @@ def test_a_photograph_from_outside_commons_is_pinned_by_hash(state):
     assert ("stat", "everyday_prices") not in PR.pinned_files()
 
 
+def test_the_pleasant_days_photograph_is_credited_to_its_photographer(state):
+    """The credit audit after Phase 6 (Nathan, 2026-10-09: "Credit Billy
+    Hathorn"): the file's metadata gave the 1846 painting's licence and its
+    painter. The review pins the photograph's own credit, as its Commons
+    page states it — CC BY 3.0, by Billy Hathorn — on the same bytes; the
+    page renders exactly that record, and the licence is on the cleared
+    list."""
+    from atlas.pipeline.build import city_images as CI
+    rec = PR.external_files()[("stat", "pleasant_days")]
+    assert CI.REVIEW_EXTERNAL[("stat", "pleasant_days")] == rec
+    entry = state["stat"]["pleasant_days"]
+    for k in ("author", "license", "license_url", "source_url", "title", "alt"):
+        assert entry[k] == rec[k], k
+    assert (entry["author"], entry["license"]) == ("Billy Hathorn", "CC BY 3.0")
+    assert rec["credit_was"] == {"author": "Thomas Cole", "license": "Public domain",
+                                 "license_url": None}
+    assert CI.ALLOW.match(rec["license"]) and not CI.REFUSE.search(rec["license"])
+    evidence = " ".join(rec["licence_evidence"])
+    assert "{{self|cc-by-3.0}}" in evidence and "Photo by Billy Hathorn" in evidence
+    assert entry["cropped"] is False
+    row = state["stat_csv"][state["stat_csv"]["stat"] == "pleasant_days"].iloc[0]
+    assert row["status"] == "ok" and row["sha256"] == rec["sha256"] and row["file"] == entry["file"]
+    assert ("stat", "pleasant_days", "CC BY 3.0") in {
+        (p["page"], p["key"], p["license"]) for p in state["credits"]["photos"]}
+
+
 def test_every_ranked_city_has_a_representative_photograph_recorded(state):
     """After the Phase 5 report (Nathan, 2026-10-08): every ranked city —
     any of them can be a home-page card — has a photograph, from any source

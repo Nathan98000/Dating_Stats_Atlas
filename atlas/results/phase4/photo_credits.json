@@ -3,7 +3,7 @@
  "by_licence": {
   "CC BY 2.0": 41,
   "CC BY 2.5": 2,
-  "CC BY 3.0": 13,
+  "CC BY 3.0": 14,
   "CC BY 3.0 us": 1,
   "CC BY 4.0": 60,
   "CC BY-NC-SA 2.0": 1,
@@ -15,7 +15,7 @@
   "CC0": 33,
   "Free Art License": 1,
   "Public Domain": 1,
-  "Public domain": 38
+  "Public domain": 37
  },
  "cropped": [
   "abilene-texas",
@@ -389,11 +389,11 @@
   "hero"
  ],
  "cc_before_4_0": {
-  "count": 138,
+  "count": 139,
   "by_licence": {
    "CC BY 2.0": 41,
    "CC BY 2.5": 2,
-   "CC BY 3.0": 13,
+   "CC BY 3.0": 14,
    "CC BY 3.0 us": 1,
    "CC BY-NC-SA 2.0": 1,
    "CC BY-SA 1.0": 1,
@@ -1081,6 +1081,11 @@
     "page": "city",
     "key": "yuma-arizona",
     "license": "CC BY-SA 3.0"
+   },
+   {
+    "page": "stat",
+    "key": "pleasant_days",
+    "license": "CC BY 3.0"
    },
    {
     "page": "stat",
@@ -4789,10 +4794,10 @@
    "page": "stat",
    "key": "pleasant_days",
    "title": "Thomas Cole's \"The Picnic\", Brooklyn Museum IMG 3787",
-   "author": "Thomas Cole",
+   "author": "Billy Hathorn",
    "source_url": "https://commons.wikimedia.org/wiki/File:Thomas_Cole%27s_%22The_Picnic%22,_Brooklyn_Museum_IMG_3787.JPG",
-   "license": "Public domain",
-   "license_url": null,
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
    "cropped": false
   },
   {

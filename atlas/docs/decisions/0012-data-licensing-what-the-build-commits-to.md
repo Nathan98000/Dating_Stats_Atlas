@@ -373,3 +373,13 @@ DRAFT for Nathan's approval (Phase 6, commits A, H and I).
   `place_caption`) for the band's caption under a photograph of a place
   elsewhere in its metro; eleven of the twelve remain (Cape Coral's new
   photograph shows the city itself).
+- **The credit audit (after the report).** Every credited photograph's
+  licence and author were checked against its Commons page
+  (`results/phase6/credit_audit.json`): a page that licenses an old
+  artwork public domain and the photograph of it under its own licence
+  reports the artwork's licence and creator in its metadata, which ranks
+  public domain above any Creative Commons licence. One more credit had
+  taken them: the pleasant days photograph of Thomas Cole's *The Picnic*
+  (1846). On Nathan's call (9 October 2026) it is credited, like New
+  Orleans, as its page states it — Billy Hathorn, CC BY 3.0 — pinned in the
+  review's `external_files` on the same bytes.

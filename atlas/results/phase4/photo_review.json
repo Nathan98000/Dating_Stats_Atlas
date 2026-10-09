@@ -2392,6 +2392,30 @@
     "as the file's Commons page states it (its licence section, read 2026-10-09): CC BY-SA 3.0, by Jason W. Smith"
    ],
    "checked": "the boardwalk, the river and downtown; the blue shapes are closed patio umbrellas; no person as the subject; no sculpture or mural; no logo"
+  },
+  {
+   "date": "2026-10-09",
+   "page": "stat",
+   "key": "pleasant_days",
+   "why": "The credit audit after Phase 6 (results/phase6/credit_audit.json; Nathan, 2026-10-09: \"Credit Billy Hathorn\"): the photograph's own credit. The file's metadata reported the 1846 painting's licence (public domain) and its painter; the photograph, its file and its bytes are unchanged.",
+   "credit_was": {
+    "author": "Thomas Cole",
+    "license": "Public domain",
+    "license_url": null
+   },
+   "title": "Thomas Cole's \"The Picnic\", Brooklyn Museum IMG 3787",
+   "author": "Billy Hathorn",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Thomas_Cole%27s_%22The_Picnic%22,_Brooklyn_Museum_IMG_3787.JPG",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Cole%27s_%22The_Picnic%22%2C_Brooklyn_Museum_IMG_3787.JPG/1920px-Thomas_Cole%27s_%22The_Picnic%22%2C_Brooklyn_Museum_IMG_3787.JPG?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "711b87907ee79677868e6bb1c2e7096368df7c4e66ce34b547dca46cf0aea664",
+   "alt": "\"The Picnic\"",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, revision 1141660433 of 2026-01-04, read 2026-10-09): {{PD-old-100-1923}} covers the 1846 painting (Thomas Cole) and {{self|cc-by-3.0}} the photograph, whose source reads 'Photo by Billy Hathorn, 7-23-2011'",
+    "Nathan, 2026-10-09: \"Credit Billy Hathorn\""
+   ],
+   "checked": "the same file as before, byte for byte (the manifest's sha256); only the credit changes, to the photograph's licence and photographer; CC BY 3.0 is on the cleared list, and the stat page still shows the photograph uncropped"
   }
  ],
  "alt_overrides": [

@@ -278,7 +278,10 @@ rest: Huntington's caution, and the place test on its 11 rows.
 12. New Orleans's credit is the photograph's own (Daniel Schwen, CC BY-SA
     4.0). The file's metadata reported the 1856 statue's public domain and
     its sculptor. I've offered a separate task to audit every credit for the
-    same slip.
+    same slip. It found one more (`results/phase6/credit_audit.json`): the
+    pleasant days photograph of Thomas Cole's *The Picnic* was credited to
+    the painter, public domain; on your call it is now credited as its page
+    states it, Billy Hathorn, CC BY 3.0, on the same file.
 13. The review's apply step moved the replaced files to the Trash. Where
     the Trash already held a file of the same name from Phase 5, it was
     overwritten; those were Commons files, re-fetchable from their recorded
