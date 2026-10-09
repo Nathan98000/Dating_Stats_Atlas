@@ -2,10 +2,13 @@
 photograph's own licence and author, as its Commons file page states them?
 
 Why: city_images.clear_licence reads a Commons file's licence and author from
-imageinfo extmetadata (LicenseShortName, Artist), and every Commons credit the
-site shows came that way — the pipeline's, the hero's, and the pinned
-photographs' of Phase 5 and 6 (card_photos_apply.py ran clear_licence on the
-cached imageinfo). For a photograph of an old artwork the file page carries
+imageinfo extmetadata (LicenseShortName, Artist), and nearly every Commons
+credit the site shows came that way — the pipeline's, the hero's, and the
+photographs Phase 5 pinned (results/phase5/card_photos_apply.py ran
+clear_licence on the cached imageinfo); Phase 6's eleven pins took theirs
+from each page's licence section (picks.json; corrected after the run, which
+first said Phase 6's pins came through clear_licence too). For a photograph
+of an old artwork the file page carries
 two licences — the artwork's ({{PD-old}}) and the photograph's
 ({{self|cc-by-sa-4.0}}) — and the metadata reported the artwork's:
 File:Jackson_Square.jpg came back "Public domain", "Clark Mills" (the 1856
@@ -73,6 +76,14 @@ Rules, committed before the measurement they decide:
      revision read.
   7. Unflagged files: the manifest's licence is checked against the page's
      one licence too, and any disagreement listed apart, outside the rule.
+
+After the run (9 October 2026), changing no rule: READINGS records what each
+file the rules listed shows on a closer look (the templates it uses, read
+through the same cached call), with a verdict; every photograph credited
+public domain is listed with its licence text, read for a second licence the
+rules could not see; and each flagged file says whether the photograph's own
+licence is on the site's list, the credit its page supports, and where a
+correction would go.
 
 Nothing here changes a manifest, the photo review or a photograph.
 
@@ -395,6 +406,127 @@ def artwork_creator(desc: dict | None) -> str | None:
     return p.get("artist") or p.get("author") or None
 
 
+# ---- for Nathan's decision (reported, not rules) -------------------------------
+
+def display_licence(k: str) -> str:
+    """A licence key in the manifests' own style: "CC BY-SA 4.0", "CC BY 3.0 us"."""
+    m = re.match(r"^cc-(by(?:-sa)?)-([\d.]+)(?:-(\w+))?$", k)
+    if m:
+        kind, v, port = m.groups()
+        return f"CC {kind.upper()} {v}" + (f" {port}" if port else "")
+    return {"pd": "Public domain", "cc0": "CC0", "fal": "Free Art License", "gfdl": "GFDL"}.get(k, k)
+
+
+def licence_link(k: str) -> str | None:
+    m = re.match(r"^cc-(by(?:-sa)?)-([\d.]+)(?:-(\w+))?$", k)
+    if m:
+        kind, v, port = m.groups()
+        return f"https://creativecommons.org/licenses/{kind}/{v}" + (f"/{port}" if port else "")
+    return {"cc0": "https://creativecommons.org/publicdomain/zero/1.0/"}.get(k)
+
+
+def on_the_list(k: str) -> bool:
+    """Public domain, CC0, CC BY or CC BY-SA, nothing NC or ND — the rule
+    clear_licence applies (city_images.ALLOW / REFUSE)."""
+    return bool(CI.ALLOW.match(k)) and not CI.REFUSE.search(k)
+
+
+def where_to_correct(row: dict, pinned: dict) -> str:
+    if (row["page"], row["key"]) in pinned:
+        return ("its pinned record in results/phase4/photo_review.json external_files "
+                "(author, license, license_url), then the review's apply step — the way "
+                "Phase 6 corrected New Orleans; a clear_licence change never reaches a pin")
+    if row["page"] == "hero":
+        return "hero_image.py, re-run after a clear_licence that prefers the photograph's licence"
+    if row["page"] == "stat":
+        return (f"city_images.py --stats {row['key']}, re-run after a clear_licence that prefers "
+                "the photograph's licence (or a pin with the page's credit)")
+    return ("the photo pipeline (city_images.py, then the photo review's apply step), re-run "
+            "after a clear_licence that prefers the photograph's licence (or a pin with the "
+            "page's credit)")
+
+
+# Readings after the run (not rules, which stand as committed): what each file
+# the rules listed shows on a closer look, by its title. The templates they
+# cite were read on 9 October 2026 through the same cached call.
+WRONG = "credit wrong"
+FALSE_ALARM = "credit right (a false alarm of the rules)"
+UNNAMED_TAG = "credit right (a licence tag the rules do not name)"
+_UNSPLASH = ("{{Unsplash}} transcludes {{Cc-zero}}: CC0, as credited (the photograph dates from "
+             "2016, before Unsplash's own licence replaced CC0 in June 2017). Rule 3's tag list "
+             "does not name {{Unsplash}}.")
+_BARERA = ("{{User:Michael Barera/license}} ('/License' redirects to it) is {{self|cc-by-sa-4.0|"
+           "attribution=Michael Barera}}, with CC BY-SA 3.0 and GFDL offered too: CC BY-SA 4.0 by "
+           "Michael Barera, as credited. Rule 3 does not read inside a user's licence template.")
+_MIGRATION = ("migration=relicense on the GFDL tag: under Wikimedia's 2009 licence migration the "
+              "page also grants CC BY-SA 3.0, the credit's licence. Rule 6 does not expand the "
+              "migration parameter.")
+READINGS: dict[str, dict] = {
+    "File:Thomas_Cole's_\"The_Picnic\",_Brooklyn_Museum_IMG_3787.JPG": {
+        "verdict": WRONG,
+        "note": ("The page licenses the 1846 painting public domain ({{PD-old-100-1923}}) and the "
+                 "photograph CC BY 3.0 by its photographer ({{self|cc-by-3.0}}; source 'Photo by "
+                 "Billy Hathorn, 7-23-2011'); the credit took the painting's licence and its "
+                 "painter. The photograph is a tight, frameless shot of a flat painting, and in "
+                 "the US a faithful copy of a public-domain flat work carries no new copyright "
+                 "(the position behind Commons' {{PD-Art}}), so 'Public domain' is defensible "
+                 "there; but the page claims no {{PD-Art}}: it grants CC BY 3.0, a licence on "
+                 "the site's list, and that credit is the page's own. As CC BY 3.0 it would join "
+                 "the photographs under a Creative Commons licence before 4.0 "
+                 "(photo_credits.json cc_before_4_0).")},
+    "File:Bienvenidos,_Eagle_Pass,_TX_IMG_0442.JPG": {
+        "verdict": FALSE_ALARM,
+        "note": "{{Self|GFDL|Cc-by-sa-2.5,2.0,1.0|migration=relicense|...}}: " + _MIGRATION},
+    "File:Punta_Gorda_City_Hall.jpg": {
+        "verdict": FALSE_ALARM,
+        "note": "{{GFDL|migration=relicense}} and {{GFDL-self|migration=relicense}}: " + _MIGRATION},
+    "File:Goingtovic.jpg": {
+        "verdict": FALSE_ALARM,
+        "note": ("The photographer is named by {{user at project|Justin65656|wikipedia|en}} "
+                 "({{self}} |author= and the description), which rule 5's markup stripping drops, "
+                 "so it fell back to the uploader, the transfer bot. The page's photographer, "
+                 "Justin65656 at English Wikipedia, is the credit's author; the licence (CC BY-SA "
+                 "3.0, offered beside GFDL and 2.5 to 1.0) agrees.")},
+    "File:1_times_square_night_2013.jpg": {
+        "verdict": FALSE_ALARM,
+        "note": ("{{self|GFDL|cc-by-sa-all|migration=redundant}}: Template:Cc-by-sa-all now "
+                 "redirects to {{Cc-by-sa-4.0,3.0,2.5,2.0,1.0}}, so the page grants CC BY-SA 4.0, "
+                 "the credit's licence; rule 6 took 'all' as the four versions before 4.0. The "
+                 "photographer chose 'all versions' in April 2013, before 4.0 was published "
+                 "(November 2013): 3.0 is the version certainly chosen then, and the page as it "
+                 "stands offers 4.0 too.")},
+    "File:Boulder,_United_States_(Unsplash_IPvSZvM5Elg).jpg": {"verdict": UNNAMED_TAG,
+                                                               "note": _UNSPLASH},
+    "File:Honolulu_cityscape.jpg": {"verdict": UNNAMED_TAG, "note": _UNSPLASH},
+    "File:Vineyard_and_hills_(Unsplash).jpg": {"verdict": UNNAMED_TAG, "note": _UNSPLASH},
+    "File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg": {"verdict": UNNAMED_TAG, "note": _UNSPLASH},
+    "File:University_of_Arkansas_May_2017_07_(Old_Main).jpg": {"verdict": UNNAMED_TAG,
+                                                               "note": _BARERA},
+    "File:Janesville_June_2024_105_(Town_Square).jpg": {"verdict": UNNAMED_TAG, "note": _BARERA},
+    "File:San_Angelo_September_2019_03_(San_Angelo_City_Hall).jpg": {"verdict": UNNAMED_TAG,
+                                                                     "note": _BARERA},
+    "File:Texarkana_April_2016_002_(Texarkana_Texas_City_Hall).jpg": {"verdict": UNNAMED_TAG,
+                                                                      "note": _BARERA},
+    "File:Tyler_May_2016_42_(People's_Petroleum_Building_and_Plaza_Tower).jpg": {
+        "verdict": UNNAMED_TAG, "note": _BARERA},
+    "File:Greenville,_North_Carolina_-_2026_9.jpg": {
+        "verdict": UNNAMED_TAG,
+        "note": ("{{PDAF}} redirects to {{PD-author-FlickrPDM}}: the author marked the photograph "
+                 "public domain on Flickr (FlickreviewR: Public Domain Mark), as credited. Rule "
+                 "3's tag list does not name PDAF.")},
+    "File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg": {
+        "verdict": UNNAMED_TAG,
+        "note": ("{{cc-pd}} (in the description's permission field) is Creative Commons' retired "
+                 "Public Domain Dedication; its short name is 'Public Domain', as credited. Rule "
+                 "6 does not count it a public-domain tag.")},
+    "File:Drake_Park,_Mirror_Pond,_Bend_-_DPLA_-_abff0ea08438d6effa849247b6bbdfeb.jpg": {
+        "verdict": UNNAMED_TAG,
+        "note": ("{{DPLA metadata}} renders the file's structured data, which the wikitext does "
+                 "not hold: copyright licence (P275) Q20007257, CC BY 4.0; creator 'Gary "
+                 "Halvorson, Oregon State Archives' (read through wbgetentities) — as credited.")},
+}
+
+
 # ---- the audit ---------------------------------------------------------------
 
 def credited() -> list[dict]:
@@ -467,6 +599,18 @@ def audit_one(row: dict, title: str, pinned: dict) -> dict:
         "licence_agrees": bool(set(manifest_keys) & set(photo_keys)),
         "revision": {"revid": rv.get("revid"), "timestamp": rv.get("timestamp")},
     }
+    fields = {}
+    if desc:
+        for f in ("artist", "author", "photographer", "source", "permission", "date",
+                  "artwork license", "photo license"):
+            if desc["params"].get(f):
+                fields[f] = desc["params"][f][:400]
+    rec["evidence"] = {
+        "licence_section": licence_section(clean)[:4000],
+        "description_template": "{{" + desc["name"] + "}}" if desc else None,
+        "description_fields": fields,
+    }
+    rec["reading"] = READINGS.get(title)
     if not flagged:
         return rec
     who, said = photographer(desc, lic, tps)
@@ -478,23 +622,28 @@ def audit_one(row: dict, title: str, pinned: dict) -> dict:
     accepted = [who]
     if any(PD_ART.match(tag_key(x["tag"].split("|")[-1])) for x in lic) and manifest_keys == ["pd"]:
         accepted.append(creator)
-    fields = {}
-    if desc:
-        for f in ("artist", "author", "photographer", "source", "permission", "date",
-                  "artwork license", "photo license"):
-            if desc["params"].get(f):
-                fields[f] = desc["params"][f][:400]
+    in_order = [k for x in lic if x["role"] == "photograph" for k in x["keys"]]
+    listed = [k for k in dict.fromkeys(in_order) if on_the_list(k)]
+    listed = [k for k in manifest_keys if k in listed] + [k for k in listed if k not in manifest_keys]
     rec.update({
         "photograph_author": strip_markup(who) or None,
         "photograph_author_from": said,
         "artwork_creator": strip_markup(creator) or None,
         "author_agrees": agrees_author(row.get("author"), accepted),
-        "evidence": {
-            "licence_section": licence_section(clean)[:4000],
-            "description_template": "{{" + desc["name"] + "}}" if desc else None,
-            "description_fields": fields,
-        },
     })
+    # for Nathan's decision — not where a reading found the credit right (the
+    # rules' own reading of such a page is what went wrong)
+    if (READINGS.get(title) or {}).get("verdict") not in (FALSE_ALARM, UNNAMED_TAG):
+        rec.update({
+            "photograph_licence_on_the_list": bool(listed),
+            "credit_the_page_supports": ({"author": strip_markup(who) or None,
+                                          "license": display_licence(listed[0]),
+                                          "license_url": licence_link(listed[0])}
+                                         if listed else None),
+            "where_to_correct": where_to_correct(row, pinned),
+        })
+    rec["reading"] = rec.pop("reading")
+    rec["evidence"] = rec.pop("evidence")
     return rec
 
 
@@ -522,13 +671,87 @@ def main() -> None:
                                    "photograph_author_from", "artwork_creator")}
                 for r in flagged if r not in mismatches]
     unflagged = [r for r in read if not r["flagged"]]
+    disagree = [r for r in unflagged if not r["licence_agrees"]]
+    verdicts: dict[str, list[str]] = {}
+    for r in mismatches + disagree:
+        v = (r.get("reading") or {}).get("verdict", "not read")
+        verdicts.setdefault(v, []).append(f"{r['page']}:{r['key']}")
+    # after the run: every photograph credited public domain, for a second
+    # licence the rules could not see (an old work's tag beside a licence of
+    # the photograph's own in a form rule 3 does not name)
+    pd_credits = [r for r in read if norm_licence(r["manifest"]["license"]) == ["pd"]]
+    pd_layered = [f"{r['page']}:{r['key']}" for r in pd_credits if r["artwork_licences"]]
+    wrong = verdicts.get(WRONG, [])
+    finding = (
+        f"{len(read)} Commons pages read, {len(flagged)} flagged; the rules found "
+        f"{len(mismatches)} mismatches and {len(disagree)} unflagged licence disagreements. Read "
+        f"closely, {len(wrong)} {'credit is' if len(wrong) == 1 else 'credits are'} wrong "
+        f"({', '.join(wrong) or 'none'}): the photograph's own licence and photographer lost to "
+        f"the depicted work's public-domain tag and its creator. "
+        f"{len(verdicts.get(FALSE_ALARM, []))} are false alarms of the rules "
+        f"({', '.join(verdicts.get(FALSE_ALARM, []))}) and "
+        f"{len(verdicts.get(UNNAMED_TAG, []))} are licence tags the rules do not name, each "
+        f"matching its credit. New Orleans, corrected by hand in Phase 6, agrees. Of the "
+        f"{len(pd_credits)} photographs credited public domain, every page grants public domain "
+        f"about the file itself except {', '.join(pd_layered) or 'none'}.")
     out = {
         "date": time.strftime("%Y-%m-%d"),
         "what": ("Each credited photograph's licence and author against its Commons file page "
-                 "(after Phase 6 I). Rules: this script's docstring, committed before the run."),
+                 "(after Phase 6 I). Rules: this script's docstring, committed before the run "
+                 "(the commit 'Credit audit, the rules before the run'); the readings, the "
+                 "public-domain check and the fields for Nathan's decision were added after it "
+                 "and change no rule."),
+        "finding": finding,
         "fetch": {"api": COMMONS_API, "params": wikitext_params("File:…"),
                   "user_agent": CI.UA["User-Agent"], "pause_s": PAUSE,
                   "cache": "data/raw/wiki_images (city_images._get_json)"},
+        "why_the_metadata_disagrees": (
+            "imageinfo's extmetadata comes from Commons' CommonsMetadata extension, which reduces "
+            "a page's licences to one by priority — public domain 2000; a CC licence 1000, plus "
+            "100 for BY over BY-SA, plus 10 x its version (LicenseParser::getLicensePriority, "
+            "highest first) — and reads Artist from the description template's author row, which "
+            "{{Artwork}} fills with the artist. A page that tags the depicted work public domain "
+            "and the photograph CC so reports public domain and the artist, whatever licence the "
+            "photograph carries: the photograph's licence is gone before clear_licence sees it."),
+        "clear_licence": {
+            "does_the_fix_belong_there": (
+                "Yes: the preference (the photograph's licence over an old work's PD tag) belongs "
+                "in clear_licence, the gate Commons credits pass — city_images source_one and "
+                "source_file, hero_image.py and Phase 5's pinning script "
+                "(results/phase5/card_photos_apply.py) all call it; Phase 6's pins took their "
+                "credits from each page's licence section instead (picks.json), which is how New "
+                "Orleans came out right. But extmetadata cannot carry what the preference needs, "
+                "so clear_licence needs a second input: the file page's licence tags (this "
+                "audit's cached wikitext call, one per file)."),
+            "the_rule": (
+                "Narrow, because the metadata read every other credit right: act only when the "
+                "page pairs an old work's PD tag (PD-old*, PD-US*, PD-1923, ...) or an artwork "
+                "template with a licence it grants the photograph itself ({{self}}, a CC or other "
+                "free tag, {{Art Photo}} |photo license=, {{Licensed-PD-Art}}'s last tag). Then "
+                "clear on the photograph's licence — refusing it when that licence is not on the "
+                "list (GFDL alone, NC, ND) — and credit the photographer ({{self}} |author=, the "
+                "description template's author beside |artist=, a 'Photo by' source, else the "
+                "uploader), never the artwork's creator; otherwise keep the metadata's answer. A "
+                "dual licence by one holder may keep the metadata's pick (each is the holder's "
+                "offer)."),
+            "the_care_it_needs": (
+                "A broader rewrite from wikitext would have to model what this audit's rules "
+                "tripped on, where the metadata already reads the rendered page correctly: the "
+                "2009 licence migration (migration=relicense adds CC BY-SA 3.0), redirected tags "
+                "({{cc-by-sa-all}} now includes 4.0), authors written as templates ({{user at "
+                "project}}), users' own licence templates, {{Unsplash}}, {{PDAF}}, {{cc-pd}}, and "
+                "pages whose licence lives only in structured data (DPLA)."),
+            "the_hero_gate": (
+                "hero_image.STRICT_PD (public domain or CC0 only, because the band crops) trusts "
+                "clear_licence's answer; the same fix stops a CC BY-SA photograph of an old statue "
+                "from passing it as public domain."),
+            "what_it_does_not_reach": (
+                "Credits already written. A pinned photograph (photo_review.json external_files) "
+                "keeps its pin's credit on every re-run, so a mismatch there needs its record "
+                "corrected, as New Orleans's was; a pipeline credit changes only when its page "
+                "is re-sourced. Running this audit as a check after each photo change would "
+                "catch the next one either way."),
+        },
         "counts": {
             "credited_photographs": len(rows),
             "commons_files": len(results),
@@ -543,14 +766,33 @@ def main() -> None:
             "mismatches": len(mismatches),
             "mismatched_licence": sum(1 for r in mismatches if not r["licence_agrees"]),
             "mismatched_author": sum(1 for r in mismatches if not r["author_agrees"]),
-            "unflagged_licence_disagrees": sum(1 for r in unflagged if not r["licence_agrees"]),
+            "unflagged_licence_disagrees": len(disagree),
+            "read_after_the_run": {v: len(ks) for v, ks in sorted(verdicts.items())},
+            "credited_public_domain": len(pd_credits),
         },
         "mismatches": mismatches,
         "flagged_agreeing": agreeing,
         "unflagged_licence_disagrees": [
             {k: r[k] for k in ("file", "page", "key", "credit_from", "manifest", "licences",
-                               "photograph_licences", "revision")}
-            for r in unflagged if not r["licence_agrees"]],
+                               "photograph_licences", "revision", "reading", "evidence")}
+            for r in disagree],
+        "public_domain_credits": {
+            "reading": (
+                "Read after the run for a second licence the rules could not see (an old work's "
+                "tag beside a licence of the photograph's own in a form rule 3 does not name): "
+                "each page grants public domain about the file itself — the author's own release "
+                "(PD-self, PD-user, PD-author, a Flickr public-domain mark, cc-pd), a US or "
+                "California government work, or Carol M. Highsmith's gift to the Library of "
+                "Congress (Indianapolis adds {{Pixabay}}, the re-poster's own 2017 terms, which "
+                "ask nothing) — except " + (", ".join(pd_layered) or "none") + "."),
+            "files": [{"file": r["file"], "page": r["page"], "key": r["key"],
+                       "author": r["manifest"]["author"],
+                       "licence_tags": [x["tag"] for x in r["licences"]],
+                       "licence_text": (r["evidence"]["licence_section"]
+                                        or r["evidence"]["description_fields"].get("permission")
+                                        or "")[:300]}
+                      for r in pd_credits],
+        },
         "not_commons": outside,
         "unfetched_or_missing": [r for r in results if "flagged" not in r],
     }

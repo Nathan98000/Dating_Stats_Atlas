@@ -1,0 +1,1692 @@
+{
+ "date": "2026-10-09",
+ "what": "Each credited photograph's licence and author against its Commons file page (after Phase 6 I). Rules: this script's docstring, committed before the run (the commit 'Credit audit, the rules before the run'); the readings, the public-domain check and the fields for Nathan's decision were added after it and change no rule.",
+ "finding": "375 Commons pages read, 32 flagged; the rules found 5 mismatches and 12 unflagged licence disagreements. Read closely, 1 credit is wrong (stat:pleasant_days): the photograph's own licence and photographer lost to the depicted work's public-domain tag and its creator. 4 are false alarms of the rules (city:eagle-pass-texas, city:punta-gorda-florida, city:victoria-texas, stat:venues_per_100k) and 12 are licence tags the rules do not name, each matching its credit. New Orleans, corrected by hand in Phase 6, agrees. Of the 39 photographs credited public domain, every page grants public domain about the file itself except stat:pleasant_days.",
+ "fetch": {
+  "api": "https://commons.wikimedia.org/w/api.php",
+  "params": {
+   "action": "query",
+   "titles": "File:…",
+   "prop": "revisions",
+   "rvprop": "content|ids|timestamp",
+   "rvslots": "main",
+   "redirects": 1,
+   "format": "json",
+   "formatversion": 2
+  },
+  "user_agent": "DatingStatsAtlas/0.1 (research build; contact via repo)",
+  "pause_s": 6.0,
+  "cache": "data/raw/wiki_images (city_images._get_json)"
+ },
+ "why_the_metadata_disagrees": "imageinfo's extmetadata comes from Commons' CommonsMetadata extension, which reduces a page's licences to one by priority — public domain 2000; a CC licence 1000, plus 100 for BY over BY-SA, plus 10 x its version (LicenseParser::getLicensePriority, highest first) — and reads Artist from the description template's author row, which {{Artwork}} fills with the artist. A page that tags the depicted work public domain and the photograph CC so reports public domain and the artist, whatever licence the photograph carries: the photograph's licence is gone before clear_licence sees it.",
+ "clear_licence": {
+  "does_the_fix_belong_there": "Yes: the preference (the photograph's licence over an old work's PD tag) belongs in clear_licence, the gate Commons credits pass — city_images source_one and source_file, hero_image.py and Phase 5's pinning script (results/phase5/card_photos_apply.py) all call it; Phase 6's pins took their credits from each page's licence section instead (picks.json), which is how New Orleans came out right. But extmetadata cannot carry what the preference needs, so clear_licence needs a second input: the file page's licence tags (this audit's cached wikitext call, one per file).",
+  "the_rule": "Narrow, because the metadata read every other credit right: act only when the page pairs an old work's PD tag (PD-old*, PD-US*, PD-1923, ...) or an artwork template with a licence it grants the photograph itself ({{self}}, a CC or other free tag, {{Art Photo}} |photo license=, {{Licensed-PD-Art}}'s last tag). Then clear on the photograph's licence — refusing it when that licence is not on the list (GFDL alone, NC, ND) — and credit the photographer ({{self}} |author=, the description template's author beside |artist=, a 'Photo by' source, else the uploader), never the artwork's creator; otherwise keep the metadata's answer. A dual licence by one holder may keep the metadata's pick (each is the holder's offer).",
+  "the_care_it_needs": "A broader rewrite from wikitext would have to model what this audit's rules tripped on, where the metadata already reads the rendered page correctly: the 2009 licence migration (migration=relicense adds CC BY-SA 3.0), redirected tags ({{cc-by-sa-all}} now includes 4.0), authors written as templates ({{user at project}}), users' own licence templates, {{Unsplash}}, {{PDAF}}, {{cc-pd}}, and pages whose licence lives only in structured data (DPLA).",
+  "the_hero_gate": "hero_image.STRICT_PD (public domain or CC0 only, because the band crops) trusts clear_licence's answer; the same fix stops a CC BY-SA photograph of an old statue from passing it as public domain.",
+  "what_it_does_not_reach": "Credits already written. A pinned photograph (photo_review.json external_files) keeps its pin's credit on every re-run, so a mismatch there needs its record corrected, as New Orleans's was; a pipeline credit changes only when its page is re-sourced. Running this audit as a check after each photo change would catch the next one either way."
+ },
+ "counts": {
+  "credited_photographs": 377,
+  "commons_files": 375,
+  "not_commons": 2,
+  "read": 375,
+  "unfetched_or_missing": 0,
+  "flagged": 32,
+  "flagged_artwork_template": 2,
+  "flagged_several_licences": 32,
+  "mismatches": 5,
+  "mismatched_licence": 4,
+  "mismatched_author": 2,
+  "unflagged_licence_disagrees": 12,
+  "read_after_the_run": {
+   "credit right (a false alarm of the rules)": 4,
+   "credit right (a licence tag the rules do not name)": 12,
+   "credit wrong": 1
+  },
+  "credited_public_domain": 39
+ },
+ "mismatches": [
+  {
+   "file": "File:Bienvenidos,_Eagle_Pass,_TX_IMG_0442.JPG",
+   "page": "city",
+   "key": "eagle-pass-texas",
+   "redirected_to": null,
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Billy Hathorn at en.wikipedia",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+   },
+   "flagged": true,
+   "why_flagged": [
+    "2 licences: {{Self|GFDL}}, {{Self|Cc-by-sa-2.5,2.0,1.0}}"
+   ],
+   "licences": [
+    {
+     "tag": "Self|GFDL",
+     "whose": "photograph"
+    },
+    {
+     "tag": "Self|Cc-by-sa-2.5,2.0,1.0",
+     "whose": "photograph"
+    }
+   ],
+   "photograph_licences": [
+    "cc-by-sa-1.0",
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "gfdl"
+   ],
+   "artwork_licences": [],
+   "licence_agrees": false,
+   "revision": {
+    "revid": 1139842935,
+    "timestamp": "2026-01-01T03:15:59Z"
+   },
+   "photograph_author": "Billy Hathorn at en.wikipedia",
+   "photograph_author_from": "{{self}} |author=",
+   "artwork_creator": null,
+   "author_agrees": true,
+   "reading": {
+    "verdict": "credit right (a false alarm of the rules)",
+    "note": "{{Self|GFDL|Cc-by-sa-2.5,2.0,1.0|migration=relicense|...}}: migration=relicense on the GFDL tag: under Wikimedia's 2009 licence migration the page also grants CC BY-SA 3.0, the credit's licence. Rule 6 does not expand the migration parameter."
+   },
+   "evidence": {
+    "licence_section": "== {{int:license-header}} ==\n{{Self|GFDL|Cc-by-sa-2.5,2.0,1.0|migration=relicense|author=[[:en:User:Billy Hathorn|Billy Hathorn]] at [http://en.wikipedia.org en.wikipedia]}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[:en:User:Billy Hathorn|Billy Hathorn]] at [http://en.wikipedia.org en.wikipedia]",
+     "source": "{{Own}}<br />Transferred from [http://en.wikipedia.org en.wikipedia]",
+     "date": "{{original upload date|2009-5-17}}"
+    }
+   }
+  },
+  {
+   "file": "File:Punta_Gorda_City_Hall.jpg",
+   "page": "city",
+   "key": "punta-gorda-florida",
+   "redirected_to": null,
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Wknight94",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+   },
+   "flagged": true,
+   "why_flagged": [
+    "2 licences: {{GFDL}}, {{GFDL-self}}"
+   ],
+   "licences": [
+    {
+     "tag": "GFDL",
+     "whose": "photograph"
+    },
+    {
+     "tag": "GFDL-self",
+     "whose": "photograph"
+    }
+   ],
+   "photograph_licences": [
+    "gfdl"
+   ],
+   "artwork_licences": [],
+   "licence_agrees": false,
+   "revision": {
+    "revid": 701331593,
+    "timestamp": "2022-11-01T05:30:35Z"
+   },
+   "photograph_author": "Wknight94",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null,
+   "author_agrees": true,
+   "reading": {
+    "verdict": "credit right (a false alarm of the rules)",
+    "note": "{{GFDL|migration=relicense}} and {{GFDL-self|migration=relicense}}: migration=relicense on the GFDL tag: under Wikimedia's 2009 licence migration the page also grants CC BY-SA 3.0, the credit's licence. Rule 6 does not expand the migration parameter."
+   },
+   "evidence": {
+    "licence_section": "== {{int:license-header}} ==\n{{GFDL|migration=relicense}}\n{{GFDL-self|migration=relicense}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[User:Wknight94|Wknight94]]",
+     "source": "{{Own}}",
+     "date": "2007-01-06"
+    }
+   }
+  },
+  {
+   "file": "File:Goingtovic.jpg",
+   "page": "city",
+   "key": "victoria-texas",
+   "redirected_to": null,
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Justin65656 at English Wikipedia",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "flagged": true,
+   "why_flagged": [
+    "2 licences: {{self|GFDL}}, {{self|Cc-by-sa-3.0,2.5,2.0,1.0}}"
+   ],
+   "licences": [
+    {
+     "tag": "self|GFDL",
+     "whose": "photograph"
+    },
+    {
+     "tag": "self|Cc-by-sa-3.0,2.5,2.0,1.0",
+     "whose": "photograph"
+    }
+   ],
+   "photograph_licences": [
+    "cc-by-sa-1.0",
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "artwork_licences": [],
+   "licence_agrees": true,
+   "revision": {
+    "revid": 1004492607,
+    "timestamp": "2025-03-02T15:11:27Z"
+   },
+   "photograph_author": "File Upload Bot (Magnus Manske)",
+   "photograph_author_from": "the uploader (the page's first revision)",
+   "artwork_creator": null,
+   "author_agrees": false,
+   "reading": {
+    "verdict": "credit right (a false alarm of the rules)",
+    "note": "The photographer is named by {{user at project|Justin65656|wikipedia|en}} ({{self}} |author= and the description), which rule 5's markup stripping drops, so it fell back to the uploader, the transfer bot. The page's photographer, Justin65656 at English Wikipedia, is the credit's author; the licence (CC BY-SA 3.0, offered beside GFDL and 2.5 to 1.0) agrees."
+   },
+   "evidence": {
+    "licence_section": "== {{int:license-header}} ==\n{{self|author={{user at project|Justin65656|wikipedia|en}}|GFDL|Cc-by-sa-3.0,2.5,2.0,1.0}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "{{user at project|Justin65656|wikipedia|en}}",
+     "source": "{{own}}",
+     "date": "{{Original upload date|2007-12-06}}"
+    }
+   }
+  },
+  {
+   "file": "File:Thomas_Cole's_\"The_Picnic\",_Brooklyn_Museum_IMG_3787.JPG",
+   "page": "stat",
+   "key": "pleasant_days",
+   "redirected_to": null,
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "Public domain",
+    "author": "Thomas Cole",
+    "license_url": null
+   },
+   "flagged": true,
+   "why_flagged": [
+    "{{Artwork}}",
+    "2 licences: {{PD-old-100-1923}}, {{self|cc-by-3.0}}"
+   ],
+   "licences": [
+    {
+     "tag": "PD-old-100-1923",
+     "whose": "artwork"
+    },
+    {
+     "tag": "self|cc-by-3.0",
+     "whose": "photograph"
+    }
+   ],
+   "photograph_licences": [
+    "cc-by-3.0"
+   ],
+   "artwork_licences": [
+    "pd"
+   ],
+   "licence_agrees": false,
+   "revision": {
+    "revid": 1141660433,
+    "timestamp": "2026-01-04T11:25:06Z"
+   },
+   "photograph_author": "Billy Hathorn",
+   "photograph_author_from": "the source field (\"Photo by …\")",
+   "artwork_creator": "Thomas Cole",
+   "author_agrees": false,
+   "photograph_licence_on_the_list": true,
+   "credit_the_page_supports": {
+    "author": "Billy Hathorn",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0"
+   },
+   "where_to_correct": "city_images.py --stats pleasant_days, re-run after a clear_licence that prefers the photograph's licence (or a pin with the page's credit)",
+   "reading": {
+    "verdict": "credit wrong",
+    "note": "The page licenses the 1846 painting public domain ({{PD-old-100-1923}}) and the photograph CC BY 3.0 by its photographer ({{self|cc-by-3.0}}; source 'Photo by Billy Hathorn, 7-23-2011'); the credit took the painting's licence and its painter. The photograph is a tight, frameless shot of a flat painting, and in the US a faithful copy of a public-domain flat work carries no new copyright (the position behind Commons' {{PD-Art}}), so 'Public domain' is defensible there; but the page claims no {{PD-Art}}: it grants CC BY 3.0, a licence on the site's list, and that credit is the page's own. As CC BY 3.0 it would join the photographs under a Creative Commons licence before 4.0 (photo_credits.json cc_before_4_0)."
+   },
+   "evidence": {
+    "licence_section": "== {{int:license-header}} ==\n{{PD-old-100-1923}}\n{{self|cc-by-3.0}}",
+    "description_template": "{{Artwork}}",
+    "description_fields": {
+     "artist": "{{creator:Thomas Cole}}",
+     "source": "Photo by Billy Hathorn, 7-23-2011",
+     "date": "1846"
+    }
+   }
+  },
+  {
+   "file": "File:1_times_square_night_2013.jpg",
+   "page": "stat",
+   "key": "venues_per_100k",
+   "redirected_to": null,
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "chensiyuan",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "flagged": true,
+   "why_flagged": [
+    "2 licences: {{self|GFDL}}, {{self|cc-by-sa-all}}"
+   ],
+   "licences": [
+    {
+     "tag": "self|GFDL",
+     "whose": "photograph"
+    },
+    {
+     "tag": "self|cc-by-sa-all",
+     "whose": "photograph"
+    }
+   ],
+   "photograph_licences": [
+    "cc-by-sa-1.0",
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "artwork_licences": [],
+   "licence_agrees": false,
+   "revision": {
+    "revid": 1258827213,
+    "timestamp": "2026-08-09T14:26:26Z"
+   },
+   "photograph_author": "chensiyuan",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null,
+   "author_agrees": true,
+   "reading": {
+    "verdict": "credit right (a false alarm of the rules)",
+    "note": "{{self|GFDL|cc-by-sa-all|migration=redundant}}: Template:Cc-by-sa-all now redirects to {{Cc-by-sa-4.0,3.0,2.5,2.0,1.0}}, so the page grants CC BY-SA 4.0, the credit's licence; rule 6 took 'all' as the four versions before 4.0. The photographer chose 'all versions' in April 2013, before 4.0 was published (November 2013): 3.0 is the version certainly chosen then, and the page as it stands offers 4.0 too."
+   },
+   "evidence": {
+    "licence_section": "== {{int:license-header}} ==\n{{self|GFDL|cc-by-sa-all|migration=redundant}}\n{{De minimis|1=Almost all of the lighted posters, billboards, and logos |reason=no particular poster is the main focus of this shot; rather, the main focus is Times Square as a whole|DR= }}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "chensiyuan",
+     "source": "chensiyuan",
+     "date": "2013-04-09"
+    }
+   }
+  }
+ ],
+ "flagged_agreeing": [
+  {
+   "file": "File:Downtown_Third_Street_in_Alexandria,_LA_IMG_4316.JPG",
+   "page": "city",
+   "key": "alexandria-louisiana",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Billy Hathorn",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Billy Hathorn",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Anniston,_Alabama.JPG",
+   "page": "city",
+   "key": "anniston-alabama",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Rivers Langley; SaveRivers",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Rivers Langley; SaveRivers",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Auburn_Alabama_City_Hall.JPG",
+   "page": "city",
+   "key": "auburn-alabama",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Rivers Langley SaveRivers",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Rivers Langley SaveRivers",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Bloomington_IN_Kirkwood.jpg",
+   "page": "city",
+   "key": "bloomington-indiana",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Yahala",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Yahala",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:ISH_WC_Boston4.jpg",
+   "page": "city",
+   "key": "boston-massachusetts",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "3 licences: {{Self|GFDL}}, {{Self|Cc-by-sa-3.0-migrated}}, {{Self|Cc-by-2.5}}"
+   ],
+   "manifest": {
+    "license": "CC BY 2.5",
+    "author": "Ian Howard",
+    "license_url": "https://creativecommons.org/licenses/by/2.5"
+   },
+   "photograph_licences": [
+    "cc-by-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Ian Howard",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Fountain_Square_Park,_Bowling_Green,_Kentucky.JPG",
+   "page": "city",
+   "key": "bowling-green-kentucky",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|Cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "OPMaster (talk)",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "OPMaster (talk)",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Cedar_Rapids_-_Mays_Island.jpg",
+   "page": "city",
+   "key": "cedar-rapids-iowa",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Davumaya",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Davumaya",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:ChicoSquare_(cropped).jpg",
+   "page": "city",
+   "key": "chico-california",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Travisthurston",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Travisthurston",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Fall_skyline_of_Columbia_SC_from_Arsenal_Hill.jpg",
+   "page": "city",
+   "key": "columbia-south-carolina",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Akhenaton06",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Akhenaton06",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Benton_County_Courthouse_Greg_Keene.jpg",
+   "page": "city",
+   "key": "corvallis-oregon",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{cc-by-3.0-us}}, {{self|cc-by-sa-3.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY 3.0 us",
+    "author": "Gregkeene",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/us/deed.en"
+   },
+   "photograph_licences": [
+    "cc-by-3.0-us",
+    "cc-by-sa-3.0"
+   ],
+   "photograph_author": "Gregkeene",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Elkhart,_Indiana_-_Main_Street.JPG",
+   "page": "city",
+   "key": "elkhart-indiana",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Publichall",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Publichall",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Grand-junction-skyline.jpg",
+   "page": "city",
+   "key": "grand-junction-colorado",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Eleaf",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Eleaf",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Rockingham_County_Courthouse.JPG",
+   "page": "city",
+   "key": "harrisonburg-virginia",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "3 licences: {{Self|GFDL}}, {{Self|Cc-by-sa-3.0-migrated}}, {{Self|cc-by-sa-2.5,2.0,1.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Alma mater",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+   },
+   "photograph_licences": [
+    "cc-by-sa-1.0",
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "I, Alma mater",
+   "photograph_author_from": "{{self}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:NB_US_19-98_Homosassa_Springs_FL_Sign.JPG",
+   "page": "city",
+   "key": "homosassa-springs-florida",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|GFDL}}, {{self|cc-by-sa-3.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "DanTD",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "DanTD",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:HoumaPetitTheatreAug09.jpg",
+   "page": "city",
+   "key": "houma-louisiana",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "4 licences: {{self|GFDL-1.2}}, {{self|cc-by-sa-2.0}}, {{self|cc-by-sa-2.5}}, {{self|cc-by-sa-3.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Infrogmation of New Orleans",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Infrogmation of New Orleans",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:MissouriCapitol.jpg",
+   "page": "city",
+   "key": "jefferson-city-missouri",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "RebelAt of English Wikipedia",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "RebelAt of English Wikipedia",
+   "photograph_author_from": "{{self}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:NMSU_BransonLibrary.jpg",
+   "page": "city",
+   "key": "las-cruces-new-mexico",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Terry Umbenhaur",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Terry Umbenhaur",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Riley_(Kansas)_County_Courthouse_1.jpg",
+   "page": "city",
+   "key": "manhattan-kansas",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "3 licences: {{self|GFDL}}, {{self|Cc-by-sa-3.0-migrated}}, {{self|Cc-by-sa-2.5,2.0,1.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Kevin Zollman Kzollman 22:00, 4 May 2006 (UTC)",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+   },
+   "photograph_licences": [
+    "cc-by-sa-1.0",
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Kevin Zollman Kzollman 22:00, 4 May 2006 (UTC)",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Tioga_Hotel_-_Merced_California_(cropped).jpg",
+   "page": "city",
+   "key": "merced-california",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Publichall",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Publichall",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Jackson_Square.jpg",
+   "page": "city",
+   "key": "new-orleans-louisiana",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-09)",
+   "why_flagged": [
+    "{{artwork}}",
+    "2 licences: {{PD-old}}, {{self|cc-by-sa-4.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Daniel Schwen",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-4.0"
+   ],
+   "photograph_author": "Daniel Schwen",
+   "photograph_author_from": "{{artwork}} |author= (beside |artist=)",
+   "artwork_creator": "Clark Mills (sculptor)"
+  },
+  {
+   "file": "File:Mystic_Cottage_(Pinehurst,_North_Carolina)_001.jpg",
+   "page": "city",
+   "key": "pinehurst-north-carolina",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Leonard J. DeFrancisci",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Leonard J. DeFrancisci",
+   "photograph_author_from": "{{self}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Overview_of_eastern_downtown_Rockford.jpg",
+   "page": "city",
+   "key": "rockford-illinois",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "why_flagged": [
+    "2 licences: {{self|GFDL}}, {{self|cc-by-sa-3.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Alexbaumgarner",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Alexbaumgarner",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:GoldenGateBridge-001.jpg",
+   "page": "city",
+   "key": "san-francisco-california",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "why_flagged": [
+    "2 licences: {{self2|cc-by-2.5}}, {{self2|Attribution}}"
+   ],
+   "manifest": {
+    "license": "CC BY 2.5",
+    "author": "Rich Niewiroski Jr.",
+    "license_url": "https://creativecommons.org/licenses/by/2.5"
+   },
+   "photograph_licences": [
+    "attribution",
+    "cc-by-2.5"
+   ],
+   "photograph_author": "Rich Niewiroski Jr.",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Sebastian_FL_city_hall01.jpg",
+   "page": "city",
+   "key": "sebastian-florida",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|GFDL}}, {{self|cc-by-sa-3.0,2.5,2.0,1.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Ebyabe",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-1.0",
+    "cc-by-sa-2.0",
+    "cc-by-sa-2.5",
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Ebyabe",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Fountain_at_Morgan_Square,_Spartanburg,_SC_IMG_4821.JPG",
+   "page": "city",
+   "key": "spartanburg-south-carolina",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-09)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-3.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Billy Hathorn",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Billy Hathorn",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Second_and_Main_in_Walla_Walla.jpg",
+   "page": "city",
+   "key": "walla-walla-washington",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|GFDL}}, {{self|cc-by-sa-3.0}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 3.0",
+    "author": "Squarestate7",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-3.0",
+    "gfdl"
+   ],
+   "photograph_author": "Squarestate7",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  },
+  {
+   "file": "File:Oxford_High_Street_Facing_West,_Oxford,_UK_-_Diliff.jpg",
+   "page": "stat",
+   "key": "students_per_1k_adults",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "why_flagged": [
+    "2 licences: {{self|cc-by-sa-4.0}}, {{self|GFDL}}"
+   ],
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Diliff",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "photograph_licences": [
+    "cc-by-sa-4.0",
+    "gfdl"
+   ],
+   "photograph_author": "Diliff",
+   "photograph_author_from": "{{Information}} |author=",
+   "artwork_creator": null
+  }
+ ],
+ "unflagged_licence_disagrees": [
+  {
+   "file": "File:Drake_Park,_Mirror_Pond,_Bend_-_DPLA_-_abff0ea08438d6effa849247b6bbdfeb.jpg",
+   "page": "city",
+   "key": "bend-oregon",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "manifest": {
+    "license": "CC BY 4.0",
+    "author": "Gary Halvorson, Oregon State Archives",
+    "license_url": "https://creativecommons.org/licenses/by/4.0"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1258204930,
+    "timestamp": "2026-08-08T06:50:23Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{DPLA metadata}} renders the file's structured data, which the wikitext does not hold: copyright licence (P275) Q20007257, CC BY 4.0; creator 'Gary Halvorson, Oregon State Archives' (read through wbgetentities) — as credited."
+   },
+   "evidence": {
+    "licence_section": "",
+    "description_template": null,
+    "description_fields": {}
+   }
+  },
+  {
+   "file": "File:Boulder,_United_States_(Unsplash_IPvSZvM5Elg).jpg",
+   "page": "city",
+   "key": "boulder-colorado",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "manifest": {
+    "license": "CC0",
+    "author": "Jeremy Thomas jeremythomasphoto",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1095763150,
+    "timestamp": "2025-10-06T07:03:08Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{Unsplash}} transcludes {{Cc-zero}}: CC0, as credited (the photograph dates from 2016, before Unsplash's own licence replaced CC0 in June 2017). Rule 3's tag list does not name {{Unsplash}}."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{Unsplash}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "Jeremy Thomas [https://unsplash.com/@jeremythomasphoto jeremythomasphoto]",
+     "source": "https://unsplash.com/photos/IPvSZvM5Elg\n{{Wayback|title=Image|url=https%3A//images.unsplash.com/photo-1481141373687-f63a2873d0be|date=20170629012252}}\n{{Wayback|title=Gallery|url=https%3A//unsplash.com/photos/IPvSZvM5Elg|date=20170629012312}}",
+     "date": "2016-12-07"
+    }
+   }
+  },
+  {
+   "file": "File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg",
+   "page": "city",
+   "key": "deltona-florida",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "manifest": {
+    "license": "Public Domain",
+    "author": "Yinan Chen",
+    "license_url": "https://web.archive.org/web/20230926203737/https://creativecommons.org/licenses/publicdomain/"
+   },
+   "licences": [
+    {
+     "tag": "cc-pd",
+     "whose": "photograph"
+    }
+   ],
+   "photograph_licences": [
+    "cc-pd"
+   ],
+   "revision": {
+    "revid": 1272754022,
+    "timestamp": "2026-09-05T18:52:50Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{cc-pd}} (in the description's permission field) is Creative Commons' retired Public Domain Dedication; its short name is 'Public Domain', as credited. Rule 6 does not count it a public-domain tag."
+   },
+   "evidence": {
+    "licence_section": "",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[http://www.goodfreephotos.com Yinan Chen]",
+     "source": "[http://www.goodfreephotos.com www.goodfreephotos.com] ([http://www.goodfreephotos.com/places/florida/daytona-beach/ gallery], [http://www.goodfreephotos.com/places/florida/daytona-beach/florida-daytona-beach-building-on-the-ocean.jpg.php image])",
+     "permission": "{{cc-pd}}",
+     "date": "2013-01-06"
+    }
+   }
+  },
+  {
+   "file": "File:University_of_Arkansas_May_2017_07_(Old_Main).jpg",
+   "page": "city",
+   "key": "fayetteville-arkansas",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Michael Barera",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1177237218,
+    "timestamp": "2026-03-07T13:05:15Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{User:Michael Barera/license}} ('/License' redirects to it) is {{self|cc-by-sa-4.0|attribution=Michael Barera}}, with CC BY-SA 3.0 and GFDL offered too: CC BY-SA 4.0 by Michael Barera, as credited. Rule 3 does not read inside a user's licence template."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{User:Michael Barera/license}}\n{{Personality rights}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[User:Michael Barera|Michael Barera]]",
+     "source": "{{own}}",
+     "date": "2017-05-26"
+    }
+   }
+  },
+  {
+   "file": "File:Greenville,_North_Carolina_-_2026_9.jpg",
+   "page": "city",
+   "key": "greenville-north-carolina",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "Public domain",
+    "author": "Aaron Hines/City of Greenville",
+    "license_url": null
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1284925957,
+    "timestamp": "2026-10-09T10:55:47Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{PDAF}} redirects to {{PD-author-FlickrPDM}}: the author marked the photograph public domain on Flickr (FlickreviewR: Public Domain Mark), as credited. Rule 3's tag list does not name PDAF."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{PDAF}}{{FlickreviewR|status=passed|author=Greenville, NC|sourceurl=https://flickr.com/photos/156869144@N02/55091105497|archive=|reviewdate=2026-07-06 23:52:52|reviewlicense=Public Domain Mark|reviewer=FlickreviewR 2}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "Aaron Hines/City of Greenville",
+     "source": "https://www.flickr.com/photos/cityofgreenvillenc/55091105497/",
+     "date": "{{Taken on|2026-02-11 17:54:05|location=United States}}"
+    }
+   }
+  },
+  {
+   "file": "File:Honolulu_cityscape.jpg",
+   "page": "city",
+   "key": "honolulu-hawaii",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "manifest": {
+    "license": "CC0",
+    "author": "Christian Joudrey",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1227342731,
+    "timestamp": "2026-06-07T14:33:36Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{Unsplash}} transcludes {{Cc-zero}}: CC0, as credited (the photograph dates from 2016, before Unsplash's own licence replaced CC0 in June 2017). Rule 3's tag list does not name {{Unsplash}}."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{unsplash}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "Christian Joudrey",
+     "source": "https://unsplash.com/photos/op2KveFjrzo",
+     "date": "2016-05-23"
+    }
+   }
+  },
+  {
+   "file": "File:Janesville_June_2024_105_(Town_Square).jpg",
+   "page": "city",
+   "key": "janesville-wisconsin",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Michael Barera",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 896284398,
+    "timestamp": "2024-07-10T10:56:34Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{User:Michael Barera/license}} ('/License' redirects to it) is {{self|cc-by-sa-4.0|attribution=Michael Barera}}, with CC BY-SA 3.0 and GFDL offered too: CC BY-SA 4.0 by Michael Barera, as credited. Rule 3 does not read inside a user's licence template."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{User:Michael Barera/license}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[User:Michael Barera|Michael Barera]]",
+     "source": "{{own}}",
+     "date": "{{Taken on|2024-06-24|location=United States}}"
+    }
+   }
+  },
+  {
+   "file": "File:San_Angelo_September_2019_03_(San_Angelo_City_Hall).jpg",
+   "page": "city",
+   "key": "san-angelo-texas",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Michael Barera",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1134699869,
+    "timestamp": "2025-12-21T19:44:54Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{User:Michael Barera/license}} ('/License' redirects to it) is {{self|cc-by-sa-4.0|attribution=Michael Barera}}, with CC BY-SA 3.0 and GFDL offered too: CC BY-SA 4.0 by Michael Barera, as credited. Rule 3 does not read inside a user's licence template."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{User:Michael Barera/license}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[User:Michael Barera|Michael Barera]]",
+     "source": "{{own}}",
+     "date": "{{Taken on|2019-09-07|location=United States}}"
+    }
+   }
+  },
+  {
+   "file": "File:Vineyard_and_hills_(Unsplash).jpg",
+   "page": "city",
+   "key": "santa-maria-california",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)",
+   "manifest": {
+    "license": "CC0",
+    "author": "Tim Mossholder timmossholder",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1053650546,
+    "timestamp": "2025-07-07T15:16:06Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{Unsplash}} transcludes {{Cc-zero}}: CC0, as credited (the photograph dates from 2016, before Unsplash's own licence replaced CC0 in June 2017). Rule 3's tag list does not name {{Unsplash}}."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{Unsplash}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "Tim Mossholder [https://unsplash.com/@timmossholder timmossholder]",
+     "source": "https://unsplash.com/photos/KDlLiCL7XPk\n{{Wayback|url=https%3A//unsplash.com/photos/KDlLiCL7XPk|date=20170503090558}}\n{{Wayback|title=Image|url=https%3A//images.unsplash.com/photo-1464036388609-747537735eab|date=20170801132952}}",
+     "date": "2016-05-23"
+    }
+   }
+  },
+  {
+   "file": "File:Texarkana_April_2016_002_(Texarkana_Texas_City_Hall).jpg",
+   "page": "city",
+   "key": "texarkana-texas",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Michael Barera",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1117681702,
+    "timestamp": "2025-11-18T00:36:25Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{User:Michael Barera/license}} ('/License' redirects to it) is {{self|cc-by-sa-4.0|attribution=Michael Barera}}, with CC BY-SA 3.0 and GFDL offered too: CC BY-SA 4.0 by Michael Barera, as credited. Rule 3 does not read inside a user's licence template."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{User:Michael Barera/License}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[User:Michael Barera|Michael Barera]]",
+     "source": "{{own}}",
+     "date": "{{Taken on|2016-04-16|location=United States}}"
+    }
+   }
+  },
+  {
+   "file": "File:Tyler_May_2016_42_(People's_Petroleum_Building_and_Plaza_Tower).jpg",
+   "page": "city",
+   "key": "tyler-texas",
+   "credit_from": "city_images.py through clear_licence (the last pipeline run)",
+   "manifest": {
+    "license": "CC BY-SA 4.0",
+    "author": "Michael Barera",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1149422156,
+    "timestamp": "2026-01-18T18:43:51Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{User:Michael Barera/license}} ('/License' redirects to it) is {{self|cc-by-sa-4.0|attribution=Michael Barera}}, with CC BY-SA 3.0 and GFDL offered too: CC BY-SA 4.0 by Michael Barera, as credited. Rule 3 does not read inside a user's licence template."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{User:Michael Barera/License}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "[[User:Michael Barera|Michael Barera]]",
+     "source": "{{own}}",
+     "date": "{{Taken on|2016-05-28|location=United States}}"
+    }
+   }
+  },
+  {
+   "file": "File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg",
+   "page": "hero",
+   "key": "hero",
+   "credit_from": "hero_image.py through clear_licence",
+   "manifest": {
+    "license": "CC0",
+    "author": "Crew crew",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+   },
+   "licences": [],
+   "photograph_licences": [],
+   "revision": {
+    "revid": 1154356283,
+    "timestamp": "2026-01-27T08:20:51Z"
+   },
+   "reading": {
+    "verdict": "credit right (a licence tag the rules do not name)",
+    "note": "{{Unsplash}} transcludes {{Cc-zero}}: CC0, as credited (the photograph dates from 2016, before Unsplash's own licence replaced CC0 in June 2017). Rule 3's tag list does not name {{Unsplash}}."
+   },
+   "evidence": {
+    "licence_section": "=={{int:license-header}}==\n{{Unsplash}}",
+    "description_template": "{{Information}}",
+    "description_fields": {
+     "author": "Crew [https://unsplash.com/@crew crew]",
+     "source": "https://unsplash.com/photos/xCmvrpzctaQ\n{{Wayback|title=Image|url=https%3A//images.unsplash.com/photo-1452457807411-4979b707c5be|date=20170425062743}}\n{{Wayback|title=Gallery|url=https%3A//unsplash.com/photos/xCmvrpzctaQ|date=20170202203710}}",
+     "date": "2016-01-10"
+    }
+   }
+  }
+ ],
+ "public_domain_credits": {
+  "reading": "Read after the run for a second licence the rules could not see (an old work's tag beside a licence of the photograph's own in a form rule 3 does not name): each page grants public domain about the file itself — the author's own release (PD-self, PD-user, PD-author, a Flickr public-domain mark, cc-pd), a US or California government work, or Carol M. Highsmith's gift to the Library of Congress (Indianapolis adds {{Pixabay}}, the re-poster's own 2017 terms, which ask nothing) — except stat:pleasant_days.",
+  "files": [
+   {
+    "file": "File:Downtown_Albuquerque,_New_Mexico_(31780770537).jpg",
+    "page": "city",
+    "key": "albuquerque-new-mexico",
+    "author": "BrandonStephenson",
+    "licence_tags": [
+     "PD-author-FlickrPDM"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-author-FlickrPDM}}\n{{FlickreviewR|status=passed|author=BrandonStephenson|sourceurl=https://flickr.com/photos/82189232@N05/31780770537|archive=|reviewdate=2022-06-02 19:26:20|reviewlicense=Public Domain Mark|reviewer=FlickreviewR 2}}"
+   },
+   {
+    "file": "File:Bmoreharbor.JPG",
+    "page": "city",
+    "key": "baltimore-maryland",
+    "author": "Oldlinestate",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   },
+   {
+    "file": "File:BeaumontTX.JPG",
+    "page": "city",
+    "key": "beaumont-texas",
+    "author": "Wbband08 at English Wikipedia",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Wbband08}}"
+   },
+   {
+    "file": "File:Some_of_the_buildings_at_Fort_Brown_in_Brownsville,_Texas_LCCN2014630475.tif",
+    "page": "city",
+    "key": "brownsville-texas",
+    "author": "Carol M. Highsmith",
+    "licence_tags": [
+     "PD-Highsmith"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-Highsmith}}"
+   },
+   {
+    "file": "File:View_of_the_Burlington_Marketplace_2017-10-01.jpg",
+    "page": "city",
+    "key": "burlington-vermont",
+    "author": "Carol M. Highsmith",
+    "licence_tags": [
+     "PD-author"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{LOC|highsm.46110}}{{PD-author|Carol M. Highsmith}}"
+   },
+   {
+    "file": "File:Cape_Girardeau_dec29-07_(23).jpg",
+    "page": "city",
+    "key": "cape-girardeau-missouri",
+    "author": "Drowzy at English Wikipedia",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Drowzy}}"
+   },
+   {
+    "file": "File:Memorial_Square_Chambersburg.jpg",
+    "page": "city",
+    "key": "chambersburg-pennsylvania",
+    "author": null,
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}\n{{Object location dec|39.9375|-77.661111|region:US_type:landmark_scale:1500}}"
+   },
+   {
+    "file": "File:Mizzou_Jesse_Thumb.jpg",
+    "page": "city",
+    "key": "columbia-missouri",
+    "author": "Grey Wanderer at English Wikipedia",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Grey Wanderer}}"
+   },
+   {
+    "file": "File:Stewart-bridge-1933328.jpg",
+    "page": "city",
+    "key": "columbus-indiana",
+    "author": "Carol M. Highsmith",
+    "licence_tags": [
+     "PD-Highsmith"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-Highsmith}}"
+   },
+   {
+    "file": "File:Downtown_Columbus_View_from_Main_St_Bridge_-_edit1.jpg",
+    "page": "city",
+    "key": "columbus-ohio",
+    "author": "Paul Wasneski",
+    "licence_tags": [
+     "PD-author-FlickrPDM"
+    ],
+    "licence_text": "=={{int:license-header}}==\n\n{{PD-author-FlickrPDM}}"
+   },
+   {
+    "file": "File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg",
+    "page": "city",
+    "key": "deltona-florida",
+    "author": "Yinan Chen",
+    "licence_tags": [
+     "cc-pd"
+    ],
+    "licence_text": "{{cc-pd}}"
+   },
+   {
+    "file": "File:Imperial_County_Superior_Courthouse_El_Centro_Night.jpg",
+    "page": "city",
+    "key": "el-centro-california",
+    "author": null,
+    "licence_tags": [
+     "PD-USGov"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-USGov}}"
+   },
+   {
+    "file": "File:Hardin_County_Courthouse_in_Elizabethtown.jpg",
+    "page": "city",
+    "key": "elizabethtown-kentucky",
+    "author": "Nyttend",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "{{PD-self}}"
+   },
+   {
+    "file": "File:Fayetteville,_NC_Downtown_Skyline.jpg",
+    "page": "city",
+    "key": "fayetteville-north-carolina",
+    "author": "Public domain, City of Fayetteville",
+    "licence_tags": [
+     "PD-author-FlickrPDM"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-author-FlickrPDM}}\n{{FlickreviewR|status=passed|author=City of Fayetteville, NC Government|sourceurl=https://flickr.com/photos/161404054@N07/43465932702|archive=|reviewdate=2024-03-21 02:25:26|reviewlicense=Public Domain Mark|reviewer=FlickreviewR 2}}"
+   },
+   {
+    "file": "File:FEMA_-_29438_-_Photograph_by_Brenda_Riskey_taken_on_05-17-2006_in_North_Dakota.jpg",
+    "page": "city",
+    "key": "grand-forks-north-dakota",
+    "author": "Brenda Riskey",
+    "licence_tags": [
+     "PD-USGov-FEMA"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-USGov-FEMA}}"
+   },
+   {
+    "file": "File:Greensboro_Skyline.jpg",
+    "page": "city",
+    "key": "greensboro-north-carolina",
+    "author": "Beyonce245 of English Wikipedia.",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n\n{{PD-user-en|Beyonce245}}"
+   },
+   {
+    "file": "File:Greenville,_North_Carolina_-_2026_9.jpg",
+    "page": "city",
+    "key": "greenville-north-carolina",
+    "author": "Aaron Hines/City of Greenville",
+    "licence_tags": [],
+    "licence_text": "=={{int:license-header}}==\n{{PDAF}}{{FlickreviewR|status=passed|author=Greenville, NC|sourceurl=https://flickr.com/photos/156869144@N02/55091105497|archive=|reviewdate=2026-07-06 23:52:52|reviewlicense=Public Domain Mark|reviewer=FlickreviewR 2}}"
+   },
+   {
+    "file": "File:Indianapolis-1872529_1920_(cropped).jpg",
+    "page": "city",
+    "key": "indianapolis-indiana",
+    "author": "Carol M. Highsmith",
+    "licence_tags": [
+     "PD-Highsmith"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-Highsmith}}\n{{Pixabay|1872529|status=confirmed|reviewer=Leoboudv|date=2019-02-22}}"
+   },
+   {
+    "file": "File:JacksonTN.JPG",
+    "page": "city",
+    "key": "jackson-tennessee",
+    "author": "Garryharvey",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   },
+   {
+    "file": "File:Kalamazoo.jpg",
+    "page": "city",
+    "key": "kalamazoo-michigan",
+    "author": "User Mxobe on en.wikipedia",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "{{PD-self}}"
+   },
+   {
+    "file": "File:Kankakee_County_Courthouse.jpg",
+    "page": "city",
+    "key": "kankakee-illinois",
+    "author": "MrHarman at English Wikipedia",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|MrHarman}}"
+   },
+   {
+    "file": "File:Daytime_aerial_view_of_the_Strip,_Las_Vegas,_Nevada_LCCN2010630596.tif",
+    "page": "city",
+    "key": "las-vegas-nevada",
+    "author": "Carol M. Highsmith",
+    "licence_tags": [
+     "PD-Highsmith"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-Highsmith}}"
+   },
+   {
+    "file": "File:LexingtonDowntown.JPG",
+    "page": "city",
+    "key": "lexington-kentucky",
+    "author": "Madgeek1450 at English Wikipedia",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Madgeek1450}}"
+   },
+   {
+    "file": "File:Lima_public_square.jpg",
+    "page": "city",
+    "key": "lima-ohio",
+    "author": "Nyttend",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "{{PD-self}}"
+   },
+   {
+    "file": "File:Longviewwa1.jpg",
+    "page": "city",
+    "key": "longview-washington",
+    "author": "khiara jones",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Kearby}}"
+   },
+   {
+    "file": "File:Modesto_Arch.JPG",
+    "page": "city",
+    "key": "modesto-california",
+    "author": "Carl Skaggs",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Foolishfish}}"
+   },
+   {
+    "file": "File:Aerial_view_of_Montgomery,_Alabama_LCCN2011646683.jpg",
+    "page": "city",
+    "key": "montgomery-alabama",
+    "author": "Carol M. Highsmith",
+    "licence_tags": [
+     "PD-Highsmith"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-Highsmith}}"
+   },
+   {
+    "file": "File:Owensboro2ndStAnn.JPG",
+    "page": "city",
+    "key": "owensboro-kentucky",
+    "author": "Smallbones",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   },
+   {
+    "file": "File:Boreman_view.jpg",
+    "page": "city",
+    "key": "parkersburg-west-virginia",
+    "author": "Mgoudy85 (talk)",
+    "licence_tags": [
+     "PD-user"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user|Mgoudy85|en}}"
+   },
+   {
+    "file": "File:Rochester_High_Falls.jpg",
+    "page": "city",
+    "key": "rochester-new-york",
+    "author": "Evilarry",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   },
+   {
+    "file": "File:Oregon_State_Capitol_1.jpg",
+    "page": "city",
+    "key": "salem-oregon",
+    "author": "M.O. Stevens",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-user-en|Aboutmovies}}"
+   },
+   {
+    "file": "File:Downtown_Sumter_2010.jpg",
+    "page": "city",
+    "key": "sumter-south-carolina",
+    "author": "City of Sumter",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   },
+   {
+    "file": "File:Terre_Haute,_Indiana_city_hall.jpg",
+    "page": "city",
+    "key": "terre-haute-indiana",
+    "author": "Huwmanbeing (original), Yassie (jpeg conversion)",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   },
+   {
+    "file": "File:View_of_Tucson_from_Sentinel_Peak_2.jpg",
+    "page": "city",
+    "key": "tucson-arizona",
+    "author": "John Diebolt",
+    "licence_tags": [
+     "PD-user-en"
+    ],
+    "licence_text": "{{PD-user-en|Jdiebolt}}"
+   },
+   {
+    "file": "File:Vineland_Downtown.JPG",
+    "page": "city",
+    "key": "vineland-new-jersey",
+    "author": "Smallbones",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n\n{{PD-self}}"
+   },
+   {
+    "file": "File:Teatro_Visalia.jpg",
+    "page": "city",
+    "key": "visalia-california",
+    "author": "Visalia Convention & Visitors Bureau",
+    "licence_tags": [
+     "PD-CAGov"
+    ],
+    "licence_text": "=={{int:license-header}}==\n{{PD-CAGov}}"
+   },
+   {
+    "file": "File:Capitol_Building_Full_View.jpg",
+    "page": "city",
+    "key": "washington-district-of-columbia",
+    "author": "Noclip",
+    "licence_tags": [
+     "PD-user-w"
+    ],
+    "licence_text": "{{PD-user-w|en|wikipedia|Noclip}}"
+   },
+   {
+    "file": "File:Thomas_Cole's_\"The_Picnic\",_Brooklyn_Museum_IMG_3787.JPG",
+    "page": "stat",
+    "key": "pleasant_days",
+    "author": "Thomas Cole",
+    "licence_tags": [
+     "PD-old-100-1923",
+     "self|cc-by-3.0"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-old-100-1923}}\n{{self|cc-by-3.0}}"
+   },
+   {
+    "file": "File:Place_Vosges_Paris_Mai_2006_011.jpg",
+    "page": "stat",
+    "key": "who_lives_here",
+    "author": "Gryffindor",
+    "licence_tags": [
+     "PD-self"
+    ],
+    "licence_text": "== {{int:license-header}} ==\n{{PD-self}}"
+   }
+  ]
+ },
+ "not_commons": [
+  {
+   "page": "city",
+   "key": "lafayette-louisiana",
+   "source_url": "https://www.flickr.com/photos/7150652@N02/46618679322",
+   "license": "CC BY-NC-SA 2.0",
+   "author": "joseph a",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-08)"
+  },
+  {
+   "page": "stat",
+   "key": "everyday_prices",
+   "source_url": "https://www.needpix.com/photo/885923/grocery-store-supermarket-vegetable-shop-tomato-fruit-store-market-groceries",
+   "license": "CC0",
+   "author": "TeroVesalainen (Pixabay)",
+   "credit_from": "pinned in results/phase4/photo_review.json external_files (2026-10-07)"
+  }
+ ],
+ "unfetched_or_missing": []
+}
