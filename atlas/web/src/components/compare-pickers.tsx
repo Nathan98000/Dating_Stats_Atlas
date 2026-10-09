@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
 import { searchCities, type CityEntry } from "@/lib/search";
+import { ClearButton } from "./clear-button";
 
 /** The compare landing page's two city pickers (item 8): the same
  * client-side search index as Find-a-city, pre-filled from the URL when
@@ -12,9 +13,12 @@ import { searchCities, type CityEntry } from "@/lib/search";
 export function ComparePickers({
   initialA,
   initialB,
+  clearLabel,
 }: {
   initialA?: string;
   initialB?: string;
+  /** Phase 6 (F35): the registry's "Clear", from the server page */
+  clearLabel: string;
 }) {
   const router = useRouter();
   const sp = useSearchParams();
@@ -46,6 +50,7 @@ export function ComparePickers({
           exclude={b}
           value={a ? bySlug.get(a)?.f : undefined}
           onPick={setA}
+          clearLabel={clearLabel}
         />
         <CityPicker
           id="compare-b"
@@ -53,6 +58,7 @@ export function ComparePickers({
           exclude={a}
           value={b ? bySlug.get(b)?.f : undefined}
           onPick={setB}
+          clearLabel={clearLabel}
         />
       </div>
       <button
@@ -74,12 +80,14 @@ function CityPicker({
   value,
   exclude,
   onPick,
+  clearLabel,
 }: {
   id: string;
   label: string;
   value?: string;
   exclude?: string;
   onPick: (slug: string) => void;
+  clearLabel: string;
 }) {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
@@ -98,13 +106,17 @@ function CityPicker({
     setQ(name);
     setOpen(false);
   };
+  const shown = open ? q : (value ?? q);
+  const input = useRef<HTMLInputElement>(null);
 
   return (
     <div className="relative">
       <label htmlFor={id} className="mb-1.5 block text-caption font-semibold text-ink-2">
         {label}
       </label>
+      <div className="relative">
       <input
+        ref={input}
         id={id}
         type="search"
         role="combobox"
@@ -114,8 +126,8 @@ function CityPicker({
           listOpen && results[active] ? `${id}-${results[active].s}` : undefined}
         autoComplete="off"
         placeholder="Type a city name"
-        className="ctl"
-        value={open ? q : (value ?? q)}
+        className={`ctl ${shown ? "pr-11" : ""}`}
+        value={shown}
         onChange={(e) => {
           setQ(e.target.value);
           setOpen(true);
@@ -138,6 +150,10 @@ function CityPicker({
           }
         }}
       />
+      {shown && (
+        <ClearButton label={clearLabel} onClear={() => { setQ(""); setOpen(true); input.current?.focus(); }} />
+      )}
+      </div>
       {listOpen && (
         <ul
           id={`${id}-list`}
@@ -150,7 +166,7 @@ function CityPicker({
               id={`${id}-${r.s}`}
               role="option"
               aria-selected={i === active}
-              className={`cursor-pointer px-3.5 py-2.5 ${i === active ? "bg-tint text-ink" : "text-ink-2"}`}
+              className={`flex min-h-11 cursor-pointer items-center px-3.5 ${i === active ? "bg-tint text-ink" : "text-ink-2"}`}
               onMouseDown={(e) => {
                 e.preventDefault();
                 choose(r.s, r.f);

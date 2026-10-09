@@ -33,7 +33,7 @@ export function SiteHeader() {
         </nav>
         <div className="hidden desk:block">
           <Suspense fallback={<div className="h-10 w-[240px]" />}>
-            <SearchBox />
+            <SearchBox clearLabel={labels.clear} />
           </Suspense>
         </div>
         <div className="flex items-center gap-1 max-sm:ml-auto desk:hidden">

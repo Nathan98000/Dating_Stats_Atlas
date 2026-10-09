@@ -142,7 +142,7 @@ PHASE6_STRINGS = {
     "sought_flipped": ("sought",), "balance_info_label": (), "moved_info_label": (),
     "crime_card_info": ("stat",), "score_label_sr": ("n",), "sharpen_info_label": (),
     "sharpen_info": (), "sharpen_info_link": (), "photo_place_caption": ("place", "city"),
-    "title_results": ("heading",),
+    "title_results": ("heading",), "clear": (),
 }
 PHASE5_STRINGS = {
     "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),

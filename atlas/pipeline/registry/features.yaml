@@ -477,6 +477,9 @@ strings:
   adjust_search: "Adjust your search"
   show_results: "Show results"
   close: "Close"
+  # Phase 6 (F35; the prompt names the button "Clear"): the search fields'
+  # own clear button, which replaces the browser's off-palette one
+  clear: "Clear"
   results_updated: "Results updated for {change}"
   # Phase 6 (approved): the change phrases for an "about you" change (F13;
   # the sex phrase is the existing one), the visible line's second part

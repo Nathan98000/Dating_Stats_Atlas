@@ -35,6 +35,8 @@ test("crime is two cards in the stats grid, detail in the popover — never scor
   await expect(
     note.getByRole("link", { name: "See more details" })).toBeVisible();
   await info.focus();
+  // Phase 6 (F17): focus alone no longer opens it; Enter does
+  await page.keyboard.press("Enter");
   await page.keyboard.press("Escape");
   await expect(note).toHaveCount(0);
   // a figure card also carries its five-band position

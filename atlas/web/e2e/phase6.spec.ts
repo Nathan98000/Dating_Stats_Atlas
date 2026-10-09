@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { expandRow, fetchMeta, seedAboutYou } from "./helpers";
+import { expandRow, fetchMeta, openRailGroup, seedAboutYou } from "./helpers";
 
 /** Phase 6 (the round-3 design review of 8 October 2026, built from
  * atlas/PHASE6_PROMPT.md), run at the desk (1440×900), a laptop below the
@@ -295,6 +295,24 @@ test.describe("home results (D)", () => {
 
 test.describe("on the real build (P6_REAL_BASE)", () => {
   test.skip(!REAL, "needs the real build's site");
+  test("after 'Show all' and #50, the back link and Back restore 193 rows with #50 in view (F18)", async ({ page }) => {
+    await page.goto(`${REAL}/`);
+    await page.getByTestId("show-all").click();
+    const rows = page.locator("li[data-rank]");
+    await expect(rows).toHaveCount(193);
+    const r50 = page.locator('li[data-rank="50"]');
+    await r50.locator("h3 a").click();
+    await expect(page).toHaveURL(/\/city\//);
+    expect(await page.evaluate(() => Object.keys(sessionStorage))).toEqual(["dsa_place"]);
+    await page.getByTestId("back-to-results").click();
+    await expect(rows).toHaveCount(193);
+    await expect(r50).toBeInViewport();
+    await r50.locator("h3 a").click();
+    await expect(page).toHaveURL(/\/city\//);
+    await page.goBack();
+    await expect(rows).toHaveCount(193);
+    await expect(r50).toBeInViewport();
+  });
   test("Virginia Beach's detail shows the group-housing caution; Duluth both (F08)", async ({ page, request }) => {
     const meta = await (await request.get(`${REAL_API}/v1/meta`)).json();
     for (const [slug, flags] of [["virginia-beach-virginia", ["gq_flag"]],
@@ -307,5 +325,191 @@ test.describe("on the real build (P6_REAL_BASE)", () => {
       await expect(caps).toHaveCount(flags.length);
       for (const f of flags) await expect(li.locator(`[data-flag="${f}"]`)).toHaveText(meta.policy_strings[f]);
     }
+  });
+});
+
+test.describe("changing the search (E)", () => {
+  async function openSheet(page: Page) {
+    await page.mouse.wheel(0, 1600);
+    await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+    await page.locator("dialog[open]").waitFor();
+  }
+
+  test("'Show results' closes onto the focused results heading; the bar shows the search in flight; the change is said and shown (F05)", async ({ page, request }) => {
+    test.skip(width(page) >= 1120, "the sheet is below the desk");
+    const ps = (await fetchMeta(request)).policy_strings;
+    await home(page);
+    let release: () => void = () => {};
+    const held = new Promise<void>((r) => { release = r; });
+    await page.route("**/api/rank", async (route) => { await held; await route.continue(); });
+    const before = await page.locator("li[data-rank]").evaluateAll((els) => els.map((e) => e.getAttribute("data-cbsa")));
+    await openSheet(page);
+    // the sheet knows the whole search (F19)
+    await expect(page.getByTestId("sheet-summary")).toHaveText(
+      ps.sheet_search_summary.replace("{you}", "Woman").replace("{age}", "30").replace("{sought}", "Men").replace("{ages}", "28–40"));
+    const dialog = page.locator("dialog[open]");
+    await dialog.getByRole("radiogroup", { name: "Cost of living importance" }).getByRole("radio", { name: "A lot" }).click();
+    await dialog.getByRole("radiogroup", { name: "Weather importance" }).getByRole("radio", { name: "A lot" }).click();
+    await dialog.getByRole("radiogroup", { name: "Social life importance" }).getByRole("radio", { name: "Not much" }).click();
+    await page.getByTestId("show-results").click();
+    await expect(page.locator("dialog[open]")).toHaveCount(0);
+    await expect(page.getByTestId("list-heading")).toBeFocused();
+    await expect(page.getByTestId("list-heading")).toBeInViewport();
+    // pending: the bar's own progress line
+    await expect(page.getByTestId("bar-pending-line")).toHaveClass(/progress-line/);
+    release();
+    await expect(page.getByTestId("bar-pending-line")).not.toHaveClass(/progress-line/);
+    const after = await page.locator("li[data-rank]").evaluateAll((els) => els.map((e) => e.getAttribute("data-cbsa")));
+    const notice = page.getByTestId("results-notice");
+    await expect(notice).toHaveText(new RegExp(`^${ps.results_updated.replace("{change}", ".+")}`));
+    if (after.slice(0, 3).join() !== before.slice(0, 3).join()) {
+      await expect(notice).toContainText(ps.results_new_top.split("{a}")[0]);
+    }
+    await expect(page.getByTestId("results-live")).toHaveText((await notice.innerText()).trim());
+    // the visible line goes after six seconds; the live region keeps its words
+    await expect(notice).toHaveText("", { timeout: 8000 });
+  });
+
+  test("the sheet's summary row closes it onto 'I'm a' (F19); close and Escape only close (F05)", async ({ page }) => {
+    test.skip(width(page) >= 1120, "the sheet is below the desk");
+    await home(page);
+    await openSheet(page);
+    await page.keyboard.press("Escape");
+    await expect(page.locator("dialog[open]")).toHaveCount(0);
+    await expect(page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" })).toBeFocused();
+    await openSheet(page);
+    const summary = page.getByTestId("sheet-summary");
+    expect((await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    await summary.click();
+    await expect(page.locator("dialog[open]")).toHaveCount(0);
+    await expect(page.getByTestId("self-sex")).toBeFocused();
+    await expect(page.getByTestId("self-sex")).toBeInViewport();
+  });
+
+  test("choosing your race re-orders the list with no request, and says so (F13)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    const calls: string[] = [];
+    page.on("request", (r) => { if (r.url().includes("/api/rank")) calls.push(r.url()); });
+    await home(page);
+    await openRailGroup(page, "Sharpen compatibility");
+    await page.getByTestId("self-race").selectOption("black_nh");
+    const said = ps.results_updated.replace("{change}", ps.results_change_race);
+    await expect(page.getByTestId("results-live")).toHaveText(new RegExp(`^${said}`));
+    await expect(page.getByTestId("results-notice")).toHaveText(new RegExp(`^${said}`));
+    await page.getByTestId("self-edu").selectOption("graduate");
+    await expect(page.getByTestId("results-live")).toHaveText(
+      new RegExp(`^${ps.results_updated.replace("{change}", ps.results_change_education)}`));
+    expect(calls).toEqual([]);
+    // nothing about you is kept in sessionStorage
+    const keys = await page.evaluate(() => Object.keys(sessionStorage));
+    expect(keys.filter((k) => k !== "dsa_place")).toEqual([]);
+  });
+
+  test("'I'm a' flips 'Looking for' only while it is untouched, and says so (F20)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await home(page);
+    // untouched: a woman looking for men who becomes a man now looks for women
+    await page.getByTestId("self-sex").selectOption("male");
+    await expect(page.getByTestId("seek-sex")).toHaveValue("female");
+    await expect(page.getByTestId("results-live")).toHaveText(
+      new RegExp(`^(${ps.sought_flipped.replace("{sought}", "Women")}|${ps.results_updated.split("{")[0]})`));
+    // touched: set it back to men by hand, then change "I'm a" — no flip
+    await page.getByTestId("seek-sex").selectOption("male");
+    await page.getByTestId("self-sex").selectOption("female");
+    await page.getByTestId("self-sex").selectOption("male");
+    await expect(page.getByTestId("seek-sex")).toHaveValue("male");
+  });
+
+  test("an info box opens on click or Enter, not on focus; Escape closes it and keeps focus (F17)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await home(page);
+    const row = await expandRow(page, 4);
+    const btn = row.getByRole("button", { name: ps.balance_info_label });
+    await btn.focus();
+    await page.waitForTimeout(200);
+    await expect(page.getByTestId("info-tip-note")).toHaveCount(0);
+    await page.keyboard.press("Enter");
+    const note = page.getByTestId("info-tip-note");
+    await expect(note).toBeVisible();
+    // the note never covers its own tile
+    const tile = (await row.getByTestId("balance-tally").locator("xpath=ancestor::section[1]").boundingBox())!;
+    const box = (await note.boundingBox())!;
+    const overlaps = box.y < tile.y + tile.height && box.y + box.height > tile.y
+      && box.x < tile.x + tile.width && box.x + box.width > tile.x;
+    expect(overlaps).toBe(false);
+    await page.keyboard.press("Escape");
+    await expect(note).toHaveCount(0);
+    await expect(btn).toBeFocused();
+  });
+
+  test("the phone menu closes on Escape and on a click outside, focus back on its button (F28)", async ({ page }) => {
+    test.skip(width(page) >= 640, "the menu is the phone's");
+    await page.goto("/");
+    const btn = page.getByTestId("menu-button");
+    await btn.click();
+    await expect(btn).toHaveAttribute("aria-expanded", "true");
+    await page.keyboard.press("Escape");
+    await expect(btn).toHaveAttribute("aria-expanded", "false");
+    await expect(btn).toBeFocused();
+    await btn.click();
+    await expect(btn).toHaveAttribute("aria-expanded", "true");
+    await page.mouse.click(200, 700);
+    await expect(btn).toHaveAttribute("aria-expanded", "false");
+    await expect(btn).toBeFocused();
+  });
+
+  test("the way back keeps the visitor's place: back link and browser Back (F18)", async ({ page }) => {
+    await home(page);
+    await page.getByTestId("show-all").click();
+    const rows = page.locator("li[data-rank]");
+    const n = await rows.count();
+    const last = page.locator(`li[data-rank="${n}"]`);
+    const slug = await last.getAttribute("data-slug");
+    await last.locator("h3 a").click();
+    await expect(page).toHaveURL(new RegExp(`/city/${slug}`));
+    // nothing about you in sessionStorage: only the place
+    const stored = await page.evaluate(() => Object.fromEntries(Object.entries(sessionStorage)));
+    expect(Object.keys(stored)).toEqual(["dsa_place"]);
+    expect(Object.keys(JSON.parse(stored.dsa_place)).sort()).toEqual(["cbsa", "from", "to", "visible"]);
+    await page.getByTestId("back-to-results").click();
+    await expect(page).toHaveURL(/\/(\?.*)?$/);
+    await expect(rows).toHaveCount(n);
+    await expect(last).toBeInViewport();
+    // and the browser's own Back
+    await last.locator("h3 a").click();
+    await expect(page).toHaveURL(new RegExp(`/city/${slug}`));
+    await page.goBack();
+    await expect(rows).toHaveCount(n);
+    await expect(last).toBeInViewport();
+  });
+
+  test("focus never hides under the bar; the bar comes before the list (F27)", async ({ page }) => {
+    test.skip(width(page) >= 1120, "the bar is below the desk");
+    await home(page);
+    await page.mouse.wheel(0, 1600);
+    await expect(page.getByTestId("bottom-bar")).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.style.scrollPaddingBottom)).toBe("88px");
+    const order = await page.evaluate(() => {
+      const bar = document.querySelector('[data-testid="bottom-bar"]')!;
+      const list = document.querySelector('[data-testid="ranked-list"]')!;
+      return bar.compareDocumentPosition(list) & Node.DOCUMENT_POSITION_FOLLOWING;
+    });
+    expect(order).toBeTruthy();
+  });
+
+  test("search fields carry the site's own Clear; the age token names its text (F35, F37)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await home(page);
+    await expect(page.getByTestId("age-token")).toHaveAccessibleName("Their age 28 – 40");
+    const find = page.getByTestId("find-in-results");
+    await find.fill("Aus");
+    const clear = find.locator("xpath=..").getByRole("button", { name: ps.clear });
+    await expect(clear).toBeVisible();
+    const b = (await clear.boundingBox())!;
+    expect(b.width).toBeGreaterThanOrEqual(44);
+    expect(b.height).toBeGreaterThanOrEqual(44);
+    await clear.click();
+    await expect(find).toHaveValue("");
+    await expect(find).toBeFocused();
   });
 });

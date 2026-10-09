@@ -13,16 +13,28 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
  * button onto a link in the note — keeps it open); Escape closes and
  * returns focus to the button; pointerdown anywhere outside closes.
  * Click/tap still OPENS rather than toggling (a toggle fights the
- * hover-open on pointer devices). */
+ * hover-open on pointer devices).
+ *
+ * Phase 6 (F17): focus alone no longer opens it — tabbing through a row's
+ * detail used to pop boxes over the content — so it opens on click, Enter
+ * and Space (the button's own activation), and on hover only for a fine
+ * pointer (a mouse). Given an `anchor` (a row's or card's tile), the note
+ * sits against the tile's top edge, above the tile when there is room and
+ * below its bottom edge otherwise, so it never covers the figure it
+ * explains; it is still fixed, above everything. A pointer crossing from
+ * the button to a note set apart from it has a moment to arrive. */
 export function InfoTip({
   id,
   label,
   testid = "info-tip",
+  anchor,
   children,
 }: {
   id: string;
   label: string;
   testid?: string;
+  /** Phase 6 (F17): the box the note keeps clear of (a tile) */
+  anchor?: React.RefObject<HTMLElement | null>;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -47,9 +59,18 @@ export function InfoTip({
     const left = Math.min(Math.max(r.left + r.width / 2 - width / 2, pad),
                           window.innerWidth - pad - width);
     const h = note.current?.offsetHeight ?? 0;
+    const a = anchor?.current?.getBoundingClientRect();
+    if (a) {
+      // against the tile: above its top edge when the note fits there,
+      // otherwise below its bottom edge — never over the tile itself
+      const gap = 6;
+      const above = a.top - gap - h >= pad;
+      setPos({ left: Math.round(left), top: Math.round(above ? a.top - gap - h : a.bottom + gap), width });
+      return;
+    }
     const below = r.bottom + h <= window.innerHeight - pad || r.top - h < pad;
     setPos({ left: Math.round(left), top: Math.round(below ? r.bottom : r.top - h), width });
-  }, []);
+  }, [anchor]);
   useLayoutEffect(() => {
     if (!open) {
       setPos(null);
@@ -78,15 +99,24 @@ export function InfoTip({
     return () => document.removeEventListener("pointerdown", onDown);
   }, [open]);
 
+  // hover opens the note only for a fine pointer that can hover (a mouse);
+  // leaving closes it after a moment, which entering the note (or the
+  // button again) cancels — the note may sit apart from the button
+  const leave = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hoverable = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  useEffect(() => () => { if (leave.current) clearTimeout(leave.current); }, []);
+
   return (
     <span
       ref={wrap}
       className="relative inline-flex"
       onPointerEnter={(e) => {
-        if (e.pointerType !== "touch") setOpen(true);
+        if (leave.current) { clearTimeout(leave.current); leave.current = null; }
+        if (e.pointerType === "mouse" && hoverable()) setOpen(true);
       }}
       onPointerLeave={(e) => {
-        if (e.pointerType !== "touch") setOpen(false);
+        if (e.pointerType !== "mouse" || !hoverable()) return;
+        leave.current = setTimeout(() => setOpen(false), anchor ? 250 : 0);
       }}
       onBlur={(e) => {
         // focusout with a relatedTarget check: leaving the wrapper
@@ -110,7 +140,6 @@ export function InfoTip({
         aria-describedby={open ? id : undefined}
         className="-m-[14px] flex h-11 w-11 items-center justify-center rounded-full text-ink-3 hover:text-accent"
         onClick={() => setOpen(true)}
-        onFocus={() => setOpen(true)}
       >
         {/* Phase 5: a 16px icon inside a 44x44 hit area (the negative
             margin keeps the line it sits in at the icon's size) */}

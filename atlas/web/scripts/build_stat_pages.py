@@ -79,7 +79,7 @@ def political_lean_page(build, m: dict, le: dict) -> dict:
 
 
 CHROME_KEYS = ("nav_rankings", "nav_compare", "nav_how", "footer_how", "footer_measure",
-               "footer_privacy", "footer_terms", "footer_sources", "close", "title_site",
+               "footer_privacy", "footer_terms", "footer_sources", "close", "clear", "title_site",
                "title_template", "title_compare_pair", "title_stat", "title_privacy",
                "title_terms", "about_title", "not_found_title", "not_found_body")
 

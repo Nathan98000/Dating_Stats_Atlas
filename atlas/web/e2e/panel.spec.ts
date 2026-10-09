@@ -91,7 +91,8 @@ for (const size of [{ w: 390, h: 844, name: "sheet" }, { w: 1024, h: 768, name: 
     await expect(page).toHaveURL(/ic=a/);
     await sheet.getByRole("button", { name: "Show results" }).click();
     await expect(sheet).toBeHidden();
-    await expect(adjust).toBeFocused();
+    // Phase 6 (F05): Show results lands on the results heading, focused
+    await expect(page.getByTestId("list-heading")).toBeFocused();
   });
 }
 
@@ -117,7 +118,7 @@ test("the sheet traps focus, closes on Escape and returns focus", async ({ page 
     .not.toBe("hidden");
 });
 
-test("the slider explanation opens on hover, focus and tap, closes on Escape and blur", async ({ page }) => {
+test("the slider explanation opens on hover, Enter and tap (not on focus alone), closes on Escape and blur", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   const btn = page.getByTestId("slider-info");
@@ -135,8 +136,11 @@ test("the slider explanation opens on hover, focus and tap, closes on Escape and
   await page.mouse.move(10, 10);
   await expect(note).toHaveCount(0);
 
-  // focus
+  // focus alone no longer opens it (Phase 6, F17); Enter does
   await btn.focus();
+  await page.waitForTimeout(150);
+  await expect(note).toHaveCount(0);
+  await page.keyboard.press("Enter");
   await expect(note).toBeVisible();
   await expect(btn).toHaveAttribute("aria-expanded", "true");
   await expect(btn).toHaveAttribute("aria-describedby", /.+/);

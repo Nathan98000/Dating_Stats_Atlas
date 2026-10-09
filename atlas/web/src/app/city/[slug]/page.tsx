@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BackToResults } from "@/components/back-link";
 import { notFound } from "next/navigation";
 import { apiMeta, apiPoliticalLean, apiProfile, apiRank } from "@/lib/api";
 import {
@@ -81,12 +82,7 @@ export default async function CityPage({
     <>
       <SiteHeader />
       <main id="main" className="mx-auto flex max-w-6xl flex-col gap-7 px-4 pb-16 pt-6 sm:px-12 sm:pt-8">
-        <Link
-          href={`/?${qs}`}
-          className="inline-flex min-h-11 items-center self-start text-body-sm font-semibold text-accent hover:text-accent-hover"
-        >
-          ← Back to your results
-        </Link>
+        <BackToResults href={`/?${qs}`}>← Back to your results</BackToResults>
 
         <div className="grid grid-cols-[1fr_300px] items-center gap-12 max-md:grid-cols-1 max-md:gap-6">
           <div className="flex flex-col gap-3.5">
@@ -104,7 +100,7 @@ export default async function CityPage({
               {metro.description}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
-              <CompareLauncher slug={slug} primary />
+              <CompareLauncher slug={slug} primary clearLabel={policy.clear} />
               <Link
                 href={`/?${qs}#search-panel`}
                 className="flex min-h-11 items-center rounded-md border border-line-strong bg-surface px-5 text-body font-semibold text-ink hover:bg-hover"
@@ -184,7 +180,7 @@ export default async function CityPage({
               <span className="font-display text-title text-ink">
                 See how {city} stacks up against a city you know
               </span>
-              <CompareLauncher slug={slug} small />
+              <CompareLauncher slug={slug} small clearLabel={policy.clear} />
             </div>
           </div>
         </section>

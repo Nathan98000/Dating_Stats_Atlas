@@ -7,7 +7,14 @@ import { useEffect, useRef } from "react";
  * click on the backdrop closes it, as does a downward swipe on the sheet;
  * the page behind stops scrolling while it is open; on close, focus
  * returns to the button that opened it (the browser's own return, made
- * explicit). Changes apply live; the sticky footer button only closes. */
+ * explicit). Changes apply live; the sticky footer button only closes.
+ *
+ * Phase 6 (F05, F19): the footer's "Show results" closes the sheet and
+ * hands the page `onFooter`'s next step (the results heading) instead of
+ * returning focus to the bar; `lead`, a row at the top of the body, may do
+ * the same (`afterClose` decides where focus goes once the sheet has
+ * closed; returning false keeps the bar's return). The close button,
+ * Escape and the backdrop still only close it. */
 export function BottomSheet({
   open,
   onClose,
@@ -15,6 +22,9 @@ export function BottomSheet({
   footerLabel,
   closeLabel,
   returnFocus,
+  onFooter,
+  afterClose,
+  lead,
   children,
 }: {
   open: boolean;
@@ -23,6 +33,11 @@ export function BottomSheet({
   footerLabel: string;
   closeLabel: string;
   returnFocus: React.RefObject<HTMLElement | null>;
+  /** the footer button: by default it only closes */
+  onFooter?: () => void;
+  /** after the sheet has closed: true when it placed focus itself */
+  afterClose?: () => boolean;
+  lead?: React.ReactNode;
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -46,11 +61,11 @@ export function BottomSheet({
     const onClosed = () => {
       document.documentElement.style.overflow = "";
       onClose();
-      returnFocus.current?.focus();
+      if (!afterClose?.()) returnFocus.current?.focus();
     };
     d.addEventListener("close", onClosed);
     return () => d.removeEventListener("close", onClosed);
-  }, [onClose, returnFocus]);
+  }, [onClose, returnFocus, afterClose]);
 
   return (
     <dialog
@@ -105,13 +120,15 @@ export function BottomSheet({
           </button>
         </div>
         <div className="sheet-body flex-1 overflow-y-auto overscroll-contain px-5 pb-6 pt-2">
+          {lead}
           {children}
         </div>
         <div className="border-t border-rule px-4 pb-[calc(14px+env(safe-area-inset-bottom))] pt-2.5">
           <button
             type="button"
-            onClick={() => ref.current?.close()}
+            onClick={() => { onFooter?.(); ref.current?.close(); }}
             className="flex h-[52px] w-full items-center justify-center rounded-md bg-accent text-body font-semibold text-white hover:bg-accent-hover"
+            data-testid="show-results"
           >
             {footerLabel}
           </button>

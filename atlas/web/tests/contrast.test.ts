@@ -44,6 +44,11 @@ const PAIRS: [string, string, string, number][] = [
   ["hint text on the open row", "ink-3", "hover", 4.5],
   ["selected chip text on tint", "accent-hover", "tint", 4.5],
   ["selected chip border on white", "accent", "surface", 3],
+  // Phase 6: the line under the count after a change ("New top three: …")
+  // and the same-sex note, on the page; the cautions and the bars' words on
+  // an open row's or card's detail
+  ["the 'New top three' line on paper", "ink-2", "paper", 4.5],
+  ["a caution caption on the open row", "ink-2", "hover", 4.5],
 ];
 
 describe("Phase 5 tokens hold their contrast", () => {

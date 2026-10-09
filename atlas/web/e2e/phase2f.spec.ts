@@ -76,6 +76,8 @@ test("Tab reaches the note's link from the button (item 3)", async ({ page }) =>
   await page.goto(CITY_URL);
   const info = page.getByTestId("crime-info-violent_crime_rate");
   await info.focus();
+  // Phase 6 (F17): focus alone no longer opens it; Enter does
+  await page.keyboard.press("Enter");
   const note = page.getByTestId("crime-info-violent_crime_rate-note");
   await expect(note).toBeVisible();
   await page.keyboard.press("Tab");
@@ -90,6 +92,8 @@ test("Escape closes the popover and returns focus to the button (item 3)", async
   await page.goto(CITY_URL);
   const info = page.getByTestId("crime-info-violent_crime_rate");
   await info.focus();
+  // Phase 6 (F17): focus alone no longer opens it; Enter does
+  await page.keyboard.press("Enter");
   await expect(
     page.getByTestId("crime-info-violent_crime_rate-note")).toBeVisible();
   await page.keyboard.press("Escape");

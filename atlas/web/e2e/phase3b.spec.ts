@@ -63,6 +63,8 @@ test("a same-sex search says in the slider's information box whose pairing patte
   const first = await expandRow(page, 4);
   await expect(first.getByTestId("match-figure")).not.toContainText(/For a same-sex search/);
   await page.getByTestId("slider-info").focus();
+  // Phase 6 (F17): focus alone no longer opens it; Enter does
+  await page.keyboard.press("Enter");
   const note = page.getByTestId("slider-info-note");
   await expect(note).toBeVisible();
   const ss = note.getByTestId("slider-same-sex-note");
@@ -97,6 +99,8 @@ test("a same-sex search says in the slider's information box whose pairing patte
   await expect(page.getByTestId("self-race")).toBeEnabled();
   await expect(page.getByTestId("self-race")).toHaveValue("hispanic");
   await page.getByTestId("slider-info").focus();
+  // Phase 6 (F17): focus alone no longer opens it; Enter does
+  await page.keyboard.press("Enter");
   await expect(page.getByTestId("slider-info-note")).toBeVisible();
   await expect(page.getByTestId("slider-same-sex-note")).toHaveCount(0);
 });

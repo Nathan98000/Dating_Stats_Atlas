@@ -23,6 +23,7 @@ import {
   type AboutYou,
 } from "@/lib/about-you";
 import { selectVariant } from "@/lib/variants";
+import { readPlace, writePlace } from "@/lib/place";
 import { fill, INITIAL_VISIBLE, showMore, visibleSlice, visibleToInclude } from "@/lib/results";
 import { RailGroups } from "./panel";
 import { FeaturedCard, ResultRow, RowDetail } from "./row";
@@ -138,6 +139,19 @@ export function Home({
   const [openCard, setOpenCard] = useState<string | null>(null);
   const [highlight, setHighlight] = useState<string | null>(null);
   const [live, setLive] = useState("");
+  // Phase 6 (F05, F13): when a change lands, the line under the count (6
+  // s; its slot stays once used, so later lines don't shift the page) and
+  // the tint on the rows and cards that moved (2 s)
+  const [notice, setNotice] = useState<{ text: string; n: number } | null>(null);
+  const [noticeSlot, setNoticeSlot] = useState(false);
+  const [moved, setMoved] = useState<Set<string>>(() => new Set());
+  const announce = useRef<string | null>(null);
+  const prevOrder = useRef<string[] | null>(null);
+  // Phase 6 (F20): "Looking for" touched this visit
+  const seekTouched = useRef(false);
+  // Phase 6 (F05, F19): where focus goes once the sheet has closed
+  const afterSheet = useRef<"results" | "quick" | null>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [barVisible, setBarVisible] = useState(false);
   const desk = useDesk();
@@ -172,8 +186,9 @@ export function Home({
         const body = await r.json();
         if (mine !== seq.current) return;
         snapshot();
+        // Phase 6 (F05): said, shown and tinted once the rows have landed
+        announce.current = describeChange(lastPrefs.current, next);
         setResponse(body);
-        setLive(fill(policy.results_updated, { change: describeChange(lastPrefs.current, next) }));
         lastPrefs.current = next;
       })
       .catch(() => {
@@ -182,7 +197,7 @@ export function Home({
       .finally(() => {
         if (mine === seq.current) setPending(false);
       });
-  }, [snapshot, policy.results_updated]);
+  }, [snapshot]);
 
   const onChange = useCallback(
     (next: Prefs, now = false) => {
@@ -243,16 +258,33 @@ export function Home({
   const onSelfSex = useCallback((sex: "male" | "female") => {
     const was = effectiveSex(about, prefs.seekSex);
     saveAbout({ ...about, sex });
-    if (was !== prefs.seekSex && sex === prefs.seekSex) {
-      onChange({ ...prefs, seekSex: opposite(sex) });
+    // Phase 6 (F20): the sought sex follows only while "Looking for" hasn't
+    // been touched this visit, and the live region says so when it does
+    if (was !== prefs.seekSex && sex === prefs.seekSex && !seekTouched.current) {
+      const flipped = opposite(sex);
+      setLive(fill(policy.sought_flipped, { sought: flipped === "male" ? "Men" : "Women" }));
+      onChange({ ...prefs, seekSex: flipped });
+    } else if (sex !== was) {
+      // Phase 6 (F13): no request — the list changes in place; say so
+      announce.current = sex === "male" ? "men" : "women";
     }
-  }, [about, prefs, onChange, saveAbout]);
+  }, [about, prefs, onChange, saveAbout, policy.sought_flipped]);
   /** Sought sex: part of the search. The own sex the panel was showing is
    * kept (stored) so the visitor's "I'm a" never flips under them. */
   const onSeekSex = useCallback((seekSex: "male" | "female") => {
+    seekTouched.current = true;
     if (!about.sex) saveAbout({ ...about, sex: effectiveSex(about, prefs.seekSex) });
     onChange({ ...prefs, seekSex });
   }, [about, prefs, onChange, saveAbout]);
+
+  /** Phase 6 (F13): an "about you" change from the rail (education, race)
+   * re-selects the list with no request; the live region and the line
+   * under the count say what changed. */
+  const onAboutChange = useCallback((next: AboutYou) => {
+    if ((next.race ?? null) !== (about.race ?? null)) announce.current = policy.results_change_race;
+    else if ((next.edu ?? null) !== (about.edu ?? null)) announce.current = policy.results_change_education;
+    saveAbout(next);
+  }, [about, saveAbout, policy.results_change_race, policy.results_change_education]);
 
   // the sticky bottom bar (below 1120px) appears once the quick search
   // has scrolled out of view
@@ -286,6 +318,79 @@ export function Home({
   const selected = useMemo(() => selectVariant(response, about), [response, about]);
   // the rows have rendered in their new places: slide them there
   useLayoutEffect(() => { play(); }, [selected, play]);
+  // Phase 6 (F05, F13): a change has landed — tint what moved, and say
+  // what changed and, when it did, the new top three (names only)
+  useEffect(() => {
+    const order = selected.ranked.map((r) => r.cbsa);
+    const was = prevOrder.current;
+    prevOrder.current = order;
+    const change = announce.current;
+    announce.current = null;
+    if (change === null || !was) return;
+    setMoved(new Set(order.filter((c, i) => was[i] !== c)));
+    let text = fill(policy.results_updated, { change });
+    const top = selected.ranked.slice(0, 3).map((r) => r.display_name.split(",")[0]);
+    if (top.length === 3 && order.slice(0, 3).join() !== was.slice(0, 3).join()) {
+      text += ". " + fill(policy.results_new_top, { a: top[0], b: top[1], c: top[2] });
+    }
+    setLive(text);
+    setNotice({ text, n: Date.now() });
+    setNoticeSlot(true);
+  }, [selected, policy.results_updated, policy.results_new_top]);
+  useEffect(() => {
+    if (!notice) return;
+    const t = setTimeout(() => setNotice(null), 6000);
+    return () => clearTimeout(t);
+  }, [notice]);
+  useEffect(() => {
+    if (!moved.size) return;
+    const t = setTimeout(() => setMoved(new Set()), 2000);
+    return () => clearTimeout(t);
+  }, [moved]);
+  // Phase 6 (F27): while the bottom bar shows, focus never hides under it
+  useEffect(() => {
+    const on = !desk && barVisible;
+    document.documentElement.style.scrollPaddingBottom = on ? "88px" : "";
+    return () => { document.documentElement.style.scrollPaddingBottom = ""; };
+  }, [desk, barVisible]);
+  // Phase 6 (F18): the visitor's place in these results — how many rows
+  // showed and the city they opened — kept for this tab (sessionStorage,
+  // never an "about you" detail) and restored on the way back
+  useLayoutEffect(() => {
+    const place = readPlace();
+    if (!place || place.from !== window.location.pathname + window.location.search) return;
+    setVisible((v) => Math.max(v, place.visible));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      listRef.current?.querySelector<HTMLElement>(`[data-cbsa="${place.cbsa}"]`)
+        ?.scrollIntoView({ block: "center" });
+    }));
+  }, []);
+  const keepPlace = (e: React.MouseEvent) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="/city/"]');
+    const holder = a?.closest<HTMLElement>("[data-cbsa]");
+    if (!a || !holder) return;
+    writePlace({
+      from: window.location.pathname + window.location.search,
+      to: a.getAttribute("href") ?? "",
+      visible,
+      cbsa: holder.dataset.cbsa!,
+    });
+  };
+  const afterClose = useCallback(() => {
+    const go = afterSheet.current;
+    afterSheet.current = null;
+    if (go === "results" && headingRef.current) {
+      headingRef.current.scrollIntoView({ block: "start" });
+      headingRef.current.focus({ preventScroll: true });
+      return true;
+    }
+    if (go === "quick" && quickRef.current) {
+      quickRef.current.scrollIntoView({ block: "start" });
+      quickRef.current.querySelector<HTMLElement>('[data-testid="self-sex"]')?.focus({ preventScroll: true });
+      return true;
+    }
+    return false;
+  }, []);
   useEffect(() => {
     if (!highlight) return;
     const t = setTimeout(() => setHighlight(null), 2000);
@@ -346,7 +451,7 @@ export function Home({
       sameSex={sameSex}
       sameSexNote={response.variants.same_sex_note}
       about={about}
-      onAbout={saveAbout}
+      onAbout={onAboutChange}
     />
   );
 
@@ -365,6 +470,35 @@ export function Home({
             />
           </div>
         </Hero>
+
+        {/* Phase 6 (F27): the bar's markup comes before the results, so the
+            keyboard reaches it before the list (it stays fixed at the
+            bottom of the screen) */}
+        {!desk && (
+          <div
+            className={`fixed inset-x-0 bottom-0 z-30 bg-surface px-4 pb-[calc(14px+env(safe-area-inset-bottom))] pt-2.5 shadow-overlay ${barVisible ? "" : "hidden"}`}
+            data-testid="bottom-bar"
+          >
+            {/* Phase 6 (F05): a search in flight shows on the bar itself,
+                where a phone's eyes are (static under reduced motion) */}
+            <div aria-hidden="true" className={`absolute inset-x-0 top-0 ${pending ? "progress-line" : "h-0.5"}`}
+              data-testid="bar-pending-line" />
+            <button
+              ref={adjustRef}
+              type="button"
+              onClick={() => setSheetOpen(true)}
+              className="flex h-[52px] w-full items-center justify-center gap-2.5 rounded-md bg-accent text-body font-semibold text-white hover:bg-accent-hover"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" fill="none"
+                stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <path d="M3 6h9M15 6h2M3 14h2M8 14h9" />
+                <circle cx="13.5" cy="6" r="1.8" />
+                <circle cx="6.5" cy="14" r="1.8" />
+              </svg>
+              {policy.adjust_search}
+            </button>
+          </div>
+        )}
 
         <div className="grid gap-8 pt-5 sm:pt-11 desk:grid-cols-[288px_1fr] desk:items-start">
           {desk && (
@@ -402,13 +536,19 @@ export function Home({
                 <div className="flex flex-wrap items-end justify-between gap-4 pb-3 max-sm:flex-col max-sm:items-start">
                   <div className="flex max-w-[60ch] flex-col">
                     <p className="text-overline uppercase text-ink-3">{policy.results_eyebrow}</p>
-                    <h2 id="results-heading" className="mt-1 font-display text-h2" data-testid="list-heading">
+                    <h2 id="results-heading" ref={headingRef} tabIndex={-1}
+                      className="mt-1 scroll-mt-4 font-display text-h2" data-testid="list-heading">
                       {fill(prefs.sort === "worst_first" ? policy.results_heading_worst
                         : policy.results_heading_best, short)}
                     </h2>
                     <p className="text-body-sm text-ink-3" data-testid="results-count">
                       {fill(policy.results_count, { n: selected.counts.ranked.toLocaleString("en-US") })}
                     </p>
+                    {noticeSlot && (
+                      <p className="mt-1 min-h-5 text-body-sm font-semibold text-ink-2" data-testid="results-notice">
+                        {notice?.text}
+                      </p>
+                    )}
                     {excluded > 0 && (
                       <p className="mt-1 text-body-sm text-ink-2" data-testid="excluded-note">
                         {policy.excluded_count.replace("{n}", excluded.toLocaleString("en-US"))}
@@ -430,7 +570,7 @@ export function Home({
                 <div aria-hidden="true" className={pending ? "progress-line mb-3" : "mb-3 h-0.5"} data-testid="pending-line" />
                 <p className="sr-only" aria-live="polite" data-testid="results-live">{live}</p>
 
-                <div ref={listRef} data-testid="ranked-list" data-variant="">
+                <div ref={listRef} data-testid="ranked-list" data-variant="" onClickCapture={keepPlace}>
                   <ol aria-label="Cities" className="grid gap-4 md:grid-cols-3">
                     {featured.map((row, i) => (
                       <FeaturedCard
@@ -442,6 +582,7 @@ export function Home({
                         photo={photos[row.slug]}
                         median={selected.score_median}
                         open={openCard === row.cbsa}
+                        tinted={moved.has(row.cbsa)}
                         inline={!wide}
                         sameSex={sameSex}
                         onToggle={() => setOpenCard((c) => (c === row.cbsa ? null : row.cbsa))}
@@ -452,7 +593,7 @@ export function Home({
                   {/* Phase 6 (F06): from 768px a card's detail opens in one
                       panel spanning the three cards, directly under them */}
                   {wide && cardOpen && (
-                    <div className="mt-4">
+                    <div className="mt-4" data-cbsa={cardOpen.cbsa}>
                       <RowDetail id={`card-detail-${cardOpen.cbsa}`} row={cardOpen} meta={meta}
                         href={cityHref(cardOpen.slug)} sameSex={sameSex} variant="panel"
                         testid="card-detail" onCompare={() => compareFrom(cardOpen.slug)} />
@@ -465,6 +606,7 @@ export function Home({
                       <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
                         <FindInResults
                           label={policy.find_in_results}
+                          clearLabel={policy.clear}
                           ranked={selected.ranked.map((r) => r.slug)}
                           onPick={findCity}
                         />
@@ -487,7 +629,7 @@ export function Home({
                             open={openRows.has(row.cbsa)}
                             onToggle={() => toggleRow(row.cbsa)}
                             onCompare={() => compareFrom(row.slug)}
-                            highlighted={highlight === row.slug}
+                            highlighted={highlight === row.slug || moved.has(row.cbsa)}
                             sameSex={sameSex}
                           />
                         ))}
@@ -526,25 +668,6 @@ export function Home({
 
       {!desk && (
         <>
-          <div
-            className={`fixed inset-x-0 bottom-0 z-30 bg-surface px-4 pb-[calc(14px+env(safe-area-inset-bottom))] pt-2.5 shadow-overlay ${barVisible ? "" : "hidden"}`}
-            data-testid="bottom-bar"
-          >
-            <button
-              ref={adjustRef}
-              type="button"
-              onClick={() => setSheetOpen(true)}
-              className="flex h-[52px] w-full items-center justify-center gap-2.5 rounded-md bg-accent text-body font-semibold text-white hover:bg-accent-hover"
-            >
-              <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" fill="none"
-                stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                <path d="M3 6h9M15 6h2M3 14h2M8 14h9" />
-                <circle cx="13.5" cy="6" r="1.8" />
-                <circle cx="6.5" cy="14" r="1.8" />
-              </svg>
-              {policy.adjust_search}
-            </button>
-          </div>
           <BottomSheet
             open={sheetOpen}
             onClose={() => setSheetOpen(false)}
@@ -552,6 +675,25 @@ export function Home({
             footerLabel={policy.show_results}
             closeLabel={policy.close}
             returnFocus={adjustRef}
+            onFooter={() => { afterSheet.current = "results"; }}
+            afterClose={afterClose}
+            lead={
+              // Phase 6 (F19): the whole search, and the way to the part
+              // the sheet doesn't hold (sex and ages are in the hero)
+              <button
+                type="button"
+                data-testid="sheet-summary"
+                onClick={() => { afterSheet.current = "quick"; setSheetOpen(false); }}
+                className="mb-4 flex min-h-11 w-full items-center rounded-md bg-sunken px-3.5 text-left text-body-sm font-semibold text-ink hover:bg-hover"
+              >
+                {fill(policy.sheet_search_summary, {
+                  you: selfSex === "male" ? "Man" : "Woman",
+                  age: prefs.selfAge,
+                  sought: prefs.seekSex === "male" ? "Men" : "Women",
+                  ages: `${prefs.ageMin}–${prefs.ageMax}`,
+                })}
+              </button>
+            }
           >
             {rail}
           </BottomSheet>

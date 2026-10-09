@@ -3,6 +3,7 @@
 import { useId, useMemo, useState } from "react";
 import index from "@/data/search-index.json";
 import { searchCities, type CityEntry } from "@/lib/search";
+import { ClearButton } from "./clear-button";
 
 /** Phase 5: "Find a city in your results" — the one city matcher
  * (lib/search) over the cities ranked for this search only. Picking one
@@ -10,10 +11,13 @@ import { searchCities, type CityEntry } from "@/lib/search";
  * focuses its link and tints its row for two seconds. */
 export function FindInResults({
   label,
+  clearLabel,
   ranked,
   onPick,
 }: {
   label: string;
+  /** Phase 6 (F35): the registry's "Clear" */
+  clearLabel: string;
   /** the slugs ranked for this search */
   ranked: string[];
   onPick: (slug: string) => void;
@@ -52,7 +56,7 @@ export function FindInResults({
         autoComplete="off"
         placeholder={label}
         data-testid="find-in-results"
-        className="ctl !pl-9"
+        className={`ctl !pl-9 ${q ? "pr-11" : ""}`}
         value={q}
         onChange={(e) => { setQ(e.target.value); setOpen(true); setActive(0); }}
         onFocus={() => setOpen(true)}
@@ -64,6 +68,7 @@ export function FindInResults({
           else if (e.key === "Escape") setOpen(false);
         }}
       />
+      {q && <ClearButton label={clearLabel} onClear={() => { setQ(""); setOpen(false); }} />}
       {listOpen && (
         <ul id={`${uid}-list`} role="listbox" aria-label={label}
           className="absolute left-0 right-0 z-30 mt-1 overflow-hidden rounded-lg border border-rule bg-surface text-body-sm shadow-overlay">

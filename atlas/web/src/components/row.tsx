@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
 import type { Meta, RankedRow, ScoreMedian } from "@/lib/types";
 import type { CardPhoto } from "@/lib/city-photos";
 import { divergingBar, fill } from "@/lib/results";
@@ -81,6 +82,7 @@ export function FeaturedCard({
   open = false,
   inline = false,
   sameSex = false,
+  tinted = false,
   onToggle,
   onCompare,
 }: {
@@ -96,6 +98,8 @@ export function FeaturedCard({
   /** below 768px the detail opens inside the card */
   inline?: boolean;
   sameSex?: boolean;
+  /** Phase 6 (F05): it moved when the last change landed (2 s) */
+  tinted?: boolean;
   onToggle?: () => void;
   onCompare?: () => void;
 }) {
@@ -104,7 +108,7 @@ export function FeaturedCard({
   const detailId = `card-detail-${row.cbsa}`;
   return (
     <li
-      className="flex flex-col overflow-hidden rounded-lg border border-rule bg-surface"
+      className={`flex flex-col overflow-hidden rounded-lg border border-rule transition-colors ${tinted ? "bg-hover" : "bg-surface"}`}
       data-cbsa={row.cbsa}
       data-rank={row.rank}
       data-slug={row.slug}
@@ -420,16 +424,18 @@ export function RowDetail({ id, row, meta, href, onCompare, sameSex = false, var
 /** One tile of a row's detail: a white card with its title (and, where
  * the tile has one, an information box holding the longer words, its
  * button named on its own — Phase 6, F26 — so a screen reader no longer
- * hears the heading twice). */
+ * hears the heading twice). Its box sits against the tile, never over it
+ * (F17). */
 function Tile({ title, tip, tipId, tipLabel, testid, children }: {
   title: string; tip?: string; tipId?: string; tipLabel?: string; testid?: string;
   children: React.ReactNode;
 }) {
+  const ref = useRef<HTMLElement>(null);
   return (
-    <section className="rounded-md border border-rule bg-surface p-4" data-testid={testid}>
+    <section ref={ref} className="rounded-md border border-rule bg-surface p-4" data-testid={testid}>
       <h4 className="mb-2.5 flex items-center gap-1 text-caption font-semibold text-ink-2">
         {title}
-        {tip && tipId && <InfoTip id={tipId} label={tipLabel ?? title}>{tip}</InfoTip>}
+        {tip && tipId && <InfoTip id={tipId} label={tipLabel ?? title} anchor={ref}>{tip}</InfoTip>}
       </h4>
       {children}
     </section>

@@ -251,6 +251,11 @@ input.ctl {
   border-radius: var(--radius-md);
 }
 input.ctl::placeholder { color: var(--ink-3); }
+/* Phase 6 (F35): the browser's own clear ("x", blue in Chrome) is off the
+   palette and sat beside the site's own close; search fields carry the
+   site's ClearButton instead */
+input[type="search"]::-webkit-search-cancel-button { appearance: none; -webkit-appearance: none; }
+input[type="search"]::-webkit-search-decoration { appearance: none; -webkit-appearance: none; }
 /* Phase 5: 48px on phones; focus is an accent border and a soft ring (the
    global :focus-visible outline stays) */
 @media (max-width: 39.99rem) {

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
 import { searchCities, type CityEntry } from "@/lib/search";
+import { ClearButton } from "./clear-button";
 
 /** Pick a second city; the compare URL carries both slugs and the whole
  * preference query string. Matching goes through lib/search — the one
@@ -12,10 +13,13 @@ export function CompareLauncher({
   slug,
   primary = false,
   small = false,
+  clearLabel,
 }: {
   slug: string;
   primary?: boolean;
   small?: boolean;
+  /** Phase 6 (F35): the registry's "Clear", from the server page */
+  clearLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
@@ -51,7 +55,7 @@ export function CompareLauncher({
         autoComplete="off"
         autoFocus
         placeholder="Type a city name"
-        className="ctl"
+        className={`ctl ${q ? "pr-11" : ""}`}
         value={q}
         onChange={(e) => setQ(e.target.value)}
         onKeyDown={(e) => {
@@ -62,13 +66,14 @@ export function CompareLauncher({
           }
         }}
       />
+      {q && <ClearButton label={clearLabel} onClear={() => setQ("")} />}
       {results.length > 0 && (
         <ul className="absolute z-20 mt-1 w-full overflow-hidden rounded-lg border border-rule bg-surface text-body-sm shadow-overlay">
           {results.map((r) => (
             <li key={r.s}>
               <button
                 type="button"
-                className="block w-full px-3.5 py-2.5 text-left text-ink-2 hover:bg-hover hover:text-ink"
+                className="flex min-h-11 w-full items-center px-3.5 text-left text-ink-2 hover:bg-hover hover:text-ink"
                 onClick={() => {
                   const qs = sp.toString();
                   router.push(`/compare/${slug}/${r.s}${qs ? `?${qs}` : ""}`);

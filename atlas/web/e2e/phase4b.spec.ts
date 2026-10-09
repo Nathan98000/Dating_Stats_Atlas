@@ -70,7 +70,8 @@ test("the quick search holds the visitor and who they seek; the rail's three gro
   for (const label of [ps.quick_self_sex_short, ps.quick_self_age_short, ps.quick_seek_sex_short]) {
     await expect(quick.getByLabel(label, { exact: true }), label).toHaveCount(1);
   }
-  await expect(quick.getByRole("button", { name: new RegExp(`^${ps.quick_seek_age_short}: `) })).toHaveCount(1);
+  // Phase 6 (F37): the age token's name holds its visible text verbatim
+  await expect(quick.getByRole("button", { name: new RegExp(`^${ps.quick_seek_age_short} \\d+ – \\d+$`) })).toHaveCount(1);
   const rail = page.getByTestId("search-panel");
   // section headings (h2 in the outline, set in the h3 size)
   const headings = rail.getByRole("heading", { level: 2 });
@@ -338,6 +339,8 @@ test("axe: a same-sex search with the race select muted and the slider's box ope
   // Phase 4c: muted but operable (it was disabled in Phase 4b)
   await expect(page.getByTestId("self-race")).toBeEnabled();
   await page.getByTestId("slider-info").focus();
+  // Phase 6 (F17): focus alone no longer opens it; Enter does
+  await page.keyboard.press("Enter");
   await expect(page.getByTestId("slider-same-sex-note")).toBeVisible();
   await page.waitForLoadState("networkidle");
   const results = await new AxeBuilder({ page })

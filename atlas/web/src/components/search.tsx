@@ -4,12 +4,18 @@ import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import index from "@/data/search-index.json";
 import { searchCities, type CityEntry } from "@/lib/search";
+import { ClearButton } from "./clear-button";
 
 /** Find-a-city (§8.3): the committed index, matched in the browser
  * through lib/search — the ONE matcher every city chooser shares since
  * Phase 2e item 5 — routed by slug. Phase 5: 240px in the desk header
  * (its menu 260px); `wide` fills the phone header's overlay. */
-export function SearchBox({ wide = false, autoFocus = false }: { wide?: boolean; autoFocus?: boolean }) {
+export function SearchBox({ wide = false, autoFocus = false, clearLabel = "" }: {
+  wide?: boolean; autoFocus?: boolean;
+  /** Phase 6 (F35): the registry's "Clear", from the server-rendered header (lib/chrome is
+   * server data: importing it here would ship stat-pages.json to every page) */
+  clearLabel?: string;
+}) {
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
@@ -42,7 +48,7 @@ export function SearchBox({ wide = false, autoFocus = false }: { wide?: boolean;
         autoComplete="off"
         placeholder="Find a city"
         autoFocus={autoFocus}
-        className={`ctl ${wide ? "" : "!min-h-10"}`}
+        className={`ctl ${wide ? "" : "!min-h-10"} ${q && !wide && clearLabel ? "pr-11" : ""}`}
         value={q}
         onChange={(e) => {
           setQ(e.target.value);
@@ -66,6 +72,9 @@ export function SearchBox({ wide = false, autoFocus = false }: { wide?: boolean;
           }
         }}
       />
+      {q && !wide && clearLabel && (
+        <ClearButton label={clearLabel} onClear={() => { setQ(""); setOpen(false); }} />
+      )}
       {listOpen && (
         <ul
           id="city-search-results"

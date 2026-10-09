@@ -102,7 +102,7 @@ export function HeaderSearchToggle({ label, closeLabel }: { label: string; close
 }
 
 /** Phase 5: the phone menu — a 44px button opening a panel with the nav
- * and the footer's links. Escape or a link closes it. */
+ * and the footer's links. Escape, a click outside or a link closes it. */
 export function MenuButton({ labels, menuLabel, closeLabel }: {
   labels: Record<string, string>; menuLabel: string; closeLabel: string;
 }) {
@@ -111,6 +111,25 @@ export function MenuButton({ labels, menuLabel, closeLabel }: {
   const suffix = useCarried();
   const pathname = usePathname();
   useEffect(() => { setOpen(false); }, [pathname]);
+  const navRef = useRef<HTMLElement>(null);
+  // Phase 6 (F28): Escape (wherever focus is) and a click outside close
+  // the menu and put focus back on its button, as the sheet does
+  useEffect(() => {
+    if (!open) return;
+    const shut = () => { setOpen(false); btn.current?.focus(); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { e.preventDefault(); shut(); } };
+    // on click, after the browser has moved focus for the press itself
+    const onOutside = (e: MouseEvent) => {
+      const t = e.target as Node;
+      if (!navRef.current?.contains(t) && !btn.current?.contains(t)) shut();
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("click", onOutside, true);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onOutside, true);
+    };
+  }, [open]);
   return (
     <>
       <button
@@ -126,13 +145,11 @@ export function MenuButton({ labels, menuLabel, closeLabel }: {
         {open ? <CloseIcon /> : <MenuIcon />}
       </button>
       <nav
+        ref={navRef}
         id="site-menu"
         aria-label={menuLabel}
         hidden={!open}
         className="absolute inset-x-0 top-full z-40 border-b border-rule bg-paper px-4 pb-4 shadow-overlay"
-        onKeyDown={(e) => {
-          if (e.key === "Escape") { setOpen(false); btn.current?.focus(); }
-        }}
       >
         <ul className="flex flex-col">
           {NAV_DESTINATIONS.map((d) => {

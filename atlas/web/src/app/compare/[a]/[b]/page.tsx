@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BackToResults } from "@/components/back-link";
 import { notFound } from "next/navigation";
 import { apiMeta, apiPoliticalLean, apiProfile, apiRank } from "@/lib/api";
 import {
@@ -88,9 +89,7 @@ export default async function ComparePage({
     <>
       <SiteHeader />
       <main id="main" className="mx-auto flex max-w-5xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
-        <Link href={`/?${qs}`} className="inline-flex min-h-11 items-center self-start text-body-sm font-semibold text-accent hover:text-accent-hover">
-          ← Back to your results
-        </Link>
+        <BackToResults href={`/?${qs}`}>← Back to your results</BackToResults>
         <h1 className="font-display text-h2">
           {cityA} <span className="text-ink-3">and</span> {cityB}
         </h1>

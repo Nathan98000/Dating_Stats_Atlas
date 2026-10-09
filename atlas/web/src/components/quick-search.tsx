@@ -87,12 +87,13 @@ export function QuickSearch({
 
 /** One field of the sentence: below 640px a label above the control; from
  * 640px the sentence's word before it (aria-hidden — the label, kept for
- * screen readers, names the control). */
+ * screen readers, names the control). Phase 6 (F34): the word and its
+ * token wrap as one, so a line never ends on a lone label. */
 function Slot({ word, label, htmlFor, children }: {
   word: string; label: string; htmlFor: string; children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2.5">
+    <div className="flex flex-col gap-1 sm:shrink-0 sm:flex-row sm:items-center sm:gap-2.5 sm:whitespace-nowrap">
       <label htmlFor={htmlFor} className="text-caption font-semibold text-ink-2 sm:sr-only">
         {label}
       </label>
@@ -144,7 +145,7 @@ function AgePopover({ id, label, closeLabel, prefs, onChange }: {
         type="button"
         aria-expanded={open}
         aria-controls={`${id}-pop`}
-        aria-label={`${label}: ${prefs.ageMin} to ${prefs.ageMax}`}
+        aria-label={`${label} ${prefs.ageMin} – ${prefs.ageMax}`}
         data-testid="age-token"
         className="ctl tok flex w-full items-center justify-between gap-2 text-left"
         onClick={() => setOpen(!open)}

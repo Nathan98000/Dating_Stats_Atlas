@@ -49,7 +49,7 @@ export default async function CompareLandingPage({
           </p>
         </div>
         <Suspense fallback={<div className="h-[120px]" />}>
-          <ComparePickers initialA={a} initialB={b} />
+          <ComparePickers initialA={a} initialB={b} clearLabel={meta.policy_strings.clear} />
         </Suspense>
         {first && second && (
           <Link
