@@ -4,7 +4,7 @@ the search list returns — on that one measure.
 
 Cell-for-cell agreement with the city pages is by construction: values,
 display strings and bands come from the SAME build artifact through the
-SAME model code (Build.static, format_value/format_pop, the engine's
+SAME model code (Build.static, format_value/spoken_pop, the engine's
 _band_of), and the build id is stamped so a mismatch is detectable. No
 API call and no recomputation at request time; the JSON is the page.
 
@@ -23,7 +23,8 @@ sys.path.insert(0, str(REPO))
 import numpy as np  # noqa: E402
 
 from atlas.model.context import political_lean_block  # noqa: E402
-from atlas.model.explain import format_pop, format_value  # noqa: E402
+from atlas.model.explain import format_value  # noqa: E402
+from atlas.model.spoken import spoken_pop as format_pop  # noqa: E402
 from atlas.model.loader import load_build  # noqa: E402
 from atlas.model.scoring import _band_of  # noqa: E402
 

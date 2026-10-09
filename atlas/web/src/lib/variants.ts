@@ -85,6 +85,7 @@ export function selectVariant(resp: VariantResponse, about: AboutYou): RankRespo
         top_stats: ex.top_stats,
         summary_line: ex.summary_line,
         movers: ex.movers,
+        lifestyle_movers: ex.lifestyle_movers,
       });
     }
   }

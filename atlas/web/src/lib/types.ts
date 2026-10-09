@@ -148,6 +148,10 @@ export interface RankedRow {
    * largest first), then the biggest minus; key is the item's first stat
    * id, whose registry chip_label names it */
   movers: Mover[];
+  /** m4.3.0 (Phase 6, F12): the result chips' pick — the same rule over the
+   * lifestyle items only (cost, social life, student life, weather); []
+   * when none qualifies */
+  lifestyle_movers: Mover[];
 }
 
 export interface Mover {
@@ -213,7 +217,7 @@ export interface MatchInputs {
  * travels in `variants.balance`, once (m4.1.0, ADR 0004 amended: it is
  * the search's, whoever is searching). */
 export type BaseRow = Omit<RankedRow, "rank" | "score" | "score_display" |
-  "balance" | "match" | "top_stats" | "summary_line" | "movers"> & {
+  "balance" | "match" | "top_stats" | "summary_line" | "movers" | "lifestyle_movers"> & {
   match: { available: boolean; unit_line: string };
 };
 export type BaseSuppressedRow = Omit<SuppressedRow, "balance">;
@@ -256,7 +260,8 @@ export interface Variants {
   index: Record<string, Record<string, Record<string, number>>>;
   same_sex_note: string;
   match_bands: { key: string; label: string; tone: Tone }[];
-  explain: { top_stats: string[]; summary_line: string; movers: Mover[] }[];
+  explain: { top_stats: string[]; summary_line: string; movers: Mover[];
+    lifestyle_movers: Mover[] }[];
   /** m4.1.0: the search's balance, once — its words and the block of
    * every ranked and suppressed row, aligned to them (m4.0.0 sent a copy
    * per own sex, `by_sex`) */

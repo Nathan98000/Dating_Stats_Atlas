@@ -57,7 +57,7 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import format_value, movers, served_movers, summary_line
+from atlas.model.explain import format_value, lifestyle_movers, movers, served_movers, summary_line
 from atlas.model.loader import Build, reduced_key
 from atlas.model.preferences import (INCOME_FLOORS, PILLARS, SEX_LEVELS, Request,
                                      axis_vectors, balance_masks_for, pool_mask,
@@ -501,13 +501,16 @@ def _card_stats_made(build: Build, i: int) -> list[dict]:
         else:
             entry["value"] = round(v, 4)
             if fid == "who_lives_here":
-                # spoken figures, per the board: 700,000 people, of whom
-                # 430,000 are adults — never precision to the person
-                from atlas.model.explain import format_pop
-                entry["display"] = format_pop(v)
+                # spoken figures, per the board — never precision to the
+                # person. m4.3.0 (Phase 6, F09): both figures to 2
+                # significant figures by one rule, and a metro outside the
+                # ranked set never reads at or above the population floor
+                from atlas.model.spoken import spoken_pop
+                ceiling = None if build.ranked_set[i] else float(build.manifest["population_floor"])
+                entry["display"] = spoken_pop(v, ceiling)
                 adults = float(build.pool_pop[i])
                 entry["unit_line"] = le["unit_template"].format(
-                    adults=format_pop(adults))
+                    adults=spoken_pop(adults, ceiling))
             else:
                 entry["display"] = format_value(v, le)
                 entry["unit_line"] = le.get("unit", "")
@@ -789,8 +792,11 @@ def ranked_row(build: Build, fr: dict, bal: dict, mt: dict, sc: dict,
     mv = movers(row, build.legend, build.manifest["standing_bands"]["keys"])
     row["top_stats"] = [fid for m in mv for fid in m["ids"]]
     row["summary_line"] = summary_line(mv)
-    # m4.2.1: the pick as data, for the result chips
+    # m4.2.1: the pick as data
     row["movers"] = served_movers(mv)
+    # m4.3.0 (Phase 6, F12): the result chips' pick, lifestyle items only
+    row["lifestyle_movers"] = served_movers(
+        lifestyle_movers(row, build.legend, build.manifest["standing_bands"]["keys"]))
     return row
 
 

@@ -63,6 +63,12 @@ build (nonzero exit), SOFT gates warn and are reported as measured.
   hard  adversarial artifacts    college/military/prison metros in any
                                  top-10 must not be there for a
                                  GQ-traceable reason
+  hard  spoken figures           Phase 6 (m4.3.0): every who-lives-here
+                                 figure within 5% of its value; no metro
+                                 outside the ranked set reads at or above
+                                 the population floor, on its card or in
+                                 its description; the floor separates the
+                                 ranked set from the rest
   soft  face validity            12 personas, now with pool, served margin
                                  and n in every row so the magnitude check
                                  can be done from the report
@@ -262,6 +268,58 @@ def _random_body(rng: np.random.Generator) -> dict:
         seeking["race_ethnicity"] = race
     return {"self": {"sex": str(self_sex), "age": int(rng.integers(18, 71))},
             "seeking": seeking}
+
+
+SPOKEN_TOLERANCE = 0.05     # a spoken figure sits within 5% of its value
+
+
+def _spoken_value(txt: str) -> float:
+    """"180,000" -> 180000.0; "1.3 million" -> 1300000.0."""
+    m = re.fullmatch(r"([\d,.]+)( million)?", txt.strip())
+    assert m, f"not a spoken figure: {txt!r}"
+    return float(m.group(1).replace(",", "")) * (1e6 if m.group(2) else 1)
+
+
+def check_spoken_figures(build) -> dict:
+    """Phase 6 (m4.3.0, F09): every metro's who-lives-here card — its
+    population and its adults — reads within SPOKEN_TOLERANCE of the value;
+    no metro outside the ranked set reads at or above the population floor,
+    on its card or in its description; and the registry's floor separates
+    the two sets (the largest unranked metro below it, the smallest ranked
+    at or above it)."""
+    from atlas.model.scoring import _card_stats
+    floor = float(build.manifest["population_floor"])
+    off, over_floor, worst = [], [], 0.0
+    pops = np.asarray(build.static["who_lives_here"], dtype=float)
+    for i in range(len(build.metro_levels)):
+        card = next(c for c in _card_stats(build, i) if c["id"] == "who_lives_here")
+        if card.get("missing"):
+            continue
+        shown = _spoken_value(card["display"])
+        adults_txt = re.search(r"of whom ([\d,.]+(?: million)?) are adults", card["unit_line"]).group(1)
+        adults = _spoken_value(adults_txt)
+        for what, s, v in (("population", shown, card["value"]),
+                           ("adults", adults, float(build.pool_pop[i]))):
+            rel = abs(s / v - 1)
+            worst = max(worst, rel)
+            if rel > SPOKEN_TOLERANCE:
+                off.append({"metro": build.display_names[i], "figure": what, "value": round(v),
+                            "shown": s, "off": round(rel, 3)})
+        if not build.ranked_set[i]:
+            m = re.search(r"about ([\d,.]+(?: million)?) people", build.descriptions[i])
+            said = {"card": shown, "adults": adults, **({"description": _spoken_value(m.group(1))} if m else {})}
+            for where, s in said.items():
+                if s >= floor:
+                    over_floor.append({"metro": build.display_names[i], "where": where, "shown": s,
+                                       "text": build.descriptions[i] if where == "description" else card["display"]})
+    unranked_max = float(np.nanmax(pops[~build.ranked_set]))
+    ranked_min = float(np.nanmin(pops[build.ranked_set]))
+    separates = unranked_max < floor <= ranked_min
+    ok = not off and not over_floor and separates
+    return {"pass": bool(ok), "tolerance": SPOKEN_TOLERANCE, "worst_relative_error": round(worst, 4),
+            "off_by_more": off, "unranked_at_or_above_floor": over_floor,
+            "floor": floor, "largest_unranked": round(unranked_max), "smallest_ranked": round(ranked_min),
+            "floor_separates_sets": bool(separates)}
 
 
 def check_differential(build, con) -> dict:
@@ -972,6 +1030,12 @@ def main(build_dir: str) -> int:
     report["hard"]["crime_consistency"] = {"pass": bool(ok), **crime_checks}
     if not ok:
         hard_fail.append("crime_consistency")
+
+    # ---- hard: spoken figures (Phase 6, m4.3.0, F09) ----------------------
+    sp = check_spoken_figures(build)
+    report["hard"]["spoken_figures"] = sp
+    if not sp["pass"]:
+        hard_fail.append("spoken_figures")
 
     # ---- soft: external correlation ----------------------------------------
     geo = "metropolitan statistical area/micropolitan statistical area"

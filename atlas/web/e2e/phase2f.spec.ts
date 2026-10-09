@@ -192,7 +192,7 @@ test("every compare difference equals the subtraction of the two displayed value
   // the line under the table explains the Edge column, from the registry
   // (Phase 5, replacing item 6.3's colour legend)
   await expect(page.getByTestId("diff-legend")).toHaveText(
-    "Edge shows which city does better on each measure for your search; a dash means we don't judge it.");
+    "Edge names the city that does better on each measure for your search, and by how much. A dash means we don't judge that measure.");
 });
 
 test("either side missing gives an em dash (gate 5)", async ({ page }) => {
@@ -253,10 +253,11 @@ test("the excluded-cities line and the compare landing speak the new copy", asyn
   await page.goto(
     "/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
+  // Phase 6 (F34, approved): "metro areas", as the results header says
   await expect(page.getByTestId("excluded-note")).toContainText(
-    /make a reliable estimate/);
+    /metro areas don’t have enough people matching this search for a reliable estimate/);
   await expect(page.getByTestId("excluded-note")).toContainText(
-    /Widen your search to see more cities/);
+    /Widen your search to see more of them/);
   await page.goto("/compare");
   await expect(page.locator("main")).toContainText(
     "View two cities side by side");

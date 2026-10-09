@@ -319,6 +319,7 @@ def build(out_root=None) -> str:
         "standing_bands": reg.standing_bands,
         "race_groups": list(reg.race_groups),
         "city_cards": list(reg.city_cards),
+        "population_floor": reg.population_floor,
         "stat_pages": list(reg.stat_pages),
         "crime": reg.crime,
         "strings": reg.strings,

@@ -17,7 +17,7 @@ The response sends what no variant changes once:
   ranked      rows in the DEFAULT variant's order (own sex opposite the
               sought sex, education not given, race off), each without
               the parts a variant changes: rank, score, score_display,
-              top_stats, summary_line and movers are absent; the match block keeps
+              top_stats, summary_line, movers and lifestyle_movers are absent; the match block keeps
               `available` and `unit_line`; the compatibility figure's stats
               entry keeps id, pillar and weight; the match pillar's
               contribution has value null. The balance block travels in
@@ -32,9 +32,12 @@ The response sends what no variant changes once:
               match_bands      the five bands {key, label, tone} of the
                                figure's within-search standing
               explain          the distinct {top_stats, summary_line,
-                               movers} entries the variants' rows point
-                               at (movers since m4.2.1: [{key, sign}],
-                               the pick the line names, as data)
+                               movers, lifestyle_movers} entries the
+                               variants' rows point at (movers since
+                               m4.2.1: [{key, sign}], the pick the line
+                               names, as data; lifestyle_movers since
+                               m4.3.0: the result chips' pick, lifestyle
+                               items only)
               balance          balance_words (sought sex, other sex: the
                                key "seeker" names the other sex, the
                                seeker's own on an opposite-sex search)
@@ -68,8 +71,9 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import (MAX_MINUSES, MAX_PLUSES, TOP_STATS_MAX, TOP_STATS_MIN_POINTS,
-                                 mover_sides, mover_units, served_movers, summary_line)
+from atlas.model.explain import (LIFESTYLE_PILLARS, MAX_MINUSES, MAX_PLUSES, TOP_STATS_MAX,
+                                 TOP_STATS_MIN_POINTS, mover_sides, mover_units, served_movers,
+                                 summary_line)
 from atlas.model.loader import Build
 from atlas.model.preferences import EDU_LEVELS, SEX_LEVELS, SPEC_RACE, Request, seeker_weights
 from atlas.model.scoring import (MATCH_COLUMN, _age_sums, _card_stats, _match_from, _match_parts,
@@ -83,7 +87,8 @@ RACE_KEYS = ["off", *SPEC_RACE]
 # the fields of a ranked row that a variant sets (the selector's list);
 # since m4.1.0 balance is not one of them (ADR 0004 amended) — it travels
 # once, column-wise, in variants.balance
-VARIANT_ROW_FIELDS = ("rank", "score", "score_display", "top_stats", "summary_line", "movers")
+VARIANT_ROW_FIELDS = ("rank", "score", "score_display", "top_stats", "summary_line", "movers",
+                      "lifestyle_movers")
 # the per-variant columns, field by field (variants.columns[name][variant]
 # [position in that variant's rank order]) — field-major, so like values
 # sit together and compress well
@@ -168,7 +173,7 @@ def _unit_sums(C: np.ndarray, units: list[dict]) -> np.ndarray:
     return out
 
 
-def _explain_codes(Cu: np.ndarray, S: np.ndarray) -> np.ndarray:
+def _explain_codes(Cu: np.ndarray, S: np.ndarray, only: np.ndarray | None = None) -> np.ndarray:
     """The movers of every row from its items' contributions Cu (n, U; NaN
     where an item's stats are all missing) and its cards' sides S (n, U):
     explain.pick_movers' rule — an item whose sign contradicts its card is
@@ -176,10 +181,14 @@ def _explain_codes(Cu: np.ndarray, S: np.ndarray) -> np.ndarray:
     TOP_STATS_MIN_POINTS, taken largest first (ties in item order), at most
     MAX_PLUSES pluses and then the biggest minus (m4.2.1) — as codes
     (item + 1) * 2 + (1 if a plus), in that order, 0 where there are fewer
-    movers (TOP_STATS_MAX columns)."""
+    movers (TOP_STATS_MAX columns). `only` (U bools), if given, limits the
+    candidates to those items: explain.pick_lifestyle_movers' rule
+    (m4.3.0)."""
     n, U = Cu.shape
     absC = np.abs(Cu)
     eligible = (absC >= TOP_STATS_MIN_POINTS) & ~(Cu * S < 0)    # NaN -> False
+    if only is not None:
+        eligible &= only[None, :]
     key = np.where(eligible, -absC, np.inf)
     order = np.argsort(key, axis=1, kind="stable")              # largest first
     rows = np.arange(n)[:, None]
@@ -219,17 +228,26 @@ def _explain_of_key(key: int, width: int) -> tuple[int, ...]:
     return tuple(reversed(digits))
 
 
-def _explain_entry(code: tuple[int, ...], units: list[dict]) -> dict:
-    """top_stats, summary_line and movers for one movers code, through the
-    same functions rank() uses: the movers go in with their order and signs
-    (summary_line reads nothing else — pluses in order, the first minus)."""
+def _moved_of(code: tuple[int, ...], units: list[dict]) -> list[dict]:
+    """The movers one code names, in order, with stand-in contributions of
+    the right sign and order (served_movers and summary_line read nothing
+    else — pluses in order, the first minus)."""
     moved = []
     for p, c in enumerate(x for x in code if x):
         u, is_plus = c // 2 - 1, bool(c % 2)
         moved.append({"phrase": units[u]["phrase"], "ids": units[u]["ids"],
                       "contribution": (1.0 if is_plus else -1.0) * (TOP_STATS_MAX - p)})
+    return moved
+
+
+def _explain_entry(code: tuple[int, ...], units: list[dict]) -> dict:
+    """top_stats, summary_line, movers and (m4.3.0) lifestyle_movers for one
+    explain code — the movers' TOP_STATS_MAX digits, then the lifestyle
+    movers' — through the same functions rank() uses."""
+    moved = _moved_of(code[:TOP_STATS_MAX], units)
+    life = _moved_of(code[TOP_STATS_MAX:], units)
     return {"top_stats": [fid for m in moved for fid in m["ids"]], "summary_line": summary_line(moved),
-            "movers": served_movers(moved)}
+            "movers": served_movers(moved), "lifestyle_movers": served_movers(life)}
 
 
 def _strip_row(row: dict) -> dict:
@@ -337,6 +355,7 @@ def rank_variants(build: Build, req: Request) -> dict:
         # in ridx like C0
         units = mover_units([f["id"] for f in feats], build.legend)
         assert 2 * (len(units) + 1) <= EXPLAIN_BASE
+        assert EXPLAIN_BASE ** (2 * TOP_STATS_MAX) < 2 ** 63
         side_memo = build.memo.setdefault(("mover_sides", tuple(u["phrase"] for u in units)), {})
         for i in ridx.tolist():
             if i not in side_memo:
@@ -347,7 +366,8 @@ def rank_variants(build: Build, req: Request) -> dict:
         display = _display_fn(build)
         edges = bands["edges"]
         explain_ix: dict[int, int] = {}
-        explain_memo = build.memo.setdefault(("explain_units", tuple(u["phrase"] for u in units)), {})
+        explain_memo = build.memo.setdefault(("explain_units_m4.3.0", tuple(u["phrase"] for u in units)), {})
+        life_only = np.array([u["pillar"] in LIFESTYLE_PILLARS for u in units])
         n = len(ridx)
         base_pos = np.empty(n, dtype=int)
         base_pos[base] = np.arange(n)
@@ -402,13 +422,15 @@ def rank_variants(build: Build, req: Request) -> dict:
             # figure in its column, through explain.pick_movers' rule
             C = C0[order].copy()
             C[:, jm] = [np.nan if c is None else c for c in per["contribution"]]
-            keys = _explain_key(_explain_codes(_unit_sums(C, units), S0[order]))
+            Cu, So = _unit_sums(C, units), S0[order]
+            keys = _explain_key(np.hstack([_explain_codes(Cu, So),
+                                           _explain_codes(Cu, So, life_only)]))
             uniq, inverse = np.unique(keys, return_inverse=True)
             slots = []
             for key in uniq.tolist():
                 if key not in explain_ix:
                     if key not in explain_memo:
-                        explain_memo[key] = _explain_entry(_explain_of_key(key, TOP_STATS_MAX), units)
+                        explain_memo[key] = _explain_entry(_explain_of_key(key, 2 * TOP_STATS_MAX), units)
                     explain_ix[key] = len(out["variants"]["explain"])
                     out["variants"]["explain"].append(explain_memo[key])
                 slots.append(explain_ix[key])
@@ -470,6 +492,7 @@ def select_variant(resp: dict, sex: str | None = None, education: str | None = N
         row["top_stats"] = ex["top_stats"]
         row["summary_line"] = ex["summary_line"]
         row["movers"] = ex["movers"]
+        row["lifestyle_movers"] = ex["lifestyle_movers"]
         rows.append(row)
     if resp.get("sort") == "worst_first":
         rows.reverse()

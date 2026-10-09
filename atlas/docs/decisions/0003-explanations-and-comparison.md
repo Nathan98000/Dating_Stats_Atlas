@@ -133,3 +133,19 @@ result chips never re-derive it. No score, rank, figure, band or suppression mov
 ADR 0011 test searches on build 63c4e5fa51bf every /v1/rank response is identical to m4.2.0's
 without its explanations, as are all 1,036 single-seeker rankings and all 387 profiles
 (`results/phase5/served_numbers_commit_c.json`).
+
+## Amended in m4.3.0 (Phase 6, 9 October 2026): the chips name lifestyle items only
+
+DRAFT for Nathan's approval (Phase 6, commit B; his decision 5). The round-3 review (F12) found
+the result chips repeating: in the default search 8 of the top 10 read "▲ Dating pool
+▲ Compatibility ▼ Rent", so they did not tell cities apart, and the pool and the compatibility
+figure already have their own column and tile. Each explanation now also carries
+`lifestyle_movers: [{key, sign}]`, from `explain.pick_lifestyle_movers`: the same rule as the
+line (the m4.1.1 sides rule, `TOP_STATS_MIN_POINTS`, at most two pluses largest first, then the
+single biggest eligible minus, the two price levels one item) over the lifestyle items only —
+those whose pillar is one the visitor weights with the importance controls (cost, social life,
+student life, weather). A row with no eligible lifestyle item serves `[]` and shows no chips.
+The chips read `lifestyle_movers`; `summary_line` and `movers` are unchanged, and screen readers
+keep the full line. Over the 518 ADR 0011 test searches every /v1/rank response is identical to
+m4.2.1's without its explanations, every default-variant line, `top_stats` and `movers` is
+unchanged, and so are all 1,036 single-seeker rankings (`results/phase6/served_numbers_commit_b.json`).

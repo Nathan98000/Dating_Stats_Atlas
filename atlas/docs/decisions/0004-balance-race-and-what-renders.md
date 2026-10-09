@@ -174,3 +174,30 @@ of the 100-effective-respondent bar the row says so (`balance_unavailable`).
   is on both sides of the comparison, so balance doesn't apply." — removed, not
   rewritten, on his decision. The paragraph before it already reads true for both
   kinds of search.
+
+## Amended in Phase 6 (9 October 2026): the same-sex captions, spoken figures and the flags shown again
+
+DRAFT for Nathan's approval (Phase 6; his decisions 2, 3 and 8).
+
+- **Same-sex searches get a note where matches show** (F01). On a same-sex search the count is
+  every single person of the sought sex in the ages picked; the Census doesn't ask who people
+  date. The registry's `same_sex_pool_note` says so under the results header, under the matches
+  line on the city page's score card and under Compare's Matches row, chosen in the browser from
+  the stored own sex (nothing about the visitor reaches the server). Balance gets its own caption
+  on a same-sex search, `balance_caption_same_sex` ("…it describes the city, not your matches"),
+  in the tile's box and the page footnote; `balance_same_sex` stays retired. A same-sex share of
+  the pool is a model question for later, not part of this amendment.
+- **Spoken figures** (F09). The who-lives-here card rounded the population and the adults to
+  different steps, so Abilene read "200,000 people, of whom 100,000 are adults" for 183,310, and
+  68 of 387 metros were off by 10% or more. Since m4.3.0 one function (`model/spoken.py`) speaks
+  every population figure: 2 significant figures below 950,000, "N.N million" above, and a metro
+  outside the ranked set never reads at or above the registry's `population_floor` (250,000) — a
+  figure that would round up to it rounds down to the next 2-figure step. The build's validation
+  gains a hard gate: every figure within 5% of its value, none at or above the floor for an
+  unranked metro, card or description. The city descriptions use the same function, but
+  regenerating them changes the build's data files, so that waits on Nathan (PHASE6.md).
+- **The caution flags come back** (F08). Phase 2b showed the served `flags` as chips; a later
+  commit removed them without a record. The served policy strings (`gq_flag`,
+  `low_allocation_purity`) show again as one caption line per flag at the top of a row's or a
+  card's detail and under the matches line on the city page. They are the existing strings,
+  unchanged; what renders is all that moves.

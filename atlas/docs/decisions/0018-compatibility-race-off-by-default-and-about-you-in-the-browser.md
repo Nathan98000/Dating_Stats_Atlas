@@ -232,3 +232,17 @@ still never leave the browser — the median of every variant travels, as everyt
 Over the 518 ADR 0011 test searches every other part of every /v1/rank response is unchanged
 (`results/phase5/served_numbers_commit_i.json`). The goldens do not move, so the field ships
 inside m4.2.1, the release Phase 5's commit C opened.
+
+## Amended in Phase 6 (9 October 2026): an ⓘ beside "Optional"
+
+DRAFT for Nathan's approval (Phase 6, commit F; his decision 4). Phase 4b dropped every inline
+note beside the "about you" inputs because the Privacy page explains where they go. The round-3
+review (F10) found the page asking for race and education under nothing but an "Optional" pill,
+and the Privacy page never saying the details are not sent. This reverses Phase 4b's "no inline
+notes" for one box only: an information button beside "Optional" in Sharpen compatibility (rail
+and sheet), named `sharpen_info_label`, whose box holds `sharpen_info` ("…They stay on this
+device: the site sends the figures for every combination, and your browser shows yours.") and a
+link to Privacy (`sharpen_info_link`). It shows only on demand; the trust line and the "stays in
+this browser" line stay deleted. Nothing about the mechanism changes: the details never leave the
+browser, and the privacy network test passes unchanged. The Privacy page's "Your search" section
+now says so too.

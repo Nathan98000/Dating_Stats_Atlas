@@ -488,7 +488,10 @@ def metro_quality(con, metros) -> pd.DataFrame:
         FROM contrib GROUP BY cbsa
     """).df()
     out = metros[["cbsa", "cbsa_title", "purity_tract_pop"]].merge(q, on="cbsa")
-    out["ranked_set"] = (out["pop_total"] >= 250_000) & (out["n_alloc_adults"] >= 5_000)
+    # the population floor is the registry's since Phase 6 (the same 250,000)
+    from atlas.pipeline.registry.loader import load_registry
+    floor = load_registry().population_floor
+    out["ranked_set"] = (out["pop_total"] >= floor) & (out["n_alloc_adults"] >= 5_000)
     return out
 
 

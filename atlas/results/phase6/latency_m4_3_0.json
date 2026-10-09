@@ -1,0 +1,19 @@
+{
+  "n": 400,
+  "p50_ms": 46.28,
+  "p95_ms": 74.74,
+  "p99_ms": 84.62,
+  "max_ms": 92.12,
+  "target_p95_ms": 100,
+  "load_average_before": [
+    5.02,
+    3.93,
+    3.37
+  ],
+  "load_average_after": [
+    4.24,
+    3.82,
+    3.35
+  ],
+  "build": "atlas/data/builds/63c4e5fa51bf"
+}

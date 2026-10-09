@@ -32,6 +32,14 @@ normalization:
   match_value_cap: 250
   match_fence_iqr: 1.5
 
+# Phase 6 (m4.3.0, F09): the population floor the ranked set is cut at
+# (build/checks.py: a metro is ranked when it has at least this many
+# people and 5,000 allocated adult respondents). Named here so the floor
+# guard on spoken figures (model/spoken.py) and the copy that states the
+# floor read one number; the build's validation checks that it separates
+# the two sets (largest unranked metro 246,979, smallest ranked 256,911).
+population_floor: 250000
+
 # Six pillars since m2.1.0 (Phase 2d item 4): the old lifestyle pillar
 # split into weather and students so each gets its own importance control.
 # The old lifestyle 0.10 divides in the proportion its two features
@@ -324,7 +332,9 @@ strings:
     agencies send data to the FBI at all.
   crime_card_blank: >-
     Not enough police reporting here for a figure worth showing.
-  crime_card_info: "About this figure"
+  # Phase 6 (F26, approved): each card's ⓘ names its figure ({stat}:
+  # "violent crime", "property crime")
+  crime_card_info: "About the {stat} figure"
   # item 5.4: the shared blank state for a card or compare cell without a
   # figure. Crime keeps its own wording above — its blank is about police
   # reporting, and "not enough reliable data" would blame the wrong thing.
@@ -349,9 +359,10 @@ strings:
   # subsidised bottom of the rent distribution and adjusts to recent
   # movers, so the stabilised-tenancy drag the note described is not in
   # this measure.
+  # Phase 6 (F23, approved): a neutral note, not a warning
   compare_default_note: >-
-    These figures use the stated default search — {search}. Change
-    anything on the home page and they become yours.
+    This comparison uses the site's starting search: {search}. Set your
+    own on the home page and it follows you here.
   # item 7: the compare landing subheading
   compare_page_subtitle: >-
     View two cities side by side. Learn how each ranks in your search,
@@ -426,7 +437,9 @@ strings:
   col_city: "City · why it ranks here"
   col_matches: "Matches"
   col_score: "Score"
-  pool_short_unit: "single {sought} match"
+  # Phase 6 (F21, approved; closes PHASE5 §7's open item): phone rows read
+  # "783,728 matches" (was "single {sought} match")
+  pool_short_unit: "matches"
   # after the Phase 5 report (Nathan): the cards' pool reads just this
   card_matches: "matches"
   # the Matches column's caption under each row's pool, the score's
@@ -444,18 +457,64 @@ strings:
   balance_short_caption: "All singles in your age range, before other filters"
   moved_heading: "What moved the score (points)"
   moved_caption: "Compared with the middle of the cities ranked for this search"
+  # Phase 6 (F26, approved): the tiles' ⓘ buttons' own names (the headings
+  # named them before, so a screen reader heard each heading twice)
+  balance_info_label: "About balance"
+  moved_info_label: "About these points"
+  # Phase 6 (F26, approved): read before each row's and card's score; the
+  # visible number is hidden from screen readers
+  score_label_sr: "Overall score {n} out of 100"
   open_city: "Open {city} →"
   compare_action: "Compare"
   # below the list
   explainer_heading: "How the score works"
+  # Phase 6 (F34, approved): renders "Four things you weight: …" under its
+  # heading
   explainer_lifestyle: >-
-    Lifestyle: four things you weight — cost of living, social life,
+    Lifestyle: Four things you weight: cost of living, social life,
     student life and weather.
   # phones and tablets: the sticky bar, the sheet, the live region
   adjust_search: "Adjust your search"
   show_results: "Show results"
   close: "Close"
   results_updated: "Results updated for {change}"
+  # Phase 6 (approved): the change phrases for an "about you" change (F13;
+  # the sex phrase is the existing one), the visible line's second part
+  # after a change lands (F05; names only), the sheet's summary row (F19),
+  # and the live region's line when "I'm a" flips "Looking for" (F20)
+  results_change_race: "your race or ethnicity"
+  results_change_education: "your education"
+  results_new_top: "New top three: {a}, {b}, {c}"
+  sheet_search_summary: "{you}, {age} · {sought} {ages} — Change"
+  sought_flipped: "Looking for changed to {sought}"
+  # Phase 6 (F01, approved): on a same-sex search, wherever matches show
+  # (the results header, the city page's score card, Compare's Matches
+  # row), chosen in the browser from the stored own sex; and the balance
+  # caption on a same-sex search (balance_same_sex stays retired). The
+  # sought sex fills two slots: {sought_one} singular ("every single man"),
+  # {sought} plural ("looking for men")
+  same_sex_pool_note: >-
+    On a same-sex search, matches count every single {sought_one} in these
+    ages. The Census doesn't ask who people date, so only some of them are
+    looking for {sought}.
+  balance_caption_same_sex: >-
+    Balance compares all single men with all single women in the ages you
+    picked. On a same-sex search it describes the city, not your matches.
+  # Phase 6 (F10b, approved; reverses Phase 4b's "no inline notes", ADR
+  # 0018, for this one box): the ⓘ beside "Optional" in Sharpen
+  # compatibility — an explanation on demand, not the deleted line back
+  sharpen_info_label: "About these details"
+  sharpen_info: >-
+    Optional. These change the compatibility figure only. They stay on this
+    device: the site sends the figures for every combination, and your
+    browser shows yours.
+  sharpen_info_link: "How we handle your details"
+  # Phase 6 (F29, approved): the caption under a city band whose photograph
+  # shows a place elsewhere in the metro (the manifest's `place`)
+  photo_place_caption: "{place}, in the {city} metro area"
+  # Phase 6 (F31, approved): a results page's title (permalinks and home
+  # URLs with a search), from its results heading
+  title_results: "{heading} · Dating Stats Atlas"
   # the header's nav and the footer on every page
   nav_rankings: "Rankings"
   nav_compare: "Compare"
@@ -467,9 +526,21 @@ strings:
   footer_sources: "Data sources"
   # compare: which city does better on each measure
   compare_edge: "Edge"
+  # Phase 6 (F07, approved): Edge names the winner and the size of its
+  # lead — the absolute value of the plain difference of the two displayed
+  # values (ADR 0007); places for the spot row
   compare_edge_note: >-
-    Edge shows which city does better on each measure for your search; a
-    dash means we don't judge it.
+    Edge names the city that does better on each measure for your search,
+    and by how much. A dash means we don't judge that measure.
+  compare_edge_by: "by {diff}"
+  compare_edge_places: "by {n} places"
+  # Phase 6 (F24, approved): a city below the population floor, on Compare
+  # and on its own page (were literals in the code). The figure is the
+  # registry's population_floor; the loader checks that both agree with it.
+  compare_not_ranked: "Not ranked: under 250,000 people"
+  city_below_floor: >-
+    {city} has fewer than 250,000 people, so it isn't ranked; the site
+    ranks metro areas of 250,000 or more. Its profile is below.
   compare_top_two: "Your top two: {a} vs {b}"
   # page titles ({page} · Dating Stats Atlas)
   title_site: "Dating Stats Atlas"
@@ -615,8 +686,11 @@ features:
     direction: 1
     weight_in_pillar: 1.0
     computed: per_request
-    display_name: "People who match"
-    unit: "people match what you're looking for"
+    # Phase 6 (F21, approved): one name for the count everywhere —
+    # "matches" (were "People who match" and "people match what you're
+    # looking for")
+    display_name: "Matches"
+    unit: "matches"
     unit_short: ""
     display_decimals: 0
     mover_phrase: "the size of the pool"
@@ -986,7 +1060,9 @@ features:
     unit_short: "per 1k adults"
     display_decimals: 0
     mover_phrase: "the student crowd"
-    chip_label: "Students"
+    # Phase 6 (F21, approved): the chip says what the control and the bar
+    # say (was "Students")
+    chip_label: "Student life"
     band_direction: neutral
     band_labels: ["Far fewer than most cities", "Fewer than most cities",
                   "About average", "More than most cities",

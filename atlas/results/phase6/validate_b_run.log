@@ -1,0 +1,93 @@
+{
+  "hard_failures": [
+    "spoken_figures"
+  ],
+  "differential": {
+    "pass": true,
+    "shapes": 40,
+    "seed": 2026,
+    "tolerance": 0.001,
+    "worst_rel_err": 2.09e-07,
+    "worst_detail": null
+  },
+  "explanations": {
+    "pass": true,
+    "explanations_checked": 2065
+  },
+  "rank_stability": {
+    "pass": true,
+    "ratio": 0.999306,
+    "searches_touched": 0,
+    "basis": "all searches (nothing touched)"
+  },
+  "rank_stability_old_rule_min_share": 0.6875,
+  "weight_sensitivity": {
+    "pool+20%": 0.948,
+    "pool-20%": 0.948,
+    "match+20%": 0.9443,
+    "match-20%": 0.9492,
+    "reach+20%": 0.9589,
+    "reach-20%": 0.9516,
+    "cost+20%": 0.9673,
+    "cost-20%": 0.9589,
+    "weather+20%": 0.9831,
+    "weather-20%": 0.971,
+    "students+20%": 0.9843,
+    "students-20%": 0.9855
+  },
+  "intermarriage": {
+    "reference": "Census PUMS newlywed intermarriage rate (ADR 0016; results/phase4/intermarriage_pums_metro.csv), metros with at least 200 newlyweds in sample",
+    "predictions": "C1_cohorts_plus_shipped's leave-one-metro-out record on decay_h5 (Phase 3d A2, the finished fit): each metro left out, its out-group share predicted from the national kernel refitted without it and its own composition",
+    "metros": 124,
+    "national_ratio_ours_over_reference": 0.9255,
+    "median_abs_pts": {
+      "national_only": 3.75,
+      "raw_dial": 1.91,
+      "shrunk_dial": 1.92
+    },
+    "p90_abs_pts": {
+      "national_only": 10.15,
+      "raw_dial": 6.84,
+      "shrunk_dial": 6.74
+    },
+    "paired_shrunk_vs_national": {
+      "a_better_metros": 95,
+      "b_better_metros": 29,
+      "median_paired_diff_pts": -1.02,
+      "mean_paired_diff_pts": -1.851,
+      "sign_test_p": 0.0
+    },
+    "paired_shrunk_vs_raw": {
+      "a_better_metros": 69,
+      "b_better_metros": 55,
+      "median_paired_diff_pts": -0.018,
+      "mean_paired_diff_pts": 0.001,
+      "sign_test_p": 0.2429
+    },
+    "shrunk_beats_both": false,
+    "source": "results/phase4/intermarriage_check.json"
+  },
+  "kernel_face": true,
+  "external": {
+    "score_vs_alone_share": {
+      "n": 193,
+      "pearson": 0.082,
+      "spearman": 0.081
+    },
+    "score_vs_med_age_marry_state": {
+      "n": 193,
+      "pearson": 0.216,
+      "spearman": 0.211
+    },
+    "ratio_vs_alone_share": {
+      "n": 193,
+      "pearson": 0.292,
+      "spearman": 0.272
+    },
+    "ratio_vs_med_age_marry_state": {
+      "n": 193,
+      "pearson": 0.086,
+      "spearman": 0.109
+    }
+  }
+}

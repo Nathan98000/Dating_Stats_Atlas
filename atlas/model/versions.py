@@ -5,6 +5,27 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.3.0 — Phase 6 (the round-3 design review of 8 October 2026, Nathan's
+decisions of 9 October). Two served additions and one display rule; no
+score, rank, pool, balance, compatibility figure, band or suppression
+moves. (1) Each explain entry gains `lifestyle_movers` ([{key, sign}]):
+explain.pick_lifestyle_movers, the movers rule (the sides rule,
+TOP_STATS_MIN_POINTS, at most two pluses largest first, then the single
+biggest minus, the price levels one item) over the lifestyle items only —
+cost, social life, student life, weather — for the result chips (F12); the
+line and `movers` are unchanged. (2) Spoken population figures follow one
+rule, model/spoken.py: 2 significant figures below 950,000 ("N.N million"
+above, as before), and a metro outside the ranked set never reads at or
+above the registry's population_floor (250,000) — the who-lives-here card's
+display and unit line (F09). The city descriptions use the same function in
+the build's description step; regenerating them changes the data files
+(the descriptions live in metros.json and features.parquet), so this
+release does not regenerate them (PHASE6.md). (3) Registry and policy
+strings: the approved Phase 6 copy, the registry's population_floor, and
+excluded_count reworded. The build keeps its id (63c4e5fa51bf) with its
+manifest refreshed. Goldens regenerated: the version line, the explain
+entries and the who-lives-here strings.
+
 m4.2.1 — Phase 5 (the design audit of 8 October 2026, Nathan's decision
 4): the movers line changes shape. It names at most two pluses, largest
 first, and then the single biggest eligible minus (explain.pick_movers;
@@ -344,5 +365,5 @@ m1.1.0 — Phase 2a: five pillars; Gate 0 served intervals ("at least this
 wide"); §8.2 contract.
 """
 
-MODEL_VERSION = "m4.2.1"
+MODEL_VERSION = "m4.3.0"
 SCHEMA_VERSION = "cube-v1"

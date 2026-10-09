@@ -60,9 +60,10 @@ POLICY_STRINGS = {
     # StatesV3: the list heading's count sentence — shown ONLY when at
     # least one city is excluded, never with a zero (wording per Nathan's
     # Phase 2f review, item 4.6, verbatim)
-    "excluded_count": "{n} cities don’t have enough people matching this "
-                      "search to make a reliable estimate. Widen your "
-                      "search to see more cities.",
+    # Phase 6 (F34, approved): "metro areas", as the results header says
+    "excluded_count": "{n} metro areas don’t have enough people matching "
+                      "this search for a reliable estimate. Widen your "
+                      "search to see more of them.",
     "list_heading": "Cities for you",
     "list_heading_count": "{n} cities for you",
 

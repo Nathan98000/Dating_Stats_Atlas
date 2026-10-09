@@ -116,6 +116,8 @@ class Registry:
     # composition (8.5), both registry judgments rather than code
     sources: dict[str, dict] = field(default_factory=dict)
     measure_page: tuple[dict, ...] = ()
+    # Phase 6 (m4.3.0): the ranked set's population floor
+    population_floor: int = 250_000
 
     @property
     def pillar_weights(self) -> dict[str, float]:
@@ -130,6 +132,18 @@ class Registry:
 
 
 # Phase 5: the redesign's strings and the slots each template carries
+# Phase 6 (the round-3 review): the new registry strings and their slots
+PHASE6_STRINGS = {
+    "same_sex_pool_note": ("sought_one", "sought"), "balance_caption_same_sex": (),
+    "compare_edge_by": ("diff",), "compare_edge_places": ("n",),
+    "compare_not_ranked": (), "city_below_floor": ("city",),
+    "results_new_top": ("a", "b", "c"), "results_change_race": (),
+    "results_change_education": (), "sheet_search_summary": ("you", "age", "sought", "ages"),
+    "sought_flipped": ("sought",), "balance_info_label": (), "moved_info_label": (),
+    "crime_card_info": ("stat",), "score_label_sr": ("n",), "sharpen_info_label": (),
+    "sharpen_info": (), "sharpen_info_link": (), "photo_place_caption": ("place", "city"),
+    "title_results": ("heading",),
+}
 PHASE5_STRINGS = {
     "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),
     "quick_self_sex_short": (), "quick_self_age_short": (), "quick_seek_sex_short": (),
@@ -139,7 +153,7 @@ PHASE5_STRINGS = {
     "results_eyebrow": (), "results_heading_best": ("sought", "ages"),
     "results_heading_worst": ("sought", "ages"), "results_count": ("n",),
     "col_rank": (), "col_city": (), "col_matches": (), "col_score": (),
-    "pool_short_unit": ("sought",), "card_matches": (), "pool_row_unit": ("sought",), "score_out_of": (),
+    "pool_short_unit": (), "card_matches": (), "pool_row_unit": ("sought",), "score_out_of": (),
     "row_details": ("city",), "show_more": (), "show_all": ("n",), "find_in_results": (),
     "balance_label": (), "balance_more": ("word",), "balance_even": (), "balance_short_caption": (),
     "moved_heading": (), "moved_caption": (), "open_city": ("city",), "compare_action": (),
@@ -415,6 +429,17 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         assert strings.get(need_key), f"strings.{need_key} is required (Phase 4c)"
     assert "balance_same_sex" not in strings, (
         "strings.balance_same_sex: balance applies to every search since m4.1.0 (ADR 0004 amended)")
+    # Phase 6 (the round-3 review, approved copy): the new strings, each
+    # template with the slots its page fills from served values; the two
+    # literals that state the population floor must state the registry's
+    for need_key, slots in PHASE6_STRINGS.items():
+        assert strings.get(need_key), f"strings.{need_key} is required (Phase 6)"
+        for slot in slots:
+            assert "{" + slot + "}" in strings[need_key], f"strings.{need_key} carries {{{slot}}}"
+    floor_txt = f"{int(raw['population_floor']):,}"
+    for need_key in ("compare_not_ranked", "city_below_floor"):
+        assert floor_txt in strings[need_key], (
+            f"strings.{need_key} must state the population floor, {floor_txt}")
     # before launch: About us links the terms of use (docs/terms.md)
     assert strings.get("about_terms_link"), "strings.about_terms_link is required (the terms of use)"
     # Phase 4d (ADR 0019): political lean's words, all registry-owned; the
@@ -499,7 +524,8 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
         winsor_percentiles=tuple(raw["normalization"]["winsor_percentiles"]),
         normalization=_normalization_block(raw["normalization"]),
         missing_data_policy=raw["missing_data_policy"].strip(),
-        sources=sources, measure_page=measure_page)
+        sources=sources, measure_page=measure_page,
+        population_floor=int(raw["population_floor"]))
 
 
 def assert_scoring_features_registered(referenced: list[str],

@@ -1,0 +1,2 @@
+cube: 27,566,784 cells, 2,554,469 nonzero; max count cell 1,520.0 (uint16 would hold the magnitude but not the fraction)
+build 63c4e5fa51bf: data identical, manifest refreshed (display metadata)

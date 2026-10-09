@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { InfoTip } from "./info-tip";
 import type { CrimeBlock, Meta } from "@/lib/types";
+import { fill } from "@/lib/results";
 
 /** Crime as two ordinary-looking cards (Phase 2e item 2): rate,
  * five-band position (neutral tones — colouring would make the exact
@@ -22,7 +23,7 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
             <div key={fid} className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={fid}>
               <span className="flex items-center justify-between text-caption font-semibold text-ink-2">
                 {le.display_name}
-                <CrimeInfo fid={fid} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
+                <CrimeInfo fid={fid} stat={le.display_name} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
               </span>
               <span className="text-body-sm text-ink-3" data-testid="crime-card-blank">
                 {crime.card_blank}
@@ -43,7 +44,7 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
         <div key={s.id} className="stat-card rounded-lg border border-rule bg-surface p-[18px]" data-card={s.id}>
           <span className="flex items-center justify-between text-caption font-semibold text-ink-2">
             {s.label}
-            <CrimeInfo fid={s.id} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
+            <CrimeInfo fid={s.id} stat={s.label} crime={crime} seeMore={meta.policy_strings.crime_see_more} />
           </span>
           <span className="text-data-l max-sm:text-h2 max-sm:leading-none">
             {s.display}
@@ -79,13 +80,17 @@ export function CrimeCards({ crime, meta }: { crime: CrimeBlock; meta: Meta }) {
   );
 }
 
-function CrimeInfo({ fid, crime, seeMore }: {
-  fid: string; crime: CrimeBlock; seeMore: string;
+/** Phase 6 (F26): each card's ⓘ names its own figure — the registry's
+ * crime_card_info, "About the {stat} figure", with the card's label
+ * ("About the violent crime figure"), so a city page no longer has two
+ * buttons of the same name. */
+function CrimeInfo({ fid, stat, crime, seeMore }: {
+  fid: string; stat: string; crime: CrimeBlock; seeMore: string;
 }) {
   return (
     <InfoTip
       id={`crime-info-${fid}`}
-      label={crime.card_info_label}
+      label={fill(crime.card_info_label, { stat: stat.toLowerCase() })}
       testid={`crime-info-${fid}`}
     >
       {/* item 5.3: the caution replaces the box; the blank state keeps

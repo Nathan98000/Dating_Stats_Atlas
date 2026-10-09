@@ -1,0 +1,1302 @@
+[
+ {
+  "metro": "Knoxville, TN",
+  "now": "A city of about 950,000 people about three hours east of Nashville.",
+  "regenerated": "A city of about 930,000 people about three hours east of Nashville."
+ },
+ {
+  "metro": "Albuquerque, NM",
+  "now": "A city of about 900,000 people in New Mexico.",
+  "regenerated": "A city of about 920,000 people in New Mexico."
+ },
+ {
+  "metro": "Bakersfield, CA",
+  "now": "A city of about 900,000 people two hours north of Los Angeles.",
+  "regenerated": "A city of about 910,000 people two hours north of Los Angeles."
+ },
+ {
+  "metro": "Albany, NY",
+  "now": "A city of about 900,000 people about three hours northwest of Providence.",
+  "regenerated": "A city of about 910,000 people about three hours northwest of Providence."
+ },
+ {
+  "metro": "McAllen, TX",
+  "now": "A city of about 900,000 people in Texas.",
+  "regenerated": "A city of about 890,000 people in Texas."
+ },
+ {
+  "metro": "North Port, FL",
+  "now": "A city of about 900,000 people an hour south of Tampa.",
+  "regenerated": "A city of about 890,000 people an hour south of Tampa."
+ },
+ {
+  "metro": "Baton Rouge, LA",
+  "now": "A city of about 850,000 people in Louisiana.",
+  "regenerated": "A city of about 870,000 people in Louisiana."
+ },
+ {
+  "metro": "El Paso, TX",
+  "now": "A city of about 900,000 people in Texas.",
+  "regenerated": "A city of about 880,000 people in Texas."
+ },
+ {
+  "metro": "Allentown, PA",
+  "now": "A city of about 850,000 people an hour northwest of Philadelphia.",
+  "regenerated": "A city of about 870,000 people an hour northwest of Philadelphia."
+ },
+ {
+  "metro": "Worcester, MA",
+  "now": "A city of about 850,000 people an hour northwest of Providence.",
+  "regenerated": "A city of about 870,000 people an hour northwest of Providence."
+ },
+ {
+  "metro": "Oxnard, CA",
+  "now": "A city of about 850,000 people an hour west of Los Angeles.",
+  "regenerated": "A city of about 840,000 people an hour west of Los Angeles."
+ },
+ {
+  "metro": "Charleston, SC",
+  "now": "A city of about 850,000 people in South Carolina.",
+  "regenerated": "A city of about 830,000 people in South Carolina."
+ },
+ {
+  "metro": "Cape Coral, FL",
+  "now": "A city of about 800,000 people two hours south of Tampa.",
+  "regenerated": "A city of about 820,000 people two hours south of Tampa."
+ },
+ {
+  "metro": "Dayton, OH",
+  "now": "A city of about 800,000 people an hour north of Cincinnati.",
+  "regenerated": "A city of about 820,000 people an hour north of Cincinnati."
+ },
+ {
+  "metro": "Boise City, ID",
+  "now": "A city of about 800,000 people in Idaho.",
+  "regenerated": "A city of about 810,000 people in Idaho."
+ },
+ {
+  "metro": "Lakeland, FL",
+  "now": "A city of about 800,000 people half an hour east of Tampa.",
+  "regenerated": "A city of about 790,000 people half an hour east of Tampa."
+ },
+ {
+  "metro": "Greensboro, NC",
+  "now": "A city of about 800,000 people an hour and a half west of Raleigh.",
+  "regenerated": "A city of about 790,000 people an hour and a half west of Raleigh."
+ },
+ {
+  "metro": "Colorado Springs, CO",
+  "now": "A city of about 750,000 people an hour south of Denver.",
+  "regenerated": "A city of about 770,000 people an hour south of Denver."
+ },
+ {
+  "metro": "Little Rock, AR",
+  "now": "A city of about 750,000 people about three hours west of Memphis.",
+  "regenerated": "A city of about 760,000 people about three hours west of Memphis."
+ },
+ {
+  "metro": "Des Moines, IA",
+  "now": "A city of about 750,000 people in Iowa.",
+  "regenerated": "A city of about 730,000 people in Iowa."
+ },
+ {
+  "metro": "Provo, UT",
+  "now": "A college town of about 700,000 people an hour south of Salt Lake City.",
+  "regenerated": "A college town of about 720,000 people an hour south of Salt Lake City."
+ },
+ {
+  "metro": "Deltona, FL",
+  "now": "A city of about 700,000 people half an hour north of Orlando.",
+  "regenerated": "A city of about 710,000 people half an hour north of Orlando."
+ },
+ {
+  "metro": "Madison, WI",
+  "now": "A college town of about 700,000 people an hour and a half west of Milwaukee.",
+  "regenerated": "A college town of about 690,000 people an hour and a half west of Milwaukee."
+ },
+ {
+  "metro": "Winston-Salem, NC",
+  "now": "A city of about 700,000 people an hour and a half northeast of Charlotte.",
+  "regenerated": "A city of about 690,000 people an hour and a half northeast of Charlotte."
+ },
+ {
+  "metro": "Palm Bay, FL",
+  "now": "A city of about 650,000 people an hour southeast of Orlando.",
+  "regenerated": "A city of about 630,000 people an hour southeast of Orlando."
+ },
+ {
+  "metro": "Augusta, GA",
+  "now": "A city of about 600,000 people two hours south of Greenville.",
+  "regenerated": "A city of about 620,000 people two hours south of Greenville."
+ },
+ {
+  "metro": "Jackson, MS",
+  "now": "A city of about 600,000 people in Mississippi.",
+  "regenerated": "A city of about 610,000 people in Mississippi."
+ },
+ {
+  "metro": "Fayetteville, AR",
+  "now": "A city of about 600,000 people two hours east of Tulsa.",
+  "regenerated": "A city of about 580,000 people two hours east of Tulsa."
+ },
+ {
+  "metro": "Chattanooga, TN",
+  "now": "A city of about 600,000 people two hours southwest of Knoxville.",
+  "regenerated": "A city of about 580,000 people two hours southwest of Knoxville."
+ },
+ {
+  "metro": "New Haven, CT",
+  "now": "A college town of about 550,000 people half an hour northeast of Bridgeport.",
+  "regenerated": "A college town of about 570,000 people half an hour northeast of Bridgeport."
+ },
+ {
+  "metro": "Scranton, PA",
+  "now": "A city of about 550,000 people an hour north of Allentown.",
+  "regenerated": "A city of about 570,000 people an hour north of Allentown."
+ },
+ {
+  "metro": "Reno, NV",
+  "now": "A city of about 550,000 people two hours northeast of Sacramento.",
+  "regenerated": "A city of about 560,000 people two hours northeast of Sacramento."
+ },
+ {
+  "metro": "Portland, ME",
+  "now": "A city of about 550,000 people two hours northeast of Boston.",
+  "regenerated": "A city of about 560,000 people two hours northeast of Boston."
+ },
+ {
+  "metro": "Lancaster, PA",
+  "now": "A city of about 550,000 people an hour north of Baltimore.",
+  "regenerated": "A city of about 560,000 people an hour north of Baltimore."
+ },
+ {
+  "metro": "Pensacola, FL",
+  "now": "A city of about 550,000 people in Florida.",
+  "regenerated": "A city of about 530,000 people in Florida."
+ },
+ {
+  "metro": "Port St. Lucie, FL",
+  "now": "A city of about 500,000 people two hours southeast of Orlando.",
+  "regenerated": "A city of about 520,000 people two hours southeast of Orlando."
+ },
+ {
+  "metro": "Lexington, KY",
+  "now": "A college town of about 500,000 people an hour and a half east of Louisville.",
+  "regenerated": "A college town of about 520,000 people an hour and a half east of Louisville."
+ },
+ {
+  "metro": "Huntsville, AL",
+  "now": "A city of about 500,000 people an hour and a half north of Birmingham.",
+  "regenerated": "A city of about 520,000 people an hour and a half north of Birmingham."
+ },
+ {
+  "metro": "Springfield, MO",
+  "now": "A college town of about 500,000 people about three hours southeast of Kansas City.",
+  "regenerated": "A college town of about 490,000 people about three hours southeast of Kansas City."
+ },
+ {
+  "metro": "Santa Rosa, CA",
+  "now": "A city of about 500,000 people an hour north of San Francisco.",
+  "regenerated": "A city of about 490,000 people an hour north of San Francisco."
+ },
+ {
+  "metro": "Visalia, CA",
+  "now": "A city of about 500,000 people an hour southeast of Fresno.",
+  "regenerated": "A city of about 480,000 people an hour southeast of Fresno."
+ },
+ {
+  "metro": "Lansing, MI",
+  "now": "A college town of about 450,000 people an hour east of Grand Rapids.",
+  "regenerated": "A college town of about 470,000 people an hour east of Grand Rapids."
+ },
+ {
+  "metro": "York, PA",
+  "now": "A city of about 450,000 people an hour north of Baltimore.",
+  "regenerated": "A city of about 460,000 people an hour north of Baltimore."
+ },
+ {
+  "metro": "Springfield, MA",
+  "now": "A city of about 450,000 people half an hour north of Hartford.",
+  "regenerated": "A city of about 460,000 people half an hour north of Hartford."
+ },
+ {
+  "metro": "Fort Wayne, IN",
+  "now": "A city of about 450,000 people two hours northwest of Dayton.",
+  "regenerated": "A city of about 460,000 people two hours northwest of Dayton."
+ },
+ {
+  "metro": "Waterbury, CT",
+  "now": "A city of about 450,000 people half an hour north of Bridgeport.",
+  "regenerated": "A city of about 460,000 people half an hour north of Bridgeport."
+ },
+ {
+  "metro": "Corpus Christi, TX",
+  "now": "A city of about 450,000 people two hours northeast of McAllen.",
+  "regenerated": "A city of about 440,000 people two hours northeast of McAllen."
+ },
+ {
+  "metro": "Santa Maria, CA",
+  "now": "A college town of about 450,000 people an hour and a half west of Bakersfield.",
+  "regenerated": "A college town of about 440,000 people an hour and a half west of Bakersfield."
+ },
+ {
+  "metro": "Salem, OR",
+  "now": "A city of about 450,000 people an hour southwest of Portland.",
+  "regenerated": "A city of about 440,000 people an hour southwest of Portland."
+ },
+ {
+  "metro": "Salinas, CA",
+  "now": "A city of about 450,000 people an hour south of San Jose.",
+  "regenerated": "A city of about 440,000 people an hour south of San Jose."
+ },
+ {
+  "metro": "Reading, PA",
+  "now": "A city of about 450,000 people half an hour southwest of Allentown.",
+  "regenerated": "A city of about 430,000 people half an hour southwest of Allentown."
+ },
+ {
+  "metro": "Youngstown, OH",
+  "now": "A city of about 450,000 people an hour east of Akron.",
+  "regenerated": "A city of about 430,000 people an hour east of Akron."
+ },
+ {
+  "metro": "Manchester, NH",
+  "now": "A city of about 450,000 people an hour northwest of Boston.",
+  "regenerated": "A city of about 430,000 people an hour northwest of Boston."
+ },
+ {
+  "metro": "Brownsville, TX",
+  "now": "A city of about 450,000 people an hour east of McAllen.",
+  "regenerated": "A city of about 430,000 people an hour east of McAllen."
+ },
+ {
+  "metro": "Gulfport, MS",
+  "now": "A city of about 400,000 people an hour northeast of New Orleans.",
+  "regenerated": "A city of about 420,000 people an hour northeast of New Orleans."
+ },
+ {
+  "metro": "Savannah, GA",
+  "now": "A city of about 400,000 people an hour and a half southwest of Charleston.",
+  "regenerated": "A city of about 410,000 people an hour and a half southwest of Charleston."
+ },
+ {
+  "metro": "Asheville, NC",
+  "now": "A city of about 400,000 people an hour north of Greenville.",
+  "regenerated": "A city of about 410,000 people an hour north of Greenville."
+ },
+ {
+  "metro": "Lafayette, LA",
+  "now": "A city of about 400,000 people an hour west of Baton Rouge.",
+  "regenerated": "A city of about 410,000 people an hour west of Baton Rouge."
+ },
+ {
+  "metro": "Mobile, AL",
+  "now": "A city of about 400,000 people two hours east of New Orleans.",
+  "regenerated": "A city of about 410,000 people two hours east of New Orleans."
+ },
+ {
+  "metro": "Fayetteville, NC",
+  "now": "A city of about 400,000 people an hour south of Raleigh.",
+  "regenerated": "A city of about 390,000 people an hour south of Raleigh."
+ },
+ {
+  "metro": "Tallahassee, FL",
+  "now": "A college town of about 400,000 people in Florida.",
+  "regenerated": "A college town of about 390,000 people in Florida."
+ },
+ {
+  "metro": "Shreveport, LA",
+  "now": "A city of about 400,000 people in Louisiana.",
+  "regenerated": "A city of about 390,000 people in Louisiana."
+ },
+ {
+  "metro": "Montgomery, AL",
+  "now": "A city of about 400,000 people an hour and a half south of Birmingham.",
+  "regenerated": "A city of about 390,000 people an hour and a half south of Birmingham."
+ },
+ {
+  "metro": "Trenton, NJ",
+  "now": "A college town of about 400,000 people half an hour northeast of Philadelphia.",
+  "regenerated": "A college town of about 390,000 people half an hour northeast of Philadelphia."
+ },
+ {
+  "metro": "Eugene, OR",
+  "now": "A college town of about 400,000 people two hours south of Portland.",
+  "regenerated": "A college town of about 380,000 people two hours south of Portland."
+ },
+ {
+  "metro": "Myrtle Beach, SC",
+  "now": "A city of about 400,000 people an hour and a half northeast of Charleston.",
+  "regenerated": "A city of about 380,000 people an hour and a half northeast of Charleston."
+ },
+ {
+  "metro": "Davenport, IA",
+  "now": "A city of about 400,000 people two hours southwest of Madison.",
+  "regenerated": "A city of about 380,000 people two hours southwest of Madison."
+ },
+ {
+  "metro": "Spartanburg, SC",
+  "now": "A city of about 350,000 people half an hour east of Greenville.",
+  "regenerated": "A city of about 370,000 people half an hour east of Greenville."
+ },
+ {
+  "metro": "Atlantic City, NJ",
+  "now": "A city of about 350,000 people an hour southeast of Philadelphia.",
+  "regenerated": "A city of about 370,000 people an hour southeast of Philadelphia."
+ },
+ {
+  "metro": "Huntington, WV",
+  "now": "A city of about 350,000 people two hours south of Columbus.",
+  "regenerated": "A city of about 370,000 people two hours south of Columbus."
+ },
+ {
+  "metro": "Ann Arbor, MI",
+  "now": "A college town of about 350,000 people half an hour west of Detroit.",
+  "regenerated": "A college town of about 370,000 people half an hour west of Detroit."
+ },
+ {
+  "metro": "Hickory, NC",
+  "now": "A city of about 350,000 people an hour northwest of Charlotte.",
+  "regenerated": "A city of about 370,000 people an hour northwest of Charlotte."
+ },
+ {
+  "metro": "Fort Collins, CO",
+  "now": "A college town of about 350,000 people an hour north of Denver.",
+  "regenerated": "A college town of about 370,000 people an hour north of Denver."
+ },
+ {
+  "metro": "Peoria, IL",
+  "now": "A city of about 350,000 people about three hours southwest of Chicago.",
+  "regenerated": "A city of about 360,000 people about three hours southwest of Chicago."
+ },
+ {
+  "metro": "Lubbock, TX",
+  "now": "A college town of about 350,000 people in Texas.",
+  "regenerated": "A college town of about 360,000 people in Texas."
+ },
+ {
+  "metro": "Rockford, IL",
+  "now": "A city of about 350,000 people an hour south of Madison.",
+  "regenerated": "A city of about 340,000 people an hour south of Madison."
+ },
+ {
+  "metro": "Clarksville, TN",
+  "now": "A city of about 350,000 people an hour northwest of Nashville.",
+  "regenerated": "A city of about 330,000 people an hour northwest of Nashville."
+ },
+ {
+  "metro": "Green Bay, WI",
+  "now": "A city of about 350,000 people two hours north of Milwaukee.",
+  "regenerated": "A city of about 330,000 people two hours north of Milwaukee."
+ },
+ {
+  "metro": "Boulder, CO",
+  "now": "A college town of about 350,000 people half an hour northwest of Denver.",
+  "regenerated": "A college town of about 330,000 people half an hour northwest of Denver."
+ },
+ {
+  "metro": "Columbus, GA",
+  "now": "A city of about 350,000 people an hour and a half south of Atlanta.",
+  "regenerated": "A city of about 330,000 people an hour and a half south of Atlanta."
+ },
+ {
+  "metro": "South Bend, IN",
+  "now": "A college town of about 300,000 people an hour and a half east of Chicago.",
+  "regenerated": "A college town of about 320,000 people an hour and a half east of Chicago."
+ },
+ {
+  "metro": "Roanoke, VA",
+  "now": "A city of about 300,000 people an hour and a half north of Greensboro.",
+  "regenerated": "A city of about 320,000 people an hour and a half north of Greensboro."
+ },
+ {
+  "metro": "Kennewick, WA",
+  "now": "A city of about 300,000 people about three hours southwest of Spokane.",
+  "regenerated": "A city of about 310,000 people about three hours southwest of Spokane."
+ },
+ {
+  "metro": "Kingsport, TN",
+  "now": "A city of about 300,000 people an hour and a half northeast of Knoxville.",
+  "regenerated": "A city of about 310,000 people an hour and a half northeast of Knoxville."
+ },
+ {
+  "metro": "Longview, TX",
+  "now": "A city of about 300,000 people two hours east of Dallas.",
+  "regenerated": "A city of about 290,000 people two hours east of Dallas."
+ },
+ {
+  "metro": "Merced, CA",
+  "now": "A city of about 300,000 people an hour southeast of Modesto.",
+  "regenerated": "A city of about 290,000 people an hour southeast of Modesto."
+ },
+ {
+  "metro": "Utica, NY",
+  "now": "A city of about 300,000 people an hour east of Syracuse.",
+  "regenerated": "A city of about 290,000 people an hour east of Syracuse."
+ },
+ {
+  "metro": "San Luis Obispo, CA",
+  "now": "A college town of about 300,000 people half an hour northwest of Santa Maria.",
+  "regenerated": "A college town of about 280,000 people half an hour northwest of Santa Maria."
+ },
+ {
+  "metro": "Duluth, MN",
+  "now": "A college town of about 300,000 people about three hours northeast of Minneapolis.",
+  "regenerated": "A college town of about 280,000 people about three hours northeast of Minneapolis."
+ },
+ {
+  "metro": "Norwich, CT",
+  "now": "A city of about 300,000 people an hour southeast of Hartford.",
+  "regenerated": "A city of about 280,000 people an hour southeast of Hartford."
+ },
+ {
+  "metro": "Tuscaloosa, AL",
+  "now": "A college town of about 300,000 people an hour southwest of Birmingham.",
+  "regenerated": "A college town of about 280,000 people an hour southwest of Birmingham."
+ },
+ {
+  "metro": "College Station, TX",
+  "now": "A college town of about 300,000 people an hour and a half northwest of Houston.",
+  "regenerated": "A college town of about 280,000 people an hour and a half northwest of Houston."
+ },
+ {
+  "metro": "Bremerton, WA",
+  "now": "A city of about 300,000 people half an hour west of Seattle.",
+  "regenerated": "A city of about 280,000 people half an hour west of Seattle."
+ },
+ {
+  "metro": "Cedar Rapids, IA",
+  "now": "A city of about 300,000 people two hours east of Des Moines.",
+  "regenerated": "A city of about 280,000 people two hours east of Des Moines."
+ },
+ {
+  "metro": "Slidell, LA",
+  "now": "A city of about 250,000 people half an hour northeast of New Orleans.",
+  "regenerated": "A city of about 270,000 people half an hour northeast of New Orleans."
+ },
+ {
+  "metro": "Amarillo, TX",
+  "now": "A city of about 250,000 people in Texas.",
+  "regenerated": "A city of about 270,000 people in Texas."
+ },
+ {
+  "metro": "Evansville, IN",
+  "now": "A city of about 250,000 people two hours west of Louisville.",
+  "regenerated": "A city of about 270,000 people two hours west of Louisville."
+ },
+ {
+  "metro": "Laredo, TX",
+  "now": "A city of about 250,000 people two hours northwest of McAllen.",
+  "regenerated": "A city of about 270,000 people two hours northwest of McAllen."
+ },
+ {
+  "metro": "Erie, PA",
+  "now": "A city of about 250,000 people an hour and a half northeast of Youngstown.",
+  "regenerated": "A city of about 270,000 people an hour and a half northeast of Youngstown."
+ },
+ {
+  "metro": "Santa Cruz, CA",
+  "now": "A college town of about 250,000 people half an hour southwest of San Jose.",
+  "regenerated": "A college town of about 270,000 people half an hour southwest of San Jose."
+ },
+ {
+  "metro": "Lynchburg, VA",
+  "now": "A college town of about 250,000 people two hours west of Richmond.",
+  "regenerated": "A college town of about 260,000 people two hours west of Richmond."
+ },
+ {
+  "metro": "Kalamazoo, MI",
+  "now": "A college town of about 250,000 people an hour south of Grand Rapids.",
+  "regenerated": "A college town of about 260,000 people an hour south of Grand Rapids."
+ },
+ {
+  "metro": "Fargo, ND",
+  "now": "A city of about 250,000 people in North Dakota.",
+  "regenerated": "A city of about 260,000 people in North Dakota."
+ },
+ {
+  "metro": "Bend, OR",
+  "now": "A city of about 250,000 people two hours southeast of Salem.",
+  "regenerated": "A city of about 260,000 people two hours southeast of Salem."
+ },
+ {
+  "metro": "Yakima, WA",
+  "now": "A city of about 250,000 people two hours southeast of Seattle.",
+  "regenerated": "A city of about 260,000 people two hours southeast of Seattle."
+ },
+ {
+  "metro": "Daphne, AL",
+  "now": "A city of about 250,000 people half an hour east of Mobile.",
+  "regenerated": "A city of about 240,000 people half an hour east of Mobile."
+ },
+ {
+  "metro": "Appleton, WI",
+  "now": "A city of about 250,000 people an hour and a half north of Milwaukee.",
+  "regenerated": "A city of about 240,000 people an hour and a half north of Milwaukee."
+ },
+ {
+  "metro": "Prescott Valley, AZ",
+  "now": "A city of about 250,000 people an hour and a half north of Phoenix.",
+  "regenerated": "A city of about 240,000 people an hour and a half north of Phoenix."
+ },
+ {
+  "metro": "Binghamton, NY",
+  "now": "A college town of about 250,000 people an hour north of Scranton.",
+  "regenerated": "A college town of about 240,000 people an hour north of Scranton."
+ },
+ {
+  "metro": "Lake Charles, LA",
+  "now": "A city of about 250,000 people an hour and a half west of Lafayette.",
+  "regenerated": "A city of about 240,000 people an hour and a half west of Lafayette."
+ },
+ {
+  "metro": "Tyler, TX",
+  "now": "A college town of about 250,000 people an hour and a half east of Dallas.",
+  "regenerated": "A college town of about 240,000 people an hour and a half east of Dallas."
+ },
+ {
+  "metro": "Champaign, IL",
+  "now": "A college town of about 250,000 people two hours west of Indianapolis.",
+  "regenerated": "A college town of about 240,000 people two hours west of Indianapolis."
+ },
+ {
+  "metro": "Macon, GA",
+  "now": "A city of about 250,000 people an hour and a half southeast of Atlanta.",
+  "regenerated": "A city of about 230,000 people an hour and a half southeast of Atlanta."
+ },
+ {
+  "metro": "Topeka, KS",
+  "now": "A city of about 250,000 people an hour west of Kansas City.",
+  "regenerated": "A city of about 230,000 people an hour west of Kansas City."
+ },
+ {
+  "metro": "Barnstable Town, MA",
+  "now": "A city of about 250,000 people an hour east of Providence.",
+  "regenerated": "A city of about 230,000 people an hour east of Providence."
+ },
+ {
+  "metro": "Bellingham, WA",
+  "now": "A college town of about 250,000 people an hour and a half north of Seattle.",
+  "regenerated": "A college town of about 230,000 people an hour and a half north of Seattle."
+ },
+ {
+  "metro": "Fort Smith, AR",
+  "now": "A city of about 250,000 people an hour south of Fayetteville.",
+  "regenerated": "A city of about 230,000 people an hour south of Fayetteville."
+ },
+ {
+  "metro": "Rochester, MN",
+  "now": "A city of about 250,000 people an hour and a half southeast of Minneapolis.",
+  "regenerated": "A city of about 230,000 people an hour and a half southeast of Minneapolis."
+ },
+ {
+  "metro": "Burlington, VT",
+  "now": "A college town of about 250,000 people about three hours north of Albany.",
+  "regenerated": "A college town of about 230,000 people about three hours north of Albany."
+ },
+ {
+  "metro": "Hilton Head Island, SC",
+  "now": "A city of about 250,000 people an hour northeast of Savannah.",
+  "regenerated": "A city of about 230,000 people an hour northeast of Savannah."
+ },
+ {
+  "metro": "Lafayette, IN",
+  "now": "A college town of about 250,000 people an hour northwest of Indianapolis.",
+  "regenerated": "A college town of about 230,000 people an hour northwest of Indianapolis."
+ },
+ {
+  "metro": "Charlottesville, VA",
+  "now": "A college town of about 200,000 people an hour and a half northwest of Richmond.",
+  "regenerated": "A college town of about 220,000 people an hour and a half northwest of Richmond."
+ },
+ {
+  "metro": "Las Cruces, NM",
+  "now": "A college town of about 200,000 people an hour northwest of El Paso.",
+  "regenerated": "A college town of about 220,000 people an hour northwest of El Paso."
+ },
+ {
+  "metro": "Monroe, LA",
+  "now": "A city of about 200,000 people two hours west of Jackson.",
+  "regenerated": "A city of about 220,000 people two hours west of Jackson."
+ },
+ {
+  "metro": "Medford, OR",
+  "now": "A city of about 200,000 people in Oregon.",
+  "regenerated": "A city of about 220,000 people in Oregon."
+ },
+ {
+  "metro": "Lake Havasu City, AZ",
+  "now": "A city of about 200,000 people two hours south of Las Vegas.",
+  "regenerated": "A city of about 220,000 people two hours south of Las Vegas."
+ },
+ {
+  "metro": "Athens, GA",
+  "now": "A college town of about 200,000 people an hour east of Atlanta.",
+  "regenerated": "A college town of about 220,000 people an hour east of Atlanta."
+ },
+ {
+  "metro": "Columbia, MO",
+  "now": "A college town of about 200,000 people two hours west of St. Louis.",
+  "regenerated": "A college town of about 210,000 people two hours west of St. Louis."
+ },
+ {
+  "metro": "Gainesville, GA",
+  "now": "A city of about 200,000 people an hour northeast of Atlanta.",
+  "regenerated": "A city of about 210,000 people an hour northeast of Atlanta."
+ },
+ {
+  "metro": "Panama City, FL",
+  "now": "A city of about 200,000 people two hours east of Pensacola.",
+  "regenerated": "A city of about 210,000 people two hours east of Pensacola."
+ },
+ {
+  "metro": "Yuma, AZ",
+  "now": "A city of about 200,000 people about three hours east of San Diego.",
+  "regenerated": "A city of about 210,000 people about three hours east of San Diego."
+ },
+ {
+  "metro": "Johnson City, TN",
+  "now": "A city of about 200,000 people an hour north of Asheville.",
+  "regenerated": "A city of about 210,000 people an hour north of Asheville."
+ },
+ {
+  "metro": "Lexington Park, MD",
+  "now": "A city of about 200,000 people an hour southeast of Washington.",
+  "regenerated": "A city of about 210,000 people an hour southeast of Washington."
+ },
+ {
+  "metro": "Chico, CA",
+  "now": "A college town of about 200,000 people an hour and a half north of Sacramento.",
+  "regenerated": "A college town of about 210,000 people an hour and a half north of Sacramento."
+ },
+ {
+  "metro": "Jacksonville, NC",
+  "now": "A city of about 200,000 people an hour northeast of Wilmington.",
+  "regenerated": "A city of about 210,000 people an hour northeast of Wilmington."
+ },
+ {
+  "metro": "Elkhart, IN",
+  "now": "A city of about 200,000 people an hour northwest of Fort Wayne.",
+  "regenerated": "A city of about 210,000 people an hour northwest of Fort Wayne."
+ },
+ {
+  "metro": "Springfield, IL",
+  "now": "A city of about 200,000 people an hour and a half north of St. Louis.",
+  "regenerated": "A city of about 210,000 people an hour and a half north of St. Louis."
+ },
+ {
+  "metro": "Charleston, WV",
+  "now": "A city of about 200,000 people about three hours southeast of Columbus.",
+  "regenerated": "A city of about 210,000 people about three hours southeast of Columbus."
+ },
+ {
+  "metro": "Billings, MT",
+  "now": "A city of about 200,000 people in Montana.",
+  "regenerated": "A city of about 190,000 people in Montana."
+ },
+ {
+  "metro": "Saginaw, MI",
+  "now": "A city of about 200,000 people half an hour northwest of Flint.",
+  "regenerated": "A city of about 190,000 people half an hour northwest of Flint."
+ },
+ {
+  "metro": "Dover, DE",
+  "now": "A college town of about 200,000 people an hour east of Baltimore.",
+  "regenerated": "A college town of about 190,000 people an hour east of Baltimore."
+ },
+ {
+  "metro": "Bowling Green, KY",
+  "now": "A college town of about 200,000 people an hour north of Nashville.",
+  "regenerated": "A college town of about 190,000 people an hour north of Nashville."
+ },
+ {
+  "metro": "Yuba City, CA",
+  "now": "A city of about 200,000 people an hour north of Sacramento.",
+  "regenerated": "A city of about 180,000 people an hour north of Sacramento."
+ },
+ {
+  "metro": "Kingston, NY",
+  "now": "A city of about 200,000 people an hour north of Kiryas Joel.",
+  "regenerated": "A city of about 180,000 people an hour north of Kiryas Joel."
+ },
+ {
+  "metro": "Coeur d'Alene, ID",
+  "now": "A city of about 200,000 people half an hour east of Spokane.",
+  "regenerated": "A city of about 180,000 people half an hour east of Spokane."
+ },
+ {
+  "metro": "Jackson, TN",
+  "now": "A city of about 200,000 people an hour and a half northeast of Memphis.",
+  "regenerated": "A city of about 180,000 people an hour and a half northeast of Memphis."
+ },
+ {
+  "metro": "Blacksburg, VA",
+  "now": "A college town of about 200,000 people an hour and a half north of Winston-Salem.",
+  "regenerated": "A college town of about 180,000 people an hour and a half north of Winston-Salem."
+ },
+ {
+  "metro": "Redding, CA",
+  "now": "A city of about 200,000 people about three hours north of Sacramento.",
+  "regenerated": "A city of about 180,000 people about three hours north of Sacramento."
+ },
+ {
+  "metro": "Abilene, TX",
+  "now": "A city of about 200,000 people about three hours northwest of Killeen.",
+  "regenerated": "A city of about 180,000 people about three hours northwest of Killeen."
+ },
+ {
+  "metro": "El Centro, CA",
+  "now": "A city of about 200,000 people an hour and a half east of San Diego.",
+  "regenerated": "A city of about 180,000 people an hour and a half east of San Diego."
+ },
+ {
+  "metro": "Midland, TX",
+  "now": "A city of about 200,000 people in Texas.",
+  "regenerated": "A city of about 180,000 people in Texas."
+ },
+ {
+  "metro": "Iowa City, IA",
+  "now": "A college town of about 200,000 people two hours east of Des Moines.",
+  "regenerated": "A college town of about 180,000 people two hours east of Des Moines."
+ },
+ {
+  "metro": "Greenville, NC",
+  "now": "A college town of about 200,000 people an hour and a half east of Raleigh.",
+  "regenerated": "A college town of about 180,000 people an hour and a half east of Raleigh."
+ },
+ {
+  "metro": "Burlington, NC",
+  "now": "A city of about 200,000 people half an hour east of Greensboro.",
+  "regenerated": "A city of about 180,000 people half an hour east of Greensboro."
+ },
+ {
+  "metro": "Muskegon, MI",
+  "now": "A city of about 200,000 people an hour northwest of Grand Rapids.",
+  "regenerated": "A city of about 180,000 people an hour northwest of Grand Rapids."
+ },
+ {
+  "metro": "Eau Claire, WI",
+  "now": "A college town of about 150,000 people an hour and a half east of Minneapolis.",
+  "regenerated": "A college town of about 170,000 people an hour and a half east of Minneapolis."
+ },
+ {
+  "metro": "Oshkosh, WI",
+  "now": "A college town of about 150,000 people an hour and a half northwest of Milwaukee.",
+  "regenerated": "A college town of about 170,000 people an hour and a half northwest of Milwaukee."
+ },
+ {
+  "metro": "Bloomington, IL",
+  "now": "A college town of about 150,000 people two hours southwest of Chicago.",
+  "regenerated": "A college town of about 170,000 people two hours southwest of Chicago."
+ },
+ {
+  "metro": "La Crosse, WI",
+  "now": "A college town of about 150,000 people two hours northwest of Madison.",
+  "regenerated": "A college town of about 170,000 people two hours northwest of Madison."
+ },
+ {
+  "metro": "Pueblo, CO",
+  "now": "A city of about 150,000 people an hour south of Colorado Springs.",
+  "regenerated": "A city of about 170,000 people an hour south of Colorado Springs."
+ },
+ {
+  "metro": "Terre Haute, IN",
+  "now": "A city of about 150,000 people an hour and a half west of Indianapolis.",
+  "regenerated": "A city of about 170,000 people an hour and a half west of Indianapolis."
+ },
+ {
+  "metro": "Waterloo, IA",
+  "now": "A college town of about 150,000 people an hour and a half northeast of Des Moines.",
+  "regenerated": "A college town of about 170,000 people an hour and a half northeast of Des Moines."
+ },
+ {
+  "metro": "Kenosha, WI",
+  "now": "A college town of about 150,000 people half an hour south of Milwaukee.",
+  "regenerated": "A college town of about 170,000 people half an hour south of Milwaukee."
+ },
+ {
+  "metro": "Sebastian, FL",
+  "now": "A city of about 150,000 people half an hour southeast of Palm Bay.",
+  "regenerated": "A city of about 170,000 people half an hour southeast of Palm Bay."
+ },
+ {
+  "metro": "Idaho Falls, ID",
+  "now": "A city of about 150,000 people in Idaho.",
+  "regenerated": "A city of about 160,000 people in Idaho."
+ },
+ {
+  "metro": "Odessa, TX",
+  "now": "A city of about 150,000 people in Texas.",
+  "regenerated": "A city of about 160,000 people in Texas."
+ },
+ {
+  "metro": "Kahului, HI",
+  "now": "A city of about 150,000 people two hours east of Honolulu.",
+  "regenerated": "A city of about 160,000 people two hours east of Honolulu."
+ },
+ {
+  "metro": "Janesville, WI",
+  "now": "A city of about 150,000 people an hour southeast of Madison.",
+  "regenerated": "A city of about 160,000 people an hour southeast of Madison."
+ },
+ {
+  "metro": "Bloomington, IN",
+  "now": "A college town of about 150,000 people an hour south of Indianapolis.",
+  "regenerated": "A college town of about 160,000 people an hour south of Indianapolis."
+ },
+ {
+  "metro": "Homosassa Springs, FL",
+  "now": "A city of about 150,000 people an hour southwest of Ocala.",
+  "regenerated": "A city of about 160,000 people an hour southwest of Ocala."
+ },
+ {
+  "metro": "Amherst Town, MA",
+  "now": "A college town of about 150,000 people half an hour north of Springfield.",
+  "regenerated": "A college town of about 160,000 people half an hour north of Springfield."
+ },
+ {
+  "metro": "Jackson, MI",
+  "now": "A city of about 150,000 people an hour south of Lansing.",
+  "regenerated": "A city of about 160,000 people an hour south of Lansing."
+ },
+ {
+  "metro": "Grand Junction, CO",
+  "now": "A city of about 150,000 people in Colorado.",
+  "regenerated": "A city of about 160,000 people in Colorado."
+ },
+ {
+  "metro": "State College, PA",
+  "now": "A college town of about 150,000 people an hour northwest of Harrisburg.",
+  "regenerated": "A college town of about 160,000 people an hour northwest of Harrisburg."
+ },
+ {
+  "metro": "Decatur, AL",
+  "now": "A city of about 150,000 people half an hour southwest of Huntsville.",
+  "regenerated": "A city of about 160,000 people half an hour southwest of Huntsville."
+ },
+ {
+  "metro": "Chambersburg, PA",
+  "now": "A city of about 150,000 people an hour southwest of Harrisburg.",
+  "regenerated": "A city of about 160,000 people an hour southwest of Harrisburg."
+ },
+ {
+  "metro": "Santa Fe, NM",
+  "now": "A city of about 150,000 people an hour northeast of Albuquerque.",
+  "regenerated": "A city of about 160,000 people an hour northeast of Albuquerque."
+ },
+ {
+  "metro": "Monroe, MI",
+  "now": "A city of about 150,000 people half an hour north of Toledo.",
+  "regenerated": "A city of about 160,000 people half an hour north of Toledo."
+ },
+ {
+  "metro": "Hattiesburg, MS",
+  "now": "A college town of about 150,000 people an hour and a half north of Gulfport.",
+  "regenerated": "A college town of about 160,000 people an hour and a half north of Gulfport."
+ },
+ {
+  "metro": "Logan, UT",
+  "now": "A college town of about 150,000 people an hour north of Ogden.",
+  "regenerated": "A college town of about 160,000 people an hour north of Ogden."
+ },
+ {
+  "metro": "Rocky Mount, NC",
+  "now": "A city of about 150,000 people an hour east of Raleigh.",
+  "regenerated": "A city of about 140,000 people an hour east of Raleigh."
+ },
+ {
+  "metro": "Sioux City, IA",
+  "now": "A city of about 150,000 people an hour and a half north of Omaha.",
+  "regenerated": "A city of about 140,000 people an hour and a half north of Omaha."
+ },
+ {
+  "metro": "Flagstaff, AZ",
+  "now": "A college town of about 150,000 people two hours north of Phoenix.",
+  "regenerated": "A college town of about 140,000 people two hours north of Phoenix."
+ },
+ {
+  "metro": "Lebanon, PA",
+  "now": "A city of about 150,000 people half an hour north of Lancaster.",
+  "regenerated": "A city of about 140,000 people half an hour north of Lancaster."
+ },
+ {
+  "metro": "Dalton, GA",
+  "now": "A city of about 150,000 people half an hour southeast of Chattanooga.",
+  "regenerated": "A city of about 140,000 people half an hour southeast of Chattanooga."
+ },
+ {
+  "metro": "Wildwood, FL",
+  "now": "A city of about 150,000 people half an hour south of Ocala.",
+  "regenerated": "A city of about 140,000 people half an hour south of Ocala."
+ },
+ {
+  "metro": "Sherman, TX",
+  "now": "A city of about 150,000 people an hour north of Dallas.",
+  "regenerated": "A city of about 140,000 people an hour north of Dallas."
+ },
+ {
+  "metro": "Morgantown, WV",
+  "now": "A college town of about 150,000 people an hour south of Pittsburgh.",
+  "regenerated": "A college town of about 140,000 people an hour south of Pittsburgh."
+ },
+ {
+  "metro": "Wausau, WI",
+  "now": "A city of about 150,000 people about three hours north of Madison.",
+  "regenerated": "A city of about 140,000 people about three hours north of Madison."
+ },
+ {
+  "metro": "Harrisonburg, VA",
+  "now": "A college town of about 150,000 people two hours northwest of Richmond.",
+  "regenerated": "A college town of about 140,000 people two hours northwest of Richmond."
+ },
+ {
+  "metro": "Wheeling, WV",
+  "now": "A city of about 150,000 people an hour southwest of Pittsburgh.",
+  "regenerated": "A city of about 140,000 people an hour southwest of Pittsburgh."
+ },
+ {
+  "metro": "Hammond, LA",
+  "now": "A college town of about 150,000 people an hour east of Baton Rouge.",
+  "regenerated": "A college town of about 140,000 people an hour east of Baton Rouge."
+ },
+ {
+  "metro": "Bismarck, ND",
+  "now": "A city of about 150,000 people in North Dakota.",
+  "regenerated": "A city of about 140,000 people in North Dakota."
+ },
+ {
+  "metro": "Jonesboro, AR",
+  "now": "A city of about 150,000 people an hour and a half northwest of Memphis.",
+  "regenerated": "A city of about 140,000 people an hour and a half northwest of Memphis."
+ },
+ {
+  "metro": "Springfield, OH",
+  "now": "A city of about 150,000 people half an hour northeast of Dayton.",
+  "regenerated": "A city of about 140,000 people half an hour northeast of Dayton."
+ },
+ {
+  "metro": "Napa, CA",
+  "now": "A city of about 150,000 people half an hour north of Vallejo.",
+  "regenerated": "A city of about 140,000 people half an hour north of Vallejo."
+ },
+ {
+  "metro": "Manhattan, KS",
+  "now": "A college town of about 150,000 people two hours west of Kansas City.",
+  "regenerated": "A college town of about 130,000 people two hours west of Kansas City."
+ },
+ {
+  "metro": "Battle Creek, MI",
+  "now": "A city of about 150,000 people an hour southwest of Lansing.",
+  "regenerated": "A city of about 130,000 people an hour southwest of Lansing."
+ },
+ {
+  "metro": "Johnstown, PA",
+  "now": "A college town of about 150,000 people an hour and a half east of Pittsburgh.",
+  "regenerated": "A college town of about 130,000 people an hour and a half east of Pittsburgh."
+ },
+ {
+  "metro": "Mount Vernon, WA",
+  "now": "A city of about 150,000 people an hour north of Seattle.",
+  "regenerated": "A city of about 130,000 people an hour north of Seattle."
+ },
+ {
+  "metro": "Albany, OR",
+  "now": "A city of about 150,000 people half an hour south of Salem.",
+  "regenerated": "A city of about 130,000 people half an hour south of Salem."
+ },
+ {
+  "metro": "Salisbury, MD",
+  "now": "A college town of about 150,000 people an hour and a half southeast of Baltimore.",
+  "regenerated": "A college town of about 130,000 people an hour and a half southeast of Baltimore."
+ },
+ {
+  "metro": "Pittsfield, MA",
+  "now": "A city of about 150,000 people half an hour southeast of Albany.",
+  "regenerated": "A city of about 130,000 people half an hour southeast of Albany."
+ },
+ {
+  "metro": "Cleveland, TN",
+  "now": "A city of about 150,000 people half an hour east of Chattanooga.",
+  "regenerated": "A city of about 130,000 people half an hour east of Chattanooga."
+ },
+ {
+  "metro": "Lawton, OK",
+  "now": "A city of about 150,000 people an hour and a half southwest of Oklahoma City.",
+  "regenerated": "A city of about 130,000 people an hour and a half southwest of Oklahoma City."
+ },
+ {
+  "metro": "Ames, IA",
+  "now": "A college town of about 150,000 people half an hour north of Des Moines.",
+  "regenerated": "A college town of about 130,000 people half an hour north of Des Moines."
+ },
+ {
+  "metro": "Elizabethtown, KY",
+  "now": "A city of about 150,000 people an hour south of Louisville.",
+  "regenerated": "A city of about 130,000 people an hour south of Louisville."
+ },
+ {
+  "metro": "Staunton, VA",
+  "now": "A city of about 100,000 people two hours northwest of Richmond.",
+  "regenerated": "A city of about 120,000 people two hours northwest of Richmond."
+ },
+ {
+  "metro": "Glens Falls, NY",
+  "now": "A city of about 150,000 people an hour north of Albany.",
+  "regenerated": "A city of about 130,000 people an hour north of Albany."
+ },
+ {
+  "metro": "Missoula, MT",
+  "now": "A college town of about 150,000 people in Montana.",
+  "regenerated": "A college town of about 130,000 people in Montana."
+ },
+ {
+  "metro": "Sierra Vista, AZ",
+  "now": "A city of about 150,000 people an hour southeast of Tucson.",
+  "regenerated": "A city of about 130,000 people an hour southeast of Tucson."
+ },
+ {
+  "metro": "Mansfield, OH",
+  "now": "A city of about 150,000 people an hour west of Akron.",
+  "regenerated": "A city of about 130,000 people an hour west of Akron."
+ },
+ {
+  "metro": "Wenatchee, WA",
+  "now": "A city of about 100,000 people two hours east of Seattle.",
+  "regenerated": "A city of about 120,000 people two hours east of Seattle."
+ },
+ {
+  "metro": "Bozeman, MT",
+  "now": "A college town of about 100,000 people in Montana.",
+  "regenerated": "A college town of about 120,000 people in Montana."
+ },
+ {
+  "metro": "Morristown, TN",
+  "now": "A city of about 100,000 people an hour northeast of Knoxville.",
+  "regenerated": "A city of about 120,000 people an hour northeast of Knoxville."
+ },
+ {
+  "metro": "Altoona, PA",
+  "now": "A city of about 100,000 people an hour and a half west of Harrisburg.",
+  "regenerated": "A city of about 120,000 people an hour and a half west of Harrisburg."
+ },
+ {
+  "metro": "San Angelo, TX",
+  "now": "A college town of about 100,000 people in Texas.",
+  "regenerated": "A college town of about 120,000 people in Texas."
+ },
+ {
+  "metro": "Farmington, NM",
+  "now": "A city of about 100,000 people about three hours northwest of Albuquerque.",
+  "regenerated": "A city of about 120,000 people about three hours northwest of Albuquerque."
+ },
+ {
+  "metro": "Lawrence, KS",
+  "now": "A college town of about 100,000 people an hour west of Kansas City.",
+  "regenerated": "A college town of about 120,000 people an hour west of Kansas City."
+ },
+ {
+  "metro": "St. Joseph, MO",
+  "now": "A city of about 100,000 people an hour north of Kansas City.",
+  "regenerated": "A city of about 120,000 people an hour north of Kansas City."
+ },
+ {
+  "metro": "Twin Falls, ID",
+  "now": "A city of about 100,000 people two hours southeast of Boise City.",
+  "regenerated": "A city of about 120,000 people two hours southeast of Boise City."
+ },
+ {
+  "metro": "Goldsboro, NC",
+  "now": "A city of about 100,000 people an hour southeast of Raleigh.",
+  "regenerated": "A city of about 120,000 people an hour southeast of Raleigh."
+ },
+ {
+  "metro": "Sheboygan, WI",
+  "now": "A city of about 100,000 people an hour north of Milwaukee.",
+  "regenerated": "A city of about 120,000 people an hour north of Milwaukee."
+ },
+ {
+  "metro": "Anniston, AL",
+  "now": "A city of about 100,000 people an hour east of Birmingham.",
+  "regenerated": "A city of about 120,000 people an hour east of Birmingham."
+ },
+ {
+  "metro": "Brunswick, GA",
+  "now": "A city of about 100,000 people an hour north of Jacksonville.",
+  "regenerated": "A city of about 110,000 people an hour north of Jacksonville."
+ },
+ {
+  "metro": "Watertown, NY",
+  "now": "A city of about 100,000 people an hour and a half north of Syracuse.",
+  "regenerated": "A city of about 120,000 people an hour and a half north of Syracuse."
+ },
+ {
+  "metro": "Weirton, WV",
+  "now": "A city of about 100,000 people half an hour west of Pittsburgh.",
+  "regenerated": "A city of about 110,000 people half an hour west of Pittsburgh."
+ },
+ {
+  "metro": "Sandusky, OH",
+  "now": "A city of about 100,000 people an hour east of Toledo.",
+  "regenerated": "A city of about 120,000 people an hour east of Toledo."
+ },
+ {
+  "metro": "Williamsport, PA",
+  "now": "A city of about 100,000 people an hour and a half north of Harrisburg.",
+  "regenerated": "A city of about 110,000 people an hour and a half north of Harrisburg."
+ },
+ {
+  "metro": "Lewiston, ME",
+  "now": "A city of about 100,000 people an hour north of Portland.",
+  "regenerated": "A city of about 110,000 people an hour north of Portland."
+ },
+ {
+  "metro": "Owensboro, KY",
+  "now": "A city of about 100,000 people an hour and a half southwest of Louisville.",
+  "regenerated": "A city of about 110,000 people an hour and a half southwest of Louisville."
+ },
+ {
+  "metro": "Beckley, WV",
+  "now": "A city of about 100,000 people about three hours northwest of Winston-Salem.",
+  "regenerated": "A city of about 110,000 people about three hours northwest of Winston-Salem."
+ },
+ {
+  "metro": "Longview, WA",
+  "now": "A city of about 100,000 people an hour north of Portland.",
+  "regenerated": "A city of about 110,000 people an hour north of Portland."
+ },
+ {
+  "metro": "Muncie, IN",
+  "now": "A college town of about 100,000 people an hour northeast of Indianapolis.",
+  "regenerated": "A college town of about 110,000 people an hour northeast of Indianapolis."
+ },
+ {
+  "metro": "Michigan City, IN",
+  "now": "A city of about 100,000 people an hour east of Chicago.",
+  "regenerated": "A city of about 110,000 people an hour east of Chicago."
+ },
+ {
+  "metro": "Kankakee, IL",
+  "now": "A city of about 100,000 people an hour south of Chicago.",
+  "regenerated": "A city of about 110,000 people an hour south of Chicago."
+ },
+ {
+  "metro": "Gettysburg, PA",
+  "now": "A city of about 100,000 people half an hour west of York.",
+  "regenerated": "A city of about 110,000 people half an hour west of York."
+ },
+ {
+  "metro": "Fond du Lac, WI",
+  "now": "A city of about 100,000 people an hour northwest of Milwaukee.",
+  "regenerated": "A city of about 110,000 people an hour northwest of Milwaukee."
+ },
+ {
+  "metro": "Grand Forks, ND",
+  "now": "A college town of about 100,000 people in North Dakota.",
+  "regenerated": "A college town of about 110,000 people in North Dakota."
+ },
+ {
+  "metro": "Hot Springs, AR",
+  "now": "A city of about 100,000 people an hour west of Little Rock.",
+  "regenerated": "A city of about 98,000 people an hour west of Little Rock."
+ },
+ {
+  "metro": "Victoria, TX",
+  "now": "A city of about 100,000 people an hour and a half north of Corpus Christi.",
+  "regenerated": "A city of about 98,000 people an hour and a half north of Corpus Christi."
+ },
+ {
+  "metro": "Cape Girardeau, MO",
+  "now": "A college town of about 100,000 people two hours south of St. Louis.",
+  "regenerated": "A college town of about 99,000 people two hours south of St. Louis."
+ },
+ {
+  "metro": "Corvallis, OR",
+  "now": "A college town of about 100,000 people half an hour southwest of Salem.",
+  "regenerated": "A college town of about 96,000 people half an hour southwest of Salem."
+ },
+ {
+  "metro": "Fairbanks, AK",
+  "now": "A city of about 100,000 people in Alaska.",
+  "regenerated": "A city of about 96,000 people in Alaska."
+ },
+ {
+  "metro": "Helena, MT",
+  "now": "A city of about 90,000 people in Montana.",
+  "regenerated": "A city of about 93,000 people in Montana."
+ },
+ {
+  "metro": "Parkersburg, WV",
+  "now": "A city of about 90,000 people two hours southeast of Columbus.",
+  "regenerated": "A city of about 88,000 people two hours southeast of Columbus."
+ },
+ {
+  "metro": "Grants Pass, OR",
+  "now": "A city of about 90,000 people in Oregon.",
+  "regenerated": "A city of about 88,000 people in Oregon."
+ },
+ {
+  "metro": "Hinesville, GA",
+  "now": "A city of about 90,000 people half an hour southwest of Savannah.",
+  "regenerated": "A city of about 87,000 people half an hour southwest of Savannah."
+ },
+ {
+  "metro": "Great Falls, MT",
+  "now": "A city of about 90,000 people in Montana.",
+  "regenerated": "A city of about 86,000 people in Montana."
+ },
+ {
+  "metro": "Midland, MI",
+  "now": "A city of about 80,000 people an hour northwest of Flint.",
+  "regenerated": "A city of about 84,000 people an hour northwest of Flint."
+ },
+ {
+  "metro": "Kokomo, IN",
+  "now": "A city of about 80,000 people an hour north of Indianapolis.",
+  "regenerated": "A city of about 84,000 people an hour north of Indianapolis."
+ },
+ {
+  "metro": "Columbus, IN",
+  "now": "A city of about 80,000 people an hour south of Indianapolis.",
+  "regenerated": "A city of about 84,000 people an hour south of Indianapolis."
+ },
+ {
+  "metro": "Elmira, NY",
+  "now": "A city of about 80,000 people an hour and a half southwest of Syracuse.",
+  "regenerated": "A city of about 83,000 people an hour and a half southwest of Syracuse."
+ },
+ {
+  "metro": "Casper, WY",
+  "now": "A city of about 80,000 people in Wyoming.",
+  "regenerated": "A city of about 79,000 people in Wyoming."
+ },
+ {
+  "metro": "Grand Island, NE",
+  "now": "A city of about 80,000 people two hours west of Omaha.",
+  "regenerated": "A city of about 77,000 people two hours west of Omaha."
+ },
+ {
+  "metro": "Minot, ND",
+  "now": "A city of about 80,000 people in North Dakota.",
+  "regenerated": "A city of about 77,000 people in North Dakota."
+ },
+ {
+  "metro": "Lewiston, ID",
+  "now": "A city of about 60,000 people an hour and a half south of Spokane.",
+  "regenerated": "A city of about 64,000 people an hour and a half south of Spokane."
+ },
+ {
+  "metro": "Walla Walla, WA",
+  "now": "A college town of about 60,000 people two hours south of Spokane.",
+  "regenerated": "A college town of about 63,000 people two hours south of Spokane."
+ },
+ {
+  "metro": "Enid, OK",
+  "now": "A city of about 60,000 people an hour and a half north of Oklahoma City.",
+  "regenerated": "A city of about 62,000 people an hour and a half north of Oklahoma City."
+ },
+ {
+  "metro": "Eagle Pass, TX",
+  "now": "A city of about 60,000 people about three hours southwest of San Antonio.",
+  "regenerated": "A city of about 57,000 people about three hours southwest of San Antonio."
+ }
+]

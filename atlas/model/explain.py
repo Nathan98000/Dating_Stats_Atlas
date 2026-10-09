@@ -23,6 +23,12 @@ MAX_MINUSES = 1
 TOP_STATS_MAX = MAX_PLUSES + MAX_MINUSES
 TOP_STATS_MIN_POINTS = 0.5
 
+# Phase 6 (m4.3.0, F12): the result chips name only lifestyle items — the
+# four pillars a visitor weights with the importance controls — so cities
+# tell apart; the pool and the compatibility figure keep their own column
+# and tile. Same sides rule, threshold and merged price levels as the line.
+from atlas.model.preferences import IMPORTANCE_PILLARS as LIFESTYLE_PILLARS  # noqa: E402
+
 # magnitude buckets over |contribution| in score points (metric record only)
 BUCKETS = [(8.0, "large"), (3.0, "moderate"), (0.0, "slight")]
 
@@ -32,19 +38,6 @@ def bucket(value: float) -> str:
         if abs(value) >= cut:
             return name
     return "slight"
-
-
-def format_pop(pop: float) -> str:
-    """Spoken population figures for the who-lives-here card: 717,200
-    reads as 700,000 and 1,281,004 as 1.3 million — precision to the
-    person would claim more than a survey knows."""
-    if pop >= 950_000:
-        m = round(pop / 100_000) / 10
-        m_txt = f"{m:.0f}" if float(m).is_integer() else f"{m:.1f}"
-        return f"{m_txt} million"
-    if pop >= 95_000:
-        return f"{round(pop / 50_000) * 50_000:,.0f}"
-    return f"{round(pop / 10_000) * 10_000:,.0f}"
 
 
 def format_value(value: float, legend_entry: dict) -> str:
@@ -69,12 +62,15 @@ def mover_units(ids: list[str], legend: dict[str, dict]) -> list[dict]:
     units: dict[str, dict] = {}
     for j, fid in enumerate(ids):
         p = mover_phrase(legend[fid])
-        units.setdefault(p, {"phrase": p, "ids": [], "cols": []})
+        units.setdefault(p, {"phrase": p, "ids": [], "cols": [],
+                             "pillar": legend[fid].get("pillar")})
         units[p]["ids"].append(fid)
         units[p]["cols"].append(j)
     for u in units.values():
         assert len({int(legend[i]["direction"]) for i in u["ids"]}) == 1, (
             f"the stats sharing {u['phrase']!r} must share a direction")
+        assert len({legend[i].get("pillar") for i in u["ids"]}) == 1, (
+            f"the stats sharing {u['phrase']!r} must share a pillar")
     return list(units.values())
 
 
@@ -128,6 +124,29 @@ def pick_movers(contribs: list[float | None], sides: list[int]) -> list[int]:
     pluses = [u for u in moved if contribs[u] > 0][:MAX_PLUSES]
     minuses = [u for u in moved if contribs[u] < 0][:MAX_MINUSES]
     return pluses + minuses
+
+
+def pick_lifestyle_movers(contribs: list[float | None], sides: list[int],
+                          units: list[dict]) -> list[int]:
+    """Phase 6 (m4.3.0, F12): the result chips' pick — pick_movers' rule
+    (the sides rule, TOP_STATS_MIN_POINTS, at most MAX_PLUSES pluses largest
+    first, then the single biggest minus) over the lifestyle items only:
+    those whose pillar is one the visitor weights (cost, reach, students,
+    weather), never the pool, the compatibility figure or balance. The two
+    price levels stay one item (mover_units). A row with no eligible
+    lifestyle item has none."""
+    life = [c if units[u]["pillar"] in LIFESTYLE_PILLARS else None
+            for u, c in enumerate(contribs)]
+    return pick_movers(life, sides)
+
+
+def lifestyle_movers(row: dict, legend: dict[str, dict], band_keys: list[str]) -> list[dict]:
+    """A row's lifestyle movers, as movers() gives its movers."""
+    units = mover_units([s["id"] for s in row["stats"]], legend)
+    contribs = unit_contributions([s.get("contribution") for s in row["stats"]], units)
+    sides = mover_sides(units, legend, row.get("cards", []), band_keys)
+    return [{"phrase": units[u]["phrase"], "ids": units[u]["ids"], "contribution": contribs[u]}
+            for u in pick_lifestyle_movers(contribs, sides, units)]
 
 
 def movers(row: dict, legend: dict[str, dict], band_keys: list[str]) -> list[dict]:

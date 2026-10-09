@@ -124,8 +124,9 @@ test("the compare landing picks two cities and goes", async ({ page }) => {
   await expect(page.getByTestId("compare-table")).toBeVisible();
   // no preferences set: the stated default profile, labelled, one click
   // from being the visitor's own
+  // (Phase 6, F23: the site's starting search, in a neutral note)
   await expect(page.getByTestId("default-profile-note")).toContainText(
-    /default search/);
+    /site's starting search/);
   await page.getByRole("link", { name: "Make it your search" }).click();
   await expect(page).toHaveURL(/sex=male/);
 });

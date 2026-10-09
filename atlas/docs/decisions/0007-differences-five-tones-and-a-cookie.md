@@ -79,3 +79,15 @@ visitor's cookie-shaped render can be cached into another's. One consequence:
 the compare page's "stated default search" label shows only when the figures
 really are the stated default — a cookie-filled page is the visitor's own
 search, so the label stays off.
+
+## Amended in Phase 6 (9 October 2026): Edge shows the size of the lead
+
+DRAFT for Nathan's approval (Phase 6, commit G; the review's F07). Phase 5's Edge column put the
+winner over the plain A − B difference, so a row could read "▲ Abilene +$526" where Abilene's rent
+is $526 *lower*, and in Austin–Denver the sign contradicted the arrow on 7 of the 10 judged rows.
+A judged row's Edge cell now shows "▲ {city}" and, under it, `compare_edge_by` ("by 31,802", "by
+$339") or, for the spot in the results, `compare_edge_places` ("by 2 places"). The figure is the
+absolute value of the same subtraction of two displayed values this ADR already sanctions — no new
+number. Rows the site doesn't judge keep "—" and their plain difference; political lean keeps no
+difference. The registry's `compare_edge_note` says what the column means, and screen readers hear
+"Denver, by 31,802".

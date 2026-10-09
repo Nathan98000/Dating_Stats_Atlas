@@ -30,6 +30,7 @@ import numpy as np
 import pandas as pd
 
 from atlas.pipeline.fetch import RESULTS
+from atlas.model.spoken import spoken_pop
 from atlas.pipeline.registry.loader import load_registry
 
 P2C = RESULTS / "phase2c"
@@ -103,17 +104,6 @@ def bearing_word(lat_from, lon_from, lat_to, lon_to) -> str:
     return DIRECTIONS[int(((brg + 22.5) % 360) // 45)]
 
 
-def round_pop(pop: float) -> str:
-    """Spoken population: 700,000 not 749,183; 1.3 million not 1,281,004."""
-    if pop >= 950_000:
-        m = round(pop / 1_000_000, 1)
-        m_txt = f"{m:.0f}" if float(m).is_integer() else f"{m:.1f}"
-        return f"{m_txt} million"
-    if pop >= 95_000:
-        return f"{round(pop / 50_000) * 50_000:,.0f}"
-    return f"{round(pop / 10_000) * 10_000:,.0f}"
-
-
 def _character(reg, pop: float, students_per_1k: float | None) -> str:
     for rule in reg.city_description["characters"]:
         kind = rule["rule"] if "rule" in rule else "default"
@@ -145,7 +135,7 @@ def build() -> pd.DataFrame:
     statics = pd.read_csv(RESULTS / "phase2" / "static_features.csv",
                           dtype={"cbsa": str})
     df = (metros[["cbsa", "cbsa_title", "states"]]
-          .merge(quality[["cbsa", "pop_total"]], on="cbsa")
+          .merge(quality[["cbsa", "pop_total", "ranked_set"]], on="cbsa")
           .merge(statics[["cbsa", "students_per_1k_adults"]], on="cbsa",
                  how="left"))
 
@@ -190,7 +180,10 @@ def build() -> pd.DataFrame:
     for i, r in rows.iterrows():
         character = _character(reg, r["pop_total"],
                                r.get("students_per_1k_adults"))
-        pop_txt = round_pop(float(r["pop_total"]))
+        # Phase 6 (m4.3.0, F09): the card's rule — 2 significant figures,
+        # and a metro outside the ranked set never reads at the floor
+        pop_txt = spoken_pop(float(r["pop_total"]),
+                             None if r["ranked_set"] else float(reg.population_floor))
         # nearest meaningfully-larger metro within spoken driving distance
         location = None
         cand = rows[(rows["pop_total"] >= max(LARGER_MIN_POP,

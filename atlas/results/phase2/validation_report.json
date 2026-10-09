@@ -1,11 +1,11 @@
 {
   "build": "63c4e5fa51bf",
-  "model_version": "m4.2.1",
+  "model_version": "m4.3.0",
   "generated_by": {
-    "git_sha": "ac7c1f7327b4223cd850fe9473d91d4db2b05ca3",
+    "git_sha": "720c03bdfdb6c198bbb1f62838dc3673bf2cfbb7",
     "git_dirty": true,
-    "generated_at": "2026-10-08T16:29:12-0400",
-    "engine_model_version": "m4.2.1"
+    "generated_at": "2026-10-09T11:41:45-0400",
+    "engine_model_version": "m4.3.0"
   },
   "hard": {
     "interval_calibration": {
@@ -457,7 +457,7 @@
         "wobble_max": 3.6292,
         "old_rule_min_share_personas": 0.6875,
         "old_rule_min_share_all": 0.6875,
-        "seconds": 43.6
+        "seconds": 47.8
       },
       "reference_file": "results/phase4/stability_reference_m4_0_0.json",
       "per_search": {
@@ -9998,6 +9998,114 @@
       "metros_above_floor": 372,
       "coverage_in_unit_interval": true,
       "violent_ge_property_metros": []
+    },
+    "spoken_figures": {
+      "pass": false,
+      "tolerance": 0.05,
+      "worst_relative_error": 0.047,
+      "off_by_more": [],
+      "unranked_at_or_above_floor": [
+        {
+          "metro": "Appleton, WI",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour and a half north of Milwaukee."
+        },
+        {
+          "metro": "Barnstable Town, MA",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour east of Providence."
+        },
+        {
+          "metro": "Bellingham, WA",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A college town of about 250,000 people an hour and a half north of Seattle."
+        },
+        {
+          "metro": "Binghamton, NY",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A college town of about 250,000 people an hour north of Scranton."
+        },
+        {
+          "metro": "Burlington, VT",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A college town of about 250,000 people about three hours north of Albany."
+        },
+        {
+          "metro": "Champaign, IL",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A college town of about 250,000 people two hours west of Indianapolis."
+        },
+        {
+          "metro": "Daphne, AL",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people half an hour east of Mobile."
+        },
+        {
+          "metro": "Fort Smith, AR",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour south of Fayetteville."
+        },
+        {
+          "metro": "Hilton Head Island, SC",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour northeast of Savannah."
+        },
+        {
+          "metro": "Lafayette, IN",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A college town of about 250,000 people an hour northwest of Indianapolis."
+        },
+        {
+          "metro": "Lake Charles, LA",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour and a half west of Lafayette."
+        },
+        {
+          "metro": "Macon, GA",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour and a half southeast of Atlanta."
+        },
+        {
+          "metro": "Prescott Valley, AZ",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour and a half north of Phoenix."
+        },
+        {
+          "metro": "Rochester, MN",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour and a half southeast of Minneapolis."
+        },
+        {
+          "metro": "Topeka, KS",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A city of about 250,000 people an hour west of Kansas City."
+        },
+        {
+          "metro": "Tyler, TX",
+          "where": "description",
+          "shown": 250000.0,
+          "text": "A college town of about 250,000 people an hour and a half east of Dallas."
+        }
+      ],
+      "floor": 250000.0,
+      "largest_unranked": 246979,
+      "smallest_ranked": 256911,
+      "floor_separates_sets": true
     }
   },
   "soft": {
@@ -10787,5 +10895,7 @@
       "note": "true 81-replicate CV over the 480-shape battery where intervals display (n_gate >= 100); the removed CV tiers could not have fired (ADR 0002)"
     }
   },
-  "hard_failures": []
+  "hard_failures": [
+    "spoken_figures"
+  ]
 }
