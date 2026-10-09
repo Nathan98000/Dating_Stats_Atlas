@@ -1,0 +1,22 @@
+== nav (is Phase 5 live?)
+      3 About the site
+      2 Compare cities
+      1 How it works
+== home HTML, gzip asked
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-encoding: gzip
+== home HTML bytes on the wire (gzip asked)
+296303
+== a JS chunk
+cache-control: public, max-age=31536000, immutable
+content-encoding: gzip
+== /api/rank, default search, gzip asked
+bytes on the wire: 1503429
+== a city photograph
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+cache-control: public, max-age=0
+etag: W/"b5cd3-1a0b0e4d958"
+content-length: 744659

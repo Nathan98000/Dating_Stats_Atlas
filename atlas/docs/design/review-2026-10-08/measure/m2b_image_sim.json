@@ -1,0 +1,51 @@
+{
+ "note": "img_proxy.mjs (:3302) answers /cities/*.jpg with 720px WebP q72 over the gzip stand-in; same throttling as m2",
+ "median_lcp": 1976,
+ "runs": [
+  {
+   "lcp": 1904,
+   "el": "IMG",
+   "image_bytes": [
+    37458,
+    40772,
+    76304
+   ]
+  },
+  {
+   "lcp": 2024,
+   "el": "IMG",
+   "image_bytes": [
+    37458,
+    40772,
+    76304
+   ]
+  },
+  {
+   "lcp": 1976,
+   "el": "IMG",
+   "image_bytes": [
+    37458,
+    40772,
+    76304
+   ]
+  },
+  {
+   "lcp": 1896,
+   "el": "IMG",
+   "image_bytes": [
+    37458,
+    40772,
+    76304
+   ]
+  },
+  {
+   "lcp": 2044,
+   "el": "IMG",
+   "image_bytes": [
+    37458,
+    40772,
+    76304
+   ]
+  }
+ ]
+}

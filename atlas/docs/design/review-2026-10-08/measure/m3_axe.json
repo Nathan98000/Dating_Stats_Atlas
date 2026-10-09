@@ -1,0 +1,395 @@
+{
+ "404@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "home@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ],
+  "experimental": [
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "tags": [
+     "wcag21a",
+     "wcag253",
+     "experimental"
+    ],
+    "nodes": 1,
+    "targets": [
+     "#_R_3b5flb_-ages"
+    ],
+    "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+   }
+  ]
+ },
+ "city-sf@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "city-deltona@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "city-abilene@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "city-champaign@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "compare@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "compare-pair@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "compare-floor@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "about@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "what-we-measure@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "about-crime@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-rent@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-prices@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-lean@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-venues@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "privacy@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "terms@1440": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "permalink@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ],
+  "experimental": [
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "tags": [
+     "wcag21a",
+     "wcag253",
+     "experimental"
+    ],
+    "nodes": 1,
+    "targets": [
+     "#_R_6mav5ubsnpflb_-ages"
+    ],
+    "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+   }
+  ]
+ },
+ "home:row-open@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:row-open-info@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (3)"
+  ]
+ },
+ "home:age-popover@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:rail-open@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (18)"
+  ]
+ },
+ "home:slider-info@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (3)"
+  ]
+ },
+ "home:find-typed@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (19)"
+  ]
+ },
+ "home:header-search@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:menu-open@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:narrowed@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:empty@1440": {
+  "violations": [],
+  "incomplete": [
+   "aria-valid-attr-value (1)",
+   "color-contrast (2)"
+  ]
+ },
+ "home:same-sex@1440": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "404@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "home@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ],
+  "experimental": [
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "tags": [
+     "wcag21a",
+     "wcag253",
+     "experimental"
+    ],
+    "nodes": 1,
+    "targets": [
+     "#_R_3b5flb_-ages"
+    ],
+    "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+   }
+  ]
+ },
+ "city-sf@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "city-deltona@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "city-abilene@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "city-champaign@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "compare@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "compare-pair@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "compare-floor@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "about@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "what-we-measure@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "about-crime@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-rent@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-prices@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-lean@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "stat-venues@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "privacy@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "terms@390": {
+  "violations": [],
+  "incomplete": [],
+  "experimental": []
+ },
+ "permalink@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ],
+  "experimental": [
+   {
+    "id": "label-content-name-mismatch",
+    "impact": "serious",
+    "tags": [
+     "wcag21a",
+     "wcag253",
+     "experimental"
+    ],
+    "nodes": 1,
+    "targets": [
+     "#_R_6mav5ubsnpflb_-ages"
+    ],
+    "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+   }
+  ]
+ },
+ "home:row-open@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:row-open-info@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (3)"
+  ]
+ },
+ "home:age-popover@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (5)"
+  ]
+ },
+ "home:rail-open@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (18)"
+  ]
+ },
+ "home:slider-info@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (1)"
+  ]
+ },
+ "home:find-typed@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (22)"
+  ]
+ },
+ "home:header-search@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (4)",
+   "duplicate-id-aria (1)"
+  ]
+ },
+ "home:menu-open@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (10)"
+  ]
+ },
+ "home:narrowed@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ },
+ "home:empty@390": {
+  "violations": [],
+  "incomplete": [
+   "aria-valid-attr-value (1)",
+   "color-contrast (2)"
+  ]
+ },
+ "home:same-sex@390": {
+  "violations": [],
+  "incomplete": [
+   "color-contrast (2)"
+  ]
+ }
+}

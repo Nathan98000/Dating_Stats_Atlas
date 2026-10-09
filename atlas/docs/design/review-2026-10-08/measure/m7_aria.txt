@@ -1,0 +1,345 @@
+
+===== 1440 banner
+- banner:
+  - link "Dating Stats Atlas":
+    - /url: /
+  - navigation "Main":
+    - link "Rankings":
+      - /url: /
+    - link "Compare":
+      - /url: /compare
+    - link "How it works":
+      - /url: /about
+  - text: Find a city
+  - combobox "Find a city"
+
+===== 1440 hero
+- heading "Which city has the best dating scene for you?" [level=1]
+- paragraph: See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+- text: I'm a
+- combobox "I'm a":
+  - option "Woman" [selected]
+  - option "Man"
+- text: My age
+- spinbutton "My age": "30"
+- text: Looking for
+- combobox "Looking for":
+  - option "Men" [selected]
+  - option "Women"
+- text: Their age
+- 'button "Their age: 28 to 40"': 28 – 40
+
+===== 1440 rail
+- heading "What matters to you" [level=2]
+- text: Bigger pool or closer match?
+- button "What the slider changes"
+- slider "Bigger pool or closer match?": "0.45"
+- text: Dating pool size Compatibility Cost of living rent and everyday prices
+- radiogroup "Cost of living importance":
+  - radio "Not much"
+  - radio "Some" [checked]
+  - radio "A lot"
+- text: Social life bars, cafés and restaurants, and walkable streets
+- radiogroup "Social life importance":
+  - radio "Not much"
+  - radio "Some" [checked]
+  - radio "A lot"
+- text: Student life how many college students live there
+- radiogroup "Student life importance":
+  - radio "Not much"
+  - radio "Some" [checked]
+  - radio "A lot"
+- text: Weather mild, dry days a year
+- radiogroup "Weather importance":
+  - radio "Not much"
+  - radio "Some" [checked]
+  - radio "A lot"
+- heading "Narrow it down" [level=2]:
+  - button "Narrow it down"
+- text: "Single: never married or divorced/widowed · Any education · Any income · All races"
+- heading "Sharpen compatibility" [level=2]:
+  - button "Sharpen compatibility"
+- text: Optional
+
+===== 1440 results header
+- paragraph: Your ranking
+- heading "Top cities for single men, 28⁠–⁠40" [level=2]
+- paragraph: 193 metro areas ranked for your search, each scored out of 100
+- radiogroup "Show":
+  - radio "Best first" [checked]
+  - radio "Worst first"
+
+===== 1440 card #1
+- listitem:
+  - 'heading "Ranked 1: San Francisco, CA" [level=3]':
+    - text: "Ranked 1:"
+    - link "San Francisco, CA":
+      - /url: /city/san-francisco-california?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+  - paragraph: 77 /100
+  - paragraph: 266,309 matches
+  - text: "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+
+===== 1440 row #4 collapsed
+- listitem:
+  - 'heading "Ranked 4: Los Angeles, CA" [level=3]':
+    - text: "Ranked 4:"
+    - link "Los Angeles, CA":
+      - /url: /city/los-angeles-california?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+  - text: "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+  - paragraph: 783,728 single men
+  - text: "74"
+  - button "Details for Los Angeles, CA"
+
+===== 1440 row #4 expanded
+- listitem:
+  - 'heading "Ranked 4: Los Angeles, CA" [level=3]':
+    - text: "Ranked 4:"
+    - link "Los Angeles, CA":
+      - /url: /city/los-angeles-california?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+  - text: "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+  - paragraph: 783,728 single men
+  - text: "74"
+  - button "Details for Los Angeles, CA" [expanded]
+  - heading "Balance Balance" [level=4]:
+    - text: Balance
+    - button "Balance"
+  - paragraph: "Dating pool balance: 113 men per 100 women"
+  - heading "Compatibility" [level=4]
+  - paragraph: "103"
+  - paragraph: where 100 is the US average
+  - heading "What moved the score (points) What moved the score (points)" [level=4]:
+    - text: What moved the score (points)
+    - button "What moved the score (points)"
+  - list:
+    - listitem: Dating pool +22.7
+    - listitem: Social life +7.5
+    - listitem: Compatibility +5.4
+    - listitem: Weather +3.0
+    - listitem: Student life +1.1
+    - listitem: Cost of living −7.0
+  - paragraph:
+    - link "Open Los Angeles →":
+      - /url: /city/los-angeles-california?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+    - button "Compare"
+
+===== 1440 how the score works
+- region "How the score works":
+  - heading "How the score works" [level=2]
+  - heading "Dating pool size" [level=3]
+  - paragraph: How many people here match what you're looking for
+  - heading "Compatibility" [level=3]
+  - paragraph: How closely the people who match your search resemble the people who actually pair with someone like you, on age, education, and background, where 100 is the US average
+  - heading "Lifestyle" [level=3]
+  - paragraph: four things you weight — cost of living, social life, student life and weather.
+  - paragraph:
+    - link "How it works →":
+      - /url: /about
+  - paragraph: Balance compares all single men with all single women in the ages you picked — before any other filter. Counts come from the Census Bureau’s survey of 3.5 million households a year.
+
+===== 390 sheet
+- dialog "Adjust your search":
+  - heading "Adjust your search" [level=2]
+  - button "Close"
+  - heading "What matters to you" [level=2]
+  - text: Bigger pool or closer match?
+  - button "What the slider changes"
+  - slider "Bigger pool or closer match?": "0.45"
+  - text: Dating pool size Compatibility Cost of living rent and everyday prices
+  - radiogroup "Cost of living importance":
+    - radio "Not much"
+    - radio "Some" [checked]
+    - radio "A lot"
+  - text: Social life bars, cafés and restaurants, and walkable streets
+  - radiogroup "Social life importance":
+    - radio "Not much"
+    - radio "Some" [checked]
+    - radio "A lot"
+  - text: Student life how many college students live there
+  - radiogroup "Student life importance":
+    - radio "Not much"
+    - radio "Some" [checked]
+    - radio "A lot"
+  - text: Weather mild, dry days a year
+  - radiogroup "Weather importance":
+    - radio "Not much"
+    - radio "Some" [checked]
+    - radio "A lot"
+  - heading "Narrow it down" [level=2]:
+    - button "Narrow it down"
+  - text: "Single: never married or divorced/widowed · Any education · Any income · All races"
+  - heading "Sharpen compatibility" [level=2]:
+    - button "Sharpen compatibility"
+  - text: Optional
+  - button "Show results"
+
+===== city SF main (first 120 lines)
+- main:
+  - link "← Back to your results":
+    - /url: /?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+  - heading "San Francisco, California" [level=1]
+  - paragraph: A major city of about 4.6 million people in California.
+  - button "Compare with another city"
+  - link "Change your search":
+    - /url: /?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously#search-panel
+  - img "Map of the United States with San Francisco, California marked"
+  - figure:
+    - img "The Golden Gate Bridge in warm evening light, with San Francisco across the bay behind it."
+  - heading "Where San Francisco lands for your search" [level=2]
+  - paragraph: 77 /100
+  - text: Overall score
+  - paragraph: 1 of 193 cities for men 28–40, never married or divorced or widowed
+  - paragraph: 266,309 people match what you're looking for
+  - heading "Balance" [level=3]
+  - paragraph: "Dating pool balance: 118 men per 100 women"
+  - paragraph:
+    - text: All singles in your age range, before other filters
+    - button "Balance"
+  - text: Compatibility
+  - paragraph: 114 where 100 is the US average
+  - paragraph: "Biggest pluses: the size of the pool, the compatibility figure · Biggest minus: Rent"
+  - heading "What San Francisco is like" [level=2]
+  - text: Rent $2,907 median 1-bedroom monthly rent, with utilities Among the priciest cities
+  - link "See all cities by rent":
+    - /url: /stats/rent_1br
+  - text: Everyday prices 107 where the US average is 100 Above the US average
+  - link "See all cities by everyday prices":
+    - /url: /stats/everyday_prices
+  - text: Places to go out 268 bars, cafés and venues per 100,000 adults Far more than most cities
+  - link "See all cities by places to go out":
+    - /url: /stats/venues_per_100k
+  - text: Getting around on foot 13.0 walkability, 1 to 20 Among the most walkable
+  - link "See all cities by walkability":
+    - /url: /stats/resident_walkability_index
+  - text: Nice days a year 240 days that are mild and dry enough to be outside Far more than most cities
+  - link "See all cities by nice days a year":
+    - /url: /stats/pleasant_days
+  - text: Students 63 college students per 1,000 adults About average
+  - link "See all cities by students":
+    - /url: /stats/students_per_1k_adults
+  - text: Who lives here 4.6 million people, of whom 3.2 million are adults One of the biggest cities
+  - link "See all cities by population":
+    - /url: /stats/who_lives_here
+  - text: Political lean 74% Democratic · 22% Republican 2024 presidential vote, whole metro area
+  - img "Democratic 74%, Everyone else 4%, Republican 22%"
+  - text: Democratic Everyone else Republican
+  - link "See all cities by political lean":
+    - /url: /stats/political_lean
+  - text: Violent crime
+  - button "About this figure"
+  - text: 451 reported per 100,000 people a year Far higher than most cities Property crime
+  - button "About this figure"
+  - text: 2,370 reported per 100,000 people a year Far higher than most cities See how San Francisco stacks up against a city you know
+  - button "Compare cities"
+
+===== compare pair main (first 120 lines)
+- main:
+  - link "← Back to your results":
+    - /url: /?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+  - heading "Austin and Denver" [level=1]
+  - paragraph: For men 28–40, never married or divorced or widowed — the same search and the same yardstick as your results.
+  - paragraph:
+    - text: These figures use the stated default search — men 28–40, never married or divorced or widowed. Change anything on the home page and they become yours.
+    - link "Make it your search":
+      - /url: /?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously#search-panel
+  - table "Austin, Texas compared with Denver, Colorado":
+    - caption: Austin, Texas compared with Denver, Colorado
+    - rowgroup:
+      - row "Austin, TX Denver, CO Edge":
+        - cell
+        - columnheader "Austin, TX":
+          - link "Austin, TX":
+            - /url: /city/austin-texas?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+        - columnheader "Denver, CO":
+          - link "Denver, CO":
+            - /url: /city/denver-colorado?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously
+        - columnheader "Edge"
+    - rowgroup:
+      - row "Spot in your results 9 11 Austin −2":
+        - rowheader "Spot in your results"
+        - cell "9"
+        - cell "11"
+        - cell "Austin −2"
+      - row "Overall score 67 65 Austin +2":
+        - rowheader "Overall score"
+        - cell "67"
+        - cell "65"
+        - cell "Austin +2"
+      - row "People who match 143,263 175,065 Denver −31,802":
+        - rowheader "People who match"
+        - cell "143,263"
+        - cell "175,065"
+        - cell "Denver −31,802"
+      - row "Compatibility 107 where 100 is the US average 111 where 100 is the US average Denver −4":
+        - rowheader "Compatibility"
+        - cell "107 where 100 is the US average"
+        - cell "111 where 100 is the US average"
+        - cell "Denver −4"
+      - 'row "Dating pool balance Dating pool balance: 125 men per 100 women Dating pool balance: 125 men per 100 women — 0"':
+        - rowheader "Dating pool balance"
+        - 'cell "Dating pool balance: 125 men per 100 women"':
+          - paragraph: "Dating pool balance: 125 men per 100 women"
+        - 'cell "Dating pool balance: 125 men per 100 women"':
+          - paragraph: "Dating pool balance: 125 men per 100 women"
+        - cell "— 0"
+      - row "Rent $1,638 Among the priciest cities $1,977 Among the priciest cities Austin −$339":
+        - rowheader "Rent"
+        - cell "$1,638 Among the priciest cities"
+        - cell "$1,977 Among the priciest cities"
+        - cell "Austin −$339"
+      - row "Everyday prices 95 Below the US average 100 About the US average Austin −5":
+        - rowheader "Everyday prices"
+        - cell "95 Below the US average"
+        - cell "100 About the US average"
+        - cell "Austin −5"
+      - row "Places to go out 199 More than most cities 207 More than most cities Denver −8":
+        - rowheader "Places to go out"
+        - cell "199 More than most cities"
+        - cell "207 More than most cities"
+        - cell "Denver −8"
+      - row "Getting around on foot 9.2 More walkable than most 11.8 Among the most walkable Denver −2.6":
+        - rowheader "Getting around on foot"
+        - cell "9.2 More walkable than most"
+        - cell "11.8 Among the most walkable"
+        - cell "Denver −2.6"
+      - row "Nice days a year 91 More than most cities 46 Far fewer than most cities Austin +45":
+        - rowheader "Nice days a year"
+        - cell "91 More than most cities"
+        - cell "46 Far fewer than most cities"
+        - cell "Austin +45"
+      - row "Students 72 More than most cities 57 About average Austin +15":
+        - rowheader "Students"
+        - cell "72 More than most cities"
+        - cell "57 About average"
+        - cell "Austin +15"
+      - row "Who lives here 2.4 million A big city 3 million One of the biggest cities — −600,000":
+        - rowheader "Who lives here"
+        - cell "2.4 million A big city"
+        - cell "3 million One of the biggest cities"
+        - cell "— −600,000"
+      - row "Political lean 59% Democratic · 39% Republican 59% Democratic · 38% Republican":
+        - rowheader "Political lean"
+        - cell "59% Democratic · 39% Republican"
+        - cell "59% Democratic · 38% Republican"
+        - cell
+  - paragraph: Edge shows which city does better on each measure for your search; a dash means we don't judge it.
+  - heading "Reported crime" [level=2]
+  - paragraph:
+    - text: The FBI cautions against using these numbers to compare cities. Data can be affected by how much crime is reported and whether local agencies send data to the FBI at all.
+    - link "See more details":
+      - /url: /about-crime-data
+    - text: .
+  - table:
+    - rowgroup:
+      - row "Austin, TX Denver, CO":
+        - cell
+        - columnheader "Austin, TX"
+        - columnheader "Denver, CO"
+    - rowgroup:
+      - row "Violent crime reported per 100,000 people a year 279 507":
+        - rowheader "Violent crime reported per 100,000 people a year"
+        - cell "279"
+        - cell "507"
+      - row "Property crime reported per 100,000 people a year 1,846 2,655":
+        - rowheader "Property crime reported per 100,000 people a year"
+        - cell "1,846"
+        - cell "2,655"

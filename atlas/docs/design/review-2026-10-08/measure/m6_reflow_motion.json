@@ -1,0 +1,196 @@
+{
+ "zoom200": {
+  "404": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "home": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "sheet": {
+   "w": 420,
+   "h": 450,
+   "body_scroll": 798
+  },
+  "city-sf": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "city-deltona": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "city-abilene": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "city-champaign": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "compare": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "compare-pair": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "compare-floor": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "about": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "what-we-measure": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "about-crime": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "stat-rent": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "stat-prices": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "stat-lean": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "stat-venues": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "privacy": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "terms": {
+   "scroll_width": 720,
+   "client_width": 720
+  },
+  "permalink": {
+   "scroll_width": 720,
+   "client_width": 720
+  }
+ },
+ "w320": {
+  "404": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "home": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "sheet": {
+   "w": 320,
+   "h": 576,
+   "body_scroll": 816
+  },
+  "city-sf": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "city-deltona": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "city-abilene": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "city-champaign": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "compare": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "compare-pair": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "compare-floor": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "about": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "what-we-measure": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "about-crime": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "stat-rent": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "stat-prices": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "stat-lean": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "stat-venues": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "privacy": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "terms": {
+   "scroll_width": 320,
+   "client_width": 320
+  },
+  "permalink": {
+   "scroll_width": 320,
+   "client_width": 320
+  }
+ },
+ "motion": {
+  "reduce": {
+   "animations": [],
+   "transitions": [],
+   "transition_count": 0
+  },
+  "no-preference": {
+   "animations": [
+    "CSSAnimation progress-slide on DIV.progress-line mb-3 dur=1100",
+    "DIV.progress-line mb-3 progress-slide",
+    "CSSTransition transform on LI.flex flex-col overflow-hidden  dur=200",
+    "CSSTransition transform on LI.border-b border-rule   dur=200",
+    "CSSTransition scale on IMG.h-full w-full object-cover obj dur=300"
+   ],
+   "transitions": [
+    "LI.border-b border-rule   transform 0",
+    "LI.border-b border-rule   transform 0",
+    "LI.border-b border-rule   transform 0",
+    "LI.border-b border-rule   transform 0",
+    "LI.flex flex-col overflow-hidden  transform 0",
+    "LI.border-b border-rule   transform 0",
+    "IMG.h-full w-full object-cover obj scale 0"
+   ],
+   "transition_count": 7
+  },
+  "sheet-reduce": [],
+  "sheet-no-preference": []
+ }
+}
