@@ -1,12 +1,31 @@
 import Link from "next/link";
 import { apiMeta, apiRank, RankError } from "@/lib/api";
 import { decodeToken } from "@/lib/permalink";
-import { bodyToPrefs, toSearchParams } from "@/lib/prefs";
+import { bodyToPrefs, describeSearchShort, toSearchParams } from "@/lib/prefs";
+import { HOME_OG_IMAGE, pageMetadata, pageTitle, resultsTitle } from "@/lib/chrome";
+import { fill } from "@/lib/results";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { Home } from "@/components/home";
 import { cardPhotos } from "@/lib/city-photos";
 
 export const dynamic = "force-dynamic";
+
+/** Phase 6 (F31): a permalink's own title and link preview — the results
+ * heading of the search it carries, its own URL, the home description and
+ * image. A token that doesn't decode keeps the site's. */
+export async function generateMetadata({ params }: { params: Promise<{ dv: string; mv: string; token: string }> }) {
+  const { dv, mv, token } = await params;
+  const meta = await apiMeta();
+  const ps = meta.policy_strings;
+  try {
+    const prefs = bodyToPrefs(decodeToken(token));
+    const heading = fill(prefs.sort === "worst_first" ? ps.results_heading_worst : ps.results_heading_best,
+      describeSearchShort(prefs));
+    return pageMetadata(resultsTitle(ps, heading), ps.home_subtitle, `/r/${dv}/${mv}/${token}`, HOME_OG_IMAGE);
+  } catch {
+    return pageMetadata(pageTitle(), ps.home_subtitle, `/r/${dv}/${mv}/${token}`, HOME_OG_IMAGE);
+  }
+}
 
 /** Reproducibility routes survive m2.0.0 even though no permalink renders
  * anywhere: an old link either reproduces exactly under its pins or lands

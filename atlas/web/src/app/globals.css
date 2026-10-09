@@ -181,6 +181,12 @@
 }
 
 
+/* Phase 6 (F36): the body is a flex column (layout.tsx) and the page's
+   main grows, so a short page ends on its footer, not on bare paper. The
+   width keeps a centred main (mx-auto, max-w-*) from shrinking to its
+   content, which auto margins in a flex column would do. */
+#main { flex: 1 0 auto; width: 100%; }
+
 body {
   background: var(--paper);
   color: var(--ink);

@@ -8,7 +8,7 @@ import { StatList, type StatRow } from "@/components/stat-list";
 import { LeanList, type LeanRow } from "@/components/lean-list";
 import statPages from "@/data/stat-pages.json";
 import statImages from "@/data/stat-images.json";
-import { sized } from "@/lib/city-photos";
+import { ogImage, sized } from "@/lib/city-photos";
 
 /** One page per static statistic (item 9, extended by Phase 2e): a
  * cleared full-width photograph (its credit in About us, Sources and
@@ -66,7 +66,11 @@ export async function generateMetadata({ params }: { params: Promise<{ fid: stri
   const { fid } = await params;
   const page = DATA.pages[fid];
   if (!page) return {};
-  return pageMetadata(pageTitle(fill(CHROME.title_stat, { stat: page.title })), page.definition, `/stats/${fid}`);
+  // Phase 6 (F31): the stat photograph's 1200x630 link preview
+  const img = IMAGES[fid];
+  const image = img && fs.existsSync(path.join(process.cwd(), "public", "stats", img.file))
+    ? ogImage("stats", fid) ?? undefined : undefined;
+  return pageMetadata(pageTitle(fill(CHROME.title_stat, { stat: page.title })), page.definition, `/stats/${fid}`, image);
 }
 
 export function generateStaticParams() {
@@ -85,6 +89,11 @@ export default async function StatPage({
   const img = IMAGES[fid];
   const imgExists =
     img && fs.existsSync(path.join(process.cwd(), "public", "stats", img.file));
+  const photo = img ? sized("stats", fid, img.file) : null;
+  // the width the photograph shows at: its own shape at 380px tall, no
+  // wider than the page's 928px column (for the browser's choice of copy)
+  const shownWidth = photo?.width && photo.height
+    ? Math.min(928, Math.round((380 * photo.width) / photo.height)) : 928;
 
   return (
     <>
@@ -94,14 +103,17 @@ export default async function StatPage({
         <figure className="mx-auto max-w-5xl px-4 pt-6 sm:px-12">
           {/* the photo ships UNMODIFIED — scaled to fit, never cropped
               (an adapted CC-BY-SA image would drag its licence onto the
-              adaptation), which is why this is not object-cover */}
+              adaptation), which is why this is not object-cover. Phase 6
+              (F33): its box is the photograph's own shape, up to 380px
+              tall, so no white bands sit beside it */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            {...sized("stats", fid, img.file)}
-            sizes="(min-width: 1024px) 928px, (min-width: 640px) calc(100vw - 96px), calc(100vw - 32px)"
+            {...photo}
+            sizes={`(max-width: 639px) calc(100vw - 32px), ${shownWidth}px`}
             loading="eager"
             alt={img.alt ?? ""}
-            className="h-auto max-h-[380px] w-full rounded-lg bg-surface object-contain"
+            className="mx-auto block h-auto max-h-[380px] w-auto max-w-full rounded-lg"
+            data-testid="stat-photo"
           />
         </figure>
       )}

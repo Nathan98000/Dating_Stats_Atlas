@@ -81,3 +81,21 @@ export const apiProfile = cache(async (cbsa: string): Promise<ProfileResponse | 
   if (!res.ok) throw new RankError(res.status, "profile unavailable");
   return res.json();
 });
+
+/** Phase 6 (F32): the registry's metadata as a page hands it to its client
+ * components — only the metros the page shows (the full list's 387
+ * descriptions travelled in every city page's HTML) and none of the
+ * licences, What-we-measure layout, technical strings or provenance,
+ * which no client component reads. Everything kept is unchanged. */
+export function clientMeta(meta: Meta, cbsas: string[]): Meta {
+  const keep = new Set(cbsas);
+  return {
+    ...meta,
+    metros: meta.metros.filter((m) => keep.has(m.cbsa)),
+    licenses: {},
+    measure_page: [],
+    technical_strings: {},
+    features: Object.fromEntries(Object.entries(meta.features).map(([k, f]) =>
+      [k, { ...f, provenance: {} }])),
+  };
+}

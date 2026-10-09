@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { expandRow, fetchMeta, openRailGroup, seedAboutYou } from "./helpers";
+import { E2E_API, expandRow, fetchMeta, openRailGroup, photoOnDisk, seedAboutYou } from "./helpers";
 
 /** Phase 6 (the round-3 design review of 8 October 2026, built from
  * atlas/PHASE6_PROMPT.md), run at the desk (1440×900), a laptop below the
@@ -646,5 +646,138 @@ test.describe("compare on the real build (P6_REAL_BASE)", () => {
     await expect(edgeCell(page, "rent_1br")).toHaveAttribute("data-edge", "-1");
     await expect(edgeCell(page, "rent_1br")).toContainText("Abilene");
     await expect(edgeCell(page, "rent_1br").locator("[data-diff-value]")).toHaveText("by $526");
+  });
+});
+
+test.describe("city and stat pages, sharing, the footer (H)", () => {
+  test("the city page leads with the score: its heading in the first screen at 1440x900 (F16)", async ({ page }) => {
+    test.skip(width(page) !== 1440, "the desk");
+    await page.goto("/city/austin-texas");
+    const h = page.getByTestId("ranked-card").getByRole("heading", { level: 2 });
+    await expect(h).toBeVisible();
+    expect((await h.boundingBox())!.y).toBeLessThan(900);
+    // the photo band (or the artwork) comes after the score card
+    const card = (await page.getByTestId("ranked-card").boundingBox())!;
+    const face = page.locator('[data-testid="city-photo"], [data-testid="city-art"]').first();
+    expect((await face.boundingBox())!.y).toBeGreaterThan(card.y + card.height);
+  });
+
+  test("the score card carries the metro's cautions under its matches line (F08)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/city/huntington-west-virginia");
+    await expect(page.getByTestId("ranked-card").getByTestId("flag-captions")).toHaveText(ps.low_allocation_purity);
+    await page.goto("/city/austin-texas");
+    await expect(page.getByTestId("ranked-card")).toBeVisible();
+    await expect(page.getByTestId("flag-captions")).toHaveCount(0);
+  });
+
+  test("same-sex on the city page: the note and the balance caption, chosen in the browser (F01)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    const html = await (await request.get(`/city/austin-texas${SAME_SEX_QS}`)).text();
+    expect(html).not.toContain('data-testid="same-sex-note"');
+    await seedAboutYou(page, { sex: "male" });
+    await page.goto(`/city/austin-texas${SAME_SEX_QS}`);
+    const card = page.getByTestId("ranked-card");
+    await expect(card.getByTestId("same-sex-note")).toHaveText(
+      ps.same_sex_pool_note.replace("{sought_one}", "man").replace("{sought}", "men"));
+    await card.getByRole("button", { name: ps.balance_info_label }).click();
+    await expect(page.getByTestId("info-tip-note")).toHaveText(ps.balance_caption_same_sex);
+  });
+
+  test("a city below the floor says so, with the floor (F24); the crime boxes are named (F26)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/city/eagle-pass-texas");
+    await expect(page.getByTestId("below-floor")).toHaveText(ps.city_below_floor.replace("{city}", "Eagle Pass"));
+    await page.goto("/city/austin-texas");
+    await expect(page.getByRole("button", { name: "About the violent crime figure" })).toHaveCount(1);
+    await expect(page.getByRole("button", { name: "About the property crime figure" })).toHaveCount(1);
+  });
+
+  test("a band showing a place elsewhere in the metro names it (F29)", async ({ page, request }) => {
+    test.skip(!photoOnDisk("cities/killeen-texas.jpg"), "no photographs on this checkout");
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/city/killeen-texas");
+    await expect(page.getByTestId("photo-place")).toHaveText(
+      ps.photo_place_caption.replace("{place}", "Belton").replace("{city}", "Killeen"));
+    await page.goto("/city/austin-texas");
+    await expect(page.getByTestId("photo-place")).toHaveCount(0);
+  });
+
+  test("the city page's HTML carries no map geometry and only its own metro (F32)", async ({ request, page }) => {
+    const html = await (await request.get("/city/austin-texas")).text();
+    // icons are short paths; a state outline is hundreds of characters
+    expect(html.match(/<path d="[^"]{300,}"/g) ?? []).toEqual([]);
+    expect((html.match(/"description\\?":/g) ?? []).length).toBeLessThanOrEqual(2);
+    await page.goto("/city/austin-texas");
+    const map = page.getByTestId(width(page) < 640 ? "locator-map-thumb" : "locator-map");
+    await expect(map).toHaveAttribute("src", /^\/map\/12420\.svg$/);
+  });
+
+  test("the stat pages' sort controls are the segmented control (F33)", async ({ page }) => {
+    await page.goto("/stats/rent_1br");
+    const sort = page.getByTestId("stat-sort");
+    await expect(sort).toHaveAttribute("role", "radiogroup");
+    const on = sort.getByRole("radio", { checked: true });
+    await expect(on).toHaveCount(1);
+    // white with the --ink-2 border (1.5px, which a 1x screen draws as 1px)
+    const style = await on.evaluate((el) => ({ border: parseFloat(getComputedStyle(el).borderTopWidth),
+      color: getComputedStyle(el).borderTopColor, bg: getComputedStyle(el).backgroundColor }));
+    expect(style.border).toBeGreaterThanOrEqual(1);
+    expect(style.color).toBe("rgb(90, 82, 87)");
+    expect(style.bg).toBe("rgb(255, 255, 255)");
+    await page.goto("/stats/political_lean");
+    await expect(page.getByTestId("lean-sort").getByRole("radio")).toHaveText(["Name", "Democratic share", "Republican share"]);
+    await expect(page.getByTestId("lean-sort").getByRole("radio", { name: "Name" })).toHaveAttribute("aria-checked", "true");
+  });
+
+  test("the stat photo keeps its own shape, no band beside it (F33)", async ({ page }) => {
+    test.skip(!photoOnDisk("stats/rent_1br.webp") && !photoOnDisk("stats/rent_1br.jpg"), "no photographs on this checkout");
+    await page.goto("/stats/rent_1br");
+    const img = page.getByTestId("stat-photo");
+    const r = await img.evaluate((el) => {
+      const i = el as HTMLImageElement;
+      const b = i.getBoundingClientRect();
+      return { shown: b.width / b.height, natural: i.naturalWidth / i.naturalHeight, h: b.height };
+    });
+    expect(Math.abs(r.shown - r.natural)).toBeLessThan(0.02);
+    expect(r.h).toBeLessThanOrEqual(380.5);
+  });
+
+  test("a shared results link has its own title, URL and preview (F31)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    const r = await request.post(`${E2E_API}/v1/rank`, { data: {
+      self: { age: 30 }, seeking: { sex: "male", age: [28, 40], marital: ["never_married", "previously_married"] } } });
+    const link = (await r.json()).permalink as string;
+    await page.goto(link);
+    await expect(page).toHaveTitle("Top cities for single men, 28–40 · Dating Stats Atlas");
+    expect(await page.locator('meta[property="og:url"]').getAttribute("content")).toMatch(new RegExp(`${link.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`));
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", ps.home_subtitle);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\.png$/);
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
+    // a home URL with a search too; the bare home keeps the site's title
+    await page.goto("/?self_age=30&sex=female&age=25-35&marital=never");
+    await expect(page).toHaveTitle("Top cities for single women, 25–35 · Dating Stats Atlas");
+    await page.goto("/");
+    await expect(page).toHaveTitle(ps.title_site);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\.png$/);
+  });
+
+  test("city pages preview with their 1200x630 crop (F31)", async ({ page, request }) => {
+    test.skip(!photoOnDisk("cities/og/austin-texas.jpg"), "no photographs on this checkout");
+    await page.goto("/city/austin-texas");
+    const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+    expect(og).toMatch(/\/cities\/og\/austin-texas\.jpg$/);
+    await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
+    await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", "630");
+    const img = await request.get(new URL(og!).pathname);
+    expect(img.ok()).toBe(true);
+  });
+
+  test("a short page ends on its footer (F36)", async ({ page }) => {
+    await page.goto("/no-such-page");
+    const footer = (await page.locator("footer").boundingBox())!;
+    const docH = await page.evaluate(() => document.documentElement.scrollHeight);
+    expect(Math.round(footer.y + footer.height)).toBe(docH);
+    expect(docH).toBeGreaterThanOrEqual(page.viewportSize()!.height);
   });
 });

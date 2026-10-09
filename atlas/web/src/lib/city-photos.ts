@@ -28,6 +28,11 @@ export interface CityImage {
   /** Phase 6 (§I): the photo's focal point, an object-position value, used
    * by the card, the band and the link-preview crop; default "50% 35%" */
   focus?: string;
+  /** Phase 6 (F29): the place the photograph shows, when that is
+   * elsewhere in its metro ("Daytona Beach" for Deltona), and a caption
+   * that is not the registry's template (Santa Maria's vineyards) */
+  place?: string;
+  place_caption?: string;
 }
 export const IMAGES = cityImages as unknown as Record<string, CityImage>;
 

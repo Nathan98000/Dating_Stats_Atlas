@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Segmented } from "./segmented";
 import { useState } from "react";
 
 /** Political lean's stat-page list (Phase 4d, ADR 0019). The cities come
@@ -60,24 +61,16 @@ export function LeanList({
         <span className="text-caption font-semibold text-ink-2" id="lean-sort-label">
           {sort.label}
         </span>
-        <div role="radiogroup" aria-labelledby="lean-sort-label" className="flex flex-wrap gap-[5px]" data-testid="lean-sort">
-          {options.map((opt) => {
-            const on = key === opt.key;
-            return (
-              <button
-                key={opt.key}
-                type="button"
-                role="radio"
-                aria-checked={on}
-                data-sort={opt.key}
-                className={`min-h-11 desk:min-h-9 rounded-sm border px-3.5 text-caption font-semibold ${on ? "border-accent bg-accent text-white" : "border-rule bg-paper text-ink-3 hover:border-ink-3"}`}
-                onClick={() => setKey(opt.key)}
-              >
-                {opt.label}
-              </button>
-            );
-          })}
-        </div>
+        {/* Phase 6 (F33): the home page's segmented control; the order
+            stays Name · Democratic share · Republican share, by name first */}
+        <Segmented
+          labelledBy="lean-sort-label"
+          testid="lean-sort"
+          inline
+          options={options.map((o) => ({ value: o.key, label: o.label }))}
+          value={key}
+          onChange={(v) => setKey(v as SortKey)}
+        />
       </div>
       <div>
         {/* the header strip: the column names and, once, the unit line;

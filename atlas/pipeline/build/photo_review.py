@@ -42,6 +42,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 import shutil
 import time
 import urllib.parse
@@ -265,6 +266,48 @@ def _external(r: dict, city: dict, stat: dict, city_csv: pd.DataFrame,
     return {"key": r["key"], "file": entry["file"], "source": r["source_url"]}
 
 
+DISPLAY_FIELDS = ("place", "place_caption", "focus")
+
+
+def apply_display(rev: dict, city: dict, stat: dict) -> list[str]:
+    """Phase 6: how a photograph is shown, from the review's
+    `photo_display` entries — `place`, the place it shows when that is
+    elsewhere in its metro (F29: the city band's caption, "Daytona Beach,
+    in the Deltona metro area"), `place_caption`, a caption that is not
+    that template ("Vineyards outside Santa Maria"), and `focus`, its focal
+    point as an object-position value (F30: the card, the band and the
+    link-preview crop; "50% 35%" when absent). An entry replaces every
+    display field of its photograph, so removing one from the review
+    removes it from the page. Offline and idempotent."""
+    done = []
+    for r in rev.get("photo_display", []):
+        target = city if r["page"] == "city" else stat
+        entry = target.get(r["key"])
+        if entry is None:
+            continue
+        for k in DISPLAY_FIELDS:
+            if r.get(k):
+                entry[k] = r[k]
+            else:
+                entry.pop(k, None)
+        done.append(r["key"])
+    return done
+
+
+def display_only() -> dict:
+    """The display fields alone, on the render manifests as they are
+    (`python -m atlas.pipeline.build.photo_review display`): no file moves,
+    no network."""
+    rev = _read(REVIEW)
+    city_path = WEB / "src" / "data" / "city-images.json"
+    stat_path = WEB / "src" / "data" / "stat-images.json"
+    city, stat = _read(city_path), _read(stat_path)
+    done = apply_display(rev, city, stat)
+    _write_render(city_path, city)
+    _write_render(stat_path, stat)
+    return {"display_entries_applied": done}
+
+
 def apply() -> dict:
     rev = _read(REVIEW)
     city_path = WEB / "src" / "data" / "city-images.json"
@@ -313,6 +356,7 @@ def apply() -> dict:
         target = city if r["page"] == "city" else stat
         if r["key"] in target:
             target[r["key"]]["alt"] = r["alt"]
+    apply_display(rev, city, stat)
     external = external_files()
     for page, render in (("city", city), ("stat", stat)):
         for key, v in render.items():
@@ -366,6 +410,9 @@ def credits() -> dict:
 
 
 def main() -> None:
+    if sys.argv[1:2] == ["display"]:
+        print(json.dumps(display_only(), indent=1))
+        return
     out = apply()
     rec = credits()
     CREDITS.write_text(json.dumps(rec, indent=1, ensure_ascii=False) + "\n")

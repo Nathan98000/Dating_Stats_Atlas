@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { BackToResults } from "@/components/back-link";
 import { notFound } from "next/navigation";
-import { apiMeta, apiPoliticalLean, apiProfile, apiRank } from "@/lib/api";
+import { apiMeta, apiPoliticalLean, apiProfile, apiRank, clientMeta } from "@/lib/api";
+import { fill } from "@/lib/results";
 import {
   describeSearch,
   parsePrefs,
@@ -21,7 +22,7 @@ import { CrimeCards } from "@/components/crime-cards";
 import { PoliticalLeanCard } from "@/components/political-lean";
 import { toneSeg, toneText } from "@/lib/tones";
 import { pageMetadata, pageTitle } from "@/lib/chrome";
-import { IMAGES, onDisk } from "@/lib/city-photos";
+import { IMAGES, ogImage, onDisk } from "@/lib/city-photos";
 import type { Card } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -31,8 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const meta = await apiMeta();
   const metro = meta.metros.find((m) => m.slug === slug);
   if (!metro) return {};
+  // Phase 6 (F31): the 1200x630 link preview cropped from the photograph
   const img = IMAGES[slug];
-  const image = img && onDisk(img) ? `/cities/${img.file}` : undefined;
+  const image = img && onDisk(img) ? ogImage("cities", slug) ?? undefined : undefined;
   return pageMetadata(pageTitle(metro.display_name), metro.description, `/city/${slug}`, image);
 }
 
@@ -77,6 +79,8 @@ export default async function CityPage({
   const cards: Card[] = profile?.cards ?? (ranked ?? suppressed)?.cards ?? [];
   const crime = profile?.crime ?? (ranked ?? suppressed)?.crime;
   const city = metro.display_name_full.split(",")[0];
+  // Phase 6 (F32): what the page's client components get of the metadata
+  const slim = clientMeta(meta, [metro.cbsa]);
 
   return (
     <>
@@ -114,10 +118,6 @@ export default async function CityPage({
           </div>
         </div>
 
-        {/* item 7: every page gets a face — deterministic artwork in the
-            site palette, overridden by a photo when one exists */}
-        <CityArt cbsa={metro.cbsa} slug={slug} />
-
         {/* for-your-search: the ranked card, or the approved narrow card */}
         {ranked ? (
           <CityVariantPart
@@ -126,7 +126,7 @@ export default async function CityPage({
             cbsa={metro.cbsa}
             city={city}
             searchWords={describeSearch(prefs).toLowerCase()}
-            meta={meta}
+            meta={slim}
           />
         ) : suppressed ? (
           <CityNarrowCard
@@ -138,9 +138,9 @@ export default async function CityPage({
           </CityNarrowCard>
         ) : (
           <section className="rounded-lg border border-rule bg-surface px-5 py-6 sm:px-7">
-            <p className="max-w-[72ch] text-body-sm text-ink-2">
-              {city} sits below the population floor this site ranks, so it
-              never appears in results — its profile is below.
+            {/* Phase 6 (F24): the floor, stated (the registry's) */}
+            <p className="max-w-[72ch] text-body-sm text-ink-2" data-testid="below-floor">
+              {fill(policy.city_below_floor, { city })}
             </p>
           </section>
         )}
@@ -152,9 +152,14 @@ export default async function CityPage({
             cbsa={metro.cbsa}
             city={city}
             searchWords={describeSearch(prefs).toLowerCase()}
-            meta={meta}
+            meta={slim}
           />
         )}
+
+        {/* item 7: every page gets a face — deterministic artwork in the
+            site palette, overridden by a photo when one exists. Phase 6
+            (F16): after the score card, so the page leads with the score */}
+        <CityArt cbsa={metro.cbsa} slug={slug} city={city} placeCaption={policy.photo_place_caption} />
 
         <section className="flex flex-col gap-4">
           <h2 className="font-display text-h2">

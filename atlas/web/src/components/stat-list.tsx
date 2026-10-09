@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Segmented } from "./segmented";
 import { useState } from "react";
 
 /** The stat page's ranked list with its sort toggle (Phase 2e item 1).
@@ -62,26 +63,20 @@ export function StatList({
         <span className="text-caption font-semibold text-ink-2" id="stat-sort-label">
           Show
         </span>
-        <div role="radiogroup" aria-labelledby="stat-sort-label" className="flex gap-[5px]" data-testid="stat-sort">
-          {[
-            { low: true, label: strings.sort_low },
-            { low: false, label: strings.sort_high },
-          ].map((opt) => {
-            const on = lowFirstShown === opt.low;
-            return (
-              <button
-                key={opt.label}
-                type="button"
-                role="radio"
-                aria-checked={on}
-                className={`min-h-11 desk:min-h-9 rounded-sm border px-3.5 text-caption font-semibold ${on ? "border-accent bg-accent text-white" : "border-rule bg-paper text-ink-3 hover:border-ink-3"}`}
-                onClick={() => setReversed(opt.low !== defaultIsLowFirst)}
-              >
-                {opt.label}
-              </button>
-            );
-          })}
-        </div>
+        {/* Phase 6 (F33): the home page's segmented control — a radio
+            group, the selected segment white with the 1.5px --ink-2 border
+            (the filled berry segments' unselected boundary read 1.23:1) */}
+        <Segmented
+          labelledBy="stat-sort-label"
+          testid="stat-sort"
+          inline
+          options={[
+            { value: "low", label: strings.sort_low },
+            { value: "high", label: strings.sort_high },
+          ]}
+          value={lowFirstShown ? "low" : "high"}
+          onChange={(v) => setReversed((v === "low") !== defaultIsLowFirst)}
+        />
       </div>
       <div>
         {/* item 9.5: the header strip — visual column labels on the same

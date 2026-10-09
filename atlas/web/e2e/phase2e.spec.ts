@@ -36,13 +36,19 @@ test("stat pages sort both ways without renumbering, strip renders", async ({ pa
   await expect(page.getByTestId("stat-note")).toHaveCount(0);
 });
 
-test("the locator is a real map: state borders, home state filled, dot placed", async ({ page }) => {
+test("the locator is a real map: state borders, home state filled, dot placed", async ({ page, request }) => {
   await page.goto(CITY_URL);
   const map = page.getByTestId("locator-map");
   await expect(map).toBeVisible();
-  expect(await map.locator("path").count()).toBeGreaterThanOrEqual(51);
-  await expect(map.locator('path[data-state="home"]')).toHaveCount(1);
-  await expect(map.locator("circle")).toHaveCount(1);
+  // Phase 6 (F32): an image of the static /map/<cbsa>.svg, over simplified
+  // outlines (50 states; the District is a speck at this scale)
+  const src = await map.getAttribute("src");
+  expect(src).toMatch(/^\/map\/\d+\.svg$/);
+  const svg = await (await request.get(src!)).text();
+  expect((svg.match(/<path /g) ?? []).length).toBeGreaterThanOrEqual(50);
+  expect((svg.match(/fill="#F7E9EE"/g) ?? []).length).toBe(1);
+  expect((svg.match(/<circle /g) ?? []).length).toBe(1);
+  expect(svg.length).toBeLessThan(14_000);
 });
 
 test("no mapping library reaches the browser bundle", async () => {

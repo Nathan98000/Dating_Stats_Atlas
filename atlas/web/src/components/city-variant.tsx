@@ -6,7 +6,9 @@ import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
 import { BalanceTrack } from "./balance-track";
 import { MatchFigure } from "./match";
-import { ScoreTrack } from "./row";
+import { FlagCaptions, ScoreTrack } from "./row";
+import { effectiveSex } from "@/lib/about-you";
+import { fill } from "@/lib/results";
 import { WhyChips } from "./why-chips";
 
 /** The parts of the city page an "about you" variant changes (m4.0.0,
@@ -34,6 +36,10 @@ export function CityVariantPart({
   const about = useAboutYou();
   const sel = useMemo(() => selectVariant(slice, about), [slice, about]);
   const policy = meta.policy_strings;
+  // Phase 6 (F01): a same-sex search, as this browser holds the visitor's
+  // own sex — the notes are chosen here, inside the variant veil
+  const sought = slice.variants.sought_sex;
+  const sameSex = effectiveSex(about, sought) === sought;
   if (part === "ranked") {
     const ranked = sel.ranked.find((r) => r.cbsa === cbsa);
     if (!ranked) return null;
@@ -71,10 +77,19 @@ export function CityVariantPart({
               <span className="text-data-m">{ranked.pool.toLocaleString("en-US")}</span>
               <span className="text-body-sm text-ink-2">{meta.features.pool_size.unit}</span>
             </p>
+            {/* Phase 6: under the matches line, the metro's served cautions
+                (F08) and, on a same-sex search, what matches count (F01) */}
+            <FlagCaptions flags={ranked.flags} meta={meta} className="mt-1 max-w-[46ch]" />
+            {sameSex && (
+              <p className="mt-1 max-w-[46ch] text-caption text-ink-2" data-testid="same-sex-note">
+                {fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
+                  sought: sought === "male" ? "men" : "women" })}
+              </p>
+            )}
           </div>
           <div className="min-w-[200px]">
             <h3 className="mb-2 text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
-            <BalanceTrack balance={ranked.balance} meta={meta} id={`city-${cbsa}`} />
+            <BalanceTrack balance={ranked.balance} meta={meta} id={`city-${cbsa}`} sameSex={sameSex} />
           </div>
           {/* the compatibility figure beside pool and balance (no box or
               band since Phase 4b) */}
@@ -99,7 +114,7 @@ export function CityVariantPart({
       </h2>
       <BalanceTrack balance={balance} meta={meta} id={`city-${cbsa}-s`} caption={false} />
       <p className="max-w-[64ch] text-caption text-ink-3">
-        {policy.balance_caption}
+        {sameSex ? policy.balance_caption_same_sex : policy.balance_caption}
       </p>
     </section>
   );

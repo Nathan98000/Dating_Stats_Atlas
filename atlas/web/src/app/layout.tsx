@@ -36,7 +36,7 @@ export default function RootLayout({
             it (lib/about-you) — never a list that reorders under you */}
         <script dangerouslySetInnerHTML={{ __html: PRE_PAINT_SCRIPT }} />
       </head>
-      <body className="min-h-screen">
+      <body className="flex min-h-screen flex-col">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-surface focus:px-3 focus:py-2 focus:text-ink"

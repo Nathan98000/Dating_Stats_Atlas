@@ -1,5 +1,6 @@
 
 import { DEFAULT_FOCUS, IMAGES, onDisk, sized, usableAlt } from "@/lib/city-photos";
+import { fill } from "@/lib/results";
 
 /** Every city page gets a face. Since Phase 2e item 4 that face is a
  * real photograph wherever one CLEARED: sourced from the city's
@@ -34,11 +35,20 @@ function mulberry32(seed: number) {
 const HUES = ["var(--tint)", "var(--sunken)", "var(--data-neutral)", "var(--good)",
   "var(--accent)", "var(--tint-border)"];
 
-export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
+export function CityArt({ cbsa, slug, city, placeCaption }: {
+  cbsa: string;
+  slug: string;
+  /** the city's short name and the registry's photo_place_caption, for a
+   * photograph of a place elsewhere in the metro (Phase 6, F29) */
+  city?: string;
+  placeCaption?: string;
+}) {
   const img = IMAGES[slug];
   if (img && onDisk(img)) {
     const alt = usableAlt(img);
     const s = sized("cities", slug, img.file);
+    const caption = img.place_caption
+      ?? (img.place && city && placeCaption ? fill(placeCaption, { place: img.place, city }) : null);
     return (
       <figure data-testid="city-photo" data-cropped="">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -54,6 +64,11 @@ export function CityArt({ cbsa, slug }: { cbsa: string; slug: string }) {
           className="aspect-[16/7] h-auto w-full rounded-lg object-cover"
           style={{ objectPosition: img.focus ?? DEFAULT_FOCUS }}
         />
+        {caption && (
+          <figcaption className="mt-2 text-caption text-ink-3" data-testid="photo-place">
+            {caption}
+          </figcaption>
+        )}
       </figure>
     );
   }

@@ -2779,5 +2779,80 @@
   ],
   "new_photographs": 97,
   "alt_overrides": 78
- }
+ },
+ "photo_display": [
+  {
+   "page": "city",
+   "key": "cape-coral-florida",
+   "place": "Fort Myers",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "crestview-florida",
+   "place": "Destin",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "deltona-florida",
+   "place": "Daytona Beach",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "gulfport-mississippi",
+   "place": "Biloxi",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "killeen-texas",
+   "place": "Belton",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "kingsport-tennessee",
+   "place": "Bristol",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "kiryas-joel-new-york",
+   "place": "Poughkeepsie",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "north-port-florida",
+   "place": "Siesta Key",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "ocala-florida",
+   "place": "Silver Springs",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "pensacola-florida",
+   "place": "Pensacola Beach",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  },
+  {
+   "page": "city",
+   "key": "santa-maria-california",
+   "place": "vineyards outside Santa Maria",
+   "place_caption": "Vineyards outside Santa Maria",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption). Santa Maria's reads as a caption on its own, with no template."
+  },
+  {
+   "page": "city",
+   "key": "south-bend-indiana",
+   "place": "Notre Dame",
+   "why": "Phase 6 (F29, the round-3 review, approved copy): the band shows a place elsewhere in the metro; a caption under it says which (photo_place_caption)."
+  }
+ ]
 }

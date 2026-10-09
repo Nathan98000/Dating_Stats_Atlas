@@ -536,6 +536,7 @@
 "file": "cape-coral-florida.jpg",
 "license": "Public domain",
 "license_url": null,
+"place": "Fort Myers",
 "source_url": "https://commons.wikimedia.org/wiki/File:SR_867_McGregor_Boulevard.jpg",
 "title": "SR 867 McGregor Boulevard"
 },
@@ -816,6 +817,7 @@
 "file": "crestview-florida.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
+"place": "Destin",
 "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Destin,_Florida_from_the_Destin_Harbor.jpg",
 "title": "View of Destin, Florida from the Destin Harbor"
 },
@@ -876,6 +878,7 @@
 "file": "deltona-florida.jpg",
 "license": "Public Domain",
 "license_url": "https://web.archive.org/web/20230926203737/https://creativecommons.org/licenses/publicdomain/",
+"place": "Daytona Beach",
 "source_url": "https://commons.wikimedia.org/wiki/File:Gfp-florida-daytona-beach-building-on-the-ocean.jpg",
 "title": "Gfp-florida-daytona-beach-building-on-the-ocean"
 },
@@ -1356,6 +1359,7 @@
 "file": "gulfport-mississippi.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"place": "Biloxi",
 "source_url": "https://commons.wikimedia.org/wiki/File:The_Biloxi_Lighthouse.jpg",
 "title": "The Biloxi Lighthouse"
 },
@@ -1746,6 +1750,7 @@
 "file": "killeen-texas.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"place": "Belton",
 "source_url": "https://commons.wikimedia.org/wiki/File:BellCourthouse1_(1_of_1).jpg",
 "title": "BellCourthouse1 (1 of 1)"
 },
@@ -1756,6 +1761,7 @@
 "file": "kingsport-tennessee.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"place": "Bristol",
 "source_url": "https://commons.wikimedia.org/wiki/File:State_Street_-_Bristol,_TN-VA.jpg",
 "title": "State Street - Bristol, TN-VA"
 },
@@ -1776,6 +1782,7 @@
 "file": "kiryas-joel-new-york.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"place": "Poughkeepsie",
 "source_url": "https://commons.wikimedia.org/wiki/File:Poughkeepsie_Railroad_Bridge_20071020.jpg",
 "title": "Poughkeepsie Railroad Bridge 20071020"
 },
@@ -2376,6 +2383,7 @@
 "file": "north-port-florida.jpg",
 "license": "CC BY 3.0",
 "license_url": "https://creativecommons.org/licenses/by/3.0",
+"place": "Siesta Key",
 "source_url": "https://commons.wikimedia.org/wiki/File:Siesta_Key_Beach._Sarasota_-_panoramio_-_4net_(3).jpg",
 "title": "Siesta Key Beach. Sarasota - panoramio - 4net (3)"
 },
@@ -2396,6 +2404,7 @@
 "file": "ocala-florida.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"place": "Silver Springs",
 "source_url": "https://commons.wikimedia.org/wiki/File:Silver_Springs_State_Park_-_Glass-Bottom_Boats_2017.jpg",
 "title": "Silver Springs State Park - Glass-Bottom Boats 2017"
 },
@@ -2536,6 +2545,7 @@
 "file": "pensacola-florida.jpg",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
+"place": "Pensacola Beach",
 "source_url": "https://commons.wikimedia.org/wiki/File:The_beach_at_Gulf_Pier_in_Pensacola_Beach,_Florida.jpg",
 "title": "The beach at Gulf Pier in Pensacola Beach, Florida"
 },
@@ -2976,6 +2986,8 @@
 "file": "santa-maria-california.jpg",
 "license": "CC0",
 "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+"place": "vineyards outside Santa Maria",
+"place_caption": "Vineyards outside Santa Maria",
 "source_url": "https://commons.wikimedia.org/wiki/File:Vineyard_and_hills_(Unsplash).jpg",
 "title": "Vineyard and hills (Unsplash)"
 },
@@ -3096,6 +3108,7 @@
 "file": "south-bend-indiana.jpg",
 "license": "CC BY-SA 4.0",
 "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"place": "Notre Dame",
 "source_url": "https://commons.wikimedia.org/wiki/File:Main_Building_at_the_University_of_Notre_Dame.jpg",
 "title": "Main Building at the University of Notre Dame"
 },

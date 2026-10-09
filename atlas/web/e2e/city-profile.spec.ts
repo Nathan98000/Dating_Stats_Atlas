@@ -30,7 +30,9 @@ test("a city below the ranking floor shows its whole profile under the floor sen
     .metros[metro.cbsa];
   if (!lean.available || !profile.crime.available) throw new Error("fixture metro without a figure");
   await page.goto(`/city/${BELOW}${QS}`);
-  await expect(page.getByText("sits below the population floor this site ranks")).toBeVisible();
+  // Phase 6 (F24): the registry's sentence, the floor stated
+  await expect(page.getByTestId("below-floor")).toHaveText(
+    meta.policy_strings.city_below_floor.replace("{city}", metro.display_name_full.split(",")[0]));
   await expect(page.getByTestId("ranked-card")).toHaveCount(0);
   await expect(page.getByTestId("city-narrow-card")).toHaveCount(0);
   // the registry's seven cards, then political lean, then crime
