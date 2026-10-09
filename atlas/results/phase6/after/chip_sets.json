@@ -1,0 +1,150 @@
+{
+ "search": "default (a woman, 30, looking for men 28-40)",
+ "top_ten": [
+  {
+   "rank": 1,
+   "metro": "San Francisco, CA",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+venues_per_100k",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 2,
+   "metro": "Boston, MA",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+venues_per_100k",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 3,
+   "metro": "New York, NY",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+venues_per_100k",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 4,
+   "metro": "Los Angeles, CA",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+pleasant_days",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 5,
+   "metro": "San Jose, CA",
+   "chips_before": [
+    "+match_propensity",
+    "+pool_size",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+venues_per_100k",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 6,
+   "metro": "Seattle, WA",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+venues_per_100k",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 7,
+   "metro": "Chicago, IL",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rpp_goods"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+venues_per_100k",
+    "-rpp_goods"
+   ]
+  },
+  {
+   "rank": 8,
+   "metro": "San Diego, CA",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+pleasant_days",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 9,
+   "metro": "Austin, TX",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rent_1br"
+   ],
+   "chips_after": [
+    "+rpp_goods",
+    "+venues_per_100k",
+    "-rent_1br"
+   ]
+  },
+  {
+   "rank": 10,
+   "metro": "Philadelphia, PA",
+   "chips_before": [
+    "+pool_size",
+    "+match_propensity",
+    "-rpp_goods"
+   ],
+   "chips_after": [
+    "+resident_walkability_index",
+    "+pleasant_days",
+    "-rpp_goods"
+   ]
+  }
+ ],
+ "distinct_sets_before": 3,
+ "distinct_sets_after": 5,
+ "distinct_sets_before_unordered": 2,
+ "distinct_sets_after_unordered": 5,
+ "note": "the review counted sets without order (San Jose's two pluses in the other order count as the same set): 2 before"
+}

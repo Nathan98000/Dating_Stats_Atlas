@@ -1,0 +1,7013 @@
+{
+ "404@390": {
+  "url": "/no-such-page",
+  "status": 404,
+  "ms_to_settle": 1009,
+  "title": "Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "Page not found"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 844,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 4546,
+    "body": 3999
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   }
+  },
+  "total_transfer": 292630,
+  "requests": [
+   {
+    "url": "/no-such-page",
+    "type": "document",
+    "status": 404,
+    "transfer": 4546,
+    "body": 3999,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "home@390": {
+  "url": "/",
+  "status": 200,
+  "ms_to_settle": 1425,
+  "title": "Dating Stats Atlas",
+  "meta": {
+   "description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:title": "Dating Stats Atlas",
+   "og:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:url": "https://dating-stats-atlas.duckdns.org",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/og/home.png",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Dating Stats Atlas",
+   "twitter:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/og/home.png"
+  },
+  "lang": "en",
+  "h1": [
+   "Which city has the best dating scene for you?"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 3803,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/cities/w/san-francisco-california-1080.webp",
+    "natural": "357x268",
+    "shown": "356x156",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/boston-massachusetts-1080.webp",
+    "natural": "357x233",
+    "shown": "356x156",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/new-york-new-york-1080.webp",
+    "natural": "357x201",
+    "shown": "356x156",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   }
+  ],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "image": {
+    "count": 3,
+    "transfer": 325214,
+    "body": 324274
+   },
+   "js": {
+    "count": 10,
+    "transfer": 156302,
+    "body": 152242
+   },
+   "html": {
+    "count": 1,
+    "transfer": 319071,
+    "body": 318335
+   }
+  },
+  "total_transfer": 952884,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/cities/w/san-francisco-california-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 78045,
+    "body": 77732,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/6fd71fc72b988337.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 8369,
+    "body": 7960,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/b14b6bebf36541db.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 12146,
+    "body": 11737,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/boston-massachusetts-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 156892,
+    "body": 156578,
+    "enc": null
+   },
+   {
+    "url": "/cities/w/new-york-new-york-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 90277,
+    "body": 89964,
+    "enc": null
+   },
+   {
+    "url": "/",
+    "type": "document",
+    "status": 200,
+    "transfer": 319071,
+    "body": 318335,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-sf@390": {
+  "url": "/city/san-francisco-california",
+  "status": 200,
+  "ms_to_settle": 1160,
+  "title": "San Francisco, CA · Dating Stats Atlas",
+  "meta": {
+   "description": "A major city of about 4.6 million people in California.",
+   "og:title": "San Francisco, CA · Dating Stats Atlas",
+   "og:description": "A major city of about 4.6 million people in California.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/san-francisco-california",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/cities/og/san-francisco-california.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "San Francisco, CA · Dating Stats Atlas",
+   "twitter:description": "A major city of about 4.6 million people in California.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/cities/og/san-francisco-california.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "San Francisco, California"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 3113,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/41860.svg",
+    "natural": "233x150",
+    "shown": "86x55",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with San Francisco, California marked"
+   },
+   {
+    "src": "/map/41860.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with San Francisco, California marked"
+   },
+   {
+    "src": "/cities/w/san-francisco-california-1080.webp",
+    "natural": "357x268",
+    "shown": "358x157",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": "The Golden Gate Bridge in warm evening light, with San Francisco across the bay behind it."
+   }
+  ],
+  "weight": {
+   "image": {
+    "count": 2,
+    "transfer": 86143,
+    "body": 85494
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "html": {
+    "count": 1,
+    "transfer": 37166,
+    "body": 36430
+   },
+   "js": {
+    "count": 9,
+    "transfer": 145758,
+    "body": 142107
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 585,
+    "body": 192
+   }
+  },
+  "total_transfer": 421949,
+  "requests": [
+   {
+    "url": "/map/41860.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8098,
+    "body": 7762,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/san-francisco-california-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 78045,
+    "body": 77732,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/city/san-francisco-california",
+    "type": "document",
+    "status": 200,
+    "transfer": 37166,
+    "body": 36430,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously&_rsc=hr5tgnHkkivOKH_r",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 585,
+    "body": 192,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-deltona@390": {
+  "url": "/city/deltona-florida",
+  "status": 200,
+  "ms_to_settle": 1152,
+  "title": "Deltona, FL · Dating Stats Atlas",
+  "meta": {
+   "description": "A city of about 710,000 people half an hour north of Orlando.",
+   "og:title": "Deltona, FL · Dating Stats Atlas",
+   "og:description": "A city of about 710,000 people half an hour north of Orlando.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/deltona-florida",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/cities/og/deltona-florida.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Deltona, FL · Dating Stats Atlas",
+   "twitter:description": "A city of about 710,000 people half an hour north of Orlando.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/cities/og/deltona-florida.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Deltona, Florida"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 3103,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/19660.svg",
+    "natural": "233x150",
+    "shown": "86x55",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Deltona, Florida marked"
+   },
+   {
+    "src": "/map/19660.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Deltona, Florida marked"
+   },
+   {
+    "src": "/cities/w/deltona-florida-1080.webp",
+    "natural": "357x238",
+    "shown": "358x157",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": "The Main Street Pier and its pier-top restaurant stretching over the sand and surf at Daytona Beach on a sunny afternoon."
+   }
+  ],
+  "weight": {
+   "image": {
+    "count": 2,
+    "transfer": 79172,
+    "body": 78523
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "html": {
+    "count": 1,
+    "transfer": 36969,
+    "body": 36233
+   },
+   "js": {
+    "count": 9,
+    "transfer": 145758,
+    "body": 142107
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 585,
+    "body": 192
+   }
+  },
+  "total_transfer": 414781,
+  "requests": [
+   {
+    "url": "/cities/w/deltona-florida-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 71073,
+    "body": 70760,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/map/19660.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8099,
+    "body": 7763,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/city/deltona-florida",
+    "type": "document",
+    "status": 200,
+    "transfer": 36969,
+    "body": 36233,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously&_rsc=doBNCb6LD7h5R4u6",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 585,
+    "body": 192,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-abilene@390": {
+  "url": "/city/abilene-texas",
+  "status": 200,
+  "ms_to_settle": 1123,
+  "title": "Abilene, TX · Dating Stats Atlas",
+  "meta": {
+   "description": "A city of about 180,000 people about three hours northwest of Killeen.",
+   "og:title": "Abilene, TX · Dating Stats Atlas",
+   "og:description": "A city of about 180,000 people about three hours northwest of Killeen.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/abilene-texas",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/cities/og/abilene-texas.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Abilene, TX · Dating Stats Atlas",
+   "twitter:description": "A city of about 180,000 people about three hours northwest of Killeen.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/cities/og/abilene-texas.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Abilene, Texas"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 2602,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/10180.svg",
+    "natural": "233x150",
+    "shown": "86x55",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Abilene, Texas marked"
+   },
+   {
+    "src": "/map/10180.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Abilene, Texas marked"
+   },
+   {
+    "src": "/cities/w/abilene-texas-1080.webp",
+    "natural": "357x130",
+    "shown": "358x157",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": ""
+   }
+  ],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "image": {
+    "count": 2,
+    "transfer": 49873,
+    "body": 49225
+   },
+   "html": {
+    "count": 1,
+    "transfer": 17772,
+    "body": 17036
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 10,
+    "transfer": 148090,
+    "body": 144030
+   },
+   "rsc/fetch": {
+    "count": 2,
+    "transfer": 22426,
+    "body": 21530
+   }
+  },
+  "total_transfer": 390458,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/abilene-texas-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 41774,
+    "body": 41462,
+    "enc": null
+   },
+   {
+    "url": "/city/abilene-texas",
+    "type": "document",
+    "status": 200,
+    "transfer": 17772,
+    "body": 17036,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/map/10180.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8099,
+    "body": 7763,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/everyday_prices?_rsc=ytESfiU5RBBPlxDn",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 10662,
+    "body": 10214,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/rent_1br?_rsc=ytESfiU5RBBPlxDn",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11764,
+    "body": 11316,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-champaign@390": {
+  "url": "/city/champaign-illinois",
+  "status": 200,
+  "ms_to_settle": 1173,
+  "title": "Champaign, IL · Dating Stats Atlas",
+  "meta": {
+   "description": "A college town of about 240,000 people two hours west of Indianapolis.",
+   "og:title": "Champaign, IL · Dating Stats Atlas",
+   "og:description": "A college town of about 240,000 people two hours west of Indianapolis.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/champaign-illinois",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Champaign, IL · Dating Stats Atlas",
+   "twitter:description": "A college town of about 240,000 people two hours west of Indianapolis."
+  },
+  "lang": "en",
+  "h1": [
+   "Champaign, Illinois"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 2618,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/16580.svg",
+    "natural": "233x150",
+    "shown": "86x55",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Champaign, Illinois marked"
+   },
+   {
+    "src": "/map/16580.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Champaign, Illinois marked"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 17569,
+    "body": 16833
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "image": {
+    "count": 1,
+    "transfer": 8099,
+    "body": 7763
+   },
+   "js": {
+    "count": 10,
+    "transfer": 148090,
+    "body": 144030
+   },
+   "rsc/fetch": {
+    "count": 2,
+    "transfer": 22426,
+    "body": 21530
+   }
+  },
+  "total_transfer": 348481,
+  "requests": [
+   {
+    "url": "/city/champaign-illinois",
+    "type": "document",
+    "status": 200,
+    "transfer": 17569,
+    "body": 16833,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/map/16580.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8099,
+    "body": 7763,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/rent_1br?_rsc=jawkNPgpxP14pyky",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11764,
+    "body": 11316,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/everyday_prices?_rsc=jawkNPgpxP14pyky",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 10662,
+    "body": 10214,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "compare@390": {
+  "url": "/compare",
+  "status": 200,
+  "ms_to_settle": 1110,
+  "title": "Compare · Dating Stats Atlas",
+  "meta": {
+   "description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:title": "Compare · Dating Stats Atlas",
+   "og:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/compare",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Compare · Dating Stats Atlas",
+   "twitter:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them."
+  },
+  "lang": "en",
+  "h1": [
+   "Compare two cities"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 893,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 8575,
+    "body": 7839
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 137726,
+    "body": 134076
+   }
+  },
+  "total_transfer": 298598,
+  "requests": [
+   {
+    "url": "/compare",
+    "type": "document",
+    "status": 200,
+    "transfer": 8575,
+    "body": 7839,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/38b2c1124b70764f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 1939,
+    "body": 1531,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "compare-pair@390": {
+  "url": "/compare/austin-texas/denver-colorado",
+  "status": 200,
+  "ms_to_settle": 1156,
+  "title": "Austin, TX vs Denver, CO · Dating Stats Atlas",
+  "meta": {
+   "description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:title": "Austin, TX vs Denver, CO · Dating Stats Atlas",
+   "og:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/compare/austin-texas/denver-colorado",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Austin, TX vs Denver, CO · Dating Stats Atlas",
+   "twitter:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them."
+  },
+  "lang": "en",
+  "h1": [
+   "Austin and Denver"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 2667,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 142665,
+    "body": 139014
+   },
+   "html": {
+    "count": 1,
+    "transfer": 62661,
+    "body": 61925
+   }
+  },
+  "total_transfer": 357623,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/608877fef3191694.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 6878,
+    "body": 6469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/compare/austin-texas/denver-colorado",
+    "type": "document",
+    "status": 200,
+    "transfer": 62661,
+    "body": 61925,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "compare-floor@390": {
+  "url": "/compare/austin-texas/abilene-texas",
+  "status": 200,
+  "ms_to_settle": 1188,
+  "title": "Austin, TX vs Abilene, TX · Dating Stats Atlas",
+  "meta": {
+   "description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:title": "Austin, TX vs Abilene, TX · Dating Stats Atlas",
+   "og:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/compare/austin-texas/abilene-texas",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Austin, TX vs Abilene, TX · Dating Stats Atlas",
+   "twitter:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them."
+  },
+  "lang": "en",
+  "h1": [
+   "Austin and Abilene"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 2696,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 142665,
+    "body": 139014
+   },
+   "html": {
+    "count": 1,
+    "transfer": 60691,
+    "body": 59955
+   }
+  },
+  "total_transfer": 355653,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/608877fef3191694.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 6878,
+    "body": 6469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/compare/austin-texas/abilene-texas",
+    "type": "document",
+    "status": 200,
+    "transfer": 60691,
+    "body": 59955,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "about@390": {
+  "url": "/about",
+  "status": 200,
+  "ms_to_settle": 1061,
+  "title": "How it works · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "How it works · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/about",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "How it works · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "How it works"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 3890,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "html": {
+    "count": 1,
+    "transfer": 104789,
+    "body": 104053
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 523,
+    "body": 130
+   }
+  },
+  "total_transfer": 393396,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/about",
+    "type": "document",
+    "status": 200,
+    "transfer": 104789,
+    "body": 104053,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?_rsc=_paE49VugaXyxB1G",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 523,
+    "body": 130,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/400bf8aa837fcb7e-s.b68677ba.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 10558,
+    "body": 10228,
+    "enc": null
+   }
+  ]
+ },
+ "what-we-measure@390": {
+  "url": "/what-we-measure",
+  "status": 200,
+  "ms_to_settle": 972,
+  "title": "What we measure · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "What we measure · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/what-we-measure",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "What we measure · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "What we measure"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 2779,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 12079,
+    "body": 11343
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   },
+   "rsc/fetch": {
+    "count": 3,
+    "transfer": 22949,
+    "body": 21660
+   }
+  },
+  "total_transfer": 325444,
+  "requests": [
+   {
+    "url": "/what-we-measure",
+    "type": "document",
+    "status": 200,
+    "transfer": 12079,
+    "body": 11343,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/rent_1br?_rsc=-7l1JZDC5WYQPMlG",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11764,
+    "body": 11316,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/everyday_prices?_rsc=-7l1JZDC5WYQPMlG",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 10662,
+    "body": 10214,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?_rsc=-7l1JZDC5WYQPMlG",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 523,
+    "body": 130,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "about-crime@390": {
+  "url": "/about-crime-data",
+  "status": 200,
+  "ms_to_settle": 956,
+  "title": "About the crime figures · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "About the crime figures · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/about-crime-data",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "About the crime figures · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "About the crime figures"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 1931,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 9720,
+    "body": 8984
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 523,
+    "body": 130
+   }
+  },
+  "total_transfer": 298327,
+  "requests": [
+   {
+    "url": "/about-crime-data",
+    "type": "document",
+    "status": 200,
+    "transfer": 9720,
+    "body": 8984,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?_rsc=eT7hlWaQnexZGSt9",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 523,
+    "body": 130,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-rent@390": {
+  "url": "/stats/rent_1br",
+  "status": 200,
+  "ms_to_settle": 1007,
+  "title": "Rent by city · Dating Stats Atlas",
+  "meta": {
+   "description": "The typical monthly rent for a one-bedroom home across the city, utilities included",
+   "og:title": "Rent by city · Dating Stats Atlas",
+   "og:description": "The typical monthly rent for a one-bedroom home across the city, utilities included",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/rent_1br",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/rent_1br.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Rent by city · Dating Stats Atlas",
+   "twitter:description": "The typical monthly rent for a one-bedroom home across the city, utilities included",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/rent_1br.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by rent"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 9789,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/rent_1br-1080.webp",
+    "natural": "357x238",
+    "shown": "358x239",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "Apartment complex in California"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 23596,
+    "body": 23093
+   },
+   "image": {
+    "count": 1,
+    "transfer": 88229,
+    "body": 87916
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 402241,
+  "requests": [
+   {
+    "url": "/stats/rent_1br",
+    "type": "document",
+    "status": 200,
+    "transfer": 23596,
+    "body": 23093,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/rent_1br-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 88229,
+    "body": 87916,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-prices@390": {
+  "url": "/stats/everyday_prices",
+  "status": 200,
+  "ms_to_settle": 1044,
+  "title": "Everyday prices by city · Dating Stats Atlas",
+  "meta": {
+   "description": "The price of goods and services, where the US average is 100.",
+   "og:title": "Everyday prices by city · Dating Stats Atlas",
+   "og:description": "The price of goods and services, where the US average is 100.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/everyday_prices",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/everyday_prices.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Everyday prices by city · Dating Stats Atlas",
+   "twitter:description": "The price of goods and services, where the US average is 100.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/everyday_prices.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by everyday prices"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 9786,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/everyday_prices-1080.webp",
+    "natural": "357x208",
+    "shown": "358x208",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "Tomatoes and cucumbers in crates on a supermarket produce stand, with more fruit and vegetables behind"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 21392,
+    "body": 20889
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "image": {
+    "count": 1,
+    "transfer": 64670,
+    "body": 64358
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 376478,
+  "requests": [
+   {
+    "url": "/stats/everyday_prices",
+    "type": "document",
+    "status": 200,
+    "transfer": 21392,
+    "body": 20889,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/everyday_prices-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 64670,
+    "body": 64358,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-lean@390": {
+  "url": "/stats/political_lean",
+  "status": 200,
+  "ms_to_settle": 1084,
+  "title": "Political lean by city · Dating Stats Atlas",
+  "meta": {
+   "description": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+   "og:title": "Political lean by city · Dating Stats Atlas",
+   "og:description": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/political_lean",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/political_lean.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Political lean by city · Dating Stats Atlas",
+   "twitter:description": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/political_lean.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by political lean"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 9604,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/political_lean-1080.webp",
+    "natural": "357x238",
+    "shown": "358x239",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "Two voting booths on a table in an empty polling place in Grand Rapids, Minnesota."
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 18458,
+    "body": 17955
+   },
+   "image": {
+    "count": 1,
+    "transfer": 48886,
+    "body": 48574
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 357760,
+  "requests": [
+   {
+    "url": "/stats/political_lean",
+    "type": "document",
+    "status": 200,
+    "transfer": 18458,
+    "body": 17955,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/political_lean-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 48886,
+    "body": 48574,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-venues@390": {
+  "url": "/stats/venues_per_100k",
+  "status": 200,
+  "ms_to_settle": 1035,
+  "title": "Places to go out by city · Dating Stats Atlas",
+  "meta": {
+   "description": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
+   "og:title": "Places to go out by city · Dating Stats Atlas",
+   "og:description": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/venues_per_100k",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/venues_per_100k.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Places to go out by city · Dating Stats Atlas",
+   "twitter:description": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/venues_per_100k.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by places to go out"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 9835,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/venues_per_100k-1080.webp",
+    "natural": "357x238",
+    "shown": "358x239",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "times square night 2013 new york city manhattan"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 23257,
+    "body": 22755
+   },
+   "image": {
+    "count": 1,
+    "transfer": 164060,
+    "body": 163746
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 477733,
+  "requests": [
+   {
+    "url": "/stats/venues_per_100k",
+    "type": "document",
+    "status": 200,
+    "transfer": 23257,
+    "body": 22755,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/venues_per_100k-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 164060,
+    "body": 163746,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "privacy@390": {
+  "url": "/privacy",
+  "status": 200,
+  "ms_to_settle": 993,
+  "title": "Privacy · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "Privacy · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/privacy",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Privacy · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "Privacy"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 1744,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "html": {
+    "count": 1,
+    "transfer": 9355,
+    "body": 8619
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 523,
+    "body": 130
+   }
+  },
+  "total_transfer": 297962,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/privacy",
+    "type": "document",
+    "status": 200,
+    "transfer": 9355,
+    "body": 8619,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?_rsc=rwu5VT28ZerHQs0v",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 523,
+    "body": 130,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "terms@390": {
+  "url": "/terms",
+  "status": 200,
+  "ms_to_settle": 994,
+  "title": "Terms · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "Terms · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/terms",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Terms · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "Terms of use"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 2990,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 10960,
+    "body": 10224
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 523,
+    "body": 130
+   }
+  },
+  "total_transfer": 299567,
+  "requests": [
+   {
+    "url": "/terms",
+    "type": "document",
+    "status": 200,
+    "transfer": 10960,
+    "body": 10224,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?_rsc=DNFl5fs2IjKQRqXM",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 523,
+    "body": 130,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "permalink@390": {
+  "url": "/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+  "status": 200,
+  "ms_to_settle": 1434,
+  "title": "Top cities for single men, 28–40 · Dating Stats Atlas",
+  "meta": {
+   "description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:title": "Top cities for single men, 28–40 · Dating Stats Atlas",
+   "og:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/og/home.png",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Top cities for single men, 28–40 · Dating Stats Atlas",
+   "twitter:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/og/home.png"
+  },
+  "lang": "en",
+  "h1": [
+   "Which city has the best dating scene for you?"
+  ],
+  "scroll_width": 390,
+  "client_width": 390,
+  "page_height": 3534,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/cities/w/san-francisco-california-1080.webp",
+    "natural": "357x268",
+    "shown": "356x156",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/boston-massachusetts-1080.webp",
+    "natural": "357x233",
+    "shown": "356x156",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/new-york-new-york-1080.webp",
+    "natural": "357x201",
+    "shown": "356x156",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   }
+  ],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "image": {
+    "count": 3,
+    "transfer": 325214,
+    "body": 324274
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 10,
+    "transfer": 156302,
+    "body": 152242
+   },
+   "html": {
+    "count": 1,
+    "transfer": 319951,
+    "body": 319215
+   }
+  },
+  "total_transfer": 953764,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/san-francisco-california-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 78045,
+    "body": 77732,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/6fd71fc72b988337.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 8369,
+    "body": 7960,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/b14b6bebf36541db.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 12146,
+    "body": 11737,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/new-york-new-york-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 90277,
+    "body": 89964,
+    "enc": null
+   },
+   {
+    "url": "/cities/w/boston-massachusetts-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 156892,
+    "body": 156578,
+    "enc": null
+   },
+   {
+    "url": "/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+    "type": "document",
+    "status": 200,
+    "transfer": 319951,
+    "body": 319215,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "404@1440": {
+  "url": "/no-such-page",
+  "status": 404,
+  "ms_to_settle": 1011,
+  "title": "Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "Page not found"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 900,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 4546,
+    "body": 3999
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   }
+  },
+  "total_transfer": 292630,
+  "requests": [
+   {
+    "url": "/no-such-page",
+    "type": "document",
+    "status": 404,
+    "transfer": 4546,
+    "body": 3999,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "home@1440": {
+  "url": "/",
+  "status": 200,
+  "ms_to_settle": 1449,
+  "title": "Dating Stats Atlas",
+  "meta": {
+   "description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:title": "Dating Stats Atlas",
+   "og:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:url": "https://dating-stats-atlas.duckdns.org",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/og/home.png",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Dating Stats Atlas",
+   "twitter:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/og/home.png"
+  },
+  "lang": "en",
+  "h1": [
+   "Which city has the best dating scene for you?"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 2155,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/cities/w/san-francisco-california-480.webp",
+    "natural": "250x187",
+    "shown": "249x155",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/boston-massachusetts-480.webp",
+    "natural": "250x163",
+    "shown": "249x155",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/new-york-new-york-480.webp",
+    "natural": "250x140",
+    "shown": "249x155",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   }
+  ],
+  "weight": {
+   "image": {
+    "count": 3,
+    "transfer": 73120,
+    "body": 72184
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 10,
+    "transfer": 156302,
+    "body": 152242
+   },
+   "html": {
+    "count": 1,
+    "transfer": 319071,
+    "body": 318335
+   }
+  },
+  "total_transfer": 700790,
+  "requests": [
+   {
+    "url": "/cities/w/san-francisco-california-480.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 18484,
+    "body": 18172,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/6fd71fc72b988337.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 8369,
+    "body": 7960,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/b14b6bebf36541db.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 12146,
+    "body": 11737,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/new-york-new-york-480.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 18138,
+    "body": 17826,
+    "enc": null
+   },
+   {
+    "url": "/cities/w/boston-massachusetts-480.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 36498,
+    "body": 36186,
+    "enc": null
+   },
+   {
+    "url": "/",
+    "type": "document",
+    "status": 200,
+    "transfer": 319071,
+    "body": 318335,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-sf@1440": {
+  "url": "/city/san-francisco-california",
+  "status": 200,
+  "ms_to_settle": 1211,
+  "title": "San Francisco, CA · Dating Stats Atlas",
+  "meta": {
+   "description": "A major city of about 4.6 million people in California.",
+   "og:title": "San Francisco, CA · Dating Stats Atlas",
+   "og:description": "A major city of about 4.6 million people in California.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/san-francisco-california",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/cities/og/san-francisco-california.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "San Francisco, CA · Dating Stats Atlas",
+   "twitter:description": "A major city of about 4.6 million people in California.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/cities/og/san-francisco-california.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "San Francisco, California"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 2264,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/41860.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with San Francisco, California marked"
+   },
+   {
+    "src": "/map/41860.svg",
+    "natural": "233x150",
+    "shown": "266x172",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with San Francisco, California marked"
+   },
+   {
+    "src": "/cities/w/san-francisco-california-1080.webp",
+    "natural": "1056x792",
+    "shown": "1056x462",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": "The Golden Gate Bridge in warm evening light, with San Francisco across the bay behind it."
+   }
+  ],
+  "weight": {
+   "image": {
+    "count": 2,
+    "transfer": 86143,
+    "body": 85494
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 145758,
+    "body": 142107
+   },
+   "html": {
+    "count": 1,
+    "transfer": 37166,
+    "body": 36430
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 585,
+    "body": 192
+   }
+  },
+  "total_transfer": 421949,
+  "requests": [
+   {
+    "url": "/map/41860.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8098,
+    "body": 7762,
+    "enc": null
+   },
+   {
+    "url": "/cities/w/san-francisco-california-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 78045,
+    "body": 77732,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/san-francisco-california",
+    "type": "document",
+    "status": 200,
+    "transfer": 37166,
+    "body": 36430,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously&_rsc=hr5tgnHkkivOKH_r",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 585,
+    "body": 192,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-deltona@1440": {
+  "url": "/city/deltona-florida",
+  "status": 200,
+  "ms_to_settle": 1181,
+  "title": "Deltona, FL · Dating Stats Atlas",
+  "meta": {
+   "description": "A city of about 710,000 people half an hour north of Orlando.",
+   "og:title": "Deltona, FL · Dating Stats Atlas",
+   "og:description": "A city of about 710,000 people half an hour north of Orlando.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/deltona-florida",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/cities/og/deltona-florida.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Deltona, FL · Dating Stats Atlas",
+   "twitter:description": "A city of about 710,000 people half an hour north of Orlando.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/cities/og/deltona-florida.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Deltona, Florida"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 2276,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/19660.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Deltona, Florida marked"
+   },
+   {
+    "src": "/map/19660.svg",
+    "natural": "233x150",
+    "shown": "266x172",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Deltona, Florida marked"
+   },
+   {
+    "src": "/cities/w/deltona-florida-1080.webp",
+    "natural": "1056x704",
+    "shown": "1056x462",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": "The Main Street Pier and its pier-top restaurant stretching over the sand and surf at Daytona Beach on a sunny afternoon."
+   }
+  ],
+  "weight": {
+   "image": {
+    "count": 2,
+    "transfer": 79172,
+    "body": 78523
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 145758,
+    "body": 142107
+   },
+   "html": {
+    "count": 1,
+    "transfer": 36969,
+    "body": 36233
+   },
+   "rsc/fetch": {
+    "count": 2,
+    "transfer": 1121,
+    "body": 335
+   }
+  },
+  "total_transfer": 415317,
+  "requests": [
+   {
+    "url": "/map/19660.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8099,
+    "body": 7763,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/deltona-florida-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 71073,
+    "body": 70760,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/deltona-florida",
+    "type": "document",
+    "status": 200,
+    "transfer": 36969,
+    "body": 36233,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously&_rsc=doBNCb6LD7h5R4u6",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 585,
+    "body": 192,
+    "enc": "gzip"
+   },
+   {
+    "url": "/about?_rsc=doBNCb6LD7h5R4u6",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 536,
+    "body": 143,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-abilene@1440": {
+  "url": "/city/abilene-texas",
+  "status": 200,
+  "ms_to_settle": 1156,
+  "title": "Abilene, TX · Dating Stats Atlas",
+  "meta": {
+   "description": "A city of about 180,000 people about three hours northwest of Killeen.",
+   "og:title": "Abilene, TX · Dating Stats Atlas",
+   "og:description": "A city of about 180,000 people about three hours northwest of Killeen.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/abilene-texas",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/cities/og/abilene-texas.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Abilene, TX · Dating Stats Atlas",
+   "twitter:description": "A city of about 180,000 people about three hours northwest of Killeen.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/cities/og/abilene-texas.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Abilene, Texas"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1906,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/10180.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Abilene, Texas marked"
+   },
+   {
+    "src": "/map/10180.svg",
+    "natural": "233x150",
+    "shown": "266x172",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Abilene, Texas marked"
+   },
+   {
+    "src": "/cities/w/abilene-texas-1080.webp",
+    "natural": "1056x385",
+    "shown": "1056x462",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": ""
+   }
+  ],
+  "weight": {
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "image": {
+    "count": 2,
+    "transfer": 49873,
+    "body": 49225
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "js": {
+    "count": 9,
+    "transfer": 145758,
+    "body": 142107
+   },
+   "html": {
+    "count": 1,
+    "transfer": 17772,
+    "body": 17036
+   },
+   "rsc/fetch": {
+    "count": 1,
+    "transfer": 585,
+    "body": 192
+   }
+  },
+  "total_transfer": 366285,
+  "requests": [
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/map/10180.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8099,
+    "body": 7763,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/abilene-texas-1080.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 41774,
+    "body": 41462,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/abilene-texas",
+    "type": "document",
+    "status": 200,
+    "transfer": 17772,
+    "body": 17036,
+    "enc": "gzip"
+   },
+   {
+    "url": "/?self_age=30&sex=male&age=28-40&marital=never%2Cpreviously&_rsc=ytESfiU5RBBPlxDn",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 585,
+    "body": 192,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "city-champaign@1440": {
+  "url": "/city/champaign-illinois",
+  "status": 200,
+  "ms_to_settle": 1181,
+  "title": "Champaign, IL · Dating Stats Atlas",
+  "meta": {
+   "description": "A college town of about 240,000 people two hours west of Indianapolis.",
+   "og:title": "Champaign, IL · Dating Stats Atlas",
+   "og:description": "A college town of about 240,000 people two hours west of Indianapolis.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/city/champaign-illinois",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Champaign, IL · Dating Stats Atlas",
+   "twitter:description": "A college town of about 240,000 people two hours west of Indianapolis."
+  },
+  "lang": "en",
+  "h1": [
+   "Champaign, Illinois"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1644,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/map/16580.svg",
+    "natural": "233x150",
+    "shown": "0x0",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Champaign, Illinois marked"
+   },
+   {
+    "src": "/map/16580.svg",
+    "natural": "233x150",
+    "shown": "266x172",
+    "loading": "auto",
+    "fetchpriority": null,
+    "alt": "Map of the United States with Champaign, Illinois marked"
+   }
+  ],
+  "weight": {
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "image": {
+    "count": 1,
+    "transfer": 8099,
+    "body": 7763
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "js": {
+    "count": 10,
+    "transfer": 148090,
+    "body": 144030
+   },
+   "html": {
+    "count": 1,
+    "transfer": 17569,
+    "body": 16833
+   },
+   "rsc/fetch": {
+    "count": 4,
+    "transfer": 45466,
+    "body": 43674
+   }
+  },
+  "total_transfer": 371521,
+  "requests": [
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/map/16580.svg",
+    "type": "image",
+    "status": 200,
+    "transfer": 8099,
+    "body": 7763,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/528777ff3b308bbe.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 9971,
+    "body": 9562,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/champaign-illinois",
+    "type": "document",
+    "status": 200,
+    "transfer": 17569,
+    "body": 16833,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/venues_per_100k?_rsc=jawkNPgpxP14pyky",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11581,
+    "body": 11133,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/rent_1br?_rsc=jawkNPgpxP14pyky",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11764,
+    "body": 11316,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/everyday_prices?_rsc=jawkNPgpxP14pyky",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 10662,
+    "body": 10214,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/resident_walkability_index?_rsc=jawkNPgpxP14pyky",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11459,
+    "body": 11011,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "compare@1440": {
+  "url": "/compare",
+  "status": 200,
+  "ms_to_settle": 1135,
+  "title": "Compare · Dating Stats Atlas",
+  "meta": {
+   "description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:title": "Compare · Dating Stats Atlas",
+   "og:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/compare",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Compare · Dating Stats Atlas",
+   "twitter:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them."
+  },
+  "lang": "en",
+  "h1": [
+   "Compare two cities"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 900,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "js": {
+    "count": 9,
+    "transfer": 137726,
+    "body": 134076
+   },
+   "html": {
+    "count": 1,
+    "transfer": 8575,
+    "body": 7839
+   }
+  },
+  "total_transfer": 298598,
+  "requests": [
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/38b2c1124b70764f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 1939,
+    "body": 1531,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/compare",
+    "type": "document",
+    "status": 200,
+    "transfer": 8575,
+    "body": 7839,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "compare-pair@1440": {
+  "url": "/compare/austin-texas/denver-colorado",
+  "status": 200,
+  "ms_to_settle": 1196,
+  "title": "Austin, TX vs Denver, CO · Dating Stats Atlas",
+  "meta": {
+   "description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:title": "Austin, TX vs Denver, CO · Dating Stats Atlas",
+   "og:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/compare/austin-texas/denver-colorado",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Austin, TX vs Denver, CO · Dating Stats Atlas",
+   "twitter:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them."
+  },
+  "lang": "en",
+  "h1": [
+   "Austin and Denver"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1991,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 142665,
+    "body": 139014
+   },
+   "html": {
+    "count": 1,
+    "transfer": 62661,
+    "body": 61925
+   }
+  },
+  "total_transfer": 357623,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/608877fef3191694.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 6878,
+    "body": 6469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/compare/austin-texas/denver-colorado",
+    "type": "document",
+    "status": 200,
+    "transfer": 62661,
+    "body": 61925,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "compare-floor@1440": {
+  "url": "/compare/austin-texas/abilene-texas",
+  "status": 200,
+  "ms_to_settle": 1180,
+  "title": "Austin, TX vs Abilene, TX · Dating Stats Atlas",
+  "meta": {
+   "description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:title": "Austin, TX vs Abilene, TX · Dating Stats Atlas",
+   "og:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/compare/austin-texas/abilene-texas",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Austin, TX vs Abilene, TX · Dating Stats Atlas",
+   "twitter:description": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them."
+  },
+  "lang": "en",
+  "h1": [
+   "Austin and Abilene"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1934,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 142665,
+    "body": 139014
+   },
+   "html": {
+    "count": 1,
+    "transfer": 60691,
+    "body": 59955
+   }
+  },
+  "total_transfer": 355653,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/608877fef3191694.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 6878,
+    "body": 6469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/compare/austin-texas/abilene-texas",
+    "type": "document",
+    "status": 200,
+    "transfer": 60691,
+    "body": 59955,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "about@1440": {
+  "url": "/about",
+  "status": 200,
+  "ms_to_settle": 1052,
+  "title": "How it works · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "How it works · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/about",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "How it works · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "How it works"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 2629,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   },
+   "html": {
+    "count": 1,
+    "transfer": 104789,
+    "body": 104053
+   }
+  },
+  "total_transfer": 392873,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/about",
+    "type": "document",
+    "status": 200,
+    "transfer": 104789,
+    "body": 104053,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/400bf8aa837fcb7e-s.b68677ba.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 10558,
+    "body": 10228,
+    "enc": null
+   }
+  ]
+ },
+ "what-we-measure@1440": {
+  "url": "/what-we-measure",
+  "status": 200,
+  "ms_to_settle": 995,
+  "title": "What we measure · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "What we measure · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/what-we-measure",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "What we measure · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "What we measure"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 2188,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   },
+   "html": {
+    "count": 1,
+    "transfer": 12079,
+    "body": 11343
+   },
+   "rsc/fetch": {
+    "count": 3,
+    "transfer": 34007,
+    "body": 32663
+   }
+  },
+  "total_transfer": 336502,
+  "requests": [
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/what-we-measure",
+    "type": "document",
+    "status": 200,
+    "transfer": 12079,
+    "body": 11343,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/everyday_prices?_rsc=-7l1JZDC5WYQPMlG",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 10662,
+    "body": 10214,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/rent_1br?_rsc=-7l1JZDC5WYQPMlG",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11764,
+    "body": 11316,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/venues_per_100k?_rsc=-7l1JZDC5WYQPMlG",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 11581,
+    "body": 11133,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "about-crime@1440": {
+  "url": "/about-crime-data",
+  "status": 200,
+  "ms_to_settle": 977,
+  "title": "About the crime figures · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "About the crime figures · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/about-crime-data",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "About the crime figures · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "About the crime figures"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1245,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 10445,
+    "body": 9709
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   }
+  },
+  "total_transfer": 298529,
+  "requests": [
+   {
+    "url": "/about-crime-data",
+    "type": "document",
+    "status": 200,
+    "transfer": 10445,
+    "body": 9709,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-rent@1440": {
+  "url": "/stats/rent_1br",
+  "status": 200,
+  "ms_to_settle": 1014,
+  "title": "Rent by city · Dating Stats Atlas",
+  "meta": {
+   "description": "The typical monthly rent for a one-bedroom home across the city, utilities included",
+   "og:title": "Rent by city · Dating Stats Atlas",
+   "og:description": "The typical monthly rent for a one-bedroom home across the city, utilities included",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/rent_1br",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/rent_1br.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Rent by city · Dating Stats Atlas",
+   "twitter:description": "The typical monthly rent for a one-bedroom home across the city, utilities included",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/rent_1br.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by rent"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 11073,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/rent_1br-720.webp",
+    "natural": "570x380",
+    "shown": "570x380",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "Apartment complex in California"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 23596,
+    "body": 23093
+   },
+   "image": {
+    "count": 1,
+    "transfer": 43708,
+    "body": 43396
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   },
+   "rsc/fetch": {
+    "count": 3,
+    "transfer": 1679,
+    "body": 500
+   }
+  },
+  "total_transfer": 359399,
+  "requests": [
+   {
+    "url": "/stats/rent_1br",
+    "type": "document",
+    "status": 200,
+    "transfer": 23596,
+    "body": 23093,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/rent_1br-720.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 43708,
+    "body": 43396,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/cedar-rapids-iowa?_rsc=7m8-iEemaExuy0Ru",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 562,
+    "body": 169,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/canton-ohio?_rsc=7m8-iEemaExuy0Ru",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 557,
+    "body": 164,
+    "enc": "gzip"
+   },
+   {
+    "url": "/city/wichita-kansas?_rsc=7m8-iEemaExuy0Ru",
+    "type": "fetch",
+    "status": 200,
+    "transfer": 560,
+    "body": 167,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-prices@1440": {
+  "url": "/stats/everyday_prices",
+  "status": 200,
+  "ms_to_settle": 1012,
+  "title": "Everyday prices by city · Dating Stats Atlas",
+  "meta": {
+   "description": "The price of goods and services, where the US average is 100.",
+   "og:title": "Everyday prices by city · Dating Stats Atlas",
+   "og:description": "The price of goods and services, where the US average is 100.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/everyday_prices",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/everyday_prices.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Everyday prices by city · Dating Stats Atlas",
+   "twitter:description": "The price of goods and services, where the US average is 100.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/everyday_prices.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by everyday prices"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 11037,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/everyday_prices-720.webp",
+    "natural": "654x380",
+    "shown": "653x380",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "Tomatoes and cucumbers in crates on a supermarket produce stand, with more fruit and vegetables behind"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 21392,
+    "body": 20889
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "image": {
+    "count": 1,
+    "transfer": 37156,
+    "body": 36844
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 348964,
+  "requests": [
+   {
+    "url": "/stats/everyday_prices",
+    "type": "document",
+    "status": 200,
+    "transfer": 21392,
+    "body": 20889,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/everyday_prices-720.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 37156,
+    "body": 36844,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-lean@1440": {
+  "url": "/stats/political_lean",
+  "status": 200,
+  "ms_to_settle": 1007,
+  "title": "Political lean by city · Dating Stats Atlas",
+  "meta": {
+   "description": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+   "og:title": "Political lean by city · Dating Stats Atlas",
+   "og:description": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/political_lean",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/political_lean.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Political lean by city · Dating Stats Atlas",
+   "twitter:description": "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/political_lean.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by political lean"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 10172,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/political_lean-720.webp",
+    "natural": "570x380",
+    "shown": "570x380",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "Two voting booths on a table in an empty polling place in Grand Rapids, Minnesota."
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 18458,
+    "body": 17955
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "image": {
+    "count": 1,
+    "transfer": 27206,
+    "body": 26894
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 336080,
+  "requests": [
+   {
+    "url": "/stats/political_lean",
+    "type": "document",
+    "status": 200,
+    "transfer": 18458,
+    "body": 17955,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/political_lean-720.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 27206,
+    "body": 26894,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "stat-venues@1440": {
+  "url": "/stats/venues_per_100k",
+  "status": 200,
+  "ms_to_settle": 1015,
+  "title": "Places to go out by city · Dating Stats Atlas",
+  "meta": {
+   "description": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
+   "og:title": "Places to go out by city · Dating Stats Atlas",
+   "og:description": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
+   "og:url": "https://dating-stats-atlas.duckdns.org/stats/venues_per_100k",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/stats/og/venues_per_100k.jpg",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Places to go out by city · Dating Stats Atlas",
+   "twitter:description": "Restaurants, coffee shops, bars, gyms, museums and movie theaters per 100,000 adults",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/stats/og/venues_per_100k.jpg"
+  },
+  "lang": "en",
+  "h1": [
+   "Cities by places to go out"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 11037,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/stats/w/venues_per_100k-720.webp",
+    "natural": "570x380",
+    "shown": "570x380",
+    "loading": "eager",
+    "fetchpriority": null,
+    "alt": "times square night 2013 new york city manhattan"
+   }
+  ],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 23257,
+    "body": 22755
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "image": {
+    "count": 1,
+    "transfer": 79711,
+    "body": 79398
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 9,
+    "transfer": 138119,
+    "body": 134468
+   }
+  },
+  "total_transfer": 393384,
+  "requests": [
+   {
+    "url": "/stats/venues_per_100k",
+    "type": "document",
+    "status": 200,
+    "transfer": 23257,
+    "body": 22755,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/stats/w/venues_per_100k-720.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 79711,
+    "body": 79398,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/26fabdf5e1a3437a.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2332,
+    "body": 1923,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "privacy@1440": {
+  "url": "/privacy",
+  "status": 200,
+  "ms_to_settle": 995,
+  "title": "Privacy · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "Privacy · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/privacy",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Privacy · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "Privacy"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1188,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 9355,
+    "body": 8619
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   }
+  },
+  "total_transfer": 297439,
+  "requests": [
+   {
+    "url": "/privacy",
+    "type": "document",
+    "status": 200,
+    "transfer": 9355,
+    "body": 8619,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "terms@1440": {
+  "url": "/terms",
+  "status": 200,
+  "ms_to_settle": 980,
+  "title": "Terms · Dating Stats Atlas",
+  "meta": {
+   "description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:title": "Terms · Dating Stats Atlas",
+   "og:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/terms",
+   "og:site_name": "Dating Stats Atlas",
+   "og:type": "website",
+   "twitter:card": "summary",
+   "twitter:title": "Terms · Dating Stats Atlas",
+   "twitter:description": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city."
+  },
+  "lang": "en",
+  "h1": [
+   "Terms of use"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 1991,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [],
+  "weight": {
+   "html": {
+    "count": 1,
+    "transfer": 10960,
+    "body": 10224
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 8,
+    "transfer": 135787,
+    "body": 132545
+   }
+  },
+  "total_transfer": 299044,
+  "requests": [
+   {
+    "url": "/terms",
+    "type": "document",
+    "status": 200,
+    "transfer": 10960,
+    "body": 10224,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   }
+  ]
+ },
+ "permalink@1440": {
+  "url": "/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+  "status": 200,
+  "ms_to_settle": 1502,
+  "title": "Top cities for single men, 28–40 · Dating Stats Atlas",
+  "meta": {
+   "description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:title": "Top cities for single men, 28–40 · Dating Stats Atlas",
+   "og:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "og:url": "https://dating-stats-atlas.duckdns.org/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+   "og:site_name": "Dating Stats Atlas",
+   "og:image": "https://dating-stats-atlas.duckdns.org/og/home.png",
+   "og:image:width": "1200",
+   "og:image:height": "630",
+   "og:type": "website",
+   "twitter:card": "summary_large_image",
+   "twitter:title": "Top cities for single men, 28–40 · Dating Stats Atlas",
+   "twitter:description": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+   "twitter:image": "https://dating-stats-atlas.duckdns.org/og/home.png"
+  },
+  "lang": "en",
+  "h1": [
+   "Which city has the best dating scene for you?"
+  ],
+  "scroll_width": 1440,
+  "client_width": 1440,
+  "page_height": 2054,
+  "clipped": [],
+  "clipped_count": 0,
+  "imgs": [
+   {
+    "src": "/cities/w/san-francisco-california-480.webp",
+    "natural": "250x187",
+    "shown": "249x155",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/boston-massachusetts-480.webp",
+    "natural": "250x163",
+    "shown": "249x155",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   },
+   {
+    "src": "/cities/w/new-york-new-york-480.webp",
+    "natural": "250x140",
+    "shown": "249x155",
+    "loading": "lazy",
+    "fetchpriority": null,
+    "alt": ""
+   }
+  ],
+  "weight": {
+   "image": {
+    "count": 3,
+    "transfer": 73120,
+    "body": 72184
+   },
+   "css": {
+    "count": 1,
+    "transfer": 10727,
+    "body": 10332
+   },
+   "font": {
+    "count": 2,
+    "transfer": 141570,
+    "body": 140908
+   },
+   "js": {
+    "count": 10,
+    "transfer": 156302,
+    "body": 152242
+   },
+   "html": {
+    "count": 1,
+    "transfer": 319951,
+    "body": 319215
+   }
+  },
+  "total_transfer": 701670,
+  "requests": [
+   {
+    "url": "/cities/w/san-francisco-california-480.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 18484,
+    "body": 18172,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/042795759dc15d9c.css",
+    "type": "stylesheet",
+    "status": 200,
+    "transfer": 10727,
+    "body": 10332,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/media/f7aa21714c1c53f8-s.p.e3544bb0.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 20514,
+    "body": 20184,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/media/b67966e0b83b2cd0-s.p.85e63c96.woff2",
+    "type": "font",
+    "status": 200,
+    "transfer": 121056,
+    "body": 120724,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/81c41522d29cf3e8.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 2664,
+    "body": 2255,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/c6ade5f516779ad2.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 659,
+    "body": 282,
+    "enc": null
+   },
+   {
+    "url": "/_next/static/chunks/turbopack-5e2dd4f2fdff78c3.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 4293,
+    "body": 3884,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3c1c468c11802265.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17709,
+    "body": 17300,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/75ed204f49ba2a8f.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 24993,
+    "body": 24583,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/0f9d32d30329d748.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 7791,
+    "body": 7382,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/6fd71fc72b988337.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 8369,
+    "body": 7960,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/b14b6bebf36541db.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 12146,
+    "body": 11737,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/3bd553bf10567723.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 17878,
+    "body": 17469,
+    "enc": "gzip"
+   },
+   {
+    "url": "/_next/static/chunks/4ba85b0393843d65.js",
+    "type": "script",
+    "status": 200,
+    "transfer": 59800,
+    "body": 59390,
+    "enc": "gzip"
+   },
+   {
+    "url": "/cities/w/boston-massachusetts-480.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 36498,
+    "body": 36186,
+    "enc": null
+   },
+   {
+    "url": "/cities/w/new-york-new-york-480.webp",
+    "type": "image",
+    "status": 200,
+    "transfer": 18138,
+    "body": 17826,
+    "enc": null
+   },
+   {
+    "url": "/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+    "type": "document",
+    "status": 200,
+    "transfer": 319951,
+    "body": 319215,
+    "enc": "gzip"
+   }
+  ]
+ }
+}

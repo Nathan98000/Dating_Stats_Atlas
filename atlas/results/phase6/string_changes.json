@@ -1,0 +1,152 @@
+[
+ {
+  "key": "strings.balance_caption_same_sex",
+  "old": null,
+  "new": "Balance compares all single men with all single women in the ages you picked. On a same-sex search it describes the city, not your matches."
+ },
+ {
+  "key": "strings.balance_info_label",
+  "old": null,
+  "new": "About balance"
+ },
+ {
+  "key": "strings.city_below_floor",
+  "old": null,
+  "new": "{city} has fewer than 250,000 people, so it isn't ranked; the site ranks metro areas of 250,000 or more. Its profile is below."
+ },
+ {
+  "key": "strings.clear",
+  "old": null,
+  "new": "Clear"
+ },
+ {
+  "key": "strings.compare_default_note",
+  "old": "These figures use the stated default search — {search}. Change anything on the home page and they become yours.",
+  "new": "This comparison uses the site's starting search: {search}. Set your own on the home page and it follows you here."
+ },
+ {
+  "key": "strings.compare_edge_by",
+  "old": null,
+  "new": "by {diff}"
+ },
+ {
+  "key": "strings.compare_edge_note",
+  "old": "Edge shows which city does better on each measure for your search; a dash means we don't judge it.",
+  "new": "Edge names the city that does better on each measure for your search, and by how much. A dash means we don't judge that measure."
+ },
+ {
+  "key": "strings.compare_edge_places",
+  "old": null,
+  "new": "by {n} places"
+ },
+ {
+  "key": "strings.compare_not_ranked",
+  "old": null,
+  "new": "Not ranked: under 250,000 people"
+ },
+ {
+  "key": "strings.crime_card_info",
+  "old": "About this figure",
+  "new": "About the {stat} figure"
+ },
+ {
+  "key": "strings.explainer_lifestyle",
+  "old": "Lifestyle: four things you weight — cost of living, social life, student life and weather.",
+  "new": "Lifestyle: Four things you weight: cost of living, social life, student life and weather."
+ },
+ {
+  "key": "strings.moved_info_label",
+  "old": null,
+  "new": "About these points"
+ },
+ {
+  "key": "strings.photo_place_caption",
+  "old": null,
+  "new": "{place}, in the {city} metro area"
+ },
+ {
+  "key": "strings.pool_short_unit",
+  "old": "single {sought} match",
+  "new": "matches"
+ },
+ {
+  "key": "strings.results_change_education",
+  "old": null,
+  "new": "your education"
+ },
+ {
+  "key": "strings.results_change_race",
+  "old": null,
+  "new": "your race or ethnicity"
+ },
+ {
+  "key": "strings.results_new_top",
+  "old": null,
+  "new": "New top three: {a}, {b}, {c}"
+ },
+ {
+  "key": "strings.same_sex_pool_note",
+  "old": null,
+  "new": "On a same-sex search, matches count every single {sought_one} in these ages. The Census doesn't ask who people date, so only some of them are looking for {sought}."
+ },
+ {
+  "key": "strings.score_label_sr",
+  "old": null,
+  "new": "Overall score {n} out of 100"
+ },
+ {
+  "key": "strings.sharpen_info",
+  "old": null,
+  "new": "Optional. These change the compatibility figure only. They stay on this device: the site sends the figures for every combination, and your browser shows yours."
+ },
+ {
+  "key": "strings.sharpen_info_label",
+  "old": null,
+  "new": "About these details"
+ },
+ {
+  "key": "strings.sharpen_info_link",
+  "old": null,
+  "new": "How we handle your details"
+ },
+ {
+  "key": "strings.sheet_search_summary",
+  "old": null,
+  "new": "{you}, {age} · {sought} {ages} — Change"
+ },
+ {
+  "key": "strings.sought_flipped",
+  "old": null,
+  "new": "Looking for changed to {sought}"
+ },
+ {
+  "key": "strings.title_results",
+  "old": null,
+  "new": "{heading} · Dating Stats Atlas"
+ },
+ {
+  "key": "features.pool_size.display_name",
+  "old": "People who match",
+  "new": "Matches"
+ },
+ {
+  "key": "features.pool_size.unit",
+  "old": "people match what you're looking for",
+  "new": "matches"
+ },
+ {
+  "key": "features.students_per_1k_adults.chip_label",
+  "old": "Students",
+  "new": "Student life"
+ },
+ {
+  "key": "population_floor",
+  "old": null,
+  "new": 250000
+ },
+ {
+  "key": "POLICY_STRINGS.excluded_count",
+  "old": "{n} cities don’t have enough people matching this search to make a reliable estimate. Widen your search to see more cities.",
+  "new": "{n} metro areas don’t have enough people matching this search for a reliable estimate. Widen your search to see more of them."
+ }
+]

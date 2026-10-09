@@ -13,6 +13,11 @@ export const HOME_STATES = {
     await page.locator('li[data-rank="4"] [id^=detail-] button[aria-label]').first().click();
     await page.waitForTimeout(300);
   },
+  // Phase 6 (F06): a featured card's detail open (the panel from 768px,
+  // inside the card below)
+  "card-open": async (page) => {
+    await page.locator("[data-testid=card-toggle]").first().click(); await page.waitForTimeout(300);
+  },
   "age-popover": async (page) => {
     await page.locator("[data-testid=age-token]").click(); await page.waitForTimeout(300);
   },

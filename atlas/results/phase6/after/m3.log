@@ -1,0 +1,62 @@
+404@1440: clean | exp: -
+home@1440: clean | exp: -
+city-sf@1440: clean | exp: -
+city-deltona@1440: clean | exp: -
+city-abilene@1440: clean | exp: -
+city-champaign@1440: clean | exp: -
+compare@1440: clean | exp: -
+compare-pair@1440: clean | exp: -
+compare-floor@1440: clean | exp: -
+about@1440: clean | exp: -
+what-we-measure@1440: clean | exp: -
+about-crime@1440: clean | exp: -
+stat-rent@1440: clean | exp: -
+stat-prices@1440: clean | exp: -
+stat-lean@1440: clean | exp: -
+stat-venues@1440: clean | exp: -
+privacy@1440: clean | exp: -
+terms@1440: clean | exp: -
+permalink@1440: clean | exp: -
+home:row-open@1440: clean
+home:row-open-info@1440: clean
+home:card-open@1440: clean
+home:age-popover@1440: clean
+home:rail-open@1440: clean
+home:slider-info@1440: clean
+home:find-typed@1440: clean
+home:header-search@1440: clean
+home:menu-open@1440: clean
+home:narrowed@1440: clean
+home:empty@1440: clean
+home:same-sex@1440: clean
+404@390: clean | exp: -
+home@390: clean | exp: -
+city-sf@390: clean | exp: -
+city-deltona@390: clean | exp: -
+city-abilene@390: clean | exp: -
+city-champaign@390: clean | exp: -
+compare@390: clean | exp: -
+compare-pair@390: clean | exp: -
+compare-floor@390: clean | exp: -
+about@390: clean | exp: -
+what-we-measure@390: clean | exp: -
+about-crime@390: clean | exp: -
+stat-rent@390: clean | exp: -
+stat-prices@390: clean | exp: -
+stat-lean@390: clean | exp: -
+stat-venues@390: clean | exp: -
+privacy@390: clean | exp: -
+terms@390: clean | exp: -
+permalink@390: clean | exp: -
+home:row-open@390: clean
+home:row-open-info@390: clean
+home:card-open@390: clean
+home:age-popover@390: clean
+home:rail-open@390: clean
+home:slider-info@390: clean
+home:find-typed@390: clean
+home:header-search@390: clean
+home:menu-open@390: clean
+home:narrowed@390: clean
+home:empty@390: clean
+home:same-sex@390: clean

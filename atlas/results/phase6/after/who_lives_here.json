@@ -1,0 +1,3872 @@
+[
+ {
+  "metro": "Abilene, TX",
+  "ranked": false,
+  "value": 183310,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people about three hours northwest of Killeen.",
+  "display_vs_value_pct": -1.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Akron, OH",
+  "ranked": true,
+  "value": 699982,
+  "display": "700,000",
+  "unit_line": "people, of whom 470,000 are adults",
+  "description": "A city of about 700,000 people half an hour south of Cleveland.",
+  "display_vs_value_pct": 0.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Albany, GA",
+  "ranked": false,
+  "value": 145759,
+  "display": "150,000",
+  "unit_line": "people, of whom 93,000 are adults",
+  "description": "A city of about 150,000 people about three hours south of Atlanta.",
+  "display_vs_value_pct": 2.9,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Albany, OR",
+  "ranked": false,
+  "value": 130916,
+  "display": "130,000",
+  "unit_line": "people, of whom 87,000 are adults",
+  "description": "A city of about 130,000 people half an hour south of Salem.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Albany, NY",
+  "ranked": true,
+  "value": 905732,
+  "display": "910,000",
+  "unit_line": "people, of whom 620,000 are adults",
+  "description": "A city of about 910,000 people about three hours northwest of Providence.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Albuquerque, NM",
+  "ranked": true,
+  "value": 921511,
+  "display": "920,000",
+  "unit_line": "people, of whom 620,000 are adults",
+  "description": "A city of about 920,000 people in New Mexico.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Alexandria, LA",
+  "ranked": false,
+  "value": 150677,
+  "display": "150,000",
+  "unit_line": "people, of whom 94,000 are adults",
+  "description": "A city of about 150,000 people an hour and a half north of Lafayette.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Allentown, PA",
+  "ranked": true,
+  "value": 873511,
+  "display": "870,000",
+  "unit_line": "people, of whom 590,000 are adults",
+  "description": "A city of about 870,000 people an hour northwest of Philadelphia.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Altoona, PA",
+  "ranked": false,
+  "value": 118767,
+  "display": "120,000",
+  "unit_line": "people, of whom 78,000 are adults",
+  "description": "A city of about 120,000 people an hour and a half west of Harrisburg.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Amarillo, TX",
+  "ranked": true,
+  "value": 271990,
+  "display": "270,000",
+  "unit_line": "people, of whom 170,000 are adults",
+  "description": "A city of about 270,000 people in Texas.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Ames, IA",
+  "ranked": false,
+  "value": 126687,
+  "display": "130,000",
+  "unit_line": "people, of whom 93,000 are adults",
+  "description": "A college town of about 130,000 people half an hour north of Des Moines.",
+  "display_vs_value_pct": 2.6,
+  "implied_adult_share": 0.72
+ },
+ {
+  "metro": "Amherst Town, MA",
+  "ranked": false,
+  "value": 155921,
+  "display": "160,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A college town of about 160,000 people half an hour north of Springfield.",
+  "display_vs_value_pct": 2.6,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Anchorage, AK",
+  "ranked": true,
+  "value": 401739,
+  "display": "400,000",
+  "unit_line": "people, of whom 270,000 are adults",
+  "description": "A city of about 400,000 people in Alaska.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Ann Arbor, MI",
+  "ranked": true,
+  "value": 370051,
+  "display": "370,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A college town of about 370,000 people half an hour west of Detroit.",
+  "display_vs_value_pct": -0.0,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Anniston, AL",
+  "ranked": false,
+  "value": 116227,
+  "display": "120,000",
+  "unit_line": "people, of whom 78,000 are adults",
+  "description": "A city of about 120,000 people an hour east of Birmingham.",
+  "display_vs_value_pct": 3.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Appleton, WI",
+  "ranked": false,
+  "value": 244838,
+  "display": "240,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A city of about 240,000 people an hour and a half north of Milwaukee.",
+  "display_vs_value_pct": -2.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Asheville, NC",
+  "ranked": true,
+  "value": 414463,
+  "display": "410,000",
+  "unit_line": "people, of whom 280,000 are adults",
+  "description": "A city of about 410,000 people an hour north of Greenville.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Athens, GA",
+  "ranked": false,
+  "value": 220264,
+  "display": "220,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A college town of about 220,000 people an hour east of Atlanta.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.73
+ },
+ {
+  "metro": "Atlanta, GA",
+  "ranked": true,
+  "value": 6255899,
+  "display": "6.3 million",
+  "unit_line": "people, of whom 4.3 million are adults",
+  "description": "A vast metro area of about 6.3 million people in Georgia.",
+  "display_vs_value_pct": 0.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Atlantic City, NJ",
+  "ranked": true,
+  "value": 371365,
+  "display": "370,000",
+  "unit_line": "people, of whom 250,000 are adults",
+  "description": "A city of about 370,000 people an hour southeast of Philadelphia.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Auburn, AL",
+  "ranked": false,
+  "value": 199452,
+  "display": "200,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A college town of about 200,000 people two hours southeast of Birmingham.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Augusta, GA",
+  "ranked": true,
+  "value": 623322,
+  "display": "620,000",
+  "unit_line": "people, of whom 410,000 are adults",
+  "description": "A city of about 620,000 people two hours south of Greenville.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Austin, TX",
+  "ranked": true,
+  "value": 2427050,
+  "display": "2.4 million",
+  "unit_line": "people, of whom 1.7 million are adults",
+  "description": "A major city of about 2.4 million people about three hours west of Houston.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Bakersfield, CA",
+  "ranked": true,
+  "value": 914680,
+  "display": "910,000",
+  "unit_line": "people, of whom 570,000 are adults",
+  "description": "A city of about 910,000 people two hours north of Los Angeles.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Baltimore, MD",
+  "ranked": true,
+  "value": 2848899,
+  "display": "2.8 million",
+  "unit_line": "people, of whom 1.9 million are adults",
+  "description": "A major city of about 2.8 million people an hour northeast of Washington.",
+  "display_vs_value_pct": -1.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Bangor, ME",
+  "ranked": false,
+  "value": 154097,
+  "display": "150,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A college town of about 150,000 people two hours northeast of Portland.",
+  "display_vs_value_pct": -2.7,
+  "implied_adult_share": 0.73
+ },
+ {
+  "metro": "Barnstable Town, MA",
+  "ranked": false,
+  "value": 231921,
+  "display": "230,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 230,000 people an hour east of Providence.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Baton Rouge, LA",
+  "ranked": true,
+  "value": 874789,
+  "display": "870,000",
+  "unit_line": "people, of whom 580,000 are adults",
+  "description": "A city of about 870,000 people in Louisiana.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Battle Creek, MI",
+  "ranked": false,
+  "value": 134563,
+  "display": "130,000",
+  "unit_line": "people, of whom 88,000 are adults",
+  "description": "A city of about 130,000 people an hour southwest of Lansing.",
+  "display_vs_value_pct": -3.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Bay City, MI",
+  "ranked": false,
+  "value": 102968,
+  "display": "100,000",
+  "unit_line": "people, of whom 68,000 are adults",
+  "description": "A city of about 100,000 people an hour north of Flint.",
+  "display_vs_value_pct": -2.9,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Beaumont, TX",
+  "ranked": true,
+  "value": 396941,
+  "display": "400,000",
+  "unit_line": "people, of whom 250,000 are adults",
+  "description": "A city of about 400,000 people an hour and a half east of Houston.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Beckley, WV",
+  "ranked": false,
+  "value": 112472,
+  "display": "110,000",
+  "unit_line": "people, of whom 71,000 are adults",
+  "description": "A city of about 110,000 people about three hours northwest of Winston-Salem.",
+  "display_vs_value_pct": -2.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Bellingham, WA",
+  "ranked": false,
+  "value": 230412,
+  "display": "230,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A college town of about 230,000 people an hour and a half north of Seattle.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Bend, OR",
+  "ranked": true,
+  "value": 258137,
+  "display": "260,000",
+  "unit_line": "people, of whom 170,000 are adults",
+  "description": "A city of about 260,000 people two hours southeast of Salem.",
+  "display_vs_value_pct": 0.7,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Billings, MT",
+  "ranked": false,
+  "value": 188488,
+  "display": "190,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 190,000 people in Montana.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Binghamton, NY",
+  "ranked": false,
+  "value": 243686,
+  "display": "240,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A college town of about 240,000 people an hour north of Scranton.",
+  "display_vs_value_pct": -1.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Birmingham, AL",
+  "ranked": true,
+  "value": 1184291,
+  "display": "1.2 million",
+  "unit_line": "people, of whom 780,000 are adults",
+  "description": "A major city of about 1.2 million people about three hours west of Atlanta.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Bismarck, ND",
+  "ranked": false,
+  "value": 135870,
+  "display": "140,000",
+  "unit_line": "people, of whom 88,000 are adults",
+  "description": "A city of about 140,000 people in North Dakota.",
+  "display_vs_value_pct": 3.0,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Blacksburg, VA",
+  "ranked": false,
+  "value": 181015,
+  "display": "180,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A college town of about 180,000 people an hour and a half north of Winston-Salem.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.72
+ },
+ {
+  "metro": "Bloomington, IL",
+  "ranked": false,
+  "value": 171761,
+  "display": "170,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 170,000 people two hours southwest of Chicago.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Bloomington, IN",
+  "ranked": false,
+  "value": 162504,
+  "display": "160,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 160,000 people an hour south of Indianapolis.",
+  "display_vs_value_pct": -1.5,
+  "implied_adult_share": 0.75
+ },
+ {
+  "metro": "Boise City, ID",
+  "ranked": true,
+  "value": 811555,
+  "display": "810,000",
+  "unit_line": "people, of whom 530,000 are adults",
+  "description": "A city of about 810,000 people in Idaho.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Boston, MA",
+  "ranked": true,
+  "value": 4952418,
+  "display": "5 million",
+  "unit_line": "people, of whom 3.5 million are adults",
+  "description": "A major city of about 5 million people in Massachusetts.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Boulder, CO",
+  "ranked": true,
+  "value": 329005,
+  "display": "330,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A college town of about 330,000 people half an hour northwest of Denver.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.73
+ },
+ {
+  "metro": "Bowling Green, KY",
+  "ranked": false,
+  "value": 186874,
+  "display": "190,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A college town of about 190,000 people an hour north of Nashville.",
+  "display_vs_value_pct": 1.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Bozeman, MT",
+  "ranked": false,
+  "value": 123521,
+  "display": "120,000",
+  "unit_line": "people, of whom 90,000 are adults",
+  "description": "A college town of about 120,000 people in Montana.",
+  "display_vs_value_pct": -2.9,
+  "implied_adult_share": 0.75
+ },
+ {
+  "metro": "Bremerton, WA",
+  "ranked": true,
+  "value": 277975,
+  "display": "280,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A city of about 280,000 people half an hour west of Seattle.",
+  "display_vs_value_pct": 0.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Bridgeport, CT",
+  "ranked": true,
+  "value": 956094,
+  "display": "1 million",
+  "unit_line": "people, of whom 640,000 are adults",
+  "description": "A city of about 1 million people an hour northeast of New York.",
+  "display_vs_value_pct": 4.6,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Brownsville, TX",
+  "ranked": true,
+  "value": 426111,
+  "display": "430,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A city of about 430,000 people an hour east of McAllen.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.6
+ },
+ {
+  "metro": "Brunswick, GA",
+  "ranked": false,
+  "value": 113728,
+  "display": "110,000",
+  "unit_line": "people, of whom 73,000 are adults",
+  "description": "A city of about 110,000 people an hour north of Jacksonville.",
+  "display_vs_value_pct": -3.3,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Buffalo, NY",
+  "ranked": true,
+  "value": 1162002,
+  "display": "1.2 million",
+  "unit_line": "people, of whom 790,000 are adults",
+  "description": "A major city of about 1.2 million people in New York.",
+  "display_vs_value_pct": 3.3,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Burlington, NC",
+  "ranked": false,
+  "value": 176437,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people half an hour east of Greensboro.",
+  "display_vs_value_pct": 2.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Burlington, VT",
+  "ranked": false,
+  "value": 226468,
+  "display": "230,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A college town of about 230,000 people about three hours north of Albany.",
+  "display_vs_value_pct": 1.6,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Canton, OH",
+  "ranked": true,
+  "value": 400486,
+  "display": "400,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A city of about 400,000 people half an hour southeast of Akron.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Cape Coral, FL",
+  "ranked": true,
+  "value": 817802,
+  "display": "820,000",
+  "unit_line": "people, of whom 510,000 are adults",
+  "description": "A city of about 820,000 people two hours south of Tampa.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Cape Girardeau, MO",
+  "ranked": false,
+  "value": 98818,
+  "display": "99,000",
+  "unit_line": "people, of whom 65,000 are adults",
+  "description": "A college town of about 99,000 people two hours south of St. Louis.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Carson City, NV",
+  "ranked": false,
+  "value": 60232,
+  "display": "60,000",
+  "unit_line": "people, of whom 38,000 are adults",
+  "description": "A city of about 60,000 people half an hour south of Reno.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Casper, WY",
+  "ranked": false,
+  "value": 78524,
+  "display": "79,000",
+  "unit_line": "people, of whom 53,000 are adults",
+  "description": "A city of about 79,000 people in Wyoming.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Cedar Rapids, IA",
+  "ranked": true,
+  "value": 277171,
+  "display": "280,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A city of about 280,000 people two hours east of Des Moines.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Chambersburg, PA",
+  "ranked": false,
+  "value": 156637,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people an hour southwest of Harrisburg.",
+  "display_vs_value_pct": 2.1,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Champaign, IL",
+  "ranked": false,
+  "value": 236851,
+  "display": "240,000",
+  "unit_line": "people, of whom 170,000 are adults",
+  "description": "A college town of about 240,000 people two hours west of Indianapolis.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Charleston, WV",
+  "ranked": false,
+  "value": 205120,
+  "display": "210,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 210,000 people about three hours southeast of Columbus.",
+  "display_vs_value_pct": 2.4,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Charleston, SC",
+  "ranked": true,
+  "value": 834561,
+  "display": "830,000",
+  "unit_line": "people, of whom 570,000 are adults",
+  "description": "A city of about 830,000 people in South Carolina.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Charlotte, NC",
+  "ranked": true,
+  "value": 2767271,
+  "display": "2.8 million",
+  "unit_line": "people, of whom 1.9 million are adults",
+  "description": "A major city of about 2.8 million people in North Carolina.",
+  "display_vs_value_pct": 1.2,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Charlottesville, VA",
+  "ranked": false,
+  "value": 224908,
+  "display": "220,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A college town of about 220,000 people an hour and a half northwest of Richmond.",
+  "display_vs_value_pct": -2.2,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Chattanooga, TN",
+  "ranked": true,
+  "value": 575045,
+  "display": "580,000",
+  "unit_line": "people, of whom 380,000 are adults",
+  "description": "A city of about 580,000 people two hours southwest of Knoxville.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Cheyenne, WY",
+  "ranked": false,
+  "value": 101432,
+  "display": "100,000",
+  "unit_line": "people, of whom 67,000 are adults",
+  "description": "A city of about 100,000 people two hours north of Denver.",
+  "display_vs_value_pct": -1.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Chicago, IL",
+  "ranked": true,
+  "value": 9371031,
+  "display": "9.4 million",
+  "unit_line": "people, of whom 6.4 million are adults",
+  "description": "A vast metro area of about 9.4 million people in Illinois.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Chico, CA",
+  "ranked": false,
+  "value": 207904,
+  "display": "210,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A college town of about 210,000 people an hour and a half north of Sacramento.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Cincinnati, OH",
+  "ranked": true,
+  "value": 2270183,
+  "display": "2.3 million",
+  "unit_line": "people, of whom 1.5 million are adults",
+  "description": "A major city of about 2.3 million people in Ohio.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Clarksville, TN",
+  "ranked": true,
+  "value": 334217,
+  "display": "330,000",
+  "unit_line": "people, of whom 220,000 are adults",
+  "description": "A city of about 330,000 people an hour northwest of Nashville.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Cleveland, OH",
+  "ranked": true,
+  "value": 2170896,
+  "display": "2.2 million",
+  "unit_line": "people, of whom 1.4 million are adults",
+  "description": "A major city of about 2.2 million people two hours southeast of Detroit.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Cleveland, TN",
+  "ranked": false,
+  "value": 128618,
+  "display": "130,000",
+  "unit_line": "people, of whom 87,000 are adults",
+  "description": "A city of about 130,000 people half an hour east of Chattanooga.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Coeur d'Alene, ID",
+  "ranked": false,
+  "value": 181807,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people half an hour east of Spokane.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "College Station, TX",
+  "ranked": true,
+  "value": 276417,
+  "display": "280,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A college town of about 280,000 people an hour and a half northwest of Houston.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Colorado Springs, CO",
+  "ranked": true,
+  "value": 768289,
+  "display": "770,000",
+  "unit_line": "people, of whom 530,000 are adults",
+  "description": "A city of about 770,000 people an hour south of Denver.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Columbia, MO",
+  "ranked": false,
+  "value": 212759,
+  "display": "210,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A college town of about 210,000 people two hours west of St. Louis.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Columbia, SC",
+  "ranked": true,
+  "value": 848580,
+  "display": "850,000",
+  "unit_line": "people, of whom 570,000 are adults",
+  "description": "A city of about 850,000 people an hour and a half south of Charlotte.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Columbus, GA",
+  "ranked": true,
+  "value": 326880,
+  "display": "330,000",
+  "unit_line": "people, of whom 220,000 are adults",
+  "description": "A city of about 330,000 people an hour and a half south of Atlanta.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Columbus, IN",
+  "ranked": false,
+  "value": 83510,
+  "display": "84,000",
+  "unit_line": "people, of whom 54,000 are adults",
+  "description": "A city of about 84,000 people an hour south of Indianapolis.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Columbus, OH",
+  "ranked": true,
+  "value": 2171991,
+  "display": "2.2 million",
+  "unit_line": "people, of whom 1.5 million are adults",
+  "description": "A major city of about 2.2 million people in Ohio.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Corpus Christi, TX",
+  "ranked": true,
+  "value": 443365,
+  "display": "440,000",
+  "unit_line": "people, of whom 290,000 are adults",
+  "description": "A city of about 440,000 people two hours northeast of McAllen.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Corvallis, OR",
+  "ranked": false,
+  "value": 96114,
+  "display": "96,000",
+  "unit_line": "people, of whom 69,000 are adults",
+  "description": "A college town of about 96,000 people half an hour southwest of Salem.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.72
+ },
+ {
+  "metro": "Crestview, FL",
+  "ranked": true,
+  "value": 297513,
+  "display": "300,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A city of about 300,000 people an hour northeast of Pensacola.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Dallas, TX",
+  "ranked": true,
+  "value": 7983925,
+  "display": "8 million",
+  "unit_line": "people, of whom 5.4 million are adults",
+  "description": "A vast metro area of about 8 million people in Texas.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Dalton, GA",
+  "ranked": false,
+  "value": 144072,
+  "display": "140,000",
+  "unit_line": "people, of whom 94,000 are adults",
+  "description": "A city of about 140,000 people half an hour southeast of Chattanooga.",
+  "display_vs_value_pct": -2.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Daphne, AL",
+  "ranked": false,
+  "value": 246979,
+  "display": "240,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A city of about 240,000 people half an hour east of Mobile.",
+  "display_vs_value_pct": -2.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Davenport, IA",
+  "ranked": true,
+  "value": 380245,
+  "display": "380,000",
+  "unit_line": "people, of whom 250,000 are adults",
+  "description": "A city of about 380,000 people two hours southwest of Madison.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Dayton, OH",
+  "ranked": true,
+  "value": 816860,
+  "display": "820,000",
+  "unit_line": "people, of whom 540,000 are adults",
+  "description": "A city of about 820,000 people an hour north of Cincinnati.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Decatur, AL",
+  "ranked": false,
+  "value": 157693,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people half an hour southwest of Huntsville.",
+  "display_vs_value_pct": 1.5,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Decatur, IL",
+  "ranked": false,
+  "value": 100687,
+  "display": "100,000",
+  "unit_line": "people, of whom 64,000 are adults",
+  "description": "A city of about 100,000 people two hours northeast of St. Louis.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Deltona, FL",
+  "ranked": true,
+  "value": 705871,
+  "display": "710,000",
+  "unit_line": "people, of whom 460,000 are adults",
+  "description": "A city of about 710,000 people half an hour north of Orlando.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Denver, CO",
+  "ranked": true,
+  "value": 2999683,
+  "display": "3 million",
+  "unit_line": "people, of whom 2.1 million are adults",
+  "description": "A major city of about 3 million people in Colorado.",
+  "display_vs_value_pct": 0.0,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Des Moines, IA",
+  "ranked": true,
+  "value": 730773,
+  "display": "730,000",
+  "unit_line": "people, of whom 480,000 are adults",
+  "description": "A city of about 730,000 people in Iowa.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Detroit, MI",
+  "ranked": true,
+  "value": 4376678,
+  "display": "4.4 million",
+  "unit_line": "people, of whom 2.9 million are adults",
+  "description": "A major city of about 4.4 million people in Michigan.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Dothan, AL",
+  "ranked": false,
+  "value": 153140,
+  "display": "150,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 150,000 people two hours northeast of Pensacola.",
+  "display_vs_value_pct": -2.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Dover, DE",
+  "ranked": false,
+  "value": 187628,
+  "display": "190,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 190,000 people an hour east of Baltimore.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Dubuque, IA",
+  "ranked": false,
+  "value": 100468,
+  "display": "100,000",
+  "unit_line": "people, of whom 65,000 are adults",
+  "description": "A city of about 100,000 people an hour and a half southwest of Madison.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Duluth, MN",
+  "ranked": true,
+  "value": 281627,
+  "display": "280,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A college town of about 280,000 people about three hours northeast of Minneapolis.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Durham, NC",
+  "ranked": true,
+  "value": 600698,
+  "display": "600,000",
+  "unit_line": "people, of whom 420,000 are adults",
+  "description": "A college town of about 600,000 people half an hour northwest of Raleigh.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Eagle Pass, TX",
+  "ranked": false,
+  "value": 57127,
+  "display": "57,000",
+  "unit_line": "people, of whom 35,000 are adults",
+  "description": "A city of about 57,000 people about three hours southwest of San Antonio.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Eau Claire, WI",
+  "ranked": false,
+  "value": 174673,
+  "display": "170,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 170,000 people an hour and a half east of Minneapolis.",
+  "display_vs_value_pct": -2.7,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "El Centro, CA",
+  "ranked": false,
+  "value": 180215,
+  "display": "180,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A city of about 180,000 people an hour and a half east of San Diego.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Elizabethtown, KY",
+  "ranked": false,
+  "value": 127058,
+  "display": "130,000",
+  "unit_line": "people, of whom 83,000 are adults",
+  "description": "A city of about 130,000 people an hour south of Louisville.",
+  "display_vs_value_pct": 2.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Elkhart, IN",
+  "ranked": false,
+  "value": 207186,
+  "display": "210,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 210,000 people an hour northwest of Fort Wayne.",
+  "display_vs_value_pct": 1.4,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Elmira, NY",
+  "ranked": false,
+  "value": 82893,
+  "display": "83,000",
+  "unit_line": "people, of whom 54,000 are adults",
+  "description": "A city of about 83,000 people an hour and a half southwest of Syracuse.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "El Paso, TX",
+  "ranked": true,
+  "value": 875038,
+  "display": "880,000",
+  "unit_line": "people, of whom 570,000 are adults",
+  "description": "A city of about 880,000 people in Texas.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Enid, OK",
+  "ranked": false,
+  "value": 62147,
+  "display": "62,000",
+  "unit_line": "people, of whom 38,000 are adults",
+  "description": "A city of about 62,000 people an hour and a half north of Oklahoma City.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Erie, PA",
+  "ranked": true,
+  "value": 269312,
+  "display": "270,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A city of about 270,000 people an hour and a half northeast of Youngstown.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Eugene, OR",
+  "ranked": true,
+  "value": 384038,
+  "display": "380,000",
+  "unit_line": "people, of whom 270,000 are adults",
+  "description": "A college town of about 380,000 people two hours south of Portland.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Evansville, IN",
+  "ranked": true,
+  "value": 270375,
+  "display": "270,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A city of about 270,000 people two hours west of Louisville.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Fairbanks, AK",
+  "ranked": false,
+  "value": 95882,
+  "display": "96,000",
+  "unit_line": "people, of whom 66,000 are adults",
+  "description": "A city of about 96,000 people in Alaska.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Fargo, ND",
+  "ranked": true,
+  "value": 259558,
+  "display": "260,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A city of about 260,000 people in North Dakota.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Farmington, NM",
+  "ranked": false,
+  "value": 120772,
+  "display": "120,000",
+  "unit_line": "people, of whom 77,000 are adults",
+  "description": "A city of about 120,000 people about three hours northwest of Albuquerque.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Fayetteville, NC",
+  "ranked": true,
+  "value": 391091,
+  "display": "390,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A city of about 390,000 people an hour south of Raleigh.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Fayetteville, AR",
+  "ranked": true,
+  "value": 577974,
+  "display": "580,000",
+  "unit_line": "people, of whom 390,000 are adults",
+  "description": "A city of about 580,000 people two hours east of Tulsa.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Flagstaff, AZ",
+  "ranked": false,
+  "value": 144780,
+  "display": "140,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A college town of about 140,000 people two hours north of Phoenix.",
+  "display_vs_value_pct": -3.3,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Flint, MI",
+  "ranked": true,
+  "value": 403324,
+  "display": "400,000",
+  "unit_line": "people, of whom 270,000 are adults",
+  "description": "A city of about 400,000 people an hour northwest of Detroit.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Florence, SC",
+  "ranked": false,
+  "value": 198210,
+  "display": "200,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 200,000 people an hour and a half east of Columbia.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Florence, AL",
+  "ranked": false,
+  "value": 154115,
+  "display": "150,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 150,000 people an hour west of Huntsville.",
+  "display_vs_value_pct": -2.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Fond du Lac, WI",
+  "ranked": false,
+  "value": 105223,
+  "display": "110,000",
+  "unit_line": "people, of whom 70,000 are adults",
+  "description": "A city of about 110,000 people an hour northwest of Milwaukee.",
+  "display_vs_value_pct": 4.5,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Fort Collins, CO",
+  "ranked": true,
+  "value": 367427,
+  "display": "370,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A college town of about 370,000 people an hour north of Denver.",
+  "display_vs_value_pct": 0.7,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Fort Smith, AR",
+  "ranked": false,
+  "value": 229255,
+  "display": "230,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 230,000 people an hour south of Fayetteville.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Fort Wayne, IN",
+  "ranked": true,
+  "value": 455011,
+  "display": "460,000",
+  "unit_line": "people, of whom 290,000 are adults",
+  "description": "A city of about 460,000 people two hours northwest of Dayton.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Fresno, CA",
+  "ranked": true,
+  "value": 1177055,
+  "display": "1.2 million",
+  "unit_line": "people, of whom 740,000 are adults",
+  "description": "A major city of about 1.2 million people two hours east of San Jose.",
+  "display_vs_value_pct": 1.9,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Gadsden, AL",
+  "ranked": false,
+  "value": 103403,
+  "display": "100,000",
+  "unit_line": "people, of whom 68,000 are adults",
+  "description": "A city of about 100,000 people an hour northeast of Birmingham.",
+  "display_vs_value_pct": -3.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Gainesville, FL",
+  "ranked": true,
+  "value": 345670,
+  "display": "350,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A college town of about 350,000 people an hour southwest of Jacksonville.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Gainesville, GA",
+  "ranked": false,
+  "value": 213145,
+  "display": "210,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 210,000 people an hour northeast of Atlanta.",
+  "display_vs_value_pct": -1.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Gettysburg, PA",
+  "ranked": false,
+  "value": 107155,
+  "display": "110,000",
+  "unit_line": "people, of whom 71,000 are adults",
+  "description": "A city of about 110,000 people half an hour west of York.",
+  "display_vs_value_pct": 2.7,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Glens Falls, NY",
+  "ranked": false,
+  "value": 125916,
+  "display": "130,000",
+  "unit_line": "people, of whom 83,000 are adults",
+  "description": "A city of about 130,000 people an hour north of Albany.",
+  "display_vs_value_pct": 3.2,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Goldsboro, NC",
+  "ranked": false,
+  "value": 118740,
+  "display": "120,000",
+  "unit_line": "people, of whom 77,000 are adults",
+  "description": "A city of about 120,000 people an hour southeast of Raleigh.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Grand Forks, ND",
+  "ranked": false,
+  "value": 105788,
+  "display": "110,000",
+  "unit_line": "people, of whom 70,000 are adults",
+  "description": "A college town of about 110,000 people in North Dakota.",
+  "display_vs_value_pct": 4.0,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Grand Island, NE",
+  "ranked": false,
+  "value": 76809,
+  "display": "77,000",
+  "unit_line": "people, of whom 48,000 are adults",
+  "description": "A city of about 77,000 people two hours west of Omaha.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Grand Junction, CO",
+  "ranked": false,
+  "value": 158360,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people in Colorado.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Grand Rapids, MI",
+  "ranked": true,
+  "value": 1162325,
+  "display": "1.2 million",
+  "unit_line": "people, of whom 770,000 are adults",
+  "description": "A major city of about 1.2 million people about three hours northeast of Chicago.",
+  "display_vs_value_pct": 3.2,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Grants Pass, OR",
+  "ranked": false,
+  "value": 88153,
+  "display": "88,000",
+  "unit_line": "people, of whom 56,000 are adults",
+  "description": "A city of about 88,000 people in Oregon.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Great Falls, MT",
+  "ranked": false,
+  "value": 85812,
+  "display": "86,000",
+  "unit_line": "people, of whom 56,000 are adults",
+  "description": "A city of about 86,000 people in Montana.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Greeley, CO",
+  "ranked": true,
+  "value": 350999,
+  "display": "350,000",
+  "unit_line": "people, of whom 230,000 are adults",
+  "description": "A city of about 350,000 people an hour north of Denver.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Green Bay, WI",
+  "ranked": true,
+  "value": 331208,
+  "display": "330,000",
+  "unit_line": "people, of whom 220,000 are adults",
+  "description": "A city of about 330,000 people two hours north of Milwaukee.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Greensboro, NC",
+  "ranked": true,
+  "value": 786200,
+  "display": "790,000",
+  "unit_line": "people, of whom 530,000 are adults",
+  "description": "A city of about 790,000 people an hour and a half west of Raleigh.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Greenville, NC",
+  "ranked": false,
+  "value": 177234,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 180,000 people an hour and a half east of Raleigh.",
+  "display_vs_value_pct": 1.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Greenville, SC",
+  "ranked": true,
+  "value": 966421,
+  "display": "1 million",
+  "unit_line": "people, of whom 640,000 are adults",
+  "description": "A city of about 1 million people an hour and a half west of Charlotte.",
+  "display_vs_value_pct": 3.5,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Gulfport, MS",
+  "ranked": true,
+  "value": 421724,
+  "display": "420,000",
+  "unit_line": "people, of whom 280,000 are adults",
+  "description": "A city of about 420,000 people an hour northeast of New Orleans.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Hagerstown, MD",
+  "ranked": true,
+  "value": 301194,
+  "display": "300,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A city of about 300,000 people an hour west of York.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Hammond, LA",
+  "ranked": false,
+  "value": 136677,
+  "display": "140,000",
+  "unit_line": "people, of whom 89,000 are adults",
+  "description": "A college town of about 140,000 people an hour east of Baton Rouge.",
+  "display_vs_value_pct": 2.4,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Hanford, CA",
+  "ranked": false,
+  "value": 153467,
+  "display": "150,000",
+  "unit_line": "people, of whom 91,000 are adults",
+  "description": "A city of about 150,000 people half an hour west of Visalia.",
+  "display_vs_value_pct": -2.3,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Harrisburg, PA",
+  "ranked": true,
+  "value": 603625,
+  "display": "600,000",
+  "unit_line": "people, of whom 400,000 are adults",
+  "description": "A city of about 600,000 people an hour and a half north of Baltimore.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Harrisonburg, VA",
+  "ranked": false,
+  "value": 136856,
+  "display": "140,000",
+  "unit_line": "people, of whom 95,000 are adults",
+  "description": "A college town of about 140,000 people two hours northwest of Richmond.",
+  "display_vs_value_pct": 2.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Hartford, CT",
+  "ranked": true,
+  "value": 1153287,
+  "display": "1.2 million",
+  "unit_line": "people, of whom 790,000 are adults",
+  "description": "A college town of about 1.2 million people two hours southwest of Boston.",
+  "display_vs_value_pct": 4.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Hattiesburg, MS",
+  "ranked": false,
+  "value": 155910,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A college town of about 160,000 people an hour and a half north of Gulfport.",
+  "display_vs_value_pct": 2.6,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Helena, MT",
+  "ranked": false,
+  "value": 93286,
+  "display": "93,000",
+  "unit_line": "people, of whom 61,000 are adults",
+  "description": "A city of about 93,000 people in Montana.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Hickory, NC",
+  "ranked": true,
+  "value": 368416,
+  "display": "370,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A city of about 370,000 people an hour northwest of Charlotte.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Hilton Head Island, SC",
+  "ranked": false,
+  "value": 229822,
+  "display": "230,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 230,000 people an hour northeast of Savannah.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Hinesville, GA",
+  "ranked": false,
+  "value": 86664,
+  "display": "87,000",
+  "unit_line": "people, of whom 57,000 are adults",
+  "description": "A city of about 87,000 people half an hour southwest of Savannah.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Homosassa Springs, FL",
+  "ranked": false,
+  "value": 162618,
+  "display": "160,000",
+  "unit_line": "people, of whom 97,000 are adults",
+  "description": "A city of about 160,000 people an hour southwest of Ocala.",
+  "display_vs_value_pct": -1.6,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Hot Springs, AR",
+  "ranked": false,
+  "value": 97608,
+  "display": "98,000",
+  "unit_line": "people, of whom 63,000 are adults",
+  "description": "A city of about 98,000 people an hour west of Little Rock.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Houma, LA",
+  "ranked": false,
+  "value": 202432,
+  "display": "200,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 200,000 people an hour southwest of New Orleans.",
+  "display_vs_value_pct": -1.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Houston, TX",
+  "ranked": true,
+  "value": 7440996,
+  "display": "7.4 million",
+  "unit_line": "people, of whom 4.9 million are adults",
+  "description": "A vast metro area of about 7.4 million people in Texas.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Huntington, WV",
+  "ranked": true,
+  "value": 369354,
+  "display": "370,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A city of about 370,000 people two hours south of Columbus.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Huntsville, AL",
+  "ranked": true,
+  "value": 517167,
+  "display": "520,000",
+  "unit_line": "people, of whom 350,000 are adults",
+  "description": "A city of about 520,000 people an hour and a half north of Birmingham.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Idaho Falls, ID",
+  "ranked": false,
+  "value": 162783,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people in Idaho.",
+  "display_vs_value_pct": -1.7,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Indianapolis, IN",
+  "ranked": true,
+  "value": 2126607,
+  "display": "2.1 million",
+  "unit_line": "people, of whom 1.4 million are adults",
+  "description": "A major city of about 2.1 million people in Indiana.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Iowa City, IA",
+  "ranked": false,
+  "value": 178941,
+  "display": "180,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A college town of about 180,000 people two hours east of Des Moines.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.72
+ },
+ {
+  "metro": "Ithaca, NY",
+  "ranked": false,
+  "value": 104929,
+  "display": "100,000",
+  "unit_line": "people, of whom 80,000 are adults",
+  "description": "A college town of about 100,000 people an hour southwest of Syracuse.",
+  "display_vs_value_pct": -4.7,
+  "implied_adult_share": 0.8
+ },
+ {
+  "metro": "Jackson, MI",
+  "ranked": false,
+  "value": 160178,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people an hour south of Lansing.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Jackson, MS",
+  "ranked": true,
+  "value": 611645,
+  "display": "610,000",
+  "unit_line": "people, of whom 400,000 are adults",
+  "description": "A city of about 610,000 people in Mississippi.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Jackson, TN",
+  "ranked": false,
+  "value": 180944,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people an hour and a half northeast of Memphis.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Jacksonville, FL",
+  "ranked": true,
+  "value": 1684541,
+  "display": "1.7 million",
+  "unit_line": "people, of whom 1.1 million are adults",
+  "description": "A major city of about 1.7 million people about three hours north of Orlando.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Jacksonville, NC",
+  "ranked": false,
+  "value": 207708,
+  "display": "210,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 210,000 people an hour northeast of Wilmington.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Janesville, WI",
+  "ranked": false,
+  "value": 164284,
+  "display": "160,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A city of about 160,000 people an hour southeast of Madison.",
+  "display_vs_value_pct": -2.6,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Jefferson City, MO",
+  "ranked": false,
+  "value": 152629,
+  "display": "150,000",
+  "unit_line": "people, of whom 98,000 are adults",
+  "description": "A city of about 150,000 people two hours west of St. Louis.",
+  "display_vs_value_pct": -1.7,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Johnson City, TN",
+  "ranked": false,
+  "value": 209642,
+  "display": "210,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 210,000 people an hour north of Asheville.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Johnstown, PA",
+  "ranked": false,
+  "value": 131333,
+  "display": "130,000",
+  "unit_line": "people, of whom 85,000 are adults",
+  "description": "A college town of about 130,000 people an hour and a half east of Pittsburgh.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Jonesboro, AR",
+  "ranked": false,
+  "value": 136044,
+  "display": "140,000",
+  "unit_line": "people, of whom 88,000 are adults",
+  "description": "A city of about 140,000 people an hour and a half northwest of Memphis.",
+  "display_vs_value_pct": 2.9,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Joplin, MO",
+  "ranked": false,
+  "value": 203319,
+  "display": "200,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 200,000 people an hour and a half west of Springfield.",
+  "display_vs_value_pct": -1.6,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Kahului, HI",
+  "ranked": false,
+  "value": 164541,
+  "display": "160,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A city of about 160,000 people two hours east of Honolulu.",
+  "display_vs_value_pct": -2.8,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Kalamazoo, MI",
+  "ranked": true,
+  "value": 262868,
+  "display": "260,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A college town of about 260,000 people an hour south of Grand Rapids.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Kankakee, IL",
+  "ranked": false,
+  "value": 108119,
+  "display": "110,000",
+  "unit_line": "people, of whom 71,000 are adults",
+  "description": "A city of about 110,000 people an hour south of Chicago.",
+  "display_vs_value_pct": 1.7,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Kansas City, MO",
+  "ranked": true,
+  "value": 2216458,
+  "display": "2.2 million",
+  "unit_line": "people, of whom 1.5 million are adults",
+  "description": "A major city of about 2.2 million people in Missouri.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Kennewick, WA",
+  "ranked": true,
+  "value": 310543,
+  "display": "310,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A city of about 310,000 people about three hours southwest of Spokane.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Kenosha, WI",
+  "ranked": false,
+  "value": 168471,
+  "display": "170,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 170,000 people half an hour south of Milwaukee.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Killeen, TX",
+  "ranked": true,
+  "value": 501664,
+  "display": "500,000",
+  "unit_line": "people, of whom 320,000 are adults",
+  "description": "A city of about 500,000 people an hour north of Austin.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Kingsport, TN",
+  "ranked": true,
+  "value": 310503,
+  "display": "310,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A city of about 310,000 people an hour and a half northeast of Knoxville.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Kingston, NY",
+  "ranked": false,
+  "value": 181996,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people an hour north of Kiryas Joel.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Kiryas Joel, NY",
+  "ranked": true,
+  "value": 704611,
+  "display": "700,000",
+  "unit_line": "people, of whom 470,000 are adults",
+  "description": "A city of about 700,000 people an hour north of New York.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Knoxville, TN",
+  "ranked": true,
+  "value": 930981,
+  "display": "930,000",
+  "unit_line": "people, of whom 630,000 are adults",
+  "description": "A city of about 930,000 people about three hours east of Nashville.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Kokomo, IN",
+  "ranked": false,
+  "value": 83635,
+  "display": "84,000",
+  "unit_line": "people, of whom 54,000 are adults",
+  "description": "A city of about 84,000 people an hour north of Indianapolis.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "La Crosse, WI",
+  "ranked": false,
+  "value": 169656,
+  "display": "170,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 170,000 people two hours northwest of Madison.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Lafayette, LA",
+  "ranked": true,
+  "value": 413587,
+  "display": "410,000",
+  "unit_line": "people, of whom 270,000 are adults",
+  "description": "A city of about 410,000 people an hour west of Baton Rouge.",
+  "display_vs_value_pct": -0.9,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Lafayette, IN",
+  "ranked": false,
+  "value": 226183,
+  "display": "230,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A college town of about 230,000 people an hour northwest of Indianapolis.",
+  "display_vs_value_pct": 1.7,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Lake Charles, LA",
+  "ranked": false,
+  "value": 241604,
+  "display": "240,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A city of about 240,000 people an hour and a half west of Lafayette.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Lake Havasu City, AZ",
+  "ranked": false,
+  "value": 220440,
+  "display": "220,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 220,000 people two hours south of Las Vegas.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Lakeland, FL",
+  "ranked": true,
+  "value": 790637,
+  "display": "790,000",
+  "unit_line": "people, of whom 510,000 are adults",
+  "description": "A city of about 790,000 people half an hour east of Tampa.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Lancaster, PA",
+  "ranked": true,
+  "value": 558111,
+  "display": "560,000",
+  "unit_line": "people, of whom 360,000 are adults",
+  "description": "A city of about 560,000 people an hour north of Baltimore.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Lansing, MI",
+  "ranked": true,
+  "value": 472500,
+  "display": "470,000",
+  "unit_line": "people, of whom 330,000 are adults",
+  "description": "A college town of about 470,000 people an hour east of Grand Rapids.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Laredo, TX",
+  "ranked": true,
+  "value": 269200,
+  "display": "270,000",
+  "unit_line": "people, of whom 170,000 are adults",
+  "description": "A city of about 270,000 people two hours northwest of McAllen.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Las Cruces, NM",
+  "ranked": false,
+  "value": 224369,
+  "display": "220,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A college town of about 220,000 people an hour northwest of El Paso.",
+  "display_vs_value_pct": -1.9,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Las Vegas, NV",
+  "ranked": true,
+  "value": 2329484,
+  "display": "2.3 million",
+  "unit_line": "people, of whom 1.6 million are adults",
+  "description": "A major city of about 2.3 million people in Nevada.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Lawrence, KS",
+  "ranked": false,
+  "value": 120547,
+  "display": "120,000",
+  "unit_line": "people, of whom 89,000 are adults",
+  "description": "A college town of about 120,000 people an hour west of Kansas City.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.74
+ },
+ {
+  "metro": "Lawton, OK",
+  "ranked": false,
+  "value": 128161,
+  "display": "130,000",
+  "unit_line": "people, of whom 83,000 are adults",
+  "description": "A city of about 130,000 people an hour and a half southwest of Oklahoma City.",
+  "display_vs_value_pct": 1.4,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Lebanon, PA",
+  "ranked": false,
+  "value": 144368,
+  "display": "140,000",
+  "unit_line": "people, of whom 92,000 are adults",
+  "description": "A city of about 140,000 people half an hour north of Lancaster.",
+  "display_vs_value_pct": -3.0,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Lewiston, ID",
+  "ranked": false,
+  "value": 64263,
+  "display": "64,000",
+  "unit_line": "people, of whom 42,000 are adults",
+  "description": "A city of about 64,000 people an hour and a half south of Spokane.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Lewiston, ME",
+  "ranked": false,
+  "value": 113270,
+  "display": "110,000",
+  "unit_line": "people, of whom 75,000 are adults",
+  "description": "A city of about 110,000 people an hour north of Portland.",
+  "display_vs_value_pct": -2.9,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Lexington, KY",
+  "ranked": true,
+  "value": 522033,
+  "display": "520,000",
+  "unit_line": "people, of whom 360,000 are adults",
+  "description": "A college town of about 520,000 people an hour and a half east of Louisville.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Lexington Park, MD",
+  "ranked": false,
+  "value": 209294,
+  "display": "210,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 210,000 people an hour southeast of Washington.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Lima, OH",
+  "ranked": false,
+  "value": 101329,
+  "display": "100,000",
+  "unit_line": "people, of whom 64,000 are adults",
+  "description": "A college town of about 100,000 people an hour southeast of Fort Wayne.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Lincoln, NE",
+  "ranked": true,
+  "value": 345109,
+  "display": "350,000",
+  "unit_line": "people, of whom 230,000 are adults",
+  "description": "A college town of about 350,000 people an hour southwest of Omaha.",
+  "display_vs_value_pct": 1.4,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Little Rock, AR",
+  "ranked": true,
+  "value": 758855,
+  "display": "760,000",
+  "unit_line": "people, of whom 500,000 are adults",
+  "description": "A city of about 760,000 people about three hours west of Memphis.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Logan, UT",
+  "ranked": false,
+  "value": 156163,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A college town of about 160,000 people an hour north of Ogden.",
+  "display_vs_value_pct": 2.5,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Longview, TX",
+  "ranked": true,
+  "value": 293076,
+  "display": "290,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A city of about 290,000 people two hours east of Dallas.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Longview, WA",
+  "ranked": false,
+  "value": 112258,
+  "display": "110,000",
+  "unit_line": "people, of whom 73,000 are adults",
+  "description": "A city of about 110,000 people an hour north of Portland.",
+  "display_vs_value_pct": -2.0,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Los Angeles, CA",
+  "ranked": true,
+  "value": 12973578,
+  "display": "13 million",
+  "unit_line": "people, of whom 9 million are adults",
+  "description": "A vast metro area of about 13 million people in California.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Louisville, KY",
+  "ranked": true,
+  "value": 1372408,
+  "display": "1.4 million",
+  "unit_line": "people, of whom 910,000 are adults",
+  "description": "A major city of about 1.4 million people two hours southwest of Cincinnati.",
+  "display_vs_value_pct": 2.0,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Lubbock, TX",
+  "ranked": true,
+  "value": 359110,
+  "display": "360,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A college town of about 360,000 people in Texas.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Lynchburg, VA",
+  "ranked": true,
+  "value": 263319,
+  "display": "260,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A college town of about 260,000 people two hours west of Richmond.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Macon, GA",
+  "ranked": false,
+  "value": 232877,
+  "display": "230,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 230,000 people an hour and a half southeast of Atlanta.",
+  "display_vs_value_pct": -1.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Madison, WI",
+  "ranked": true,
+  "value": 690598,
+  "display": "690,000",
+  "unit_line": "people, of whom 480,000 are adults",
+  "description": "A college town of about 690,000 people an hour and a half west of Milwaukee.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Manchester, NH",
+  "ranked": true,
+  "value": 427182,
+  "display": "430,000",
+  "unit_line": "people, of whom 300,000 are adults",
+  "description": "A city of about 430,000 people an hour northwest of Boston.",
+  "display_vs_value_pct": 0.7,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Manhattan, KS",
+  "ranked": false,
+  "value": 133957,
+  "display": "130,000",
+  "unit_line": "people, of whom 94,000 are adults",
+  "description": "A college town of about 130,000 people two hours west of Kansas City.",
+  "display_vs_value_pct": -3.0,
+  "implied_adult_share": 0.72
+ },
+ {
+  "metro": "Mankato, MN",
+  "ranked": false,
+  "value": 104107,
+  "display": "100,000",
+  "unit_line": "people, of whom 71,000 are adults",
+  "description": "A college town of about 100,000 people an hour and a half southwest of Minneapolis.",
+  "display_vs_value_pct": -3.9,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Mansfield, OH",
+  "ranked": false,
+  "value": 125160,
+  "display": "130,000",
+  "unit_line": "people, of whom 76,000 are adults",
+  "description": "A city of about 130,000 people an hour west of Akron.",
+  "display_vs_value_pct": 3.9,
+  "implied_adult_share": 0.58
+ },
+ {
+  "metro": "McAllen, TX",
+  "ranked": true,
+  "value": 891898,
+  "display": "890,000",
+  "unit_line": "people, of whom 540,000 are adults",
+  "description": "A city of about 890,000 people in Texas.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Medford, OR",
+  "ranked": false,
+  "value": 222833,
+  "display": "220,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 220,000 people in Oregon.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Memphis, TN",
+  "ranked": true,
+  "value": 1342008,
+  "display": "1.3 million",
+  "unit_line": "people, of whom 880,000 are adults",
+  "description": "A major city of about 1.3 million people in Tennessee.",
+  "display_vs_value_pct": -3.1,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Merced, CA",
+  "ranked": true,
+  "value": 290403,
+  "display": "290,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A city of about 290,000 people an hour southeast of Modesto.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Miami, FL",
+  "ranked": true,
+  "value": 6250112,
+  "display": "6.3 million",
+  "unit_line": "people, of whom 4.2 million are adults",
+  "description": "A vast metro area of about 6.3 million people in Florida.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Michigan City, IN",
+  "ranked": false,
+  "value": 112133,
+  "display": "110,000",
+  "unit_line": "people, of whom 69,000 are adults",
+  "description": "A city of about 110,000 people an hour east of Chicago.",
+  "display_vs_value_pct": -1.9,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Midland, MI",
+  "ranked": false,
+  "value": 83861,
+  "display": "84,000",
+  "unit_line": "people, of whom 56,000 are adults",
+  "description": "A city of about 84,000 people an hour northwest of Flint.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Midland, TX",
+  "ranked": false,
+  "value": 179603,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people in Texas.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Milwaukee, WI",
+  "ranked": true,
+  "value": 1569688,
+  "display": "1.6 million",
+  "unit_line": "people, of whom 1 million are adults",
+  "description": "A major city of about 1.6 million people an hour and a half north of Chicago.",
+  "display_vs_value_pct": 1.9,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Minneapolis, MN",
+  "ranked": true,
+  "value": 3711806,
+  "display": "3.7 million",
+  "unit_line": "people, of whom 2.5 million are adults",
+  "description": "A major city of about 3.7 million people in Minnesota.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Minot, ND",
+  "ranked": false,
+  "value": 77112,
+  "display": "77,000",
+  "unit_line": "people, of whom 51,000 are adults",
+  "description": "A city of about 77,000 people in North Dakota.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Missoula, MT",
+  "ranked": false,
+  "value": 126038,
+  "display": "130,000",
+  "unit_line": "people, of whom 87,000 are adults",
+  "description": "A college town of about 130,000 people in Montana.",
+  "display_vs_value_pct": 3.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Mobile, AL",
+  "ranked": true,
+  "value": 412670,
+  "display": "410,000",
+  "unit_line": "people, of whom 270,000 are adults",
+  "description": "A city of about 410,000 people two hours east of New Orleans.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Modesto, CA",
+  "ranked": true,
+  "value": 553826,
+  "display": "550,000",
+  "unit_line": "people, of whom 360,000 are adults",
+  "description": "A city of about 550,000 people an hour northeast of San Jose.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Monroe, LA",
+  "ranked": false,
+  "value": 222871,
+  "display": "220,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 220,000 people two hours west of Jackson.",
+  "display_vs_value_pct": -1.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Monroe, MI",
+  "ranked": false,
+  "value": 155570,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people half an hour north of Toledo.",
+  "display_vs_value_pct": 2.8,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Montgomery, AL",
+  "ranked": true,
+  "value": 385670,
+  "display": "390,000",
+  "unit_line": "people, of whom 250,000 are adults",
+  "description": "A city of about 390,000 people an hour and a half south of Birmingham.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Morgantown, WV",
+  "ranked": false,
+  "value": 143484,
+  "display": "140,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A college town of about 140,000 people an hour south of Pittsburgh.",
+  "display_vs_value_pct": -2.4,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Morristown, TN",
+  "ranked": false,
+  "value": 122455,
+  "display": "120,000",
+  "unit_line": "people, of whom 81,000 are adults",
+  "description": "A city of about 120,000 people an hour northeast of Knoxville.",
+  "display_vs_value_pct": -2.0,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Mount Vernon, WA",
+  "ranked": false,
+  "value": 131781,
+  "display": "130,000",
+  "unit_line": "people, of whom 85,000 are adults",
+  "description": "A city of about 130,000 people an hour north of Seattle.",
+  "display_vs_value_pct": -1.4,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Muncie, IN",
+  "ranked": false,
+  "value": 112418,
+  "display": "110,000",
+  "unit_line": "people, of whom 78,000 are adults",
+  "description": "A college town of about 110,000 people an hour northeast of Indianapolis.",
+  "display_vs_value_pct": -2.2,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Muskegon, MI",
+  "ranked": false,
+  "value": 176065,
+  "display": "180,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A city of about 180,000 people an hour northwest of Grand Rapids.",
+  "display_vs_value_pct": 2.2,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Myrtle Beach, SC",
+  "ranked": true,
+  "value": 382698,
+  "display": "380,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A city of about 380,000 people an hour and a half northeast of Charleston.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Napa, CA",
+  "ranked": false,
+  "value": 135088,
+  "display": "140,000",
+  "unit_line": "people, of whom 90,000 are adults",
+  "description": "A city of about 140,000 people half an hour north of Vallejo.",
+  "display_vs_value_pct": 3.6,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Naples, FL",
+  "ranked": true,
+  "value": 398373,
+  "display": "400,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A city of about 400,000 people an hour south of Cape Coral.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.6
+ },
+ {
+  "metro": "Nashville, TN",
+  "ranked": true,
+  "value": 2079700,
+  "display": "2.1 million",
+  "unit_line": "people, of whom 1.4 million are adults",
+  "description": "A major city of about 2.1 million people in Tennessee.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "New Haven, CT",
+  "ranked": true,
+  "value": 569470,
+  "display": "570,000",
+  "unit_line": "people, of whom 390,000 are adults",
+  "description": "A college town of about 570,000 people half an hour northeast of Bridgeport.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "New Orleans, LA",
+  "ranked": true,
+  "value": 980784,
+  "display": "1 million",
+  "unit_line": "people, of whom 660,000 are adults",
+  "description": "A city of about 1 million people in Louisiana.",
+  "display_vs_value_pct": 2.0,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "New York, NY",
+  "ranked": true,
+  "value": 19796219,
+  "display": "19.8 million",
+  "unit_line": "people, of whom 13.4 million are adults",
+  "description": "A vast metro area of about 19.8 million people in New York.",
+  "display_vs_value_pct": 0.0,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Niles, MI",
+  "ranked": false,
+  "value": 153272,
+  "display": "150,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 150,000 people an hour and a half east of Chicago.",
+  "display_vs_value_pct": -2.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "North Port, FL",
+  "ranked": true,
+  "value": 888928,
+  "display": "890,000",
+  "unit_line": "people, of whom 540,000 are adults",
+  "description": "A city of about 890,000 people an hour south of Tampa.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.61
+ },
+ {
+  "metro": "Norwich, CT",
+  "ranked": true,
+  "value": 279274,
+  "display": "280,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A city of about 280,000 people an hour southeast of Hartford.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Ocala, FL",
+  "ranked": true,
+  "value": 400225,
+  "display": "400,000",
+  "unit_line": "people, of whom 240,000 are adults",
+  "description": "A city of about 400,000 people an hour west of Deltona.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.6
+ },
+ {
+  "metro": "Odessa, TX",
+  "ranked": false,
+  "value": 164663,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people in Texas.",
+  "display_vs_value_pct": -2.8,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Ogden, UT",
+  "ranked": true,
+  "value": 653301,
+  "display": "650,000",
+  "unit_line": "people, of whom 420,000 are adults",
+  "description": "A city of about 650,000 people half an hour north of Salt Lake City.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Oklahoma City, OK",
+  "ranked": true,
+  "value": 1459942,
+  "display": "1.5 million",
+  "unit_line": "people, of whom 1 million are adults",
+  "description": "A major city of about 1.5 million people in Oklahoma.",
+  "display_vs_value_pct": 2.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Olympia, WA",
+  "ranked": true,
+  "value": 298991,
+  "display": "300,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A city of about 300,000 people an hour southwest of Seattle.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Omaha, NE",
+  "ranked": true,
+  "value": 981900,
+  "display": "1 million",
+  "unit_line": "people, of whom 640,000 are adults",
+  "description": "A city of about 1 million people in Nebraska.",
+  "display_vs_value_pct": 1.8,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Orlando, FL",
+  "ranked": true,
+  "value": 2793439,
+  "display": "2.8 million",
+  "unit_line": "people, of whom 1.9 million are adults",
+  "description": "A major city of about 2.8 million people in Florida.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Oshkosh, WI",
+  "ranked": false,
+  "value": 171674,
+  "display": "170,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 170,000 people an hour and a half northwest of Milwaukee.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Owensboro, KY",
+  "ranked": false,
+  "value": 112247,
+  "display": "110,000",
+  "unit_line": "people, of whom 71,000 are adults",
+  "description": "A city of about 110,000 people an hour and a half southwest of Louisville.",
+  "display_vs_value_pct": -2.0,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Oxnard, CA",
+  "ranked": true,
+  "value": 837439,
+  "display": "840,000",
+  "unit_line": "people, of whom 560,000 are adults",
+  "description": "A city of about 840,000 people an hour west of Los Angeles.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Paducah, KY",
+  "ranked": false,
+  "value": 101925,
+  "display": "100,000",
+  "unit_line": "people, of whom 67,000 are adults",
+  "description": "A city of about 100,000 people about three hours northwest of Nashville.",
+  "display_vs_value_pct": -1.9,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Palm Bay, FL",
+  "ranked": true,
+  "value": 632971,
+  "display": "630,000",
+  "unit_line": "people, of whom 420,000 are adults",
+  "description": "A city of about 630,000 people an hour southeast of Orlando.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Panama City, FL",
+  "ranked": false,
+  "value": 213828,
+  "display": "210,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 210,000 people two hours east of Pensacola.",
+  "display_vs_value_pct": -1.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Parkersburg, WV",
+  "ranked": false,
+  "value": 87655,
+  "display": "88,000",
+  "unit_line": "people, of whom 57,000 are adults",
+  "description": "A city of about 88,000 people two hours southeast of Columbus.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Pensacola, FL",
+  "ranked": true,
+  "value": 525620,
+  "display": "530,000",
+  "unit_line": "people, of whom 350,000 are adults",
+  "description": "A city of about 530,000 people in Florida.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Peoria, IL",
+  "ranked": true,
+  "value": 364184,
+  "display": "360,000",
+  "unit_line": "people, of whom 230,000 are adults",
+  "description": "A city of about 360,000 people about three hours southwest of Chicago.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Philadelphia, PA",
+  "ranked": true,
+  "value": 6272157,
+  "display": "6.3 million",
+  "unit_line": "people, of whom 4.2 million are adults",
+  "description": "A vast metro area of about 6.3 million people an hour and a half southwest of New York.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Phoenix, AZ",
+  "ranked": true,
+  "value": 5027991,
+  "display": "5 million",
+  "unit_line": "people, of whom 3.3 million are adults",
+  "description": "A vast metro area of about 5 million people in Arizona.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Pinehurst, NC",
+  "ranked": false,
+  "value": 104539,
+  "display": "100,000",
+  "unit_line": "people, of whom 66,000 are adults",
+  "description": "A city of about 100,000 people an hour and a half southwest of Durham.",
+  "display_vs_value_pct": -4.3,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Pittsburgh, PA",
+  "ranked": true,
+  "value": 2435577,
+  "display": "2.4 million",
+  "unit_line": "people, of whom 1.6 million are adults",
+  "description": "A major city of about 2.4 million people in Pennsylvania.",
+  "display_vs_value_pct": -1.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Pittsfield, MA",
+  "ranked": false,
+  "value": 129484,
+  "display": "130,000",
+  "unit_line": "people, of whom 88,000 are adults",
+  "description": "A city of about 130,000 people half an hour southeast of Albany.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Pocatello, ID",
+  "ranked": false,
+  "value": 90080,
+  "display": "90,000",
+  "unit_line": "people, of whom 57,000 are adults",
+  "description": "A college town of about 90,000 people two hours north of Ogden.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Portland, ME",
+  "ranked": true,
+  "value": 562895,
+  "display": "560,000",
+  "unit_line": "people, of whom 390,000 are adults",
+  "description": "A city of about 560,000 people two hours northeast of Boston.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Portland, OR",
+  "ranked": true,
+  "value": 2520226,
+  "display": "2.5 million",
+  "unit_line": "people, of whom 1.7 million are adults",
+  "description": "A major city of about 2.5 million people about three hours south of Seattle.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Port St. Lucie, FL",
+  "ranked": true,
+  "value": 522920,
+  "display": "520,000",
+  "unit_line": "people, of whom 330,000 are adults",
+  "description": "A city of about 520,000 people two hours southeast of Orlando.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Prescott Valley, AZ",
+  "ranked": false,
+  "value": 245424,
+  "display": "240,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 240,000 people an hour and a half north of Phoenix.",
+  "display_vs_value_pct": -2.2,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Providence, RI",
+  "ranked": true,
+  "value": 1683072,
+  "display": "1.7 million",
+  "unit_line": "people, of whom 1.2 million are adults",
+  "description": "A major city of about 1.7 million people an hour southwest of Boston.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Provo, UT",
+  "ranked": true,
+  "value": 717200,
+  "display": "720,000",
+  "unit_line": "people, of whom 460,000 are adults",
+  "description": "A college town of about 720,000 people an hour south of Salt Lake City.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Pueblo, CO",
+  "ranked": false,
+  "value": 168048,
+  "display": "170,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A city of about 170,000 people an hour south of Colorado Springs.",
+  "display_vs_value_pct": 1.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Punta Gorda, FL",
+  "ranked": false,
+  "value": 201084,
+  "display": "200,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 200,000 people half an hour north of Cape Coral.",
+  "display_vs_value_pct": -0.5,
+  "implied_adult_share": 0.6
+ },
+ {
+  "metro": "Racine, WI",
+  "ranked": false,
+  "value": 197523,
+  "display": "200,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 200,000 people half an hour south of Milwaukee.",
+  "display_vs_value_pct": 1.3,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Raleigh, NC",
+  "ranked": true,
+  "value": 1486334,
+  "display": "1.5 million",
+  "unit_line": "people, of whom 1 million are adults",
+  "description": "A major city of about 1.5 million people about three hours east of Charlotte.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Rapid City, SD",
+  "ranked": false,
+  "value": 153129,
+  "display": "150,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 150,000 people in South Dakota.",
+  "display_vs_value_pct": -2.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Reading, PA",
+  "ranked": true,
+  "value": 433254,
+  "display": "430,000",
+  "unit_line": "people, of whom 290,000 are adults",
+  "description": "A city of about 430,000 people half an hour southwest of Allentown.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Redding, CA",
+  "ranked": false,
+  "value": 181161,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people about three hours north of Sacramento.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Reno, NV",
+  "ranked": true,
+  "value": 562058,
+  "display": "560,000",
+  "unit_line": "people, of whom 380,000 are adults",
+  "description": "A city of about 560,000 people two hours northeast of Sacramento.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Richmond, VA",
+  "ranked": true,
+  "value": 1338063,
+  "display": "1.3 million",
+  "unit_line": "people, of whom 900,000 are adults",
+  "description": "A major city of about 1.3 million people two hours south of Washington.",
+  "display_vs_value_pct": -2.8,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Riverside, CA",
+  "ranked": true,
+  "value": 4676911,
+  "display": "4.7 million",
+  "unit_line": "people, of whom 3.1 million are adults",
+  "description": "A major city of about 4.7 million people an hour east of Los Angeles.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Roanoke, VA",
+  "ranked": true,
+  "value": 315080,
+  "display": "320,000",
+  "unit_line": "people, of whom 210,000 are adults",
+  "description": "A city of about 320,000 people an hour and a half north of Greensboro.",
+  "display_vs_value_pct": 1.6,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Rochester, MN",
+  "ranked": false,
+  "value": 228148,
+  "display": "230,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 230,000 people an hour and a half southeast of Minneapolis.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Rochester, NY",
+  "ranked": true,
+  "value": 1056722,
+  "display": "1.1 million",
+  "unit_line": "people, of whom 710,000 are adults",
+  "description": "A major city of about 1.1 million people in New York.",
+  "display_vs_value_pct": 4.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Rockford, IL",
+  "ranked": true,
+  "value": 336593,
+  "display": "340,000",
+  "unit_line": "people, of whom 220,000 are adults",
+  "description": "A city of about 340,000 people an hour south of Madison.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Rocky Mount, NC",
+  "ranked": false,
+  "value": 144920,
+  "display": "140,000",
+  "unit_line": "people, of whom 93,000 are adults",
+  "description": "A city of about 140,000 people an hour east of Raleigh.",
+  "display_vs_value_pct": -3.4,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Rome, GA",
+  "ranked": false,
+  "value": 101221,
+  "display": "100,000",
+  "unit_line": "people, of whom 66,000 are adults",
+  "description": "A college town of about 100,000 people an hour south of Chattanooga.",
+  "display_vs_value_pct": -1.2,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Sacramento, CA",
+  "ranked": true,
+  "value": 2425956,
+  "display": "2.4 million",
+  "unit_line": "people, of whom 1.6 million are adults",
+  "description": "A major city of about 2.4 million people an hour and a half northeast of San Francisco.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Saginaw, MI",
+  "ranked": false,
+  "value": 188562,
+  "display": "190,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 190,000 people half an hour northwest of Flint.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "St. Cloud, MN",
+  "ranked": false,
+  "value": 201829,
+  "display": "200,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A college town of about 200,000 people an hour northwest of Minneapolis.",
+  "display_vs_value_pct": -0.9,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "St. George, UT",
+  "ranked": false,
+  "value": 196549,
+  "display": "200,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 200,000 people two hours northeast of Las Vegas.",
+  "display_vs_value_pct": 1.8,
+  "implied_adult_share": 0.6
+ },
+ {
+  "metro": "St. Joseph, MO",
+  "ranked": false,
+  "value": 120223,
+  "display": "120,000",
+  "unit_line": "people, of whom 77,000 are adults",
+  "description": "A city of about 120,000 people an hour north of Kansas City.",
+  "display_vs_value_pct": -0.2,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "St. Louis, MO",
+  "ranked": true,
+  "value": 2809667,
+  "display": "2.8 million",
+  "unit_line": "people, of whom 1.9 million are adults",
+  "description": "A major city of about 2.8 million people in Missouri.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Salem, OR",
+  "ranked": true,
+  "value": 439541,
+  "display": "440,000",
+  "unit_line": "people, of whom 290,000 are adults",
+  "description": "A city of about 440,000 people an hour southwest of Portland.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Salinas, CA",
+  "ranked": true,
+  "value": 439832,
+  "display": "440,000",
+  "unit_line": "people, of whom 280,000 are adults",
+  "description": "A city of about 440,000 people an hour south of San Jose.",
+  "display_vs_value_pct": 0.0,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Salisbury, MD",
+  "ranked": false,
+  "value": 132024,
+  "display": "130,000",
+  "unit_line": "people, of whom 86,000 are adults",
+  "description": "A college town of about 130,000 people an hour and a half southeast of Baltimore.",
+  "display_vs_value_pct": -1.5,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Salt Lake City, UT",
+  "ranked": true,
+  "value": 1275831,
+  "display": "1.3 million",
+  "unit_line": "people, of whom 860,000 are adults",
+  "description": "A major city of about 1.3 million people in Utah.",
+  "display_vs_value_pct": 1.9,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "San Angelo, TX",
+  "ranked": false,
+  "value": 121287,
+  "display": "120,000",
+  "unit_line": "people, of whom 78,000 are adults",
+  "description": "A college town of about 120,000 people in Texas.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "San Antonio, TX",
+  "ranked": true,
+  "value": 2658457,
+  "display": "2.7 million",
+  "unit_line": "people, of whom 1.8 million are adults",
+  "description": "A major city of about 2.7 million people in Texas.",
+  "display_vs_value_pct": 1.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "San Diego, CA",
+  "ranked": true,
+  "value": 3290108,
+  "display": "3.3 million",
+  "unit_line": "people, of whom 2.3 million are adults",
+  "description": "A major city of about 3.3 million people two hours southeast of Los Angeles.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Sandusky, OH",
+  "ranked": false,
+  "value": 115303,
+  "display": "120,000",
+  "unit_line": "people, of whom 75,000 are adults",
+  "description": "A city of about 120,000 people an hour east of Toledo.",
+  "display_vs_value_pct": 4.1,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "San Francisco, CA",
+  "ranked": true,
+  "value": 4644131,
+  "display": "4.6 million",
+  "unit_line": "people, of whom 3.2 million are adults",
+  "description": "A major city of about 4.6 million people in California.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "San Jose, CA",
+  "ranked": true,
+  "value": 1966751,
+  "display": "2 million",
+  "unit_line": "people, of whom 1.4 million are adults",
+  "description": "A major city of about 2 million people an hour southeast of San Francisco.",
+  "display_vs_value_pct": 1.7,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "San Luis Obispo, CA",
+  "ranked": true,
+  "value": 282254,
+  "display": "280,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A college town of about 280,000 people half an hour northwest of Santa Maria.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Santa Cruz, CA",
+  "ranked": true,
+  "value": 265203,
+  "display": "270,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A college town of about 270,000 people half an hour southwest of San Jose.",
+  "display_vs_value_pct": 1.8,
+  "implied_adult_share": 0.7
+ },
+ {
+  "metro": "Santa Fe, NM",
+  "ranked": false,
+  "value": 156051,
+  "display": "160,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 160,000 people an hour northeast of Albuquerque.",
+  "display_vs_value_pct": 2.5,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Santa Maria, CA",
+  "ranked": true,
+  "value": 444280,
+  "display": "440,000",
+  "unit_line": "people, of whom 290,000 are adults",
+  "description": "A college town of about 440,000 people an hour and a half west of Bakersfield.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Santa Rosa, CA",
+  "ranked": true,
+  "value": 485040,
+  "display": "490,000",
+  "unit_line": "people, of whom 330,000 are adults",
+  "description": "A city of about 490,000 people an hour north of San Francisco.",
+  "display_vs_value_pct": 1.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Savannah, GA",
+  "ranked": true,
+  "value": 414591,
+  "display": "410,000",
+  "unit_line": "people, of whom 280,000 are adults",
+  "description": "A city of about 410,000 people an hour and a half southwest of Charleston.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Scranton, PA",
+  "ranked": true,
+  "value": 569073,
+  "display": "570,000",
+  "unit_line": "people, of whom 370,000 are adults",
+  "description": "A city of about 570,000 people an hour north of Allentown.",
+  "display_vs_value_pct": 0.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Seattle, WA",
+  "ranked": true,
+  "value": 4061987,
+  "display": "4.1 million",
+  "unit_line": "people, of whom 2.9 million are adults",
+  "description": "A major city of about 4.1 million people in Washington.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.71
+ },
+ {
+  "metro": "Sebastian, FL",
+  "ranked": false,
+  "value": 167017,
+  "display": "170,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 170,000 people half an hour southeast of Palm Bay.",
+  "display_vs_value_pct": 1.8,
+  "implied_adult_share": 0.59
+ },
+ {
+  "metro": "Sebring, FL",
+  "ranked": false,
+  "value": 102585,
+  "display": "100,000",
+  "unit_line": "people, of whom 62,000 are adults",
+  "description": "A city of about 100,000 people an hour southeast of Lakeland.",
+  "display_vs_value_pct": -2.5,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Sheboygan, WI",
+  "ranked": false,
+  "value": 117876,
+  "display": "120,000",
+  "unit_line": "people, of whom 77,000 are adults",
+  "description": "A city of about 120,000 people an hour north of Milwaukee.",
+  "display_vs_value_pct": 1.8,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Sherman, TX",
+  "ranked": false,
+  "value": 141736,
+  "display": "140,000",
+  "unit_line": "people, of whom 91,000 are adults",
+  "description": "A city of about 140,000 people an hour north of Dallas.",
+  "display_vs_value_pct": -1.2,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Shreveport, LA",
+  "ranked": true,
+  "value": 385875,
+  "display": "390,000",
+  "unit_line": "people, of whom 250,000 are adults",
+  "description": "A city of about 390,000 people in Louisiana.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Sierra Vista, AZ",
+  "ranked": false,
+  "value": 126948,
+  "display": "130,000",
+  "unit_line": "people, of whom 77,000 are adults",
+  "description": "A city of about 130,000 people an hour southeast of Tucson.",
+  "display_vs_value_pct": 2.4,
+  "implied_adult_share": 0.59
+ },
+ {
+  "metro": "Sioux City, IA",
+  "ranked": false,
+  "value": 144185,
+  "display": "140,000",
+  "unit_line": "people, of whom 91,000 are adults",
+  "description": "A city of about 140,000 people an hour and a half north of Omaha.",
+  "display_vs_value_pct": -2.9,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Sioux Falls, SD",
+  "ranked": true,
+  "value": 295434,
+  "display": "300,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A city of about 300,000 people in South Dakota.",
+  "display_vs_value_pct": 1.5,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Slidell, LA",
+  "ranked": true,
+  "value": 272483,
+  "display": "270,000",
+  "unit_line": "people, of whom 180,000 are adults",
+  "description": "A city of about 270,000 people half an hour northeast of New Orleans.",
+  "display_vs_value_pct": -0.9,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "South Bend, IN",
+  "ranked": true,
+  "value": 324869,
+  "display": "320,000",
+  "unit_line": "people, of whom 220,000 are adults",
+  "description": "A college town of about 320,000 people an hour and a half east of Chicago.",
+  "display_vs_value_pct": -1.5,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Spartanburg, SC",
+  "ranked": true,
+  "value": 374163,
+  "display": "370,000",
+  "unit_line": "people, of whom 250,000 are adults",
+  "description": "A city of about 370,000 people half an hour east of Greenville.",
+  "display_vs_value_pct": -1.1,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Spokane, WA",
+  "ranked": true,
+  "value": 596517,
+  "display": "600,000",
+  "unit_line": "people, of whom 400,000 are adults",
+  "description": "A city of about 600,000 people in Washington.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Springfield, IL",
+  "ranked": false,
+  "value": 206299,
+  "display": "210,000",
+  "unit_line": "people, of whom 140,000 are adults",
+  "description": "A city of about 210,000 people an hour and a half north of St. Louis.",
+  "display_vs_value_pct": 1.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Springfield, MA",
+  "ranked": true,
+  "value": 463411,
+  "display": "460,000",
+  "unit_line": "people, of whom 310,000 are adults",
+  "description": "A city of about 460,000 people half an hour north of Hartford.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Springfield, MO",
+  "ranked": true,
+  "value": 487463,
+  "display": "490,000",
+  "unit_line": "people, of whom 320,000 are adults",
+  "description": "A college town of about 490,000 people about three hours southeast of Kansas City.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Springfield, OH",
+  "ranked": false,
+  "value": 135248,
+  "display": "140,000",
+  "unit_line": "people, of whom 87,000 are adults",
+  "description": "A city of about 140,000 people half an hour northeast of Dayton.",
+  "display_vs_value_pct": 3.5,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "State College, PA",
+  "ranked": false,
+  "value": 158630,
+  "display": "160,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A college town of about 160,000 people an hour northwest of Harrisburg.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.75
+ },
+ {
+  "metro": "Staunton, VA",
+  "ranked": false,
+  "value": 124589,
+  "display": "120,000",
+  "unit_line": "people, of whom 81,000 are adults",
+  "description": "A city of about 120,000 people two hours northwest of Richmond.",
+  "display_vs_value_pct": -3.7,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Stockton, CA",
+  "ranked": true,
+  "value": 797827,
+  "display": "800,000",
+  "unit_line": "people, of whom 520,000 are adults",
+  "description": "A city of about 800,000 people an hour south of Sacramento.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Sumter, SC",
+  "ranked": false,
+  "value": 103970,
+  "display": "100,000",
+  "unit_line": "people, of whom 67,000 are adults",
+  "description": "A city of about 100,000 people half an hour east of Columbia.",
+  "display_vs_value_pct": -3.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Syracuse, NY",
+  "ranked": true,
+  "value": 654959,
+  "display": "650,000",
+  "unit_line": "people, of whom 440,000 are adults",
+  "description": "A college town of about 650,000 people an hour and a half east of Rochester.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Tallahassee, FL",
+  "ranked": true,
+  "value": 388313,
+  "display": "390,000",
+  "unit_line": "people, of whom 270,000 are adults",
+  "description": "A college town of about 390,000 people in Florida.",
+  "display_vs_value_pct": 0.4,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Tampa, FL",
+  "ranked": true,
+  "value": 3304005,
+  "display": "3.3 million",
+  "unit_line": "people, of whom 2.2 million are adults",
+  "description": "A major city of about 3.3 million people in Florida.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Terre Haute, IN",
+  "ranked": false,
+  "value": 169010,
+  "display": "170,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A city of about 170,000 people an hour and a half west of Indianapolis.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Texarkana, TX",
+  "ranked": false,
+  "value": 147877,
+  "display": "150,000",
+  "unit_line": "people, of whom 90,000 are adults",
+  "description": "A city of about 150,000 people about three hours southwest of Little Rock.",
+  "display_vs_value_pct": 1.4,
+  "implied_adult_share": 0.6
+ },
+ {
+  "metro": "Toledo, OH",
+  "ranked": true,
+  "value": 601909,
+  "display": "600,000",
+  "unit_line": "people, of whom 400,000 are adults",
+  "description": "A city of about 600,000 people an hour southwest of Detroit.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Topeka, KS",
+  "ranked": false,
+  "value": 231297,
+  "display": "230,000",
+  "unit_line": "people, of whom 150,000 are adults",
+  "description": "A city of about 230,000 people an hour west of Kansas City.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Traverse City, MI",
+  "ranked": false,
+  "value": 154561,
+  "display": "150,000",
+  "unit_line": "people, of whom 100,000 are adults",
+  "description": "A city of about 150,000 people two hours north of Grand Rapids.",
+  "display_vs_value_pct": -3.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Trenton, NJ",
+  "ranked": true,
+  "value": 385884,
+  "display": "390,000",
+  "unit_line": "people, of whom 260,000 are adults",
+  "description": "A college town of about 390,000 people half an hour northeast of Philadelphia.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Tucson, AZ",
+  "ranked": true,
+  "value": 1061247,
+  "display": "1.1 million",
+  "unit_line": "people, of whom 690,000 are adults",
+  "description": "A major city of about 1.1 million people two hours southeast of Phoenix.",
+  "display_vs_value_pct": 3.7,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Tulsa, OK",
+  "ranked": true,
+  "value": 1036038,
+  "display": "1 million",
+  "unit_line": "people, of whom 670,000 are adults",
+  "description": "A major city of about 1 million people in Oklahoma.",
+  "display_vs_value_pct": -3.5,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Tuscaloosa, AL",
+  "ranked": true,
+  "value": 278259,
+  "display": "280,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A college town of about 280,000 people an hour southwest of Birmingham.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Twin Falls, ID",
+  "ranked": false,
+  "value": 118710,
+  "display": "120,000",
+  "unit_line": "people, of whom 74,000 are adults",
+  "description": "A city of about 120,000 people two hours southeast of Boise City.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Tyler, TX",
+  "ranked": false,
+  "value": 241646,
+  "display": "240,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A college town of about 240,000 people an hour and a half east of Dallas.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Honolulu, HI",
+  "ranked": true,
+  "value": 1001106,
+  "display": "1 million",
+  "unit_line": "people, of whom 660,000 are adults",
+  "description": "A major city of about 1 million people in Hawaii.",
+  "display_vs_value_pct": -0.1,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Utica, NY",
+  "ranked": true,
+  "value": 288141,
+  "display": "290,000",
+  "unit_line": "people, of whom 190,000 are adults",
+  "description": "A city of about 290,000 people an hour east of Syracuse.",
+  "display_vs_value_pct": 0.6,
+  "implied_adult_share": 0.66
+ },
+ {
+  "metro": "Valdosta, GA",
+  "ranked": false,
+  "value": 149791,
+  "display": "150,000",
+  "unit_line": "people, of whom 98,000 are adults",
+  "description": "A city of about 150,000 people two hours west of Jacksonville.",
+  "display_vs_value_pct": 0.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Vallejo, CA",
+  "ranked": true,
+  "value": 451734,
+  "display": "450,000",
+  "unit_line": "people, of whom 300,000 are adults",
+  "description": "A city of about 450,000 people half an hour northeast of San Francisco.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Victoria, TX",
+  "ranked": false,
+  "value": 98393,
+  "display": "98,000",
+  "unit_line": "people, of whom 63,000 are adults",
+  "description": "A city of about 98,000 people an hour and a half north of Corpus Christi.",
+  "display_vs_value_pct": -0.4,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Vineland, NJ",
+  "ranked": false,
+  "value": 153911,
+  "display": "150,000",
+  "unit_line": "people, of whom 95,000 are adults",
+  "description": "A city of about 150,000 people an hour south of Philadelphia.",
+  "display_vs_value_pct": -2.5,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Virginia Beach, VA",
+  "ranked": true,
+  "value": 1786451,
+  "display": "1.8 million",
+  "unit_line": "people, of whom 1.2 million are adults",
+  "description": "A major city of about 1.8 million people in Virginia.",
+  "display_vs_value_pct": 0.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Visalia, CA",
+  "ranked": true,
+  "value": 478532,
+  "display": "480,000",
+  "unit_line": "people, of whom 300,000 are adults",
+  "description": "A city of about 480,000 people an hour southeast of Fresno.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "Waco, TX",
+  "ranked": true,
+  "value": 302705,
+  "display": "300,000",
+  "unit_line": "people, of whom 200,000 are adults",
+  "description": "A college town of about 300,000 people an hour northeast of Killeen.",
+  "display_vs_value_pct": -0.9,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Walla Walla, WA",
+  "ranked": false,
+  "value": 63450,
+  "display": "63,000",
+  "unit_line": "people, of whom 40,000 are adults",
+  "description": "A college town of about 63,000 people two hours south of Spokane.",
+  "display_vs_value_pct": -0.7,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Warner Robins, GA",
+  "ranked": false,
+  "value": 197033,
+  "display": "200,000",
+  "unit_line": "people, of whom 130,000 are adults",
+  "description": "A city of about 200,000 people two hours southeast of Atlanta.",
+  "display_vs_value_pct": 1.5,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Washington, DC",
+  "ranked": true,
+  "value": 6318792,
+  "display": "6.3 million",
+  "unit_line": "people, of whom 4.3 million are adults",
+  "description": "A vast metro area of about 6.3 million people in the District of Columbia.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Waterbury, CT",
+  "ranked": true,
+  "value": 456041,
+  "display": "460,000",
+  "unit_line": "people, of whom 310,000 are adults",
+  "description": "A city of about 460,000 people half an hour north of Bridgeport.",
+  "display_vs_value_pct": 0.9,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Waterloo, IA",
+  "ranked": false,
+  "value": 168843,
+  "display": "170,000",
+  "unit_line": "people, of whom 110,000 are adults",
+  "description": "A college town of about 170,000 people an hour and a half northeast of Des Moines.",
+  "display_vs_value_pct": 0.7,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Watertown, NY",
+  "ranked": false,
+  "value": 116592,
+  "display": "120,000",
+  "unit_line": "people, of whom 77,000 are adults",
+  "description": "A city of about 120,000 people an hour and a half north of Syracuse.",
+  "display_vs_value_pct": 2.9,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Wausau, WI",
+  "ranked": false,
+  "value": 138421,
+  "display": "140,000",
+  "unit_line": "people, of whom 91,000 are adults",
+  "description": "A city of about 140,000 people about three hours north of Madison.",
+  "display_vs_value_pct": 1.1,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Weirton, WV",
+  "ranked": false,
+  "value": 113856,
+  "display": "110,000",
+  "unit_line": "people, of whom 75,000 are adults",
+  "description": "A city of about 110,000 people half an hour west of Pittsburgh.",
+  "display_vs_value_pct": -3.4,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Wenatchee, WA",
+  "ranked": false,
+  "value": 124492,
+  "display": "120,000",
+  "unit_line": "people, of whom 80,000 are adults",
+  "description": "A city of about 120,000 people two hours east of Seattle.",
+  "display_vs_value_pct": -3.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Wheeling, WV",
+  "ranked": false,
+  "value": 137043,
+  "display": "140,000",
+  "unit_line": "people, of whom 88,000 are adults",
+  "description": "A city of about 140,000 people an hour southwest of Pittsburgh.",
+  "display_vs_value_pct": 2.2,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Wichita, KS",
+  "ranked": true,
+  "value": 651963,
+  "display": "650,000",
+  "unit_line": "people, of whom 420,000 are adults",
+  "description": "A city of about 650,000 people about three hours northwest of Tulsa.",
+  "display_vs_value_pct": -0.3,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Wichita Falls, TX",
+  "ranked": false,
+  "value": 149526,
+  "display": "150,000",
+  "unit_line": "people, of whom 96,000 are adults",
+  "description": "A city of about 150,000 people two hours southwest of Oklahoma City.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.64
+ },
+ {
+  "metro": "Wildwood, FL",
+  "ranked": false,
+  "value": 141976,
+  "display": "140,000",
+  "unit_line": "people, of whom 66,000 are adults",
+  "description": "A city of about 140,000 people half an hour south of Ocala.",
+  "display_vs_value_pct": -1.4,
+  "implied_adult_share": 0.47
+ },
+ {
+  "metro": "Williamsport, PA",
+  "ranked": false,
+  "value": 113669,
+  "display": "110,000",
+  "unit_line": "people, of whom 75,000 are adults",
+  "description": "A city of about 110,000 people an hour and a half north of Harrisburg.",
+  "display_vs_value_pct": -3.2,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Wilmington, NC",
+  "ranked": true,
+  "value": 453445,
+  "display": "450,000",
+  "unit_line": "people, of whom 310,000 are adults",
+  "description": "A city of about 450,000 people two hours south of Raleigh.",
+  "display_vs_value_pct": -0.8,
+  "implied_adult_share": 0.69
+ },
+ {
+  "metro": "Winchester, VA",
+  "ranked": false,
+  "value": 146366,
+  "display": "150,000",
+  "unit_line": "people, of whom 95,000 are adults",
+  "description": "A city of about 150,000 people an hour and a half west of Washington.",
+  "display_vs_value_pct": 2.5,
+  "implied_adult_share": 0.63
+ },
+ {
+  "metro": "Winston-Salem, NC",
+  "ranked": true,
+  "value": 689773,
+  "display": "690,000",
+  "unit_line": "people, of whom 460,000 are adults",
+  "description": "A city of about 690,000 people an hour and a half northeast of Charlotte.",
+  "display_vs_value_pct": 0.0,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Worcester, MA",
+  "ranked": true,
+  "value": 867710,
+  "display": "870,000",
+  "unit_line": "people, of whom 590,000 are adults",
+  "description": "A city of about 870,000 people an hour northwest of Providence.",
+  "display_vs_value_pct": 0.3,
+  "implied_adult_share": 0.68
+ },
+ {
+  "metro": "Yakima, WA",
+  "ranked": true,
+  "value": 256911,
+  "display": "260,000",
+  "unit_line": "people, of whom 160,000 are adults",
+  "description": "A city of about 260,000 people two hours southeast of Seattle.",
+  "display_vs_value_pct": 1.2,
+  "implied_adult_share": 0.62
+ },
+ {
+  "metro": "York, PA",
+  "ranked": true,
+  "value": 462931,
+  "display": "460,000",
+  "unit_line": "people, of whom 310,000 are adults",
+  "description": "A city of about 460,000 people an hour north of Baltimore.",
+  "display_vs_value_pct": -0.6,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Youngstown, OH",
+  "ranked": true,
+  "value": 427761,
+  "display": "430,000",
+  "unit_line": "people, of whom 280,000 are adults",
+  "description": "A city of about 430,000 people an hour east of Akron.",
+  "display_vs_value_pct": 0.5,
+  "implied_adult_share": 0.65
+ },
+ {
+  "metro": "Yuba City, CA",
+  "ranked": false,
+  "value": 183272,
+  "display": "180,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 180,000 people an hour north of Sacramento.",
+  "display_vs_value_pct": -1.8,
+  "implied_adult_share": 0.67
+ },
+ {
+  "metro": "Yuma, AZ",
+  "ranked": false,
+  "value": 212102,
+  "display": "210,000",
+  "unit_line": "people, of whom 120,000 are adults",
+  "description": "A city of about 210,000 people about three hours east of San Diego.",
+  "display_vs_value_pct": -1.0,
+  "implied_adult_share": 0.57
+ }
+]

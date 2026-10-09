@@ -1,0 +1,371 @@
+{
+ "base": "http://localhost:3300",
+ "label": "local",
+ "runs": 5,
+ "generated": "2026-10-09T19:02:15.809Z",
+ "conditions": {
+  "390": {
+   "median": {
+    "ttfb": 309,
+    "fcp": 948,
+    "lcp": 2384,
+    "load": 5256,
+    "cls": 0.0306,
+    "change_to_pending": 213,
+    "change_to_response": 8045,
+    "change_to_last_mutation": 8045
+   },
+   "runs": [
+    {
+     "load_ms_wall": 5043,
+     "ttfb": 171,
+     "dcl": 5040,
+     "load": 5042,
+     "fcp": 780,
+     "lcp": 2232,
+     "lcp_el": "IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080",
+     "lcp_candidates": [
+      "780ms P.mt-3 max-w-[58ch] text-body-lg text-ink- See how many singles in each US metro match what you're look",
+      "2232ms IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080"
+     ],
+     "cls": 0.0306,
+     "shifts": [
+      {
+       "t": 3169,
+       "v": 0.0306,
+       "src": [
+        "DIV.grid gap-8 pt-5 sm:pt-11 desk:",
+        "DIV.",
+        "P.mt-3 max-w-[58ch] text-body-lg"
+       ]
+      }
+     ],
+     "change": {
+      "to_pending_ms": 211,
+      "to_response_ms": 7981,
+      "to_live_ms": 7994,
+      "to_last_list_mutation_ms": 7981,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 7740
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 5041,
+     "ttfb": 175,
+     "dcl": 5039,
+     "load": 5040,
+     "fcp": 776,
+     "lcp": 2232,
+     "lcp_el": "IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080",
+     "lcp_candidates": [
+      "776ms P.mt-3 max-w-[58ch] text-body-lg text-ink- See how many singles in each US metro match what you're look",
+      "2232ms IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080"
+     ],
+     "cls": 0.0306,
+     "shifts": [
+      {
+       "t": 3177,
+       "v": 0.0306,
+       "src": [
+        "DIV.grid gap-8 pt-5 sm:pt-11 desk:",
+        "DIV.",
+        "P.mt-3 max-w-[58ch] text-body-lg"
+       ]
+      }
+     ],
+     "change": {
+      "to_pending_ms": 213,
+      "to_response_ms": 8022,
+      "to_live_ms": 8044,
+      "to_last_list_mutation_ms": 8022,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 7757
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 5311,
+     "ttfb": 368,
+     "dcl": 5309,
+     "load": 5310,
+     "fcp": 1008,
+     "lcp": 2436,
+     "lcp_el": "IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080",
+     "lcp_candidates": [
+      "1008ms P.mt-3 max-w-[58ch] text-body-lg text-ink- See how many singles in each US metro match what you're look",
+      "2436ms IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080"
+     ],
+     "cls": 0.0306,
+     "shifts": [
+      {
+       "t": 3372,
+       "v": 0.0306,
+       "src": [
+        "DIV.grid gap-8 pt-5 sm:pt-11 desk:",
+        "DIV.",
+        "P.mt-3 max-w-[58ch] text-body-lg"
+       ]
+      }
+     ],
+     "change": {
+      "to_pending_ms": 211,
+      "to_response_ms": 8045,
+      "to_live_ms": 8065,
+      "to_last_list_mutation_ms": 8045,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 7789
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 5257,
+     "ttfb": 309,
+     "dcl": 5255,
+     "load": 5256,
+     "fcp": 948,
+     "lcp": 2384,
+     "lcp_el": "IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080",
+     "lcp_candidates": [
+      "948ms P.mt-3 max-w-[58ch] text-body-lg text-ink- See how many singles in each US metro match what you're look",
+      "2384ms IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080"
+     ],
+     "cls": 0.0306,
+     "shifts": [
+      {
+       "t": 3328,
+       "v": 0.0306,
+       "src": [
+        "DIV.grid gap-8 pt-5 sm:pt-11 desk:",
+        "DIV.",
+        "P.mt-3 max-w-[58ch] text-body-lg"
+       ]
+      }
+     ],
+     "change": {
+      "to_pending_ms": 213,
+      "to_response_ms": 8060,
+      "to_live_ms": 8082,
+      "to_last_list_mutation_ms": 8060,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 7796
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 5419,
+     "ttfb": 425,
+     "dcl": 5416,
+     "load": 5418,
+     "fcp": 1060,
+     "lcp": 2508,
+     "lcp_el": "IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080",
+     "lcp_candidates": [
+      "1060ms P.mt-3 max-w-[58ch] text-body-lg text-ink- See how many singles in each US metro match what you're look",
+      "2508ms IMG.h-full w-full object-cover transition-tr http://localhost:3300/cities/w/san-francisco-california-1080"
+     ],
+     "cls": 0.0306,
+     "shifts": [
+      {
+       "t": 3442,
+       "v": 0.0306,
+       "src": [
+        "DIV.grid gap-8 pt-5 sm:pt-11 desk:",
+        "DIV.",
+        "P.mt-3 max-w-[58ch] text-body-lg"
+       ]
+      }
+     ],
+     "change": {
+      "to_pending_ms": 213,
+      "to_response_ms": 8054,
+      "to_live_ms": 8079,
+      "to_last_list_mutation_ms": 8054,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 7787
+      }
+     ]
+    }
+   ]
+  },
+  "1440": {
+   "median": {
+    "ttfb": 188,
+    "fcp": 244,
+    "lcp": 244,
+    "load": 303,
+    "cls": 0,
+    "change_to_pending": 187,
+    "change_to_response": 300,
+    "change_to_last_mutation": 300
+   },
+   "runs": [
+    {
+     "load_ms_wall": 335,
+     "ttfb": 238,
+     "dcl": 333,
+     "load": 333,
+     "fcp": 304,
+     "lcp": 304,
+     "lcp_el": "H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?",
+     "lcp_candidates": [
+      "304ms H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?"
+     ],
+     "cls": 0,
+     "shifts": [],
+     "change": {
+      "to_pending_ms": 191,
+      "to_response_ms": 310,
+      "to_live_ms": 311,
+      "to_last_list_mutation_ms": 310,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 111
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 305,
+     "ttfb": 205,
+     "dcl": 303,
+     "load": 303,
+     "fcp": 244,
+     "lcp": 244,
+     "lcp_el": "H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?",
+     "lcp_candidates": [
+      "244ms H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?"
+     ],
+     "cls": 0,
+     "shifts": [],
+     "change": {
+      "to_pending_ms": 184,
+      "to_response_ms": 281,
+      "to_live_ms": 283,
+      "to_last_list_mutation_ms": 281,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 90
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 256,
+     "ttfb": 170,
+     "dcl": 255,
+     "load": 255,
+     "fcp": 208,
+     "lcp": 208,
+     "lcp_el": "H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?",
+     "lcp_candidates": [
+      "208ms H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?"
+     ],
+     "cls": 0,
+     "shifts": [],
+     "change": {
+      "to_pending_ms": 187,
+      "to_response_ms": 300,
+      "to_live_ms": 304,
+      "to_last_list_mutation_ms": 300,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 107
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 365,
+     "ttfb": 188,
+     "dcl": 364,
+     "load": 364,
+     "fcp": 296,
+     "lcp": 296,
+     "lcp_el": "H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?",
+     "lcp_candidates": [
+      "296ms H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?"
+     ],
+     "cls": 0,
+     "shifts": [],
+     "change": {
+      "to_pending_ms": 188,
+      "to_response_ms": 298,
+      "to_live_ms": 301,
+      "to_last_list_mutation_ms": 298,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 106
+      }
+     ]
+    },
+    {
+     "load_ms_wall": 264,
+     "ttfb": 174,
+     "dcl": 263,
+     "load": 263,
+     "fcp": 216,
+     "lcp": 216,
+     "lcp_el": "H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?",
+     "lcp_candidates": [
+      "216ms H1.max-w-[17ch] text-balance font-display t Which city has the best dating scene for you?"
+     ],
+     "cls": 0,
+     "shifts": [],
+     "change": {
+      "to_pending_ms": 187,
+      "to_response_ms": 303,
+      "to_live_ms": 304,
+      "to_last_list_mutation_ms": 303,
+      "mutations": 1,
+      "anims_after": 0
+     },
+     "rank_requests": [
+      {
+       "body": 1590474,
+       "ms": 109
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
