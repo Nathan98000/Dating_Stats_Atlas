@@ -35,10 +35,12 @@ test("the two-handle age control works by keyboard only", async ({ page }) => {
   await page.getByTestId("age-token").focus();
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("age-popover")).toBeVisible();
-  const younger = page.getByLabel("Youngest age");
-  const older = page.getByLabel("Oldest age");
+  // Phase 6 (F02): the exact-age fields share the thumbs' names
+  const younger = page.getByRole("slider", { name: "Youngest age" });
+  const older = page.getByRole("slider", { name: "Oldest age" });
   await expect(younger).toHaveCount(1);
   await expect(older).toHaveCount(1);
+  await expect(page.getByRole("spinbutton", { name: "Youngest age" })).toHaveCount(1);
   await younger.focus();
   await page.keyboard.press("ArrowLeft");
   await page.keyboard.press("ArrowLeft");

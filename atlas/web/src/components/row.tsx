@@ -117,7 +117,7 @@ export function FeaturedCard({
       <div className="flex flex-1 flex-col gap-2.5 px-4 pb-[18px] pt-4">
         <h3 className="font-display text-h3">
           <span className="sr-only">Ranked {row.rank}: </span>
-          <Link href={href} className="hover:text-accent-hover hover:underline">
+          <Link href={href} className="hover:text-accent-hover hover:underline max-desk:flex max-desk:min-h-11 max-desk:items-center">
             {row.display_name}
           </Link>
         </h3>
@@ -187,7 +187,7 @@ export function ResultRow({
         <div className="flex min-w-0 flex-col gap-1.5">
           <h3 className="text-title">
             <span className="sr-only">Ranked {row.rank}: </span>
-            <Link href={href} className="hover:text-accent-hover hover:underline">
+            <Link href={href} className="hover:text-accent-hover hover:underline max-desk:flex max-desk:min-h-11 max-desk:items-center">
               {row.display_name}
             </Link>
           </h3>

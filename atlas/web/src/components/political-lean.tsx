@@ -82,7 +82,7 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
           {meta.stat_pages.includes("political_lean") ? (
             <Link
               href="/stats/political_lean"
-              className="self-start text-caption font-semibold text-accent hover:text-accent-hover"
+              className="inline-flex items-center max-desk:min-h-11 self-start text-caption font-semibold text-accent hover:text-accent-hover"
             >
               {meta.policy_strings.stat_page_link.replace("{name}", statName)}
             </Link>

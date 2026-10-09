@@ -19,7 +19,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-full max-w-[1200px] items-center gap-10 px-4 sm:px-12 max-sm:gap-3">
         <Suspense
           fallback={
-            <Link href="/" className="font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3">
+            <Link href="/" className="inline-flex min-h-11 items-center font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3">
               Dating Stats Atlas
             </Link>
           }
@@ -61,7 +61,7 @@ export function SiteFooter() {
         <span className="mr-auto font-display text-body font-semibold text-ink">Dating Stats Atlas</span>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-6">
           {FOOTER_LINKS.map((f) => (
-            <Link key={f.key} href={f.href} className="inline-flex min-h-11 items-center hover:text-ink">
+            <Link key={f.key} href={f.href} className="inline-flex min-h-11 min-w-11 items-center justify-center hover:text-ink">
               {labels[f.key]}
             </Link>
           ))}

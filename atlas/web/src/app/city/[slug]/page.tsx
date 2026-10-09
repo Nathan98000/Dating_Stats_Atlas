@@ -255,7 +255,7 @@ function StatCard({ card, meta }: { card: Card; meta: import("@/lib/types").Meta
           {statPage ? (
             <Link
               href={`/stats/${card.id}`}
-              className="self-start text-caption font-semibold text-accent hover:text-accent-hover"
+              className="inline-flex items-center max-desk:min-h-11 self-start text-caption font-semibold text-accent hover:text-accent-hover"
             >
               {meta.policy_strings.stat_page_link.replace("{name}", statName)}
             </Link>

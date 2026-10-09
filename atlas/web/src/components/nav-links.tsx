@@ -50,7 +50,7 @@ export function BrandLink() {
   return (
     <Link
       href={`/${suffix}`}
-      className="font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3"
+      className="inline-flex min-h-11 items-center font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3"
     >
       Dating Stats Atlas
     </Link>

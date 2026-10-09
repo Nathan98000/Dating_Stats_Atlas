@@ -573,9 +573,12 @@ function ImportanceRow({
 export function AgeRange({
   prefs,
   onChange,
+  exact = false,
 }: {
   prefs: Prefs;
   onChange: (next: Prefs) => void;
+  /** Phase 6 (F02): two number fields for exact ages under the track */
+  exact?: boolean;
 }) {
   const uid = useId();
   const lo = useRef<HTMLInputElement>(null);
@@ -630,6 +633,55 @@ export function AgeRange({
         <span>{MIN}</span>
         <span>{MAX}</span>
       </div>
+      {exact && (
+        <div className="mt-2 flex items-center gap-2.5 text-body text-ink-2" data-testid="age-exact">
+          <span aria-hidden="true">From</span>
+          <ExactAge label="Youngest age" value={prefs.ageMin} testid="age-from"
+            commit={(v) => onChange({ ...prefs, ageMin: Math.min(v, prefs.ageMax) })} />
+          <span aria-hidden="true">to</span>
+          <ExactAge label="Oldest age" value={prefs.ageMax} testid="age-to"
+            commit={(v) => onChange({ ...prefs, ageMax: Math.max(v, prefs.ageMin) })} />
+        </div>
+      )}
     </div>
+  );
+}
+
+/** Phase 6 (F02): an exact age beside the two thumbs — a 48px number field
+ * holding the same state. A typed value is kept as typed until Enter or
+ * leaving the field, then clamped to 18-70 and to its partner (From <= To);
+ * Escape still closes the popover. Labelled as its thumb is. */
+function ExactAge({ label, value, testid, commit }: {
+  label: string; value: number; testid: string; commit: (v: number) => void;
+}) {
+  const [draft, setDraft] = useState<string | null>(null);
+  const done = () => {
+    if (draft === null) return;
+    const v = parseInt(draft, 10);
+    setDraft(null);
+    if (Number.isFinite(v)) {
+      const c = Math.min(70, Math.max(18, v));
+      if (c !== value) commit(c);
+    }
+  };
+  return (
+    <input
+      type="number"
+      inputMode="numeric"
+      min={18}
+      max={70}
+      aria-label={label}
+      data-testid={testid}
+      className="ctl min-h-12 w-20 text-center"
+      value={draft ?? String(value)}
+      onChange={(e) => setDraft(e.target.value)}
+      onBlur={done}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          done();
+        }
+      }}
+    />
   );
 }

@@ -360,6 +360,26 @@ input[type="range"].svo::-moz-range-thumb {
 }
 input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
+/* Phase 6 (F02): below the desk (1120px) every slider is a 44px target.
+   The range input is 44px tall and each thumb a transparent 44x44 hit
+   area with its visible 28px circle drawn inside (a white disc in a 3px
+   accent ring, as at the desk); the visible track is unchanged. */
+@media (max-width: 69.99rem) {
+  .age-track { height: 44px; }
+  .age-track input[type="range"], input[type="range"].svo { height: 44px; }
+  .age-track input[type="range"]::-webkit-slider-thumb,
+  input[type="range"].svo::-webkit-slider-thumb {
+    width: 44px; height: 44px; border: 0;
+    background: radial-gradient(circle, var(--surface) 0 10.5px, var(--accent) 11px 14px, transparent 14.5px);
+  }
+  input[type="range"].svo::-webkit-slider-thumb { margin-top: -20px; }
+  .age-track input[type="range"]::-moz-range-thumb,
+  input[type="range"].svo::-moz-range-thumb {
+    width: 44px; height: 44px; border: 0; border-radius: 0;
+    background: radial-gradient(circle, var(--surface) 0 10.5px, var(--accent) 11px 14px, transparent 14.5px);
+  }
+}
+
 /* Phase 2f item 5.2: every city-page card is a subgrid over the card
    grid's rows (name / value / unit / segments / band label / link), so
    the five-segment indicators sit at one height across a row of cards
@@ -446,6 +466,15 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
   vertical-align: top;
 }
 .prose-method tr:last-child td { border-bottom: none; }
+/* Phase 6 (F02): below the desk a link in the sources table is a 44px
+   target (it sits alone in its cell; links in running prose are exempt) */
+@media (max-width: 69.99rem) {
+  .prose-method td a { display: inline-flex; min-height: 44px; align-items: center; }
+  /* How it works' photograph credits: each link a 44x44 target, set once
+     here rather than on each of their 750 links */
+  .credits-list li { min-height: 44px; }
+  .credits-list a { display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+}
 
 /* m4.0.0 (ADR 0018): while the browser's stored "about you" variant is
    pending (set before the first paint by lib/about-you's script), the

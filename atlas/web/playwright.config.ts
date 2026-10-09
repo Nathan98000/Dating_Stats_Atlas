@@ -22,7 +22,7 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] }, testIgnore: /phase5\.spec\.ts/ },
+    { name: "chromium", use: { ...devices["Desktop Chrome"] }, testIgnore: /phase[56]\.spec\.ts/ },
     // Phase 5: the redesign's three widths — the desk, a laptop below the
     // 1120px breakpoint, and a touch phone
     { name: "desk-1440", testMatch: /phase5\.spec\.ts/,
@@ -30,6 +30,14 @@ export default defineConfig({
     { name: "laptop-1024", testMatch: /phase5\.spec\.ts/,
       use: { ...devices["Desktop Chrome"], viewport: { width: 1024, height: 768 } } },
     { name: "phone-390", testMatch: /phase5\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], viewport: { width: 390, height: 844 },
+             isMobile: true, hasTouch: true } },
+    // Phase 6 (the round-3 review): the same three widths
+    { name: "p6-desk-1440", testMatch: /phase6\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
+    { name: "p6-laptop-1024", testMatch: /phase6\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1024, height: 768 } } },
+    { name: "p6-phone-390", testMatch: /phase6\.spec\.ts/,
       use: { ...devices["Desktop Chrome"], viewport: { width: 390, height: 844 },
              isMobile: true, hasTouch: true } },
   ],

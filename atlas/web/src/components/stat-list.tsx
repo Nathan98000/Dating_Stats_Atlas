@@ -110,7 +110,7 @@ export function StatList({
         {shown.map((r) => (
           <li
             key={r.slug}
-            className="grid grid-cols-[44px_1fr_auto] items-baseline gap-x-4 border-b border-rule py-3"
+            className="grid grid-cols-[44px_1fr_auto] items-baseline gap-x-4 border-b border-rule py-3 max-desk:py-0"
             data-slug={r.slug}
             data-pos={r.pos}
           >
@@ -120,7 +120,7 @@ export function StatList({
             <span className="min-w-0">
               <Link
                 href={`/city/${r.slug}`}
-                className="text-body font-semibold hover:text-accent-hover hover:underline"
+                className="inline-flex items-center max-desk:min-h-11 text-body font-semibold hover:text-accent-hover hover:underline"
               >
                 <span className="sr-only">{r.pos}: </span>
                 {r.name}

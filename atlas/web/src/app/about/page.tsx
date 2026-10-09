@@ -90,7 +90,7 @@ export default async function AboutPage() {
           <h3 className="mt-5 text-title font-semibold">{policy.credits_data_heading}</h3>
           {citations.length > 0 && (
             <details className="mt-2" data-testid="credits-data-more">
-              <summary className="cursor-pointer text-body-sm font-semibold text-accent hover:text-accent-hover">
+              <summary className="min-h-11 cursor-pointer py-3 text-body-sm font-semibold text-accent hover:text-accent-hover">
                 {policy.credits_data_more.replace("{n}", citations.length.toLocaleString("en-US"))}
               </summary>
               <ul className="mt-3 flex flex-col gap-2" data-testid="credits-data">
@@ -108,10 +108,10 @@ export default async function AboutPage() {
           <h3 className="mt-7 text-title font-semibold">{policy.credits_photos_heading}</h3>
           {photos.length > 0 && (
             <details className="mt-2" data-testid="credits-photos-more">
-              <summary className="cursor-pointer text-body-sm font-semibold text-accent hover:text-accent-hover">
+              <summary className="min-h-11 cursor-pointer py-3 text-body-sm font-semibold text-accent hover:text-accent-hover">
                 {policy.credits_photos_more.replace("{n}", photos.length.toLocaleString("en-US"))}
               </summary>
-              <ul className="mt-3 flex flex-col gap-2" data-testid="credits-photos">
+              <ul className="credits-list mt-3 flex flex-col gap-2" data-testid="credits-photos">
                 {photos.map((img) => (
                   <Credit key={img.file} img={img} policy={policy} />
                 ))}

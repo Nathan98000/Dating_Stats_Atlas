@@ -106,7 +106,7 @@ function MeasureRow({
       {statHref && statLabel ? (
         <Link
           href={statHref}
-          className="self-start pt-0.5 text-caption font-semibold text-accent hover:text-accent-hover"
+          className="inline-flex items-center max-desk:min-h-11 self-start pt-0.5 text-caption font-semibold text-accent hover:text-accent-hover"
         >
           {statLabel}
         </Link>

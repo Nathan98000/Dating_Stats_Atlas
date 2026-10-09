@@ -161,7 +161,7 @@ function AgePopover({ id, label, closeLabel, prefs, onChange }: {
         data-testid="age-popover"
         className="absolute left-0 top-full z-40 mt-2 w-[300px] rounded-lg border border-rule bg-surface p-5 shadow-overlay max-sm:right-0 max-sm:left-auto"
       >
-        <AgeRange prefs={prefs} onChange={onChange} />
+        <AgeRange prefs={prefs} onChange={onChange} exact />
         <div className="mt-3 flex justify-end">
           <button
             type="button"

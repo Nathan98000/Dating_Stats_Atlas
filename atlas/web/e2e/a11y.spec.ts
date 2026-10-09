@@ -50,8 +50,10 @@ for (const p of PAGES) {
 
 test("each age handle is separately labelled and tab-reachable", async ({ page }) => {
   await page.goto("/");
-  const younger = page.getByLabel("Youngest age");
-  const older = page.getByLabel("Oldest age");
+  // Phase 6 (F02): the popover's exact-age fields share their thumbs'
+  // names, so the handles are counted by role
+  const younger = page.getByRole("slider", { name: "Youngest age", includeHidden: true });
+  const older = page.getByRole("slider", { name: "Oldest age", includeHidden: true });
   await expect(younger).toHaveCount(1);
   await expect(older).toHaveCount(1);
   // both reachable by the keyboard alone, in order (Phase 5: Tab to the

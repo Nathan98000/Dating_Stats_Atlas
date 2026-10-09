@@ -123,7 +123,7 @@ export default async function ComparePage({
                   <th key={m.slug} role="columnheader" scope="col" className="px-4 py-3 sm:px-5 sm:py-3.5">
                     <Link
                       href={`/city/${m.slug}?${qs}`}
-                      className="font-display text-title text-ink hover:text-accent-hover"
+                      className="inline-flex items-center max-desk:min-h-11 font-display text-title text-ink hover:text-accent-hover"
                     >
                       {m.display_name}
                     </Link>

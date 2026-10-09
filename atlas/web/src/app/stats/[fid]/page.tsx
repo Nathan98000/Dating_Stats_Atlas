@@ -125,7 +125,7 @@ export default async function StatPage({
             <a
               href={page.source.url}
               rel="noopener"
-              className="font-semibold underline underline-offset-2 hover:text-ink-2"
+              className="inline-flex items-center max-desk:min-h-11 font-semibold underline underline-offset-2 hover:text-ink-2"
             >
               {page.source.name}
             </a>
