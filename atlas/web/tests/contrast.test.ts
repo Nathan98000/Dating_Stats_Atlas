@@ -49,6 +49,7 @@ const PAIRS: [string, string, string, number][] = [
   // an open row's or card's detail
   ["the 'New top three' line on paper", "ink-2", "paper", 4.5],
   ["a caution caption on the open row", "ink-2", "hover", 4.5],
+  ["Compare's neutral starting-search note", "ink-2", "sunken", 4.5],
 ];
 
 describe("Phase 5 tokens hold their contrast", () => {

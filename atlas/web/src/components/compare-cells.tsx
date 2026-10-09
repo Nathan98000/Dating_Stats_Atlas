@@ -1,5 +1,6 @@
 import type React from "react";
-import { edgeOf, parseDisplayed } from "@/lib/compare";
+import { edgeOf, leadOf, signedDiff } from "@/lib/compare";
+import { fill } from "@/lib/results";
 
 /** The compare table's row, value cell and edge cell, shared by the server
  * page and the part an "about you" variant changes (components/compare-
@@ -15,17 +16,36 @@ import { edgeOf, parseDisplayed } from "@/lib/compare";
  * Below 640px the table reflows: each measure is a block, its label across
  * the top and the two cities' values side by side, the winner's value
  * marked ▲ (the edge column is hidden there). Explicit roles keep the
- * table a table for screen readers when its display changes. */
+ * table a table for screen readers when its display changes.
+ *
+ * Phase 6 (F07): a judged row's Edge reads "▲ Denver" over "by 31,802" —
+ * the registry's compare_edge_by with the absolute value of the same
+ * subtraction ("by 2 places" for the spot in the results,
+ * compare_edge_places) — and a screen reader hears "Denver, by 31,802".
+ * Rows the site doesn't judge keep the dash over the plain signed
+ * difference. */
 
 export type { Edge } from "@/lib/compare";
 export { edgeOf } from "@/lib/compare";
 
-export function Row({ label, children }: { label: string; children: React.ReactNode }) {
+export function Row({ label, note, children }: {
+  label: string;
+  /** Phase 6 (F01): a line under the label (the same-sex note on the
+   * Matches row), chosen in the browser, so kept inside the variant veil */
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <tr role="row" className="grid grid-cols-2 border-b border-rule last:border-b-0 sm:table-row">
       <th role="rowheader" scope="row"
         className="col-span-2 px-4 pb-1 pt-3.5 text-left align-top text-caption font-semibold text-ink-2 sm:px-5 sm:py-3.5">
         {label}
+        {note && (
+          <span data-variant="" className="mt-1 block max-w-[40ch] text-overline font-normal tracking-normal text-ink-3"
+            data-testid="same-sex-note">
+            {note}
+          </span>
+        )}
       </th>
       {children}
     </tr>
@@ -68,6 +88,8 @@ export function DiffCell({
   grey = false,
   dollar = false,
   variant = false,
+  by,
+  places,
 }: {
   id: string;
   a?: string;
@@ -81,6 +103,10 @@ export function DiffCell({
   /** m4.0.0: a difference an "about you" variant changes (kept unseen
    * while the browser's variant is pending) */
   variant?: boolean;
+  /** Phase 6: the registry's compare_edge_by ("by {diff}") */
+  by: string;
+  /** Phase 6: the spot row's compare_edge_places ("by {n} places") */
+  places?: string;
 }) {
   const v = variant ? { "data-variant": "" } : {};
   const cls = "px-5 py-3.5 align-top max-sm:hidden";
@@ -91,13 +117,10 @@ export function DiffCell({
       </td>
     );
   }
-  const d = parseDisplayed(a) - parseDisplayed(b);
-  const sign = d > 0 ? "+" : d < 0 ? "−" : "";
-  const body = `${sign}${dollar ? "$" : ""}${Math.abs(d).toLocaleString("en-US", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  })}`;
   const edge = edgeOf(a, b, direction, grey);
+  const lead = leadOf(a, b, decimals, dollar);
+  const body = edge === 0 ? signedDiff(a, b, decimals, dollar)
+    : places ? fill(places, { n: lead }) : fill(by, { diff: lead });
   return (
     <td role="cell" className={cls} data-diff-for={id} data-edge={edge} {...v}>
       {edge === 0 ? (
@@ -105,7 +128,7 @@ export function DiffCell({
       ) : (
         <span className="flex items-center gap-1.5 text-body-sm font-semibold text-good-strong">
           <EdgeMark />
-          {names[edge === 1 ? 0 : 1]}
+          <span>{names[edge === 1 ? 0 : 1]}<span className="sr-only">,</span></span>
         </span>
       )}
       <span className="block text-caption text-ink-3" data-diff-value>{body}</span>

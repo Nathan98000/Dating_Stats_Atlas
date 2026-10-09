@@ -98,7 +98,9 @@ export default async function ComparePage({
           same yardstick as your results.
         </p>
         {isDefaultSearch(sp) && !fromCookie && (
-          <p className="max-w-[64ch] rounded-md border border-warning bg-warning-soft px-4 py-3 text-body-sm text-warning" data-testid="default-profile-note">
+          // Phase 6 (F23): a neutral note — the starting search is a fine
+          // search, not a warning
+          <p className="max-w-[64ch] rounded-md bg-sunken px-4 py-3 text-body-sm text-ink-2" data-testid="default-profile-note">
             {policy.compare_default_note.replace(
               "{search}", describeSearch(prefs).toLowerCase())}{" "}
             <Link href={`/?${qs}#search-panel`} className="font-bold underline underline-offset-2">
@@ -183,6 +185,7 @@ export default async function ComparePage({
                       direction={grey ? 0 : le.direction}
                       grey={grey}
                       dollar={id === "rent_1br"}
+                      by={policy.compare_edge_by}
                     />
                   </Row>
                 );
@@ -253,7 +256,7 @@ export default async function ComparePage({
                           <span className="text-data-m">{s.display}</span>
                         ) : (
                           <span className="text-caption text-ink-3">
-                            {r?.crime?.card_blank ?? "Not covered"}
+                            {r?.crime?.card_blank ?? policy.compare_not_ranked}
                           </span>
                         )}
                       </td>

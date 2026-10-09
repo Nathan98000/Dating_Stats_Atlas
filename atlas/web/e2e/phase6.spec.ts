@@ -546,3 +546,105 @@ test.describe("trust (F)", () => {
     expect(about).not.toContain("racial/ethnic pairing actually occurs");
   });
 });
+
+test.describe("compare (G)", () => {
+  test("a judged Edge names the city and the size of its lead; others keep the dash and the sign (F07)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/compare/austin-texas/provo-utah");
+    const table = page.getByTestId("compare-table");
+    await expect(table).toBeVisible();
+    test.skip(width(page) < 640, "the Edge column is the table's, from 640px");
+    const cells = await table.locator("[data-diff-for]").evaluateAll((tds) => tds.map((td) => ({
+      id: td.getAttribute("data-diff-for"), edge: td.getAttribute("data-edge"),
+      text: (td as HTMLElement).innerText.replace(/\s+/g, " ").trim(),
+      value: td.querySelector("[data-diff-value]")?.textContent?.trim() ?? "" })));
+    let judged = 0;
+    for (const c of cells) {
+      if (c.edge === "1" || c.edge === "-1") {
+        judged++;
+        const by = c.id === "rank" ? ps.compare_edge_places.split("{n}")[0] : ps.compare_edge_by.split("{diff}")[0];
+        expect(c.value, `${c.id}`).toMatch(new RegExp(`^${by}[$\\d]`));
+        expect(c.value).not.toMatch(/[+−]/);
+        // a screen reader hears "Austin, by …"
+        await expect(table.locator(`[data-diff-for="${c.id}"]`)).toHaveAccessibleName(
+          c.edge === "1" ? /^Austin ?, by / : /^Provo ?, by /);
+      } else if (c.edge === "0") {
+        expect(c.text.startsWith("—")).toBe(true);
+      }
+    }
+    expect(judged).toBeGreaterThan(3);
+    await expect(page.getByTestId("diff-legend")).toHaveText(ps.compare_edge_note);
+  });
+
+  test("a city below the floor reads 'Not ranked' on the five ranked rows (F24); Matches is the row's name (F21)", async ({ page, request }) => {
+    const meta = await fetchMeta(request);
+    const ps = meta.policy_strings;
+    await page.goto("/compare/austin-texas/eagle-pass-texas");
+    const table = page.getByTestId("compare-table");
+    await expect(table).toBeVisible();
+    for (const label of ["Spot in your results", ps.overall_score_label, meta.features.pool_size.display_name,
+                         meta.features.match_propensity.display_name, meta.features.pool_balance.display_name]) {
+      const row = table.getByRole("row").filter({ has: page.getByRole("rowheader", { name: label }) });
+      await expect(row.getByRole("cell").nth(1), label).toHaveText(ps.compare_not_ranked);
+    }
+    expect(meta.features.pool_size.display_name).toBe("Matches");
+    await expect(table).not.toContainText("Not covered");
+    await expect(table).not.toContainText("People who match");
+  });
+
+  test("the starting-search note is neutral, not a warning (F23)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/compare/austin-texas/provo-utah");
+    const note = page.getByTestId("default-profile-note");
+    await expect(note).toContainText(ps.compare_default_note.split("{search}")[0]);
+    const st = await note.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      const v = (n: string) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+      const hex = (c: string) => "#" + (c.match(/\d+/g) ?? []).slice(0, 3).map((x) => Number(x).toString(16).padStart(2, "0")).join("").toUpperCase();
+      return { bg: hex(cs.backgroundColor), fg: hex(cs.color), border: cs.borderTopWidth, sunken: v("--sunken").toUpperCase(), ink2: v("--ink-2").toUpperCase() };
+    });
+    expect(st.bg).toBe(st.sunken);
+    expect(st.fg).toBe(st.ink2);
+    expect(st.border).toBe("0px");
+  });
+
+  test("same-sex: the Matches row carries the note, chosen in the browser (F01)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await seedAboutYou(page, { sex: "male" });
+    await page.goto(`/compare/austin-texas/provo-utah${SAME_SEX_QS}`);
+    await expect(page.getByTestId("compare-table").getByTestId("same-sex-note"))
+      .toHaveText(ps.same_sex_pool_note.replace("{sought_one}", "man").replace("{sought}", "men"));
+    const html = await (await request.get(`/compare/austin-texas/provo-utah${SAME_SEX_QS}`)).text();
+    expect(html).not.toContain('data-testid="same-sex-note"');
+  });
+
+  test("opposite-sex: no note on Compare", async ({ page }) => {
+    await seedAboutYou(page, { sex: "female" });
+    await page.goto(`/compare/austin-texas/provo-utah${SAME_SEX_QS}`);
+    await expect(page.getByTestId("compare-table")).toBeVisible();
+    await expect(page.getByTestId("same-sex-note")).toHaveCount(0);
+  });
+});
+
+test.describe("compare on the real build (P6_REAL_BASE)", () => {
+  test.skip(!REAL, "needs the real build's site");
+  const edgeCell = (page: Page, id: string) => page.locator(`[data-diff-for="${id}"]`);
+  test("Austin–Denver: matches '▲ Denver' by 31,802; the spot by 2 places", async ({ page }) => {
+    test.skip(width(page) < 640, "the Edge column");
+    await page.goto(`${REAL}/compare/austin-texas/denver-colorado`);
+    await expect(edgeCell(page, "pool")).toHaveAttribute("data-edge", "-1");
+    await expect(edgeCell(page, "pool")).toContainText("Denver");
+    await expect(edgeCell(page, "pool").locator("[data-diff-value]")).toHaveText("by 31,802");
+    // (the accessible-name algorithm sets a space before the visually
+    // hidden comma; speech is the same)
+    await expect(edgeCell(page, "pool")).toHaveAccessibleName(/^Denver ?, by 31,802$/);
+    await expect(edgeCell(page, "rank").locator("[data-diff-value]")).toHaveText("by 2 places");
+  });
+  test("Austin–Abilene: rent '▲ Abilene' by $526", async ({ page }) => {
+    test.skip(width(page) < 640, "the Edge column");
+    await page.goto(`${REAL}/compare/austin-texas/abilene-texas`);
+    await expect(edgeCell(page, "rent_1br")).toHaveAttribute("data-edge", "-1");
+    await expect(edgeCell(page, "rent_1br")).toContainText("Abilene");
+    await expect(edgeCell(page, "rent_1br").locator("[data-diff-value]")).toHaveText("by $526");
+  });
+});

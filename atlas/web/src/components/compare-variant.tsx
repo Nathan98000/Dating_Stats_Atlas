@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import type { Meta, RankedRow, SuppressedRow, VariantResponse } from "@/lib/types";
 import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
+import { effectiveSex } from "@/lib/about-you";
+import { fill } from "@/lib/results";
 import { BalanceTrack } from "./balance-track";
 import { DiffCell, edgeOf, Row, ValueCell, type Edge } from "./compare-cells";
 
@@ -31,6 +33,10 @@ export function CompareVariantRows({
   const about = useAboutYou();
   const sel = useMemo(() => selectVariant(slice, about), [slice, about]);
   const policy = meta.policy_strings;
+  // Phase 6 (F01): a same-sex search, as this browser holds the visitor's
+  // own sex (the server never knows it)
+  const sought = slice.variants.sought_sex;
+  const sameSex = effectiveSex(about, sought) === sought;
   const find = (cbsa: string): RankedRow | SuppressedRow | undefined =>
     sel.ranked.find((r) => r.cbsa === cbsa) ?? sel.suppressed.find((r) => r.cbsa === cbsa);
   const isRanked = (r: RankedRow | SuppressedRow | undefined): r is RankedRow =>
@@ -64,7 +70,7 @@ export function CompareVariantRows({
               <span className="font-display text-h3">{r.rank}</span>
             ) : (
               <span className="text-caption text-ink-2">
-                {r ? policy[r.reason] : "Not covered"}
+                {r ? policy[r.reason] : policy.compare_not_ranked}
               </span>
             )}
           </ValueCell>
@@ -77,6 +83,8 @@ export function CompareVariantRows({
           b={rankA && rankB ? String(rankB.rank) : undefined}
           decimals={0}
           direction={-1}
+          by={policy.compare_edge_by}
+          places={policy.compare_edge_places}
         />
       </Row>
       {/* Phase 4b (Nathan's change 7): "Overall score" */}
@@ -85,8 +93,10 @@ export function CompareVariantRows({
           <ValueCell key={i} variant win={win(scoreEdge, i)} edgeLabel={edge}>
             {isRanked(r) ? (
               <span className="font-display text-h3">{r.score_display}</span>
-            ) : (
+            ) : r ? (
               <span className="text-ink-3">—</span>
+            ) : (
+              <span className="text-caption text-ink-2">{policy.compare_not_ranked}</span>
             )}
           </ValueCell>
         ))}
@@ -98,16 +108,22 @@ export function CompareVariantRows({
           b={rankA && rankB ? rankB.score_display : undefined}
           decimals={0}
           direction={1}
+          by={policy.compare_edge_by}
         />
       </Row>
-      <Row label="People who match">
+      {/* Phase 6: "Matches", the registry's name for the count (F21); on a
+          same-sex search the note on what it counts, chosen here in the
+          browser from the stored own sex (F01) */}
+      <Row label={meta.features.pool_size.display_name}
+        note={sameSex ? fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
+          sought: sought === "male" ? "men" : "women" }) : undefined}>
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} win={win(poolEdge, i)} edgeLabel={edge}>
             {isRanked(r) ? (
               <span className="text-data-m">{r.pool.toLocaleString("en-US")}</span>
             ) : (
               <span className="text-caption text-ink-2">
-                {r ? policy[r.reason] : "—"}
+                {r ? policy[r.reason] : policy.compare_not_ranked}
               </span>
             )}
           </ValueCell>
@@ -119,6 +135,7 @@ export function CompareVariantRows({
           b={rankA && rankB ? rankB.pool.toLocaleString("en-US") : undefined}
           decimals={0}
           direction={meta.features.pool_size.direction}
+          by={policy.compare_edge_by}
         />
       </Row>
       {/* m3.0.0 (ADR 0009): the compatibility figure of a ranked row —
@@ -133,6 +150,8 @@ export function CompareVariantRows({
                   {r.match.unit_line ?? meta.features.match_propensity.unit}
                 </span>
               </div>
+            ) : !(i === 0 ? rowA : rowB) ? (
+              <span className="text-caption text-ink-2">{policy.compare_not_ranked}</span>
             ) : (
               <span className="text-ink-3">—</span>
             )}
@@ -149,12 +168,14 @@ export function CompareVariantRows({
           b={matchB}
           decimals={meta.features.match_propensity.display_decimals}
           direction={meta.features.match_propensity.direction}
+          by={policy.compare_edge_by}
         />
       </Row>
       <Row label={meta.features.pool_balance.display_name}>
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} variant win={win(balEdge, i)} edgeLabel={edge}>
-            {r ? <BalanceTrack balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} /> : "—"}
+            {r ? <BalanceTrack balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} />
+              : <span className="text-caption text-ink-2">{policy.compare_not_ranked}</span>}
           </ValueCell>
         ))}
         <DiffCell
@@ -165,6 +186,7 @@ export function CompareVariantRows({
           b={balB}
           decimals={0}
           direction={meta.features.pool_balance.direction}
+          by={policy.compare_edge_by}
         />
       </Row>
     </>

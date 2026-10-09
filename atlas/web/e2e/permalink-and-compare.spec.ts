@@ -46,11 +46,13 @@ test("the compare page shows two cities from one response", async ({ page }) => 
   );
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();
-  await expect(table).toContainText("People who match");
+  // Phase 6 (F21): the row is "Matches", the registry's name
+  await expect(table.getByRole("rowheader", { name: "Matches", exact: true })).toHaveCount(1);
   // Phase 2f item 6.1 (ADR 0007, reversing ADR 0003): pools GET a
-  // difference now — the plain subtraction of the two displayed counts
+  // difference now — the plain subtraction of the two displayed counts;
+  // since Phase 6 (F07) a judged row says it as the size of the lead
   const poolDiff = table.locator('[data-diff-for="pool"] [data-diff-value]');
-  await expect(poolDiff).toHaveText(/^[+−][\d,]+$/);
+  await expect(poolDiff).toHaveText(/^(by [\d,]+|[+−][\d,]+)$/);
   await expect(table).toContainText("Rent");
   const text = (await table.textContent()) ?? "";
   expect(text).not.toMatch(/\bCBSA\b/i);
