@@ -133,7 +133,11 @@ test("About us gives the one account of the figure, in Nathan's words", async ({
   await page.goto("/about");
   const article = page.locator("article.prose-method");
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
-  expect(text).toMatch(/how often each age gap, education pairing, and racial\/ethnic pairing actually occurs/);
+  // Phase 6 (F11): the figure's paragraph is the registry's match_how —
+  // race only if you include yours
+  expect(text).toMatch(/how often each age gap and each education pairing actually occurs/);
+  expect(text).toMatch(/their race or ethnicity only if you include yours/);
+  expect(text).not.toMatch(/racial\/ethnic pairing actually occurs/);
   expect(text).toMatch(/where 100 is the US average/);
   expect(text).toMatch(/Racial and ethnic pairings aren't used/);
   expect(text).toMatch(/between pool size and compatibility/);

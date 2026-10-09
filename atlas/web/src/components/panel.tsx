@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
 import { filtersSummary, IMPORTANCE_PILLARS, SELF_EDU_LEVELS, type Level, type Prefs,
@@ -298,9 +299,21 @@ export function RailGroups({
         heading={policy.rail_sharpen_heading}
         testid="about-you-section"
         summary={
-          // after the Phase 5 report (Nathan): the pill alone, no note
-          <span className="inline-flex h-[22px] items-center rounded-full bg-sunken px-2 text-overline tracking-normal text-ink-2">
-            {policy.optional_pill}
+          // after the Phase 5 report (Nathan): the pill alone, no note.
+          // Phase 6 (F10b, Nathan's decision 4, ADR 0018 amended): an ⓘ
+          // beside it explains, on demand only, where these details go —
+          // the one inline explanation of them, not the deleted line back
+          <span className="inline-flex items-center gap-2">
+            <span className="inline-flex h-[22px] items-center rounded-full bg-sunken px-2 text-overline tracking-normal text-ink-2">
+              {policy.optional_pill}
+            </span>
+            <InfoTip id={`${uid}-sharpen-info`} label={policy.sharpen_info_label} testid="sharpen-info">
+              {policy.sharpen_info}{" "}
+              <Link href="/privacy"
+                className="font-semibold text-accent underline underline-offset-2 hover:text-accent-hover">
+                {policy.sharpen_info_link}
+              </Link>
+            </InfoTip>
           </span>
         }
       >

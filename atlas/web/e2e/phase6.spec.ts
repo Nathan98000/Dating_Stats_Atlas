@@ -513,3 +513,36 @@ test.describe("changing the search (E)", () => {
     await expect(find).toBeFocused();
   });
 });
+
+test.describe("trust (F)", () => {
+  test("an ⓘ beside 'Optional' explains where the details go, on demand, and links to Privacy (F10b)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await home(page);
+    if (width(page) < 1120) {
+      await page.mouse.wheel(0, 1600);
+      await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+    }
+    const scope = width(page) < 1120 ? page.locator("dialog[open]") : page.getByTestId("rail");
+    const btn = scope.getByRole("button", { name: ps.sharpen_info_label });
+    await expect(btn).toHaveCount(1);
+    // on demand only: nothing shows until it is asked for
+    await expect(page.getByTestId("sharpen-info-note")).toHaveCount(0);
+    await btn.click();
+    const note = page.getByTestId("sharpen-info-note");
+    await expect(note).toContainText(ps.sharpen_info);
+    await expect(note.getByRole("link", { name: ps.sharpen_info_link })).toHaveAttribute("href", "/privacy");
+  });
+
+  test("Privacy says the details never leave the browser; How it works uses the registry's account (F10a, F11)", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/privacy");
+    const priv = (await page.locator("main").innerText()).replace(/\s+/g, " ");
+    expect(priv).toContain("Your own sex, education and race or ethnicity never leave your browser. "
+      + "Our server sends the figures for every combination of them, and your browser shows the one "
+      + "that fits you, so we never learn which one that is.");
+    await page.goto("/about");
+    const about = (await page.locator("main").innerText()).replace(/\s+/g, " ");
+    expect(about).toContain(ps.match_how.replace(/\s+/g, " "));
+    expect(about).not.toContain("racial/ethnic pairing actually occurs");
+  });
+});

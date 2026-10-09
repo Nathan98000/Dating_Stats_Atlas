@@ -173,10 +173,11 @@ test("About us and Privacy name no switch: race or ethnicity is used only if you
   }
   // Nathan's About us copy (after Phase 4e, 2026-10-06) and his Privacy
   // copy (2026-10-07) no longer carry the sentence; the Privacy page says
-  // the details about you stay in your browser
+  // the details about you stay in your browser — since Phase 6 (F10a) in
+  // so many words: they never leave it
   await page.goto("/privacy");
   expect(await page.locator("body").innerText(), "/privacy: details about you")
-    .toMatch(/Your own browser will keep details about you/);
+    .toMatch(/Your own sex, education and race or ethnicity never leave your browser\./);
 });
 
 test("the slider's box reads the registry string exactly, with the same-sex sentence only on a same-sex search", async ({ page, request }) => {

@@ -11,9 +11,12 @@ can provide the information on matches that you're interested in. We use
 them for that and nothing else, and we don't save those searches on our
 servers.
 
-Your own browser will keep details about you so the site remembers them
-for the next time you visit. You can remove them at any time by clearing
-this site's data in your browser's settings.
+Your own sex, education and race or ethnicity never leave your browser.
+Our server sends the figures for every combination of them, and your
+browser shows the one that fits you, so we never learn which one that is.
+Your browser keeps them so the site remembers them next time you visit.
+You can remove them at any time by clearing this site's data in your
+browser's settings.
 
 ## The cookie
 
