@@ -1,4 +1,4 @@
-# The "Who lives here" card for all 387 metros, from POST /v1/profile on build 63c4e5fa51bf:
+# The "Who lives here" card for all 387 metros, from POST /v1/profile on the API's build (63c4e5fa51bf in the review):
 # the served value, its display, its unit line, how far the display sits from the value,
 # and the adult share the two rounded figures imply.   python3 who_lives_here.py -> who_lives_here.json
 import json, re, urllib.request

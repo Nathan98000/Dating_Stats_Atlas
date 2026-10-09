@@ -196,6 +196,19 @@ the logs hold no error and no visitor address; memory 26% used. Rollback
 kept on the VM: images `dating-stats-atlas-{api,web}:m4.1.1` and the old
 build at `/srv/atlas/build_2dbd9ebfa7ff`.
 
+**The next deploy carries a new build (not deployed; Phase 6, 9 October
+2026).** Phase 6 regenerated the city descriptions with the spoken-figure
+rule (m4.3.0), and Nathan accepted the build id that moves with them:
+**d62202fd0280** replaces 63c4e5fa51bf. Only the `description` field of
+`metros.json` and the `description` column of `features.parquet` differ; the
+cubes, the kernel and the pairing cells are byte-identical, and every
+`/v1/rank` and `/v1/profile` response is the same bytes but for the build id
+(`results/phase6/served_numbers_commit_b2.json`). Step 3 copies
+`atlas/data/builds/d62202fd0280/`; keep the old build on the VM for
+rollback, as before. Step 2 must carry the photographs' `w/` and `og/`
+folders (Phase 6 A), and Caddy must be restarted for the cache header (and
+for Phase 5's `encode`).
+
 ## Environment variables
 
 | var | where | meaning |

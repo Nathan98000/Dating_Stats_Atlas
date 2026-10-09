@@ -5,7 +5,7 @@
   "display_name": "Ann Arbor, MI",
   "display_name_full": "Ann Arbor, Michigan",
   "slug": "ann-arbor-michigan",
-  "description": "A college town of about 350,000 people half an hour west of Detroit.",
+  "description": "A college town of about 370,000 people half an hour west of Detroit.",
   "lat": 42.2761,
   "lon": -83.7312,
   "ranked_set": true
@@ -38,7 +38,7 @@
   "display_name": "Eagle Pass, TX",
   "display_name_full": "Eagle Pass, Texas",
   "slug": "eagle-pass-texas",
-  "description": "A city of about 60,000 people about three hours southwest of San Antonio.",
+  "description": "A city of about 57,000 people about three hours southwest of San Antonio.",
   "lat": 28.7011,
   "lon": -100.4762,
   "ranked_set": false
@@ -49,7 +49,7 @@
   "display_name": "Huntington, WV",
   "display_name_full": "Huntington, West Virginia",
   "slug": "huntington-west-virginia",
-  "description": "A city of about 350,000 people two hours south of Columbus.",
+  "description": "A city of about 370,000 people two hours south of Columbus.",
   "lat": 38.4093,
   "lon": -82.4335,
   "ranked_set": true
@@ -104,7 +104,7 @@
   "display_name": "Provo, UT",
   "display_name_full": "Provo, Utah",
   "slug": "provo-utah",
-  "description": "A college town of about 700,000 people an hour south of Salt Lake City.",
+  "description": "A college town of about 720,000 people an hour south of Salt Lake City.",
   "lat": 40.2453,
   "lon": -111.6451,
   "ranked_set": true

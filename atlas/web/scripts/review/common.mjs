@@ -1,6 +1,6 @@
 // Shared setup for the round-3 review's measurements (Phase 6 review, 8 October 2026).
 // Runs against a local production build: `next start` on :3300 over the API on build
-// 63c4e5fa51bf. Playwright from atlas/web, driving its own Chromium.
+// 63c4e5fa51bf (since Phase 6 B2: d62202fd0280). Playwright from atlas/web, driving its own Chromium.
 // Ported to this Mac in Phase 6 (commit R): bare imports resolve from atlas/web/node_modules;
 // each script writes its output to the current directory, so run it from the output folder.
 import { chromium } from "@playwright/test";
@@ -8,8 +8,11 @@ import { chromium } from "@playwright/test";
 export const BASE = process.env.BASE || "http://localhost:3300";
 export const launch = () => chromium.launch();
 
+// Phase 6: the review's permalink, re-pointed at the current build and model
+// (the token, the search, is unchanged); PERMALINK_DV / PERMALINK_MV override
 export const PERMALINK =
-  "/r/63c4e5fa51bf/m4.2.1/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0";
+  `/r/${process.env.PERMALINK_DV || "d62202fd0280"}/${process.env.PERMALINK_MV || "m4.3.0"}/` +
+  "eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0";
 
 export const PAGES = {
   home: "/",

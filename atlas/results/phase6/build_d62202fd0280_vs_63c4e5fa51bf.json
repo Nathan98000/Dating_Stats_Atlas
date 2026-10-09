@@ -1,0 +1,26 @@
+{
+ "from": "63c4e5fa51bf",
+ "to": "d62202fd0280",
+ "files": {
+  "count_cube.npy": "same",
+  "features.parquet": "DIFFERS",
+  "kernel.json": "same",
+  "kernel.npz": "same",
+  "metros.json": "DIFFERS",
+  "pairing_cells.parquet": "same",
+  "pool_cube.npy": "same",
+  "sumw2_cube.npy": "same"
+ },
+ "manifest_keys_differing": [
+  "created_at",
+  "data_version",
+  "file_sha256"
+ ],
+ "metros_json_fields_differing": [
+  "description"
+ ],
+ "features_parquet_columns_differing": [
+  "description"
+ ],
+ "descriptions_changed": 260
+}

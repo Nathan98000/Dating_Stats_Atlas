@@ -85,10 +85,33 @@ def api_body(body: dict, sought: str) -> dict:
     return out
 
 
+# Phase 6 B2: the descriptions' regeneration moves the build id (Nathan
+# accepted it, 9 October), so a cross-build record masks the id where a
+# response names it (MASK_BUILD=1), and `compare ... numbers_newbuild`
+# passes across two builds
+MASK_BUILD = os.environ.get("MASK_BUILD") == "1"
+
+
+def mask_dv(x, dv: str) -> None:
+    if isinstance(x, dict):
+        for k, v in list(x.items()):
+            if k == "data_version" and v == dv:
+                x[k] = "<data_version>"
+            elif isinstance(v, str) and f"/{dv}/" in v:
+                x[k] = v.replace(f"/{dv}/", "/<data_version>/")
+            else:
+                mask_dv(v, dv)
+    elif isinstance(x, list):
+        for v in x:
+            mask_dv(v, dv)
+
+
 def masked(resp: dict, mv: str) -> dict:
     out = copy.deepcopy(resp)
     out.pop("model_version", None)
     out["permalink"] = out.get("permalink", "").replace(f"/{mv}/", "/<model_version>/")
+    if MASK_BUILD:
+        mask_dv(out, resp["data_version"])
     return out
 
 
@@ -144,10 +167,15 @@ def record(build_dir: str, out_path: str) -> None:
         r = client.post("/v1/profile", json={"cbsa": str(cbsa)})
         assert r.status_code == 200, (cbsa, r.text)
         prof = r.json()
+        if MASK_BUILD:
+            mask_dv(prof, build.manifest["data_version"])
         full = sha(prof)
         mask_who_lives_here(prof)
         profiles[str(cbsa)] = {"full": full, "numbers": sha(prof)}
     lean = client.get("/v1/political_lean")
+    lean_body = lean.json()
+    if MASK_BUILD:
+        mask_dv(lean_body, build.manifest["data_version"])
     reference = {}
     for name in ("default", "same_sex_reference"):
         r = client.post("/v1/rank", json=PS.AFTER[name])
@@ -161,7 +189,7 @@ def record(build_dir: str, out_path: str) -> None:
     Path(out_path).write_text(json.dumps({
         "build": build.manifest["data_version"], "model_version": mv,
         "seconds": round(time.time() - t0, 1), "searches": searches,
-        "profiles": profiles, "political_lean": [lean.status_code, sha(lean.json())],
+        "profiles": profiles, "political_lean": [lean.status_code, sha(lean_body)],
         "reference": reference}) + "\n")
     print(f"{len(searches)} searches, {len(profiles)} profiles -> {out_path} ({time.time() - t0:.0f} s)")
 
@@ -202,12 +230,14 @@ def compare(before: str, after: str, mode: str, tag: str) -> None:
            "political_lean_identical": a["political_lean"] == b["political_lean"],
            "reference_searches_rank_and_score_identical": ref_numbers,
            "generated": time.strftime("%Y-%m-%dT%H:%M:%S")}
-    key = "full" if mode == "same" else "numbers"
+    key = "full" if mode in ("same", "full_newbuild") else "numbers"
+    if mode == "full_newbuild":
+        mode = "numbers_newbuild"
     out["pass"] = (same[key] == len(names) and same_rank == 2 * len(names)
                    and same_explain == len(names) and changed == 0
                    and same_prof == len(b["profiles"]) == len(a["profiles"])
                    and out["political_lean_identical"] and all(ref_numbers.values())
-                   and a["build"] == b["build"])
+                   and (a["build"] == b["build"] or mode == "numbers_newbuild"))
     dest = HERE / f"served_numbers_{tag}.json"
     dest.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
     print(json.dumps(out, indent=1, ensure_ascii=False))

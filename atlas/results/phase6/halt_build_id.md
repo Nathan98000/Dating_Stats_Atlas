@@ -49,3 +49,12 @@ Everything else in B, on build 63c4e5fa51bf with its manifest refreshed (m4.3.0)
 3. Something else (for example, composing the description's population words at serve time).
 
 Commits C to I and the report wait for this answer.
+
+## Resolved (9 October 2026)
+
+Nathan: "Accept the new build id" (option 1). Commit B2 regenerates the descriptions and builds
+**d62202fd0280**. Field by field against 63c4e5fa51bf, only `metros.json`'s `description` and
+`features.parquet`'s `description` column differ (`build_d62202fd0280_vs_63c4e5fa51bf.json`);
+every /v1/rank and /v1/profile response for the 518 test searches and 387 metros is byte-identical
+but for the build id (`served_numbers_commit_b2.json`); the battery passes 12 of 12 gates,
+`spoken_figures` included.

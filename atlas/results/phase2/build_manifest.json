@@ -1,8 +1,8 @@
 {
-  "data_version": "63c4e5fa51bf",
+  "data_version": "d62202fd0280",
   "model_version": "m4.3.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-10-09T11:29:01-0400",
+  "created_at": "2026-10-09T13:32:54-0400",
   "axes": [
     {
       "name": "metro",
@@ -2088,10 +2088,10 @@
   },
   "file_sha256": {
     "count_cube.npy": "05aaec0d49a7941daf2fa4e00c3c865e8ed879b43bd0e5af9c13a59d574fe8ad",
-    "features.parquet": "22d7f2602a7506c73258e982b480cdf61ad79d123b48fba22a79de550cddc4b3",
+    "features.parquet": "b91137b2761fa2fb04b7ff51298dc491ed82cd5ee94a4cee106907ae9706aedc",
     "kernel.json": "e4f1186188e585364a03ce2db2eda98a7ff1684b369db8268c0bf9a96a0b9dfd",
     "kernel.npz": "af3fd7d0050c514095cf49e65c10d647beb1faced131c6d91401fe35607f3777",
-    "metros.json": "b9e4f7d984f68f7cf60bd4246537b3b5cb28977f3762148d2c4445cad8b2d579",
+    "metros.json": "ad598124ae7942e3247dbf0887d856e624b489eb33c84d3984441a513079a07e",
     "pairing_cells.parquet": "ea906b4b4b7fee95b39f7258782dd2535ac59e92b3d7bd7c245bbec9e451ec68",
     "pool_cube.npy": "dbaa0d135e182f8535e05ee3561e36ac0e5df601c5c9757a6e93f486010c915a",
     "sumw2_cube.npy": "5637faa542a5a7d5c85e2b64fe98d3cbaaa215c8c7c1a30c0446eb23a7add9b0"
