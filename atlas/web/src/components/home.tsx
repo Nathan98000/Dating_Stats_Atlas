@@ -500,7 +500,9 @@ export function Home({
           </div>
         )}
 
-        <div className="grid gap-8 pt-5 sm:pt-11 desk:grid-cols-[288px_1fr] desk:items-start">
+        {/* desk:pt-9: 8px less at the desk, with the hero's 8px, so the #1
+            card ends in the first screen where type sets wider (hero.tsx) */}
+        <div className="grid gap-8 pt-5 sm:pt-11 desk:pt-9 desk:grid-cols-[288px_1fr] desk:items-start">
           {desk && (
             // after the Phase 5 report (Nathan): the rail scrolls inside
             // itself, so its last controls never wait for the page to end;
