@@ -488,20 +488,17 @@ strings:
   sought_flipped: "Looking for changed to {sought}"
   # Phase 6 (F01, approved): on a same-sex search, wherever matches show
   # (the results header, the city page's score card, Compare's Matches
-  # row), chosen in the browser from the stored own sex; and the balance
-  # caption on a same-sex search (balance_same_sex stays retired). The
-  # sought sex fills two slots: {sought_one} singular ("every single man"),
-  # {sought} plural ("looking for men"). Since 2026-10-10 the same-sex
-  # caption opens with balance_caption's wording (Nathan's, in
-  # model/suppression.py)
+  # row), chosen in the browser from the stored own sex. The sought sex
+  # fills two slots: {sought_one} singular ("every single man"), {sought}
+  # plural ("looking for men"). Nathan's wording since 2026-10-10 (was "…
+  # in these ages. The Census doesn't ask who people date, so only some of
+  # them are looking for {sought}."). The balance caption's same-sex form
+  # (balance_caption_same_sex) was deleted the same day, at his request:
+  # balance reads balance_caption on every search (balance_same_sex stays
+  # retired)
   same_sex_pool_note: >-
     On a same-sex search, matches count every single {sought_one} in these
-    ages. The Census doesn't ask who people date, so only some of them are
-    looking for {sought}.
-  balance_caption_same_sex: >-
-    Balance compares all single men with all single women in the ages you
-    picked, no other filters are used for the calculation. On a same-sex
-    search it describes the city, not your matches.
+    ages, not just those looking for {sought}.
   # Phase 6 (F29, approved): the caption under a city band whose photograph
   # shows a place elsewhere in the metro (the manifest's `place`)
   photo_place_caption: "{place}, in the {city} metro area"
@@ -522,7 +519,7 @@ strings:
   # the line under the table that explained it (compare_edge_note) is gone
   compare_edge: "Comparison"
   # on a phone, where the Comparison column folds away, the ▲ beside the
-  # value that does better: its spoken name (DRAFT, 2026-10-10)
+  # value that does better: its spoken name (approved by Nathan, 2026-10-10)
   compare_does_better: "Does better"
   # Phase 6 (F07, approved): a judged row names the winner and the size of
   # its lead — the absolute value of the plain difference of the two

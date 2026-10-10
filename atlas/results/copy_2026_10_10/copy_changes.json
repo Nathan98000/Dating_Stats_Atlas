@@ -1,6 +1,6 @@
 {
- "change_set": "Nathan's changes of 2026-10-10, after the city-detail and balance redesign (the rankings detail, the search rail, and Compare)",
- "note": "Nathan's two sentences are word for word (balance's box and the points' caption); \"Comparison\" is his word. compare_does_better is a DRAFT. No number moves: build d62202fd0280 keeps its id with its manifest refreshed (registry strings only), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
+ "change_set": "Nathan's changes of 2026-10-10, after the city-detail and balance redesign (the rankings detail, the search rail and Compare; then the same-sex note, balance's one caption and the city page's first card)",
+ "note": "Nathan's sentences are word for word (balance's box, the points' caption, the same-sex note); \"Comparison\" is his word and he approved \"Does better\". No number moves: build d62202fd0280 keeps its id with its manifest refreshed (registry strings only), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
  "changes": [
   {
    "change": "1. Balance's information box",
@@ -12,11 +12,11 @@
   },
   {
    "change": "1. Balance's information box, same-sex search",
-   "kind": "changed (its first sentence is Nathan's)",
-   "where": "registry strings.balance_caption_same_sex (shown in place of balance_caption on a same-sex search)",
+   "kind": "removed (round 2)",
+   "where": "registry strings.balance_caption_same_sex deleted; balance reads balance_caption on every search (the row and card detail's box, the city page, the home page's small print)",
    "old": "Balance compares all single men with all single women in the ages you picked. On a same-sex search it describes the city, not your matches.",
-   "new": "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation. On a same-sex search it describes the city, not your matches.",
-   "why": "so the box reads Nathan's sentence on every search; the same-sex sentence (Phase 6 F01, approved) is kept"
+   "new": "(none): the same sentence as on any search, without \"On a same-sex search it describes the city, not your matches.\"",
+   "why": "Nathan's request (second round): keep his balance sentence, delete the same-sex one"
   },
   {
    "change": "2. What moved the score (points)",
@@ -52,7 +52,7 @@
   },
   {
    "change": "5. Compare: the phone's ▲",
-   "kind": "changed (DRAFT, needs Nathan's approval)",
+   "kind": "changed (approved by Nathan, 2026-10-10)",
    "where": "new registry strings.compare_does_better -> the spoken name of the ▲ beside the value that does better, below 640px, where the column folds away",
    "old": "Edge",
    "new": "Does better",
@@ -105,6 +105,22 @@
    "old": "the track's end label, unused since the dots replaced the track (72f46a8)",
    "new": "(none)",
    "why": "retired with this copy release rather than left orphaned"
+  },
+  {
+   "change": "11. The same-sex note",
+   "kind": "changed (Nathan's copy, verbatim; round 2)",
+   "where": "registry strings.same_sex_pool_note -> under the results header on the rankings page, under the matches line on each city page's score card, and under Compare's Matches row (one string, all three places)",
+   "old": "On a same-sex search, matches count every single {sought_one} in these ages. The Census doesn't ask who people date, so only some of them are looking for {sought}.",
+   "new": "On a same-sex search, matches count every single {sought_one} in these ages, not just those looking for {sought}.",
+   "why": "Nathan's request; his {gender} slots are the template's two: {sought_one} singular (\"man\"), {sought} plural (\"men\")"
+  },
+  {
+   "change": "12. The city page's first card",
+   "kind": "layout (round 2)",
+   "where": "web/src/components/city-variant.tsx (Where {city} lands for your search)",
+   "old": "the score alone across the top, then one wrapping row (the spot and matches, balance, compatibility) that left empty space beside the score and under the matches; 466px tall at 1440",
+   "new": "from 768px two columns divided by a hairline, as in the rankings detail: the score, the spot and the matches, then the chips; and balance over compatibility. 323px tall at 1440 (342 at 1024); one column on a phone",
+   "why": "Nathan's request: too much white space"
   }
  ]
 }

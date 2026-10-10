@@ -13,14 +13,14 @@ import { InfoTip } from "./info-tip";
  * mark past 160), never a new number; neutral colours, since balance is
  * shown and never scored. Where the figure has under 230px (a phone's
  * Compare column), each row's word sits above its dots. A row without a
- * figure shows the API's note. */
+ * figure shows the API's note. The caption's box reads balance_caption on
+ * every search (its same-sex form was deleted on 2026-10-10, Nathan). */
 export function BalanceDots({
   balance,
   meta,
   id,
   caption = true,
   tile = false,
-  sameSex = false,
 }: {
   balance: BalanceBlock;
   meta: Meta;
@@ -29,9 +29,6 @@ export function BalanceDots({
   /** the row and card detail: the section's information box carries the
    * caption */
   tile?: boolean;
-  /** Phase 6 (F01): on a same-sex search the caption's box says that
-   * balance describes the city, not the visitor's matches */
-  sameSex?: boolean;
 }) {
   const s = meta.policy_strings;
   if (!balance.available || balance.per_100 == null) {
@@ -69,7 +66,7 @@ export function BalanceDots({
         <p className="flex items-start gap-1 text-caption text-ink-3">
           <span>{s.balance_short_caption}</span>
           <InfoTip id={`${id}-bal-info`} label={s.balance_info_label}>
-            {sameSex ? s.balance_caption_same_sex : s.balance_caption}
+            {s.balance_caption}
           </InfoTip>
         </p>
       )}

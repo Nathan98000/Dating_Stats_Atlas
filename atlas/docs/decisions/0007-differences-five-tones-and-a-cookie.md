@@ -96,7 +96,8 @@ difference. The registry's `compare_edge_note` says what the column means, and s
 
 At Nathan's request (10 October 2026, after the city-detail redesign). The column's heading reads
 "Comparison" (`compare_edge`): the word "edge" leaves the page, and below 640px, where the column
-folds away, the ▲ beside the value that does better is named by `compare_does_better` (a draft).
+folds away, the ▲ beside the value that does better is named by `compare_does_better` ("Does
+better", approved the same day).
 Grey, no judgement, now covers two cases instead of three: Who lives here, always, and anything
 without a direction. A pillar set to Not much is judged by its registry direction like every other
 row: its winner is named in green, by how much, however little the measure matters to the visitor.

@@ -81,7 +81,6 @@ export function FeaturedCard({
   first = false,
   open = false,
   inline = false,
-  sameSex = false,
   tinted = false,
   onToggle,
   onCompare,
@@ -97,7 +96,6 @@ export function FeaturedCard({
   open?: boolean;
   /** below 768px the detail opens inside the card */
   inline?: boolean;
-  sameSex?: boolean;
   /** Phase 6 (F05): it moved when the last change landed (2 s) */
   tinted?: boolean;
   onToggle?: () => void;
@@ -177,7 +175,7 @@ export function FeaturedCard({
         </div>
         <span className="sr-only">{row.summary_line}</span>
         {open && inline && (
-          <RowDetail id={detailId} row={row} meta={meta} href={href} sameSex={sameSex}
+          <RowDetail id={detailId} row={row} meta={meta} href={href}
             onCompare={onCompare ?? (() => {})} variant="inline" testid="card-detail" />
         )}
       </div>
@@ -200,7 +198,6 @@ export function ResultRow({
   onToggle,
   onCompare,
   highlighted = false,
-  sameSex = false,
 }: {
   row: RankedRow;
   meta: Meta;
@@ -210,7 +207,6 @@ export function ResultRow({
   onToggle: () => void;
   onCompare: () => void;
   highlighted?: boolean;
-  sameSex?: boolean;
 }) {
   const s = meta.policy_strings;
   const detailId = `detail-${row.cbsa}`;
@@ -260,7 +256,7 @@ export function ResultRow({
         <ToggleButton open={open} detailId={detailId} label={fill(s.row_details, { city: row.display_name })}
           onToggle={onToggle} className="max-sm:hidden" />
       </div>
-      {open && <RowDetail id={detailId} row={row} meta={meta} href={href} onCompare={onCompare} sameSex={sameSex} />}
+      {open && <RowDetail id={detailId} row={row} meta={meta} href={href} onCompare={onCompare} />}
     </li>
   );
 }
@@ -326,12 +322,13 @@ export function FlagCaptions({ flags, meta, className = "" }: {
  * the bars are presentation scaling. Phase 6: the metro's cautions open it
  * (F08); the bars' yardstick shows under their heading (F22); a lifestyle
  * bar names its chip where the words differ ("Cost of living · rent",
- * F21); on a same-sex search the balance box says what it describes (F01).
+ * F21). Since 2026-10-10 balance's box reads balance_caption on every
+ * search (Nathan deleted its same-sex form).
  * `variant`: a row's detail, the panel under the cards (from 768px) or the
  * detail inside a card (below 768px). */
-export function RowDetail({ id, row, meta, href, onCompare, sameSex = false, variant = "row",
+export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
   testid = "row-detail" }: {
-  id: string; row: RankedRow; meta: Meta; href: string; onCompare: () => void; sameSex?: boolean;
+  id: string; row: RankedRow; meta: Meta; href: string; onCompare: () => void;
   variant?: "row" | "panel" | "inline"; testid?: string;
 }) {
   const s = meta.policy_strings;
@@ -369,7 +366,7 @@ export function RowDetail({ id, row, meta, href, onCompare, sameSex = false, var
         ? "grid gap-y-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] sm:grid-rows-[auto_1fr] sm:gap-x-7"
         : "flex flex-col gap-4"}>
         <Section title={s.balance_label} tipLabel={s.balance_info_label} className={col1}
-          tip={sameSex ? s.balance_caption_same_sex : s.balance_caption} tipId={`${id}-bal-info`}>
+          tip={s.balance_caption} tipId={`${id}-bal-info`}>
           <BalanceDots balance={row.balance} meta={meta} id={id} tile />
         </Section>
         <Section title={meta.features.match_propensity.display_name} className={`border-t border-rule pt-3.5 ${col1}`}

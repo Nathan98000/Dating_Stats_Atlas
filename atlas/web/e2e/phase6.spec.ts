@@ -240,17 +240,18 @@ test.describe("home results (D)", () => {
     await expect(page.getByTestId("balance-footnote")).toHaveText(meta.policy_strings.balance_caption);
   });
 
-  test("same-sex: a man looking for men sees the note and the same-sex balance caption", async ({ page, request }) => {
+  test("same-sex: a man looking for men sees the note; balance reads its one caption (2026-10-10)", async ({ page, request }) => {
     const meta = await fetchMeta(request);
     await seedAboutYou(page, { sex: "male" });
     await home(page, SAME_SEX_QS);
     await expect(page.getByTestId("same-sex-note")).toHaveText(
       meta.policy_strings.same_sex_pool_note.replace("{sought_one}", "man").replace("{sought}", "men"));
     await expect(page.getByTestId("same-sex-note")).toContainText("every single man in these ages");
-    await expect(page.getByTestId("balance-footnote")).toHaveText(meta.policy_strings.balance_caption_same_sex);
+    // Nathan deleted balance's same-sex sentence: the same caption on every search
+    await expect(page.getByTestId("balance-footnote")).toHaveText(meta.policy_strings.balance_caption);
     const row = await expandRow(page, 4);
     await row.getByRole("button", { name: meta.policy_strings.balance_info_label }).click();
-    await expect(page.getByTestId("info-tip-note")).toHaveText(meta.policy_strings.balance_caption_same_sex);
+    await expect(page.getByTestId("info-tip-note")).toHaveText(meta.policy_strings.balance_caption);
   });
 
   test("the row detail: Even under the tick, the bars' yardstick in view, balance's named info button (F25, F22, F26)", async ({ page, request }) => {
@@ -671,7 +672,7 @@ test.describe("city and stat pages, sharing, the footer (H)", () => {
     await expect(page.getByTestId("flag-captions")).toHaveCount(0);
   });
 
-  test("same-sex on the city page: the note and the balance caption, chosen in the browser (F01)", async ({ page, request }) => {
+  test("same-sex on the city page: the note, chosen in the browser (F01); balance's one caption", async ({ page, request }) => {
     const ps = (await fetchMeta(request)).policy_strings;
     const html = await (await request.get(`/city/austin-texas${SAME_SEX_QS}`)).text();
     expect(html).not.toContain('data-testid="same-sex-note"');
@@ -681,7 +682,7 @@ test.describe("city and stat pages, sharing, the footer (H)", () => {
     await expect(card.getByTestId("same-sex-note")).toHaveText(
       ps.same_sex_pool_note.replace("{sought_one}", "man").replace("{sought}", "men"));
     await card.getByRole("button", { name: ps.balance_info_label }).click();
-    await expect(page.getByTestId("info-tip-note")).toHaveText(ps.balance_caption_same_sex);
+    await expect(page.getByTestId("info-tip-note")).toHaveText(ps.balance_caption);
   });
 
   test("a city below the floor says so, with the floor (F24); the crime boxes are named (F26)", async ({ page, request }) => {

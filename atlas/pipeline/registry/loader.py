@@ -134,7 +134,7 @@ class Registry:
 # Phase 5: the redesign's strings and the slots each template carries
 # Phase 6 (the round-3 review): the new registry strings and their slots
 PHASE6_STRINGS = {
-    "same_sex_pool_note": ("sought_one", "sought"), "balance_caption_same_sex": (),
+    "same_sex_pool_note": ("sought_one", "sought"),
     "compare_edge_by": ("diff",), "compare_edge_places": ("n",),
     "compare_not_ranked": (), "city_below_floor": ("city",),
     "results_new_top": ("a", "b", "c"), "results_change_race": (),
@@ -145,12 +145,13 @@ PHASE6_STRINGS = {
 }
 # after Phase 6 (Nathan, 10 October 2026): the string the change added, and
 # the ones it deleted (the "Optional" pill and Sharpen compatibility's ⓘ,
-# the ⓘ of What moved the score, the balance track's "More {word}", and
-# the two lines under the compare table)
+# the ⓘ of What moved the score, the balance track's "More {word}", the two
+# lines under the compare table, and balance's same-sex caption)
 COPY_2026_10_10_STRINGS = {"compare_does_better": ()}
 COPY_2026_10_10_GONE = ("optional_pill", "sharpen_info_label", "sharpen_info",
                         "sharpen_info_link", "moved_info_label", "balance_more",
-                        "compare_edge_note", "compare_diff_legend")
+                        "compare_edge_note", "compare_diff_legend",
+                        "balance_caption_same_sex")
 PHASE5_STRINGS = {
     "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),
     "quick_self_sex_short": (), "quick_self_age_short": (), "quick_seek_sex_short": (),

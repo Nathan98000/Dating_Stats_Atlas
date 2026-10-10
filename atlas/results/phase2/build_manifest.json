@@ -2,7 +2,7 @@
   "data_version": "d62202fd0280",
   "model_version": "m4.3.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-10-10T13:32:16-0400",
+  "created_at": "2026-10-10T14:25:02-0400",
   "axes": [
     {
       "name": "metro",
@@ -882,8 +882,7 @@
     "results_new_top": "New top three: {a}, {b}, {c}",
     "sheet_search_summary": "{you}, {age} \u00b7 {sought} {ages} \u2014 Change",
     "sought_flipped": "Looking for changed to {sought}",
-    "same_sex_pool_note": "On a same-sex search, matches count every single {sought_one} in these ages. The Census doesn't ask who people date, so only some of them are looking for {sought}.",
-    "balance_caption_same_sex": "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation. On a same-sex search it describes the city, not your matches.",
+    "same_sex_pool_note": "On a same-sex search, matches count every single {sought_one} in these ages, not just those looking for {sought}.",
     "photo_place_caption": "{place}, in the {city} metro area",
     "title_results": "{heading} \u00b7 Dating Stats Atlas",
     "nav_rankings": "Rankings",

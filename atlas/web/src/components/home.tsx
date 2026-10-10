@@ -586,7 +586,6 @@ export function Home({
                         open={openCard === row.cbsa}
                         tinted={moved.has(row.cbsa)}
                         inline={!wide}
-                        sameSex={sameSex}
                         onToggle={() => setOpenCard((c) => (c === row.cbsa ? null : row.cbsa))}
                         onCompare={() => compareFrom(row.slug)}
                       />
@@ -597,7 +596,7 @@ export function Home({
                   {wide && cardOpen && (
                     <div className="mt-4" data-cbsa={cardOpen.cbsa}>
                       <RowDetail id={`card-detail-${cardOpen.cbsa}`} row={cardOpen} meta={meta}
-                        href={cityHref(cardOpen.slug)} sameSex={sameSex} variant="panel"
+                        href={cityHref(cardOpen.slug)} variant="panel"
                         testid="card-detail" onCompare={() => compareFrom(cardOpen.slug)} />
                     </div>
                   )}
@@ -632,7 +631,6 @@ export function Home({
                             onToggle={() => toggleRow(row.cbsa)}
                             onCompare={() => compareFrom(row.slug)}
                             highlighted={highlight === row.slug || moved.has(row.cbsa)}
-                            sameSex={sameSex}
                           />
                         ))}
                       </ol>
@@ -661,7 +659,7 @@ export function Home({
                   </div>
                 )}
 
-                <ScoreExplainer meta={meta} sameSex={sameSex} />
+                <ScoreExplainer meta={meta} />
               </>
             )}
           </section>
@@ -708,7 +706,7 @@ export function Home({
 /** "How the score works", below the list: the two people pillars in their
  * served definitions, the lifestyle line, a link to How it works, and the
  * balance caption. */
-function ScoreExplainer({ meta, sameSex }: { meta: Meta; sameSex: boolean }) {
+function ScoreExplainer({ meta }: { meta: Meta }) {
   const s = meta.policy_strings;
   const [lifeHead, ...lifeRest] = s.explainer_lifestyle.split(":");
   const cols = [
@@ -732,10 +730,10 @@ function ScoreExplainer({ meta, sameSex }: { meta: Meta; sameSex: boolean }) {
           {s.nav_how} →
         </a>
       </p>
-      {/* Phase 6 (F01): the same-sex caption on a same-sex search, chosen in
-          the browser like the results header's note */}
-      <p data-variant="" className="mt-1 max-w-[70ch] text-caption text-ink-3" data-testid="balance-footnote">
-        {sameSex ? s.balance_caption_same_sex : s.balance_caption}
+      {/* one caption on every search since 2026-10-10 (Nathan deleted the
+          same-sex form), so it no longer waits on the browser's variant */}
+      <p className="mt-1 max-w-[70ch] text-caption text-ink-3" data-testid="balance-footnote">
+        {s.balance_caption}
       </p>
     </section>
   );

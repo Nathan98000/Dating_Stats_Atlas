@@ -201,3 +201,15 @@ Approved by Nathan on 9 October 2026 (Phase 6; his decisions 2, 3 and 8).
   `low_allocation_purity`) show again as one caption line per flag at the top of a row's or a
   card's detail and under the matches line on the city page. They are the existing strings,
   unchanged; what renders is all that moves.
+
+## Amended 10 October 2026: one balance caption, and the same-sex note in Nathan's words
+
+At Nathan's request (10 October 2026). Balance's caption is his sentence, "Balance compares all
+single men with all single women in the ages you picked, no other filters are used for the
+calculation." (`balance_caption`), and it reads the same on every search: the same-sex form
+Phase 6 added (`balance_caption_same_sex`, "…it describes the city, not your matches") is deleted.
+The same-sex note where matches show (`same_sex_pool_note`, under the results header, under the
+matches line on the city page's score card and under Compare's Matches row) now reads "On a
+same-sex search, matches count every single {man/woman} in these ages, not just those looking for
+{men/women}." It is still chosen in the browser from the stored own sex. The definition of balance
+does not change, and no number moves.

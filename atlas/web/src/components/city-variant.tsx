@@ -52,50 +52,63 @@ export function CityVariantPart({
         <h2 className="font-display text-h3">
           Where {city} lands for your search
         </h2>
-        {/* Phase 5: the overall score leads — out of 100, on its track */}
-        <div className="flex max-w-[420px] flex-col gap-2">
-          <p className="flex items-baseline gap-1">
-            <span className="font-display text-data-xl" data-testid="score">{ranked.score_display}</span>
-            <span className="text-body-sm font-medium text-ink-3">{policy.score_out_of}</span>
-          </p>
-          <ScoreTrack score={ranked.score} className="h-1.5 w-full" median={sel.score_median}
-            medianCaption={policy.score_median_caption} />
-          <span className="text-caption font-semibold text-ink-2" data-testid="score-label">
-            {policy.overall_score_label}
-          </span>
-        </div>
-        <div className="flex flex-wrap items-start gap-x-12 gap-y-5">
-          <div className="flex flex-col gap-1">
-            <p className="flex items-baseline gap-2">
-              <span className="font-display text-h2" data-testid="city-rank">{ranked.rank}</span>
-              <span className="text-body-sm text-ink-2">
-                of {sel.counts.ranked.toLocaleString("en-US")} cities
-                for {searchWords}
-              </span>
-            </p>
-            <p className="flex items-baseline gap-2">
-              <span className="text-data-m">{ranked.pool.toLocaleString("en-US")}</span>
-              <span className="text-body-sm text-ink-2">{meta.features.pool_size.unit}</span>
-            </p>
-            {/* Phase 6: under the matches line, the metro's served cautions
-                (F08) and, on a same-sex search, what matches count (F01) */}
-            <FlagCaptions flags={ranked.flags} meta={meta} className="mt-1 max-w-[46ch]" />
-            {sameSex && (
-              <p className="mt-1 max-w-[46ch] text-caption text-ink-2" data-testid="same-sex-note">
-                {fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
-                  sought: sought === "male" ? "men" : "women" })}
+        {/* Nathan, 2026-10-10 (too much white space): from 768px two
+            columns about one height, as in the rankings detail — the score,
+            the spot and the matches, then the chips; and past a hairline,
+            balance over compatibility. One column below 768px. */}
+        <div className="grid gap-y-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-x-8">
+          <div className="flex flex-col gap-5">
+            {/* Phase 5: the overall score leads — out of 100, on its track */}
+            <div className="flex max-w-[420px] flex-col gap-2">
+              <p className="flex items-baseline gap-1">
+                <span className="font-display text-data-xl" data-testid="score">{ranked.score_display}</span>
+                <span className="text-body-sm font-medium text-ink-3">{policy.score_out_of}</span>
               </p>
+              <ScoreTrack score={ranked.score} className="h-1.5 w-full" median={sel.score_median}
+                medianCaption={policy.score_median_caption} />
+              <span className="text-caption font-semibold text-ink-2" data-testid="score-label">
+                {policy.overall_score_label}
+              </span>
+            </div>
+            <div className="flex flex-col gap-1" data-testid="city-spot">
+              <p className="flex items-baseline gap-2">
+                <span className="font-display text-h2" data-testid="city-rank">{ranked.rank}</span>
+                <span className="text-body-sm text-ink-2">
+                  of {sel.counts.ranked.toLocaleString("en-US")} cities
+                  for {searchWords}
+                </span>
+              </p>
+              <p className="flex items-baseline gap-2">
+                <span className="text-data-m">{ranked.pool.toLocaleString("en-US")}</span>
+                <span className="text-body-sm text-ink-2">{meta.features.pool_size.unit}</span>
+              </p>
+              {/* Phase 6: under the matches line, the metro's served cautions
+                  (F08) and, on a same-sex search, what matches count (F01) */}
+              <FlagCaptions flags={ranked.flags} meta={meta} className="mt-1 max-w-[46ch]" />
+              {sameSex && (
+                <p className="mt-1 max-w-[46ch] text-caption text-ink-2" data-testid="same-sex-note">
+                  {fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
+                    sought: sought === "male" ? "men" : "women" })}
+                </p>
+              )}
+            </div>
+            <WhyChips movers={ranked.lifestyle_movers} meta={meta} />
+          </div>
+          <div className="flex flex-col gap-4 border-t border-rule pt-4 md:border-l md:border-t-0 md:pl-8 md:pt-0"
+            data-testid="city-people">
+            <div>
+              <h3 className="mb-2 text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
+              <BalanceDots balance={ranked.balance} meta={meta} id={`city-${cbsa}`} />
+            </div>
+            {/* the compatibility figure under balance (no box or band since
+                Phase 4b) */}
+            {ranked.match?.available && ranked.match.display != null && (
+              <div className="border-t border-rule pt-4">
+                <MatchFigure match={ranked.match} meta={meta} />
+              </div>
             )}
           </div>
-          <div className="min-w-[200px]">
-            <h3 className="mb-2 text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
-            <BalanceDots balance={ranked.balance} meta={meta} id={`city-${cbsa}`} sameSex={sameSex} />
-          </div>
-          {/* the compatibility figure beside pool and balance (no box or
-              band since Phase 4b) */}
-          <MatchFigure match={ranked.match} meta={meta} />
         </div>
-        <WhyChips movers={ranked.lifestyle_movers} meta={meta} />
         <p className="sr-only">{ranked.summary_line}</p>
       </section>
     );
@@ -114,7 +127,7 @@ export function CityVariantPart({
       </h2>
       <BalanceDots balance={balance} meta={meta} id={`city-${cbsa}-s`} caption={false} />
       <p className="max-w-[64ch] text-caption text-ink-3">
-        {sameSex ? policy.balance_caption_same_sex : policy.balance_caption}
+        {policy.balance_caption}
       </p>
     </section>
   );

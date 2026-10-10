@@ -132,18 +132,21 @@ def test_meta_carries_the_v3_vocabulary(client):
         assert m["policy_strings"].get(k), k
     for gone in ("stat_page_intro", "measure_page_intro"):
         assert gone not in m["policy_strings"], gone
-    # Nathan, 2026-10-10: balance's box and the points' caption in his words,
-    # verbatim; the compare column is "Comparison", the line under the table
-    # and the deleted boxes' strings are gone
+    # Nathan, 2026-10-10: balance's box (one caption on every search), the
+    # points' caption and the same-sex note in his words, verbatim; the
+    # compare column is "Comparison", the line under the table and the
+    # deleted boxes' strings are gone
     assert m["policy_strings"]["balance_caption"] == (
         "Balance compares all single men with all single women in the ages you picked, "
         "no other filters are used for the calculation.")
-    assert m["policy_strings"]["balance_caption_same_sex"].startswith(
-        m["policy_strings"]["balance_caption"] + " ")
+    assert m["policy_strings"]["same_sex_pool_note"] == (
+        "On a same-sex search, matches count every single {sought_one} in these ages, "
+        "not just those looking for {sought}.")
     assert m["policy_strings"]["moved_caption"] == "Compared with the median city"
     assert m["policy_strings"]["compare_edge"] == "Comparison"
     for gone in ("compare_edge_note", "compare_diff_legend", "optional_pill", "sharpen_info",
-                 "sharpen_info_label", "sharpen_info_link", "moved_info_label", "balance_more"):
+                 "sharpen_info_label", "sharpen_info_link", "moved_info_label", "balance_more",
+                 "balance_caption_same_sex"):
         assert gone not in m["policy_strings"], gone
     # the What-we-measure composition ships from the registry (item 8.5)
     assert [g["heading"] for g in m["measure_page"]] == \

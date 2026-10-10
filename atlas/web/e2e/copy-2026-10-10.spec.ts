@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { expandRow, fetchMeta } from "./helpers";
+import { expandRow, fetchMeta, seedAboutYou } from "./helpers";
 
 /** Nathan's changes of 2026-10-10, after the city-detail redesign: balance's
  * box and the points' caption in his words, no box for What moved the score
@@ -7,7 +7,9 @@ import { expandRow, fetchMeta } from "./helpers";
  * Compare a column called Comparison that judges every measure with a
  * direction, Not much included, and never shows a dash; the sentence after
  * the search and the line under the table gone; room on the table's right;
- * political lean a line per party (phase4d.spec.ts). */
+ * political lean a line per party (phase4d.spec.ts). Then his second round:
+ * the same-sex note in his words on every page that shows it, one balance
+ * caption on every search, and the city page's first card in two columns. */
 
 const BALANCE_BOX =
   "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation.";
@@ -82,4 +84,39 @@ test("compare on a phone: the ▲ beside the value that does better is named, ne
   const marks = page.getByTestId("compare-table").getByRole("img", { name: ps.compare_does_better });
   expect(await marks.count()).toBeGreaterThan(3);
   await expect(page.getByTestId("compare-table").getByRole("img", { name: /edge/i })).toHaveCount(0);
+});
+
+const SAME_SEX_NOTE = "On a same-sex search, matches count every single man in these ages, not just those looking for men.";
+const SAME_SEX_QS = "self_age=33&sex=male&age=28-38&marital=never,previously";
+
+test("a man looking for men: the note in Nathan's words on Rankings, the city page and Compare; balance's box as on any search", async ({ page }) => {
+  await seedAboutYou(page, { sex: "male" });
+  await page.goto(`/?${SAME_SEX_QS}`);
+  await expect(page.getByTestId("same-sex-note")).toHaveText(SAME_SEX_NOTE);
+  await expect(page.getByTestId("balance-footnote")).toHaveText(BALANCE_BOX);
+  const row = await expandRow(page, 4);
+  await row.getByRole("button", { name: "About balance" }).click();
+  await expect(page.getByTestId("info-tip-note")).toHaveText(BALANCE_BOX);
+  await page.goto(`/city/austin-texas?${SAME_SEX_QS}`);
+  await expect(page.getByTestId("ranked-card").getByTestId("same-sex-note")).toHaveText(SAME_SEX_NOTE);
+  await page.goto(`/compare/provo-utah/austin-texas?${SAME_SEX_QS}`);
+  await expect(page.getByTestId("compare-table").getByTestId("same-sex-note")).toHaveText(SAME_SEX_NOTE);
+  await expect(page.locator("main")).not.toContainText("describes the city");
+});
+
+test("the city page's first card: two columns from 768px, balance and compatibility beside the score", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`/city/austin-texas?${QS}`);
+  const card = page.getByTestId("ranked-card");
+  const [spot, people, box] = [await card.getByTestId("city-spot").boundingBox(),
+    await card.getByTestId("city-people").boundingBox(), await card.boundingBox()];
+  expect(people!.x).toBeGreaterThan(spot!.x + spot!.width);
+  expect(people!.y).toBeLessThan(spot!.y);
+  // the old wrapping row left the card about 466px tall at this width
+  expect(box!.height).toBeLessThan(420);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`/city/austin-texas?${QS}`);
+  const [spotP, peopleP] = [await card.getByTestId("city-spot").boundingBox(),
+    await card.getByTestId("city-people").boundingBox()];
+  expect(peopleP!.y).toBeGreaterThan(spotP!.y + spotP!.height);
 });
