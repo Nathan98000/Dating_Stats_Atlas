@@ -9,7 +9,7 @@ model releases.
 
 Candidates are Commons FILE titles (a couple photograph has no
 Wikipedia article whose lead image to take); each is read through
-imageinfo -> clear_licence exactly like the city photographs, and the
+imageinfo -> clear_file exactly like the city photographs, and the
 first to clear the strict PD/CC0 bar ships. The shipped image frames
 the couple from the shoulders down — no faces in frame at all, which is
 the strongest available answer to the publicity question. The other
@@ -36,7 +36,7 @@ from __future__ import annotations
 import json
 import re
 
-from atlas.pipeline.build.city_images import (THUMB_WIDTH, clear_licence,
+from atlas.pipeline.build.city_images import (THUMB_WIDTH, clear_file,
                                               download, imageinfo)
 from atlas.pipeline.build.photo_review import CROPPED, title_of
 from atlas.pipeline.fetch import RESULTS
@@ -69,7 +69,9 @@ def main() -> None:
         if not ii:
             print(f"  {name}: no imageinfo")
             continue
-        cleared, reason = clear_licence(ii)
+        # after the credit audit: the file's own page too, so a CC BY-SA
+        # photograph of an old work never passes the gate as public domain
+        cleared, reason = clear_file(name, ii)
         if not cleared:
             print(f"  {name}: {reason}")
             continue

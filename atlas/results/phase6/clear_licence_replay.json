@@ -1,0 +1,104 @@
+{
+ "date": "2026-10-10",
+ "what": "clear_licence the old way (the metadata alone) and the new way (with the file's page), replayed from the cache over every Commons file the site credits",
+ "counts": {
+  "commons_files": 375,
+  "replayed": 375,
+  "not_in_the_cache": 0,
+  "changed_by_the_fix": 2,
+  "new_answer_differs_from_the_site": 3
+ },
+ "changed_by_the_fix": [
+  {
+   "page": "city",
+   "key": "new-orleans-louisiana",
+   "file": "File:Jackson_Square.jpg",
+   "old": {
+    "license": "Public domain",
+    "author": "Clark Mills",
+    "license_url": null
+   },
+   "new": {
+    "license": "CC BY-SA 4.0",
+    "author": "Daniel Schwen",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   },
+   "site_shows": {
+    "license": "CC BY-SA 4.0",
+    "author": "Daniel Schwen",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   }
+  },
+  {
+   "page": "stat",
+   "key": "pleasant_days",
+   "file": "File:Thomas_Cole's_\"The_Picnic\",_Brooklyn_Museum_IMG_3787.JPG",
+   "old": {
+    "license": "Public domain",
+    "author": "Thomas Cole",
+    "license_url": null
+   },
+   "new": {
+    "license": "CC BY 3.0",
+    "author": "Billy Hathorn",
+    "license_url": "https://creativecommons.org/licenses/by/3.0"
+   },
+   "site_shows": {
+    "license": "CC BY 3.0",
+    "author": "Billy Hathorn",
+    "license_url": "https://creativecommons.org/licenses/by/3.0"
+   }
+  }
+ ],
+ "new_answer_differs_from_the_site": [
+  {
+   "page": "city",
+   "key": "brownsville-texas",
+   "file": "File:Some_of_the_buildings_at_Fort_Brown_in_Brownsville,_Texas_LCCN2014630475.tif",
+   "old": {
+    "refused": "not_a_photograph:image/tiff"
+   },
+   "new": {
+    "refused": "not_a_photograph:image/tiff"
+   },
+   "site_shows": {
+    "license": "Public domain",
+    "author": "Carol M. Highsmith",
+    "license_url": null
+   }
+  },
+  {
+   "page": "city",
+   "key": "las-vegas-nevada",
+   "file": "File:Daytime_aerial_view_of_the_Strip,_Las_Vegas,_Nevada_LCCN2010630596.tif",
+   "old": {
+    "refused": "not_a_photograph:image/tiff"
+   },
+   "new": {
+    "refused": "not_a_photograph:image/tiff"
+   },
+   "site_shows": {
+    "license": "Public domain",
+    "author": "Carol M. Highsmith",
+    "license_url": null
+   }
+  },
+  {
+   "page": "city",
+   "key": "springfield-missouri",
+   "file": "File:ParkCentralSquarefountainbyCVBCS.jpg",
+   "old": {
+    "refused": "not_cleared:FAL"
+   },
+   "new": {
+    "refused": "not_cleared:FAL"
+   },
+   "site_shows": {
+    "license": "Free Art License",
+    "author": "CVBCS (uploaded by Joelfun)",
+    "license_url": "http://artlibre.org/licence/lal/en"
+   }
+  }
+ ],
+ "not_in_the_cache": []
+}

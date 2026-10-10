@@ -4,8 +4,12 @@
 Pipeline per metro (and per configured stat page): the principal city's
 Wikipedia article via the REST summary endpoint -> the article's lead
 image name via the MediaWiki pageimages API -> that file's licence,
-author, links and hashes via imageinfo/extmetadata. An image ships only
-when the licence is readable from the API and on Nathan's cleared list
+author, links and hashes via imageinfo/extmetadata -> after the credit
+audit (Nathan, 2026-10-10), the file's own Commons page: where it pairs an
+old artwork's public-domain tag (or an artwork template) with a licence of
+the photograph's own, the photograph's licence and photographer are what
+clears and is credited, never the artwork's (commons_page.py). An image
+ships only when the licence is readable and on Nathan's cleared list
 (public domain, CC0, CC-BY, CC-BY-SA — any NC or ND term refuses), and —
 because CC-BY/BY-SA attribution needs an author — only when the author
 field is readable for those licences.
@@ -39,6 +43,7 @@ from pathlib import Path
 import pandas as pd
 import requests
 
+from atlas.pipeline.build import commons_page as CP
 from atlas.pipeline.build.photo_review import (CROPPED, external_files, pinned_alts,
                                                pinned_files, refused_files,
                                                title_of)
@@ -51,6 +56,9 @@ UA = {"User-Agent": "DatingStatsAtlas/0.1 (research build; contact via repo)"}
 
 SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
 API = "https://en.wikipedia.org/w/api.php"
+COMMONS_API = "https://commons.wikimedia.org/w/api.php"
+# Commons allows this machine's user agent about ten requests a minute
+COMMONS_PAUSE = 6.0
 THUMB_WIDTH = 1600
 
 # Phase 4 (ADR 0012): files the photo review removed are refused on sight
@@ -86,10 +94,14 @@ STAT_SUBJECTS = {
 }
 
 
-def _get_json(url: str, params: dict | None = None) -> dict | None:
+def _cache_file(url: str, params: dict | None = None) -> Path:
     key = hashlib.sha256((url + json.dumps(params or {}, sort_keys=True))
                          .encode()).hexdigest()[:20]
-    cache = CACHE / f"{key}.json"
+    return CACHE / f"{key}.json"
+
+
+def _get_json(url: str, params: dict | None = None) -> dict | None:
+    cache = _cache_file(url, params)
     if cache.exists():
         return json.loads(cache.read_text())
     for attempt in range(4):
@@ -155,34 +167,104 @@ def imageinfo(file_name: str) -> dict | None:
     return None
 
 
-def clear_licence(ii: dict) -> tuple[dict | None, str]:
+_last_commons = [0.0]
+
+
+def _commons_json(params: dict) -> dict | None:
+    """A Commons API answer through the cache; an uncached call keeps
+    COMMONS_PAUSE seconds from the previous one."""
+    if not _cache_file(COMMONS_API, params).exists():
+        time.sleep(max(0.0, COMMONS_PAUSE - (time.monotonic() - _last_commons[0])))
+        d = _get_json(COMMONS_API, params)
+        _last_commons[0] = time.monotonic()
+        return d
+    return _get_json(COMMONS_API, params)
+
+
+def file_page(file_name: str) -> str | None:
+    """The file's Commons description page (its current wikitext), or None
+    when it cannot be read. The parameters are the credit audit's, so its
+    cache serves the pipeline."""
+    d = _commons_json({"action": "query", "titles": f"File:{file_name}", "prop": "revisions",
+                       "rvprop": "content|ids|timestamp", "rvslots": "main", "redirects": 1,
+                       "format": "json", "formatversion": 2})
+    pages = ((d or {}).get("query") or {}).get("pages") or []
+    rv = (pages[0].get("revisions") or [None])[0] if pages else None
+    return rv["slots"]["main"].get("content") if rv else None
+
+
+def uploader_of(file_name: str) -> str | None:
+    """Who uploaded the file (its page's first revision): the holder a
+    {{self}} licence names when the page names no author."""
+    d = _commons_json({"action": "query", "titles": f"File:{file_name}", "prop": "revisions",
+                       "rvprop": "user|timestamp|ids", "rvlimit": 1, "rvdir": "newer",
+                       "redirects": 1, "format": "json", "formatversion": 2})
+    pages = ((d or {}).get("query") or {}).get("pages") or []
+    rv = (pages[0].get("revisions") or [None])[0] if pages else None
+    return (rv or {}).get("user")
+
+
+def clear_licence(ii: dict, page: str | None = None,
+                  uploader=None) -> tuple[dict | None, str]:
     """(cleared metadata, reason-if-refused). Refusal reasons are the
-    coverage report's vocabulary."""
+    coverage report's vocabulary.
+
+    After the credit audit (Nathan, 2026-10-10): with the file's page
+    (`page`, its wikitext; `uploader`, a call that names who uploaded it),
+    a page that pairs an old artwork's public-domain tag (or an artwork
+    template) with a licence of the photograph's own clears on that
+    licence, credited to the photographer, never the artwork's licence or
+    creator (commons_page.photograph_credit). Without a page, or for any
+    other page, the metadata's answer stands, as before."""
     ext = ii.get("extmetadata", {})
 
     def field(k):
         return _strip_html(str(ext.get(k, {}).get("value", "")))
 
     lic = field("LicenseShortName")
-    if not lic:
-        return None, "no_readable_licence"
-    if REFUSE.search(lic):
-        return None, f"refused_terms:{lic}"
-    if not ALLOW.match(lic):
-        return None, f"not_cleared:{lic}"
+    own = CP.photograph_credit(page) if page else None
+    if own and own.get("unreadable"):
+        return None, f"photo_licence_unreadable:{own['unreadable']}"
+    if own:
+        keys = own["licences"]
+        listed = [k for k in keys if ALLOW.match(k) and not REFUSE.search(k)]
+        if not listed:
+            return None, f"photo_licence_not_cleared:{CP.display_licence(keys[0])}"
+        # a licence the metadata named among the photograph's own stays
+        key = next((k for k in CP.norm_licence(lic) if k in listed), listed[0])
+        lic = CP.display_licence(key)
+        license_url = CP.licence_link(key)
+        author = own["author"] or (uploader() if uploader else None)
+    else:
+        if not lic:
+            return None, "no_readable_licence"
+        if REFUSE.search(lic):
+            return None, f"refused_terms:{lic}"
+        if not ALLOW.match(lic):
+            return None, f"not_cleared:{lic}"
+        license_url = _strip_html(str(ext.get("LicenseUrl", {}).get("value", ""))) or None
+        author = field("Artist")
     if ii.get("mime") not in ("image/jpeg", "image/png", "image/webp"):
         return None, f"not_a_photograph:{ii.get('mime')}"
-    author = field("Artist")
     needs_author = lic.lower().startswith("cc by") or "attribution" in lic.lower()
     if needs_author and not author:
         return None, f"attribution_unreadable:{lic}"
     return {
         "license": lic,
-        "license_url": _strip_html(str(ext.get("LicenseUrl", {})
-                                       .get("value", ""))) or None,
+        "license_url": license_url,
         "author": author or None,
         "description": field("ImageDescription"),
     }, ""
+
+
+def clear_file(file_name: str, ii: dict) -> tuple[dict | None, str]:
+    """clear_licence with the file's own page, as every photograph the
+    pipeline sources is cleared since the credit audit; a page that cannot
+    be read refuses (nothing unreadable ships)."""
+    page = file_page(file_name)
+    if page is None:
+        return None, "no_readable_page"
+    return clear_licence(ii, page=page, uploader=lambda: uploader_of(file_name))
 
 
 def download(url: str, dest: Path) -> str | None:
@@ -225,7 +307,7 @@ def source_one(candidates: list[str]) -> tuple[dict | None, str]:
         if not ii:
             last_reason = "no_imageinfo"
             continue
-        cleared, reason = clear_licence(ii)
+        cleared, reason = clear_file(name, ii)
         if not cleared:
             last_reason = reason
             continue
@@ -260,7 +342,7 @@ def source_file(file_title: str) -> tuple[dict | None, str]:
     ii = imageinfo(name)
     if not ii:
         return None, "no_imageinfo"
-    cleared, reason = clear_licence(ii)
+    cleared, reason = clear_file(name, ii)
     if not cleared:
         return None, reason
     return _record(None, name, ii, cleared), ""

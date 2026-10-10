@@ -383,3 +383,37 @@ Approved by Nathan on 9 October 2026 (Phase 6, commits A, H and I).
   (1846). On Nathan's call (9 October 2026) it is credited, like New
   Orleans, as its page states it — Billy Hathorn, CC BY 3.0 — pinned in the
   review's `external_files` on the same bytes.
+
+## Amended after Phase 6 (10 October 2026): the photograph's own licence
+
+On Nathan's word ("make the clear-license fix"), after the credit audit
+(`results/phase6/credit_audit.json`). Commons' metadata reduces a file
+page's licences to one, ranking public domain above any Creative Commons
+licence, and names the description template's author row, which
+{{Artwork}} fills with the artist; so a photograph of an old artwork
+(public domain) under its photographer's own licence came back as public
+domain by the artist. The pipeline now reads each file's own page as well
+(`pipeline/build/commons_page.py`, through `city_images.clear_file`, which
+`source_one`, `source_file` and `hero_image.py` use):
+
+- **Narrowly.** Only a page that pairs an old work's public-domain tag
+  (PD-old, PD-US and the like) or an artwork template with a licence of the
+  photograph's own ({{self}}, a Creative Commons or other free tag, {{Art
+  Photo}}'s photo licence, {{Licensed-PD-Art}}'s last tag) changes the
+  answer: the photograph's licence is what must be on the list, and the
+  photographer ({{self}}'s author, the description's author beside the
+  artist, a "Photo by" source, else the uploader) is credited. Every other
+  page keeps the metadata's answer, which the audit found right for every
+  other credit; a faithful copy of a painting ({{PD-Art}}) stays the
+  painter's, public domain.
+- **Refusals.** The photograph's own licence off the list refuses
+  (`photo_licence_not_cleared`, GFDL alone, NC, ND), as does a page that
+  cannot be read (`no_readable_page`) and an old work's tag beside a user's
+  own licence template, which the reading cannot open
+  (`photo_licence_unreadable`). The hero's public-domain/CC0 gate reads the
+  same answer, so such a photograph no longer passes it as public domain.
+- **What it changes today.** Replayed over all 375 Commons files the site
+  credits (`results/phase6/clear_licence_replay.json`), it changes exactly
+  two answers, New Orleans's and the pleasant days photograph's, each to the
+  credit the site already shows; the other 373 are unchanged. Pinned
+  photographs keep their recorded credits, as before.
