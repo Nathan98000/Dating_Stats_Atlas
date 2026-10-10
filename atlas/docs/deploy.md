@@ -4,13 +4,13 @@ The answers to the counsel packet have returned and are kept private (never
 committed); ADR 0012 records Nathan's decisions and the build encodes them.
 This runbook exists so that a deploy is a checklist, not a design session.
 
-**Where it stands (2026-10-03; updated 2026-10-07).** Nathan chose Topology C, one Oracle Cloud
+**Where it stands (2026-10-03; updated 2026-10-09).** Nathan chose Topology C, one Oracle Cloud
 Always Free VM, so that the site costs nothing to run (Fly.io's always-on
 setup would have been about $17.50 a month). With the "Before launch" list
 done, Nathan said to launch on 3 October 2026, and the site opened that day
 at https://dating-stats-atlas.duckdns.org (Topology C's launch record). Since
-7 October 2026 it serves model m4.2.0 on build 63c4e5fa51bf (the deploy
-record below).
+9 October 2026 it serves model m4.3.0 on build d62202fd0280 (the deploy
+records below).
 
 ## The invariant everything else serves (D04)
 
@@ -154,6 +154,22 @@ folders (`mv build build_<old id> && mv build_<new id> build`) and
 folder they mounted until they are recreated. To roll back: swap the folders
 back, retag the old images as `latest`, and `up -d api web` again.
 
+Since the 2026-10-09 release, three refinements. The code goes into a fresh
+folder (`/srv/atlas/src_next`, git archive into it, then the photographs:
+`cp -a` the live copy across on the VM and `rsync -a --checksum --delete`
+the main checkout's `cities` and `stats` over it, checking every file's
+sha256), renamed `src` at the swap with the old one kept, so that a file
+deleted since the last release cannot linger and be built. Before the swap
+the new images run as a private copy (`docker network create dsa-stage`;
+the API with the new build mounted read-only and published on the VM's
+loopback only, the web app on `127.0.0.1:3001`; an SSH tunnel), and the
+real-build checks run against it (`P6_REAL_BASE` and `P6_REAL_API` through
+the tunnel); then it is removed. And Caddy is recreated, not reloaded,
+whenever the Caddyfile changes (`--profile public up -d --no-deps
+--force-recreate caddy`): the file is a single-file mount, which a reload
+does not refresh. Its certificate lives in the `caddy_data` volume and
+survives.
+
 **Launch record (2026-10-03, on Nathan's word "launch").** The security
 list gained TCP 80 and 443, beside SSH and ICMP path-MTU. Caddy started
 under the "public" profile and obtained its certificate through the HTTP-01
@@ -196,7 +212,7 @@ the logs hold no error and no visitor address; memory 26% used. Rollback
 kept on the VM: images `dating-stats-atlas-{api,web}:m4.1.1` and the old
 build at `/srv/atlas/build_2dbd9ebfa7ff`.
 
-**The next deploy carries a new build (not deployed; Phase 6, 9 October
+**The 9 October deploy carried a new build (Phase 6; deployed on 9 October
 2026).** Phase 6 regenerated the city descriptions with the spoken-figure
 rule (m4.3.0), and Nathan accepted the build id that moves with them:
 **d62202fd0280** replaces 63c4e5fa51bf. Only the `description` field of
@@ -208,6 +224,38 @@ cubes, the kernel and the pairing cells are byte-identical, and every
 rollback, as before. Step 2 must carry the photographs' `w/` and `og/`
 folders (Phase 6 A), and Caddy must be restarted for the cache header (and
 for Phase 5's `encode`).
+
+**Deploy record (2026-10-09, on Nathan's word "Ready for deploy", with his
+Phase 6 approvals and his call that Lafayette's and Springfield's
+photographs ship).** main = origin/main = 2c4c056 (CI run 38008629331
+green): Phases 5 and 6 (the redesign; m4.3.0 on build d62202fd0280), the
+credit audit and the pleasant days credit, Nathan's approvals, and one fix
+the first CI run asked for. That run (38007570279, on 6780388) failed one
+layout test: on GitHub's Linux browser the #1 card ended at 907.4px, below
+a 1440×900 first screen, because its chips set a little wider there and the
+Details chevron took a line of its own; 2c4c056 takes 16px from the desk's
+space above the results, and nothing was swapped until CI was green. Steps
+as above, with the refinements: the code went into a fresh folder (1,246
+files, checked against the commit file for file); the photographs were
+mirrored into it (1,916 files crossed; all 2,192 checked by sha256); the
+build was staged beside the live one (features.parquet, manifest.json and
+metros.json crossed, 357 KB; every file's sha256 checked); the images were
+built while the old containers served; and the private copy passed the
+real-build checks (10 passed, 2 skipped by design) and every page check
+before the swap. The API answered health on the new build within about 6
+seconds of the containers being recreated; Caddy was recreated and kept its
+certificate. Checked from the Mac: 18 pages answer 200 in 0.1–1.4 s and an
+unknown page 404; http redirects to https (308), HTTP/2 with
+`Referrer-Policy: no-referrer`; the home page is compressed (2.2 MB to
+315 KB) and `/api/rank` gzipped, a search answering 193 ranked cities on
+d62202fd0280/m4.3.0; seven photographs are served byte for byte, and the
+photographs, sized copies and link previews carry `Cache-Control: public,
+max-age=604800`; About credits Billy Hathorn (CC BY 3.0) and Daniel Schwen;
+port 8000 is closed and `/v1/health` and `/v1/meta` through the site answer
+404; the logs hold no error and no visitor address; memory 28% used, disk
+43%. Rollback kept on the VM: images `dating-stats-atlas-{api,web}:m4.2.0`
+(and `:m4.1.1`), the old build at `/srv/atlas/build_63c4e5fa51bf` and the
+old code at `/srv/atlas/src_67b604c`.
 
 ## Environment variables
 
