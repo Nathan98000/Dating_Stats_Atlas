@@ -4,13 +4,13 @@ The answers to the counsel packet have returned and are kept private (never
 committed); ADR 0012 records Nathan's decisions and the build encodes them.
 This runbook exists so that a deploy is a checklist, not a design session.
 
-**Where it stands (2026-10-03; updated 2026-10-09).** Nathan chose Topology C, one Oracle Cloud
+**Where it stands (2026-10-03; updated 2026-10-10).** Nathan chose Topology C, one Oracle Cloud
 Always Free VM, so that the site costs nothing to run (Fly.io's always-on
 setup would have been about $17.50 a month). With the "Before launch" list
 done, Nathan said to launch on 3 October 2026, and the site opened that day
 at https://dating-stats-atlas.duckdns.org (Topology C's launch record). Since
-9 October 2026 it serves model m4.3.0 on build d62202fd0280 (the deploy
-records below).
+9 October 2026 it serves model m4.3.0 on build d62202fd0280, its manifest
+refreshed on 10 October (the deploy records below).
 
 ## The invariant everything else serves (D04)
 
@@ -256,6 +256,42 @@ port 8000 is closed and `/v1/health` and `/v1/meta` through the site answer
 43%. Rollback kept on the VM: images `dating-stats-atlas-{api,web}:m4.2.0`
 (and `:m4.1.1`), the old build at `/srv/atlas/build_63c4e5fa51bf` and the
 old code at `/srv/atlas/src_67b604c`.
+
+**Deploy record (2026-10-10, on Nathan's word "Please continue with the two
+things": the manifest copy, and push and deploy).** main = origin/main =
+b20fb6f (CI run 38076926492 green): the city detail on one ground with
+balance drawn as dots (72f46a8); Nathan's two rounds of changes of 10 October
+(d0130a7, b20fb6f: his copy, Compare's Comparison column, the same-sex note,
+one balance caption, the city page's first card in two columns); the
+clear_licence fix (88e5b5b); and the Phase 5 ADR approvals (8bac2d6). No
+number moves: model m4.3.0 on build d62202fd0280, whose manifest alone is
+refreshed (registry strings). Before the push the Pew history scan was clean
+(0 violations over 2,610 blobs), and the main checkout's build took the
+refreshed manifest, byte for byte the committed
+`results/phase2/build_manifest.json`. Steps as on 9 October. The running
+images were tagged `:2c4c056`, the code they were built from, since the model
+version stays. The code went into a fresh folder (1,252 files, checked
+against the commit file for file); the photographs were copied from the live
+folder and checked against the Mac (none crossed; all 2,192 by sha256); the
+build was staged as `build_next` (only manifest.json crossed, 65 KB; every
+file's sha256 checked); the images were built in 179 s while the old
+containers served; and the private copy passed every page check, a
+click-through of the day's changes (15 checks) and the real-build checks (10
+passed, 2 skipped by design). Then the folders were swapped (the old build
+kept as `build_d62202fd0280_2026-10-09`, the old code as `src_2c4c056`) and
+`up -d api web` run; the API answered health on the new build 11 seconds
+later. The Caddyfile did not change, so Caddy kept running. Checked from the
+Mac: 16 pages answer 200 in 0.1–1.1 s and an unknown page 404; each change is
+on its page and each removed sentence and box is gone, in the served HTML and
+clicked through in a browser; http redirects to https (308), HTTP/2 with
+`Referrer-Policy: no-referrer`; the home page is gzipped (2.2 MB to 314 KB);
+`/api/rank` answers 193 ranked cities on d62202fd0280/m4.3.0; three
+photographs are served byte for byte; port 8000 is closed and `/v1/health`
+and `/v1/meta` through the site answer 404; the logs hold no error and no
+visitor address; memory 29% used, disk 51%. Rollback kept on the VM: images
+`dating-stats-atlas-{api,web}:2c4c056` (and `:m4.2.0`, `:m4.1.1`), the old
+build at `/srv/atlas/build_d62202fd0280_2026-10-09` and the old code at
+`/srv/atlas/src_2c4c056`.
 
 ## Environment variables
 
