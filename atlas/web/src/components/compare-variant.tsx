@@ -46,7 +46,8 @@ export function CompareVariantRows({
   const rankA = isRanked(rowA) ? rowA : undefined;
   const rankB = isRanked(rowB) ? rowB : undefined;
   const names: [string, string] = [nameA, nameB];
-  const edge = policy.compare_edge;
+  // the phone's ▲ beside the value that does better: its spoken name
+  const better = policy.compare_does_better;
   const rankEdge = edgeOf(rankA && rankB ? String(rankA.rank) : undefined,
     rankA && rankB ? String(rankB.rank) : undefined, -1);
   const scoreEdge = edgeOf(rankA?.score_display, rankB?.score_display, 1);
@@ -65,7 +66,7 @@ export function CompareVariantRows({
           edge reads through direction −1 */}
       <Row label="Spot in your results">
         {[rowA, rowB].map((r, i) => (
-          <ValueCell key={i} variant win={win(rankEdge, i)} edgeLabel={edge}>
+          <ValueCell key={i} variant win={win(rankEdge, i)} edgeLabel={better}>
             {isRanked(r) ? (
               <span className="font-display text-h3">{r.rank}</span>
             ) : (
@@ -90,7 +91,7 @@ export function CompareVariantRows({
       {/* Phase 4b (Nathan's change 7): "Overall score" */}
       <Row label={policy.overall_score_label}>
         {[rowA, rowB].map((r, i) => (
-          <ValueCell key={i} variant win={win(scoreEdge, i)} edgeLabel={edge}>
+          <ValueCell key={i} variant win={win(scoreEdge, i)} edgeLabel={better}>
             {isRanked(r) ? (
               <span className="font-display text-h3">{r.score_display}</span>
             ) : r ? (
@@ -118,7 +119,7 @@ export function CompareVariantRows({
         note={sameSex ? fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
           sought: sought === "male" ? "men" : "women" }) : undefined}>
         {[rowA, rowB].map((r, i) => (
-          <ValueCell key={i} win={win(poolEdge, i)} edgeLabel={edge}>
+          <ValueCell key={i} win={win(poolEdge, i)} edgeLabel={better}>
             {isRanked(r) ? (
               <span className="text-data-m">{r.pool.toLocaleString("en-US")}</span>
             ) : (
@@ -142,7 +143,7 @@ export function CompareVariantRows({
           no band words since Phase 4b (ADR 0018 amended) */}
       <Row label={meta.features.match_propensity.display_name}>
         {[rankA, rankB].map((r, i) => (
-          <ValueCell key={i} variant win={win(matchEdge, i)} edgeLabel={edge}>
+          <ValueCell key={i} variant win={win(matchEdge, i)} edgeLabel={better}>
             {r?.match?.available && r.match.display != null ? (
               <div className="flex flex-col">
                 <span className="text-data-m">{r.match.display}</span>
@@ -173,7 +174,7 @@ export function CompareVariantRows({
       </Row>
       <Row label={meta.features.pool_balance.display_name}>
         {[rowA, rowB].map((r, i) => (
-          <ValueCell key={i} variant win={win(balEdge, i)} edgeLabel={edge}>
+          <ValueCell key={i} variant win={win(balEdge, i)} edgeLabel={better}>
             {r ? <BalanceDots balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} />
               : <span className="text-caption text-ink-2">{policy.compare_not_ranked}</span>}
           </ValueCell>

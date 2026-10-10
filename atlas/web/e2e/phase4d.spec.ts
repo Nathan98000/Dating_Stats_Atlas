@@ -70,7 +70,7 @@ test("a metro across state lines shows its summed shares; the card goes wherever
     .toHaveCount(await page.locator('[data-card="who_lives_here"]').count());
 });
 
-test("compare adds one row with both cities' shares and no difference", async ({ page, request }) => {
+test("compare adds one row with both cities' shares, a line for each party, and no difference", async ({ page, request }) => {
   const blocks = await lean(request);
   const [a, b] = [blocks[await cbsaOf(request, "provo-utah")], blocks[await cbsaOf(request, "austin-texas")]];
   if (!a.available || !b.available) throw new Error("fixture metro without a figure");
@@ -79,8 +79,17 @@ test("compare adds one row with both cities' shares and no difference", async ({
   const row = table.locator("tr", { has: page.getByRole("rowheader", { name: "Political lean" }) });
   await expect(row).toHaveCount(1);
   const cells = row.locator("[data-lean-cell]");
-  await expect(cells.nth(0)).toHaveText(a.text);
-  await expect(cells.nth(1)).toHaveText(b.text);
+  // Nathan, 2026-10-10: the Democratic share on one line and the Republican
+  // on the next, each the served share and name, never one wrapped line
+  for (const [i, blk] of [a, b].entries()) {
+    const shown = (k: string) => blk.segments.find((s) => s.key === k)!;
+    const lines = cells.nth(i).locator("[data-key]");
+    await expect(lines).toHaveText([`${shown("dem").display} ${shown("dem").label}`,
+      `${shown("rep").display} ${shown("rep").label}`]);
+    const [d, r] = [await lines.nth(0).boundingBox(), await lines.nth(1).boundingBox()];
+    expect(r!.y).toBeGreaterThanOrEqual(d!.y + d!.height - 1);
+    for (const box of [d!, r!]) expect(box.height).toBeLessThan(32);
+  }
   await expect(row.locator('[data-no-diff="political_lean"]')).toHaveText("");
   await expect(row.locator("[data-diff-for]")).toHaveCount(0);
   expect(await row.innerText()).not.toMatch(EVALUATIVE);

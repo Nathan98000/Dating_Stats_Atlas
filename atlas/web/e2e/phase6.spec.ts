@@ -253,7 +253,7 @@ test.describe("home results (D)", () => {
     await expect(page.getByTestId("info-tip-note")).toHaveText(meta.policy_strings.balance_caption_same_sex);
   });
 
-  test("the row detail: Even under the tick, the bars' yardstick in view, named info buttons (F25, F22, F26)", async ({ page, request }) => {
+  test("the row detail: Even under the tick, the bars' yardstick in view, balance's named info button (F25, F22, F26)", async ({ page, request }) => {
     const meta = await fetchMeta(request);
     await home(page);
     const row = await expandRow(page, 4);
@@ -261,7 +261,8 @@ test.describe("home results (D)", () => {
     await expect(detail.getByTestId("balance-tally")).toContainText(meta.policy_strings.balance_even);
     await expect(detail.getByTestId("moved-caption")).toHaveText(meta.policy_strings.moved_caption);
     await expect(detail.getByRole("button", { name: meta.policy_strings.balance_info_label })).toHaveCount(1);
-    await expect(detail.getByRole("button", { name: meta.policy_strings.moved_info_label })).toHaveCount(1);
+    // Nathan, 2026-10-10: What moved the score has no information box
+    await expect(detail.getByRole("button", { name: /^About/ })).toHaveCount(1);
     // the score reads "Overall score {n} out of 100"; the bare number is hidden
     const n = await row.getByTestId("score").innerText();
     await expect(row.getByText(meta.policy_strings.score_label_sr.replace("{n}", n))).toHaveCount(1);
@@ -515,7 +516,7 @@ test.describe("changing the search (E)", () => {
 });
 
 test.describe("trust (F)", () => {
-  test("an ⓘ beside 'Optional' explains where the details go, on demand, and links to Privacy (F10b)", async ({ page, request }) => {
+  test("Sharpen compatibility is its heading alone: no 'Optional' pill, no ⓘ (Nathan, 2026-10-10; F10b reversed)", async ({ page, request }) => {
     const ps = (await fetchMeta(request)).policy_strings;
     await home(page);
     if (width(page) < 1120) {
@@ -523,14 +524,12 @@ test.describe("trust (F)", () => {
       await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
     }
     const scope = width(page) < 1120 ? page.locator("dialog[open]") : page.getByTestId("rail");
-    const btn = scope.getByRole("button", { name: ps.sharpen_info_label });
-    await expect(btn).toHaveCount(1);
-    // on demand only: nothing shows until it is asked for
-    await expect(page.getByTestId("sharpen-info-note")).toHaveCount(0);
-    await btn.click();
-    const note = page.getByTestId("sharpen-info-note");
-    await expect(note).toContainText(ps.sharpen_info);
-    await expect(note.getByRole("link", { name: ps.sharpen_info_link })).toHaveAttribute("href", "/privacy");
+    const section = scope.getByTestId("about-you-section");
+    await expect(section.getByRole("button", { name: ps.rail_sharpen_heading })).toHaveCount(1);
+    // collapsed, the section holds its heading button and nothing else
+    await expect(section.getByRole("button")).toHaveCount(1);
+    await expect(section).not.toContainText("Optional");
+    await expect(page.getByTestId("sharpen-info")).toHaveCount(0);
   });
 
   test("Privacy says the details never leave the browser; How it works uses the registry's account (F10a, F11)", async ({ page, request }) => {
@@ -548,12 +547,12 @@ test.describe("trust (F)", () => {
 });
 
 test.describe("compare (G)", () => {
-  test("a judged Edge names the city and the size of its lead; others keep the dash and the sign (F07)", async ({ page, request }) => {
+  test("a judged row names the city and the size of its lead; the others show the plain difference, no dash (F07; 2026-10-10)", async ({ page, request }) => {
     const ps = (await fetchMeta(request)).policy_strings;
     await page.goto("/compare/austin-texas/provo-utah");
     const table = page.getByTestId("compare-table");
     await expect(table).toBeVisible();
-    test.skip(width(page) < 640, "the Edge column is the table's, from 640px");
+    test.skip(width(page) < 640, "the Comparison column is the table's, from 640px");
     const cells = await table.locator("[data-diff-for]").evaluateAll((tds) => tds.map((td) => ({
       id: td.getAttribute("data-diff-for"), edge: td.getAttribute("data-edge"),
       text: (td as HTMLElement).innerText.replace(/\s+/g, " ").trim(),
@@ -569,11 +568,12 @@ test.describe("compare (G)", () => {
         await expect(table.locator(`[data-diff-for="${c.id}"]`)).toHaveAccessibleName(
           c.edge === "1" ? /^Austin ?, by / : /^Provo ?, by /);
       } else if (c.edge === "0") {
-        expect(c.text.startsWith("—")).toBe(true);
+        expect(c.text).not.toContain("—");
+        expect(c.text).toBe(c.value);
       }
     }
     expect(judged).toBeGreaterThan(3);
-    await expect(page.getByTestId("diff-legend")).toHaveText(ps.compare_edge_note);
+    await expect(page.getByTestId("diff-legend")).toHaveCount(0);
   });
 
   test("a city below the floor reads 'Not ranked' on the five ranked rows (F24); Matches is the row's name (F21)", async ({ page, request }) => {
@@ -630,7 +630,7 @@ test.describe("compare on the real build (P6_REAL_BASE)", () => {
   test.skip(!REAL, "needs the real build's site");
   const edgeCell = (page: Page, id: string) => page.locator(`[data-diff-for="${id}"]`);
   test("Austin–Denver: matches '▲ Denver' by 31,802; the spot by 2 places", async ({ page }) => {
-    test.skip(width(page) < 640, "the Edge column");
+    test.skip(width(page) < 640, "the Comparison column");
     await page.goto(`${REAL}/compare/austin-texas/denver-colorado`);
     await expect(edgeCell(page, "pool")).toHaveAttribute("data-edge", "-1");
     await expect(edgeCell(page, "pool")).toContainText("Denver");
@@ -641,7 +641,7 @@ test.describe("compare on the real build (P6_REAL_BASE)", () => {
     await expect(edgeCell(page, "rank").locator("[data-diff-value]")).toHaveText("by 2 places");
   });
   test("Austin–Abilene: rent '▲ Abilene' by $526", async ({ page }) => {
-    test.skip(width(page) < 640, "the Edge column");
+    test.skip(width(page) < 640, "the Comparison column");
     await page.goto(`${REAL}/compare/austin-texas/abilene-texas`);
     await expect(edgeCell(page, "rent_1br")).toHaveAttribute("data-edge", "-1");
     await expect(edgeCell(page, "rent_1br")).toContainText("Abilene");

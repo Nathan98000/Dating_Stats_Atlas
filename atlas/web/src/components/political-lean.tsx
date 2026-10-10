@@ -107,12 +107,26 @@ export function PoliticalLeanCard({ block, meta }: { block: PoliticalLeanBlock |
   );
 }
 
-/** A compare-table cell: the same text the card shows, or "Not available". */
+/** A compare-table cell: each party's share on a line of its own,
+ * Democratic first (Nathan, 2026-10-10: one row for Democrats and one for
+ * Republicans, not one wrapped line) — the served segments' share and
+ * name, as the card's key shows them; or "Not available". */
 export function PoliticalLeanCell({ block }: { block: PoliticalLeanBlock | undefined }) {
+  const line = (key: "dem" | "rep") =>
+    block?.available ? block.segments.find((s) => s.key === key) : undefined;
   return (
     <td role="cell" className="px-4 pb-3.5 pt-1 align-top sm:px-5 sm:py-3.5" data-lean-cell="">
       {block?.available ? (
-        <span className="text-body font-semibold">{block.text}</span>
+        <span className="flex flex-col gap-1 text-body font-semibold">
+          {(["dem", "rep"] as const).map((k) => {
+            const s = line(k);
+            return s ? (
+              <span key={k} className="whitespace-nowrap" data-key={k}>
+                {s.display} {s.label}
+              </span>
+            ) : null;
+          })}
+        </span>
       ) : (
         <span className="text-caption text-ink-3">{block?.note}</span>
       )}

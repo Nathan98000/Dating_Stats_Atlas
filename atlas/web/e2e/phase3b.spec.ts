@@ -36,11 +36,12 @@ test("a figure above the ceiling renders as 250+ on the result row, the city pag
   await page.goto(`/compare/san-jose-california/austin-texas?${DISCLOSED_QS}`);
   const table = page.getByTestId("compare-table");
   await expect(table).toContainText("250+");
-  // no difference is computed from a capped figure: the cell shows the
-  // same dash a missing figure gets, never "+171" parsed from "250+"
+  // no difference is computed from a capped figure: the cell stays as
+  // empty as a missing figure leaves it (no dash since 2026-10-10), never
+  // "+171" parsed from "250+"
   const diff = table.locator('[data-diff-for="match_propensity"]');
-  await expect(diff).toBeVisible();
-  await expect(diff).toHaveText("—");
+  await expect(diff).toHaveCount(1);
+  await expect(diff).toHaveText("");
   // every other row's difference still computes
   await expect(table.locator('[data-diff-for="pool"] [data-diff-value]')).toHaveText(/\d/);
 });

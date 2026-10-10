@@ -126,7 +126,11 @@ describe("the city card and the compare cell", () => {
     expect(card).not.toMatch(/\d+%/);
     const cell = renderToStaticMarkup(createElement(PoliticalLeanCell, { block: MISSING }));
     expect(cell).toContain("Not available");
+    // Nathan, 2026-10-10: a line per party, Democratic first, each the
+    // served share and name; the everyone-else share stays on the card's bar
     const shown = renderToStaticMarkup(createElement(PoliticalLeanCell, { block: AVAILABLE }));
-    expect(shown).toContain("57% Democratic · 42% Republican");
+    expect([...shown.matchAll(/data-key="(\w+)">([^<]+)</g)].map((m) => [m[1], m[2]])).toEqual([
+      ["dem", "57% Democratic"], ["rep", "42% Republican"]]);
+    expect(shown).not.toContain("·");
   });
 });

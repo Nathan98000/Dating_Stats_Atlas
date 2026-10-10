@@ -91,11 +91,11 @@ POLICY_STRINGS = {
 
     # HomeV3: the balance footnote — rewritten for the m2.0.0 definition
     # (the board's "like for like" caption described the superseded
-    # like-for-like comparison; ADR 0004 records the supersession)
+    # like-for-like comparison; ADR 0004 records the supersession), and
+    # since 2026-10-10 Nathan's wording, verbatim (no figure moves)
     "balance_caption": "Balance compares all single men with all single "
-                       "women in the ages you picked — before any other "
-                       "filter. Counts come from the Census Bureau’s "
-                       "survey of 3.5 million households a year.",
+                       "women in the ages you picked, no other filters are "
+                       "used for the calculation.",
     "balance_row_caption": "{ratio} {sought} per 100 {seekers}",
     "balance_unavailable": "Not enough survey sample here to compare the "
                            "two sides.",

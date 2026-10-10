@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import type { Meta } from "@/lib/types";
 import { filtersSummary, IMPORTANCE_PILLARS, SELF_EDU_LEVELS, type Level, type Prefs,
@@ -45,9 +44,9 @@ function Chevron({ open }: { open: boolean }) {
 
 /** A collapsible rail group: its heading holds the disclosure button
  * (aria-expanded), so a screen reader meets it by heading and by state.
- * Collapsed, `summary` says what the group holds now. */
+ * Collapsed, `summary` (where a group has one) says what it holds now. */
 function Disclosure({ heading, testid, summary, children }: {
-  heading: string; testid: string; summary: React.ReactNode; children: React.ReactNode;
+  heading: string; testid: string; summary?: React.ReactNode; children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -65,7 +64,7 @@ function Disclosure({ heading, testid, summary, children }: {
           <Chevron open={open} />
         </button>
       </h2>
-      <div className="mt-1 text-caption text-ink-3">{summary}</div>
+      {summary && <div className="mt-1 text-caption text-ink-3">{summary}</div>}
       <div id={id} hidden={!open} className="mt-4 flex flex-col gap-4">
         {children}
       </div>
@@ -77,8 +76,8 @@ function Disclosure({ heading, testid, summary, children }: {
  * the v3 panel: three groups, each a heading. "What matters to you" is
  * always open — the bigger-pool-or-closer-match slider and the four
  * importance controls, each a segmented radiogroup. "Narrow it down" and
- * "Sharpen compatibility" start collapsed, each with a line saying what it
- * holds. Sends choices, never weights (item 5). The visitor's own sex and
+ * "Sharpen compatibility" start collapsed, the first with a line saying
+ * what it holds. Sends choices, never weights (item 5). The visitor's own sex and
  * ages moved to the hero's quick search; their own education and race
  * (m4.0.0, ADR 0018: kept in this browser and never sent) live under
  * Sharpen compatibility, with Phase 4c's same-sex behaviour unchanged.
@@ -295,28 +294,10 @@ export function RailGroups({
         </fieldset>
       </Disclosure>
 
-      <Disclosure
-        heading={policy.rail_sharpen_heading}
-        testid="about-you-section"
-        summary={
-          // after the Phase 5 report (Nathan): the pill alone, no note.
-          // Phase 6 (F10b, Nathan's decision 4, ADR 0018 amended): an ⓘ
-          // beside it explains, on demand only, where these details go —
-          // the one inline explanation of them, not the deleted line back
-          <span className="inline-flex items-center gap-2">
-            <span className="inline-flex h-[22px] items-center rounded-full bg-sunken px-2 text-overline tracking-normal text-ink-2">
-              {policy.optional_pill}
-            </span>
-            <InfoTip id={`${uid}-sharpen-info`} label={policy.sharpen_info_label} testid="sharpen-info">
-              {policy.sharpen_info}{" "}
-              <Link href="/privacy"
-                className="font-semibold text-accent underline underline-offset-2 hover:text-accent-hover">
-                {policy.sharpen_info_link}
-              </Link>
-            </InfoTip>
-          </span>
-        }
-      >
+      {/* Nathan, 2026-10-10 (ADR 0018 amended): the heading alone, with no
+          "Optional" pill and no information box beside it (the Privacy page
+          still says where these details go) */}
+      <Disclosure heading={policy.rail_sharpen_heading} testid="about-you-section">
         {/* m3.0.0: OPTIONAL inputs about the visitor; since m4.0.0 (ADR
             0018) kept in this browser and never sent. Education unset means
             the average for the visitor's sex and age; race is used only

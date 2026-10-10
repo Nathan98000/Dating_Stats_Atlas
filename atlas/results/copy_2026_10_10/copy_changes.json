@@ -1,0 +1,110 @@
+{
+ "change_set": "Nathan's changes of 2026-10-10, after the city-detail and balance redesign (the rankings detail, the search rail, and Compare)",
+ "note": "Nathan's two sentences are word for word (balance's box and the points' caption); \"Comparison\" is his word. compare_does_better is a DRAFT. No number moves: build d62202fd0280 keeps its id with its manifest refreshed (registry strings only), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
+ "changes": [
+  {
+   "change": "1. Balance's information box",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "model/suppression.py POLICY_STRINGS.balance_caption -> the box of Balance's ⓘ in the row and card detail and on the city page, and the same sentence as visible small print: under How the score works on the home page, and in the city page's balance section when a search is too narrow to rank it",
+   "old": "Balance compares all single men with all single women in the ages you picked — before any other filter. Counts come from the Census Bureau’s survey of 3.5 million households a year.",
+   "new": "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation.",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "1. Balance's information box, same-sex search",
+   "kind": "changed (its first sentence is Nathan's)",
+   "where": "registry strings.balance_caption_same_sex (shown in place of balance_caption on a same-sex search)",
+   "old": "Balance compares all single men with all single women in the ages you picked. On a same-sex search it describes the city, not your matches.",
+   "new": "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation. On a same-sex search it describes the city, not your matches.",
+   "why": "so the box reads Nathan's sentence on every search; the same-sex sentence (Phase 6 F01, approved) is kept"
+  },
+  {
+   "change": "2. What moved the score (points)",
+   "kind": "removed",
+   "where": "the ⓘ beside the heading in the row and card detail (web/src/components/row.tsx); registry strings.moved_info_label (\"About these points\") deleted",
+   "old": "an ⓘ whose box repeated the caption",
+   "new": "(none): the caption under the heading stays",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "3. The points' caption",
+   "kind": "changed (Nathan's copy, verbatim)",
+   "where": "registry strings.moved_caption -> under What moved the score (points)",
+   "old": "Compared with the middle of the cities ranked for this search",
+   "new": "Compared with the median city",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "4. Sharpen compatibility",
+   "kind": "removed",
+   "where": "the search rail and sheet (web/src/components/panel.tsx); registry strings.optional_pill, sharpen_info_label, sharpen_info and sharpen_info_link deleted",
+   "old": "\"Optional\" pill, and an ⓘ beside it: \"Optional. These change the compatibility figure only. They stay on this device: the site sends the figures for every combination, and your browser shows yours. How we handle your details\"",
+   "new": "(none): the heading alone; the Privacy page still says the details never leave the browser",
+   "why": "Nathan's request (reverses Phase 6 F10b; ADR 0018 amended)"
+  },
+  {
+   "change": "5. Compare: the word \"edge\"",
+   "kind": "changed",
+   "where": "registry strings.compare_edge -> the last column's heading",
+   "old": "Edge",
+   "new": "Comparison",
+   "why": "Nathan's request (his word)"
+  },
+  {
+   "change": "5. Compare: the phone's ▲",
+   "kind": "changed (DRAFT, needs Nathan's approval)",
+   "where": "new registry strings.compare_does_better -> the spoken name of the ▲ beside the value that does better, below 640px, where the column folds away",
+   "old": "Edge",
+   "new": "Does better",
+   "why": "the word \"edge\" leaves the page; \"Comparison\" would not name a mark"
+  },
+  {
+   "change": "6. Compare: the sentence under the heading",
+   "kind": "changed (phrase deleted)",
+   "where": "web/src/app/compare/[a]/[b]/page.tsx",
+   "old": "For {search} — the same search and the same yardstick as your results.",
+   "new": "For {search}.",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "7. Compare: no dash; Not much judged",
+   "kind": "changed (display rule; ADR 0007 amended)",
+   "where": "web/src/app/compare/[a]/[b]/page.tsx greyRule, web/src/components/compare-cells.tsx DiffCell",
+   "old": "a pillar set to Not much, and Who lives here, showed \"—\" over the plain difference; a tie showed \"—\" over 0; a missing value showed \"—\"",
+   "new": "a pillar set to Not much names the city that does better in green, by how much, like every other row (on a phone the ▲); Who lives here (never judged) and a tie show the plain difference alone; a missing value leaves the cell empty",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "8. Compare: the line under the table",
+   "kind": "removed",
+   "where": "web/src/app/compare/[a]/[b]/page.tsx; registry strings.compare_edge_note deleted, and the older legend it replaced in Phase 5 (strings.compare_diff_legend, unused since) retired with it",
+   "old": "Edge names the city that does better on each measure for your search, and by how much. A dash means we don't judge that measure.",
+   "new": "(none)",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "9. Compare: room on the table's right",
+   "kind": "layout",
+   "where": "web/src/app/compare/[a]/[b]/page.tsx, web/src/components/compare-cells.tsx",
+   "old": "the page at max-w-5xl; columns sized by their content (26% for the labels), so the last column was the narrowest, its lines wrapped (\"by 2 / places\") and sat 20px from the edge",
+   "new": "the page at max-w-6xl (the city page's measure); from 640px the columns take 20/30/30/20%, the last with 28px on its right, and its \"by …\" line never breaks",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "10. Compare: political lean",
+   "kind": "layout",
+   "where": "web/src/components/political-lean.tsx PoliticalLeanCell",
+   "old": "\"59% Democratic · 38% Republican\" on one line that wrapped",
+   "new": "\"59% Democratic\" on one line and \"38% Republican\" on the next (the served segments' share and name, Democratic first)",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "the balance track's leftover",
+   "kind": "removed (unused)",
+   "where": "registry strings.balance_more (\"More {word}\")",
+   "old": "the track's end label, unused since the dots replaced the track (72f46a8)",
+   "new": "(none)",
+   "why": "retired with this copy release rather than left orphaned"
+  }
+ ]
+}

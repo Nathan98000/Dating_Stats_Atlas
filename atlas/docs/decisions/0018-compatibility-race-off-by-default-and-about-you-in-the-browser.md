@@ -246,3 +246,12 @@ link to Privacy (`sharpen_info_link`). It shows only on demand; the trust line a
 this browser" line stay deleted. Nothing about the mechanism changes: the details never leave the
 browser, and the privacy network test passes unchanged. The Privacy page's "Your search" section
 now says so too.
+
+## Amended 10 October 2026: Sharpen compatibility is its heading alone
+
+At Nathan's request (10 October 2026). The "Optional" pill (`optional_pill`, after the Phase 5
+report) and the ⓘ beside it (Phase 6's `sharpen_info_label`, `sharpen_info` and
+`sharpen_info_link`) are deleted: the group shows its heading and, opened, its two fields, in the
+rail and in the sheet. This reverses the Phase 6 amendment above. Nothing about the mechanism
+changes: the details never leave the browser, the privacy network test passes unchanged, and the
+Privacy page's "Your search" section still says so.

@@ -91,3 +91,19 @@ absolute value of the same subtraction of two displayed values this ADR already 
 number. Rows the site doesn't judge keep "—" and their plain difference; political lean keeps no
 difference. The registry's `compare_edge_note` says what the column means, and screen readers hear
 "Denver, by 31,802".
+
+## Amended 10 October 2026: Comparison, Not much judged, and no dash
+
+At Nathan's request (10 October 2026, after the city-detail redesign). The column's heading reads
+"Comparison" (`compare_edge`): the word "edge" leaves the page, and below 640px, where the column
+folds away, the ▲ beside the value that does better is named by `compare_does_better` (a draft).
+Grey, no judgement, now covers two cases instead of three: Who lives here, always, and anything
+without a direction. A pillar set to Not much is judged by its registry direction like every other
+row: its winner is named in green, by how much, however little the measure matters to the visitor.
+No dash is drawn in the column: Who lives here and a tie show their plain difference alone (the same
+subtraction of two displayed values), and a row with a value missing on either side, or a capped
+compatibility figure, leaves the cell empty instead of section 1's em dash. The line under the table
+that explained the column (`compare_edge_note`) is deleted, and item 6.3's colour legend
+(`compare_diff_legend`, unused since Phase 5) is retired with it. Political lean still has no
+difference; each city's cell gives the Democratic share on one line and the Republican on the next.
+No number moves.

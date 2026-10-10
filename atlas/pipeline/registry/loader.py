@@ -139,28 +139,35 @@ PHASE6_STRINGS = {
     "compare_not_ranked": (), "city_below_floor": ("city",),
     "results_new_top": ("a", "b", "c"), "results_change_race": (),
     "results_change_education": (), "sheet_search_summary": ("you", "age", "sought", "ages"),
-    "sought_flipped": ("sought",), "balance_info_label": (), "moved_info_label": (),
-    "crime_card_info": ("stat",), "score_label_sr": ("n",), "sharpen_info_label": (),
-    "sharpen_info": (), "sharpen_info_link": (), "photo_place_caption": ("place", "city"),
-    "title_results": ("heading",), "clear": (),
+    "sought_flipped": ("sought",), "balance_info_label": (),
+    "crime_card_info": ("stat",), "score_label_sr": ("n",),
+    "photo_place_caption": ("place", "city"), "title_results": ("heading",), "clear": (),
 }
+# after Phase 6 (Nathan, 10 October 2026): the string the change added, and
+# the ones it deleted (the "Optional" pill and Sharpen compatibility's ⓘ,
+# the ⓘ of What moved the score, the balance track's "More {word}", and
+# the two lines under the compare table)
+COPY_2026_10_10_STRINGS = {"compare_does_better": ()}
+COPY_2026_10_10_GONE = ("optional_pill", "sharpen_info_label", "sharpen_info",
+                        "sharpen_info_link", "moved_info_label", "balance_more",
+                        "compare_edge_note", "compare_diff_legend")
 PHASE5_STRINGS = {
     "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),
     "quick_self_sex_short": (), "quick_self_age_short": (), "quick_seek_sex_short": (),
     "quick_seek_age_short": (),
     "rail_matters_heading": (), "slider_label": (), "rail_narrow_heading": (),
-    "rail_sharpen_heading": (), "optional_pill": (),
+    "rail_sharpen_heading": (),
     "results_eyebrow": (), "results_heading_best": ("sought", "ages"),
     "results_heading_worst": ("sought", "ages"), "results_count": ("n",),
     "col_rank": (), "col_city": (), "col_matches": (), "col_score": (),
     "pool_short_unit": (), "card_matches": (), "pool_row_unit": ("sought",), "score_out_of": (),
     "row_details": ("city",), "show_more": (), "show_all": ("n",), "find_in_results": (),
-    "balance_label": (), "balance_more": ("word",), "balance_even": (), "balance_short_caption": (),
+    "balance_label": (), "balance_even": (), "balance_short_caption": (),
     "moved_heading": (), "moved_caption": (), "open_city": ("city",), "compare_action": (),
     "explainer_heading": (), "explainer_lifestyle": (), "adjust_search": (), "show_results": (),
     "close": (), "results_updated": ("change",), "nav_rankings": (), "nav_compare": (),
     "nav_how": (), "footer_how": (), "footer_measure": (), "footer_privacy": (),
-    "footer_terms": (), "footer_sources": (), "compare_edge": (), "compare_edge_note": (),
+    "footer_terms": (), "footer_sources": (), "compare_edge": (),
     "compare_top_two": ("a", "b"), "title_site": (), "title_template": ("page",),
     "title_compare_pair": ("a", "b"), "title_stat": ("stat",), "title_privacy": (), "title_terms": (),
     "not_found_title": (), "not_found_body": (), "score_median_caption": ("n",),
@@ -440,6 +447,18 @@ def load_registry(path: Path = REGISTRY_PATH) -> Registry:
     for need_key in ("compare_not_ranked", "city_below_floor"):
         assert floor_txt in strings[need_key], (
             f"strings.{need_key} must state the population floor, {floor_txt}")
+    # after Phase 6 (Nathan, 10 October 2026): the deleted strings stay gone,
+    # and the compare page never says "edge"
+    for need_key, slots in COPY_2026_10_10_STRINGS.items():
+        assert strings.get(need_key), f"strings.{need_key} is required (2026-10-10)"
+        for slot in slots:
+            assert "{" + slot + "}" in strings[need_key], f"strings.{need_key} carries {{{slot}}}"
+    for gone in COPY_2026_10_10_GONE:
+        assert gone not in strings, f"strings.{gone} was deleted on 2026-10-10 at Nathan's request"
+    for k, v in strings.items():
+        if k.startswith("compare_"):
+            assert not re.search(r"\bedge\b", v, re.IGNORECASE), (
+                f"strings.{k}: the compare page doesn't say \"edge\" (Nathan, 2026-10-10): {v!r}")
     # before launch: About us links the terms of use (docs/terms.md)
     assert strings.get("about_terms_link"), "strings.about_terms_link is required (the terms of use)"
     # Phase 4d (ADR 0019): political lean's words, all registry-owned; the

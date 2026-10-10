@@ -319,9 +319,10 @@ export function FlagCaptions({ flags, meta, className = "" }: {
  * picture — the balance (the served figure over its track), the
  * compatibility figure against 100, and what moved the score (the six
  * served pillar contributions as diverging bars, ±25 points to the edge,
- * sorted) — with the longer explanations behind the tiles' information
- * boxes (the compatibility figure keeps none, Phase 4b: the slider's box
- * explains it), then the two actions as buttons. Every number is served;
+ * sorted) — with the longer words behind balance's information box (the
+ * compatibility figure keeps none, Phase 4b: the slider's box explains it;
+ * nor, since 2026-10-10, do the points: their caption says what they are
+ * measured against), then the two actions as buttons. Every number is served;
  * the bars are presentation scaling. Phase 6: the metro's cautions open it
  * (F08); the bars' yardstick shows under their heading (F22); a lifestyle
  * bar names its chip where the words differ ("Cost of living · rent",
@@ -382,8 +383,9 @@ export function RowDetail({ id, row, meta, href, onCompare, sameSex = false, var
             <p className="text-body-sm text-ink-3">{s.card_missing}</p>
           )}
         </Section>
-        <Section title={s.moved_heading} tipLabel={s.moved_info_label} tip={s.moved_caption}
-          tipId={`${id}-moved-info`}
+        {/* Nathan, 2026-10-10: no information box here; the caption says
+            what the points are measured against */}
+        <Section title={s.moved_heading}
           className={two
             ? "border-t border-rule pt-3.5 sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:border-l sm:border-t-0 sm:pl-7 sm:pt-0"
             : "border-t border-rule pt-3.5"}>

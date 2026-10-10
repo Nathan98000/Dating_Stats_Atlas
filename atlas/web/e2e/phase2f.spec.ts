@@ -166,7 +166,7 @@ test("every compare difference equals the subtraction of the two displayed value
         id: diffTd.getAttribute("data-diff-for")!,
         a: cells[0]?.textContent ?? "",
         b: cells[1]?.textContent ?? "",
-        // Phase 5: the number sits under the Edge as quiet text
+        // Phase 5: the number sits under the city named as quiet text
         diff: diffTd.querySelector("[data-diff-value]")?.textContent?.trim() ?? "",
         edge: diffTd.getAttribute("data-edge"),
       };
@@ -198,21 +198,20 @@ test("every compare difference equals the subtraction of the two displayed value
   const byId = Object.fromEntries(rows.map((r) => [r.id, r]));
   expect(byId.rent_1br.diff).toMatch(byId.rent_1br.edge === "0" ? /^[+−]\$/ : /^by \$/);
   expect(byId.who_lives_here.edge).toBe("0");
-  // the line under the table explains the Edge column, from the registry
-  // (Phase 5, replacing item 6.3's colour legend)
-  await expect(page.getByTestId("diff-legend")).toHaveText(
-    "Edge names the city that does better on each measure for your search, and by how much. A dash means we don't judge that measure.");
+  // the line under the table that explained its last column is gone
+  // (Nathan, 2026-10-10)
+  await expect(page.getByTestId("diff-legend")).toHaveCount(0);
 });
 
-test("either side missing gives an em dash (gate 5)", async ({ page }) => {
+test("either side missing leaves the comparison empty (gate 5; no dash since 2026-10-10)", async ({ page }) => {
   // under the stress search both cities' pools suppress: rank, score and
-  // pool differences must dash rather than invent a subtraction
+  // pool differences stay empty rather than invent a subtraction
   await page.goto(
     "/compare/provo-utah/austin-texas?sex=male&self_age=30&age=25-35&marital=never&edu=graduate&inc=250000&race=nhpi_nh");
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();
   for (const id of ["rank", "score", "pool"]) {
-    await expect(table.locator(`[data-diff-for="${id}"]`)).toHaveText("—");
+    await expect(table.locator(`[data-diff-for="${id}"]`)).toHaveText("");
   }
 });
 

@@ -4,13 +4,10 @@ import { notFound } from "next/navigation";
 import { apiMeta, apiPoliticalLean, apiProfile, apiRank } from "@/lib/api";
 import {
   describeSearch,
-  IMPORTANCE_PILLARS,
   isDefaultSearch,
   parsePrefs,
   toRankBody,
   toSearchParams,
-  type ImportancePillar,
-  type Prefs,
   type SearchParams,
 } from "@/lib/prefs";
 import { effectiveSearchParams } from "@/lib/server-prefs";
@@ -43,10 +40,11 @@ export async function generateMetadata({ params }: { params: Promise<{ a: string
  * plain subtraction of the two DISPLAYED values — parsed back from the
  * display strings themselves, so the equality with what the visitor
  * sees holds by construction and nothing is recomputed from raw values.
- * Phase 5: the Edge column names the city a difference favours for this
- * visitor (A − B read through the registry's direction field), a dash
- * where the site doesn't judge (population always; a pillar set to Not
- * much, which still carries weight; anything without a direction). */
+ * Phase 5: a column names the city a difference favours for this visitor
+ * (A − B read through the registry's direction field). Since 2026-10-10
+ * (Nathan) it is "Comparison", it judges a pillar set to Not much like any
+ * other row, and it never shows a dash: population, which it never
+ * judges, shows its plain difference alone. */
 export default async function ComparePage({
   params,
   searchParams,
@@ -88,14 +86,15 @@ export default async function ComparePage({
   return (
     <>
       <SiteHeader />
-      <main id="main" className="mx-auto flex max-w-5xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
+      {/* max-w-6xl, the city page's measure (2026-10-10: the table's right
+          side had too little room) */}
+      <main id="main" className="mx-auto flex max-w-6xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
         <BackToResults href={`/?${qs}`}>← Back to your results</BackToResults>
         <h1 className="font-display text-h2">
           {cityA} <span className="text-ink-3">and</span> {cityB}
         </h1>
         <p className="max-w-[64ch] text-body text-ink-2">
-          For {describeSearch(prefs).toLowerCase()} — the same search and the
-          same yardstick as your results.
+          For {describeSearch(prefs).toLowerCase()}.
         </p>
         {isDefaultSearch(sp) && !fromCookie && (
           // Phase 6 (F23): a neutral note — the starting search is a fine
@@ -111,7 +110,8 @@ export default async function ComparePage({
 
         {/* Phase 5: a table from 640px; below that each measure is a block,
             the two cities side by side under a sticky row naming them (no
-            sideways scroll) */}
+            sideways scroll). From 640px the columns take set shares, so
+            the Comparison column has room on the right (2026-10-10) */}
         <div className="rounded-lg border border-rule bg-surface">
           <table role="table" className="block w-full text-body-sm sm:table" data-testid="compare-table">
             <caption className="sr-only">
@@ -119,9 +119,9 @@ export default async function ComparePage({
             </caption>
             <thead role="rowgroup" className="sticky top-0 z-10 block rounded-t-lg bg-surface sm:static sm:table-header-group">
               <tr role="row" className="grid grid-cols-2 border-b border-rule text-left sm:table-row">
-                <td className="w-[26%] max-sm:hidden" />
+                <td className="w-[20%] max-sm:hidden" />
                 {[mA, mB].map((m) => (
-                  <th key={m.slug} role="columnheader" scope="col" className="px-4 py-3 sm:px-5 sm:py-3.5">
+                  <th key={m.slug} role="columnheader" scope="col" className="px-4 py-3 sm:w-[30%] sm:px-5 sm:py-3.5">
                     <Link
                       href={`/city/${m.slug}?${qs}`}
                       className="inline-flex items-center max-desk:min-h-11 font-display text-title text-ink hover:text-accent-hover"
@@ -130,7 +130,8 @@ export default async function ComparePage({
                     </Link>
                   </th>
                 ))}
-                <th role="columnheader" scope="col" className="px-5 py-3.5 text-caption font-semibold text-ink-3 max-sm:hidden">
+                <th role="columnheader" scope="col"
+                  className="w-[20%] py-3.5 pl-5 pr-7 text-caption font-semibold text-ink-3 max-sm:hidden">
                   {policy.compare_edge}
                 </th>
               </tr>
@@ -151,12 +152,12 @@ export default async function ComparePage({
                 const le = meta.features[id];
                 const cA = cardOf(profA, id);
                 const cB = cardOf(profB, id);
-                const grey = greyRule(id, le.pillar, le.direction, prefs);
+                const grey = greyRule(id, le.direction);
                 const edge = edgeOf(cA?.display, cB?.display, grey ? 0 : le.direction, grey);
                 return (
                   <Row key={id} label={le.display_name}>
                     {[cA, cB].map((c, i) => (
-                      <ValueCell key={i} win={edge === (i === 0 ? 1 : -1)} edgeLabel={policy.compare_edge}>
+                      <ValueCell key={i} win={edge === (i === 0 ? 1 : -1)} edgeLabel={policy.compare_does_better}>
                         {c && c.display !== undefined ? (
                           <div className="flex flex-col">
                             <span className="text-body font-semibold">
@@ -198,17 +199,14 @@ export default async function ComparePage({
                 <Row label={meta.features.political_lean.display_name}>
                   <PoliticalLeanCell block={lean.metros[mA.cbsa]} />
                   <PoliticalLeanCell block={lean.metros[mB.cbsa]} />
-                  <td role="cell" className="px-5 py-3.5 max-sm:hidden" data-no-diff="political_lean" />
+                  <td role="cell" className="py-3.5 pl-5 pr-7 max-sm:hidden" data-no-diff="political_lean" />
                 </Row>
               )}
             </tbody>
           </table>
         </div>
-        {/* Phase 5: what the Edge column says, from the registry — a dash
-            is "we don't judge it", never "this is excluded" */}
-        <p className="max-w-[76ch] text-caption text-ink-3" data-testid="diff-legend">
-          {policy.compare_edge_note}
-        </p>
+        {/* the line under the table that explained its last column is
+            gone (Nathan, 2026-10-10): the column says it itself */}
 
         {/* Phase 2e item 11, reworded in 2f item 6.4: two numbers per
             city, ONE plain banner above them, the detail one click away —
@@ -273,20 +271,11 @@ export default async function ComparePage({
   );
 }
 
-/** The grey rules (item 6.3): population is a fact, not a virtue; a
- * pillar set to Not much is "you told us this matters least" (it still
- * carries weight 0.4); no direction means no judgement. Everyday prices
- * is the average of the two scored cost features (the registry says
- * so), so the importance control that covers it is Cost of living even
- * though its own pillar field reads context. */
-function greyRule(id: string, pillar: string | undefined, direction: number,
-                  prefs: Prefs): boolean {
-  if (id === "who_lives_here") return true;
-  if (!direction) return true;
-  const imp = id === "everyday_prices" ? "cost" : pillar;
-  return Boolean(
-    imp &&
-    (IMPORTANCE_PILLARS as readonly string[]).includes(imp) &&
-    prefs.importance[imp as ImportancePillar] === "not_much",
-  );
+/** The rows the site doesn't judge (item 6.3, ADR 0007): population is a
+ * fact, not a virtue, and no direction means no judgement. A pillar set
+ * to Not much was a third until 2026-10-10, when Nathan asked for it to be
+ * judged like the rest: its colour says which city does better, however
+ * little the measure matters to the visitor. */
+function greyRule(id: string, direction: number): boolean {
+  return id === "who_lives_here" || !direction;
 }

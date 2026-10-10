@@ -22,8 +22,11 @@ import { fill } from "@/lib/results";
  * the registry's compare_edge_by with the absolute value of the same
  * subtraction ("by 2 places" for the spot in the results,
  * compare_edge_places) — and a screen reader hears "Denver, by 31,802".
- * Rows the site doesn't judge keep the dash over the plain signed
- * difference. */
+ *
+ * Nathan, 2026-10-10: the column is "Comparison" (compare_edge) and it
+ * shows no dash. A row the site doesn't judge (population) or a tie shows
+ * the plain signed difference alone; a value missing on either side leaves
+ * the cell empty. On a phone the ▲'s spoken name is compare_does_better. */
 
 export type { Edge } from "@/lib/compare";
 export { edgeOf } from "@/lib/compare";
@@ -52,7 +55,8 @@ export function Row({ label, note, children }: {
   );
 }
 
-/** One city's value: on a phone the winning side carries a ▲. */
+/** One city's value: on a phone the winning side carries a ▲, named by
+ * `edgeLabel` (compare_does_better). */
 export function ValueCell({ win = false, edgeLabel = "", variant = false, children }: {
   win?: boolean; edgeLabel?: string; variant?: boolean; children: React.ReactNode;
 }) {
@@ -110,13 +114,11 @@ export function DiffCell({
   places?: string;
 }) {
   const v = variant ? { "data-variant": "" } : {};
-  const cls = "px-5 py-3.5 align-top max-sm:hidden";
+  // the right-hand column: more room on its right than the others
+  // (2026-10-10), and the "by …" line never breaks
+  const cls = "py-3.5 pl-5 pr-7 align-top max-sm:hidden";
   if (a === undefined || b === undefined) {
-    return (
-      <td role="cell" className={`${cls} text-ink-3`} data-diff-for={id} {...v}>
-        —
-      </td>
-    );
+    return <td role="cell" className={cls} data-diff-for={id} {...v} />;
   }
   const edge = edgeOf(a, b, direction, grey);
   const lead = leadOf(a, b, decimals, dollar);
@@ -124,15 +126,13 @@ export function DiffCell({
     : places ? fill(places, { n: lead }) : fill(by, { diff: lead });
   return (
     <td role="cell" className={cls} data-diff-for={id} data-edge={edge} {...v}>
-      {edge === 0 ? (
-        <span className="text-body-sm text-ink-3">—</span>
-      ) : (
+      {edge !== 0 && (
         <span className="flex items-center gap-1.5 text-body-sm font-semibold text-good-strong">
           <EdgeMark />
           <span>{names[edge === 1 ? 0 : 1]}<span className="sr-only">,</span></span>
         </span>
       )}
-      <span className="block text-caption text-ink-3" data-diff-value>{body}</span>
+      <span className="block whitespace-nowrap text-caption text-ink-3" data-diff-value>{body}</span>
     </td>
   );
 }

@@ -367,17 +367,9 @@ strings:
   compare_page_subtitle: >-
     View two cities side by side. Learn how each ranks in your search,
     and see every city's stats with the differences between them.
-  # item 6.3: the line under the compare table. Grey is "we don't judge
-  # it" — and a measure set to Not much still carries weight, it is
-  # never excluded ({a}/{b} are the two city names, left and right).
-  # UNUSED since Phase 5 F (the Edge column's compare_edge_note replaced
-  # it); still served so no commit of the series renders without it —
-  # retire it with the next copy release
-  compare_diff_legend: >-
-    Green means the difference favors {a} for your search; red means it
-    favors {b}. Grey means we don't judge it: population is just a fact,
-    and a measure you set to "Not much" still counts toward the score —
-    it just matters least to you.
+  # compare_diff_legend (item 6.3's colour legend under the compare table,
+  # unused since Phase 5 F) was retired on 10 October 2026, with the line
+  # that replaced it (compare_edge_note)
   # Phase 4d (ADR 0019, Nathan's decision): political lean's words — the
   # parties' names and the numbers, nothing evaluative (the loader refuses
   # such words here), Democratic always before Republican. The API
@@ -422,9 +414,10 @@ strings:
   slider_label: "Bigger pool or closer match?"
   rail_narrow_heading: "Narrow it down"
   rail_sharpen_heading: "Sharpen compatibility"
-  optional_pill: "Optional"
   # sharpen_note ("Your education and race stay in this browser") was
-  # deleted after the Phase 5 report, at Nathan's request
+  # deleted after the Phase 5 report, at Nathan's request; the "Optional"
+  # pill (optional_pill) and the ⓘ beside it (sharpen_info_label,
+  # sharpen_info, sharpen_info_link) on 10 October 2026, at his request
   # the results header ({sought}: "men"/"women"; {ages}: "28–40"; {n}: the
   # served count of ranked cities)
   results_eyebrow: "Your ranking"
@@ -452,15 +445,18 @@ strings:
   find_in_results: "Find a city in your results"
   # a row's detail
   balance_label: "Balance"
-  balance_more: "More {word}"
   balance_even: "Even"
   balance_short_caption: "All singles in your age range, before other filters"
   moved_heading: "What moved the score (points)"
-  moved_caption: "Compared with the middle of the cities ranked for this search"
-  # Phase 6 (F26, approved): the tiles' ⓘ buttons' own names (the headings
-  # named them before, so a screen reader heard each heading twice)
+  # Nathan, 2026-10-10 (was "Compared with the middle of the cities ranked
+  # for this search")
+  moved_caption: "Compared with the median city"
+  # Phase 6 (F26, approved): balance's ⓘ button's own name (the heading
+  # named it before, so a screen reader heard the heading twice). The
+  # track's "More {word}" (balance_more) left with the track, and the ⓘ of
+  # What moved the score (moved_info_label) was deleted, both on 10 October
+  # 2026 at Nathan's request
   balance_info_label: "About balance"
-  moved_info_label: "About these points"
   # Phase 6 (F26, approved): read before each row's and card's score; the
   # visible number is hidden from screen readers
   score_label_sr: "Overall score {n} out of 100"
@@ -495,23 +491,17 @@ strings:
   # row), chosen in the browser from the stored own sex; and the balance
   # caption on a same-sex search (balance_same_sex stays retired). The
   # sought sex fills two slots: {sought_one} singular ("every single man"),
-  # {sought} plural ("looking for men")
+  # {sought} plural ("looking for men"). Since 2026-10-10 the same-sex
+  # caption opens with balance_caption's wording (Nathan's, in
+  # model/suppression.py)
   same_sex_pool_note: >-
     On a same-sex search, matches count every single {sought_one} in these
     ages. The Census doesn't ask who people date, so only some of them are
     looking for {sought}.
   balance_caption_same_sex: >-
     Balance compares all single men with all single women in the ages you
-    picked. On a same-sex search it describes the city, not your matches.
-  # Phase 6 (F10b, approved; reverses Phase 4b's "no inline notes", ADR
-  # 0018, for this one box): the ⓘ beside "Optional" in Sharpen
-  # compatibility — an explanation on demand, not the deleted line back
-  sharpen_info_label: "About these details"
-  sharpen_info: >-
-    Optional. These change the compatibility figure only. They stay on this
-    device: the site sends the figures for every combination, and your
-    browser shows yours.
-  sharpen_info_link: "How we handle your details"
+    picked, no other filters are used for the calculation. On a same-sex
+    search it describes the city, not your matches.
   # Phase 6 (F29, approved): the caption under a city band whose photograph
   # shows a place elsewhere in the metro (the manifest's `place`)
   photo_place_caption: "{place}, in the {city} metro area"
@@ -527,14 +517,16 @@ strings:
   footer_privacy: "Privacy"
   footer_terms: "Terms"
   footer_sources: "Data sources"
-  # compare: which city does better on each measure
-  compare_edge: "Edge"
-  # Phase 6 (F07, approved): Edge names the winner and the size of its
-  # lead — the absolute value of the plain difference of the two displayed
-  # values (ADR 0007); places for the spot row
-  compare_edge_note: >-
-    Edge names the city that does better on each measure for your search,
-    and by how much. A dash means we don't judge that measure.
+  # compare: which city does better on each measure. Nathan, 2026-10-10:
+  # the column is "Comparison" (was "Edge": the word leaves the page), and
+  # the line under the table that explained it (compare_edge_note) is gone
+  compare_edge: "Comparison"
+  # on a phone, where the Comparison column folds away, the ▲ beside the
+  # value that does better: its spoken name (DRAFT, 2026-10-10)
+  compare_does_better: "Does better"
+  # Phase 6 (F07, approved): a judged row names the winner and the size of
+  # its lead — the absolute value of the plain difference of the two
+  # displayed values (ADR 0007); places for the spot row
   compare_edge_by: "by {diff}"
   compare_edge_places: "by {n} places"
   # Phase 6 (F24, approved): a city below the population floor, on Compare

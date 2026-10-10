@@ -81,8 +81,9 @@ test("the quick search holds the visitor and who they seek; the rail's three gro
   }
   await expect(rail.getByTestId("filters-summary")).toHaveText(
     "Single: never married or divorced/widowed · Any education · Any income · All races");
-  // after the Phase 5 report (Nathan): the group's line is the pill alone
-  await expect(rail.getByTestId("about-you-section").getByText(ps.optional_pill, { exact: true })).toBeVisible();
+  // after the Phase 5 report (Nathan) the group's line was the pill alone;
+  // since 2026-10-10 the heading stands alone: no pill, no box
+  await expect(rail.getByTestId("about-you-section").getByText("Optional", { exact: true })).toHaveCount(0);
   await expect(rail).not.toContainText("stay in this browser");
   // Narrow it down: single means, the partner filters for education,
   // income and race; Sharpen compatibility: my education and my race

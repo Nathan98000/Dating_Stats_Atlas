@@ -77,12 +77,13 @@ test("the expanded row: balance, compatibility, and what moved the score, every 
   const row = await expandRow(page, 4);
   const detail = row.getByTestId("row-detail");
   await expect(detail.getByTestId("balance-tally")).toContainText(/\d+ men per 100 women/);
-  // after the Phase 5 report: the longer words sit behind the tiles'
-  // information boxes, the compatibility figure keeps none (Phase 4b)
-  // Phase 6: the buttons are named on their own (F26) and the bars'
-  // yardstick shows under their heading as well as in its box (F22)
+  // after the Phase 5 report: the longer words sit behind balance's
+  // information box, the compatibility figure keeps none (Phase 4b), and
+  // since 2026-10-10 (Nathan) neither do the points: their yardstick shows
+  // under their heading (F22) and nowhere else
+  // Phase 6: the button is named on its own (F26)
   await expect(detail.getByRole("button", { name: ps.balance_info_label })).toHaveCount(1);
-  await expect(detail.getByRole("button", { name: ps.moved_info_label })).toHaveCount(1);
+  await expect(detail.getByRole("button", { name: /^About/ })).toHaveCount(1);
   await expect(detail.getByTestId("match-figure").getByRole("button")).toHaveCount(0);
   await expect(detail.getByTestId("moved-caption")).toHaveText(ps.moved_caption);
   await expect(detail.getByRole("link", { name: /^Open .+ →$/ })).toBeVisible();
@@ -233,20 +234,24 @@ for (const path of PAGES) {
   });
 }
 
-test("compare: the Edge column names the city that does better, and below 640px each measure is a block", async ({ page }) => {
+test("compare: the Comparison column names the city that does better, and below 640px each measure is a block", async ({ page }) => {
   await page.goto(`/compare/provo-utah/austin-texas?${DEFAULT_QS}`);
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();
   await expect(page.locator("main#main")).toHaveCount(1);
   if (width(page) >= 640) {
-    await expect(table.getByRole("columnheader", { name: "Edge" })).toBeVisible();
+    // Nathan, 2026-10-10: "Comparison", and the page never says "edge"
+    await expect(table.getByRole("columnheader", { name: "Comparison" })).toBeVisible();
+    await expect(page.locator("main")).not.toContainText(/\bedge\b/i);
     const edges = await table.locator("[data-diff-for][data-edge]").evaluateAll((tds) =>
       tds.map((td) => ({ edge: td.getAttribute("data-edge"), text: td.textContent ?? "" })));
     expect(edges.length).toBeGreaterThan(5);
     for (const e of edges) {
       if (e.edge === "1") expect(e.text).toMatch(/^Provo/);
       else if (e.edge === "-1") expect(e.text).toMatch(/^Austin/);
-      else expect(e.text).toMatch(/^—/);
+      // no dash (2026-10-10): a row the site doesn't judge, or a tie,
+      // shows its plain difference alone
+      else expect(e.text).toMatch(/^[+−]?\$?\d/);
     }
     // population is a fact: never an edge
     await expect(table.locator('[data-diff-for="who_lives_here"]')).toHaveAttribute("data-edge", "0");
