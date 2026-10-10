@@ -320,7 +320,7 @@ to now (the record: `results/phase4/photo_review.json`, its
   Springfield, Missouri's (the Free Art License, which permits the crop the
   way CC BY-SA does but is not on the list, and Commons names no author,
   only a credit, "CVBCS"). `card_photos.json` lists them under
-  `permission_needed`.
+  `permission_needed`. On 9 October 2026 Nathan let both ship.
 - **The subject rules stand**: no identifiable person as the subject, no
   recent sculpture or mural as the subject, no prominent seal. Where the
   principal city has no usable photograph, the photograph shows a place
@@ -334,7 +334,7 @@ to now (the record: `results/phase4/photo_review.json`, its
 
 ## Amended in Phase 6 (9 October 2026): sized copies, the new photographs, focal points
 
-DRAFT for Nathan's approval (Phase 6, commits A, H and I).
+Approved by Nathan on 9 October 2026 (Phase 6, commits A, H and I).
 
 - **Sized copies and link previews (A).** `web/scripts/photo_sizes.mjs`
   writes, beside each photograph, WebP copies at 480 to 2048px wide

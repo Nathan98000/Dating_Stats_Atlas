@@ -177,7 +177,7 @@ of the 100-effective-respondent bar the row says so (`balance_unavailable`).
 
 ## Amended in Phase 6 (9 October 2026): the same-sex captions, spoken figures and the flags shown again
 
-DRAFT for Nathan's approval (Phase 6; his decisions 2, 3 and 8).
+Approved by Nathan on 9 October 2026 (Phase 6; his decisions 2, 3 and 8).
 
 - **Same-sex searches get a note where matches show** (F01). On a same-sex search the count is
   every single person of the sought sex in the ages picked; the Census doesn't ask who people

@@ -235,7 +235,7 @@ inside m4.2.1, the release Phase 5's commit C opened.
 
 ## Amended in Phase 6 (9 October 2026): an ⓘ beside "Optional"
 
-DRAFT for Nathan's approval (Phase 6, commit F; his decision 4). Phase 4b dropped every inline
+Approved by Nathan on 9 October 2026 (Phase 6, commit F; his decision 4). Phase 4b dropped every inline
 note beside the "about you" inputs because the Privacy page explains where they go. The round-3
 review (F10) found the page asking for race and education under nothing but an "Optional" pill,
 and the Privacy page never saying the details are not sent. This reverses Phase 4b's "no inline

@@ -82,7 +82,7 @@ search, so the label stays off.
 
 ## Amended in Phase 6 (9 October 2026): Edge shows the size of the lead
 
-DRAFT for Nathan's approval (Phase 6, commit G; the review's F07). Phase 5's Edge column put the
+Approved by Nathan on 9 October 2026 (Phase 6, commit G; the review's F07). Phase 5's Edge column put the
 winner over the plain A − B difference, so a row could read "▲ Abilene +$526" where Abilene's rent
 is $526 *lower*, and in Austin–Denver the sign contradicted the arrow on 7 of the 10 judged rows.
 A judged row's Edge cell now shows "▲ {city}" and, under it, `compare_edge_by` ("by 31,802", "by

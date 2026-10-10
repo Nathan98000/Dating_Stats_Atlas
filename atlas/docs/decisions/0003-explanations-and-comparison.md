@@ -136,7 +136,7 @@ without its explanations, as are all 1,036 single-seeker rankings and all 387 pr
 
 ## Amended in m4.3.0 (Phase 6, 9 October 2026): the chips name lifestyle items only
 
-DRAFT for Nathan's approval (Phase 6, commit B; his decision 5). The round-3 review (F12) found
+Approved by Nathan on 9 October 2026 (Phase 6, commit B; his decision 5). The round-3 review (F12) found
 the result chips repeating: in the default search 8 of the top 10 read "▲ Dating pool
 ▲ Compatibility ▼ Rent", so they did not tell cities apart, and the pool and the compatibility
 figure already have their own column and tile. Each explanation now also carries

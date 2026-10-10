@@ -48,6 +48,8 @@ Branch `claude/phase6` off `claude/phase5` at `f18a810`, unpushed.
 
 ## 3. For your approval
 
+Approved by Nathan on 9 October 2026, everything in this section.
+
 **a. Strings, old → new.** The prompt's copy table went in as written, with
 the changes it makes. Each is in the registry, served through `/v1/meta`:
 
@@ -150,7 +152,7 @@ skyline with the San Gabriels. The other two I found:
 **f. Permission list.** Nothing new. All eleven new photographs are public
 domain, CC0, CC BY or CC BY-SA, each read from the file's own page. Phase
 5's two still wait on you: Lafayette (CC BY-NC-SA 2.0) and Springfield,
-Missouri (Free Art License, no named author).
+Missouri (Free Art License, no named author). On 9 October 2026 you let both ship.
 
 **g. ADR drafts**, each at the end of its ADR:
 
