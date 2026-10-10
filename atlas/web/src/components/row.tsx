@@ -6,7 +6,7 @@ import type { Meta, RankedRow, ScoreMedian } from "@/lib/types";
 import type { CardPhoto } from "@/lib/city-photos";
 import { divergingBar, fill } from "@/lib/results";
 import { signedPoints } from "@/lib/format";
-import { BalanceTrack } from "./balance-track";
+import { BalanceDots } from "./balance-dots";
 import { InfoTip } from "./info-tip";
 import { WhyChips } from "./why-chips";
 
@@ -351,42 +351,52 @@ export function RowDetail({ id, row, meta, href, onCompare, sameSex = false, var
   const city = row.display_name.split(",")[0];
   const match = row.match;
   const frame = variant === "panel"
-    ? "rounded-lg bg-hover p-4 sm:px-5"
+    ? "rounded-lg bg-hover p-4 sm:px-6 sm:py-5"
     : variant === "inline"
       ? "-mx-4 -mb-[18px] mt-1 bg-hover px-4 pb-4 pt-3"
       : "bg-hover px-1 pb-5 pt-1 sm:pl-[70px] sm:pr-4";
-  const grid = variant === "inline" ? "grid gap-3" : "grid gap-3 sm:grid-cols-[1fr_1fr_1.35fr]";
+  // Nathan, 2026-10-10 (too much white space): one ground and no boxes —
+  // balance over compatibility, and what moved the score beside them past
+  // a hairline, the two columns about one height; the actions beneath both.
+  // One column on phones and inside a card
+  const two = variant !== "inline";
+  const col1 = two ? "sm:col-start-1" : "";
   return (
     <div id={id} className={frame} data-testid={testid}>
       <FlagCaptions flags={row.flags} meta={meta} className="mb-3" />
-      <div className={grid}>
-        <Tile title={s.balance_label} tipLabel={s.balance_info_label}
+      <div className={two
+        ? "grid gap-y-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] sm:grid-rows-[auto_1fr] sm:gap-x-7"
+        : "flex flex-col gap-4"}>
+        <Section title={s.balance_label} tipLabel={s.balance_info_label} className={col1}
           tip={sameSex ? s.balance_caption_same_sex : s.balance_caption} tipId={`${id}-bal-info`}>
-          <BalanceTrack balance={row.balance} meta={meta} id={id} tile />
-        </Tile>
-        <Tile title={meta.features.match_propensity.display_name}
+          <BalanceDots balance={row.balance} meta={meta} id={id} tile />
+        </Section>
+        <Section title={meta.features.match_propensity.display_name} className={`border-t border-rule pt-3.5 ${col1}`}
           testid={match.available && match.display != null ? "match-figure" : undefined}>
           {match.available && match.display != null ? (
-            <>
-              <p className="text-data-l" data-figure="">{match.display}</p>
-              <p className="mt-1.5 text-caption text-ink-3">{match.unit_line}</p>
-            </>
+            <p className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+              <span className="text-data-l" data-figure="">{match.display}</span>
+              <span className="text-caption text-ink-3">{match.unit_line}</span>
+            </p>
           ) : (
             <p className="text-body-sm text-ink-3">{s.card_missing}</p>
           )}
-        </Tile>
-        <Tile title={s.moved_heading} tipLabel={s.moved_info_label} tip={s.moved_caption}
-          tipId={`${id}-moved-info`}>
-          <p className="-mt-1 mb-2.5 text-overline font-normal tracking-normal text-ink-3" data-testid="moved-caption">
+        </Section>
+        <Section title={s.moved_heading} tipLabel={s.moved_info_label} tip={s.moved_caption}
+          tipId={`${id}-moved-info`}
+          className={two
+            ? "border-t border-rule pt-3.5 sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:border-l sm:border-t-0 sm:pl-7 sm:pt-0"
+            : "border-t border-rule pt-3.5"}>
+          <p className="-mt-1 mb-3 text-overline font-normal tracking-normal text-ink-3" data-testid="moved-caption">
             {s.moved_caption}
           </p>
-          <ul className="flex flex-col gap-1.5" data-testid="moved-bars">
+          <ul className="flex flex-col gap-2" data-testid="moved-bars">
             {parts.map((c) => {
               const bar = divergingBar(c.value);
               const plus = c.value >= 0;
               const words = chipWords(c.pillar);
               return (
-                <li key={c.pillar} className="grid grid-cols-[132px_1fr_44px] items-center gap-2 text-caption">
+                <li key={c.pillar} className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_44px] items-center gap-2.5 text-caption">
                   <span className="leading-tight text-ink-2" data-pillar={c.pillar}>
                     {label(c.pillar)}
                     {words.length > 0 && <span className="text-ink-3"> · {words.join(", ")}</span>}
@@ -398,42 +408,42 @@ export function RowDetail({ id, row, meta, href, onCompare, sameSex = false, var
                       style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
                     />
                   </span>
-                  <span className={`text-right font-semibold ${plus ? "text-good-strong" : "text-poor-strong"}`}>
+                  <span className={`text-right font-semibold tabular-nums ${plus ? "text-good-strong" : "text-poor-strong"}`}>
                     {signedPoints(c.value)}
                   </span>
                 </li>
               );
             })}
           </ul>
-        </Tile>
+        </Section>
       </div>
-      <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <Link href={href}
-          className="inline-flex h-11 items-center rounded-md border border-line-strong bg-surface px-4 text-body-sm font-semibold text-ink hover:bg-hover">
-          {fill(s.open_city, { city })}
-        </Link>
-        <button type="button" onClick={onCompare}
-          className="inline-flex min-h-11 items-center px-1 text-body-sm font-semibold text-accent hover:text-accent-hover">
-          {s.compare_action}
-        </button>
+      <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <Link href={href}
+            className="inline-flex h-11 items-center rounded-md border border-line-strong bg-surface px-4 text-body-sm font-semibold text-ink hover:bg-hover">
+            {fill(s.open_city, { city })}
+          </Link>
+          <button type="button" onClick={onCompare}
+            className="inline-flex min-h-11 items-center px-1 text-body-sm font-semibold text-accent hover:text-accent-hover">
+            {s.compare_action}
+          </button>
       </p>
     </div>
   );
 }
 
-/** One tile of a row's detail: a white card with its title (and, where
- * the tile has one, an information box holding the longer words, its
- * button named on its own — Phase 6, F26 — so a screen reader no longer
- * hears the heading twice). Its box sits against the tile, never over it
- * (F17). */
-function Tile({ title, tip, tipId, tipLabel, testid, children }: {
+/** One part of a row's detail: its title (and, where the part has one, an
+ * information box holding the longer words, its button named on its own —
+ * Phase 6, F26 — so a screen reader no longer hears the heading twice). Its
+ * box sits against the part, never over it (F17). Since 2026-10-10 the
+ * parts share the detail's ground, divided by hairlines, not white cards. */
+function Section({ title, tip, tipId, tipLabel, testid, className = "", children }: {
   title: string; tip?: string; tipId?: string; tipLabel?: string; testid?: string;
-  children: React.ReactNode;
+  className?: string; children: React.ReactNode;
 }) {
   const ref = useRef<HTMLElement>(null);
   return (
-    <section ref={ref} className="rounded-md border border-rule bg-surface p-4" data-testid={testid}>
-      <h4 className="mb-2.5 flex items-center gap-1 text-caption font-semibold text-ink-2">
+    <section ref={ref} className={className} data-testid={testid}>
+      <h4 className="mb-2 flex items-center gap-1 text-caption font-semibold text-ink-2">
         {title}
         {tip && tipId && <InfoTip id={tipId} label={tipLabel ?? title} anchor={ref}>{tip}</InfoTip>}
       </h4>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  balancePosition, divergingBar, fill, INITIAL_VISIBLE, showMore, visibleSlice, visibleToInclude,
+  balanceDots, divergingBar, fill, INITIAL_VISIBLE, showMore, visibleSlice, visibleToInclude,
 } from "../src/lib/results";
 import { DEFAULT_PREFS, describeChange, describeSearchShort, filtersSummary } from "../src/lib/prefs";
 
@@ -26,17 +26,16 @@ describe("visible slicing (Phase 5)", () => {
   });
 });
 
-describe("BalanceTrack position", () => {
-  it("puts even in the middle and more of the sought sex to the right", () => {
-    expect(balancePosition(100)).toBeCloseTo(0.5);
-    expect(balancePosition(118)).toBeCloseTo(0.65);
-    expect(balancePosition(82)).toBeCloseTo(0.35);
+describe("balance dots (2026-10-10)", () => {
+  it("draws one dot for every ten, the last filled to the fraction", () => {
+    expect(balanceDots(100)).toEqual({ full: 10, part: 0, beyond: false });
+    expect(balanceDots(118)).toEqual({ full: 11, part: 0.8, beyond: false });
+    expect(balanceDots(85)).toEqual({ full: 8, part: 0.5, beyond: false });
   });
-  it("clamps beyond 40 and 160", () => {
-    expect(balancePosition(20)).toBe(0);
-    expect(balancePosition(40)).toBe(0);
-    expect(balancePosition(160)).toBe(1);
-    expect(balancePosition(240)).toBe(1);
+  it("clamps to four and sixteen dots, marking a figure past the row", () => {
+    expect(balanceDots(20)).toEqual({ full: 4, part: 0, beyond: false });
+    expect(balanceDots(160)).toEqual({ full: 16, part: 0, beyond: false });
+    expect(balanceDots(240)).toEqual({ full: 16, part: 0, beyond: true });
   });
 });
 

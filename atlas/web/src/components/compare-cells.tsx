@@ -64,7 +64,8 @@ export function ValueCell({ win = false, edgeLabel = "", variant = false, childr
             <EdgeMark />
           </span>
         )}
-        <span className="min-w-0">{children}</span>
+        {/* fills the cell, so a figure drawn to its width (balance's dots) has one */}
+        <span className="min-w-0 flex-1">{children}</span>
       </span>
     </td>
   );

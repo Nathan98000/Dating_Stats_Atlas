@@ -90,14 +90,17 @@ test("the expanded row: balance, compatibility, and what moved the score, every 
   await expect(detail).toContainText(ps.moved_heading);
   await expect(detail.getByTestId("moved-bars").locator("li")).toHaveCount(6);
   await expect(detail.getByRole("link", { name: /^Open .+ →$/ })).toBeVisible();
-  // the dot sits right of the middle exactly when there are more men
+  // the dots (Nathan, 2026-10-10, replacing the track): ten for the other
+  // sex, one for every ten of the sought sex, the last filled to the
+  // fraction — the served per_100 drawn, never a new number
   const per100 = Number((await detail.getByTestId("balance-tally").textContent())!.match(/(\d+) men per 100/)![1]);
-  const [dot, track] = await Promise.all([
-    detail.getByTestId("balance-dot").boundingBox(), detail.getByTestId("balance-track").boundingBox()]);
-  const centre = dot!.x + dot!.width / 2;
-  const mid = track!.x + track!.width / 2;
-  if (per100 > 100) expect(centre).toBeGreaterThan(mid);
-  else if (per100 < 100) expect(centre).toBeLessThan(mid);
+  const dots = detail.getByTestId("balance-dots");
+  await expect(dots.locator('[data-row="seeker"]')).toHaveAttribute("data-full", "10");
+  const tens = Math.min(160, Math.max(40, per100)) / 10;
+  const sought = dots.locator('[data-row="sought"]');
+  await expect(sought).toHaveAttribute("data-full", String(Math.floor(tens)));
+  if (tens % 1) await expect(sought).toHaveAttribute("data-part", (tens % 1).toFixed(1));
+  else await expect(sought).not.toHaveAttribute("data-part", /.*/);
 });
 
 test("the chips are the served movers: two pluses at most, then one minus", async ({ page }) => {

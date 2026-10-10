@@ -22,16 +22,19 @@ export function visibleToInclude(visible: number, index: number): number {
   return Math.max(visible, index + 1);
 }
 
-/** Phase 5: where a balance figure sits on the BalanceTrack, as a share of
- * its width (0-1). The track spans 40 to 160 per 100, clamped; 100 (even)
- * is the middle, and above 100 — more of the sought sex — is to the right.
- * Presentation scaling of the served per_100, never a new number. */
+/** Balance as dots, one for every ten singles (Nathan, 2026-10-10; it
+ * replaced Phase 5's track): the sought sex's row for a served per_100,
+ * clamped to 40-160 — four to sixteen dots — as its whole dots, the
+ * fraction of the next, and whether the figure runs past the row. The
+ * other sex's row is always ten. Presentation scaling of the served
+ * per_100, never a new number. */
 export const BALANCE_MIN = 40;
 export const BALANCE_MAX = 160;
 
-export function balancePosition(per100: number): number {
-  const x = (per100 - BALANCE_MIN) / (BALANCE_MAX - BALANCE_MIN);
-  return Math.min(1, Math.max(0, x));
+export function balanceDots(per100: number): { full: number; part: number; beyond: boolean } {
+  const tens = Math.min(BALANCE_MAX, Math.max(BALANCE_MIN, per100)) / 10;
+  const full = Math.floor(tens);
+  return { full, part: Number((tens - full).toFixed(2)), beyond: per100 > BALANCE_MAX };
 }
 
 /** The diverging bars of "What moved the score": ±DIVERGE_SPAN points

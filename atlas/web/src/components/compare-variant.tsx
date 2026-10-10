@@ -6,7 +6,7 @@ import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
 import { effectiveSex } from "@/lib/about-you";
 import { fill } from "@/lib/results";
-import { BalanceTrack } from "./balance-track";
+import { BalanceDots } from "./balance-dots";
 import { DiffCell, edgeOf, Row, ValueCell, type Edge } from "./compare-cells";
 
 /** The compare table's rows an "about you" variant changes (m4.0.0, ADR
@@ -174,7 +174,7 @@ export function CompareVariantRows({
       <Row label={meta.features.pool_balance.display_name}>
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} variant win={win(balEdge, i)} edgeLabel={edge}>
-            {r ? <BalanceTrack balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} />
+            {r ? <BalanceDots balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} />
               : <span className="text-caption text-ink-2">{policy.compare_not_ranked}</span>}
           </ValueCell>
         ))}

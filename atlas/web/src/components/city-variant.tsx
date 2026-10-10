@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import type { Meta, VariantResponse } from "@/lib/types";
 import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
-import { BalanceTrack } from "./balance-track";
+import { BalanceDots } from "./balance-dots";
 import { MatchFigure } from "./match";
 import { FlagCaptions, ScoreTrack } from "./row";
 import { effectiveSex } from "@/lib/about-you";
@@ -89,7 +89,7 @@ export function CityVariantPart({
           </div>
           <div className="min-w-[200px]">
             <h3 className="mb-2 text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
-            <BalanceTrack balance={ranked.balance} meta={meta} id={`city-${cbsa}`} sameSex={sameSex} />
+            <BalanceDots balance={ranked.balance} meta={meta} id={`city-${cbsa}`} sameSex={sameSex} />
           </div>
           {/* the compatibility figure beside pool and balance (no box or
               band since Phase 4b) */}
@@ -112,7 +112,7 @@ export function CityVariantPart({
       <h2 className="text-body font-semibold">
         {meta.features.pool_balance.display_name} in {city}
       </h2>
-      <BalanceTrack balance={balance} meta={meta} id={`city-${cbsa}-s`} caption={false} />
+      <BalanceDots balance={balance} meta={meta} id={`city-${cbsa}-s`} caption={false} />
       <p className="max-w-[64ch] text-caption text-ink-3">
         {sameSex ? policy.balance_caption_same_sex : policy.balance_caption}
       </p>
