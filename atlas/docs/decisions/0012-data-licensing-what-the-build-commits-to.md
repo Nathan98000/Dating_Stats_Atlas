@@ -287,7 +287,7 @@ never scored or asked). What the build commits to:
 
 ## Amended after the Phase 5 report (8 October 2026): the city photographs
 
-DRAFT for Nathan's approval. After the Phase 5 report Nathan asked for the
+Approved by Nathan on 10 October 2026. After the Phase 5 report Nathan asked for the
 most representative photograph of each city, and no locator map on the home
 page's cards, then: "Photos do not have to come specifically from Wikimedia.
 Assume that I will able to get license permission." What the build commits

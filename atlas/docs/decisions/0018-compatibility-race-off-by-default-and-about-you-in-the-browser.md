@@ -220,7 +220,7 @@ build, 5b780e4f2444, its manifest refreshed.
 
 ## Amended in Phase 5 (8 October 2026): each variant carries its median score
 
-DRAFT for Nathan's approval (Phase 5, commit I). The featured cards and the city page draw a tick
+Approved by Nathan on 10 October 2026 (Phase 5, commit I). The featured cards and the city page draw a tick
 on the score track at the median overall score of the cities ranked for the search, so "77/100"
 reads against the middle of the list. The median is a number, so the API computes it: each entry
 of `variants.list` gains `score_median: {value, display}` — the median of that variant's
