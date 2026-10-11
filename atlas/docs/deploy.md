@@ -587,6 +587,15 @@ ranked cities on m4.3.0; the API's and web's logs hold no error; disk 37%.
 Rollback: images `dating-stats-atlas-{api,web}:4bdba43` (and `:f894372`) and
 the code at `src_4bdba43` (and `src_f894372`).
 
+**Only the newest backup is kept (Nathan, 2026-10-11).** He wants one
+rollback set on the VM, the version just before the live one, so after each
+deploy the set before it goes, once its code is confirmed against git and
+its photographs against the Mac's. Done now for `:f894372` and
+`src_f894372` (code = f894372 file for file, all 2,192 photographs on the
+Mac; disk 37% to 31%). The rollback set is the images `:4bdba43` and the
+code at `src_4bdba43`, which also holds the Caddyfile the running Caddy
+mounts.
+
 ## Environment variables
 
 | var | where | meaning |
