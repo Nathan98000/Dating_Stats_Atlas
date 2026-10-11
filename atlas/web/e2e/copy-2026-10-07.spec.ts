@@ -56,10 +56,13 @@ test("the terms carry the new date and Nathan's 2026-10-07 summary", async ({ pa
   await page.goto("/terms");
   const article = page.locator("article.prose-method");
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
-  expect(text).toMatch(/Last updated: October 7, 2026/);
+  // the date and the contact address moved on 2026-10-11 (the rename's
+  // name, then Nathan's address at the domain)
+  expect(text).toMatch(/Last updated: October 11, 2026/);
   expect(text).toMatch(/don't treat a figure as a fact about an individual/);
   expect(text).toMatch(/Estimates, not recommendations/);
-  expect(text).toMatch(/Questions about these terms go to dating\.stats\.atlas@gmail\.com\./);
+  expect(text).toMatch(/Questions about these terms go to hello@datingscenedata\.com\./);
+  expect(text).not.toContain("gmail");
 });
 
 test("everyday prices shows Nathan's grocery photograph, credited in Sources and credits", async ({ page }) => {

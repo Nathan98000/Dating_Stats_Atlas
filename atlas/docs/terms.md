@@ -5,7 +5,7 @@ data for your general interest. Enjoy it and share it, but don't treat a
 figure as a fact about an individual, and never use the site to judge or
 single anyone out.
 
-Last updated: October 7, 2026
+Last updated: October 11, 2026
 
 ## What the site is
 
@@ -71,6 +71,6 @@ We may change the site or these terms at any time. When we change these
 terms we'll update the date at the top; using the site after that means
 you accept the new terms.
 
-Questions about these terms go to dating.stats.atlas@gmail.com. By using
+Questions about these terms go to hello@datingscenedata.com. By using
 the site you agree to these terms. If you don't agree, please don't use
 it.

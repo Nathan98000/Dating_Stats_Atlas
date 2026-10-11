@@ -36,8 +36,8 @@ infrastructure keeps the old name, by design: the Compose project
 `dating-stats-atlas` (its images, the rollback tags and the `caddy_data`
 volume that holds the certificates), the Oracle VCN, subnet, security list
 and VM, the SSH key, the unused Fly app names, the GitHub repository and the
-Mac's folder. The Terms page's contact address is still
-dating.stats.atlas@gmail.com.
+Mac's folder. The Terms page's contact address stayed
+dating.stats.atlas@gmail.com until the domain's email (below).
 
 **The domain (2026-10-11).** Nathan registered `datingscenedata.com` at
 Squarespace Domains, which also serves its DNS. There the Squarespace

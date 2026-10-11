@@ -1,5 +1,5 @@
 {
- "change_set": "Nathan's changes of 2026-10-11: the home page's balance footnote is deleted; the site moves to its own domain, datingscenedata.com",
+ "change_set": "Nathan's changes of 2026-10-11: the home page's balance footnote is deleted; the site moves to its own domain, datingscenedata.com; the Terms page's contact address moves to it",
  "note": "Only what renders and where the site answers move: balance_caption stays in balance's ⓘ box (the ranking cards' detail and the city page's card) and under the dots of a city whose results are withheld. No string, number or build changes; MODEL_VERSION stays m4.3.0 on build d62202fd0280.",
  "changes": [
   {
@@ -17,6 +17,22 @@
    "old": "https://datingscenedata.duckdns.org",
    "new": "https://datingscenedata.com",
    "why": "Nathan's request: an address of the site's own, after weighing DuckDNS's drawbacks (blocked on some networks, a name the site doesn't own, no email)"
+  },
+  {
+   "change": "3. The Terms page's contact address",
+   "kind": "changed (Nathan's request)",
+   "where": "docs/terms.md (the /terms page), the closing paragraph",
+   "old": "Questions about these terms go to dating.stats.atlas@gmail.com.",
+   "new": "Questions about these terms go to hello@datingscenedata.com.",
+   "why": "Nathan's request: the domain's own address (Squarespace email forwarding)"
+  },
+  {
+   "change": "4. The Terms page's date",
+   "kind": "changed (follows from 2 and the rename)",
+   "where": "docs/terms.md, the line under the summary",
+   "old": "Last updated: October 7, 2026",
+   "new": "Last updated: October 11, 2026",
+   "why": "The terms promise to update the date at the top when they change; the rename changed three sentences on 2026-10-11 without moving it, and the contact address changes now"
   }
  ]
 }
