@@ -422,6 +422,24 @@ the old code at `/srv/atlas/src_69c0870`, whose Caddyfile and compose.yaml
 are the old address's (Caddy rolls back with the same `--force-recreate`
 run from that folder).
 
+**Deploy record (2026-10-11, the log fix, on Nathan's word "Make the log
+fix.").** 69f0ac3, the Caddyfile's log filter (not pushed; the Logs bullet
+above says what it does). Tested first on the VM with caddy 2.11.6 in a
+throwaway container: a slow client cut off mid-download left the warning
+without the request and with `[ip]` for both addresses. Then the code in a
+fresh folder (1,253 files, checked against the commit file for file; the
+photographs copied from the live folder, all 2,192 identical to the Mac's),
+the folders swapped (the previous code kept as `src_2c420c9`) and only
+Caddy recreated, the API and web untouched; Caddy reused both certificates
+from `caddy_data`. The old container went with its log, including the
+eight warnings that held visitors' addresses. Checked: Caddy runs the new
+Caddyfile (sha256 inside the container) and its running configuration
+carries the filter; the new address answers 200 and the old one 301, path
+and query kept; page loads cut short on purpose from the Mac left two
+warnings with neither the request nor an address; the only IP address in
+Caddy's log is 127.0.0.1 (its admin endpoint). Rollback: recreate Caddy
+from `src_2c420c9`, whose Caddyfile has no filter.
+
 ## Environment variables
 
 | var | where | meaning |
