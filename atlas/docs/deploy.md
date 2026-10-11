@@ -440,6 +440,34 @@ warnings with neither the request nor an address; the only IP address in
 Caddy's log is 127.0.0.1 (its admin endpoint). Rollback: recreate Caddy
 from `src_2c420c9`, whose Caddyfile has no filter.
 
+**Deploy record (2026-10-11, afternoon, on Nathan's word "merge, push, and
+deploy as needed").** f894372: the home page's balance footnote deleted
+(ADR 0004 amended). Merged and pushed: main = origin/main = f894372, with
+the day's earlier commits (2c420c9, dadc32c, 69f0ac3, 298880b). Before the
+push the added lines held no secret pattern (the two hits are the site's
+public contact address, already on GitHub), no data file crossed
+(`og/home.png` is the committed link preview, already on GitHub) and the
+Pew history scan was clean (0 violations over 2,668 blobs); CI run
+38154445685 green. No number moves and the build is unchanged (the live
+manifest is the main checkout's, by sha256), so no `build_next`. Steps: the
+running images tagged `:2c420c9`; the code in a fresh folder (1,254 files,
+checked against the commit file for file; the photographs copied from the
+live folder, all 2,192 identical to the Mac's); the images built in 206 s
+while the old containers served; and the private copy, on the live build
+read-only, passed every page check, the footnote check (no footnote
+element; the sentence nowhere on the visible home page, with and without a
+search, at 1440 and 390 px; balance's box still reading it), the
+click-through and the real-build checks (10 passed, 2 skipped by design).
+Then the folders were swapped (the previous code kept as `src_69f0ac3`) and
+`up -d api web` run (the API answered health 11 seconds later); Caddy kept
+running, and the Caddyfile it mounts now lives in `src_69f0ac3`, so that
+folder stays until Caddy is next recreated. Checked from the Mac: the same
+checks pass on the live site; the old address still answers 301;
+`/api/rank` answers 193 ranked cities on m4.3.0; the only IP address in
+Caddy's log is 127.0.0.1; the API's and web's logs hold no error; memory
+32% used, disk 71%. Rollback: images `dating-stats-atlas-{api,web}:2c420c9`
+(and `:69c0870`, `:b20fb6f`, `:2c4c056`) and the code at `src_69f0ac3`.
+
 ## Environment variables
 
 | var | where | meaning |
