@@ -1,4 +1,4 @@
-# Deploy runbook — the site is LIVE at https://datingscenedata.duckdns.org
+# Deploy runbook — the site is LIVE at https://datingscenedata.com
 
 The answers to the counsel packet have returned and are kept private (never
 committed); ADR 0012 records Nathan's decisions and the build encodes them.
@@ -11,8 +11,9 @@ done, Nathan said to launch on 3 October 2026, and the site opened that day
 at https://dating-stats-atlas.duckdns.org (Topology C's launch record). Since
 9 October 2026 it serves model m4.3.0 on build d62202fd0280, its manifest
 refreshed on 10 and 11 October (the deploy records below). Since 11 October
-2026 it is Dating Scene Data at https://datingscenedata.duckdns.org, the old
-address redirecting to it (the rename, below).
+2026 it is Dating Scene Data, and since that afternoon at its own domain,
+https://datingscenedata.com; www and both DuckDNS addresses redirect to it
+(the rename and the domain, below).
 
 **The rename (2026-10-10; deployed 2026-10-11).** Nathan renamed the site
 Dating Scene Data, at a new address, `datingscenedata.duckdns.org`, which
@@ -37,6 +38,21 @@ volume that holds the certificates), the Oracle VCN, subnet, security list
 and VM, the SSH key, the unused Fly app names, the GitHub repository and the
 Mac's folder. The Terms page's contact address is still
 dating.stats.atlas@gmail.com.
+
+**The domain (2026-10-11).** Nathan registered `datingscenedata.com` at
+Squarespace Domains, which also serves its DNS. There the Squarespace
+Defaults were deleted and two A records point the apex and `www` at
+132.145.205.110; the TXT record `v=spf1 -all` stays (the domain sends no
+mail, so mail forged in its name fails), and there is no AAAA record, as
+the VM has no IPv6 address. Caddy's `SITE_ADDRESS` is the domain, and
+`REDIRECT_ADDRESSES` (`www.datingscenedata.com`,
+`datingscenedata.duckdns.org` and `dating-stats-atlas.duckdns.org`) answer
+with a permanent redirect to the same page there, path and query intact;
+`SITE_URL`, the base of the absolute link-preview URLs, follows. Both
+DuckDNS names stay claimed and pointed at the VM so that links shared
+before still arrive. The registration renews at Squarespace, on Nathan's
+account; if it lapsed, the address would stop answering, while the
+DuckDNS names would keep forwarding to a dead address.
 
 ## The invariant everything else serves (D04)
 
@@ -132,11 +148,12 @@ internet and terminates HTTPS.
 - **Upkeep.** Docker, Compose and buildx come from Ubuntu's packages.
   Unattended security upgrades run, with an automatic reboot at 04:30 UTC
   when one needs it, and every service restarts unless stopped.
-- **Address.** `datingscenedata.duckdns.org` since 11 October 2026, the
-  first address, `dating-stats-atlas.duckdns.org`, redirecting to it (the
-  rename, above). DuckDNS is on the Public
-  Suffix List, so Let's Encrypt treats the name as its own. Caddy obtains
-  and renews the certificate.
+- **Address.** `datingscenedata.com` since 11 October 2026 (the
+  domain, above), with `www.datingscenedata.com` and the earlier DuckDNS
+  addresses, `datingscenedata.duckdns.org` (the rename's) and
+  `dating-stats-atlas.duckdns.org` (the launch's), redirecting to it.
+  DuckDNS is on the Public Suffix List, so Let's Encrypt treats each
+  DuckDNS name as its own. Caddy obtains and renews every certificate.
 - **Logs.** No access log is configured anywhere. Caddy's default log
   records no visitor address, even for failed or malformed TLS
   connections (tested on the VM on 2026-10-03). Its reverse proxy did,
@@ -483,6 +500,47 @@ Then, also at his request, Docker's build cache was cleared (`docker
 builder prune --all`, 20 GB of cache records): disk 58% to 21%, and the
 live and rollback images still start. The next image build starts cold, so
 it takes longer than the usual three to four minutes.
+
+**Deploy record (2026-10-11, evening, on Nathan's word "I now own
+datingscenedata.com. Please make the necessary changes so that that address
+works.").** 4bdba43, the domain (above); not pushed, so CI's three jobs ran
+on the Mac against it: pytest 209 passed (1 skipped), vitest 145 passed,
+Playwright 361 passed (62 skipped: the 50 by design and the 12 photograph
+checks, which skip on a checkout without the photographs, as on CI). No
+number moves and the build is unchanged. Steps: the running images tagged
+`:f894372`; the code in a fresh folder (1,254 files, checked against the
+commit file for file; the photographs copied from the live folder, all
+2,192 identical to the Mac's); the images built cold in 304 s (the build
+cache had been cleared) while the old containers served; the Caddyfile
+validated with compose's own interpolation of its environment (the domain
+proxied; `www` and both DuckDNS names a 301 to it); and the private copy
+passed every page check (absolute link-preview URLs at the domain; no
+DuckDNS address on any page), the footnote check, the click-through and the
+real-build checks (10 passed, 2 skipped by design). Then the wait for
+Nathan's DNS: all four Squarespace name servers and Quad9 answered
+132.145.205.110 for the apex and `www`, and both names reached Caddy on port
+80. Then the folders were swapped (the previous code kept as
+`src_f894372`), `up -d api web` run (the API answered health 7 seconds
+later), and Caddy recreated: it obtained certificates for
+`datingscenedata.com` and `www.datingscenedata.com` from Let's Encrypt
+(YE2, until 9 January 2027) within seconds, reusing the DuckDNS names'
+from `caddy_data`. Checked from the Mac: the 16 pages answer 200 at the
+domain and an unknown page 404, with the same page checks, footnote check
+and click-through passing; `www` and both DuckDNS addresses answer 301 to
+the same page at the domain, path and query kept, http redirects to https
+(308), and an old http link to the first address arrives after two
+redirects; `/api/rank` answers 193 ranked cities on m4.3.0;
+`Referrer-Policy: no-referrer` and gzip as before; port 8000 closed and
+`/v1/health` and `/v1/meta` through the site 404; the only addresses in
+Caddy's log are 127.0.0.1 and Let's Encrypt's validators ("served key
+authentication"), none a visitor's; the API's and web's logs hold no
+error; memory 32% used, disk 34%. A resolver that looked the domain up
+before the change may keep Squarespace's default records for up to four
+hours (their TTL), so for a while some visitors could see Squarespace's
+placeholder. Rollback: images `dating-stats-atlas-{api,web}:f894372` (and
+`:2c420c9`), code at `src_f894372` (and `src_69f0ac3`); Caddy rolls back by
+`--force-recreate` from `src_f894372`, which serves the DuckDNS name
+again.
 
 ## Environment variables
 
