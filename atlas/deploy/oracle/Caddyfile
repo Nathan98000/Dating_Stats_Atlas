@@ -8,6 +8,25 @@
 # images keep their names when unchanged, so a browser may reuse them for a
 # week instead of asking again on every view (Next serves public files with
 # max-age=0; ">" replaces the proxied header after the app answers).
+
+# No record of a visit in Caddy's own log either (2026-10-11). When a visitor
+# cuts a page short, the reverse proxy warns "aborting with incomplete
+# response" with the request (the visitor's address, browser and page) and
+# an error that names the visitor's address ("write tcp ...->[ip]:port").
+# The filter drops the request from every line and masks any IP address in
+# the error, so the warning keeps only what failed and when.
+{
+	log {
+		format filter {
+			wrap json
+			fields {
+				request delete
+				error regexp "(\d{1,3}\.){3}\d{1,3}|\[[0-9A-Fa-f:.%]+\]" "[ip]"
+			}
+		}
+	}
+}
+
 {$SITE_ADDRESS} {
 	encode zstd gzip
 	@photos path /cities/* /stats/* /og/*

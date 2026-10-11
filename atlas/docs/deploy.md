@@ -139,7 +139,12 @@ internet and terminates HTTPS.
   and renews the certificate.
 - **Logs.** No access log is configured anywhere. Caddy's default log
   records no visitor address, even for failed or malformed TLS
-  connections (tested on the VM on 2026-10-03). Next.js logs no requests,
+  connections (tested on the VM on 2026-10-03). Its reverse proxy did,
+  though, when a visitor cut a page short: the warning "aborting with
+  incomplete response" carried the request (address, browser, page) and an
+  error naming the address (found 2026-10-11). Since then a filter in the
+  Caddyfile's global options drops the request from every Caddy log line
+  and masks any IP address in an error as `[ip]`. Next.js logs no requests,
   and the API's access lines show only the web container's address. Each
   service's log is capped at 2 × 5 MB.
 
