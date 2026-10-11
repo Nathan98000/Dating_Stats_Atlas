@@ -1,7 +1,7 @@
 #!/bin/bash
 # What only the server shows, on the live site (still Phase 4 / m4.2.0 on 8 October 2026):
 # compression of HTML, JS and /api/rank, and caching of the photographs and static files.
-L=https://datingscenedata.duckdns.org
+L=https://datingscenedata.com
 echo "== nav (is Phase 5 live?)"; curl -s $L/ | grep -o -E 'Rankings|Compare cities|About the site|How it works' | sort | uniq -c
 echo "== home HTML, gzip asked"; curl -s -D - -o /dev/null -H 'accept-encoding: gzip, br, zstd' $L/ | grep -i -E '^HTTP/|content-encoding|cache-control'
 echo "== home HTML bytes on the wire (gzip asked)"; curl -s -o /dev/null -w '%{size_download}\n' -H 'accept-encoding: gzip, br, zstd' $L/

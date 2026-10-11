@@ -1,6 +1,6 @@
 {
- "change_set": "Nathan's change of 2026-10-11: the home page's balance footnote is deleted",
- "note": "Only what renders moves: balance_caption stays in balance's ⓘ box (the ranking cards' detail and the city page's card) and under the dots of a city whose results are withheld. No string, number or build changes; MODEL_VERSION stays m4.3.0 on build d62202fd0280.",
+ "change_set": "Nathan's changes of 2026-10-11: the home page's balance footnote is deleted; the site moves to its own domain, datingscenedata.com",
+ "note": "Only what renders and where the site answers move: balance_caption stays in balance's ⓘ box (the ranking cards' detail and the city page's card) and under the dots of a city whose results are withheld. No string, number or build changes; MODEL_VERSION stays m4.3.0 on build d62202fd0280.",
  "changes": [
   {
    "change": "1. The home page's balance footnote",
@@ -9,6 +9,14 @@
    "old": "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation.",
    "new": "(nothing)",
    "why": "Nathan's request"
+  },
+  {
+   "change": "2. The site's address",
+   "kind": "changed (Nathan registered datingscenedata.com at Squarespace Domains)",
+   "where": "web/src/lib/chrome.ts SITE_URL (absolute Open Graph URLs); deploy/oracle/compose.yaml SITE_ADDRESS, with REDIRECT_ADDRESSES (www.datingscenedata.com and both DuckDNS names) redirected by the Caddyfile; web/scripts/review/live_site.sh",
+   "old": "https://datingscenedata.duckdns.org",
+   "new": "https://datingscenedata.com",
+   "why": "Nathan's request: an address of the site's own, after weighing DuckDNS's drawbacks (blocked on some networks, a name the site doesn't own, no email)"
   }
  ]
 }

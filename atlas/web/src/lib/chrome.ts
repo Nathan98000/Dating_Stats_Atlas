@@ -18,7 +18,7 @@ export const SITE_DESCRIPTION =
   "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.";
 
 /** The site's public address, for absolute Open Graph URLs. */
-export const SITE_URL = process.env.SITE_URL ?? "https://datingscenedata.duckdns.org";
+export const SITE_URL = process.env.SITE_URL ?? "https://datingscenedata.com";
 
 /** The home page's link-preview image (Phase 6, F31): the headline on
  * paper, a committed 1200x630 PNG (scripts/og_home.mjs). */
