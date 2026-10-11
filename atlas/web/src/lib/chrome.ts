@@ -8,7 +8,7 @@ import { fill } from "./results";
  * prerendered at build time, need. */
 export const CHROME = (statPages as unknown as { chrome: Record<string, string> }).chrome;
 
-/** "{page} · Dating Stats Atlas"; the bare site name when there is no page. */
+/** "{page} · Dating Scene Data"; the bare site name when there is no page. */
 export function pageTitle(page?: string): string {
   return page ? fill(CHROME.title_template, { page }) : CHROME.title_site;
 }
@@ -18,7 +18,7 @@ export const SITE_DESCRIPTION =
   "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.";
 
 /** The site's public address, for absolute Open Graph URLs. */
-export const SITE_URL = process.env.SITE_URL ?? "https://dating-stats-atlas.duckdns.org";
+export const SITE_URL = process.env.SITE_URL ?? "https://datingscenedata.duckdns.org";
 
 /** The home page's link-preview image (Phase 6, F31): the headline on
  * paper, a committed 1200x630 PNG (scripts/og_home.mjs). */
@@ -49,7 +49,7 @@ export function pageMetadata(title: string, description: string, url: string, im
 
 /** A results page's title (Phase 6, F31): the registry's title_results
  * around the page's own results heading ("Top cities for single men,
- * 28–40 · Dating Stats Atlas"), without the heading's invisible word
+ * 28–40 · Dating Scene Data"), without the heading's invisible word
  * joiners. */
 export function resultsTitle(policy: Record<string, string>, heading: string): string {
   return fill(policy.title_results, { heading: heading.replace(/\u2060/g, "") });

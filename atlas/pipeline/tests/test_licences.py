@@ -28,7 +28,7 @@ def test_every_shippable_source_carries_a_citation():
 
 
 def test_census_citations_are_the_decided_form_with_the_api_notice():
-    form = re.compile(r"^Source: U\.S\. Census Bureau, [^;]+; estimates by Dating Stats Atlas\.$")
+    form = re.compile(r"^Source: U\.S\. Census Bureau, [^;]+; estimates by Dating Scene Data\.$")
     assert CENSUS_API_NOTICE == ("This product uses the Census Bureau Data API but is not "
                                  "endorsed or certified by the Census Bureau.")
     for sid in CENSUS:

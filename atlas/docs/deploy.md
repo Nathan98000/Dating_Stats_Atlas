@@ -12,6 +12,30 @@ at https://dating-stats-atlas.duckdns.org (Topology C's launch record). Since
 9 October 2026 it serves model m4.3.0 on build d62202fd0280, its manifest
 refreshed on 10 October (the deploy records below).
 
+**The rename (2026-10-10, not yet deployed).** Nathan renamed the site
+Dating Scene Data, at a new address, `datingscenedata.duckdns.org`, which
+he will claim at duckdns.org and point at 132.145.205.110. The repository
+now carries both: the name (the registry's page titles, the header and
+footer, the citations' "estimates by Dating Scene Data", Terms, the home
+page's link preview) and the address (`SITE_URL`'s default for absolute
+link-preview URLs, and Caddy's `SITE_ADDRESS`). Caddy answers the old
+address, `OLD_SITE_ADDRESS`, with a permanent redirect to the same page on
+the new one, so links shared before the rename still arrive; the old DuckDNS
+name therefore stays claimed and pointed at the VM. The build keeps its id,
+d62202fd0280, with its manifest refreshed (registry and citation strings
+only), and MODEL_VERSION stays m4.3.0. To deploy it: claim the new name
+first and check that it resolves to 132.145.205.110, since Caddy needs that
+to obtain its certificate; then the steps of 10 October, the manifest
+crossing as `build_next`; then recreate Caddy, because the Caddyfile
+changed (`--profile public up -d --no-deps --force-recreate caddy`). Until
+then the live site keeps the old name at the old address. The
+infrastructure keeps the old name, by design: the Compose project
+`dating-stats-atlas` (its images, the rollback tags and the `caddy_data`
+volume that holds the certificates), the Oracle VCN, subnet, security list
+and VM, the SSH key, the unused Fly app names, the GitHub repository and the
+Mac's folder. The Terms page's contact address is still
+dating.stats.atlas@gmail.com.
+
 ## The invariant everything else serves (D04)
 
 The FastAPI process is never public. It has no CORS headers, no public
@@ -106,7 +130,9 @@ internet and terminates HTTPS.
 - **Upkeep.** Docker, Compose and buildx come from Ubuntu's packages.
   Unattended security upgrades run, with an automatic reboot at 04:30 UTC
   when one needs it, and every service restarts unless stopped.
-- **Address.** `dating-stats-atlas.duckdns.org`. DuckDNS is on the Public
+- **Address.** `dating-stats-atlas.duckdns.org` *[after the rename is
+  deployed, `datingscenedata.duckdns.org`, the old name redirecting to it;
+  see the rename above]*. DuckDNS is on the Public
   Suffix List, so Let's Encrypt treats the name as its own. Caddy obtains
   and renews the certificate.
 - **Logs.** No access log is configured anywhere. Caddy's default log

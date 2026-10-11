@@ -292,14 +292,14 @@ for (const path of ["/city/provo-utah", "/compare/provo-utah/austin-texas"]) {
 test("every page has its own title and Open Graph tags", async ({ page }) => {
   test.skip(width(page) !== 1440, "once is enough");
   const want: [string, RegExp][] = [
-    ["/", /^Dating Stats Atlas$/],
-    ["/city/provo-utah", /^Provo, UT · Dating Stats Atlas$/],
-    ["/compare/provo-utah/austin-texas", /^Provo, UT vs Austin, TX · Dating Stats Atlas$/],
-    ["/compare", /^Compare · Dating Stats Atlas$/],
-    ["/stats/rent_1br", /^Rent by city · Dating Stats Atlas$/],
-    ["/about", /^How it works · Dating Stats Atlas$/],
-    ["/privacy", /^Privacy · Dating Stats Atlas$/],
-    ["/terms", /^Terms · Dating Stats Atlas$/],
+    ["/", /^Dating Scene Data$/],
+    ["/city/provo-utah", /^Provo, UT · Dating Scene Data$/],
+    ["/compare/provo-utah/austin-texas", /^Provo, UT vs Austin, TX · Dating Scene Data$/],
+    ["/compare", /^Compare · Dating Scene Data$/],
+    ["/stats/rent_1br", /^Rent by city · Dating Scene Data$/],
+    ["/about", /^How it works · Dating Scene Data$/],
+    ["/privacy", /^Privacy · Dating Scene Data$/],
+    ["/terms", /^Terms · Dating Scene Data$/],
   ];
   for (const [path, title] of want) {
     await page.goto(path);

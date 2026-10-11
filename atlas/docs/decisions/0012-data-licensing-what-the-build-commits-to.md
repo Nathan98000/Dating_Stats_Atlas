@@ -56,6 +56,9 @@ boundary file (geography and the locator map).
 
 - **Citation**, one per product and vintage, in the form: "Source: U.S.
   Census Bureau, [product, vintage]; estimates by Dating Stats Atlas."
+  *[Amended 2026-10-10: the site is renamed Dating Scene Data, so the
+  credit reads "estimates by Dating Scene Data", and a modelled figure is
+  an estimate by Dating Scene Data.]*
 - **The Census API notice**, because the census adapter calls the Census
   Data API: "This product uses the Census Bureau Data API but is not
   endorsed or certified by the Census Bureau." It appears with the

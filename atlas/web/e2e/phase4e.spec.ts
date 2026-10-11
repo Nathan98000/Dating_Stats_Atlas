@@ -48,7 +48,7 @@ test("the nav reads Rankings, Compare, How it works", async ({ page }) => {
   // the brand link first, then the three destinations in order (Phase 5,
   // Nathan's decision 2: Rankings, Compare, How it works)
   await expect(header.getByRole("link")).toHaveText(
-    ["Dating Stats Atlas", "Rankings", "Compare", "How it works"]);
+    ["Dating Scene Data", "Rankings", "Compare", "How it works"]);
   await expect(header.getByRole("link", { name: "Rankings" })).toHaveAttribute("aria-current", "page");
   await expect(page.getByRole("link", { name: "Browse cities" })).toHaveCount(0);
   await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "How it works", exact: true }).click();

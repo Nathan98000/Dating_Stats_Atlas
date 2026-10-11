@@ -47,7 +47,7 @@ CENSUS_API_NOTICE = ("This product uses the Census Bureau Data API but is not "
 _CENSUS_TERMS = "https://www.census.gov/data/developers/about/terms-of-service.html"
 _CENSUS_CONDITIONS = (
     "cite with the Census Bureau Data API notice (the census adapter calls the API)",
-    "a figure the site computes is an estimate by Dating Stats Atlas, never "
+    "a figure the site computes is an estimate by Dating Scene Data, never "
     "\"Census data\"",
     "no Census Bureau logo or seal, and nothing implying endorsement",
 )
@@ -55,7 +55,7 @@ _FEDERAL_CONDITIONS = ("no agency logo or seal, and nothing implying endorsement
 
 
 def _census(*products: str) -> tuple[str, ...]:
-    return tuple(f"Source: U.S. Census Bureau, {p}; estimates by Dating Stats Atlas."
+    return tuple(f"Source: U.S. Census Bureau, {p}; estimates by Dating Scene Data."
                  for p in products)
 
 

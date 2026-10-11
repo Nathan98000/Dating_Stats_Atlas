@@ -6,14 +6,14 @@ import { fill } from "../src/lib/results";
 
 describe("page titles (Phase 5)", () => {
   it("names the page, then the site", () => {
-    expect(pageTitle("San Francisco, CA")).toBe("San Francisco, CA · Dating Stats Atlas");
+    expect(pageTitle("San Francisco, CA")).toBe("San Francisco, CA · Dating Scene Data");
     expect(pageTitle(fill(CHROME.title_compare_pair, { a: "Boston, MA", b: "Austin, TX" })))
-      .toBe("Boston, MA vs Austin, TX · Dating Stats Atlas");
-    expect(pageTitle(fill(CHROME.title_stat, { stat: "Rent" }))).toBe("Rent by city · Dating Stats Atlas");
-    expect(pageTitle(CHROME.about_title)).toBe("How it works · Dating Stats Atlas");
-    expect(pageTitle(CHROME.title_privacy)).toBe("Privacy · Dating Stats Atlas");
-    expect(pageTitle(CHROME.title_terms)).toBe("Terms · Dating Stats Atlas");
-    expect(pageTitle()).toBe("Dating Stats Atlas");
+      .toBe("Boston, MA vs Austin, TX · Dating Scene Data");
+    expect(pageTitle(fill(CHROME.title_stat, { stat: "Rent" }))).toBe("Rent by city · Dating Scene Data");
+    expect(pageTitle(CHROME.about_title)).toBe("How it works · Dating Scene Data");
+    expect(pageTitle(CHROME.title_privacy)).toBe("Privacy · Dating Scene Data");
+    expect(pageTitle(CHROME.title_terms)).toBe("Terms · Dating Scene Data");
+    expect(pageTitle()).toBe("Dating Scene Data");
   });
   it("carries Open Graph tags, an image only when given", () => {
     const m = pageMetadata("T", "D", "/city/x");
@@ -32,10 +32,10 @@ describe("a shared result's title (Phase 6, F31)", () => {
   const yaml = readFileSync(path.resolve(__dirname, "..", "..", "pipeline", "registry", "features.yaml"), "utf8");
   const template = yaml.match(/^\s*title_results: "(.*)"$/m)![1];
   it("is the results heading, then the site, without the heading's word joiners", () => {
-    expect(template).toBe("{heading} · Dating Stats Atlas");
+    expect(template).toBe("{heading} · Dating Scene Data");
     expect(resultsTitle({ title_results: template }, "Top cities for single men, 28\u2060–\u206040"))
-      .toBe("Top cities for single men, 28–40 · Dating Stats Atlas");
+      .toBe("Top cities for single men, 28–40 · Dating Scene Data");
     expect(resultsTitle({ title_results: template }, "Lowest-scoring cities for single women, 25\u2060–\u206035"))
-      .toBe("Lowest-scoring cities for single women, 25–35 · Dating Stats Atlas");
+      .toBe("Lowest-scoring cities for single women, 25–35 · Dating Scene Data");
   });
 });

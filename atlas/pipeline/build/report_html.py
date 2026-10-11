@@ -179,7 +179,7 @@ def build_inner(rep: dict) -> str:
 
     # Header
     out.append(f"""<header>
-<p class="eyebrow">Dating Stats Atlas · validation</p>
+<p class="eyebrow">Dating Scene Data · validation</p>
 <h1>Face-Validity Review</h1>
 <p class="lede">Every result has to be explainable from its own attribution.
 Automated gates check that the build still does what it did yesterday; this

@@ -146,7 +146,7 @@ def _resolve_build_dir() -> Path:
 BUILD = engine.load_build(_resolve_build_dir())
 _METROS_META = json.loads((BUILD.path / "metros.json").read_text())
 _METRO_INDEX = {c: i for i, c in enumerate(BUILD.metro_levels)}
-app = FastAPI(title="Dating Stats Atlas ranking", docs_url=None, redoc_url=None)
+app = FastAPI(title="Dating Scene Data ranking", docs_url=None, redoc_url=None)
 
 
 @app.middleware("http")

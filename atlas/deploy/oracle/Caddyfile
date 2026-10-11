@@ -14,3 +14,12 @@
 	header @photos >Cache-Control "public, max-age=604800"
 	reverse_proxy web:3000
 }
+
+# The site's first address, from before its rename to Dating Scene Data
+# (2026-10-10): every request is sent, path and query intact, to the same
+# page at the new address with a permanent redirect, so links shared before
+# the rename still arrive. Caddy keeps a certificate for this name too, so
+# the DuckDNS name stays claimed and pointed at the VM.
+{$OLD_SITE_ADDRESS} {
+	redir https://{$SITE_ADDRESS}{uri} permanent
+}

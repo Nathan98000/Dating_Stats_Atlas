@@ -503,7 +503,7 @@ strings:
   photo_place_caption: "{place}, in the {city} metro area"
   # Phase 6 (F31, approved): a results page's title (permalinks and home
   # URLs with a search), from its results heading
-  title_results: "{heading} · Dating Stats Atlas"
+  title_results: "{heading} · Dating Scene Data"
   # the header's nav and the footer on every page
   nav_rankings: "Rankings"
   nav_compare: "Compare"
@@ -533,9 +533,9 @@ strings:
     {city} has fewer than 250,000 people, so it isn't ranked; the site
     ranks metro areas of 250,000 or more. Its profile is below.
   compare_top_two: "Your top two: {a} vs {b}"
-  # page titles ({page} · Dating Stats Atlas)
-  title_site: "Dating Stats Atlas"
-  title_template: "{page} · Dating Stats Atlas"
+  # page titles ({page} · Dating Scene Data)
+  title_site: "Dating Scene Data"
+  title_template: "{page} · Dating Scene Data"
   title_compare_pair: "{a} vs {b}"
   title_stat: "{stat} by city"
   title_privacy: "Privacy"

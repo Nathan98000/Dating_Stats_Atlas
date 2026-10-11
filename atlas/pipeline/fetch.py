@@ -23,7 +23,7 @@ RAW = DATA / "raw"
 RESULTS = ATLAS / "results"
 MANIFEST = RESULTS / "fetch_manifest.json"
 
-UA = "DatingStatsAtlas-phase0/0.1 (python-requests; research pipeline)"
+UA = "DatingSceneData-phase0/0.1 (python-requests; research pipeline)"
 API_BASE = "https://api.census.gov/data"
 
 

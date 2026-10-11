@@ -31,7 +31,7 @@ INV_URL = "https://www.ncei.noaa.gov/data/normals-daily/1991-2020/doc/inventory_
 DAILY_URL = "https://www.ncei.noaa.gov/data/normals-daily/1991-2020/access/{sid}.csv"
 TIGERWEB = ("https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/"
             "State_County/MapServer")
-UA = {"User-Agent": "DatingStatsAtlas-phase2/0.1 (research pipeline)"}
+UA = {"User-Agent": "DatingSceneData-phase2/0.1 (research pipeline)"}
 
 PLEASANT_TMAX = (55.0, 85.0)
 PLEASANT_TMIN_FLOOR = 40.0

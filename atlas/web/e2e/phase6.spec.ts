@@ -750,14 +750,14 @@ test.describe("city and stat pages, sharing, the footer (H)", () => {
       self: { age: 30 }, seeking: { sex: "male", age: [28, 40], marital: ["never_married", "previously_married"] } } });
     const link = (await r.json()).permalink as string;
     await page.goto(link);
-    await expect(page).toHaveTitle("Top cities for single men, 28–40 · Dating Stats Atlas");
+    await expect(page).toHaveTitle("Top cities for single men, 28–40 · Dating Scene Data");
     expect(await page.locator('meta[property="og:url"]').getAttribute("content")).toMatch(new RegExp(`${link.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`));
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", ps.home_subtitle);
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\.png$/);
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
     // a home URL with a search too; the bare home keeps the site's title
     await page.goto("/?self_age=30&sex=female&age=25-35&marital=never");
-    await expect(page).toHaveTitle("Top cities for single women, 25–35 · Dating Stats Atlas");
+    await expect(page).toHaveTitle("Top cities for single women, 25–35 · Dating Scene Data");
     await page.goto("/");
     await expect(page).toHaveTitle(ps.title_site);
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/og\/home\.png$/);

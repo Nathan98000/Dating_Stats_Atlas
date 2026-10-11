@@ -43,7 +43,7 @@ const zipPath = path.join(cacheDir, "cb_2023_us_state_20m.zip");
 if (!existsSync(path.join(cacheDir, "cb_2023_us_state_20m.shp"))) {
   mkdirSync(cacheDir, { recursive: true });
   const res = await fetch(CB_URL, {
-    headers: { "User-Agent": "DatingStatsAtlas/0.1 (research build)" },
+    headers: { "User-Agent": "DatingSceneData/0.1 (research build)" },
   });
   if (!res.ok) throw new Error(`cartographic boundary fetch: ${res.status}`);
   writeFileSync(zipPath, Buffer.from(await res.arrayBuffer()));

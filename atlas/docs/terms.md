@@ -1,6 +1,6 @@
 # Terms of use
 
-**In short:** Dating Stats Atlas shows estimates made from public survey
+**In short:** Dating Scene Data shows estimates made from public survey
 data for your general interest. Enjoy it and share it, but don't treat a
 figure as a fact about an individual, and never use the site to judge or
 single anyone out.
@@ -21,7 +21,7 @@ introductions.
   samples households, so every figure carries some uncertainty. Where the
   sample is too thin to trust, the site leaves the city out rather than
   show a number; the about page explains how the numbers are made.
-- The numbers are Dating Stats Atlas's own estimates from Census Bureau
+- The numbers are Dating Scene Data's own estimates from Census Bureau
   and other public data. No government agency made, checked or endorses
   them.
 - We work to keep the figures accurate, but we can't promise they are
@@ -54,7 +54,7 @@ What you tell the site about yourself stays in your browser. The
 
 ## Content and credits
 
-The site's text, design, code and figures belong to Dating Stats Atlas.
+The site's text, design, code and figures belong to Dating Scene Data.
 Its data and photos come from public sources; both are credited in the
 [About page, Sources and credits](/about#sources-and-credits), and each
 photograph may be reused under the license listed there. Links to other

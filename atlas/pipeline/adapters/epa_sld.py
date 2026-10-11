@@ -24,7 +24,7 @@ BASE = ("https://geodata.epa.gov/arcgis/rest/services/OA/"
         "SmartLocationDatabase/MapServer")
 FIELDS = ["GEOID10", "GEOID20", "NatWalkInd", "D3B", "TotPop"]
 CACHE = DATA / "adapters" / "epa_sld_bg10.parquet"
-UA = {"User-Agent": "DatingStatsAtlas-phase2/0.1 (research pipeline)"}
+UA = {"User-Agent": "DatingSceneData-phase2/0.1 (research pipeline)"}
 
 
 class EpaSldAdapter:

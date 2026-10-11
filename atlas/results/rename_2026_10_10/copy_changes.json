@@ -1,0 +1,54 @@
+{
+ "change_set": "The rename of 2026-10-10: Dating Stats Atlas becomes Dating Scene Data, at datingscenedata.duckdns.org",
+ "note": "No number moves: build d62202fd0280 keeps its id with its manifest refreshed (registry and citation strings only), the goldens are byte-identical and MODEL_VERSION stays m4.3.0. Records of what was (the phase records, deploy records, design reviews, results, the counsel packet) keep the old name. The infrastructure's names (the Compose project and its images and volumes, the Oracle resources, the Fly app names, the repository, the Mac's folder) and the contact address are unchanged.",
+ "changes": [
+  {
+   "change": "1. The site's name",
+   "kind": "renamed (Nathan's request)",
+   "where": "pipeline/registry/features.yaml strings.title_site -> the header, the footer, og:site_name and the home page's <title>; components/chrome.tsx and nav-links.tsx (the header's and footer's wordmark)",
+   "old": "Dating Stats Atlas",
+   "new": "Dating Scene Data",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "2. Page titles",
+   "kind": "renamed",
+   "where": "pipeline/registry/features.yaml strings.title_template and policy title_results -> every page's <title> and a results page's",
+   "old": "{page} · Dating Stats Atlas / {heading} · Dating Stats Atlas",
+   "new": "{page} · Dating Scene Data / {heading} · Dating Scene Data",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "3. The citations",
+   "kind": "renamed (ADR 0012's credit form, amended)",
+   "where": "pipeline/adapters/base.py LICENSES (the Census Bureau's citations and the rule that a modelled figure is our estimate) -> the manifest -> About the site, Sources and credits, and each stat page's source line",
+   "old": "Source: U.S. Census Bureau, [product, vintage]; estimates by Dating Stats Atlas.",
+   "new": "Source: U.S. Census Bureau, [product, vintage]; estimates by Dating Scene Data.",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "4. Terms of use",
+   "kind": "renamed (three sentences)",
+   "where": "docs/terms.md (the /terms page): In short; the numbers are our own estimates; Content and credits",
+   "old": "Dating Stats Atlas shows estimates … / Dating Stats Atlas's own estimates … / belong to Dating Stats Atlas.",
+   "new": "Dating Scene Data shows estimates … / Dating Scene Data's own estimates … / belong to Dating Scene Data.",
+   "why": "Nathan's request; the contact address, dating.stats.atlas@gmail.com, is unchanged"
+  },
+  {
+   "change": "5. The home page's link preview",
+   "kind": "regenerated",
+   "where": "web/public/og/home.png (scripts/og_home.mjs): the name above the headline",
+   "old": "Dating Stats Atlas",
+   "new": "Dating Scene Data",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "6. The site's address",
+   "kind": "changed (Nathan's request); not live until the new DuckDNS name is claimed and the site deployed",
+   "where": "web/src/lib/chrome.ts SITE_URL (absolute Open Graph URLs); deploy/oracle/compose.yaml SITE_ADDRESS, with OLD_SITE_ADDRESS redirected by the Caddyfile; web/scripts/review/live_site.sh",
+   "old": "https://dating-stats-atlas.duckdns.org",
+   "new": "https://datingscenedata.duckdns.org",
+   "why": "Nathan's request"
+  }
+ ]
+}

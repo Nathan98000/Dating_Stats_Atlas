@@ -52,7 +52,7 @@ from atlas.pipeline.fetch import DATA, RESULTS
 WEB = RESULTS.parents[0] / "web"
 P2E = RESULTS / "phase2e"
 CACHE = DATA / "raw" / "wiki_images"
-UA = {"User-Agent": "DatingStatsAtlas/0.1 (research build; contact via repo)"}
+UA = {"User-Agent": "DatingSceneData/0.1 (research build; contact via repo)"}
 
 SUMMARY = "https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
 API = "https://en.wikipedia.org/w/api.php"

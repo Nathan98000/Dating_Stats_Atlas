@@ -20,7 +20,7 @@ from atlas.pipeline.adapters.cbp import NAICS
 
 YEAR = "2024"
 URL_TMPL = "https://data.bls.gov/cew/data/api/{year}/a/industry/{code}.csv"
-UA = {"User-Agent": "DatingStatsAtlas-phase2/0.1 (research pipeline)"}
+UA = {"User-Agent": "DatingSceneData-phase2/0.1 (research pipeline)"}
 
 
 class QcewAdapter:

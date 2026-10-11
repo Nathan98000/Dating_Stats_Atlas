@@ -508,7 +508,7 @@
     "sought_flipped": "Looking for changed to {sought}",
     "same_sex_pool_note": "On a same-sex search, matches count every single {sought_one} in these ages, not just those looking for {sought}.",
     "photo_place_caption": "{place}, in the {city} metro area",
-    "title_results": "{heading} \u00b7 Dating Stats Atlas",
+    "title_results": "{heading} \u00b7 Dating Scene Data",
     "nav_rankings": "Rankings",
     "nav_compare": "Compare",
     "nav_how": "How it works",
@@ -524,8 +524,8 @@
     "compare_not_ranked": "Not ranked: under 250,000 people",
     "city_below_floor": "{city} has fewer than 250,000 people, so it isn't ranked; the site ranks metro areas of 250,000 or more. Its profile is below.",
     "compare_top_two": "Your top two: {a} vs {b}",
-    "title_site": "Dating Stats Atlas",
-    "title_template": "{page} \u00b7 Dating Stats Atlas",
+    "title_site": "Dating Scene Data",
+    "title_template": "{page} \u00b7 Dating Scene Data",
     "title_compare_pair": "{a} vs {b}",
     "title_stat": "{stat} by city",
     "title_privacy": "Privacy",
@@ -678,13 +678,13 @@
       "attribution": "Source: U.S. Census Bureau",
       "notes": null,
       "citations": [
-        "Source: U.S. Census Bureau, American Community Survey 2020\u20132024 5-year Public Use Microdata Sample; estimates by Dating Stats Atlas.",
-        "Source: U.S. Census Bureau, American Community Survey 2020\u20132024 5-year detailed tables; estimates by Dating Stats Atlas."
+        "Source: U.S. Census Bureau, American Community Survey 2020\u20132024 5-year Public Use Microdata Sample; estimates by Dating Scene Data.",
+        "Source: U.S. Census Bureau, American Community Survey 2020\u20132024 5-year detailed tables; estimates by Dating Scene Data."
       ],
       "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
       "conditions": [
         "cite with the Census Bureau Data API notice (the census adapter calls the API)",
-        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "a figure the site computes is an estimate by Dating Scene Data, never \"Census data\"",
         "no Census Bureau logo or seal, and nothing implying endorsement"
       ]
     },
@@ -695,12 +695,12 @@
       "attribution": "Source: U.S. Census Bureau",
       "notes": null,
       "citations": [
-        "Source: U.S. Census Bureau, County Business Patterns 2023; estimates by Dating Stats Atlas."
+        "Source: U.S. Census Bureau, County Business Patterns 2023; estimates by Dating Scene Data."
       ],
       "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
       "conditions": [
         "cite with the Census Bureau Data API notice (the census adapter calls the API)",
-        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "a figure the site computes is an estimate by Dating Scene Data, never \"Census data\"",
         "no Census Bureau logo or seal, and nothing implying endorsement"
       ]
     },
@@ -711,12 +711,12 @@
       "attribution": "Source: U.S. Census Bureau",
       "notes": null,
       "citations": [
-        "Source: U.S. Census Bureau, 2020 Census Demographic and Housing Characteristics File; estimates by Dating Stats Atlas."
+        "Source: U.S. Census Bureau, 2020 Census Demographic and Housing Characteristics File; estimates by Dating Scene Data."
       ],
       "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
       "conditions": [
         "cite with the Census Bureau Data API notice (the census adapter calls the API)",
-        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "a figure the site computes is an estimate by Dating Scene Data, never \"Census data\"",
         "no Census Bureau logo or seal, and nothing implying endorsement"
       ]
     },
@@ -727,13 +727,13 @@
       "attribution": "Source: U.S. Census Bureau",
       "notes": null,
       "citations": [
-        "Source: U.S. Census Bureau, 2020 Census tract relationship files; estimates by Dating Stats Atlas.",
-        "Source: U.S. Census Bureau, TIGERweb and the 2023 cartographic boundary files; estimates by Dating Stats Atlas."
+        "Source: U.S. Census Bureau, 2020 Census tract relationship files; estimates by Dating Scene Data.",
+        "Source: U.S. Census Bureau, TIGERweb and the 2023 cartographic boundary files; estimates by Dating Scene Data."
       ],
       "notice": "This product uses the Census Bureau Data API but is not endorsed or certified by the Census Bureau.",
       "conditions": [
         "cite with the Census Bureau Data API notice (the census adapter calls the API)",
-        "a figure the site computes is an estimate by Dating Stats Atlas, never \"Census data\"",
+        "a figure the site computes is an estimate by Dating Scene Data, never \"Census data\"",
         "no Census Bureau logo or seal, and nothing implying endorsement"
       ]
     },
