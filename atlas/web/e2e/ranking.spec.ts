@@ -170,6 +170,10 @@ test("unticking every race group means everyone, not the leftovers", async ({ pa
   await expect(panel).not.toContainText("counts who lives");
   const boxes = panel.locator("input.check");
   const n = await boxes.count();
+  // the last click's search is the only one with no race filter: every
+  // search before it narrowed to the boxes still ticked
+  const everyone = page.waitForResponse((r) =>
+    r.url().endsWith("/api/rank") && !r.request().postDataJSON()?.seeking?.race_ethnicity);
   // plain clicks: unticking the LAST box snaps every box back on (zero
   // ticked means all six, per the panel's own sentence), so a strict
   // uncheck() would rightly complain that the state re-flipped
@@ -178,7 +182,13 @@ test("unticking every race group means everyone, not the leftovers", async ({ pa
   await expect
     .poll(() => page.url(), { timeout: 5_000 })
     .not.toMatch(/[?&]race=/);
-  await page.waitForTimeout(400);
+  // no fixed pause (under load one caught the list mid-update): wait for
+  // the everyone search's answer, then for the results to stop being busy,
+  // which happens only once the latest answer's rows are on the page. A
+  // poll for the baseline alone could pass on the untouched first list
+  // before that answer lands
+  expect((await everyone).ok()).toBe(true);
+  await expect(page.locator("section[aria-busy]")).toHaveAttribute("aria-busy", "false");
   const after = await rows.evaluateAll((els) =>
     els.map((e) => e.getAttribute("data-cbsa")),
   );
