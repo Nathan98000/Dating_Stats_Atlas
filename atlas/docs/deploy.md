@@ -326,6 +326,17 @@ kept on the VM: images `dating-stats-atlas-{api,web}:b20fb6f` (and
 `/srv/atlas/build_d62202fd0280_b20fb6f` and the old code at
 `/srv/atlas/src_b20fb6f`.
 
+**Backups pruned (2026-10-10, at Nathan's request).** The images
+`dating-stats-atlas-{api,web}:m4.1.1` and `:m4.2.0` and the folders
+`build_2dbd9ebfa7ff`, `build_63c4e5fa51bf` and `src_67b604c` were deleted
+from the VM (disk 59% to 54%). What they held that neither the Mac's builds
+nor git has, the 98 photographs replaced since 7 October and the two builds'
+manifests as they were served, is in the main checkout's
+`atlas/data/vm_archive_2026-10-10/` (never committed). The rollback set is
+now images `:b20fb6f` and `:2c4c056`, builds `build_d62202fd0280_b20fb6f`
+and `build_d62202fd0280_2026-10-09`, and code `src_b20fb6f` and
+`src_2c4c056`.
+
 ## Environment variables
 
 | var | where | meaning |
