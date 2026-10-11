@@ -468,6 +468,18 @@ Caddy's log is 127.0.0.1; the API's and web's logs hold no error; memory
 32% used, disk 71%. Rollback: images `dating-stats-atlas-{api,web}:2c420c9`
 (and `:69c0870`, `:b20fb6f`, `:2c4c056`) and the code at `src_69f0ac3`.
 
+**Backups pruned (2026-10-11, at Nathan's request).** Deleted from the VM:
+the images `dating-stats-atlas-{api,web}:69c0870`, `:b20fb6f` and
+`:2c4c056`, and the folders `src_2c420c9`, `src_69c0870`, `src_b20fb6f`,
+`src_2c4c056`, `build_d62202fd0280_2026-10-09`,
+`build_d62202fd0280_69c0870` and `build_d62202fd0280_b20fb6f` (disk 71% to
+58%). Nothing in them was held only there: each code folder matched its
+commit file for file, every photograph in them (2,192 in each) is on the
+Mac, and each build's data files match the Mac's build, its manifest in git
+(at a948945, b20fb6f and 69c0870). The rollback set is now the images
+`:2c420c9`, the code at `src_69f0ac3` (which also holds the Caddyfile the
+running Caddy mounts) and the live build, unchanged since the rename.
+
 ## Environment variables
 
 | var | where | meaning |
