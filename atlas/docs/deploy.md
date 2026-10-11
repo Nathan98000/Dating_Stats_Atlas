@@ -556,6 +556,37 @@ its 2,192 photographs are on the Mac. Caddy no longer mounted its file (the
 domain's deploy recreated Caddy from `src`). The rollback set is the images
 `:f894372` and the code at `src_f894372`.
 
+**Deploy record (2026-10-11, night, on Nathan's word "Yes, update the Terms
+page. Then push and merge as needed.").** 416150b: the Terms page's
+questions go to hello@datingscenedata.com, and its date moves to October
+11, 2026 (the terms promise a new date when they change, and the rename had
+changed them that day). Merged and pushed: main = origin/main = 416150b,
+with 4bdba43, 1da5f54 and 135066b. Before the push the added lines' only
+secret-pattern hits were the old public contact address, already on
+GitHub, and the Pew history scan was clean (0 violations over 2,682
+blobs); CI run 38165947690 green. On the Mac: pytest 209 passed, vitest
+145 passed, Playwright 360 passed (62 skipped) with one rankings check
+("unticking every race group…") failing once under load, then passing
+five runs out of five: flaky (a fixed 400 ms wait), unrelated, and offered
+to Nathan as a separate fix. No number moves and the build is unchanged.
+Steps: the running images tagged `:4bdba43`; the code in a fresh folder
+(1,254 files, checked against the commit file for file; the photographs
+copied from the live folder, all 2,192 identical to the Mac's); the images
+built in 201 s while the old containers served; and the private copy
+passed the Terms check (the new address and date, no Gmail address), the
+page checks, the footnote check, the click-through and the real-build
+checks (10 passed, 2 skipped by design). Then the folders were swapped (the
+previous code kept as `src_4bdba43`, which also holds the Caddyfile the
+running Caddy mounts, so it stays until Caddy is next recreated) and `up -d
+api web` run (the API answered health 9 seconds later); Caddy kept
+running. Checked from the Mac: the live Terms page carries
+hello@datingscenedata.com and October 11, 2026, and no Gmail address; the
+same page checks, footnote check and click-through pass; `www` and both
+DuckDNS addresses still answer 301 to the same page; `/api/rank` answers 193
+ranked cities on m4.3.0; the API's and web's logs hold no error; disk 37%.
+Rollback: images `dating-stats-atlas-{api,web}:4bdba43` (and `:f894372`) and
+the code at `src_4bdba43` (and `src_f894372`).
+
 ## Environment variables
 
 | var | where | meaning |
