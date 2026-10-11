@@ -1,20 +1,22 @@
-# Deploy runbook — the site is LIVE at https://dating-stats-atlas.duckdns.org
+# Deploy runbook — the site is LIVE at https://datingscenedata.duckdns.org
 
 The answers to the counsel packet have returned and are kept private (never
 committed); ADR 0012 records Nathan's decisions and the build encodes them.
 This runbook exists so that a deploy is a checklist, not a design session.
 
-**Where it stands (2026-10-03; updated 2026-10-10).** Nathan chose Topology C, one Oracle Cloud
+**Where it stands (2026-10-03; updated 2026-10-11).** Nathan chose Topology C, one Oracle Cloud
 Always Free VM, so that the site costs nothing to run (Fly.io's always-on
 setup would have been about $17.50 a month). With the "Before launch" list
 done, Nathan said to launch on 3 October 2026, and the site opened that day
 at https://dating-stats-atlas.duckdns.org (Topology C's launch record). Since
 9 October 2026 it serves model m4.3.0 on build d62202fd0280, its manifest
-refreshed on 10 October (the deploy records below).
+refreshed on 10 and 11 October (the deploy records below). Since 11 October
+2026 it is Dating Scene Data at https://datingscenedata.duckdns.org, the old
+address redirecting to it (the rename, below).
 
-**The rename (2026-10-10, not yet deployed).** Nathan renamed the site
+**The rename (2026-10-10; deployed 2026-10-11).** Nathan renamed the site
 Dating Scene Data, at a new address, `datingscenedata.duckdns.org`, which
-he will claim at duckdns.org and point at 132.145.205.110. The repository
+he claimed at duckdns.org and pointed at 132.145.205.110. The repository
 now carries both: the name (the registry's page titles, the header and
 footer, the citations' "estimates by Dating Scene Data", Terms, the home
 page's link preview) and the address (`SITE_URL`'s default for absolute
@@ -27,8 +29,8 @@ only), and MODEL_VERSION stays m4.3.0. To deploy it: claim the new name
 first and check that it resolves to 132.145.205.110, since Caddy needs that
 to obtain its certificate; then the steps of 10 October, the manifest
 crossing as `build_next`; then recreate Caddy, because the Caddyfile
-changed (`--profile public up -d --no-deps --force-recreate caddy`). Until
-then the live site keeps the old name at the old address. The
+changed (`--profile public up -d --no-deps --force-recreate caddy`); the
+deploy record of 11 October below is that deploy. The
 infrastructure keeps the old name, by design: the Compose project
 `dating-stats-atlas` (its images, the rollback tags and the `caddy_data`
 volume that holds the certificates), the Oracle VCN, subnet, security list
@@ -130,9 +132,9 @@ internet and terminates HTTPS.
 - **Upkeep.** Docker, Compose and buildx come from Ubuntu's packages.
   Unattended security upgrades run, with an automatic reboot at 04:30 UTC
   when one needs it, and every service restarts unless stopped.
-- **Address.** `dating-stats-atlas.duckdns.org` *[after the rename is
-  deployed, `datingscenedata.duckdns.org`, the old name redirecting to it;
-  see the rename above]*. DuckDNS is on the Public
+- **Address.** `datingscenedata.duckdns.org` since 11 October 2026, the
+  first address, `dating-stats-atlas.duckdns.org`, redirecting to it (the
+  rename, above). DuckDNS is on the Public
   Suffix List, so Let's Encrypt treats the name as its own. Caddy obtains
   and renews the certificate.
 - **Logs.** No access log is configured anywhere. Caddy's default log
@@ -362,6 +364,58 @@ manifests as they were served, is in the main checkout's
 now images `:b20fb6f` and `:2c4c056`, builds `build_d62202fd0280_b20fb6f`
 and `build_d62202fd0280_2026-10-09`, and code `src_b20fb6f` and
 `src_2c4c056`.
+
+**Deploy record (2026-10-11, on Nathan's word "Initiate deploy").** The
+rename, committed as 2c420c9 from the main checkout where it was prepared;
+main = 2c420c9, not pushed (origin/main = 79deb71), so in place of CI its
+three jobs ran on the Mac against that commit: pytest 209 passed (1
+skipped), vitest 145 passed, Playwright 373 passed (50 skipped by design).
+No number moves: m4.3.0 on build d62202fd0280, its manifest refreshed for
+the new name, byte for byte the committed copy. First, Nathan pointed
+`datingscenedata.duckdns.org` at 132.145.205.110 (Cloudflare's, Google's,
+Quad9's and DuckDNS's own servers answered it; no IPv6 record), and the name
+reached Caddy on port 80. Steps as on 10 October: the running images tagged
+`:69c0870`; the code in a fresh folder (1,253 files, checked against the
+commit file for file); the photographs mirrored (none crossed; all 2,192
+checked by sha256); the build staged as `build_next` (only manifest.json
+crossed, 65 KB; every file's sha256 checked); the images built in 187 s
+while the old containers served; the new Caddyfile validated with `caddy:2`
+(the old address a 301 to the new, the new one proxied); and the private
+copy passed every page check (16 pages; the new name in the titles, the
+header, Terms and the citations; absolute link-preview URLs at the new
+address; neither the old name nor the old address on any page; the new
+link-preview image), the click-through and the real-build checks (10
+passed, 2 skipped by design). Then the folders were swapped (the old build
+kept as `build_d62202fd0280_69c0870`, the old code as `src_69c0870`) and `up
+-d api web` run (the API answered health 12 seconds later), and Caddy was
+recreated with `--profile public up -d --no-deps --force-recreate caddy`: it
+obtained the new name's certificate from Let's Encrypt (YE2, until 9
+January 2027) within seconds and now mounts the new folder's Caddyfile
+(sha256 checked inside the container), so `src_2c4c056` no longer holds
+its file. Checked from the Mac: the new address answers 200 under that
+certificate; the old one answers 301 to the same page at the new address,
+path and query kept (its own certificate, until 1 January 2027, stays in
+`caddy_data`); http redirects to https (308) on both, and an old http link
+arrives after two redirects; the same page checks and click-through pass on
+the live site; `/api/rank` answers 193 ranked cities on
+d62202fd0280/m4.3.0; `Referrer-Policy: no-referrer`; the home page gzipped
+(314 KB), `/api/rank` zstd (251 KB); two photographs served byte for byte
+with `max-age=604800`; port 8000 closed and `/v1/health` and `/v1/meta`
+through the site 404; the API's and web's logs hold no error and no
+address; memory 30% used, disk 62%. **Found during the checks, not caused
+by the rename:** when a visitor's page load is cut short, Caddy's
+reverse_proxy logs a warning ("aborting with incomplete response") that
+carries the request, with the visitor's IP address, user agent and page;
+three such lines from visitors were in its log within half an hour of the
+restart. The 3 October test (failed and malformed TLS connections) did not
+cover this path, so the Privacy page's "no record of your visits" does not
+yet hold for it; flagged to Nathan with a fix (a log filter in the
+Caddyfile that drops the request from Caddy's lines). Rollback kept on the
+VM: images `dating-stats-atlas-{api,web}:69c0870` (and `:b20fb6f`,
+`:2c4c056`), the old build at `/srv/atlas/build_d62202fd0280_69c0870` and
+the old code at `/srv/atlas/src_69c0870`, whose Caddyfile and compose.yaml
+are the old address's (Caddy rolls back with the same `--force-recreate`
+run from that folder).
 
 ## Environment variables
 
