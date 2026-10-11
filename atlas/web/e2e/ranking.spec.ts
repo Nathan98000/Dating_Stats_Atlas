@@ -142,17 +142,25 @@ test("the slider moves weight between pool size and chances of matching", async 
   await expect(rows.first()).toBeVisible();
   const order = () =>
     rows.evaluateAll((els) => els.map((e) => e.getAttribute("data-cbsa")));
+  // an end's list, read once that end's own search (told apart by the
+  // weight it sends) has answered and the results have stopped being busy,
+  // which happens only once the latest answer's rows are on the page. Not
+  // after a fixed pause: under load that could read the default order
+  // instead of the pool-size end's and pass without comparing the two ends
+  const listAt = async (key: "Home" | "End", s: 0 | 1) => {
+    const answer = page.waitForResponse((r) =>
+      r.url().endsWith("/api/rank") && r.request().postDataJSON()?.pool_vs_match === s);
+    await page.keyboard.press(key);
+    await expect(page).toHaveURL(new RegExp(`[?&]s=${s}(&|$)`));
+    expect((await answer).ok()).toBe(true);
+    await expect(page.locator("section[aria-busy]")).toHaveAttribute("aria-busy", "false");
+    return order();
+  };
   const slider = page.locator("input.svo").first();
   await slider.focus();
-  await page.keyboard.press("Home");
-  await expect(page).toHaveURL(/[?&]s=0/);
-  await page.waitForTimeout(400);
-  const atSize = await order();
-  await page.keyboard.press("End");
-  await expect(page).toHaveURL(/[?&]s=1/);
-  await expect
-    .poll(async () => JSON.stringify(await order()), { timeout: 10_000 })
-    .not.toBe(JSON.stringify(atSize));
+  const atSize = await listAt("Home", 0);
+  const atMatch = await listAt("End", 1);
+  expect(atMatch).not.toEqual(atSize);
 });
 
 test("unticking every race group means everyone, not the leftovers", async ({ page }) => {
