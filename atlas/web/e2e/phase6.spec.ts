@@ -221,7 +221,6 @@ test.describe("home results (D)", () => {
   });
 
   test("same-sex: the matches note shows only on a same-sex search, never in the server's HTML (F01)", async ({ page, request, browser }) => {
-    const meta = await fetchMeta(request);
     // the server never knows the visitor's sex, so never renders the note
     // (the registry's strings travel with the page as data; the note's
     // element is the browser's choice)
@@ -237,7 +236,8 @@ test.describe("home results (D)", () => {
     await seedAboutYou(page, { sex: "female" });
     await home(page, SAME_SEX_QS);
     await expect(page.getByTestId("same-sex-note")).toHaveCount(0);
-    await expect(page.getByTestId("balance-footnote")).toHaveText(meta.policy_strings.balance_caption);
+    // the home page's balance footnote went on 2026-10-11 (Nathan)
+    await expect(page.getByTestId("balance-footnote")).toHaveCount(0);
   });
 
   test("same-sex: a man looking for men sees the note; balance reads its one caption (2026-10-10)", async ({ page, request }) => {
@@ -247,8 +247,9 @@ test.describe("home results (D)", () => {
     await expect(page.getByTestId("same-sex-note")).toHaveText(
       meta.policy_strings.same_sex_pool_note.replace("{sought_one}", "man").replace("{sought}", "men"));
     await expect(page.getByTestId("same-sex-note")).toContainText("every single man in these ages");
-    // Nathan deleted balance's same-sex sentence: the same caption on every search
-    await expect(page.getByTestId("balance-footnote")).toHaveText(meta.policy_strings.balance_caption);
+    // Nathan deleted balance's same-sex sentence: the same caption on every
+    // search, in the box (the home page's footnote went on 2026-10-11)
+    await expect(page.getByTestId("balance-footnote")).toHaveCount(0);
     const row = await expandRow(page, 4);
     await row.getByRole("button", { name: meta.policy_strings.balance_info_label }).click();
     await expect(page.getByTestId("info-tip-note")).toHaveText(meta.policy_strings.balance_caption);

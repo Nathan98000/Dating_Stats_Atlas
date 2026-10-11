@@ -213,3 +213,11 @@ matches line on the city page's score card and under Compare's Matches row) now 
 same-sex search, matches count every single {man/woman} in these ages, not just those looking for
 {men/women}." It is still chosen in the browser from the stored own sex. The definition of balance
 does not change, and no number moves.
+
+## Amended 11 October 2026: no balance footnote on the home page
+
+At Nathan's request (11 October 2026). The footnote at the foot of the home page, under the
+score's explainer, repeated `balance_caption`; it is deleted. The sentence stays where a reader
+asks for it: in balance's ⓘ box beside each Balance label (the ranking cards' detail and the city
+page's card), and under the dots of a city whose results are withheld. No string, number or build
+changes.

@@ -306,9 +306,9 @@ test("a same-sex search shows balance, the opposite-sex figure for the same peop
       await expect(tally).toContainText(shown[cbsa].display!);
       out[cbsa] = (await tally.textContent()) ?? "";
     }
-    // the footnote: the caption — one for every search since 2026-10-10
-    // (Phase 6's same-sex form deleted at Nathan's request)
-    await expect(page.getByTestId("balance-footnote")).toContainText(meta.policy_strings.balance_caption);
+    // no footnote: the home page's went on 2026-10-11 at Nathan's request
+    // (the caption lives in balance's ⓘ box)
+    await expect(page.getByTestId("balance-footnote")).toHaveCount(0);
     await ctx.close();
     return out;
   };

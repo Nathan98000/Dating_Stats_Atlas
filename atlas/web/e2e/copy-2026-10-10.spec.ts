@@ -97,7 +97,8 @@ test("a man looking for men: the note in Nathan's words on Rankings, the city pa
   await seedAboutYou(page, { sex: "male" });
   await page.goto(`/?${SAME_SEX_QS}`);
   await expect(page.getByTestId("same-sex-note")).toHaveText(SAME_SEX_NOTE);
-  await expect(page.getByTestId("balance-footnote")).toHaveText(BALANCE_BOX);
+  // the home page's footnote went on 2026-10-11 (Nathan); the box stays
+  await expect(page.getByTestId("balance-footnote")).toHaveCount(0);
   const row = await expandRow(page, 4);
   await row.getByRole("button", { name: "About balance" }).click();
   await expect(page.getByTestId("info-tip-note")).toHaveText(BALANCE_BOX);

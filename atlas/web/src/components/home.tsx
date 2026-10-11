@@ -730,11 +730,8 @@ function ScoreExplainer({ meta }: { meta: Meta }) {
           {s.nav_how} →
         </a>
       </p>
-      {/* one caption on every search since 2026-10-10 (Nathan deleted the
-          same-sex form), so it no longer waits on the browser's variant */}
-      <p className="mt-1 max-w-[70ch] text-caption text-ink-3" data-testid="balance-footnote">
-        {s.balance_caption}
-      </p>
+      {/* no balance footnote here since 2026-10-11 (Nathan): balance's
+          sentence lives in the ⓘ beside each Balance label */}
     </section>
   );
 }

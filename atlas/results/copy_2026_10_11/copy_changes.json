@@ -1,0 +1,14 @@
+{
+ "change_set": "Nathan's change of 2026-10-11: the home page's balance footnote is deleted",
+ "note": "Only what renders moves: balance_caption stays in balance's ⓘ box (the ranking cards' detail and the city page's card) and under the dots of a city whose results are withheld. No string, number or build changes; MODEL_VERSION stays m4.3.0 on build d62202fd0280.",
+ "changes": [
+  {
+   "change": "1. The home page's balance footnote",
+   "kind": "deleted (Nathan's request)",
+   "where": "web/src/components/home.tsx, the score explainer at the foot of the home page (data-testid balance-footnote); ADR 0004 amended",
+   "old": "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation.",
+   "new": "(nothing)",
+   "why": "Nathan's request"
+  }
+ ]
+}
