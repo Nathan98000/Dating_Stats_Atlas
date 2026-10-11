@@ -7,29 +7,26 @@ import type { MatchBlock, Meta } from "@/lib/types";
  * words beside it — the number against 100 says where a city stands, and
  * the side panel's slider box is the one explanation. The API still
  * sends the band. Never renders a number the API didn't send; the margin
- * is returned and not shown (ADR 0004 still). */
+ * is returned and not shown (ADR 0004 still). Since 2026-10-10 it reads as
+ * the city card's other people numbers do: label, figure, unit line. */
 export function MatchFigure({
   match,
   meta,
-  compact = false,
 }: {
   match: MatchBlock | undefined;
   meta: Meta;
-  compact?: boolean;
 }) {
   const le = meta.features.match_propensity;
   if (!match || !match.available || match.display == null) return null;
   return (
     <div className="flex flex-col gap-1" data-testid="match-figure">
       <span className="text-caption font-semibold text-ink-2">{le.display_name}</span>
-      <p className="flex flex-wrap items-baseline gap-x-2">
-        <span className={compact ? "text-data-m" : "text-data-l"} data-figure="">
-          {match.display}
-        </span>
-        <span className={`text-ink-3 ${compact ? "text-caption" : "text-body-sm"}`}>
-          {match.unit_line ?? le.unit}
-        </span>
-      </p>
+      <span className="text-data-m" data-figure="">
+        {match.display}
+      </span>
+      <span className="text-caption text-ink-3">
+        {match.unit_line ?? le.unit}
+      </span>
     </div>
   );
 }

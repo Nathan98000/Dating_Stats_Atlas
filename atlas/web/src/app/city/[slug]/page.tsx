@@ -125,7 +125,7 @@ export default async function CityPage({
             slice={slice}
             cbsa={metro.cbsa}
             city={city}
-            searchWords={describeSearch(prefs).toLowerCase()}
+            search={describeSearch(prefs)}
             meta={slim}
           />
         ) : suppressed ? (
@@ -151,7 +151,7 @@ export default async function CityPage({
             slice={slice}
             cbsa={metro.cbsa}
             city={city}
-            searchWords={describeSearch(prefs).toLowerCase()}
+            search={describeSearch(prefs)}
             meta={slim}
           />
         )}

@@ -12,25 +12,33 @@ import { fill } from "@/lib/results";
 import { WhyChips } from "./why-chips";
 
 /** The parts of the city page an "about you" variant changes (m4.0.0,
- * ADR 0018): the for-your-search card of a ranked city — its rank, the
- * balance, the compatibility figure, the movers as chips (Phase 5: led by
- * the overall score out of 100) — and, for a city
- * the search leaves out, the balance that survives. The server cut the
- * response down to this city (lib/variants sliceVariants); this selects
- * the visitor's variant from it and renders the API's numbers. */
+ * ADR 0018): the for-your-search card of a ranked city and, for a city the
+ * search leaves out, the balance that survives. The server cut the response
+ * down to this city (lib/variants sliceVariants); this selects the visitor's
+ * variant from it and renders the API's numbers.
+ *
+ * The card reads in the order a visitor asks (Nathan, 2026-10-10, on its
+ * hierarchy): where the city ranks — the ranking cards' medallion, amber for
+ * the top three — then its overall score, its label before it, on its track,
+ * then why (the chips). Past a hairline come the people numbers: the two the
+ * score counts (matches, then compatibility), each label, figure, unit, and
+ * last balance, which is shown and never scored. From 768px the verdict and
+ * the people sit side by side; one column below. */
 export function CityVariantPart({
   part,
   slice,
   cbsa,
   city,
-  searchWords,
+  search,
   meta,
 }: {
   part: "ranked" | "balance";
   slice: VariantResponse;
   cbsa: string;
   city: string;
-  searchWords: string;
+  /** the search in words, the line under the card's heading ("Single men
+   * 28–40 (never married, divorced or widowed)") */
+  search: string;
   meta: Meta;
 }) {
   const about = useAboutYou();
@@ -40,73 +48,76 @@ export function CityVariantPart({
   // own sex — the notes are chosen here, inside the variant veil
   const sought = slice.variants.sought_sex;
   const sameSex = effectiveSex(about, sought) === sought;
+  const soughtWords = sought === "male" ? "men" : "women";
   if (part === "ranked") {
     const ranked = sel.ranked.find((r) => r.cbsa === cbsa);
     if (!ranked) return null;
+    const top = ranked.rank <= 3;
     return (
       <section
         className="flex flex-col gap-5 rounded-lg border border-rule bg-surface px-5 py-6 sm:px-7"
         data-testid="ranked-card"
         data-variant=""
       >
-        <h2 className="font-display text-h3">
-          Where {city} lands for your search
-        </h2>
-        {/* Nathan, 2026-10-10 (too much white space): from 768px two
-            columns about one height, as in the rankings detail — the score,
-            the spot and the matches, then the chips; and past a hairline,
-            balance over compatibility. One column below 768px. */}
-        <div className="grid gap-y-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-x-8">
-          <div className="flex flex-col gap-5">
-            {/* Phase 5: the overall score leads — out of 100, on its track */}
-            <div className="flex max-w-[420px] flex-col gap-2">
+        <div className="flex flex-col gap-1">
+          <h2 className="font-display text-h3">
+            Where {city} lands for your search
+          </h2>
+          <p className="text-caption text-ink-3" data-testid="city-search">{search}</p>
+        </div>
+        <div className="grid gap-y-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-x-8">
+          {/* the verdict: the spot, the score, why */}
+          <div className="flex flex-col gap-5" data-testid="city-spot">
+            <p className="flex items-center gap-3">
+              <span className="sr-only">Ranked </span>
+              <span
+                className={`inline-flex h-14 min-w-14 items-center justify-center rounded-full px-3 font-display text-data-l font-bold text-ink ${top ? "bg-highlight" : "border border-line-strong bg-surface"}`}
+                data-testid="city-rank"
+              >
+                {ranked.rank}
+              </span>
+              <span className="text-body-lg text-ink-2">
+                of {sel.counts.ranked.toLocaleString("en-US")} cities
+              </span>
+            </p>
+            <div className="flex max-w-[420px] flex-col gap-1">
+              <span className="text-caption font-semibold text-ink-2" data-testid="score-label">
+                {policy.overall_score_label}
+              </span>
               <p className="flex items-baseline gap-1">
                 <span className="font-display text-data-xl" data-testid="score">{ranked.score_display}</span>
                 <span className="text-body-sm font-medium text-ink-3">{policy.score_out_of}</span>
               </p>
-              <ScoreTrack score={ranked.score} className="h-1.5 w-full" median={sel.score_median}
+              <ScoreTrack score={ranked.score} className="mt-2 h-1.5 w-full" median={sel.score_median}
                 medianCaption={policy.score_median_caption} />
-              <span className="text-caption font-semibold text-ink-2" data-testid="score-label">
-                {policy.overall_score_label}
-              </span>
-            </div>
-            <div className="flex flex-col gap-1" data-testid="city-spot">
-              <p className="flex items-baseline gap-2">
-                <span className="font-display text-h2" data-testid="city-rank">{ranked.rank}</span>
-                <span className="text-body-sm text-ink-2">
-                  of {sel.counts.ranked.toLocaleString("en-US")} cities
-                  for {searchWords}
-                </span>
-              </p>
-              <p className="flex items-baseline gap-2">
-                <span className="text-data-m">{ranked.pool.toLocaleString("en-US")}</span>
-                <span className="text-body-sm text-ink-2">{meta.features.pool_size.unit}</span>
-              </p>
-              {/* Phase 6: under the matches line, the metro's served cautions
-                  (F08) and, on a same-sex search, what matches count (F01) */}
-              <FlagCaptions flags={ranked.flags} meta={meta} className="mt-1 max-w-[46ch]" />
-              {sameSex && (
-                <p className="mt-1 max-w-[46ch] text-caption text-ink-2" data-testid="same-sex-note">
-                  {fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
-                    sought: sought === "male" ? "men" : "women" })}
-                </p>
-              )}
             </div>
             <WhyChips movers={ranked.lifestyle_movers} meta={meta} />
           </div>
-          <div className="flex flex-col gap-4 border-t border-rule pt-4 md:border-l md:border-t-0 md:pl-8 md:pt-0"
+          {/* the people: matches and compatibility, then balance */}
+          <div className="flex flex-col gap-4 border-t border-rule pt-5 md:border-l md:border-t-0 md:pl-8 md:pt-0"
             data-testid="city-people">
-            <div>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+              <div className="flex flex-col gap-1" data-testid="city-matches">
+                <span className="text-caption font-semibold text-ink-2">{meta.features.pool_size.display_name}</span>
+                <span className="text-data-m">{ranked.pool.toLocaleString("en-US")}</span>
+                <span className="text-caption text-ink-3">{fill(policy.pool_row_unit, { sought: soughtWords })}</span>
+              </div>
+              {/* no box or band since Phase 4b */}
+              <MatchFigure match={ranked.match} meta={meta} />
+            </div>
+            {/* Phase 6: what qualifies the matches — the metro's served
+                cautions (F08) and, on a same-sex search, what they count (F01) */}
+            <FlagCaptions flags={ranked.flags} meta={meta} className="max-w-[52ch]" />
+            {sameSex && (
+              <p className="max-w-[52ch] text-caption text-ink-2" data-testid="same-sex-note">
+                {fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
+                  sought: soughtWords })}
+              </p>
+            )}
+            <div className="border-t border-rule pt-4">
               <h3 className="mb-2 text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
               <BalanceDots balance={ranked.balance} meta={meta} id={`city-${cbsa}`} />
             </div>
-            {/* the compatibility figure under balance (no box or band since
-                Phase 4b) */}
-            {ranked.match?.available && ranked.match.display != null && (
-              <div className="border-t border-rule pt-4">
-                <MatchFigure match={ranked.match} meta={meta} />
-              </div>
-            )}
           </div>
         </div>
         <p className="sr-only">{ranked.summary_line}</p>

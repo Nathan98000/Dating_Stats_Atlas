@@ -9,7 +9,8 @@ import { expandRow, fetchMeta, seedAboutYou } from "./helpers";
  * the search and the line under the table gone; room on the table's right;
  * political lean a line per party (phase4d.spec.ts). Then his second round:
  * the same-sex note in his words on every page that shows it, one balance
- * caption on every search, and the city page's first card in two columns. */
+ * caption on every search, and the city page's first card in two columns;
+ * then that card's order (the spot, the score, why, the people numbers). */
 
 const BALANCE_BOX =
   "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation.";
@@ -104,16 +105,39 @@ test("a man looking for men: the note in Nathan's words on Rankings, the city pa
   await expect(page.locator("main")).not.toContainText("describes the city");
 });
 
-test("the city page's first card: two columns from 768px, balance and compatibility beside the score", async ({ page }) => {
+test("the city page's first card reads in order: the spot, the score, why, then the people numbers", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`/city/austin-texas?${QS}`);
   const card = page.getByTestId("ranked-card");
-  const [spot, people, box] = [await card.getByTestId("city-spot").boundingBox(),
-    await card.getByTestId("city-people").boundingBox(), await card.boundingBox()];
-  expect(people!.x).toBeGreaterThan(spot!.x + spot!.width);
-  expect(people!.y).toBeLessThan(spot!.y);
+  const box = async (id: string) => (await card.getByTestId(id).first().boundingBox())!;
+  const [spot, people, rank, label, score, chips, matches, compat, balance] = await Promise.all(
+    ["city-spot", "city-people", "city-rank", "score-label", "score", "why-chips", "city-matches",
+      "match-figure", "balance-tally"].map(box));
+  // two columns from 768px, starting together: the verdict, then the people
+  expect(people.x).toBeGreaterThan(spot.x + spot.width);
+  expect(Math.abs(people.y - spot.y)).toBeLessThan(2);
+  // the verdict top to bottom: the spot's medallion, the score's label, the
+  // score, the chips
+  expect(rank.y + rank.height).toBeLessThanOrEqual(label.y);
+  expect(label.y + label.height).toBeLessThanOrEqual(score.y + 1);
+  expect(score.y + score.height).toBeLessThan(chips.y);
+  // the people: matches and compatibility side by side, balance under them
+  expect(Math.abs(matches.y - compat.y)).toBeLessThan(2);
+  expect(compat.x).toBeGreaterThan(matches.x + matches.width);
+  expect(balance.y).toBeGreaterThan(matches.y + matches.height);
+  // the rank and the score are the card's two largest figures, rank first
+  const size = async (id: string) =>
+    parseFloat(await card.getByTestId(id).first().evaluate((el) => getComputedStyle(el).fontSize));
+  const [rankSize, scoreSize, matchSize] = await Promise.all(["city-rank", "score", "city-matches"].map(size));
+  expect(scoreSize).toBeGreaterThan(matchSize);
+  expect(rankSize).toBeGreaterThan(matchSize);
+  // amber marks the top three ranks only, as on the ranking cards
+  const n = Number(await card.getByTestId("city-rank").innerText());
+  const bg = await card.getByTestId("city-rank").evaluate((el) => getComputedStyle(el).backgroundColor);
+  if (n <= 3) expect(bg).toBe("rgb(242, 181, 68)");
+  else expect(bg).not.toBe("rgb(242, 181, 68)");
   // the old wrapping row left the card about 466px tall at this width
-  expect(box!.height).toBeLessThan(420);
+  expect((await card.boundingBox())!.height).toBeLessThan(420);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`/city/austin-texas?${QS}`);
   const [spotP, peopleP] = [await card.getByTestId("city-spot").boundingBox(),
