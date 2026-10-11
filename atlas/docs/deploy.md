@@ -293,6 +293,39 @@ visitor address; memory 29% used, disk 51%. Rollback kept on the VM: images
 build at `/srv/atlas/build_d62202fd0280_2026-10-09` and the old code at
 `/srv/atlas/src_2c4c056`.
 
+**Deploy record (2026-10-10, evening, on Nathan's word "Keep my wording.
+Merge, push, and deploy.").** main = origin/main = 69c0870 (CI run
+38102599146 green): the city card's new order (eef0da8: the rank, the
+score, why, then the people numbers) and the evening's round (69c0870:
+balance's ⓘ beside its label on the city card, the ranking cards opening
+from a click anywhere, compatibility above balance in the detail, and the
+About page's account of compatibility in Nathan's words). No number moves:
+m4.3.0 on build d62202fd0280, its manifest refreshed again (two registry
+strings). Before the push the Pew history scan was clean (0 violations over
+2,627 blobs), and the main checkout's build took the refreshed manifest,
+byte for byte the committed copy. Steps as that afternoon: the running
+images tagged `:b20fb6f`; the code in a fresh folder (1,252 files, checked
+against the commit file for file); the photographs mirrored (none crossed;
+all 2,192 checked by sha256); the build staged as `build_next` (only
+manifest.json crossed, 65 KB; every file's sha256 checked); the images
+built in 207 s while the old containers served; and the private copy passed
+every page check, a 15-step click-through of the evening's changes and the
+real-build checks (10 passed, 2 skipped by design). Then the folders were
+swapped (the old build kept as `build_d62202fd0280_b20fb6f`, the old code as
+`src_b20fb6f`) and `up -d api web` run; the API answered health 9 seconds
+later, and Caddy kept running (its file unchanged). Checked from the Mac: 16
+pages answer 200 in 0.1–1.8 s and an unknown page 404; the same page checks
+and click-through pass on the live site; http redirects to https (308),
+HTTP/2 with `Referrer-Policy: no-referrer`; the home page is gzipped (314
+KB); `/api/rank` answers 193 ranked cities on d62202fd0280/m4.3.0; two
+photographs are served byte for byte with `max-age=604800`; port 8000 is
+closed and `/v1/health` and `/v1/meta` through the site answer 404; the logs
+hold no error and no visitor address; memory 28% used, disk 59%. Rollback
+kept on the VM: images `dating-stats-atlas-{api,web}:b20fb6f` (and
+`:2c4c056`, `:m4.2.0`, `:m4.1.1`), the old build at
+`/srv/atlas/build_d62202fd0280_b20fb6f` and the old code at
+`/srv/atlas/src_b20fb6f`.
+
 ## Environment variables
 
 | var | where | meaning |
