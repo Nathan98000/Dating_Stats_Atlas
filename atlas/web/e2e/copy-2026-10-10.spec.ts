@@ -10,7 +10,10 @@ import { expandRow, fetchMeta, seedAboutYou } from "./helpers";
  * political lean a line per party (phase4d.spec.ts). Then his second round:
  * the same-sex note in his words on every page that shows it, one balance
  * caption on every search, and the city page's first card in two columns;
- * then that card's order (the spot, the score, why, the people numbers). */
+ * then that card's order (the spot, the score, why, the people numbers);
+ * then balance's ⓘ beside its label there, a click anywhere on a ranking
+ * card opening its detail, compatibility above balance in that detail, and
+ * the About page's account of the figure in his words. */
 
 const BALANCE_BOX =
   "Balance compares all single men with all single women in the ages you picked, no other filters are used for the calculation.";
@@ -143,4 +146,62 @@ test("the city page's first card reads in order: the spot, the score, why, then 
   const [spotP, peopleP] = [await card.getByTestId("city-spot").boundingBox(),
     await card.getByTestId("city-people").boundingBox()];
   expect(peopleP!.y).toBeGreaterThan(spotP!.y + spotP!.height);
+});
+
+const ACCOUNT =
+  "The compatibility figure is built from real couples in the Census Bureau's household survey, using each partner's age, education, and race/ethnicity. Across the whole country we measure how often each age gap, education pairing, and racial pairing actually occurs. That pattern, adjusted for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age, education, and background. It is an aggregate pattern from recent pairings, not a prediction about any one person, and 100 is the US average for your search.";
+
+test("the city card: no line under balance's dots; its ⓘ sits beside the Balance label", async ({ page, request }) => {
+  const ps = (await fetchMeta(request)).policy_strings;
+  expect(ps.balance_short_caption).toBeUndefined();
+  await page.goto(`/city/austin-texas?${QS}`);
+  const card = page.getByTestId("ranked-card");
+  await expect(card).not.toContainText("All singles in your age range");
+  const label = card.getByRole("heading", { level: 3, name: new RegExp(`^${ps.balance_label}`) });
+  await expect(label.getByRole("button", { name: ps.balance_info_label })).toHaveCount(1);
+  await label.getByRole("button", { name: ps.balance_info_label }).click();
+  await expect(page.getByTestId("info-tip-note")).toHaveText(BALANCE_BOX);
+});
+
+test("a ranking card opens and closes its detail from a click anywhere but its name and photo", async ({ page }) => {
+  await page.goto(`/?${QS}`);
+  const card = page.getByTestId("featured-card").first();
+  const toggle = card.getByTestId("card-toggle");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await card.getByTestId("score").click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  const detail = page.getByTestId("card-detail");
+  await expect(detail).toBeVisible();
+  // a click inside the open detail leaves it open; the chips close it
+  await detail.getByTestId("moved-bars").click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await card.getByTestId("why-chips").click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  // the Details button still opens it alone (no second toggle from the card)
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  // the name keeps its link: a click there goes to the city's page
+  await card.getByRole("link", { name: /, / }).first().click();
+  await expect(page).toHaveURL(/\/city\//);
+});
+
+test("in a card's or a row's detail, compatibility sits above balance", async ({ page }) => {
+  await page.goto(`/?${QS}`);
+  await page.getByTestId("featured-card").first().getByTestId("score").click();
+  const detail = page.getByTestId("card-detail");
+  const [compat, balance] = [await detail.getByTestId("match-figure").boundingBox(),
+    await detail.getByTestId("balance-tally").boundingBox()];
+  expect(compat!.y + compat!.height).toBeLessThan(balance!.y);
+  const row = await expandRow(page, 4);
+  const d = row.getByTestId("row-detail");
+  const [c2, b2] = [await d.getByTestId("match-figure").boundingBox(), await d.getByTestId("balance-tally").boundingBox()];
+  expect(c2!.y + c2!.height).toBeLessThan(b2!.y);
+});
+
+test("the About page's account of compatibility is Nathan's, and the registry's copy is the same", async ({ page, request }) => {
+  const ps = (await fetchMeta(request)).policy_strings;
+  expect(ps.match_how).toBe(ACCOUNT);
+  await page.goto("/about");
+  const text = ((await page.locator("article.prose-method").textContent()) ?? "").replace(/\s+/g, " ");
+  expect(text).toContain(ACCOUNT);
 });

@@ -202,21 +202,19 @@ strings:
   # in one sentence and register — what it is built from, what it
   # measures, and that it is an aggregate pattern rather than a statement
   # about an individual. The figure's own information box and its link
-  # here (match_info, match_how_link) left in Phase 4b.
+  # here (match_info, match_how_link) left in Phase 4b. Nathan's wording
+  # since 2026-10-10, here and on the About page alike.
   match_how: >-
     The compatibility figure is built from real couples in the Census
-    Bureau's household survey, using each partner's age and education, and
-    their race or ethnicity only if you include yours. Across the whole
-    country we measure how often each age gap and each education pairing
-    actually occurs, compared with how often it would occur if single
-    people paired at random; if you include your race or ethnicity, the
-    racial and ethnic pairings are measured the same way. That pattern,
-    adjusted a little for each city's own couples, is then applied to the
+    Bureau's household survey, using each partner's age, education, and
+    race/ethnicity. Across the whole country we measure how often each age
+    gap, education pairing, and racial pairing actually occurs. That
+    pattern, adjusted for each city's own couples, is then applied to the
     single people who match your search in each city, so the figure says
     how closely they resemble the people who typically pair with someone of
-    your sex, age and education, and background if you include it. It is an
-    aggregate pattern from recent unions, not a prediction about any one
-    person, and 100 is the US average for your search.
+    your sex, age, education, and background. It is an aggregate pattern
+    from recent pairings, not a prediction about any one person, and 100 is
+    the US average for your search.
   match_unit_line: "where 100 is the US average"
   # m3.1.0 (Phase 3b, A3): the DISPLAY ceiling for the compatibility figure
   # and the token appended above it. Presentational only: the feature is
@@ -446,7 +444,6 @@ strings:
   # a row's detail
   balance_label: "Balance"
   balance_even: "Even"
-  balance_short_caption: "All singles in your age range, before other filters"
   moved_heading: "What moved the score (points)"
   # Nathan, 2026-10-10 (was "Compared with the middle of the cities ranked
   # for this search")
@@ -455,7 +452,9 @@ strings:
   # named it before, so a screen reader heard the heading twice). The
   # track's "More {word}" (balance_more) left with the track, and the ⓘ of
   # What moved the score (moved_info_label) was deleted, both on 10 October
-  # 2026 at Nathan's request
+  # 2026 at Nathan's request; so was the city card's line under the dots
+  # (balance_short_caption, "All singles in your age range, before other
+  # filters"), its ⓘ moving beside the card's Balance label
   balance_info_label: "About balance"
   # Phase 6 (F26, approved): read before each row's and card's score; the
   # visible number is hidden from screen readers

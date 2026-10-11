@@ -1,6 +1,5 @@
 import type { BalanceBlock, Meta } from "@/lib/types";
 import { balanceDots } from "@/lib/results";
-import { InfoTip } from "./info-tip";
 
 /** Dating pool balance as people (Nathan, 2026-10-10: the track replaced
  * everywhere it showed — the row and card detail, the city page, Compare):
@@ -13,21 +12,17 @@ import { InfoTip } from "./info-tip";
  * mark past 160), never a new number; neutral colours, since balance is
  * shown and never scored. Where the figure has under 230px (a phone's
  * Compare column), each row's word sits above its dots. A row without a
- * figure shows the API's note. The caption's box reads balance_caption on
- * every search (its same-sex form was deleted on 2026-10-10, Nathan). */
+ * figure shows the API's note. The longer words (balance_caption) sit in the
+ * information box beside each place's Balance label, never under the dots:
+ * the city card's line under them went on 2026-10-10 (Nathan). */
 export function BalanceDots({
   balance,
   meta,
-  id,
-  caption = true,
   tile = false,
 }: {
   balance: BalanceBlock;
   meta: Meta;
-  id: string;
-  caption?: boolean;
-  /** the row and card detail: the section's information box carries the
-   * caption */
+  /** the row and card detail and the city card: the sentence at body size */
   tile?: boolean;
 }) {
   const s = meta.policy_strings;
@@ -62,14 +57,6 @@ export function BalanceDots({
           </Row>
         </div>
       </div>
-      {caption && !tile && (
-        <p className="flex items-start gap-1 text-caption text-ink-3">
-          <span>{s.balance_short_caption}</span>
-          <InfoTip id={`${id}-bal-info`} label={s.balance_info_label}>
-            {s.balance_caption}
-          </InfoTip>
-        </p>
-      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 {
- "change_set": "Nathan's changes of 2026-10-10, after the city-detail and balance redesign (the rankings detail, the search rail and Compare; then the same-sex note, balance's one caption and the city page's first card)",
+ "change_set": "Nathan's changes of 2026-10-10, after the city-detail and balance redesign (the rankings detail, the search rail and Compare; then the same-sex note, balance's one caption and the city page's first card; then the card's balance caption and the About page's account of compatibility)",
  "note": "Nathan's sentences are word for word (balance's box, the points' caption, the same-sex note); \"Comparison\" is his word and he approved \"Does better\". No number moves: build d62202fd0280 keeps its id with its manifest refreshed (registry strings only), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
  "changes": [
   {
@@ -121,6 +121,23 @@
    "old": "the score alone across the top, then one wrapping row (the spot and matches, balance, compatibility) that left empty space beside the score and under the matches; 466px tall at 1440",
    "new": "from 768px two columns divided by a hairline, as in the rankings detail: the score, the spot and the matches, then the chips; and balance over compatibility. 323px tall at 1440 (342 at 1024); one column on a phone",
    "why": "Nathan's request: too much white space"
+  },
+  {
+   "change": "13. The city card's balance caption",
+   "kind": "removed (round 4)",
+   "where": "the city page's first card (web/src/components/city-variant.tsx, balance-dots.tsx); registry strings.balance_short_caption deleted (the loader keeps it gone)",
+   "old": "All singles in your age range, before other filters ⓘ (a line under the dots, the ⓘ at its end)",
+   "new": "(none): the ⓘ sits beside the card's Balance label, as in the rankings detail; its box is unchanged (balance_caption)",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "14. How is compatibility calculated?",
+   "kind": "changed (Nathan's copy, verbatim; round 4)",
+   "where": "docs/methodology.md (the About page), the paragraph between the definition and the same-sex one, and the registry's copy of it, strings.match_how (Phase 6 F11 keeps the two identical)",
+   "old": "The compatibility figure is built from real couples in the Census Bureau's household survey, using each partner's age and education, and their race or ethnicity only if you include yours. Across the whole country we measure how often each age gap and each education pairing actually occurs, compared with how often it would occur if single people paired at random; if you include your race or ethnicity, the racial and ethnic pairings are measured the same way. That pattern, adjusted a little for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age and education, and background if you include it. It is an aggregate pattern from recent unions, not a prediction about any one person, and 100 is the US average for your search.",
+   "new": "The compatibility figure is built from real couples in the Census Bureau's household survey, using each partner's age, education, and race/ethnicity. Across the whole country we measure how often each age gap, education pairing, and racial pairing actually occurs. That pattern, adjusted for each city's own couples, is then applied to the single people who match your search in each city, so the figure says how closely they resemble the people who typically pair with someone of your sex, age, education, and background. It is an aggregate pattern from recent pairings, not a prediction about any one person, and 100 is the US average for your search.",
+   "why": "Nathan's request",
+   "raised": "the new text drops \"only if you include yours\", which Phase 6 F11 put back: race is used only when a visitor gives theirs (ADR 0018 §2); raised with Nathan"
   }
  ]
 }

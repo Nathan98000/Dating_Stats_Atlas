@@ -45,17 +45,14 @@ the people who actually pair with someone like you, on age, education, and
 background, where 100 is the US average.
 
 The compatibility figure is built from real couples in the Census Bureau's
-household survey, using each partner's age and education, and their race or
-ethnicity only if you include yours. Across the whole country we measure
-how often each age gap and each education pairing actually occurs, compared
-with how often it would occur if single people paired at random; if you
-include your race or ethnicity, the racial and ethnic pairings are measured
-the same way. That pattern, adjusted a little for each city's own couples,
-is then applied to the single people who match your search in each city, so
-the figure says how closely they resemble the people who typically pair
-with someone of your sex, age and education, and background if you include
-it. It is an aggregate pattern from recent unions, not a prediction about
-any one person, and 100 is the US average for your search.
+household survey, using each partner's age, education, and race/ethnicity.
+Across the whole country we measure how often each age gap, education
+pairing, and racial pairing actually occurs. That pattern, adjusted for
+each city's own couples, is then applied to the single people who match
+your search in each city, so the figure says how closely they resemble the
+people who typically pair with someone of your sex, age, education, and
+background. It is an aggregate pattern from recent pairings, not a
+prediction about any one person, and 100 is the US average for your search.
 
 For a same-sex search, the age gaps and the education pairings come from
 same-sex couples in the same survey. Racial and ethnic pairings aren't

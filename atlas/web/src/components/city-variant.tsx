@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import type { Meta, VariantResponse } from "@/lib/types";
 import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
 import { BalanceDots } from "./balance-dots";
 import { MatchFigure } from "./match";
 import { FlagCaptions, ScoreTrack } from "./row";
+import { InfoTip } from "./info-tip";
 import { effectiveSex } from "@/lib/about-you";
 import { fill } from "@/lib/results";
 import { WhyChips } from "./why-chips";
@@ -43,6 +44,8 @@ export function CityVariantPart({
 }) {
   const about = useAboutYou();
   const sel = useMemo(() => selectVariant(slice, about), [slice, about]);
+  // the balance block: its information box keeps clear of it (F17)
+  const balanceRef = useRef<HTMLDivElement>(null);
   const policy = meta.policy_strings;
   // Phase 6 (F01): a same-sex search, as this browser holds the visitor's
   // own sex — the notes are chosen here, inside the variant veil
@@ -114,9 +117,16 @@ export function CityVariantPart({
                   sought: soughtWords })}
               </p>
             )}
-            <div className="border-t border-rule pt-4">
-              <h3 className="mb-2 text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
-              <BalanceDots balance={ranked.balance} meta={meta} id={`city-${cbsa}`} />
+            {/* Nathan, 2026-10-10: no line under the dots; the ⓘ sits beside
+                the label, as in the rankings detail */}
+            <div ref={balanceRef} className="border-t border-rule pt-4">
+              <h3 className="mb-2 flex items-center gap-1 text-caption font-semibold text-ink-2">
+                {policy.balance_label}
+                <InfoTip id={`city-${cbsa}-bal-info`} label={policy.balance_info_label} anchor={balanceRef}>
+                  {policy.balance_caption}
+                </InfoTip>
+              </h3>
+              <BalanceDots balance={ranked.balance} meta={meta} tile />
             </div>
           </div>
         </div>
@@ -136,7 +146,7 @@ export function CityVariantPart({
       <h2 className="text-body font-semibold">
         {meta.features.pool_balance.display_name} in {city}
       </h2>
-      <BalanceDots balance={balance} meta={meta} id={`city-${cbsa}-s`} caption={false} />
+      <BalanceDots balance={balance} meta={meta} />
       <p className="max-w-[64ch] text-caption text-ink-3">
         {policy.balance_caption}
       </p>

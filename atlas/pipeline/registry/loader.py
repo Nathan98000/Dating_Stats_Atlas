@@ -151,7 +151,7 @@ COPY_2026_10_10_STRINGS = {"compare_does_better": ()}
 COPY_2026_10_10_GONE = ("optional_pill", "sharpen_info_label", "sharpen_info",
                         "sharpen_info_link", "moved_info_label", "balance_more",
                         "compare_edge_note", "compare_diff_legend",
-                        "balance_caption_same_sex")
+                        "balance_caption_same_sex", "balance_short_caption")
 PHASE5_STRINGS = {
     "quick_self_sex": (), "quick_self_age": (), "quick_seek_sex": (), "quick_seek_age": (),
     "quick_self_sex_short": (), "quick_self_age_short": (), "quick_seek_sex_short": (),
@@ -163,7 +163,7 @@ PHASE5_STRINGS = {
     "col_rank": (), "col_city": (), "col_matches": (), "col_score": (),
     "pool_short_unit": (), "card_matches": (), "pool_row_unit": ("sought",), "score_out_of": (),
     "row_details": ("city",), "show_more": (), "show_all": ("n",), "find_in_results": (),
-    "balance_label": (), "balance_even": (), "balance_short_caption": (),
+    "balance_label": (), "balance_even": (),
     "moved_heading": (), "moved_caption": (), "open_city": ("city",), "compare_action": (),
     "explainer_heading": (), "explainer_lifestyle": (), "adjust_search": (), "show_results": (),
     "close": (), "results_updated": ("change",), "nav_rankings": (), "nav_compare": (),

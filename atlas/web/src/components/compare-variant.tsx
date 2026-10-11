@@ -175,7 +175,7 @@ export function CompareVariantRows({
       <Row label={meta.features.pool_balance.display_name}>
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} variant win={win(balEdge, i)} edgeLabel={better}>
-            {r ? <BalanceDots balance={r.balance} meta={meta} id={`cmp-${i}`} caption={false} />
+            {r ? <BalanceDots balance={r.balance} meta={meta} />
               : <span className="text-caption text-ink-2">{policy.compare_not_ranked}</span>}
           </ValueCell>
         ))}

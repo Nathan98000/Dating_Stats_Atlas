@@ -143,7 +143,19 @@ export function FeaturedCard({
           {row.rank}
         </span>
       </Link>
-      <div className="flex flex-1 flex-col gap-2.5 px-4 pb-[18px] pt-4">
+      {/* Nathan, 2026-10-10: a click anywhere on the card's body opens or
+          closes its detail, as a row's does; the name and the photograph
+          keep their links, buttons their jobs, and a click inside the
+          detail (below 768px it opens here) stays there. The Details
+          button stays the keyboard's way in */}
+      <div
+        className={`flex flex-1 flex-col gap-2.5 px-4 pb-[18px] pt-4 ${onToggle ? "cursor-pointer hover:bg-hover" : ""}`}
+        onClick={onToggle && ((e) => {
+          const t = e.target as HTMLElement;
+          if (!t.closest("a,button") && !t.closest(`[id="${detailId}"]`)) onToggle();
+        })}
+        data-testid="card-body"
+      >
         <h3 className="font-display text-h3">
           <span className="sr-only">Ranked {row.rank}: </span>
           {/* the name's 44px target below the desk grows into the card's
@@ -311,9 +323,9 @@ export function FlagCaptions({ flags, meta, className = "" }: {
 }
 
 /** A row's detail, after the Phase 5 report (Nathan: "a lot of text";
- * make it friendlier): three small tiles, each led by one number or one
- * picture — the balance (the served figure over its track), the
- * compatibility figure against 100, and what moved the score (the six
+ * make it friendlier): three parts, each led by one number or one
+ * picture — the compatibility figure against 100, the balance (the served
+ * figure over its dots; below it since 2026-10-10), and what moved the score (the six
  * served pillar contributions as diverging bars, ±25 points to the edge,
  * sorted) — with the longer words behind balance's information box (the
  * compatibility figure keeps none, Phase 4b: the slider's box explains it;
@@ -354,7 +366,7 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
       ? "-mx-4 -mb-[18px] mt-1 bg-hover px-4 pb-4 pt-3"
       : "bg-hover px-1 pb-5 pt-1 sm:pl-[70px] sm:pr-4";
   // Nathan, 2026-10-10 (too much white space): one ground and no boxes —
-  // balance over compatibility, and what moved the score beside them past
+  // compatibility over balance, and what moved the score beside them past
   // a hairline, the two columns about one height; the actions beneath both.
   // One column on phones and inside a card
   const two = variant !== "inline";
@@ -365,11 +377,9 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
       <div className={two
         ? "grid gap-y-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] sm:grid-rows-[auto_1fr] sm:gap-x-7"
         : "flex flex-col gap-4"}>
-        <Section title={s.balance_label} tipLabel={s.balance_info_label} className={col1}
-          tip={s.balance_caption} tipId={`${id}-bal-info`}>
-          <BalanceDots balance={row.balance} meta={meta} id={id} tile />
-        </Section>
-        <Section title={meta.features.match_propensity.display_name} className={`border-t border-rule pt-3.5 ${col1}`}
+        {/* Nathan, 2026-10-10: compatibility, which the score counts,
+            above balance, which it never does */}
+        <Section title={meta.features.match_propensity.display_name} className={col1}
           testid={match.available && match.display != null ? "match-figure" : undefined}>
           {match.available && match.display != null ? (
             <p className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
@@ -379,6 +389,10 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
           ) : (
             <p className="text-body-sm text-ink-3">{s.card_missing}</p>
           )}
+        </Section>
+        <Section title={s.balance_label} tipLabel={s.balance_info_label} className={`border-t border-rule pt-3.5 ${col1}`}
+          tip={s.balance_caption} tipId={`${id}-bal-info`}>
+          <BalanceDots balance={row.balance} meta={meta} tile />
         </Section>
         {/* Nathan, 2026-10-10: no information box here; the caption says
             what the points are measured against */}
