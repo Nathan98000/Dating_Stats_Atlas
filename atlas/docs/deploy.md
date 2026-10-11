@@ -42,9 +42,16 @@ dating.stats.atlas@gmail.com.
 **The domain (2026-10-11).** Nathan registered `datingscenedata.com` at
 Squarespace Domains, which also serves its DNS. There the Squarespace
 Defaults were deleted and two A records point the apex and `www` at
-132.145.205.110; the TXT record `v=spf1 -all` stays (the domain sends no
-mail, so mail forged in its name fails), and there is no AAAA record, as
-the VM has no IPv6 address. Caddy's `SITE_ADDRESS` is the domain, and
+132.145.205.110, and there is no AAAA record, as the VM has no IPv6
+address. Email: Nathan set up hello@datingscenedata.com with Squarespace's
+email forwarding, which runs on Mailgun, and the setup rewrote the mail
+records itself: MX `mxa.mailgun.org` and `mxb.mailgun.org`; the one SPF
+record `v=spf1 include:mailgun.org ~all` (it replaced `v=spf1 -all`; five
+DNS lookups of the ten allowed); and DMARC `p=reject` with strict
+alignment, so mail that claims the domain but comes from anywhere else is
+refused. Forwarding gives no outgoing server: a reply sent as
+hello@datingscenedata.com through Gmail would fail DMARC and be rejected,
+so replies go from a Gmail address. Caddy's `SITE_ADDRESS` is the domain, and
 `REDIRECT_ADDRESSES` (`www.datingscenedata.com`,
 `datingscenedata.duckdns.org` and `dating-stats-atlas.duckdns.org`) answer
 with a permanent redirect to the same page there, path and query intact;
@@ -541,6 +548,13 @@ placeholder. Rollback: images `dating-stats-atlas-{api,web}:f894372` (and
 `:2c420c9`), code at `src_f894372` (and `src_69f0ac3`); Caddy rolls back by
 `--force-recreate` from `src_f894372`, which serves the DuckDNS name
 again.
+
+**Older backup pruned (2026-10-11, evening, at Nathan's request).** The
+images `dating-stats-atlas-{api,web}:2c420c9` and the folder `src_69f0ac3`
+were deleted (disk 34% to 29%); its code matched 69f0ac3 file for file and
+its 2,192 photographs are on the Mac. Caddy no longer mounted its file (the
+domain's deploy recreated Caddy from `src`). The rollback set is the images
+`:f894372` and the code at `src_f894372`.
 
 ## Environment variables
 
