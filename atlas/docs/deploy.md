@@ -479,6 +479,10 @@ Mac, and each build's data files match the Mac's build, its manifest in git
 (at a948945, b20fb6f and 69c0870). The rollback set is now the images
 `:2c420c9`, the code at `src_69f0ac3` (which also holds the Caddyfile the
 running Caddy mounts) and the live build, unchanged since the rename.
+Then, also at his request, Docker's build cache was cleared (`docker
+builder prune --all`, 20 GB of cache records): disk 58% to 21%, and the
+live and rollback images still start. The next image build starts cold, so
+it takes longer than the usual three to four minutes.
 
 ## Environment variables
 
