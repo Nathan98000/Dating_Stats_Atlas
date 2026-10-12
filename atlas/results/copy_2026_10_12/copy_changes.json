@@ -1,6 +1,6 @@
 {
- "change_set": "Nathan's changes of 2026-10-12: the search bar on phones and tablets",
- "note": "No number moves: build d62202fd0280 keeps its id with its manifest refreshed (one registry string), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
+ "change_set": "Nathan's changes of 2026-10-12: the search bar on phones and tablets, the results count line, and the update line's gap",
+ "note": "No number moves: build d62202fd0280 keeps its id with its manifest refreshed (two registry strings), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
  "changes": [
   {
    "change": "1. The search bar's button",
@@ -17,6 +17,22 @@
    "old": "once the quick search (sex and age) had scrolled out of view",
    "new": "as soon as the page scrolls down more than 8px, with the quick search still on screen; hidden again at the very top, so the first screen stays the hero's and the #1 card's score stays clear (Phase 6 F15)",
    "why": "So a visitor on a phone sees early that the search goes beyond sex and age (Nathan)"
+  },
+  {
+   "change": "3. The results count line",
+   "kind": "shortened (Nathan's request)",
+   "where": "pipeline/registry/features.yaml strings.results_count -> the line under the home page's results heading",
+   "old": "{n} metro areas ranked for your search, each scored out of 100",
+   "new": "{n} metro areas ranked for your search",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "4. The update line's gap",
+   "kind": "changed (Nathan's request)",
+   "where": "web/src/components/home.tsx (the line under the count after a change)",
+   "old": "after six seconds the line emptied but kept its slot, so a blank line stayed between the count and what follows",
+   "new": "after six seconds the line folds away (200ms; at once under reduced motion) and leaves the page, so no gap stays",
+   "why": "Nathan's request"
   }
  ]
 }

@@ -38,6 +38,10 @@ import { BottomSheet } from "./bottom-sheet";
  * the first scroll shows it, while a bounce at the top of the page doesn't. */
 const BAR_AFTER_PX = 8;
 
+/** How long the "Results updated" line takes to fold away (its CSS
+ * transition, duration-200) before it leaves the page. */
+const NOTICE_FOLD_MS = 200;
+
 const DESK = "(min-width: 70rem)";
 const subscribeDesk = (cb: () => void) => {
   const mq = window.matchMedia(DESK);
@@ -144,10 +148,10 @@ export function Home({
   const [highlight, setHighlight] = useState<string | null>(null);
   const [live, setLive] = useState("");
   // Phase 6 (F05, F13): when a change lands, the line under the count (6
-  // s; its slot stays once used, so later lines don't shift the page) and
-  // the tint on the rows and cards that moved (2 s)
+  // s, then it folds away, leaving no gap: Nathan, 2026-10-12; it used to
+  // keep its empty slot) and the tint on the rows and cards that moved (2 s)
   const [notice, setNotice] = useState<{ text: string; n: number } | null>(null);
-  const [noticeSlot, setNoticeSlot] = useState(false);
+  const [noticeShown, setNoticeShown] = useState(false);
   const [moved, setMoved] = useState<Set<string>>(() => new Set());
   const announce = useRef<string | null>(null);
   const prevOrder = useRef<string[] | null>(null);
@@ -341,13 +345,19 @@ export function Home({
     }
     setLive(text);
     setNotice({ text, n: Date.now() });
-    setNoticeSlot(true);
+    setNoticeShown(true);
   }, [selected, policy.results_updated, policy.results_new_top]);
   useEffect(() => {
     if (!notice) return;
-    const t = setTimeout(() => setNotice(null), 6000);
+    const t = setTimeout(() => setNoticeShown(false), 6000);
     return () => clearTimeout(t);
   }, [notice]);
+  // once folded (200ms), the line leaves the page
+  useEffect(() => {
+    if (noticeShown || !notice) return;
+    const t = setTimeout(() => setNotice(null), NOTICE_FOLD_MS);
+    return () => clearTimeout(t);
+  }, [noticeShown, notice]);
   useEffect(() => {
     if (!moved.size) return;
     const t = setTimeout(() => setMoved(new Set()), 2000);
@@ -552,10 +562,12 @@ export function Home({
                     <p className="text-body-sm text-ink-3" data-testid="results-count">
                       {fill(policy.results_count, { n: selected.counts.ranked.toLocaleString("en-US") })}
                     </p>
-                    {noticeSlot && (
-                      <p className="mt-1 min-h-5 text-body-sm font-semibold text-ink-2" data-testid="results-notice">
-                        {notice?.text}
-                      </p>
+                    {notice && (
+                      <div className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out motion-reduce:transition-none ${noticeShown ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                        <p className="min-h-0 overflow-hidden pt-1 text-body-sm font-semibold text-ink-2" data-testid="results-notice">
+                          {notice.text}
+                        </p>
+                      </div>
                     )}
                     {excluded > 0 && (
                       <p className="mt-1 text-body-sm text-ink-2" data-testid="excluded-note">

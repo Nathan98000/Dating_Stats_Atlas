@@ -369,8 +369,9 @@ test.describe("changing the search (E)", () => {
       await expect(notice).toContainText(ps.results_new_top.split("{a}")[0]);
     }
     await expect(page.getByTestId("results-live")).toHaveText((await notice.innerText()).trim());
-    // the visible line goes after six seconds; the live region keeps its words
-    await expect(notice).toHaveText("", { timeout: 8000 });
+    // the visible line goes after six seconds, leaving no gap (2026-10-12);
+    // the live region keeps its words
+    await expect(notice).toHaveCount(0, { timeout: 8000 });
   });
 
   test("the sheet's summary row closes it onto 'I'm a' (F19); close and Escape only close (F05)", async ({ page }) => {

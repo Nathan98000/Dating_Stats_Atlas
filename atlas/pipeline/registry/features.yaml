@@ -421,8 +421,9 @@ strings:
   results_eyebrow: "Your ranking"
   results_heading_best: "Top cities for single {sought}, {ages}"
   results_heading_worst: "Lowest-scoring cities for single {sought}, {ages}"
-  # reworded after the Phase 5 report at Nathan's request (DRAFT)
-  results_count: "{n} metro areas ranked for your search, each scored out of 100"
+  # reworded after the Phase 5 report at Nathan's request; "each scored out
+  # of 100" dropped on 12 October 2026, at his request
+  results_count: "{n} metro areas ranked for your search"
   # the list's column labels, once above the rows
   col_rank: "#"
   col_city: "City · why it ranks here"
