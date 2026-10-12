@@ -469,7 +469,9 @@ strings:
     Lifestyle: Four things you weight: cost of living, social life,
     student life and weather.
   # phones and tablets: the sticky bar, the sheet, the live region
-  adjust_search: "Adjust your search"
+  # (Nathan, 2026-10-12: "Refine your search", was "Adjust your search";
+  # the key keeps its name)
+  adjust_search: "Refine your search"
   show_results: "Show results"
   close: "Close"
   # Phase 6 (F35; the prompt names the button "Clear"): the search fields'

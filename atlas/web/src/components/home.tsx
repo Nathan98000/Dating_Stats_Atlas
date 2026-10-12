@@ -34,6 +34,10 @@ import { Segmented } from "./segmented";
 import { FindInResults } from "./find-in-results";
 import { BottomSheet } from "./bottom-sheet";
 
+/** How far the page scrolls before the bottom bar shows: a few pixels, so
+ * the first scroll shows it, while a bounce at the top of the page doesn't. */
+const BAR_AFTER_PX = 8;
+
 const DESK = "(min-width: 70rem)";
 const subscribeDesk = (cb: () => void) => {
   const mq = window.matchMedia(DESK);
@@ -286,14 +290,16 @@ export function Home({
     saveAbout(next);
   }, [about, saveAbout, policy.results_change_race, policy.results_change_education]);
 
-  // the sticky bottom bar (below 1120px) appears once the quick search
-  // has scrolled out of view
+  // the sticky bottom bar (below 1120px) appears as soon as the page
+  // scrolls down, so a phone sees early that the search goes beyond sex
+  // and age (Nathan, 2026-10-12; it used to wait until the quick search
+  // had scrolled out of view); back at the very top, the first screen is
+  // the hero's again
   useEffect(() => {
-    const el = quickRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(([entry]) => setBarVisible(!entry.isIntersecting));
-    io.observe(el);
-    return () => io.disconnect();
+    const check = () => setBarVisible(window.scrollY > BAR_AFTER_PX);
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    return () => window.removeEventListener("scroll", check);
   }, []);
   useEffect(() => () => {
     if (timer.current) clearTimeout(timer.current);

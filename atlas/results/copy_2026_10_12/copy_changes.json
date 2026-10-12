@@ -1,0 +1,22 @@
+{
+ "change_set": "Nathan's changes of 2026-10-12: the search bar on phones and tablets",
+ "note": "No number moves: build d62202fd0280 keeps its id with its manifest refreshed (one registry string), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
+ "changes": [
+  {
+   "change": "1. The search bar's button",
+   "kind": "changed (Nathan's request)",
+   "where": "pipeline/registry/features.yaml strings.adjust_search (the key keeps its name) -> the sticky bar's button below 1120px, the title of the sheet or drawer it opens, and the desk rail's accessible name",
+   "old": "Adjust your search",
+   "new": "Refine your search",
+   "why": "Nathan's request"
+  },
+  {
+   "change": "2. When the bar shows",
+   "kind": "changed (Nathan's request; the 8px threshold is Claude's judgment)",
+   "where": "web/src/components/home.tsx (the bar below 1120px)",
+   "old": "once the quick search (sex and age) had scrolled out of view",
+   "new": "as soon as the page scrolls down more than 8px, with the quick search still on screen; hidden again at the very top, so the first screen stays the hero's and the #1 card's score stays clear (Phase 6 F15)",
+   "why": "So a visitor on a phone sees early that the search goes beyond sex and age (Nathan)"
+  }
+ ]
+}

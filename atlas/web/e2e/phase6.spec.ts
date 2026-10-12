@@ -75,7 +75,7 @@ test.describe("touch targets below 1120px (F02)", () => {
     await expandRow(page, 4);
     expect(await smallTargets(page), "row open").toEqual([]);
     await page.mouse.wheel(0, 1600);
-    await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+    await page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" }).click();
     await page.locator("dialog[open]").waitFor();
     for (const g of ["Narrow it down", "Sharpen compatibility"]) {
       const b = page.locator("dialog[open]").getByRole("button", { name: g, exact: true });
@@ -334,7 +334,7 @@ test.describe("on the real build (P6_REAL_BASE)", () => {
 test.describe("changing the search (E)", () => {
   async function openSheet(page: Page) {
     await page.mouse.wheel(0, 1600);
-    await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+    await page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" }).click();
     await page.locator("dialog[open]").waitFor();
   }
 
@@ -379,7 +379,7 @@ test.describe("changing the search (E)", () => {
     await openSheet(page);
     await page.keyboard.press("Escape");
     await expect(page.locator("dialog[open]")).toHaveCount(0);
-    await expect(page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" })).toBeFocused();
+    await expect(page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" })).toBeFocused();
     await openSheet(page);
     const summary = page.getByTestId("sheet-summary");
     expect((await summary.boundingBox())!.height).toBeGreaterThanOrEqual(44);
@@ -523,7 +523,7 @@ test.describe("trust (F)", () => {
     await home(page);
     if (width(page) < 1120) {
       await page.mouse.wheel(0, 1600);
-      await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+      await page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" }).click();
     }
     const scope = width(page) < 1120 ? page.locator("dialog[open]") : page.getByTestId("rail");
     const section = scope.getByTestId("about-you-section");

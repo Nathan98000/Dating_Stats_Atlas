@@ -55,7 +55,7 @@ export async function openRailGroup(
   // below 1120px the rail lives in the sheet: open it from the bar
   if (!(await page.getByTestId("rail").count()) && !(await page.locator("dialog[open]").count())) {
     await page.mouse.wheel(0, 1600);
-    await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+    await page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" }).click();
     await page.locator("dialog[open]").waitFor();
   }
   const btn = page.getByRole("button", { name, exact: true });

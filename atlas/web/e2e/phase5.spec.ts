@@ -177,7 +177,7 @@ test("while a search is pending a progress line shows, and the result is announc
   const imp = page.getByRole("radiogroup", { name: "Cost of living importance" });
   if (width(page) < 1120) {
     await page.mouse.wheel(0, 1600);
-    await page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" }).click();
+    await page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" }).click();
   }
   await imp.getByRole("radio", { name: "A lot" }).click();
   await expect(page.getByTestId("pending-line")).toHaveClass(/progress-line/);

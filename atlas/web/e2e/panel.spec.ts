@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
  * sits beside the results, sticky — and, after the Phase 5 report
  * (Nathan), scrolls inside itself, no taller than the window, so its last
  * controls never wait for the page's end; below 1120px it lives in a sheet (phones) or a
- * drawer (tablets) opened by the sticky "Adjust your search" bar, which
+ * drawer (tablets) opened by the sticky "Refine your search" bar, which
  * appears once the hero's quick search has scrolled away. The slider
  * explanation is a real button that opens on hover AND focus AND tap and
  * closes on Escape and blur. */
@@ -78,9 +78,9 @@ for (const size of [{ w: 390, h: 844, name: "sheet" }, { w: 1024, h: 768, name: 
     await expect(bar).toBeHidden();
     await page.mouse.wheel(0, 1600);
     await expect(bar).toBeVisible();
-    const adjust = bar.getByRole("button", { name: "Adjust your search" });
+    const adjust = bar.getByRole("button", { name: "Refine your search" });
     await adjust.click();
-    const sheet = page.getByRole("dialog", { name: "Adjust your search" });
+    const sheet = page.getByRole("dialog", { name: "Refine your search" });
     await expect(sheet).toBeVisible();
     await expect(sheet.getByRole("radiogroup", { name: "Cost of living importance" })).toBeVisible();
     // the page behind does not scroll
@@ -101,9 +101,9 @@ test("the sheet traps focus, closes on Escape and returns focus", async ({ page 
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
   await page.mouse.wheel(0, 1600);
-  const adjust = page.getByTestId("bottom-bar").getByRole("button", { name: "Adjust your search" });
+  const adjust = page.getByTestId("bottom-bar").getByRole("button", { name: "Refine your search" });
   await adjust.click();
-  const sheet = page.getByRole("dialog", { name: "Adjust your search" });
+  const sheet = page.getByRole("dialog", { name: "Refine your search" });
   await expect(sheet).toBeVisible();
   for (let i = 0; i < 40; i++) {
     await page.keyboard.press("Tab");
