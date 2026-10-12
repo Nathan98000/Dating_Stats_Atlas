@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { FOOTER_LINKS, isCurrent, NAV_DESTINATIONS } from "@/lib/nav";
+import { isCurrent, NAV_DESTINATIONS } from "@/lib/nav";
 import { prefQueryString } from "@/lib/prefs";
 import { SearchBox } from "./search";
 
@@ -101,8 +101,9 @@ export function HeaderSearchToggle({ label, closeLabel }: { label: string; close
   );
 }
 
-/** Phase 5: the phone menu — a 44px button opening a panel with the nav
- * and the footer's links. Escape, a click outside or a link closes it. */
+/** Phase 5: the phone menu — a 44px button opening a panel with the nav's
+ * three destinations (since 2026-10-12, Nathan: the footer's links stay in
+ * the footer). Escape, a click outside or a link closes it. */
 export function MenuButton({ labels, menuLabel, closeLabel }: {
   labels: Record<string, string>; menuLabel: string; closeLabel: string;
 }) {
@@ -163,15 +164,6 @@ export function MenuButton({ labels, menuLabel, closeLabel }: {
               </li>
             );
           })}
-        </ul>
-        <ul className="mt-2 flex flex-col border-t border-rule pt-2">
-          {FOOTER_LINKS.filter((f) => f.key !== "footer_how").map((f) => (
-            <li key={f.key}>
-              <Link href={f.href} className="flex min-h-11 items-center text-body-sm text-ink-2">
-                {labels[f.key]}
-              </Link>
-            </li>
-          ))}
         </ul>
       </nav>
     </>

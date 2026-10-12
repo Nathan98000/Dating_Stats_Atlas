@@ -48,3 +48,18 @@ test("the count line ends at 'ranked for your search'; the update line leaves no
   await expect(notice).toHaveCount(0, { timeout: 9000 });
   expect((await header.boundingBox())!.height).toBe(before);
 });
+
+/** The same day: the phone menu holds only Rankings, Compare and How it
+ * works, and the footer only What we measure, Privacy, Terms and Data
+ * sources. */
+test("the phone menu holds the three destinations; the footer the four other links", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.getByTestId("menu-button").click();
+  await expect(page.locator("#site-menu").getByRole("link")).toHaveText(["Rankings", "Compare", "How it works"]);
+  for (const path of ["/", "/about", "/city/provo-utah"]) {
+    await page.goto(path);
+    await expect(page.getByRole("navigation", { name: "Footer" }).getByRole("link"))
+      .toHaveText(["What we measure", "Privacy", "Terms", "Data sources"]);
+  }
+});

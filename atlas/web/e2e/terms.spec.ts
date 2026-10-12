@@ -45,7 +45,7 @@ test("every page's footer links Privacy and Terms (Phase 5: no longer buttons at
     await page.goto(path);
     const footer = page.getByRole("navigation", { name: "Footer" });
     await expect(footer.getByRole("link")).toHaveText(
-      [ps.footer_how, ps.footer_measure, ps.footer_privacy, ps.footer_terms, ps.footer_sources]);
+      [ps.footer_measure, ps.footer_privacy, ps.footer_terms, ps.footer_sources]);
     await expect(footer.getByRole("link", { name: ps.footer_terms })).toHaveAttribute("href", "/terms");
   }
   await expect(page.getByTestId("about-terms-link")).toHaveCount(0);

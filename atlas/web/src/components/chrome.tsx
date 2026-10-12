@@ -51,8 +51,9 @@ export function SiteHeader() {
   );
 }
 
-/** Phase 5: the footer on every page — the brand and five links (How it
- * works, What we measure, Privacy, Terms, Data sources). */
+/** Phase 5: the footer on every page — the brand and four links (What we
+ * measure, Privacy, Terms, Data sources; How it works is the header's since
+ * 2026-10-12, Nathan). */
 export function SiteFooter() {
   const labels = CHROME;
   return (

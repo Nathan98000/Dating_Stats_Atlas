@@ -1,5 +1,5 @@
 {
- "change_set": "Nathan's changes of 2026-10-12: the search bar on phones and tablets, the results count line, and the update line's gap",
+ "change_set": "Nathan's changes of 2026-10-12: the search bar on phones and tablets, the results count line, the update line's gap, and the phone menu and footer",
  "note": "No number moves: build d62202fd0280 keeps its id with its manifest refreshed (two registry strings), the goldens are byte-identical and MODEL_VERSION stays m4.3.0.",
  "changes": [
   {
@@ -33,6 +33,22 @@
    "old": "after six seconds the line emptied but kept its slot, so a blank line stayed between the count and what follows",
    "new": "after six seconds the line folds away (200ms; at once under reduced motion) and leaves the page, so no gap stays",
    "why": "Nathan's request"
+  },
+  {
+   "change": "5. The phone menu",
+   "kind": "trimmed (Nathan's request)",
+   "where": "web/src/components/nav-links.tsx (the menu below 640px)",
+   "old": "Rankings, Compare, How it works; then What we measure, Privacy, Terms, Data sources",
+   "new": "Rankings, Compare, How it works",
+   "why": "Nathan's request; the other four stay in the footer on every page"
+  },
+  {
+   "change": "6. The footer",
+   "kind": "trimmed (Nathan's request)",
+   "where": "web/src/lib/nav.ts FOOTER_LINKS (the footer on every page)",
+   "old": "How it works, What we measure, Privacy, Terms, Data sources",
+   "new": "What we measure, Privacy, Terms, Data sources",
+   "why": "Nathan's request; How it works stays in the header (the registry's footer_how string stays, unused)"
   }
  ]
 }

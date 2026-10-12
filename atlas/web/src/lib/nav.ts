@@ -10,10 +10,11 @@ export const NAV_DESTINATIONS = [
   { href: "/about", key: "nav_how" },
 ] as const;
 
-/** Phase 5: the footer on every page (also in the phone menu). Data
- * sources is About's Sources and credits section. */
+/** Phase 5: the footer on every page. Data sources is About's Sources
+ * and credits section. Since 2026-10-12 (Nathan) How it works is the
+ * header's alone (its registry string footer_how stays, unused), and the
+ * phone menu holds only the three destinations above. */
 export const FOOTER_LINKS = [
-  { href: "/about", key: "footer_how" },
   { href: "/what-we-measure", key: "footer_measure" },
   { href: "/privacy", key: "footer_privacy" },
   { href: "/terms", key: "footer_terms" },
