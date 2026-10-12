@@ -639,6 +639,36 @@ photographs are on the Mac; disk 39% to 35%). Rollback: the images
 a deploy recreates Caddy after the swap, so its Caddyfile is always the
 live folder's, and the previous folder can go at the next deploy.
 
+**Deploy record (2026-10-12, afternoon, on Nathan's word "Merge, push,
+deploy").** 76de4ef: the phone menu holds Rankings, Compare and How it works,
+and the footer What we measure, Privacy, Terms and Data sources. Merged and
+pushed: main = origin/main = 76de4ef; before the push no secret pattern was
+added and the Pew history scan was clean (0 violations over 2,711 blobs); CI
+run 38267228821 green. On the Mac: vitest 145 passed, Playwright 365 passed
+(62 skipped: the 50 by design and the 12 photograph checks). No number
+moves, and the build is unchanged (the live manifest, the main checkout's
+and the committed copy are one, by sha256), so no `build_next`. Steps: the
+running images tagged `:ff72f72`; the code in a fresh folder (1,256 files,
+checked against the commit file for file; the photographs copied from the
+live folder, all 2,192 identical to the Mac's); the images built in 194 s
+while the old containers served; and the private copy passed the menu and
+footer check (the phone menu and the footer on four pages, the desk header
+and footer and the footer's targets), the page checks, the day's earlier
+checks, the footnote check, the click-through and the real-build checks (10
+passed, 2 skipped by design). Then the code folders were swapped (the
+previous code kept as `src_ff72f72`), `up -d api web` run (the API answered
+health 7 seconds later), and Caddy recreated from `src` (no certificate
+obtained). Checked from the Mac: the same checks pass on the live site;
+`www` and both DuckDNS addresses answer 301 to the same page, and http 308;
+the four certificates are valid; `/api/rank` answers 193 ranked cities on
+m4.3.0; no errors, and the only address in Caddy's log is 127.0.0.1. Then
+the older backup was deleted, Nathan keeping only the newest: the images
+`:416150b`, `src_416150b` (its code matched 416150b file for file, its
+photographs are on the Mac) and `build_d62202fd0280_416150b` (its data
+files match the Mac's build, its manifest is in git at 2c420c9); disk 43%
+to 39%. Rollback: the images `:ff72f72` and the code at `src_ff72f72`, on
+the live build.
+
 ## Environment variables
 
 | var | where | meaning |
