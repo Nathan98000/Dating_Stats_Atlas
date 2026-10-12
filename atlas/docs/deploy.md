@@ -596,6 +596,49 @@ Mac; disk 37% to 31%). The rollback set is the images `:4bdba43` and the
 code at `src_4bdba43`, which also holds the Caddyfile the running Caddy
 mounts.
 
+**Deploy record (2026-10-12, on Nathan's word "Merge, push, and deploy").**
+58f082d and ff72f72: the bar on phones and tablets reads "Refine your
+search" (the sheet's title and the desk rail's accessible name with it) and
+shows on the first scroll down (more than 8px) rather than once the quick
+search has left the screen, hiding again at the very top; the results count
+reads "{n} metro areas ranked for your search"; and the "Results updated"
+line folds away after six seconds, leaving no gap. Merged and pushed: main =
+origin/main = ff72f72; before the push no secret pattern was added and the
+Pew history scan was clean (0 violations over 2,704 blobs); CI run
+38259001182 green. On the Mac: pytest 209 passed, vitest 145 passed,
+Playwright 376 passed (50 skipped by design). No number moves: m4.3.0 on
+build d62202fd0280, its manifest refreshed (two registry strings), and the
+main checkout's build took it, byte for byte the committed copy. Steps: the
+running images tagged `:416150b`; the code in a fresh folder (1,256 files,
+checked against the commit file for file; the photographs copied from the
+live folder, all 2,192 identical to the Mac's); the build staged as
+`build_next` (only manifest.json crossed, 65 KB; every file's sha256
+checked); the images built in 187 s while the old containers served; and
+the private copy passed the day's checks (at 390 and 1024 px: no bar on the
+first screen, the bar after a 60px scroll with the quick search still on
+screen, "Refine your search" on the button and the sheet, the bar gone back
+at the top, no "Adjust your search" anywhere; at 1440: the count line, and
+the update line shown after a change and gone after six seconds with the
+header back at its height), the page checks, the footnote check, the
+click-through and the real-build checks (10 passed, 2 skipped by design).
+Then the folders were swapped (the old build kept as
+`build_d62202fd0280_416150b`, the old code as `src_416150b`), `up -d api
+web` run (the API answered health 7 seconds later), and Caddy recreated
+from `src` so that it mounts the live folder's Caddyfile (no certificate
+obtained: all four came from `caddy_data`), which freed `src_4bdba43`.
+Checked from the Mac: the same checks pass on the live site; `www` and both
+DuckDNS addresses answer 301 to the same page and http redirects to https
+(308); the four certificates are valid (until 1 to 9 January 2027);
+`/api/rank` answers 193 ranked cities on m4.3.0; the API's and web's logs
+hold no error, and the only address in Caddy's log is 127.0.0.1. Then, as
+Nathan keeps only the newest backup, the images `:4bdba43` and
+`src_4bdba43` were deleted (its code matched 4bdba43 file for file and its
+photographs are on the Mac; disk 39% to 35%). Rollback: the images
+`:416150b`, the code at `src_416150b` and the build at
+`build_d62202fd0280_416150b` (its manifest the previous one). From now on
+a deploy recreates Caddy after the swap, so its Caddyfile is always the
+live folder's, and the previous folder can go at the next deploy.
+
 ## Environment variables
 
 | var | where | meaning |
