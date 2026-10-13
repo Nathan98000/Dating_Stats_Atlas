@@ -1,0 +1,24 @@
+/about-crime-data    Safari (iPhone)              title_in_head=False og_in_head=False og_anywhere=True
+/about-crime-data    iMessage preview             title_in_head=True  og_in_head=True  og_anywhere=True
+/about-crime-data    WhatsApp                     title_in_head=True  og_in_head=True  og_anywhere=True
+/about-crime-data    Slackbot                     title_in_head=True  og_in_head=True  og_anywhere=True
+/about-crime-data    Discordbot                   title_in_head=True  og_in_head=True  og_anywhere=True
+/about-crime-data    Googlebot                    title_in_head=False og_in_head=False og_anywhere=True
+/about-crime-data    Signal/Telegram (TelegramBot) title_in_head=True  og_in_head=True  og_anywhere=True
+/about-crime-data    LinkedInBot                  title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   Safari (iPhone)              title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   iMessage preview             title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   WhatsApp                     title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   Slackbot                     title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   Discordbot                   title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   Googlebot                    title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   Signal/Telegram (TelegramBot) title_in_head=True  og_in_head=True  og_anywhere=True
+/city/austin-texas   LinkedInBot                  title_in_head=True  og_in_head=True  og_anywhere=True
+/                    Safari (iPhone)              title_in_head=True  og_in_head=True  og_anywhere=True
+/                    iMessage preview             title_in_head=True  og_in_head=True  og_anywhere=True
+/                    WhatsApp                     title_in_head=True  og_in_head=True  og_anywhere=True
+/                    Slackbot                     title_in_head=True  og_in_head=True  og_anywhere=True
+/                    Discordbot                   title_in_head=True  og_in_head=True  og_anywhere=True
+/                    Googlebot                    title_in_head=True  og_in_head=True  og_anywhere=True
+/                    Signal/Telegram (TelegramBot) title_in_head=True  og_in_head=True  og_anywhere=True
+/                    LinkedInBot                  title_in_head=True  og_in_head=True  og_anywhere=True

@@ -1,0 +1,222 @@
+== /
+  title: Dating Scene Data
+   description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   og:title = Dating Scene Data
+   og:description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   og:url = https://datingscenedata.com
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/og/home.png
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Dating Scene Data
+   twitter:description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   twitter:image = https://datingscenedata.com/og/home.png
+== /city/san-francisco-california
+  title: San Francisco, CA · Dating Scene Data
+   description = A major city of about 4.6 million people in California.
+   og:title = San Francisco, CA · Dating Scene Data
+   og:description = A major city of about 4.6 million people in California.
+   og:url = https://datingscenedata.com/city/san-francisco-california
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/cities/og/san-francisco-california.jpg
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = San Francisco, CA · Dating Scene Data
+   twitter:description = A major city of about 4.6 million people in California.
+   twitter:image = https://datingscenedata.com/cities/og/san-francisco-california.jpg
+== /city/deltona-florida
+  title: Deltona, FL · Dating Scene Data
+   description = A city of about 710,000 people half an hour north of Orlando.
+   og:title = Deltona, FL · Dating Scene Data
+   og:description = A city of about 710,000 people half an hour north of Orlando.
+   og:url = https://datingscenedata.com/city/deltona-florida
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/cities/og/deltona-florida.jpg
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Deltona, FL · Dating Scene Data
+   twitter:description = A city of about 710,000 people half an hour north of Orlando.
+   twitter:image = https://datingscenedata.com/cities/og/deltona-florida.jpg
+== /city/abilene-texas
+  title: Abilene, TX · Dating Scene Data
+   description = A city of about 180,000 people about three hours northwest of Killeen.
+   og:title = Abilene, TX · Dating Scene Data
+   og:description = A city of about 180,000 people about three hours northwest of Killeen.
+   og:url = https://datingscenedata.com/city/abilene-texas
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/cities/og/abilene-texas.jpg
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Abilene, TX · Dating Scene Data
+   twitter:description = A city of about 180,000 people about three hours northwest of Killeen.
+   twitter:image = https://datingscenedata.com/cities/og/abilene-texas.jpg
+== /city/champaign-illinois
+  title: Champaign, IL · Dating Scene Data
+   description = A college town of about 240,000 people two hours west of Indianapolis.
+   og:title = Champaign, IL · Dating Scene Data
+   og:description = A college town of about 240,000 people two hours west of Indianapolis.
+   og:url = https://datingscenedata.com/city/champaign-illinois
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Champaign, IL · Dating Scene Data
+   twitter:description = A college town of about 240,000 people two hours west of Indianapolis.
+== /compare
+  title: Compare · Dating Scene Data
+   description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+   og:title = Compare · Dating Scene Data
+   og:description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+   og:url = https://datingscenedata.com/compare
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Compare · Dating Scene Data
+   twitter:description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+== /compare/austin-texas/denver-colorado
+  title: Austin, TX vs Denver, CO · Dating Scene Data
+   description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+   og:title = Austin, TX vs Denver, CO · Dating Scene Data
+   og:description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+   og:url = https://datingscenedata.com/compare/austin-texas/denver-colorado
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Austin, TX vs Denver, CO · Dating Scene Data
+   twitter:description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+== /compare/austin-texas/abilene-texas
+  title: Austin, TX vs Abilene, TX · Dating Scene Data
+   description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+   og:title = Austin, TX vs Abilene, TX · Dating Scene Data
+   og:description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+   og:url = https://datingscenedata.com/compare/austin-texas/abilene-texas
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Austin, TX vs Abilene, TX · Dating Scene Data
+   twitter:description = View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.
+== /about
+  title: How it works · Dating Scene Data
+   description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:title = How it works · Dating Scene Data
+   og:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:url = https://datingscenedata.com/about
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = How it works · Dating Scene Data
+   twitter:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+== /what-we-measure
+  title: What we measure · Dating Scene Data
+   description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:title = What we measure · Dating Scene Data
+   og:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:url = https://datingscenedata.com/what-we-measure
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = What we measure · Dating Scene Data
+   twitter:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+== /about-crime-data
+  title: None
+== /stats/rent_1br
+  title: Rent by city · Dating Scene Data
+   description = The typical monthly rent for a one-bedroom home across the city, utilities included
+   og:title = Rent by city · Dating Scene Data
+   og:description = The typical monthly rent for a one-bedroom home across the city, utilities included
+   og:url = https://datingscenedata.com/stats/rent_1br
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/stats/og/rent_1br.jpg
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Rent by city · Dating Scene Data
+   twitter:description = The typical monthly rent for a one-bedroom home across the city, utilities included
+   twitter:image = https://datingscenedata.com/stats/og/rent_1br.jpg
+== /stats/political_lean
+  title: Political lean by city · Dating Scene Data
+   description = How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.
+   og:title = Political lean by city · Dating Scene Data
+   og:description = How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.
+   og:url = https://datingscenedata.com/stats/political_lean
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/stats/og/political_lean.jpg
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Political lean by city · Dating Scene Data
+   twitter:description = How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.
+   twitter:image = https://datingscenedata.com/stats/og/political_lean.jpg
+== /privacy
+  title: Privacy · Dating Scene Data
+   description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:title = Privacy · Dating Scene Data
+   og:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:url = https://datingscenedata.com/privacy
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Privacy · Dating Scene Data
+   twitter:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+== /terms
+  title: Terms · Dating Scene Data
+   description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:title = Terms · Dating Scene Data
+   og:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:url = https://datingscenedata.com/terms
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Terms · Dating Scene Data
+   twitter:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+== /r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lI
+  title: Top cities for single men, 28–40 · Dating Scene Data
+   description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   og:title = Top cities for single men, 28–40 · Dating Scene Data
+   og:description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   og:url = https://datingscenedata.com/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdG
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/og/home.png
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Top cities for single men, 28–40 · Dating Scene Data
+   twitter:description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   twitter:image = https://datingscenedata.com/og/home.png
+== /?self_age=33&sex=male&age=28-38&marital=never%2Cpreviously
+  title: Top cities for single men, 28–38 · Dating Scene Data
+   description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   og:title = Top cities for single men, 28–38 · Dating Scene Data
+   og:description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   og:url = https://datingscenedata.com
+   og:site_name = Dating Scene Data
+   og:image = https://datingscenedata.com/og/home.png
+   og:image:width = 1200
+   og:image:height = 630
+   og:type = website
+   twitter:card = summary_large_image
+   twitter:title = Top cities for single men, 28–38 · Dating Scene Data
+   twitter:description = See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.
+   twitter:image = https://datingscenedata.com/og/home.png
+== /no-such-page
+  title: Dating Scene Data
+   robots = noindex
+   description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:title = Dating Scene Data
+   og:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.
+   og:url = https://datingscenedata.com
+   og:site_name = Dating Scene Data
+   og:type = website
+   twitter:card = summary
+   twitter:title = Dating Scene Data
+   twitter:description = Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.

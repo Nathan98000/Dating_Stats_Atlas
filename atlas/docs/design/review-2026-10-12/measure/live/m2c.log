@@ -1,0 +1,56 @@
+city-sf@1440 run 1: lcp 744 (IMG https://datingscenedata.com/cities/w/san-francisco) cls 0
+city-sf@1440 run 2: lcp 612 (IMG https://datingscenedata.com/cities/w/san-francisco) cls 0
+city-sf@1440 run 3: lcp 936 (IMG https://datingscenedata.com/cities/w/san-francisco) cls 0
+city-sf@390 run 1: lcp 992 (H1 San Francisco, California) cls 0.0004
+city-sf@390 run 2: lcp 1012 (H1 San Francisco, California) cls 0.0004
+city-sf@390 run 3: lcp 988 (H1 San Francisco, California) cls 0.0004
+compare-pair@1440 run 1: lcp 696 (P This comparison uses the site's starting search: s) cls 0
+compare-pair@1440 run 2: lcp 596 (P This comparison uses the site's starting search: s) cls 0
+compare-pair@1440 run 3: lcp 592 (P This comparison uses the site's starting search: s) cls 0
+compare-pair@390 run 1: lcp 988 (P This comparison uses the site's starting search: s) cls 0.0001
+compare-pair@390 run 2: lcp 1004 (P This comparison uses the site's starting search: s) cls 0.0001
+compare-pair@390 run 3: lcp 1088 (P This comparison uses the site's starting search: s) cls 0.0001
+stat-rent@1440 run 1: lcp 200 (IMG https://datingscenedata.com/stats/w/rent_1br-720.w) cls 0
+stat-rent@1440 run 2: lcp 196 (IMG https://datingscenedata.com/stats/w/rent_1br-720.w) cls 0
+stat-rent@1440 run 3: lcp 172 (IMG https://datingscenedata.com/stats/w/rent_1br-720.w) cls 0
+stat-rent@390 run 1: lcp 2072 (IMG https://datingscenedata.com/stats/w/rent_1br-1080.) cls 0.0003
+stat-rent@390 run 2: lcp 2064 (IMG https://datingscenedata.com/stats/w/rent_1br-1080.) cls 0.0003
+stat-rent@390 run 3: lcp 2084 (IMG https://datingscenedata.com/stats/w/rent_1br-1080.) cls 0.0003
+{
+ "city-sf@1440": {
+  "ttfb": 559,
+  "fcp": 728,
+  "lcp": 744,
+  "cls": 0
+ },
+ "city-sf@390": {
+  "ttfb": 470,
+  "fcp": 992,
+  "lcp": 992,
+  "cls": 0.0004
+ },
+ "compare-pair@1440": {
+  "ttfb": 481,
+  "fcp": 596,
+  "lcp": 596,
+  "cls": 0
+ },
+ "compare-pair@390": {
+  "ttfb": 466,
+  "fcp": 1004,
+  "lcp": 1004,
+  "cls": 0.0001
+ },
+ "stat-rent@1440": {
+  "ttfb": 75,
+  "fcp": 196,
+  "lcp": 196,
+  "cls": 0
+ },
+ "stat-rent@390": {
+  "ttfb": 83,
+  "fcp": 760,
+  "lcp": 2072,
+  "cls": 0.0003
+ }
+}

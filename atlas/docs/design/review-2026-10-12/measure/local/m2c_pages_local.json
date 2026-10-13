@@ -1,0 +1,194 @@
+{
+ "base": "http://127.0.0.1:3400",
+ "label": "local",
+ "runs": 3,
+ "generated": "2026-10-13T00:58:22.763Z",
+ "pages": {
+  "city-sf@1440": {
+   "median": {
+    "ttfb": 97,
+    "fcp": 132,
+    "lcp": 132,
+    "cls": 0
+   },
+   "runs": [
+    {
+     "ttfb": 105,
+     "fcp": 156,
+     "lcp": 156,
+     "lcp_el": "IMG http://127.0.0.1:3400/cities/w/san-francisco-calif",
+     "cls": 0
+    },
+    {
+     "ttfb": 97,
+     "fcp": 132,
+     "lcp": 132,
+     "lcp_el": "IMG http://127.0.0.1:3400/cities/w/san-francisco-calif",
+     "cls": 0
+    },
+    {
+     "ttfb": 97,
+     "fcp": 132,
+     "lcp": 132,
+     "lcp_el": "IMG http://127.0.0.1:3400/cities/w/san-francisco-calif",
+     "cls": 0
+    }
+   ]
+  },
+  "city-sf@390": {
+   "median": {
+    "ttfb": 99,
+    "fcp": 712,
+    "lcp": 712,
+    "cls": 0.0004
+   },
+   "runs": [
+    {
+     "ttfb": 99,
+     "fcp": 712,
+     "lcp": 712,
+     "lcp_el": "H1 San Francisco, California",
+     "cls": 0.0004
+    },
+    {
+     "ttfb": 99,
+     "fcp": 720,
+     "lcp": 720,
+     "lcp_el": "H1 San Francisco, California",
+     "cls": 0.0004
+    },
+    {
+     "ttfb": 95,
+     "fcp": 712,
+     "lcp": 712,
+     "lcp_el": "H1 San Francisco, California",
+     "cls": 0.0004
+    }
+   ]
+  },
+  "compare-pair@1440": {
+   "median": {
+    "ttfb": 98,
+    "fcp": 124,
+    "lcp": 124,
+    "cls": 0
+   },
+   "runs": [
+    {
+     "ttfb": 103,
+     "fcp": 128,
+     "lcp": 128,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0
+    },
+    {
+     "ttfb": 97,
+     "fcp": 124,
+     "lcp": 124,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0
+    },
+    {
+     "ttfb": 98,
+     "fcp": 124,
+     "lcp": 124,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0
+    }
+   ]
+  },
+  "compare-pair@390": {
+   "median": {
+    "ttfb": 103,
+    "fcp": 680,
+    "lcp": 680,
+    "cls": 0.0001
+   },
+   "runs": [
+    {
+     "ttfb": 103,
+     "fcp": 664,
+     "lcp": 664,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0.0001
+    },
+    {
+     "ttfb": 103,
+     "fcp": 680,
+     "lcp": 680,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0.0001
+    },
+    {
+     "ttfb": 101,
+     "fcp": 704,
+     "lcp": 704,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0.0001
+    }
+   ]
+  },
+  "stat-rent@1440": {
+   "median": {
+    "ttfb": 4,
+    "fcp": 36,
+    "lcp": 36,
+    "cls": 0
+   },
+   "runs": [
+    {
+     "ttfb": 4,
+     "fcp": 32,
+     "lcp": 32,
+     "lcp_el": "IMG http://127.0.0.1:3400/stats/w/rent_1br-720.webp",
+     "cls": 0
+    },
+    {
+     "ttfb": 4,
+     "fcp": 36,
+     "lcp": 36,
+     "lcp_el": "IMG http://127.0.0.1:3400/stats/w/rent_1br-720.webp",
+     "cls": 0
+    },
+    {
+     "ttfb": 5,
+     "fcp": 36,
+     "lcp": 36,
+     "lcp_el": "IMG http://127.0.0.1:3400/stats/w/rent_1br-720.webp",
+     "cls": 0
+    }
+   ]
+  },
+  "stat-rent@390": {
+   "median": {
+    "ttfb": 4,
+    "fcp": 688,
+    "lcp": 2004,
+    "cls": 0.0003
+   },
+   "runs": [
+    {
+     "ttfb": 4,
+     "fcp": 688,
+     "lcp": 2004,
+     "lcp_el": "IMG http://127.0.0.1:3400/stats/w/rent_1br-1080.webp",
+     "cls": 0.0003
+    },
+    {
+     "ttfb": 3,
+     "fcp": 692,
+     "lcp": 2004,
+     "lcp_el": "IMG http://127.0.0.1:3400/stats/w/rent_1br-1080.webp",
+     "cls": 0.0003
+    },
+    {
+     "ttfb": 4,
+     "fcp": 688,
+     "lcp": 2004,
+     "lcp_el": "IMG http://127.0.0.1:3400/stats/w/rent_1br-1080.webp",
+     "cls": 0.0003
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,1546 @@
+[
+ {
+  "rank": 1,
+  "name": "San Francisco, CA",
+  "slug": "san-francisco-california",
+  "file": "san-francisco-california.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 2,
+  "name": "Boston, MA",
+  "slug": "boston-massachusetts",
+  "file": "boston-massachusetts.jpg",
+  "px": "1920x1251",
+  "focus": null
+ },
+ {
+  "rank": 3,
+  "name": "New York, NY",
+  "slug": "new-york-new-york",
+  "file": "new-york-new-york.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 4,
+  "name": "Los Angeles, CA",
+  "slug": "los-angeles-california",
+  "file": "los-angeles-california.jpg",
+  "px": "1920x1196",
+  "focus": null
+ },
+ {
+  "rank": 5,
+  "name": "San Jose, CA",
+  "slug": "san-jose-california",
+  "file": "san-jose-california.jpg",
+  "px": "1920x1292",
+  "focus": null
+ },
+ {
+  "rank": 6,
+  "name": "Seattle, WA",
+  "slug": "seattle-washington",
+  "file": "seattle-washington.jpg",
+  "px": "1920x1200",
+  "focus": null
+ },
+ {
+  "rank": 7,
+  "name": "Chicago, IL",
+  "slug": "chicago-illinois",
+  "file": "chicago-illinois.jpg",
+  "px": "1920x1357",
+  "focus": null
+ },
+ {
+  "rank": 8,
+  "name": "San Diego, CA",
+  "slug": "san-diego-california",
+  "file": "san-diego-california.jpg",
+  "px": "1920x1237",
+  "focus": null
+ },
+ {
+  "rank": 9,
+  "name": "Austin, TX",
+  "slug": "austin-texas",
+  "file": "austin-texas.jpg",
+  "px": "1920x1057",
+  "focus": null
+ },
+ {
+  "rank": 10,
+  "name": "Philadelphia, PA",
+  "slug": "philadelphia-pennsylvania",
+  "file": "philadelphia-pennsylvania.jpg",
+  "px": "1920x960",
+  "focus": null
+ },
+ {
+  "rank": 11,
+  "name": "Denver, CO",
+  "slug": "denver-colorado",
+  "file": "denver-colorado.jpg",
+  "px": "1920x1152",
+  "focus": null
+ },
+ {
+  "rank": 12,
+  "name": "Washington, DC",
+  "slug": "washington-district-of-columbia",
+  "file": "washington-district-of-columbia.jpg",
+  "px": "1920x823",
+  "focus": null
+ },
+ {
+  "rank": 13,
+  "name": "Portland, OR",
+  "slug": "portland-oregon",
+  "file": "portland-oregon.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 14,
+  "name": "Pittsburgh, PA",
+  "slug": "pittsburgh-pennsylvania",
+  "file": "pittsburgh-pennsylvania.jpg",
+  "px": "1920x1282",
+  "focus": null
+ },
+ {
+  "rank": 15,
+  "name": "Houston, TX",
+  "slug": "houston-texas",
+  "file": "houston-texas.jpg",
+  "px": "1920x960",
+  "focus": null
+ },
+ {
+  "rank": 16,
+  "name": "Dallas, TX",
+  "slug": "dallas-texas",
+  "file": "dallas-texas.png",
+  "px": "1920x978",
+  "focus": null
+ },
+ {
+  "rank": 17,
+  "name": "Milwaukee, WI",
+  "slug": "milwaukee-wisconsin",
+  "file": "milwaukee-wisconsin.jpg",
+  "px": "1920x1277",
+  "focus": null
+ },
+ {
+  "rank": 18,
+  "name": "Madison, WI",
+  "slug": "madison-wisconsin",
+  "file": "madison-wisconsin.jpg",
+  "px": "1920x1272",
+  "focus": null
+ },
+ {
+  "rank": 19,
+  "name": "Miami, FL",
+  "slug": "miami-florida",
+  "file": "miami-florida.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 20,
+  "name": "Phoenix, AZ",
+  "slug": "phoenix-arizona",
+  "file": "phoenix-arizona.jpg",
+  "px": "1920x1484",
+  "focus": null
+ },
+ {
+  "rank": 21,
+  "name": "New Orleans, LA",
+  "slug": "new-orleans-louisiana",
+  "file": "new-orleans-louisiana.jpg",
+  "px": "1920x1381",
+  "focus": null
+ },
+ {
+  "rank": 22,
+  "name": "Atlanta, GA",
+  "slug": "atlanta-georgia",
+  "file": "atlanta-georgia.jpg",
+  "px": "1920x1061",
+  "focus": null
+ },
+ {
+  "rank": 23,
+  "name": "Providence, RI",
+  "slug": "providence-rhode-island",
+  "file": "providence-rhode-island.jpg",
+  "px": "1920x970",
+  "focus": null
+ },
+ {
+  "rank": 24,
+  "name": "Buffalo, NY",
+  "slug": "buffalo-new-york",
+  "file": "buffalo-new-york.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 25,
+  "name": "Tampa, FL",
+  "slug": "tampa-florida",
+  "file": "tampa-florida.jpg",
+  "px": "1920x1103",
+  "focus": null
+ },
+ {
+  "rank": 26,
+  "name": "Orlando, FL",
+  "slug": "orlando-florida",
+  "file": "orlando-florida.jpg",
+  "px": "1920x1331",
+  "focus": null
+ },
+ {
+  "rank": 27,
+  "name": "Cleveland, OH",
+  "slug": "cleveland-ohio",
+  "file": "cleveland-ohio.jpg",
+  "px": "1920x1016",
+  "focus": null
+ },
+ {
+  "rank": 28,
+  "name": "Raleigh, NC",
+  "slug": "raleigh-north-carolina",
+  "file": "raleigh-north-carolina.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 29,
+  "name": "Minneapolis, MN",
+  "slug": "minneapolis-minnesota",
+  "file": "minneapolis-minnesota.jpg",
+  "px": "1920x1063",
+  "focus": null
+ },
+ {
+  "rank": 30,
+  "name": "Columbus, OH",
+  "slug": "columbus-ohio",
+  "file": "columbus-ohio.jpg",
+  "px": "1920x1312",
+  "focus": null
+ },
+ {
+  "rank": 31,
+  "name": "Sacramento, CA",
+  "slug": "sacramento-california",
+  "file": "sacramento-california.jpg",
+  "px": "1920x1081",
+  "focus": null
+ },
+ {
+  "rank": 32,
+  "name": "San Antonio, TX",
+  "slug": "san-antonio-texas",
+  "file": "san-antonio-texas.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 33,
+  "name": "St. Louis, MO",
+  "slug": "st-louis-missouri",
+  "file": "st-louis-missouri.jpg",
+  "px": "1920x1471",
+  "focus": null
+ },
+ {
+  "rank": 34,
+  "name": "Rochester, NY",
+  "slug": "rochester-new-york",
+  "file": "rochester-new-york.jpg",
+  "px": "1920x1280",
+  "focus": "50% 85%"
+ },
+ {
+  "rank": 35,
+  "name": "Detroit, MI",
+  "slug": "detroit-michigan",
+  "file": "detroit-michigan.jpg",
+  "px": "1920x1121",
+  "focus": null
+ },
+ {
+  "rank": 36,
+  "name": "Boulder, CO",
+  "slug": "boulder-colorado",
+  "file": "boulder-colorado.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 37,
+  "name": "Las Vegas, NV",
+  "slug": "las-vegas-nevada",
+  "file": "las-vegas-nevada.jpg",
+  "px": "1920x1237",
+  "focus": null
+ },
+ {
+  "rank": 38,
+  "name": "Baltimore, MD",
+  "slug": "baltimore-maryland",
+  "file": "baltimore-maryland.jpg",
+  "px": "1920x1277",
+  "focus": null
+ },
+ {
+  "rank": 39,
+  "name": "Hartford, CT",
+  "slug": "hartford-connecticut",
+  "file": "hartford-connecticut.jpg",
+  "px": "1920x960",
+  "focus": null
+ },
+ {
+  "rank": 40,
+  "name": "Bridgeport, CT",
+  "slug": "bridgeport-connecticut",
+  "file": "bridgeport-connecticut.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 41,
+  "name": "Riverside, CA",
+  "slug": "riverside-california",
+  "file": "riverside-california.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 42,
+  "name": "Ann Arbor, MI",
+  "slug": "ann-arbor-michigan",
+  "file": "ann-arbor-michigan.jpg",
+  "px": "1920x933",
+  "focus": null
+ },
+ {
+  "rank": 43,
+  "name": "Albany, NY",
+  "slug": "albany-new-york",
+  "file": "albany-new-york.jpg",
+  "px": "1920x1152",
+  "focus": null
+ },
+ {
+  "rank": 44,
+  "name": "Indianapolis, IN",
+  "slug": "indianapolis-indiana",
+  "file": "indianapolis-indiana.jpg",
+  "px": "1920x1067",
+  "focus": null
+ },
+ {
+  "rank": 45,
+  "name": "Charlotte, NC",
+  "slug": "charlotte-north-carolina",
+  "file": "charlotte-north-carolina.jpg",
+  "px": "1920x1108",
+  "focus": null
+ },
+ {
+  "rank": 46,
+  "name": "Kansas City, MO",
+  "slug": "kansas-city-missouri",
+  "file": "kansas-city-missouri.jpg",
+  "px": "1920x1119",
+  "focus": null
+ },
+ {
+  "rank": 47,
+  "name": "Virginia Beach, VA",
+  "slug": "virginia-beach-virginia",
+  "file": "virginia-beach-virginia.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 48,
+  "name": "El Paso, TX",
+  "slug": "el-paso-texas",
+  "file": "el-paso-texas.jpg",
+  "px": "1920x1064",
+  "focus": null
+ },
+ {
+  "rank": 49,
+  "name": "Des Moines, IA",
+  "slug": "des-moines-iowa",
+  "file": "des-moines-iowa.jpg",
+  "px": "1920x1210",
+  "focus": null
+ },
+ {
+  "rank": 50,
+  "name": "Cincinnati, OH",
+  "slug": "cincinnati-ohio",
+  "file": "cincinnati-ohio.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 51,
+  "name": "Omaha, NE",
+  "slug": "omaha-nebraska",
+  "file": "omaha-nebraska.jpg",
+  "px": "1920x1227",
+  "focus": null
+ },
+ {
+  "rank": 52,
+  "name": "Fort Collins, CO",
+  "slug": "fort-collins-colorado",
+  "file": "fort-collins-colorado.jpg",
+  "px": "1500x1000",
+  "focus": null
+ },
+ {
+  "rank": 53,
+  "name": "New Haven, CT",
+  "slug": "new-haven-connecticut",
+  "file": "new-haven-connecticut.jpg",
+  "px": "1920x960",
+  "focus": null
+ },
+ {
+  "rank": 54,
+  "name": "Salt Lake City, UT",
+  "slug": "salt-lake-city-utah",
+  "file": "salt-lake-city-utah.jpg",
+  "px": "1920x893",
+  "focus": null
+ },
+ {
+  "rank": 55,
+  "name": "Nashville, TN",
+  "slug": "nashville-tennessee",
+  "file": "nashville-tennessee.jpg",
+  "px": "1920x1153",
+  "focus": null
+ },
+ {
+  "rank": 56,
+  "name": "Fargo, ND",
+  "slug": "fargo-north-dakota",
+  "file": "fargo-north-dakota.jpg",
+  "px": "1920x1723",
+  "focus": "50% 20%"
+ },
+ {
+  "rank": 57,
+  "name": "Erie, PA",
+  "slug": "erie-pennsylvania",
+  "file": "erie-pennsylvania.jpg",
+  "px": "1920x960",
+  "focus": null
+ },
+ {
+  "rank": 58,
+  "name": "Oklahoma City, OK",
+  "slug": "oklahoma-city-oklahoma",
+  "file": "oklahoma-city-oklahoma.jpg",
+  "px": "1920x1132",
+  "focus": null
+ },
+ {
+  "rank": 59,
+  "name": "Toledo, OH",
+  "slug": "toledo-ohio",
+  "file": "toledo-ohio.jpg",
+  "px": "1920x573",
+  "focus": null
+ },
+ {
+  "rank": 60,
+  "name": "Honolulu, HI",
+  "slug": "honolulu-hawaii",
+  "file": "honolulu-hawaii.jpg",
+  "px": "1920x941",
+  "focus": null
+ },
+ {
+  "rank": 61,
+  "name": "Syracuse, NY",
+  "slug": "syracuse-new-york",
+  "file": "syracuse-new-york.jpg",
+  "px": "1920x1067",
+  "focus": null
+ },
+ {
+  "rank": 62,
+  "name": "Santa Maria, CA",
+  "slug": "santa-maria-california",
+  "file": "santa-maria-california.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 63,
+  "name": "Durham, NC",
+  "slug": "durham-north-carolina",
+  "file": "durham-north-carolina.jpg",
+  "px": "1920x873",
+  "focus": null
+ },
+ {
+  "rank": 64,
+  "name": "Gainesville, FL",
+  "slug": "gainesville-florida",
+  "file": "gainesville-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 65,
+  "name": "Charleston, SC",
+  "slug": "charleston-south-carolina",
+  "file": "charleston-south-carolina.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 66,
+  "name": "Louisville, KY",
+  "slug": "louisville-kentucky",
+  "file": "louisville-kentucky.jpg",
+  "px": "1920x1295",
+  "focus": null
+ },
+ {
+  "rank": 67,
+  "name": "Atlantic City, NJ",
+  "slug": "atlantic-city-new-jersey",
+  "file": "atlantic-city-new-jersey.jpg",
+  "px": "1920x1132",
+  "focus": null
+ },
+ {
+  "rank": 68,
+  "name": "North Port, FL",
+  "slug": "north-port-florida",
+  "file": "north-port-florida.jpg",
+  "px": "1920x1289",
+  "focus": null
+ },
+ {
+  "rank": 69,
+  "name": "Akron, OH",
+  "slug": "akron-ohio",
+  "file": "akron-ohio.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 70,
+  "name": "Jacksonville, FL",
+  "slug": "jacksonville-florida",
+  "file": "jacksonville-florida.jpg",
+  "px": "1920x1236",
+  "focus": null
+ },
+ {
+  "rank": 71,
+  "name": "Richmond, VA",
+  "slug": "richmond-virginia",
+  "file": "richmond-virginia.jpg",
+  "px": "1920x1233",
+  "focus": null
+ },
+ {
+  "rank": 72,
+  "name": "Albuquerque, NM",
+  "slug": "albuquerque-new-mexico",
+  "file": "albuquerque-new-mexico.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 73,
+  "name": "Wilmington, NC",
+  "slug": "wilmington-north-carolina",
+  "file": "wilmington-north-carolina.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 74,
+  "name": "San Luis Obispo, CA",
+  "slug": "san-luis-obispo-california",
+  "file": "san-luis-obispo-california.jpg",
+  "px": "1920x1011",
+  "focus": null
+ },
+ {
+  "rank": 75,
+  "name": "Tucson, AZ",
+  "slug": "tucson-arizona",
+  "file": "tucson-arizona.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 76,
+  "name": "Worcester, MA",
+  "slug": "worcester-massachusetts",
+  "file": "worcester-massachusetts.jpg",
+  "px": "1920x1067",
+  "focus": null
+ },
+ {
+  "rank": 77,
+  "name": "Oxnard, CA",
+  "slug": "oxnard-california",
+  "file": "oxnard-california.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 78,
+  "name": "Palm Bay, FL",
+  "slug": "palm-bay-florida",
+  "file": "palm-bay-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 79,
+  "name": "Lexington, KY",
+  "slug": "lexington-kentucky",
+  "file": "lexington-kentucky.jpg",
+  "px": "1544x1024",
+  "focus": null
+ },
+ {
+  "rank": 80,
+  "name": "Allentown, PA",
+  "slug": "allentown-pennsylvania",
+  "file": "allentown-pennsylvania.jpg",
+  "px": "1920x1153",
+  "focus": null
+ },
+ {
+  "rank": 81,
+  "name": "Lincoln, NE",
+  "slug": "lincoln-nebraska",
+  "file": "lincoln-nebraska.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 82,
+  "name": "Duluth, MN",
+  "slug": "duluth-minnesota",
+  "file": "duluth-minnesota.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 83,
+  "name": "Trenton, NJ",
+  "slug": "trenton-new-jersey",
+  "file": "trenton-new-jersey.jpg",
+  "px": "1920x1068",
+  "focus": null
+ },
+ {
+  "rank": 84,
+  "name": "Dayton, OH",
+  "slug": "dayton-ohio",
+  "file": "dayton-ohio.jpg",
+  "px": "1920x1152",
+  "focus": null
+ },
+ {
+  "rank": 85,
+  "name": "Portland, ME",
+  "slug": "portland-maine",
+  "file": "portland-maine.jpg",
+  "px": "1920x1285",
+  "focus": null
+ },
+ {
+  "rank": 86,
+  "name": "Colorado Springs, CO",
+  "slug": "colorado-springs-colorado",
+  "file": "colorado-springs-colorado.jpg",
+  "px": "1920x919",
+  "focus": null
+ },
+ {
+  "rank": 87,
+  "name": "Grand Rapids, MI",
+  "slug": "grand-rapids-michigan",
+  "file": "grand-rapids-michigan.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 88,
+  "name": "Spokane, WA",
+  "slug": "spokane-washington",
+  "file": "spokane-washington.jpg",
+  "px": "1920x1056",
+  "focus": null
+ },
+ {
+  "rank": 89,
+  "name": "Greenville, SC",
+  "slug": "greenville-south-carolina",
+  "file": "greenville-south-carolina.jpg",
+  "px": "1920x1446",
+  "focus": null
+ },
+ {
+  "rank": 90,
+  "name": "Davenport, IA",
+  "slug": "davenport-iowa",
+  "file": "davenport-iowa.jpg",
+  "px": "1920x1279",
+  "focus": null
+ },
+ {
+  "rank": 91,
+  "name": "Sioux Falls, SD",
+  "slug": "sioux-falls-south-dakota",
+  "file": "sioux-falls-south-dakota.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 92,
+  "name": "Boise City, ID",
+  "slug": "boise-city-idaho",
+  "file": "boise-city-idaho.jpg",
+  "px": "1920x1335",
+  "focus": null
+ },
+ {
+  "rank": 93,
+  "name": "Cedar Rapids, IA",
+  "slug": "cedar-rapids-iowa",
+  "file": "cedar-rapids-iowa.jpg",
+  "px": "1280x960",
+  "focus": null
+ },
+ {
+  "rank": 94,
+  "name": "Eugene, OR",
+  "slug": "eugene-oregon",
+  "file": "eugene-oregon.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 95,
+  "name": "College Station, TX",
+  "slug": "college-station-texas",
+  "file": "college-station-texas.jpg",
+  "px": "1920x1277",
+  "focus": null
+ },
+ {
+  "rank": 96,
+  "name": "Deltona, FL",
+  "slug": "deltona-florida",
+  "file": "deltona-florida.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 97,
+  "name": "Corpus Christi, TX",
+  "slug": "corpus-christi-texas",
+  "file": "corpus-christi-texas.jpg",
+  "px": "1920x1149",
+  "focus": null
+ },
+ {
+  "rank": 98,
+  "name": "Savannah, GA",
+  "slug": "savannah-georgia",
+  "file": "savannah-georgia.jpg",
+  "px": "1920x1332",
+  "focus": null
+ },
+ {
+  "rank": 99,
+  "name": "Fresno, CA",
+  "slug": "fresno-california",
+  "file": "fresno-california.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 100,
+  "name": "Greensboro, NC",
+  "slug": "greensboro-north-carolina",
+  "file": "greensboro-north-carolina.jpg",
+  "px": "1500x1125",
+  "focus": null
+ },
+ {
+  "rank": 101,
+  "name": "Wichita, KS",
+  "slug": "wichita-kansas",
+  "file": "wichita-kansas.jpg",
+  "px": "1920x1152",
+  "focus": null
+ },
+ {
+  "rank": 102,
+  "name": "Kiryas Joel, NY",
+  "slug": "kiryas-joel-new-york",
+  "file": "kiryas-joel-new-york.jpg",
+  "px": "1920x1200",
+  "focus": null
+ },
+ {
+  "rank": 103,
+  "name": "Baton Rouge, LA",
+  "slug": "baton-rouge-louisiana",
+  "file": "baton-rouge-louisiana.jpg",
+  "px": "1920x1277",
+  "focus": null
+ },
+ {
+  "rank": 104,
+  "name": "Peoria, IL",
+  "slug": "peoria-illinois",
+  "file": "peoria-illinois.jpg",
+  "px": "1920x827",
+  "focus": null
+ },
+ {
+  "rank": 105,
+  "name": "Reno, NV",
+  "slug": "reno-nevada",
+  "file": "reno-nevada.jpg",
+  "px": "900x600",
+  "focus": null
+ },
+ {
+  "rank": 106,
+  "name": "Harrisburg, PA",
+  "slug": "harrisburg-pennsylvania",
+  "file": "harrisburg-pennsylvania.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 107,
+  "name": "Springfield, MO",
+  "slug": "springfield-missouri",
+  "file": "springfield-missouri.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 108,
+  "name": "Memphis, TN",
+  "slug": "memphis-tennessee",
+  "file": "memphis-tennessee.jpg",
+  "px": "1920x960",
+  "focus": null
+ },
+ {
+  "rank": 109,
+  "name": "Columbia, SC",
+  "slug": "columbia-south-carolina",
+  "file": "columbia-south-carolina.jpg",
+  "px": "1844x892",
+  "focus": null
+ },
+ {
+  "rank": 110,
+  "name": "Scranton, PA",
+  "slug": "scranton-pennsylvania",
+  "file": "scranton-pennsylvania.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 111,
+  "name": "Tulsa, OK",
+  "slug": "tulsa-oklahoma",
+  "file": "tulsa-oklahoma.jpg",
+  "px": "1920x1275",
+  "focus": null
+ },
+ {
+  "rank": 112,
+  "name": "Tallahassee, FL",
+  "slug": "tallahassee-florida",
+  "file": "tallahassee-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 113,
+  "name": "Asheville, NC",
+  "slug": "asheville-north-carolina",
+  "file": "asheville-north-carolina.jpg",
+  "px": "1920x934",
+  "focus": null
+ },
+ {
+  "rank": 114,
+  "name": "Cape Coral, FL",
+  "slug": "cape-coral-florida",
+  "file": "cape-coral-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 115,
+  "name": "Lansing, MI",
+  "slug": "lansing-michigan",
+  "file": "lansing-michigan.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 116,
+  "name": "Fayetteville, AR",
+  "slug": "fayetteville-arkansas",
+  "file": "fayetteville-arkansas.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 117,
+  "name": "Utica, NY",
+  "slug": "utica-new-york",
+  "file": "utica-new-york.jpg",
+  "px": "1920x1371",
+  "focus": null
+ },
+ {
+  "rank": 118,
+  "name": "Gulfport, MS",
+  "slug": "gulfport-mississippi",
+  "file": "gulfport-mississippi.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 119,
+  "name": "Little Rock, AR",
+  "slug": "little-rock-arkansas",
+  "file": "little-rock-arkansas.jpg",
+  "px": "1920x1153",
+  "focus": null
+ },
+ {
+  "rank": 120,
+  "name": "Amarillo, TX",
+  "slug": "amarillo-texas",
+  "file": "amarillo-texas.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 121,
+  "name": "Kennewick, WA",
+  "slug": "kennewick-washington",
+  "file": "kennewick-washington.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 122,
+  "name": "Birmingham, AL",
+  "slug": "birmingham-alabama",
+  "file": "birmingham-alabama.jpg",
+  "px": "1920x927",
+  "focus": null
+ },
+ {
+  "rank": 123,
+  "name": "McAllen, TX",
+  "slug": "mcallen-texas",
+  "file": "mcallen-texas.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 124,
+  "name": "Santa Rosa, CA",
+  "slug": "santa-rosa-california",
+  "file": "santa-rosa-california.jpg",
+  "px": "1920x1660",
+  "focus": null
+ },
+ {
+  "rank": 125,
+  "name": "Kalamazoo, MI",
+  "slug": "kalamazoo-michigan",
+  "file": "kalamazoo-michigan.jpg",
+  "px": "1159x500",
+  "focus": null
+ },
+ {
+  "rank": 126,
+  "name": "Santa Cruz, CA",
+  "slug": "santa-cruz-california",
+  "file": "santa-cruz-california.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 127,
+  "name": "Lafayette, LA",
+  "slug": "lafayette-louisiana",
+  "file": "lafayette-louisiana.jpg",
+  "px": "2048x1365",
+  "focus": "50% 10%"
+ },
+ {
+  "rank": 128,
+  "name": "Lubbock, TX",
+  "slug": "lubbock-texas",
+  "file": "lubbock-texas.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 129,
+  "name": "Huntsville, AL",
+  "slug": "huntsville-alabama",
+  "file": "huntsville-alabama.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 130,
+  "name": "Slidell, LA",
+  "slug": "slidell-louisiana",
+  "file": "slidell-louisiana.jpg",
+  "px": "1920x938",
+  "focus": null
+ },
+ {
+  "rank": 131,
+  "name": "Bend, OR",
+  "slug": "bend-oregon",
+  "file": "bend-oregon.jpg",
+  "px": "1920x1282",
+  "focus": null
+ },
+ {
+  "rank": 132,
+  "name": "Modesto, CA",
+  "slug": "modesto-california",
+  "file": "modesto-california.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 133,
+  "name": "Bakersfield, CA",
+  "slug": "bakersfield-california",
+  "file": "bakersfield-california.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 134,
+  "name": "Salem, OR",
+  "slug": "salem-oregon",
+  "file": "salem-oregon.jpg",
+  "px": "1920x1455",
+  "focus": null
+ },
+ {
+  "rank": 135,
+  "name": "Myrtle Beach, SC",
+  "slug": "myrtle-beach-south-carolina",
+  "file": "myrtle-beach-south-carolina.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 136,
+  "name": "Manchester, NH",
+  "slug": "manchester-new-hampshire",
+  "file": "manchester-new-hampshire.jpg",
+  "px": "1920x1373",
+  "focus": null
+ },
+ {
+  "rank": 137,
+  "name": "Knoxville, TN",
+  "slug": "knoxville-tennessee",
+  "file": "knoxville-tennessee.jpg",
+  "px": "1920x1195",
+  "focus": null
+ },
+ {
+  "rank": 138,
+  "name": "Vallejo, CA",
+  "slug": "vallejo-california",
+  "file": "vallejo-california.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 139,
+  "name": "Springfield, MA",
+  "slug": "springfield-massachusetts",
+  "file": "springfield-massachusetts.jpg",
+  "px": "1920x1152",
+  "focus": null
+ },
+ {
+  "rank": 140,
+  "name": "Ogden, UT",
+  "slug": "ogden-utah",
+  "file": "ogden-utah.jpg",
+  "px": "1920x1275",
+  "focus": null
+ },
+ {
+  "rank": 141,
+  "name": "Salinas, CA",
+  "slug": "salinas-california",
+  "file": "salinas-california.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 142,
+  "name": "Canton, OH",
+  "slug": "canton-ohio",
+  "file": "canton-ohio.jpg",
+  "px": "1920x1284",
+  "focus": null
+ },
+ {
+  "rank": 143,
+  "name": "Merced, CA",
+  "slug": "merced-california",
+  "file": "merced-california.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 144,
+  "name": "Anchorage, AK",
+  "slug": "anchorage-alaska",
+  "file": "anchorage-alaska.jpg",
+  "px": "1920x998",
+  "focus": null
+ },
+ {
+  "rank": 145,
+  "name": "Green Bay, WI",
+  "slug": "green-bay-wisconsin",
+  "file": "green-bay-wisconsin.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 146,
+  "name": "Brownsville, TX",
+  "slug": "brownsville-texas",
+  "file": "brownsville-texas.jpg",
+  "px": "1920x1281",
+  "focus": null
+ },
+ {
+  "rank": 147,
+  "name": "South Bend, IN",
+  "slug": "south-bend-indiana",
+  "file": "south-bend-indiana.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 148,
+  "name": "Fort Wayne, IN",
+  "slug": "fort-wayne-indiana",
+  "file": "fort-wayne-indiana.jpg",
+  "px": "1920x1145",
+  "focus": null
+ },
+ {
+  "rank": 149,
+  "name": "Bremerton, WA",
+  "slug": "bremerton-washington",
+  "file": "bremerton-washington.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 150,
+  "name": "Waterbury, CT",
+  "slug": "waterbury-connecticut",
+  "file": "waterbury-connecticut.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 151,
+  "name": "Stockton, CA",
+  "slug": "stockton-california",
+  "file": "stockton-california.jpg",
+  "px": "1920x1272",
+  "focus": null
+ },
+ {
+  "rank": 152,
+  "name": "Laredo, TX",
+  "slug": "laredo-texas",
+  "file": "laredo-texas.jpg",
+  "px": "1920x1280",
+  "focus": "50% 15%"
+ },
+ {
+  "rank": 153,
+  "name": "Mobile, AL",
+  "slug": "mobile-alabama",
+  "file": "mobile-alabama.jpg",
+  "px": "1920x1200",
+  "focus": null
+ },
+ {
+  "rank": 154,
+  "name": "Pensacola, FL",
+  "slug": "pensacola-florida",
+  "file": "pensacola-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 155,
+  "name": "Lancaster, PA",
+  "slug": "lancaster-pennsylvania",
+  "file": "lancaster-pennsylvania.jpg",
+  "px": "1920x1064",
+  "focus": null
+ },
+ {
+  "rank": 156,
+  "name": "Olympia, WA",
+  "slug": "olympia-washington",
+  "file": "olympia-washington.jpg",
+  "px": "1920x1200",
+  "focus": null
+ },
+ {
+  "rank": 157,
+  "name": "Provo, UT",
+  "slug": "provo-utah",
+  "file": "provo-utah.jpg",
+  "px": "1920x1336",
+  "focus": null
+ },
+ {
+  "rank": 158,
+  "name": "Greeley, CO",
+  "slug": "greeley-colorado",
+  "file": "greeley-colorado.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 159,
+  "name": "Waco, TX",
+  "slug": "waco-texas",
+  "file": "waco-texas.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 160,
+  "name": "Norwich, CT",
+  "slug": "norwich-connecticut",
+  "file": "norwich-connecticut.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 161,
+  "name": "Rockford, IL",
+  "slug": "rockford-illinois",
+  "file": "rockford-illinois.jpg",
+  "px": "1920x1346",
+  "focus": null
+ },
+ {
+  "rank": 162,
+  "name": "Tuscaloosa, AL",
+  "slug": "tuscaloosa-alabama",
+  "file": "tuscaloosa-alabama.jpg",
+  "px": "1920x1128",
+  "focus": null
+ },
+ {
+  "rank": 163,
+  "name": "Youngstown, OH",
+  "slug": "youngstown-ohio",
+  "file": "youngstown-ohio.jpg",
+  "px": "1920x1340",
+  "focus": null
+ },
+ {
+  "rank": 164,
+  "name": "Winston-Salem, NC",
+  "slug": "winston-salem-north-carolina",
+  "file": "winston-salem-north-carolina.jpg",
+  "px": "1920x1210",
+  "focus": null
+ },
+ {
+  "rank": 165,
+  "name": "Chattanooga, TN",
+  "slug": "chattanooga-tennessee",
+  "file": "chattanooga-tennessee.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 166,
+  "name": "Lakeland, FL",
+  "slug": "lakeland-florida",
+  "file": "lakeland-florida.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 167,
+  "name": "Beaumont, TX",
+  "slug": "beaumont-texas",
+  "file": "beaumont-texas.jpg",
+  "px": "1280x960",
+  "focus": null
+ },
+ {
+  "rank": 168,
+  "name": "Reading, PA",
+  "slug": "reading-pennsylvania",
+  "file": "reading-pennsylvania.jpg",
+  "px": "1920x1281",
+  "focus": null
+ },
+ {
+  "rank": 169,
+  "name": "Roanoke, VA",
+  "slug": "roanoke-virginia",
+  "file": "roanoke-virginia.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 170,
+  "name": "Jackson, MS",
+  "slug": "jackson-mississippi",
+  "file": "jackson-mississippi.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 171,
+  "name": "Killeen, TX",
+  "slug": "killeen-texas",
+  "file": "killeen-texas.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 172,
+  "name": "Evansville, IN",
+  "slug": "evansville-indiana",
+  "file": "evansville-indiana.jpg",
+  "px": "1920x1568",
+  "focus": null
+ },
+ {
+  "rank": 173,
+  "name": "Naples, FL",
+  "slug": "naples-florida",
+  "file": "naples-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 174,
+  "name": "Crestview, FL",
+  "slug": "crestview-florida",
+  "file": "crestview-florida.jpg",
+  "px": "1920x1003",
+  "focus": null
+ },
+ {
+  "rank": 175,
+  "name": "Montgomery, AL",
+  "slug": "montgomery-alabama",
+  "file": "montgomery-alabama.jpg",
+  "px": "1920x1331",
+  "focus": null
+ },
+ {
+  "rank": 176,
+  "name": "Lynchburg, VA",
+  "slug": "lynchburg-virginia",
+  "file": "lynchburg-virginia.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 177,
+  "name": "Flint, MI",
+  "slug": "flint-michigan",
+  "file": "flint-michigan.jpg",
+  "px": "1920x1080",
+  "focus": null
+ },
+ {
+  "rank": 178,
+  "name": "York, PA",
+  "slug": "york-pennsylvania",
+  "file": "york-pennsylvania.jpg",
+  "px": "1024x768",
+  "focus": null
+ },
+ {
+  "rank": 179,
+  "name": "Shreveport, LA",
+  "slug": "shreveport-louisiana",
+  "file": "shreveport-louisiana.jpg",
+  "px": "1920x1439",
+  "focus": null
+ },
+ {
+  "rank": 180,
+  "name": "Port St. Lucie, FL",
+  "slug": "port-st-lucie-florida",
+  "file": "port-st-lucie-florida.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 181,
+  "name": "Augusta, GA",
+  "slug": "augusta-georgia",
+  "file": "augusta-georgia.jpg",
+  "px": "1920x1317",
+  "focus": null
+ },
+ {
+  "rank": 182,
+  "name": "Columbus, GA",
+  "slug": "columbus-georgia",
+  "file": "columbus-georgia.jpg",
+  "px": "1920x1439",
+  "focus": null
+ },
+ {
+  "rank": 183,
+  "name": "Hickory, NC",
+  "slug": "hickory-north-carolina",
+  "file": "hickory-north-carolina.jpg",
+  "px": "1920x1459",
+  "focus": null
+ },
+ {
+  "rank": 184,
+  "name": "Fayetteville, NC",
+  "slug": "fayetteville-north-carolina",
+  "file": "fayetteville-north-carolina.jpg",
+  "px": "1920x725",
+  "focus": null
+ },
+ {
+  "rank": 185,
+  "name": "Yakima, WA",
+  "slug": "yakima-washington",
+  "file": "yakima-washington.jpg",
+  "px": "1920x1152",
+  "focus": null
+ },
+ {
+  "rank": 186,
+  "name": "Huntington, WV",
+  "slug": "huntington-west-virginia",
+  "file": "huntington-west-virginia.jpg",
+  "px": "1920x979",
+  "focus": null
+ },
+ {
+  "rank": 187,
+  "name": "Kingsport, TN",
+  "slug": "kingsport-tennessee",
+  "file": "kingsport-tennessee.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 188,
+  "name": "Longview, TX",
+  "slug": "longview-texas",
+  "file": "longview-texas.jpg",
+  "px": "1920x1280",
+  "focus": null
+ },
+ {
+  "rank": 189,
+  "name": "Clarksville, TN",
+  "slug": "clarksville-tennessee",
+  "file": "clarksville-tennessee.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 190,
+  "name": "Visalia, CA",
+  "slug": "visalia-california",
+  "file": "visalia-california.jpg",
+  "px": "1280x640",
+  "focus": "50% 30%"
+ },
+ {
+  "rank": 191,
+  "name": "Spartanburg, SC",
+  "slug": "spartanburg-south-carolina",
+  "file": "spartanburg-south-carolina.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 192,
+  "name": "Hagerstown, MD",
+  "slug": "hagerstown-maryland",
+  "file": "hagerstown-maryland.jpg",
+  "px": "1920x1440",
+  "focus": null
+ },
+ {
+  "rank": 193,
+  "name": "Ocala, FL",
+  "slug": "ocala-florida",
+  "file": "ocala-florida.jpg",
+  "px": "1920x1079",
+  "focus": null
+ }
+]

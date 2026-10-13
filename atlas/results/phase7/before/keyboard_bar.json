@@ -1,0 +1,759 @@
+{
+ "base": "http://127.0.0.1:3400",
+ "bar": "Refine your search",
+ "focused_total": 1,
+ "focused_forward": 0,
+ "runs": [
+  {
+   "title": "Tab, 390x844, 80 presses",
+   "dir": "forward",
+   "focused": 0,
+   "steps": [
+    {
+     "name": "Skip to results",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Dating Scene Data",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Find a city",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Menu",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Woman",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Men",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Their age 28 – 40",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "San Francisco, CA",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Details for San Francisco, CA",
+     "scrollY": 457,
+     "shown": true
+    },
+    {
+     "name": "Boston, MA",
+     "scrollY": 457,
+     "shown": true
+    },
+    {
+     "name": "Details for Boston, MA",
+     "scrollY": 501,
+     "shown": true
+    },
+    {
+     "name": "New York, NY",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Details for New York, NY",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Best first",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Los Angeles, CA",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Details for Los Angeles, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "San Jose, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for San Jose, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Seattle, WA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for Seattle, WA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Chicago, IL",
+     "scrollY": 1521,
+     "shown": true
+    },
+    {
+     "name": "Details for Chicago, IL",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "San Diego, CA",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Details for San Diego, CA",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Austin, TX",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Details for Austin, TX",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Philadelphia, PA",
+     "scrollY": 1956,
+     "shown": true
+    },
+    {
+     "name": "Details for Philadelphia, PA",
+     "scrollY": 2360,
+     "shown": true
+    },
+    {
+     "name": "Show 10 more",
+     "scrollY": 2360,
+     "shown": true
+    },
+    {
+     "name": "Show all 193",
+     "scrollY": 2360,
+     "shown": true
+    },
+    {
+     "name": "How it works →",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "What we measure",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Privacy",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Terms",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Data sources",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Skip to results",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Dating Scene Data",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Find a city",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Menu",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Woman",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Men",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Their age 28 – 40",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "San Francisco, CA",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Details for San Francisco, CA",
+     "scrollY": 457,
+     "shown": true
+    },
+    {
+     "name": "Boston, MA",
+     "scrollY": 457,
+     "shown": true
+    },
+    {
+     "name": "Details for Boston, MA",
+     "scrollY": 501,
+     "shown": true
+    },
+    {
+     "name": "New York, NY",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Details for New York, NY",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Best first",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Los Angeles, CA",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Details for Los Angeles, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "San Jose, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for San Jose, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Seattle, WA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for Seattle, WA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Chicago, IL",
+     "scrollY": 1521,
+     "shown": true
+    },
+    {
+     "name": "Details for Chicago, IL",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "San Diego, CA",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Details for San Diego, CA",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Austin, TX",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Details for Austin, TX",
+     "scrollY": 1925,
+     "shown": true
+    },
+    {
+     "name": "Philadelphia, PA",
+     "scrollY": 1956,
+     "shown": true
+    },
+    {
+     "name": "Details for Philadelphia, PA",
+     "scrollY": 2360,
+     "shown": true
+    },
+    {
+     "name": "Show 10 more",
+     "scrollY": 2360,
+     "shown": true
+    },
+    {
+     "name": "Show all 193",
+     "scrollY": 2360,
+     "shown": true
+    },
+    {
+     "name": "How it works →",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "What we measure",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Privacy",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Terms",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Data sources",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "",
+     "scrollY": 2837,
+     "shown": true
+    },
+    {
+     "name": "Skip to results",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Dating Scene Data",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Find a city",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Menu",
+     "scrollY": 0,
+     "shown": false
+    }
+   ]
+  },
+  {
+   "title": "Tab, 1024x768, 50 presses",
+   "dir": "forward",
+   "focused": 0,
+   "steps": [
+    {
+     "name": "Skip to results",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Dating Scene Data",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Rankings",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Compare",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "How it works",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Find a city",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Woman",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Men",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Their age 28 – 40",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Best first",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "San Francisco, CA",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Details for San Francisco, CA",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "Boston, MA",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "Details for Boston, MA",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "New York, NY",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "Details for New York, NY",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "Los Angeles, CA",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "Details for Los Angeles, CA",
+     "scrollY": 495,
+     "shown": true
+    },
+    {
+     "name": "San Jose, CA",
+     "scrollY": 501,
+     "shown": true
+    },
+    {
+     "name": "Details for San Jose, CA",
+     "scrollY": 516,
+     "shown": true
+    },
+    {
+     "name": "Seattle, WA",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "Details for Seattle, WA",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "Chicago, IL",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "Details for Chicago, IL",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "San Diego, CA",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "Details for San Diego, CA",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "Austin, TX",
+     "scrollY": 922,
+     "shown": true
+    },
+    {
+     "name": "Details for Austin, TX",
+     "scrollY": 928,
+     "shown": true
+    },
+    {
+     "name": "Philadelphia, PA",
+     "scrollY": 1334,
+     "shown": true
+    },
+    {
+     "name": "Details for Philadelphia, PA",
+     "scrollY": 1334,
+     "shown": true
+    },
+    {
+     "name": "Show 10 more",
+     "scrollY": 1334,
+     "shown": true
+    },
+    {
+     "name": "Show all 193",
+     "scrollY": 1334,
+     "shown": true
+    },
+    {
+     "name": "How it works →",
+     "scrollY": 1601,
+     "shown": true
+    },
+    {
+     "name": "What we measure",
+     "scrollY": 1601,
+     "shown": true
+    },
+    {
+     "name": "Privacy",
+     "scrollY": 1601,
+     "shown": true
+    },
+    {
+     "name": "Terms",
+     "scrollY": 1601,
+     "shown": true
+    },
+    {
+     "name": "Data sources",
+     "scrollY": 1601,
+     "shown": true
+    },
+    {
+     "name": "",
+     "scrollY": 1601,
+     "shown": true
+    },
+    {
+     "name": "Skip to results",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Dating Scene Data",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Rankings",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Compare",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "How it works",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Find a city",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Woman",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Men",
+     "scrollY": 0,
+     "shown": false
+    },
+    {
+     "name": "Their age 28 – 40",
+     "scrollY": 0,
+     "shown": false
+    }
+   ]
+  },
+  {
+   "title": "390x844: 22 Tabs into the list, then Shift+Tab",
+   "dir": "back",
+   "focused": 1,
+   "steps": [
+    {
+     "name": "Details for Seattle, WA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Seattle, WA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for San Jose, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "San Jose, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for Los Angeles, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Los Angeles, CA",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "INPUT",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Best first",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "Details for New York, NY",
+     "scrollY": 1490,
+     "shown": true
+    },
+    {
+     "name": "New York, NY",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Details for Boston, MA",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Boston, MA",
+     "scrollY": 1089,
+     "shown": true
+    },
+    {
+     "name": "Details for San Francisco, CA",
+     "scrollY": 501,
+     "shown": true
+    },
+    {
+     "name": "San Francisco, CA",
+     "scrollY": 501,
+     "shown": true
+    },
+    {
+     "name": "Refine your search",
+     "scrollY": 501,
+     "shown": true
+    },
+    {
+     "name": "Their age 28 – 40",
+     "scrollY": 7,
+     "shown": false
+    }
+   ]
+  }
+ ]
+}

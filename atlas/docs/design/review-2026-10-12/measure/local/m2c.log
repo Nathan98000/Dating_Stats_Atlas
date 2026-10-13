@@ -1,0 +1,56 @@
+city-sf@1440 run 1: lcp 156 (IMG http://127.0.0.1:3400/cities/w/san-francisco-calif) cls 0
+city-sf@1440 run 2: lcp 132 (IMG http://127.0.0.1:3400/cities/w/san-francisco-calif) cls 0
+city-sf@1440 run 3: lcp 132 (IMG http://127.0.0.1:3400/cities/w/san-francisco-calif) cls 0
+city-sf@390 run 1: lcp 712 (H1 San Francisco, California) cls 0.0004
+city-sf@390 run 2: lcp 720 (H1 San Francisco, California) cls 0.0004
+city-sf@390 run 3: lcp 712 (H1 San Francisco, California) cls 0.0004
+compare-pair@1440 run 1: lcp 128 (P This comparison uses the site's starting search: s) cls 0
+compare-pair@1440 run 2: lcp 124 (P This comparison uses the site's starting search: s) cls 0
+compare-pair@1440 run 3: lcp 124 (P This comparison uses the site's starting search: s) cls 0
+compare-pair@390 run 1: lcp 664 (P This comparison uses the site's starting search: s) cls 0.0001
+compare-pair@390 run 2: lcp 680 (P This comparison uses the site's starting search: s) cls 0.0001
+compare-pair@390 run 3: lcp 704 (P This comparison uses the site's starting search: s) cls 0.0001
+stat-rent@1440 run 1: lcp 32 (IMG http://127.0.0.1:3400/stats/w/rent_1br-720.webp) cls 0
+stat-rent@1440 run 2: lcp 36 (IMG http://127.0.0.1:3400/stats/w/rent_1br-720.webp) cls 0
+stat-rent@1440 run 3: lcp 36 (IMG http://127.0.0.1:3400/stats/w/rent_1br-720.webp) cls 0
+stat-rent@390 run 1: lcp 2004 (IMG http://127.0.0.1:3400/stats/w/rent_1br-1080.webp) cls 0.0003
+stat-rent@390 run 2: lcp 2004 (IMG http://127.0.0.1:3400/stats/w/rent_1br-1080.webp) cls 0.0003
+stat-rent@390 run 3: lcp 2004 (IMG http://127.0.0.1:3400/stats/w/rent_1br-1080.webp) cls 0.0003
+{
+ "city-sf@1440": {
+  "ttfb": 97,
+  "fcp": 132,
+  "lcp": 132,
+  "cls": 0
+ },
+ "city-sf@390": {
+  "ttfb": 99,
+  "fcp": 712,
+  "lcp": 712,
+  "cls": 0.0004
+ },
+ "compare-pair@1440": {
+  "ttfb": 98,
+  "fcp": 124,
+  "lcp": 124,
+  "cls": 0
+ },
+ "compare-pair@390": {
+  "ttfb": 103,
+  "fcp": 680,
+  "lcp": 680,
+  "cls": 0.0001
+ },
+ "stat-rent@1440": {
+  "ttfb": 4,
+  "fcp": 36,
+  "lcp": 36,
+  "cls": 0
+ },
+ "stat-rent@390": {
+  "ttfb": 4,
+  "fcp": 688,
+  "lcp": 2004,
+  "cls": 0.0003
+ }
+}

@@ -1,0 +1,194 @@
+{
+ "base": "https://datingscenedata.com",
+ "label": "live",
+ "runs": 3,
+ "generated": "2026-10-13T01:01:43.547Z",
+ "pages": {
+  "city-sf@1440": {
+   "median": {
+    "ttfb": 559,
+    "fcp": 728,
+    "lcp": 744,
+    "cls": 0
+   },
+   "runs": [
+    {
+     "ttfb": 559,
+     "fcp": 728,
+     "lcp": 744,
+     "lcp_el": "IMG https://datingscenedata.com/cities/w/san-francisco",
+     "cls": 0
+    },
+    {
+     "ttfb": 465,
+     "fcp": 612,
+     "lcp": 612,
+     "lcp_el": "IMG https://datingscenedata.com/cities/w/san-francisco",
+     "cls": 0
+    },
+    {
+     "ttfb": 564,
+     "fcp": 936,
+     "lcp": 936,
+     "lcp_el": "IMG https://datingscenedata.com/cities/w/san-francisco",
+     "cls": 0
+    }
+   ]
+  },
+  "city-sf@390": {
+   "median": {
+    "ttfb": 470,
+    "fcp": 992,
+    "lcp": 992,
+    "cls": 0.0004
+   },
+   "runs": [
+    {
+     "ttfb": 470,
+     "fcp": 992,
+     "lcp": 992,
+     "lcp_el": "H1 San Francisco, California",
+     "cls": 0.0004
+    },
+    {
+     "ttfb": 478,
+     "fcp": 1012,
+     "lcp": 1012,
+     "lcp_el": "H1 San Francisco, California",
+     "cls": 0.0004
+    },
+    {
+     "ttfb": 452,
+     "fcp": 988,
+     "lcp": 988,
+     "lcp_el": "H1 San Francisco, California",
+     "cls": 0.0004
+    }
+   ]
+  },
+  "compare-pair@1440": {
+   "median": {
+    "ttfb": 481,
+    "fcp": 596,
+    "lcp": 596,
+    "cls": 0
+   },
+   "runs": [
+    {
+     "ttfb": 551,
+     "fcp": 696,
+     "lcp": 696,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0
+    },
+    {
+     "ttfb": 476,
+     "fcp": 596,
+     "lcp": 596,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0
+    },
+    {
+     "ttfb": 481,
+     "fcp": 592,
+     "lcp": 592,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0
+    }
+   ]
+  },
+  "compare-pair@390": {
+   "median": {
+    "ttfb": 466,
+    "fcp": 1004,
+    "lcp": 1004,
+    "cls": 0.0001
+   },
+   "runs": [
+    {
+     "ttfb": 466,
+     "fcp": 988,
+     "lcp": 988,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0.0001
+    },
+    {
+     "ttfb": 464,
+     "fcp": 1004,
+     "lcp": 1004,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0.0001
+    },
+    {
+     "ttfb": 550,
+     "fcp": 1088,
+     "lcp": 1088,
+     "lcp_el": "P This comparison uses the site's starting search: s",
+     "cls": 0.0001
+    }
+   ]
+  },
+  "stat-rent@1440": {
+   "median": {
+    "ttfb": 75,
+    "fcp": 196,
+    "lcp": 196,
+    "cls": 0
+   },
+   "runs": [
+    {
+     "ttfb": 81,
+     "fcp": 200,
+     "lcp": 200,
+     "lcp_el": "IMG https://datingscenedata.com/stats/w/rent_1br-720.w",
+     "cls": 0
+    },
+    {
+     "ttfb": 75,
+     "fcp": 196,
+     "lcp": 196,
+     "lcp_el": "IMG https://datingscenedata.com/stats/w/rent_1br-720.w",
+     "cls": 0
+    },
+    {
+     "ttfb": 73,
+     "fcp": 172,
+     "lcp": 172,
+     "lcp_el": "IMG https://datingscenedata.com/stats/w/rent_1br-720.w",
+     "cls": 0
+    }
+   ]
+  },
+  "stat-rent@390": {
+   "median": {
+    "ttfb": 83,
+    "fcp": 760,
+    "lcp": 2072,
+    "cls": 0.0003
+   },
+   "runs": [
+    {
+     "ttfb": 74,
+     "fcp": 764,
+     "lcp": 2072,
+     "lcp_el": "IMG https://datingscenedata.com/stats/w/rent_1br-1080.",
+     "cls": 0.0003
+    },
+    {
+     "ttfb": 83,
+     "fcp": 732,
+     "lcp": 2064,
+     "lcp_el": "IMG https://datingscenedata.com/stats/w/rent_1br-1080.",
+     "cls": 0.0003
+    },
+    {
+     "ttfb": 95,
+     "fcp": 760,
+     "lcp": 2084,
+     "lcp_el": "IMG https://datingscenedata.com/stats/w/rent_1br-1080.",
+     "cls": 0.0003
+    }
+   ]
+  }
+ }
+}

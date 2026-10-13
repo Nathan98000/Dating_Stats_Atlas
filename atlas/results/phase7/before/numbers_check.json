@@ -1,0 +1,917 @@
+{
+ "default (woman 30, men 28-40)": {
+  "variant": "female|none|off",
+  "score_median": {
+   "value": 42.6,
+   "display": "43"
+  },
+  "reference_implied_range": [
+   40.92,
+   41.03
+  ],
+  "median_plus_bars_vs_score": {
+   "max_abs_gap": 2.6,
+   "rows_off_by_1_or_more": 193,
+   "rows_off_by_2_or_more": 116,
+   "rows": 193
+  },
+  "chips_against_their_bar": {
+   "rows": 36,
+   "top_20": 3,
+   "examples": [
+    [
+     9,
+     "Austin, TX",
+     [
+      "▼ rent_1br vs cost bar 1.1"
+     ]
+    ],
+    [
+     15,
+     "Houston, TX",
+     [
+      "▲ resident_walkability_index vs reach bar -0.3"
+     ]
+    ],
+    [
+     20,
+     "Phoenix, AZ",
+     [
+      "▲ resident_walkability_index vs reach bar -0.3"
+     ]
+    ],
+    [
+     32,
+     "San Antonio, TX",
+     [
+      "▼ venues_per_100k vs reach bar 0.6"
+     ]
+    ],
+    [
+     35,
+     "Detroit, MI",
+     [
+      "▲ rent_1br vs cost bar -1.4"
+     ]
+    ],
+    [
+     38,
+     "Baltimore, MD",
+     [
+      "▲ resident_walkability_index vs reach bar -0.1"
+     ]
+    ],
+    [
+     41,
+     "Riverside, CA",
+     [
+      "▲ resident_walkability_index vs reach bar -0.8"
+     ]
+    ],
+    [
+     42,
+     "Ann Arbor, MI",
+     [
+      "▲ rpp_goods vs cost bar -0.7"
+     ]
+    ],
+    [
+     46,
+     "Kansas City, MO",
+     [
+      "▲ resident_walkability_index vs reach bar -0.4"
+     ]
+    ],
+    [
+     55,
+     "Nashville, TN",
+     [
+      "▲ rpp_goods vs cost bar -0.3",
+      "▲ venues_per_100k vs reach bar -1.0"
+     ]
+    ],
+    [
+     72,
+     "Albuquerque, NM",
+     [
+      "▲ resident_walkability_index vs reach bar -0.2"
+     ]
+    ],
+    [
+     75,
+     "Tucson, AZ",
+     [
+      "▲ resident_walkability_index vs reach bar -1.1"
+     ]
+    ]
+   ]
+  },
+  "balance_most_shared": [
+   [
+    "116 men per 100 women",
+    13
+   ],
+   [
+    "107 men per 100 women",
+    12
+   ],
+   [
+    "109 men per 100 women",
+    11
+   ],
+   [
+    "111 men per 100 women",
+    11
+   ],
+   [
+    "113 men per 100 women",
+    8
+   ]
+  ],
+  "top_10": [
+   {
+    "rank": 1,
+    "city": "San Francisco, CA",
+    "score_shown": 77,
+    "bar_sum": 36.5,
+    "gap_vs_shown": 2.5,
+    "chips_against_bars": [],
+    "balance": "118 men per 100 women"
+   },
+   {
+    "rank": 2,
+    "city": "Boston, MA",
+    "score_shown": 76,
+    "bar_sum": 35.6,
+    "gap_vs_shown": 2.6,
+    "chips_against_bars": [],
+    "balance": "109 men per 100 women"
+   },
+   {
+    "rank": 3,
+    "city": "New York, NY",
+    "score_shown": 75,
+    "bar_sum": 34.5,
+    "gap_vs_shown": 2.5,
+    "chips_against_bars": [],
+    "balance": "107 men per 100 women"
+   },
+   {
+    "rank": 4,
+    "city": "Los Angeles, CA",
+    "score_shown": 74,
+    "bar_sum": 32.7,
+    "gap_vs_shown": 1.7,
+    "chips_against_bars": [],
+    "balance": "113 men per 100 women"
+   },
+   {
+    "rank": 5,
+    "city": "San Jose, CA",
+    "score_shown": 71,
+    "bar_sum": 30.1,
+    "gap_vs_shown": 2.1,
+    "chips_against_bars": [],
+    "balance": "148 men per 100 women"
+   },
+   {
+    "rank": 6,
+    "city": "Seattle, WA",
+    "score_shown": 71,
+    "bar_sum": 29.8,
+    "gap_vs_shown": 1.8,
+    "chips_against_bars": [],
+    "balance": "126 men per 100 women"
+   },
+   {
+    "rank": 7,
+    "city": "Chicago, IL",
+    "score_shown": 69,
+    "bar_sum": 28.3,
+    "gap_vs_shown": 2.3,
+    "chips_against_bars": [],
+    "balance": "108 men per 100 women"
+   },
+   {
+    "rank": 8,
+    "city": "San Diego, CA",
+    "score_shown": 67,
+    "bar_sum": 26.5,
+    "gap_vs_shown": 2.5,
+    "chips_against_bars": [],
+    "balance": "123 men per 100 women"
+   },
+   {
+    "rank": 9,
+    "city": "Austin, TX",
+    "score_shown": 67,
+    "bar_sum": 26.4,
+    "gap_vs_shown": 2.4,
+    "chips_against_bars": [
+     "▼ rent_1br vs cost bar 1.1"
+    ],
+    "balance": "125 men per 100 women"
+   },
+   {
+    "rank": 10,
+    "city": "Philadelphia, PA",
+    "score_shown": 67,
+    "bar_sum": 26.3,
+    "gap_vs_shown": 2.3,
+    "chips_against_bars": [],
+    "balance": "100 men per 100 women"
+   }
+  ],
+  "cities": {
+   "San Francisco, CA": {
+    "rank": 1,
+    "city": "San Francisco, CA",
+    "score_shown": 77,
+    "bars": {
+     "pool": 18.1,
+     "match": 13.1,
+     "reach": 9.4,
+     "cost": -7.2,
+     "weather": 2.9,
+     "students": 0.2
+    },
+    "bar_sum": 36.5,
+    "reference_implied": 40.98,
+    "median_plus_bars": 79.5,
+    "gap_vs_shown": 2.5,
+    "chips_against_bars": [],
+    "balance": "118 men per 100 women"
+   },
+   "Austin, TX": {
+    "rank": 9,
+    "city": "Austin, TX",
+    "score_shown": 67,
+    "bars": {
+     "pool": 13.3,
+     "match": 8.7,
+     "reach": 1.5,
+     "cost": 1.1,
+     "weather": 1.2,
+     "students": 0.6
+    },
+    "bar_sum": 26.4,
+    "reference_implied": 40.98,
+    "median_plus_bars": 69.4,
+    "gap_vs_shown": 2.4,
+    "chips_against_bars": [
+     "▼ rent_1br vs cost bar 1.1"
+    ],
+    "balance": "125 men per 100 women"
+   },
+   "Denver, CO": {
+    "rank": 11,
+    "city": "Denver, CO",
+    "score_shown": 65,
+    "bars": {
+     "pool": 14.8,
+     "match": 11.0,
+     "reach": 6.2,
+     "cost": -4.6,
+     "weather": -2.8,
+     "students": -0.3
+    },
+    "bar_sum": 24.3,
+    "reference_implied": 40.94,
+    "median_plus_bars": 67.3,
+    "gap_vs_shown": 2.3,
+    "chips_against_bars": [],
+    "balance": "125 men per 100 women"
+   },
+   "Houston, TX": {
+    "rank": 15,
+    "city": "Houston, TX",
+    "score_shown": 63,
+    "bars": {
+     "pool": 19.8,
+     "match": 1.0,
+     "reach": -0.3,
+     "cost": 0.5,
+     "weather": 2.2,
+     "students": -0.8
+    },
+    "bar_sum": 22.4,
+    "reference_implied": 40.95,
+    "median_plus_bars": 65.4,
+    "gap_vs_shown": 2.4,
+    "chips_against_bars": [
+     "▲ resident_walkability_index vs reach bar -0.3"
+    ],
+    "balance": "105 men per 100 women"
+   }
+  }
+ },
+ "task 2 (cost, weather a lot; social not much)": {
+  "variant": "female|none|off",
+  "score_median": {
+   "value": 43.5,
+   "display": "43"
+  },
+  "reference_implied_range": [
+   41.6,
+   41.72
+  ],
+  "median_plus_bars_vs_score": {
+   "max_abs_gap": 1.9,
+   "rows_off_by_1_or_more": 164,
+   "rows_off_by_2_or_more": 0,
+   "rows": 193
+  },
+  "chips_against_their_bar": {
+   "rows": 34,
+   "top_20": 4,
+   "examples": [
+    [
+     1,
+     "Austin, TX",
+     [
+      "▼ rent_1br vs cost bar 2.0"
+     ]
+    ],
+    [
+     16,
+     "Phoenix, AZ",
+     [
+      "▲ resident_walkability_index vs reach bar -0.1"
+     ]
+    ],
+    [
+     19,
+     "Tampa, FL",
+     [
+      "▲ rpp_goods vs cost bar -1.2"
+     ]
+    ],
+    [
+     20,
+     "Columbus, OH",
+     [
+      "▼ rent_1br vs cost bar 1.7"
+     ]
+    ],
+    [
+     23,
+     "Orlando, FL",
+     [
+      "▲ rpp_goods vs cost bar -4.0"
+     ]
+    ],
+    [
+     25,
+     "Detroit, MI",
+     [
+      "▲ rent_1br vs cost bar -2.6"
+     ]
+    ],
+    [
+     32,
+     "Kansas City, MO",
+     [
+      "▼ rent_1br vs cost bar 3.6"
+     ]
+    ],
+    [
+     33,
+     "Indianapolis, IN",
+     [
+      "▼ rent_1br vs cost bar 0.1"
+     ]
+    ],
+    [
+     41,
+     "Ann Arbor, MI",
+     [
+      "▲ rpp_goods vs cost bar -1.3"
+     ]
+    ],
+    [
+     49,
+     "Riverside, CA",
+     [
+      "▲ resident_walkability_index vs reach bar -0.3"
+     ]
+    ],
+    [
+     54,
+     "Nashville, TN",
+     [
+      "▲ rpp_goods vs cost bar -0.6"
+     ]
+    ],
+    [
+     57,
+     "Davenport, IA",
+     [
+      "▼ resident_walkability_index vs reach bar 0.7"
+     ]
+    ]
+   ]
+  },
+  "balance_most_shared": [
+   [
+    "116 men per 100 women",
+    13
+   ],
+   [
+    "107 men per 100 women",
+    12
+   ],
+   [
+    "109 men per 100 women",
+    11
+   ],
+   [
+    "111 men per 100 women",
+    11
+   ],
+   [
+    "113 men per 100 women",
+    8
+   ]
+  ],
+  "top_10": [
+   {
+    "rank": 1,
+    "city": "Austin, TX",
+    "score_shown": 67,
+    "bar_sum": 25.4,
+    "gap_vs_shown": 1.4,
+    "chips_against_bars": [
+     "▼ rent_1br vs cost bar 2.0"
+    ],
+    "balance": "125 men per 100 women"
+   },
+   {
+    "rank": 2,
+    "city": "Boston, MA",
+    "score_shown": 66,
+    "bar_sum": 24.8,
+    "gap_vs_shown": 1.8,
+    "chips_against_bars": [],
+    "balance": "109 men per 100 women"
+   },
+   {
+    "rank": 3,
+    "city": "San Francisco, CA",
+    "score_shown": 66,
+    "bar_sum": 24.3,
+    "gap_vs_shown": 1.3,
+    "chips_against_bars": [],
+    "balance": "118 men per 100 women"
+   },
+   {
+    "rank": 4,
+    "city": "Houston, TX",
+    "score_shown": 65,
+    "bar_sum": 23.1,
+    "gap_vs_shown": 1.1,
+    "chips_against_bars": [],
+    "balance": "105 men per 100 women"
+   },
+   {
+    "rank": 5,
+    "city": "Los Angeles, CA",
+    "score_shown": 64,
+    "bar_sum": 22.2,
+    "gap_vs_shown": 1.2,
+    "chips_against_bars": [],
+    "balance": "113 men per 100 women"
+   },
+   {
+    "rank": 6,
+    "city": "New York, NY",
+    "score_shown": 64,
+    "bar_sum": 21.9,
+    "gap_vs_shown": 0.9,
+    "chips_against_bars": [],
+    "balance": "107 men per 100 women"
+   },
+   {
+    "rank": 7,
+    "city": "Pittsburgh, PA",
+    "score_shown": 62,
+    "bar_sum": 20.1,
+    "gap_vs_shown": 1.1,
+    "chips_against_bars": [],
+    "balance": "116 men per 100 women"
+   },
+   {
+    "rank": 8,
+    "city": "San Jose, CA",
+    "score_shown": 62,
+    "bar_sum": 19.9,
+    "gap_vs_shown": 0.9,
+    "chips_against_bars": [],
+    "balance": "148 men per 100 women"
+   },
+   {
+    "rank": 9,
+    "city": "Seattle, WA",
+    "score_shown": 61,
+    "bar_sum": 19.8,
+    "gap_vs_shown": 1.8,
+    "chips_against_bars": [],
+    "balance": "126 men per 100 women"
+   },
+   {
+    "rank": 10,
+    "city": "New Orleans, LA",
+    "score_shown": 61,
+    "bar_sum": 18.9,
+    "gap_vs_shown": 0.9,
+    "chips_against_bars": [],
+    "balance": "91 men per 100 women"
+   }
+  ],
+  "cities": {
+   "Austin, TX": {
+    "rank": 1,
+    "city": "Austin, TX",
+    "score_shown": 67,
+    "bars": {
+     "pool": 12.2,
+     "match": 8.0,
+     "reach": 0.5,
+     "cost": 2.0,
+     "weather": 2.1,
+     "students": 0.6
+    },
+    "bar_sum": 25.4,
+    "reference_implied": 41.7,
+    "median_plus_bars": 68.4,
+    "gap_vs_shown": 1.4,
+    "chips_against_bars": [
+     "▼ rent_1br vs cost bar 2.0"
+    ],
+    "balance": "125 men per 100 women"
+   },
+   "San Francisco, CA": {
+    "rank": 3,
+    "city": "San Francisco, CA",
+    "score_shown": 66,
+    "bars": {
+     "pool": 16.6,
+     "match": 12.0,
+     "reach": 3.4,
+     "cost": -13.2,
+     "weather": 5.3,
+     "students": 0.2
+    },
+    "bar_sum": 24.3,
+    "reference_implied": 41.7,
+    "median_plus_bars": 67.3,
+    "gap_vs_shown": 1.3,
+    "chips_against_bars": [],
+    "balance": "118 men per 100 women"
+   },
+   "Houston, TX": {
+    "rank": 4,
+    "city": "Houston, TX",
+    "score_shown": 65,
+    "bars": {
+     "pool": 18.1,
+     "match": 0.9,
+     "reach": -0.1,
+     "cost": 0.9,
+     "weather": 4.0,
+     "students": -0.7
+    },
+    "bar_sum": 23.1,
+    "reference_implied": 41.66,
+    "median_plus_bars": 66.1,
+    "gap_vs_shown": 1.1,
+    "chips_against_bars": [],
+    "balance": "105 men per 100 women"
+   },
+   "Denver, CO": {
+    "rank": 31,
+    "city": "Denver, CO",
+    "score_shown": 54,
+    "bars": {
+     "pool": 13.6,
+     "match": 10.1,
+     "reach": 2.3,
+     "cost": -8.4,
+     "weather": -5.1,
+     "students": -0.3
+    },
+    "bar_sum": 12.2,
+    "reference_implied": 41.61,
+    "median_plus_bars": 55.2,
+    "gap_vs_shown": 1.2,
+    "chips_against_bars": [],
+    "balance": "125 men per 100 women"
+   }
+  }
+ },
+ "same-sex (man 33, men 28-38)": {
+  "variant": "male|none|off",
+  "score_median": {
+   "value": 42.2,
+   "display": "42"
+  },
+  "reference_implied_range": [
+   40.88,
+   40.99
+  ],
+  "median_plus_bars_vs_score": {
+   "max_abs_gap": 1.7,
+   "rows_off_by_1_or_more": 122,
+   "rows_off_by_2_or_more": 0,
+   "rows": 193
+  },
+  "chips_against_their_bar": {
+   "rows": 36,
+   "top_20": 2,
+   "examples": [
+    [
+     7,
+     "Austin, TX",
+     [
+      "▼ rent_1br vs cost bar 1.1"
+     ]
+    ],
+    [
+     15,
+     "Houston, TX",
+     [
+      "▲ resident_walkability_index vs reach bar -0.3"
+     ]
+    ],
+    [
+     22,
+     "Phoenix, AZ",
+     [
+      "▲ resident_walkability_index vs reach bar -0.3"
+     ]
+    ],
+    [
+     33,
+     "San Antonio, TX",
+     [
+      "▼ venues_per_100k vs reach bar 0.6"
+     ]
+    ],
+    [
+     39,
+     "Ann Arbor, MI",
+     [
+      "▲ rpp_goods vs cost bar -0.7"
+     ]
+    ],
+    [
+     42,
+     "Nashville, TN",
+     [
+      "▲ rpp_goods vs cost bar -0.3",
+      "▲ venues_per_100k vs reach bar -1.0"
+     ]
+    ],
+    [
+     44,
+     "Kansas City, MO",
+     [
+      "▲ resident_walkability_index vs reach bar -0.4"
+     ]
+    ],
+    [
+     45,
+     "Baltimore, MD",
+     [
+      "▲ resident_walkability_index vs reach bar -0.1"
+     ]
+    ],
+    [
+     48,
+     "Detroit, MI",
+     [
+      "▲ rent_1br vs cost bar -1.4"
+     ]
+    ],
+    [
+     55,
+     "Riverside, CA",
+     [
+      "▲ resident_walkability_index vs reach bar -0.8"
+     ]
+    ],
+    [
+     59,
+     "Albuquerque, NM",
+     [
+      "▲ resident_walkability_index vs reach bar -0.2"
+     ]
+    ],
+    [
+     64,
+     "Tucson, AZ",
+     [
+      "▲ resident_walkability_index vs reach bar -1.1"
+     ]
+    ]
+   ]
+  },
+  "balance_most_shared": [
+   [
+    "115 men per 100 women",
+    10
+   ],
+   [
+    "101 men per 100 women",
+    9
+   ],
+   [
+    "106 men per 100 women",
+    9
+   ],
+   [
+    "111 men per 100 women",
+    9
+   ],
+   [
+    "109 men per 100 women",
+    9
+   ]
+  ],
+  "top_10": [
+   {
+    "rank": 1,
+    "city": "San Francisco, CA",
+    "score_shown": 78,
+    "bar_sum": 36.7,
+    "gap_vs_shown": 0.7,
+    "chips_against_bars": [],
+    "balance": "119 men per 100 women"
+   },
+   {
+    "rank": 2,
+    "city": "New York, NY",
+    "score_shown": 76,
+    "bar_sum": 34.5,
+    "gap_vs_shown": 0.5,
+    "chips_against_bars": [],
+    "balance": "108 men per 100 women"
+   },
+   {
+    "rank": 3,
+    "city": "Los Angeles, CA",
+    "score_shown": 73,
+    "bar_sum": 32.5,
+    "gap_vs_shown": 1.5,
+    "chips_against_bars": [],
+    "balance": "114 men per 100 women"
+   },
+   {
+    "rank": 4,
+    "city": "Boston, MA",
+    "score_shown": 73,
+    "bar_sum": 32.0,
+    "gap_vs_shown": 1.0,
+    "chips_against_bars": [],
+    "balance": "110 men per 100 women"
+   },
+   {
+    "rank": 5,
+    "city": "San Jose, CA",
+    "score_shown": 71,
+    "bar_sum": 30.1,
+    "gap_vs_shown": 1.1,
+    "chips_against_bars": [],
+    "balance": "151 men per 100 women"
+   },
+   {
+    "rank": 6,
+    "city": "Seattle, WA",
+    "score_shown": 71,
+    "bar_sum": 29.7,
+    "gap_vs_shown": 0.7,
+    "chips_against_bars": [],
+    "balance": "127 men per 100 women"
+   },
+   {
+    "rank": 7,
+    "city": "Austin, TX",
+    "score_shown": 69,
+    "bar_sum": 28.1,
+    "gap_vs_shown": 1.1,
+    "chips_against_bars": [
+     "▼ rent_1br vs cost bar 1.1"
+    ],
+    "balance": "125 men per 100 women"
+   },
+   {
+    "rank": 8,
+    "city": "San Diego, CA",
+    "score_shown": 69,
+    "bar_sum": 27.7,
+    "gap_vs_shown": 0.7,
+    "chips_against_bars": [],
+    "balance": "125 men per 100 women"
+   },
+   {
+    "rank": 9,
+    "city": "Chicago, IL",
+    "score_shown": 68,
+    "bar_sum": 27.3,
+    "gap_vs_shown": 1.3,
+    "chips_against_bars": [],
+    "balance": "108 men per 100 women"
+   },
+   {
+    "rank": 10,
+    "city": "Washington, DC",
+    "score_shown": 66,
+    "bar_sum": 24.8,
+    "gap_vs_shown": 0.8,
+    "chips_against_bars": [],
+    "balance": "107 men per 100 women"
+   }
+  ],
+  "cities": {
+   "San Francisco, CA": {
+    "rank": 1,
+    "city": "San Francisco, CA",
+    "score_shown": 78,
+    "bars": {
+     "pool": 18.2,
+     "match": 13.2,
+     "reach": 9.4,
+     "cost": -7.2,
+     "weather": 2.9,
+     "students": 0.2
+    },
+    "bar_sum": 36.7,
+    "reference_implied": 40.89,
+    "median_plus_bars": 78.7,
+    "gap_vs_shown": 0.7,
+    "chips_against_bars": [],
+    "balance": "119 men per 100 women"
+   },
+   "Austin, TX": {
+    "rank": 7,
+    "city": "Austin, TX",
+    "score_shown": 69,
+    "bars": {
+     "pool": 13.4,
+     "match": 10.3,
+     "reach": 1.5,
+     "cost": 1.1,
+     "weather": 1.2,
+     "students": 0.6
+    },
+    "bar_sum": 28.1,
+    "reference_implied": 40.92,
+    "median_plus_bars": 70.1,
+    "gap_vs_shown": 1.1,
+    "chips_against_bars": [
+     "▼ rent_1br vs cost bar 1.1"
+    ],
+    "balance": "125 men per 100 women"
+   },
+   "Houston, TX": {
+    "rank": 15,
+    "city": "Houston, TX",
+    "score_shown": 64,
+    "bars": {
+     "pool": 19.8,
+     "match": 1.6,
+     "reach": -0.3,
+     "cost": 0.5,
+     "weather": 2.2,
+     "students": -0.8
+    },
+    "bar_sum": 23.0,
+    "reference_implied": 40.92,
+    "median_plus_bars": 65.0,
+    "gap_vs_shown": 1.0,
+    "chips_against_bars": [
+     "▲ resident_walkability_index vs reach bar -0.3"
+    ],
+    "balance": "106 men per 100 women"
+   },
+   "Denver, CO": {
+    "rank": 17,
+    "city": "Denver, CO",
+    "score_shown": 63,
+    "bars": {
+     "pool": 15.0,
+     "match": 8.8,
+     "reach": 6.2,
+     "cost": -4.6,
+     "weather": -2.8,
+     "students": -0.3
+    },
+    "bar_sum": 22.3,
+    "reference_implied": 40.96,
+    "median_plus_bars": 64.3,
+    "gap_vs_shown": 1.3,
+    "chips_against_bars": [],
+    "balance": "126 men per 100 women"
+   }
+  }
+ }
+}
