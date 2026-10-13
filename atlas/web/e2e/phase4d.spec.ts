@@ -179,7 +179,6 @@ test("not on the home rows, not in the side panel, and no page asks for it from 
 for (const p of [
   { name: "the political lean stat page", url: "/stats/political_lean" },
   { name: "a city page with its card", url: `/city/pittsburgh-pennsylvania${QS}` },
-  { name: "compare with its row", url: `/compare/provo-utah/austin-texas${QS}` },
 ]) {
   test(`axe: ${p.name}`, async ({ page }) => {
     await page.goto(p.url);

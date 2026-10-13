@@ -5,20 +5,8 @@ import { expect, test } from "@playwright/test";
  * no version ids, and the compare page renders two cities from one
  * response. */
 
-test("the API's permalink resolves even though no page shows one", async ({ page }) => {
-  const res = await page.request.post("/api/rank", {
-    data: {
-      self: { age: 30 },
-      seeking: { sex: "male", age: [28, 40], marital: ["never_married", "previously_married"] },
-    },
-  });
-  expect(res.ok()).toBe(true);
-  const body = await res.json();
-  await page.goto(body.permalink);
-  const rows = page.getByTestId("ranked-list").locator("li");
-  await expect(rows.first()).toBeVisible();
-  expect(await rows.first().getAttribute("data-cbsa")).toBe(body.ranked[0].cbsa);
-});
+// the API's permalink resolving to its own first city: phase2f.spec.ts
+// ("a reproduction link is never overridden by a conflicting cookie")
 
 test("a stale pin refuses plainly, with no version id in the copy", async ({ page }) => {
   const res = await page.request.post("/api/rank", {

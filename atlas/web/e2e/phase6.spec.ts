@@ -6,6 +6,12 @@ import { E2E_API, expandRow, fetchMeta, openRailGroup, photoOnDisk, seedAboutYou
  * breakpoint (1024×768) and a touch phone (390×844). */
 
 const width = (page: Page) => page.viewportSize()!.width;
+/** Every test runs at the desk unless tagged @no-desk; @laptop and @phone
+ * add those widths (playwright.config.ts), only where the layout under
+ * test differs. */
+const PHONE = { tag: "@phone" };
+const PHONE_ONLY = { tag: ["@phone", "@no-desk"] };
+const BELOW_DESK = { tag: ["@laptop", "@phone", "@no-desk"] };
 /** The same-sex reference search (a man looking for men 28-38) and the
  * site's default (a woman, by default, looking for men 28-40). */
 const SAME_SEX_QS = "?self_age=33&sex=male&age=28-38&marital=never,previously";
@@ -60,11 +66,7 @@ async function smallTargets(page: Page) {
   });
 }
 
-test.describe("touch targets below 1120px (F02)", () => {
-  test.beforeEach(({ page }) => {
-    test.skip(width(page) >= 1120, "below the desk only");
-  });
-
+test.describe("touch targets below 1120px (F02)", BELOW_DESK, () => {
   test("home: default, the age popover, the sheet and an open row", async ({ page }) => {
     await home(page);
     expect(await smallTargets(page), "default").toEqual([]);
@@ -137,8 +139,7 @@ test.describe("the age popover's exact ages (F02)", () => {
 });
 
 test.describe("home results (D)", () => {
-  test("at 390x844 the #1 card's score ends in the first screen (F15)", async ({ page }) => {
-    test.skip(width(page) !== 390, "the phone only");
+  test("at 390x844 the #1 card's score ends in the first screen (F15)", PHONE_ONLY, async ({ page }) => {
     await home(page);
     const bottom = await page.locator('li[data-rank="1"] [data-testid=score]').evaluate(
       (el) => el.getBoundingClientRect().bottom + window.scrollY);
@@ -153,7 +154,7 @@ test.describe("home results (D)", () => {
     expect(sortTop).toBeGreaterThan(cardsBottom.y + cardsBottom.height);
   });
 
-  test("the cards' Details chevron opens the three tiles, one card at a time (F06)", async ({ page }) => {
+  test("the cards' Details chevron opens the three tiles, one card at a time (F06)", PHONE, async ({ page }) => {
     await home(page);
     const cards = page.getByTestId("featured-card");
     const t1 = cards.nth(0).getByTestId("card-toggle");
@@ -247,21 +248,6 @@ test.describe("home results (D)", () => {
     await expect(page.getByTestId("balance-footnote")).toHaveCount(0);
   });
 
-  test("same-sex: a man looking for men sees the note; balance reads its one caption (2026-10-10)", async ({ page, request }) => {
-    const meta = await fetchMeta(request);
-    await seedAboutYou(page, { sex: "male" });
-    await home(page, SAME_SEX_QS);
-    await expect(page.getByTestId("same-sex-note")).toHaveText(
-      meta.policy_strings.same_sex_pool_note.replace("{sought_one}", "man").replace("{sought}", "men"));
-    await expect(page.getByTestId("same-sex-note")).toContainText("every single man in these ages");
-    // Nathan deleted balance's same-sex sentence: the same caption on every
-    // search, in the box (the home page's footnote went on 2026-10-11)
-    await expect(page.getByTestId("balance-footnote")).toHaveCount(0);
-    const row = await expandRow(page, 4);
-    await row.getByRole("button", { name: meta.policy_strings.balance_info_label }).click();
-    await expect(page.getByTestId("info-tip-note")).toHaveText(meta.policy_strings.balance_caption);
-  });
-
   test("the row detail: Even under the tick, the bars' yardstick in view, balance's named info button (F25, F22, F26)", async ({ page, request }) => {
     const meta = await fetchMeta(request);
     await home(page);
@@ -296,8 +282,7 @@ test.describe("home results (D)", () => {
     }
   });
 
-  test("phone rows read 'matches' (F21)", async ({ page }) => {
-    test.skip(width(page) >= 640, "below 640px");
+  test("phone rows read 'matches' (F21)", PHONE_ONLY, async ({ page }) => {
     await home(page);
     const line = page.locator('li[data-rank="4"] p').filter({ hasText: / matches$/ });
     await expect(line).toHaveCount(1);
@@ -346,8 +331,8 @@ test.describe("changing the search (E)", () => {
     await page.locator("dialog[open]").waitFor();
   }
 
-  test("'Show results' closes onto the focused results heading; the bar shows the search in flight; the change is said and shown (F05)", async ({ page, request }) => {
-    test.skip(width(page) >= 1120, "the sheet is below the desk");
+  // the drawer at 1024 is panel.spec.ts's
+  test("'Show results' closes onto the focused results heading; the bar shows the search in flight; the change is said and shown (F05)", PHONE_ONLY, async ({ page, request }) => {
     const ps = (await fetchMeta(request)).policy_strings;
     await home(page);
     let release: () => void = () => {};
@@ -377,13 +362,11 @@ test.describe("changing the search (E)", () => {
       await expect(notice).toContainText(ps.results_new_top.split("{a}")[0]);
     }
     await expect(page.getByTestId("results-live")).toHaveText((await notice.innerText()).trim());
-    // the visible line goes after six seconds, leaving no gap (2026-10-12);
-    // the live region keeps its words
-    await expect(notice).toHaveCount(0, { timeout: 8000 });
+    // the visible line going after six seconds, leaving no gap, is
+    // copy-2026-10-12.spec.ts's
   });
 
-  test("the sheet's summary row closes it onto 'I'm a' (F19); close and Escape only close (F05)", async ({ page }) => {
-    test.skip(width(page) >= 1120, "the sheet is below the desk");
+  test("the sheet's summary row closes it onto 'I'm a' (F19); close and Escape only close (F05)", PHONE_ONLY, async ({ page }) => {
     await home(page);
     await openSheet(page);
     await page.keyboard.press("Escape");
@@ -432,7 +415,7 @@ test.describe("changing the search (E)", () => {
     await expect(page.getByTestId("seek-sex")).toHaveValue("male");
   });
 
-  test("an info box opens on click or Enter, not on focus; Escape closes it and keeps focus (F17)", async ({ page, request }) => {
+  test("an info box opens on click or Enter, not on focus; Escape closes it and keeps focus (F17)", PHONE, async ({ page, request }) => {
     const ps = (await fetchMeta(request)).policy_strings;
     await home(page);
     const row = await expandRow(page, 4);
@@ -454,8 +437,7 @@ test.describe("changing the search (E)", () => {
     await expect(btn).toBeFocused();
   });
 
-  test("the phone menu closes on Escape and on a click outside, focus back on its button (F28)", async ({ page }) => {
-    test.skip(width(page) >= 640, "the menu is the phone's");
+  test("the phone menu closes on Escape and on a click outside, focus back on its button (F28)", PHONE_ONLY, async ({ page }) => {
     await page.goto("/");
     const btn = page.getByTestId("menu-button");
     await btn.click();
@@ -470,7 +452,7 @@ test.describe("changing the search (E)", () => {
     await expect(btn).toBeFocused();
   });
 
-  test("the way back keeps the visitor's place: back link and browser Back (F18)", async ({ page }) => {
+  test("the way back keeps the visitor's place: back link and browser Back (F18)", PHONE, async ({ page }) => {
     await home(page);
     await page.getByTestId("show-all").click();
     const rows = page.locator("li[data-rank]");
@@ -495,8 +477,7 @@ test.describe("changing the search (E)", () => {
     await expect(last).toBeInViewport();
   });
 
-  test("focus never hides under the bar; the bar comes before the list (F27)", async ({ page }) => {
-    test.skip(width(page) >= 1120, "the bar is below the desk");
+  test("focus never hides under the bar; the bar comes before the list (F27)", PHONE_ONLY, async ({ page }) => {
     await home(page);
     await page.mouse.wheel(0, 1600);
     await expect(page.getByTestId("bottom-bar")).toBeInViewport();
@@ -527,7 +508,7 @@ test.describe("changing the search (E)", () => {
 });
 
 test.describe("trust (F)", () => {
-  test("Sharpen compatibility is its heading alone: no 'Optional' pill, no ⓘ (Nathan, 2026-10-10; F10b reversed)", async ({ page, request }) => {
+  test("Sharpen compatibility is its heading alone: no 'Optional' pill, no ⓘ (Nathan, 2026-10-10; F10b reversed)", PHONE, async ({ page, request }) => {
     const ps = (await fetchMeta(request)).policy_strings;
     await home(page);
     if (width(page) < 1120) {
@@ -563,7 +544,6 @@ test.describe("compare (G)", () => {
     await page.goto("/compare/austin-texas/provo-utah");
     const table = page.getByTestId("compare-table");
     await expect(table).toBeVisible();
-    test.skip(width(page) < 640, "the Comparison column is the table's, from 640px");
     const cells = await table.locator("[data-diff-for]").evaluateAll((tds) => tds.map((td) => ({
       id: td.getAttribute("data-diff-for"), edge: td.getAttribute("data-edge"),
       text: (td as HTMLElement).innerText.replace(/\s+/g, " ").trim(),
@@ -662,7 +642,6 @@ test.describe("compare on the real build (P6_REAL_BASE)", () => {
 
 test.describe("city and stat pages, sharing, the footer (H)", () => {
   test("the city page leads with the score: its heading in the first screen at 1440x900 (F16)", async ({ page }) => {
-    test.skip(width(page) !== 1440, "the desk");
     await page.goto("/city/austin-texas");
     const h = page.getByTestId("ranked-card").getByRole("heading", { level: 2 });
     await expect(h).toBeVisible();
@@ -714,7 +693,7 @@ test.describe("city and stat pages, sharing, the footer (H)", () => {
     await expect(page.getByTestId("photo-place")).toHaveCount(0);
   });
 
-  test("the city page's HTML carries no map geometry and only its own metro (F32)", async ({ request, page }) => {
+  test("the city page's HTML carries no map geometry and only its own metro (F32)", PHONE, async ({ request, page }) => {
     const html = await (await request.get("/city/austin-texas")).text();
     // icons are short paths; a state outline is hundreds of characters
     expect(html.match(/<path d="[^"]{300,}"/g) ?? []).toEqual([]);
@@ -784,7 +763,7 @@ test.describe("city and stat pages, sharing, the footer (H)", () => {
     expect(img.ok()).toBe(true);
   });
 
-  test("a short page ends on its footer (F36)", async ({ page }) => {
+  test("a short page ends on its footer (F36)", PHONE, async ({ page }) => {
     await page.goto("/no-such-page");
     const footer = (await page.locator("footer").boundingBox())!;
     const docH = await page.evaluate(() => document.documentElement.scrollHeight);

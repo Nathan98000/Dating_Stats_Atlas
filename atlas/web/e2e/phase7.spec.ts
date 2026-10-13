@@ -63,6 +63,7 @@ test.describe("the bar is reachable by Tab (R01)", () => {
     for (let i = 0; i < 80; i++) {
       await page.keyboard.press("Tab");
       if (await page.evaluate(() => document.activeElement?.textContent?.trim() === "Refine your search")) hits++;
+      if (hits >= 2) break;
     }
     expect(hits).toBeGreaterThanOrEqual(2);
     await ctx.close();

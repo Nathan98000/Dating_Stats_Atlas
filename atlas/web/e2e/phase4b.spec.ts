@@ -188,6 +188,9 @@ test("the slider's box reads the registry string exactly, with the same-sex sent
     self: { age: 31 }, seeking: { sex: "male", age: [27, 38], marital: ["never_married"] } } });
   const served = ((await r.json()) as VariantResponse).variants.same_sex_note;
   expect(served).toBe(ps.match_same_sex_note);
+  // m4.0.0 (ADR 0018): no racial or ethnic pairing on a same-sex search
+  expect(served).toMatch(/For a same-sex search/);
+  expect(served).toMatch(/the racial and ethnic pairings are not used, even if you include your race or ethnicity/);
 
   await page.goto(`/?${DEFAULT_QS}`); // a woman (the default) looking for men
   await expect(rowsOf(page).first()).toBeVisible();

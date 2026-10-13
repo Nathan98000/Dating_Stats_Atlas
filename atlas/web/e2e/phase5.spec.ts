@@ -10,6 +10,11 @@ import { expandRow, fetchMeta } from "./helpers";
 
 const DEFAULT_QS = "sex=male&self_age=30&age=28-40&marital=never,previously";
 const width = (page: Page) => page.viewportSize()!.width;
+/** Every test runs at the desk; these tags add the laptop or the phone
+ * (playwright.config.ts), only where the layout under test differs. */
+const LAPTOP = { tag: "@laptop" };
+const PHONE = { tag: "@phone" };
+const LAPTOP_AND_PHONE = { tag: ["@laptop", "@phone"] };
 
 async function home(page: Page, qs = "") {
   await page.goto(`/${qs}`);
@@ -17,7 +22,7 @@ async function home(page: Page, qs = "") {
   await page.evaluate(() => document.fonts.ready);
 }
 
-test("the #1 result is in the first screen", async ({ page }) => {
+test("the #1 result is in the first screen", LAPTOP, async ({ page }) => {
   await home(page);
   const box = await page.locator('li[data-rank="1"]').evaluate((el) => {
     const r = el.getBoundingClientRect();
@@ -27,15 +32,13 @@ test("the #1 result is in the first screen", async ({ page }) => {
   if (w === 1440) {
     expect(box.top).toBeLessThan(560);
     expect(box.bottom).toBeLessThanOrEqual(900);
-  } else if (w === 1024) {
-    expect(box.top).toBeLessThan(768);
   } else {
-    expect(box.top).toBeLessThan(844);
+    // the phone: phase6.spec.ts (F15) holds the #1 card's score to its first screen
+    expect(box.top).toBeLessThan(768);
   }
 });
 
 test("at the desk the rail fits the window (scrolling inside itself) and rows 4-10 stay compact", async ({ page }) => {
-  test.skip(width(page) !== 1440, "the desk only");
   await home(page);
   const rail = page.getByTestId("rail");
   expect(await rail.evaluate((el) => el.getBoundingClientRect().height)).toBeLessThanOrEqual(900 - 32);
@@ -49,14 +52,14 @@ test("at the desk the rail fits the window (scrolling inside itself) and rows 4-
 
 for (const path of ["/", "/city/provo-utah", "/compare/provo-utah/austin-texas", "/compare", "/about",
   "/stats/rent_1br", "/privacy", "/terms"]) {
-  test(`no sideways scroll: ${path}`, async ({ page }) => {
+  test(`no sideways scroll: ${path}`, LAPTOP_AND_PHONE, async ({ page }) => {
     await page.goto(path);
     await page.waitForLoadState("networkidle");
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width(page));
   });
 }
 
-test("a row opens on Enter and Space, and says so", async ({ page }) => {
+test("a row opens on Enter and Space, and says so", PHONE, async ({ page }) => {
   await home(page);
   const row = page.locator('li[data-rank="4"]');
   const toggle = row.getByTestId("row-toggle").locator("visible=true");
@@ -123,7 +126,7 @@ test("the chips are the served movers: two pluses at most, then one minus", asyn
   }
 });
 
-test("segmented controls move with the arrow keys", async ({ page }) => {
+test("segmented controls move with the arrow keys", PHONE, async ({ page }) => {
   await home(page);
   const sort = page.getByTestId("sort").locator("visible=true");
   await sort.getByRole("radio", { name: "Best first" }).focus();
@@ -168,7 +171,7 @@ test("find a city in your results widens the list, scrolls to it and focuses its
   await expect(page.locator('li[data-rank="11"] a').first()).toBeInViewport();
 });
 
-test("while a search is pending a progress line shows, and the result is announced", async ({ page }) => {
+test("while a search is pending a progress line shows, and the result is announced", PHONE, async ({ page }) => {
   await home(page);
   await page.route("**/api/rank", async (route) => {
     await new Promise((r) => setTimeout(r, 600));
@@ -206,7 +209,6 @@ test("under reduced motion no row slides (no FLIP transform)", async ({ browser 
 });
 
 test("with motion allowed, moved rows slide into place", async ({ page }) => {
-  test.skip(width(page) !== 1440, "once is enough");
   await home(page);
   await page.evaluate(() => {
     (window as unknown as { __t: string[] }).__t = [];
@@ -222,8 +224,7 @@ test("with motion allowed, moved rows slide into place", async ({ page }) => {
 const PAGES = ["/", "/city/provo-utah", "/compare/provo-utah/austin-texas", "/compare", "/about",
   "/stats/rent_1br", "/privacy", "/terms", "/what-we-measure", "/about-crime-data", "/no-such-page"];
 for (const path of PAGES) {
-  test(`axe: ${path}`, async ({ page }) => {
-    test.skip(width(page) === 1024, "1440 and 390");
+  test(`axe: ${path}`, PHONE, async ({ page }) => {
     await page.goto(path);
     await page.waitForLoadState("networkidle");
     const results = await new AxeBuilder({ page })
@@ -234,7 +235,7 @@ for (const path of PAGES) {
   });
 }
 
-test("compare: the Comparison column names the city that does better, and below 640px each measure is a block", async ({ page }) => {
+test("compare: the Comparison column names the city that does better, and below 640px each measure is a block", PHONE, async ({ page }) => {
   await page.goto(`/compare/provo-utah/austin-texas?${DEFAULT_QS}`);
   const table = page.getByTestId("compare-table");
   await expect(table).toBeVisible();
@@ -279,8 +280,7 @@ test("compare landing: a link to the visitor's top two", async ({ page, request 
 });
 
 for (const path of ["/city/provo-utah", "/compare/provo-utah/austin-texas"]) {
-  test(`landmark-one-main and skip-link pass: ${path}`, async ({ page }) => {
-    test.skip(width(page) === 1024, "1440 and 390");
+  test(`landmark-one-main and skip-link pass: ${path}`, PHONE, async ({ page }) => {
     await page.goto(path);
     await page.waitForLoadState("networkidle");
     const results = await new AxeBuilder({ page }).withRules(["landmark-one-main", "skip-link", "region"]).analyze();
@@ -290,7 +290,6 @@ for (const path of ["/city/provo-utah", "/compare/provo-utah/austin-texas"]) {
 }
 
 test("every page has its own title and Open Graph tags", async ({ page }) => {
-  test.skip(width(page) !== 1440, "once is enough");
   const want: [string, RegExp][] = [
     ["/", /^Dating Scene Data$/],
     ["/city/provo-utah", /^Provo, UT · Dating Scene Data$/],
@@ -318,7 +317,7 @@ test("the 404 has the header, the footer and a main landmark", async ({ page }) 
   await expect(page.locator("main#main")).toHaveCount(1);
 });
 
-test("the city page leads with the score; on a phone the map is a thumbnail beside the name", async ({ page }) => {
+test("the city page leads with the score; on a phone the map is a thumbnail beside the name", PHONE, async ({ page }) => {
   await page.goto(`/city/provo-utah?${DEFAULT_QS}`);
   const card = page.getByTestId("ranked-card");
   await expect(card.getByTestId("score")).toHaveText(/^\d+$/);

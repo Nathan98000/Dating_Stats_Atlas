@@ -1,4 +1,3 @@
-import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "fs";
 import path from "path";
 import { expect, test } from "@playwright/test";
@@ -70,12 +69,4 @@ test("the terms page makes no third-party request and renders no banned string",
   }
 });
 
-test("axe: terms of use", async ({ page }) => {
-  await page.goto("/terms");
-  await page.waitForLoadState("networkidle");
-  const results = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
-    .analyze();
-  const serious = results.violations.filter((v) => ["serious", "critical"].includes(v.impact ?? ""));
-  expect(serious.map((v) => `${v.id}: ${v.nodes.length} nodes — ${v.help}`)).toEqual([]);
-});
+// axe on /terms: phase5.spec.ts, at the desk and the phone

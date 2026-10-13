@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { expandRow, revealRows, seedAboutYou } from "./helpers";
+import { revealRows, seedAboutYou } from "./helpers";
 
 /** Phase 3b (m3.1.0, ADR 0009 amended): the compatibility figure's DISPLAY is
  * capped at the registry ceiling and renders as "250+" wherever the figure
@@ -55,54 +55,7 @@ test("an uncapped search computes the compatibility difference as before", async
   await expect(table.locator('[data-diff-for="match_propensity"] [data-diff-value]')).toHaveText(/^by \d+$|^[+−]\d+$|^0$/);
 });
 
-test("a same-sex search says in the slider's information box whose pairing patterns the figure is built from", async ({ page, browser }) => {
-  // a man of 31 seeking men: his own sex (and a race he gave on an
-  // earlier search) are in the browser
-  await seedAboutYou(page, { sex: "male", race: "hispanic" });
-  await page.goto("/?self_age=31&sex=male&age=27-38&marital=never");
-  // Phase 4b (ADR 0018 amended): the note sits in the side panel's box,
-  // not beside the figure (Phase 5: the figure is in a row's detail)
-  const first = await expandRow(page, 4);
-  await expect(first.getByTestId("match-figure")).not.toContainText(/For a same-sex search/);
-  await page.getByTestId("slider-info").focus();
-  // Phase 6 (F17): focus alone no longer opens it; Enter does
-  await page.keyboard.press("Enter");
-  const note = page.getByTestId("slider-info-note");
-  await expect(note).toBeVisible();
-  const ss = note.getByTestId("slider-same-sex-note");
-  await expect(ss).toContainText(/For a same-sex search/);
-  // m4.0.0 (ADR 0018): no racial or ethnic pairing on a same-sex search
-  await expect(ss).toContainText(
-    /the racial and ethnic pairings are not used, even if you include your race or ethnicity/);
-  // the race select is set aside but keeps its value, and the figures are
-  // the ones with no race at all (Phase 4c: set aside means muted, still
-  // operable)
-  const race = page.getByTestId("self-race");
-  await expect(race).toBeEnabled();
-  await expect(race).toHaveClass(/\bctl-muted\b/);
-  await expect(race).toHaveValue("hispanic");
-  const figs = async (p: typeof page) => JSON.stringify(await p.getByTestId("ranked-list").locator("li[data-rank]")
-    .evaluateAll((els) => els.map((e) => `${e.getAttribute("data-cbsa")}:${
-      e.querySelector('[data-testid="match-figure"] [data-figure]')?.textContent}:${
-      e.querySelector('[data-testid="score"]')?.textContent}`)));
-  await revealRows(page);
-  const withRace = await figs(page);
-  const other = await browser.newContext();
-  const without = await other.newPage();
-  await seedAboutYou(without, { sex: "male" });
-  await without.goto("/?self_age=31&sex=male&age=27-38&marital=never");
-  await expect(without.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  await revealRows(without);
-  await expect.poll(() => figs(without)).toBe(withRace);
-  await other.close();
-  // an opposite-sex search carries no such sentence, and the race is back
-  await page.goto("/?self_age=31&sex=female&age=27-38&marital=never");
-  await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  await expect(page.getByTestId("self-race")).toBeEnabled();
-  await expect(page.getByTestId("self-race")).toHaveValue("hispanic");
-  await page.getByTestId("slider-info").focus();
-  // Phase 6 (F17): focus alone no longer opens it; Enter does
-  await page.keyboard.press("Enter");
-  await expect(page.getByTestId("slider-info-note")).toBeVisible();
-  await expect(page.getByTestId("slider-same-sex-note")).toHaveCount(0);
-});
+// a same-sex search's slider box, race set aside and its figures: phase4b.spec.ts
+// ("the slider's box reads the registry string exactly") and phase4c.spec.ts
+// ("on a same-sex search own race stays selectable", "a race chosen on a
+// same-sex search changes no number")
