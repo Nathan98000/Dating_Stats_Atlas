@@ -149,3 +149,36 @@ The chips read `lifestyle_movers`; `summary_line` and `movers` are unchanged, an
 keep the full line. Over the 518 ADR 0011 test searches every /v1/rank response is identical to
 m4.2.1's without its explanations, every default-variant line, `top_stats` and `movers` is
 unchanged, and so are all 1,036 single-seeker rankings (`results/phase6/served_numbers_commit_b.json`).
+
+## DRAFT amendment, Phase 7 (13 October 2026): what moved the score, by item
+
+DRAFT for Nathan's approval (Phase 7, commit B; his decision 4). The round-4 review (R05) found
+the chips and the bars disagreeing: on 36 of 193 rows of the default search a chip's sign was
+the opposite of its pillar's bar (Austin, after "Cost of living: A lot", read "▼ Rent" above
+"Cost of living +2.0"). Each was right on its own terms: the chip names one item, the bar its
+whole pillar. Showing the items needed one number per item, and adding two stats'
+contributions in the browser (everyday prices is two) would make a new figure, so the API now
+serves them.
+
+Each ranked row gains `unit_contributions: [{key, pillar, value}]`
+(`explain.served_unit_contributions`): one entry per mover unit in the lifestyle pillars (cost,
+social life, student life, weather), using the chips' own `mover_units`, so everyday prices
+(goods and services) is one entry; `key` is the unit's first stat id, as in
+`lifestyle_movers`; `value` is the sum of its stats' unrounded contributions, rounded to 2
+decimals like `contributions`, so a pillar's items add up to the pillar within 0.01. A row with
+no lifestyle contribution serves `[]`. No variant changes it, so it rides on the shared row.
+
+"What moved the score" draws, under the Cost of living and Social life bars, their items as
+indented sub-rows ("Rent", "Everyday prices"; "Walkability", "Places to go out", each its
+registry `chip_label`), largest first like the pillars, with the same signed bars on one scale
+at about two-thirds the pillar bar's height; the pillar rows lose their "· rent, everyday
+prices" suffix. Weather and student life have one item each and stay single rows. Screen
+readers hear the items as a list inside their pillar. A chip's sign now always matches its own
+item's bar. The browser still adds nothing. The desk column over the chips reads "City ·
+lifestyle pluses and minus" (`col_city`, was "City · why it ranks here").
+
+No score, rank, figure, band, suppression or explanation moves: over the 518 ADR 0011 test
+searches every /v1/rank response is identical to the one before it with `unit_contributions`
+taken out, as are all 1,036 single-seeker rankings and all 387 profiles
+(`results/phase7/served_numbers_commit_b.json`). MODEL_VERSION stays m4.3.0 (an additive,
+display-only field, as Phase 5's `score_median`); the goldens are byte-identical.

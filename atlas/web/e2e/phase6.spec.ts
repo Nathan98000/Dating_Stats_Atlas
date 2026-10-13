@@ -281,6 +281,14 @@ test.describe("home results (D)", () => {
       const pillar = meta.features[key].pillar;
       const bar = row.locator(`[data-pillar="${pillar}"]`);
       const pillarName = meta.pillars[pillar].display_name;
+      // Phase 7 (R05): a pillar with items shows each under it, named by
+      // its chip word, and its own bar keeps its name alone
+      const item = row.locator(`[data-unit="${key}"]`);
+      if (await item.count()) {
+        await expect(item).toHaveText(chip);
+        await expect(bar).toHaveText(pillarName);
+        continue;
+      }
       if (chip.toLowerCase() !== pillarName.toLowerCase()) {
         await expect(bar).toContainText(`${pillarName} · `);
         await expect(bar).toContainText(chip.toLowerCase());

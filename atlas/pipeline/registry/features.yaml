@@ -426,7 +426,9 @@ strings:
   results_count: "{n} metro areas ranked for your search"
   # the list's column labels, once above the rows
   col_rank: "#"
-  col_city: "City · why it ranks here"
+  # Phase 7 (R05, approved 13 October 2026): what the chips are; was
+  # "City · why it ranks here"
+  col_city: "City · lifestyle pluses and minus"
   col_matches: "Matches"
   col_score: "Score"
   # Phase 6 (F21, approved; closes PHASE5 §7's open item): phone rows read

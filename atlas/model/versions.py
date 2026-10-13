@@ -5,6 +5,19 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.3.0, Phase 7 addition (the round-4 design review of 12 October 2026,
+Nathan's decisions of 13 October; no bump, as Phase 5's score_median): one
+additive, display-only field. Each ranked row gains `unit_contributions`
+([{key, pillar, value}]): explain.served_unit_contributions, one entry per
+mover unit in the lifestyle pillars (cost, reach, students, weather), the
+two price levels one entry as the chips have them, each the sum of its
+stats' unrounded contributions rounded to 2 decimals, so a pillar's items
+add up to its contribution within 0.01. No variant changes it (it rides on
+the shared row). No score, rank, pool, balance, compatibility figure, band,
+suppression or explanation moves; the goldens do not record the field and
+are byte-identical; the build keeps its id (d62202fd0280) with its manifest
+refreshed for the registry's Phase 7 strings.
+
 m4.3.0 — Phase 6 (the round-3 design review of 8 October 2026, Nathan's
 decisions of 9 October). Two served additions and one display rule; no
 score, rank, pool, balance, compatibility figure, band or suppression

@@ -353,8 +353,18 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
     pillar === "pool" ? meta.features.pool_size.chip_label
     : pillar === "match" ? meta.features.match_propensity.chip_label
     : meta.pillars[pillar]?.display_name ?? pillar;
-  // the row's lifestyle chips, by pillar, in their words where those differ
-  // from the bar's own label
+  // Phase 7 (R05): a pillar with more than one item (cost of living:
+  // rent, everyday prices; social life: walkability, places to go out)
+  // shows its items under it, from the served per-item contributions
+  // (unit_contributions: the browser adds nothing), largest first like the
+  // pillars, each named by its chip word, so a chip's sign is its own
+  // bar's
+  const itemsOf = (pillar: string) => {
+    const items = (row.unit_contributions ?? []).filter((u) => u.pillar === pillar);
+    return items.length > 1 ? [...items].sort((a, b) => b.value - a.value) : [];
+  };
+  // a single-item pillar's chip, in its words where those differ from the
+  // bar's own label ("Weather · nice days" style, F21)
   const chipWords = (pillar: string) =>
     row.lifestyle_movers
       .filter((m) => meta.features[m.key]?.pillar === pillar)
@@ -410,25 +420,26 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
           </p>
           <ul className="flex flex-col gap-2" data-testid="moved-bars">
             {parts.map((c) => {
-              const bar = divergingBar(c.value);
-              const plus = c.value >= 0;
-              const words = chipWords(c.pillar);
+              const items = itemsOf(c.pillar);
+              const words = items.length ? [] : chipWords(c.pillar);
               return (
-                <li key={c.pillar} className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_44px] items-center gap-2.5 text-caption">
-                  <span className="leading-tight text-ink-2" data-pillar={c.pillar}>
+                <li key={c.pillar} className="flex flex-col gap-1.5">
+                  <MovedBar value={c.value} level="pillar" data={{ "data-pillar": c.pillar }}>
                     {label(c.pillar)}
                     {words.length > 0 && <span className="text-ink-3"> · {words.join(", ")}</span>}
-                  </span>
-                  <span aria-hidden="true" className="relative h-2.5">
-                    <span className="absolute -inset-y-[3px] left-1/2 w-px bg-line-strong" />
-                    <span
-                      className={`absolute top-px h-2 rounded-xs ${plus ? "bg-good" : "bg-poor"}`}
-                      style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
-                    />
-                  </span>
-                  <span className={`text-right font-semibold tabular-nums ${plus ? "text-good-strong" : "text-poor-strong"}`}>
-                    {signedPoints(c.value)}
-                  </span>
+                  </MovedBar>
+                  {items.length > 0 && (
+                    <ul className="flex flex-col gap-1.5" data-testid="moved-items">
+                      {items.map((u) => (
+                        <li key={u.key}>
+                          <MovedBar value={u.value} level="item"
+                            data={{ "data-unit": u.key }}>
+                            {meta.features[u.key]?.chip_label ?? u.key}
+                          </MovedBar>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               );
             })}
@@ -445,6 +456,37 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
             {s.compare_action}
           </button>
       </p>
+    </div>
+  );
+}
+
+/** One signed bar of "What moved the score": the label, the bar from the
+ * middle (±25 points to the edge, one scale for pillars and items), the
+ * served value. Phase 7 (R05): an item sits indented under its pillar, its
+ * bar about two-thirds the pillar's height. */
+function MovedBar({ value, level, data, children }: {
+  value: number; level: "pillar" | "item"; data: Record<string, string>; children: React.ReactNode;
+}) {
+  const bar = divergingBar(value);
+  const plus = value >= 0;
+  const item = level === "item";
+  return (
+    <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_44px] items-center gap-2.5 text-caption"
+      data-testid={item ? "moved-item" : "moved-pillar"} data-sign={value > 0 ? "1" : value < 0 ? "-1" : "0"}>
+      <span className={`leading-tight text-ink-2 ${item ? "pl-3" : ""}`} {...data}>
+        {children}
+      </span>
+      <span aria-hidden="true" className="relative h-2.5">
+        <span className="absolute -inset-y-[3px] left-1/2 w-px bg-line-strong" />
+        <span
+          className={`absolute rounded-xs ${item ? "top-0.5 h-1.5" : "top-px h-2"} ${plus ? "bg-good" : "bg-poor"}`}
+          style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
+          data-testid="moved-bar"
+        />
+      </span>
+      <span className={`text-right tabular-nums ${item ? "font-medium" : "font-semibold"} ${plus ? "text-good-strong" : "text-poor-strong"}`}>
+        {signedPoints(value)}
+      </span>
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
+import type { Meta } from "../src/lib/types";
+import { fetchMeta } from "./helpers";
 
 /** Phase 7 (the round-4 design review of 12 October 2026, built from
  * atlas/PHASE7_PROMPT.md). Each test sets its own window. The checks that
@@ -181,5 +183,113 @@ test.describe('"/100" after every score (R09)', () => {
     const cells = page.getByTestId("compare-score");
     await expect(cells).toHaveCount(2);
     for (const c of await cells.all()) await expect(c).toHaveText(/^\d+\/100$/);
+  });
+});
+
+// ---------------------------------------------------------------- B (R05)
+
+/** Every chip of the rows ranked `ranks` against its own bar in the opened
+ * detail: its item's under cost of living and social life, or, for a
+ * single-item pillar (weather, student life), the pillar's. Returns how
+ * many chips it checked. */
+async function chipsAgainstBars(page: Page, meta: Meta, ranks: number[]) {
+  let checked = 0;
+  for (const rank of ranks) {
+    const li = page.locator(`li[data-rank="${rank}"]`);
+    const card = (await li.getAttribute("data-testid")) === "featured-card";
+    const toggle = li.getByTestId(card ? "card-toggle" : "row-toggle").locator("visible=true");
+    await toggle.click();
+    const detail = card ? page.getByTestId("card-detail") : li.getByTestId("row-detail");
+    await expect(detail).toBeVisible();
+    for (const chip of await li.getByTestId("why-chips").locator("[data-key]").all()) {
+      const key = (await chip.getAttribute("data-key"))!;
+      const sign = (await chip.getAttribute("data-sign")) === "plus" ? "1" : "-1";
+      const item = detail.locator(`[data-testid="moved-item"]:has([data-unit="${key}"])`);
+      const bar = (await item.count()) ? item
+        : detail.locator(`[data-testid="moved-pillar"]:has([data-pillar="${meta.features[key].pillar}"])`);
+      await expect(bar, `#${rank} ${key}`).toHaveAttribute("data-sign", sign);
+      checked++;
+    }
+    await toggle.click();
+  }
+  return checked;
+}
+
+test.describe('"What moved the score" by item (R05)', () => {
+  test("cost of living and social life show their items, named by their chips; the pillar rows drop the suffix", async ({ page, request }) => {
+    const meta = await fetchMeta(request);
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await home(page);
+    await page.locator('li[data-rank="4"]').getByTestId("row-toggle").locator("visible=true").click();
+    const detail = page.locator('li[data-rank="4"]').getByTestId("row-detail");
+    for (const [pillar, keys] of [["cost", ["rent_1br", "rpp_goods"]],
+      ["reach", ["resident_walkability_index", "venues_per_100k"]]] as const) {
+      const block = detail.getByTestId("moved-bars").locator(":scope > li").filter({
+        has: page.locator(`[data-pillar="${pillar}"]`) });
+      await expect(block.locator(`[data-pillar="${pillar}"]`)).toHaveText(meta.pillars[pillar].display_name);
+      const items = block.getByTestId("moved-item");
+      await expect(items).toHaveCount(2);
+      for (const k of keys) await expect(block.locator(`[data-unit="${k}"]`)).toHaveText(meta.features[k].chip_label!);
+      // the screen reader hears the items as a list inside the pillar's item
+      await expect(block.getByRole("list")).toHaveCount(1);
+      await expect(block.getByRole("list").getByRole("listitem")).toHaveCount(2);
+    }
+    // weather and student life stay single rows
+    for (const pillar of ["weather", "students"]) {
+      const block = detail.getByTestId("moved-bars").locator(":scope > li").filter({
+        has: page.locator(`[data-pillar="${pillar}"]`) });
+      await expect(block.getByTestId("moved-item")).toHaveCount(0);
+    }
+    // an item's bar is about two-thirds the height of its pillar's
+    const h = async (sel: string) => (await detail.locator(sel).first().boundingBox())!.height;
+    const ratio = await h('[data-testid="moved-item"] [data-testid="moved-bar"]') /
+      await h('[data-testid="moved-pillar"] [data-testid="moved-bar"]');
+    expect(ratio).toBeGreaterThan(0.6);
+    expect(ratio).toBeLessThan(0.8);
+  });
+
+  test("every chip's sign is its own bar's, on every ranked city of the default search", async ({ page, request }) => {
+    const meta = await fetchMeta(request);
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await home(page);
+    const n = await page.locator("li[data-rank]").count();
+    const checked = await chipsAgainstBars(page, meta, Array.from({ length: Math.min(n, 20) }, (_, i) => i + 1));
+    expect(checked).toBeGreaterThan(0);
+  });
+
+  test("the desk column heading names the chips", async ({ page, request }) => {
+    const meta = await fetchMeta(request);
+    expect(meta.policy_strings.col_city).toBe("City · lifestyle pluses and minus");
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await home(page);
+    await expect(page.getByText("City · lifestyle pluses and minus")).toBeVisible();
+  });
+
+  test.describe("on the real build (P7_REAL_BASE)", () => {
+    test.skip(!REAL, "set P7_REAL_BASE to the real build's production site");
+    test("Austin after Cost and Weather 'A lot', Social life 'Not much': Rent minus, Everyday prices plus", async ({ page, request }) => {
+      const meta = await fetchMeta(request);
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(`${REAL}/?ic=a&iw=a&ir=n`);
+      const austin = page.locator('li[data-slug="austin-texas"]');
+      await expect(austin).toBeVisible();
+      const card = (await austin.getAttribute("data-testid")) === "featured-card";
+      await austin.getByTestId(card ? "card-toggle" : "row-toggle").locator("visible=true").click();
+      const detail = card ? page.getByTestId("card-detail") : austin.getByTestId("row-detail");
+      const cost = detail.getByTestId("moved-bars").locator(":scope > li").filter({ has: page.locator('[data-pillar="cost"]') });
+      await expect(cost.locator('[data-testid="moved-item"]:has([data-unit="rent_1br"])')).toHaveAttribute("data-sign", "-1");
+      await expect(cost.locator('[data-testid="moved-item"]:has([data-unit="rpp_goods"])')).toHaveAttribute("data-sign", "1");
+      void meta;
+    });
+
+    test("the top 20 of the default search: every chip's sign is its own bar's", async ({ page, request }) => {
+      const meta = await fetchMeta(request);
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(`${REAL}/`);
+      await expect(page.locator('li[data-rank="1"]')).toBeVisible();
+      await page.getByTestId("show-more").click();
+      const checked = await chipsAgainstBars(page, meta, Array.from({ length: 20 }, (_, i) => i + 1));
+      expect(checked).toBeGreaterThan(30);
+    });
   });
 });

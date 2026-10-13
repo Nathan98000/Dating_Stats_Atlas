@@ -100,6 +100,12 @@ removal — both noted here as the contract docs):
     suppression changes. Phase 5 commit I (ADR 0018 amended): each
     variants.list entry gains score_median {value, display}, the median
     overall score of the ranked set (rank() returns it too).
+  - m4.3.0, Phase 7 (ADR 0003 amended): each ranked row (the shared row of
+    /v1/rank, and rank()'s rows) gains `unit_contributions`, [{key,
+    pillar, value}]: each lifestyle item's contribution, the two price
+    levels one item, so the detail can show cost of living and social life
+    by item without the browser adding two contributions. No score, rank,
+    figure, band, suppression or explanation changes.
 """
 from __future__ import annotations
 

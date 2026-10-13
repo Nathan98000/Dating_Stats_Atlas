@@ -57,7 +57,8 @@ from bisect import bisect_right
 
 import numpy as np
 
-from atlas.model.explain import format_value, lifestyle_movers, movers, served_movers, summary_line
+from atlas.model.explain import (format_value, lifestyle_movers, movers, served_movers,
+                                 served_unit_contributions, summary_line)
 from atlas.model.loader import Build, reduced_key
 from atlas.model.preferences import (INCOME_FLOORS, PILLARS, SEX_LEVELS, Request,
                                      axis_vectors, balance_masks_for, pool_mask,
@@ -797,6 +798,13 @@ def ranked_row(build: Build, fr: dict, bal: dict, mt: dict, sc: dict,
     # m4.3.0 (Phase 6, F12): the result chips' pick, lifestyle items only
     row["lifestyle_movers"] = served_movers(
         lifestyle_movers(row, build.legend, build.manifest["standing_bands"]["keys"]))
+    # Phase 7 (R05): each lifestyle item's contribution, from the stats'
+    # unrounded contributions (the price levels one item, as the chips
+    # have them); no variant changes it, so it rides on the shared row
+    row["unit_contributions"] = served_unit_contributions(
+        [f["id"] for f in feats],
+        [None if np.isnan(z[k, j]) else float(contrib[k, j]) for j in range(len(feats))],
+        build.legend)
     return row
 
 

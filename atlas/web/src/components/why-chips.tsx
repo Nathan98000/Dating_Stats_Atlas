@@ -27,6 +27,7 @@ export function WhyChips({ movers, meta, trailing }: {
         key={m.key}
         aria-hidden={trailing ? "true" : undefined}
         data-sign={plus ? "plus" : "minus"}
+        data-key={m.key}
         className={`inline-flex h-6 items-center gap-1 whitespace-nowrap rounded-sm px-[7px] text-overline tracking-normal ${plus ? "bg-good-soft text-good-strong" : "bg-poor-soft text-poor-strong"}`}
       >
         {/* the ▲/▼ glyph, drawn (12px is the smallest type size) */}

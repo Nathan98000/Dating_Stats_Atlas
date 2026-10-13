@@ -149,6 +149,25 @@ def lifestyle_movers(row: dict, legend: dict[str, dict], band_keys: list[str]) -
             for u in pick_lifestyle_movers(contribs, sides, units)]
 
 
+def served_unit_contributions(ids: list[str], contribs: list[float | None],
+                              legend: dict[str, dict]) -> list[dict]:
+    """Phase 7 (R05): each lifestyle item's contribution, served beside
+    the pillars' (`contributions`) so "What moved the score" can show cost
+    of living and social life by item and the browser never adds two
+    contributions: {key, pillar, value} per item of mover_units over the
+    lifestyle pillars, in the stats' order — the two price levels one item,
+    as the chips have them; key the item's first stat id, as in
+    lifestyle_movers. `contribs` are the stats' unrounded contributions
+    (None where a stat is missing); each value is their sum, rounded to 2
+    decimals like the pillars', so a pillar's items add up to it within
+    0.01. A row with no lifestyle contribution has none."""
+    units = mover_units(ids, legend)
+    sums = unit_contributions(contribs, units)
+    return [{"key": u["ids"][0], "pillar": u["pillar"], "value": round(c, 2)}
+            for u, c in zip(units, sums)
+            if u["pillar"] in LIFESTYLE_PILLARS and c is not None]
+
+
 def movers(row: dict, legend: dict[str, dict], band_keys: list[str]) -> list[dict]:
     """A row's movers: {phrase, ids, contribution} per item, in order: the
     pluses, largest first, then the minus."""
