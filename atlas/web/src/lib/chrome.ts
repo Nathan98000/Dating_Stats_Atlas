@@ -33,6 +33,11 @@ export function pageMetadata(title: string, description: string, url: string, im
   return {
     title,
     description,
+    // Phase 7 (R07): every page's one address, its own path without a
+    // query — a city page with a search in its query string, the home page
+    // under any search, a compare pair, a permalink its own /r/… path —
+    // made absolute by the layout's metadataBase (SITE_URL)
+    alternates: { canonical: url.split("?")[0] },
     openGraph: {
       title,
       description,

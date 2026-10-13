@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     SITE_DESCRIPTION,
     "/",
   ),
+  // every page sets its own canonical address (Phase 7, R07), so the
+  // layout names none: a page without its own (the 404) has none
+  alternates: undefined,
 };
 
 export default function RootLayout({

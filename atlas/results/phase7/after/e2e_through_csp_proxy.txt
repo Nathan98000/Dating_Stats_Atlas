@@ -1,0 +1,8 @@
+# Phase 7 (R12): the e2e suite once through scripts/review/csp_proxy.mjs (the Caddyfile's security headers), 13 October 2026
+# npx playwright test -c scripts/review/playwright.csp.config.ts  (proxy :3102 -> :3100, hermetic fixture build)
+# The one failure is phase4e's URL check, which pins port 3100 in its expected URL; the proxy serves on 3102.
+  ✘  115 [chromium] › e2e/phase4e.spec.ts:45:5 › the nav reads Rankings, Compare, How it works (5.6s)
+    Error: expect(page).toHaveURL(expected) failed
+  1 failed
+  54 skipped
+  397 passed (1.6m)

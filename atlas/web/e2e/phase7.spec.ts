@@ -424,3 +424,54 @@ test("every page links the site's icons, which answer as images; the starter fil
     expect((await request.get(gone)).status(), gone).toBe(404);
   }
 });
+
+// ---------------------------------------------------------------- D (R07)
+
+test.describe("crawl rules, sitemap and canonical addresses (R07)", () => {
+  test("/robots.txt allows all but /api/ and /r/ and names the sitemap", async ({ request }) => {
+    const r = await request.get("/robots.txt");
+    expect(r.status()).toBe(200);
+    expect(r.headers()["content-type"]).toMatch(/^text\/plain/);
+    const body = await r.text();
+    expect(body).toMatch(/User-Agent: \*/);
+    expect(body).toMatch(/Allow: \/\n/);
+    expect(body).toMatch(/Disallow: \/api\//);
+    expect(body).toMatch(/Disallow: \/r\//);
+    expect(body).toMatch(/Sitemap: https?:\/\/[^\s]+\/sitemap\.xml/);
+  });
+
+  test("/sitemap.xml lists the pages, the 8 stat pages and all 387 city pages, absolute, with no query", async ({ request }) => {
+    const r = await request.get("/sitemap.xml");
+    expect(r.status()).toBe(200);
+    expect(r.headers()["content-type"]).toMatch(/xml/);
+    const locs = [...(await r.text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    const paths = locs.map((u) => new URL(u).pathname);
+    expect(locs.every((u) => /^https?:\/\//.test(u) && !u.includes("?"))).toBe(true);
+    expect(paths.filter((p) => p.startsWith("/city/"))).toHaveLength(387);
+    expect(paths.filter((p) => p.startsWith("/stats/"))).toHaveLength(8);
+    for (const p of ["/", "/about", "/what-we-measure", "/about-crime-data", "/privacy", "/terms"]) {
+      expect(paths, p).toContain(p);
+    }
+    expect(paths.some((p) => p.startsWith("/compare") || p.startsWith("/r/"))).toBe(false);
+    expect(new Set(paths).size).toBe(paths.length);
+  });
+
+  test("every page names its own address, without a query; the 404 names none", async ({ page }) => {
+    const canonical = () => page.locator('link[rel="canonical"]').getAttribute("href");
+    for (const [path, want] of [
+      ["/", "/"], ["/?ic=a&iw=a", "/"], ["/city/austin-texas?ic=a", "/city/austin-texas"],
+      ["/city/austin-texas", "/city/austin-texas"], ["/compare/austin-texas/san-jose-california?ic=a",
+        "/compare/austin-texas/san-jose-california"], ["/compare", "/compare"], ["/about", "/about"],
+      ["/what-we-measure", "/what-we-measure"], ["/about-crime-data", "/about-crime-data"],
+      ["/privacy", "/privacy"], ["/terms", "/terms"], ["/stats/rent_1br", "/stats/rent_1br"],
+    ] as const) {
+      await page.goto(path);
+      await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+      const href = (await canonical())!;
+      expect(href, path).not.toContain("?");
+      expect(new URL(href).pathname, path).toBe(want);
+    }
+    await page.goto("/no-such-page");
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+  });
+});

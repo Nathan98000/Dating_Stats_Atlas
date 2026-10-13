@@ -61,6 +61,31 @@ before still arrive. The registration renews at Squarespace, on Nathan's
 account; if it lapsed, the address would stop answering, while the
 DuckDNS names would keep forwarding to a dead address.
 
+**Not yet deployed: Phase 7 (built 13 October 2026, branch `claude/phase7`;
+`atlas/PHASE7.md`).** Model m4.3.0 on build d62202fd0280, its manifest
+refreshed again (the Phase 7 registry strings); `/v1/rank` rows gain
+`unit_contributions`. **The Caddyfile changed**: the site's address now
+sends security headers — `Strict-Transport-Security "max-age=31536000"` (no
+`preload`, which is Nathan's one-way choice), `X-Content-Type-Options
+nosniff`, a `Permissions-Policy` and a `Content-Security-Policy` that allows
+only the site's own origin (with `'unsafe-inline'` for Next's inline
+scripts and style attributes). `Referrer-Policy: no-referrer` stays in
+`web/next.config.ts`, so it isn't sent twice. It validated with `caddy:2`
+(2.11.7), and every page and home state at 1440 and 390 loaded through
+`web/scripts/review/csp_proxy.mjs` (the same headers) with no CSP violation
+(`results/phase7/after/csp_check.json`). So the next deploy recreates
+Caddy after the swap (`--profile public up -d --no-deps --force-recreate
+caddy`). The deleted starter SVGs and `hero.jpg` leave `public/` with the
+new code (the photo mirror's `rsync --delete` covers `cities/`, `stats/`
+and `og/` only, so check that no copy of `hero.jpg` lingers in the live
+folder). After it, check: `curl -sI https://datingscenedata.com/` shows the
+four new headers once each and `referrer-policy: no-referrer` once;
+`/robots.txt` and `/sitemap.xml` answer 200; `/favicon.ico`,
+`/icon.png` and `/apple-icon.png` answer 200 and `/next.svg` and
+`/hero.jpg` 404; and in a browser, the home page (open a card, open the
+sheet on a phone width, change a weight), a city page and a compare pair
+show no console error.
+
 ## The invariant everything else serves (D04)
 
 The FastAPI process is never public. It has no CORS headers, no public

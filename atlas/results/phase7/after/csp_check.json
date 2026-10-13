@@ -1,0 +1,702 @@
+{
+ "base": "http://127.0.0.1:3402",
+ "widths": [
+  1440,
+  390
+ ],
+ "runs": 76,
+ "csp_header_on_every_page": true,
+ "violations": 0,
+ "runs_with_console_errors": 2,
+ "step_errors": [],
+ "detail": [
+  {
+   "width": 1440,
+   "page": "404",
+   "path": "/no-such-page",
+   "status": 404,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "width": 1440,
+   "page": "home",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "city-sf",
+   "path": "/city/san-francisco-california",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "city-deltona",
+   "path": "/city/deltona-florida",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "city-abilene",
+   "path": "/city/abilene-texas",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "city-champaign",
+   "path": "/city/champaign-illinois",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "compare",
+   "path": "/compare",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "compare-pair",
+   "path": "/compare/austin-texas/denver-colorado",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "compare-floor",
+   "path": "/compare/austin-texas/abilene-texas",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "about",
+   "path": "/about",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "what-we-measure",
+   "path": "/what-we-measure",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "about-crime",
+   "path": "/about-crime-data",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-rent",
+   "path": "/stats/rent_1br",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-prices",
+   "path": "/stats/everyday_prices",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-lean",
+   "path": "/stats/political_lean",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-venues",
+   "path": "/stats/venues_per_100k",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-walk",
+   "path": "/stats/resident_walkability_index",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-days",
+   "path": "/stats/pleasant_days",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-students",
+   "path": "/stats/students_per_1k_adults",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "stat-people",
+   "path": "/stats/who_lives_here",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "privacy",
+   "path": "/privacy",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "terms",
+   "path": "/terms",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "permalink",
+   "path": "/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:default",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:row-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:row-open-info",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:card-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:card-balance-info",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:race-chosen",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:age-popover",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:rail-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:slider-info",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:find-typed",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:header-search",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:menu-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:narrowed",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:empty",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 1440,
+   "page": "home:same-sex",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "404",
+   "path": "/no-such-page",
+   "status": 404,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "width": 390,
+   "page": "home",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "city-sf",
+   "path": "/city/san-francisco-california",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "city-deltona",
+   "path": "/city/deltona-florida",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "city-abilene",
+   "path": "/city/abilene-texas",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "city-champaign",
+   "path": "/city/champaign-illinois",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "compare",
+   "path": "/compare",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "compare-pair",
+   "path": "/compare/austin-texas/denver-colorado",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "compare-floor",
+   "path": "/compare/austin-texas/abilene-texas",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "about",
+   "path": "/about",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "what-we-measure",
+   "path": "/what-we-measure",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "about-crime",
+   "path": "/about-crime-data",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-rent",
+   "path": "/stats/rent_1br",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-prices",
+   "path": "/stats/everyday_prices",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-lean",
+   "path": "/stats/political_lean",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-venues",
+   "path": "/stats/venues_per_100k",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-walk",
+   "path": "/stats/resident_walkability_index",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-days",
+   "path": "/stats/pleasant_days",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-students",
+   "path": "/stats/students_per_1k_adults",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "stat-people",
+   "path": "/stats/who_lives_here",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "privacy",
+   "path": "/privacy",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "terms",
+   "path": "/terms",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "permalink",
+   "path": "/r/d62202fd0280/m4.3.0/eyJpbXBvcnRhbmNlIjp7ImNvc3QiOiJzb21lIiwicmVhY2giOiJzb21lIiwic3R1ZGVudHMiOiJzb21lIiwid2VhdGhlciI6InNvbWUifSwicG9vbF92c19tYXRjaCI6MC40NTQ1LCJzZWVraW5nIjp7ImFnZSI6WzI4LDQwXSwibWFyaXRhbCI6WyJuZXZlcl9tYXJyaWVkIiwicHJldmlvdXNseV9tYXJyaWVkIl0sInNleCI6Im1hbGUifSwic2VsZiI6eyJhZ2UiOjMwfX0",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:default",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:row-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:row-open-info",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:card-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:card-balance-info",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:race-chosen",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:age-popover",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:rail-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:slider-info",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:find-typed",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:header-search",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:menu-open",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:narrowed",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:empty",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  },
+  {
+   "width": 390,
+   "page": "home:same-sex",
+   "path": "/",
+   "status": 200,
+   "csp_header": true,
+   "violations": [],
+   "console_errors": []
+  }
+ ]
+}

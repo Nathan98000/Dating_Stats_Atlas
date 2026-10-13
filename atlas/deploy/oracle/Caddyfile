@@ -27,8 +27,23 @@
 	}
 }
 
+# Phase 7 (R12, Nathan's decision of 13 October 2026): security headers on
+# the site's address. HSTS for a year, without "preload" (a one-way choice
+# left to Nathan); no sniffing of content types; no camera, microphone,
+# location or interest cohort; and a Content-Security-Policy that lets a
+# page load only what comes from the site itself (Next's inline scripts and
+# style attributes need 'unsafe-inline'), so the Privacy page's "no page
+# loads anything from another company's servers" is enforced by the browser.
+# Referrer-Policy stays where it is, in web/next.config.ts, so it isn't sent
+# twice. Checked through web/scripts/review/csp_proxy.mjs before deploying.
 {$SITE_ADDRESS} {
 	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+		Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+	}
 	@photos path /cities/* /stats/* /og/*
 	header @photos >Cache-Control "public, max-age=604800"
 	reverse_proxy web:3000
