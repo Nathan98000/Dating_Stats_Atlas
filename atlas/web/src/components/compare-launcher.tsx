@@ -11,12 +11,16 @@ import { ClearButton } from "./clear-button";
  * matcher every city chooser shares (item 5). */
 export function CompareLauncher({
   slug,
-  primary = false,
+  outlined = false,
   small = false,
   clearLabel,
 }: {
   slug: string;
-  primary?: boolean;
+  /** Phase 7 (Nathan, 13 October 2026): the city page's top button takes
+   * the outlined style of "Change your search" beside it (same size,
+   * --line-strong border, --ink text), so the page's one filled button is
+   * "Compare cities" at its foot */
+  outlined?: boolean;
   small?: boolean;
   /** Phase 6 (F35): the registry's "Clear", from the server page */
   clearLabel: string;
@@ -37,8 +41,8 @@ export function CompareLauncher({
         type="button"
         onClick={() => setOpen(true)}
         className={
-          primary
-            ? "min-h-11 self-start rounded-md bg-accent px-5 text-body-sm font-bold text-white hover:bg-accent-hover"
+          outlined
+            ? "flex min-h-11 items-center self-start rounded-md border border-line-strong bg-surface px-5 text-body font-semibold text-ink hover:bg-hover"
             : "min-h-11 self-start rounded-md bg-accent px-4 text-caption font-bold text-white hover:bg-accent-hover"
         }
       >

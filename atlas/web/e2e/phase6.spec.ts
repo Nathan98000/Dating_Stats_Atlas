@@ -209,6 +209,13 @@ test.describe("home results (D)", () => {
     await li.getByTestId("row-toggle").locator("visible=true").click();
     const caps = li.getByTestId("flag-captions");
     await expect(caps).toHaveText(meta.policy_strings.low_allocation_purity);
+    // Phase 7 (R03): the opened detail may scroll into view; measure once
+    // the page has come to rest
+    await expect.poll(async () => {
+      const y = await page.evaluate(() => window.scrollY);
+      await page.waitForTimeout(150);
+      return y === await page.evaluate(() => window.scrollY);
+    }).toBe(true);
     // the detail opens with it: before the tiles
     const capY = (await caps.boundingBox())!.y;
     const tileY = (await li.getByTestId("row-detail").locator("section").first().boundingBox())!.y;

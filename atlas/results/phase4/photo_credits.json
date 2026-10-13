@@ -1,5 +1,5 @@
 {
- "photos_in_use": 377,
+ "photos_in_use": 376,
  "by_licence": {
   "CC BY 2.0": 41,
   "CC BY 2.5": 2,
@@ -12,7 +12,7 @@
   "CC BY-SA 2.5": 6,
   "CC BY-SA 3.0": 55,
   "CC BY-SA 4.0": 106,
-  "CC0": 33,
+  "CC0": 32,
   "Free Art License": 1,
   "Public Domain": 1,
   "Public domain": 37
@@ -385,8 +385,7 @@
   "york-pennsylvania",
   "youngstown-ohio",
   "yuba-city-california",
-  "yuma-arizona",
-  "hero"
+  "yuma-arizona"
  ],
  "cc_before_4_0": {
   "count": 139,
@@ -4859,16 +4858,6 @@
    "license": "Public domain",
    "license_url": null,
    "cropped": false
-  },
-  {
-   "page": "hero",
-   "key": "hero",
-   "title": "Crew 2016-01-10 (Unsplash xCmvrpzctaQ)",
-   "author": "Crew crew",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "cropped": true
   }
  ]
 }

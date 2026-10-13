@@ -361,6 +361,18 @@ strings:
   compare_default_note: >-
     This comparison uses the site's starting search: {search}. Set your
     own on the home page and it follows you here.
+  # Phase 7 (R04, approved 13 October 2026): the same neutral note on a
+  # city page whose figures are the starting search, and its link (Compare
+  # uses it too; it was a literal there)
+  city_default_note: >-
+    These figures use the site's starting search: {search}. Set your own
+    on the home page and it follows you here.
+  make_it_your_search: "Make it your search"
+  # Phase 7 (R04, approved): the city page's back link when the figures
+  # are the starting search, and its usual form (was a literal, on the city
+  # page and Compare)
+  back_to_rankings: "← See the rankings"
+  back_to_results: "← Back to your results"
   # item 7: the compare landing subheading
   compare_page_subtitle: >-
     View two cities side by side. Learn how each ranks in your search,
@@ -530,6 +542,12 @@ strings:
   # displayed values (ADR 0007); places for the spot row
   compare_edge_by: "by {diff}"
   compare_edge_places: "by {n} places"
+  # Phase 7 (R14, approved 13 October 2026; ADR 0007 amended): a tie (was
+  # a bare 0), and a row the site doesn't judge, naming the city with the
+  # larger displayed value and the gap (was a signed difference, e.g.
+  # −600,000)
+  compare_same: "Same"
+  compare_unjudged_by: "{city}, by {diff}"
   # Phase 6 (F24, approved): a city below the population floor, on Compare
   # and on its own page (were literals in the code). The figure is the
   # registry's population_floor; the loader checks that both agree with it.

@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import { fetchMeta, photoOnDisk } from "./helpers";
-import heroImage from "../src/data/hero.json";
 import statImages from "../src/data/stat-images.json";
 import cityImages from "../src/data/city-images.json";
 
@@ -123,7 +122,8 @@ test("the photographs' list credits what the site shows, the cropped ones marked
   ];
   await page.goto("/about");
   await expect(page.getByTestId("sources-and-credits")).toBeVisible();
-  await expect(page.locator(`[data-credit="${heroImage.file}"]`)).toHaveCount(0);
+  // the hero photograph (Phase 7: its file and record left the repo)
+  await expect(page.locator('[data-credit="hero.jpg"]')).toHaveCount(0);
   const more = page.getByTestId("credits-photos-more");
   if (files.length === 0) {
     await expect(more).toHaveCount(0);

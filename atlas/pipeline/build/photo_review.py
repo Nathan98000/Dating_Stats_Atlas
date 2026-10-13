@@ -316,8 +316,9 @@ def apply() -> dict:
     rev = _read(REVIEW)
     city_path = WEB / "src" / "data" / "city-images.json"
     stat_path = WEB / "src" / "data" / "stat-images.json"
-    hero_path = WEB / "src" / "data" / "hero.json"
-    city, stat, hero = _read(city_path), _read(stat_path), _read(hero_path)
+    # Phase 7 (R02, R19): the hero photograph and its record, unused since
+    # Phase 5, left the repository (its credit is in PHASE7.md)
+    city, stat = _read(city_path), _read(stat_path)
     city_csv = pd.read_csv(P2E / "city_images.csv", dtype={"cbsa": str})
     stat_csv = pd.read_csv(P2E / "stat_images.csv")
     moved = []
@@ -368,11 +369,8 @@ def apply() -> dict:
             if (page, key) not in external:
                 v["title"] = title_of(v["source_url"])
             v["cropped"] = CROPPED[page]
-    hero["title"] = title_of(hero["source_url"])
-    hero["cropped"] = CROPPED["hero"]
     _write_render(city_path, city)
     _write_render(stat_path, stat)
-    hero_path.write_text(json.dumps(hero, indent=1, ensure_ascii=False) + "\n")
     city_csv.to_csv(P2E / "city_images.csv", index=False)
     stat_csv.to_csv(P2E / "stat_images.csv", index=False)
     return {"removed": len(rev["removed"]), "moved_to_trash": [m for m in moved if m],
@@ -384,7 +382,6 @@ def credits() -> dict:
     """Every photograph in use, with its full credit record."""
     city = _read(WEB / "src" / "data" / "city-images.json")
     stat = _read(WEB / "src" / "data" / "stat-images.json")
-    hero = _read(WEB / "src" / "data" / "hero.json")
     rows = []
     for page, render in (("city", city), ("stat", stat)):
         for key, v in sorted(render.items()):
@@ -392,10 +389,6 @@ def credits() -> dict:
                          "author": v["author"], "source_url": v["source_url"],
                          "license": v["license"], "license_url": v["license_url"],
                          "cropped": v["cropped"]})
-    rows.append({"page": "hero", "key": "hero", "title": hero["title"],
-                 "author": hero["author"], "source_url": hero["source_url"],
-                 "license": hero["license"], "license_url": hero["license_url"],
-                 "cropped": hero["cropped"]})
     by_licence: dict[str, int] = {}
     for r in rows:
         by_licence[r["license"]] = by_licence.get(r["license"], 0) + 1

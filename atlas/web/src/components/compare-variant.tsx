@@ -85,6 +85,8 @@ export function CompareVariantRows({
           decimals={0}
           direction={-1}
           by={policy.compare_edge_by}
+          same={policy.compare_same}
+          unjudgedBy={policy.compare_unjudged_by}
           places={policy.compare_edge_places}
         />
       </Row>
@@ -114,6 +116,8 @@ export function CompareVariantRows({
           decimals={0}
           direction={1}
           by={policy.compare_edge_by}
+          same={policy.compare_same}
+          unjudgedBy={policy.compare_unjudged_by}
         />
       </Row>
       {/* Phase 6: "Matches", the registry's name for the count (F21); on a
@@ -141,6 +145,8 @@ export function CompareVariantRows({
           decimals={0}
           direction={meta.features.pool_size.direction}
           by={policy.compare_edge_by}
+          same={policy.compare_same}
+          unjudgedBy={policy.compare_unjudged_by}
         />
       </Row>
       {/* m3.0.0 (ADR 0009): the compatibility figure of a ranked row —
@@ -174,6 +180,8 @@ export function CompareVariantRows({
           decimals={meta.features.match_propensity.display_decimals}
           direction={meta.features.match_propensity.direction}
           by={policy.compare_edge_by}
+          same={policy.compare_same}
+          unjudgedBy={policy.compare_unjudged_by}
         />
       </Row>
       <Row label={meta.features.pool_balance.display_name}>
@@ -192,6 +200,8 @@ export function CompareVariantRows({
           decimals={0}
           direction={meta.features.pool_balance.direction}
           by={policy.compare_edge_by}
+          same={policy.compare_same}
+          unjudgedBy={policy.compare_unjudged_by}
         />
       </Row>
     </>

@@ -90,7 +90,8 @@ def test_a_review_alt_text_replaces_an_unusable_description(state):
 
 def test_the_credits_list_covers_every_photograph_shown(state):
     cr = state["credits"]
-    shown = len(state["city"]) + len(state["stat"]) + 1          # and the hero
+    # Phase 7: the hero photograph (unused since Phase 5) left the repo
+    shown = len(state["city"]) + len(state["stat"])
     assert cr["photos_in_use"] == shown == len(cr["photos"])
     listed = {(p["page"], p["key"]) for p in cr["photos"]}
     assert {("city", k) for k in state["city"]} <= listed

@@ -1,8 +1,9 @@
 /** The home hero (Phase 5, Nathan's decision 1): the headline and the
  * subhead from the registry, and the quick search beneath them — no photo
- * band any more. public/hero.jpg and src/data/hero.json stay in the repo,
- * unused; the photo's credit left Sources and credits with it. A header
- * inside the page's main landmark. */
+ * band any more. The photo's credit left Sources and credits with it, and
+ * in Phase 7 (R02, R19) its file and record left the repo too (the credit
+ * is recorded in atlas/PHASE7.md). A header inside the page's main
+ * landmark. */
 export function Hero({
   title,
   subtitle,

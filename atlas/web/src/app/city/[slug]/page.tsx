@@ -5,6 +5,7 @@ import { apiMeta, apiPoliticalLean, apiProfile, apiRank, clientMeta } from "@/li
 import { fill } from "@/lib/results";
 import {
   describeSearch,
+  isDefaultSearch,
   parsePrefs,
   toRankBody,
   toSearchParams,
@@ -58,7 +59,11 @@ export default async function CityPage({
   const { slug } = await params;
   // explicit URL parameters always win; a bare URL falls back to the
   // visitor's own last search (Phase 2f item 2 / ADR 0007)
-  const { sp } = await effectiveSearchParams(await searchParams);
+  const { sp, fromCookie } = await effectiveSearchParams(await searchParams);
+  // Phase 7 (R04): the figures are the site's starting search (Compare's
+  // own test), so the page says so and its back link doesn't claim "your"
+  // results
+  const cold = isDefaultSearch(sp) && !fromCookie;
   const prefs = parsePrefs(sp);
   const [meta, response, lean] = await Promise.all([
     apiMeta(),
@@ -86,7 +91,11 @@ export default async function CityPage({
     <>
       <SiteHeader />
       <main id="main" className="mx-auto flex max-w-6xl flex-col gap-7 px-4 pb-16 pt-6 sm:px-12 sm:pt-8">
-        <BackToResults href={`/?${qs}`}>← Back to your results</BackToResults>
+        {cold ? (
+          <BackToResults href="/">{policy.back_to_rankings}</BackToResults>
+        ) : (
+          <BackToResults href={`/?${qs}`}>{policy.back_to_results}</BackToResults>
+        )}
 
         <div className="grid grid-cols-[1fr_300px] items-center gap-12 max-md:grid-cols-1 max-md:gap-6">
           <div className="flex flex-col gap-3.5">
@@ -104,7 +113,7 @@ export default async function CityPage({
               {metro.description}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
-              <CompareLauncher slug={slug} primary clearLabel={policy.clear} />
+              <CompareLauncher slug={slug} outlined clearLabel={policy.clear} />
               <Link
                 href={`/?${qs}#search-panel`}
                 className="flex min-h-11 items-center rounded-md border border-line-strong bg-surface px-5 text-body font-semibold text-ink hover:bg-hover"
@@ -117,6 +126,17 @@ export default async function CityPage({
             <LocatorMap focus={metro} />
           </div>
         </div>
+
+        {/* Phase 7 (R04): Compare's neutral note, when the card below shows
+            the starting search */}
+        {cold && (ranked || suppressed) && (
+          <p className="max-w-[64ch] rounded-md bg-sunken px-4 py-3 text-body-sm text-ink-2" data-testid="city-default-note">
+            {fill(policy.city_default_note, { search: describeSearch(prefs).toLowerCase() })}{" "}
+            <Link href={`/?${qs}#search-panel`} className="font-bold underline underline-offset-2">
+              {policy.make_it_your_search}
+            </Link>
+          </p>
+        )}
 
         {/* for-your-search: the ranked card, or the approved narrow card */}
         {ranked ? (

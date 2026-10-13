@@ -2,7 +2,7 @@
   "data_version": "fixture-d62202fd0280",
   "model_version": "m4.3.0",
   "schema_version": "cube-v1",
-  "created_at": "2026-10-13T10:04:00-0400",
+  "created_at": "2026-10-13T10:10:57-0400",
   "axes": [
     {
       "name": "metro",
@@ -447,6 +447,10 @@
     "stat_sort_high": "Highest first",
     "stat_strip_label": "How the figures spread across every ranked city",
     "compare_default_note": "This comparison uses the site's starting search: {search}. Set your own on the home page and it follows you here.",
+    "city_default_note": "These figures use the site's starting search: {search}. Set your own on the home page and it follows you here.",
+    "make_it_your_search": "Make it your search",
+    "back_to_rankings": "\u2190 See the rankings",
+    "back_to_results": "\u2190 Back to your results",
     "compare_page_subtitle": "View two cities side by side. Learn how each ranks in your search, and see every city's stats with the differences between them.",
     "political_lean_dem": "Democratic",
     "political_lean_rep": "Republican",
@@ -521,6 +525,8 @@
     "compare_does_better": "Does better",
     "compare_edge_by": "by {diff}",
     "compare_edge_places": "by {n} places",
+    "compare_same": "Same",
+    "compare_unjudged_by": "{city}, by {diff}",
     "compare_not_ranked": "Not ranked: under 250,000 people",
     "city_below_floor": "{city} has fewer than 250,000 people, so it isn't ranked; the site ranks metro areas of 250,000 or more. Its profile is below.",
     "compare_top_two": "Your top two: {a} vs {b}",

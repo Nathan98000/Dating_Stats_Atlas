@@ -1,5 +1,5 @@
 import type React from "react";
-import { edgeOf, leadOf, signedDiff } from "@/lib/compare";
+import { edgeOf, leadOf, noEdgeText } from "@/lib/compare";
 import { fill } from "@/lib/results";
 
 /** The compare table's row, value cell and edge cell, shared by the server
@@ -26,7 +26,12 @@ import { fill } from "@/lib/results";
  * Nathan, 2026-10-10: the column is "Comparison" (compare_edge) and it
  * shows no dash. A row the site doesn't judge (population) or a tie shows
  * the plain signed difference alone; a value missing on either side leaves
- * the cell empty. On a phone the ▲'s spoken name is compare_does_better. */
+ * the cell empty. On a phone the ▲'s spoken name is compare_does_better.
+ *
+ * Phase 7 (R14, ADR 0007 amended): a tie reads "Same" (compare_same), and
+ * an unjudged row names the city with the larger value and the gap,
+ * "Denver, by 600,000" (compare_unjudged_by), both in --ink-2 with no ▲;
+ * on a phone, where the column folds away, nothing new shows. */
 
 export type { Edge } from "@/lib/compare";
 export { edgeOf } from "@/lib/compare";
@@ -95,6 +100,8 @@ export function DiffCell({
   variant = false,
   by,
   places,
+  same,
+  unjudgedBy,
 }: {
   id: string;
   a?: string;
@@ -112,6 +119,9 @@ export function DiffCell({
   by: string;
   /** Phase 6: the spot row's compare_edge_places ("by {n} places") */
   places?: string;
+  /** Phase 7 (R14): the registry's compare_same and compare_unjudged_by */
+  same: string;
+  unjudgedBy: string;
 }) {
   const v = variant ? { "data-variant": "" } : {};
   // the right-hand column: more room on its right than the others
@@ -121,17 +131,23 @@ export function DiffCell({
     return <td role="cell" className={cls} data-diff-for={id} {...v} />;
   }
   const edge = edgeOf(a, b, direction, grey);
+  if (edge === 0) {
+    return (
+      <td role="cell" className={cls} data-diff-for={id} data-edge={edge} {...v}>
+        <span className="block whitespace-nowrap text-body-sm text-ink-2" data-diff-value>
+          {noEdgeText(a, b, decimals, names, same, unjudgedBy, dollar)}
+        </span>
+      </td>
+    );
+  }
   const lead = leadOf(a, b, decimals, dollar);
-  const body = edge === 0 ? signedDiff(a, b, decimals, dollar)
-    : places ? fill(places, { n: lead }) : fill(by, { diff: lead });
+  const body = places ? fill(places, { n: lead }) : fill(by, { diff: lead });
   return (
     <td role="cell" className={cls} data-diff-for={id} data-edge={edge} {...v}>
-      {edge !== 0 && (
-        <span className="flex items-center gap-1.5 text-body-sm font-semibold text-good-strong">
-          <EdgeMark />
-          <span>{names[edge === 1 ? 0 : 1]}<span className="sr-only">,</span></span>
-        </span>
-      )}
+      <span className="flex items-center gap-1.5 text-body-sm font-semibold text-good-strong">
+        <EdgeMark />
+        <span>{names[edge === 1 ? 0 : 1]}<span className="sr-only">,</span></span>
+      </span>
       <span className="block whitespace-nowrap text-caption text-ink-3" data-diff-value>{body}</span>
     </td>
   );

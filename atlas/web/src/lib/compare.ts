@@ -36,17 +36,24 @@ function formatted(d: number, decimals: number, dollar: boolean): string {
   })}`;
 }
 
-/** The plain difference of two displayed values, signed: "+31,802",
- * "−$526" (rows the site doesn't judge show it). */
-export function signedDiff(a: string, b: string, decimals: number, dollar = false): string {
-  const d = parseDisplayed(a) - parseDisplayed(b);
-  const sign = d > 0 ? "+" : d < 0 ? "−" : "";
-  return sign + formatted(Math.abs(d), decimals, dollar);
-}
-
 /** The size of a lead (Phase 6, F07): the absolute value of the same plain
  * subtraction, formatted as the values are ("31,802", "$339", "2.6") —
  * filled into the registry's compare_edge_by ("by {diff}"). */
 export function leadOf(a: string, b: string, decimals: number, dollar = false): string {
   return formatted(Math.abs(parseDisplayed(a) - parseDisplayed(b)), decimals, dollar);
+}
+
+/** Phase 7 (R14, ADR 0007 amended): the Comparison cell of a row with no
+ * edge. A tie reads the registry's compare_same ("Same"); a row the site
+ * doesn't judge (population, or no direction) names the city with the
+ * larger displayed value and the size of the gap, compare_unjudged_by
+ * ("{city}, by {diff}": "Denver, by 600,000"), the gap the absolute value
+ * of the same plain subtraction. A value that doesn't parse reads nothing. */
+export function noEdgeText(a: string, b: string, decimals: number, names: [string, string],
+                           same: string, unjudgedBy: string, dollar = false): string {
+  const d = parseDisplayed(a) - parseDisplayed(b);
+  if (!Number.isFinite(d)) return "";
+  if (d === 0) return same;
+  return unjudgedBy.replace("{city}", names[d > 0 ? 0 : 1])
+    .replace("{diff}", formatted(Math.abs(d), decimals, dollar));
 }

@@ -108,3 +108,23 @@ that explained the column (`compare_edge_note`) is deleted, and item 6.3's colou
 (`compare_diff_legend`, unused since Phase 5) is retired with it. Political lean still has no
 difference; each city's cell gives the Democratic share on one line and the Republican on the next.
 No number moves.
+
+## DRAFT amendment, Phase 7 (13 October 2026): "Same", and an unjudged row names its larger city
+
+DRAFT for Nathan's approval (Phase 7, commit C; his decision 8, from the round-4 review's R14).
+The 10 October amendment left an unjudged row and a tie their plain signed difference, so
+Austin–Denver read "−600,000" under Who lives here, with no city named, and balance's tie a bare
+"0". Neither had a subject. Now:
+
+- **A tie** on any row reads `compare_same` ("Same"), in `--ink-2`, with no ▲.
+- **A row the site doesn't judge** (Who lives here, and anything without a direction) names the
+  city with the larger displayed value and the size of the gap: `compare_unjudged_by` ("{city}, by
+  {diff}": "Denver, by 600,000"), in `--ink-2`, with no ▲ and no colour. The gap is the absolute
+  value of the same subtraction of two displayed values this ADR already sanctions — no new number
+  — and naming the larger city is a fact about the two values, not a judgement of which is better.
+  Screen readers hear it as written.
+- Political lean still shows no difference, and a value missing on either side still leaves the
+  cell empty. On a phone, where the column folds away, nothing new shows for these rows.
+
+The plain signed difference ("+31,802", "−$526") is no longer shown anywhere, and its helper
+(`signedDiff`) leaves the code. No number moves.

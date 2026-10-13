@@ -89,7 +89,7 @@ export default async function ComparePage({
       {/* max-w-6xl, the city page's measure (2026-10-10: the table's right
           side had too little room) */}
       <main id="main" className="mx-auto flex max-w-6xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
-        <BackToResults href={`/?${qs}`}>← Back to your results</BackToResults>
+        <BackToResults href={`/?${qs}`}>{policy.back_to_results}</BackToResults>
         <h1 className="font-display text-h2">
           {cityA} <span className="text-ink-3">and</span> {cityB}
         </h1>
@@ -103,7 +103,7 @@ export default async function ComparePage({
             {policy.compare_default_note.replace(
               "{search}", describeSearch(prefs).toLowerCase())}{" "}
             <Link href={`/?${qs}#search-panel`} className="font-bold underline underline-offset-2">
-              Make it your search
+              {policy.make_it_your_search}
             </Link>
           </p>
         )}
@@ -187,6 +187,8 @@ export default async function ComparePage({
                       grey={grey}
                       dollar={id === "rent_1br"}
                       by={policy.compare_edge_by}
+          same={policy.compare_same}
+          unjudgedBy={policy.compare_unjudged_by}
                     />
                   </Row>
                 );

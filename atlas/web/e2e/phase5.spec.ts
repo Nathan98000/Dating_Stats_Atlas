@@ -251,9 +251,9 @@ test("compare: the Comparison column names the city that does better, and below 
     for (const e of edges) {
       if (e.edge === "1") expect(e.text).toMatch(/^Provo/);
       else if (e.edge === "-1") expect(e.text).toMatch(/^Austin/);
-      // no dash (2026-10-10): a row the site doesn't judge, or a tie,
-      // shows its plain difference alone
-      else expect(e.text).toMatch(/^[+−]?\$?\d/);
+      // no dash (2026-10-10); since Phase 7 (R14) a tie reads "Same" and
+      // a row the site doesn't judge names the larger city and the gap
+      else expect(e.text).toMatch(/^(Same|(Provo|Austin), by \$?[\d,.]+( million)?)$/);
     }
     // population is a fact: never an edge
     await expect(table.locator('[data-diff-for="who_lives_here"]')).toHaveAttribute("data-edge", "0");

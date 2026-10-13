@@ -293,3 +293,134 @@ test.describe('"What moved the score" by item (R05)', () => {
     });
   });
 });
+
+// ---------------------------------------------------------------- C (R04)
+
+test.describe("a city page says when it shows the starting search (R04)", () => {
+  test("cold (no query, no cookie): the note, Make it your search, and ← See the rankings to /", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/city/austin-texas");
+    const note = page.getByTestId("city-default-note");
+    await expect(note).toBeVisible();
+    await expect(note).toContainText(ps.city_default_note.split("{search}")[0]);
+    await expect(note.getByRole("link", { name: ps.make_it_your_search })).toBeVisible();
+    const back = page.getByTestId("back-to-results");
+    await expect(back).toHaveText(ps.back_to_rankings);
+    await expect(back).toHaveAttribute("href", "/");
+    // the note sits above the card
+    const noteBox = (await note.boundingBox())!;
+    const card = (await page.getByTestId("ranked-card").or(page.getByTestId("city-narrow-card")).first().boundingBox())!;
+    expect(noteBox.y).toBeLessThan(card.y);
+    // Compare's neutral colours: --ink-2 on --sunken, no border
+    const st = await note.evaluate((el) => {
+      const c = getComputedStyle(el);
+      return { color: c.color, bg: c.backgroundColor, border: c.borderTopWidth };
+    });
+    expect(st.color).toBe("rgb(90, 82, 87)");
+    expect(st.bg).toBe("rgb(243, 236, 232)");
+    expect(st.border).toBe("0px");
+  });
+
+  test("with a search in the query, or in the cookie: neither", async ({ page, context, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/city/austin-texas?ic=a");
+    await expect(page.getByTestId("city-default-note")).toHaveCount(0);
+    await expect(page.getByTestId("back-to-results")).toHaveText(ps.back_to_results);
+    await context.addCookies([{ name: "dsa_prefs", value: encodeURIComponent("ic=a"), url: page.url() }]);
+    await page.goto("/city/austin-texas");
+    await expect(page.getByTestId("city-default-note")).toHaveCount(0);
+    await expect(page.getByTestId("back-to-results")).toHaveText(ps.back_to_results);
+  });
+
+  test("Compare's note links with the registry's words", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.goto("/compare/austin-texas/san-jose-california");
+    await expect(page.getByTestId("default-profile-note").getByRole("link", { name: ps.make_it_your_search })).toBeVisible();
+    await expect(page.getByTestId("back-to-results")).toHaveText(ps.back_to_results);
+  });
+
+  test.describe("on the real build (P7_REAL_BASE)", () => {
+    test.skip(!REAL, "set P7_REAL_BASE to the real build's production site");
+    test("/city/virginia-beach-virginia, cold: the note and ← See the rankings", async ({ page }) => {
+      await page.goto(`${REAL}/city/virginia-beach-virginia`);
+      await expect(page.getByTestId("city-default-note")).toBeVisible();
+      await expect(page.getByTestId("back-to-results")).toHaveText("← See the rankings");
+    });
+  });
+});
+
+// ---------------------------------------------------------------- C (R14)
+
+test.describe("Compare's unjudged rows (R14)", () => {
+  test("Who lives here names the larger city and the gap, in --ink-2, with no ▲", async ({ page }) => {
+    await page.goto("/compare/austin-texas/san-jose-california");
+    const cell = page.locator('[data-diff-for="who_lives_here"]');
+    await expect(cell).toHaveAttribute("data-edge", "0");
+    await expect(cell).toHaveText(/^(Austin|San Jose), by [\d,]+$/);
+    await expect(cell.locator("svg")).toHaveCount(0);
+    expect(await cell.locator("[data-diff-value]").evaluate((el) => getComputedStyle(el).color)).toBe("rgb(90, 82, 87)");
+    // political lean still shows no difference
+    await expect(page.locator('[data-no-diff="political_lean"]')).toHaveText("");
+  });
+
+  test.describe("on the real build (P7_REAL_BASE)", () => {
+    test.skip(!REAL, "set P7_REAL_BASE to the real build's production site");
+    test("Austin–Denver: Who lives here reads 'Denver, by 600,000'; balance's tie reads 'Same'", async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(`${REAL}/compare/austin-texas/denver-colorado`);
+      const who = page.locator('[data-diff-for="who_lives_here"]');
+      await expect(who).toHaveText("Denver, by 600,000");
+      await expect(who.locator("svg")).toHaveCount(0);
+      const bal = page.locator('[data-diff-for="balance"]');
+      await expect(bal).toHaveText("Same");
+      await expect(bal.locator("svg")).toHaveCount(0);
+    });
+  });
+});
+
+// ---------------------------------------------------------------- C (button)
+
+test("the city page's 'Compare with another city' is outlined, like 'Change your search'; the foot's 'Compare cities' stays filled", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/city/austin-texas");
+  const style = (name: string | RegExp) => page.getByRole("button", { name, exact: true }).first().evaluate((el) => {
+    const c = getComputedStyle(el);
+    return { bg: c.backgroundColor, color: c.color, border: c.borderTopColor, h: el.getBoundingClientRect().height };
+  });
+  const top = await style("Compare with another city");
+  expect(top.bg).toBe("rgb(255, 255, 255)");
+  expect(top.color).toBe("rgb(32, 27, 29)");
+  const change = await page.getByRole("link", { name: "Change your search" }).evaluate((el) => {
+    const c = getComputedStyle(el);
+    return { border: c.borderTopColor, h: el.getBoundingClientRect().height };
+  });
+  expect(top.border).toBe(change.border);
+  expect(top.h).toBe(change.h);
+  const foot = await style("Compare cities");
+  expect(foot.bg).toBe("rgb(158, 59, 87)");
+});
+
+// ---------------------------------------------------------------- C (R02)
+
+const PAGES = ["/", "/about", "/what-we-measure", "/about-crime-data", "/privacy", "/terms",
+  "/stats/rent_1br", "/city/austin-texas", "/compare", "/compare/austin-texas/san-jose-california",
+  "/no-such-page"];
+
+test("every page links the site's icons, which answer as images; the starter files are gone (R02)", async ({ page, request }) => {
+  for (const path of PAGES) {
+    await page.goto(path);
+    const hrefs = await page.evaluate(() => Object.fromEntries(["icon", "apple-touch-icon"].map((rel) =>
+      [rel, [...document.querySelectorAll(`link[rel="${rel}"]`)].map((l) => l.getAttribute("href")!)])));
+    expect(hrefs.icon.some((h) => h.startsWith("/favicon.ico")), path).toBe(true);
+    expect(hrefs.icon.some((h) => h.startsWith("/icon.png")), path).toBe(true);
+    expect(hrefs["apple-touch-icon"].some((h) => h.startsWith("/apple-icon.png")), path).toBe(true);
+    for (const h of [...hrefs.icon, ...hrefs["apple-touch-icon"]]) {
+      const r = await request.get(h);
+      expect(r.status(), h).toBe(200);
+      expect(r.headers()["content-type"], h).toMatch(/^image\//);
+    }
+  }
+  for (const gone of ["/next.svg", "/vercel.svg", "/file.svg", "/globe.svg", "/window.svg", "/hero.jpg"]) {
+    expect((await request.get(gone)).status(), gone).toBe(404);
+  }
+});

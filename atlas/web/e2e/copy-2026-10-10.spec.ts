@@ -45,10 +45,11 @@ test("compare: a measure set to Not much is judged like every other row", async 
     await expect(cell, id).toContainText(edge === "1" ? "Provo" : "Austin");
     await expect(cell.locator("[data-diff-value]"), id).toHaveText(/^by /);
   }
-  // population alone stays unjudged: its plain difference, no dash
+  // population alone stays unjudged, no dash; since Phase 7 (R14) it names
+  // the city with more people and by how many
   const pop = table.locator('[data-diff-for="who_lives_here"]');
   await expect(pop).toHaveAttribute("data-edge", "0");
-  await expect(pop).toHaveText(/^[+−]\d/);
+  await expect(pop).toHaveText(/^(Provo|Austin), by [\d,]+$/);
 });
 
 test("compare: no dash in the Comparison column, no 'edge' on the page, the two sentences gone", async ({ page }) => {

@@ -184,19 +184,28 @@ test("every compare difference equals the subtraction of the two displayed value
     const b = firstNumber(r.b);
     const decimals = (r.diff.split(".")[1] ?? "").replace(/\D/g, "").length;
     // Phase 6 (F07): a judged row says the size of the lead, "by {n}" —
-    // the absolute value of the same subtraction; others keep the sign
+    // the absolute value of the same subtraction. Phase 7 (R14): a tie
+    // reads "Same", and an unjudged row names the city with the larger
+    // value, "Austin, by 1,680,000" — the same absolute value
     const judged = r.edge !== "0";
     if (judged) expect(r.diff, `${r.id}: ${r.diff}`).toMatch(/^by /);
-    const sign = r.diff.startsWith("−") ? -1 : 1;
-    const shown = firstNumber(r.diff.replace(/^by /, "").replace(/[+−$]/g, "")) * sign;
-    const want = judged ? Math.abs(a - b) : a - b;
+    if (r.diff === "Same") {
+      expect(a - b, `${r.id}: ${r.a} − ${r.b} -> Same`).toBe(0);
+      continue;
+    }
+    if (!judged) {
+      expect(r.diff, `${r.id}: ${r.diff}`).toMatch(/^(Provo|Austin), by /);
+      expect(Math.sign(a - b), `${r.id}: the larger city named`).toBe(r.diff.startsWith("Provo") ? 1 : -1);
+    }
+    const shown = firstNumber(r.diff.replace(/^.*by /, "").replace(/[$]/g, ""));
+    const want = Math.abs(a - b);
     expect(Math.abs(shown - want), `${r.id}: ${r.a} − ${r.b} -> ${r.diff}`)
       .toBeLessThanOrEqual(0.5 * 10 ** -decimals + 1e-9);
   }
   // rent carries $ (item 6.2: after the sign; since Phase 6 after "by"
   // where the row is judged); population stays grey
   const byId = Object.fromEntries(rows.map((r) => [r.id, r]));
-  expect(byId.rent_1br.diff).toMatch(byId.rent_1br.edge === "0" ? /^[+−]\$/ : /^by \$/);
+  expect(byId.rent_1br.diff).toMatch(byId.rent_1br.edge === "0" ? /^Same$/ : /^by \$/);
   expect(byId.who_lives_here.edge).toBe("0");
   // the line under the table that explained its last column is gone
   // (Nathan, 2026-10-10)
