@@ -93,7 +93,11 @@ export function CompareVariantRows({
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} variant win={win(scoreEdge, i)} edgeLabel={better}>
             {isRanked(r) ? (
-              <span className="font-display text-h3">{r.score_display}</span>
+              // Phase 7 (R09): "/100" after the score, as the cards show it
+              <span className="flex items-baseline gap-0.5" data-testid="compare-score">
+                <span className="font-display text-h3">{r.score_display}</span>
+                <span className="text-caption text-ink-3">{policy.score_out_of}</span>
+              </span>
             ) : r ? (
               <span className="text-ink-3">—</span>
             ) : (

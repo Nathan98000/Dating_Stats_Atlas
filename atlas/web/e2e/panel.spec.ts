@@ -75,9 +75,11 @@ for (const size of [{ w: 390, h: 844, name: "sheet" }, { w: 1024, h: 768, name: 
     await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
     await expect(page.getByTestId("rail")).toHaveCount(0);
     const bar = page.getByTestId("bottom-bar");
-    await expect(bar).toBeHidden();
+    // Phase 7 (R01): hidden, the bar waits just below the window (never
+    // display:none, so Tab still reaches it)
+    await expect(bar).not.toBeInViewport();
     await page.mouse.wheel(0, 1600);
-    await expect(bar).toBeVisible();
+    await expect(bar).toBeInViewport();
     const adjust = bar.getByRole("button", { name: "Refine your search" });
     await adjust.click();
     const sheet = page.getByRole("dialog", { name: "Refine your search" });

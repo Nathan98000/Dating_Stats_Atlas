@@ -301,8 +301,9 @@ test("the home list labels its score column once, and the compare table labels t
   const row = table.locator("tr").filter({
     has: page.getByRole("rowheader", { name: ps.overall_score_label, exact: true }),
   });
-  await expect(row.locator("td").nth(0)).toHaveText(/^\d+$/);
-  await expect(row.locator("td").nth(1)).toHaveText(/^\d+$/);
+  // Phase 7 (R09): each value is followed by "/100", as on the cards
+  await expect(row.locator("td").nth(0)).toHaveText(/^\d+\/100$/);
+  await expect(row.locator("td").nth(1)).toHaveText(/^\d+\/100$/);
 });
 
 test("a visitor's m4.0.0 details ({raceOn, race}) migrate: the same choice, stored without the switch", async ({ page, browser, request }) => {

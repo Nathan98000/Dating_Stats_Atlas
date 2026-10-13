@@ -491,7 +491,7 @@ test.describe("changing the search (E)", () => {
     test.skip(width(page) >= 1120, "the bar is below the desk");
     await home(page);
     await page.mouse.wheel(0, 1600);
-    await expect(page.getByTestId("bottom-bar")).toBeVisible();
+    await expect(page.getByTestId("bottom-bar")).toBeInViewport();
     expect(await page.evaluate(() => document.documentElement.style.scrollPaddingBottom)).toBe("88px");
     const order = await page.evaluate(() => {
       const bar = document.querySelector('[data-testid="bottom-bar"]')!;

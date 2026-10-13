@@ -35,8 +35,24 @@ import { FindInResults } from "./find-in-results";
 import { BottomSheet } from "./bottom-sheet";
 
 /** How far the page scrolls before the bottom bar shows: a few pixels, so
- * the first scroll shows it, while a bounce at the top of the page doesn't. */
+ * the first scroll shows it, while a bounce at the top of the page doesn't.
+ * Phase 7 (R08): and not before #1's score has risen above the bar's top
+ * edge (measured from the layout on each scroll), so the bar never cuts
+ * across it. */
 const BAR_AFTER_PX = 8;
+
+/** Phase 7 (R03): after a card's or a row's detail opens, the detail comes
+ * into view if its bottom is below the window — the nearest edge, so a
+ * detail taller than the window shows its top; smoothly, but at once under
+ * reduced motion. A detail already in view never moves the page. */
+function revealDetail(id: string) {
+  requestAnimationFrame(() => {
+    const el = document.getElementById(id);
+    if (!el || el.getBoundingClientRect().bottom <= window.innerHeight) return;
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ block: "nearest", behavior: still ? "auto" : "smooth" });
+  });
+}
 
 /** How long the "Results updated" line takes to fold away (its CSS
  * transition, duration-200) before it leaves the page. */
@@ -170,6 +186,7 @@ export function Home({
   const quickRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const adjustRef = useRef<HTMLButtonElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
   const railRef = useRef<HTMLElement>(null);
   const [railMore, setRailMore] = useState(false);
   const { snapshot, play } = useFlip(listRef);
@@ -298,13 +315,32 @@ export function Home({
   // scrolls down, so a phone sees early that the search goes beyond sex
   // and age (Nathan, 2026-10-12; it used to wait until the quick search
   // had scrolled out of view); back at the very top, the first screen is
-  // the hero's again
+  // the hero's again. Phase 7 (R08): it also waits until #1's score has
+  // risen above the bar's top edge (about 53px of scroll at 390x844), both
+  // read from the layout on each scroll, once a frame; with no #1 (the
+  // empty state) the few pixels alone decide
   useEffect(() => {
-    const check = () => setBarVisible(window.scrollY > BAR_AFTER_PX);
+    if (desk) return;
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const bar = barRef.current;
+      const score = listRef.current?.querySelector<HTMLElement>(
+        '[data-testid="featured-card"] [data-testid="card-score"]');
+      const barTop = window.innerHeight - (bar?.offsetHeight ?? 0);
+      const clear = !score || score.getBoundingClientRect().bottom <= barTop;
+      setBarVisible(window.scrollY > BAR_AFTER_PX && clear);
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(check); };
     check();
-    window.addEventListener("scroll", check, { passive: true });
-    return () => window.removeEventListener("scroll", check);
-  }, []);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [desk]);
   useEffect(() => () => {
     if (timer.current) clearTimeout(timer.current);
   }, []);
@@ -451,13 +487,19 @@ export function Home({
       li?.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
     }));
   };
-  const toggleRow = (cbsa: string) =>
+  const toggleRow = (cbsa: string) => {
+    if (!openRows.has(cbsa)) revealDetail(`detail-${cbsa}`);
     setOpenRows((cur) => {
       const next = new Set(cur);
       if (next.has(cbsa)) next.delete(cbsa);
       else next.add(cbsa);
       return next;
     });
+  };
+  const toggleCard = (cbsa: string) => {
+    if (openCard !== cbsa) revealDetail(`card-detail-${cbsa}`);
+    setOpenCard((c) => (c === cbsa ? null : cbsa));
+  };
 
   const rail = (
     <RailGroups
@@ -489,10 +531,16 @@ export function Home({
 
         {/* Phase 6 (F27): the bar's markup comes before the results, so the
             keyboard reaches it before the list (it stays fixed at the
-            bottom of the screen) */}
+            bottom of the screen). Phase 7 (R01): never display:none, or
+            Tab passes its slot while the page is at the top: hidden, it
+            waits just below the window (and takes no clicks); shown, or
+            while focus is inside it, it slides up (200ms; at once under
+            reduced motion). So the Tab after "Their age" lands on it */}
         {!desk && (
           <div
-            className={`fixed inset-x-0 bottom-0 z-30 bg-surface px-4 pb-[calc(14px+env(safe-area-inset-bottom))] pt-2.5 shadow-overlay ${barVisible ? "" : "hidden"}`}
+            ref={barRef}
+            className={`fixed inset-x-0 bottom-0 z-30 bg-surface px-4 pb-[calc(14px+env(safe-area-inset-bottom))] pt-2.5 transition-transform duration-200 ease-out focus-within:pointer-events-auto focus-within:translate-y-0 focus-within:shadow-overlay motion-reduce:transition-none ${barVisible ? "translate-y-0 shadow-overlay" : "pointer-events-none translate-y-full"}`}
+            data-shown={barVisible ? "" : undefined}
             data-testid="bottom-bar"
           >
             {/* Phase 6 (F05): a search in flight shows on the bar itself,
@@ -604,7 +652,7 @@ export function Home({
                         open={openCard === row.cbsa}
                         tinted={moved.has(row.cbsa)}
                         inline={!wide}
-                        onToggle={() => setOpenCard((c) => (c === row.cbsa ? null : row.cbsa))}
+                        onToggle={() => toggleCard(row.cbsa)}
                         onCompare={() => compareFrom(row.slug)}
                       />
                     ))}

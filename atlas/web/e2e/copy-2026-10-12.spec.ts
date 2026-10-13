@@ -11,9 +11,12 @@ for (const size of [{ w: 390, h: 844, name: "phone" }, { w: 1024, h: 768, name: 
     await page.goto("/");
     await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
     const bar = page.getByTestId("bottom-bar");
-    await expect(bar).toBeHidden();
-    await page.mouse.wheel(0, 60);
-    await expect(bar).toBeVisible();
+    // Phase 7 (R01): hidden, the bar waits just below the window (never
+    // display:none); (R08) the first scroll shows it once #1's score has
+    // cleared its top edge (about 53px at 390x844, 100px at 1024x768)
+    await expect(bar).not.toBeInViewport();
+    await page.mouse.wheel(0, 140);
+    await expect(bar).toBeInViewport();
     // earlier than before: the quick search's first control is still in view
     await expect(page.getByTestId("self-sex")).toBeInViewport();
     const refine = bar.getByRole("button", { name: "Refine your search" });
@@ -23,9 +26,11 @@ for (const size of [{ w: 390, h: 844, name: "phone" }, { w: 1024, h: 768, name: 
     await expect(sheet).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(sheet).toBeHidden();
-    // back at the very top, the first screen is the hero's again
+    // back at the very top, the first screen is the hero's again (Phase
+    // 7, R01: once focus has left the bar, which Escape returned to it)
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await page.evaluate(() => window.scrollTo(0, 0));
-    await expect(bar).toBeHidden();
+    await expect(bar).not.toBeInViewport();
     await expect(page.getByText("Adjust your search")).toHaveCount(0);
   });
 }

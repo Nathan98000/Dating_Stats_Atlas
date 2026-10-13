@@ -167,7 +167,7 @@ export function FeaturedCard({
           </Link>
         </h3>
         <div className="flex items-end justify-between gap-3">
-          <p className="flex items-baseline gap-1">
+          <p className="flex items-baseline gap-1" data-testid="card-score">
             <ScoreFigure display={row.score_display} meta={meta} className="font-display text-data-xl" />
             <span aria-hidden="true" className="text-body-sm font-medium text-ink-3">{s.score_out_of}</span>
           </p>
@@ -260,7 +260,12 @@ export function ResultRow({
           </span>
         </p>
         <div className="flex flex-col items-end gap-1.5 max-sm:row-span-2 max-sm:self-start">
-          <ScoreFigure display={row.score_display} meta={meta} className="font-display text-data-l" />
+          {/* Phase 7 (R09): "/100" after the score, as the cards show it
+              (hidden from screen readers, which hear "out of 100") */}
+          <p className="flex items-baseline gap-0.5" data-testid="row-score">
+            <ScoreFigure display={row.score_display} meta={meta} className="font-display text-data-l" />
+            <span aria-hidden="true" className="text-caption text-ink-3" data-testid="score-out-of">{s.score_out_of}</span>
+          </p>
           <ScoreTrack score={row.score} className="h-1 w-16 sm:w-24" />
           <ToggleButton open={open} detailId={detailId} label={fill(s.row_details, { city: row.display_name })}
             onToggle={onToggle} className="mt-1 sm:hidden" />
