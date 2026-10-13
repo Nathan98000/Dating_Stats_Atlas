@@ -150,9 +150,9 @@ keep the full line. Over the 518 ADR 0011 test searches every /v1/rank response 
 m4.2.1's without its explanations, every default-variant line, `top_stats` and `movers` is
 unchanged, and so are all 1,036 single-seeker rankings (`results/phase6/served_numbers_commit_b.json`).
 
-## DRAFT amendment, Phase 7 (13 October 2026): what moved the score, by item
+## Amended in Phase 7 (13 October 2026): what moved the score, by item
 
-DRAFT for Nathan's approval (Phase 7, commit B; his decision 4). The round-4 review (R05) found
+Approved by Nathan on 13 October 2026 (Phase 7, commit B; his decision 4). The round-4 review (R05) found
 the chips and the bars disagreeing: on 36 of 193 rows of the default search a chip's sign was
 the opposite of its pillar's bar (Austin, after "Cost of living: A lot", read "▼ Rent" above
 "Cost of living +2.0"). Each was right on its own terms: the chip names one item, the bar its

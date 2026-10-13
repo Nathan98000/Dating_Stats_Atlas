@@ -44,13 +44,15 @@ Branch `claude/phase7` off `main` at `e34aa55`, unpushed.
 |---|---|---|
 | **R** | `b0645fc` | The review committed as it was (`docs/design/review-2026-10-12/`, plus a `.gitignore` for its `node_modules` link). The hand Tab sequence became `web/scripts/review/keyboard_bar.mjs`, and `results/phase7/served_numbers_check.py` is Phase 6's check with `unit_contributions` masked. Baseline at `e34aa55` in `results/phase7/before/`: `numbers_check` (36/193 chips against their pillar bar), `m10_geometry`, `m5_keyboard`, `keyboard_bar` (forward Tab reaches the bar 0 times). |
 | **A** | `710cf40` | **R01:** the bar is never `display:none`. While hidden it waits below the window (`translate-y-full`, no clicks); when shown, or while focus is inside it, it slides up (200ms, instant under reduced motion). **R03:** an opened card or row detail whose bottom is below the window scrolls into view (`block: "nearest"`; smooth, or instant under reduced motion). **R08:** the bar shows after 8px of scroll *and* once #1's score is above its top edge, both read from the layout once a frame. **R09:** "/100" (`score_out_of`) after every row score, hidden from screen readers (who already hear "out of 100"), and after both Compare scores. |
-| **B** | `714c0ce` | **R05:** the API serves `unit_contributions` on each ranked row: one entry per lifestyle item, with everyday prices as one entry. The detail draws Cost of living's and Social life's items as indented sub-rows: the chip words, largest first, one scale, bars about two-thirds the pillar's height, and a nested list for screen readers. `col_city` is now "City · lifestyle pluses and minus". ADR 0003 has a DRAFT amendment. |
-| **C** | `cb51618` | **R04:** the city page's starting-search note and "← See the rankings". **R14:** "Same", and "{city}, by {diff}" (ADR 0007 DRAFT). The outlined "Compare with another city" button. **R02:** `scripts/make_icons.mjs` writes `icon.png`, `apple-icon.png` and a hand-written `favicon.ico`. The five starter SVGs, `hero.jpg` and `hero.json` are deleted, and the photo review no longer reads a hero. Six new registry strings, in the approved wording. |
+| **B** | `714c0ce` | **R05:** the API serves `unit_contributions` on each ranked row: one entry per lifestyle item, with everyday prices as one entry. The detail draws Cost of living's and Social life's items as indented sub-rows: the chip words, largest first, one scale, bars about two-thirds the pillar's height, and a nested list for screen readers. `col_city` is now "City · lifestyle pluses and minus". ADR 0003 amended (approved). |
+| **C** | `cb51618` | **R04:** the city page's starting-search note and "← See the rankings". **R14:** "Same", and "{city}, by {diff}" (ADR 0007 amended, approved). The outlined "Compare with another city" button. **R02:** `scripts/make_icons.mjs` writes `icon.png`, `apple-icon.png` and a hand-written `favicon.ico`. The five starter SVGs, `hero.jpg` and `hero.json` are deleted, and the photo review no longer reads a hero. Six new registry strings, in the approved wording. |
 | **D** | `ff0ba84` | **R07:** `robots.ts`, `sitemap.ts`, and one canonical rule in `pageMetadata`. **R12:** the Caddyfile's security headers, validated with `caddy:2` 2.11.7. `csp_proxy.mjs` and `csp_check.mjs` show 0 CSP violations. `docs/deploy.md` gains a deploy note: recreate Caddy, then the checks listed there. |
-| **E** | `20023aa` | **R20:** San Jose's photograph is replaced, pinned by its bytes. Its focal point is set to `50% 0%` so the band keeps the bell towers whole. ADR 0012 DRAFT (San Jose, and the hero's credit as it leaves). |
+| **E** | `20023aa` | **R20:** San Jose's photograph is replaced, pinned by its bytes. Its focal point is set to `50% 0%` so the band keeps the bell towers whole. ADR 0012 amended, approved (San Jose, and the hero's credit as it leaves). |
 | report | (this commit) | `PHASE7.md`; after-run results in `results/phase7/after/` and `screens/`; `string_changes.json`; validation report; one e2e timing fix (§5). |
 
 ## 3. For your approval
+
+Approved by Nathan on 13 October 2026, everything in this section, as written.
 
 **a. Strings.** All seven are the 13 October table, verbatim (`results/phase7/string_changes.json`):
 `col_city` changed; `city_default_note`, `make_it_your_search`, `back_to_rankings`,
@@ -66,7 +68,7 @@ parked cars sit along the bottom edge: outside the band's crop, and small on the
 is on the licence list, so nothing joins the permission record. It is the brief's second
 preference: no skyline I found was as good.
 
-- *Draft alt text:* "The white Cathedral Basilica of St. Joseph in downtown San Jose, its two domed
+- *Alt text (approved):* "The white Cathedral Basilica of St. Joseph in downtown San Jose, its two domed
   bell towers between palm trees and office towers under a clear blue sky."
 - *Alternative 1:* *Downtown Skyline from Oak Hill* (CC BY 2.0, HarshLight, 3036px). The skyline,
   but seen from Oak Hill to the south: a thin band of towers above autumn trees, under a grey-blue
@@ -84,7 +86,7 @@ Chromium from the build's own Fraunces file (weight 600, SOFT 30), white on #9E3
 height is 56% of the side, and it is centred on its ink. The corners are 22% of the side; the
 180px Apple icon is square, since iOS rounds it.
 
-**d. ADR drafts** (each at the end of its file):
+**d. ADR amendments** (each at the end of its file; approved):
 
 - **0003:** per-item contributions are served, and the detail shows cost of living and social
   life by item.

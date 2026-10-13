@@ -109,9 +109,9 @@ that explained the column (`compare_edge_note`) is deleted, and item 6.3's colou
 difference; each city's cell gives the Democratic share on one line and the Republican on the next.
 No number moves.
 
-## DRAFT amendment, Phase 7 (13 October 2026): "Same", and an unjudged row names its larger city
+## Amended in Phase 7 (13 October 2026): "Same", and an unjudged row names its larger city
 
-DRAFT for Nathan's approval (Phase 7, commit C; his decision 8, from the round-4 review's R14).
+Approved by Nathan on 13 October 2026 (Phase 7, commit C; his decision 8, from the round-4 review's R14).
 The 10 October amendment left an unjudged row and a tie their plain signed difference, so
 Austin–Denver read "−600,000" under Who lives here, with no city named, and balance's tie a bare
 "0". Neither had a subject. Now:

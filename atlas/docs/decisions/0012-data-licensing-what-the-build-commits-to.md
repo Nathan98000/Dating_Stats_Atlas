@@ -421,9 +421,9 @@ domain by the artist. The pipeline now reads each file's own page as well
   credit the site already shows; the other 373 are unchanged. Pinned
   photographs keep their recorded credits, as before.
 
-## DRAFT amendment, Phase 7 (13 October 2026): San Jose's photograph; the hero photograph leaves the repository
+## Amended in Phase 7 (13 October 2026): San Jose's photograph; the hero photograph leaves the repository
 
-DRAFT for Nathan's approval (Phase 7, commits C and E).
+Approved by Nathan on 13 October 2026 (Phase 7, commits C and E), with San Jose's alt text as drafted.
 
 - **San Jose.** The round-4 review (R20) found San Jose's photograph, #5 by default and a top-three
   card in narrowed searches, to be a hotel front at Santana Row with "Hotel Valencia" on its façade.
