@@ -189,8 +189,8 @@ test.describe('"/100" after every score (R09)', () => {
 
 /** Nathan, 13 October 2026: the item bars B drew under Cost of living and
  * Social life left the detail (e2e/copy-2026-10-13.spec.ts checks the
- * detail without them); the API still serves unit_contributions, and the
- * desk column over the chips keeps B's heading. */
+ * detail without them), and the API no longer serves unit_contributions;
+ * the desk column over the chips keeps B's heading. */
 test.describe('"What moved the score" (R05)', () => {
   test("the desk column heading names the chips", async ({ page, request }) => {
     const meta = await fetchMeta(request);

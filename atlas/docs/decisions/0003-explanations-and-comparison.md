@@ -192,5 +192,9 @@ again, each named as its pillar alone: Phase 6's chip words beside a bar ("Cost 
 F21), which Phase 7 replaced with the item bars, do not come back. The chips are unchanged, still
 the served `lifestyle_movers`, so a chip can again point the other way from its pillar's bar
 (after "Cost of living: A lot", Austin's "▼ Rent" sits beside a green Cost of living +2.0: rent
-counts against it, everyday prices for it, and the pillar is their net). The API still serves
-`unit_contributions` on every ranked row, unchanged; no page draws it now. No number moves.
+counts against it, everyday prices for it, and the pillar is their net). Then, also at Nathan's
+request, the API stopped serving `unit_contributions` (`explain.served_unit_contributions` is
+gone), so every /v1/rank response is again what it was before Phase 7: over the 518 ADR 0011 test
+searches each response, every single-seeker ranking and every profile is identical to those
+recorded at `e34aa55`, before Phase 7 (`results/phase7/served_numbers_removal_2026_10_13.json`).
+No number moves.

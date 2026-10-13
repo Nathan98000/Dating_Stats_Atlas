@@ -1,6 +1,6 @@
 {
- "change_set": "Nathan's change of 2026-10-13, after Phase 7 went live: the item bars leave the home page's expanded detail",
- "note": "No number moves and nothing is served differently: build d62202fd0280 and its manifest are unchanged, MODEL_VERSION stays m4.3.0, and /v1/rank still carries unit_contributions (undrawn). No registry string changes.",
+ "change_set": "Nathan's changes of 2026-10-13, after Phase 7 went live: the item bars leave the home page's expanded detail, and the API stops serving the per-item numbers",
+ "note": "No number moves: build d62202fd0280 and its manifest are unchanged, MODEL_VERSION stays m4.3.0, and no registry string changes. /v1/rank no longer carries unit_contributions, so every response is again what it was before Phase 7 (results/phase7/served_numbers_removal_2026_10_13.json).",
  "changes": [
   {
    "change": "1. What moved the score",
@@ -17,6 +17,14 @@
    "old": "the served lifestyle_movers, items named (e.g. ▲ Walkability ▲ Places to go out ▼ Rent)",
    "new": "the same",
    "why": "Nathan: it's fine to keep their chips"
+  },
+  {
+   "change": "3. The per-item numbers",
+   "kind": "removed (Nathan's request)",
+   "where": "model/explain.py (served_unit_contributions), model/scoring.py (each ranked row's unit_contributions), web/src/lib/types.ts, model/tests/test_phase7.py",
+   "old": "each ranked row of /v1/rank carried unit_contributions ([{key, pillar, value}], Phase 7 B), undrawn since change 1",
+   "new": "not served; /v1/rank as before Phase 7",
+   "why": "Nathan's request: remove the per-item numbers"
   }
  ]
 }

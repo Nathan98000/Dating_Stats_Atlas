@@ -152,13 +152,6 @@ export interface RankedRow {
    * lifestyle items only (cost, social life, student life, weather); []
    * when none qualifies */
   lifestyle_movers: Mover[];
-  /** Phase 7 (R05): each lifestyle item's contribution in score points —
-   * the two price levels one item ("Everyday prices"), as the chips have
-   * them; key is the item's first stat id. A pillar's items add up to its
-   * contribution within 0.01; [] with no lifestyle contribution. No
-   * variant changes it, so it rides on the shared row. Not drawn since 13
-   * October 2026 (Nathan: the detail's item bars removed) */
-  unit_contributions: UnitContribution[];
 }
 
 export interface Mover {
@@ -166,11 +159,6 @@ export interface Mover {
   sign: 1 | -1;
 }
 
-export interface UnitContribution {
-  key: string;
-  pillar: string;
-  value: number;
-}
 
 export interface SuppressedRow {
   cbsa: string;

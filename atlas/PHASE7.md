@@ -226,9 +226,13 @@ chips.
 page, a card's or a row's expanded detail no longer draws Rent and Everyday prices under Cost of
 living, or Walkability and Places to go out under Social life. "What moved the score" is the six
 pillar bars again, each named as its pillar alone, as they read on the live site today. Phase 6's
-"Cost of living · rent" wording does not come back. The chips are unchanged. B's served
-`unit_contributions` stays in the API, unchanged and now undrawn (about 7 KB of the home page's
-HTML at 390). So §4's "0 chips against their item bar" no longer describes what a visitor sees:
+"Cost of living · rent" wording does not come back. The chips are unchanged. Then, at Nathan's
+request, B's served `unit_contributions` left the API too (`explain.served_unit_contributions`,
+the field on each ranked row, its type and its model tests, `model/tests/test_phase7.py`), so
+`/v1/rank` is again what it was before Phase 7: all 518 test searches, 1,036 single-seeker
+rankings and 387 profiles are identical to the `e34aa55` record
+(`results/phase7/served_numbers_removal_2026_10_13.json`), and the home page's HTML loses the
+field's 7 KB. So §4's "0 chips against their item bar" no longer describes what a visitor sees:
 a chip can again point the other way from its pillar's bar, which is the pillar's net (ADR 0003,
 amended after Phase 7). The record is in `results/copy_2026_10_13/copy_changes.json`;
 `e2e/copy-2026-10-13.spec.ts` checks it. B's item-bar tests left `e2e/phase7.spec.ts`, Phase

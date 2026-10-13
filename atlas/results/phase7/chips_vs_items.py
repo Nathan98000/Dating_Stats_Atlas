@@ -2,7 +2,8 @@
 round-4 review's three searches (its measure/numbers_check.py), in the variant a
 first-time visitor sees. A chip's item is the unit_contributions entry with the
 chip's key (cost of living and social life by item; weather and student life are
-one item each). Reads only served values.
+one item each). Reads only served values. It measured Phase 7's build: the API stopped
+serving unit_contributions on 13 October 2026 (Nathan), so it no longer runs against it.
 
     python3 results/phase7/chips_vs_items.py [api_base] > results/phase7/after/chips_vs_items.json
 """

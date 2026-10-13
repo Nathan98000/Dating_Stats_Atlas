@@ -27,7 +27,9 @@ for (const size of [{ w: 390, h: 844, name: "phone" }, { w: 1024, h: 768, name: 
     await page.keyboard.press("Escape");
     await expect(sheet).toBeHidden();
     // back at the very top, the first screen is the hero's again (Phase
-    // 7, R01: once focus has left the bar, which Escape returned to it)
+    // 7, R01: once focus has left the bar, which Escape returns to it a
+    // moment after the sheet closes; wait for that, then move focus away)
+    await expect(refine).toBeFocused();
     await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await page.evaluate(() => window.scrollTo(0, 0));
     await expect(bar).not.toBeInViewport();
