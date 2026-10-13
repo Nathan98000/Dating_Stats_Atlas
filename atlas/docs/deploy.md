@@ -61,30 +61,18 @@ before still arrive. The registration renews at Squarespace, on Nathan's
 account; if it lapsed, the address would stop answering, while the
 DuckDNS names would keep forwarding to a dead address.
 
-**Not yet deployed: Phase 7 (built 13 October 2026, branch `claude/phase7`;
-`atlas/PHASE7.md`).** Model m4.3.0 on build d62202fd0280, its manifest
-refreshed again (the Phase 7 registry strings); `/v1/rank` rows gain
-`unit_contributions`. **The Caddyfile changed**: the site's address now
-sends security headers — `Strict-Transport-Security "max-age=31536000"` (no
-`preload`, which is Nathan's one-way choice), `X-Content-Type-Options
-nosniff`, a `Permissions-Policy` and a `Content-Security-Policy` that allows
-only the site's own origin (with `'unsafe-inline'` for Next's inline
-scripts and style attributes). `Referrer-Policy: no-referrer` stays in
-`web/next.config.ts`, so it isn't sent twice. It validated with `caddy:2`
-(2.11.7), and every page and home state at 1440 and 390 loaded through
-`web/scripts/review/csp_proxy.mjs` (the same headers) with no CSP violation
-(`results/phase7/after/csp_check.json`). So the next deploy recreates
-Caddy after the swap (`--profile public up -d --no-deps --force-recreate
-caddy`). The deleted starter SVGs and `hero.jpg` leave `public/` with the
-new code (the photo mirror's `rsync --delete` covers `cities/`, `stats/`
-and `og/` only, so check that no copy of `hero.jpg` lingers in the live
-folder). After it, check: `curl -sI https://datingscenedata.com/` shows the
-four new headers once each and `referrer-policy: no-referrer` once;
-`/robots.txt` and `/sitemap.xml` answer 200; `/favicon.ico`,
-`/icon.png` and `/apple-icon.png` answer 200 and `/next.svg` and
-`/hero.jpg` 404; and in a browser, the home page (open a card, open the
-sheet on a phone width, change a weight), a city page and a compare pair
-show no console error.
+**Phase 7 (13 October 2026; deployed the same day, record below).** Model
+m4.3.0 on build d62202fd0280, its manifest refreshed again (the Phase 7
+registry strings); `/v1/rank` rows gain `unit_contributions`. The Caddyfile
+now sends security headers on the site's address: `Strict-Transport-Security
+"max-age=31536000"` (no `preload`, which is Nathan's one-way choice),
+`X-Content-Type-Options nosniff`, a `Permissions-Policy` and a
+`Content-Security-Policy` allowing only the site's own origin (with
+`'unsafe-inline'` for Next's inline scripts and style attributes).
+`Referrer-Policy: no-referrer` stays in `web/next.config.ts`, so it isn't
+sent twice. Any later change to those headers is checked first through
+`web/scripts/review/csp_proxy.mjs` and `csp_check.mjs`, and needs Caddy
+recreated.
 
 ## The invariant everything else serves (D04)
 
@@ -693,6 +681,54 @@ photographs are on the Mac) and `build_d62202fd0280_416150b` (its data
 files match the Mac's build, its manifest is in git at 2c420c9); disk 43%
 to 39%. Rollback: the images `:ff72f72` and the code at `src_ff72f72`, on
 the live build.
+
+**Deploy record (2026-10-13, on Nathan's word "Merge, push, and deploy as
+needed").** Phase 7 (`atlas/PHASE7.md`): the keyboard path to "Refine your
+search", opened details brought into view, the phone bar waiting for #1's
+score, "/100" on every score, "What moved the score" by item (served
+`unit_contributions`), the city page's starting-search note, Compare's
+"Same" and "{city}, by {diff}", the outlined top button, the site's own
+icon, robots.txt, a sitemap and canonical addresses, the security headers,
+and San Jose's new photograph. Merged and pushed: main = origin/main =
+181158c; before the push no secret pattern was added and the Pew history
+scan was clean (0 violations over 2,937 blobs); CI run 38420495763 green.
+On the Mac: pytest 214, vitest 151, Playwright 401 passed (54 skipped by
+design). No number moves: m4.3.0 on build d62202fd0280, its manifest
+refreshed (seven registry strings; the main checkout's build and the
+committed copy are one, by sha256). Steps: the running images tagged
+`:76de4ef`; the code in a fresh folder (1,436 files, checked against the
+commit file for file); the photographs copied from the live folder and the
+Mac's synced over them (only San Jose's original, its four sized copies and
+its link preview crossed; all 2,191 files identical to the Mac's by sha256;
+the five starter SVGs and `hero.jpg` stayed behind in the old folder); the
+build staged as `build_next` (only manifest.json crossed; every file's
+sha256 checked); both images built in 3m9s while the old containers served
+(the API's too, as its code changed). The private copy (network
+`dsa-stage`, the new build, loopback only, an SSH tunnel) passed the
+real-build checks (14 passed, 2 skipped by design), the CSP sweep through
+`csp_proxy.mjs` (76 page loads at 1440 and 390: 0 violations, no console
+error but the 404 page's own) and `phase7_measure.mjs` (details whole in
+view, the bar never over #1's score, "/100" on 190 of 190 rows, "Denver, by
+600,000" and "Same", robots.txt and the sitemap 200, 21 of 21 canonical
+links, the icons 200 and the starter files 404). Then the folders were
+swapped (the old build kept as `build_d62202fd0280_76de4ef`, the old code as
+`src_76de4ef`), `up -d api web` run, and Caddy recreated from `src`, since
+the Caddyfile changed (no certificate obtained). Checked from the Mac: the
+four new headers and `referrer-policy: no-referrer` once each; 13 pages, the
+robots file, the sitemap and the three icons 200 in 0.07-1.1 s, and
+`/next.svg`, `/vercel.svg`, `/hero.jpg` and an unknown page 404; `www` and
+both DuckDNS addresses 301 to the same page, http 308; `/api/rank` answers
+193 ranked cities on d62202fd0280/m4.3.0 with `unit_contributions`; San
+Jose's photograph, a sized copy and its preview served byte for byte with
+`max-age=604800`; the same CSP sweep on the live site, 0 violations; no
+error in the API's or web's log, and the only address in Caddy's log is
+127.0.0.1; memory 1.9 of 5.8 GB used. Then the older backup was deleted,
+Nathan keeping only the newest: the images `:ff72f72` and `src_ff72f72`
+(its code matched ff72f72 file for file; its photographs are on the Mac);
+disk 47% to 44%. Rollback: the images `:76de4ef`, the code at
+`src_76de4ef` (whose Caddyfile has no security headers; Caddy rolls back
+with the same `--force-recreate`) and the build at
+`build_d62202fd0280_76de4ef` (its manifest the previous one).
 
 ## Environment variables
 
