@@ -63,7 +63,9 @@ DuckDNS names would keep forwarding to a dead address.
 
 **Phase 7 (13 October 2026; deployed the same day, record below).** Model
 m4.3.0 on build d62202fd0280, its manifest refreshed again (the Phase 7
-registry strings); `/v1/rank` rows gain `unit_contributions`. The Caddyfile
+registry strings). `/v1/rank` rows carried `unit_contributions` for the
+day, until Nathan had it removed (the evening's deploy record, below). The
+Caddyfile
 now sends security headers on the site's address: `Strict-Transport-Security
 "max-age=31536000"` (no `preload`, which is Nathan's one-way choice),
 `X-Content-Type-Options nosniff`, a `Permissions-Policy` and a
@@ -729,6 +731,51 @@ disk 47% to 44%. Rollback: the images `:76de4ef`, the code at
 `src_76de4ef` (whose Caddyfile has no security headers; Caddy rolls back
 with the same `--force-recreate`) and the build at
 `build_d62202fd0280_76de4ef` (its manifest the previous one).
+
+**Deploy record (2026-10-13, evening, on Nathan's word "Remove the per-item
+numbers. Then merge, push, and deploy").** 2dc4d1c and 73fc551: the home
+page's expanded detail no longer draws the item bars under Cost of living
+and Social life (one bar per pillar, each named as its pillar alone; the
+chips unchanged), and the API no longer serves `unit_contributions`, so
+every `/v1/rank` response is again what it was before Phase 7 (all 518
+test searches, 1,036 single-seeker rankings and 387 profiles identical to
+the record taken at e34aa55). Made in a separate worktree, as another
+session had uncommitted test changes in the main checkout (they still
+apply cleanly on top); merged by fast-forwarding origin/main from it:
+main = origin/main = 73fc551 (the main checkout's local `main` stays at
+6d1274e until that work is committed and rebased). Before the push no
+secret pattern was added and the Pew history scan was clean (0 violations
+over 2,964 blobs); CI run 38448855159 green. On a fresh worktree (no
+photographs, CI=1): pytest 209 (+1 skipped, the private Pew table), vitest
+150, Playwright 389 passed (64 skipped). No number moves: m4.3.0 on build
+d62202fd0280, the build and its manifest unchanged (the live manifest, the
+main checkout's and the committed copy are one, by sha256), so no
+`build_next`. Steps: the running images tagged `:181158c`; the code in a
+fresh folder (1,438 files, checked against the commit file for file); the
+photographs copied from the live folder and the Mac's synced over them
+(nothing crossed; all 2,191 identical by sha256); both images built in
+3m15s while the old containers served (the API's too, as its code
+changed). The private copy passed the real-build checks (12 passed, 2
+skipped by design) and the day's check at 1440 and 390: six pillar bars and
+no item bar in a card's and a row's detail, the chips as before, no
+`unit_contributions` in `/api/rank` or the home page's HTML, no console
+error. Then the code folders were swapped (the previous code kept as
+`src_181158c`), `up -d api web` run, and Caddy recreated from `src` (no
+certificate obtained). The web app answered in about 3 seconds; two
+requests in the six seconds before the API had loaded its build failed to
+reach it (18:48:29 and 18:48:30 UTC, the restart gap earlier records note),
+and none since. Checked from the Mac: the same check passes on the live
+site; the security headers, the pages, robots.txt, the sitemap and the
+icons answer as before, `/next.svg` and an unknown page 404; `www` and both
+DuckDNS addresses 301, http 308; `/api/rank` answers 193 ranked cities on
+d62202fd0280/m4.3.0 without the field; the only address in Caddy's log is
+127.0.0.1. Then the older backup was deleted, Nathan keeping only the
+newest: the images `:76de4ef`, `src_76de4ef` (its code matched 76de4ef
+file for file; its one photograph not on the site, San Jose's hotel
+front, is in the Mac's Trash) and `build_d62202fd0280_76de4ef` (its data
+files match the live build's; its manifest is in git at e34aa55); disk 51%
+to 47%. Rollback: the images `:181158c` and the code at `src_181158c`, on
+the live build.
 
 ## Environment variables
 
