@@ -125,3 +125,6 @@ atlas/results/movers_fix/*_run.log
 # Phase 5: the served-numbers records and scratch
 atlas/results/phase5/_*
 atlas/results/phase5/*_run.log
+
+# Phase 7 working files: the served-numbers records (9 MB each; their comparisons are committed as served_numbers_commit_*.json) and their logs
+atlas/results/phase7/_*

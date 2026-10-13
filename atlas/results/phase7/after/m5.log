@@ -1,0 +1,545 @@
+== 1440
+1. A "Skip to results" 
+2. A "Dating Scene Data" 
+3. A "Rankings" 
+4. A "Compare" 
+5. A "How it works" 
+6. INPUT/combobox "Find a city" 
+7. SELECT "Woman Man" 
+8. INPUT "30" 
+9. SELECT "Men Women" 
+10. BUTTON "Their age 28 – 40" 
+11. BUTTON "What the slider changes" 
+12. INPUT "0.45" 
+13. BUTTON/radio "Some" 
+14. BUTTON/radio "Some" 
+15. BUTTON/radio "Some" 
+16. BUTTON/radio "Some" 
+17. BUTTON "Narrow it down" 
+18. BUTTON "Sharpen compatibility" 
+19. BUTTON/radio "Best first" 
+20. A "San Francisco, CA" 
+21. BUTTON "Details for San Francisco, CA" 
+22. A "Boston, MA" 
+23. BUTTON "Details for Boston, MA" 
+24. A "New York, NY" 
+25. BUTTON "Details for New York, NY" 
+26. INPUT/combobox "Find a city in your results" 
+27. A "Los Angeles, CA" 
+28. BUTTON "Details for Los Angeles, CA" 
+29. A "San Jose, CA" 
+30. BUTTON "Details for San Jose, CA" 
+31. A "Seattle, WA" 
+32. BUTTON "Details for Seattle, WA" 
+33. A "Chicago, IL" 
+34. BUTTON "Details for Chicago, IL" 
+35. A "San Diego, CA" 
+36. BUTTON "Details for San Diego, CA" 
+37. A "Austin, TX" 
+38. BUTTON "Details for Austin, TX" 
+39. A "Philadelphia, PA" 
+40. BUTTON "Details for Philadelphia, PA" 
+41. BUTTON "Show 10 more" 
+42. BUTTON "Show all 193" 
+43. A "How it works →" 
+44. A "What we measure" 
+45. A "Privacy" 
+46. A "Terms" 
+47. A "Data sources" 
+48. BODY "undefined" NO-RING 
+49. A "Skip to results" 
+50. A "Dating Scene Data" 
+51. A "Rankings" 
+52. A "Compare" 
+53. A "How it works" 
+54. INPUT/combobox "Find a city" 
+55. SELECT "Woman Man" 
+56. INPUT "30" 
+57. SELECT "Men Women" 
+58. BUTTON "Their age 28 – 40" 
+59. BUTTON "What the slider changes" 
+60. INPUT "0.45" 
+61. BUTTON/radio "Some" 
+62. BUTTON/radio "Some" 
+63. BUTTON/radio "Some" 
+64. BUTTON/radio "Some" 
+65. BUTTON "Narrow it down" 
+66. BUTTON "Sharpen compatibility" 
+67. BUTTON/radio "Best first" 
+68. A "San Francisco, CA" 
+69. BUTTON "Details for San Francisco, CA" 
+70. A "Boston, MA" 
+71. BUTTON "Details for Boston, MA" 
+72. A "New York, NY" 
+73. BUTTON "Details for New York, NY" 
+74. INPUT/combobox "Find a city in your results" 
+75. A "Los Angeles, CA" 
+76. BUTTON "Details for Los Angeles, CA" 
+77. A "San Jose, CA" 
+78. BUTTON "Details for San Jose, CA" 
+79. A "Seattle, WA" 
+80. BUTTON "Details for Seattle, WA" 
+81. A "Chicago, IL" 
+82. BUTTON "Details for Chicago, IL" 
+83. A "San Diego, CA" 
+84. BUTTON "Details for San Diego, CA" 
+85. A "Austin, TX" 
+86. BUTTON "Details for Austin, TX" 
+87. A "Philadelphia, PA" 
+88. BUTTON "Details for Philadelphia, PA" 
+89. BUTTON "Show 10 more" 
+90. BUTTON "Show all 193" 
+== 390
+1. A "Skip to results" 
+2. A "Dating Scene Data" 
+3. BUTTON "Find a city" 
+4. BUTTON "Menu" 
+5. SELECT "Woman Man" 
+6. INPUT "30" 
+7. SELECT "Men Women" 
+8. BUTTON "Their age 28 – 40" 
+9. BUTTON "Refine your search" 
+10. A "San Francisco, CA" 
+11. BUTTON "Details for San Francisco, CA" 
+12. A "Boston, MA" 
+13. BUTTON "Details for Boston, MA" 
+14. A "New York, NY" 
+15. BUTTON "Details for New York, NY" 
+16. BUTTON/radio "Best first" 
+17. INPUT/combobox "Find a city in your results" 
+18. A "Los Angeles, CA" 
+19. BUTTON "Details for Los Angeles, CA" 
+20. A "San Jose, CA" 
+21. BUTTON "Details for San Jose, CA" 
+22. A "Seattle, WA" 
+23. BUTTON "Details for Seattle, WA" 
+24. A "Chicago, IL" 
+25. BUTTON "Details for Chicago, IL" 
+26. A "San Diego, CA" 
+27. BUTTON "Details for San Diego, CA" 
+28. A "Austin, TX" 
+29. BUTTON "Details for Austin, TX" 
+30. A "Philadelphia, PA" 
+31. BUTTON "Details for Philadelphia, PA" 
+32. BUTTON "Show 10 more" 
+33. BUTTON "Show all 193" 
+34. A "How it works →" 
+35. A "What we measure" 
+36. A "Privacy" 
+37. A "Terms" 
+38. A "Data sources" 
+39. BODY "undefined" NO-RING 
+40. A "Skip to results" 
+41. A "Dating Scene Data" 
+42. BUTTON "Find a city" 
+43. BUTTON "Menu" 
+44. SELECT "Woman Man" 
+45. INPUT "30" 
+46. SELECT "Men Women" 
+47. BUTTON "Their age 28 – 40" 
+48. BUTTON "Refine your search" 
+49. A "San Francisco, CA" 
+50. BUTTON "Details for San Francisco, CA" 
+51. A "Boston, MA" 
+52. BUTTON "Details for Boston, MA" 
+53. A "New York, NY" 
+54. BUTTON "Details for New York, NY" 
+55. BUTTON/radio "Best first" 
+56. INPUT/combobox "Find a city in your results" 
+57. A "Los Angeles, CA" 
+58. BUTTON "Details for Los Angeles, CA" 
+59. A "San Jose, CA" 
+60. BUTTON "Details for San Jose, CA" 
+{
+ "sheet": {
+  "opened": true,
+  "first_focus": {
+   "tag": "BUTTON",
+   "role": null,
+   "name": "Close",
+   "testid": "search-sheet",
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 110,
+   "h": 44
+  },
+  "cycle": "1. BUTTON \"Woman, 30 · Men 28–40 — Change\" \n2. BUTTON \"What the slider changes\" \n3. INPUT \"0.45\" \n4. BUTTON/radio \"Some\" \n5. BUTTON/radio \"Some\" \n6. BUTTON/radio \"Some\" \n7. BUTTON/radio \"Some\" \n8. BUTTON \"Narrow it down\" \n9. BUTTON \"Sharpen compatibility\" \n10. BUTTON \"Show results\" \n11. BODY \"undefined\" NO-RING \n12. BUTTON \"Close\" \n13. BUTTON \"Woman, 30 · Men 28–40 — Change\" \n14. BUTTON \"What the slider changes\" \n15. INPUT \"0.45\" \n16. BUTTON/radio \"Some\" \n17. BUTTON/radio \"Some\" \n18. BUTTON/radio \"Some\" \n19. BUTTON/radio \"Some\" \n20. BUTTON \"Narrow it down\" \n21. BUTTON \"Sharpen compatibility\" \n22. BUTTON \"Show results\" \n23. BODY \"undefined\" NO-RING \n24. BUTTON \"Close\" \n25. BUTTON \"Woman, 30 · Men 28–40 — Change\" \n26. BUTTON \"What the slider changes\" \n27. INPUT \"0.45\" \n28. BUTTON/radio \"Some\" \n29. BUTTON/radio \"Some\" \n30. BUTTON/radio \"Some\" \n31. BUTTON/radio \"Some\" \n32. BUTTON \"Narrow it down\" \n33. BUTTON \"Sharpen compatibility\" \n34. BUTTON \"Show results\" \n35. BODY \"undefined\" NO-RING \n36. BUTTON \"Close\" \n37. BUTTON \"Woman, 30 · Men 28–40 — Change\" \n38. BUTTON \"What the slider changes\" \n39. INPUT \"0.45\" \n40. BUTTON/radio \"Some\" \n41. BUTTON/radio \"Some\" \n42. BUTTON/radio \"Some\" \n43. BUTTON/radio \"Some\" \n44. BUTTON \"Narrow it down\" \n45. BUTTON \"Sharpen compatibility\" ",
+  "focus_left_dialog": false,
+  "after_escape": {
+   "open": false,
+   "focus": {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Refine your search",
+    "testid": "bottom-bar",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 778,
+    "h": 52
+   },
+   "scrollY": 1500
+  }
+ },
+ "info_1440": {
+  "row_expanded": "true",
+  "focus_after_expand": {
+   "tag": "BUTTON",
+   "role": null,
+   "name": "Details for Los Angeles, CA",
+   "testid": "row-toggle",
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 428,
+   "h": 44
+  },
+  "steps_to_info": [
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "About balance",
+    "testid": "info-tip",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 567,
+    "h": 44
+   },
+   {
+    "tag": "A",
+    "role": null,
+    "name": "Open Los Angeles →",
+    "testid": "row-detail",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 804,
+    "h": 44
+   },
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Compare",
+    "testid": "row-detail",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 804,
+    "h": 44
+   },
+   {
+    "tag": "A",
+    "role": null,
+    "name": "San Jose, CA",
+    "testid": "ranked-list",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 880,
+    "h": 20
+   },
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Details for San Jose, CA",
+    "testid": "row-toggle",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 856,
+    "h": 44
+   },
+   {
+    "tag": "A",
+    "role": null,
+    "name": "Seattle, WA",
+    "testid": "ranked-list",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 440,
+    "h": 20
+   }
+  ],
+  "open": null,
+  "focus_while_open": {
+   "tag": "BODY"
+  },
+  "after_escape": {
+   "box": null,
+   "focus": {
+    "tag": "BODY"
+   }
+  },
+  "reopened": false,
+  "after_outside_click": {
+   "box": null,
+   "focus": {
+    "tag": "BODY"
+   }
+  },
+  "after_tab_away": {
+   "box": null,
+   "focus": {
+    "tag": "A",
+    "role": null,
+    "name": "Skip to results",
+    "testid": null,
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 16,
+    "h": 40
+   }
+  }
+ },
+ "info_390": {
+  "row_expanded": "true",
+  "focus_after_expand": {
+   "tag": "BUTTON",
+   "role": null,
+   "name": "Details for Los Angeles, CA",
+   "testid": "row-toggle",
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 92,
+   "h": 44
+  },
+  "steps_to_info": [
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "About balance",
+    "testid": "info-tip",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 230,
+    "h": 44
+   },
+   {
+    "tag": "A",
+    "role": null,
+    "name": "Open Los Angeles →",
+    "testid": "row-detail",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 692,
+    "h": 44
+   },
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Compare",
+    "testid": "row-detail",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 692,
+    "h": 44
+   },
+   {
+    "tag": "A",
+    "role": null,
+    "name": "San Jose, CA",
+    "testid": "ranked-list",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 356,
+    "h": 44
+   },
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Details for San Jose, CA",
+    "testid": "row-toggle",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 405,
+    "h": 44
+   },
+   {
+    "tag": "A",
+    "role": null,
+    "name": "Seattle, WA",
+    "testid": "ranked-list",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 511,
+    "h": 44
+   }
+  ],
+  "open": null,
+  "focus_while_open": {
+   "tag": "BODY"
+  },
+  "after_escape": {
+   "box": null,
+   "focus": {
+    "tag": "BODY"
+   }
+  },
+  "reopened": false,
+  "after_outside_click": {
+   "box": null,
+   "focus": {
+    "tag": "BODY"
+   }
+  },
+  "after_tab_away": {
+   "box": null,
+   "focus": {
+    "tag": "A",
+    "role": null,
+    "name": "← Back to your results",
+    "testid": "back-to-results",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 80,
+    "h": 44
+   }
+  }
+ },
+ "age_1440": {
+  "focus_after_open": {
+   "tag": "INPUT",
+   "role": null,
+   "name": "Youngest age",
+   "testid": "age-popover",
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 400,
+   "h": 20
+  },
+  "value_after_arrow": "29 – 40",
+  "after_escape": {
+   "popover_visible": false,
+   "focus": {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Their age 29 – 40",
+    "testid": "age-token",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 297,
+    "h": 44
+   }
+  },
+  "after_outside_click": false
+ },
+ "age_390": {
+  "focus_after_open": {
+   "tag": "INPUT",
+   "role": null,
+   "name": "Youngest age",
+   "testid": "age-popover",
+   "in_view": true,
+   "ring": true,
+   "obscured": true,
+   "by": "age-popover",
+   "y": 468,
+   "h": 44
+  },
+  "value_after_arrow": "29 – 40",
+  "after_escape": {
+   "popover_visible": false,
+   "focus": {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Their age 29 – 40",
+    "testid": "age-token",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 361,
+    "h": 48
+   }
+  },
+  "after_outside_click": false
+ },
+ "header": {
+  "menu_focus_after_open": {
+   "tag": "BUTTON",
+   "role": null,
+   "name": "Close",
+   "testid": "menu-button",
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 6,
+   "h": 44
+  },
+  "menu_after_escape": {
+   "expanded": "false",
+   "focus": {
+    "tag": "BUTTON",
+    "role": null,
+    "name": "Menu",
+    "testid": "menu-button",
+    "in_view": true,
+    "ring": true,
+    "obscured": false,
+    "by": null,
+    "y": 6,
+    "h": 44
+   }
+  },
+  "search_focus_after_open": {
+   "tag": "INPUT",
+   "role": "combobox",
+   "name": "Find a city",
+   "testid": null,
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 4,
+   "h": 48
+  },
+  "search_option": "cs-abilene-texas",
+  "search_after_escape": {
+   "tag": "BUTTON",
+   "role": null,
+   "name": "Find a city",
+   "testid": "header-search-button",
+   "in_view": true,
+   "ring": true,
+   "obscured": false,
+   "by": null,
+   "y": 6,
+   "h": 44
+  }
+ }
+}

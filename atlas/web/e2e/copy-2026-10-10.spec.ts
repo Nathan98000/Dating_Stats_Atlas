@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { expandRow, fetchMeta, seedAboutYou } from "./helpers";
+import { atRest, expandRow, fetchMeta, seedAboutYou } from "./helpers";
 
 /** Nathan's changes of 2026-10-10, after the city-detail redesign: balance's
  * box and the points' caption in his words, no box for What moved the score
@@ -191,11 +191,14 @@ test("in a card's or a row's detail, compatibility sits above balance", async ({
   await page.goto(`/?${QS}`);
   await page.getByTestId("featured-card").first().getByTestId("score").click();
   const detail = page.getByTestId("card-detail");
+  await detail.waitFor();
+  await atRest(page);
   const [compat, balance] = [await detail.getByTestId("match-figure").boundingBox(),
     await detail.getByTestId("balance-tally").boundingBox()];
   expect(compat!.y + compat!.height).toBeLessThan(balance!.y);
   const row = await expandRow(page, 4);
   const d = row.getByTestId("row-detail");
+  await atRest(page);
   const [c2, b2] = [await d.getByTestId("match-figure").boundingBox(), await d.getByTestId("balance-tally").boundingBox()];
   expect(c2!.y + c2!.height).toBeLessThan(b2!.y);
 });

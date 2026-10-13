@@ -1,0 +1,26 @@
+{
+ "default (woman 30, men 28-40)": {
+  "rows": 193,
+  "chips": 522,
+  "chips_against_their_item_bar": 0,
+  "rows_with_a_chip_against_its_item_bar": 0,
+  "top_20": 0,
+  "chips_without_an_item": 0
+ },
+ "task 2 (cost, weather a lot; social not much)": {
+  "rows": 193,
+  "chips": 525,
+  "chips_against_their_item_bar": 0,
+  "rows_with_a_chip_against_its_item_bar": 0,
+  "top_20": 0,
+  "chips_without_an_item": 0
+ },
+ "same-sex (man 33, men 28-38)": {
+  "rows": 193,
+  "chips": 522,
+  "chips_against_their_item_bar": 0,
+  "rows_with_a_chip_against_its_item_bar": 0,
+  "top_20": 0,
+  "chips_without_an_item": 0
+ }
+}

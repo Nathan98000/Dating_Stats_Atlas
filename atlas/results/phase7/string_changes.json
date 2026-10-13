@@ -1,0 +1,19 @@
+{
+ "from": "e34aa55",
+ "to": "HEAD (Phase 7)",
+ "changed": {
+  "col_city": {
+   "old": "City · why it ranks here",
+   "new": "City · lifestyle pluses and minus"
+  }
+ },
+ "added": {
+  "city_default_note": "These figures use the site's starting search: {search}. Set your own on the home page and it follows you here.",
+  "make_it_your_search": "Make it your search",
+  "back_to_rankings": "← See the rankings",
+  "back_to_results": "← Back to your results",
+  "compare_same": "Same",
+  "compare_unjudged_by": "{city}, by {diff}"
+ },
+ "removed": {}
+}

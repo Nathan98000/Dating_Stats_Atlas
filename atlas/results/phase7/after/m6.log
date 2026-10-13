@@ -1,0 +1,41 @@
+zoom200 sideways: [] 
+320 sideways: [] 
+sheet: { w: 420, h: 450, body_scroll: 856 } { w: 320, h: 576, body_scroll: 874 }
+{
+ "reduce": {
+  "animations": [],
+  "transitions": [],
+  "transition_count": 0
+ },
+ "no-preference": {
+  "animations": [
+   "CSSAnimation progress-slide on DIV.progress-line mb-3 dur=1100",
+   "DIV.progress-line mb-3 progress-slide",
+   "CSSTransition transform on LI.flex flex-col overflow-hidden  dur=200",
+   "CSSTransition transform on LI.border-b border-rule   dur=200",
+   "CSSTransition background-color on LI.flex flex-col overflow-hidden  dur=150",
+   "CSSTransition transform on LI.border-b border-rule  bg-hover dur=200",
+   "CSSTransition background-color on LI.border-b border-rule  bg-hover dur=150",
+   "CSSTransition scale on IMG.h-full w-full object-cover tra dur=300"
+  ],
+  "transitions": [
+   "LI.flex flex-col overflow-hidden  transform 0",
+   "LI.border-b border-rule  bg-hover transform 0",
+   "LI.border-b border-rule  bg-hover transform 0",
+   "LI.border-b border-rule  bg-hover transform 0",
+   "LI.border-b border-rule  bg-hover transform 0",
+   "LI.border-b border-rule  bg-hover transform 0",
+   "LI.flex flex-col overflow-hidden  background-color 0",
+   "LI.border-b border-rule  bg-hover background-color 0",
+   "LI.flex flex-col overflow-hidden  background-color 0",
+   "LI.border-b border-rule  bg-hover background-color 0",
+   "IMG.h-full w-full object-cover tra scale 0",
+   "LI.flex flex-col overflow-hidden  background-color 0",
+   "LI.flex flex-col overflow-hidden  background-color 0",
+   "LI.flex flex-col overflow-hidden  background-color 0"
+  ],
+  "transition_count": 14
+ },
+ "sheet-reduce": [],
+ "sheet-no-preference": []
+}

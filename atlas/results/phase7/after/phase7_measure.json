@@ -1,0 +1,83 @@
+{
+ "r03": {
+  "1440x900": {
+   "panel_top": 506,
+   "panel_bottom": 900,
+   "panel_height": 394,
+   "visible_px": 394,
+   "whole_panel_in_view": true,
+   "scrollY": 377
+  },
+  "768x1024": {
+   "panel_top": 630,
+   "panel_bottom": 1024,
+   "panel_height": 394,
+   "visible_px": 394,
+   "whole_panel_in_view": true,
+   "scrollY": 324
+  }
+ },
+ "r08": {
+  "positions": 81,
+  "bar_over_score": 0,
+  "first_shown_at_scroll": 54,
+  "score_bottom_then": 767,
+  "bar_top": 768
+ },
+ "r09": {
+  "390": {
+   "rows": 190,
+   "with_out_of_100": 190
+  },
+  "1440": {
+   "rows": 190,
+   "with_out_of_100": 190
+  },
+  "compare": [
+   "67\n/100",
+   "65\n/100"
+  ]
+ },
+ "r14": {
+  "who_lives_here": "Denver, by 600,000",
+  "balance": "Same"
+ },
+ "r07": {
+  "robots": [
+   200,
+   "text/plain"
+  ],
+  "sitemap": [
+   200,
+   "application/xml"
+  ],
+  "sitemap_urls": 401,
+  "sitemap_city_urls": 387,
+  "pages": 21,
+  "pages_with_canonical": 21,
+  "canonical_404": 0,
+  "canonical": {
+   "home": "https://datingscenedata.com",
+   "city-sf": "https://datingscenedata.com/city/san-francisco-california",
+   "city-deltona": "https://datingscenedata.com/city/deltona-florida",
+   "city-abilene": "https://datingscenedata.com/city/abilene-texas",
+   "city-champaign": "https://datingscenedata.com/city/champaign-illinois",
+   "compare": "https://datingscenedata.com/compare",
+   "compare-pair": "https://datingscenedata.com/compare/austin-texas/denver-colorado",
+   "compare-floor": "https://datingscenedata.com/compare/austin-texas/abilene-texas",
+   "about": "https://datingscenedata.com/about",
+   "what-we-measure": "https://datingscenedata.com/what-we-measure",
+   "about-crime": "https://datingscenedata.com/about-crime-data",
+   "stat-rent": "https://datingscenedata.com/stats/rent_1br",
+   "stat-prices": "https://datingscenedata.com/stats/everyday_prices",
+   "stat-lean": "https://datingscenedata.com/stats/political_lean",
+   "stat-venues": "https://datingscenedata.com/stats/venues_per_100k",
+   "stat-walk": "https://datingscenedata.com/stats/resident_walkability_index",
+   "stat-days": "https://datingscenedata.com/stats/pleasant_days",
+   "stat-students": "https://datingscenedata.com/stats/students_per_1k_adults",
+   "stat-people": "https://datingscenedata.com/stats/who_lives_here",
+   "privacy": "https://datingscenedata.com/privacy",
+   "terms": "https://datingscenedata.com/terms"
+  }
+ }
+}

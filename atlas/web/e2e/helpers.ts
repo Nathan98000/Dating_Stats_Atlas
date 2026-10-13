@@ -1,6 +1,6 @@
 import { existsSync } from "fs";
 import path from "path";
-import type { APIRequestContext, BrowserContext, Page } from "@playwright/test";
+import { expect, type APIRequestContext, type BrowserContext, type Page } from "@playwright/test";
 import type { Meta } from "../src/lib/types";
 
 /** The photographs are gitignored and re-fetchable, so a fresh checkout —
@@ -85,4 +85,14 @@ export async function revealRows(page: Page): Promise<void> {
     const t = toggles.nth(i);
     if ((await t.getAttribute("aria-expanded")) !== "true") await t.click();
   }
+}
+
+/** Phase 7 (R03): an opened detail scrolls into view, smoothly; a test
+ * that measures positions waits until the page has come to rest. */
+export async function atRest(page: Page): Promise<void> {
+  await expect.poll(async () => {
+    const y = await page.evaluate(() => window.scrollY);
+    await page.waitForTimeout(150);
+    return y === await page.evaluate(() => window.scrollY);
+  }).toBe(true);
 }
