@@ -420,3 +420,30 @@ domain by the artist. The pipeline now reads each file's own page as well
   two answers, New Orleans's and the pleasant days photograph's, each to the
   credit the site already shows; the other 373 are unchanged. Pinned
   photographs keep their recorded credits, as before.
+
+## DRAFT amendment, Phase 7 (13 October 2026): San Jose's photograph; the hero photograph leaves the repository
+
+DRAFT for Nathan's approval (Phase 7, commits C and E).
+
+- **San Jose.** The round-4 review (R20) found San Jose's photograph, #5 by default and a top-three
+  card in narrowed searches, to be a hotel front at Santana Row with "Hotel Valencia" on its façade.
+  It is replaced by *2012-07-15 San Jose 021 Downtown, Cathedral Basilica of St. Joseph* (Wikimedia
+  Commons, from Flickr), by Allie_Caulfield, **CC BY 2.0** as its file page states it (its licence
+  section, read 13 October 2026; the Flickr upload bot's review): the basilica's portico and two bell
+  towers between downtown's office towers at noon in July, 6000px wide, applied as Commons' 1920px
+  rendition, pinned by the bytes' sha256 in `results/phase4/photo_review.json` (`external_files`),
+  credited in Sources and credits like every other photograph, with a focal point at the top edge
+  (`50% 0%`) so the band keeps the towers whole. Nathan approved its licence in advance (13 October
+  2026, whatever it turned out to be); CC BY 2.0 is on the list, so nothing joins the permission
+  record. The brief's first preference, the downtown skyline, was not taken: the skylines found were
+  a thin, hazy band from the hills to the south, and none from Guadalupe River Park or over Plaza de
+  César Chávez (`results/phase7/card_photos.json` names the two alternatives). The subject rules
+  stand: no identifiable person as the subject, no recent sculpture or mural, no prominent logo or
+  brand (a row of newspaper boxes sits along the bottom edge, outside the band's crop).
+- **The hero photograph.** `web/public/hero.jpg`, unused since Phase 5, and its record,
+  `web/src/data/hero.json`, leave the repository; the photo review's apply and credits steps no
+  longer read a hero, so `results/phase4/photo_credits.json` lists 376 photographs. Its credit, as
+  it leaves: *Crew 2016-01-10 (Unsplash xCmvrpzctaQ)*, by Crew crew, CC0, from Wikimedia Commons
+  (https://commons.wikimedia.org/wiki/File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg), cropped.
+  `pipeline/build/hero_image.py` stays as the record of how it was chosen; running it again would
+  write both files back.

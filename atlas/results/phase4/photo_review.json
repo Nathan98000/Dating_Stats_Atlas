@@ -2416,6 +2416,25 @@
     "Nathan, 2026-10-09: \"Credit Billy Hathorn\""
    ],
    "checked": "the same file as before, byte for byte (the manifest's sha256); only the credit changes, to the photograph's licence and photographer; CC BY 3.0 is on the cleared list, and the stat page still shows the photograph uncropped"
+  },
+  {
+   "date": "2026-10-13",
+   "page": "city",
+   "key": "san-jose-california",
+   "why": "Phase 7 (the round-4 review of 12 October 2026, R20; Nathan's decisions 2 and 10): San Jose without the hotel front at Santana Row (\"Hotel Valencia\" on its facade; the round-4 review's R20). The brief's second preference, the Cathedral Basilica of St. Joseph with downtown: its portico and two bell towers between downtown's office towers, at noon in July, 6000px wide (the 1920px rendition applied). No downtown skyline found was as good: from Oak Hill and the hills the towers are a thin, hazy band, and none was found from Guadalupe River Park or over Plaza de Cesar Chavez in daylight at 1,600px or more.",
+   "was": "https://commons.wikimedia.org/wiki/File:Valencia_Hotel,_Santana_Row_(cropped).jpg",
+   "title": "2012-07-15 San Jose 021 Downtown, Cathedral Basilica of St. Joseph",
+   "author": "Allie_Caulfield",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2012-07-15_San_Jose_021_Downtown,_Cathedral_Basilica_of_St._Joseph.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/2012-07-15_San_Jose_021_Downtown%2C_Cathedral_Basilica_of_St._Joseph.jpg/1920px-2012-07-15_San_Jose_021_Downtown%2C_Cathedral_Basilica_of_St._Joseph.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "385cbb50dd1715f8c930111285aa792d0707ae4570f45392010740e8bb1e3354",
+   "alt": "The white Cathedral Basilica of St. Joseph in downtown San Jose, its two domed bell towers between palm trees and office towers under a clear blue sky.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-13): CC BY 2.0, by Allie_Caulfield"
+   ],
+   "checked": "the basilica's facade and towers, palms, office towers either side; no person as the subject (a few small figures on the steps); no sculpture or mural; no prominent logo (a row of newspaper boxes and three parked cars along the bottom edge, outside the 16:7 band's crop and small on the 16:10 card)"
   }
  ],
  "alt_overrides": [
@@ -2757,12 +2776,6 @@
   },
   {
    "page": "city",
-   "key": "san-jose-california",
-   "alt": "Palm trees and the Valencia Hotel along Santana Row in San Jose on a sunny day.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Santana Row: representative enough, and no better downtown view stood out."
-  },
-  {
-   "page": "city",
    "key": "san-luis-obispo-california",
    "alt": "The white adobe church and bell wall of Mission San Luis Obispo de Tolosa in warm evening light.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Current photo is Mission San Luis Obispo de Tolosa, the city's defining landmark, in warm evening light; a 16:10 centre crop trims a little of the right-hand arcade but the church front and bell openings stay whole."
@@ -2978,6 +2991,12 @@
    "key": "visalia-california",
    "focus": "50% 30%",
    "why": "Phase 6 (F30, the round-3 review §7): the band cut the Fox sign; the focal point the prompt sets keeps the subject in the card (16:10, 16:7 below 640px), the band (16:7) and the link preview."
+  },
+  {
+   "page": "city",
+   "key": "san-jose-california",
+   "focus": "50% 0%",
+   "why": "Phase 7 (R20): at the default 50% 35% the band (16:7) cut the crosses and domes off the basilica's two bell towers; from the top edge the towers stay whole in the band, the card (16:10, 16:7 below 640px) and the link preview, and the parked cars along the bottom fall outside the band."
   }
  ],
  "phase6_photographs": {
@@ -3005,5 +3024,19 @@
   "alt_overrides": [
    "kalamazoo-michigan"
   ]
+ },
+ "phase7_photographs": {
+  "date": "2026-10-13",
+  "brief": "Phase 7 §E: San Jose without the hotel front at Santana Row (R20); in order of preference the downtown skyline (from Guadalupe River Park or over Plaza de Cesar Chavez), the Cathedral Basilica of St. Joseph with downtown, the City Hall rotunda; any source, at least 1,600px wide, daylight, recognisable as San Jose; the licence approved in advance (Nathan, 13 October 2026), recorded as the source page states it",
+  "rules": [
+   "the view people recognise: a skyline, signature landmark, famous street, district or waterfront, in daylight",
+   "the photo review's rules: no identifiable person as the subject, no recent sculpture or mural as a subject, no prominent government seal",
+   "landscape, good cropped to 16:10 and 16:7",
+   "no prominent logo, seal or trademark as the subject (the Hollywood Sign; a hotel brand)"
+  ],
+  "new_photographs": [
+   "san-jose-california"
+  ],
+  "alt_overrides": []
  }
 }

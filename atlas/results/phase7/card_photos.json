@@ -1,0 +1,35 @@
+{
+ "date": "2026-10-13",
+ "cities": {
+  "san-jose-california": {
+   "outcome": "new",
+   "was": "https://commons.wikimedia.org/wiki/File:Valencia_Hotel,_Santana_Row_(cropped).jpg",
+   "file_title": "File:2012-07-15 San Jose 021 Downtown, Cathedral Basilica of St. Joseph.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2012-07-15_San_Jose_021_Downtown,_Cathedral_Basilica_of_St._Joseph.jpg",
+   "license": "CC BY 2.0",
+   "author": "Allie_Caulfield",
+   "width": 1920,
+   "alt": "The white Cathedral Basilica of St. Joseph in downtown San Jose, its two domed bell towers between palm trees and office towers under a clear blue sky.",
+   "why": "San Jose without the hotel front at Santana Row (\"Hotel Valencia\" on its facade; the round-4 review's R20). The brief's second preference, the Cathedral Basilica of St. Joseph with downtown: its portico and two bell towers between downtown's office towers, at noon in July, 6000px wide (the 1920px rendition applied). No downtown skyline found was as good: from Oak Hill and the hills the towers are a thin, hazy band, and none was found from Guadalupe River Park or over Plaza de Cesar Chavez in daylight at 1,600px or more.",
+   "alternatives": [
+    {
+     "file_title": "File:Downtown Skyline from Oak Hill.jpg",
+     "license": "CC BY 2.0",
+     "author": "HarshLight from San Jose, CA, USA",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Downtown_Skyline_from_Oak_Hill.jpg",
+     "width": 3036,
+     "note": "the first preference's kind, the downtown skyline, but from Oak Hill Memorial Park to the south: the towers a thin band above autumn trees, under a grey-blue December sky"
+    },
+    {
+     "file_title": "File:Plaza de César Chávez, San Jose, California 01.jpg",
+     "license": "CC BY-SA 4.0",
+     "author": "GualdimG",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Plaza_de_C%C3%A9sar_Ch%C3%A1vez,_San_Jose,_California_01.jpg",
+     "width": 4000,
+     "note": "the plaza's fountain jets with downtown's office towers behind, a clear April sky (2025); the towers are plain and unnamed, so it reads less surely as San Jose"
+    }
+   ]
+  }
+ },
+ "permission_needed": []
+}
