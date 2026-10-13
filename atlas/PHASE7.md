@@ -219,3 +219,21 @@ chips.
 17. The three served-numbers records (`results/phase7/_record_*.json`, 9 MB each) stay out of git
     (`.gitignore`, as Phase 5's are); their comparisons are committed. So are the review scripts'
     first-screen shots (40 MB, regenerable), as the review did with its own.
+
+## 7. After the report
+
+**13 October 2026, after the deploy (Nathan): the item bars leave the detail.** On the home
+page, a card's or a row's expanded detail no longer draws Rent and Everyday prices under Cost of
+living, or Walkability and Places to go out under Social life. "What moved the score" is the six
+pillar bars again, each named as its pillar alone, as they read on the live site today. Phase 6's
+"Cost of living · rent" wording does not come back. The chips are unchanged. B's served
+`unit_contributions` stays in the API, unchanged and now undrawn (about 7 KB of the home page's
+HTML at 390). So §4's "0 chips against their item bar" no longer describes what a visitor sees:
+a chip can again point the other way from its pillar's bar, which is the pillar's net (ADR 0003,
+amended after Phase 7). The record is in `results/copy_2026_10_13/copy_changes.json`;
+`e2e/copy-2026-10-13.spec.ts` checks it. B's item-bar tests left `e2e/phase7.spec.ts`, Phase
+6's F21 test now checks that each bar reads its pillar's name alone, Phase 5's bar count is
+its original line again, and the contrast pin for an item's label left
+(`tests/contrast.test.ts`; the two value pins now name the pillar bars, which use the same
+colours on the same ground). Test ids `moved-pillar`, `moved-item`, `moved-items` and
+`moved-bar` left with the item bars.

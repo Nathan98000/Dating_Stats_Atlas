@@ -156,7 +156,8 @@ export interface RankedRow {
    * the two price levels one item ("Everyday prices"), as the chips have
    * them; key is the item's first stat id. A pillar's items add up to its
    * contribution within 0.01; [] with no lifestyle contribution. No
-   * variant changes it, so it rides on the shared row */
+   * variant changes it, so it rides on the shared row. Not drawn since 13
+   * October 2026 (Nathan: the detail's item bars removed) */
   unit_contributions: UnitContribution[];
 }
 

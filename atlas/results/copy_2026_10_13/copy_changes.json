@@ -1,0 +1,22 @@
+{
+ "change_set": "Nathan's change of 2026-10-13, after Phase 7 went live: the item bars leave the home page's expanded detail",
+ "note": "No number moves and nothing is served differently: build d62202fd0280 and its manifest are unchanged, MODEL_VERSION stays m4.3.0, and /v1/rank still carries unit_contributions (undrawn). No registry string changes.",
+ "changes": [
+  {
+   "change": "1. What moved the score",
+   "kind": "removed (Nathan's request)",
+   "where": "web/src/components/row.tsx RowDetail (a card's detail, the panel under the cards from 768px, and a row's detail; home page only)",
+   "old": "the six pillar bars, with Cost of living's items (Rent, Everyday prices) and Social life's (Walkability, Places to go out) drawn as indented bars under their pillar (Phase 7, R05)",
+   "new": "the six pillar bars, each named as its pillar alone (as the pillar rows already read since Phase 7); Phase 6's chip words beside a bar ('Cost of living · rent', F21) do not come back",
+   "why": "Nathan's request: remove the sub-category bars from the expanded details card; it's fine to keep their chips"
+  },
+  {
+   "change": "2. The chips",
+   "kind": "unchanged (Nathan's request)",
+   "where": "web/src/components/why-chips.tsx",
+   "old": "the served lifestyle_movers, items named (e.g. ▲ Walkability ▲ Places to go out ▼ Rent)",
+   "new": "the same",
+   "why": "Nathan: it's fine to keep their chips"
+  }
+ ]
+}

@@ -182,3 +182,15 @@ searches every /v1/rank response is identical to the one before it with `unit_co
 taken out, as are all 1,036 single-seeker rankings and all 387 profiles
 (`results/phase7/served_numbers_commit_b.json`). MODEL_VERSION stays m4.3.0 (an additive,
 display-only field, as Phase 5's `score_median`); the goldens are byte-identical.
+
+## Amended after Phase 7 (13 October 2026): the item bars leave the detail
+
+At Nathan's request (13 October 2026, the day Phase 7 went live). On the home page, the expanded
+detail of a card or a row no longer draws the item bars under Cost of living and Social life
+(Rent, Everyday prices; Walkability, Places to go out). "What moved the score" is one bar per pillar
+again, each named as its pillar alone: Phase 6's chip words beside a bar ("Cost of living · rent",
+F21), which Phase 7 replaced with the item bars, do not come back. The chips are unchanged, still
+the served `lifestyle_movers`, so a chip can again point the other way from its pillar's bar
+(after "Cost of living: A lot", Austin's "▼ Rent" sits beside a green Cost of living +2.0: rent
+counts against it, everyday prices for it, and the pillar is their net). The API still serves
+`unit_contributions` on every ranked row, unchanged; no page draws it now. No number moves.

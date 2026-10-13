@@ -278,7 +278,7 @@ test.describe("home results (D)", () => {
     await expect(row.getByTestId("score")).toHaveAttribute("aria-hidden", "true");
   });
 
-  test("a lifestyle bar names its chip where the words differ (F21)", async ({ page, request }) => {
+  test("a lifestyle bar reads its pillar's name alone; the chips name the items (F21, retired 2026-10-13)", async ({ page, request }) => {
     const meta = await fetchMeta(request);
     await home(page);
     const row = await expandRow(page, 4);
@@ -288,18 +288,11 @@ test.describe("home results (D)", () => {
       const pillar = meta.features[key].pillar;
       const bar = row.locator(`[data-pillar="${pillar}"]`);
       const pillarName = meta.pillars[pillar].display_name;
-      // Phase 7 (R05): a pillar with items shows each under it, named by
-      // its chip word, and its own bar keeps its name alone
-      const item = row.locator(`[data-unit="${key}"]`);
-      if (await item.count()) {
-        await expect(item).toHaveText(chip);
-        await expect(bar).toHaveText(pillarName);
-        continue;
-      }
-      if (chip.toLowerCase() !== pillarName.toLowerCase()) {
-        await expect(bar).toContainText(`${pillarName} · `);
-        await expect(bar).toContainText(chip.toLowerCase());
-      }
+      // Nathan, 13 October 2026: each bar is named as its pillar alone.
+      // F21's chip words beside a bar ("Cost of living · rent") gave way
+      // in Phase 7 to item bars under the pillar, and those left the
+      // detail the same day; the chips still name the items
+      await expect(bar).toHaveText(pillarName);
     }
   });
 

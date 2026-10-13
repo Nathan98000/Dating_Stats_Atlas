@@ -105,7 +105,9 @@ removal — both noted here as the contract docs):
     pillar, value}]: each lifestyle item's contribution, the two price
     levels one item, so the detail can show cost of living and social life
     by item without the browser adding two contributions. No score, rank,
-    figure, band, suppression or explanation changes.
+    figure, band, suppression or explanation changes. (Since 13 October
+    2026 the detail no longer draws the items, at Nathan's request; the
+    field is still served.)
 """
 from __future__ import annotations
 

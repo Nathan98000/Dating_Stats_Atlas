@@ -50,13 +50,12 @@ const PAIRS: [string, string, string, number][] = [
   ["the 'New top three' line on paper", "ink-2", "paper", 4.5],
   ["a caution caption on the open row", "ink-2", "hover", 4.5],
   ["Compare's neutral starting-search note", "ink-2", "sunken", 4.5],
-  // Phase 7: the city page's starting-search note (R04), and an item's
-  // label and value under its pillar in "What moved the score" (R05), on
-  // the open row's or card's detail
+  // Phase 7: the city page's starting-search note (R04), and a bar's value
+  // in "What moved the score" on the open row's or card's detail (its item
+  // bars, pinned here too, left on 13 October 2026)
   ["the city page's starting-search note", "ink-2", "sunken", 4.5],
-  ["an item's label under its pillar on the open row", "ink-2", "hover", 4.5],
-  ["an item's plus value on the open row", "good-strong", "hover", 4.5],
-  ["an item's minus value on the open row", "poor-strong", "hover", 4.5],
+  ["a bar's plus value on the open row", "good-strong", "hover", 4.5],
+  ["a bar's minus value on the open row", "poor-strong", "hover", 4.5],
 ];
 
 describe("Phase 5 tokens hold their contrast", () => {

@@ -89,9 +89,7 @@ test("the expanded row: balance, compatibility, and what moved the score, every 
   await expect(detail.getByRole("link", { name: /^Open .+ →$/ })).toBeVisible();
   await expect(detail.getByTestId("match-figure")).toContainText(ps.match_unit_line);
   await expect(detail).toContainText(ps.moved_heading);
-  // the six pillars (Phase 7, R05: cost of living and social life hold
-  // their items in a list of their own)
-  await expect(detail.getByTestId("moved-bars").locator(":scope > li")).toHaveCount(6);
+  await expect(detail.getByTestId("moved-bars").locator("li")).toHaveCount(6);
   await expect(detail.getByRole("link", { name: /^Open .+ →$/ })).toBeVisible();
   // the dots (Nathan, 2026-10-10, replacing the track): ten for the other
   // sex, one for every ten of the sought sex, the last filled to the

@@ -16,7 +16,9 @@ add up to its contribution within 0.01. No variant changes it (it rides on
 the shared row). No score, rank, pool, balance, compatibility figure, band,
 suppression or explanation moves; the goldens do not record the field and
 are byte-identical; the build keeps its id (d62202fd0280) with its manifest
-refreshed for the registry's Phase 7 strings.
+refreshed for the registry's Phase 7 strings. Since 13 October 2026
+(Nathan) the home page's detail no longer draws the items; the field is
+still served, unchanged.
 
 m4.3.0 — Phase 6 (the round-3 design review of 8 October 2026, Nathan's
 decisions of 9 October). Two served additions and one display rule; no
