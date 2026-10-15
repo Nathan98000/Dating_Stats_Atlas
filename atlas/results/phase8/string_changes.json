@@ -1,0 +1,277 @@
+{
+ "phase": "Phase 8 (the round-4 review's remaining findings, Nathan's go of 15 October 2026)",
+ "registry": "atlas/pipeline/registry/features.yaml strings:, served as /v1/meta policy_strings",
+ "added": {
+  "nav_main_label": {
+   "text": "Main",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "nav_menu": {
+   "text": "Menu",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "footer_label": {
+   "text": "Footer",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "find_city": {
+   "text": "Find a city",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "skip_to_results": {
+   "text": "Skip to results",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "link_broken_title": {
+   "text": "That link didn't survive the trip",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "link_broken_body": {
+   "text": "It looks cut short or altered. Ask whoever sent it for a fresh one, or start a search of your own.",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "link_old_title": {
+   "text": "This link came from an earlier edition of the site",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "link_old_body": {
+   "text": "The way we count has been improved since it was made, and we don’t quietly swap new numbers under old links. Run the same search on the current site instead — it may rank cities differently, and that difference is real.",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "link_old_action": {
+   "text": "Run this search on the current site",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "link_start": {
+   "text": "Start a search",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sex_woman": {
+   "text": "Woman",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sex_man": {
+   "text": "Man",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sex_women": {
+   "text": "Women",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sex_men": {
+   "text": "Men",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "level_not_much": {
+   "text": "Not much",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "level_some": {
+   "text": "Some",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "level_a_lot": {
+   "text": "A lot",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "importance_group": {
+   "text": "{pillar} importance",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "slider_info_label": {
+   "text": "What the slider changes",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "marital_heading": {
+   "text": "Single means",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "marital_never": {
+   "text": "Never married",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "marital_previously": {
+   "text": "Divorced or widowed",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "education_label": {
+   "text": "Education",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "income_label": {
+   "text": "Earning at least",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "any_option": {
+   "text": "Any",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "race_heading": {
+   "text": "Race & ethnicity",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "race_include_all": {
+   "text": "Include all",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_aged": {
+   "text": "Aged",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_youngest": {
+   "text": "Youngest age",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_oldest": {
+   "text": "Oldest age",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_youngest_value": {
+   "text": "youngest age {n}",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_oldest_value": {
+   "text": "oldest age {n}",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_from": {
+   "text": "From",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "age_to": {
+   "text": "to",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sort_label": {
+   "text": "Show",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sort_best": {
+   "text": "Best first",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "sort_worst": {
+   "text": "Worst first",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "list_top_label": {
+   "text": "Cities",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "list_rest_label": {
+   "text": "More cities",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "rank_sr": {
+   "text": "Ranked {n}: ",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "error_search": {
+   "text": "that search couldn't run",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "error_unreachable": {
+   "text": "the ranking service is unreachable",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "city_card_heading": {
+   "text": "Where {city} lands for your search",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "city_rank_sr": {
+   "text": "Ranked",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "city_rank_of": {
+   "text": "of {n} metro areas",
+   "note": "DRAFT: the city card's rank line, in the code as \"of {n} cities\"; \"metro areas\" is the home page's word (R15's copy question)"
+  },
+  "balance_in_city": {
+   "text": "{balance} in {city}",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "change_search": {
+   "text": "Change your search",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "city_like_heading": {
+   "text": "What {city} is like",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "city_compare_prompt": {
+   "text": "See how {city} stacks up against a city you know",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_with_another": {
+   "text": "Compare with another city",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_cities": {
+   "text": "Compare cities",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_with_label": {
+   "text": "City to compare with",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "city_input_placeholder": {
+   "text": "Type a city name",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_heading": {
+   "text": "Compare two cities",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_first_city": {
+   "text": "First city",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_second_city": {
+   "text": "Second city",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_go": {
+   "text": "Compare these two",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_and": {
+   "text": "and",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_for": {
+   "text": "For {search}.",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_caption": {
+   "text": "{a} compared with {b}",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "compare_spot": {
+   "text": "Spot in your results",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "crime_heading": {
+   "text": "Reported crime",
+   "note": "moved from the web code, verbatim (R15)"
+  },
+  "stat_cities_by": {
+   "text": "Cities by {stat}",
+   "note": "moved from the web code, verbatim (R15)"
+  }
+ },
+ "changed": {},
+ "removed": [],
+ "not_registry": {
+  "SITE_DESCRIPTION (web/src/lib/chrome.ts)": {
+   "was": "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.",
+   "now": "the registry's home_subtitle, which the pages without a description of their own now carry (R17; it joins the chrome block)"
+  },
+  "the 404's tab title": {
+   "was": "Dating Scene Data",
+   "now": "title_template around not_found_title: \"Page not found · Dating Scene Data\" (R17)"
+  },
+  "the city card's disclosure": {
+   "now": "moved_heading (\"What moved the score (points)\"), an existing string, as its summary (R22)"
+  }
+ }
+}

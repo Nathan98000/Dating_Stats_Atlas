@@ -1,7 +1,9 @@
-// Phase 8 scratch: one photograph as the site crops it — the desk card (16:10), the phone
+// Phase 8 (R20): one photograph as the site crops it — the desk card (16:10), the phone
 // card and city band (16:7) and the link preview (1200x630) — at a focus (object-position),
 // beside the whole frame. The crop math is the review's photo_sheets.mjs's.
 //   node crops.mjs <file> <focus "X% Y%"> <out.png> [label]
+// (copy it into atlas/web/scripts first, so sharp resolves from atlas/web's packages; it wrote
+// results/phase8/screens/photos-*-crops, then converted to JPEG)
 import sharp from "sharp";
 const [file, focus = "50% 35%", out, label = ""] = process.argv.slice(2);
 const [fx, fy] = focus.split(" ").map((p) => parseFloat(p) / 100);
