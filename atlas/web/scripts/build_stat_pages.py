@@ -86,7 +86,10 @@ CHROME_KEYS = ("nav_rankings", "nav_compare", "nav_how", "footer_how", "footer_m
                # skip link and the old-link pages, which render with no API call
                "nav_main_label", "nav_menu", "footer_label", "find_city", "skip_to_results",
                "link_broken_title", "link_broken_body", "link_old_title", "link_old_body",
-               "link_old_action", "link_start")
+               "link_old_action", "link_start",
+               # Phase 8 (R17): the site's one description, the home page's
+               # subtitle, for the pages that have none of their own
+               "home_subtitle")
 
 
 def main() -> None:

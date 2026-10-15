@@ -13,9 +13,15 @@ export function pageTitle(page?: string): string {
   return page ? fill(CHROME.title_template, { page }) : CHROME.title_site;
 }
 
-/** The site's description, for pages without one of their own. */
-export const SITE_DESCRIPTION =
-  "Which city has the best dating scene for you? Estimated from the Census Bureau's own survey, city by city.";
+/** The site's description, for pages without one of their own: since
+ * Phase 8 (R17) the home page's subtitle, so the site describes itself one
+ * way everywhere (it had a second description, written here). */
+export const SITE_DESCRIPTION = CHROME.home_subtitle;
+
+/** Phase 8 (R17): a page that isn't there says so in its tab ("Page not
+ * found · Dating Scene Data"): the 404 itself, and a city, a compare pair
+ * or a stat page whose address names none. */
+export const NOT_FOUND_METADATA = { title: pageTitle(CHROME.not_found_title) };
 
 /** The site's public address, for absolute Open Graph URLs. */
 export const SITE_URL = process.env.SITE_URL ?? "https://datingscenedata.com";

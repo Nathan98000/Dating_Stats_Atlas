@@ -10,9 +10,11 @@ import type { Meta, Mover } from "@/lib/types";
  * meaning, never the colour alone. The chips are aria-hidden; the row
  * carries the served summary_line for screen readers. A row with no
  * lifestyle mover shows none. */
-export function WhyChips({ movers, meta, trailing }: {
+export function WhyChips({ movers, meta, trailing, className = "" }: {
   movers: Mover[];
   meta: Meta;
+  /** Phase 8 (R21): where a row's grid places the chips on a phone */
+  className?: string;
   /** Phase 6 (F06): a control that follows the chips on their last line,
    * pushed to its right end (the card's Details chevron), so it never
    * narrows the lines above it. With one, each chip is hidden from screen
@@ -40,14 +42,14 @@ export function WhyChips({ movers, meta, trailing }: {
   });
   if (trailing) {
     return (
-      <span className="flex flex-wrap items-center gap-1.5" data-testid="why-chips">
+      <span className={`flex flex-wrap items-center gap-1.5 ${className}`} data-testid="why-chips">
         {chips}
         <span className="ml-auto">{trailing}</span>
       </span>
     );
   }
   return (
-    <span aria-hidden="true" className="flex flex-wrap gap-1.5" data-testid="why-chips">
+    <span aria-hidden="true" className={`flex flex-wrap gap-1.5 ${className}`} data-testid="why-chips">
       {chips}
     </span>
   );

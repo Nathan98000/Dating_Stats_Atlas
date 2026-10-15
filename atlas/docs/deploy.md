@@ -197,7 +197,13 @@ Deploy, from the repository root on Nathan's Mac:
    `public/cities/w`, `public/cities/og`, `public/stats/w` and
    `public/stats/og` (`rsync -a` of the two folders carries them; run the
    script first whenever a photograph changes, and check that
-   `src/data/photo-sizes.json` is committed with it).
+   `src/data/photo-sizes.json` is committed with it). Since Phase 8 (R19)
+   the pages name only these copies, the widest at each photograph's own
+   width under 2048px, and Caddy answers 404 for the originals, which stay
+   on disk as the copies' source and the pages' "no file, no photo" check.
+   So a copy the VM lacks is a broken image: before the swap, check that
+   every file `photo-sizes.json` lists (`<group>/w/<slug>-<width>.webp`)
+   is in the new folder.
 3. The build, mounted read-only as the API's `BUILD_DIR`:
    `rsync -a atlas/data/builds/<data_version>/ dsa-oracle:/srv/atlas/build/`.
 4. On the VM: `cd /srv/atlas/src && docker compose -f atlas/deploy/oracle/compose.yaml up -d --build api web`.

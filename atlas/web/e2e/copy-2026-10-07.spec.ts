@@ -73,7 +73,8 @@ test("everyday prices shows Nathan's grocery photograph, credited in Sources and
   expect(img.license).toBe("CC0");
   expect(img.cropped).toBe(false);
   await page.goto("/stats/everyday_prices");
-  const shown = page.locator(`img[src="/stats/${img.file}"]`);
+  // Phase 8 (R19): the page shows the photograph's copies, never the original
+  const shown = page.locator('img[src^="/stats/w/everyday_prices-"]');
   if (!photoOnDisk(`stats/${img.file}`)) {
     // a checkout without the (gitignored) file, CI's: no file, no photo
     await expect(page.locator("h1")).toBeVisible();

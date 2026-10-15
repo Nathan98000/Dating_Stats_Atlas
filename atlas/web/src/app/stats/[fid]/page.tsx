@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
-import { CHROME, pageMetadata, pageTitle } from "@/lib/chrome";
+import { CHROME, NOT_FOUND_METADATA, pageMetadata, pageTitle } from "@/lib/chrome";
 import { fill } from "@/lib/results";
 import { StatList, type StatRow } from "@/components/stat-list";
 import { LeanList, type LeanRow } from "@/components/lean-list";
@@ -66,7 +66,7 @@ const IMAGES = statImages as unknown as Record<string, StatImage>;
 export async function generateMetadata({ params }: { params: Promise<{ fid: string }> }) {
   const { fid } = await params;
   const page = DATA.pages[fid];
-  if (!page) return {};
+  if (!page) return NOT_FOUND_METADATA;
   // Phase 6 (F31): the stat photograph's 1200x630 link preview
   const img = IMAGES[fid];
   const image = img && fs.existsSync(path.join(process.cwd(), "public", "stats", img.file))

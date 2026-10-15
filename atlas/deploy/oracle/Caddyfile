@@ -44,8 +44,17 @@
 		Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 		Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
 	}
-	@photos path /cities/* /stats/* /og/*
+	# Phase 8: only the image files there, by their names; /stats/* had
+	# matched the stat pages themselves, so a browser kept a page a week
+	@photos path_regexp photos ^/((cities|stats)/(w|og)|og)/[^/]+\.(webp|jpg|png)$
 	header @photos >Cache-Control "public, max-age=604800"
+	# Phase 8 (R19): the original photographs (public/cities/<slug>.jpg,
+	# public/stats/<id>.jpg, up to 4 MB) stay on disk, the copies' source and
+	# the pages' "no file, no photo" check, but no page names them: pages show
+	# the WebP copies in w/ (the widest at the photograph's own width) and
+	# link previews use og/. So they aren't served.
+	@originals path_regexp originals (?i)^/+(cities|stats)/+[^/]+\.(jpe?g|png|gif|tiff?|webp)$
+	respond @originals 404
 	reverse_proxy web:3000
 }
 

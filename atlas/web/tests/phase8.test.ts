@@ -149,3 +149,57 @@ describe("the site's Fraunces is the trimmed file (R18)", () => {
     expect(readFileSync(path.join(path.dirname(font), "OFL.txt"), "utf8")).toMatch(/SIL OPEN FONT LICENSE Version 1\.1/);
   });
 });
+
+// ---------------------------------------------------------------- C (R19)
+
+describe("no page needs an original photograph, and the server doesn't serve one (R19)", () => {
+  const sizes = JSON.parse(readFileSync(path.join(SRC, "data", "photo-sizes.json"), "utf8")) as
+    Record<string, Record<string, { width: number; height: number; widths: number[] }>>;
+
+  it("every photograph's copies reach its own width, or 2048px", () => {
+    const short = Object.entries(sizes).flatMap(([g, group]) => Object.entries(group)
+      .filter(([, s]) => !s.widths.length || Math.max(...s.widths) !== Math.min(s.width, 2048))
+      .map(([slug]) => `${g}/${slug}`));
+    expect(short).toEqual([]);
+  });
+
+  it("sized() names only the copies", async () => {
+    vi.resetModules();
+    vi.doMock("server-only", () => ({}));
+    const { sized } = await import("../src/lib/city-photos");
+    const named = Object.entries(sizes).flatMap(([g, group]) => Object.keys(group).flatMap((slug) => {
+      const s = sized(g as "cities" | "stats", slug, `${slug}.jpg`);
+      return [s.src, ...(s.srcSet ?? "").split(", ").map((c) => c.split(" ")[0])]
+        .filter((u) => u && !u.startsWith(`/${g}/w/${slug}-`));
+    }));
+    expect(named).toEqual([]);
+    vi.doUnmock("server-only");
+  });
+
+  it("Caddy's rules: originals answer 404; copies and previews, not the stat pages, are kept a week", () => {
+    const caddy = readFileSync(path.resolve(__dirname, "..", "..", "deploy", "oracle", "Caddyfile"), "utf8");
+    const rule = (name: string) => {
+      const m = caddy.match(new RegExp(`@${name} path_regexp ${name} (\\S+)`));
+      expect(m, name).not.toBeNull();
+      const src = m![1];
+      return src.startsWith("(?i)") ? new RegExp(src.slice(4), "i") : new RegExp(src);
+    };
+    expect(caddy).toMatch(/respond @originals 404/);
+    const originals = rule("originals");
+    const photos = rule("photos");
+    for (const u of ["/cities/austin-texas.jpg", "/cities/new-york-new-york.png", "/stats/rent_1br.webp",
+      "/stats/pleasant_days.jpg", "//cities/austin-texas.jpg", "/cities/AUSTIN-TEXAS.JPG"]) {
+      expect(originals.test(u), u).toBe(true);
+      expect(photos.test(u), u).toBe(false);
+    }
+    for (const u of ["/cities/w/austin-texas-720.webp", "/cities/og/austin-texas.jpg", "/stats/w/rent_1br-480.webp",
+      "/stats/og/rent_1br.jpg", "/og/home.png"]) {
+      expect(originals.test(u), u).toBe(false);
+      expect(photos.test(u), u).toBe(true);
+    }
+    for (const u of ["/stats/rent_1br", "/city/austin-texas", "/cities", "/"]) {
+      expect(originals.test(u), u).toBe(false);
+      expect(photos.test(u), u).toBe(false);
+    }
+  });
+});

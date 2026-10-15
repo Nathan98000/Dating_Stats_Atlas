@@ -6,7 +6,7 @@ import { selectVariant } from "@/lib/variants";
 import { useAboutYou } from "@/lib/use-about-you";
 import { BalanceDots } from "./balance-dots";
 import { MatchFigure } from "./match";
-import { FlagCaptions, ScoreTrack } from "./row";
+import { FlagCaptions, MovedBars, ScoreTrack } from "./row";
 import { InfoTip } from "./info-tip";
 import { effectiveSex } from "@/lib/about-you";
 import { fill } from "@/lib/results";
@@ -21,7 +21,9 @@ import { WhyChips } from "./why-chips";
  * The card reads in the order a visitor asks (Nathan, 2026-10-10, on its
  * hierarchy): where the city ranks — the ranking cards' medallion, amber for
  * the top three — then its overall score, its label before it, on its track,
- * then why (the chips). Past a hairline come the people numbers: the two the
+ * then why (the chips), and since Phase 8 (R22) what moved the score, as a
+ * row's detail shows it, closed until asked for so the order holds. Past a
+ * hairline come the people numbers: the two the
  * score counts (matches, then compatibility), each label, figure, unit, and
  * last balance, which is shown and never scored. From 768px the verdict and
  * the people sit side by side; one column below. */
@@ -95,6 +97,18 @@ export function CityVariantPart({
                 medianCaption={policy.score_median_caption} />
             </div>
             <WhyChips movers={ranked.lifestyle_movers} meta={meta} />
+            <details className="group max-w-[420px]" data-testid="city-moved">
+              <summary className="-my-2.5 flex min-h-11 w-fit cursor-pointer list-none items-center gap-1.5 text-body-sm font-semibold text-accent hover:text-accent-hover [&::-webkit-details-marker]:hidden">
+                {policy.moved_heading}
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none"
+                  stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="group-open:rotate-180">
+                  <path d="M4 6l4 4 4-4" />
+                </svg>
+              </summary>
+              <div className="pt-4">
+                <MovedBars contributions={ranked.contributions} meta={meta} />
+              </div>
+            </details>
           </div>
           {/* the people: matches and compatibility, then balance */}
           <div className="flex flex-col gap-4 border-t border-rule pt-5 md:border-l md:border-t-0 md:pl-8 md:pt-0"

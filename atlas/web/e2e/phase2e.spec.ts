@@ -80,11 +80,15 @@ test("a photographed city shows its photo, credited in About us; others fall bac
     // credit, with a licence-deed link and a source link, is in About us,
     // Sources and credits; real alt text (never "photo of X")
     await expect(photo.locator("figcaption")).toHaveCount(0);
-    const file = ((await photo.locator("img").getAttribute("src")) ?? "").split("/").pop()!;
+    // Phase 8 (R19): the image is one of the photograph's copies
+    // (/cities/w/<slug>-<width>.webp); its credit names the original file
+    const src = (await photo.locator("img").getAttribute("src")) ?? "";
+    const slug = src.match(/^\/cities\/w\/(.+)-\d+\.webp$/)?.[1];
+    expect(slug, src).toBeTruthy();
     const alt = await photo.locator("img").getAttribute("alt");
     expect(alt ?? "").not.toMatch(/^photo of/i);
     await page.goto("/about");
-    const credit = page.locator(`[data-credit="${file}"]`);
+    const credit = page.locator(`[data-credit^="${slug}."]`);
     await expect(credit).toHaveCount(1);
     // the city and stat photographs sit in the collapsible list
     await page.getByTestId("credits-photos-more").locator("summary").click();

@@ -3,7 +3,9 @@
 // For every photograph the manifests list and the disk holds (src/data/city-images.json
 // -> public/cities/, src/data/stat-images.json -> public/stats/), write:
 //   - WebP copies at quality 72, at widths 480, 720, 1080, 1600 and 2048, skipping any
-//     wider than the original: public/{cities,stats}/w/<slug>-<w>.webp;
+//     wider than the original, and (Phase 8, R19) one at the original's own width when it
+//     is narrower than 2048 and not one of those, so a page never needs the original,
+//     which the server no longer serves: public/{cities,stats}/w/<slug>-<w>.webp;
 //   - a 1200x630 JPEG link preview at quality 80, cover-cropped at the photo's focal
 //     point (the manifest's `focus`, an object-position value; default "50% 35%"):
 //     public/{cities,stats}/og/<slug>.jpg;
@@ -69,6 +71,7 @@ for (const g of GROUPS) {
     const W = turned ? md.height : md.width;
     const H = turned ? md.width : md.height;
     const widths = WIDTHS.filter((w) => w <= W);
+    if (W < Math.max(...WIDTHS) && !widths.includes(W)) widths.push(W);
     for (const w of widths) {
       await sharp(buf).rotate().resize({ width: w }).webp({ quality: 72 })
         .toFile(path.join(WEB, g.dir, "w", `${slug}-${w}.webp`));

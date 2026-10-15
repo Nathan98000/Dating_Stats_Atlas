@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
-import { CHROME } from "@/lib/chrome";
+import { CHROME, NOT_FOUND_METADATA } from "@/lib/chrome";
+
+export const metadata: Metadata = NOT_FOUND_METADATA;
 
 /** Phase 5: the 404 has the site's header, footer and main landmark, so
  * the skip link has a target here too. */

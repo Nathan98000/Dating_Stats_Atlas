@@ -204,7 +204,11 @@ export function FeaturedCard({
  * detail (a click on the row's empty space does too). Column labels sit
  * once above the list, so "Overall score" no longer repeats here. On a
  * phone the pool moves under the city's name and the score sits top
- * right. */
+ * right, its chevron under it. Phase 8 (R21): on a phone the chevron sits
+ * on the pool's line and the chips run under the score's column too, so
+ * three chips fit on one line where the name's column alone held two, and
+ * nine rows in ten keep one height (125px at 390, where two in three had
+ * been 155px). */
 export function ResultRow({
   row,
   meta,
@@ -236,25 +240,29 @@ export function ResultRow({
     >
       <div
         className="grid cursor-pointer grid-cols-[32px_1fr_74px] items-center gap-x-2.5 px-1 py-3.5 hover:bg-hover sm:grid-cols-[40px_1fr_112px_104px_18px] sm:gap-x-3.5 sm:px-4"
+        data-testid="row-grid"
         onClick={(e) => {
           // a click on the row's empty space toggles it; links and
           // buttons keep their own job
           if (!(e.target as HTMLElement).closest("a,button")) onToggle();
         }}
       >
-        <span aria-hidden="true" className="font-display text-h3 text-ink-2">{row.rank}</span>
-        <div className="flex min-w-0 flex-col gap-1.5">
-          <h3 className="text-title">
+        <span aria-hidden="true" className="font-display text-h3 text-ink-2 max-sm:row-span-3">{row.rank}</span>
+        {/* on a phone this column's parts take their own places in the
+            row's grid (Phase 8, R21) */}
+        <div className="flex min-w-0 flex-col gap-1.5 max-sm:contents">
+          <h3 className="text-title max-sm:col-start-2 max-sm:row-start-1 max-sm:min-w-0">
             <span className="sr-only">{fill(meta.policy_strings.rank_sr, { n: row.rank })}</span>
             <Link href={href} className="hover:text-accent-hover hover:underline max-desk:flex max-desk:min-h-11 max-desk:items-center">
               {row.display_name}
             </Link>
           </h3>
           {/* Phase 6 (F21): "783,728 matches", as the cards say */}
-          <p className="-mt-0.5 text-caption text-ink-3 sm:hidden">
+          <p className="mt-1 text-caption text-ink-3 sm:hidden max-sm:col-start-2 max-sm:row-start-2">
             {pool} {fill(s.pool_short_unit, { sought })}
           </p>
-          <WhyChips movers={row.lifestyle_movers} meta={meta} />
+          <WhyChips movers={row.lifestyle_movers} meta={meta}
+            className="max-sm:col-span-2 max-sm:col-start-2 max-sm:row-start-3 max-sm:mt-1.5" />
           <span className="sr-only">{row.summary_line}</span>
         </div>
         <p className="flex flex-col items-end text-right max-sm:hidden">
@@ -263,7 +271,7 @@ export function ResultRow({
             {fill(s.pool_row_unit, { sought })}
           </span>
         </p>
-        <div className="flex flex-col items-end gap-1.5 max-sm:row-span-2 max-sm:self-start">
+        <div className="flex flex-col items-end gap-1.5 max-sm:col-start-3 max-sm:row-start-1 max-sm:self-start">
           {/* Phase 7 (R09): "/100" after the score, as the cards show it
               (hidden from screen readers, which hear "out of 100") */}
           <p className="flex items-baseline gap-0.5" data-testid="row-score">
@@ -271,9 +279,9 @@ export function ResultRow({
             <span aria-hidden="true" className="text-caption text-ink-3" data-testid="score-out-of">{s.score_out_of}</span>
           </p>
           <ScoreTrack score={row.score} className="h-1 w-16 sm:w-24" />
-          <ToggleButton open={open} detailId={detailId} label={fill(s.row_details, { city: row.display_name })}
-            onToggle={onToggle} className="mt-1 sm:hidden" />
         </div>
+        <ToggleButton open={open} detailId={detailId} label={fill(s.row_details, { city: row.display_name })}
+          onToggle={onToggle} className="sm:hidden max-sm:col-start-3 max-sm:row-start-2 max-sm:justify-self-end" />
         <ToggleButton open={open} detailId={detailId} label={fill(s.row_details, { city: row.display_name })}
           onToggle={onToggle} className="max-sm:hidden" />
       </div>
@@ -356,13 +364,6 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
   variant?: "row" | "panel" | "inline"; testid?: string;
 }) {
   const s = meta.policy_strings;
-  const label = (pillar: string) =>
-    pillar === "pool" ? meta.features.pool_size.chip_label
-    : pillar === "match" ? meta.features.match_propensity.chip_label
-    : meta.pillars[pillar]?.display_name ?? pillar;
-  const parts = row.contributions
-    .filter((c): c is { pillar: string; value: number } => c.value != null)
-    .sort((a, b) => b.value - a.value);
   const city = row.display_name.split(",")[0];
   const match = row.match;
   const frame = variant === "panel"
@@ -405,32 +406,7 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
           className={two
             ? "border-t border-rule pt-3.5 sm:col-start-2 sm:row-span-2 sm:row-start-1 sm:border-l sm:border-t-0 sm:pl-7 sm:pt-0"
             : "border-t border-rule pt-3.5"}>
-          <p className="-mt-1 mb-3 text-overline font-normal tracking-normal text-ink-3" data-testid="moved-caption">
-            {s.moved_caption}
-          </p>
-          <ul className="flex flex-col gap-2" data-testid="moved-bars">
-            {parts.map((c) => {
-              const bar = divergingBar(c.value);
-              const plus = c.value >= 0;
-              return (
-                <li key={c.pillar} className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_44px] items-center gap-2.5 text-caption">
-                  <span className="leading-tight text-ink-2" data-pillar={c.pillar}>
-                    {label(c.pillar)}
-                  </span>
-                  <span aria-hidden="true" className="relative h-2.5">
-                    <span className="absolute -inset-y-[3px] left-1/2 w-px bg-line-strong" />
-                    <span
-                      className={`absolute top-px h-2 rounded-xs ${plus ? "bg-good" : "bg-poor"}`}
-                      style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
-                    />
-                  </span>
-                  <span className={`text-right font-semibold tabular-nums ${plus ? "text-good-strong" : "text-poor-strong"}`}>
-                    {signedPoints(c.value)}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+          <MovedBars contributions={row.contributions} meta={meta} captionClassName="-mt-1" />
         </Section>
       </div>
       <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -444,6 +420,54 @@ export function RowDetail({ id, row, meta, href, onCompare, variant = "row",
           </button>
       </p>
     </div>
+  );
+}
+
+/** What moved the score: the served pillar contributions as diverging
+ * bars, ±25 points to the edge, sorted, each pillar named as the pillar
+ * and its served points beside it, under the caption saying what they are
+ * measured against. A row's detail shows it and, since Phase 8 (R22), the
+ * city page's card, behind its own disclosure. */
+export function MovedBars({ contributions, meta, captionClassName = "" }: {
+  contributions: RankedRow["contributions"]; meta: Meta; captionClassName?: string;
+}) {
+  const s = meta.policy_strings;
+  const label = (pillar: string) =>
+    pillar === "pool" ? meta.features.pool_size.chip_label
+    : pillar === "match" ? meta.features.match_propensity.chip_label
+    : meta.pillars[pillar]?.display_name ?? pillar;
+  const parts = contributions
+    .filter((c): c is { pillar: string; value: number } => c.value != null)
+    .sort((a, b) => b.value - a.value);
+  return (
+    <>
+      <p className={`mb-3 text-overline font-normal tracking-normal text-ink-3 ${captionClassName}`} data-testid="moved-caption">
+        {s.moved_caption}
+      </p>
+      <ul className="flex flex-col gap-2" data-testid="moved-bars">
+        {parts.map((c) => {
+          const bar = divergingBar(c.value);
+          const plus = c.value >= 0;
+          return (
+            <li key={c.pillar} className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)_44px] items-center gap-2.5 text-caption">
+              <span className="leading-tight text-ink-2" data-pillar={c.pillar}>
+                {label(c.pillar)}
+              </span>
+              <span aria-hidden="true" className="relative h-2.5">
+                <span className="absolute -inset-y-[3px] left-1/2 w-px bg-line-strong" />
+                <span
+                  className={`absolute top-px h-2 rounded-xs ${plus ? "bg-good" : "bg-poor"}`}
+                  style={{ left: `${bar.left * 100}%`, width: `${bar.width * 100}%` }}
+                />
+              </span>
+              <span className={`text-right font-semibold tabular-nums ${plus ? "text-good-strong" : "text-poor-strong"}`}>
+                {signedPoints(c.value)}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 

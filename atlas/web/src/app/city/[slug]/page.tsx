@@ -22,7 +22,7 @@ import { CompareLauncher } from "@/components/compare-launcher";
 import { CrimeCards } from "@/components/crime-cards";
 import { PoliticalLeanCard } from "@/components/political-lean";
 import { toneSeg, toneText } from "@/lib/tones";
-import { pageMetadata, pageTitle } from "@/lib/chrome";
+import { NOT_FOUND_METADATA, pageMetadata, pageTitle } from "@/lib/chrome";
 import { IMAGES, ogImage, onDisk } from "@/lib/city-photos";
 import type { Card } from "@/lib/types";
 
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const meta = await apiMeta();
   const metro = meta.metros.find((m) => m.slug === slug);
-  if (!metro) return {};
+  if (!metro) return NOT_FOUND_METADATA;
   // Phase 6 (F31): the 1200x630 link preview cropped from the photograph
   const img = IMAGES[slug];
   const image = img && onDisk(img) ? ogImage("cities", slug) ?? undefined : undefined;

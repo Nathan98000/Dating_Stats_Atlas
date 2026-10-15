@@ -16,7 +16,8 @@ import { CompareVariantRows } from "@/components/compare-variant";
 import { DiffCell, edgeOf, Row, ValueCell } from "@/components/compare-cells";
 import { PoliticalLeanCell } from "@/components/political-lean";
 import { toneText } from "@/lib/tones";
-import { CHROME, pageMetadata, pageTitle } from "@/lib/chrome";
+import { CHROME, NOT_FOUND_METADATA, pageMetadata, pageTitle } from "@/lib/chrome";
+import { IMAGES, ogImage, onDisk } from "@/lib/city-photos";
 import { fill } from "@/lib/results";
 import { sliceVariants } from "@/lib/variants";
 import type { BaseRow, BaseSuppressedRow, Card } from "@/lib/types";
@@ -28,10 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ a: string
   const meta = await apiMeta();
   const mA = meta.metros.find((m) => m.slug === a);
   const mB = meta.metros.find((m) => m.slug === b);
-  if (!mA || !mB) return {};
+  if (!mA || !mB) return NOT_FOUND_METADATA;
+  // Phase 8 (R17): a pair's link preview is the first city's, as its own
+  // page shows it (Phase 6, F31)
+  const img = IMAGES[a];
+  const image = img && onDisk(img) ? ogImage("cities", a) ?? undefined : undefined;
   return pageMetadata(
     pageTitle(fill(CHROME.title_compare_pair, { a: mA.display_name, b: mB.display_name })),
-    meta.policy_strings.compare_page_subtitle, `/compare/${a}/${b}`);
+    meta.policy_strings.compare_page_subtitle, `/compare/${a}/${b}`, image);
 }
 
 /** Two cities side by side, from ONE rank response so both sit under the

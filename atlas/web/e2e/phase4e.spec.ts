@@ -65,7 +65,8 @@ for (const fid of ["who_lives_here", "political_lean"]) {
     expect(img, fid).toBeTruthy();
     expect(img.cropped).toBe(false);       // the stat page scales, never crops
     await page.goto(`/stats/${fid}`);
-    const shown = page.locator(`img[src="/stats/${img.file}"]`);
+    // Phase 8 (R19): the page shows the photograph's copies, never the original
+    const shown = page.locator(`img[src^="/stats/w/${fid}-"]`);
     if (!photoOnDisk(`stats/${img.file}`)) {
       // a checkout without the (gitignored) file, CI's: no file, no photo,
       // and no credit for it

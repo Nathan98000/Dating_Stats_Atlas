@@ -133,3 +133,120 @@ test.describe("lighter pages: the phone's photographs and the site's font (R18)"
     expect(standIn).toBe("115.45%");
   });
 });
+
+// ---------------------------------------------------------------- C (R17)
+
+test.describe("link previews and tabs (R17)", () => {
+  test("a page that isn't there says so in its tab, whichever address", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    const title = fill(ps.title_template, { page: ps.not_found_title });
+    for (const u of ["/no-such-page", "/city/no-such-city", "/compare/austin-texas/no-such-city", "/stats/no_such_stat"]) {
+      const res = await page.goto(u);
+      expect(res?.status(), u).toBe(404);
+      await expect(page, u).toHaveTitle(title);
+    }
+  });
+
+  test("the pages without a description of their own carry the home page's subtitle", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    for (const u of ["/about", "/privacy", "/terms", "/what-we-measure", "/no-such-page"]) {
+      await page.goto(u);
+      await expect(page.locator('meta[name="description"]'), u).toHaveAttribute("content", ps.home_subtitle);
+    }
+  });
+
+  test("a compare pair's link preview is the first city's", async ({ page }) => {
+    test.skip(!photoOnDisk("cities/austin-texas.jpg"), "no photographs on this checkout");
+    await page.goto("/compare/austin-texas/san-jose-california");
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/cities\/og\/austin-texas\.jpg$/);
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
+  });
+});
+
+// ---------------------------------------------------------------- C (R19)
+
+test("no page names an original photograph, only its copies (R19)", async ({ browser }) => {
+  test.skip(!photoOnDisk("cities/austin-texas.jpg"), "no photographs on this checkout");
+  for (const [w, scale] of [[1440, 2], [390, 3]] as const) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: scale });
+    const page = await ctx.newPage();
+    const asked: string[] = [];
+    page.on("request", (r) => {
+      const u = new URL(r.url()).pathname;
+      if (/^\/(cities|stats)\/[^/]+\.(jpe?g|png|webp)$/i.test(u)) asked.push(u);
+    });
+    for (const u of ["/", "/city/austin-texas", "/stats/rent_1br", "/about"]) {
+      await page.goto(u);
+      await page.waitForLoadState("networkidle");
+      const html = await page.content();
+      expect(html.match(/\/(cities|stats)\/[^/"'\s?,]+\.(jpe?g|png|webp)\b/gi) ?? [], `${u} at ${w}`).toEqual([]);
+    }
+    expect(asked).toEqual([]);
+    await ctx.close();
+  }
+});
+
+// ---------------------------------------------------------------- C (R21)
+
+test("390: a row's chips run under the score too; its chevron sits under the score, on the pool's line (R21)", async ({ browser }) => {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
+  const page = await ctx.newPage();
+  await home(page);
+  const rows = page.locator('ol[aria-label] > li[data-rank]').filter({ has: page.getByTestId("row-grid") });
+  const n = Math.min(await rows.count(), 12);
+  expect(n).toBeGreaterThan(0);
+  for (let i = 0; i < n; i++) {
+    const g = await rows.nth(i).evaluate((li) => {
+      const r = (e: Element | null) => e?.getBoundingClientRect() ?? null;
+      const btn = [...li.querySelectorAll<HTMLElement>('[data-testid="row-toggle"]')].find((b) => b.offsetParent !== null)!;
+      return { li: r(li)!, h3: r(li.querySelector("h3"))!, chips: r(li.querySelector('[data-testid="why-chips"]')),
+        score: r(li.querySelector('[data-testid="row-score"]'))!, pool: r(li.querySelector("h3 + p"))!, btn: r(btn)! };
+    });
+    if (g.chips) {
+      // the chips' line starts under the name and ends under the score
+      expect(Math.round(g.chips.left)).toBe(Math.round(g.h3.left));
+      expect(g.chips.right).toBeGreaterThan(g.score.left);
+      expect(g.chips.top).toBeGreaterThan(g.pool.bottom - 1);
+    }
+    // the chevron: in the score's column, level with the pool line
+    const mid = (b: DOMRect) => (b.top + b.bottom) / 2;
+    expect(Math.abs(mid(g.btn) - mid(g.pool))).toBeLessThan(4);
+    expect(g.btn.right).toBeGreaterThan(g.score.left);
+  }
+  // a click on it still opens the row
+  const first = rows.first();
+  await first.getByRole("button", { name: /^Details for/ }).click();
+  await expect(first.getByTestId("row-detail")).toBeVisible();
+  await ctx.close();
+});
+
+// ---------------------------------------------------------------- C (R22)
+
+test.describe("the city card's What moved the score (R22)", () => {
+  for (const size of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    test(`${size.width}: closed until asked; open, the same bars as the home row's detail`, async ({ page, request }) => {
+      const ps = (await fetchMeta(request)).policy_strings;
+      await page.setViewportSize(size);
+      await home(page);
+      // the home row's detail for a city in the list, its bars as text
+      const row = await expandRow(page, 4);
+      const slug = await row.getAttribute("data-slug");
+      const homeBars = await row.getByTestId("moved-bars").locator("li").allInnerTexts();
+      await page.goto(`/city/${slug}`);
+      const det = page.getByTestId("city-moved");
+      await expect(det).not.toHaveAttribute("open", "");
+      await expect(det.getByTestId("moved-bars")).toBeHidden();
+      const summary = det.locator("summary");
+      await expect(summary).toHaveText(ps.moved_heading);
+      await summary.click();
+      await expect(det.getByTestId("moved-bars")).toBeVisible();
+      await expect(det.getByTestId("moved-caption")).toHaveText(ps.moved_caption);
+      const norm = (xs: string[]) => xs.map((x) => x.replace(/\s+/g, " ").trim());
+      expect(norm(await det.getByTestId("moved-bars").locator("li").allInnerTexts())).toEqual(norm(homeBars));
+      // the keyboard closes it again
+      await summary.focus();
+      await page.keyboard.press("Enter");
+      await expect(det.getByTestId("moved-bars")).toBeHidden();
+    });
+  }
+});

@@ -63,9 +63,14 @@ const SIZES = photoSizes as unknown as Record<string, Record<string, PhotoSize>>
 export const DEFAULT_FOCUS = "50% 35%";
 
 /** The <img> attributes that deliver a photograph at the size it is shown:
- * the original as src, the WebP copies as srcset, and its natural width
- * and height. A slug missing from photo-sizes.json renders as before (the
- * original alone): the CI case, where there are no photographs. */
+ * the WebP copies as srcset, and its natural width and height. Since Phase 8
+ * (R19) a page never names the original, which the server doesn't serve:
+ * the widest copy is the photograph's own width when it is under 2048px
+ * (scripts/photo_sizes.mjs), where the original itself was the top
+ * candidate, so a wide screen still never gets less than the photograph
+ * has; src, for a browser without srcset, is the widest copy up to 1080px.
+ * A slug missing from photo-sizes.json renders as before (the original
+ * alone): the CI case, where there are no photographs. */
 export interface Sized {
   src: string;
   srcSet?: string;
@@ -73,16 +78,16 @@ export interface Sized {
   height?: number;
 }
 export function sized(group: "cities" | "stats", slug: string, file: string): Sized {
-  const src = `/${group}/${file}`;
   const s = SIZES[group]?.[slug];
-  if (!s) return { src };
-  // an original narrower than the largest copy (2048) and wider than its
-  // own largest copy is itself the top candidate, so a wide screen never
-  // gets less than the photograph has
-  const cands = s.widths.map((w) => `/${group}/w/${slug}-${w}.webp ${w}w`);
-  if (s.width > Math.max(0, ...s.widths) && s.width < 2048) cands.push(`${src} ${s.width}w`);
-  const srcSet = s.widths.length ? cands.join(", ") : undefined;
-  return { src, srcSet, width: s.width, height: s.height };
+  if (!s || !s.widths.length) return { src: `/${group}/${file}` };
+  const copy = (w: number) => `/${group}/w/${slug}-${w}.webp`;
+  const fallback = Math.max(...s.widths.filter((w) => w <= 1080), Math.min(...s.widths));
+  return {
+    src: copy(fallback),
+    srcSet: s.widths.map((w) => `${copy(w)} ${w}w`).join(", "),
+    width: s.width,
+    height: s.height,
+  };
 }
 
 /** The 1200x630 link-preview crop photo_sizes.mjs wrote, if it did. */
