@@ -1,7 +1,7 @@
 {
  "photos_in_use": 376,
  "by_licence": {
-  "CC BY 2.0": 41,
+  "CC BY 2.0": 40,
   "CC BY 2.5": 2,
   "CC BY 3.0": 14,
   "CC BY 3.0 us": 1,
@@ -11,7 +11,7 @@
   "CC BY-SA 2.0": 18,
   "CC BY-SA 2.5": 6,
   "CC BY-SA 3.0": 55,
-  "CC BY-SA 4.0": 106,
+  "CC BY-SA 4.0": 107,
   "CC0": 32,
   "Free Art License": 1,
   "Public Domain": 1,
@@ -388,9 +388,9 @@
   "yuma-arizona"
  ],
  "cc_before_4_0": {
-  "count": 139,
+  "count": 138,
   "by_licence": {
-   "CC BY 2.0": 41,
+   "CC BY 2.0": 40,
    "CC BY 2.5": 2,
    "CC BY 3.0": 14,
    "CC BY 3.0 us": 1,
@@ -889,7 +889,7 @@
    {
     "page": "city",
     "key": "reno-nevada",
-    "license": "CC BY 2.0"
+    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -1065,11 +1065,6 @@
     "page": "city",
     "key": "wilmington-north-carolina",
     "license": "CC BY-SA 3.0"
-   },
-   {
-    "page": "city",
-    "key": "york-pennsylvania",
-    "license": "CC BY-SA 2.0"
    },
    {
     "page": "city",
@@ -1692,11 +1687,11 @@
   {
    "page": "city",
    "key": "charleston-south-carolina",
-   "title": "Rainbow Row Charleston July 2024 2",
-   "author": "Thomson200",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+   "title": "Rainbow Row, South of Broad, Charleston, SC (49477988853)",
+   "author": "Warren LeMay from Covington, KY, United States",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row,_South_of_Broad,_Charleston,_SC_(49477988853).jpg",
    "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
    "cropped": true
   },
   {
@@ -3832,11 +3827,11 @@
   {
    "page": "city",
    "key": "reno-nevada",
-   "title": "Reno, Nevada (16931715632)",
-   "author": "Trevor Bexon",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Reno,_Nevada_(16931715632).jpg",
-   "license": "CC BY 2.0",
-   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "title": "View of Reno, Nevada from Juniper Ridge (20720895303)",
+   "author": "Ken Lund from Reno, Nevada, USA",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Reno,_Nevada_from_Juniper_Ridge_(20720895303).jpg",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
    "cropped": true
   },
   {
@@ -4742,11 +4737,11 @@
   {
    "page": "city",
    "key": "york-pennsylvania",
-   "title": "York, Pennsylvania (65)",
-   "author": "Doug Kerr from Albany, NY, United States",
-   "source_url": "https://commons.wikimedia.org/wiki/File:York,_Pennsylvania_(65).jpg",
-   "license": "CC BY-SA 2.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "title": "York Central Market House PA1",
+   "author": "Acroterion",
+   "source_url": "https://commons.wikimedia.org/wiki/File:York_Central_Market_House_PA1.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
    "cropped": true
   },
   {

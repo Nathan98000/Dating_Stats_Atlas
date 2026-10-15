@@ -667,25 +667,6 @@
   {
    "date": "2026-10-08",
    "page": "city",
-   "key": "charleston-south-carolina",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Rainbow Row is Charleston's most recognised street scene; colourful even under a white-grey sky, and the houses fill the middle of the frame so the 16:10 and 16:7 centre crops keep them (parked cars along the kerb are noticeable, not dominant). Revisited under the any-licence brief: kept, because it is as representative as the best alternatives and is CC0. The current photo (East Battery mansions) is less iconic and has cars in the foreground. Blue-sky alternative of the same subject if wanted: File:Charleston 2.jpg (Rainbow Row, CC BY-SA 4.0, Morten Haan, 4032x3024; downloaded as charleston-south-carolina_x_rejected2.jpg).",
-   "was": NaN,
-   "title": "Rainbow Row Charleston July 2024 2",
-   "author": "Thomson200",
-   "license": "CC0",
-   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
-   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Rainbow_Row_Charleston_July_2024_2.jpg/1920px-Rainbow_Row_Charleston_July_2024_2.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "sha256": "fa49369e584fd56a95324adf33badb5c82764b6ed97d7ba728fc11ed04caeb2a",
-   "alt": "Pastel pink, lavender and green historic row houses with palmetto trees along Rainbow Row in Charleston.",
-   "licence_evidence": [
-    "as the source states it: CC0",
-    "Nathan, 2026-10-08: assume he gets licence permission"
-   ]
-  },
-  {
-   "date": "2026-10-08",
-   "page": "city",
    "key": "charlotte-north-carolina",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. A clear, ground-level skyline on a bright spring morning with green trees in front: instantly reads as Charlotte. CC0 (Flickr, reviewed). 4217x2433, so the 16:10 card loses little; the 16:7 band trims the crown of the tallest tower slightly. Freeway overpasses sit in the middle ground but cars are few and small.",
    "was": NaN,
@@ -2435,6 +2416,63 @@
     "as the file's Commons page states it (its licence section, read 2026-10-13): CC BY 2.0, by Allie_Caulfield"
    ],
    "checked": "the basilica's facade and towers, palms, office towers either side; no person as the subject (a few small figures on the steps); no sculpture or mural; no prominent logo (a row of newspaper boxes and three parked cars along the bottom edge, outside the 16:7 band's crop and small on the 16:10 card)"
+  },
+  {
+   "date": "2026-10-15",
+   "page": "city",
+   "key": "charleston-south-carolina",
+   "why": "Phase 8 (the round-4 review of 12 October 2026, R20; Nathan's go of 15 October 2026): Charleston without parked cars across the foreground (the round-4 review's R20: Rainbow Row behind parked cars, an SUV foremost). Rainbow Row is Charleston's most recognised street, and every view of it found has cars at the curb; this one, under a clear October sky, puts them along the bottom edge, so at 50% 15% the band and the link preview show none and the card the top of one. 3642px wide; the 1920px rendition applied.",
+   "was": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+   "title": "Rainbow Row, South of Broad, Charleston, SC (49477988853)",
+   "author": "Warren LeMay from Covington, KY, United States",
+   "license": "CC0",
+   "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row,_South_of_Broad,_Charleston,_SC_(49477988853).jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Rainbow_Row%2C_South_of_Broad%2C_Charleston%2C_SC_%2849477988853%29.jpg/1920px-Rainbow_Row%2C_South_of_Broad%2C_Charleston%2C_SC_%2849477988853%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "c2370ba320a43c4c941c523496d2669bcbcc75e3c7d2c02f7327ecc71f88c74b",
+   "alt": "Rainbow Row in Charleston: a pink three-storey house with black shutters and a small iron balcony, then lavender and green houses among palmetto trees, under a blue sky.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-15): CC0, by Warren LeMay from Covington, KY, United States"
+   ],
+   "checked": "the pink, lavender and green houses of Rainbow Row, palmettos, a street lamp; no person; no sculpture or mural; no logo or sign of note; parked cars along the bottom edge (a black SUV, two sedans), outside the band's and the link preview's crops at 50% 15% and the top of one on the 16:10 card"
+  },
+  {
+   "date": "2026-10-15",
+   "page": "city",
+   "key": "reno-nevada",
+   "why": "Phase 8 (the round-4 review of 12 October 2026, R20; Nathan's go of 15 October 2026): Reno at the city band's width (the round-4 review's R20: the photograph, the skyline at golden hour, is 900px wide, upscaled in the band since round 3; Commons holds nothing larger of it). The same view of downtown's towers under the hills, from Juniper Ridge on a June evening in daylight, 4000px wide, the 1920px rendition applied; the default focus keeps the towers in every crop.",
+   "was": "https://commons.wikimedia.org/wiki/File:Reno,_Nevada_(16931715632).jpg",
+   "title": "View of Reno, Nevada from Juniper Ridge (20720895303)",
+   "author": "Ken Lund from Reno, Nevada, USA",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Reno,_Nevada_from_Juniper_Ridge_(20720895303).jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/View_of_Reno%2C_Nevada_from_Juniper_Ridge_%2820720895303%29.jpg/1920px-View_of_Reno%2C_Nevada_from_Juniper_Ridge_%2820720895303%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "a45581a19496f3e08a5be4ab832de56a5233936c34c800ea897c5b7fb831d684",
+   "alt": "Downtown Reno's casino and hotel towers above a broad canopy of green trees, with brown hills and mountains behind.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-15): CC BY-SA 2.0, by Ken Lund from Reno, Nevada, USA"
+   ],
+   "checked": "downtown's towers, the hills and mountains behind, trees in front; no person; no sculpture or mural; the casinos' names on their towers small, as in any view of Reno's skyline, none as the subject"
+  },
+  {
+   "date": "2026-10-15",
+   "page": "city",
+   "key": "york-pennsylvania",
+   "why": "Phase 8 (the round-4 review of 12 October 2026, R20; Nathan's go of 15 October 2026): York at the city band's width (the round-4 review's R20: the photograph, a blossoming downtown street, is 1024px wide, upscaled in the 1,056px band; Commons holds nothing larger of it). The Central Market House (on the National Register of Historic Places, as its file page notes) is downtown York's best-known building; June 2022, 5540px wide, the 1920px rendition applied. At 50% 20% the band and the link preview show the building without the cars parked at its curb.",
+   "was": "https://commons.wikimedia.org/wiki/File:York,_Pennsylvania_(65).jpg",
+   "title": "York Central Market House PA1",
+   "author": "Acroterion",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:York_Central_Market_House_PA1.jpg",
+   "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/York_Central_Market_House_PA1.jpg/1920px-York_Central_Market_House_PA1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "sha256": "f00c874c75dbcaeed8b1eb83d351ded0e34076a831c363aa6106ae6bddb3b3ae",
+   "alt": "York's Central Market House, a red-brick market hall with two slate-roofed towers, a central gable and green arched doors, under a cloud-streaked sky.",
+   "licence_evidence": [
+    "as the file's Commons page states it (its licence section, read 2026-10-15): CC BY-SA 4.0, by Acroterion"
+   ],
+   "checked": "the market house's brick front, towers and doors, row houses either side; one small figure at a door, none as the subject; no sculpture or mural; its own name in small letters over the doors, no logo; cars parked along the bottom edge, outside the band's and the link preview's crops at 50% 20%, small on the 16:10 card"
   }
  ],
  "alt_overrides": [
@@ -2740,12 +2778,6 @@
   },
   {
    "page": "city",
-   "key": "reno-nevada",
-   "alt": "Downtown Reno's towers glowing in golden-hour light beneath snow-capped mountains, seen across a sagebrush hillside.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. The current photo (Trevor Bexon, CC BY 2.0) is the most attractive representative view on Commons: downtown Reno's casino towers in golden-hour light with snow-capped Sierra peaks behind and sagebrush in front. CAVEAT: the file is only 900x600 px - fine for a card, soft in a full-width 16:7 band; a larger copy may exist on the photographer's Flickr page (photo 16931715632). Alternatives checked: the Reno Arch in daylight (e.g. Reno Arch - 2021-10-17 - Sarah Stierch.jpg, CC BY 4.0, 4032 px) is iconic but a sign-dominated close-up; other skyline shots are distant."
-  },
-  {
-   "page": "city",
    "key": "richmond-virginia",
    "alt": "Downtown Richmond's office towers rise above trees and old brick buildings under a clear blue sky.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Downtown skyline over the riverside parkland in clear summer daylight; sharp, and crops cleanly to 16:10 and 16:7."
@@ -2863,12 +2895,6 @@
    "key": "yakima-washington",
    "alt": "Downtown Yakima's low-rise blocks spread across the valley floor, with brown ridges on the horizon under a cloudy sky.",
    "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Current photo is a sharp, high oblique view over downtown Yakima toward the valley's ridges, with a horizon and sky, so it reads as a skyline rather than a map. Commons has no better ground-level Yakima view (its downtown shots are 1980s snaps, street corners or low-resolution), and Unsplash has nothing usable. Weakness: roofs and a couple of parking lots fill the lower part."
-  },
-  {
-   "page": "city",
-   "key": "york-pennsylvania",
-   "alt": "White spring blossoms arch over a quiet downtown York street beside a columned civic building and historic brick buildings.",
-   "why": "After the Phase 5 report (Nathan, 2026-10-08): the most representative photograph of each city for its home-page card. Downtown York in spring: flowering pear trees over the street, a columned civic building and a brick high-rise (apparently the York County Courthouse and the Yorktowne Hotel), daylight, almost no traffic; the most attractive and recognisable York street view found. Caveat: only 1024x768 (fine for the card; soft if shown wide on the city page). Commons alternatives were weaker: File:York Pennsylvania -002.JPG (CC BY-SA 3.0, 2668x2001; similar blossoms but a car fills the foreground) and City Hall with parked cars."
   },
   {
    "page": "city",
@@ -3347,6 +3373,27 @@
    "key": "san-jose-california",
    "focus": "50% 0%",
    "why": "Phase 7 (R20): at the default 50% 35% the band (16:7) cut the crosses and domes off the basilica's two bell towers; from the top edge the towers stay whole in the band, the card (16:10, 16:7 below 640px) and the link preview, and the parked cars along the bottom fall outside the band."
+  },
+  {
+   "page": "city",
+   "key": "charleston-south-carolina",
+   "focus": "50% 15%",
+   "why": "Phase 8 (the round-4 review of 12 October 2026, R20; Nathan's go of 15 October 2026): Charleston without parked cars across the foreground (the round-4 review's R20: Rainbow Row behind parked cars, an SUV foremost). Rainbow Row is Charleston's most recognised street, and every view of it found has cars at the curb; this one, under a clear October sky, puts them along the bottom edge, so at 50% 15% the band and the link preview show none and the card the top of one. 3642px wide; the 1920px rendition applied.",
+   "was": null
+  },
+  {
+   "page": "city",
+   "key": "fargo-north-dakota",
+   "focus": "50% 36%",
+   "why": "Phase 8 (the round-4 review of 12 October 2026, R20; Nathan's go of 15 October 2026): The band read \"FARG\" (the round-4 review's R20, known since round 3): at Phase 6's 50% 20% the band's lower edge cut the sign's last letter. Checked on the page itself at 1440, 1024 and 390: at 50% 36% the band holds the whole vertical FARGO, the card and the link preview the whole sign and the marquee. The photograph stays.",
+   "was": "50% 20%"
+  },
+  {
+   "page": "city",
+   "key": "york-pennsylvania",
+   "focus": "50% 20%",
+   "why": "Phase 8 (the round-4 review of 12 October 2026, R20; Nathan's go of 15 October 2026): York at the city band's width (the round-4 review's R20: the photograph, a blossoming downtown street, is 1024px wide, upscaled in the 1,056px band; Commons holds nothing larger of it). The Central Market House (on the National Register of Historic Places, as its file page notes) is downtown York's best-known building; June 2022, 5540px wide, the 1920px rendition applied. At 50% 20% the band and the link preview show the building without the cars parked at its curb.",
+   "was": null
   }
  ],
  "phase6_photographs": {
@@ -3388,5 +3435,28 @@
    "san-jose-california"
   ],
   "alt_overrides": []
+ },
+ "phase8_photographs": {
+  "date": "2026-10-15",
+  "brief": "Phase 8: the round-4 review's R20 photographs that Phase 7 left — Charleston without the parked cars across its foreground (a higher crop or a car-free view of Rainbow Row or the Battery); York and Reno at the city band's width (1,056px; at least 1,600px wide); Peoria from the bluffs only if clearly better; Fargo's band reading its whole sign. A recognisable view of the city, daylight, under public domain, CC0, CC BY or CC BY-SA, recorded as the file's page states it; the choices and their alt texts are drafts for Nathan",
+  "rules": [
+   "the view people recognise: a skyline, signature landmark, famous street, district or waterfront, in daylight",
+   "the photo review's rules: no identifiable person as the subject, no recent sculpture or mural as a subject, no prominent government seal",
+   "landscape, good cropped to 16:10 and 16:7",
+   "no prominent logo, seal or trademark as the subject (the Hollywood Sign; a hotel brand)"
+  ],
+  "new_photographs": [
+   "charleston-south-carolina",
+   "reno-nevada",
+   "york-pennsylvania"
+  ],
+  "focal_points": {
+   "charleston-south-carolina": "50% 15%",
+   "fargo-north-dakota": "50% 36%",
+   "york-pennsylvania": "50% 20%"
+  },
+  "kept": [
+   "peoria-illinois"
+  ]
  }
 }

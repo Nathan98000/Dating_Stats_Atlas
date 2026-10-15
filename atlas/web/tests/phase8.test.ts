@@ -203,3 +203,27 @@ describe("no page needs an original photograph, and the server doesn't serve one
     }
   });
 });
+
+// ---------------------------------------------------------------- D (R20)
+
+describe("the round-4 review's photographs (R20)", () => {
+  const imgs = cityImages as unknown as Record<string, { source_url: string; license: string; focus?: string }>;
+  const sizes = JSON.parse(readFileSync(path.join(SRC, "data", "photo-sizes.json"), "utf8")).cities as
+    Record<string, { width: number; widths: number[] }>;
+
+  it("Charleston, York and Reno: new photographs, each at least 1,600px wide, on the licence list", () => {
+    expect(imgs["charleston-south-carolina"].source_url).toMatch(/Rainbow_Row,_South_of_Broad/);
+    expect(imgs["york-pennsylvania"].source_url).toMatch(/York_Central_Market_House_PA1/);
+    expect(imgs["reno-nevada"].source_url).toMatch(/View_of_Reno,_Nevada_from_Juniper_Ridge/);
+    for (const slug of ["charleston-south-carolina", "york-pennsylvania", "reno-nevada"]) {
+      expect(sizes[slug].width, slug).toBeGreaterThanOrEqual(1600);
+      expect(imgs[slug].license, slug).toMatch(/^(CC0|CC BY(-SA)? \d\.\d|public domain)$/i);
+    }
+  });
+
+  it("the focal points that keep the cars out of the band and Fargo's sign whole", () => {
+    expect(imgs["charleston-south-carolina"].focus).toBe("50% 15%");
+    expect(imgs["york-pennsylvania"].focus).toBe("50% 20%");
+    expect(imgs["fargo-north-dakota"].focus).toBe("50% 36%");
+  });
+});

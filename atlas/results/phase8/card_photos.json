@@ -1,0 +1,96 @@
+{
+ "date": "2026-10-15",
+ "cities": {
+  "charleston-south-carolina": {
+   "outcome": "new",
+   "was": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+   "file_title": "File:Rainbow Row, South of Broad, Charleston, SC (49477988853).jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row,_South_of_Broad,_Charleston,_SC_(49477988853).jpg",
+   "license": "CC0",
+   "author": "Warren LeMay from Covington, KY, United States",
+   "width": 1920,
+   "alt": "Rainbow Row in Charleston: a pink three-storey house with black shutters and a small iron balcony, then lavender and green houses among palmetto trees, under a blue sky.",
+   "focus": "50% 15%",
+   "why": "Charleston without parked cars across the foreground (the round-4 review's R20: Rainbow Row behind parked cars, an SUV foremost). Rainbow Row is Charleston's most recognised street, and every view of it found has cars at the curb; this one, under a clear October sky, puts them along the bottom edge, so at 50% 15% the band and the link preview show none and the card the top of one. 3642px wide; the 1920px rendition applied.",
+   "alternatives": [
+    {
+     "file_title": "File:Rainbow Row Charleston July 2024 2.jpg",
+     "license": "CC0",
+     "author": "Thomson200",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
+     "width": 4032,
+     "note": "the current photograph, focused higher (50% 10%): the band shows the houses and palms without the cars, the card still has them; an overcast sky"
+    },
+    {
+     "file_title": "File:Rainbow Row (14995454459).jpg",
+     "license": "CC BY 2.0",
+     "author": "John Hoey from Framingham, MA, United States",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_(14995454459).jpg",
+     "width": 5760,
+     "note": "no cars: a close view of a yellow façade with window boxes and the shaded sidewalk; reads less surely as Rainbow Row"
+    }
+   ]
+  },
+  "fargo-north-dakota": {
+   "outcome": "kept, new focal point",
+   "focus": "50% 36%",
+   "was": "50% 20%",
+   "why": "The band read \"FARG\" (the round-4 review's R20, known since round 3): at Phase 6's 50% 20% the band's lower edge cut the sign's last letter. Checked on the page itself at 1440, 1024 and 390: at 50% 36% the band holds the whole vertical FARGO, the card and the link preview the whole sign and the marquee. The photograph stays."
+  },
+  "peoria-illinois": {
+   "outcome": "kept",
+   "why": "The round-4 review (R20) offered leaving it (a bank's octagonal logo is the brightest mark on its skyline; logos are part of any skyline) or a view from the bluffs, only if clearly better. None was: the other downtown views across the river show the same logo, and the views from the bluffs (Grandview Drive) show the Illinois River valley without the city.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Peoria_Illinois_Skyline_(cropped)_(cropped).jpg",
+   "license": "CC BY-SA 2.0",
+   "candidates_seen": [
+    "File:Peoria Skyline - panoramio.jpg (CC BY 3.0, 4000px): downtown across the river, closer, the same logo",
+    "File:Peoria Skyline.jpg (CC BY-SA 4.0, 6000px): downtown far off beyond rail yards and parking",
+    "File:Peoria Grandview Drive 2008.JPG (CC BY-SA 3.0, 3264px): the river valley from the bluffs, no city"
+   ]
+  },
+  "reno-nevada": {
+   "outcome": "new",
+   "was": "https://commons.wikimedia.org/wiki/File:Reno,_Nevada_(16931715632).jpg",
+   "file_title": "File:View of Reno, Nevada from Juniper Ridge (20720895303).jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Reno,_Nevada_from_Juniper_Ridge_(20720895303).jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "Ken Lund from Reno, Nevada, USA",
+   "width": 1920,
+   "alt": "Downtown Reno's casino and hotel towers above a broad canopy of green trees, with brown hills and mountains behind.",
+   "focus": null,
+   "why": "Reno at the city band's width (the round-4 review's R20: the photograph, the skyline at golden hour, is 900px wide, upscaled in the band since round 3; Commons holds nothing larger of it). The same view of downtown's towers under the hills, from Juniper Ridge on a June evening in daylight, 4000px wide, the 1920px rendition applied; the default focus keeps the towers in every crop.",
+   "alternatives": [
+    {
+     "file_title": "File:Reno from ArrowCreek 5.jpg",
+     "license": "CC BY-SA 3.0 (its file page's Stan Shebs template)",
+     "author": "Stan Shebs",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Reno_from_ArrowCreek_5.jpg",
+     "width": 2000,
+     "note": "the skyline from the south under snow-capped mountains, clear sky; the towers a thin strip in the band"
+    }
+   ]
+  },
+  "york-pennsylvania": {
+   "outcome": "new",
+   "was": "https://commons.wikimedia.org/wiki/File:York,_Pennsylvania_(65).jpg",
+   "file_title": "File:York Central Market House PA1.jpg",
+   "source_url": "https://commons.wikimedia.org/wiki/File:York_Central_Market_House_PA1.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Acroterion",
+   "width": 1920,
+   "alt": "York's Central Market House, a red-brick market hall with two slate-roofed towers, a central gable and green arched doors, under a cloud-streaked sky.",
+   "focus": "50% 20%",
+   "why": "York at the city band's width (the round-4 review's R20: the photograph, a blossoming downtown street, is 1024px wide, upscaled in the 1,056px band; Commons holds nothing larger of it). The Central Market House (on the National Register of Historic Places, as its file page notes) is downtown York's best-known building; June 2022, 5540px wide, the 1920px rendition applied. At 50% 20% the band and the link preview show the building without the cars parked at its curb.",
+   "alternatives": [
+    {
+     "file_title": "File:York Pennsylvania -002.JPG",
+     "license": "CC BY-SA 3.0",
+     "author": "Lincolnman65",
+     "source_url": "https://commons.wikimedia.org/wiki/File:York_Pennsylvania_-002.JPG",
+     "width": 2668,
+     "note": "the current photograph's kind, a downtown street under white blossom, at 2668px; busier, with cars in the card"
+    }
+   ]
+  }
+ }
+}

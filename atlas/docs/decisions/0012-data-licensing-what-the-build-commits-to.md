@@ -447,3 +447,37 @@ Approved by Nathan on 13 October 2026 (Phase 7, commits C and E), with San Jose'
   (https://commons.wikimedia.org/wiki/File:Crew_2016-01-10_(Unsplash_xCmvrpzctaQ).jpg), cropped.
   `pipeline/build/hero_image.py` stays as the record of how it was chosen; running it again would
   write both files back.
+
+## Amended in Phase 8 (15 October 2026): three city photographs, two focal points; the originals no longer served
+
+DRAFT for Nathan's approval (Phase 8, commits C and D; PHASE8.md §3).
+
+- **Charleston, York and Reno.** The round-4 review (R20) found Charleston's photograph to have
+  parked cars across its foreground, and York's (1024px) and Reno's (900px) too small for the
+  city band (1,056px wide; Commons holds nothing larger of either). Each is replaced, applied as
+  Commons' 1920px rendition and pinned by the bytes' sha256 in `results/phase4/photo_review.json`
+  (`external_files`), credited in Sources and credits like every other photograph, each licence
+  as its file page states it (its licence section, read 15 October 2026):
+  - Charleston: *Rainbow Row, South of Broad, Charleston, SC (49477988853)*, by Warren LeMay,
+    **CC0** (from Flickr; the upload bot's review passed), focal point `50% 15%`, so the band and
+    the link preview show the houses without the cars at the curb.
+  - York: *York Central Market House PA1*, by Acroterion, **CC BY-SA 4.0** (the author's own
+    work), focal point `50% 20%`, for the same reason.
+  - Reno: *View of Reno, Nevada from Juniper Ridge (20720895303)*, by Ken Lund, **CC BY-SA 2.0**
+    (from Flickr; the review passed), the default focal point.
+
+  All three licences are on the list, so nothing joins the permission record; the two CC BY-SA
+  photographs are cropped and shared under their own licence, as every cropped CC BY-SA
+  photograph is. The alternatives looked at are in `results/phase8/card_photos.json`. The
+  subject rules stand: no identifiable person as the subject, no recent sculpture or mural (the
+  Pineapple Fountain was passed over for that), no prominent logo or brand (the casinos' names
+  on Reno's towers are small, as in any view of its skyline).
+- **Peoria** keeps its photograph: no view was clearly better (the other skylines show the same
+  bank's logo; the views from the bluffs show the river without the city). **Fargo** keeps its
+  photograph with its focal point moved from `50% 20%` to `50% 36%`, so the band reads the whole
+  vertical FARGO sign.
+- **The originals are no longer served (R19).** The pages show only the sized WebP copies in
+  `w/`, the widest at the photograph's own width when it is under 2048px, and the link previews
+  in `og/`; Caddy answers 404 for the originals, which stay on disk as the copies' source. Each
+  copy is the same photograph, resized (the preview also cropped), and carries the original's
+  credit and licence, as before.

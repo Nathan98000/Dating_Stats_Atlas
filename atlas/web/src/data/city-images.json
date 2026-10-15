@@ -590,14 +590,15 @@
 "title": "Memorial Square Chambersburg"
 },
 "charleston-south-carolina": {
-"alt": "Pastel pink, lavender and green historic row houses with palmetto trees along Rainbow Row in Charleston.",
-"author": "Thomson200",
+"alt": "Rainbow Row in Charleston: a pink three-storey house with black shutters and a small iron balcony, then lavender and green houses among palmetto trees, under a blue sky.",
+"author": "Warren LeMay from Covington, KY, United States",
 "cropped": true,
 "file": "charleston-south-carolina.jpg",
+"focus": "50% 15%",
 "license": "CC0",
-"license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-"source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row_Charleston_July_2024_2.jpg",
-"title": "Rainbow Row Charleston July 2024 2"
+"license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+"source_url": "https://commons.wikimedia.org/wiki/File:Rainbow_Row,_South_of_Broad,_Charleston,_SC_(49477988853).jpg",
+"title": "Rainbow Row, South of Broad, Charleston, SC (49477988853)"
 },
 "charleston-west-virginia": {
 "alt": "The West Virginia State Capitol building, designed by Cass Gilbert in neoclassical architectural style, built between 1924–1932, located at 1900 Kanawha Bouleva",
@@ -1076,7 +1077,7 @@
 "author": "AJ LEON",
 "cropped": true,
 "file": "fargo-north-dakota.jpg",
-"focus": "50% 20%",
+"focus": "50% 36%",
 "license": "CC BY 2.0",
 "license_url": "https://creativecommons.org/licenses/by/2.0",
 "source_url": "https://commons.wikimedia.org/wiki/File:Fargo_Theatre_-_Fargo.jpg",
@@ -2742,14 +2743,14 @@
 "title": "Sundial Bridge at Turtle Bay (cropped)"
 },
 "reno-nevada": {
-"alt": "Downtown Reno's towers glowing in golden-hour light beneath snow-capped mountains, seen across a sagebrush hillside.",
-"author": "Trevor Bexon",
+"alt": "Downtown Reno's casino and hotel towers above a broad canopy of green trees, with brown hills and mountains behind.",
+"author": "Ken Lund from Reno, Nevada, USA",
 "cropped": true,
 "file": "reno-nevada.jpg",
-"license": "CC BY 2.0",
-"license_url": "https://creativecommons.org/licenses/by/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:Reno,_Nevada_(16931715632).jpg",
-"title": "Reno, Nevada (16931715632)"
+"license": "CC BY-SA 2.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:View_of_Reno,_Nevada_from_Juniper_Ridge_(20720895303).jpg",
+"title": "View of Reno, Nevada from Juniper Ridge (20720895303)"
 },
 "richmond-virginia": {
 "alt": "Downtown Richmond's office towers rise above trees and old brick buildings under a clear blue sky.",
@@ -3658,14 +3659,15 @@
 "title": "Yakima, Washington skyline"
 },
 "york-pennsylvania": {
-"alt": "White spring blossoms arch over a quiet downtown York street beside a columned civic building and historic brick buildings.",
-"author": "Doug Kerr from Albany, NY, United States",
+"alt": "York's Central Market House, a red-brick market hall with two slate-roofed towers, a central gable and green arched doors, under a cloud-streaked sky.",
+"author": "Acroterion",
 "cropped": true,
 "file": "york-pennsylvania.jpg",
-"license": "CC BY-SA 2.0",
-"license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-"source_url": "https://commons.wikimedia.org/wiki/File:York,_Pennsylvania_(65).jpg",
-"title": "York, Pennsylvania (65)"
+"focus": "50% 20%",
+"license": "CC BY-SA 4.0",
+"license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+"source_url": "https://commons.wikimedia.org/wiki/File:York_Central_Market_House_PA1.jpg",
+"title": "York Central Market House PA1"
 },
 "youngstown-ohio": {
 "alt": "Lanterman's Mill and its waterfall among green woods in Youngstown's Mill Creek Park on a sunny day.",

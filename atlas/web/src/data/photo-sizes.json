@@ -2956,12 +2956,14 @@
    ]
   },
   "reno-nevada": {
-   "width": 900,
-   "height": 600,
+   "width": 1920,
+   "height": 1440,
    "widths": [
     480,
     720,
-    900
+    1080,
+    1600,
+    1920
    ]
   },
   "richmond-virginia": {
@@ -3940,12 +3942,14 @@
    ]
   },
   "york-pennsylvania": {
-   "width": 1024,
-   "height": 768,
+   "width": 1920,
+   "height": 1352,
    "widths": [
     480,
     720,
-    1024
+    1080,
+    1600,
+    1920
    ]
   },
   "youngstown-ohio": {
