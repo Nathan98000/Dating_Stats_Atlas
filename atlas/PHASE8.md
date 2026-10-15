@@ -38,8 +38,9 @@ Only `ec5bd0c`, which you approved, went to GitHub.
   stays, as nothing was clearly better. These are yours to approve (§3c).
 
 No score, rank, pool, balance, compatibility figure, band or suppression moved (518 of 518 test
-searches identical). The model stays **m4.3.0** on build **d62202fd0280**. Branch
-`claude/phase8` off `main` at `ec5bd0c`, unpushed.
+searches identical). The model stays **m4.3.0**, on build **d62202fd0280** until the changes
+after the report, which move it to **79d1c644ec88** (§9). Branch `claude/phase8` off `main` at
+`ec5bd0c`, unpushed.
 
 ## 2. The commits
 
@@ -54,6 +55,11 @@ searches identical). The model stays **m4.3.0** on build **d62202fd0280**. Branc
 | report | (this commit) | `PHASE8.md`, `results/phase8/after/`, `string_changes.json`. |
 
 ## 3. For your approval
+
+**Nathan's answers, 15 October 2026:** **a**, **c** and **d** approved as written. **b** changed:
+"cities", and with it every place the site called a metro area, except How it works, which now
+says what a city means (§9). He also asked for the stat pages' tab titles to be fixed (§9). **e**
+drew no comment, so it stands as built.
 
 **a. The photo descriptions.** 78 rewritten, each after looking at the photo, naming a building
 or place only where the photo's own source (its Commons title or description) names it. The old
@@ -358,3 +364,63 @@ Stat pages that browsers kept under the old week-long rule will refresh within a
 - The "about … about" city descriptions (known) wait for their next regeneration.
 - After a weight change on a slow phone, the list takes about 8 s to update: that's the 1.5 MB
   every-variant response (ADR 0018), unchanged here.
+
+## 9. After the report (Nathan, 15 October 2026)
+
+**Places are "cities".** Everywhere the site called a place a metro area, it now says city. The
+one exception is How it works, which says what a city means: *"A city on this site means its
+whole metro area, as the Census Bureau defines it: "San Francisco" means the San Francisco metro
+area, not just the city limits."* (`results/phase8/string_changes.json`, "after_the_report"):
+
+- **Home page:** "193 cities ranked for your search"; the subtitle's "each US city"; and, after a
+  narrow search, "{n} cities don't have enough people matching this search…".
+- **City card:** "9 of 193 cities", and for a small city: "the site ranks cities of 250,000 or
+  more".
+- **City descriptions:** the ten largest (New York, Los Angeles, Chicago, Dallas, Houston,
+  Atlanta, Miami, Philadelphia, Phoenix, Washington) now begin "A vast city of about…" instead
+  of "A vast metro area of about…".
+- **Photo captions:** "Daytona Beach, in the Deltona area" (was "…in the Deltona metro area"),
+  and the same for the other nine photos that show a nearby place (Santa Maria's has its own
+  caption).
+- **Stat pages and city cards:** Population ("Everyone living in the city…"), Political lean
+  ("2024 presidential vote, whole city"; "How the city voted…") and crime coverage ("The share of
+  the city's population…").
+- **About the crime figures:** "the city's agencies", "not whole cities", "aggregated to cities".
+- **Terms:** "For each US city…". Its "Last updated" date stays October 11, since the meaning
+  hasn't changed; I can move it to October 15 if you'd rather.
+
+Checked on the real data: none of 30 pages says "metro" (the home page, Compare, all eight stat
+pages, What we measure, the crime page, Privacy, Terms, the 404, and fourteen city pages
+including the ten largest). A browser test now checks the same on the test data.
+
+**The ten descriptions live in the data build**, so it was rebuilt and has a new ID,
+**79d1c644ec88**. Its number files are byte-identical; only those ten descriptions differ. With
+the ID set aside, every answer the API gives for the 518 test searches, all 387 city profiles
+and the political lean data are identical (`served_numbers_cities_build.json`). The build's hard
+checks pass. The test fixture was regenerated from it, and its golden answers are unchanged. The
+saved-link pages (`/r/…`), which the site no longer creates, would show their "this link is from
+an earlier version" page for the old ID, as after any rebuild.
+
+**The stat pages' tab titles** start with a capital: "Walkability by city" and "Population by
+city". The two names stay lower-case in the registry for their mid-sentence uses ("Cities by
+walkability").
+
+**Found while doing this (R15's rule):**
+
+- Two stat-page list labels for screen readers wrote "Cities by …" in the code; they now use the
+  registry's template.
+- The city page's map description ("Map of the United States with Austin, Texas marked") was
+  written in the code. It's now the registry's `map_alt`, with the same words.
+- The literal-text test now catches labels written inside templates.
+
+**The deploy now also needs the new build.** Stage it beside the live one: `cp -a` the live
+build, then `rsync -a --checksum` the new one over it, so only `metros.json`,
+`features.parquet` and `manifest.json` cross. Check every file's sha256, then swap it in with
+the code. The old build stays as the rollback.
+
+**Tests after these changes:** pytest 211, vitest 165, Playwright 325 passed, 0 failed, 6 skipped (the real-build checks). The new browser
+tests check that no page says "metro" (How it works aside, which must explain it), the stat tab
+titles, and the map description. Eight older tests followed the wording: `copy-2026-10-07`,
+`copy-2026-10-12`, `phase2d-pages`, `phase2f`, `phase4d`, `ranking`, and the unit tests
+`political-lean` and `results`.
+

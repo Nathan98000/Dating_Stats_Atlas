@@ -14,7 +14,7 @@ const SRC = path.resolve(__dirname, "..", "src");
  * `dir`. */
 function literals(dir: string): string[] {
   const ATTRS = new Set(["aria-label", "placeholder", "title", "alt", "label", "closeLabel",
-    "edgeLabel", "menuLabel"]);
+    "edgeLabel", "menuLabel", "ariaLabel"]);
   const out: string[] = [];
   const scan = (file: string) => {
     const src = ts.createSourceFile(file, readFileSync(file, "utf8"), ts.ScriptTarget.Latest, true,
@@ -27,6 +27,14 @@ function literals(dir: string): string[] {
       } else if (ts.isJsxAttribute(n) && ATTRS.has(n.name.getText()) && n.initializer
         && ts.isStringLiteral(n.initializer) && /[A-Za-z]{2,}/.test(n.initializer.text)) {
         out.push(`${at(n)} ${n.name.getText()}="${n.initializer.text}"`);
+      } else if (ts.isJsxAttribute(n) && ATTRS.has(n.name.getText()) && n.initializer
+        && ts.isJsxExpression(n.initializer) && n.initializer.expression) {
+        // a label written in a template: `Cities by ${…}` (Phase 8, after the report)
+        const e = n.initializer.expression;
+        const text = ts.isStringLiteral(e) || ts.isNoSubstitutionTemplateLiteral(e) ? e.text
+          : ts.isTemplateExpression(e) ? [e.head.text, ...e.templateSpans.map((sp) => sp.literal.text)].join(" ")
+          : "";
+        if (/[A-Za-z]{2,}/.test(text)) out.push(`${at(n)} ${n.name.getText()}={\`${text}\`}`);
       } else if (ts.isPropertyAssignment(n) && ["label", "title"].includes(n.name.getText())
         && ts.isStringLiteral(n.initializer) && /[A-Za-z]{2,}/.test(n.initializer.text)) {
         out.push(`${at(n)} ${n.name.getText()}: "${n.initializer.text}"`);

@@ -9,7 +9,7 @@ Last updated: October 11, 2026
 
 ## What the site is
 
-For each US metro area, the site estimates how many single people match
+For each US city, the site estimates how many single people match
 your search, how closely they resemble the people who typically pair up
 with someone like you, and what everyday life there is like. It is not a
 dating service: there are no accounts, profiles, messages or

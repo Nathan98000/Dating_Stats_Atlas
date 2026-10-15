@@ -270,9 +270,10 @@ test("the excluded-cities line and the compare landing speak the new copy", asyn
   await page.goto(
     "/?sex=male&self_age=32&age=30-40&marital=never&edu=graduate&inc=100000");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
-  // Phase 6 (F34, approved): "metro areas", as the results header says
+  // Phase 6 (F34, approved): as the results header says; "cities" since
+  // Phase 8 (Nathan, 15 October 2026)
   await expect(page.getByTestId("excluded-note")).toContainText(
-    /metro areas don’t have enough people matching this search for a reliable estimate/);
+    /cities don’t have enough people matching this search for a reliable estimate/);
   await expect(page.getByTestId("excluded-note")).toContainText(
     /Widen your search to see more of them/);
   await page.goto("/compare");

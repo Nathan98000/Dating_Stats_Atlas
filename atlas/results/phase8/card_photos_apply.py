@@ -20,7 +20,8 @@ A new photograph becomes an `external_files` entry pinned by the sha256 of
 the bytes looked at, with its credit as the file's Commons page states it.
 A focal point is a `photo_display` entry added after any earlier one, so the
 record keeps both and the later one sets the page. The outcome per city goes
-to results/phase8/card_photos.json. Its alt texts are drafts for Nathan.
+to results/phase8/card_photos.json. Nathan approved the photographs, their
+focal points and alt texts on 15 October 2026.
 
     PYTHONPATH=. .venv/bin/python atlas/results/phase8/card_photos_apply.py atlas/results/phase8/picks.json
 """
@@ -111,7 +112,7 @@ def main(picks_path: str) -> None:
                   "at least 1,600px wide); Peoria from the bluffs only if clearly better; Fargo's "
                   "band reading its whole sign. A recognisable view of the city, daylight, under "
                   "public domain, CC0, CC BY or CC BY-SA, recorded as the file's page states it; "
-                  "the choices and their alt texts are drafts for Nathan"),
+                  "the choices and their alt texts approved by Nathan on 15 October 2026"),
         "rules": rev.get("phase6_photographs", {}).get("rules", []),
         "new_photographs": sorted(new_keys),
         "focal_points": {d["key"]: d["focus"] for d in display},

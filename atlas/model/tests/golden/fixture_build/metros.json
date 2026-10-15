@@ -16,7 +16,7 @@
   "display_name": "Atlanta, GA",
   "display_name_full": "Atlanta, Georgia",
   "slug": "atlanta-georgia",
-  "description": "A vast metro area of about 6.3 million people in Georgia.",
+  "description": "A vast city of about 6.3 million people in Georgia.",
   "lat": 33.7629,
   "lon": -84.4227,
   "ranked_set": true
@@ -82,7 +82,7 @@
   "display_name": "New York, NY",
   "display_name_full": "New York, New York",
   "slug": "new-york-new-york",
-  "description": "A vast metro area of about 19.8 million people in New York.",
+  "description": "A vast city of about 19.8 million people in New York.",
   "lat": 40.6627,
   "lon": -73.9387,
   "ranked_set": true
@@ -126,7 +126,7 @@
   "display_name": "Washington, DC",
   "display_name_full": "Washington, District of Columbia",
   "slug": "washington-district-of-columbia",
-  "description": "A vast metro area of about 6.3 million people in the District of Columbia.",
+  "description": "A vast city of about 6.3 million people in the District of Columbia.",
   "lat": 38.9042,
   "lon": -77.0165,
   "ranked_set": true

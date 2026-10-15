@@ -39,7 +39,7 @@ test("the city card shows the API's shares, caption, bar and key in party order,
   await expect(card).toContainText(meta.features.political_lean.display_name);
   await expect(card.getByTestId("lean-text")).toHaveText(block.text);
   expect(block.text).toMatch(/^\d{1,3}% Democratic\u00a0· \d{1,3}% Republican$/);
-  await expect(card.getByTestId("lean-caption")).toHaveText("2024 presidential vote, whole metro area");
+  await expect(card.getByTestId("lean-caption")).toHaveText("2024 presidential vote, whole city");
   const bar = card.getByTestId("lean-bar");
   await expect(bar).toHaveAttribute("role", "img");
   await expect(bar).toHaveAttribute("aria-label", block.bar_label);
@@ -103,7 +103,7 @@ test("What we measure lists it in the context group, after who lives here, with 
   await expect(group).toContainText(le.display_name);
   await expect(group).toContainText(le.definition);
   expect(le.definition).toBe(
-    "How the metro area voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.");
+    "How the city voted in the 2024 presidential election. It describes everyone who voted there, not the people who match your search.");
   await expect(group.getByRole("link", { name: "See all cities by political lean" })).toHaveAttribute("href", "/stats/political_lean");
   const text = await group.innerText();
   expect(text.indexOf(meta.features.who_lives_here.display_name)).toBeLessThan(text.indexOf(le.display_name));
@@ -118,7 +118,7 @@ test("the stat page lists the cities by name, sorts by either party's share on r
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cities by political lean");
   await expect(page.getByTestId("stat-source")).toContainText("MIT Election Data and Science Lab");
   await expect(page.getByTestId("stat-strip")).toHaveCount(0);
-  await expect(page.getByTestId("lean-list-unit")).toHaveText("2024 presidential vote, whole metro area");
+  await expect(page.getByTestId("lean-list-unit")).toHaveText("2024 presidential vote, whole city");
   await expect(page.getByTestId("lean-list-unit")).toHaveCount(1);
   // by name by default — never by either party's top
   await expect(page.getByTestId("lean-sort").getByRole("radio", { name: "Name" })).toHaveAttribute("aria-checked", "true");

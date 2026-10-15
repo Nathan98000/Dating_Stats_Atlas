@@ -151,7 +151,7 @@ test("About us carries Nathan's account, corrections in, deleted sections gone",
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
   for (const [what, re] of [
     ["387 counted, 193 ranked, two conditions",
-     /387 US metro areas, and rank the 193 with at least 250,000 people and a large enough sample to make a reliable estimate/],
+     /387 US cities, and rank the 193 with at least 250,000 people and a large enough sample to make a reliable estimate/],
     ["rent credited to HUD", /HUD 50th percentile rent estimates, FY2027/],
     ["the typo fix", /nationally-recognized/],
     ["what a match counts", /fits your search: sex, age range/i],

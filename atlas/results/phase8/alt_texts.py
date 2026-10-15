@@ -7,7 +7,7 @@ Recorded as the photo review records rewritten alt texts
 (results/phase4/photo_review.json `alt_overrides`, which its apply step
 reapplies) and written to the render manifest the same way
 (web/src/data/city-images.json), without re-running the whole apply step.
-All are DRAFTS for Nathan's approval (atlas/PHASE8.md §3).
+Approved by Nathan on 15 October 2026, as drafted (atlas/PHASE8.md §3).
 
     python3 atlas/results/phase8/alt_texts.py
 """
@@ -120,7 +120,7 @@ def main() -> None:
         assert slug in city, slug
         new.append({"page": "city", "key": slug, "alt": alt,
                     "was": was.get(slug, city[slug].get("alt") or ""),
-                    "why": WHY + f"the old alt text was {problem}; this one describes the photograph (DRAFT for Nathan's approval)."})
+                    "why": WHY + f"the old alt text was {problem}; this one describes the photograph (approved by Nathan, 15 October 2026)."})
         city[slug]["alt"] = alt
     rev["alt_overrides"] = keep + new
     REVIEW.write_text(json.dumps(rev, indent=1, ensure_ascii=False) + "\n")

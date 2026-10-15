@@ -45,7 +45,7 @@ test("the count line ends at 'ranked for your search'; the update line leaves no
   await page.goto("/");
   await expect(page.getByTestId("ranked-list").locator("li").first()).toBeVisible();
   const count = page.getByTestId("results-count");
-  await expect(count).toHaveText(/^\d[\d,]* metro areas ranked for your search$/);
+  await expect(count).toHaveText(/^\d[\d,]* cities ranked for your search$/);
   const header = count.locator("..");
   const before = (await header.boundingBox())!.height;
   await page.getByRole("radiogroup", { name: "Cost of living importance" }).getByRole("radio", { name: "A lot" }).click();

@@ -71,7 +71,11 @@ export async function generateMetadata({ params }: { params: Promise<{ fid: stri
   const img = IMAGES[fid];
   const image = img && fs.existsSync(path.join(process.cwd(), "public", "stats", img.file))
     ? ogImage("stats", fid) ?? undefined : undefined;
-  return pageMetadata(pageTitle(fill(CHROME.title_stat, { stat: page.title })), page.definition, `/stats/${fid}`, image);
+  // Phase 8 (Nathan, 15 October 2026): a tab title starts with a capital,
+  // "Walkability by city" — two stat names are lower-case in the registry
+  // for their mid-sentence uses (walkability, population)
+  const stat = page.title.charAt(0).toUpperCase() + page.title.slice(1);
+  return pageMetadata(pageTitle(fill(CHROME.title_stat, { stat })), page.definition, `/stats/${fid}`, image);
 }
 
 export function generateStaticParams() {
@@ -148,7 +152,7 @@ export default async function StatPage({
         {page.kind === "political_lean" ? (
           <LeanList
             rows={page.rows}
-            ariaLabel={`Cities by ${page.title.toLowerCase()}`}
+            ariaLabel={fill(DATA.strings.cities_by, { stat: page.title.toLowerCase() })}
             unit={page.unit}
             colCity={DATA.strings.col_city}
             columns={page.columns}
@@ -206,7 +210,7 @@ function ValueSections({ page, isDollar }: { page: ValuePage; isDollar: boolean 
       <StatList
         rows={page.rows}
         isDollar={isDollar}
-        ariaLabel={`Cities by ${page.title.toLowerCase()}`}
+        ariaLabel={fill(DATA.strings.cities_by, { stat: page.title.toLowerCase() })}
         colName={page.col_name}
         defaultIsLowFirst={page.default_is_low_first}
         strings={DATA.strings}

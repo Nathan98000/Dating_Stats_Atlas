@@ -5,6 +5,16 @@ policy and interval mechanism; a change that moves any golden requires a
 bump here and regenerated goldens with a commit note. SCHEMA_VERSION is the
 cube axis contract validated at load.
 
+m4.3.0, Phase 8 (Nathan, 15 October 2026: places are "cities" everywhere
+but How it works; no bump): the suppression copy's `excluded_count` says
+"cities". The ten city descriptions that read "A vast metro area" now read
+"A vast city" (the registry's city_description), so the build moves to
+79d1c644ec88; its data files are byte-identical but for those descriptions
+(metros.json, features.parquet), and every /v1/rank, /v1/profile and
+/v1/political_lean response for the 518 test searches is identical with the
+build id masked (results/phase8/served_numbers_cities_build.json). The
+goldens are byte-identical but for `fixture_of`.
+
 m4.3.0, Phase 7 (the round-4 design review of 12 October 2026, Nathan's
 decisions of 13 October; no bump, as Phase 5's score_median): each ranked
 row gained one additive, display-only field, `unit_contributions` (each

@@ -183,8 +183,8 @@
    "note": "moved from the web code, verbatim (R15)"
   },
   "city_rank_of": {
-   "text": "of {n} metro areas",
-   "note": "DRAFT: the city card's rank line, in the code as \"of {n} cities\"; \"metro areas\" is the home page's word (R15's copy question)"
+   "text": "of {n} cities",
+   "note": "the city card's rank line: drafted \"of {n} metro areas\"; Nathan chose \"cities\" (15 October 2026), as today's site says"
   },
   "balance_in_city": {
    "text": "{balance} in {city}",
@@ -273,5 +273,74 @@
   "the city card's disclosure": {
    "now": "moved_heading (\"What moved the score (points)\"), an existing string, as its summary (R22)"
   }
+ },
+ "after_the_report": {
+  "decided": "Nathan, 15 October 2026: places are \"cities\" everywhere but How it works, which says that a city means its whole metro area",
+  "registry_changed": {
+   "home_subtitle": {
+    "was": "See how many singles in each US metro match what you're looking for, and how each city ranks for you. Based on Census data.",
+    "now": "See how many singles in each US city match what you're looking for, and how each city ranks for you. Based on Census data."
+   },
+   "results_count": {
+    "was": "{n} metro areas ranked for your search",
+    "now": "{n} cities ranked for your search"
+   },
+   "photo_place_caption": {
+    "was": "{place}, in the {city} metro area",
+    "now": "{place}, in the {city} area"
+   },
+   "city_below_floor": {
+    "was": "... the site ranks metro areas of 250,000 or more. ...",
+    "now": "... the site ranks cities of 250,000 or more. ..."
+   },
+   "city_description.characters (pop at least 5,000,000)": {
+    "was": "A vast metro area",
+    "now": "A vast city"
+   },
+   "who_lives_here.definition": {
+    "was": "Everyone living in the metro area, and how many are adults aged 18 to 70.",
+    "now": "Everyone living in the city, and how many are adults aged 18 to 70."
+   },
+   "political_lean.unit": {
+    "was": "2024 presidential vote, whole metro area",
+    "now": "2024 presidential vote, whole city"
+   },
+   "political_lean.definition": {
+    "was": "How the metro area voted in the 2024 presidential election. ...",
+    "now": "How the city voted in the 2024 presidential election. ..."
+   },
+   "crime coverage definition": {
+    "was": "The share of the metro's population living in areas ...",
+    "now": "The share of the city's population living in areas ..."
+   }
+  },
+  "registry_added": {
+   "map_alt": {
+    "text": "Map of the United States with {city} marked",
+    "note": "the city page's map description, a literal in the code until the stronger literal test found it; verbatim"
+   }
+  },
+  "model_changed": {
+   "excluded_count (model/suppression.py)": {
+    "was": "{n} metro areas don’t have enough people matching this search for a reliable estimate. Widen your search to see more of them.",
+    "now": "{n} cities don’t have enough people matching this search for a reliable estimate. Widen your search to see more of them."
+   }
+  },
+  "pages_changed": {
+   "How it works (docs/methodology.md)": [
+    "\"387 US metro areas\" -> \"387 US cities\"",
+    "\"Metro areas follow Census definitions: ... means the whole metro area\" -> \"A city on this site means its whole metro area, as the Census Bureau defines it: \\\"San Francisco\\\" means the San Francisco metro area, not just the city limits.\"",
+    "\"Everyone in a metro area who fits your search\" -> \"Everyone in a city who fits your search\""
+   ],
+   "About the crime figures (docs/crime.md)": [
+    "\"from across the metro area's agencies\" -> \"from across the city's agencies\"",
+    "\"not whole metros\" -> \"not whole cities\"",
+    "\"aggregated to metro areas\" -> \"aggregated to cities\""
+   ],
+   "Terms (docs/terms.md)": [
+    "\"For each US metro area\" -> \"For each US city\" (its \"Last updated\" date left as it is: the meaning is unchanged)"
+   ]
+  },
+  "titles": "a stat page's tab title starts with a capital: \"walkability by city\" -> \"Walkability by city\", \"population by city\" -> \"Population by city\""
  }
 }

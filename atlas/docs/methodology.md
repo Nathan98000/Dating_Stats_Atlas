@@ -3,7 +3,7 @@
 **Summary:** Every count on this site is our estimate from the Census
 Bureau's American Community Survey from 2020 through 2024. You select what
 you're looking for; we count how many matching people live in each of 387
-US metro areas, and rank the 193 with at least 250,000 people and a large
+US cities, and rank the 193 with at least 250,000 people and a large
 enough sample to make a reliable estimate. We use additional information
 from nationally-recognized datasets and weigh it all together to find your
 best city match.
@@ -12,8 +12,9 @@ best city match.
 
 - **How many people:** Data comes from the Census Bureau's American
   Community Survey, which includes about 3.5 million households a year,
-  from 2020–2024. Metro areas follow Census definitions: "San Francisco"
-  means the whole metro area, not just the city limits.
+  from 2020–2024. A city on this site means its whole metro area, as the
+  Census Bureau defines it: "San Francisco" means the San Francisco metro
+  area, not just the city limits.
 - **City stats:** Data come from nationally-recognized sources, updated
   when that source publishes:
 
@@ -30,7 +31,7 @@ best city match.
 
 ## How is the count of matches calculated?
 
-Everyone in a metro area who fits your search: sex, age range, never
+Everyone in a city who fits your search: sex, age range, never
 married or previously married, and any education, income, race or
 ethnicity filters you set. This count is the **dating pool**, which by
 default makes up the biggest part of your overall score.

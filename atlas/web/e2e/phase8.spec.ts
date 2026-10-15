@@ -21,7 +21,7 @@ test.describe("the pages' words are the registry's (R15)", () => {
     await page.goto("/city/austin-texas?ic=a");
     const card = page.getByTestId("ranked-card");
     await expect(card.getByRole("heading", { level: 2 })).toHaveText(fill(ps.city_card_heading, { city: "Austin" }));
-    // the rank line says metro areas, as the home page's count does
+    // the rank line says cities, as the home page's count does (Nathan, 15 October 2026)
     await expect(card.getByTestId("city-spot").locator("p").first())
       .toHaveText(new RegExp(`^${ps.city_rank_sr} \\d+${fill(ps.city_rank_of, { n: "\\d+" })}$`));
     await expect(page.getByRole("link", { name: ps.change_search })).toBeVisible();
@@ -249,4 +249,36 @@ test.describe("the city card's What moved the score (R22)", () => {
       await expect(det.getByTestId("moved-bars")).toBeHidden();
     });
   }
+});
+
+// ------------------------------------------- after the report (Nathan, 15 October 2026)
+
+test.describe("after the report: places are cities; the stat pages' titles", () => {
+  test("no page calls a place a metro area but How it works, which says what a city means", async ({ page }) => {
+    for (const u of ["/", "/city/austin-texas", "/city/new-york-new-york", "/city/eagle-pass-texas",
+      "/compare", "/compare/austin-texas/san-jose-california", "/stats/who_lives_here", "/stats/political_lean",
+      "/what-we-measure", "/about-crime-data", "/privacy", "/terms", "/no-such-page"]) {
+      await page.goto(u);
+      await expect(page.locator("main")).toBeVisible();
+      const text = await page.locator("body").innerText();
+      expect(text.match(/\bmetro\w*/gi) ?? [], u).toEqual([]);
+    }
+    await page.goto("/about");
+    await expect(page.locator("main")).toContainText("A city on this site means its whole metro area");
+  });
+
+  test("a stat page's tab title starts with a capital", async ({ page }) => {
+    for (const [fid, title] of [["resident_walkability_index", "Walkability by city"], ["who_lives_here", "Population by city"],
+      ["rent_1br", "Rent by city"]]) {
+      await page.goto(`/stats/${fid}`);
+      await expect(page).toHaveTitle(new RegExp(`^${title} · `));
+    }
+  });
+
+  test("the locator map's description is the registry's", async ({ page, request }) => {
+    const ps = (await fetchMeta(request)).policy_strings;
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/city/austin-texas");
+    await expect(page.getByTestId("locator-map")).toHaveAttribute("alt", fill(ps.map_alt, { city: "Austin, Texas" }));
+  });
 });

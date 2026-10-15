@@ -33,7 +33,7 @@ test("the crime explainer reads in three sections, coverage folded into why citi
   ]);
   const text = ((await article.textContent()) ?? "").replace(/\s+/g, " ");
   expect(text).toMatch(/making cross-city comparisons potentially misleading\. It is optional for police agencies to report to the FBI\./);
-  expect(text).toMatch(/based on the crimes in geographic regions covered by reporting agencies, not whole metros/);
+  expect(text).toMatch(/based on the crimes in geographic regions covered by reporting agencies, not whole cities/);
   expect(text).not.toMatch(/Coverage is the share of a metro's people/);
 });
 

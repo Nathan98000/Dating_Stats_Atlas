@@ -57,7 +57,7 @@ describe("describeSearchShort and the summaries", () => {
   it("fills the results heading", () => {
     expect(fill("Top cities for single {sought}, {ages}", describeSearchShort(DEFAULT_PREFS)))
       .toBe("Top cities for single men, 28\u2060–\u206040");
-    expect(fill("{n} metro areas", { n: "193" })).toBe("193 metro areas");
+    expect(fill("{n} cities", { n: "193" })).toBe("193 cities");
     expect(fill("{a} and {missing}", { a: 1 })).toBe("1 and {missing}");
   });
   it("summarises the partner filters", () => {

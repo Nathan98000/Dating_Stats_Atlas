@@ -84,8 +84,8 @@ const META = {
   features: {
     political_lean: {
       display_name: "Political lean",
-      unit: "2024 presidential vote, whole metro area",
-      definition: "How the metro area voted in the 2024 presidential election.",
+      unit: "2024 presidential vote, whole city",
+      definition: "How the city voted in the 2024 presidential election.",
       stat_page_name: null,
     },
   },
@@ -110,7 +110,7 @@ describe("the city card and the compare cell", () => {
   it("show the API's text, the caption, the bar in party order with every segment named", () => {
     const html = renderToStaticMarkup(createElement(PoliticalLeanCard, { block: AVAILABLE, meta: META }));
     expect(html).toContain("57% Democratic · 42% Republican");
-    expect(html).toContain("2024 presidential vote, whole metro area");
+    expect(html).toContain("2024 presidential vote, whole city");
     expect(html).toContain('aria-label="Democratic 57%, Everyone else 1%, Republican 42%"');
     expect([...html.matchAll(/data-segment="(\w+)"/g)].map((m) => m[1])).toEqual(["dem", "other", "rep"]);
     expect([...html.matchAll(/data-key="(\w+)"/g)].map((m) => m[1])).toEqual(["dem", "other", "rep"]);

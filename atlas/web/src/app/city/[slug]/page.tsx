@@ -84,6 +84,7 @@ export default async function CityPage({
   const cards: Card[] = profile?.cards ?? (ranked ?? suppressed)?.cards ?? [];
   const crime = profile?.crime ?? (ranked ?? suppressed)?.crime;
   const city = metro.display_name_full.split(",")[0];
+  const mapAlt = fill(policy.map_alt, { city: metro.display_name_full });
   // Phase 6 (F32): what the page's client components get of the metadata
   const slim = clientMeta(meta, [metro.cbsa]);
 
@@ -106,7 +107,7 @@ export default async function CityPage({
                 {metro.display_name_full}
               </h1>
               <div className="w-24 shrink-0 sm:hidden" data-testid="locator-thumb">
-                <LocatorMap focus={metro} thumb />
+                <LocatorMap focus={metro} alt={mapAlt} thumb />
               </div>
             </div>
             <p className="max-w-[52ch] text-body-lg text-ink-2" data-testid="city-description">
@@ -124,7 +125,7 @@ export default async function CityPage({
             </div>
           </div>
           <div className="max-sm:hidden">
-            <LocatorMap focus={metro} />
+            <LocatorMap focus={metro} alt={mapAlt} />
           </div>
         </div>
 

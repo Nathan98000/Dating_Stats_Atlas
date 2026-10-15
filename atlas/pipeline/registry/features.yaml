@@ -182,9 +182,11 @@ strings:
   home_title: "Which city has the best dating scene for you?"
   # Phase 5 (design audit, Nathan's decision 5); reworded after the Phase 5
   # report at Nathan's request (he found the approved line awkward) —
-  # DRAFT for his approval
+  # DRAFT for his approval. Phase 8 (Nathan, 15 October 2026): places are
+  # "cities" everywhere but How it works, which says a city means its whole
+  # metro area ("each US metro" became "each US city")
   home_subtitle: >-
-    See how many singles in each US metro match what you're looking for,
+    See how many singles in each US city match what you're looking for,
     and how each city ranks for you. Based on Census data.
   # Nathan's wording, verbatim (m3.0.0, ADR 0009; rewritten by Nathan in
   # Phase 4b). The side panel's "What matters more to you?" box, the one
@@ -434,8 +436,9 @@ strings:
   results_heading_best: "Top cities for single {sought}, {ages}"
   results_heading_worst: "Lowest-scoring cities for single {sought}, {ages}"
   # reworded after the Phase 5 report at Nathan's request; "each scored out
-  # of 100" dropped on 12 October 2026, at his request
-  results_count: "{n} metro areas ranked for your search"
+  # of 100" dropped on 12 October 2026, at his request; "cities" since
+  # Phase 8 (Nathan, 15 October 2026)
+  results_count: "{n} cities ranked for your search"
   # the list's column labels, once above the rows
   col_rank: "#"
   # Phase 7 (R05, approved 13 October 2026): what the chips are; was
@@ -516,8 +519,9 @@ strings:
     On a same-sex search, matches count every single {sought_one} in these
     ages, not just those looking for {sought}.
   # Phase 6 (F29, approved): the caption under a city band whose photograph
-  # shows a place elsewhere in the metro (the manifest's `place`)
-  photo_place_caption: "{place}, in the {city} metro area"
+  # shows a place elsewhere in the metro (the manifest's `place`); "the
+  # {city} area" since Phase 8 (places are cities, Nathan, 15 October 2026)
+  photo_place_caption: "{place}, in the {city} area"
   # Phase 6 (F31, approved): a results page's title (permalinks and home
   # URLs with a search), from its results heading
   title_results: "{heading} · Dating Scene Data"
@@ -609,7 +613,8 @@ strings:
   # the city page
   city_card_heading: "Where {city} lands for your search"
   city_rank_sr: "Ranked"
-  city_rank_of: "of {n} metro areas"
+  # "cities", Nathan's choice of 15 October 2026 (Phase 8)
+  city_rank_of: "of {n} cities"
   balance_in_city: "{balance} in {city}"
   change_search: "Change your search"
   city_like_heading: "What {city} is like"
@@ -618,6 +623,9 @@ strings:
   compare_cities: "Compare cities"
   compare_with_label: "City to compare with"
   city_input_placeholder: "Type a city name"
+  # the city page's locator map, for a screen reader (was a literal in the
+  # code; found by Phase 8's stronger literal test, verbatim)
+  map_alt: "Map of the United States with {city} marked"
   # Compare
   compare_heading: "Compare two cities"
   compare_first_city: "First city"
@@ -636,7 +644,7 @@ strings:
   compare_not_ranked: "Not ranked: under 250,000 people"
   city_below_floor: >-
     {city} has fewer than 250,000 people, so it isn't ranked; the site
-    ranks metro areas of 250,000 or more. Its profile is below.
+    ranks cities of 250,000 or more. Its profile is below.
   compare_top_two: "Your top two: {a} vs {b}"
   # page titles ({page} · Dating Scene Data)
   title_site: "Dating Scene Data"
@@ -717,7 +725,8 @@ city_description:
   template: "{character} of about {pop} people {location}."
   characters:
     - {rule: students_per_1k_at_least, value: 100, text: "A college town"}
-    - {rule: pop_at_least, value: 5000000, text: "A vast metro area"}
+    # "A vast city" since Phase 8 (Nathan, 15 October 2026: places are cities)
+    - {rule: pop_at_least, value: 5000000, text: "A vast city"}
     - {rule: pop_at_least, value: 1000000, text: "A major city"}
     - {rule: default, text: "A city"}
   drive_phrases:   # straight-line miles at ~50 mph, rounded to spoken time
@@ -1196,8 +1205,8 @@ features:
                   "A mid-sized city", "A big city",
                   "One of the biggest cities"]
     definition: >-
-      Everyone living in the metro area, and how many are adults aged 18
-      to 70.
+      Everyone living in the city, and how many are adults aged 18 to
+      70.
     provenance: {source: census_acs, dataset: "ACS 2020-2024 5-year",
                  table: "B01003 (bridged to metros)",
                  variables: [B01003_001E],
@@ -1227,12 +1236,12 @@ features:
     computed: static
     status: context_only
     display_name: "Political lean"
-    unit: "2024 presidential vote, whole metro area"
+    unit: "2024 presidential vote, whole city"
     unit_short: "%"
     display_scale: 100
     display_decimals: 0
     definition: >-
-      How the metro area voted in the 2024 presidential election. It
+      How the city voted in the 2024 presidential election. It
       describes everyone who voted there, not the people who match your
       search.
     provenance: {source: medsl_president,
@@ -1347,7 +1356,7 @@ features:
     display_scale: 100
     display_decimals: 0
     definition: >-
-      The share of the metro's population living in areas whose police
+      The share of the city's population living in areas whose police
       agencies reported a full year of data — the reason crime figures
       aren't comparable between cities.
     provenance: {source: fbi_cde, dataset: "FBI Crime Data Explorer",

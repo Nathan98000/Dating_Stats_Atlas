@@ -450,7 +450,7 @@ Approved by Nathan on 13 October 2026 (Phase 7, commits C and E), with San Jose'
 
 ## Amended in Phase 8 (15 October 2026): three city photographs, two focal points; the originals no longer served
 
-DRAFT for Nathan's approval (Phase 8, commits C and D; PHASE8.md §3).
+Approved by Nathan on 15 October 2026 (Phase 8, commits C and D), with the three photographs' alt texts as drafted.
 
 - **Charleston, York and Reno.** The round-4 review (R20) found Charleston's photograph to have
   parked cars across its foreground, and York's (1024px) and Reno's (900px) too small for the
