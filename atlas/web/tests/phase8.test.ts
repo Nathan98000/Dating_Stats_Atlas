@@ -54,9 +54,9 @@ describe("the registry owns every word the components show (R15)", () => {
 
 describe("every city photograph has a description a screen reader can use (R13)", () => {
   const imgs = cityImages as unknown as Record<string, { alt?: string | null }>;
-  const RAW = /File:|Title:|Physical description|https?:\/\/|\bw:|\ben:|\(pop\.|\.(jpe?g|png|tiff?|webp)\b|^image$/i;
+  const RAW = /File:|Title:|Physical description|https?:\/\/|\bw:|\ben:|\(pop\.|\.(jpe?g|png|tiff?|webp)\b|^image$|User:|\(talk\)|\bUTC\b|created by|edited by|cropped from|edited version|^this (is|was)\b|^(a )?picture of|\bresidents\b|\b\d{1,3}(,\d{3})+\b/i;
 
-  it("no description is a file name, a catalogue record, wiki markup, a web address or a stray figure", () => {
+  it("no description is a file name, a catalogue record, wiki markup, a web address, a credit or signature, a note, or a figure the site never computed", () => {
     const bad = Object.entries(imgs).filter(([, v]) => RAW.test((v.alt ?? "").trim())).map(([k]) => k);
     expect(bad).toEqual([]);
   });
@@ -67,6 +67,12 @@ describe("every city photograph has a description a screen reader can use (R13)"
     const short = Object.entries(imgs).filter(([, v]) => (v.alt ?? "").trim().split(/\s+/).length < 3)
       .map(([k]) => k);
     expect(short).toEqual([]);
+  });
+
+  it("no description stops mid-word where the photo pipeline cut it (160 characters)", () => {
+    const cut = Object.entries(imgs).filter(([, v]) => (v.alt ?? "").length >= 159
+      && !/[.!?)”"]$/.test((v.alt ?? "").trim())).map(([k]) => k);
+    expect(cut).toEqual([]);
   });
 
   it("the review's two ranked cities read as written for them", () => {

@@ -22,7 +22,7 @@ WHY = "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): "
 
 # slug -> (the old alt's problem, the new alt)
 ALTS = {
-    "indianapolis-indiana": ("the city's name in lower case", "Downtown Indianapolis from above on a clear day, its twin-spired tallest tower at the centre and an arena's arched roof in the foreground."),
+    "indianapolis-indiana": ("the city's name in lower case", "Downtown Indianapolis from above on a clear day, its twin-spired tallest tower at the center and an arena's arched roof in the foreground."),
     "montgomery-alabama": ("a library catalogue record", "Downtown Montgomery from the air, with the riverboat landing and the long train shed on the Alabama River in the foreground."),
     "abilene-texas": ("\"image\", announced as nothing", "Downtown Abilene's brick and stone towers rising above a line of green trees under a deep blue sky."),
     "casper-wyoming": ("a file name and a crop note", "Downtown Casper beside the North Platte River, with the broad slopes of Casper Mountain rising behind the city."),
@@ -73,6 +73,38 @@ ALTS = {
     "pittsfield-massachusetts": ("a population figure the site did not compute", "Downtown Pittsfield from the air, brick buildings among dense trees with the green Berkshire hills beyond."),
     "pueblo-colorado": ("a population figure the site did not compute", "Downtown Pueblo from the air, its brick buildings and the Riverwalk's channel spread out under a clear sky."),
     "morgantown-west-virginia": ("two words (\"Woodburn Hall\")", "Woodburn Hall in Morgantown, a red-brick building with a clock tower and mansard roofs, framed by green trees."),
+    # found after commit A, while checking the manifest's spelling: credit
+    # lines, a signature, figures, remarks and notes, and twelve descriptions
+    # the photo pipeline cut off at 160 characters mid-word
+    "columbia-missouri": ("a credit line (\"This picture was created by User: …\")", "Six stone columns standing on a lawn before Jesse Hall's white dome at the University of Missouri in Columbia, under a cloudy sky."),
+    "eagle-pass-texas": ("a talk-page signature and a date", "A white welcome sign reading “Bienvenidos, Eagle Pass, Texas” with a Texas-shaped emblem, planted with agaves and shrubs beneath green trees."),
+    "altoona-pennsylvania": ("a population figure the site did not compute, cut off mid-word", "Altoona from above, rows of houses and brick buildings spreading toward a domed church and a white high-rise, with long green ridges and low clouds beyond."),
+    "beckley-west-virginia": ("a population figure the site did not compute", "Downtown Beckley from the air, low brick and tan buildings and parking lots among trees turning in autumn, with wooded hills stretching to the horizon."),
+    "bismarck-north-dakota": ("a population figure the site did not compute", "Downtown Bismarck from the air, a grid of low buildings and streets spreading across flat land, with the North Dakota State Capitol's tower on the horizon."),
+    "weirton-west-virginia": ("a remark about vacant storefronts, cut off mid-word", "Main Street in downtown Weirton, a row of brick storefronts with awnings and signs along a quiet street under an overcast sky."),
+    "vineland-new-jersey": ("a remark (\"Nice old downtown buildings\")", "Landis Avenue in downtown Vineland, a row of colorful two-story storefronts beside a gray stone Gothic church, under a clear blue sky."),
+    "oshkosh-wisconsin": ("a crop note (\"Cropped from the original.\")", "Main Street in downtown Oshkosh at dusk, brick storefronts and lit signs around a wide intersection, with wreaths on the lampposts."),
+    "appleton-wisconsin": ("not a description (\"This was taken from the fox river in 2015.\")", "Old stone and brick mill buildings along the Fox River in Appleton, seen across the water through leafy branches."),
+    "anniston-alabama": ("\"This is a photo of downtown Anniston, Alabama.\"", "A wide street in downtown Anniston lined with brick storefronts, green awnings and street lamps, under a partly cloudy sky."),
+    "auburn-alabama": ("a garbled sentence", "Auburn City Hall, a red-brick building with tall arched windows and a stone entrance, behind bare trees and a street lamp under a blue sky."),
+    "johnson-city-tennessee": ("\"This is a photo of …\"", "Downtown Johnson City's brick buildings and a white steeple among green trees, with Buffalo Mountain rising beyond under billowing white clouds."),
+    "grand-forks-north-dakota": ("an agency caption with a date, cut off mid-sentence", "Downtown Grand Forks from the air, its brick blocks beside a river crossed by an arched steel bridge, with green parkland and leafy neighborhoods around."),
+    "detroit-michigan": ("an encyclopedia caption, cut off mid-sentence", "Detroit's skyline across the Detroit River from Windsor, Ontario, on a sunny day, a cluster of dark glass towers on the riverfront among downtown's high-rises."),
+    "lawton-oklahoma": ("\"Picture of the Old Lawton High School Building\"", "The old Lawton High School, a red-brick building with white columns and a copper dome, behind shade trees on a sunny day."),
+    "iowa-city-iowa": ("\"Picture of …\" and a date", "South Clinton Street in downtown Iowa City, brick storefronts and a tall brick building along a sunny street with parked cars."),
+    "columbus-ohio": ("an edit note (\"(Edited version)\")", "Downtown Columbus's towers above a river and a low arched bridge, seen from the Main Street Bridge under a partly cloudy sky."),
+    "helena-montana": ("a garbled caption with a year", "The Montana State Capitol in Helena, its domed stone front behind a bronze statue of a rider on a rearing horse and beds of red flowers."),
+    "dothan-alabama": ("a date in brackets", "Downtown Dothan's rooftops under a clear sky, a cream-colored tower with a white dome on a lattice mast beside a dark-ribbed office block."),
+    "charleston-west-virginia": ("cut off mid-word at 160 characters", "The West Virginia State Capitol in Charleston, its gilded dome above a columned portico and a statue at the top of wide stone steps, between autumn trees."),
+    "columbus-indiana": ("cut off mid-word at 160 characters", "The Robert N. Stewart Bridge across the Flatrock River into Columbus, its red A-shaped pylon and fanned white cables framing the road into town."),
+    "elizabethtown-kentucky": ("cut off mid-sentence at 160 characters", "The Hardin County Courthouse on Courthouse Square in Elizabethtown, a red-brick building with a columned entrance and a flagpole, on a sunny day."),
+    "grand-island-nebraska": ("cut off mid-word at 160 characters", "The Hall County Courthouse in Grand Island, a brick and stone building with a green copper clock tower and a wide stone stair, under a blue sky."),
+    "great-falls-montana": ("cut off at 160 characters", "Central Avenue in downtown Great Falls, looking west past brick shops and an office tower toward the civic center, on a bright winter day."),
+    "sioux-city-iowa": ("cut off mid-word at 160 characters", "The Woodbury County Courthouse in Sioux City, a tan-brick Prairie-style building with a tall tower, under a cloud-streaked sky."),
+    "springfield-illinois": ("cut off mid-word at 160 characters", "The Dana–Thomas House in Springfield, a Prairie-style house by Frank Lloyd Wright with wide copper-trimmed eaves and tan brick walls, under a blue sky."),
+    # found by the stronger manifest test
+    "midland-texas": ("a population figure the site did not compute", "Downtown Midland's office towers rising from flat, open country, seen from the air beside a highway under a clear blue sky."),
+    "winston-salem-north-carolina": ("cut off at 160 characters", "Downtown Winston-Salem's towers, among them the Reynolds Building and Winston Tower, behind the redeveloped Bailey Power Plant and its tall brick smokestacks, under an overcast sky."),
 }
 
 
