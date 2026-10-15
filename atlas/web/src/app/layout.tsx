@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Figtree, Fraunces } from "next/font/google";
+import { Figtree } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { PRE_PAINT_SCRIPT } from "@/lib/about-you";
 import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION, SITE_URL } from "@/lib/chrome";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: "variable",
-  axes: ["opsz", "SOFT"],
+// Phase 8 (the round-4 review's R18): Google's Fraunces trimmed to what
+// the site sets — SOFT pinned at 30, weights 600 to 700, every optical size
+// — 58 KB where the whole variable font was 121 KB on every first visit
+// (scripts/fraunces_trim.py; its licence beside it, fonts/OFL.txt)
+const fraunces = localFont({
+  src: [{ path: "./fonts/fraunces-latin.woff2", weight: "600 700", style: "normal" }],
   variable: "--font-fraunces",
+  display: "swap",
+  // the stand-in until it arrives is globals.css's "Fraunces Fallback"
+  adjustFontFallback: false,
 });
 const figtree = Figtree({
   subsets: ["latin"],

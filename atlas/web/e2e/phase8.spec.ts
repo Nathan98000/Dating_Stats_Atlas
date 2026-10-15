@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { expandRow, fetchMeta } from "./helpers";
+import { expandRow, fetchMeta, photoOnDisk } from "./helpers";
 
 /** Phase 8 (the round-4 review's remaining findings, Nathan's go of 15
  * October 2026). Each test sets its own window. */
@@ -85,5 +85,51 @@ test.describe("a heading reads its own name; its ⓘ sits beside it (R16)", () =
     await expect(card.getByRole("heading", { name: ps.balance_label, exact: true })).toHaveCount(1);
     const btn = card.getByRole("button", { name: ps.balance_info_label });
     expect(await btn.evaluate((el) => el.closest("h1,h2,h3,h4,h5,h6") === null)).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------- B (R18)
+
+test.describe("lighter pages: the phone's photographs and the site's font (R18)", () => {
+  for (const [w, h, scale, copy] of [[390, 844, 3, 720], [390, 844, 2, 720], [1440, 900, 1, 480]] as const) {
+    test(`${w} at ${scale}x: card #1 shows the ${copy}px copy`, async ({ browser }) => {
+      test.skip(!photoOnDisk("cities/new-york-new-york.jpg") && !photoOnDisk("cities/new-york-new-york.png"),
+        "no photographs on this checkout");
+      const phone = w < 768;
+      const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: scale,
+        isMobile: phone, hasTouch: phone });
+      const page = await ctx.newPage();
+      await home(page);
+      const img = page.locator('li[data-rank="1"]').getByTestId("card-photo");
+      await expect.poll(() => img.evaluate((e) => (e as HTMLImageElement).currentSrc))
+        .toMatch(new RegExp(`-${copy}\\.webp$`));
+      await ctx.close();
+    });
+  }
+
+  test("Fraunces: one file, this site's own, under 64 KB; until it arrives, the stand-in Google's carried", async ({ page }) => {
+    const fonts: { url: string; bytes: number }[] = [];
+    page.on("response", async (r) => {
+      if (/\.woff2$/.test(new URL(r.url()).pathname)) fonts.push({ url: r.url(), bytes: (await r.body()).length });
+    });
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await home(page);
+    await page.evaluate(() => document.fonts.ready);
+    await expect.poll(() => fonts.filter((f) => /fraunces/i.test(f.url)).length).toBe(1);
+    const f = fonts.find((x) => /fraunces/i.test(x.url))!;
+    expect(new URL(f.url).origin).toBe(new URL(page.url()).origin);
+    expect(f.bytes).toBeLessThan(64 * 1024);
+    expect(await page.getByRole("heading", { level: 1 }).evaluate((e) => getComputedStyle(e).fontFamily))
+      .toMatch(/^"?fraunces"?, "Fraunces Fallback", Georgia, serif$/);
+    const standIn = await page.evaluate(() => {
+      for (const sheet of document.styleSheets) {
+        for (const rule of sheet.cssRules) {
+          if (rule instanceof CSSFontFaceRule && rule.style.getPropertyValue("font-family").includes("Fraunces Fallback"))
+            return rule.style.getPropertyValue("size-adjust");
+        }
+      }
+      return null;
+    });
+    expect(standIn).toBe("115.45%");
   });
 });

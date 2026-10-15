@@ -6,6 +6,7 @@ import "server-only";
 import { cache } from "react";
 import type { Meta, PoliticalLeanResponse, ProfileResponse, VariantResponse } from "./types";
 import type { RankBody } from "./permalink";
+import { DEFAULT_PREFS, toRankBody } from "./prefs";
 
 export const API_BASE = process.env.ATLAS_API_URL ?? "http://127.0.0.1:8000";
 
@@ -19,9 +20,8 @@ export class RankError extends Error {
   }
 }
 
-/** m4.0.0 (ADR 0018): the response carries every "about you" variant;
- * lib/variants selects one. */
-export async function apiRank(body: RankBody): Promise<VariantResponse> {
+/** The /v1/rank response's text, or a RankError. */
+async function fetchRank(body: RankBody): Promise<string> {
   const res = await fetch(`${API_BASE}/v1/rank`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -38,7 +38,35 @@ export async function apiRank(body: RankBody): Promise<VariantResponse> {
     }
     throw new RankError(res.status, detail);
   }
-  return res.json();
+  return res.text();
+}
+
+/** Phase 8 (the round-4 review's R23): the site's starting search — the
+ * one a first visit, a bare city page and a bare compare pair all ask for
+ * — is the same for everyone and carries nothing about any visitor, so its
+ * ranking is kept, once per build and model (meta's data_version and
+ * model_version), for as long as this server process runs: on the server
+ * it is about a third of a second of the home page's wait. Any other
+ * search is asked for afresh every time: keeping a visitor's own search
+ * would be a record of a visit, which the server keeps none of (the
+ * Privacy page). Kept as text and parsed for each request, so no page can
+ * change another's copy; a failure is never kept. */
+const DEFAULT_RANK_BODY = JSON.stringify(toRankBody(DEFAULT_PREFS));
+let startingSearch: { build: string; text: Promise<string> } | null = null;
+
+/** m4.0.0 (ADR 0018): the response carries every "about you" variant;
+ * lib/variants selects one. */
+export async function apiRank(body: RankBody): Promise<VariantResponse> {
+  if (JSON.stringify(body) !== DEFAULT_RANK_BODY) return JSON.parse(await fetchRank(body));
+  const meta = await apiMeta();
+  const build = `${meta.data_version}/${meta.model_version}`;
+  if (!startingSearch || startingSearch.build !== build) {
+    const text = fetchRank(body);
+    const entry = { build, text };
+    startingSearch = entry;
+    text.catch(() => { if (startingSearch === entry) startingSearch = null; });
+  }
+  return JSON.parse(await startingSearch.text);
 }
 
 /** The legend, policy strings and metro list change only with the build;

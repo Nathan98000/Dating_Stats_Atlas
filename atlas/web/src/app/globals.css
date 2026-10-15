@@ -115,7 +115,7 @@
   --color-error: var(--error);
   --color-error-soft: var(--error-soft);
   --color-data-neutral: var(--data-neutral);
-  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-display: var(--font-fraunces), "Fraunces Fallback", Georgia, serif;
   --font-sans: var(--font-figtree), "Helvetica Neue", Arial, sans-serif;
   --radius-ctl: 8px;
   --radius-card: 12px;
@@ -173,7 +173,24 @@
   --text-data-m--font-weight: 600;
 }
 
-/* Fraunces' soft axis, wherever the display face is used */
+/* Phase 8: the stand-in a page shows until Fraunces arrives — Times New
+   Roman sized to Fraunces, with the numbers Google's Fraunces carried.
+   next/font/local would measure the trimmed file at its new default,
+   weight 600, and the stand-in then set 5-6% wider than the font, against
+   3% (a city page's heading re-wrapped as the font came in); so
+   app/layout.tsx asks it for none and this keeps the old one. */
+@font-face {
+  font-family: "Fraunces Fallback";
+  src: local("Times New Roman");
+  ascent-override: 84.71%;
+  descent-override: 22.09%;
+  line-gap-override: 0%;
+  size-adjust: 115.45%;
+}
+
+/* Fraunces' soft axis, wherever the display face is used (since Phase 8
+   the site's own Fraunces has SOFT 30 built in, app/fonts; this keeps the
+   same look should the whole variable font return) */
 .font-display,
 .prose-method h1,
 .prose-method h2 {
@@ -423,7 +440,7 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
   color: var(--ink-2);
 }
 .prose-method h1 {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-fraunces), "Fraunces Fallback", Georgia, serif;
   font-size: var(--fs-display-1);
   font-weight: 600;
   line-height: var(--lh-display-1);
@@ -432,7 +449,7 @@ input[type="range"].svo:focus-visible { outline: 2px solid var(--accent); outlin
   margin-bottom: 18px;
 }
 .prose-method h2 {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-fraunces), "Fraunces Fallback", Georgia, serif;
   font-size: var(--fs-h2);
   font-weight: 600;
   line-height: var(--lh-h2);

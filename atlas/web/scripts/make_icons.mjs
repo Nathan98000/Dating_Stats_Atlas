@@ -3,45 +3,32 @@
 // square with corners at 22% of its side.
 //
 // The "D" is drawn by Playwright's Chromium from an HTML page that loads the
-// site's own Fraunces file — the latin woff2 next/font put in a production
-// build's static/media (no system font, no CDN) — and screenshot at 512px.
+// site's own Fraunces file — since Phase 8 the committed, trimmed latin woff2
+// (src/app/fonts/fraunces-latin.woff2, SOFT 30 built in; before, the one
+// next/font put in a build) — no system font, no CDN — and screenshot at 512px.
+// The committed icons are still Phase 7's, drawn from the whole font: redrawn
+// from the trimmed one, the D sits about 1px aside, so they were left as approved.
 // sharp then writes:
 //   src/app/icon.png        512x512, rounded corners (transparent outside)
 //   src/app/apple-icon.png  180x180, square corners (iOS rounds them itself)
 //   src/app/favicon.ico     16x16 and 32x32 PNG entries, written by hand
 // and, for review, a sheet of the four sizes side by side (SHEET, if set).
 //
-//   cd atlas/web && NEXT_DIST_DIR=.next-p7 node scripts/make_icons.mjs
+//   cd atlas/web && node scripts/make_icons.mjs
 //   (SHEET=../results/phase7/screens/icon.png to write the sheet too)
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
-import { readFileSync, readdirSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import path from "path";
 
 const WEB = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const DIST = path.resolve(WEB, process.env.NEXT_DIST_DIR || ".next");
 const SIDE = 512;
 const ACCENT = "#9E3B57"; // --accent
 const SURFACE = "#FFFFFF"; // --surface
 const RADIUS = 0.22; // corners, as a share of the side
 const INK_HEIGHT = 0.56; // the D's ink, as a share of the side
 
-/** The build's Fraunces face for basic latin: its @font-face whose
- * unicode-range starts with U+0000-00FF (minified as U+??). */
-function frauncesFile() {
-  const dir = path.join(DIST, "static", "chunks");
-  for (const f of readdirSync(dir).filter((n) => n.endsWith(".css"))) {
-    const css = readFileSync(path.join(dir, f), "utf8");
-    for (const face of css.match(/@font-face\{[^}]*\}/g) ?? []) {
-      if (!/font-family:\s*Fraunces[;"]/.test(face) || !/unicode-range:U\+(0+-0*FF|\?\?)[,;}]/i.test(face)) continue;
-      const url = face.match(/url\(([^)]+)\)/)[1].replace(/["']/g, "");
-      return path.resolve(dir, url);
-    }
-  }
-  throw new Error(`no Fraunces latin face in ${dir}: build first (NEXT_DIST_DIR)`);
-}
-
-const font = frauncesFile();
+const font = path.join(WEB, "src/app/fonts/fraunces-latin.woff2");
 const fontUrl = `data:font/woff2;base64,${readFileSync(font).toString("base64")}`;
 
 const page_ = (size, dx, dy, bg, radius) => `<!doctype html><html><head><style>

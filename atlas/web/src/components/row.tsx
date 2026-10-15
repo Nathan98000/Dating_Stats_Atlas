@@ -49,7 +49,11 @@ export function ScoreTrack({ score, className, median, medianCaption }: {
 
 /** Phase 6 (F03): a card's shown width — 250px at the desk, a third of the
  * row from 768px, the screen less its two 16px gutters on a phone. */
-const CARD_SIZES = "(min-width: 1120px) 250px, (min-width: 768px) 33vw, calc(100vw - 32px)";
+const CARD_SIZES = "(min-width: 1120px) 250px, (min-width: 768px) 33vw, "
+  // Phase 8: a phone with a 3x screen gets the copy a 2x screen gets (the
+  // 720px one at 390px, not the 1080px one), so the home page's photos stay
+  // within Phase 6's 250 KB at 390px; at 3x the difference is hard to see
+  + "(min-resolution: 3dppx) calc((100vw - 32px) * 0.67), calc(100vw - 32px)";
 
 /** Phase 6 (F26): a score as a screen reader hears it — the registry's
  * "Overall score {n} out of 100" — with the visible number (and any "/100"

@@ -1,0 +1,32 @@
+1440 run 1: lcp 428 cls 0 settle 386
+1440 run 2: lcp 396 cls 0 settle 379
+1440 run 3: lcp 388 cls 0 settle 373
+1440 run 4: lcp 388 cls 0 settle 375
+1440 run 5: lcp 404 cls 0 settle 376
+390 run 1: lcp 2372 cls 0.0306 settle 1654
+390 run 2: lcp 2388 cls 0.0306 settle 1639
+390 run 3: lcp 2396 cls 0.0306 settle 1636
+390 run 4: lcp 2404 cls 0.0306 settle 1639
+390 run 5: lcp 2404 cls 0.0306 settle 1638
+{
+ "390": {
+  "ttfb": 334,
+  "fcp": 996,
+  "lcp": 2396,
+  "load": 5168,
+  "cls": 0.0306,
+  "change_to_pending": 219,
+  "change_to_response": 1639,
+  "change_to_last_mutation": 1639
+ },
+ "1440": {
+  "ttfb": 330,
+  "fcp": 396,
+  "lcp": 396,
+  "load": 473,
+  "cls": 0,
+  "change_to_pending": 188,
+  "change_to_response": 376,
+  "change_to_last_mutation": 376
+ }
+}
