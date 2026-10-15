@@ -81,7 +81,12 @@ def political_lean_page(build, m: dict, le: dict) -> dict:
 CHROME_KEYS = ("nav_rankings", "nav_compare", "nav_how", "footer_how", "footer_measure",
                "footer_privacy", "footer_terms", "footer_sources", "close", "clear", "title_site",
                "title_template", "title_compare_pair", "title_stat", "title_privacy",
-               "title_terms", "about_title", "not_found_title", "not_found_body")
+               "title_terms", "about_title", "not_found_title", "not_found_body",
+               # Phase 8 (R15): the header's and footer's remaining words, the
+               # skip link and the old-link pages, which render with no API call
+               "nav_main_label", "nav_menu", "footer_label", "find_city", "skip_to_results",
+               "link_broken_title", "link_broken_body", "link_old_title", "link_old_body",
+               "link_old_action", "link_start")
 
 
 def main() -> None:
@@ -181,7 +186,10 @@ def main() -> None:
                            "sort_high": m["strings"]["stat_sort_high"],
                            "strip_label": m["strings"]["stat_strip_label"],
                            "col_city": m["strings"]["stat_col_city"],
-                           "source_prefix": m["strings"]["stat_source_prefix"]},
+                           "source_prefix": m["strings"]["stat_source_prefix"],
+                           # Phase 8 (R15): the heading and the sort label
+                           "cities_by": m["strings"]["stat_cities_by"],
+                           "sort_label": m["strings"]["sort_label"]},
                # Phase 5: the header's and footer's labels and the page
                # titles, for every page's chrome — which the stat pages,
                # built ahead of time with no API to ask, share

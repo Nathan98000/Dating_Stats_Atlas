@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Figtree, Fraunces } from "next/font/google";
 import "./globals.css";
 import { PRE_PAINT_SCRIPT } from "@/lib/about-you";
-import { pageMetadata, pageTitle, SITE_DESCRIPTION, SITE_URL } from "@/lib/chrome";
+import { CHROME, pageMetadata, pageTitle, SITE_DESCRIPTION, SITE_URL } from "@/lib/chrome";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -44,7 +44,7 @@ export default function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-surface focus:px-3 focus:py-2 focus:text-ink"
         >
-          Skip to results
+          {CHROME.skip_to_results}
         </a>
         {children}
       </body>

@@ -113,12 +113,13 @@ export default async function CityPage({
               {metro.description}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
-              <CompareLauncher slug={slug} outlined clearLabel={policy.clear} />
+              <CompareLauncher slug={slug} outlined clearLabel={policy.clear} label={policy.compare_with_another}
+                fieldLabel={policy.compare_with_label} placeholder={policy.city_input_placeholder} />
               <Link
                 href={`/?${qs}#search-panel`}
                 className="flex min-h-11 items-center rounded-md border border-line-strong bg-surface px-5 text-body font-semibold text-ink hover:bg-hover"
               >
-                Change your search
+                {policy.change_search}
               </Link>
             </div>
           </div>
@@ -183,7 +184,7 @@ export default async function CityPage({
 
         <section className="flex flex-col gap-4">
           <h2 className="font-display text-h2">
-            What {city} is like
+            {fill(policy.city_like_heading, { city })}
           </h2>
           {/* item 5.2: each card is a SUBGRID over six shared rows (name /
               value / unit / segments / band label / link), so the
@@ -203,9 +204,10 @@ export default async function CityPage({
             {crime && <CrimeCards crime={crime} meta={meta} />}
             <div className="stat-card col-span-full !flex flex-col justify-center gap-2.5 rounded-lg border border-rule bg-surface p-[18px] sm:col-span-1">
               <span className="font-display text-title text-ink">
-                See how {city} stacks up against a city you know
+                {fill(policy.city_compare_prompt, { city })}
               </span>
-              <CompareLauncher slug={slug} small clearLabel={policy.clear} />
+              <CompareLauncher slug={slug} clearLabel={policy.clear} label={policy.compare_cities}
+                fieldLabel={policy.compare_with_label} placeholder={policy.city_input_placeholder} />
             </div>
           </div>
         </section>

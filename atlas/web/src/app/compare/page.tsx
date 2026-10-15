@@ -42,14 +42,16 @@ export default async function CompareLandingPage({
       <main id="main" className="mx-auto flex max-w-3xl flex-col gap-6 px-4 pb-16 pt-12 sm:px-12">
         <div className="flex flex-col gap-2.5">
           <h1 className="font-display text-display-1">
-            Compare two cities
+            {meta.policy_strings.compare_heading}
           </h1>
           <p className="max-w-[58ch] text-body-lg text-ink-2">
             {meta.policy_strings.compare_page_subtitle}
           </p>
         </div>
         <Suspense fallback={<div className="h-[120px]" />}>
-          <ComparePickers initialA={a} initialB={b} clearLabel={meta.policy_strings.clear} />
+          <ComparePickers initialA={a} initialB={b} clearLabel={meta.policy_strings.clear}
+            labels={{ first: meta.policy_strings.compare_first_city, second: meta.policy_strings.compare_second_city,
+              go: meta.policy_strings.compare_go, placeholder: meta.policy_strings.city_input_placeholder }} />
         </Suspense>
         {first && second && (
           <Link

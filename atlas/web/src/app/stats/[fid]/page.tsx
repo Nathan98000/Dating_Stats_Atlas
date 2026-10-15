@@ -58,7 +58,8 @@ const DATA = statPages as unknown as {
   pages: Record<string, ValuePage | LeanPage>;
   order: string[];
   strings: { missing: string; sort_low: string; sort_high: string;
-             strip_label: string; col_city: string; source_prefix: string };
+             strip_label: string; col_city: string; source_prefix: string;
+             cities_by: string; sort_label: string };
 };
 const IMAGES = statImages as unknown as Record<string, StatImage>;
 
@@ -120,7 +121,7 @@ export default async function StatPage({
       <div className="mx-auto flex max-w-3xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
         <div className="flex flex-col gap-2.5">
           <h1 className="font-display text-display-1 font-semibold leading-tight tracking-tight">
-            Cities by {page.title.toLowerCase()}
+            {fill(DATA.strings.cities_by, { stat: page.title.toLowerCase() })}
           </h1>
           <p className="max-w-[64ch] text-body leading-relaxed text-ink-2">
             {page.definition}

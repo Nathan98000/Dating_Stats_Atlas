@@ -10,8 +10,11 @@ import { ClearButton } from "./clear-button";
  * through lib/search — the ONE matcher every city chooser shares since
  * Phase 2e item 5 — routed by slug. Phase 5: 240px in the desk header
  * (its menu 260px); `wide` fills the phone header's overlay. */
-export function SearchBox({ wide = false, autoFocus = false, clearLabel = "" }: {
+export function SearchBox({ wide = false, autoFocus = false, clearLabel = "", label }: {
   wide?: boolean; autoFocus?: boolean;
+  /** Phase 8 (R15): the registry's find_city, the field's label and
+   * placeholder, from the server-rendered header for the same reason */
+  label: string;
   /** Phase 6 (F35): the registry's "Clear", from the server-rendered header (lib/chrome is
    * server data: importing it here would ship stat-pages.json to every page) */
   clearLabel?: string;
@@ -37,7 +40,7 @@ export function SearchBox({ wide = false, autoFocus = false, clearLabel = "" }: 
   const listOpen = open && results.length > 0;
   return (
     <div className={`relative ${wide ? "flex-1" : "w-[240px]"}`}>
-      <label className="sr-only" htmlFor="city-search">Find a city</label>
+      <label className="sr-only" htmlFor="city-search">{label}</label>
       <input
         id="city-search"
         type="search"
@@ -46,7 +49,7 @@ export function SearchBox({ wide = false, autoFocus = false, clearLabel = "" }: 
         aria-controls={listOpen ? "city-search-results" : undefined}
         aria-activedescendant={listOpen && results[active] ? `cs-${results[active].s}` : undefined}
         autoComplete="off"
-        placeholder="Find a city"
+        placeholder={label}
         autoFocus={autoFocus}
         className={`ctl ${wide ? "" : "!min-h-10"} ${q && !wide && clearLabel ? "pr-11" : ""}`}
         value={q}

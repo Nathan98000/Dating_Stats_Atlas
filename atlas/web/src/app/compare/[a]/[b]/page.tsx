@@ -91,10 +91,10 @@ export default async function ComparePage({
       <main id="main" className="mx-auto flex max-w-6xl flex-col gap-6 px-4 pb-16 pt-8 sm:px-12">
         <BackToResults href={`/?${qs}`}>{policy.back_to_results}</BackToResults>
         <h1 className="font-display text-h2">
-          {cityA} <span className="text-ink-3">and</span> {cityB}
+          {cityA} <span className="text-ink-3">{policy.compare_and}</span> {cityB}
         </h1>
         <p className="max-w-[64ch] text-body text-ink-2">
-          For {describeSearch(prefs).toLowerCase()}.
+          {fill(policy.compare_for, { search: describeSearch(prefs).toLowerCase() })}
         </p>
         {isDefaultSearch(sp) && !fromCookie && (
           // Phase 6 (F23): a neutral note — the starting search is a fine
@@ -115,7 +115,7 @@ export default async function ComparePage({
         <div className="rounded-lg border border-rule bg-surface">
           <table role="table" className="block w-full text-body-sm sm:table" data-testid="compare-table">
             <caption className="sr-only">
-              {mA.display_name_full} compared with {mB.display_name_full}
+              {fill(policy.compare_caption, { a: mA.display_name_full, b: mB.display_name_full })}
             </caption>
             <thead role="rowgroup" className="sticky top-0 z-10 block rounded-t-lg bg-surface sm:static sm:table-header-group">
               <tr role="row" className="grid grid-cols-2 border-b border-rule text-left sm:table-row">
@@ -215,7 +215,7 @@ export default async function ComparePage({
             and the unit line says per 100,000 so nobody reads a rate as
             a count (item 6.5). */}
         <section className="flex flex-col gap-4 rounded-lg border border-rule bg-surface px-4 py-6 sm:px-7" data-testid="compare-crime">
-          <h2 className="font-display text-h3">Reported crime</h2>
+          <h2 className="font-display text-h3">{policy.crime_heading}</h2>
           <p
             className="max-w-[76ch] rounded-md border border-warning bg-warning-soft px-4 py-3 text-caption text-warning"
             data-testid="crime-compare-banner"

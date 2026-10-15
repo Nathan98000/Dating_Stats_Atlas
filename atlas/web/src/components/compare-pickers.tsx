@@ -14,11 +14,14 @@ export function ComparePickers({
   initialA,
   initialB,
   clearLabel,
+  labels,
 }: {
   initialA?: string;
   initialB?: string;
   /** Phase 6 (F35): the registry's "Clear", from the server page */
   clearLabel: string;
+  /** Phase 8 (R15): the registry's words, from the server page */
+  labels: { first: string; second: string; go: string; placeholder: string };
 }) {
   const router = useRouter();
   const sp = useSearchParams();
@@ -46,7 +49,8 @@ export function ComparePickers({
       <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
         <CityPicker
           id="compare-a"
-          label="First city"
+          label={labels.first}
+          placeholder={labels.placeholder}
           exclude={b}
           value={a ? bySlug.get(a)?.f : undefined}
           onPick={setA}
@@ -54,7 +58,8 @@ export function ComparePickers({
         />
         <CityPicker
           id="compare-b"
-          label="Second city"
+          label={labels.second}
+          placeholder={labels.placeholder}
           exclude={a}
           value={b ? bySlug.get(b)?.f : undefined}
           onPick={setB}
@@ -68,7 +73,7 @@ export function ComparePickers({
         onClick={go}
         className="min-h-11 self-start rounded-md bg-accent px-6 text-body-sm font-bold text-white hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
       >
-        Compare these two
+        {labels.go}
       </button>
     </div>
   );
@@ -77,6 +82,7 @@ export function ComparePickers({
 function CityPicker({
   id,
   label,
+  placeholder,
   value,
   exclude,
   onPick,
@@ -84,6 +90,7 @@ function CityPicker({
 }: {
   id: string;
   label: string;
+  placeholder: string;
   value?: string;
   exclude?: string;
   onPick: (slug: string) => void;
@@ -125,7 +132,7 @@ function CityPicker({
         aria-activedescendant={
           listOpen && results[active] ? `${id}-${results[active].s}` : undefined}
         autoComplete="off"
-        placeholder="Type a city name"
+        placeholder={placeholder}
         className={`ctl ${shown ? "pr-11" : ""}`}
         value={shown}
         onChange={(e) => {

@@ -12,8 +12,10 @@ import { ClearButton } from "./clear-button";
 export function CompareLauncher({
   slug,
   outlined = false,
-  small = false,
   clearLabel,
+  label,
+  fieldLabel,
+  placeholder,
 }: {
   slug: string;
   /** Phase 7 (Nathan, 13 October 2026): the city page's top button takes
@@ -21,9 +23,14 @@ export function CompareLauncher({
    * --line-strong border, --ink text), so the page's one filled button is
    * "Compare cities" at its foot */
   outlined?: boolean;
-  small?: boolean;
   /** Phase 6 (F35): the registry's "Clear", from the server page */
   clearLabel: string;
+  /** Phase 8 (R15): the registry's words, from the server page: the
+   * button's (compare_with_another or compare_cities), the field's
+   * (compare_with_label) and its placeholder (city_input_placeholder) */
+  label: string;
+  fieldLabel: string;
+  placeholder: string;
 }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
@@ -34,7 +41,6 @@ export function CompareLauncher({
     [q, slug],
   );
 
-  const label = small ? "Compare cities" : "Compare with another city";
   if (!open) {
     return (
       <button
@@ -52,13 +58,13 @@ export function CompareLauncher({
   }
   return (
     <div className="relative w-full max-w-[260px]">
-      <label className="sr-only" htmlFor={`cmp-${slug}`}>City to compare with</label>
+      <label className="sr-only" htmlFor={`cmp-${slug}`}>{fieldLabel}</label>
       <input
         id={`cmp-${slug}`}
         type="search"
         autoComplete="off"
         autoFocus
-        placeholder="Type a city name"
+        placeholder={placeholder}
         className={`ctl ${q ? "pr-11" : ""}`}
         value={q}
         onChange={(e) => setQ(e.target.value)}

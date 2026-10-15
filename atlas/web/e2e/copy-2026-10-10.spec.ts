@@ -159,9 +159,13 @@ test("the city card: no line under balance's dots; its ⓘ sits beside the Balan
   await page.goto(`/city/austin-texas?${QS}`);
   const card = page.getByTestId("ranked-card");
   await expect(card).not.toContainText("All singles in your age range");
-  const label = card.getByRole("heading", { level: 3, name: new RegExp(`^${ps.balance_label}`) });
-  await expect(label.getByRole("button", { name: ps.balance_info_label })).toHaveCount(1);
-  await label.getByRole("button", { name: ps.balance_info_label }).click();
+  // Phase 8 (R16): beside the heading, not inside it, so the heading reads
+  // "Balance" alone
+  const label = card.getByRole("heading", { level: 3, name: ps.balance_label, exact: true });
+  const beside = label.locator("xpath=..").getByRole("button", { name: ps.balance_info_label });
+  await expect(beside).toHaveCount(1);
+  await expect(label.getByRole("button")).toHaveCount(0);
+  await beside.click();
   await expect(page.getByTestId("info-tip-note")).toHaveText(BALANCE_BOX);
 });
 

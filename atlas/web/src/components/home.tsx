@@ -204,7 +204,7 @@ export function Home({
         if (mine !== seq.current) return;
         if (!r.ok) {
           const j = await r.json().catch(() => ({}));
-          setError(typeof j.detail === "string" ? j.detail : "that search couldn't run");
+          setError(typeof j.detail === "string" ? j.detail : policy.error_search);
           return;
         }
         setError(null);
@@ -217,12 +217,12 @@ export function Home({
         lastPrefs.current = next;
       })
       .catch(() => {
-        if (mine === seq.current) setError("the ranking service is unreachable");
+        if (mine === seq.current) setError(policy.error_unreachable);
       })
       .finally(() => {
         if (mine === seq.current) setPending(false);
       });
-  }, [snapshot]);
+  }, [snapshot, policy.error_search, policy.error_unreachable]);
 
   const onChange = useCallback(
     (next: Prefs, now = false) => {
@@ -287,13 +287,13 @@ export function Home({
     // been touched this visit, and the live region says so when it does
     if (was !== prefs.seekSex && sex === prefs.seekSex && !seekTouched.current) {
       const flipped = opposite(sex);
-      setLive(fill(policy.sought_flipped, { sought: flipped === "male" ? "Men" : "Women" }));
+      setLive(fill(policy.sought_flipped, { sought: flipped === "male" ? policy.sex_men : policy.sex_women }));
       onChange({ ...prefs, seekSex: flipped });
     } else if (sex !== was) {
       // Phase 6 (F13): no request — the list changes in place; say so
-      announce.current = sex === "male" ? "men" : "women";
+      announce.current = (sex === "male" ? policy.sex_men : policy.sex_women).toLowerCase();
     }
-  }, [about, prefs, onChange, saveAbout, policy.sought_flipped]);
+  }, [about, prefs, onChange, saveAbout, policy.sought_flipped, policy.sex_men, policy.sex_women]);
   /** Sought sex: part of the search. The own sex the panel was showing is
    * kept (stored) so the visitor's "I'm a" never flips under them. */
   const onSeekSex = useCallback((seekSex: "male" | "female") => {
@@ -465,11 +465,11 @@ export function Home({
   const sortControl = (
     <Segmented
       inline
-      label="Show"
+      label={policy.sort_label}
       testid="sort"
       options={[
-        { value: "best_first", label: "Best first" },
-        { value: "worst_first", label: "Worst first" },
+        { value: "best_first", label: policy.sort_best },
+        { value: "worst_first", label: policy.sort_worst },
       ]}
       value={prefs.sort}
       onChange={(v) => onChange({ ...prefs, sort: v as Prefs["sort"] })}
@@ -629,7 +629,7 @@ export function Home({
                     {sameSex && (
                       <p data-variant="" className="mt-1.5 max-w-[58ch] text-caption text-ink-2" data-testid="same-sex-note">
                         {fill(policy.same_sex_pool_note, {
-                          sought_one: prefs.seekSex === "male" ? "man" : "woman", sought: short.sought })}
+                          sought_one: (prefs.seekSex === "male" ? policy.sex_man : policy.sex_woman).toLowerCase(), sought: short.sought })}
                       </p>
                     )}
                   </div>
@@ -639,7 +639,7 @@ export function Home({
                 <p className="sr-only" aria-live="polite" data-testid="results-live">{live}</p>
 
                 <div ref={listRef} data-testid="ranked-list" data-variant="" onClickCapture={keepPlace}>
-                  <ol aria-label="Cities" className="grid gap-4 md:grid-cols-3">
+                  <ol aria-label={policy.list_top_label} className="grid gap-4 md:grid-cols-3">
                     {featured.map((row, i) => (
                       <FeaturedCard
                         key={row.cbsa}
@@ -685,7 +685,7 @@ export function Home({
                         <span className="text-right" data-testid="score-label">{policy.col_score}</span>
                         <span />
                       </div>
-                      <ol start={featured.length + 1} aria-label="More cities" className="max-sm:mt-3 max-sm:border-t max-sm:border-rule">
+                      <ol start={featured.length + 1} aria-label={policy.list_rest_label} className="max-sm:mt-3 max-sm:border-t max-sm:border-rule">
                         {rest.map((row) => (
                           <ResultRow
                             key={row.cbsa}
@@ -753,9 +753,9 @@ export function Home({
                 className="mb-4 flex min-h-11 w-full items-center rounded-md bg-sunken px-3.5 text-left text-body-sm font-semibold text-ink hover:bg-hover"
               >
                 {fill(policy.sheet_search_summary, {
-                  you: selfSex === "male" ? "Man" : "Woman",
+                  you: selfSex === "male" ? policy.sex_man : policy.sex_woman,
                   age: prefs.selfAge,
-                  sought: prefs.seekSex === "male" ? "Men" : "Women",
+                  sought: prefs.seekSex === "male" ? policy.sex_men : policy.sex_women,
                   ages: `${prefs.ageMin}–${prefs.ageMax}`,
                 })}
               </button>

@@ -157,7 +157,7 @@ export function FeaturedCard({
         data-testid="card-body"
       >
         <h3 className="font-display text-h3">
-          <span className="sr-only">Ranked {row.rank}: </span>
+          <span className="sr-only">{fill(meta.policy_strings.rank_sr, { n: row.rank })}</span>
           {/* the name's 44px target below the desk grows into the card's
               padding and the gap under it (9px each side of its 26px
               line), so the card keeps its height and #1's score stays in
@@ -241,7 +241,7 @@ export function ResultRow({
         <span aria-hidden="true" className="font-display text-h3 text-ink-2">{row.rank}</span>
         <div className="flex min-w-0 flex-col gap-1.5">
           <h3 className="text-title">
-            <span className="sr-only">Ranked {row.rank}: </span>
+            <span className="sr-only">{fill(meta.policy_strings.rank_sr, { n: row.rank })}</span>
             <Link href={href} className="hover:text-accent-hover hover:underline max-desk:flex max-desk:min-h-11 max-desk:items-center">
               {row.display_name}
             </Link>
@@ -455,10 +455,12 @@ function Section({ title, tip, tipId, tipLabel, testid, className = "", children
   const ref = useRef<HTMLElement>(null);
   return (
     <section ref={ref} className={className} data-testid={testid}>
-      <h4 className="mb-2 flex items-center gap-1 text-caption font-semibold text-ink-2">
-        {title}
+      {/* Phase 8 (R16): the ⓘ beside the heading, not inside it, so a
+          screen reader hears "Balance", then the button "About balance" */}
+      <div className="mb-2 flex items-center gap-1">
+        <h4 className="text-caption font-semibold text-ink-2">{title}</h4>
         {tip && tipId && <InfoTip id={tipId} label={tipLabel ?? title} anchor={ref}>{tip}</InfoTip>}
-      </h4>
+      </div>
       {children}
     </section>
   );

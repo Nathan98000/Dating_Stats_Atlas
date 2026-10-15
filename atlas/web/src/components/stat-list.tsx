@@ -47,7 +47,7 @@ export function StatList({
   ariaLabel: string;
   colName: string;
   defaultIsLowFirst: boolean;
-  strings: { sort_low: string; sort_high: string; col_city: string };
+  strings: { sort_low: string; sort_high: string; col_city: string; sort_label: string };
 }) {
   const [reversed, setReversed] = useState(false);
   const shown = reversed ? [...rows].reverse() : rows;
@@ -61,7 +61,7 @@ export function StatList({
     <>
       <div className="flex items-center justify-end gap-2.5">
         <span className="text-caption font-semibold text-ink-2" id="stat-sort-label">
-          Show
+          {strings.sort_label}
         </span>
         {/* Phase 6 (F33): the home page's segmented control — a radio
             group, the selected segment white with the 1.5px --ink-2 border

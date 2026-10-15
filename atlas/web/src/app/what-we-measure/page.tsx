@@ -34,7 +34,7 @@ export default async function WhatWeMeasurePage() {
       <SiteHeader />
       <main id="main" className="mx-auto flex max-w-3xl flex-col gap-8 px-6 pb-16 pt-10 sm:px-12">
         <h1 className="font-display text-display-1 font-semibold leading-tight tracking-tight">
-          What we measure
+          {CHROME.footer_measure}
         </h1>
 
         {meta.measure_page.map((group) => (

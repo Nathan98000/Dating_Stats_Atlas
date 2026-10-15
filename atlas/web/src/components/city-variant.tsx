@@ -51,7 +51,7 @@ export function CityVariantPart({
   // own sex — the notes are chosen here, inside the variant veil
   const sought = slice.variants.sought_sex;
   const sameSex = effectiveSex(about, sought) === sought;
-  const soughtWords = sought === "male" ? "men" : "women";
+  const soughtWords = (sought === "male" ? meta.policy_strings.sex_men : meta.policy_strings.sex_women).toLowerCase();
   if (part === "ranked") {
     const ranked = sel.ranked.find((r) => r.cbsa === cbsa);
     if (!ranked) return null;
@@ -64,7 +64,7 @@ export function CityVariantPart({
       >
         <div className="flex flex-col gap-1">
           <h2 className="font-display text-h3">
-            Where {city} lands for your search
+            {fill(policy.city_card_heading, { city })}
           </h2>
           <p className="text-caption text-ink-3" data-testid="city-search">{search}</p>
         </div>
@@ -72,7 +72,7 @@ export function CityVariantPart({
           {/* the verdict: the spot, the score, why */}
           <div className="flex flex-col gap-5" data-testid="city-spot">
             <p className="flex items-center gap-3">
-              <span className="sr-only">Ranked </span>
+              <span className="sr-only">{policy.city_rank_sr} </span>
               <span
                 className={`inline-flex h-14 min-w-14 items-center justify-center rounded-full px-3 font-display text-data-l font-bold text-ink ${top ? "bg-highlight" : "border border-line-strong bg-surface"}`}
                 data-testid="city-rank"
@@ -80,7 +80,7 @@ export function CityVariantPart({
                 {ranked.rank}
               </span>
               <span className="text-body-lg text-ink-2">
-                of {sel.counts.ranked.toLocaleString("en-US")} cities
+                {fill(policy.city_rank_of, { n: sel.counts.ranked.toLocaleString("en-US") })}
               </span>
             </p>
             <div className="flex max-w-[420px] flex-col gap-1">
@@ -113,19 +113,20 @@ export function CityVariantPart({
             <FlagCaptions flags={ranked.flags} meta={meta} className="max-w-[52ch]" />
             {sameSex && (
               <p className="max-w-[52ch] text-caption text-ink-2" data-testid="same-sex-note">
-                {fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
+                {fill(policy.same_sex_pool_note, { sought_one: (sought === "male" ? policy.sex_man : policy.sex_woman).toLowerCase(),
                   sought: soughtWords })}
               </p>
             )}
             {/* Nathan, 2026-10-10: no line under the dots; the ⓘ sits beside
                 the label, as in the rankings detail */}
             <div ref={balanceRef} className="border-t border-rule pt-4">
-              <h3 className="mb-2 flex items-center gap-1 text-caption font-semibold text-ink-2">
-                {policy.balance_label}
+              {/* Phase 8 (R16): the ⓘ beside the heading, not inside it */}
+              <div className="mb-2 flex items-center gap-1">
+                <h3 className="text-caption font-semibold text-ink-2">{policy.balance_label}</h3>
                 <InfoTip id={`city-${cbsa}-bal-info`} label={policy.balance_info_label} anchor={balanceRef}>
                   {policy.balance_caption}
                 </InfoTip>
-              </h3>
+              </div>
               <BalanceDots balance={ranked.balance} meta={meta} tile />
             </div>
           </div>
@@ -144,7 +145,7 @@ export function CityVariantPart({
       data-variant=""
     >
       <h2 className="text-body font-semibold">
-        {meta.features.pool_balance.display_name} in {city}
+        {fill(meta.policy_strings.balance_in_city, { balance: meta.features.pool_balance.display_name, city })}
       </h2>
       <BalanceDots balance={balance} meta={meta} />
       <p className="max-w-[64ch] text-caption text-ink-3">

@@ -20,29 +20,29 @@ export function SiteHeader() {
         <Suspense
           fallback={
             <Link href="/" className="inline-flex min-h-11 items-center font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3">
-              Dating Scene Data
+              {labels.title_site}
             </Link>
           }
         >
-          <BrandLink />
+          <BrandLink label={labels.title_site} />
         </Suspense>
-        <nav aria-label="Main" className="ml-auto flex h-full gap-7 max-sm:hidden">
+        <nav aria-label={labels.nav_main_label} className="ml-auto flex h-full gap-7 max-sm:hidden">
           <Suspense fallback={null}>
             <NavLinks labels={labels} />
           </Suspense>
         </nav>
         <div className="hidden desk:block">
           <Suspense fallback={<div className="h-10 w-[240px]" />}>
-            <SearchBox clearLabel={labels.clear} />
+            <SearchBox clearLabel={labels.clear} label={labels.find_city} />
           </Suspense>
         </div>
         <div className="flex items-center gap-1 max-sm:ml-auto desk:hidden">
           <Suspense fallback={<div className="h-11 w-11" />}>
-            <HeaderSearchToggle label="Find a city" closeLabel={labels.close} />
+            <HeaderSearchToggle label={labels.find_city} closeLabel={labels.close} />
           </Suspense>
           <div className="sm:hidden">
             <Suspense fallback={<div className="h-11 w-11" />}>
-              <MenuButton labels={labels} menuLabel="Menu" closeLabel={labels.close} />
+              <MenuButton labels={labels} menuLabel={labels.nav_menu} closeLabel={labels.close} />
             </Suspense>
           </div>
         </div>
@@ -59,8 +59,8 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-rule max-desk:pb-24">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-x-6 gap-y-1 px-4 py-7 text-body-sm text-ink-3 sm:px-12">
-        <span className="mr-auto font-display text-body font-semibold text-ink">Dating Scene Data</span>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-6">
+        <span className="mr-auto font-display text-body font-semibold text-ink">{labels.title_site}</span>
+        <nav aria-label={labels.footer_label} className="flex flex-wrap gap-x-6">
           {FOOTER_LINKS.map((f) => (
             <Link key={f.key} href={f.href} className="inline-flex min-h-11 min-w-11 items-center justify-center hover:text-ink">
               {labels[f.key]}

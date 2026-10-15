@@ -44,15 +44,16 @@ export function NavLinks({ labels }: { labels: Record<string, string> }) {
   );
 }
 
-/** The brand link, carrying the same preference params home. */
-export function BrandLink() {
+/** The brand link, carrying the same preference params home. Phase 8
+ * (R15): its words are the registry's title_site, from the header. */
+export function BrandLink({ label }: { label: string }) {
   const suffix = useCarried();
   return (
     <Link
       href={`/${suffix}`}
       className="inline-flex min-h-11 items-center font-display text-h3 font-semibold tracking-tight text-ink max-sm:text-h3"
     >
-      Dating Scene Data
+      {label}
     </Link>
   );
 }
@@ -86,7 +87,7 @@ export function HeaderSearchToggle({ label, closeLabel }: { label: string; close
             }
           }}
         >
-          <SearchBox wide autoFocus />
+          <SearchBox wide autoFocus label={label} />
           <button
             type="button"
             aria-label={closeLabel}

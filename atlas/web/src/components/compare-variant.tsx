@@ -64,7 +64,7 @@ export function CompareVariantRows({
     <>
       {/* item 6.1: the gap in places — smaller spot is better, so the
           edge reads through direction −1 */}
-      <Row label="Spot in your results">
+      <Row label={policy.compare_spot}>
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} variant win={win(rankEdge, i)} edgeLabel={better}>
             {isRanked(r) ? (
@@ -124,8 +124,9 @@ export function CompareVariantRows({
           same-sex search the note on what it counts, chosen here in the
           browser from the stored own sex (F01) */}
       <Row label={meta.features.pool_size.display_name}
-        note={sameSex ? fill(policy.same_sex_pool_note, { sought_one: sought === "male" ? "man" : "woman",
-          sought: sought === "male" ? "men" : "women" }) : undefined}>
+        note={sameSex ? fill(policy.same_sex_pool_note, {
+          sought_one: (sought === "male" ? policy.sex_man : policy.sex_woman).toLowerCase(),
+          sought: (sought === "male" ? policy.sex_men : policy.sex_women).toLowerCase() }) : undefined}>
         {[rowA, rowB].map((r, i) => (
           <ValueCell key={i} win={win(poolEdge, i)} edgeLabel={better}>
             {isRanked(r) ? (

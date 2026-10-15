@@ -2881,6 +2881,356 @@
    "key": "kalamazoo-michigan",
    "alt": "Downtown Kalamazoo's brick buildings and glass towers above a green footbridge over Arcadia Creek on a summer day.",
    "why": "Phase 6 (the round-3 review of 8 October 2026, §7 and F30; Nathan's decisions 6 and 10): The review found the alt text a raw Commons description; a written one (the photograph stays)."
+  },
+  {
+   "page": "city",
+   "key": "indianapolis-indiana",
+   "alt": "Downtown Indianapolis from above on a clear day, its twin-spired tallest tower at the centre and an arena's arched roof in the foreground.",
+   "was": "indianapolis",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the city's name in lower case; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "montgomery-alabama",
+   "alt": "Downtown Montgomery from the air, with the riverboat landing and the long train shed on the Alabama River in the foreground.",
+   "was": "Title: Aerial view of Montgomery, Alabama\nPhysical description: 1 photograph : digital, TIFF file, color.\n\nNotes: Title, date, and keywords provided by the phot",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a library catalogue record; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "abilene-texas",
+   "alt": "Downtown Abilene's brick and stone towers rising above a line of green trees under a deep blue sky.",
+   "was": "image",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"image\", announced as nothing; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "casper-wyoming",
+   "alt": "Downtown Casper beside the North Platte River, with the broad slopes of Casper Mountain rising behind the city.",
+   "was": "File:Casperskyline.jpg but cropped in a 1:1 ratio.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a file name and a crop note; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "chambersburg-pennsylvania",
+   "alt": "Memorial Square in Chambersburg, with a tiered iron fountain and a brick courthouse's white clock cupola on a summer day.",
+   "was": "",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was empty; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "el-centro-california",
+   "alt": "The Imperial County courthouse in El Centro, its columned front lit up at dusk beside a palm trunk.",
+   "was": "",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was empty; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "gadsden-alabama",
+   "alt": "Gadsden from the air, its downtown grid beside the curving Coosa River among wooded hills.",
+   "was": "Flying over the city of Gadsden, Alabama in May of 2016.\n\nGadsden, Alabama - Aerial (51157939914).jpg",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a file name, announced as nothing; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "hot-springs-arkansas",
+   "alt": "A collage of Hot Springs: the town among wooded hills from above, a domed bathhouse's arcade, the brick Army and Navy Hospital tower, a hot spring pooling among rocks, and a street of old hotels lit at night.",
+   "was": "* File:Hot Springs, Arkansas aerial view.jpg\nFile:Army-Navy Hospital 002.jpg\nFile:Hot Springs National Park 007.jpg\nFile:ChrisLitherlandHotSprings.jpg\nFile:Bath",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a list of file names; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "macon-georgia",
+   "alt": "Macon from high above, its downtown streets and highways spread across wooded country in a blue haze.",
+   "was": "Macon Georgia Aerial (52700955029).jpg",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a file name, announced as nothing; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "gettysburg-pennsylvania",
+   "alt": "Devil's Den on the Gettysburg battlefield seen from Little Round Top, with boulders and green grass under a broad sky.",
+   "was": "View of Devil's Den from Little Round Top, Gettysburg Battlefield, Pennsylvania, US\n\n\n\n\n\n\nThis is an image of a place or building that is listed on the National",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a caption followed by a copied heritage-listing notice; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "kahului-hawaii",
+   "alt": "Kahului from the air, its low buildings and harbor along the blue Pacific coast of Maui.",
+   "was": "Air view of Kahului.\n\n(Uploader on Flickr identified the shot as \"Air View of Wailuku.\" But it's been misidentifed.)",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a caption with an uploader's note; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "st-cloud-minnesota",
+   "alt": "The brick and stone storefronts of St. Germain Street's 800 block in downtown St. Cloud on a sunny day.",
+   "was": "800-block of St Germain St, St Cloud Commercial Historic District, St Cloud, Minnesota, USA.  Viewed from the east.  \n\n\n\n\n\nThis is an image of a place or buildi",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a caption followed by a copied heritage-listing notice; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "sebastian-florida",
+   "alt": "Sebastian's city hall, a cream building with a red tile roof and an arched porch, among palm trees under a clear blue sky.",
+   "was": "Sebastian, Florida:\n\nCity hall",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Sebastian, Florida: City hall\" with stray line breaks; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "dubuque-iowa",
+   "alt": "Downtown Dubuque's brick buildings and church spires seen over treetops from a bluff, with green hills beyond.",
+   "was": "Dubuque, Iowa, USA.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "greenville-north-carolina",
+   "alt": "A downtown Greenville street seen from above at sunset, cars passing between brick buildings under a fiery orange sky.",
+   "was": "Greenville, North Carolina",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "hanford-california",
+   "alt": "Hanford's civic auditorium, its tall columns and pale front facing a lawn under a deep blue sky.",
+   "was": "Hanford, California",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "mansfield-ohio",
+   "alt": "Mansfield's skyline above a band of green trees: a tall red-brick tower, two white high-rises and church spires on the left.",
+   "was": "Mansfield, Ohio",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "springfield-ohio",
+   "alt": "Red-brick buildings on a corner of downtown Springfield in late-afternoon sun, with people walking beneath leafy trees.",
+   "was": "Springfield, Ohio",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "st-george-utah",
+   "alt": "St. George's houses spread across the valley below red cliffs, with snow-dusted mountains under a clouded sky beyond.",
+   "was": "ST. GEORGE, UTAH",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only, in capitals; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "waterloo-iowa",
+   "alt": "Downtown Waterloo's brick buildings along the Cedar River, its surface patched with ice, behind a low bridge.",
+   "was": "Waterloo, Iowa.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "watertown-new-york",
+   "alt": "Public Square in Watertown on a spring day, with a stone obelisk, benches and young trees in leaf beside the street.",
+   "was": "Watertown, New York",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "wenatchee-washington",
+   "alt": "Wenatchee among green trees in its river valley, with brown foothills and snow-capped mountains behind.",
+   "was": "Wenatchee, Washington, USA",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "victoria-texas",
+   "alt": "A broad street in Victoria leading toward a tall office building, with traffic and trees in late-afternoon light.",
+   "was": "Skyline",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Skyline\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "monroe-michigan",
+   "alt": "Downtown Monroe's brick buildings and a low arched bridge across the River Raisin under a big cloudy sky.",
+   "was": "Monroe Skyline",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Monroe Skyline\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "decatur-illinois",
+   "alt": "Downtown Decatur's brick storefronts and a tall historic tower at dusk, seen from above a lit street corner.",
+   "was": "Downtown Decatur",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Downtown Decatur\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "minot-north-dakota",
+   "alt": "Downtown Minot's low brick buildings and a few taller blocks beyond tall grass and shrubs under a clear sky.",
+   "was": "Downtown Minot, North Dakota",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "sumter-south-carolina",
+   "alt": "A tree-lined brick street in downtown Sumter, with a red awning and flower planters in summer.",
+   "was": "Downtown Sumter",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Downtown Sumter\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "yuba-city-california",
+   "alt": "A sunny sidewalk in downtown Yuba City, with shopfronts, a palm tree and a water tower behind.",
+   "was": "Downtown Yuba City",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Downtown Yuba City\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "gainesville-georgia",
+   "alt": "A red-brick building with a white domed cupola in downtown Gainesville, framed by tree branches against a blue sky.",
+   "was": "Downtown Gainesville, Georgia",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the place's name only; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "grand-junction-colorado",
+   "alt": "Grand Junction spread across the valley floor beyond dry hills, with a long range of hills on the horizon under clouds.",
+   "was": "Grand Junction, Colorado skyline",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Grand Junction, Colorado skyline\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "fayetteville-north-carolina",
+   "alt": "Downtown Fayetteville from above, with church steeples, brick buildings and tree-lined streets on a clear day.",
+   "was": "Fayetteville, NC Downtown Skyline",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Fayetteville, NC Downtown Skyline\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "jonesboro-arkansas",
+   "alt": "A collage of Jonesboro: a tall clock tower, a brick civic building with a statue in front, a red-brick house with a porch, and a downtown street of shopfronts.",
+   "was": "Collage of Jonesboro, AR",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Collage of Jonesboro, AR\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "lebanon-pennsylvania",
+   "alt": "Cumberland Street in downtown Lebanon from above, cars passing brick buildings and a glass-fronted corner building.",
+   "was": "Cumberland Street View Image",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Cumberland Street View Image\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "la-crosse-wisconsin",
+   "alt": "Main Street in downtown La Crosse, with red-brick storefronts, a sidewalk clock and people crossing on a summer day.",
+   "was": "La Crosse Main Street",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"La Crosse Main Street\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "saginaw-michigan",
+   "alt": "Saginaw's downtown towers and a bridge seen across the calm Saginaw River on a clear evening.",
+   "was": "Saginaw from the River",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was \"Saginaw from the River\"; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "rochester-minnesota",
+   "alt": "Peace Plaza in downtown Rochester, a brick square with lamps and trees surrounded by glass and stone towers.",
+   "was": "Peace PlazaDowntown Rochester, MN",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was two words run together (\"Peace PlazaDowntown\"); this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "dover-delaware",
+   "alt": "West Loockerman Street in downtown Dover, with storefronts and bare trees in early spring.",
+   "was": "West Loockerman Street in downtown w:Dover, Delaware",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was wiki markup (\"w:Dover\"); this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "st-joseph-missouri",
+   "alt": "The Buchanan County Courthouse in downtown St. Joseph, a red-brick building with white columns and a silver dome.",
+   "was": "The w:Buchanan County, Missouri courthouse in downtown w:Saint Joseph, Missouri",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was wiki markup (\"w:Buchanan County\"); this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "mankato-minnesota",
+   "alt": "Brick storefronts of the North Riverfront Drive Commercial District in Mankato on a sunny day.",
+   "was": "en:North Riverfront Drive Commercial District, Mankato, Minnesota, USA.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was wiki markup (\"en:\"); this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "bloomington-indiana",
+   "alt": "Kirkwood Avenue in Bloomington at sunset, a street of shops and restaurants under a golden sky.",
+   "was": "Kirkwood Ave. in Bloomington, IN. http://art.alahay.org",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a web address; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "bozeman-montana",
+   "alt": "Main Street in downtown Bozeman, a row of brick buildings and shade trees on a sunny day.",
+   "was": "Main Street Historic District (Springfield, Montana)",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was the wrong town (\"Springfield, Montana\"); this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "sandusky-ohio",
+   "alt": "Downtown Sandusky from the air at sunset, its marina and waterfront on Sandusky Bay below a streaked sky.",
+   "was": "Ariel view of Downtown Sandusky",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a misspelling (\"Ariel view\"); this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "charlottesville-virginia",
+   "alt": "Downtown Charlottesville from the air, brick buildings among dense trees with green mountains beyond.",
+   "was": "Aerial view of downtown Charlottesville, Virginia (pop. 46,553).",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a population figure the site did not compute; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "hattiesburg-mississippi",
+   "alt": "Downtown Hattiesburg from the air, its brick and stone buildings beside a railway line under an overcast sky.",
+   "was": "Aerial view of downtown Hattiesburg, Mississippi (pop. 48,730).",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a population figure the site did not compute; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "bellingham-washington",
+   "alt": "Downtown Bellingham from the air, its red-brick towered old city hall among trees, with forested hills under a summer sky.",
+   "was": "The skyline of downtown Bellingham, Washington (pop. 91,482), the county seat of Whatcom County.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a population figure the site did not compute; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "fond-du-lac-wisconsin",
+   "alt": "Main Street in downtown Fond du Lac, a broad street of historic brick buildings under leafy trees on a sunny day.",
+   "was": "The w:South Main Street Historic District on Main Street, w:Fond du Lac, Wisconsin along w:U.S. Route 45, listed on the National Register of Historic Places.  T",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was wiki markup (\"w:\") and a copied heritage-listing notice; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "mount-vernon-washington",
+   "alt": "Downtown Mount Vernon from the air beside the Skagit River and a bridge, with green mountains under clouds beyond.",
+   "was": "Aerial view of downtown Mount Vernon, Washington (pop. 35,219), the county seat and most populous city in Skagit County.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a population figure the site did not compute; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "pittsfield-massachusetts",
+   "alt": "Downtown Pittsfield from the air, brick buildings among dense trees with the green Berkshire hills beyond.",
+   "was": "Aerial view of downtown Pittsfield, Massachusetts (pop. 43,927), the most populous city and county seat of Berkshire County.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a population figure the site did not compute; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "pueblo-colorado",
+   "alt": "Downtown Pueblo from the air, its brick buildings and the Riverwalk's channel spread out under a clear sky.",
+   "was": "Aerial view of downtown Pueblo, Colorado (pop. 111,876), featuring the historic Arkansas Riverwalk.",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was a population figure the site did not compute; this one describes the photograph (DRAFT for Nathan's approval)."
+  },
+  {
+   "page": "city",
+   "key": "morgantown-west-virginia",
+   "alt": "Woodburn Hall in Morgantown, a red-brick building with a clock tower and mansard roofs, framed by green trees.",
+   "was": "Woodburn Hall",
+   "why": "Phase 8 (the round-4 review's R13, Nathan's go of 15 October 2026): the old alt text was two words (\"Woodburn Hall\"); this one describes the photograph (DRAFT for Nathan's approval)."
   }
  ],
  "phase5_card_photos": {

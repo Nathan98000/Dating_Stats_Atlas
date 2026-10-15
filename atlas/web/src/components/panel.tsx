@@ -5,18 +5,20 @@ import type { Meta } from "@/lib/types";
 import { filtersSummary, IMPORTANCE_PILLARS, SELF_EDU_LEVELS, type Level, type Prefs,
   type SelfEdu } from "@/lib/prefs";
 import type { AboutYou } from "@/lib/about-you";
+import { fill } from "@/lib/results";
 import { InfoTip } from "./info-tip";
 import { Segmented } from "./segmented";
 
-const EDU_OPTIONS: { value: "" | "bachelors" | "graduate"; label: string }[] = [
-  { value: "", label: "Any" },
-  { value: "bachelors", label: "College degree" },
-  { value: "graduate", label: "Graduate degree" },
+/** Phase 8 (R15): the choices' words are the registry's. */
+const eduOptions = (s: Record<string, string>): { value: "" | "bachelors" | "graduate"; label: string }[] => [
+  { value: "", label: s.any_option },
+  { value: "bachelors", label: s.edu_bachelors },
+  { value: "graduate", label: s.edu_graduate },
 ];
-const LEVELS: { value: Level; label: string }[] = [
-  { value: "not_much", label: "Not much" },
-  { value: "some", label: "Some" },
-  { value: "a_lot", label: "A lot" },
+const levels = (s: Record<string, string>): { value: Level; label: string }[] => [
+  { value: "not_much", label: s.level_not_much },
+  { value: "some", label: s.level_some },
+  { value: "a_lot", label: s.level_a_lot },
 ];
 
 export function Field({ label, htmlFor, children }: {
@@ -127,7 +129,7 @@ export function RailGroups({
             {/* Phase 4b: the one explanation of the compatibility figure
                 (the figure has no box of its own); a same-sex search adds
                 the served sentence saying whose pairing patterns it uses */}
-            <InfoTip id={`${uid}-svo-info`} label="What the slider changes" testid="slider-info">
+            <InfoTip id={`${uid}-svo-info`} label={policy.slider_info_label} testid="slider-info">
               {policy.slider_info}
               {sameSex && sameSexNote ? (
                 <>
@@ -168,6 +170,7 @@ export function RailGroups({
               subtitle={meta.pillars[pillar]?.control_subtitle ?? ""}
               value={prefs.importance[pillar]}
               onPick={(lv) => set({ importance: { ...prefs.importance, [pillar]: lv } })}
+              strings={policy}
             />
           ))}
         </div>
@@ -179,11 +182,11 @@ export function RailGroups({
         summary={<span data-testid="filters-summary">{filtersSummary(prefs)}</span>}
       >
         <fieldset>
-          <legend className="mb-1.5 text-caption font-semibold text-ink-2">Single means</legend>
+          <legend className="mb-1.5 text-caption font-semibold text-ink-2">{policy.marital_heading}</legend>
           <div className="flex flex-wrap gap-2">
             {[
-              { v: "never_married", label: "Never married" },
-              { v: "previously_married", label: "Divorced or widowed" },
+              { v: "never_married", label: policy.marital_never },
+              { v: "previously_married", label: policy.marital_previously },
             ].map(({ v, label }) => {
               const on = prefs.marital.includes(v);
               return (
@@ -211,7 +214,7 @@ export function RailGroups({
           </div>
         </fieldset>
 
-        <Field label="Education" htmlFor={`${uid}-edu`}>
+        <Field label={policy.education_label} htmlFor={`${uid}-edu`}>
           <select
             id={`${uid}-edu`}
             className="ctl"
@@ -220,12 +223,12 @@ export function RailGroups({
               set({ educationMin: (e.target.value || undefined) as Prefs["educationMin"] })
             }
           >
-            {EDU_OPTIONS.map((o) => (
+            {eduOptions(policy).map((o) => (
               <option key={o.value} value={o.value}>{o.label}</option>
             ))}
           </select>
         </Field>
-        <Field label="Earning at least" htmlFor={`${uid}-inc`}>
+        <Field label={policy.income_label} htmlFor={`${uid}-inc`}>
           {/* only the survey's own income steps — anything else has no count */}
           <select
             id={`${uid}-inc`}
@@ -235,7 +238,7 @@ export function RailGroups({
               set({ incomeMin: e.target.value ? parseInt(e.target.value, 10) : undefined })
             }
           >
-            <option value="">Any</option>
+            <option value="">{policy.any_option}</option>
             {meta.controls.income_band_edges.map((edge) => (
               <option key={edge} value={edge}>
                 ${edge.toLocaleString("en-US")}
@@ -250,7 +253,7 @@ export function RailGroups({
         <fieldset data-testid="race-panel">
           <div className="mb-1 flex items-baseline justify-between">
             <legend className="text-caption font-semibold text-ink-2">
-              Race &amp; ethnicity
+              {policy.race_heading}
             </legend>
             {prefs.race?.length ? (
               <button
@@ -258,7 +261,7 @@ export function RailGroups({
                 className="min-h-11 text-caption font-semibold text-accent underline underline-offset-2 desk:min-h-0"
                 onClick={() => set({ race: undefined })}
               >
-                Include all
+                {policy.race_include_all}
               </button>
             ) : null}
           </div>
@@ -544,11 +547,14 @@ function ImportanceRow({
   subtitle,
   value,
   onPick,
+  strings,
 }: {
   label: string;
   subtitle: string;
   value: Level;
   onPick: (lv: Level) => void;
+  /** Phase 8 (R15): the registry's strings, for the levels' words */
+  strings: Record<string, string>;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -556,7 +562,7 @@ function ImportanceRow({
         <span className="text-caption font-semibold text-ink-2">{label}</span>
         {subtitle ? <span className="text-caption text-ink-3">{subtitle}</span> : null}
       </span>
-      <Segmented label={`${label} importance`} options={LEVELS} value={value} onChange={onPick} />
+      <Segmented label={fill(strings.importance_group, { pillar: label })} options={levels(strings)} value={value} onChange={onPick} />
     </div>
   );
 }
@@ -568,9 +574,12 @@ export function AgeRange({
   prefs,
   onChange,
   exact = false,
+  strings,
 }: {
   prefs: Prefs;
   onChange: (next: Prefs) => void;
+  /** Phase 8 (R15): the registry's strings, for the track's words */
+  strings: Record<string, string>;
   /** Phase 6 (F02): two number fields for exact ages under the track */
   exact?: boolean;
 }) {
@@ -583,7 +592,7 @@ export function AgeRange({
     <div className="flex flex-col gap-1.5">
       <div className="flex items-baseline justify-between">
         <span id={`${uid}-lab`} className="text-caption font-semibold text-ink-2">
-          Aged
+          {strings.age_aged}
         </span>
         <output className="text-body font-semibold" data-testid="age-output">
           {prefs.ageMin} – {prefs.ageMax}
@@ -602,8 +611,8 @@ export function AgeRange({
           max={MAX}
           step={1}
           value={prefs.ageMin}
-          aria-label="Youngest age"
-          aria-valuetext={`youngest age ${prefs.ageMin}`}
+          aria-label={strings.age_youngest}
+          aria-valuetext={fill(strings.age_youngest_value, { n: prefs.ageMin })}
           onChange={(e) => {
             const v = Math.min(parseInt(e.target.value, 10), prefs.ageMax);
             onChange({ ...prefs, ageMin: v });
@@ -615,8 +624,8 @@ export function AgeRange({
           max={MAX}
           step={1}
           value={prefs.ageMax}
-          aria-label="Oldest age"
-          aria-valuetext={`oldest age ${prefs.ageMax}`}
+          aria-label={strings.age_oldest}
+          aria-valuetext={fill(strings.age_oldest_value, { n: prefs.ageMax })}
           onChange={(e) => {
             const v = Math.max(parseInt(e.target.value, 10), prefs.ageMin);
             onChange({ ...prefs, ageMax: v });
@@ -629,11 +638,11 @@ export function AgeRange({
       </div>
       {exact && (
         <div className="mt-2 flex items-center gap-2.5 text-body text-ink-2" data-testid="age-exact">
-          <span aria-hidden="true">From</span>
-          <ExactAge label="Youngest age" value={prefs.ageMin} testid="age-from"
+          <span aria-hidden="true">{strings.age_from}</span>
+          <ExactAge label={strings.age_youngest} value={prefs.ageMin} testid="age-from"
             commit={(v) => onChange({ ...prefs, ageMin: Math.min(v, prefs.ageMax) })} />
-          <span aria-hidden="true">to</span>
-          <ExactAge label="Oldest age" value={prefs.ageMax} testid="age-to"
+          <span aria-hidden="true">{strings.age_to}</span>
+          <ExactAge label={strings.age_oldest} value={prefs.ageMax} testid="age-to"
             commit={(v) => onChange({ ...prefs, ageMax: Math.max(v, prefs.ageMin) })} />
         </div>
       )}

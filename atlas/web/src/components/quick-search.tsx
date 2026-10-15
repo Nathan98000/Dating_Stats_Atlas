@@ -47,8 +47,8 @@ export function QuickSearch({
               value={selfSex}
               onChange={(e) => onSelfSex(e.target.value as "male" | "female")}
             >
-              <option value="female">Woman</option>
-              <option value="male">Man</option>
+              <option value="female">{s.sex_woman}</option>
+              <option value="male">{s.sex_man}</option>
             </select>
           </div>
         </Slot>
@@ -72,13 +72,13 @@ export function QuickSearch({
             value={prefs.seekSex}
             onChange={(e) => onSeekSex(e.target.value as "male" | "female")}
           >
-            <option value="male">Men</option>
-            <option value="female">Women</option>
+            <option value="male">{s.sex_men}</option>
+            <option value="female">{s.sex_women}</option>
           </select>
         </Slot>
         <Slot word={s.quick_seek_age} label={s.quick_seek_age_short} htmlFor={`${uid}-ages`}>
           <AgePopover id={`${uid}-ages`} label={s.quick_seek_age_short} closeLabel={s.close}
-            prefs={prefs} onChange={onChange} />
+            prefs={prefs} onChange={onChange} strings={s} />
         </Slot>
       </div>
     </div>
@@ -108,8 +108,9 @@ function Slot({ word, label, htmlFor, children }: {
 /** The age range's token: a button showing "28 – 40" that opens a 300px
  * popover with the two-handle control. Escape, a click outside, or Close
  * closes it, and focus returns to the button. */
-function AgePopover({ id, label, closeLabel, prefs, onChange }: {
+function AgePopover({ id, label, closeLabel, prefs, onChange, strings }: {
   id: string; label: string; closeLabel: string; prefs: Prefs; onChange: (next: Prefs) => void;
+  strings: Record<string, string>;
 }) {
   const [open, setOpen] = useState(false);
   const btn = useRef<HTMLButtonElement>(null);
@@ -162,7 +163,7 @@ function AgePopover({ id, label, closeLabel, prefs, onChange }: {
         data-testid="age-popover"
         className="absolute left-0 top-full z-40 mt-2 w-[300px] rounded-lg border border-rule bg-surface p-5 shadow-overlay max-sm:right-0 max-sm:left-auto"
       >
-        <AgeRange prefs={prefs} onChange={onChange} exact />
+        <AgeRange prefs={prefs} onChange={onChange} exact strings={strings} />
         <div className="mt-3 flex justify-end">
           <button
             type="button"
