@@ -783,6 +783,59 @@ files match the live build's; its manifest is in git at e34aa55); disk 51%
 to 47%. Rollback: the images `:181158c` and the code at `src_181158c`, on
 the live build.
 
+**Deploy record (2026-10-16, on Nathan's word "merge, push, deploy").**
+Phase 8 (`atlas/PHASE8.md`): 78 photo descriptions rewritten, the pages'
+words in the registry, Balance's heading read alone, the trimmed Fraunces,
+the starting search kept on the server, the 3x phone's 720px photographs,
+one site description, the 404's title, Compare's preview image, a
+full-width WebP copy of every photograph with the originals no longer
+served and the week's cache on image files only, even phone rows, the city
+card's What moved the score, Charleston's, York's and Reno's new
+photographs and Fargo's focal point; and after the report, "cities" for
+"metro areas" everywhere but How it works (which explains it) and the stat
+pages' capitalised tab titles. Merged and pushed: main = origin/main =
+89b54c4 (eight commits on ec5bd0c); before the push no secret pattern was
+added and the Pew history scan was clean (0 violations over 3,124 blobs);
+CI run 38911020611 green. On the Mac: pytest 211, vitest 165, Playwright
+325 passed (6 skipped by design). New build **79d1c644ec88** (m4.3.0): the
+ten "A vast metro area" descriptions read "A vast city"; its number files
+are d62202fd0280's byte for byte, and with the build id masked every
+`/v1/rank`, `/v1/profile` and `/v1/political_lean` answer for the 518 test
+searches is identical (`results/phase8/served_numbers_cities_build.json`).
+Steps: the running images tagged `:73fc551`; the code in a fresh folder
+(1,489 files, checked against the commit file for file); the photographs
+copied from the live folder and the Mac's synced over them (392 files
+crossed: the three new photographs, four link previews and the WebP copies,
+among them a full-width one for every photograph; all 2,568 identical to
+the Mac's by sha256); the build staged as `build_79d1c644ec88` from a copy
+of the live one (only `metros.json`, `features.parquet` and
+`manifest.json` crossed; every file's sha256 checked); both images built in
+3m35s while the old containers served. The private copy (network
+`dsa-stage`, the new build, loopback only, an SSH tunnel) passed the
+real-build checks (6 passed) and the release's check: none of 33 pages says
+"metro", none names an original photograph; the titles, descriptions, the
+rank line "9 of 193 cities", the map's description, the fold and Deltona's
+caption as approved; Charleston, York, Reno and Fargo at 1920px with their
+focal points; the phone's 720px card; one 58 KB Fraunces; the starting
+search's first byte about 0.33 s quicker than another search's. Then the
+folders were swapped at 14:02 UTC (the old code kept as `src_73fc551`, the
+old build as `build_d62202fd0280_73fc551`), `up -d api web` run, and Caddy
+recreated from `src`, since the Caddyfile changed (no certificate
+obtained). Checked from the Mac: the same check passes on the live site,
+with the home page's first byte about 0.4 s (0.8 s before); originals
+answer 404, also by doubled-slash and encoded paths, sized copies and
+previews 200 with `max-age=604800`, the stat pages without it; the security
+headers once each; `www` and both DuckDNS addresses 301, http 308;
+`/api/rank` answers 193 ranked cities on 79d1c644ec88/m4.3.0; five
+photographs served byte for byte; no error in the API's, web's or Caddy's
+log since the swap, and the only address in Caddy's log is 127.0.0.1;
+memory 2.0 of 5.8 GB used. Then the older backup was deleted, Nathan
+keeping only the newest: the images `:181158c` and `src_181158c` (its code
+matched 181158c file for file; its 2,191 photographs match the kept
+backup's); disk 57% to 54%. Rollback: the images `:73fc551`, the code at
+`src_73fc551` (Caddy rolls back with the same `--force-recreate`) and the
+build at `build_d62202fd0280_73fc551`.
+
 ## Environment variables
 
 | var | where | meaning |
