@@ -182,6 +182,34 @@ def test_the_pleasant_days_photograph_is_credited_to_its_photographer(state):
         (p["page"], p["key"], p["license"]) for p in state["credits"]["photos"]}
 
 
+def test_the_walkability_photograph_is_a_walkable_street_pinned_by_hash(state):
+    """Nathan, 2026-10-26: a better photograph for the walkability page,
+    whatever its licence ("Assume I will get the license"). Pompeii's ruins
+    give way to a New York street from Unsplash: the review records its
+    credit, its alt text, its exact bytes and Nathan's permission, since the
+    Unsplash License is not on the cleared list; the page renders exactly
+    that record, scaled, never cropped."""
+    from atlas.pipeline.build import city_images as CI
+    rec = PR.external_files()[("stat", "resident_walkability_index")]
+    assert CI.REVIEW_EXTERNAL[("stat", "resident_walkability_index")] == rec
+    entry = state["stat"]["resident_walkability_index"]
+    for k in ("author", "license", "license_url", "source_url", "title", "alt"):
+        assert entry[k] == rec[k], k
+    assert entry["cropped"] is False
+    row = state["stat_csv"][state["stat_csv"]["stat"] == "resident_walkability_index"].iloc[0]
+    assert row["status"] == "ok" and row["sha256"] == rec["sha256"] and row["file"] == entry["file"]
+    assert len(rec["sha256"]) == 64
+    # outside the cleared list, so it ships only by Nathan's permission
+    assert not CI.ALLOW.match(rec["license"])
+    assert "Assume I will get the license" in " ".join(rec["licence_evidence"])
+    # the photograph it replaces renders nowhere, and no Commons pin competes
+    assert rec["was"] not in {_file_of(v["source_url"]) for v in state["stat"].values()
+                              if "commons.wikimedia.org" in v["source_url"]}
+    assert ("stat", "resident_walkability_index") not in PR.pinned_files()
+    assert ("stat", "resident_walkability_index", "Unsplash License") in {
+        (p["page"], p["key"], p["license"]) for p in state["credits"]["photos"]}
+
+
 def test_every_ranked_city_has_a_representative_photograph_recorded(state):
     """After the Phase 5 report (Nathan, 2026-10-08): every ranked city —
     any of them can be a home-page card — has a photograph, from any source

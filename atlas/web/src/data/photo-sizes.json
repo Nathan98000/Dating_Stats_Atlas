@@ -4031,14 +4031,14 @@
    ]
   },
   "resident_walkability_index": {
-   "width": 1920,
-   "height": 1440,
+   "width": 5472,
+   "height": 3648,
    "widths": [
     480,
     720,
     1080,
     1600,
-    1920
+    2048
    ]
   },
   "students_per_1k_adults": {

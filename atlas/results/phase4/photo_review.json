@@ -2473,6 +2473,44 @@
     "as the file's Commons page states it (its licence section, read 2026-10-15): CC BY-SA 4.0, by Acroterion"
    ],
    "checked": "the market house's brick front, towers and doors, row houses either side; one small figure at a door, none as the subject; no sculpture or mural; its own name in small letters over the doors, no logo; cars parked along the bottom edge, outside the band's and the link preview's crops at 50% 20%, small on the 16:10 card"
+  },
+  {
+   "date": "2026-10-26",
+   "page": "stat",
+   "key": "resident_walkability_index",
+   "why": "Nathan, 2026-10-26: \"Please find a better photo for the resident_walkability_index page. (Assume I will get the license for whatever photo you select.)\" The old photograph, an empty street of Roman ruins in Pompeii, said little about walking in an American city. This one shows what the EPA's index scores: a connected street with crosswalks, a bike lane and a bus route, shops and homes along tree-shaded sidewalks, and people walking on them. Found by searching Unsplash and Wikimedia Commons for walkable US streets (some 130 candidates on contact sheets, from about 480 search results; the shortlist read at 1,200 px and the pick at full size).",
+   "was": "File:Pompei_-_panoramio_(26).jpg",
+   "title": "People crossing a street with cars and trees",
+   "author": "Maxim Klimashin (Unsplash)",
+   "license": "Unsplash License",
+   "license_url": "https://unsplash.com/license",
+   "source_url": "https://unsplash.com/photos/people-crossing-a-street-with-cars-and-trees-M4xA9YPZ1HY",
+   "image_url": "https://images.unsplash.com/photo-1761301006704-bc013cfb1e65",
+   "sha256": "163f1f1bbe2257fe7cc3ea89e0c90e6073134b3ce00bf7627922b30a426bf994",
+   "licence_evidence": [
+    "as the source states it (the photo's page, read 2026-10-26): 'Free to use under the Unsplash License'; New York; published on October 24, 2025; Canon EOS 6D",
+    "the Unsplash License is not on the cleared list (public domain, CC0, CC BY, CC BY-SA), so the photograph ships by Nathan's permission (ADR 0012, as amended after the Phase 5 report)",
+    "Nathan, 2026-10-26: \"Assume I will get the license for whatever photo you select.\"",
+    "the bytes are the photographer's upload as Unsplash serves it, with no resizing parameters: 5472 x 3648, 5,086,854 bytes (the sha256 above)"
+   ],
+   "checked": "a tree-shaded avenue in New York seen from a crosswalk: walkers crossing in the foreground and on both sidewalks, a green bike lane, an 'ALL BUSES' turn sign, parked cars, and a stone arch with a fountain where the street meets a park; the walkers are passers-by in the street scene, none the subject, their faces small at the page's 570 x 380; no sculpture or mural as a subject (the arch is distant); no government or agency logo, emblem or seal; no party symbol or campaign sign; a licence plate legible only at full size",
+   "alt": "People cross a tree-shaded street in New York at a crosswalk, beside a green bike lane and an \"All buses\" sign, with a stone arch and a fountain at the far end of the street.",
+   "alt_why": "Unsplash's title is generic; the alt text names no street or landmark, since the source names only New York (the view matches lower Fifth Avenue toward the Washington Square Arch); DRAFT for Nathan's approval",
+   "cropped": "no: stat pages scale their photograph (object-contain); the 1200 x 630 link preview crops it, as for every stat photograph",
+   "alternates": [
+    {
+     "source_url": "https://unsplash.com/photos/a-sunny-street-scene-with-buildings-trees-and-people-walking-Eg-deM3ndGk",
+     "author": "Andrei Alexeev (Unsplash)",
+     "license": "Unsplash License",
+     "checked": "a quieter Greenwich Village corner (Charles Street on a sign): brick buildings with shops under apartments, street trees, a bike lane, a couple walking away from the camera; fewer people, none facing it"
+    },
+    {
+     "source_url": "https://commons.wikimedia.org/wiki/File:Park_Slope_-_Brooklyn_(55268725540).jpg",
+     "author": "ajay_suresh",
+     "license": "CC BY 4.0",
+     "checked": "a Park Slope corner in spring: brownstones under street trees, a crosswalk with a parent pushing a stroller, 8751 px wide; mostly residential, more parked cars than walkers"
+    }
+   ]
   }
  ],
  "alt_overrides": [

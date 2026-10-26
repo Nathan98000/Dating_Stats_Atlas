@@ -3,7 +3,7 @@
  "by_licence": {
   "CC BY 2.0": 40,
   "CC BY 2.5": 2,
-  "CC BY 3.0": 14,
+  "CC BY 3.0": 13,
   "CC BY 3.0 us": 1,
   "CC BY 4.0": 60,
   "CC BY-NC-SA 2.0": 1,
@@ -15,7 +15,8 @@
   "CC0": 32,
   "Free Art License": 1,
   "Public Domain": 1,
-  "Public domain": 37
+  "Public domain": 37,
+  "Unsplash License": 1
  },
  "cropped": [
   "abilene-texas",
@@ -388,11 +389,11 @@
   "yuma-arizona"
  ],
  "cc_before_4_0": {
-  "count": 138,
+  "count": 137,
   "by_licence": {
    "CC BY 2.0": 40,
    "CC BY 2.5": 2,
-   "CC BY 3.0": 14,
+   "CC BY 3.0": 13,
    "CC BY 3.0 us": 1,
    "CC BY-NC-SA 2.0": 1,
    "CC BY-SA 1.0": 1,
@@ -1085,11 +1086,6 @@
     "page": "stat",
     "key": "political_lean",
     "license": "CC BY 2.0"
-   },
-   {
-    "page": "stat",
-    "key": "resident_walkability_index",
-    "license": "CC BY 3.0"
    }
   ]
  },
@@ -4817,11 +4813,11 @@
   {
    "page": "stat",
    "key": "resident_walkability_index",
-   "title": "Pompei - panoramio (26)",
-   "author": "Tanya Dedyukhina",
-   "source_url": "https://commons.wikimedia.org/wiki/File:Pompei_-_panoramio_(26).jpg",
-   "license": "CC BY 3.0",
-   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "title": "People crossing a street with cars and trees",
+   "author": "Maxim Klimashin (Unsplash)",
+   "source_url": "https://unsplash.com/photos/people-crossing-a-street-with-cars-and-trees-M4xA9YPZ1HY",
+   "license": "Unsplash License",
+   "license_url": "https://unsplash.com/license",
    "cropped": false
   },
   {
