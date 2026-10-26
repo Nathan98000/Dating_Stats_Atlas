@@ -836,6 +836,54 @@ backup's); disk 57% to 54%. Rollback: the images `:73fc551`, the code at
 `src_73fc551` (Caddy rolls back with the same `--force-recreate`) and the
 build at `build_d62202fd0280_73fc551`.
 
+**Deploy record (2026-10-26, on Nathan's word "Deploy").** 61762a9: the
+walkability page's photograph, a New York street (Maxim Klimashin, Unsplash
+License, shipped by Nathan's permission) in place of Pompeii's ruins.
+Pushed: main = origin/main = 61762a9; before the push no secret pattern was
+added (the two hits are the photograph's sha256), no data file crossed, and
+the Pew history scan was clean (0 violations over 3,131 blobs). CI run
+40352690352 green on its second attempt: the first failed one phone test
+twice, the menu's focus after a click outside (`phase6.spec.ts:440`), which
+passed on the re-run and on the Mac in a checkout without photographs with
+CI=1. On the Mac: pytest 212, vitest 165, Playwright 325 passed (6 skipped
+by design). No number moves and the build is unchanged (79d1c644ec88,
+m4.3.0), so no `build_*` staging; the API's image takes nothing that
+changed, so only the web image was built. Steps: the running images tagged
+`:89b54c4` (the live code matched 89b54c4 file for file); the code in a
+fresh folder (1,489 files, checked against the commit file for file); the
+photographs copied from the live folder and the Mac's synced over them (the
+walkability original, its link preview and five sized copies crossed, its
+old 1920px copy was deleted, and a Finder `.DS_Store` that crossed was
+removed; all 2,568 identical to the Mac's by sha256, and every copy
+`photo-sizes.json` lists present, 1,816); the web image built in 3m35s
+while the old containers served. The private copy (network `dsa-stage`, the
+live build read-only, loopback only, an SSH tunnel) passed the real-build
+checks (4 passed) and the release's check: the walkability page names its
+five new copies and the new alt text, and nothing of Pompeii; the copies and
+the preview byte for byte; About credits "Maxim Klimashin (Unsplash) ·
+Unsplash License"; no console error. Then the folders were swapped at
+16:09:52 UTC (the old code kept as `src_89b54c4`), `up -d api web` run (only
+web recreated, ready in about 2 s), and Caddy recreated from `src` so that
+it mounts the live folder's Caddyfile (unchanged; no certificate obtained).
+Checked from the Mac: 19 pages and files 200 in 0.08-1.6 s, an unknown page
+404; the walkability page as on the private copy, its copies and preview
+served byte for byte with `max-age=604800`, the original and the removed
+1920px copy 404 (also by doubled-slash and encoded paths); the security
+headers once each; `www` and both DuckDNS addresses 301, http 308;
+`/api/rank` answers 193 ranked cities on 79d1c644ec88/m4.3.0, and `/v1/*`
+404 through the site; no error in the API's or web's log since the swap,
+and the only address in Caddy's log is 127.0.0.1; memory 1.9 of 5.8 GB;
+disk 64%. The older backup, the images `:73fc551`, `src_73fc551` (its code
+matched 73fc551 file for file) and `build_d62202fd0280_73fc551`, is still
+on the VM, its deletion awaiting Nathan's go. The files in it found nowhere
+else were copied to the Mac's Trash and checked by sha256: 15 photographs
+from before Phase 8 (Charleston's, Reno's and York's originals, copies and
+previews, and Fargo's old preview) in
+`Dating_Stats_Atlas_src_73fc551_photos`, and the old build's
+`features.parquet`, `manifest.json` and `metros.json` in
+`Dating_Stats_Atlas_build_d62202fd0280_73fc551`. Rollback: the images
+`:89b54c4` and the code at `src_89b54c4`, on the live build.
+
 ## Environment variables
 
 | var | where | meaning |
