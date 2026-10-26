@@ -873,10 +873,11 @@ headers once each; `www` and both DuckDNS addresses 301, http 308;
 `/api/rank` answers 193 ranked cities on 79d1c644ec88/m4.3.0, and `/v1/*`
 404 through the site; no error in the API's or web's log since the swap,
 and the only address in Caddy's log is 127.0.0.1; memory 1.9 of 5.8 GB;
-disk 64%. The older backup, the images `:73fc551`, `src_73fc551` (its code
-matched 73fc551 file for file) and `build_d62202fd0280_73fc551`, is still
-on the VM, its deletion awaiting Nathan's go. The files in it found nowhere
-else were copied to the Mac's Trash and checked by sha256: 15 photographs
+disk 64%. Then the older backup was deleted on Nathan's go ("Yes, prune
+the older backup set"), Nathan keeping only the newest: the images
+`:73fc551`, `src_73fc551` (its code matched 73fc551 file for file) and
+`build_d62202fd0280_73fc551`; disk 64% to 60%. Before that, the files in it
+found nowhere else were copied to the Mac's Trash and checked by sha256: 15 photographs
 from before Phase 8 (Charleston's, Reno's and York's originals, copies and
 previews, and Fargo's old preview) in
 `Dating_Stats_Atlas_src_73fc551_photos`, and the old build's
